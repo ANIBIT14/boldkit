@@ -1,0 +1,217 @@
+@import 'tailwindcss';
+
+@custom-variant dark (&:is(.dark *));
+
+/* BoldKit Theme Definition for Tailwind v4 */
+@theme {
+  --color-background: hsl(var(--background));
+  --color-foreground: hsl(var(--foreground));
+  --color-card: hsl(var(--card));
+  --color-card-foreground: hsl(var(--card-foreground));
+  --color-popover: hsl(var(--popover));
+  --color-popover-foreground: hsl(var(--popover-foreground));
+  --color-primary: hsl(var(--primary));
+  --color-primary-foreground: hsl(var(--primary-foreground));
+  --color-secondary: hsl(var(--secondary));
+  --color-secondary-foreground: hsl(var(--secondary-foreground));
+  --color-accent: hsl(var(--accent));
+  --color-accent-foreground: hsl(var(--accent-foreground));
+  --color-muted: hsl(var(--muted));
+  --color-muted-foreground: hsl(var(--muted-foreground));
+  --color-destructive: hsl(var(--destructive));
+  --color-destructive-foreground: hsl(var(--destructive-foreground));
+  --color-success: hsl(var(--success));
+  --color-success-foreground: hsl(var(--success-foreground));
+  --color-warning: hsl(var(--warning));
+  --color-warning-foreground: hsl(var(--warning-foreground));
+  --color-info: hsl(var(--info));
+  --color-info-foreground: hsl(var(--info-foreground));
+  --color-border: hsl(var(--border));
+  --color-input: hsl(var(--input));
+  --color-ring: hsl(var(--ring));
+  --color-chart-1: hsl(var(--chart-1));
+  --color-chart-2: hsl(var(--chart-2));
+  --color-chart-3: hsl(var(--chart-3));
+  --color-chart-4: hsl(var(--chart-4));
+  --color-chart-5: hsl(var(--chart-5));
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+}
+
+/* BoldKit - Neubrutalism Design System */
+:root {
+  /* Base Colors */
+  --background: 60 9% 98%;
+  --foreground: 240 10% 10%;
+
+  /* Card */
+  --card: 0 0% 100%;
+  --card-foreground: 240 10% 10%;
+
+  /* Popover */
+  --popover: 0 0% 100%;
+  --popover-foreground: 240 10% 10%;
+
+  /* Primary - Coral Red */
+  --primary: 0 84% 71%;
+  --primary-foreground: 240 10% 10%;
+
+  /* Secondary - Teal */
+  --secondary: 174 62% 56%;
+  --secondary-foreground: 240 10% 10%;
+
+  /* Accent - Yellow */
+  --accent: 49 100% 71%;
+  --accent-foreground: 240 10% 10%;
+
+  /* Muted */
+  --muted: 60 5% 90%;
+  --muted-foreground: 240 4% 46%;
+
+  /* Destructive */
+  --destructive: 0 84% 60%;
+  --destructive-foreground: 0 0% 100%;
+
+  /* Success */
+  --success: 152 69% 69%;
+  --success-foreground: 240 10% 10%;
+
+  /* Warning */
+  --warning: 49 100% 60%;
+  --warning-foreground: 240 10% 10%;
+
+  /* Info */
+  --info: 212 100% 73%;
+  --info-foreground: 240 10% 10%;
+
+  /* Border & Input */
+  --border: 240 10% 10%;
+  --input: 240 10% 10%;
+  --ring: 240 10% 10%;
+
+  /* Radius - Minimal for neubrutalism */
+  --radius: 0rem;
+
+  /* BoldKit specific */
+  --shadow-color: 240 10% 10%;
+  --shadow-offset: 4px;
+  --border-width: 3px;
+
+  /* Chart colors */
+  --chart-1: 0 84% 71%;
+  --chart-2: 174 62% 56%;
+  --chart-3: 49 100% 71%;
+  --chart-4: 271 76% 53%;
+  --chart-5: 326 78% 60%;
+}
+
+.dark {
+  --background: 240 10% 10%;
+  --foreground: 60 9% 98%;
+
+  --card: 240 10% 14%;
+  --card-foreground: 60 9% 98%;
+
+  --popover: 240 10% 14%;
+  --popover-foreground: 60 9% 98%;
+
+  --primary: 0 84% 71%;
+  --primary-foreground: 240 10% 10%;
+
+  --secondary: 174 62% 56%;
+  --secondary-foreground: 240 10% 10%;
+
+  --accent: 49 100% 71%;
+  --accent-foreground: 240 10% 10%;
+
+  --muted: 240 10% 20%;
+  --muted-foreground: 60 5% 65%;
+
+  --destructive: 0 84% 60%;
+  --destructive-foreground: 0 0% 100%;
+
+  --success: 152 69% 69%;
+  --success-foreground: 240 10% 10%;
+
+  --warning: 49 100% 60%;
+  --warning-foreground: 240 10% 10%;
+
+  --info: 212 100% 73%;
+  --info-foreground: 240 10% 10%;
+
+  --border: 60 9% 98%;
+  --input: 60 9% 98%;
+  --ring: 60 9% 98%;
+
+  --shadow-color: 0 0% 0%;
+}
+
+/* Base styles */
+* {
+  @apply border-border;
+}
+
+body {
+  @apply bg-background text-foreground antialiased;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+/* BoldKit Shadow Utility */
+.bk-shadow {
+  box-shadow: var(--shadow-offset) var(--shadow-offset) 0px hsl(var(--shadow-color));
+}
+
+.bk-shadow-sm {
+  box-shadow: 2px 2px 0px hsl(var(--shadow-color));
+}
+
+.bk-shadow-md {
+  box-shadow: 6px 6px 0px hsl(var(--shadow-color));
+}
+
+.bk-shadow-lg {
+  box-shadow: 8px 8px 0px hsl(var(--shadow-color));
+}
+
+/* Hover transform effect */
+.bk-hover:hover {
+  transform: translate(-2px, -2px);
+}
+
+.bk-hover:active {
+  transform: translate(2px, 2px);
+  box-shadow: 2px 2px 0px hsl(var(--shadow-color));
+}
+
+/* Selection */
+::selection {
+  @apply bg-accent text-accent-foreground;
+}
+
+/* Focus visible */
+:focus-visible {
+  @apply outline-none ring-2 ring-ring ring-offset-2 ring-offset-background;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 12px;
+  height: 12px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-muted;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-foreground border-3 border-muted;
+}
+
+/* Grid pattern for hero sections */
+.grid-pattern {
+  background-image:
+    linear-gradient(hsl(var(--border) / 0.3) 1px, transparent 1px),
+    linear-gradient(90deg, hsl(var(--border) / 0.3) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
