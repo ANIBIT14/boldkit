@@ -39,7 +39,7 @@ export function Home() {
             <Link to="/themes" className="hidden sm:block">
               <Button variant="ghost">Themes</Button>
             </Link>
-            <a href="https://github.com/boldkit/boldkit" target="_blank" rel="noopener noreferrer">
+            <a href="https://github.com/ANIBIT14/boldkit" target="_blank" rel="noopener noreferrer">
               <Button variant="ghost" size="icon">
                 <Github className="h-5 w-5" />
               </Button>
@@ -260,7 +260,7 @@ export function Home() {
                 Get Started
               </Button>
             </Link>
-            <a href="https://github.com/boldkit/boldkit" target="_blank" rel="noopener noreferrer">
+            <a href="https://github.com/ANIBIT14/boldkit" target="_blank" rel="noopener noreferrer">
               <Button size="lg" variant="outline" className="gap-2 bg-background">
                 <Github className="h-4 w-4" /> Star on GitHub
               </Button>
@@ -281,7 +281,7 @@ export function Home() {
               Built with React, Tailwind CSS & Radix UI. MIT License.
             </p>
             <div className="flex items-center gap-4">
-              <a href="https://github.com/boldkit/boldkit" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-foreground">
+              <a href="https://github.com/ANIBIT14/boldkit" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-foreground">
                 <Github className="h-5 w-5" />
               </a>
               <a href="https://boldkit.dev" className="text-sm font-medium hover:underline">

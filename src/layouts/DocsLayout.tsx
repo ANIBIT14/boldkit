@@ -141,7 +141,7 @@ export function DocsLayout() {
 
           <div className="ml-auto flex items-center space-x-2">
             <a
-              href="https://github.com/boldkit/boldkit"
+              href="https://github.com/ANIBIT14/boldkit"
               target="_blank"
               rel="noopener noreferrer"
             >

@@ -84,7 +84,7 @@ Customize BoldKit with CSS variables:
 
 ```bash
 # Clone the repository
-git clone https://github.com/boldkit/boldkit.git
+git clone https://github.com/ANIBIT14/boldkit.git
 
 # Install dependencies
 bun install

@@ -82,7 +82,7 @@ export function Components() {
             <Link to="/themes">
               <Button variant="ghost">Themes</Button>
             </Link>
-            <a href="https://github.com/boldkit/boldkit" target="_blank" rel="noopener noreferrer">
+            <a href="https://github.com/ANIBIT14/boldkit" target="_blank" rel="noopener noreferrer">
               <Button variant="ghost" size="icon">
                 <Github className="h-5 w-5" />
               </Button>
