@@ -116,15 +116,17 @@ export function LayeredCardDoc() {
         usageCode={usageCode}
         registryName="layered-card"
       >
-        <LayeredCard className="w-[350px]">
-          <LayeredCardHeader>
-            <LayeredCardTitle>Layered Card</LayeredCardTitle>
-            <LayeredCardDescription>With stacked depth effect</LayeredCardDescription>
-          </LayeredCardHeader>
-          <LayeredCardContent>
-            <p>This card has visible layers behind it for a 3D stacked paper effect.</p>
-          </LayeredCardContent>
-        </LayeredCard>
+        <div className="pb-6 pr-6">
+          <LayeredCard className="w-[350px]">
+            <LayeredCardHeader>
+              <LayeredCardTitle>Layered Card</LayeredCardTitle>
+              <LayeredCardDescription>With stacked depth effect</LayeredCardDescription>
+            </LayeredCardHeader>
+            <LayeredCardContent>
+              <p>This card has visible layers behind it for a 3D stacked paper effect.</p>
+            </LayeredCardContent>
+          </LayeredCard>
+        </div>
       </ComponentDoc>
 
       {/* Layer Count */}
@@ -143,7 +145,7 @@ export function LayeredCardDoc() {
   <LayeredCardContent>Triple Layer</LayeredCardContent>
 </LayeredCard>`}
       >
-        <div className="flex flex-wrap gap-12 items-start">
+        <div className="flex flex-wrap gap-12 items-start pb-8 pr-8">
           <LayeredCard layers="single" className="w-[200px]">
             <LayeredCardContent>
               <p className="font-bold">Single Layer</p>
@@ -178,7 +180,7 @@ export function LayeredCardDoc() {
   <LayeredCardContent>Large Offset</LayeredCardContent>
 </LayeredCard>`}
       >
-        <div className="flex flex-wrap gap-12 items-start">
+        <div className="flex flex-wrap gap-12 items-start pb-8 pr-8">
           <LayeredCard offset="sm" className="w-[200px]">
             <LayeredCardContent>
               <p className="font-bold">Small Offset</p>
@@ -213,7 +215,7 @@ export function LayeredCardDoc() {
   <LayeredCardContent>Accent Layers</LayeredCardContent>
 </LayeredCard>`}
       >
-        <div className="flex flex-wrap gap-12 items-start">
+        <div className="flex flex-wrap gap-12 items-start pb-8 pr-8">
           <LayeredCard layerColor="primary" className="w-[200px]">
             <LayeredCardContent>
               <p className="font-bold">Primary</p>
@@ -245,14 +247,16 @@ export function LayeredCardDoc() {
   </LayeredCardContent>
 </LayeredCard>`}
       >
-        <LayeredCard interactive className="w-[300px]">
-          <LayeredCardHeader>
-            <LayeredCardTitle>Hover Me</LayeredCardTitle>
-          </LayeredCardHeader>
-          <LayeredCardContent>
-            <p>This card lifts up on hover!</p>
-          </LayeredCardContent>
-        </LayeredCard>
+        <div className="pb-6 pr-6">
+          <LayeredCard interactive className="w-[300px]">
+            <LayeredCardHeader>
+              <LayeredCardTitle>Hover Me</LayeredCardTitle>
+            </LayeredCardHeader>
+            <LayeredCardContent>
+              <p>This card lifts up on hover!</p>
+            </LayeredCardContent>
+          </LayeredCard>
+        </div>
       </ExampleSection>
 
       {/* Full Example */}
@@ -277,23 +281,25 @@ export function LayeredCardDoc() {
   </LayeredCardFooter>
 </LayeredCard>`}
       >
-        <LayeredCard layerColor="primary" className="w-[350px]">
-          <LayeredCardHeader>
-            <LayeredCardTitle>Subscription Plan</LayeredCardTitle>
-            <LayeredCardDescription>Everything you need to get started</LayeredCardDescription>
-          </LayeredCardHeader>
-          <LayeredCardContent className="space-y-4">
-            <div className="text-4xl font-black">$29<span className="text-lg font-normal">/mo</span></div>
-            <ul className="space-y-2 text-sm">
-              <li>✓ Unlimited projects</li>
-              <li>✓ Priority support</li>
-              <li>✓ Advanced analytics</li>
-            </ul>
-          </LayeredCardContent>
-          <LayeredCardFooter>
-            <Button className="w-full">Get Started</Button>
-          </LayeredCardFooter>
-        </LayeredCard>
+        <div className="pb-6 pr-6">
+          <LayeredCard layerColor="primary" className="w-[350px]">
+            <LayeredCardHeader>
+              <LayeredCardTitle>Subscription Plan</LayeredCardTitle>
+              <LayeredCardDescription>Everything you need to get started</LayeredCardDescription>
+            </LayeredCardHeader>
+            <LayeredCardContent className="space-y-4">
+              <div className="text-4xl font-black">$29<span className="text-lg font-normal">/mo</span></div>
+              <ul className="space-y-2 text-sm">
+                <li>✓ Unlimited projects</li>
+                <li>✓ Priority support</li>
+                <li>✓ Advanced analytics</li>
+              </ul>
+            </LayeredCardContent>
+            <LayeredCardFooter>
+              <Button className="w-full">Get Started</Button>
+            </LayeredCardFooter>
+          </LayeredCard>
+        </div>
       </ExampleSection>
 
       {/* Card Grid */}
@@ -321,7 +327,7 @@ export function LayeredCardDoc() {
   </LayeredCard>
 </div>`}
       >
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 pb-6 pr-6">
           <LayeredCard layerColor="primary">
             <LayeredCardContent className="text-center">
               <div className="text-3xl font-black">01</div>
