@@ -6,6 +6,8 @@ import { Input } from '@/components/ui/input'
 import { Checkbox } from '@/components/ui/checkbox'
 import { Progress } from '@/components/ui/progress'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
+import { LayeredCard, LayeredCardContent, LayeredCardHeader, LayeredCardTitle } from '@/components/ui/layered-card'
+import { Sticker, Stamp } from '@/components/ui/sticker'
 import { useTheme } from '@/hooks/use-theme'
 import { Moon, Sun, Github, Copy, Check, ArrowRight, Zap, Palette, Code2, Smartphone } from 'lucide-react'
 import { useState } from 'react'
@@ -160,7 +162,7 @@ export function Home() {
       <section className="border-b-3 border-foreground py-20">
         <div className="container mx-auto px-4">
           <div className="mb-12 text-center">
-            <Badge variant="secondary" className="mb-4">30+ Components</Badge>
+            <Badge variant="secondary" className="mb-4">40+ Components</Badge>
             <h2 className="text-3xl font-black uppercase tracking-tight md:text-4xl">
               Component Preview
             </h2>
@@ -235,6 +237,53 @@ export function Home() {
                   <TabsContent value="tab2">Tab content for features.</TabsContent>
                   <TabsContent value="tab3">Tab content for code.</TabsContent>
                 </Tabs>
+              </CardContent>
+            </Card>
+
+            {/* Stickers & Stamps - NEW */}
+            <Card>
+              <CardHeader className="bg-primary">
+                <CardTitle className="flex items-center gap-2">
+                  Stickers & Stamps
+                  <Badge variant="accent" className="text-[10px]">New</Badge>
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="pt-6">
+                <div className="flex flex-wrap gap-6 items-center py-4">
+                  <Sticker>New</Sticker>
+                  <Sticker variant="primary" rotation="medium-right">Hot</Sticker>
+                  <Sticker variant="secondary" dashed>Sale</Sticker>
+                  <Stamp size="sm">OK</Stamp>
+                  <Stamp variant="secondary" size="sm">Verified</Stamp>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Layered Cards - NEW */}
+            <Card>
+              <CardHeader className="bg-secondary">
+                <CardTitle className="flex items-center gap-2">
+                  Layered Cards
+                  <Badge variant="accent" className="text-[10px]">New</Badge>
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="pt-6 pb-10 pr-10">
+                <div className="flex gap-8 items-start">
+                  <LayeredCard layerColor="primary" className="flex-1">
+                    <LayeredCardHeader>
+                      <LayeredCardTitle className="text-base">Stacked</LayeredCardTitle>
+                    </LayeredCardHeader>
+                    <LayeredCardContent>
+                      <p className="text-sm">Paper depth effect</p>
+                    </LayeredCardContent>
+                  </LayeredCard>
+                  <LayeredCard layerColor="accent" layers="triple" className="flex-1">
+                    <LayeredCardContent className="text-center py-6">
+                      <div className="text-2xl font-black">3x</div>
+                      <p className="text-xs mt-1">Triple Layer</p>
+                    </LayeredCardContent>
+                  </LayeredCard>
+                </div>
               </CardContent>
             </Card>
           </div>
