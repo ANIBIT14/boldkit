@@ -1,0 +1,17 @@
+/* TEAM */
+Developer: Aniruddha Agarwal
+Contact: aniruddha@boldkit.dev
+LinkedIn: https://www.linkedin.com/in/aniruddhaagarwal/
+Location: India
+
+/* THANKS */
+shadcn - For the amazing shadcn/ui foundation
+Radix UI - For accessible primitives
+Tailwind CSS - For utility-first styling
+Vanikya.ai - For asset generation
+
+/* SITE */
+Last update: 2025-01-29
+Language: English
+Standards: HTML5, CSS3, ES6+
+Software: React, TypeScript, Vite, Tailwind CSS

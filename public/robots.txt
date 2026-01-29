@@ -1,0 +1,18 @@
+# BoldKit - Neubrutalism UI Component Library
+# https://boldkit.dev
+
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://boldkit.dev/sitemap.xml
+
+# Disallow registry JSON files from indexing (they're for CLI usage)
+Disallow: /r/
+Disallow: /*.json$
+
+# Allow main pages
+Allow: /docs
+Allow: /components
+Allow: /charts
+Allow: /themes

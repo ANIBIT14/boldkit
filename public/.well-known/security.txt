@@ -1,0 +1,10 @@
+# BoldKit Security Policy
+# https://boldkit.dev
+
+Contact: mailto:aniruddha@boldkit.dev
+Expires: 2026-12-31T23:59:59.000Z
+Preferred-Languages: en
+Canonical: https://boldkit.dev/.well-known/security.txt
+
+# Please report any security vulnerabilities responsibly.
+# We appreciate your help in keeping BoldKit secure.

@@ -1,0 +1,139 @@
+# BoldKit - Neubrutalism UI Component Library
+
+> BoldKit is an open-source React component library featuring neubrutalism design aesthetics. Built on top of shadcn/ui with Radix UI primitives and Tailwind CSS.
+
+## Overview
+
+BoldKit provides 40+ beautifully crafted UI components with:
+- Bold, high-contrast neubrutalism styling
+- Thick borders (3px default)
+- Hard drop shadows (no blur)
+- Vibrant color palette (coral, teal, yellow)
+- Zero border radius for raw aesthetic
+- Full dark mode support
+- TypeScript support
+- Accessible components via Radix UI
+
+## Installation
+
+```bash
+npx boldkit-ui init
+```
+
+Or add individual components:
+```bash
+npx boldkit-ui add button
+```
+
+## Documentation
+
+- Homepage: https://boldkit.dev
+- Documentation: https://boldkit.dev/docs
+- Components: https://boldkit.dev/components
+- Charts: https://boldkit.dev/charts
+- Theme Builder: https://boldkit.dev/themes
+- GitHub: https://github.com/ANIBIT14/boldkit
+
+## Components
+
+### Layout & Containers
+- Card - Container with thick borders and shadows
+- Layered Card - Stacked paper depth effect
+- Dialog - Modal window with neubrutalism styling
+- Drawer - Slide-in panel
+- Sheet - Side panel overlay
+- Accordion - Expandable content sections
+- Collapsible - Toggle content visibility
+- Tabs - Tabbed interface
+- Scroll Area - Custom scrollbar styling
+
+### Form Controls
+- Button - Multiple variants (primary, secondary, accent, destructive, outline, ghost)
+- Input - Text input field
+- Textarea - Multi-line text input
+- Checkbox - Toggle checkboxes
+- Radio Group - Single-select options
+- Select - Dropdown selection
+- Switch - Toggle switch
+- Slider - Range input
+- Input OTP - One-time password input
+- Label - Form labels
+
+### Feedback & Status
+- Alert - Callout messages
+- Alert Dialog - Confirmation dialogs
+- Badge - Status indicators
+- Progress - Progress bars
+- Skeleton - Loading placeholders
+- Sonner/Toast - Notification toasts
+
+### Navigation
+- Breadcrumb - Navigation path
+- Dropdown Menu - Action menus
+- Pagination - Page navigation
+- Command - Command palette
+
+### Data Display
+- Avatar - User images with fallback
+- Table - Data tables
+- Hover Card - Hover-triggered cards
+- Tooltip - Contextual hints
+- Calendar - Date picker
+
+### Decorative (Neubrutalism Special)
+- Sticker - Rotated labels with tape effect
+- Stamp - Circular approval badges
+- Marquee - Auto-scrolling text ticker
+
+## Design Tokens
+
+### Colors (HSL)
+- Primary (Coral): 0 84% 71%
+- Secondary (Teal): 174 62% 56%
+- Accent (Yellow): 49 100% 71%
+- Destructive: 0 84% 60%
+- Success: 152 69% 69%
+- Warning: 49 100% 60%
+- Info: 212 100% 73%
+
+### Neon Colors
+- Neon Pink: 330 100% 65%
+- Neon Green: 120 100% 50%
+- Neon Blue: 195 100% 50%
+
+### Shadows
+- Default: 4px 4px 0px (no blur)
+- Small: 2px 2px 0px
+- Medium: 6px 6px 0px
+- Large: 8px 8px 0px
+- XL: 12px 12px 0px
+
+### Borders
+- Default width: 3px
+- Border color: foreground color
+- Border radius: 0 (square corners)
+
+## Tech Stack
+
+- React 19
+- TypeScript
+- Tailwind CSS v4
+- Radix UI Primitives
+- Class Variance Authority (CVA)
+- Vite
+
+## Registry
+
+BoldKit is compatible with shadcn/ui registry format:
+- Registry index: https://boldkit.dev/registry.json
+- Individual components: https://boldkit.dev/[component-name].json
+
+## License
+
+MIT License - Free for personal and commercial use.
+
+## Contact
+
+- Author: Aniruddha Agarwal
+- Email: aniruddha@boldkit.dev
+- LinkedIn: https://www.linkedin.com/in/aniruddhaagarwal/
