@@ -27,6 +27,8 @@ import {
   InputDoc,
   InputOtpDoc,
   LabelDoc,
+  LayeredCardDoc,
+  MarqueeDoc,
   PaginationDoc,
   PopoverDoc,
   ProgressDoc,
@@ -38,6 +40,7 @@ import {
   SkeletonDoc,
   SliderDoc,
   SonnerDoc,
+  StickerDoc,
   SwitchDoc,
   TableDoc,
   TabsDoc,
@@ -89,6 +92,8 @@ function App() {
               <Route path="input" element={<InputDoc />} />
               <Route path="input-otp" element={<InputOtpDoc />} />
               <Route path="label" element={<LabelDoc />} />
+              <Route path="layered-card" element={<LayeredCardDoc />} />
+              <Route path="marquee" element={<MarqueeDoc />} />
               <Route path="pagination" element={<PaginationDoc />} />
               <Route path="popover" element={<PopoverDoc />} />
               <Route path="progress" element={<ProgressDoc />} />
@@ -100,6 +105,7 @@ function App() {
               <Route path="skeleton" element={<SkeletonDoc />} />
               <Route path="slider" element={<SliderDoc />} />
               <Route path="sonner" element={<SonnerDoc />} />
+              <Route path="sticker" element={<StickerDoc />} />
               <Route path="switch" element={<SwitchDoc />} />
               <Route path="table" element={<TableDoc />} />
               <Route path="tabs" element={<TabsDoc />} />

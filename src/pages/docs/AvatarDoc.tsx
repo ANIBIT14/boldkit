@@ -143,35 +143,35 @@ export function AvatarDoc() {
       {/* Avatar Group */}
       <ExampleSection
         title="Avatar Group"
-        description="Stack multiple avatars together for a group display."
-        code={`<div className="flex -space-x-3">
-  <Avatar className="border-background">
+        description="Stack multiple avatars together for a group display with overlapping effect."
+        code={`<div className="flex items-center">
+  <Avatar className="ring-2 ring-background z-40">
     <AvatarImage src="https://github.com/shadcn.png" />
     <AvatarFallback>CN</AvatarFallback>
   </Avatar>
-  <Avatar className="border-background">
-    <AvatarFallback>JD</AvatarFallback>
+  <Avatar className="ring-2 ring-background -ml-3 z-30">
+    <AvatarFallback className="bg-secondary">JD</AvatarFallback>
   </Avatar>
-  <Avatar className="border-background">
-    <AvatarFallback>AB</AvatarFallback>
+  <Avatar className="ring-2 ring-background -ml-3 z-20">
+    <AvatarFallback className="bg-accent">AB</AvatarFallback>
   </Avatar>
-  <Avatar className="border-background">
-    <AvatarFallback>+3</AvatarFallback>
+  <Avatar className="ring-2 ring-background -ml-3 z-10">
+    <AvatarFallback className="bg-muted text-muted-foreground text-xs">+3</AvatarFallback>
   </Avatar>
 </div>`}
       >
-        <div className="flex -space-x-3">
-          <Avatar className="border-background">
+        <div className="flex items-center">
+          <Avatar className="ring-2 ring-background z-40">
             <AvatarImage src="https://github.com/shadcn.png" alt="User 1" />
             <AvatarFallback>CN</AvatarFallback>
           </Avatar>
-          <Avatar className="border-background">
-            <AvatarFallback>JD</AvatarFallback>
+          <Avatar className="ring-2 ring-background -ml-3 z-30">
+            <AvatarFallback className="bg-secondary">JD</AvatarFallback>
           </Avatar>
-          <Avatar className="border-background">
-            <AvatarFallback>AB</AvatarFallback>
+          <Avatar className="ring-2 ring-background -ml-3 z-20">
+            <AvatarFallback className="bg-accent">AB</AvatarFallback>
           </Avatar>
-          <Avatar className="border-background">
+          <Avatar className="ring-2 ring-background -ml-3 z-10">
             <AvatarFallback className="bg-muted text-muted-foreground text-xs">+3</AvatarFallback>
           </Avatar>
         </div>

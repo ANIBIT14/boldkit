@@ -163,7 +163,7 @@ interface ExampleSectionProps {
 
 export function ExampleSection({ title, description, children, code }: ExampleSectionProps) {
   return (
-    <section>
+    <section className="mt-12">
       <h2 className="text-2xl font-bold uppercase tracking-wide mb-2">{title}</h2>
       {description && (
         <p className="text-muted-foreground mb-4">{description}</p>
