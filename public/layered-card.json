@@ -1,0 +1,19 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "layered-card",
+  "type": "registry:ui",
+  "description": "Card component with stacked layers effect showing offset depth - neubrutalist depth illusion",
+  "dependencies": [
+    "class-variance-authority"
+  ],
+  "registryDependencies": [
+    "utils"
+  ],
+  "files": [
+    {
+      "path": "registry/default/ui/layered-card.tsx",
+      "type": "registry:ui",
+      "target": "components/ui/layered-card.tsx"
+    }
+  ]
+}

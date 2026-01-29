@@ -32,7 +32,16 @@
       "input": "240 10% 10%",
       "ring": "240 10% 10%",
       "radius": "0rem",
-      "shadow-color": "240 10% 10%"
+      "shadow-color": "240 10% 10%",
+      "neon-pink": "330 100% 65%",
+      "neon-green": "120 100% 50%",
+      "neon-blue": "195 100% 50%",
+      "neon-orange": "25 100% 55%",
+      "neon-purple": "280 100% 60%",
+      "clash-1": "15 85% 60%",
+      "clash-2": "280 70% 50%",
+      "clash-3": "165 80% 45%",
+      "clash-4": "45 95% 55%"
     },
     "dark": {
       "background": "240 10% 10%",
@@ -60,7 +69,16 @@
       "border": "60 9% 98%",
       "input": "60 9% 98%",
       "ring": "60 9% 98%",
-      "shadow-color": "0 0% 0%"
+      "shadow-color": "0 0% 0%",
+      "neon-pink": "330 100% 70%",
+      "neon-green": "120 100% 55%",
+      "neon-blue": "195 100% 55%",
+      "neon-orange": "25 100% 60%",
+      "neon-purple": "280 100% 65%",
+      "clash-1": "15 85% 65%",
+      "clash-2": "280 70% 55%",
+      "clash-3": "165 80% 50%",
+      "clash-4": "45 95% 60%"
     }
   }
 }

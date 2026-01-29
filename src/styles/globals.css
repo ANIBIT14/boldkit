@@ -34,6 +34,17 @@
   --color-chart-3: hsl(var(--chart-3));
   --color-chart-4: hsl(var(--chart-4));
   --color-chart-5: hsl(var(--chart-5));
+  /* Neon Colors */
+  --color-neon-pink: hsl(var(--neon-pink));
+  --color-neon-green: hsl(var(--neon-green));
+  --color-neon-blue: hsl(var(--neon-blue));
+  --color-neon-orange: hsl(var(--neon-orange));
+  --color-neon-purple: hsl(var(--neon-purple));
+  /* Clash Colors */
+  --color-clash-1: hsl(var(--clash-1));
+  --color-clash-2: hsl(var(--clash-2));
+  --color-clash-3: hsl(var(--clash-3));
+  --color-clash-4: hsl(var(--clash-4));
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
@@ -104,6 +115,19 @@
   --chart-3: 49 100% 71%;
   --chart-4: 271 76% 53%;
   --chart-5: 326 78% 60%;
+
+  /* Neon Colors - High saturation, vibrant */
+  --neon-pink: 330 100% 65%;
+  --neon-green: 120 100% 50%;
+  --neon-blue: 195 100% 50%;
+  --neon-orange: 25 100% 55%;
+  --neon-purple: 280 100% 60%;
+
+  /* Clash Colors - Unconventional pairings */
+  --clash-1: 15 85% 60%;   /* Burnt orange */
+  --clash-2: 280 70% 50%;  /* Deep purple */
+  --clash-3: 165 80% 45%;  /* Cyan-teal */
+  --clash-4: 45 95% 55%;   /* Mustard */
 }
 
 .dark {
@@ -145,6 +169,19 @@
   --ring: 60 9% 98%;
 
   --shadow-color: 0 0% 0%;
+
+  /* Neon Colors - Slightly adjusted for dark mode */
+  --neon-pink: 330 100% 70%;
+  --neon-green: 120 100% 55%;
+  --neon-blue: 195 100% 55%;
+  --neon-orange: 25 100% 60%;
+  --neon-purple: 280 100% 65%;
+
+  /* Clash Colors */
+  --clash-1: 15 85% 65%;
+  --clash-2: 280 70% 55%;
+  --clash-3: 165 80% 50%;
+  --clash-4: 45 95% 60%;
 }
 
 /* Base styles */
@@ -174,6 +211,70 @@ body {
   box-shadow: 8px 8px 0px hsl(var(--shadow-color));
 }
 
+.bk-shadow-xl {
+  box-shadow: 12px 12px 0px hsl(var(--shadow-color));
+}
+
+.bk-shadow-2xl {
+  box-shadow: 16px 16px 0px hsl(var(--shadow-color));
+}
+
+/* Colored Shadow Variants */
+.bk-shadow-primary {
+  box-shadow: 4px 4px 0px hsl(var(--primary));
+}
+
+.bk-shadow-secondary {
+  box-shadow: 4px 4px 0px hsl(var(--secondary));
+}
+
+.bk-shadow-accent {
+  box-shadow: 4px 4px 0px hsl(var(--accent));
+}
+
+.bk-shadow-destructive {
+  box-shadow: 4px 4px 0px hsl(var(--destructive));
+}
+
+.bk-shadow-neon-pink {
+  box-shadow: 4px 4px 0px hsl(var(--neon-pink));
+}
+
+.bk-shadow-neon-green {
+  box-shadow: 4px 4px 0px hsl(var(--neon-green));
+}
+
+.bk-shadow-neon-blue {
+  box-shadow: 4px 4px 0px hsl(var(--neon-blue));
+}
+
+/* Double Shadow Effect - Layered depth */
+.bk-shadow-double {
+  box-shadow:
+    4px 4px 0px hsl(var(--primary)),
+    8px 8px 0px hsl(var(--shadow-color));
+}
+
+.bk-shadow-double-accent {
+  box-shadow:
+    4px 4px 0px hsl(var(--accent)),
+    8px 8px 0px hsl(var(--shadow-color));
+}
+
+.bk-shadow-double-lg {
+  box-shadow:
+    6px 6px 0px hsl(var(--primary)),
+    12px 12px 0px hsl(var(--shadow-color));
+}
+
+/* Triple Shadow Effect - Maximum depth */
+.bk-shadow-triple {
+  box-shadow:
+    3px 3px 0px hsl(var(--primary)),
+    6px 6px 0px hsl(var(--secondary)),
+    9px 9px 0px hsl(var(--shadow-color));
+}
+
 /* Hover transform effect */
 .bk-hover:hover {
   transform: translate(-2px, -2px);
@@ -184,9 +285,289 @@ body {
   box-shadow: 2px 2px 0px hsl(var(--shadow-color));
 }
 
+/* Enhanced hover with scale */
+.bk-hover-scale:hover {
+  transform: translate(-2px, -2px) scale(1.02);
+}
+
+.bk-hover-scale:active {
+  transform: translate(2px, 2px) scale(0.98);
+  box-shadow: 2px 2px 0px hsl(var(--shadow-color));
+}
+
+/* Border Variations */
+.border-4 {
+  border-width: 4px;
+}
+
+.border-5 {
+  border-width: 5px;
+}
+
+.border-6 {
+  border-width: 6px;
+}
+
+/* Double Border Effect - Sticker/Stamp style */
+.bk-double-border {
+  outline: 3px solid hsl(var(--foreground));
+  outline-offset: 3px;
+}
+
+.bk-double-border-primary {
+  outline: 3px solid hsl(var(--primary));
+  outline-offset: 3px;
+}
+
+.bk-double-border-accent {
+  outline: 3px solid hsl(var(--accent));
+  outline-offset: 3px;
+}
+
+/* Dashed border for rough/hand-drawn feel */
+.bk-dashed-border {
+  border-style: dashed;
+  border-width: 3px;
+}
+
+/* Sticker Effect - Rotated with double border */
+.bk-sticker {
+  position: relative;
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  border: 3px solid hsl(var(--foreground));
+  background: hsl(var(--accent));
+  box-shadow: 4px 4px 0px hsl(var(--shadow-color));
+  transform: rotate(-2deg);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.bk-sticker::before {
+  content: '';
+  position: absolute;
+  inset: -6px;
+  border: 2px dashed hsl(var(--foreground) / 0.5);
+}
+
+.bk-sticker-tilted {
+  transform: rotate(-6deg);
+}
+
+.bk-sticker-tilted-right {
+  transform: rotate(6deg);
+}
+
+/* Stamp Effect - Circular with rough edges */
+.bk-stamp {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  border: 4px solid hsl(var(--foreground));
+  border-radius: 50%;
+  background: hsl(var(--primary));
+  color: hsl(var(--primary-foreground));
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  box-shadow: 4px 4px 0px hsl(var(--shadow-color));
+  transform: rotate(-12deg);
+}
+
+/* Tape Effect - Decorative tape strips */
+.bk-tape {
+  position: relative;
+}
+
+.bk-tape::before {
+  content: '';
+  position: absolute;
+  top: -8px;
+  left: 50%;
+  transform: translateX(-50%) rotate(-2deg);
+  width: 60px;
+  height: 20px;
+  background: hsl(var(--accent) / 0.8);
+  border: 2px solid hsl(var(--foreground));
+}
+
 /* Selection */
 ::selection {
   @apply bg-accent text-accent-foreground;
+}
+
+/* ==========================================
+   TYPOGRAPHY ENHANCEMENTS
+   ========================================== */
+
+/* Extra-wide letter spacing for emphasis */
+.tracking-extra-wide {
+  letter-spacing: 0.2em;
+}
+
+.tracking-ultra-wide {
+  letter-spacing: 0.3em;
+}
+
+/* Text overflow effect - intentional overflow */
+.bk-text-overflow {
+  overflow: visible;
+  white-space: nowrap;
+}
+
+.bk-text-overflow-clip {
+  position: relative;
+}
+
+.bk-text-overflow-clip::after {
+  content: '';
+  position: absolute;
+  right: -20px;
+  top: 0;
+  bottom: 0;
+  width: 40px;
+  background: linear-gradient(to right, transparent, hsl(var(--background)));
+}
+
+/* Dramatic text sizes */
+.text-display {
+  font-size: 4rem;
+  line-height: 1;
+  font-weight: 900;
+  letter-spacing: -0.02em;
+}
+
+.text-display-lg {
+  font-size: 6rem;
+  line-height: 0.9;
+  font-weight: 900;
+  letter-spacing: -0.03em;
+}
+
+.text-display-xl {
+  font-size: 8rem;
+  line-height: 0.85;
+  font-weight: 900;
+  letter-spacing: -0.04em;
+}
+
+/* Outlined text */
+.bk-text-outline {
+  -webkit-text-stroke: 2px hsl(var(--foreground));
+  color: transparent;
+}
+
+.bk-text-outline-thick {
+  -webkit-text-stroke: 3px hsl(var(--foreground));
+  color: transparent;
+}
+
+/* Text with shadow */
+.bk-text-shadow {
+  text-shadow: 3px 3px 0px hsl(var(--shadow-color));
+}
+
+.bk-text-shadow-lg {
+  text-shadow: 5px 5px 0px hsl(var(--shadow-color));
+}
+
+.bk-text-shadow-colored {
+  text-shadow: 3px 3px 0px hsl(var(--primary));
+}
+
+/* ==========================================
+   TEXTURE & PATTERN UTILITIES
+   ========================================== */
+
+/* Noise/Grain texture overlay */
+.bk-noise {
+  position: relative;
+}
+
+.bk-noise::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  opacity: 0.08;
+  pointer-events: none;
+  mix-blend-mode: overlay;
+}
+
+.bk-noise-heavy::before {
+  opacity: 0.15;
+}
+
+.bk-noise-light::before {
+  opacity: 0.04;
+}
+
+/* Halftone dot pattern */
+.bk-halftone {
+  position: relative;
+}
+
+.bk-halftone::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(circle, hsl(var(--foreground) / 0.15) 1px, transparent 1px);
+  background-size: 8px 8px;
+  pointer-events: none;
+}
+
+.bk-halftone-dense::before {
+  background-size: 4px 4px;
+}
+
+.bk-halftone-sparse::before {
+  background-size: 12px 12px;
+}
+
+/* Grid pattern variations */
+.grid-pattern-sm {
+  background-image:
+    linear-gradient(hsl(var(--border) / 0.3) 1px, transparent 1px),
+    linear-gradient(90deg, hsl(var(--border) / 0.3) 1px, transparent 1px);
+  background-size: 20px 20px;
+}
+
+.grid-pattern-lg {
+  background-image:
+    linear-gradient(hsl(var(--border) / 0.3) 1px, transparent 1px),
+    linear-gradient(90deg, hsl(var(--border) / 0.3) 1px, transparent 1px);
+  background-size: 60px 60px;
+}
+
+.grid-pattern-bold {
+  background-image:
+    linear-gradient(hsl(var(--border) / 0.5) 2px, transparent 2px),
+    linear-gradient(90deg, hsl(var(--border) / 0.5) 2px, transparent 2px);
+  background-size: 40px 40px;
+}
+
+/* Diagonal lines pattern */
+.bk-diagonal-lines {
+  background-image: repeating-linear-gradient(
+    45deg,
+    transparent,
+    transparent 10px,
+    hsl(var(--border) / 0.2) 10px,
+    hsl(var(--border) / 0.2) 11px
+  );
+}
+
+/* Checkerboard pattern */
+.bk-checkerboard {
+  background-image:
+    linear-gradient(45deg, hsl(var(--muted)) 25%, transparent 25%),
+    linear-gradient(-45deg, hsl(var(--muted)) 25%, transparent 25%),
+    linear-gradient(45deg, transparent 75%, hsl(var(--muted)) 75%),
+    linear-gradient(-45deg, transparent 75%, hsl(var(--muted)) 75%);
+  background-size: 20px 20px;
+  background-position: 0 0, 0 10px, 10px -10px, -10px 0px;
 }
 
 /* Focus visible */
@@ -278,6 +659,86 @@ body {
   50% { box-shadow: 6px 6px 0px hsl(var(--shadow-color)); }
 }
 
+/* Wiggle animation - playful error state */
+@keyframes wiggle {
+  0%, 100% { transform: rotate(0deg); }
+  25% { transform: rotate(-3deg); }
+  50% { transform: rotate(3deg); }
+  75% { transform: rotate(-3deg); }
+}
+
+/* Pop animation - success/attention */
+@keyframes pop {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+  100% { transform: scale(1); }
+}
+
+/* Rubber band effect */
+@keyframes rubber-band {
+  0% { transform: scale(1); }
+  30% { transform: scaleX(1.25) scaleY(0.75); }
+  40% { transform: scaleX(0.75) scaleY(1.25); }
+  50% { transform: scaleX(1.15) scaleY(0.85); }
+  65% { transform: scaleX(0.95) scaleY(1.05); }
+  75% { transform: scaleX(1.05) scaleY(0.95); }
+  100% { transform: scale(1); }
+}
+
+/* Jello wobble */
+@keyframes jello {
+  0%, 100% { transform: skewX(0deg) skewY(0deg); }
+  30% { transform: skewX(-12.5deg) skewY(-12.5deg); }
+  40% { transform: skewX(6.25deg) skewY(6.25deg); }
+  50% { transform: skewX(-3.125deg) skewY(-3.125deg); }
+  65% { transform: skewX(1.5625deg) skewY(1.5625deg); }
+  75% { transform: skewX(-0.78125deg) skewY(-0.78125deg); }
+}
+
+/* Marquee scroll animation */
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+@keyframes marquee-reverse {
+  0% { transform: translateX(-50%); }
+  100% { transform: translateX(0); }
+}
+
+/* Stagger fade in */
+@keyframes stagger-fade-in {
+  0% { opacity: 0; transform: translateY(10px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+/* Pulse scale */
+@keyframes pulse-scale {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
+/* Glitch effect */
+@keyframes glitch {
+  0%, 100% { transform: translate(0); }
+  20% { transform: translate(-2px, 2px); }
+  40% { transform: translate(-2px, -2px); }
+  60% { transform: translate(2px, 2px); }
+  80% { transform: translate(2px, -2px); }
+}
+
+/* Float animation */
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+/* Typewriter cursor blink */
+@keyframes blink {
+  0%, 50% { opacity: 1; }
+  51%, 100% { opacity: 0; }
+}
+
 /* Animation Classes */
 .animate-accordion-down {
   animation: accordion-down 200ms ease-out;
@@ -305,6 +766,86 @@ body {
 
 .animate-pulse-shadow {
   animation: pulse-shadow 2s ease-in-out infinite;
+}
+
+.animate-wiggle {
+  animation: wiggle 300ms ease-in-out;
+}
+
+.animate-pop {
+  animation: pop 300ms ease-out;
+}
+
+.animate-rubber-band {
+  animation: rubber-band 800ms ease-out;
+}
+
+.animate-jello {
+  animation: jello 800ms ease-out;
+}
+
+.animate-marquee {
+  animation: marquee 20s linear infinite;
+}
+
+.animate-marquee-fast {
+  animation: marquee 10s linear infinite;
+}
+
+.animate-marquee-slow {
+  animation: marquee 40s linear infinite;
+}
+
+.animate-marquee-reverse {
+  animation: marquee-reverse 20s linear infinite;
+}
+
+.animate-stagger-fade-in {
+  animation: stagger-fade-in 300ms ease-out forwards;
+  opacity: 0;
+}
+
+/* Stagger delay utilities */
+.stagger-1 { animation-delay: 50ms; }
+.stagger-2 { animation-delay: 100ms; }
+.stagger-3 { animation-delay: 150ms; }
+.stagger-4 { animation-delay: 200ms; }
+.stagger-5 { animation-delay: 250ms; }
+.stagger-6 { animation-delay: 300ms; }
+.stagger-7 { animation-delay: 350ms; }
+.stagger-8 { animation-delay: 400ms; }
+
+.animate-pulse-scale {
+  animation: pulse-scale 2s ease-in-out infinite;
+}
+
+.animate-glitch {
+  animation: glitch 200ms ease-in-out;
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+.animate-blink {
+  animation: blink 1s step-end infinite;
+}
+
+/* Hover-triggered animations */
+.hover-wiggle:hover {
+  animation: wiggle 300ms ease-in-out;
+}
+
+.hover-pop:hover {
+  animation: pop 300ms ease-out;
+}
+
+.hover-jello:hover {
+  animation: jello 800ms ease-out;
+}
+
+.hover-rubber-band:hover {
+  animation: rubber-band 800ms ease-out;
 }
 
 /* Tooltip & Popover Animations */
@@ -372,4 +913,163 @@ body {
 
 [data-radix-popper-content-wrapper] [data-side="right"] {
   animation: fade-in 150ms ease-out, slide-in-from-left 150ms ease-out;
+}
+
+/* ==========================================
+   MARQUEE COMPONENT UTILITIES
+   ========================================== */
+
+.bk-marquee {
+  display: flex;
+  overflow: hidden;
+  user-select: none;
+  gap: 1rem;
+}
+
+.bk-marquee-content {
+  display: flex;
+  gap: 1rem;
+  flex-shrink: 0;
+  animation: marquee 20s linear infinite;
+}
+
+.bk-marquee:hover .bk-marquee-content {
+  animation-play-state: paused;
+}
+
+.bk-marquee-vertical {
+  flex-direction: column;
+  height: 100%;
+}
+
+.bk-marquee-vertical .bk-marquee-content {
+  flex-direction: column;
+  animation: marquee-vertical 20s linear infinite;
+}
+
+@keyframes marquee-vertical {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(-50%); }
+}
+
+/* ==========================================
+   LAYERED CARD UTILITIES
+   ========================================== */
+
+.bk-layered {
+  position: relative;
+}
+
+.bk-layered::before,
+.bk-layered::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border: 3px solid hsl(var(--foreground));
+  background: hsl(var(--card));
+  z-index: -1;
+}
+
+.bk-layered::before {
+  transform: translate(6px, 6px);
+}
+
+.bk-layered::after {
+  transform: translate(12px, 12px);
+}
+
+.bk-layered-sm::before {
+  transform: translate(4px, 4px);
+}
+
+.bk-layered-sm::after {
+  transform: translate(8px, 8px);
+}
+
+.bk-layered-lg::before {
+  transform: translate(8px, 8px);
+}
+
+.bk-layered-lg::after {
+  transform: translate(16px, 16px);
+}
+
+/* Single layer variant */
+.bk-layered-single::after {
+  display: none;
+}
+
+/* Colored layers */
+.bk-layered-primary::before {
+  background: hsl(var(--primary));
+}
+
+.bk-layered-accent::before {
+  background: hsl(var(--accent));
+}
+
+.bk-layered-secondary::before {
+  background: hsl(var(--secondary));
+}
+
+/* ==========================================
+   NEON GLOW UTILITIES
+   ========================================== */
+
+.bk-glow-neon-pink {
+  box-shadow:
+    0 0 5px hsl(var(--neon-pink)),
+    0 0 10px hsl(var(--neon-pink)),
+    0 0 20px hsl(var(--neon-pink) / 0.5);
+}
+
+.bk-glow-neon-green {
+  box-shadow:
+    0 0 5px hsl(var(--neon-green)),
+    0 0 10px hsl(var(--neon-green)),
+    0 0 20px hsl(var(--neon-green) / 0.5);
+}
+
+.bk-glow-neon-blue {
+  box-shadow:
+    0 0 5px hsl(var(--neon-blue)),
+    0 0 10px hsl(var(--neon-blue)),
+    0 0 20px hsl(var(--neon-blue) / 0.5);
+}
+
+/* Combined neon + brutal shadow */
+.bk-shadow-neon-brutal-pink {
+  box-shadow:
+    4px 4px 0px hsl(var(--shadow-color)),
+    0 0 10px hsl(var(--neon-pink) / 0.5);
+}
+
+.bk-shadow-neon-brutal-green {
+  box-shadow:
+    4px 4px 0px hsl(var(--shadow-color)),
+    0 0 10px hsl(var(--neon-green) / 0.5);
+}
+
+/* ==========================================
+   UTILITY HELPERS
+   ========================================== */
+
+/* Force neubrutalism style reset */
+.bk-brutal {
+  border-radius: 0 !important;
+  border-width: 3px;
+  border-style: solid;
+  border-color: hsl(var(--foreground));
+}
+
+/* Pressed state utility */
+.bk-pressed {
+  transform: translate(4px, 4px);
+  box-shadow: none !important;
+}
+
+/* Lifted state utility */
+.bk-lifted {
+  transform: translate(-4px, -4px);
+  box-shadow: 8px 8px 0px hsl(var(--shadow-color));
 }
