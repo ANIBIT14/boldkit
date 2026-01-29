@@ -2,6 +2,8 @@
   "$schema": "https://ui.shadcn.com/schema/registry.json",
   "name": "boldkit",
   "homepage": "https://boldkit.dev",
+  "author": "Aniruddha Agarwal <aniruddha@boldkit.dev>",
+  "license": "MIT",
   "items": [
     {
       "name": "theme",

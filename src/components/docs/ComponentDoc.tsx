@@ -4,6 +4,7 @@ import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { Copy, Check, Terminal } from 'lucide-react'
+import { OpenInV0Button } from './OpenInV0Button'
 
 export function CodeBlock({ code, language = 'tsx' }: { code: string; language?: string }) {
   const [copied, setCopied] = useState(false)
@@ -62,6 +63,7 @@ interface ComponentDocProps {
   dependencies?: string[]
   sourceCode: string
   usageCode: string
+  registryName?: string
 }
 
 export function ComponentDoc({
@@ -72,12 +74,19 @@ export function ComponentDoc({
   dependencies = [],
   sourceCode,
   usageCode,
+  registryName,
 }: ComponentDocProps) {
+  // Convert component name to registry name (e.g., "Alert Dialog" -> "alert-dialog")
+  const componentRegistryName = registryName || name.toLowerCase().replace(/\s+/g, '-')
+
   return (
     <div className="space-y-8">
       {/* Header */}
       <div>
-        <Badge variant="secondary" className="mb-4">Component</Badge>
+        <div className="flex items-center gap-3 mb-4">
+          <Badge variant="secondary">Component</Badge>
+          <OpenInV0Button name={componentRegistryName} />
+        </div>
         <h1 className="text-3xl font-black uppercase tracking-tight md:text-4xl">
           {name}
         </h1>
@@ -88,8 +97,9 @@ export function ComponentDoc({
 
       {/* Preview */}
       <Card>
-        <CardHeader className="bg-muted">
+        <CardHeader className="bg-muted flex flex-row items-center justify-between">
           <CardTitle>Preview</CardTitle>
+          <OpenInV0Button name={componentRegistryName} />
         </CardHeader>
         <CardContent className="pt-6">
           {children}
