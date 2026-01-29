@@ -304,7 +304,7 @@ export function ThemeBuilder() {
       <nav className="sticky top-0 z-50 border-b-3 border-foreground bg-background">
         <div className="container mx-auto flex h-16 items-center justify-between px-4">
           <Link to="/" className="flex items-center gap-2">
-            <span className="text-3xl font-black">◼</span>
+            <img src="https://ik.imagekit.io/fincalfy/304a4c07-8de1-41af-813e-e7556234b973.png" alt="BoldKit" className="h-8 w-8" />
             <span className="text-xl font-black uppercase tracking-wider">BoldKit</span>
           </Link>
           <div className="flex items-center gap-4">

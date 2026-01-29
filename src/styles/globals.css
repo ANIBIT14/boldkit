@@ -215,3 +215,161 @@ body {
     linear-gradient(90deg, hsl(var(--border) / 0.3) 1px, transparent 1px);
   background-size: 40px 40px;
 }
+
+/* Animation Keyframes */
+@keyframes accordion-down {
+  from {
+    height: 0;
+    opacity: 0;
+  }
+  to {
+    height: var(--radix-accordion-content-height);
+    opacity: 1;
+  }
+}
+
+@keyframes accordion-up {
+  from {
+    height: var(--radix-accordion-content-height);
+    opacity: 1;
+  }
+  to {
+    height: 0;
+    opacity: 0;
+  }
+}
+
+@keyframes collapsible-down {
+  from {
+    height: 0;
+    opacity: 0;
+  }
+  to {
+    height: var(--radix-collapsible-content-height);
+    opacity: 1;
+  }
+}
+
+@keyframes collapsible-up {
+  from {
+    height: var(--radix-collapsible-content-height);
+    opacity: 1;
+  }
+  to {
+    height: 0;
+    opacity: 0;
+  }
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-4px); }
+  75% { transform: translateX(4px); }
+}
+
+@keyframes bounce-in {
+  0% { transform: scale(0.95); opacity: 0; }
+  50% { transform: scale(1.02); }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+@keyframes pulse-shadow {
+  0%, 100% { box-shadow: 4px 4px 0px hsl(var(--shadow-color)); }
+  50% { box-shadow: 6px 6px 0px hsl(var(--shadow-color)); }
+}
+
+/* Animation Classes */
+.animate-accordion-down {
+  animation: accordion-down 200ms ease-out;
+}
+
+.animate-accordion-up {
+  animation: accordion-up 200ms ease-out;
+}
+
+.animate-collapsible-down {
+  animation: collapsible-down 200ms ease-out;
+}
+
+.animate-collapsible-up {
+  animation: collapsible-up 200ms ease-out;
+}
+
+.animate-shake {
+  animation: shake 200ms ease-in-out;
+}
+
+.animate-bounce-in {
+  animation: bounce-in 300ms ease-out;
+}
+
+.animate-pulse-shadow {
+  animation: pulse-shadow 2s ease-in-out infinite;
+}
+
+/* Tooltip & Popover Animations */
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes fade-out {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
+
+@keyframes zoom-in {
+  from { transform: scale(0.95); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+@keyframes zoom-out {
+  from { transform: scale(1); opacity: 1; }
+  to { transform: scale(0.95); opacity: 0; }
+}
+
+@keyframes slide-in-from-top {
+  from { transform: translateY(-4px); }
+  to { transform: translateY(0); }
+}
+
+@keyframes slide-in-from-bottom {
+  from { transform: translateY(4px); }
+  to { transform: translateY(0); }
+}
+
+@keyframes slide-in-from-left {
+  from { transform: translateX(-4px); }
+  to { transform: translateX(0); }
+}
+
+@keyframes slide-in-from-right {
+  from { transform: translateX(4px); }
+  to { transform: translateX(0); }
+}
+
+/* Radix UI animation states */
+[data-state="open"] {
+  animation: zoom-in 150ms ease-out;
+}
+
+[data-state="closed"] {
+  animation: zoom-out 100ms ease-in;
+}
+
+/* Tooltip specific animations */
+[data-radix-popper-content-wrapper] [data-side="top"] {
+  animation: fade-in 150ms ease-out, slide-in-from-bottom 150ms ease-out;
+}
+
+[data-radix-popper-content-wrapper] [data-side="bottom"] {
+  animation: fade-in 150ms ease-out, slide-in-from-top 150ms ease-out;
+}
+
+[data-radix-popper-content-wrapper] [data-side="left"] {
+  animation: fade-in 150ms ease-out, slide-in-from-right 150ms ease-out;
+}
+
+[data-radix-popper-content-wrapper] [data-side="right"] {
+  animation: fade-in 150ms ease-out, slide-in-from-left 150ms ease-out;
+}

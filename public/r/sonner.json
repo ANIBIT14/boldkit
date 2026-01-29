@@ -1,0 +1,20 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "sonner",
+  "type": "registry:ui",
+  "description": "An opinionated toast component with neubrutalism styling",
+  "dependencies": [
+    "sonner"
+  ],
+  "registryDependencies": [
+    "utils"
+  ],
+  "files": [
+    {
+      "path": "registry/default/ui/sonner.tsx",
+      "content": "import { useTheme } from '@/hooks/use-theme'\nimport { Toaster as Sonner } from 'sonner'\n\ntype ToasterProps = React.ComponentProps<typeof Sonner>\n\nconst Toaster = ({ ...props }: ToasterProps) => {\n  const { resolvedTheme } = useTheme()\n\n  return (\n    <Sonner\n      theme={resolvedTheme as ToasterProps['theme']}\n      className=\"toaster group\"\n      toastOptions={{\n        classNames: {\n          toast:\n            'group toast group-[.toaster]:bg-background group-[.toaster]:text-foreground group-[.toaster]:border-3 group-[.toaster]:border-foreground group-[.toaster]:shadow-[4px_4px_0px_hsl(var(--shadow-color))]',\n          description: 'group-[.toast]:text-muted-foreground',\n          actionButton:\n            'group-[.toast]:bg-primary group-[.toast]:text-primary-foreground group-[.toast]:border-2 group-[.toast]:border-foreground',\n          cancelButton:\n            'group-[.toast]:bg-muted group-[.toast]:text-muted-foreground group-[.toast]:border-2 group-[.toast]:border-foreground',\n        },\n      }}\n      {...props}\n    />\n  )\n}\n\nexport { Toaster }\n",
+      "type": "registry:ui",
+      "target": "components/ui/sonner.tsx"
+    }
+  ]
+}

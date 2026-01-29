@@ -3,8 +3,9 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { useState } from 'react'
 import { Copy, Check } from 'lucide-react'
 import { Button } from '@/components/ui/button'
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 
-function CodeBlock({ code, language: _language = 'bash' }: { code: string; language?: string }) {
+function CodeBlock({ code }: { code: string }) {
   const [copied, setCopied] = useState(false)
 
   const copyCode = () => {
@@ -44,8 +45,73 @@ export function Installation() {
       </div>
 
       <div className="space-y-8">
+        {/* shadcn CLI Method */}
+        <Card className="border-primary">
+          <CardHeader className="bg-primary">
+            <CardTitle>Recommended: shadcn CLI</CardTitle>
+          </CardHeader>
+          <CardContent className="pt-6 space-y-6">
+            <p className="text-muted-foreground">
+              The fastest way to add BoldKit components is using the shadcn CLI with our registry.
+            </p>
+
+            <div>
+              <h3 className="font-bold uppercase tracking-wide mb-2">Step 1: Configure Registry</h3>
+              <p className="text-sm text-muted-foreground mb-2">
+                Add BoldKit to the registries in your <code className="bg-muted px-1 border">components.json</code>:
+              </p>
+              <CodeBlock code={`{
+  "$schema": "https://ui.shadcn.com/schema.json",
+  "registries": {
+    "@boldkit": "https://boldkit.dev/r"
+  }
+}`} />
+            </div>
+
+            <div>
+              <h3 className="font-bold uppercase tracking-wide mb-2">Step 2: Install Components</h3>
+              <Tabs defaultValue="single">
+                <TabsList>
+                  <TabsTrigger value="single">Single Component</TabsTrigger>
+                  <TabsTrigger value="multiple">Multiple</TabsTrigger>
+                </TabsList>
+                <TabsContent value="single">
+                  <CodeBlock code="npx shadcn@latest add @boldkit/button" />
+                </TabsContent>
+                <TabsContent value="multiple">
+                  <CodeBlock code="npx shadcn@latest add @boldkit/button @boldkit/card @boldkit/input @boldkit/badge" />
+                </TabsContent>
+              </Tabs>
+            </div>
+
+            <div>
+              <h3 className="font-bold uppercase tracking-wide mb-2">Step 3: Install Theme (Optional)</h3>
+              <p className="text-sm text-muted-foreground mb-2">
+                Install the BoldKit theme for CSS variables:
+              </p>
+              <CodeBlock code="npx shadcn@latest add @boldkit/theme" />
+            </div>
+
+            <div>
+              <h3 className="font-bold uppercase tracking-wide mb-2">Alternative: Direct URL</h3>
+              <p className="text-sm text-muted-foreground mb-2">
+                You can also install directly from the registry URL:
+              </p>
+              <CodeBlock code="npx shadcn@latest add https://boldkit.dev/r/button.json" />
+            </div>
+          </CardContent>
+        </Card>
+
+        {/* Manual Installation */}
         <section>
-          <h2 className="text-2xl font-bold uppercase tracking-wide mb-4">Prerequisites</h2>
+          <h2 className="text-2xl font-bold uppercase tracking-wide mb-4">Manual Installation</h2>
+          <p className="text-muted-foreground mb-6">
+            If you prefer to set up manually or don't use shadcn CLI, follow these steps:
+          </p>
+        </section>
+
+        <section>
+          <h3 className="text-xl font-bold uppercase tracking-wide mb-4">Prerequisites</h3>
           <p className="text-muted-foreground mb-4">
             BoldKit is built on top of Tailwind CSS v4 and requires the following:
           </p>
@@ -57,78 +123,77 @@ export function Installation() {
         </section>
 
         <section>
-          <h2 className="text-2xl font-bold uppercase tracking-wide mb-4">Step 1: Create Project</h2>
+          <h3 className="text-xl font-bold uppercase tracking-wide mb-4">Step 1: Create Project</h3>
           <p className="text-muted-foreground mb-4">
             Start with a new Vite + React + TypeScript project:
           </p>
-          <Tabs defaultValue="bun">
+          <Tabs defaultValue="npm">
             <TabsList>
-              <TabsTrigger value="bun">bun</TabsTrigger>
               <TabsTrigger value="npm">npm</TabsTrigger>
               <TabsTrigger value="pnpm">pnpm</TabsTrigger>
+              <TabsTrigger value="bun">bun</TabsTrigger>
             </TabsList>
-            <TabsContent value="bun">
-              <CodeBlock code="bun create vite my-app --template react-ts" />
-            </TabsContent>
             <TabsContent value="npm">
               <CodeBlock code="npm create vite@latest my-app -- --template react-ts" />
             </TabsContent>
             <TabsContent value="pnpm">
               <CodeBlock code="pnpm create vite my-app --template react-ts" />
             </TabsContent>
+            <TabsContent value="bun">
+              <CodeBlock code="bun create vite my-app --template react-ts" />
+            </TabsContent>
           </Tabs>
         </section>
 
         <section>
-          <h2 className="text-2xl font-bold uppercase tracking-wide mb-4">Step 2: Install Tailwind CSS</h2>
-          <Tabs defaultValue="bun">
+          <h3 className="text-xl font-bold uppercase tracking-wide mb-4">Step 2: Install Tailwind CSS</h3>
+          <Tabs defaultValue="npm">
             <TabsList>
-              <TabsTrigger value="bun">bun</TabsTrigger>
               <TabsTrigger value="npm">npm</TabsTrigger>
               <TabsTrigger value="pnpm">pnpm</TabsTrigger>
+              <TabsTrigger value="bun">bun</TabsTrigger>
             </TabsList>
-            <TabsContent value="bun">
-              <CodeBlock code="bun add tailwindcss @tailwindcss/vite" />
-            </TabsContent>
             <TabsContent value="npm">
               <CodeBlock code="npm install tailwindcss @tailwindcss/vite" />
             </TabsContent>
             <TabsContent value="pnpm">
               <CodeBlock code="pnpm add tailwindcss @tailwindcss/vite" />
             </TabsContent>
+            <TabsContent value="bun">
+              <CodeBlock code="bun add tailwindcss @tailwindcss/vite" />
+            </TabsContent>
           </Tabs>
         </section>
 
         <section>
-          <h2 className="text-2xl font-bold uppercase tracking-wide mb-4">Step 3: Install Dependencies</h2>
+          <h3 className="text-xl font-bold uppercase tracking-wide mb-4">Step 3: Install Dependencies</h3>
           <p className="text-muted-foreground mb-4">
             Install the required dependencies for BoldKit components:
           </p>
-          <Tabs defaultValue="bun">
+          <Tabs defaultValue="npm">
             <TabsList>
-              <TabsTrigger value="bun">bun</TabsTrigger>
               <TabsTrigger value="npm">npm</TabsTrigger>
               <TabsTrigger value="pnpm">pnpm</TabsTrigger>
+              <TabsTrigger value="bun">bun</TabsTrigger>
             </TabsList>
-            <TabsContent value="bun">
-              <CodeBlock code={`bun add clsx tailwind-merge class-variance-authority lucide-react`} />
-            </TabsContent>
             <TabsContent value="npm">
-              <CodeBlock code={`npm install clsx tailwind-merge class-variance-authority lucide-react`} />
+              <CodeBlock code="npm install clsx tailwind-merge class-variance-authority lucide-react" />
             </TabsContent>
             <TabsContent value="pnpm">
-              <CodeBlock code={`pnpm add clsx tailwind-merge class-variance-authority lucide-react`} />
+              <CodeBlock code="pnpm add clsx tailwind-merge class-variance-authority lucide-react" />
+            </TabsContent>
+            <TabsContent value="bun">
+              <CodeBlock code="bun add clsx tailwind-merge class-variance-authority lucide-react" />
             </TabsContent>
           </Tabs>
         </section>
 
         <section>
-          <h2 className="text-2xl font-bold uppercase tracking-wide mb-4">Step 4: Configure Vite</h2>
+          <h3 className="text-xl font-bold uppercase tracking-wide mb-4">Step 4: Configure Vite</h3>
           <p className="text-muted-foreground mb-4">
             Update your <code className="bg-muted px-1 border">vite.config.ts</code>:
           </p>
           <CodeBlock
-            language="typescript"
             code={`import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import tailwindcss from '@tailwindcss/vite'
@@ -146,7 +211,7 @@ export default defineConfig({
         </section>
 
         <section>
-          <h2 className="text-2xl font-bold uppercase tracking-wide mb-4">Step 5: Add BoldKit Styles</h2>
+          <h3 className="text-xl font-bold uppercase tracking-wide mb-4">Step 5: Add BoldKit Styles</h3>
           <p className="text-muted-foreground mb-4">
             Create or update your <code className="bg-muted px-1 border">src/styles/globals.css</code> with the BoldKit CSS variables.
             Visit the <a href="/docs/theming" className="text-primary underline">Theming</a> page to copy the full stylesheet.
@@ -154,12 +219,11 @@ export default defineConfig({
         </section>
 
         <section>
-          <h2 className="text-2xl font-bold uppercase tracking-wide mb-4">Step 6: Add Utility Function</h2>
+          <h3 className="text-xl font-bold uppercase tracking-wide mb-4">Step 6: Add Utility Function</h3>
           <p className="text-muted-foreground mb-4">
             Create <code className="bg-muted px-1 border">src/lib/utils.ts</code>:
           </p>
           <CodeBlock
-            language="typescript"
             code={`import { type ClassValue, clsx } from 'clsx'
 import { twMerge } from 'tailwind-merge'
 
@@ -170,7 +234,7 @@ export function cn(...inputs: ClassValue[]) {
         </section>
 
         <section>
-          <h2 className="text-2xl font-bold uppercase tracking-wide mb-4">Step 7: Add Components</h2>
+          <h3 className="text-xl font-bold uppercase tracking-wide mb-4">Step 7: Add Components</h3>
           <p className="text-muted-foreground mb-4">
             Copy any component from the Components section into your <code className="bg-muted px-1 border">src/components/ui/</code> directory.
             Each component is self-contained and ready to use.

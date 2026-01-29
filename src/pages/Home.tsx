@@ -26,7 +26,7 @@ export function Home() {
       <nav className="sticky top-0 z-50 border-b-3 border-foreground bg-background">
         <div className="container mx-auto flex h-16 items-center justify-between px-4">
           <Link to="/" className="flex items-center gap-2">
-            <span className="text-3xl font-black">◼</span>
+            <img src="https://ik.imagekit.io/fincalfy/304a4c07-8de1-41af-813e-e7556234b973.png" alt="BoldKit" className="h-8 w-8" />
             <span className="text-xl font-black uppercase tracking-wider">BoldKit</span>
           </Link>
           <div className="flex items-center gap-4">
@@ -35,6 +35,9 @@ export function Home() {
             </Link>
             <Link to="/components" className="hidden sm:block">
               <Button variant="ghost">Components</Button>
+            </Link>
+            <Link to="/charts" className="hidden sm:block">
+              <Button variant="ghost">Charts</Button>
             </Link>
             <Link to="/themes" className="hidden sm:block">
               <Button variant="ghost">Themes</Button>
@@ -101,7 +104,7 @@ export function Home() {
       <section className="border-b-3 border-foreground py-20">
         <div className="container mx-auto px-4">
           <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
-            <Card className="transition-transform hover:translate-x-[-4px] hover:translate-y-[-4px] hover:shadow-[8px_8px_0px_hsl(var(--shadow-color))]">
+            <Card interactive>
               <CardHeader className="bg-primary">
                 <Zap className="h-8 w-8 stroke-[3]" />
                 <CardTitle>Fast Setup</CardTitle>
@@ -113,7 +116,7 @@ export function Home() {
               </CardContent>
             </Card>
 
-            <Card className="transition-transform hover:translate-x-[-4px] hover:translate-y-[-4px] hover:shadow-[8px_8px_0px_hsl(var(--shadow-color))]">
+            <Card interactive>
               <CardHeader className="bg-secondary">
                 <Palette className="h-8 w-8 stroke-[3]" />
                 <CardTitle>Themeable</CardTitle>
@@ -125,7 +128,7 @@ export function Home() {
               </CardContent>
             </Card>
 
-            <Card className="transition-transform hover:translate-x-[-4px] hover:translate-y-[-4px] hover:shadow-[8px_8px_0px_hsl(var(--shadow-color))]">
+            <Card interactive>
               <CardHeader className="bg-accent">
                 <Code2 className="h-8 w-8 stroke-[3]" />
                 <CardTitle>TypeScript</CardTitle>
@@ -137,7 +140,7 @@ export function Home() {
               </CardContent>
             </Card>
 
-            <Card className="transition-transform hover:translate-x-[-4px] hover:translate-y-[-4px] hover:shadow-[8px_8px_0px_hsl(var(--shadow-color))]">
+            <Card interactive>
               <CardHeader className="bg-success">
                 <Smartphone className="h-8 w-8 stroke-[3]" />
                 <CardTitle>Responsive</CardTitle>
@@ -274,7 +277,7 @@ export function Home() {
         <div className="container mx-auto px-4">
           <div className="flex flex-col items-center justify-between gap-4 md:flex-row">
             <div className="flex items-center gap-2">
-              <span className="text-2xl font-black">◼</span>
+              <img src="https://ik.imagekit.io/fincalfy/304a4c07-8de1-41af-813e-e7556234b973.png" alt="BoldKit" className="h-6 w-6" />
               <span className="font-bold uppercase tracking-wide">BoldKit</span>
             </div>
             <p className="text-sm text-muted-foreground">

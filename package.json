@@ -28,7 +28,8 @@
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "format": "prettier --write \"src/**/*.{ts,tsx,css}\"",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "registry:build": "shadcn build"
   },
   "dependencies": {
     "@radix-ui/react-accordion": "^1.2.12",
@@ -80,6 +81,7 @@
     "vaul": "^1.1.2"
   },
   "devDependencies": {
+    "shadcn": "^2.5.0",
     "@eslint/js": "^9.39.1",
     "@types/node": "^24.10.1",
     "@types/react": "^19.2.5",

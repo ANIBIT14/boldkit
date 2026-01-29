@@ -7,32 +7,44 @@ import { Menu, Moon, Sun, Github } from 'lucide-react'
 import { useTheme } from '@/hooks/use-theme'
 
 const components = [
-  { name: 'Accordion', href: '/docs/accordion' },
-  { name: 'Alert', href: '/docs/alert' },
-  { name: 'Avatar', href: '/docs/avatar' },
-  { name: 'Badge', href: '/docs/badge' },
-  { name: 'Breadcrumb', href: '/docs/breadcrumb' },
-  { name: 'Button', href: '/docs/button' },
-  { name: 'Card', href: '/docs/card' },
-  { name: 'Checkbox', href: '/docs/checkbox' },
-  { name: 'Dialog', href: '/docs/dialog' },
-  { name: 'Dropdown Menu', href: '/docs/dropdown-menu' },
-  { name: 'Input', href: '/docs/input' },
-  { name: 'Label', href: '/docs/label' },
-  { name: 'Popover', href: '/docs/popover' },
-  { name: 'Progress', href: '/docs/progress' },
-  { name: 'Radio Group', href: '/docs/radio-group' },
-  { name: 'Select', href: '/docs/select' },
-  { name: 'Separator', href: '/docs/separator' },
-  { name: 'Sheet', href: '/docs/sheet' },
-  { name: 'Skeleton', href: '/docs/skeleton' },
-  { name: 'Slider', href: '/docs/slider' },
-  { name: 'Switch', href: '/docs/switch' },
-  { name: 'Table', href: '/docs/table' },
-  { name: 'Tabs', href: '/docs/tabs' },
-  { name: 'Textarea', href: '/docs/textarea' },
-  { name: 'Toggle', href: '/docs/toggle' },
-  { name: 'Tooltip', href: '/docs/tooltip' },
+  { name: 'Accordion', href: '/components/accordion' },
+  { name: 'Alert', href: '/components/alert' },
+  { name: 'Alert Dialog', href: '/components/alert-dialog' },
+  { name: 'Aspect Ratio', href: '/components/aspect-ratio' },
+  { name: 'Avatar', href: '/components/avatar' },
+  { name: 'Badge', href: '/components/badge' },
+  { name: 'Breadcrumb', href: '/components/breadcrumb' },
+  { name: 'Button', href: '/components/button' },
+  { name: 'Calendar', href: '/components/calendar' },
+  { name: 'Card', href: '/components/card' },
+  { name: 'Checkbox', href: '/components/checkbox' },
+  { name: 'Collapsible', href: '/components/collapsible' },
+  { name: 'Command', href: '/components/command' },
+  { name: 'Dialog', href: '/components/dialog' },
+  { name: 'Drawer', href: '/components/drawer' },
+  { name: 'Dropdown Menu', href: '/components/dropdown-menu' },
+  { name: 'Hover Card', href: '/components/hover-card' },
+  { name: 'Input', href: '/components/input' },
+  { name: 'Input OTP', href: '/components/input-otp' },
+  { name: 'Label', href: '/components/label' },
+  { name: 'Pagination', href: '/components/pagination' },
+  { name: 'Popover', href: '/components/popover' },
+  { name: 'Progress', href: '/components/progress' },
+  { name: 'Radio Group', href: '/components/radio-group' },
+  { name: 'Scroll Area', href: '/components/scroll-area' },
+  { name: 'Select', href: '/components/select' },
+  { name: 'Separator', href: '/components/separator' },
+  { name: 'Sheet', href: '/components/sheet' },
+  { name: 'Skeleton', href: '/components/skeleton' },
+  { name: 'Slider', href: '/components/slider' },
+  { name: 'Sonner', href: '/components/sonner' },
+  { name: 'Switch', href: '/components/switch' },
+  { name: 'Table', href: '/components/table' },
+  { name: 'Tabs', href: '/components/tabs' },
+  { name: 'Textarea', href: '/components/textarea' },
+  { name: 'Toggle', href: '/components/toggle' },
+  { name: 'Toggle Group', href: '/components/toggle-group' },
+  { name: 'Tooltip', href: '/components/tooltip' },
 ]
 
 function Sidebar({ className }: { className?: string }) {
@@ -40,16 +52,17 @@ function Sidebar({ className }: { className?: string }) {
 
   return (
     <div className={cn('pb-12', className)}>
-      <div className="space-y-4 py-4">
-        <div className="px-3 py-2">
-          <h2 className="mb-2 px-4 text-lg font-bold uppercase tracking-wide">
+      <div className="space-y-6 py-4">
+        {/* Getting Started Section */}
+        <div className="px-3">
+          <h2 className="mb-3 px-4 text-sm font-bold uppercase tracking-wide text-muted-foreground">
             Getting Started
           </h2>
           <div className="space-y-1">
             <Link to="/docs">
               <Button
                 variant={location.pathname === '/docs' ? 'secondary' : 'ghost'}
-                className="w-full justify-start"
+                className="w-full justify-start h-9"
                 size="sm"
               >
                 Introduction
@@ -58,7 +71,7 @@ function Sidebar({ className }: { className?: string }) {
             <Link to="/docs/installation">
               <Button
                 variant={location.pathname === '/docs/installation' ? 'secondary' : 'ghost'}
-                className="w-full justify-start"
+                className="w-full justify-start h-9"
                 size="sm"
               >
                 Installation
@@ -67,7 +80,7 @@ function Sidebar({ className }: { className?: string }) {
             <Link to="/docs/theming">
               <Button
                 variant={location.pathname === '/docs/theming' ? 'secondary' : 'ghost'}
-                className="w-full justify-start"
+                className="w-full justify-start h-9"
                 size="sm"
               >
                 Theming
@@ -75,8 +88,10 @@ function Sidebar({ className }: { className?: string }) {
             </Link>
           </div>
         </div>
-        <div className="px-3 py-2">
-          <h2 className="mb-2 px-4 text-lg font-bold uppercase tracking-wide">
+
+        {/* Components Section */}
+        <div className="px-3">
+          <h2 className="mb-3 px-4 text-sm font-bold uppercase tracking-wide text-muted-foreground">
             Components
           </h2>
           <div className="space-y-1">
@@ -84,7 +99,7 @@ function Sidebar({ className }: { className?: string }) {
               <Link key={component.href} to={component.href}>
                 <Button
                   variant={location.pathname === component.href ? 'secondary' : 'ghost'}
-                  className="w-full justify-start"
+                  className="w-full justify-start h-9"
                   size="sm"
                 >
                   {component.name}
@@ -105,41 +120,60 @@ export function DocsLayout() {
     <div className="min-h-screen bg-background">
       {/* Header */}
       <header className="sticky top-0 z-50 w-full border-b-3 border-foreground bg-background">
-        <div className="container flex h-16 items-center px-4">
+        <div className="container flex h-16 items-center px-4 md:px-6">
           <Sheet>
             <SheetTrigger asChild>
-              <Button variant="ghost" size="icon" className="md:hidden">
+              <Button variant="ghost" size="icon" className="mr-2 md:hidden">
                 <Menu className="h-5 w-5" />
                 <span className="sr-only">Toggle menu</span>
               </Button>
             </SheetTrigger>
-            <SheetContent side="left" className="w-[300px] p-0">
+            <SheetContent side="left" className="w-[280px] p-0">
               <ScrollArea className="h-full">
-                <Sidebar />
+                <Sidebar className="px-2" />
               </ScrollArea>
             </SheetContent>
           </Sheet>
 
-          <Link to="/" className="mr-6 flex items-center space-x-2">
-            <span className="text-2xl font-black">◼</span>
+          <Link to="/" className="mr-8 flex items-center gap-2">
+            <img
+              src="https://ik.imagekit.io/fincalfy/304a4c07-8de1-41af-813e-e7556234b973.png"
+              alt="BoldKit"
+              className="h-8 w-8"
+            />
             <span className="hidden font-bold uppercase tracking-wide sm:inline-block">
               BoldKit
             </span>
           </Link>
 
-          <nav className="hidden md:flex items-center space-x-6 text-sm font-medium">
-            <Link to="/docs" className="transition-colors hover:text-foreground/80">
+          <nav className="hidden md:flex items-center gap-6 text-sm font-medium">
+            <Link
+              to="/docs"
+              className="transition-colors hover:text-foreground/80"
+            >
               Docs
             </Link>
-            <Link to="/components" className="transition-colors hover:text-foreground/80">
+            <Link
+              to="/components"
+              className="transition-colors hover:text-foreground/80"
+            >
               Components
             </Link>
-            <Link to="/themes" className="transition-colors hover:text-foreground/80">
+            <Link
+              to="/charts"
+              className="transition-colors hover:text-foreground/80"
+            >
+              Charts
+            </Link>
+            <Link
+              to="/themes"
+              className="transition-colors hover:text-foreground/80"
+            >
               Themes
             </Link>
           </nav>
 
-          <div className="ml-auto flex items-center space-x-2">
+          <div className="ml-auto flex items-center gap-2">
             <a
               href="https://github.com/ANIBIT14/boldkit"
               target="_blank"
@@ -166,14 +200,16 @@ export function DocsLayout() {
         </div>
       </header>
 
-      <div className="container flex-1 items-start md:grid md:grid-cols-[220px_minmax(0,1fr)] md:gap-6 lg:grid-cols-[240px_minmax(0,1fr)] lg:gap-10">
-        <aside className="fixed top-16 z-30 -ml-2 hidden h-[calc(100vh-4rem)] w-full shrink-0 md:sticky md:block">
-          <ScrollArea className="h-full py-6 pr-6 lg:py-8">
+      <div className="container flex-1 items-start md:grid md:grid-cols-[240px_minmax(0,1fr)] md:gap-8 lg:grid-cols-[260px_minmax(0,1fr)] lg:gap-12 px-4 md:px-6">
+        <aside className="fixed top-16 z-30 hidden h-[calc(100vh-4rem)] w-full shrink-0 md:sticky md:block">
+          <ScrollArea className="h-full py-6 pr-4">
             <Sidebar />
           </ScrollArea>
         </aside>
-        <main className="relative py-6 lg:gap-10 lg:py-8">
-          <Outlet />
+        <main className="relative py-8 lg:py-10">
+          <div className="mx-auto w-full min-w-0">
+            <Outlet />
+          </div>
         </main>
       </div>
     </div>

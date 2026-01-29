@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "calendar",
+  "type": "registry:ui",
+  "description": "A date picker calendar with neubrutalism styling",
+  "dependencies": [
+    "react-day-picker",
+    "lucide-react"
+  ],
+  "registryDependencies": [
+    "utils",
+    "button"
+  ],
+  "files": [
+    {
+      "path": "registry/default/ui/calendar.tsx",
+      "content": "import * as React from 'react'\nimport { ChevronLeft, ChevronRight } from 'lucide-react'\nimport { DayPicker } from 'react-day-picker'\nimport { cn } from '@/lib/utils'\nimport { buttonVariants } from '@/components/ui/button'\n\nexport type CalendarProps = React.ComponentProps<typeof DayPicker>\n\nfunction Calendar({\n  className,\n  classNames,\n  showOutsideDays = true,\n  ...props\n}: CalendarProps) {\n  return (\n    <DayPicker\n      showOutsideDays={showOutsideDays}\n      className={cn(\n        'p-3 border-3 border-foreground bg-background shadow-[4px_4px_0px_hsl(var(--shadow-color))]',\n        className\n      )}\n      classNames={{\n        months: 'flex flex-col sm:flex-row gap-4',\n        month: 'flex flex-col gap-4',\n        month_caption: 'flex justify-center pt-1 relative items-center',\n        caption_label: 'text-sm font-bold uppercase tracking-wide',\n        nav: 'flex items-center gap-1',\n        button_previous: cn(\n          buttonVariants({ variant: 'outline' }),\n          'h-8 w-8 bg-transparent p-0 absolute left-1'\n        ),\n        button_next: cn(\n          buttonVariants({ variant: 'outline' }),\n          'h-8 w-8 bg-transparent p-0 absolute right-1'\n        ),\n        month_grid: 'w-full border-collapse space-y-1',\n        weekdays: 'flex',\n        weekday: 'text-muted-foreground w-9 font-bold text-[0.8rem] uppercase',\n        week: 'flex w-full mt-2',\n        day: 'relative p-0 text-center text-sm focus-within:relative focus-within:z-20',\n        day_button: cn(\n          buttonVariants({ variant: 'ghost' }),\n          'h-9 w-9 p-0 font-medium border-0 aria-selected:opacity-100'\n        ),\n        selected: 'bg-primary text-primary-foreground hover:bg-primary hover:text-primary-foreground focus:bg-primary focus:text-primary-foreground border-2 border-foreground',\n        today: 'bg-accent text-accent-foreground border-2 border-foreground',\n        outside: 'text-muted-foreground opacity-50 aria-selected:opacity-30',\n        disabled: 'text-muted-foreground opacity-50',\n        range_middle: 'aria-selected:bg-accent aria-selected:text-accent-foreground',\n        hidden: 'invisible',\n        ...classNames,\n      }}\n      components={{\n        Chevron: ({ orientation }) => {\n          const Icon = orientation === 'left' ? ChevronLeft : ChevronRight\n          return <Icon className=\"h-4 w-4 stroke-[3]\" />\n        },\n      }}\n      {...props}\n    />\n  )\n}\nCalendar.displayName = 'Calendar'\n\nexport { Calendar }\n",
+      "type": "registry:ui",
+      "target": "components/ui/calendar.tsx"
+    }
+  ]
+}

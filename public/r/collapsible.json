@@ -1,0 +1,20 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "collapsible",
+  "type": "registry:ui",
+  "description": "An interactive component which expands/collapses a panel",
+  "dependencies": [
+    "@radix-ui/react-collapsible"
+  ],
+  "registryDependencies": [
+    "utils"
+  ],
+  "files": [
+    {
+      "path": "registry/default/ui/collapsible.tsx",
+      "content": "import * as React from 'react'\nimport * as CollapsiblePrimitive from '@radix-ui/react-collapsible'\nimport { cn } from '@/lib/utils'\n\nconst Collapsible = CollapsiblePrimitive.Root\n\nconst CollapsibleTrigger = React.forwardRef<\n  React.ElementRef<typeof CollapsiblePrimitive.CollapsibleTrigger>,\n  React.ComponentPropsWithoutRef<typeof CollapsiblePrimitive.CollapsibleTrigger>\n>(({ className, ...props }, ref) => (\n  <CollapsiblePrimitive.CollapsibleTrigger\n    ref={ref}\n    className={cn(\n      'transition-all duration-150 [&[data-state=open]>svg]:rotate-180',\n      className\n    )}\n    {...props}\n  />\n))\nCollapsibleTrigger.displayName = CollapsiblePrimitive.CollapsibleTrigger.displayName\n\nconst CollapsibleContent = React.forwardRef<\n  React.ElementRef<typeof CollapsiblePrimitive.CollapsibleContent>,\n  React.ComponentPropsWithoutRef<typeof CollapsiblePrimitive.CollapsibleContent>\n>(({ className, ...props }, ref) => (\n  <CollapsiblePrimitive.CollapsibleContent\n    ref={ref}\n    className={cn(\n      'overflow-hidden transition-all data-[state=closed]:animate-collapsible-up data-[state=open]:animate-collapsible-down',\n      className\n    )}\n    {...props}\n  />\n))\nCollapsibleContent.displayName = CollapsiblePrimitive.CollapsibleContent.displayName\n\nexport { Collapsible, CollapsibleTrigger, CollapsibleContent }\n",
+      "type": "registry:ui",
+      "target": "components/ui/collapsible.tsx"
+    }
+  ]
+}

@@ -2,18 +2,27 @@ import { Link } from 'react-router-dom'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
 import { Card, CardContent } from '@/components/ui/card'
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { ArrowRight, Copy, Check } from 'lucide-react'
 import { useState } from 'react'
 
-export function Introduction() {
+function CopyButton({ text }: { text: string }) {
   const [copied, setCopied] = useState(false)
 
   const copyCommand = () => {
-    navigator.clipboard.writeText('npx boldkit-ui init')
+    navigator.clipboard.writeText(text)
     setCopied(true)
     setTimeout(() => setCopied(false), 2000)
   }
 
+  return (
+    <Button variant="ghost" size="icon" className="h-8 w-8" onClick={copyCommand}>
+      {copied ? <Check className="h-4 w-4" /> : <Copy className="h-4 w-4" />}
+    </Button>
+  )
+}
+
+export function Introduction() {
   return (
     <div className="space-y-8">
       <div>
@@ -42,6 +51,10 @@ export function Introduction() {
           </li>
           <li className="flex items-start gap-2">
             <span className="text-primary font-bold">◼</span>
+            <span><strong>shadcn CLI Compatible</strong> - Install components directly using the shadcn CLI</span>
+          </li>
+          <li className="flex items-start gap-2">
+            <span className="text-primary font-bold">◼</span>
             <span><strong>Accessible</strong> - Built on Radix UI primitives with full keyboard navigation</span>
           </li>
           <li className="flex items-start gap-2">
@@ -51,10 +64,6 @@ export function Introduction() {
           <li className="flex items-start gap-2">
             <span className="text-primary font-bold">◼</span>
             <span><strong>TypeScript</strong> - Full type safety and IntelliSense support</span>
-          </li>
-          <li className="flex items-start gap-2">
-            <span className="text-primary font-bold">◼</span>
-            <span><strong>Mobile-First</strong> - Responsive design that works on all devices</span>
           </li>
           <li className="flex items-start gap-2">
             <span className="text-primary font-bold">◼</span>
@@ -78,17 +87,49 @@ export function Introduction() {
           </CardContent>
         </Card>
 
-        <h3 className="text-xl font-bold uppercase tracking-wide mt-8">Quick Start</h3>
-        <p>Get started by running the CLI command:</p>
+        <h3 className="text-xl font-bold uppercase tracking-wide mt-8">Quick Start with shadcn CLI</h3>
+        <p>The fastest way to add BoldKit components is using the shadcn CLI:</p>
 
-        <div className="not-prose my-4 flex items-center gap-2 border-3 border-foreground bg-muted px-4 py-3 bk-shadow">
-          <code className="flex-1 font-mono">npx boldkit-ui init</code>
-          <Button variant="ghost" size="icon" onClick={copyCommand}>
-            {copied ? <Check className="h-4 w-4" /> : <Copy className="h-4 w-4" />}
-          </Button>
+        <div className="not-prose my-4">
+          <p className="text-sm text-muted-foreground mb-2">1. Add BoldKit registry to your components.json:</p>
+          <div className="flex items-center gap-2 border-3 border-foreground bg-muted px-4 py-3 bk-shadow">
+            <code className="flex-1 font-mono text-sm">
+              {`"registries": { "@boldkit": "https://boldkit.dev/r" }`}
+            </code>
+            <CopyButton text={`"registries": { "@boldkit": "https://boldkit.dev/r" }`} />
+          </div>
         </div>
 
-        <p>Or follow the manual installation guide:</p>
+        <div className="not-prose my-4">
+          <p className="text-sm text-muted-foreground mb-2">2. Install components:</p>
+          <Tabs defaultValue="single" className="w-full">
+            <TabsList>
+              <TabsTrigger value="single">Single</TabsTrigger>
+              <TabsTrigger value="multiple">Multiple</TabsTrigger>
+              <TabsTrigger value="url">Direct URL</TabsTrigger>
+            </TabsList>
+            <TabsContent value="single">
+              <div className="flex items-center gap-2 border-3 border-foreground bg-muted px-4 py-3 bk-shadow">
+                <code className="flex-1 font-mono text-sm">npx shadcn@latest add @boldkit/button</code>
+                <CopyButton text="npx shadcn@latest add @boldkit/button" />
+              </div>
+            </TabsContent>
+            <TabsContent value="multiple">
+              <div className="flex items-center gap-2 border-3 border-foreground bg-muted px-4 py-3 bk-shadow">
+                <code className="flex-1 font-mono text-sm">npx shadcn@latest add @boldkit/button @boldkit/card @boldkit/input</code>
+                <CopyButton text="npx shadcn@latest add @boldkit/button @boldkit/card @boldkit/input" />
+              </div>
+            </TabsContent>
+            <TabsContent value="url">
+              <div className="flex items-center gap-2 border-3 border-foreground bg-muted px-4 py-3 bk-shadow">
+                <code className="flex-1 font-mono text-sm">npx shadcn@latest add https://boldkit.dev/r/button.json</code>
+                <CopyButton text="npx shadcn@latest add https://boldkit.dev/r/button.json" />
+              </div>
+            </TabsContent>
+          </Tabs>
+        </div>
+
+        <p>Or follow the manual installation guide for full setup:</p>
 
         <Link to="/docs/installation">
           <Button className="mt-4 gap-2">
