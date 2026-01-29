@@ -1,5 +1,6 @@
 import { Link, Outlet, useLocation } from 'react-router-dom'
 import { cn } from '@/lib/utils'
+import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet'
 import { ScrollArea } from '@/components/ui/scroll-area'
@@ -144,6 +145,7 @@ export function DocsLayout() {
             <span className="hidden font-bold uppercase tracking-wide sm:inline-block">
               BoldKit
             </span>
+            <Badge variant="secondary" className="text-[10px] px-1.5 py-0">Beta</Badge>
           </Link>
 
           <nav className="hidden md:flex items-center gap-6 text-sm font-medium">
