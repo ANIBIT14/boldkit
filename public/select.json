@@ -1,0 +1,20 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "select",
+  "type": "registry:ui",
+  "description": "Displays a list of options with neubrutalism styling",
+  "dependencies": [
+    "@radix-ui/react-select",
+    "lucide-react"
+  ],
+  "registryDependencies": [
+    "utils"
+  ],
+  "files": [
+    {
+      "path": "registry/default/ui/select.tsx",
+      "type": "registry:ui",
+      "target": "components/ui/select.tsx"
+    }
+  ]
+}

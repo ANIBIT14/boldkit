@@ -23,13 +23,13 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc -b && vite build",
+    "build": "tsc -b && vite build && npm run registry:build",
     "preview": "vite preview",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "format": "prettier --write \"src/**/*.{ts,tsx,css}\"",
     "typecheck": "tsc --noEmit",
-    "registry:build": "shadcn build"
+    "registry:build": "shadcn build && node scripts/build-registry.js"
   },
   "dependencies": {
     "@radix-ui/react-accordion": "^1.2.12",

@@ -1,0 +1,19 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "sonner",
+  "type": "registry:ui",
+  "description": "An opinionated toast component with neubrutalism styling",
+  "dependencies": [
+    "sonner"
+  ],
+  "registryDependencies": [
+    "utils"
+  ],
+  "files": [
+    {
+      "path": "registry/default/ui/sonner.tsx",
+      "type": "registry:ui",
+      "target": "components/ui/sonner.tsx"
+    }
+  ]
+}

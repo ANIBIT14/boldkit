@@ -1,0 +1,20 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "dialog",
+  "type": "registry:ui",
+  "description": "A window overlaid on the primary window with neubrutalism borders and shadows",
+  "dependencies": [
+    "@radix-ui/react-dialog",
+    "lucide-react"
+  ],
+  "registryDependencies": [
+    "utils"
+  ],
+  "files": [
+    {
+      "path": "registry/default/ui/dialog.tsx",
+      "type": "registry:ui",
+      "target": "components/ui/dialog.tsx"
+    }
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "command",
+  "type": "registry:ui",
+  "description": "Fast, composable, command menu for React with neubrutalism styling",
+  "dependencies": [
+    "cmdk",
+    "lucide-react"
+  ],
+  "registryDependencies": [
+    "utils",
+    "dialog"
+  ],
+  "files": [
+    {
+      "path": "registry/default/ui/command.tsx",
+      "type": "registry:ui",
+      "target": "components/ui/command.tsx"
+    }
+  ]
+}

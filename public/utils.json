@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "utils",
+  "type": "registry:lib",
+  "description": "Utility functions for className merging",
+  "dependencies": [
+    "clsx",
+    "tailwind-merge"
+  ],
+  "files": [
+    {
+      "path": "registry/default/lib/utils.ts",
+      "type": "registry:lib",
+      "target": "lib/utils.ts"
+    }
+  ]
+}

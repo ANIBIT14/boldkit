@@ -1,0 +1,19 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "slider",
+  "type": "registry:ui",
+  "description": "An input where the user selects a value from within a given range",
+  "dependencies": [
+    "@radix-ui/react-slider"
+  ],
+  "registryDependencies": [
+    "utils"
+  ],
+  "files": [
+    {
+      "path": "registry/default/ui/slider.tsx",
+      "type": "registry:ui",
+      "target": "components/ui/slider.tsx"
+    }
+  ]
+}

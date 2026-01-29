@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "skeleton",
+  "type": "registry:ui",
+  "description": "Used to show a placeholder while content is loading",
+  "dependencies": [],
+  "registryDependencies": [
+    "utils"
+  ],
+  "files": [
+    {
+      "path": "registry/default/ui/skeleton.tsx",
+      "type": "registry:ui",
+      "target": "components/ui/skeleton.tsx"
+    }
+  ]
+}

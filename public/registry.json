@@ -1,0 +1,633 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry.json",
+  "name": "boldkit",
+  "homepage": "https://boldkit.dev",
+  "author": "Aniruddha Agarwal <aniruddha@boldkit.dev>",
+  "license": "MIT",
+  "items": [
+    {
+      "name": "theme",
+      "type": "registry:theme",
+      "description": "BoldKit neubrutalism theme with bold colors and CSS variables",
+      "cssVars": {
+        "light": {
+          "background": "60 9% 98%",
+          "foreground": "240 10% 10%",
+          "card": "0 0% 100%",
+          "card-foreground": "240 10% 10%",
+          "popover": "0 0% 100%",
+          "popover-foreground": "240 10% 10%",
+          "primary": "0 84% 71%",
+          "primary-foreground": "240 10% 10%",
+          "secondary": "174 62% 56%",
+          "secondary-foreground": "240 10% 10%",
+          "accent": "49 100% 71%",
+          "accent-foreground": "240 10% 10%",
+          "muted": "60 5% 90%",
+          "muted-foreground": "240 4% 46%",
+          "destructive": "0 84% 60%",
+          "destructive-foreground": "0 0% 100%",
+          "success": "152 69% 69%",
+          "success-foreground": "240 10% 10%",
+          "warning": "49 100% 60%",
+          "warning-foreground": "240 10% 10%",
+          "info": "212 100% 73%",
+          "info-foreground": "240 10% 10%",
+          "border": "240 10% 10%",
+          "input": "240 10% 10%",
+          "ring": "240 10% 10%",
+          "radius": "0rem",
+          "shadow-color": "240 10% 10%"
+        },
+        "dark": {
+          "background": "240 10% 10%",
+          "foreground": "60 9% 98%",
+          "card": "240 10% 14%",
+          "card-foreground": "60 9% 98%",
+          "popover": "240 10% 14%",
+          "popover-foreground": "60 9% 98%",
+          "primary": "0 84% 71%",
+          "primary-foreground": "240 10% 10%",
+          "secondary": "174 62% 56%",
+          "secondary-foreground": "240 10% 10%",
+          "accent": "49 100% 71%",
+          "accent-foreground": "240 10% 10%",
+          "muted": "240 10% 20%",
+          "muted-foreground": "60 5% 65%",
+          "destructive": "0 84% 60%",
+          "destructive-foreground": "0 0% 100%",
+          "success": "152 69% 69%",
+          "success-foreground": "240 10% 10%",
+          "warning": "49 100% 60%",
+          "warning-foreground": "240 10% 10%",
+          "info": "212 100% 73%",
+          "info-foreground": "240 10% 10%",
+          "border": "60 9% 98%",
+          "input": "60 9% 98%",
+          "ring": "60 9% 98%",
+          "shadow-color": "0 0% 0%"
+        }
+      },
+      "files": []
+    },
+    {
+      "name": "utils",
+      "type": "registry:lib",
+      "description": "Utility functions for className merging",
+      "dependencies": ["clsx", "tailwind-merge"],
+      "files": [
+        {
+          "path": "registry/default/lib/utils.ts",
+          "type": "registry:lib",
+          "target": "lib/utils.ts"
+        }
+      ]
+    },
+    {
+      "name": "accordion",
+      "type": "registry:ui",
+      "description": "A vertically stacked set of interactive headings with neubrutalism styling",
+      "dependencies": ["@radix-ui/react-accordion", "lucide-react"],
+      "registryDependencies": ["utils"],
+      "files": [
+        {
+          "path": "registry/default/ui/accordion.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/accordion.tsx"
+        }
+      ]
+    },
+    {
+      "name": "alert",
+      "type": "registry:ui",
+      "description": "Displays a callout for user attention with bold neubrutalism borders",
+      "dependencies": ["class-variance-authority", "lucide-react"],
+      "registryDependencies": ["utils"],
+      "files": [
+        {
+          "path": "registry/default/ui/alert.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/alert.tsx"
+        }
+      ]
+    },
+    {
+      "name": "aspect-ratio",
+      "type": "registry:ui",
+      "description": "Displays content within a desired ratio",
+      "dependencies": ["@radix-ui/react-aspect-ratio"],
+      "registryDependencies": ["utils"],
+      "files": [
+        {
+          "path": "registry/default/ui/aspect-ratio.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/aspect-ratio.tsx"
+        }
+      ]
+    },
+    {
+      "name": "avatar",
+      "type": "registry:ui",
+      "description": "An image element with a fallback for representing the user",
+      "dependencies": ["@radix-ui/react-avatar"],
+      "registryDependencies": ["utils"],
+      "files": [
+        {
+          "path": "registry/default/ui/avatar.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/avatar.tsx"
+        }
+      ]
+    },
+    {
+      "name": "badge",
+      "type": "registry:ui",
+      "description": "Displays a badge or a component that looks like a badge with neubrutalism styling",
+      "dependencies": ["class-variance-authority"],
+      "registryDependencies": ["utils"],
+      "files": [
+        {
+          "path": "registry/default/ui/badge.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/badge.tsx"
+        }
+      ]
+    },
+    {
+      "name": "breadcrumb",
+      "type": "registry:ui",
+      "description": "Displays the path to the current resource using a hierarchy of links",
+      "dependencies": ["@radix-ui/react-slot", "lucide-react"],
+      "registryDependencies": ["utils"],
+      "files": [
+        {
+          "path": "registry/default/ui/breadcrumb.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/breadcrumb.tsx"
+        }
+      ]
+    },
+    {
+      "name": "button",
+      "type": "registry:ui",
+      "description": "Displays a button with neubrutalism styling and press-down animation",
+      "dependencies": ["@radix-ui/react-slot", "class-variance-authority"],
+      "registryDependencies": ["utils"],
+      "files": [
+        {
+          "path": "registry/default/ui/button.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/button.tsx"
+        }
+      ]
+    },
+    {
+      "name": "card",
+      "type": "registry:ui",
+      "description": "Displays a card with header, content, and footer with thick borders and shadows",
+      "dependencies": [],
+      "registryDependencies": ["utils"],
+      "files": [
+        {
+          "path": "registry/default/ui/card.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/card.tsx"
+        }
+      ]
+    },
+    {
+      "name": "checkbox",
+      "type": "registry:ui",
+      "description": "A control that allows the user to toggle between checked and not checked",
+      "dependencies": ["@radix-ui/react-checkbox", "lucide-react"],
+      "registryDependencies": ["utils"],
+      "files": [
+        {
+          "path": "registry/default/ui/checkbox.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/checkbox.tsx"
+        }
+      ]
+    },
+    {
+      "name": "collapsible",
+      "type": "registry:ui",
+      "description": "An interactive component which expands/collapses a panel",
+      "dependencies": ["@radix-ui/react-collapsible"],
+      "registryDependencies": ["utils"],
+      "files": [
+        {
+          "path": "registry/default/ui/collapsible.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/collapsible.tsx"
+        }
+      ]
+    },
+    {
+      "name": "command",
+      "type": "registry:ui",
+      "description": "Fast, composable, command menu for React with neubrutalism styling",
+      "dependencies": ["cmdk", "lucide-react"],
+      "registryDependencies": ["utils", "dialog"],
+      "files": [
+        {
+          "path": "registry/default/ui/command.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/command.tsx"
+        }
+      ]
+    },
+    {
+      "name": "dialog",
+      "type": "registry:ui",
+      "description": "A window overlaid on the primary window with neubrutalism borders and shadows",
+      "dependencies": ["@radix-ui/react-dialog", "lucide-react"],
+      "registryDependencies": ["utils"],
+      "files": [
+        {
+          "path": "registry/default/ui/dialog.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/dialog.tsx"
+        }
+      ]
+    },
+    {
+      "name": "dropdown-menu",
+      "type": "registry:ui",
+      "description": "Displays a menu of actions/options with neubrutalism styling",
+      "dependencies": ["@radix-ui/react-dropdown-menu", "lucide-react"],
+      "registryDependencies": ["utils"],
+      "files": [
+        {
+          "path": "registry/default/ui/dropdown-menu.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/dropdown-menu.tsx"
+        }
+      ]
+    },
+    {
+      "name": "input",
+      "type": "registry:ui",
+      "description": "Displays a form input field with neubrutalism styling",
+      "dependencies": [],
+      "registryDependencies": ["utils"],
+      "files": [
+        {
+          "path": "registry/default/ui/input.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/input.tsx"
+        }
+      ]
+    },
+    {
+      "name": "label",
+      "type": "registry:ui",
+      "description": "Renders an accessible label for form controls",
+      "dependencies": ["@radix-ui/react-label", "class-variance-authority"],
+      "registryDependencies": ["utils"],
+      "files": [
+        {
+          "path": "registry/default/ui/label.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/label.tsx"
+        }
+      ]
+    },
+    {
+      "name": "popover",
+      "type": "registry:ui",
+      "description": "Displays rich content in a portal with neubrutalism styling",
+      "dependencies": ["@radix-ui/react-popover"],
+      "registryDependencies": ["utils"],
+      "files": [
+        {
+          "path": "registry/default/ui/popover.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/popover.tsx"
+        }
+      ]
+    },
+    {
+      "name": "progress",
+      "type": "registry:ui",
+      "description": "Displays an indicator showing the completion progress of a task",
+      "dependencies": ["@radix-ui/react-progress"],
+      "registryDependencies": ["utils"],
+      "files": [
+        {
+          "path": "registry/default/ui/progress.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/progress.tsx"
+        }
+      ]
+    },
+    {
+      "name": "radio-group",
+      "type": "registry:ui",
+      "description": "A set of checkable buttons where only one can be checked at a time",
+      "dependencies": ["@radix-ui/react-radio-group", "lucide-react"],
+      "registryDependencies": ["utils"],
+      "files": [
+        {
+          "path": "registry/default/ui/radio-group.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/radio-group.tsx"
+        }
+      ]
+    },
+    {
+      "name": "scroll-area",
+      "type": "registry:ui",
+      "description": "Augments native scroll functionality for custom styling",
+      "dependencies": ["@radix-ui/react-scroll-area"],
+      "registryDependencies": ["utils"],
+      "files": [
+        {
+          "path": "registry/default/ui/scroll-area.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/scroll-area.tsx"
+        }
+      ]
+    },
+    {
+      "name": "select",
+      "type": "registry:ui",
+      "description": "Displays a list of options with neubrutalism styling",
+      "dependencies": ["@radix-ui/react-select", "lucide-react"],
+      "registryDependencies": ["utils"],
+      "files": [
+        {
+          "path": "registry/default/ui/select.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/select.tsx"
+        }
+      ]
+    },
+    {
+      "name": "separator",
+      "type": "registry:ui",
+      "description": "Visually separates content with a thick border",
+      "dependencies": ["@radix-ui/react-separator"],
+      "registryDependencies": ["utils"],
+      "files": [
+        {
+          "path": "registry/default/ui/separator.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/separator.tsx"
+        }
+      ]
+    },
+    {
+      "name": "sheet",
+      "type": "registry:ui",
+      "description": "Extends Dialog to display content that complements the main page",
+      "dependencies": ["@radix-ui/react-dialog", "class-variance-authority", "lucide-react"],
+      "registryDependencies": ["utils"],
+      "files": [
+        {
+          "path": "registry/default/ui/sheet.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/sheet.tsx"
+        }
+      ]
+    },
+    {
+      "name": "skeleton",
+      "type": "registry:ui",
+      "description": "Used to show a placeholder while content is loading",
+      "dependencies": [],
+      "registryDependencies": ["utils"],
+      "files": [
+        {
+          "path": "registry/default/ui/skeleton.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/skeleton.tsx"
+        }
+      ]
+    },
+    {
+      "name": "slider",
+      "type": "registry:ui",
+      "description": "An input where the user selects a value from within a given range",
+      "dependencies": ["@radix-ui/react-slider"],
+      "registryDependencies": ["utils"],
+      "files": [
+        {
+          "path": "registry/default/ui/slider.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/slider.tsx"
+        }
+      ]
+    },
+    {
+      "name": "sonner",
+      "type": "registry:ui",
+      "description": "An opinionated toast component with neubrutalism styling",
+      "dependencies": ["sonner"],
+      "registryDependencies": ["utils"],
+      "files": [
+        {
+          "path": "registry/default/ui/sonner.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/sonner.tsx"
+        }
+      ]
+    },
+    {
+      "name": "switch",
+      "type": "registry:ui",
+      "description": "A control that allows the user to toggle between on and off",
+      "dependencies": ["@radix-ui/react-switch"],
+      "registryDependencies": ["utils"],
+      "files": [
+        {
+          "path": "registry/default/ui/switch.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/switch.tsx"
+        }
+      ]
+    },
+    {
+      "name": "table",
+      "type": "registry:ui",
+      "description": "A responsive table component with neubrutalism styling",
+      "dependencies": [],
+      "registryDependencies": ["utils"],
+      "files": [
+        {
+          "path": "registry/default/ui/table.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/table.tsx"
+        }
+      ]
+    },
+    {
+      "name": "tabs",
+      "type": "registry:ui",
+      "description": "A tabbed interface component with neubrutalism styling",
+      "dependencies": ["@radix-ui/react-tabs"],
+      "registryDependencies": ["utils"],
+      "files": [
+        {
+          "path": "registry/default/ui/tabs.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/tabs.tsx"
+        }
+      ]
+    },
+    {
+      "name": "textarea",
+      "type": "registry:ui",
+      "description": "Displays a form textarea with neubrutalism styling",
+      "dependencies": [],
+      "registryDependencies": ["utils"],
+      "files": [
+        {
+          "path": "registry/default/ui/textarea.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/textarea.tsx"
+        }
+      ]
+    },
+    {
+      "name": "toggle",
+      "type": "registry:ui",
+      "description": "A two-state button that can be either on or off",
+      "dependencies": ["@radix-ui/react-toggle", "class-variance-authority"],
+      "registryDependencies": ["utils"],
+      "files": [
+        {
+          "path": "registry/default/ui/toggle.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/toggle.tsx"
+        }
+      ]
+    },
+    {
+      "name": "toggle-group",
+      "type": "registry:ui",
+      "description": "A group of toggle buttons where only one can be pressed at a time",
+      "dependencies": ["@radix-ui/react-toggle-group"],
+      "registryDependencies": ["utils", "toggle"],
+      "files": [
+        {
+          "path": "registry/default/ui/toggle-group.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/toggle-group.tsx"
+        }
+      ]
+    },
+    {
+      "name": "tooltip",
+      "type": "registry:ui",
+      "description": "A popup that displays information related to an element",
+      "dependencies": ["@radix-ui/react-tooltip"],
+      "registryDependencies": ["utils"],
+      "files": [
+        {
+          "path": "registry/default/ui/tooltip.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/tooltip.tsx"
+        }
+      ]
+    },
+    {
+      "name": "alert-dialog",
+      "type": "registry:ui",
+      "description": "A modal dialog for important confirmations with neubrutalism styling",
+      "dependencies": ["@radix-ui/react-alert-dialog"],
+      "registryDependencies": ["utils", "button"],
+      "files": [
+        {
+          "path": "registry/default/ui/alert-dialog.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/alert-dialog.tsx"
+        }
+      ]
+    },
+    {
+      "name": "calendar",
+      "type": "registry:ui",
+      "description": "A date picker calendar with neubrutalism styling",
+      "dependencies": ["react-day-picker", "lucide-react"],
+      "registryDependencies": ["utils", "button"],
+      "files": [
+        {
+          "path": "registry/default/ui/calendar.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/calendar.tsx"
+        }
+      ]
+    },
+    {
+      "name": "drawer",
+      "type": "registry:ui",
+      "description": "A drawer component that slides in from the edge of the screen",
+      "dependencies": ["vaul"],
+      "registryDependencies": ["utils"],
+      "files": [
+        {
+          "path": "registry/default/ui/drawer.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/drawer.tsx"
+        }
+      ]
+    },
+    {
+      "name": "hover-card",
+      "type": "registry:ui",
+      "description": "A card that appears on hover with additional information",
+      "dependencies": ["@radix-ui/react-hover-card"],
+      "registryDependencies": ["utils"],
+      "files": [
+        {
+          "path": "registry/default/ui/hover-card.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/hover-card.tsx"
+        }
+      ]
+    },
+    {
+      "name": "input-otp",
+      "type": "registry:ui",
+      "description": "One-time password input with neubrutalism styling",
+      "dependencies": ["input-otp", "lucide-react"],
+      "registryDependencies": ["utils"],
+      "files": [
+        {
+          "path": "registry/default/ui/input-otp.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/input-otp.tsx"
+        }
+      ]
+    },
+    {
+      "name": "pagination",
+      "type": "registry:ui",
+      "description": "Pagination controls for navigating through pages",
+      "dependencies": ["lucide-react"],
+      "registryDependencies": ["utils", "button"],
+      "files": [
+        {
+          "path": "registry/default/ui/pagination.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/pagination.tsx"
+        }
+      ]
+    },
+    {
+      "name": "chart",
+      "type": "registry:ui",
+      "description": "Beautiful charts with neubrutalism styling built on Recharts",
+      "dependencies": ["recharts"],
+      "registryDependencies": ["utils"],
+      "files": [
+        {
+          "path": "registry/default/ui/chart.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/chart.tsx"
+        }
+      ]
+    }
+  ]
+}

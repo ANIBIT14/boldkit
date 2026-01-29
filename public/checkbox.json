@@ -1,0 +1,20 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "checkbox",
+  "type": "registry:ui",
+  "description": "A control that allows the user to toggle between checked and not checked",
+  "dependencies": [
+    "@radix-ui/react-checkbox",
+    "lucide-react"
+  ],
+  "registryDependencies": [
+    "utils"
+  ],
+  "files": [
+    {
+      "path": "registry/default/ui/checkbox.tsx",
+      "type": "registry:ui",
+      "target": "components/ui/checkbox.tsx"
+    }
+  ]
+}

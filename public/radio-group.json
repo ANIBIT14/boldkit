@@ -1,0 +1,20 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "radio-group",
+  "type": "registry:ui",
+  "description": "A set of checkable buttons where only one can be checked at a time",
+  "dependencies": [
+    "@radix-ui/react-radio-group",
+    "lucide-react"
+  ],
+  "registryDependencies": [
+    "utils"
+  ],
+  "files": [
+    {
+      "path": "registry/default/ui/radio-group.tsx",
+      "type": "registry:ui",
+      "target": "components/ui/radio-group.tsx"
+    }
+  ]
+}

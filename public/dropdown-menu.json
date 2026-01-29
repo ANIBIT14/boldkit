@@ -1,0 +1,20 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "dropdown-menu",
+  "type": "registry:ui",
+  "description": "Displays a menu of actions/options with neubrutalism styling",
+  "dependencies": [
+    "@radix-ui/react-dropdown-menu",
+    "lucide-react"
+  ],
+  "registryDependencies": [
+    "utils"
+  ],
+  "files": [
+    {
+      "path": "registry/default/ui/dropdown-menu.tsx",
+      "type": "registry:ui",
+      "target": "components/ui/dropdown-menu.tsx"
+    }
+  ]
+}

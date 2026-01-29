@@ -1,0 +1,19 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "tooltip",
+  "type": "registry:ui",
+  "description": "A popup that displays information related to an element",
+  "dependencies": [
+    "@radix-ui/react-tooltip"
+  ],
+  "registryDependencies": [
+    "utils"
+  ],
+  "files": [
+    {
+      "path": "registry/default/ui/tooltip.tsx",
+      "type": "registry:ui",
+      "target": "components/ui/tooltip.tsx"
+    }
+  ]
+}

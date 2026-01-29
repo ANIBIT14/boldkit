@@ -1,0 +1,21 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "sheet",
+  "type": "registry:ui",
+  "description": "Extends Dialog to display content that complements the main page",
+  "dependencies": [
+    "@radix-ui/react-dialog",
+    "class-variance-authority",
+    "lucide-react"
+  ],
+  "registryDependencies": [
+    "utils"
+  ],
+  "files": [
+    {
+      "path": "registry/default/ui/sheet.tsx",
+      "type": "registry:ui",
+      "target": "components/ui/sheet.tsx"
+    }
+  ]
+}

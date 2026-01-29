@@ -1,0 +1,20 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "pagination",
+  "type": "registry:ui",
+  "description": "Pagination controls for navigating through pages",
+  "dependencies": [
+    "lucide-react"
+  ],
+  "registryDependencies": [
+    "utils",
+    "button"
+  ],
+  "files": [
+    {
+      "path": "registry/default/ui/pagination.tsx",
+      "type": "registry:ui",
+      "target": "components/ui/pagination.tsx"
+    }
+  ]
+}

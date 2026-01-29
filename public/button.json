@@ -1,0 +1,20 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "button",
+  "type": "registry:ui",
+  "description": "Displays a button with neubrutalism styling and press-down animation",
+  "dependencies": [
+    "@radix-ui/react-slot",
+    "class-variance-authority"
+  ],
+  "registryDependencies": [
+    "utils"
+  ],
+  "files": [
+    {
+      "path": "registry/default/ui/button.tsx",
+      "type": "registry:ui",
+      "target": "components/ui/button.tsx"
+    }
+  ]
+}

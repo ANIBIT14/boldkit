@@ -1,0 +1,19 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "collapsible",
+  "type": "registry:ui",
+  "description": "An interactive component which expands/collapses a panel",
+  "dependencies": [
+    "@radix-ui/react-collapsible"
+  ],
+  "registryDependencies": [
+    "utils"
+  ],
+  "files": [
+    {
+      "path": "registry/default/ui/collapsible.tsx",
+      "type": "registry:ui",
+      "target": "components/ui/collapsible.tsx"
+    }
+  ]
+}
