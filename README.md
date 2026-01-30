@@ -1,220 +1,292 @@
 # BoldKit
 
-A neubrutalism React component library built on top of shadcn/ui.
+<div align="center">
+
+![BoldKit Banner](assets/banner.png)
 
 **Bold. Raw. Beautiful.**
 
-[boldkit.dev](https://boldkit.dev) | [Documentation](https://boldkit.dev/docs) | [Components](https://boldkit.dev/components)
+A neubrutalism React component library built on shadcn/ui.
+
+[![MIT License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+[![React](https://img.shields.io/badge/React-19-61DAFB?logo=react)](https://react.dev)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind-v4-38B2AC?logo=tailwindcss)](https://tailwindcss.com)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.0-3178C6?logo=typescript)](https://typescriptlang.org)
+[![Components](https://img.shields.io/badge/Components-45-FF6B6B)](https://boldkit.dev/components)
+[![Shapes](https://img.shields.io/badge/SVG_Shapes-30-FFD93D)](https://boldkit.dev/shapes)
+
+[Website](https://boldkit.dev) · [Documentation](https://boldkit.dev/docs) · [Components](https://boldkit.dev/components) · [Shapes](https://boldkit.dev/shapes)
+
+</div>
+
+---
+
+## Preview
+
+<div align="center">
+
+![BoldKit Components](assets/preview.png)
+
+*45 beautifully crafted neubrutalism components*
+
+</div>
+
+## What is Neubrutalism?
+
+Neubrutalism (or neo-brutalism) is a bold design aesthetic characterized by:
+
+- **Thick Borders** - 3px solid borders that define elements
+- **Hard Shadows** - Offset shadows with no blur (4px 4px 0px)
+- **Bold Colors** - High-contrast, vibrant color palettes
+- **Raw Typography** - Bold, uppercase text for emphasis
+- **Zero Radius** - Square corners for that raw, unpolished look
+
+<div align="center">
+
+![Neubrutalism Style](assets/style-demo.gif)
+
+</div>
 
 ## Features
 
-- **40+ Components** - All shadcn/ui components styled with neubrutalism aesthetics
-- **shadcn CLI Compatible** - Install components directly using the shadcn CLI
-- **Accessible** - Built on Radix UI primitives with full keyboard navigation
-- **Customizable** - CSS variables for easy theming
-- **TypeScript** - Full type safety and IntelliSense support
-- **Mobile-First** - Responsive design that works on all devices
-- **Dark Mode** - Built-in support for light and dark themes
+| Feature | Description |
+|---------|-------------|
+| **45 Components** | Buttons, Cards, Dialogs, Forms, and more |
+| **30 SVG Shapes** | Decorative shapes for unique layouts |
+| **shadcn CLI** | Install directly via `npx shadcn@latest add` |
+| **Accessible** | Built on Radix UI primitives |
+| **Dark Mode** | Full light/dark theme support |
+| **TypeScript** | Complete type safety |
+| **Tailwind v4** | Modern CSS with latest Tailwind |
 
-## Design Principles
+## Quick Start
 
-BoldKit follows the neubrutalism design aesthetic:
+### Install with shadcn CLI (Recommended)
 
-- **Bold Colors** - High-contrast, vibrant color palettes
-- **Thick Borders** - 3px solid borders that define elements
-- **Hard Shadows** - Offset shadows with no blur (e.g., 4px 4px 0px)
-- **Raw Typography** - Bold, uppercase text for emphasis
-- **Minimal Radius** - Square or barely-rounded corners
+```bash
+# Install a component
+npx shadcn@latest add https://boldkit.dev/r/button.json
 
-## Installation
+# Install multiple components
+npx shadcn@latest add https://boldkit.dev/r/button.json https://boldkit.dev/r/card.json https://boldkit.dev/r/input.json
 
-### Using shadcn CLI (Recommended)
+# Install shapes
+npx shadcn@latest add https://boldkit.dev/r/shapes.json
 
-Add BoldKit as a registry in your `components.json`:
+# Install theme (CSS variables)
+npx shadcn@latest add https://boldkit.dev/r/theme.json
+```
+
+### Using Registry Alias
+
+Add to your `components.json`:
 
 ```json
 {
-  "$schema": "https://ui.shadcn.com/schema.json",
   "registries": {
     "@boldkit": "https://boldkit.dev/r"
   }
 }
 ```
 
-Then install components:
+Then install:
 
 ```bash
-# Install a single component
-npx shadcn@latest add @boldkit/button
-
-# Install multiple components
 npx shadcn@latest add @boldkit/button @boldkit/card @boldkit/input
-
-# Install all components
-npx shadcn@latest add @boldkit/accordion @boldkit/alert @boldkit/avatar @boldkit/badge @boldkit/breadcrumb @boldkit/button @boldkit/card @boldkit/checkbox @boldkit/collapsible @boldkit/command @boldkit/dialog @boldkit/dropdown-menu @boldkit/input @boldkit/label @boldkit/popover @boldkit/progress @boldkit/radio-group @boldkit/scroll-area @boldkit/select @boldkit/separator @boldkit/sheet @boldkit/skeleton @boldkit/slider @boldkit/sonner @boldkit/switch @boldkit/table @boldkit/tabs @boldkit/textarea @boldkit/toggle @boldkit/toggle-group @boldkit/tooltip
 ```
-
-### Direct URL Installation
-
-You can also install directly from the registry URL:
-
-```bash
-npx shadcn@latest add https://boldkit.dev/r/button.json
-```
-
-### Manual Installation
-
-1. Install dependencies:
-
-```bash
-npm add clsx tailwind-merge class-variance-authority lucide-react
-```
-
-2. Copy the utils file to `lib/utils.ts`:
-
-```ts
-import { type ClassValue, clsx } from 'clsx'
-import { twMerge } from 'tailwind-merge'
-
-export function cn(...inputs: ClassValue[]) {
-  return twMerge(clsx(inputs))
-}
-```
-
-3. Add BoldKit CSS variables to your global CSS:
-
-```css
-:root {
-  --background: 60 9% 98%;
-  --foreground: 240 10% 10%;
-  --primary: 0 84% 71%;
-  --primary-foreground: 240 10% 10%;
-  --secondary: 174 62% 56%;
-  --secondary-foreground: 240 10% 10%;
-  --accent: 49 100% 71%;
-  --accent-foreground: 240 10% 10%;
-  --muted: 60 5% 90%;
-  --muted-foreground: 240 4% 46%;
-  --destructive: 0 84% 60%;
-  --destructive-foreground: 0 0% 100%;
-  --success: 152 69% 69%;
-  --success-foreground: 240 10% 10%;
-  --warning: 49 100% 60%;
-  --warning-foreground: 240 10% 10%;
-  --info: 212 100% 73%;
-  --info-foreground: 240 10% 10%;
-  --border: 240 10% 10%;
-  --input: 240 10% 10%;
-  --ring: 240 10% 10%;
-  --radius: 0rem;
-  --shadow-color: 240 10% 10%;
-}
-
-.dark {
-  --background: 240 10% 10%;
-  --foreground: 60 9% 98%;
-  --border: 60 9% 98%;
-  --input: 60 9% 98%;
-  --ring: 60 9% 98%;
-  --shadow-color: 0 0% 0%;
-}
-```
-
-4. Copy components from the `registry/default/ui` folder.
 
 ## Usage
 
 ```tsx
 import { Button } from '@/components/ui/button'
-import { Card, CardHeader, CardContent } from '@/components/ui/card'
+import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card'
+import { Badge } from '@/components/ui/badge'
 
 export function Example() {
   return (
     <Card>
       <CardHeader className="bg-primary">
-        Welcome to BoldKit
+        <CardTitle className="flex items-center gap-2">
+          Welcome to BoldKit
+          <Badge variant="secondary">New</Badge>
+        </CardTitle>
       </CardHeader>
-      <CardContent>
-        <Button variant="secondary">Click me</Button>
+      <CardContent className="space-y-4">
+        <p>Build bold, beautiful interfaces with ease.</p>
+        <div className="flex gap-2">
+          <Button>Primary</Button>
+          <Button variant="secondary">Secondary</Button>
+          <Button variant="accent">Accent</Button>
+        </div>
       </CardContent>
     </Card>
   )
 }
 ```
 
+<div align="center">
+
+![Code Example Output](assets/example-output.png)
+
+</div>
+
 ## Components
 
-| Category | Components |
-|----------|------------|
-| Form | Button, Input, Textarea, Checkbox, Radio Group, Select, Switch, Slider, Label |
-| Data Display | Card, Badge, Avatar, Table, Progress, Skeleton, Separator |
-| Feedback | Alert, Dialog, Sheet, Sonner (Toast), Tooltip, Popover |
-| Navigation | Tabs, Accordion, Breadcrumb, Dropdown Menu, Command |
-| Layout | Aspect Ratio, Scroll Area, Collapsible, Toggle, Toggle Group |
+<details>
+<summary><strong>Form Components</strong></summary>
+
+- Button (7 variants, 5 sizes)
+- Input
+- Textarea
+- Checkbox
+- Radio Group
+- Select
+- Switch
+- Slider
+- Label
+- Input OTP
+
+</details>
+
+<details>
+<summary><strong>Layout & Containers</strong></summary>
+
+- Card
+- Layered Card (stacked paper effect)
+- Dialog
+- Drawer
+- Sheet
+- Accordion
+- Collapsible
+- Tabs
+- Scroll Area
+- Aspect Ratio
+- Separator
+
+</details>
+
+<details>
+<summary><strong>Feedback & Status</strong></summary>
+
+- Alert
+- Alert Dialog
+- Badge
+- Progress
+- Skeleton
+- Sonner (Toast)
+
+</details>
+
+<details>
+<summary><strong>Navigation</strong></summary>
+
+- Breadcrumb
+- Dropdown Menu
+- Command Palette
+- Pagination
+- Popover
+- Tooltip
+- Hover Card
+
+</details>
+
+<details>
+<summary><strong>Data Display</strong></summary>
+
+- Avatar
+- Table
+- Calendar
+- Charts (via Recharts)
+
+</details>
+
+<details>
+<summary><strong>Decorative (Neubrutalism Special)</strong></summary>
+
+- Sticker (rotated labels)
+- Marquee (scrolling ticker)
+- 30 SVG Shapes (Burst, Blob, Lightning, Heart, Star, and more)
+
+</details>
+
+## Shapes
+
+30 decorative SVG shapes for unique neubrutalism layouts:
+
+```tsx
+import { BurstShape, HeartShape, LightningShape } from '@/components/ui/shapes'
+
+<BurstShape size={100} className="text-primary" />
+<HeartShape size={80} filled={false} strokeWidth={4} />
+<LightningShape size={60} className="text-accent" />
+```
+
+<div align="center">
+
+![SVG Shapes](assets/shapes.png)
+
+</div>
 
 ## Theming
 
-Customize BoldKit with CSS variables:
+Customize with CSS variables:
 
 ```css
 :root {
   --primary: 0 84% 71%;       /* Coral */
   --secondary: 174 62% 56%;   /* Teal */
   --accent: 49 100% 71%;      /* Yellow */
+  --destructive: 0 84% 60%;   /* Red */
   --shadow-color: 240 10% 10%;
-  --radius: 0rem;
+  --radius: 0rem;             /* Keep it square! */
 }
 ```
+
+Visit the [Theme Builder](https://boldkit.dev/themes) to create custom themes.
+
+## Tech Stack
+
+- **React 19** - Latest React with concurrent features
+- **Tailwind CSS v4** - Modern utility-first CSS
+- **Radix UI** - Accessible primitives
+- **TypeScript** - Full type safety
+- **Class Variance Authority** - Variant management
+- **Vite** - Fast development and builds
 
 ## Development
 
 ```bash
-# Clone the repository
+# Clone
 git clone https://github.com/ANIBIT14/boldkit.git
+cd boldkit
 
-# Install dependencies
+# Install
 npm install
 
-# Start development server
+# Dev server
 npm run dev
 
-# Build for production
+# Build
 npm run build
 
-# Build the registry
+# Build registry
 npm run registry:build
 ```
 
-## Registry Structure
-
-BoldKit uses the shadcn registry format:
-
-```
-registry/
-└── default/
-    ├── lib/
-    │   └── utils.ts
-    └── ui/
-        ├── button.tsx
-        ├── card.tsx
-        └── ...
-```
-
-The `registry:build` script generates JSON files in `public/r/` that can be consumed by the shadcn CLI.
-
 ## Contributing
 
-We welcome contributions! Please see our [Contributing Guide](CONTRIBUTING.md) for details.
+We welcome contributions! Please see our [Contributing Guide](CONTRIBUTING.md) and [Code of Conduct](CODE_OF_CONDUCT.md).
 
 ## License
 
-MIT License - see the [LICENSE](LICENSE) file for details.
+MIT License - free for personal and commercial use.
 
 ---
 
-Built with React, Tailwind CSS & Radix UI
+<div align="center">
 
-**Sources:**
-- [shadcn/ui Registry Documentation](https://ui.shadcn.com/docs/registry/getting-started)
-- [registry.json Schema](https://ui.shadcn.com/docs/registry/registry-json)
-- [components.json Configuration](https://ui.shadcn.com/docs/components-json)
+**Built by [Aniruddha Agarwal](https://github.com/ANIBIT14)**
+
+[Website](https://boldkit.dev) · [GitHub](https://github.com/ANIBIT14/boldkit) · [Twitter](https://twitter.com/aniruddhaagarwal)
+
+</div>
