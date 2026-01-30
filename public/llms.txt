@@ -86,7 +86,9 @@ npx boldkit-ui add button
 - Stamp - Circular approval badges
 - Marquee - Auto-scrolling text ticker
 
-### Shapes (20 SVG Shapes)
+### Shapes (30 SVG Shapes)
+Install: npx shadcn@latest add https://boldkit.dev/r/shapes.json
+
 - BurstShape - Starburst explosion shape
 - BlobShape - Organic blob/amoeba shape
 - ArrowBadge - Arrow-shaped banner
@@ -107,6 +109,16 @@ npx boldkit-ui add button
 - OctagonShape - Eight-sided octagon
 - CloudShape - Cloud shape
 - TagShape - Price/label tag shape
+- Star5Shape - Five-pointed star
+- PentagonShape - Five-sided pentagon
+- TrapezoidShape - Trapezoid shape
+- ParallelogramShape - Parallelogram shape
+- CursorShape - Mouse cursor/pointer
+- BookmarkShape - Bookmark ribbon
+- FlagShape - Flag with pole
+- PillShape - Pill/capsule shape
+- EyeShape - Eye with pupil
+- TriangleShape - Basic triangle
 
 ## Design Tokens
 

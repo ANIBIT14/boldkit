@@ -463,6 +463,238 @@ export const TagShape = React.forwardRef<SVGSVGElement, ShapeProps>(
 )
 TagShape.displayName = 'TagShape'
 
+// Star 5-point
+export const Star5Shape = React.forwardRef<SVGSVGElement, ShapeProps>(
+  ({ size = 100, strokeWidth = 3, filled = true, color, className, ...props }, ref) => (
+    <svg
+      ref={ref}
+      width={size}
+      height={size}
+      viewBox="0 0 100 100"
+      className={cn('text-accent', className)}
+      {...props}
+    >
+      <path
+        d="M50 5 L61 38 L95 38 L68 59 L79 93 L50 72 L21 93 L32 59 L5 38 L39 38 Z"
+        fill={filled ? (color || 'currentColor') : 'none'}
+        stroke="hsl(var(--foreground))"
+        strokeWidth={strokeWidth}
+      />
+    </svg>
+  )
+)
+Star5Shape.displayName = 'Star5Shape'
+
+// Pentagon
+export const PentagonShape = React.forwardRef<SVGSVGElement, ShapeProps>(
+  ({ size = 100, strokeWidth = 3, filled = true, color, className, ...props }, ref) => (
+    <svg
+      ref={ref}
+      width={size}
+      height={size}
+      viewBox="0 0 100 100"
+      className={cn('text-primary', className)}
+      {...props}
+    >
+      <path
+        d="M50 5 L95 38 L77 90 L23 90 L5 38 Z"
+        fill={filled ? (color || 'currentColor') : 'none'}
+        stroke="hsl(var(--foreground))"
+        strokeWidth={strokeWidth}
+      />
+    </svg>
+  )
+)
+PentagonShape.displayName = 'PentagonShape'
+
+// Trapezoid
+export const TrapezoidShape = React.forwardRef<SVGSVGElement, ShapeProps>(
+  ({ size = 100, strokeWidth = 3, filled = true, color, className, ...props }, ref) => (
+    <svg
+      ref={ref}
+      width={size}
+      height={size * 0.6}
+      viewBox="0 0 100 60"
+      className={cn('text-secondary', className)}
+      {...props}
+    >
+      <path
+        d="M20 5 L80 5 L95 55 L5 55 Z"
+        fill={filled ? (color || 'currentColor') : 'none'}
+        stroke="hsl(var(--foreground))"
+        strokeWidth={strokeWidth}
+      />
+    </svg>
+  )
+)
+TrapezoidShape.displayName = 'TrapezoidShape'
+
+// Parallelogram
+export const ParallelogramShape = React.forwardRef<SVGSVGElement, ShapeProps>(
+  ({ size = 100, strokeWidth = 3, filled = true, color, className, ...props }, ref) => (
+    <svg
+      ref={ref}
+      width={size}
+      height={size * 0.5}
+      viewBox="0 0 100 50"
+      className={cn('text-info', className)}
+      {...props}
+    >
+      <path
+        d="M20 5 L95 5 L80 45 L5 45 Z"
+        fill={filled ? (color || 'currentColor') : 'none'}
+        stroke="hsl(var(--foreground))"
+        strokeWidth={strokeWidth}
+      />
+    </svg>
+  )
+)
+ParallelogramShape.displayName = 'ParallelogramShape'
+
+// Cursor/Pointer
+export const CursorShape = React.forwardRef<SVGSVGElement, ShapeProps>(
+  ({ size = 100, strokeWidth = 3, filled = true, color, className, ...props }, ref) => (
+    <svg
+      ref={ref}
+      width={size * 0.7}
+      height={size}
+      viewBox="0 0 70 100"
+      className={cn('text-success', className)}
+      {...props}
+    >
+      <path
+        d="M5 5 L5 85 L25 65 L45 95 L55 90 L35 60 L65 60 Z"
+        fill={filled ? (color || 'currentColor') : 'none'}
+        stroke="hsl(var(--foreground))"
+        strokeWidth={strokeWidth}
+      />
+    </svg>
+  )
+)
+CursorShape.displayName = 'CursorShape'
+
+// Bookmark
+export const BookmarkShape = React.forwardRef<SVGSVGElement, ShapeProps>(
+  ({ size = 100, strokeWidth = 3, filled = true, color, className, ...props }, ref) => (
+    <svg
+      ref={ref}
+      width={size * 0.6}
+      height={size}
+      viewBox="0 0 60 100"
+      className={cn('text-destructive', className)}
+      {...props}
+    >
+      <path
+        d="M5 5 L55 5 L55 95 L30 75 L5 95 Z"
+        fill={filled ? (color || 'currentColor') : 'none'}
+        stroke="hsl(var(--foreground))"
+        strokeWidth={strokeWidth}
+      />
+    </svg>
+  )
+)
+BookmarkShape.displayName = 'BookmarkShape'
+
+// Flag
+export const FlagShape = React.forwardRef<SVGSVGElement, ShapeProps>(
+  ({ size = 100, strokeWidth = 3, filled = true, color, className, ...props }, ref) => (
+    <svg
+      ref={ref}
+      width={size}
+      height={size}
+      viewBox="0 0 100 100"
+      className={cn('text-warning', className)}
+      {...props}
+    >
+      <path
+        d="M10 5 L10 95"
+        fill="none"
+        stroke="hsl(var(--foreground))"
+        strokeWidth={strokeWidth}
+      />
+      <path
+        d="M10 5 L90 5 L75 30 L90 55 L10 55 Z"
+        fill={filled ? (color || 'currentColor') : 'none'}
+        stroke="hsl(var(--foreground))"
+        strokeWidth={strokeWidth}
+      />
+    </svg>
+  )
+)
+FlagShape.displayName = 'FlagShape'
+
+// Pill/Capsule
+export const PillShape = React.forwardRef<SVGSVGElement, ShapeProps>(
+  ({ size = 100, strokeWidth = 3, filled = true, color, className, ...props }, ref) => (
+    <svg
+      ref={ref}
+      width={size}
+      height={size * 0.4}
+      viewBox="0 0 100 40"
+      className={cn('text-primary', className)}
+      {...props}
+    >
+      <path
+        d="M20 5 L80 5 Q95 5 95 20 Q95 35 80 35 L20 35 Q5 35 5 20 Q5 5 20 5 Z"
+        fill={filled ? (color || 'currentColor') : 'none'}
+        stroke="hsl(var(--foreground))"
+        strokeWidth={strokeWidth}
+      />
+    </svg>
+  )
+)
+PillShape.displayName = 'PillShape'
+
+// Eye
+export const EyeShape = React.forwardRef<SVGSVGElement, ShapeProps>(
+  ({ size = 100, strokeWidth = 3, filled = true, color, className, ...props }, ref) => (
+    <svg
+      ref={ref}
+      width={size}
+      height={size * 0.6}
+      viewBox="0 0 100 60"
+      className={cn('text-secondary', className)}
+      {...props}
+    >
+      <path
+        d="M5 30 Q25 5 50 5 Q75 5 95 30 Q75 55 50 55 Q25 55 5 30 Z"
+        fill={filled ? (color || 'currentColor') : 'none'}
+        stroke="hsl(var(--foreground))"
+        strokeWidth={strokeWidth}
+      />
+      <circle
+        cx="50"
+        cy="30"
+        r="12"
+        fill="hsl(var(--foreground))"
+      />
+    </svg>
+  )
+)
+EyeShape.displayName = 'EyeShape'
+
+// Triangle
+export const TriangleShape = React.forwardRef<SVGSVGElement, ShapeProps>(
+  ({ size = 100, strokeWidth = 3, filled = true, color, className, ...props }, ref) => (
+    <svg
+      ref={ref}
+      width={size}
+      height={size}
+      viewBox="0 0 100 100"
+      className={cn('text-accent', className)}
+      {...props}
+    >
+      <path
+        d="M50 5 L95 90 L5 90 Z"
+        fill={filled ? (color || 'currentColor') : 'none'}
+        stroke="hsl(var(--foreground))"
+        strokeWidth={strokeWidth}
+      />
+    </svg>
+  )
+)
+TriangleShape.displayName = 'TriangleShape'
+
 export const shapes = {
   BurstShape,
   BlobShape,
@@ -484,4 +716,14 @@ export const shapes = {
   OctagonShape,
   CloudShape,
   TagShape,
+  Star5Shape,
+  PentagonShape,
+  TrapezoidShape,
+  ParallelogramShape,
+  CursorShape,
+  BookmarkShape,
+  FlagShape,
+  PillShape,
+  EyeShape,
+  TriangleShape,
 }

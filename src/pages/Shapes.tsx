@@ -5,7 +5,7 @@ import { Badge } from '@/components/ui/badge'
 import { Card, CardContent } from '@/components/ui/card'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { useTheme } from '@/hooks/use-theme'
-import { Moon, Sun, Github, Copy, Check } from 'lucide-react'
+import { Moon, Sun, Github, Copy, Check, Terminal } from 'lucide-react'
 import { toast } from 'sonner'
 import {
   BurstShape,
@@ -28,6 +28,16 @@ import {
   OctagonShape,
   CloudShape,
   TagShape,
+  Star5Shape,
+  PentagonShape,
+  TrapezoidShape,
+  ParallelogramShape,
+  CursorShape,
+  BookmarkShape,
+  FlagShape,
+  PillShape,
+  EyeShape,
+  TriangleShape,
 } from '@/components/ui/shapes'
 
 const shapesList = [
@@ -51,33 +61,65 @@ const shapesList = [
   { name: 'Octagon', component: OctagonShape, code: '<OctagonShape size={100} />' },
   { name: 'Cloud', component: CloudShape, code: '<CloudShape size={100} />' },
   { name: 'Tag', component: TagShape, code: '<TagShape size={100} />' },
+  { name: 'Star 5-Point', component: Star5Shape, code: '<Star5Shape size={100} />' },
+  { name: 'Pentagon', component: PentagonShape, code: '<PentagonShape size={100} />' },
+  { name: 'Trapezoid', component: TrapezoidShape, code: '<TrapezoidShape size={100} />' },
+  { name: 'Parallelogram', component: ParallelogramShape, code: '<ParallelogramShape size={100} />' },
+  { name: 'Cursor', component: CursorShape, code: '<CursorShape size={100} />' },
+  { name: 'Bookmark', component: BookmarkShape, code: '<BookmarkShape size={100} />' },
+  { name: 'Flag', component: FlagShape, code: '<FlagShape size={100} />' },
+  { name: 'Pill', component: PillShape, code: '<PillShape size={100} />' },
+  { name: 'Eye', component: EyeShape, code: '<EyeShape size={100} />' },
+  { name: 'Triangle', component: TriangleShape, code: '<TriangleShape size={100} />' },
 ]
 
 function ShapeCard({ name, Component, code }: { name: string; Component: React.ComponentType<any>; code: string }) {
-  const [copied, setCopied] = useState(false)
+  const [copiedCode, setCopiedCode] = useState(false)
+  const [copiedCli, setCopiedCli] = useState(false)
+
+  const cliCommand = 'npx shadcn@latest add https://boldkit.dev/r/shapes.json'
 
   const copyCode = () => {
     navigator.clipboard.writeText(code)
-    setCopied(true)
-    toast.success('Code copied to clipboard!')
-    setTimeout(() => setCopied(false), 2000)
+    setCopiedCode(true)
+    toast.success('Code copied!')
+    setTimeout(() => setCopiedCode(false), 2000)
+  }
+
+  const copyCli = () => {
+    navigator.clipboard.writeText(cliCommand)
+    setCopiedCli(true)
+    toast.success('CLI command copied!')
+    setTimeout(() => setCopiedCli(false), 2000)
   }
 
   return (
     <Card className="group relative overflow-hidden">
-      <CardContent className="flex flex-col items-center justify-center p-6 min-h-[180px]">
+      <CardContent className="flex flex-col items-center justify-center p-6 min-h-[200px]">
         <div className="mb-4 transition-transform group-hover:scale-110">
-          <Component size={80} />
+          <Component size={70} />
         </div>
-        <p className="text-sm font-bold uppercase tracking-wide text-center">{name}</p>
-        <Button
-          variant="ghost"
-          size="sm"
-          className="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity"
-          onClick={copyCode}
-        >
-          {copied ? <Check className="h-4 w-4" /> : <Copy className="h-4 w-4" />}
-        </Button>
+        <p className="text-sm font-bold uppercase tracking-wide text-center mb-3">{name}</p>
+        <div className="flex gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
+          <Button
+            variant="outline"
+            size="sm"
+            className="h-7 px-2 text-xs"
+            onClick={copyCode}
+            title="Copy component code"
+          >
+            {copiedCode ? <Check className="h-3 w-3" /> : <Copy className="h-3 w-3" />}
+          </Button>
+          <Button
+            variant="outline"
+            size="sm"
+            className="h-7 px-2 text-xs"
+            onClick={copyCli}
+            title="Copy CLI install command"
+          >
+            {copiedCli ? <Check className="h-3 w-3" /> : <Terminal className="h-3 w-3" />}
+          </Button>
+        </div>
       </CardContent>
     </Card>
   )
@@ -85,13 +127,15 @@ function ShapeCard({ name, Component, code }: { name: string; Component: React.C
 
 export function Shapes() {
   const { resolvedTheme, setTheme } = useTheme()
-  const [copied, setCopied] = useState(false)
+  const [copiedInstall, setCopiedInstall] = useState(false)
+
+  const cliCommand = 'npx shadcn@latest add https://boldkit.dev/r/shapes.json'
 
   const copyInstall = () => {
-    navigator.clipboard.writeText("import { BurstShape, BlobShape, ... } from '@/components/ui/shapes'")
-    setCopied(true)
-    toast.success('Import statement copied!')
-    setTimeout(() => setCopied(false), 2000)
+    navigator.clipboard.writeText(cliCommand)
+    setCopiedInstall(true)
+    toast.success('CLI command copied!')
+    setTimeout(() => setCopiedInstall(false), 2000)
   }
 
   return (
@@ -137,7 +181,7 @@ export function Shapes() {
       <section className="border-b-3 border-foreground py-16">
         <div className="container mx-auto px-4">
           <div className="max-w-3xl mx-auto text-center">
-            <Badge variant="accent" className="mb-4">20 Shapes</Badge>
+            <Badge variant="accent" className="mb-4">30 Shapes</Badge>
             <h1 className="text-4xl font-black uppercase tracking-tight md:text-5xl mb-4">
               Neubrutalist Shapes
             </h1>
@@ -147,14 +191,29 @@ export function Shapes() {
             </p>
             <div className="flex flex-wrap justify-center gap-4">
               <Button size="lg" onClick={copyInstall} className="gap-2">
-                {copied ? <Check className="h-4 w-4" /> : <Copy className="h-4 w-4" />}
-                Copy Import
+                {copiedInstall ? <Check className="h-4 w-4" /> : <Terminal className="h-4 w-4" />}
+                Copy Install Command
               </Button>
               <Link to="/docs">
                 <Button size="lg" variant="outline">
                   Documentation
                 </Button>
               </Link>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Install Section */}
+      <section className="border-b-3 border-foreground py-8 bg-primary/10">
+        <div className="container mx-auto px-4">
+          <div className="max-w-3xl mx-auto">
+            <h3 className="text-sm font-bold uppercase tracking-wide mb-3 text-center">Install with shadcn CLI</h3>
+            <div className="flex items-center gap-2 border-3 border-foreground bg-background p-3 bk-shadow">
+              <code className="flex-1 text-sm font-mono overflow-x-auto">{cliCommand}</code>
+              <Button variant="ghost" size="sm" onClick={copyInstall}>
+                {copiedInstall ? <Check className="h-4 w-4" /> : <Copy className="h-4 w-4" />}
+              </Button>
             </div>
           </div>
         </div>
@@ -167,6 +226,7 @@ export function Shapes() {
             <TabsList className="mb-4">
               <TabsTrigger value="usage">Usage</TabsTrigger>
               <TabsTrigger value="props">Props</TabsTrigger>
+              <TabsTrigger value="install">Installation</TabsTrigger>
             </TabsList>
             <TabsContent value="usage">
               <pre className="border-3 border-foreground bg-background p-4 text-sm overflow-x-auto bk-shadow">
@@ -225,6 +285,24 @@ export function Shapes() {
                 </table>
               </div>
             </TabsContent>
+            <TabsContent value="install">
+              <div className="border-3 border-foreground bg-background p-4 bk-shadow space-y-4">
+                <div>
+                  <h4 className="font-bold uppercase text-sm mb-2">Using shadcn CLI (Recommended)</h4>
+                  <pre className="bg-muted p-3 text-sm overflow-x-auto border border-foreground">
+                    <code>npx shadcn@latest add https://boldkit.dev/r/shapes.json</code>
+                  </pre>
+                </div>
+                <div>
+                  <h4 className="font-bold uppercase text-sm mb-2">Manual Installation</h4>
+                  <ol className="list-decimal list-inside space-y-2 text-sm text-muted-foreground">
+                    <li>Copy the shapes component from our GitHub repository</li>
+                    <li>Place it in <code className="bg-muted px-1">components/ui/shapes.tsx</code></li>
+                    <li>Import and use any shape in your components</li>
+                  </ol>
+                </div>
+              </div>
+            </TabsContent>
           </Tabs>
         </div>
       </section>
@@ -235,7 +313,7 @@ export function Shapes() {
           <h2 className="text-2xl font-black uppercase tracking-tight mb-8 text-center">
             All Shapes
           </h2>
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4">
             {shapesList.map((shape) => (
               <ShapeCard
                 key={shape.name}
@@ -289,7 +367,7 @@ export function Shapes() {
                 <div className="flex gap-4 mb-4">
                   <HeartShape size={50} className="text-destructive" />
                   <LightningShape size={50} className="text-warning" />
-                  <Star4Shape size={50} className="text-accent" />
+                  <Star5Shape size={50} className="text-accent" />
                 </div>
                 <p className="text-sm font-bold uppercase">Decorative Icons</p>
                 <p className="text-xs text-muted-foreground">Mix shapes for visual interest</p>
