@@ -11,19 +11,22 @@ import { Sticker, Stamp } from '@/components/ui/sticker'
 import { useTheme } from '@/hooks/use-theme'
 import { Moon, Sun, Github, Copy, Check, ArrowRight, Zap, Palette, Code2, Smartphone } from 'lucide-react'
 import { useState } from 'react'
+import { SEO, pageSEO } from '@/components/SEO'
 
 export function Home() {
   const { resolvedTheme, setTheme } = useTheme()
   const [copied, setCopied] = useState(false)
 
   const copyCommand = () => {
-    navigator.clipboard.writeText('npx boldkit-ui init')
+    navigator.clipboard.writeText('npx shadcn@latest add https://boldkit.dev/r/button.json')
     setCopied(true)
     setTimeout(() => setCopied(false), 2000)
   }
 
   return (
-    <div className="min-h-screen bg-background">
+    <>
+      <SEO {...pageSEO.home} />
+      <div className="min-h-screen bg-background">
       {/* Nav */}
       <nav className="sticky top-0 z-50 border-b-3 border-foreground bg-background">
         <div className="container mx-auto flex h-16 items-center justify-between px-4">
@@ -393,5 +396,6 @@ export function Home() {
         </div>
       </footer>
     </div>
+    </>
   )
 }

@@ -1,0 +1,431 @@
+{
+  "$schema": "https://boldkit.dev/schema/components-index.json",
+  "name": "BoldKit",
+  "version": "1.0.0",
+  "description": "Neubrutalism React component library with 45 components and 30 SVG shapes",
+  "homepage": "https://boldkit.dev",
+  "repository": "https://github.com/ANIBIT14/boldkit",
+  "license": "MIT",
+  "framework": "react",
+  "styling": "tailwind-css-v4",
+  "typescript": true,
+  "totalComponents": 45,
+  "totalShapes": 30,
+  "categories": [
+    {
+      "name": "Layout & Containers",
+      "components": ["card", "layered-card", "dialog", "drawer", "sheet", "accordion", "collapsible", "tabs", "scroll-area", "aspect-ratio"]
+    },
+    {
+      "name": "Form Controls",
+      "components": ["button", "input", "textarea", "checkbox", "radio-group", "select", "switch", "slider", "input-otp", "label"]
+    },
+    {
+      "name": "Feedback & Status",
+      "components": ["alert", "alert-dialog", "badge", "progress", "skeleton", "sonner"]
+    },
+    {
+      "name": "Navigation",
+      "components": ["breadcrumb", "dropdown-menu", "pagination", "command"]
+    },
+    {
+      "name": "Data Display",
+      "components": ["avatar", "table", "hover-card", "tooltip", "calendar", "chart"]
+    },
+    {
+      "name": "Decorative",
+      "components": ["sticker", "marquee", "shapes", "separator"]
+    }
+  ],
+  "components": [
+    {
+      "name": "accordion",
+      "title": "Accordion",
+      "description": "Collapsible content sections",
+      "docsUrl": "https://boldkit.dev/components/accordion",
+      "installCommand": "npx shadcn@latest add https://boldkit.dev/r/accordion.json",
+      "registryUrl": "https://boldkit.dev/r/accordion.json"
+    },
+    {
+      "name": "alert",
+      "title": "Alert",
+      "description": "Attention-grabbing callout messages",
+      "docsUrl": "https://boldkit.dev/components/alert",
+      "installCommand": "npx shadcn@latest add https://boldkit.dev/r/alert.json",
+      "registryUrl": "https://boldkit.dev/r/alert.json"
+    },
+    {
+      "name": "alert-dialog",
+      "title": "Alert Dialog",
+      "description": "Modal confirmation dialogs",
+      "docsUrl": "https://boldkit.dev/components/alert-dialog",
+      "installCommand": "npx shadcn@latest add https://boldkit.dev/r/alert-dialog.json",
+      "registryUrl": "https://boldkit.dev/r/alert-dialog.json"
+    },
+    {
+      "name": "aspect-ratio",
+      "title": "Aspect Ratio",
+      "description": "Maintain element proportions",
+      "docsUrl": "https://boldkit.dev/components/aspect-ratio",
+      "installCommand": "npx shadcn@latest add https://boldkit.dev/r/aspect-ratio.json",
+      "registryUrl": "https://boldkit.dev/r/aspect-ratio.json"
+    },
+    {
+      "name": "avatar",
+      "title": "Avatar",
+      "description": "User profile images with fallback",
+      "docsUrl": "https://boldkit.dev/components/avatar",
+      "installCommand": "npx shadcn@latest add https://boldkit.dev/r/avatar.json",
+      "registryUrl": "https://boldkit.dev/r/avatar.json"
+    },
+    {
+      "name": "badge",
+      "title": "Badge",
+      "description": "Status indicators and labels",
+      "docsUrl": "https://boldkit.dev/components/badge",
+      "installCommand": "npx shadcn@latest add https://boldkit.dev/r/badge.json",
+      "registryUrl": "https://boldkit.dev/r/badge.json"
+    },
+    {
+      "name": "breadcrumb",
+      "title": "Breadcrumb",
+      "description": "Navigation trail",
+      "docsUrl": "https://boldkit.dev/components/breadcrumb",
+      "installCommand": "npx shadcn@latest add https://boldkit.dev/r/breadcrumb.json",
+      "registryUrl": "https://boldkit.dev/r/breadcrumb.json"
+    },
+    {
+      "name": "button",
+      "title": "Button",
+      "description": "Interactive buttons with multiple variants",
+      "docsUrl": "https://boldkit.dev/components/button",
+      "installCommand": "npx shadcn@latest add https://boldkit.dev/r/button.json",
+      "registryUrl": "https://boldkit.dev/r/button.json",
+      "variants": ["default", "secondary", "accent", "destructive", "outline", "ghost", "link"],
+      "sizes": ["default", "sm", "lg", "xl", "icon"]
+    },
+    {
+      "name": "calendar",
+      "title": "Calendar",
+      "description": "Date picker calendar",
+      "docsUrl": "https://boldkit.dev/components/calendar",
+      "installCommand": "npx shadcn@latest add https://boldkit.dev/r/calendar.json",
+      "registryUrl": "https://boldkit.dev/r/calendar.json"
+    },
+    {
+      "name": "card",
+      "title": "Card",
+      "description": "Content containers with neubrutalism styling",
+      "docsUrl": "https://boldkit.dev/components/card",
+      "installCommand": "npx shadcn@latest add https://boldkit.dev/r/card.json",
+      "registryUrl": "https://boldkit.dev/r/card.json"
+    },
+    {
+      "name": "chart",
+      "title": "Chart",
+      "description": "Data visualization charts",
+      "docsUrl": "https://boldkit.dev/charts",
+      "installCommand": "npx shadcn@latest add https://boldkit.dev/r/chart.json",
+      "registryUrl": "https://boldkit.dev/r/chart.json"
+    },
+    {
+      "name": "checkbox",
+      "title": "Checkbox",
+      "description": "Toggle checkboxes",
+      "docsUrl": "https://boldkit.dev/components/checkbox",
+      "installCommand": "npx shadcn@latest add https://boldkit.dev/r/checkbox.json",
+      "registryUrl": "https://boldkit.dev/r/checkbox.json"
+    },
+    {
+      "name": "collapsible",
+      "title": "Collapsible",
+      "description": "Expandable content sections",
+      "docsUrl": "https://boldkit.dev/components/collapsible",
+      "installCommand": "npx shadcn@latest add https://boldkit.dev/r/collapsible.json",
+      "registryUrl": "https://boldkit.dev/r/collapsible.json"
+    },
+    {
+      "name": "command",
+      "title": "Command",
+      "description": "Command palette for search and actions",
+      "docsUrl": "https://boldkit.dev/components/command",
+      "installCommand": "npx shadcn@latest add https://boldkit.dev/r/command.json",
+      "registryUrl": "https://boldkit.dev/r/command.json"
+    },
+    {
+      "name": "dialog",
+      "title": "Dialog",
+      "description": "Modal dialogs",
+      "docsUrl": "https://boldkit.dev/components/dialog",
+      "installCommand": "npx shadcn@latest add https://boldkit.dev/r/dialog.json",
+      "registryUrl": "https://boldkit.dev/r/dialog.json"
+    },
+    {
+      "name": "drawer",
+      "title": "Drawer",
+      "description": "Slide-in panels",
+      "docsUrl": "https://boldkit.dev/components/drawer",
+      "installCommand": "npx shadcn@latest add https://boldkit.dev/r/drawer.json",
+      "registryUrl": "https://boldkit.dev/r/drawer.json"
+    },
+    {
+      "name": "dropdown-menu",
+      "title": "Dropdown Menu",
+      "description": "Context menus and action menus",
+      "docsUrl": "https://boldkit.dev/components/dropdown-menu",
+      "installCommand": "npx shadcn@latest add https://boldkit.dev/r/dropdown-menu.json",
+      "registryUrl": "https://boldkit.dev/r/dropdown-menu.json"
+    },
+    {
+      "name": "hover-card",
+      "title": "Hover Card",
+      "description": "Hover-triggered information cards",
+      "docsUrl": "https://boldkit.dev/components/hover-card",
+      "installCommand": "npx shadcn@latest add https://boldkit.dev/r/hover-card.json",
+      "registryUrl": "https://boldkit.dev/r/hover-card.json"
+    },
+    {
+      "name": "input",
+      "title": "Input",
+      "description": "Text input fields",
+      "docsUrl": "https://boldkit.dev/components/input",
+      "installCommand": "npx shadcn@latest add https://boldkit.dev/r/input.json",
+      "registryUrl": "https://boldkit.dev/r/input.json"
+    },
+    {
+      "name": "input-otp",
+      "title": "Input OTP",
+      "description": "One-time password input",
+      "docsUrl": "https://boldkit.dev/components/input-otp",
+      "installCommand": "npx shadcn@latest add https://boldkit.dev/r/input-otp.json",
+      "registryUrl": "https://boldkit.dev/r/input-otp.json"
+    },
+    {
+      "name": "label",
+      "title": "Label",
+      "description": "Form labels",
+      "docsUrl": "https://boldkit.dev/components/label",
+      "installCommand": "npx shadcn@latest add https://boldkit.dev/r/label.json",
+      "registryUrl": "https://boldkit.dev/r/label.json"
+    },
+    {
+      "name": "layered-card",
+      "title": "Layered Card",
+      "description": "Stacked paper depth effect card",
+      "docsUrl": "https://boldkit.dev/components/layered-card",
+      "installCommand": "npx shadcn@latest add https://boldkit.dev/r/layered-card.json",
+      "registryUrl": "https://boldkit.dev/r/layered-card.json",
+      "props": {
+        "layers": ["single", "double", "triple"],
+        "offset": ["sm", "default", "lg"],
+        "layerColor": ["default", "primary", "secondary", "accent", "muted"]
+      }
+    },
+    {
+      "name": "marquee",
+      "title": "Marquee",
+      "description": "Auto-scrolling text ticker",
+      "docsUrl": "https://boldkit.dev/components/marquee",
+      "installCommand": "npx shadcn@latest add https://boldkit.dev/r/marquee.json",
+      "registryUrl": "https://boldkit.dev/r/marquee.json",
+      "props": {
+        "speed": ["slow", "normal", "fast"],
+        "direction": ["left", "right"],
+        "pauseOnHover": "boolean"
+      }
+    },
+    {
+      "name": "pagination",
+      "title": "Pagination",
+      "description": "Page navigation",
+      "docsUrl": "https://boldkit.dev/components/pagination",
+      "installCommand": "npx shadcn@latest add https://boldkit.dev/r/pagination.json",
+      "registryUrl": "https://boldkit.dev/r/pagination.json"
+    },
+    {
+      "name": "popover",
+      "title": "Popover",
+      "description": "Floating content panels",
+      "docsUrl": "https://boldkit.dev/components/popover",
+      "installCommand": "npx shadcn@latest add https://boldkit.dev/r/popover.json",
+      "registryUrl": "https://boldkit.dev/r/popover.json"
+    },
+    {
+      "name": "progress",
+      "title": "Progress",
+      "description": "Progress indicators",
+      "docsUrl": "https://boldkit.dev/components/progress",
+      "installCommand": "npx shadcn@latest add https://boldkit.dev/r/progress.json",
+      "registryUrl": "https://boldkit.dev/r/progress.json"
+    },
+    {
+      "name": "radio-group",
+      "title": "Radio Group",
+      "description": "Single-select options",
+      "docsUrl": "https://boldkit.dev/components/radio-group",
+      "installCommand": "npx shadcn@latest add https://boldkit.dev/r/radio-group.json",
+      "registryUrl": "https://boldkit.dev/r/radio-group.json"
+    },
+    {
+      "name": "scroll-area",
+      "title": "Scroll Area",
+      "description": "Custom scrollbar styling",
+      "docsUrl": "https://boldkit.dev/components/scroll-area",
+      "installCommand": "npx shadcn@latest add https://boldkit.dev/r/scroll-area.json",
+      "registryUrl": "https://boldkit.dev/r/scroll-area.json"
+    },
+    {
+      "name": "select",
+      "title": "Select",
+      "description": "Dropdown selection",
+      "docsUrl": "https://boldkit.dev/components/select",
+      "installCommand": "npx shadcn@latest add https://boldkit.dev/r/select.json",
+      "registryUrl": "https://boldkit.dev/r/select.json"
+    },
+    {
+      "name": "separator",
+      "title": "Separator",
+      "description": "Visual dividers",
+      "docsUrl": "https://boldkit.dev/components/separator",
+      "installCommand": "npx shadcn@latest add https://boldkit.dev/r/separator.json",
+      "registryUrl": "https://boldkit.dev/r/separator.json"
+    },
+    {
+      "name": "shapes",
+      "title": "Shapes",
+      "description": "30 SVG decorative shapes for badges and visual accents",
+      "docsUrl": "https://boldkit.dev/shapes",
+      "installCommand": "npx shadcn@latest add https://boldkit.dev/r/shapes.json",
+      "registryUrl": "https://boldkit.dev/r/shapes.json",
+      "shapeList": [
+        "BurstShape", "BlobShape", "ArrowBadge", "ZigzagBanner", "ScribbleCircle",
+        "TicketShape", "SplatShape", "SpeechBubble", "DiamondBadge", "HexagonShape",
+        "CrossShape", "LightningShape", "HeartShape", "Star4Shape", "ShieldShape",
+        "RibbonShape", "WaveShape", "OctagonShape", "CloudShape", "TagShape",
+        "Star5Shape", "PentagonShape", "TrapezoidShape", "ParallelogramShape",
+        "CursorShape", "BookmarkShape", "FlagShape", "PillShape", "EyeShape", "TriangleShape"
+      ]
+    },
+    {
+      "name": "sheet",
+      "title": "Sheet",
+      "description": "Side panel overlays",
+      "docsUrl": "https://boldkit.dev/components/sheet",
+      "installCommand": "npx shadcn@latest add https://boldkit.dev/r/sheet.json",
+      "registryUrl": "https://boldkit.dev/r/sheet.json"
+    },
+    {
+      "name": "skeleton",
+      "title": "Skeleton",
+      "description": "Loading placeholders",
+      "docsUrl": "https://boldkit.dev/components/skeleton",
+      "installCommand": "npx shadcn@latest add https://boldkit.dev/r/skeleton.json",
+      "registryUrl": "https://boldkit.dev/r/skeleton.json"
+    },
+    {
+      "name": "slider",
+      "title": "Slider",
+      "description": "Range selection input",
+      "docsUrl": "https://boldkit.dev/components/slider",
+      "installCommand": "npx shadcn@latest add https://boldkit.dev/r/slider.json",
+      "registryUrl": "https://boldkit.dev/r/slider.json"
+    },
+    {
+      "name": "sonner",
+      "title": "Sonner",
+      "description": "Toast notifications",
+      "docsUrl": "https://boldkit.dev/components/sonner",
+      "installCommand": "npx shadcn@latest add https://boldkit.dev/r/sonner.json",
+      "registryUrl": "https://boldkit.dev/r/sonner.json"
+    },
+    {
+      "name": "sticker",
+      "title": "Sticker",
+      "description": "Rotated labels with tape effect",
+      "docsUrl": "https://boldkit.dev/components/sticker",
+      "installCommand": "npx shadcn@latest add https://boldkit.dev/r/sticker.json",
+      "registryUrl": "https://boldkit.dev/r/sticker.json",
+      "props": {
+        "variant": ["default", "accent", "destructive", "success"],
+        "rotation": ["left", "right", "none"]
+      }
+    },
+    {
+      "name": "switch",
+      "title": "Switch",
+      "description": "Toggle switches",
+      "docsUrl": "https://boldkit.dev/components/switch",
+      "installCommand": "npx shadcn@latest add https://boldkit.dev/r/switch.json",
+      "registryUrl": "https://boldkit.dev/r/switch.json"
+    },
+    {
+      "name": "table",
+      "title": "Table",
+      "description": "Data tables",
+      "docsUrl": "https://boldkit.dev/components/table",
+      "installCommand": "npx shadcn@latest add https://boldkit.dev/r/table.json",
+      "registryUrl": "https://boldkit.dev/r/table.json"
+    },
+    {
+      "name": "tabs",
+      "title": "Tabs",
+      "description": "Tabbed interfaces",
+      "docsUrl": "https://boldkit.dev/components/tabs",
+      "installCommand": "npx shadcn@latest add https://boldkit.dev/r/tabs.json",
+      "registryUrl": "https://boldkit.dev/r/tabs.json"
+    },
+    {
+      "name": "textarea",
+      "title": "Textarea",
+      "description": "Multi-line text input",
+      "docsUrl": "https://boldkit.dev/components/textarea",
+      "installCommand": "npx shadcn@latest add https://boldkit.dev/r/textarea.json",
+      "registryUrl": "https://boldkit.dev/r/textarea.json"
+    },
+    {
+      "name": "toggle",
+      "title": "Toggle",
+      "description": "Toggle buttons",
+      "docsUrl": "https://boldkit.dev/components/toggle",
+      "installCommand": "npx shadcn@latest add https://boldkit.dev/r/toggle.json",
+      "registryUrl": "https://boldkit.dev/r/toggle.json"
+    },
+    {
+      "name": "toggle-group",
+      "title": "Toggle Group",
+      "description": "Toggle button groups",
+      "docsUrl": "https://boldkit.dev/components/toggle-group",
+      "installCommand": "npx shadcn@latest add https://boldkit.dev/r/toggle-group.json",
+      "registryUrl": "https://boldkit.dev/r/toggle-group.json"
+    },
+    {
+      "name": "tooltip",
+      "title": "Tooltip",
+      "description": "Contextual hover hints",
+      "docsUrl": "https://boldkit.dev/components/tooltip",
+      "installCommand": "npx shadcn@latest add https://boldkit.dev/r/tooltip.json",
+      "registryUrl": "https://boldkit.dev/r/tooltip.json"
+    }
+  ],
+  "designTokens": {
+    "colors": {
+      "primary": "0 84% 71%",
+      "secondary": "174 62% 56%",
+      "accent": "49 100% 71%",
+      "destructive": "0 84% 60%",
+      "success": "152 69% 69%",
+      "warning": "49 100% 60%",
+      "info": "212 100% 73%"
+    },
+    "borders": {
+      "width": "3px",
+      "radius": "0"
+    },
+    "shadows": {
+      "default": "4px 4px 0px",
+      "sm": "2px 2px 0px",
+      "md": "6px 6px 0px",
+      "lg": "8px 8px 0px"
+    }
+  }
+}

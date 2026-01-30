@@ -5,6 +5,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { Copy, Check, Terminal } from 'lucide-react'
 import { OpenInV0Button } from './OpenInV0Button'
+import { SEO, getComponentSEO } from '@/components/SEO'
 
 export function CodeBlock({ code, language = 'tsx' }: { code: string; language?: string }) {
   const [copied, setCopied] = useState(false)
@@ -82,8 +83,12 @@ export function ComponentDoc({
   // Generate the correct shadcn CLI command
   const cliCommand = installCommand || `npx shadcn@latest add https://boldkit.dev/r/${componentRegistryName}.json`
 
+  const componentSEO = getComponentSEO(componentRegistryName, name)
+
   return (
-    <div className="space-y-8">
+    <>
+      <SEO {...componentSEO} />
+      <div className="space-y-8">
       {/* Header */}
       <div>
         <div className="flex items-center gap-3 mb-4">
@@ -154,6 +159,7 @@ export function ComponentDoc({
         <CodeBlock code={usageCode} />
       </section>
     </div>
+    </>
   )
 }
 

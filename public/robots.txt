@@ -1,18 +1,67 @@
 # BoldKit - Neubrutalism UI Component Library
 # https://boldkit.dev
 
+# Default rules for all crawlers
 User-agent: *
 Allow: /
+Crawl-delay: 1
 
-# Sitemap
+# Sitemap location
 Sitemap: https://boldkit.dev/sitemap.xml
 
-# Disallow registry JSON files from indexing (they're for CLI usage)
-Disallow: /r/
-Disallow: /*.json$
+# Allow access to component registry for AI code assistants
+Allow: /r/
+Allow: /registry.json
+Allow: /*.json$
 
-# Allow main pages
+# Allow all main pages
 Allow: /docs
+Allow: /docs/*
 Allow: /components
+Allow: /components/*
+Allow: /shapes
 Allow: /charts
 Allow: /themes
+
+# AI-specific files
+Allow: /llms.txt
+Allow: /.well-known/
+
+# Disallow build/internal files
+Disallow: /assets/
+Disallow: /*.js.map$
+
+# Google specific
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 0
+
+# Bing specific
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 1
+
+# AI Crawlers - Full access to code
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+User-agent: Anthropic-AI
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Bytespider
+Allow: /

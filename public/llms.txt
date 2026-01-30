@@ -1,174 +1,318 @@
-# BoldKit - Neubrutalism UI Component Library
+# BoldKit - Neubrutalism React UI Component Library
 
-> BoldKit is an open-source React component library featuring neubrutalism design aesthetics. Built on top of shadcn/ui with Radix UI primitives and Tailwind CSS.
+> BoldKit is a free, open-source React component library featuring neubrutalism design aesthetics. Built on shadcn/ui with Radix UI primitives and Tailwind CSS v4.
 
-## Overview
+## Quick Facts
 
-BoldKit provides 40+ beautifully crafted UI components with:
-- Bold, high-contrast neubrutalism styling
-- Thick borders (3px default)
-- Hard drop shadows (no blur)
-- Vibrant color palette (coral, teal, yellow)
-- Zero border radius for raw aesthetic
-- Full dark mode support
-- TypeScript support
-- Accessible components via Radix UI
+- **Components:** 45 UI components
+- **Shapes:** 30 SVG decorative shapes
+- **License:** MIT (free for commercial use)
+- **Framework:** React 18+
+- **Styling:** Tailwind CSS v4
+- **TypeScript:** Full type support
+- **Accessibility:** Built on Radix UI primitives
 
 ## Installation
 
+### Using shadcn CLI (Recommended)
+
 ```bash
-npx boldkit-ui init
+# Install any component
+npx shadcn@latest add https://boldkit.dev/r/button.json
+
+# Install shapes (30 SVG shapes)
+npx shadcn@latest add https://boldkit.dev/r/shapes.json
+
+# Install theme
+npx shadcn@latest add https://boldkit.dev/r/theme.json
 ```
 
-Or add individual components:
+### All Available Components
+
 ```bash
-npx boldkit-ui add button
+npx shadcn@latest add https://boldkit.dev/r/accordion.json
+npx shadcn@latest add https://boldkit.dev/r/alert.json
+npx shadcn@latest add https://boldkit.dev/r/alert-dialog.json
+npx shadcn@latest add https://boldkit.dev/r/aspect-ratio.json
+npx shadcn@latest add https://boldkit.dev/r/avatar.json
+npx shadcn@latest add https://boldkit.dev/r/badge.json
+npx shadcn@latest add https://boldkit.dev/r/breadcrumb.json
+npx shadcn@latest add https://boldkit.dev/r/button.json
+npx shadcn@latest add https://boldkit.dev/r/calendar.json
+npx shadcn@latest add https://boldkit.dev/r/card.json
+npx shadcn@latest add https://boldkit.dev/r/chart.json
+npx shadcn@latest add https://boldkit.dev/r/checkbox.json
+npx shadcn@latest add https://boldkit.dev/r/collapsible.json
+npx shadcn@latest add https://boldkit.dev/r/command.json
+npx shadcn@latest add https://boldkit.dev/r/dialog.json
+npx shadcn@latest add https://boldkit.dev/r/drawer.json
+npx shadcn@latest add https://boldkit.dev/r/dropdown-menu.json
+npx shadcn@latest add https://boldkit.dev/r/hover-card.json
+npx shadcn@latest add https://boldkit.dev/r/input.json
+npx shadcn@latest add https://boldkit.dev/r/input-otp.json
+npx shadcn@latest add https://boldkit.dev/r/label.json
+npx shadcn@latest add https://boldkit.dev/r/layered-card.json
+npx shadcn@latest add https://boldkit.dev/r/marquee.json
+npx shadcn@latest add https://boldkit.dev/r/pagination.json
+npx shadcn@latest add https://boldkit.dev/r/popover.json
+npx shadcn@latest add https://boldkit.dev/r/progress.json
+npx shadcn@latest add https://boldkit.dev/r/radio-group.json
+npx shadcn@latest add https://boldkit.dev/r/scroll-area.json
+npx shadcn@latest add https://boldkit.dev/r/select.json
+npx shadcn@latest add https://boldkit.dev/r/separator.json
+npx shadcn@latest add https://boldkit.dev/r/shapes.json
+npx shadcn@latest add https://boldkit.dev/r/sheet.json
+npx shadcn@latest add https://boldkit.dev/r/skeleton.json
+npx shadcn@latest add https://boldkit.dev/r/slider.json
+npx shadcn@latest add https://boldkit.dev/r/sonner.json
+npx shadcn@latest add https://boldkit.dev/r/sticker.json
+npx shadcn@latest add https://boldkit.dev/r/switch.json
+npx shadcn@latest add https://boldkit.dev/r/table.json
+npx shadcn@latest add https://boldkit.dev/r/tabs.json
+npx shadcn@latest add https://boldkit.dev/r/textarea.json
+npx shadcn@latest add https://boldkit.dev/r/toggle.json
+npx shadcn@latest add https://boldkit.dev/r/toggle-group.json
+npx shadcn@latest add https://boldkit.dev/r/tooltip.json
 ```
 
-## Documentation
+## Documentation URLs
 
 - Homepage: https://boldkit.dev
 - Documentation: https://boldkit.dev/docs
+- Installation: https://boldkit.dev/docs/installation
 - Components: https://boldkit.dev/components
 - Shapes: https://boldkit.dev/shapes
 - Charts: https://boldkit.dev/charts
 - Theme Builder: https://boldkit.dev/themes
 - GitHub: https://github.com/ANIBIT14/boldkit
+- Registry: https://boldkit.dev/registry.json
 
-## Components
+## Code Examples
+
+### Button Component
+
+```tsx
+import { Button } from '@/components/ui/button'
+
+// Variants: default, secondary, accent, destructive, outline, ghost, link
+<Button variant="default">Primary Button</Button>
+<Button variant="secondary">Secondary</Button>
+<Button variant="accent">Accent</Button>
+<Button variant="destructive">Destructive</Button>
+<Button variant="outline">Outline</Button>
+<Button variant="ghost">Ghost</Button>
+
+// Sizes: default, sm, lg, xl, icon
+<Button size="sm">Small</Button>
+<Button size="lg">Large</Button>
+<Button size="icon"><Icon /></Button>
+```
+
+### Card Component
+
+```tsx
+import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from '@/components/ui/card'
+
+<Card>
+  <CardHeader>
+    <CardTitle>Card Title</CardTitle>
+    <CardDescription>Card description text</CardDescription>
+  </CardHeader>
+  <CardContent>
+    <p>Card content goes here</p>
+  </CardContent>
+  <CardFooter>
+    <Button>Action</Button>
+  </CardFooter>
+</Card>
+```
+
+### Input Component
+
+```tsx
+import { Input } from '@/components/ui/input'
+import { Label } from '@/components/ui/label'
+
+<div className="space-y-2">
+  <Label htmlFor="email">Email</Label>
+  <Input id="email" type="email" placeholder="Enter email" />
+</div>
+```
+
+### Dialog Component
+
+```tsx
+import { Dialog, DialogTrigger, DialogContent, DialogHeader, DialogTitle, DialogDescription } from '@/components/ui/dialog'
+
+<Dialog>
+  <DialogTrigger asChild>
+    <Button>Open Dialog</Button>
+  </DialogTrigger>
+  <DialogContent>
+    <DialogHeader>
+      <DialogTitle>Dialog Title</DialogTitle>
+      <DialogDescription>Dialog description</DialogDescription>
+    </DialogHeader>
+    <p>Dialog content</p>
+  </DialogContent>
+</Dialog>
+```
+
+### Shapes Component
+
+```tsx
+import { BurstShape, HeartShape, LightningShape, Star5Shape } from '@/components/ui/shapes'
+
+// Basic usage
+<BurstShape size={100} />
+
+// Custom color (uses Tailwind text color)
+<HeartShape size={80} className="text-destructive" />
+
+// Outline only (not filled)
+<LightningShape size={60} filled={false} />
+
+// Custom stroke width
+<Star5Shape size={100} strokeWidth={5} />
+
+// All 30 shapes available:
+// BurstShape, BlobShape, ArrowBadge, ZigzagBanner, ScribbleCircle,
+// TicketShape, SplatShape, SpeechBubble, DiamondBadge, HexagonShape,
+// CrossShape, LightningShape, HeartShape, Star4Shape, ShieldShape,
+// RibbonShape, WaveShape, OctagonShape, CloudShape, TagShape,
+// Star5Shape, PentagonShape, TrapezoidShape, ParallelogramShape,
+// CursorShape, BookmarkShape, FlagShape, PillShape, EyeShape, TriangleShape
+```
+
+### Layered Card (Stacked Paper Effect)
+
+```tsx
+import { LayeredCard, LayeredCardHeader, LayeredCardTitle, LayeredCardContent } from '@/components/ui/layered-card'
+
+<LayeredCard layers="double" offset="default" layerColor="primary">
+  <LayeredCardHeader>
+    <LayeredCardTitle>Stacked Card</LayeredCardTitle>
+  </LayeredCardHeader>
+  <LayeredCardContent>
+    <p>Creates a stacked paper depth effect</p>
+  </LayeredCardContent>
+</LayeredCard>
+
+// Props:
+// layers: "single" | "double" | "triple"
+// offset: "sm" | "default" | "lg"
+// layerColor: "default" | "primary" | "secondary" | "accent" | "muted"
+```
+
+### Marquee (Scrolling Ticker)
+
+```tsx
+import { Marquee } from '@/components/ui/marquee'
+
+<Marquee speed="normal" pauseOnHover>
+  <span>Scrolling text content</span>
+  <span>More content</span>
+</Marquee>
+
+// Props:
+// speed: "slow" | "normal" | "fast"
+// direction: "left" | "right"
+// pauseOnHover: boolean
+```
+
+### Sticker Component
+
+```tsx
+import { Sticker } from '@/components/ui/sticker'
+
+<Sticker variant="default" rotation="left">
+  New Feature!
+</Sticker>
+
+// Props:
+// variant: "default" | "accent" | "destructive" | "success"
+// rotation: "left" | "right" | "none"
+```
+
+## Design Tokens (CSS Variables)
+
+### Colors (HSL Format)
+
+```css
+/* Light Theme */
+--primary: 0 84% 71%;           /* Coral */
+--secondary: 174 62% 56%;       /* Teal */
+--accent: 49 100% 71%;          /* Yellow */
+--destructive: 0 84% 60%;       /* Red */
+--success: 152 69% 69%;         /* Green */
+--warning: 49 100% 60%;         /* Orange */
+--info: 212 100% 73%;           /* Blue */
+
+/* Neubrutalism Specific */
+--shadow-color: 240 10% 10%;    /* Shadow color */
+--border: 240 10% 10%;          /* Border color */
+```
+
+### Neubrutalism CSS Utilities
+
+```css
+/* Thick borders */
+.border-3 { border-width: 3px; }
+
+/* Hard shadow (no blur) */
+.bk-shadow { box-shadow: 4px 4px 0px hsl(var(--shadow-color)); }
+
+/* Press-down hover effect */
+.bk-hover:hover {
+  transform: translate(4px, 4px);
+  box-shadow: none;
+}
+```
+
+## Component Categories
 
 ### Layout & Containers
-- Card - Container with thick borders and shadows
-- Layered Card - Stacked paper depth effect
-- Dialog - Modal window with neubrutalism styling
-- Drawer - Slide-in panel
-- Sheet - Side panel overlay
-- Accordion - Expandable content sections
-- Collapsible - Toggle content visibility
-- Tabs - Tabbed interface
-- Scroll Area - Custom scrollbar styling
+- Card, Layered Card, Dialog, Drawer, Sheet, Accordion, Collapsible, Tabs, Scroll Area
 
 ### Form Controls
-- Button - Multiple variants (primary, secondary, accent, destructive, outline, ghost)
-- Input - Text input field
-- Textarea - Multi-line text input
-- Checkbox - Toggle checkboxes
-- Radio Group - Single-select options
-- Select - Dropdown selection
-- Switch - Toggle switch
-- Slider - Range input
-- Input OTP - One-time password input
-- Label - Form labels
+- Button, Input, Textarea, Checkbox, Radio Group, Select, Switch, Slider, Input OTP, Label
 
 ### Feedback & Status
-- Alert - Callout messages
-- Alert Dialog - Confirmation dialogs
-- Badge - Status indicators
-- Progress - Progress bars
-- Skeleton - Loading placeholders
-- Sonner/Toast - Notification toasts
+- Alert, Alert Dialog, Badge, Progress, Skeleton, Sonner (Toast)
 
 ### Navigation
-- Breadcrumb - Navigation path
-- Dropdown Menu - Action menus
-- Pagination - Page navigation
-- Command - Command palette
+- Breadcrumb, Dropdown Menu, Pagination, Command (Command Palette)
 
 ### Data Display
-- Avatar - User images with fallback
-- Table - Data tables
-- Hover Card - Hover-triggered cards
-- Tooltip - Contextual hints
-- Calendar - Date picker
+- Avatar, Table, Hover Card, Tooltip, Calendar
 
 ### Decorative (Neubrutalism Special)
-- Sticker - Rotated labels with tape effect
-- Stamp - Circular approval badges
-- Marquee - Auto-scrolling text ticker
-
-### Shapes (30 SVG Shapes)
-Install: npx shadcn@latest add https://boldkit.dev/r/shapes.json
-
-- BurstShape - Starburst explosion shape
-- BlobShape - Organic blob/amoeba shape
-- ArrowBadge - Arrow-shaped banner
-- ZigzagBanner - Wavy zigzag ribbon
-- ScribbleCircle - Hand-drawn circle
-- TicketShape - Ticket stub with perforations
-- SplatShape - Paint splatter shape
-- SpeechBubble - Comic speech bubble
-- DiamondBadge - Diamond/rhombus shape
-- HexagonShape - Six-sided hexagon
-- CrossShape - Plus/cross shape
-- LightningShape - Lightning bolt
-- HeartShape - Classic heart
-- Star4Shape - Four-pointed star
-- ShieldShape - Badge/shield shape
-- RibbonShape - Ribbon/banner shape
-- WaveShape - Wave/water shape
-- OctagonShape - Eight-sided octagon
-- CloudShape - Cloud shape
-- TagShape - Price/label tag shape
-- Star5Shape - Five-pointed star
-- PentagonShape - Five-sided pentagon
-- TrapezoidShape - Trapezoid shape
-- ParallelogramShape - Parallelogram shape
-- CursorShape - Mouse cursor/pointer
-- BookmarkShape - Bookmark ribbon
-- FlagShape - Flag with pole
-- PillShape - Pill/capsule shape
-- EyeShape - Eye with pupil
-- TriangleShape - Basic triangle
-
-## Design Tokens
-
-### Colors (HSL)
-- Primary (Coral): 0 84% 71%
-- Secondary (Teal): 174 62% 56%
-- Accent (Yellow): 49 100% 71%
-- Destructive: 0 84% 60%
-- Success: 152 69% 69%
-- Warning: 49 100% 60%
-- Info: 212 100% 73%
-
-### Neon Colors
-- Neon Pink: 330 100% 65%
-- Neon Green: 120 100% 50%
-- Neon Blue: 195 100% 50%
-
-### Shadows
-- Default: 4px 4px 0px (no blur)
-- Small: 2px 2px 0px
-- Medium: 6px 6px 0px
-- Large: 8px 8px 0px
-- XL: 12px 12px 0px
-
-### Borders
-- Default width: 3px
-- Border color: foreground color
-- Border radius: 0 (square corners)
+- Sticker, Marquee, 30 SVG Shapes
 
 ## Tech Stack
 
-- React 19
+- React 18+
 - TypeScript
 - Tailwind CSS v4
-- Radix UI Primitives
-- Class Variance Authority (CVA)
-- Vite
+- Radix UI Primitives (accessibility)
+- Class Variance Authority (variants)
+- Vite (build tool)
 
-## Registry
+## Registry API
 
-BoldKit is compatible with shadcn/ui registry format:
-- Registry index: https://boldkit.dev/registry.json
-- Individual components: https://boldkit.dev/[component-name].json
+Component JSON files are available at:
+- Index: `https://boldkit.dev/registry.json`
+- Components: `https://boldkit.dev/r/{component-name}.json`
 
-## License
-
-MIT License - Free for personal and commercial use.
+Example: `https://boldkit.dev/r/button.json`
 
 ## Contact
 
 - Author: Aniruddha Agarwal
 - Email: aniruddha@boldkit.dev
+- GitHub: https://github.com/ANIBIT14/boldkit
 - LinkedIn: https://www.linkedin.com/in/aniruddhaagarwal/
+
+## License
+
+MIT License - Free for personal and commercial use.

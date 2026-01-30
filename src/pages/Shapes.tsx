@@ -7,6 +7,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { useTheme } from '@/hooks/use-theme'
 import { Moon, Sun, Github, Copy, Check, Terminal } from 'lucide-react'
 import { toast } from 'sonner'
+import { SEO, pageSEO } from '@/components/SEO'
 import {
   BurstShape,
   BlobShape,
@@ -139,7 +140,9 @@ export function Shapes() {
   }
 
   return (
-    <div className="min-h-screen bg-background">
+    <>
+      <SEO {...pageSEO.shapes} />
+      <div className="min-h-screen bg-background">
       {/* Nav */}
       <nav className="sticky top-0 z-50 border-b-3 border-foreground bg-background">
         <div className="container mx-auto flex h-16 items-center justify-between px-4">
@@ -390,5 +393,6 @@ export function Shapes() {
         </div>
       </footer>
     </div>
+    </>
   )
 }
