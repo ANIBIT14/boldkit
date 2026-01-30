@@ -102,7 +102,6 @@ export function DrawerDoc() {
       <ComponentDoc
         name="Drawer"
         description="A drawer component that slides in from the bottom of the screen with neubrutalism styling."
-        installCommand="npx boldkit-ui add drawer"
         dependencies={['vaul']}
         sourceCode={sourceCode}
         usageCode={usageCode}

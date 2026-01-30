@@ -27,7 +27,6 @@ export function AspectRatioDoc() {
       <ComponentDoc
         name="AspectRatio"
         description="Displays content within a desired ratio, perfect for images and videos with consistent dimensions."
-        installCommand="npx boldkit-ui add aspect-ratio"
         dependencies={['@radix-ui/react-aspect-ratio']}
         sourceCode={sourceCode}
         usageCode={usageCode}

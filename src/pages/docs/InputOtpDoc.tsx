@@ -95,7 +95,6 @@ export function InputOtpDoc() {
       <ComponentDoc
         name="Input OTP"
         description="Accessible one-time password component with copy paste functionality and neubrutalism styling."
-        installCommand="npx boldkit-ui add input-otp"
         dependencies={['input-otp']}
         sourceCode={sourceCode}
         usageCode={usageCode}

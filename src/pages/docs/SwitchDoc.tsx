@@ -47,7 +47,6 @@ export function SwitchDoc() {
       <ComponentDoc
         name="Switch"
         description="A toggle switch control with bold neubrutalism styling for binary on/off states."
-        installCommand="npx boldkit-ui add switch"
         dependencies={['@radix-ui/react-switch']}
         sourceCode={sourceCode}
         usageCode={usageCode}

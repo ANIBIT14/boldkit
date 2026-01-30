@@ -48,7 +48,6 @@ export function ProgressDoc() {
       <ComponentDoc
         name="Progress"
         description="Displays an indicator showing the completion progress of a task with bold neubrutalism styling."
-        installCommand="npx boldkit-ui add progress"
         dependencies={['@radix-ui/react-progress']}
         sourceCode={sourceCode}
         usageCode={usageCode}

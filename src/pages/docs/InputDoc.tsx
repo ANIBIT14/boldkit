@@ -40,7 +40,6 @@ export function InputDoc() {
       <ComponentDoc
         name="Input"
         description="A text input field with neubrutalism styling featuring bold borders and hard shadows."
-        installCommand="npx boldkit-ui add input"
         dependencies={[]}
         sourceCode={sourceCode}
         usageCode={usageCode}

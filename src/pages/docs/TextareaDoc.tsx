@@ -36,7 +36,6 @@ export function TextareaDoc() {
       <ComponentDoc
         name="Textarea"
         description="A multi-line text input field with bold neubrutalism styling."
-        installCommand="npx boldkit-ui add textarea"
         dependencies={[]}
         sourceCode={sourceCode}
         usageCode={usageCode}

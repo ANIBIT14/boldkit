@@ -51,7 +51,6 @@ export function CheckboxDoc() {
       <ComponentDoc
         name="Checkbox"
         description="A control that allows the user to toggle between checked and not checked with bold neubrutalism styling."
-        installCommand="npx boldkit-ui add checkbox"
         dependencies={['@radix-ui/react-checkbox']}
         sourceCode={sourceCode}
         usageCode={usageCode}

@@ -84,7 +84,6 @@ export function StickerDoc() {
       <ComponentDoc
         name="Sticker"
         description="Rotated labels and stamps with tape effect and double borders - neubrutalist decorative elements for emphasis and visual interest."
-        installCommand="npx boldkit-ui add sticker"
         dependencies={['class-variance-authority']}
         sourceCode={sourceCode}
         usageCode={usageCode}

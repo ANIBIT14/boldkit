@@ -58,7 +58,6 @@ export function HoverCardDoc() {
       <ComponentDoc
         name="Hover Card"
         description="For sighted users to preview content available behind a link with neubrutalism styling."
-        installCommand="npx boldkit-ui add hover-card"
         dependencies={['@radix-ui/react-hover-card']}
         sourceCode={sourceCode}
         usageCode={usageCode}

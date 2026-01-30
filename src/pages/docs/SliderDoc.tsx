@@ -44,7 +44,6 @@ export function SliderDoc() {
       <ComponentDoc
         name="Slider"
         description="A draggable slider input with bold neubrutalism styling for selecting values from a range."
-        installCommand="npx boldkit-ui add slider"
         dependencies={['@radix-ui/react-slider']}
         sourceCode={sourceCode}
         usageCode={usageCode}

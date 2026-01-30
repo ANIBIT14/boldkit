@@ -87,7 +87,6 @@ export function AccordionDoc() {
       <ComponentDoc
         name="Accordion"
         description="A vertically stacked set of interactive headings that each reveal a section of content with bold neubrutalism styling."
-        installCommand="npx boldkit-ui add accordion"
         dependencies={['@radix-ui/react-accordion']}
         sourceCode={sourceCode}
         usageCode={usageCode}

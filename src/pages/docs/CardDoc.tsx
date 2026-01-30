@@ -110,7 +110,6 @@ export function CardDoc() {
       <ComponentDoc
         name="Card"
         description="A container component with header, content, and footer sections. Perfect for displaying grouped content."
-        installCommand="npx boldkit-ui add card"
         dependencies={[]}
         sourceCode={sourceCode}
         usageCode={usageCode}

@@ -53,7 +53,6 @@ export function SeparatorDoc() {
       <ComponentDoc
         name="Separator"
         description="Visually or semantically separates content with a bold 3px line."
-        installCommand="npx boldkit-ui add separator"
         dependencies={['@radix-ui/react-separator']}
         sourceCode={sourceCode}
         usageCode={usageCode}

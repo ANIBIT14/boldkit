@@ -110,7 +110,6 @@ export function PaginationDoc() {
       <ComponentDoc
         name="Pagination"
         description="Pagination with page navigation, next and previous links with neubrutalism styling."
-        installCommand="npx boldkit-ui add pagination"
         dependencies={[]}
         sourceCode={sourceCode}
         usageCode={usageCode}

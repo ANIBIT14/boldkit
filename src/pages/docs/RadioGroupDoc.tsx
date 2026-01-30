@@ -71,7 +71,6 @@ export function RadioGroupDoc() {
       <ComponentDoc
         name="RadioGroup"
         description="A set of checkable buttons where only one can be checked at a time with bold neubrutalism styling."
-        installCommand="npx boldkit-ui add radio-group"
         dependencies={['@radix-ui/react-radio-group']}
         sourceCode={sourceCode}
         usageCode={usageCode}

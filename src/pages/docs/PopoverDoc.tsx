@@ -57,7 +57,6 @@ export function PopoverDoc() {
       <ComponentDoc
         name="Popover"
         description="Displays rich content in a portal, triggered by a button with bold neubrutalism styling."
-        installCommand="npx boldkit-ui add popover"
         dependencies={['@radix-ui/react-popover']}
         sourceCode={sourceCode}
         usageCode={usageCode}

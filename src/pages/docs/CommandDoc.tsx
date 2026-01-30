@@ -112,7 +112,6 @@ export function CommandDoc() {
       <ComponentDoc
         name="Command"
         description="A command menu component for searching and selecting actions with keyboard navigation."
-        installCommand="npx boldkit-ui add command"
         dependencies={['cmdk', '@radix-ui/react-dialog']}
         sourceCode={sourceCode}
         usageCode={usageCode}

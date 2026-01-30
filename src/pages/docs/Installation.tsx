@@ -1,9 +1,10 @@
 import { Badge } from '@/components/ui/badge'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { useState } from 'react'
-import { Copy, Check } from 'lucide-react'
+import { Copy, Check, Terminal } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
+import { toast } from 'sonner'
 
 function CodeBlock({ code }: { code: string }) {
   const [copied, setCopied] = useState(false)
@@ -26,6 +27,82 @@ function CodeBlock({ code }: { code: string }) {
         onClick={copyCode}
       >
         {copied ? <Check className="h-4 w-4" /> : <Copy className="h-4 w-4" />}
+      </Button>
+    </div>
+  )
+}
+
+const allComponents = [
+  { name: 'accordion', description: 'Collapsible content sections' },
+  { name: 'alert', description: 'Attention-grabbing messages' },
+  { name: 'alert-dialog', description: 'Modal confirmation dialogs' },
+  { name: 'aspect-ratio', description: 'Maintain element proportions' },
+  { name: 'avatar', description: 'User profile images' },
+  { name: 'badge', description: 'Status indicators and labels' },
+  { name: 'breadcrumb', description: 'Navigation trail' },
+  { name: 'button', description: 'Interactive buttons' },
+  { name: 'calendar', description: 'Date picker calendar' },
+  { name: 'card', description: 'Content containers' },
+  { name: 'chart', description: 'Data visualization' },
+  { name: 'checkbox', description: 'Toggle selections' },
+  { name: 'collapsible', description: 'Expandable sections' },
+  { name: 'command', description: 'Command palette' },
+  { name: 'dialog', description: 'Modal dialogs' },
+  { name: 'drawer', description: 'Slide-out panels' },
+  { name: 'dropdown-menu', description: 'Context menus' },
+  { name: 'hover-card', description: 'Hover-triggered cards' },
+  { name: 'input', description: 'Text input fields' },
+  { name: 'input-otp', description: 'One-time password input' },
+  { name: 'label', description: 'Form labels' },
+  { name: 'layered-card', description: 'Stacked paper effect' },
+  { name: 'marquee', description: 'Scrolling text ticker' },
+  { name: 'pagination', description: 'Page navigation' },
+  { name: 'popover', description: 'Floating content' },
+  { name: 'progress', description: 'Progress indicators' },
+  { name: 'radio-group', description: 'Single-select options' },
+  { name: 'scroll-area', description: 'Custom scrollbars' },
+  { name: 'select', description: 'Dropdown selection' },
+  { name: 'separator', description: 'Visual dividers' },
+  { name: 'shapes', description: '30 SVG shapes' },
+  { name: 'sheet', description: 'Side panels' },
+  { name: 'skeleton', description: 'Loading placeholders' },
+  { name: 'slider', description: 'Range selection' },
+  { name: 'sonner', description: 'Toast notifications' },
+  { name: 'sticker', description: 'Rotated labels' },
+  { name: 'switch', description: 'Toggle switches' },
+  { name: 'table', description: 'Data tables' },
+  { name: 'tabs', description: 'Tabbed interfaces' },
+  { name: 'textarea', description: 'Multi-line text input' },
+  { name: 'toggle', description: 'Toggle buttons' },
+  { name: 'toggle-group', description: 'Toggle button groups' },
+  { name: 'tooltip', description: 'Hover information' },
+]
+
+function ComponentRow({ name, description }: { name: string; description: string }) {
+  const [copied, setCopied] = useState(false)
+  const command = `npx shadcn@latest add https://boldkit.dev/r/${name}.json`
+
+  const copyCommand = () => {
+    navigator.clipboard.writeText(command)
+    setCopied(true)
+    toast.success(`Copied ${name} install command!`)
+    setTimeout(() => setCopied(false), 2000)
+  }
+
+  return (
+    <div className="flex items-center justify-between py-2 px-3 border-b border-muted last:border-b-0 hover:bg-muted/50 transition-colors">
+      <div className="flex-1 min-w-0">
+        <span className="font-bold text-sm">{name}</span>
+        <span className="text-xs text-muted-foreground ml-2 hidden sm:inline">{description}</span>
+      </div>
+      <Button
+        variant="ghost"
+        size="sm"
+        className="h-7 px-2 text-xs shrink-0"
+        onClick={copyCommand}
+      >
+        {copied ? <Check className="h-3 w-3 mr-1" /> : <Terminal className="h-3 w-3 mr-1" />}
+        Copy
       </Button>
     </div>
   )
@@ -239,6 +316,34 @@ export function cn(...inputs: ClassValue[]) {
             Copy any component from the Components section into your <code className="bg-muted px-1 border">src/components/ui/</code> directory.
             Each component is self-contained and ready to use.
           </p>
+        </section>
+
+        {/* All Components List */}
+        <section className="mt-12">
+          <h2 className="text-2xl font-bold uppercase tracking-wide mb-4">All Components</h2>
+          <p className="text-muted-foreground mb-6">
+            Click to copy the shadcn CLI install command for any component:
+          </p>
+          <Card>
+            <CardHeader className="py-3 bg-muted">
+              <div className="flex items-center justify-between">
+                <span className="font-bold uppercase text-sm">45 Components Available</span>
+                <Badge variant="secondary">shadcn CLI</Badge>
+              </div>
+            </CardHeader>
+            <CardContent className="p-0 max-h-[400px] overflow-y-auto">
+              {allComponents.map((component) => (
+                <ComponentRow key={component.name} name={component.name} description={component.description} />
+              ))}
+            </CardContent>
+          </Card>
+          <p className="text-sm text-muted-foreground mt-4">
+            You can also install the theme and utilities:
+          </p>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 mt-2">
+            <CodeBlock code="npx shadcn@latest add https://boldkit.dev/r/theme.json" />
+            <CodeBlock code="npx shadcn@latest add https://boldkit.dev/r/utils.json" />
+          </div>
         </section>
       </div>
     </div>

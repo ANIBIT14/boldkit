@@ -50,7 +50,6 @@ export function BadgeDoc() {
       <ComponentDoc
         name="Badge"
         description="Displays a badge or a component that looks like a badge with bold neubrutalism styling."
-        installCommand="npx boldkit-ui add badge"
         dependencies={['class-variance-authority']}
         sourceCode={sourceCode}
         usageCode={usageCode}

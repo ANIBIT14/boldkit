@@ -51,7 +51,6 @@ export function CollapsibleDoc() {
       <ComponentDoc
         name="Collapsible"
         description="An interactive component which expands/collapses a panel with smooth animations."
-        installCommand="npx boldkit-ui add collapsible"
         dependencies={['@radix-ui/react-collapsible']}
         sourceCode={sourceCode}
         usageCode={usageCode}

@@ -159,7 +159,6 @@ export function BreadcrumbDoc() {
       <ComponentDoc
         name="Breadcrumb"
         description="Displays the path to the current resource using a hierarchy of links with bold typography."
-        installCommand="npx boldkit-ui add breadcrumb"
         dependencies={['@radix-ui/react-slot']}
         sourceCode={sourceCode}
         usageCode={usageCode}

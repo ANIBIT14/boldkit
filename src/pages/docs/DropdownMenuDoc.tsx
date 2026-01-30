@@ -105,7 +105,6 @@ export function DropdownMenuDoc() {
       <ComponentDoc
         name="DropdownMenu"
         description="Displays a menu of actions or options triggered by a button with bold neubrutalism styling."
-        installCommand="npx boldkit-ui add dropdown-menu"
         dependencies={['@radix-ui/react-dropdown-menu']}
         sourceCode={sourceCode}
         usageCode={usageCode}

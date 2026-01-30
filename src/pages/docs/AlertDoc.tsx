@@ -84,7 +84,6 @@ export function AlertDoc() {
       <ComponentDoc
         name="Alert"
         description="Displays a callout for user attention with various severity levels and bold neubrutalism styling."
-        installCommand="npx boldkit-ui add alert"
         dependencies={['class-variance-authority']}
         sourceCode={sourceCode}
         usageCode={usageCode}

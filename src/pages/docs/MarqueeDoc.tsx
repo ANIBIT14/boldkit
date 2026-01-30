@@ -91,7 +91,6 @@ export function MarqueeDoc() {
       <ComponentDoc
         name="Marquee"
         description="Auto-scrolling text ticker with neubrutalism styling - a common brutalist design element for announcements and emphasis."
-        installCommand="npx boldkit-ui add marquee"
         dependencies={[]}
         sourceCode={sourceCode}
         usageCode={usageCode}

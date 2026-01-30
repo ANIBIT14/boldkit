@@ -51,7 +51,6 @@ export function SonnerDoc() {
       <ComponentDoc
         name="Sonner"
         description="Toast notifications with bold neubrutalism styling powered by the Sonner library."
-        installCommand="npx boldkit-ui add sonner"
         dependencies={['sonner']}
         sourceCode={sourceCode}
         usageCode={usageCode}

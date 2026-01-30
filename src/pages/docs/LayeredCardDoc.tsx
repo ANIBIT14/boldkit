@@ -110,7 +110,6 @@ export function LayeredCardDoc() {
       <ComponentDoc
         name="Layered Card"
         description="Card component with stacked layers effect showing offset depth - a neubrutalist design pattern that creates a sense of physicality and dimension."
-        installCommand="npx boldkit-ui add layered-card"
         dependencies={['class-variance-authority']}
         sourceCode={sourceCode}
         usageCode={usageCode}

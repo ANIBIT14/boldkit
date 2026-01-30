@@ -70,7 +70,6 @@ export function CalendarDoc() {
       <ComponentDoc
         name="Calendar"
         description="A date field component that allows users to enter and edit date with neubrutalism styling."
-        installCommand="npx boldkit-ui add calendar"
         dependencies={['react-day-picker', 'date-fns']}
         sourceCode={sourceCode}
         usageCode={usageCode}

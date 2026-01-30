@@ -89,7 +89,6 @@ export function TabsDoc() {
       <ComponentDoc
         name="Tabs"
         description="A tabbed interface component with bold neubrutalism styling for organizing content into selectable panels."
-        installCommand="npx boldkit-ui add tabs"
         dependencies={['@radix-ui/react-tabs']}
         sourceCode={sourceCode}
         usageCode={usageCode}

@@ -83,7 +83,6 @@ export function ScrollAreaDoc() {
       <ComponentDoc
         name="ScrollArea"
         description="Augments native scroll functionality for custom, cross-browser styling with bold scrollbar design."
-        installCommand="npx boldkit-ui add scroll-area"
         dependencies={['@radix-ui/react-scroll-area']}
         sourceCode={sourceCode}
         usageCode={usageCode}

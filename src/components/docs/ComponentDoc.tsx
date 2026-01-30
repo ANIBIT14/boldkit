@@ -79,6 +79,9 @@ export function ComponentDoc({
   // Convert component name to registry name (e.g., "Alert Dialog" -> "alert-dialog")
   const componentRegistryName = registryName || name.toLowerCase().replace(/\s+/g, '-')
 
+  // Generate the correct shadcn CLI command
+  const cliCommand = installCommand || `npx shadcn@latest add https://boldkit.dev/r/${componentRegistryName}.json`
+
   return (
     <div className="space-y-8">
       {/* Header */}
@@ -120,7 +123,7 @@ export function ComponentDoc({
             <p className="text-muted-foreground">
               Run the following command to add this component:
             </p>
-            <InstallCommand command={installCommand || `npx boldkit-ui add ${name.toLowerCase()}`} />
+            <InstallCommand command={cliCommand} />
           </TabsContent>
 
           <TabsContent value="manual" className="space-y-4">

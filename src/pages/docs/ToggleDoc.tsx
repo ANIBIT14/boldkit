@@ -61,7 +61,6 @@ export function ToggleDoc() {
       <ComponentDoc
         name="Toggle"
         description="A two-state button that can be toggled on or off with bold neubrutalism styling."
-        installCommand="npx boldkit-ui add toggle"
         dependencies={['@radix-ui/react-toggle', 'class-variance-authority']}
         sourceCode={sourceCode}
         usageCode={usageCode}

@@ -86,7 +86,6 @@ export function ToggleGroupDoc() {
       <ComponentDoc
         name="Toggle Group"
         description="A group of toggle buttons where only one or multiple can be selected with bold neubrutalism styling."
-        installCommand="npx boldkit-ui add toggle-group"
         dependencies={['@radix-ui/react-toggle-group']}
         sourceCode={sourceCode}
         usageCode={usageCode}

@@ -169,7 +169,6 @@ export function TableDoc() {
       <ComponentDoc
         name="Table"
         description="A responsive table component with bold neubrutalism styling for displaying tabular data."
-        installCommand="npx boldkit-ui add table"
         dependencies={[]}
         sourceCode={sourceCode}
         usageCode={usageCode}

@@ -60,7 +60,6 @@ export function TooltipDoc() {
       <ComponentDoc
         name="Tooltip"
         description="A popup that displays information related to an element when it receives keyboard focus or the mouse hovers over it."
-        installCommand="npx boldkit-ui add tooltip"
         dependencies={['@radix-ui/react-tooltip']}
         sourceCode={sourceCode}
         usageCode={usageCode}

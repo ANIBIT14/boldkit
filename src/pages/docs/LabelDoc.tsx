@@ -45,7 +45,6 @@ export function LabelDoc() {
       <ComponentDoc
         name="Label"
         description="Renders an accessible label associated with form controls with bold uppercase styling."
-        installCommand="npx boldkit-ui add label"
         dependencies={['@radix-ui/react-label', 'class-variance-authority']}
         sourceCode={sourceCode}
         usageCode={usageCode}

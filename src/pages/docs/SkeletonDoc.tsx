@@ -37,7 +37,6 @@ export function SkeletonDoc() {
       <ComponentDoc
         name="Skeleton"
         description="A placeholder loading animation with neubrutalism styling to indicate content is being loaded."
-        installCommand="npx boldkit-ui add skeleton"
         dependencies={[]}
         sourceCode={sourceCode}
         usageCode={usageCode}

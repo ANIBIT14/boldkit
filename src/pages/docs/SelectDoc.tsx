@@ -104,7 +104,6 @@ export function SelectDoc() {
       <ComponentDoc
         name="Select"
         description="Displays a list of options for the user to pick from with bold neubrutalism styling."
-        installCommand="npx boldkit-ui add select"
         dependencies={['@radix-ui/react-select']}
         sourceCode={sourceCode}
         usageCode={usageCode}

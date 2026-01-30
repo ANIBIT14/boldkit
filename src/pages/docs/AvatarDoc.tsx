@@ -66,7 +66,6 @@ export function AvatarDoc() {
       <ComponentDoc
         name="Avatar"
         description="An image element with a fallback for representing the user with bold neubrutalism borders."
-        installCommand="npx boldkit-ui add avatar"
         dependencies={['@radix-ui/react-avatar']}
         sourceCode={sourceCode}
         usageCode={usageCode}

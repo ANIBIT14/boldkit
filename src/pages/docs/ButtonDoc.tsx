@@ -72,7 +72,6 @@ export function ButtonDoc() {
       <ComponentDoc
         name="Button"
         description="Displays a button or a component that looks like a button with neubrutalism styling."
-        installCommand="npx boldkit-ui add button"
         dependencies={['@radix-ui/react-slot', 'class-variance-authority']}
         sourceCode={sourceCode}
         usageCode={usageCode}

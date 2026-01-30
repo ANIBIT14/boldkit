@@ -182,7 +182,6 @@ export function SheetDoc() {
       <ComponentDoc
         name="Sheet"
         description="A slide-out panel that extends from the edge of the screen with bold neubrutalism styling."
-        installCommand="npx boldkit-ui add sheet"
         dependencies={['@radix-ui/react-dialog', 'class-variance-authority']}
         sourceCode={sourceCode}
         usageCode={usageCode}

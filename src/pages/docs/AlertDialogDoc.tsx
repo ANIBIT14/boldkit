@@ -108,7 +108,6 @@ export function AlertDialogDoc() {
       <ComponentDoc
         name="Alert Dialog"
         description="A modal dialog that interrupts the user with important content and expects a response."
-        installCommand="npx boldkit-ui add alert-dialog"
         dependencies={['@radix-ui/react-alert-dialog']}
         sourceCode={sourceCode}
         usageCode={usageCode}

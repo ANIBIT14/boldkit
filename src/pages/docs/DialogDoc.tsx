@@ -114,7 +114,6 @@ export function DialogDoc() {
       <ComponentDoc
         name="Dialog"
         description="A modal dialog that interrupts the user with important content with bold neubrutalism styling."
-        installCommand="npx boldkit-ui add dialog"
         dependencies={['@radix-ui/react-dialog']}
         sourceCode={sourceCode}
         usageCode={usageCode}
