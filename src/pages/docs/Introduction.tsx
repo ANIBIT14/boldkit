@@ -47,7 +47,7 @@ export function Introduction() {
         <ul className="space-y-2 list-none pl-0">
           <li className="flex items-start gap-2">
             <span className="text-primary font-bold">◼</span>
-            <span><strong>30+ Components</strong> - All shadcn/ui components with neubrutalism styling</span>
+            <span><strong>40+ Components</strong> - All shadcn/ui components with neubrutalism styling</span>
           </li>
           <li className="flex items-start gap-2">
             <span className="text-primary font-bold">◼</span>

@@ -8,7 +8,7 @@ A neubrutalism React component library built on top of shadcn/ui.
 
 ## Features
 
-- **30+ Components** - All shadcn/ui components styled with neubrutalism aesthetics
+- **40+ Components** - All shadcn/ui components styled with neubrutalism aesthetics
 - **shadcn CLI Compatible** - Install components directly using the shadcn CLI
 - **Accessible** - Built on Radix UI primitives with full keyboard navigation
 - **Customizable** - CSS variables for easy theming
