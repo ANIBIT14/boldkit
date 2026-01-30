@@ -287,6 +287,6 @@ MIT License - free for personal and commercial use.
 
 **Built by [Aniruddha Agarwal](https://github.com/ANIBIT14)**
 
-[Website](https://boldkit.dev) · [GitHub](https://github.com/ANIBIT14/boldkit) · [Twitter](https://twitter.com/aniruddhaagarwal)
+[LinkedIn](https://www.linkedin.com/in/aniruddhaagarwal/) · [GitHub](https://github.com/ANIBIT14/boldkit)
 
 </div>
