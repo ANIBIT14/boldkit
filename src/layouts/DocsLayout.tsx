@@ -165,6 +165,12 @@ export function DocsLayout() {
               Components
             </Link>
             <Link
+              to="/shapes"
+              className="transition-colors hover:text-foreground/80"
+            >
+              Shapes
+            </Link>
+            <Link
               to="/charts"
               className="transition-colors hover:text-foreground/80"
             >

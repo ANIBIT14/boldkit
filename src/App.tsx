@@ -2,7 +2,7 @@ import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
 import { ThemeProvider } from '@/hooks/use-theme'
 import { TooltipProvider } from '@/components/ui/tooltip'
 import { Toaster } from '@/components/ui/sonner'
-import { Home, ThemeBuilder, Charts } from '@/pages'
+import { Home, ThemeBuilder, Charts, Shapes } from '@/pages'
 import { DocsLayout } from '@/layouts/DocsLayout'
 import {
   Introduction,
@@ -53,13 +53,14 @@ import '@/styles/globals.css'
 
 function App() {
   return (
-    <ThemeProvider defaultTheme="system">
+    <ThemeProvider defaultTheme="light">
       <TooltipProvider>
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/themes" element={<ThemeBuilder />} />
             <Route path="/charts" element={<Charts />} />
+            <Route path="/shapes" element={<Shapes />} />
 
             {/* Documentation routes */}
             <Route path="/docs" element={<DocsLayout />}>

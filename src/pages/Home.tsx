@@ -39,6 +39,9 @@ export function Home() {
             <Link to="/components" className="hidden sm:block">
               <Button variant="ghost">Components</Button>
             </Link>
+            <Link to="/shapes" className="hidden sm:block">
+              <Button variant="ghost">Shapes</Button>
+            </Link>
             <Link to="/charts" className="hidden sm:block">
               <Button variant="ghost">Charts</Button>
             </Link>
@@ -350,6 +353,7 @@ export function Home() {
               <div className="flex flex-col gap-2">
                 <Link to="/docs" className="text-sm text-muted-foreground hover:text-foreground">Documentation</Link>
                 <Link to="/components" className="text-sm text-muted-foreground hover:text-foreground">Components</Link>
+                <Link to="/shapes" className="text-sm text-muted-foreground hover:text-foreground">Shapes</Link>
                 <Link to="/charts" className="text-sm text-muted-foreground hover:text-foreground">Charts</Link>
                 <Link to="/themes" className="text-sm text-muted-foreground hover:text-foreground">Themes</Link>
               </div>

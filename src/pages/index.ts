@@ -1,3 +1,4 @@
 export { Home } from './Home'
 export { ThemeBuilder } from './ThemeBuilder'
 export { Charts } from './Charts'
+export { Shapes } from './Shapes'

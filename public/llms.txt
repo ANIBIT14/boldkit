@@ -30,6 +30,7 @@ npx boldkit-ui add button
 - Homepage: https://boldkit.dev
 - Documentation: https://boldkit.dev/docs
 - Components: https://boldkit.dev/components
+- Shapes: https://boldkit.dev/shapes
 - Charts: https://boldkit.dev/charts
 - Theme Builder: https://boldkit.dev/themes
 - GitHub: https://github.com/ANIBIT14/boldkit
@@ -84,6 +85,28 @@ npx boldkit-ui add button
 - Sticker - Rotated labels with tape effect
 - Stamp - Circular approval badges
 - Marquee - Auto-scrolling text ticker
+
+### Shapes (20 SVG Shapes)
+- BurstShape - Starburst explosion shape
+- BlobShape - Organic blob/amoeba shape
+- ArrowBadge - Arrow-shaped banner
+- ZigzagBanner - Wavy zigzag ribbon
+- ScribbleCircle - Hand-drawn circle
+- TicketShape - Ticket stub with perforations
+- SplatShape - Paint splatter shape
+- SpeechBubble - Comic speech bubble
+- DiamondBadge - Diamond/rhombus shape
+- HexagonShape - Six-sided hexagon
+- CrossShape - Plus/cross shape
+- LightningShape - Lightning bolt
+- HeartShape - Classic heart
+- Star4Shape - Four-pointed star
+- ShieldShape - Badge/shield shape
+- RibbonShape - Ribbon/banner shape
+- WaveShape - Wave/water shape
+- OctagonShape - Eight-sided octagon
+- CloudShape - Cloud shape
+- TagShape - Price/label tag shape
 
 ## Design Tokens
 
