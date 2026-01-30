@@ -193,7 +193,7 @@ export function Installation() {
             BoldKit is built on top of Tailwind CSS v4 and requires the following:
           </p>
           <ul className="list-disc list-inside space-y-2 text-muted-foreground">
-            <li>React 18 or higher</li>
+            <li>React 19</li>
             <li>Tailwind CSS v4</li>
             <li>TypeScript (recommended)</li>
           </ul>

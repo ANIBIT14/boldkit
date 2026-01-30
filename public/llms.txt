@@ -7,7 +7,7 @@
 - **Components:** 45 UI components
 - **Shapes:** 30 SVG decorative shapes
 - **License:** MIT (free for commercial use)
-- **Framework:** React 18+
+- **Framework:** React 19
 - **Styling:** Tailwind CSS v4
 - **TypeScript:** Full type support
 - **Accessibility:** Built on Radix UI primitives
@@ -291,7 +291,7 @@ import { Sticker } from '@/components/ui/sticker'
 
 ## Tech Stack
 
-- React 18+
+- React 19
 - TypeScript
 - Tailwind CSS v4
 - Radix UI Primitives (accessibility)
