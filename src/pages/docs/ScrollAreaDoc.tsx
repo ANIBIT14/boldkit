@@ -81,8 +81,9 @@ export function ScrollAreaDoc() {
   return (
     <>
       <ComponentDoc
-        name="ScrollArea"
+        name="Scroll Area"
         description="Augments native scroll functionality for custom, cross-browser styling with bold scrollbar design."
+        registryName="scroll-area"
         dependencies={['@radix-ui/react-scroll-area']}
         sourceCode={sourceCode}
         usageCode={usageCode}

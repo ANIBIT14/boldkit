@@ -103,8 +103,9 @@ export function DropdownMenuDoc() {
   return (
     <>
       <ComponentDoc
-        name="DropdownMenu"
+        name="Dropdown Menu"
         description="Displays a menu of actions or options triggered by a button with bold neubrutalism styling."
+        registryName="dropdown-menu"
         dependencies={['@radix-ui/react-dropdown-menu']}
         sourceCode={sourceCode}
         usageCode={usageCode}

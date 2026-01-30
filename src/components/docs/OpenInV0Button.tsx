@@ -6,7 +6,7 @@ interface OpenInV0ButtonProps {
 }
 
 export function OpenInV0Button({ name, className }: OpenInV0ButtonProps) {
-  const registryUrl = `https://boldkit.dev/${name}.json`
+  const registryUrl = `https://boldkit.dev/r/${name}.json`
   const v0Url = `https://v0.dev/chat/api/open?url=${encodeURIComponent(registryUrl)}`
 
   return (

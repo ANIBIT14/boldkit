@@ -69,8 +69,9 @@ export function RadioGroupDoc() {
   return (
     <>
       <ComponentDoc
-        name="RadioGroup"
+        name="Radio Group"
         description="A set of checkable buttons where only one can be checked at a time with bold neubrutalism styling."
+        registryName="radio-group"
         dependencies={['@radix-ui/react-radio-group']}
         sourceCode={sourceCode}
         usageCode={usageCode}
