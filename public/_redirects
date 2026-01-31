@@ -1,0 +1,6 @@
+# Serve registry JSON files directly
+/r/*  /r/:splat  200
+/*.json  /:splat.json  200
+
+# SPA fallback - serve index.html for all other routes
+/*    /index.html   200
