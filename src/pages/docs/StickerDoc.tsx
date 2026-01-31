@@ -1,4 +1,4 @@
-import { Sticker, Stamp } from '@/components/ui/sticker'
+import { Sticker, Stamp, StickyNote } from '@/components/ui/sticker'
 import { ComponentDoc, ExampleSection } from '@/components/docs/ComponentDoc'
 
 const sourceCode = `import * as React from 'react'
@@ -257,6 +257,69 @@ export function StickerDoc() {
         <div className="flex flex-wrap gap-8 items-center py-4">
           <Stamp doubleRing>Certified</Stamp>
           <Stamp doubleRing variant="secondary">Approved</Stamp>
+        </div>
+      </ExampleSection>
+
+      {/* Sticky Note Component */}
+      <ExampleSection
+        title="Sticky Note"
+        description="Post-it style notes for annotations and reminders."
+        code={`<StickyNote>Remember to star the repo!</StickyNote>
+<StickyNote variant="pink">Important meeting at 3pm</StickyNote>
+<StickyNote variant="blue" pin>Don't forget!</StickyNote>`}
+      >
+        <div className="flex flex-wrap gap-8 items-start py-8">
+          <StickyNote>Remember to star the repo!</StickyNote>
+          <StickyNote variant="pink">Important meeting at 3pm</StickyNote>
+          <StickyNote variant="blue" pin>Don't forget!</StickyNote>
+        </div>
+      </ExampleSection>
+
+      {/* Sticky Note Variants */}
+      <ExampleSection
+        title="Sticky Note Colors"
+        description="Different color variants for organizing notes."
+        code={`<StickyNote variant="yellow">Yellow</StickyNote>
+<StickyNote variant="pink">Pink</StickyNote>
+<StickyNote variant="blue">Blue</StickyNote>
+<StickyNote variant="green">Green</StickyNote>
+<StickyNote variant="purple">Purple</StickyNote>`}
+      >
+        <div className="flex flex-wrap gap-6 items-start py-4">
+          <StickyNote variant="yellow">Yellow note</StickyNote>
+          <StickyNote variant="pink">Pink note</StickyNote>
+          <StickyNote variant="blue">Blue note</StickyNote>
+          <StickyNote variant="green">Green note</StickyNote>
+          <StickyNote variant="purple">Purple note</StickyNote>
+        </div>
+      </ExampleSection>
+
+      {/* Sticky Note with Pin */}
+      <ExampleSection
+        title="Sticky Note with Pin"
+        description="Add a push pin decoration to notes."
+        code={`<StickyNote pin>Pinned to board</StickyNote>
+<StickyNote pin variant="pink" rotation="right">Todo list</StickyNote>`}
+      >
+        <div className="flex flex-wrap gap-8 items-start py-8">
+          <StickyNote pin>Pinned to board</StickyNote>
+          <StickyNote pin variant="pink" rotation="right">Todo list</StickyNote>
+          <StickyNote pin variant="green" rotation="tilt-left">Great idea!</StickyNote>
+        </div>
+      </ExampleSection>
+
+      {/* Sticky Note Sizes */}
+      <ExampleSection
+        title="Sticky Note Sizes"
+        description="Different sizes for various content lengths."
+        code={`<StickyNote size="sm">Small</StickyNote>
+<StickyNote size="default">Default size note</StickyNote>
+<StickyNote size="lg">Large note with more space</StickyNote>`}
+      >
+        <div className="flex flex-wrap gap-6 items-start py-4">
+          <StickyNote size="sm">Small</StickyNote>
+          <StickyNote size="default">Default size</StickyNote>
+          <StickyNote size="lg">Large note</StickyNote>
         </div>
       </ExampleSection>
     </>

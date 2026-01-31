@@ -39,6 +39,11 @@ import {
   PillShape,
   EyeShape,
   TriangleShape,
+  PaperTearShape,
+  ScribbleUnderline,
+  PriceTagShape,
+  ExplosionShape,
+  CouponShape,
 } from '@/components/ui/shapes'
 
 const shapesList = [
@@ -72,6 +77,11 @@ const shapesList = [
   { name: 'Pill', component: PillShape, code: '<PillShape size={100} />' },
   { name: 'Eye', component: EyeShape, code: '<EyeShape size={100} />' },
   { name: 'Triangle', component: TriangleShape, code: '<TriangleShape size={100} />' },
+  { name: 'Paper Tear', component: PaperTearShape, code: '<PaperTearShape size={100} />' },
+  { name: 'Scribble Underline', component: ScribbleUnderline, code: '<ScribbleUnderline size={100} />' },
+  { name: 'Price Tag', component: PriceTagShape, code: '<PriceTagShape size={100} />' },
+  { name: 'Explosion', component: ExplosionShape, code: '<ExplosionShape size={100} />' },
+  { name: 'Coupon', component: CouponShape, code: '<CouponShape size={100} />' },
 ]
 
 function ShapeCard({ name, Component, code }: { name: string; Component: React.ComponentType<any>; code: string }) {

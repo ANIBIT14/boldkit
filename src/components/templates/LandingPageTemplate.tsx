@@ -19,17 +19,20 @@ interface FeatureCardProps {
   description: string
 }
 
-function FeatureCard({ icon, title, description }: FeatureCardProps) {
+const featureColors = ['bg-primary/10', 'bg-secondary/10', 'bg-accent/10', 'bg-info/10', 'bg-success/10', 'bg-warning/10']
+const iconColors = ['bg-primary', 'bg-secondary', 'bg-accent', 'bg-info', 'bg-success', 'bg-warning']
+
+function FeatureCard({ icon, title, description, index = 0 }: FeatureCardProps & { index?: number }) {
   return (
-    <Card className="group hover:translate-x-[-4px] hover:translate-y-[-4px] hover:shadow-[8px_8px_0px_hsl(var(--shadow-color))] transition-all">
+    <Card className={`group hover:translate-x-[-4px] hover:translate-y-[-4px] hover:shadow-[8px_8px_0px_hsl(var(--shadow-color))] transition-all ${featureColors[index % 6]}`}>
       <CardHeader>
-        <div className="w-12 h-12 flex items-center justify-center bg-primary border-3 border-foreground mb-4">
+        <div className={`w-14 h-14 flex items-center justify-center ${iconColors[index % 6]} border-3 border-foreground mb-4 shadow-[3px_3px_0px_hsl(var(--shadow-color))]`}>
           {icon}
         </div>
         <CardTitle className="uppercase">{title}</CardTitle>
       </CardHeader>
       <CardContent>
-        <CardDescription>{description}</CardDescription>
+        <CardDescription className="text-foreground/70">{description}</CardDescription>
       </CardContent>
     </Card>
   )
@@ -129,37 +132,41 @@ export function LandingPageTemplate() {
       </nav>
 
       {/* Hero Section */}
-      <section className="relative overflow-hidden border-b-3 border-foreground">
-        <div className="absolute inset-0 grid-pattern opacity-50" />
+      <section className="relative overflow-hidden border-b-3 border-foreground bg-accent/20">
+        <div className="absolute inset-0 grid-pattern opacity-30" />
+        {/* Colorful background blocks */}
+        <div className="absolute top-0 left-0 w-32 h-32 bg-primary/30 border-r-3 border-b-3 border-foreground hidden lg:block" />
+        <div className="absolute bottom-0 right-0 w-48 h-48 bg-secondary/30 border-l-3 border-t-3 border-foreground hidden lg:block" />
         <div className="container mx-auto px-4 py-20 md:py-32 relative">
           <div className="max-w-3xl mx-auto text-center">
-            <Badge variant="secondary" className="mb-6">
+            <Badge variant="accent" className="mb-6 shadow-[3px_3px_0px_hsl(var(--shadow-color))]">
               <Sparkles className="h-3 w-3 mr-1" />
               Now in Public Beta
             </Badge>
             <h1 className="text-4xl md:text-6xl lg:text-7xl font-black uppercase tracking-tight mb-6">
               Build Something{' '}
-              <span className="text-primary">Bold</span>
+              <span className="bg-primary text-primary-foreground px-3 py-1 border-3 border-foreground inline-block transform -rotate-1">Bold</span>
             </h1>
             <p className="text-xl text-muted-foreground mb-8 max-w-2xl mx-auto">
               The platform that helps you create amazing products with less effort.
               Simple, powerful, and designed to make you stand out.
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-              <Button size="lg" className="gap-2">
+              <Button size="lg" className="gap-2" animation="pulse">
                 Get Started Free
                 <ArrowRight className="h-5 w-5" />
               </Button>
-              <Button size="lg" variant="outline">
+              <Button size="lg" variant="secondary">
                 View Demo
               </Button>
             </div>
           </div>
 
-          {/* Decorative shapes */}
-          <BurstShape size={80} className="absolute top-10 left-10 text-accent opacity-60 hidden lg:block" />
-          <Star5Shape size={60} className="absolute bottom-20 right-20 text-secondary opacity-60 hidden lg:block" />
-          <LightningShape size={50} className="absolute top-1/2 right-10 text-warning opacity-60 hidden lg:block" />
+          {/* Decorative shapes - more vibrant */}
+          <BurstShape size={100} className="absolute top-10 left-10 text-accent hidden lg:block animate-[brutal-wiggle_3s_ease-in-out_infinite]" />
+          <Star5Shape size={80} className="absolute bottom-20 right-20 text-secondary hidden lg:block" />
+          <LightningShape size={70} className="absolute top-1/2 right-10 text-warning hidden lg:block" />
+          <HeartShape size={50} className="absolute bottom-10 left-1/4 text-primary hidden lg:block" />
         </div>
       </section>
 
@@ -194,31 +201,37 @@ export function LandingPageTemplate() {
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             <FeatureCard
+              index={0}
               icon={<Zap className="h-6 w-6" />}
               title="Lightning Fast"
               description="Optimized for speed and performance. Your users will love the instant response times."
             />
             <FeatureCard
+              index={1}
               icon={<Shield className="h-6 w-6" />}
               title="Secure by Default"
               description="Enterprise-grade security built in from day one. Your data is always protected."
             />
             <FeatureCard
+              index={2}
               icon={<Users className="h-6 w-6" />}
               title="Team Collaboration"
               description="Work together seamlessly with your team. Real-time updates and easy sharing."
             />
             <FeatureCard
+              index={3}
               icon={<Sparkles className="h-6 w-6" />}
               title="AI Powered"
               description="Smart suggestions and automation to help you work faster and smarter."
             />
             <FeatureCard
+              index={4}
               icon={<HeartShape size={24} className="text-foreground" />}
               title="User Friendly"
               description="Intuitive interface designed for everyone. No learning curve required."
             />
             <FeatureCard
+              index={5}
               icon={<LightningShape size={24} className="text-foreground" />}
               title="Always Available"
               description="99.99% uptime guarantee. Your service is always online when you need it."

@@ -688,20 +688,6 @@
           "target": "components/ui/layered-card.tsx"
         }
       ]
-    },
-    {
-      "name": "shapes",
-      "type": "registry:ui",
-      "description": "30 neubrutalist SVG shapes for badges, decorations, and visual accents with thick borders",
-      "dependencies": [],
-      "registryDependencies": ["utils"],
-      "files": [
-        {
-          "path": "registry/default/ui/shapes.tsx",
-          "type": "registry:ui",
-          "target": "components/ui/shapes.tsx"
-        }
-      ]
     }
   ]
 }

@@ -63,7 +63,8 @@ const allComponents = [
   { name: 'scroll-area', description: 'Custom scrollbars' },
   { name: 'select', description: 'Dropdown selection' },
   { name: 'separator', description: 'Visual dividers' },
-  { name: 'shapes', description: '30 SVG shapes' },
+  { name: 'shapes', description: '35 SVG shapes' },
+  { name: 'sticky-note', description: 'Post-it style notes' },
   { name: 'sheet', description: 'Side panels' },
   { name: 'skeleton', description: 'Loading placeholders' },
   { name: 'slider', description: 'Range selection' },
@@ -327,7 +328,7 @@ export function cn(...inputs: ClassValue[]) {
           <Card>
             <CardHeader className="py-3 bg-muted">
               <div className="flex items-center justify-between">
-                <span className="font-bold uppercase text-sm">45 Components Available</span>
+                <span className="font-bold uppercase text-sm">46 Components Available</span>
                 <Badge variant="secondary">shadcn CLI</Badge>
               </div>
             </CardHeader>

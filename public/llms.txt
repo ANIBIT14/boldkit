@@ -4,8 +4,8 @@
 
 ## Quick Facts
 
-- **Components:** 45 UI components
-- **Shapes:** 30 SVG decorative shapes
+- **Components:** 46 UI components
+- **Shapes:** 35 SVG decorative shapes
 - **License:** MIT (free for commercial use)
 - **Framework:** React 19
 - **Styling:** Tailwind CSS v4
@@ -20,7 +20,7 @@
 # Install any component
 npx shadcn@latest add https://boldkit.dev/r/button.json
 
-# Install shapes (30 SVG shapes)
+# Install shapes (35 SVG shapes)
 npx shadcn@latest add https://boldkit.dev/r/shapes.json
 
 # Install theme
@@ -287,7 +287,7 @@ import { Sticker } from '@/components/ui/sticker'
 - Avatar, Table, Hover Card, Tooltip, Calendar
 
 ### Decorative (Neubrutalism Special)
-- Sticker, Marquee, 30 SVG Shapes
+- Sticker, Stamp, StickyNote, Marquee, 35 SVG Shapes
 
 ## Tech Stack
 
