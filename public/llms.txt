@@ -234,6 +234,30 @@ import { Sticker } from '@/components/ui/sticker'
 // rotation: "left" | "right" | "none"
 ```
 
+### Chart Component
+
+```tsx
+import { ChartContainer, ChartTooltip, ChartTooltipContent, CHART_PALETTES, getChartColor } from '@/components/ui/chart'
+import { Bar, BarChart, XAxis, YAxis } from 'recharts'
+
+// Container variants: default, elevated, flat, filled, minimal, accent, primary
+<ChartContainer config={chartConfig} variant="elevated">
+  <BarChart data={data}>
+    <Bar dataKey="value" fill={getChartColor('vibrant', 0)} />
+  </BarChart>
+</ChartContainer>
+
+// Color palettes: bold, vibrant, pastel, monochrome
+// Use getChartColor(palette, index) for consistent colors
+const color = getChartColor('vibrant', 0) // 'hsl(0 84% 60%)'
+
+// Available palettes:
+// CHART_PALETTES.bold - Uses CSS variables (primary, secondary, accent, etc.)
+// CHART_PALETTES.vibrant - Bright coral, teal, yellow, purple, green, blue
+// CHART_PALETTES.pastel - Lighter versions of vibrant colors
+// CHART_PALETTES.monochrome - Foreground color with opacity variations
+```
+
 ## Design Tokens (CSS Variables)
 
 ### Colors (HSL Format)
@@ -284,7 +308,7 @@ import { Sticker } from '@/components/ui/sticker'
 - Breadcrumb, Dropdown Menu, Pagination, Command (Command Palette)
 
 ### Data Display
-- Avatar, Table, Hover Card, Tooltip, Calendar
+- Avatar, Table, Hover Card, Tooltip, Calendar, Charts (Area, Bar, Line, Pie)
 
 ### Decorative (Neubrutalism Special)
 - Sticker, Stamp, StickyNote, Marquee, 35 SVG Shapes
