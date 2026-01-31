@@ -33,10 +33,19 @@ const buttonVariants = cva(
         xl: 'h-14 px-10 text-lg',
         icon: 'h-11 w-11',
       },
+      animation: {
+        none: '',
+        pulse: 'animate-[brutal-pulse_2s_ease-in-out_infinite]',
+        bounce: 'animate-[brutal-bounce_0.5s_ease-in-out_infinite]',
+        shake: 'hover:animate-[brutal-shake_0.4s_ease-in-out]',
+        wiggle: 'hover:animate-[brutal-wiggle_0.3s_ease-in-out]',
+        pop: 'hover:animate-[brutal-pop_0.2s_ease-out] active:scale-95',
+      },
     },
     defaultVariants: {
       variant: 'default',
       size: 'default',
+      animation: 'none',
     },
   }
 )
@@ -48,11 +57,11 @@ export interface ButtonProps
 }
 
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ className, variant, size, asChild = false, ...props }, ref) => {
+  ({ className, variant, size, animation, asChild = false, ...props }, ref) => {
     const Comp = asChild ? Slot : 'button'
     return (
       <Comp
-        className={cn(buttonVariants({ variant, size, className }))}
+        className={cn(buttonVariants({ variant, size, animation, className }))}
         ref={ref}
         {...props}
       />
