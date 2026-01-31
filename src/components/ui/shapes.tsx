@@ -695,6 +695,150 @@ export const TriangleShape = React.forwardRef<SVGSVGElement, ShapeProps>(
 )
 TriangleShape.displayName = 'TriangleShape'
 
+// Paper Tear - Torn paper edge effect
+export const PaperTearShape = React.forwardRef<SVGSVGElement, ShapeProps>(
+  ({ size = 100, strokeWidth = 3, filled = true, color, className, ...props }, ref) => (
+    <svg
+      ref={ref}
+      width={size}
+      height={size * 0.3}
+      viewBox="0 0 100 30"
+      className={cn('text-card', className)}
+      {...props}
+    >
+      <path
+        d="M0 0 L100 0 L100 15 L95 20 L90 12 L85 22 L80 10 L75 25 L70 8 L65 20 L60 12 L55 28 L50 10 L45 22 L40 15 L35 25 L30 10 L25 20 L20 8 L15 18 L10 12 L5 22 L0 15 Z"
+        fill={filled ? (color || 'currentColor') : 'none'}
+        stroke="hsl(var(--foreground))"
+        strokeWidth={strokeWidth}
+      />
+    </svg>
+  )
+)
+PaperTearShape.displayName = 'PaperTearShape'
+
+// Scribble Underline - Hand-drawn line effect
+export const ScribbleUnderline = React.forwardRef<SVGSVGElement, ShapeProps>(
+  ({ size = 100, strokeWidth = 3, className, ...props }, ref) => (
+    <svg
+      ref={ref}
+      width={size}
+      height={size * 0.2}
+      viewBox="0 0 100 20"
+      className={cn('text-primary', className)}
+      {...props}
+    >
+      <path
+        d="M2 12 Q10 8 20 14 Q30 18 40 10 Q50 6 60 14 Q70 18 80 10 Q90 6 98 12"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth={strokeWidth}
+        strokeLinecap="round"
+      />
+      <path
+        d="M5 16 Q15 10 25 16 Q35 20 45 12 Q55 8 65 16 Q75 20 85 12 Q95 8 98 14"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth={strokeWidth - 1}
+        strokeLinecap="round"
+        opacity="0.5"
+      />
+    </svg>
+  )
+)
+ScribbleUnderline.displayName = 'ScribbleUnderline'
+
+// Price Tag - E-commerce style tag
+export const PriceTagShape = React.forwardRef<SVGSVGElement, ShapeProps>(
+  ({ size = 100, strokeWidth = 3, filled = true, color, className, ...props }, ref) => (
+    <svg
+      ref={ref}
+      width={size}
+      height={size * 0.6}
+      viewBox="0 0 100 60"
+      className={cn('text-accent', className)}
+      {...props}
+    >
+      <path
+        d="M10 5 L75 5 L95 30 L75 55 L10 55 L10 5 Z"
+        fill={filled ? (color || 'currentColor') : 'none'}
+        stroke="hsl(var(--foreground))"
+        strokeWidth={strokeWidth}
+      />
+      <circle
+        cx="22"
+        cy="30"
+        r="8"
+        fill="none"
+        stroke="hsl(var(--foreground))"
+        strokeWidth={strokeWidth}
+      />
+      <line
+        x1="5"
+        y1="30"
+        x2="14"
+        y2="30"
+        stroke="hsl(var(--foreground))"
+        strokeWidth={strokeWidth}
+      />
+    </svg>
+  )
+)
+PriceTagShape.displayName = 'PriceTagShape'
+
+// Explosion/POW shape - Comic book style
+export const ExplosionShape = React.forwardRef<SVGSVGElement, ShapeProps>(
+  ({ size = 100, strokeWidth = 3, filled = true, color, className, ...props }, ref) => (
+    <svg
+      ref={ref}
+      width={size}
+      height={size}
+      viewBox="0 0 100 100"
+      className={cn('text-warning', className)}
+      {...props}
+    >
+      <path
+        d="M50 5 L55 30 L80 15 L65 35 L95 35 L70 50 L95 65 L65 65 L80 85 L55 70 L50 95 L45 70 L20 85 L35 65 L5 65 L30 50 L5 35 L35 35 L20 15 L45 30 Z"
+        fill={filled ? (color || 'currentColor') : 'none'}
+        stroke="hsl(var(--foreground))"
+        strokeWidth={strokeWidth}
+      />
+    </svg>
+  )
+)
+ExplosionShape.displayName = 'ExplosionShape'
+
+// Coupon/Voucher shape with perforated edge
+export const CouponShape = React.forwardRef<SVGSVGElement, ShapeProps>(
+  ({ size = 100, strokeWidth = 3, filled = true, color, className, ...props }, ref) => (
+    <svg
+      ref={ref}
+      width={size}
+      height={size * 0.5}
+      viewBox="0 0 100 50"
+      className={cn('text-success', className)}
+      {...props}
+    >
+      <path
+        d="M5 5 L95 5 L95 15 Q90 15 90 20 Q90 25 95 25 L95 35 Q90 35 90 40 Q90 45 95 45 L5 45 L5 35 Q10 35 10 30 Q10 25 5 25 L5 15 Q10 15 10 10 Q10 5 5 5 Z"
+        fill={filled ? (color || 'currentColor') : 'none'}
+        stroke="hsl(var(--foreground))"
+        strokeWidth={strokeWidth}
+      />
+      <line
+        x1="35"
+        y1="10"
+        x2="35"
+        y2="40"
+        stroke="hsl(var(--foreground))"
+        strokeWidth={strokeWidth - 1}
+        strokeDasharray="4,4"
+      />
+    </svg>
+  )
+)
+CouponShape.displayName = 'CouponShape'
+
 export const shapes = {
   BurstShape,
   BlobShape,
@@ -726,4 +870,9 @@ export const shapes = {
   PillShape,
   EyeShape,
   TriangleShape,
+  PaperTearShape,
+  ScribbleUnderline,
+  PriceTagShape,
+  ExplosionShape,
+  CouponShape,
 }

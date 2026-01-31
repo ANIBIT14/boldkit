@@ -2,7 +2,8 @@ import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
 import { ThemeProvider } from '@/hooks/use-theme'
 import { TooltipProvider } from '@/components/ui/tooltip'
 import { Toaster } from '@/components/ui/sonner'
-import { Home, ThemeBuilder, Charts, Shapes } from '@/pages'
+import { Home, ThemeBuilder, Charts, Shapes, Templates } from '@/pages'
+import { LandingPageTemplate } from '@/components/templates/LandingPageTemplate'
 import { DocsLayout } from '@/layouts/DocsLayout'
 import {
   Introduction,
@@ -61,6 +62,8 @@ function App() {
             <Route path="/themes" element={<ThemeBuilder />} />
             <Route path="/charts" element={<Charts />} />
             <Route path="/shapes" element={<Shapes />} />
+            <Route path="/templates" element={<Templates />} />
+            <Route path="/templates/landing-page" element={<LandingPageTemplate />} />
 
             {/* Documentation routes */}
             <Route path="/docs" element={<DocsLayout />}>

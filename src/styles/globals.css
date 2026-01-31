@@ -1073,3 +1073,69 @@ body {
   transform: translate(-4px, -4px);
   box-shadow: 8px 8px 0px hsl(var(--shadow-color));
 }
+
+/* ==========================================
+   BUTTON ANIMATION KEYFRAMES
+   ========================================== */
+
+@keyframes brutal-pulse {
+  0%, 100% {
+    box-shadow: 4px 4px 0px hsl(var(--shadow-color));
+    transform: translate(0, 0);
+  }
+  50% {
+    box-shadow: 6px 6px 0px hsl(var(--shadow-color));
+    transform: translate(-2px, -2px);
+  }
+}
+
+@keyframes brutal-bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+@keyframes brutal-shake {
+  0%, 100% {
+    transform: translateX(0);
+  }
+  20% {
+    transform: translateX(-4px) rotate(-2deg);
+  }
+  40% {
+    transform: translateX(4px) rotate(2deg);
+  }
+  60% {
+    transform: translateX(-4px) rotate(-2deg);
+  }
+  80% {
+    transform: translateX(4px) rotate(2deg);
+  }
+}
+
+@keyframes brutal-wiggle {
+  0%, 100% {
+    transform: rotate(0deg);
+  }
+  25% {
+    transform: rotate(-5deg);
+  }
+  75% {
+    transform: rotate(5deg);
+  }
+}
+
+@keyframes brutal-pop {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}

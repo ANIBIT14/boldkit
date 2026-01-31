@@ -171,6 +171,25 @@ export function ButtonDoc() {
         </div>
       </ExampleSection>
 
+      {/* Animations */}
+      <ExampleSection
+        title="Animations"
+        description="Add attention-grabbing animations to your buttons."
+        code={`<Button animation="pulse">Pulse</Button>
+<Button animation="bounce">Bounce</Button>
+<Button animation="shake">Shake (hover)</Button>
+<Button animation="wiggle">Wiggle (hover)</Button>
+<Button animation="pop">Pop (hover)</Button>`}
+      >
+        <div className="flex flex-wrap gap-4">
+          <Button animation="pulse">Pulse</Button>
+          <Button animation="bounce" variant="secondary">Bounce</Button>
+          <Button animation="shake" variant="accent">Shake (hover)</Button>
+          <Button animation="wiggle" variant="destructive">Wiggle (hover)</Button>
+          <Button animation="pop" variant="outline">Pop (hover)</Button>
+        </div>
+      </ExampleSection>
+
       {/* As Child */}
       <ExampleSection
         title="As Child"

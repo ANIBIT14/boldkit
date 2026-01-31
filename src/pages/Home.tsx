@@ -51,6 +51,9 @@ export function Home() {
             <Link to="/themes" className="hidden sm:block">
               <Button variant="ghost">Themes</Button>
             </Link>
+            <Link to="/templates" className="hidden sm:block">
+              <Button variant="ghost">Templates</Button>
+            </Link>
             <a href="https://github.com/ANIBIT14/boldkit" target="_blank" rel="noopener noreferrer">
               <Button variant="ghost" size="icon">
                 <Github className="h-5 w-5" />
@@ -359,6 +362,7 @@ export function Home() {
                 <Link to="/shapes" className="text-sm text-muted-foreground hover:text-foreground">Shapes</Link>
                 <Link to="/charts" className="text-sm text-muted-foreground hover:text-foreground">Charts</Link>
                 <Link to="/themes" className="text-sm text-muted-foreground hover:text-foreground">Themes</Link>
+                <Link to="/templates" className="text-sm text-muted-foreground hover:text-foreground">Templates</Link>
               </div>
             </div>
 

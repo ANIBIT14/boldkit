@@ -152,4 +152,67 @@ const Stamp = React.forwardRef<HTMLDivElement, StampProps>(
 )
 Stamp.displayName = 'Stamp'
 
-export { Sticker, stickerVariants, Stamp, stampVariants }
+const stickyNoteVariants = cva(
+  'relative border-3 border-foreground font-medium shadow-[4px_4px_0px_hsl(var(--shadow-color))]',
+  {
+    variants: {
+      variant: {
+        yellow: 'bg-accent text-accent-foreground',
+        pink: 'bg-primary text-primary-foreground',
+        blue: 'bg-info text-info-foreground',
+        green: 'bg-success text-success-foreground',
+        purple: 'bg-secondary text-secondary-foreground',
+      },
+      size: {
+        sm: 'p-3 text-sm min-w-[120px]',
+        default: 'p-4 text-base min-w-[160px]',
+        lg: 'p-6 text-lg min-w-[200px]',
+      },
+      rotation: {
+        none: 'rotate-0',
+        left: '-rotate-2',
+        right: 'rotate-2',
+        'tilt-left': '-rotate-6',
+        'tilt-right': 'rotate-6',
+      },
+    },
+    defaultVariants: {
+      variant: 'yellow',
+      size: 'default',
+      rotation: 'left',
+    },
+  }
+)
+
+export interface StickyNoteProps
+  extends React.HTMLAttributes<HTMLDivElement>,
+    VariantProps<typeof stickyNoteVariants> {
+  /** Show pin decoration on top */
+  pin?: boolean
+  /** Show folded corner effect */
+  folded?: boolean
+}
+
+const StickyNote = React.forwardRef<HTMLDivElement, StickyNoteProps>(
+  ({ className, variant, size, rotation, pin = false, folded = true, children, ...props }, ref) => {
+    return (
+      <div
+        ref={ref}
+        className={cn(
+          stickyNoteVariants({ variant, size, rotation }),
+          folded && 'before:absolute before:bottom-0 before:right-0 before:w-0 before:h-0 before:border-l-[20px] before:border-l-transparent before:border-b-[20px] before:border-b-foreground/20',
+          className
+        )}
+        {...props}
+      >
+        {pin && (
+          <div className="absolute -top-3 left-1/2 -translate-x-1/2 w-4 h-4 rounded-full bg-destructive border-2 border-foreground shadow-[2px_2px_0px_hsl(var(--shadow-color))]" />
+        )}
+        {children}
+      </div>
+    )
+  }
+)
+StickyNote.displayName = 'StickyNote'
+
+export { Sticker, stickerVariants, Stamp, stampVariants, StickyNote, stickyNoteVariants }
