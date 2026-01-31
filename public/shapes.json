@@ -2,7 +2,7 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "shapes",
   "type": "registry:ui",
-  "description": "30 neubrutalist SVG shapes for badges, decorations, and visual accents with thick borders",
+  "description": "35 neubrutalist SVG shapes for badges, decorations, and visual accents with thick borders",
   "dependencies": [],
   "registryDependencies": [
     "utils"
