@@ -4,6 +4,7 @@ import { TooltipProvider } from '@/components/ui/tooltip'
 import { Toaster } from '@/components/ui/sonner'
 import { Home, ThemeBuilder, Charts, Shapes, Templates } from '@/pages'
 import { LandingPageTemplate } from '@/components/templates/LandingPageTemplate'
+import { PortfolioTemplate } from '@/components/templates/PortfolioTemplate'
 import { DocsLayout } from '@/layouts/DocsLayout'
 import {
   Introduction,
@@ -64,6 +65,7 @@ function App() {
             <Route path="/shapes" element={<Shapes />} />
             <Route path="/templates" element={<Templates />} />
             <Route path="/templates/landing-page" element={<LandingPageTemplate />} />
+            <Route path="/templates/portfolio" element={<PortfolioTemplate />} />
 
             {/* Documentation routes */}
             <Route path="/docs" element={<DocsLayout />}>

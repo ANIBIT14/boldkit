@@ -4,8 +4,8 @@ import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
 import { Card, CardContent } from '@/components/ui/card'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
-import { useTheme } from '@/hooks/use-theme'
-import { Moon, Sun, Github, Copy, Check, Terminal } from 'lucide-react'
+import { Layout } from '@/components/layout'
+import { Copy, Check, Terminal } from 'lucide-react'
 import { toast } from 'sonner'
 import { SEO, pageSEO } from '@/components/SEO'
 import {
@@ -137,7 +137,6 @@ function ShapeCard({ name, Component, code }: { name: string; Component: React.C
 }
 
 export function Shapes() {
-  const { resolvedTheme, setTheme } = useTheme()
   const [copiedInstall, setCopiedInstall] = useState(false)
 
   const cliCommand = 'npx shadcn@latest add https://boldkit.dev/r/shapes.json'
@@ -152,49 +151,12 @@ export function Shapes() {
   return (
     <>
       <SEO {...pageSEO.shapes} />
-      <div className="min-h-screen bg-background">
-      {/* Nav */}
-      <nav className="sticky top-0 z-50 border-b-3 border-foreground bg-background">
-        <div className="container mx-auto flex h-16 items-center justify-between px-4">
-          <Link to="/" className="flex items-center gap-2">
-            <img src="https://ik.imagekit.io/fincalfy/304a4c07-8de1-41af-813e-e7556234b973.png" alt="BoldKit" className="h-8 w-8" />
-            <span className="text-xl font-black uppercase tracking-wider">BoldKit</span>
-            <Badge variant="secondary" className="text-[10px] px-1.5 py-0">Beta</Badge>
-          </Link>
-          <div className="flex items-center gap-4">
-            <Link to="/docs" className="hidden sm:block">
-              <Button variant="ghost">Docs</Button>
-            </Link>
-            <Link to="/components" className="hidden sm:block">
-              <Button variant="ghost">Components</Button>
-            </Link>
-            <Link to="/shapes" className="hidden sm:block">
-              <Button variant="secondary">Shapes</Button>
-            </Link>
-            <Link to="/charts" className="hidden sm:block">
-              <Button variant="ghost">Charts</Button>
-            </Link>
-            <a href="https://github.com/ANIBIT14/boldkit" target="_blank" rel="noopener noreferrer">
-              <Button variant="ghost" size="icon">
-                <Github className="h-5 w-5" />
-              </Button>
-            </a>
-            <Button
-              variant="ghost"
-              size="icon"
-              onClick={() => setTheme(resolvedTheme === 'light' ? 'dark' : 'light')}
-            >
-              {resolvedTheme === 'light' ? <Moon className="h-5 w-5" /> : <Sun className="h-5 w-5" />}
-            </Button>
-          </div>
-        </div>
-      </nav>
-
+      <Layout>
       {/* Hero */}
       <section className="border-b-3 border-foreground py-16">
         <div className="container mx-auto px-4">
           <div className="max-w-3xl mx-auto text-center">
-            <Badge variant="accent" className="mb-4">30 Shapes</Badge>
+            <Badge variant="accent" className="mb-4">35 Shapes</Badge>
             <h1 className="text-4xl font-black uppercase tracking-tight md:text-5xl mb-4">
               Neubrutalist Shapes
             </h1>
@@ -390,19 +352,7 @@ export function Shapes() {
         </div>
       </section>
 
-      {/* Footer */}
-      <footer className="border-t-3 border-foreground bg-background py-8">
-        <div className="container mx-auto px-4 text-center">
-          <p className="text-sm text-muted-foreground">
-            BoldKit Shapes - Part of the{' '}
-            <Link to="/" className="font-bold hover:underline">
-              BoldKit
-            </Link>{' '}
-            neubrutalism component library
-          </p>
-        </div>
-      </footer>
-    </div>
+      </Layout>
     </>
   )
 }
