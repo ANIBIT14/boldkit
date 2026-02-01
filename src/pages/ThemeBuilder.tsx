@@ -1,5 +1,4 @@
 import { useState, useEffect, useCallback } from 'react'
-import { Link } from 'react-router-dom'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader, CardTitle, CardFooter } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
@@ -11,8 +10,8 @@ import { Switch } from '@/components/ui/switch'
 import { Checkbox } from '@/components/ui/checkbox'
 import { Progress } from '@/components/ui/progress'
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert'
-import { useTheme } from '@/hooks/use-theme'
-import { Copy, Check, Moon, Sun, Github, AlertCircle, Palette } from 'lucide-react'
+import { Copy, Check, AlertCircle, Palette, Sun, Moon } from 'lucide-react'
+import { Layout } from '@/components/layout'
 
 // Helper functions for color conversion
 function hslToHex(h: number, s: number, l: number): string {
@@ -156,7 +155,6 @@ const presetThemes = [
 ]
 
 export function ThemeBuilder() {
-  const { resolvedTheme, setTheme } = useTheme()
   const [copied, setCopied] = useState(false)
   const [colors, setColors] = useState({
     // Light mode colors
@@ -299,37 +297,7 @@ export function ThemeBuilder() {
   }
 
   return (
-    <div className="min-h-screen bg-background">
-      {/* Nav */}
-      <nav className="sticky top-0 z-50 border-b-3 border-foreground bg-background">
-        <div className="container mx-auto flex h-16 items-center justify-between px-4">
-          <Link to="/" className="flex items-center gap-2">
-            <img src="https://ik.imagekit.io/fincalfy/304a4c07-8de1-41af-813e-e7556234b973.png" alt="BoldKit" className="h-8 w-8" />
-            <span className="text-xl font-black uppercase tracking-wider">BoldKit</span>
-          </Link>
-          <div className="flex items-center gap-4">
-            <Link to="/docs">
-              <Button variant="ghost">Docs</Button>
-            </Link>
-            <Link to="/components">
-              <Button variant="ghost">Components</Button>
-            </Link>
-            <a href="https://github.com/ANIBIT14/boldkit" target="_blank" rel="noopener noreferrer">
-              <Button variant="ghost" size="icon">
-                <Github className="h-5 w-5" />
-              </Button>
-            </a>
-            <Button
-              variant="ghost"
-              size="icon"
-              onClick={() => setTheme(resolvedTheme === 'light' ? 'dark' : 'light')}
-            >
-              {resolvedTheme === 'light' ? <Moon className="h-5 w-5" /> : <Sun className="h-5 w-5" />}
-            </Button>
-          </div>
-        </div>
-      </nav>
-
+    <Layout showFooter={false}>
       <div className="container mx-auto px-4 py-8">
         <div className="mb-8">
           <Badge variant="accent" className="mb-4">
@@ -593,6 +561,6 @@ export function ThemeBuilder() {
           </div>
         </div>
       </div>
-    </div>
+    </Layout>
   )
 }

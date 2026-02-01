@@ -1,11 +1,10 @@
 import { Link, Outlet, useLocation } from 'react-router-dom'
 import { cn } from '@/lib/utils'
-import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet'
 import { ScrollArea } from '@/components/ui/scroll-area'
-import { Menu, Moon, Sun, Github } from 'lucide-react'
-import { useTheme } from '@/hooks/use-theme'
+import { Menu } from 'lucide-react'
+import { Header } from '@/components/layout'
 
 const components = [
   { name: 'Accordion', href: '/components/accordion' },
@@ -118,18 +117,19 @@ function Sidebar({ className }: { className?: string }) {
 }
 
 export function DocsLayout() {
-  const { resolvedTheme, setTheme } = useTheme()
-
   return (
-    <div className="min-h-screen bg-background">
-      {/* Header */}
-      <header className="sticky top-0 z-50 w-full border-b-3 border-foreground bg-background">
-        <div className="container flex h-16 items-center px-4 md:px-6">
+    <div className="min-h-screen bg-background flex flex-col">
+      {/* Shared Header */}
+      <Header />
+
+      {/* Mobile Sidebar Toggle */}
+      <div className="md:hidden border-b-3 border-foreground bg-muted/30">
+        <div className="container px-3 py-2">
           <Sheet>
             <SheetTrigger asChild>
-              <Button variant="ghost" size="icon" className="mr-2 md:hidden">
-                <Menu className="h-5 w-5" />
-                <span className="sr-only">Toggle menu</span>
+              <Button variant="outline" size="sm" className="h-8 gap-2">
+                <Menu className="h-4 w-4" />
+                Menu
               </Button>
             </SheetTrigger>
             <SheetContent side="left" className="w-[280px] p-0">
@@ -138,86 +138,16 @@ export function DocsLayout() {
               </ScrollArea>
             </SheetContent>
           </Sheet>
-
-          <Link to="/" className="mr-8 flex items-center gap-2">
-            <img
-              src="https://ik.imagekit.io/fincalfy/304a4c07-8de1-41af-813e-e7556234b973.png"
-              alt="BoldKit"
-              className="h-8 w-8"
-            />
-            <span className="hidden font-bold uppercase tracking-wide sm:inline-block">
-              BoldKit
-            </span>
-            <Badge variant="secondary" className="text-[10px] px-1.5 py-0">Beta</Badge>
-          </Link>
-
-          <nav className="hidden md:flex items-center gap-6 text-sm font-medium">
-            <Link
-              to="/docs"
-              className="transition-colors hover:text-foreground/80"
-            >
-              Docs
-            </Link>
-            <Link
-              to="/components"
-              className="transition-colors hover:text-foreground/80"
-            >
-              Components
-            </Link>
-            <Link
-              to="/shapes"
-              className="transition-colors hover:text-foreground/80"
-            >
-              Shapes
-            </Link>
-            <Link
-              to="/charts"
-              className="transition-colors hover:text-foreground/80"
-            >
-              Charts
-            </Link>
-            <Link
-              to="/themes"
-              className="transition-colors hover:text-foreground/80"
-            >
-              Themes
-            </Link>
-          </nav>
-
-          <div className="ml-auto flex items-center gap-2">
-            <a
-              href="https://github.com/ANIBIT14/boldkit"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <Button variant="ghost" size="icon">
-                <Github className="h-5 w-5" />
-                <span className="sr-only">GitHub</span>
-              </Button>
-            </a>
-            <Button
-              variant="ghost"
-              size="icon"
-              onClick={() => setTheme(resolvedTheme === 'light' ? 'dark' : 'light')}
-            >
-              {resolvedTheme === 'light' ? (
-                <Moon className="h-5 w-5" />
-              ) : (
-                <Sun className="h-5 w-5" />
-              )}
-              <span className="sr-only">Toggle theme</span>
-            </Button>
-          </div>
         </div>
-      </header>
+      </div>
 
-      <div className="container flex-1 items-start md:grid md:grid-cols-[240px_minmax(0,1fr)] md:gap-8 lg:grid-cols-[260px_minmax(0,1fr)] lg:gap-12 px-4 md:px-6">
-        <aside className="fixed top-16 z-30 hidden h-[calc(100vh-4rem)] w-full shrink-0 md:sticky md:block">
+      <div className="container flex-1 items-start md:grid md:grid-cols-[220px_minmax(0,1fr)] md:gap-6 lg:grid-cols-[240px_minmax(0,1fr)] lg:gap-10 px-3 md:px-4">
+        <aside className="fixed top-14 z-30 hidden h-[calc(100vh-3.5rem)] w-full shrink-0 md:sticky md:block">
           <ScrollArea className="h-full py-6 pr-4">
             <Sidebar />
           </ScrollArea>
         </aside>
-        <main className="relative py-8 lg:py-10">
+        <main className="relative py-6 lg:py-8">
           <div className="mx-auto w-full min-w-0">
             <Outlet />
           </div>
