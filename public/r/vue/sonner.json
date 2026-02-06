@@ -1,0 +1,20 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "sonner",
+  "type": "registry:ui",
+  "description": "An opinionated toast component",
+  "dependencies": [
+    "vue-sonner"
+  ],
+  "registryDependencies": [
+    "utils"
+  ],
+  "files": [
+    {
+      "path": "registry/default/ui/Sonner.vue",
+      "content": "<script setup lang=\"ts\">\nimport { Toaster } from 'vue-sonner'\nimport { useTheme } from '@/composables/useTheme'\n\nconst { resolvedTheme } = useTheme()\n</script>\n\n<template>\n  <Toaster\n    :theme=\"resolvedTheme\"\n    class=\"toaster group\"\n    :toast-options=\"{\n      classes: {\n        toast:\n          'group toast group-[.toaster]:bg-background group-[.toaster]:text-foreground group-[.toaster]:border-3 group-[.toaster]:border-foreground group-[.toaster]:shadow-[4px_4px_0px_hsl(var(--shadow-color))] group-[.toaster]:rounded-none group-[.toaster]:font-bold',\n        title: 'group-[.toast]:font-black group-[.toast]:uppercase group-[.toast]:tracking-wide',\n        description: 'group-[.toast]:text-muted-foreground group-[.toast]:font-medium',\n        actionButton:\n          'group-[.toast]:bg-primary group-[.toast]:text-primary-foreground group-[.toast]:border-2 group-[.toast]:border-foreground group-[.toast]:font-bold group-[.toast]:uppercase group-[.toast]:rounded-none group-[.toast]:shadow-[2px_2px_0px_hsl(var(--foreground))] group-[.toast]:hover:translate-x-[2px] group-[.toast]:hover:translate-y-[2px] group-[.toast]:hover:shadow-none group-[.toast]:transition-all',\n        cancelButton:\n          'group-[.toast]:bg-muted group-[.toast]:text-muted-foreground group-[.toast]:border-2 group-[.toast]:border-foreground group-[.toast]:font-bold group-[.toast]:uppercase group-[.toast]:rounded-none',\n        success:\n          'group-[.toaster]:bg-success group-[.toaster]:text-success-foreground group-[.toaster]:border-foreground',\n        error:\n          'group-[.toaster]:bg-destructive group-[.toaster]:text-destructive-foreground group-[.toaster]:border-foreground',\n        warning:\n          'group-[.toaster]:bg-warning group-[.toaster]:text-warning-foreground group-[.toaster]:border-foreground',\n        info:\n          'group-[.toaster]:bg-info group-[.toaster]:text-info-foreground group-[.toaster]:border-foreground',\n        closeButton:\n          'group-[.toast]:border-2 group-[.toast]:border-foreground group-[.toast]:bg-background group-[.toast]:text-foreground group-[.toast]:hover:bg-muted group-[.toast]:rounded-none',\n      },\n    }\"\n  />\n</template>\n",
+      "type": "registry:ui",
+      "target": "components/ui/Sonner.vue"
+    }
+  ]
+}

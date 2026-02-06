@@ -5,7 +5,8 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Layout } from '@/components/layout'
 import { ArrowRight, ExternalLink, Copy, Check } from 'lucide-react'
 import { useState } from 'react'
-import { SEO } from '@/components/SEO'
+import { SEO, pageSEO } from '@/components/SEO'
+import { useFramework, FrameworkToggle, ReactIcon, VueIcon } from '@/hooks/use-framework'
 
 function CopyButton({ text }: { text: string }) {
   const [copied, setCopied] = useState(false)
@@ -30,47 +31,76 @@ const templates = [
     description: 'A complete SaaS landing page with hero, features, pricing, testimonials, and footer sections.',
     features: ['Hero Section', 'Features Grid', 'Pricing Cards', 'Testimonials', 'CTA Section', 'Footer'],
     path: '/templates/landing-page',
-    sourceUrl: 'https://github.com/ANIBIT14/boldkit/blob/main/src/components/templates/LandingPageTemplate.tsx',
-    code: `import { LandingPageTemplate } from '@/components/templates/LandingPageTemplate'
+    sourceUrl: {
+      react: 'https://github.com/ANIBIT14/boldkit/blob/main/src/components/templates/LandingPageTemplate.tsx',
+      vue: 'https://github.com/ANIBIT14/boldkit/blob/main/packages/vue/src/components/templates/LandingPageTemplate.vue'
+    },
+    code: {
+      react: `import { LandingPageTemplate } from '@/components/templates/LandingPageTemplate'
 
 export default function Page() {
   return <LandingPageTemplate />
 }`,
+      vue: `<script setup lang="ts">
+import LandingPageTemplate from '@/components/templates/LandingPageTemplate.vue'
+</script>
+
+<template>
+  <LandingPageTemplate />
+</template>`
+    },
   },
   {
     name: 'Portfolio',
     description: 'A professional portfolio template with hero, services, experience timeline, projects, testimonials, and contact sections.',
     features: ['Hero with Avatar', 'Services Grid', 'Experience Timeline', 'Project Showcase', 'Testimonials', 'Contact Form'],
     path: '/templates/portfolio',
-    sourceUrl: 'https://github.com/ANIBIT14/boldkit/blob/main/src/components/templates/PortfolioTemplate.tsx',
-    code: `import { PortfolioTemplate } from '@/components/templates/PortfolioTemplate'
+    sourceUrl: {
+      react: 'https://github.com/ANIBIT14/boldkit/blob/main/src/components/templates/PortfolioTemplate.tsx',
+      vue: 'https://github.com/ANIBIT14/boldkit/blob/main/packages/vue/src/components/templates/PortfolioTemplate.vue'
+    },
+    code: {
+      react: `import { PortfolioTemplate } from '@/components/templates/PortfolioTemplate'
 
 export default function Page() {
   return <PortfolioTemplate />
 }`,
+      vue: `<script setup lang="ts">
+import PortfolioTemplate from '@/components/templates/PortfolioTemplate.vue'
+</script>
+
+<template>
+  <PortfolioTemplate />
+</template>`
+    },
   },
 ]
 
 export function Templates() {
+  const { framework } = useFramework()
+
   return (
     <>
-      <SEO
-        title="Free Neubrutalism Templates"
-        description="Free, ready-to-use neubrutalism page templates for React. Landing pages, portfolios, and more. Copy, paste, and customize."
-        canonical="https://boldkit.dev/templates"
-      />
+      <SEO {...pageSEO.templates} />
       <Layout>
         {/* Header */}
         <div className="border-b-3 border-foreground bg-muted/30">
           <div className="container mx-auto px-4 py-16">
-            <Badge variant="secondary" className="mb-4">Free Templates</Badge>
+            <div className="flex items-center gap-3 mb-4">
+              <Badge variant="secondary">Free Templates</Badge>
+              <Badge variant={framework === 'react' ? 'info' : 'success'} className="gap-1.5">
+                {framework === 'react' ? <ReactIcon className="h-4 w-4" /> : <VueIcon className="h-4 w-4" />}
+                {framework === 'react' ? 'React' : 'Vue 3'}
+              </Badge>
+            </div>
             <h1 className="text-4xl md:text-5xl font-black uppercase tracking-tight mb-4">
               Page Templates
             </h1>
-            <p className="text-xl text-muted-foreground max-w-2xl">
+            <p className="text-xl text-muted-foreground max-w-2xl mb-6">
               Ready-to-use neubrutalism page templates. Copy the code and customize for your project.
               100% free, no attribution required.
             </p>
+            <FrameworkToggle />
           </div>
         </div>
 
@@ -106,6 +136,10 @@ export function Templates() {
                       <div className="flex items-center gap-3 mb-2">
                         <CardTitle className="text-2xl uppercase">{template.name}</CardTitle>
                         <Badge variant="outline">Free</Badge>
+                        <Badge variant={framework === 'react' ? 'info' : 'success'} className="gap-1">
+                          {framework === 'react' ? <ReactIcon className="h-3 w-3" /> : <VueIcon className="h-3 w-3" />}
+                          {framework === 'react' ? 'React' : 'Vue'}
+                        </Badge>
                       </div>
                       <CardDescription className="text-base">
                         {template.description}
@@ -128,11 +162,11 @@ export function Templates() {
                       {/* Code Preview */}
                       <div className="mb-6">
                         <div className="flex items-center justify-between mb-2">
-                          <h4 className="font-bold uppercase text-sm">Usage:</h4>
-                          <CopyButton text={template.code} />
+                          <h4 className="font-bold uppercase text-sm">Usage ({framework === 'react' ? 'React' : 'Vue 3'}):</h4>
+                          <CopyButton text={template.code[framework]} />
                         </div>
                         <pre className="bg-muted border-3 border-foreground p-4 text-sm overflow-x-auto">
-                          <code>{template.code}</code>
+                          <code>{template.code[framework]}</code>
                         </pre>
                       </div>
 
@@ -146,7 +180,7 @@ export function Templates() {
                         </Link>
                         <Button variant="outline" className="gap-2" asChild>
                           <a
-                            href={template.sourceUrl}
+                            href={template.sourceUrl[framework]}
                             target="_blank"
                             rel="noopener noreferrer"
                           >

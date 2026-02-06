@@ -1,0 +1,50 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "layered-card",
+  "type": "registry:ui",
+  "description": "A card with stacked layer effects",
+  "dependencies": [
+    "class-variance-authority"
+  ],
+  "registryDependencies": [
+    "utils"
+  ],
+  "files": [
+    {
+      "path": "registry/default/ui/LayeredCard.vue",
+      "content": "<script setup lang=\"ts\">\nimport { computed } from 'vue'\nimport { type VariantProps } from 'class-variance-authority'\nimport { cn } from '@/lib/utils'\nimport { layeredCardVariants } from './layered-card-variants'\n\ntype LayeredCardVariants = VariantProps<typeof layeredCardVariants>\n\ninterface Props {\n  class?: string\n  layers?: LayeredCardVariants['layers']\n  offset?: LayeredCardVariants['offset']\n  layerColor?: LayeredCardVariants['layerColor']\n  interactive?: boolean\n}\n\nconst props = withDefaults(defineProps<Props>(), {\n  layers: 'double',\n  offset: 'default',\n  layerColor: 'default',\n  interactive: false,\n})\n\nconst offsetSizes = {\n  sm: 6,\n  default: 8,\n  lg: 12,\n}\n\nconst colorClasses = {\n  default: 'bg-muted',\n  primary: 'bg-primary',\n  secondary: 'bg-secondary',\n  accent: 'bg-accent',\n  muted: 'bg-muted',\n}\n\nconst offsetPx = computed(() => offsetSizes[props.offset || 'default'])\nconst layerCount = computed(() => props.layers === 'single' ? 1 : props.layers === 'triple' ? 3 : 2)\nconst layerBg = computed(() => colorClasses[props.layerColor || 'default'])\n</script>\n\n<template>\n  <div\n    :class=\"cn(layeredCardVariants({ layers: props.layers, offset: props.offset, layerColor: props.layerColor }), props.class)\"\n  >\n    <!-- Layer 3 (furthest back) -->\n    <div\n      v-if=\"layerCount >= 3\"\n      :class=\"cn('absolute inset-0 border-3 border-foreground', layerBg, 'opacity-50')\"\n      :style=\"{ transform: `translate(${offsetPx * 3}px, ${offsetPx * 3}px)` }\"\n    />\n\n    <!-- Layer 2 -->\n    <div\n      v-if=\"layerCount >= 2\"\n      :class=\"cn('absolute inset-0 border-3 border-foreground', layerBg, 'opacity-70')\"\n      :style=\"{ transform: `translate(${offsetPx * 2}px, ${offsetPx * 2}px)` }\"\n    />\n\n    <!-- Layer 1 -->\n    <div\n      v-if=\"layerCount >= 1\"\n      :class=\"cn('absolute inset-0 border-3 border-foreground', layerBg)\"\n      :style=\"{ transform: `translate(${offsetPx}px, ${offsetPx}px)` }\"\n    />\n\n    <!-- Main card (top layer) -->\n    <div\n      :class=\"\n        cn(\n          'relative border-3 border-foreground bg-card text-card-foreground',\n          interactive && 'cursor-pointer transition-transform duration-200 hover:translate-x-[-4px] hover:translate-y-[-4px]'\n        )\n      \"\n    >\n      <slot />\n    </div>\n  </div>\n</template>\n",
+      "type": "registry:ui",
+      "target": "components/ui/LayeredCard.vue"
+    },
+    {
+      "path": "registry/default/ui/LayeredCardHeader.vue",
+      "content": "<script setup lang=\"ts\">\nimport { cn } from '@/lib/utils'\n\ndefineProps<{\n  class?: string\n}>()\n</script>\n\n<template>\n  <div\n    :class=\"\n      cn(\n        'flex flex-col space-y-1.5 border-b-3 border-foreground bg-muted p-4',\n        $props.class\n      )\n    \"\n  >\n    <slot />\n  </div>\n</template>\n",
+      "type": "registry:ui",
+      "target": "components/ui/LayeredCardHeader.vue"
+    },
+    {
+      "path": "registry/default/ui/LayeredCardTitle.vue",
+      "content": "<script setup lang=\"ts\">\nimport { cn } from '@/lib/utils'\n\ndefineProps<{\n  class?: string\n}>()\n</script>\n\n<template>\n  <h3 :class=\"cn('text-xl font-bold uppercase tracking-wide', $props.class)\">\n    <slot />\n  </h3>\n</template>\n",
+      "type": "registry:ui",
+      "target": "components/ui/LayeredCardTitle.vue"
+    },
+    {
+      "path": "registry/default/ui/LayeredCardDescription.vue",
+      "content": "<script setup lang=\"ts\">\nimport { cn } from '@/lib/utils'\n\ndefineProps<{\n  class?: string\n}>()\n</script>\n\n<template>\n  <p :class=\"cn('text-sm text-muted-foreground', $props.class)\">\n    <slot />\n  </p>\n</template>\n",
+      "type": "registry:ui",
+      "target": "components/ui/LayeredCardDescription.vue"
+    },
+    {
+      "path": "registry/default/ui/LayeredCardContent.vue",
+      "content": "<script setup lang=\"ts\">\nimport { cn } from '@/lib/utils'\n\ndefineProps<{\n  class?: string\n}>()\n</script>\n\n<template>\n  <div :class=\"cn('p-4', $props.class)\">\n    <slot />\n  </div>\n</template>\n",
+      "type": "registry:ui",
+      "target": "components/ui/LayeredCardContent.vue"
+    },
+    {
+      "path": "registry/default/ui/LayeredCardFooter.vue",
+      "content": "<script setup lang=\"ts\">\nimport { cn } from '@/lib/utils'\n\ndefineProps<{\n  class?: string\n}>()\n</script>\n\n<template>\n  <div\n    :class=\"\n      cn(\n        'flex items-center border-t-3 border-foreground bg-muted p-4',\n        $props.class\n      )\n    \"\n  >\n    <slot />\n  </div>\n</template>\n",
+      "type": "registry:ui",
+      "target": "components/ui/LayeredCardFooter.vue"
+    }
+  ]
+}

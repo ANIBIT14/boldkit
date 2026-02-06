@@ -1,0 +1,62 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "drawer",
+  "type": "registry:ui",
+  "description": "A drawer component for Vue",
+  "dependencies": [
+    "vaul-vue"
+  ],
+  "registryDependencies": [
+    "utils"
+  ],
+  "files": [
+    {
+      "path": "registry/default/ui/Drawer.vue",
+      "content": "<script setup lang=\"ts\">\nimport { DrawerRoot } from 'vaul-vue'\n\ninterface Props {\n  open?: boolean\n  defaultOpen?: boolean\n  modal?: boolean\n  direction?: 'top' | 'bottom' | 'left' | 'right'\n  activeSnapPoint?: number | string | null\n  snapPoints?: (number | string)[]\n  fadeFromIndex?: number\n  shouldScaleBackground?: boolean\n  closeThreshold?: number\n  dismissible?: boolean\n  handleOnly?: boolean\n  nested?: boolean\n  fixed?: boolean\n  noBodyStyles?: boolean\n}\n\nconst props = withDefaults(defineProps<Props>(), {\n  shouldScaleBackground: true,\n})\n\nconst emit = defineEmits<{\n  'update:open': [value: boolean]\n}>()\n</script>\n\n<template>\n  <DrawerRoot\n    v-bind=\"props\"\n    :should-scale-background=\"props.shouldScaleBackground\"\n    @update:open=\"emit('update:open', $event)\"\n  >\n    <slot />\n  </DrawerRoot>\n</template>\n",
+      "type": "registry:ui",
+      "target": "components/ui/Drawer.vue"
+    },
+    {
+      "path": "registry/default/ui/DrawerTrigger.vue",
+      "content": "<script setup lang=\"ts\">\nimport { DrawerTrigger as DrawerTriggerPrimitive } from 'vaul-vue'\n</script>\n\n<template>\n  <DrawerTriggerPrimitive as-child>\n    <slot />\n  </DrawerTriggerPrimitive>\n</template>\n",
+      "type": "registry:ui",
+      "target": "components/ui/DrawerTrigger.vue"
+    },
+    {
+      "path": "registry/default/ui/DrawerContent.vue",
+      "content": "<script setup lang=\"ts\">\nimport { DrawerPortal, DrawerOverlay, DrawerContent as DrawerContentPrimitive } from 'vaul-vue'\nimport { cn } from '@/lib/utils'\n\ndefineProps<{\n  class?: string\n}>()\n</script>\n\n<template>\n  <DrawerPortal>\n    <DrawerOverlay class=\"fixed inset-0 z-50 bg-black/70\" />\n    <DrawerContentPrimitive\n      :class=\"\n        cn(\n          'fixed inset-x-0 bottom-0 z-50 mt-24 flex h-auto flex-col border-3 border-b-0 border-foreground bg-background shadow-[0px_-8px_0px_hsl(var(--shadow-color))]',\n          $props.class\n        )\n      \"\n    >\n      <div class=\"mx-auto mt-4 h-2 w-[100px] bg-foreground\" />\n      <slot />\n    </DrawerContentPrimitive>\n  </DrawerPortal>\n</template>\n",
+      "type": "registry:ui",
+      "target": "components/ui/DrawerContent.vue"
+    },
+    {
+      "path": "registry/default/ui/DrawerHeader.vue",
+      "content": "<script setup lang=\"ts\">\nimport { cn } from '@/lib/utils'\n\ndefineProps<{\n  class?: string\n}>()\n</script>\n\n<template>\n  <div :class=\"cn('grid gap-1.5 p-4 text-center sm:text-left', $props.class)\">\n    <slot />\n  </div>\n</template>\n",
+      "type": "registry:ui",
+      "target": "components/ui/DrawerHeader.vue"
+    },
+    {
+      "path": "registry/default/ui/DrawerFooter.vue",
+      "content": "<script setup lang=\"ts\">\nimport { cn } from '@/lib/utils'\n\ndefineProps<{\n  class?: string\n}>()\n</script>\n\n<template>\n  <div :class=\"cn('mt-auto flex flex-col gap-2 p-4', $props.class)\">\n    <slot />\n  </div>\n</template>\n",
+      "type": "registry:ui",
+      "target": "components/ui/DrawerFooter.vue"
+    },
+    {
+      "path": "registry/default/ui/DrawerTitle.vue",
+      "content": "<script setup lang=\"ts\">\nimport { DrawerTitle as DrawerTitlePrimitive } from 'vaul-vue'\nimport { cn } from '@/lib/utils'\n\ndefineProps<{\n  class?: string\n}>()\n</script>\n\n<template>\n  <DrawerTitlePrimitive\n    :class=\"cn('text-lg font-bold uppercase tracking-wide leading-none', $props.class)\"\n  >\n    <slot />\n  </DrawerTitlePrimitive>\n</template>\n",
+      "type": "registry:ui",
+      "target": "components/ui/DrawerTitle.vue"
+    },
+    {
+      "path": "registry/default/ui/DrawerDescription.vue",
+      "content": "<script setup lang=\"ts\">\nimport { DrawerDescription as DrawerDescriptionPrimitive } from 'vaul-vue'\nimport { cn } from '@/lib/utils'\n\ndefineProps<{\n  class?: string\n}>()\n</script>\n\n<template>\n  <DrawerDescriptionPrimitive :class=\"cn('text-sm text-muted-foreground', $props.class)\">\n    <slot />\n  </DrawerDescriptionPrimitive>\n</template>\n",
+      "type": "registry:ui",
+      "target": "components/ui/DrawerDescription.vue"
+    },
+    {
+      "path": "registry/default/ui/DrawerClose.vue",
+      "content": "<script setup lang=\"ts\">\nimport { DrawerClose as DrawerClosePrimitive } from 'vaul-vue'\n</script>\n\n<template>\n  <DrawerClosePrimitive as-child>\n    <slot />\n  </DrawerClosePrimitive>\n</template>\n",
+      "type": "registry:ui",
+      "target": "components/ui/DrawerClose.vue"
+    }
+  ]
+}

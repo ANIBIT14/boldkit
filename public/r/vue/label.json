@@ -1,0 +1,20 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "label",
+  "type": "registry:ui",
+  "description": "Renders an accessible label",
+  "dependencies": [
+    "reka-ui"
+  ],
+  "registryDependencies": [
+    "utils"
+  ],
+  "files": [
+    {
+      "path": "registry/default/ui/Label.vue",
+      "content": "<script setup lang=\"ts\">\nimport { Label as LabelPrimitive, type LabelProps } from 'reka-ui'\nimport { cva } from 'class-variance-authority'\nimport { cn } from '@/lib/utils'\n\nconst labelVariants = cva(\n  'text-sm font-bold uppercase tracking-wide leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70'\n)\n\nconst props = defineProps<LabelProps & { class?: string }>()\n</script>\n\n<template>\n  <LabelPrimitive v-bind=\"props\" :class=\"cn(labelVariants(), props.class)\">\n    <slot />\n  </LabelPrimitive>\n</template>\n",
+      "type": "registry:ui",
+      "target": "components/ui/Label.vue"
+    }
+  ]
+}

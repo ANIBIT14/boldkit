@@ -1,0 +1,20 @@
+<script setup lang="ts">
+import { cn } from '@/lib/utils'
+
+defineProps<{
+  class?: string
+}>()
+</script>
+
+<template>
+  <th
+    :class="
+      cn(
+        'h-12 px-4 text-left align-middle font-bold uppercase tracking-wide text-foreground [&:has([role=checkbox])]:pr-0',
+        $props.class
+      )
+    "
+  >
+    <slot />
+  </th>
+</template>

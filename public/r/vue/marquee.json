@@ -1,0 +1,30 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "marquee",
+  "type": "registry:ui",
+  "description": "A scrolling marquee component",
+  "dependencies": [],
+  "registryDependencies": [
+    "utils"
+  ],
+  "files": [
+    {
+      "path": "registry/default/ui/Marquee.vue",
+      "content": "<script setup lang=\"ts\">\nimport { computed } from 'vue'\nimport { cn } from '@/lib/utils'\n\ninterface Props {\n  class?: string\n  direction?: 'left' | 'right'\n  speed?: 'slow' | 'normal' | 'fast'\n  pauseOnHover?: boolean\n  bordered?: boolean\n  repeat?: number\n}\n\nconst props = withDefaults(defineProps<Props>(), {\n  direction: 'left',\n  speed: 'normal',\n  pauseOnHover: true,\n  bordered: true,\n  repeat: 4,\n})\n\nconst speedClasses = {\n  slow: 'animate-marquee-slow',\n  normal: 'animate-marquee',\n  fast: 'animate-marquee-fast',\n}\n\nconst animationClass = computed(() =>\n  props.direction === 'right' ? 'animate-marquee-reverse' : speedClasses[props.speed]\n)\n\nconst animationDirection = computed(() =>\n  props.direction === 'right' ? 'reverse' : 'normal'\n)\n\n</script>\n\n<template>\n  <div\n    :class=\"\n      cn(\n        'flex overflow-hidden',\n        bordered && 'border-3 border-foreground bg-background',\n        pauseOnHover && '[&:hover_.marquee-content]:pause',\n        props.class\n      )\n    \"\n  >\n    <div\n      :class=\"\n        cn(\n          'marquee-content flex shrink-0 items-center gap-8 py-3',\n          animationClass,\n          pauseOnHover && 'hover:[animation-play-state:paused]'\n        )\n      \"\n      :style=\"{ animationDirection }\"\n    >\n      <slot v-for=\"_n in repeat\" :key=\"_n\" />\n    </div>\n    <div\n      :class=\"\n        cn(\n          'marquee-content flex shrink-0 items-center gap-8 py-3',\n          animationClass,\n          pauseOnHover && 'hover:[animation-play-state:paused]'\n        )\n      \"\n      :style=\"{ animationDirection }\"\n      aria-hidden=\"true\"\n    >\n      <slot v-for=\"_m in repeat\" :key=\"`dup-${_m}`\" />\n    </div>\n  </div>\n</template>\n",
+      "type": "registry:ui",
+      "target": "components/ui/Marquee.vue"
+    },
+    {
+      "path": "registry/default/ui/MarqueeItem.vue",
+      "content": "<script setup lang=\"ts\">\nimport { cn } from '@/lib/utils'\n\ndefineProps<{\n  class?: string\n}>()\n</script>\n\n<template>\n  <span\n    :class=\"\n      cn(\n        'inline-flex items-center gap-2 whitespace-nowrap px-4 text-lg font-bold uppercase tracking-wide',\n        $props.class\n      )\n    \"\n  >\n    <slot />\n  </span>\n</template>\n",
+      "type": "registry:ui",
+      "target": "components/ui/MarqueeItem.vue"
+    },
+    {
+      "path": "registry/default/ui/MarqueeSeparator.vue",
+      "content": "<script setup lang=\"ts\">\nimport { cn } from '@/lib/utils'\n\ndefineProps<{\n  class?: string\n}>()\n</script>\n\n<template>\n  <span :class=\"cn('text-2xl font-black text-muted-foreground', $props.class)\">\n    <slot>/</slot>\n  </span>\n</template>\n",
+      "type": "registry:ui",
+      "target": "components/ui/MarqueeSeparator.vue"
+    }
+  ]
+}

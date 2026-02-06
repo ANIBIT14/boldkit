@@ -1,0 +1,69 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "dropdown-menu",
+  "type": "registry:ui",
+  "description": "Displays a menu to the user",
+  "dependencies": [
+    "reka-ui",
+    "lucide-vue-next"
+  ],
+  "registryDependencies": [
+    "utils"
+  ],
+  "files": [
+    {
+      "path": "registry/default/ui/DropdownMenu.vue",
+      "content": "<script setup lang=\"ts\">\nimport { DropdownMenuRoot, type DropdownMenuRootProps } from 'reka-ui'\n\nconst props = defineProps<DropdownMenuRootProps>()\n</script>\n\n<template>\n  <DropdownMenuRoot v-bind=\"props\">\n    <slot />\n  </DropdownMenuRoot>\n</template>\n",
+      "type": "registry:ui",
+      "target": "components/ui/DropdownMenu.vue"
+    },
+    {
+      "path": "registry/default/ui/DropdownMenuTrigger.vue",
+      "content": "<script setup lang=\"ts\">\nimport { DropdownMenuTrigger as DropdownMenuTriggerPrimitive } from 'reka-ui'\n</script>\n\n<template>\n  <DropdownMenuTriggerPrimitive as-child>\n    <slot />\n  </DropdownMenuTriggerPrimitive>\n</template>\n",
+      "type": "registry:ui",
+      "target": "components/ui/DropdownMenuTrigger.vue"
+    },
+    {
+      "path": "registry/default/ui/DropdownMenuContent.vue",
+      "content": "<script setup lang=\"ts\">\nimport { DropdownMenuPortal, DropdownMenuContent as DropdownMenuContentPrimitive } from 'reka-ui'\nimport { cn } from '@/lib/utils'\n\ninterface Props {\n  class?: string\n  sideOffset?: number\n}\n\nconst props = withDefaults(defineProps<Props>(), {\n  sideOffset: 4,\n})\n</script>\n\n<template>\n  <DropdownMenuPortal>\n    <DropdownMenuContentPrimitive\n      :side-offset=\"props.sideOffset\"\n      :class=\"\n        cn(\n          'z-50 min-w-[8rem] overflow-hidden border-3 border-foreground bg-popover p-1 text-popover-foreground shadow-[4px_4px_0px_hsl(var(--shadow-color))]',\n          props.class\n        )\n      \"\n    >\n      <slot />\n    </DropdownMenuContentPrimitive>\n  </DropdownMenuPortal>\n</template>\n",
+      "type": "registry:ui",
+      "target": "components/ui/DropdownMenuContent.vue"
+    },
+    {
+      "path": "registry/default/ui/DropdownMenuItem.vue",
+      "content": "<script setup lang=\"ts\">\nimport { DropdownMenuItem as DropdownMenuItemPrimitive } from 'reka-ui'\nimport { cn } from '@/lib/utils'\n\ndefineProps<{\n  class?: string\n  inset?: boolean\n  disabled?: boolean\n}>()\n</script>\n\n<template>\n  <DropdownMenuItemPrimitive\n    :disabled=\"disabled\"\n    :class=\"\n      cn(\n        'relative flex cursor-default select-none items-center px-2 py-1.5 text-sm outline-none transition-all duration-150 focus:bg-accent focus:text-accent-foreground focus:translate-x-1 data-[disabled]:pointer-events-none data-[disabled]:opacity-50',\n        inset && 'pl-8',\n        $props.class\n      )\n    \"\n  >\n    <slot />\n  </DropdownMenuItemPrimitive>\n</template>\n",
+      "type": "registry:ui",
+      "target": "components/ui/DropdownMenuItem.vue"
+    },
+    {
+      "path": "registry/default/ui/DropdownMenuCheckboxItem.vue",
+      "content": "<script setup lang=\"ts\">\nimport { DropdownMenuCheckboxItem as DropdownMenuCheckboxItemPrimitive, DropdownMenuItemIndicator } from 'reka-ui'\nimport { Check } from 'lucide-vue-next'\nimport { cn } from '@/lib/utils'\n\ndefineProps<{\n  class?: string\n  checked?: boolean\n  disabled?: boolean\n}>()\n\nconst emit = defineEmits<{\n  'update:checked': [value: boolean]\n}>()\n</script>\n\n<template>\n  <DropdownMenuCheckboxItemPrimitive\n    :checked=\"checked\"\n    :disabled=\"disabled\"\n    :class=\"\n      cn(\n        'relative flex cursor-default select-none items-center py-1.5 pl-8 pr-2 text-sm outline-none transition-colors focus:bg-accent focus:text-accent-foreground data-[disabled]:pointer-events-none data-[disabled]:opacity-50',\n        $props.class\n      )\n    \"\n    @update:checked=\"emit('update:checked', $event)\"\n  >\n    <span class=\"absolute left-2 flex h-3.5 w-3.5 items-center justify-center\">\n      <DropdownMenuItemIndicator>\n        <Check class=\"h-4 w-4 stroke-[3]\" />\n      </DropdownMenuItemIndicator>\n    </span>\n    <slot />\n  </DropdownMenuCheckboxItemPrimitive>\n</template>\n",
+      "type": "registry:ui",
+      "target": "components/ui/DropdownMenuCheckboxItem.vue"
+    },
+    {
+      "path": "registry/default/ui/DropdownMenuRadioItem.vue",
+      "content": "<script setup lang=\"ts\">\nimport { DropdownMenuRadioItem as DropdownMenuRadioItemPrimitive, DropdownMenuItemIndicator } from 'reka-ui'\nimport { Circle } from 'lucide-vue-next'\nimport { cn } from '@/lib/utils'\n\ndefineProps<{\n  class?: string\n  value: string\n  disabled?: boolean\n}>()\n</script>\n\n<template>\n  <DropdownMenuRadioItemPrimitive\n    :value=\"value\"\n    :disabled=\"disabled\"\n    :class=\"\n      cn(\n        'relative flex cursor-default select-none items-center py-1.5 pl-8 pr-2 text-sm outline-none transition-colors focus:bg-accent focus:text-accent-foreground data-[disabled]:pointer-events-none data-[disabled]:opacity-50',\n        $props.class\n      )\n    \"\n  >\n    <span class=\"absolute left-2 flex h-3.5 w-3.5 items-center justify-center\">\n      <DropdownMenuItemIndicator>\n        <Circle class=\"h-2 w-2 fill-current\" />\n      </DropdownMenuItemIndicator>\n    </span>\n    <slot />\n  </DropdownMenuRadioItemPrimitive>\n</template>\n",
+      "type": "registry:ui",
+      "target": "components/ui/DropdownMenuRadioItem.vue"
+    },
+    {
+      "path": "registry/default/ui/DropdownMenuLabel.vue",
+      "content": "<script setup lang=\"ts\">\nimport { DropdownMenuLabel as DropdownMenuLabelPrimitive } from 'reka-ui'\nimport { cn } from '@/lib/utils'\n\ndefineProps<{\n  class?: string\n  inset?: boolean\n}>()\n</script>\n\n<template>\n  <DropdownMenuLabelPrimitive\n    :class=\"\n      cn(\n        'px-2 py-1.5 text-sm font-bold uppercase tracking-wide',\n        inset && 'pl-8',\n        $props.class\n      )\n    \"\n  >\n    <slot />\n  </DropdownMenuLabelPrimitive>\n</template>\n",
+      "type": "registry:ui",
+      "target": "components/ui/DropdownMenuLabel.vue"
+    },
+    {
+      "path": "registry/default/ui/DropdownMenuSeparator.vue",
+      "content": "<script setup lang=\"ts\">\nimport { DropdownMenuSeparator as DropdownMenuSeparatorPrimitive } from 'reka-ui'\nimport { cn } from '@/lib/utils'\n\ndefineProps<{\n  class?: string\n}>()\n</script>\n\n<template>\n  <DropdownMenuSeparatorPrimitive :class=\"cn('-mx-1 my-1 h-px bg-foreground', $props.class)\" />\n</template>\n",
+      "type": "registry:ui",
+      "target": "components/ui/DropdownMenuSeparator.vue"
+    },
+    {
+      "path": "registry/default/ui/DropdownMenuRadioGroup.vue",
+      "content": "<script setup lang=\"ts\">\nimport { DropdownMenuRadioGroup as DropdownMenuRadioGroupPrimitive } from 'reka-ui'\n\ndefineProps<{\n  modelValue?: string\n}>()\n\nconst emit = defineEmits<{\n  'update:modelValue': [value: string | null]\n}>()\n</script>\n\n<template>\n  <DropdownMenuRadioGroupPrimitive :model-value=\"modelValue\" @update:model-value=\"(val) => emit('update:modelValue', val as string | null)\">\n    <slot />\n  </DropdownMenuRadioGroupPrimitive>\n</template>\n",
+      "type": "registry:ui",
+      "target": "components/ui/DropdownMenuRadioGroup.vue"
+    }
+  ]
+}

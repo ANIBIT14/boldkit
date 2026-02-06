@@ -11,9 +11,9 @@ interface SEOProps {
 }
 
 const defaultMeta = {
-  title: 'BoldKit - Neubrutalism UI Components for React',
-  description: 'Free neubrutalism React component library with 45 UI components and 30 SVG shapes. Built on shadcn/ui with thick borders, hard shadows, and bold colors.',
-  keywords: 'neubrutalism, neubrutalism ui, React components, shadcn, Tailwind CSS, TypeScript, UI library',
+  title: 'BoldKit - Neubrutalism UI Components for React & Vue 3',
+  description: 'Free neubrutalism component library for React and Vue 3 with 45+ UI components and 35 SVG shapes. Built on shadcn/ui with thick borders, hard shadows, and bold colors.',
+  keywords: 'neubrutalism, neubrutalism ui, React components, Vue 3 components, shadcn, shadcn-vue, Tailwind CSS, TypeScript, UI library',
   ogImage: 'https://ik.imagekit.io/fincalfy/304a4c07-8de1-41af-813e-e7556234b973.png',
 }
 
@@ -93,54 +93,60 @@ export function SEO({
 export const pageSEO = {
   home: {
     title: undefined, // Uses default
-    description: 'Free neubrutalism React component library with 45 UI components and 30 SVG shapes. Built on shadcn/ui with thick borders, hard shadows, and bold colors. Install via shadcn CLI.',
-    keywords: 'neubrutalism, neubrutalism ui, neubrutalism components, brutalist design, React UI library, shadcn components, Tailwind CSS, TypeScript',
+    description: 'Free neubrutalism component library for React and Vue 3 with 45+ UI components and 35 SVG shapes. Built on shadcn/ui with thick borders, hard shadows, and bold colors. Install via CLI.',
+    keywords: 'neubrutalism, neubrutalism ui, neubrutalism components, brutalist design, React UI library, Vue 3 components, shadcn components, shadcn-vue, Tailwind CSS, TypeScript',
     canonical: 'https://boldkit.dev/',
   },
   docs: {
     title: 'Documentation',
-    description: 'Learn how to install and use BoldKit neubrutalism components in your React project. Comprehensive guides, API references, and examples.',
-    keywords: 'BoldKit documentation, React component docs, neubrutalism guide, installation guide',
+    description: 'Learn how to install and use BoldKit neubrutalism components in your React or Vue 3 project. Comprehensive guides, API references, and examples for both frameworks.',
+    keywords: 'BoldKit documentation, React component docs, Vue 3 component docs, neubrutalism guide, installation guide',
     canonical: 'https://boldkit.dev/docs',
   },
   installation: {
     title: 'Installation',
-    description: 'Install BoldKit neubrutalism components using shadcn CLI. Step-by-step installation guide for React, TypeScript, and Tailwind CSS projects.',
-    keywords: 'BoldKit installation, shadcn CLI install, React component setup, npm install',
+    description: 'Install BoldKit neubrutalism components using shadcn CLI for React or shadcn-vue for Vue 3. Step-by-step installation guide for TypeScript and Tailwind CSS projects.',
+    keywords: 'BoldKit installation, shadcn CLI install, shadcn-vue install, React component setup, Vue 3 setup, npm install',
     canonical: 'https://boldkit.dev/docs/installation',
   },
   components: {
     title: 'Components',
-    description: 'Browse 45 neubrutalism React components. Buttons, cards, inputs, dialogs, and more with thick borders and hard shadows.',
-    keywords: 'React components, UI components, neubrutalism buttons, neubrutalism cards, form components',
+    description: 'Browse 45+ neubrutalism components for React and Vue 3. Buttons, cards, inputs, dialogs, and more with thick borders and hard shadows.',
+    keywords: 'React components, Vue 3 components, UI components, neubrutalism buttons, neubrutalism cards, form components',
     canonical: 'https://boldkit.dev/components',
   },
   shapes: {
-    title: '30 Neubrutalism SVG Shapes',
-    description: 'Collection of 30 unique neubrutalism SVG shapes for React. Bursts, hearts, stars, badges, and decorative shapes with thick borders.',
-    keywords: 'SVG shapes, neubrutalism shapes, React SVG components, decorative shapes, badges, stickers',
+    title: '35 Neubrutalism SVG Shapes',
+    description: 'Collection of 35 unique neubrutalism SVG shapes for React and Vue 3. Bursts, hearts, stars, badges, and decorative shapes with thick borders.',
+    keywords: 'SVG shapes, neubrutalism shapes, React SVG components, Vue 3 SVG components, decorative shapes, badges, stickers',
     canonical: 'https://boldkit.dev/shapes',
   },
   charts: {
     title: 'Charts',
-    description: 'Neubrutalism styled charts and data visualization components for React. Bar charts, line charts, pie charts with bold styling.',
-    keywords: 'React charts, neubrutalism charts, data visualization, chart components',
+    description: 'Neubrutalism styled charts and data visualization components for React (Recharts) and Vue 3 (vue-echarts). Bar charts, line charts, pie charts with bold styling.',
+    keywords: 'React charts, Vue 3 charts, neubrutalism charts, data visualization, chart components, Recharts, vue-echarts',
     canonical: 'https://boldkit.dev/charts',
   },
   themes: {
     title: 'Theme Builder',
-    description: 'Customize BoldKit neubrutalism theme colors. Generate CSS variables for your design system with live preview.',
-    keywords: 'theme builder, color picker, CSS variables, design tokens, neubrutalism colors',
+    description: 'Customize BoldKit neubrutalism theme colors for React and Vue 3. Generate CSS variables for your design system with live preview.',
+    keywords: 'theme builder, color picker, CSS variables, design tokens, neubrutalism colors, React theming, Vue 3 theming',
     canonical: 'https://boldkit.dev/themes',
+  },
+  templates: {
+    title: 'Free Page Templates',
+    description: 'Free neubrutalism page templates for React and Vue 3. Landing pages, portfolios, and more. Copy, paste, and customize for your project.',
+    keywords: 'page templates, landing page template, portfolio template, React templates, Vue 3 templates, neubrutalism templates',
+    canonical: 'https://boldkit.dev/templates',
   },
 }
 
 // Component-specific SEO generator
 export function getComponentSEO(componentName: string, componentTitle: string) {
   return {
-    title: `${componentTitle} - Neubrutalism React Component`,
-    description: `${componentTitle} component with neubrutalism styling. Thick borders, hard shadows, and bold colors. Install via shadcn CLI: npx shadcn@latest add https://boldkit.dev/r/${componentName}.json`,
-    keywords: `${componentTitle} component, React ${componentTitle}, neubrutalism ${componentTitle}, shadcn ${componentTitle}`,
+    title: `${componentTitle} - Neubrutalism Component for React & Vue 3`,
+    description: `${componentTitle} component with neubrutalism styling for React and Vue 3. Thick borders, hard shadows, and bold colors. Install via shadcn CLI for React or shadcn-vue for Vue.`,
+    keywords: `${componentTitle} component, React ${componentTitle}, Vue 3 ${componentTitle}, neubrutalism ${componentTitle}, shadcn ${componentTitle}`,
     canonical: `https://boldkit.dev/components/${componentName}`,
   }
 }

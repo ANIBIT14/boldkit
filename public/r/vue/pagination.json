@@ -1,0 +1,33 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "pagination",
+  "type": "registry:ui",
+  "description": "Navigation for paged content",
+  "dependencies": [
+    "reka-ui",
+    "lucide-vue-next"
+  ],
+  "registryDependencies": [
+    "utils"
+  ],
+  "files": [
+    {
+      "path": "registry/default/ui/Pagination.vue",
+      "content": "<script setup lang=\"ts\">\nimport { cn } from '@/lib/utils'\n\ndefineProps<{\n  class?: string\n}>()\n</script>\n\n<template>\n  <nav\n    role=\"navigation\"\n    aria-label=\"pagination\"\n    :class=\"cn('mx-auto flex w-full justify-center', $props.class)\"\n  >\n    <slot />\n  </nav>\n</template>\n",
+      "type": "registry:ui",
+      "target": "components/ui/Pagination.vue"
+    },
+    {
+      "path": "registry/default/ui/PaginationEllipsis.vue",
+      "content": "<script setup lang=\"ts\">\nimport { MoreHorizontal } from 'lucide-vue-next'\nimport { cn } from '@/lib/utils'\n\ndefineProps<{\n  class?: string\n}>()\n</script>\n\n<template>\n  <span\n    aria-hidden=\"true\"\n    :class=\"cn('flex h-9 w-9 items-center justify-center', $props.class)\"\n  >\n    <MoreHorizontal class=\"h-4 w-4 stroke-[3]\" />\n    <span class=\"sr-only\">More pages</span>\n  </span>\n</template>\n",
+      "type": "registry:ui",
+      "target": "components/ui/PaginationEllipsis.vue"
+    },
+    {
+      "path": "registry/default/ui/PaginationNext.vue",
+      "content": "<script setup lang=\"ts\">\nimport { ChevronRight } from 'lucide-vue-next'\nimport PaginationLink from './PaginationLink.vue'\nimport { cn } from '@/lib/utils'\n\ndefineProps<{\n  class?: string\n  href?: string\n}>()\n</script>\n\n<template>\n  <PaginationLink\n    aria-label=\"Go to next page\"\n    size=\"default\"\n    :href=\"href\"\n    :class=\"cn('gap-1 pr-2.5', $props.class)\"\n  >\n    <span>Next</span>\n    <ChevronRight class=\"h-4 w-4 stroke-[3]\" />\n  </PaginationLink>\n</template>\n",
+      "type": "registry:ui",
+      "target": "components/ui/PaginationNext.vue"
+    }
+  ]
+}

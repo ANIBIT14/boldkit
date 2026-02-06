@@ -1,0 +1,63 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "dialog",
+  "type": "registry:ui",
+  "description": "A modal dialog with overlay",
+  "dependencies": [
+    "reka-ui",
+    "lucide-vue-next"
+  ],
+  "registryDependencies": [
+    "utils"
+  ],
+  "files": [
+    {
+      "path": "registry/default/ui/Dialog.vue",
+      "content": "<script setup lang=\"ts\">\nimport { DialogRoot, type DialogRootProps } from 'reka-ui'\n\nconst props = defineProps<DialogRootProps>()\nconst emit = defineEmits<{\n  'update:open': [value: boolean]\n}>()\n</script>\n\n<template>\n  <DialogRoot v-bind=\"props\" @update:open=\"emit('update:open', $event)\">\n    <slot />\n  </DialogRoot>\n</template>\n",
+      "type": "registry:ui",
+      "target": "components/ui/Dialog.vue"
+    },
+    {
+      "path": "registry/default/ui/DialogTrigger.vue",
+      "content": "<script setup lang=\"ts\">\nimport { DialogTrigger as DialogTriggerPrimitive } from 'reka-ui'\n</script>\n\n<template>\n  <DialogTriggerPrimitive as-child>\n    <slot />\n  </DialogTriggerPrimitive>\n</template>\n",
+      "type": "registry:ui",
+      "target": "components/ui/DialogTrigger.vue"
+    },
+    {
+      "path": "registry/default/ui/DialogContent.vue",
+      "content": "<script setup lang=\"ts\">\nimport {\n  DialogPortal,\n  DialogOverlay,\n  DialogContent as DialogContentPrimitive,\n  DialogClose,\n} from 'reka-ui'\nimport { X } from 'lucide-vue-next'\nimport { cn } from '@/lib/utils'\n\ndefineProps<{\n  class?: string\n}>()\n</script>\n\n<template>\n  <DialogPortal>\n    <DialogOverlay\n      class=\"fixed inset-0 z-50 bg-black/70 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0\"\n    />\n    <DialogContentPrimitive\n      :class=\"\n        cn(\n          'fixed left-[50%] top-[50%] z-50 grid w-full max-w-lg translate-x-[-50%] translate-y-[-50%] gap-4 border-3 border-foreground bg-background p-6 shadow-[8px_8px_0px_hsl(var(--shadow-color))] duration-200 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[state=closed]:slide-out-to-left-1/2 data-[state=closed]:slide-out-to-top-[48%] data-[state=open]:slide-in-from-left-1/2 data-[state=open]:slide-in-from-top-[48%] sm:max-w-[425px]',\n          $props.class\n        )\n      \"\n    >\n      <slot />\n      <DialogClose\n        class=\"absolute right-4 top-4 border-2 border-foreground bg-background p-1 shadow-[4px_4px_0px_hsl(var(--shadow-color))] transition-all duration-200 hover:translate-x-[4px] hover:translate-y-[4px] hover:shadow-none active:translate-x-[4px] active:translate-y-[4px] active:shadow-none focus:outline-none focus:ring-2 focus:ring-ring disabled:pointer-events-none\"\n      >\n        <X class=\"h-4 w-4 stroke-[3]\" />\n        <span class=\"sr-only\">Close</span>\n      </DialogClose>\n    </DialogContentPrimitive>\n  </DialogPortal>\n</template>\n",
+      "type": "registry:ui",
+      "target": "components/ui/DialogContent.vue"
+    },
+    {
+      "path": "registry/default/ui/DialogHeader.vue",
+      "content": "<script setup lang=\"ts\">\nimport { cn } from '@/lib/utils'\n\ndefineProps<{\n  class?: string\n}>()\n</script>\n\n<template>\n  <div :class=\"cn('flex flex-col space-y-1.5 text-center sm:text-left', $props.class)\">\n    <slot />\n  </div>\n</template>\n",
+      "type": "registry:ui",
+      "target": "components/ui/DialogHeader.vue"
+    },
+    {
+      "path": "registry/default/ui/DialogFooter.vue",
+      "content": "<script setup lang=\"ts\">\nimport { cn } from '@/lib/utils'\n\ndefineProps<{\n  class?: string\n}>()\n</script>\n\n<template>\n  <div\n    :class=\"cn('flex flex-col-reverse sm:flex-row sm:justify-end sm:space-x-2', $props.class)\"\n  >\n    <slot />\n  </div>\n</template>\n",
+      "type": "registry:ui",
+      "target": "components/ui/DialogFooter.vue"
+    },
+    {
+      "path": "registry/default/ui/DialogTitle.vue",
+      "content": "<script setup lang=\"ts\">\nimport { DialogTitle as DialogTitlePrimitive } from 'reka-ui'\nimport { cn } from '@/lib/utils'\n\ndefineProps<{\n  class?: string\n}>()\n</script>\n\n<template>\n  <DialogTitlePrimitive\n    :class=\"cn('text-lg font-bold uppercase tracking-wide leading-none', $props.class)\"\n  >\n    <slot />\n  </DialogTitlePrimitive>\n</template>\n",
+      "type": "registry:ui",
+      "target": "components/ui/DialogTitle.vue"
+    },
+    {
+      "path": "registry/default/ui/DialogDescription.vue",
+      "content": "<script setup lang=\"ts\">\nimport { DialogDescription as DialogDescriptionPrimitive } from 'reka-ui'\nimport { cn } from '@/lib/utils'\n\ndefineProps<{\n  class?: string\n}>()\n</script>\n\n<template>\n  <DialogDescriptionPrimitive :class=\"cn('text-sm text-muted-foreground', $props.class)\">\n    <slot />\n  </DialogDescriptionPrimitive>\n</template>\n",
+      "type": "registry:ui",
+      "target": "components/ui/DialogDescription.vue"
+    },
+    {
+      "path": "registry/default/ui/DialogClose.vue",
+      "content": "<script setup lang=\"ts\">\nimport { DialogClose as DialogClosePrimitive } from 'reka-ui'\n</script>\n\n<template>\n  <DialogClosePrimitive as-child>\n    <slot />\n  </DialogClosePrimitive>\n</template>\n",
+      "type": "registry:ui",
+      "target": "components/ui/DialogClose.vue"
+    }
+  ]
+}

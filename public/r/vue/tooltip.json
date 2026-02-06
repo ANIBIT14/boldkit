@@ -1,0 +1,38 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "tooltip",
+  "type": "registry:ui",
+  "description": "A popup that displays information on hover",
+  "dependencies": [
+    "reka-ui"
+  ],
+  "registryDependencies": [
+    "utils"
+  ],
+  "files": [
+    {
+      "path": "registry/default/ui/Tooltip.vue",
+      "content": "<script setup lang=\"ts\">\nimport { TooltipRoot, type TooltipRootProps } from 'reka-ui'\n\ndefineProps<TooltipRootProps>()\n</script>\n\n<template>\n  <TooltipRoot v-bind=\"$props\">\n    <slot />\n  </TooltipRoot>\n</template>\n",
+      "type": "registry:ui",
+      "target": "components/ui/Tooltip.vue"
+    },
+    {
+      "path": "registry/default/ui/TooltipTrigger.vue",
+      "content": "<script setup lang=\"ts\">\nimport { TooltipTrigger as TooltipTriggerPrimitive } from 'reka-ui'\n</script>\n\n<template>\n  <TooltipTriggerPrimitive as-child>\n    <slot />\n  </TooltipTriggerPrimitive>\n</template>\n",
+      "type": "registry:ui",
+      "target": "components/ui/TooltipTrigger.vue"
+    },
+    {
+      "path": "registry/default/ui/TooltipContent.vue",
+      "content": "<script setup lang=\"ts\">\nimport { TooltipPortal, TooltipContent as TooltipContentPrimitive } from 'reka-ui'\nimport { cn } from '@/lib/utils'\n\ninterface Props {\n  class?: string\n  sideOffset?: number\n}\n\nconst props = withDefaults(defineProps<Props>(), {\n  sideOffset: 6,\n})\n</script>\n\n<template>\n  <TooltipPortal>\n    <TooltipContentPrimitive\n      :side-offset=\"props.sideOffset\"\n      :class=\"\n        cn(\n          'z-50 overflow-hidden border-2 border-foreground bg-foreground px-3 py-1.5 text-xs font-medium text-background shadow-[4px_4px_0px_hsl(var(--shadow-color))]',\n          props.class\n        )\n      \"\n    >\n      <slot />\n    </TooltipContentPrimitive>\n  </TooltipPortal>\n</template>\n",
+      "type": "registry:ui",
+      "target": "components/ui/TooltipContent.vue"
+    },
+    {
+      "path": "registry/default/ui/TooltipProvider.vue",
+      "content": "<script setup lang=\"ts\">\nimport { TooltipProvider as TooltipProviderPrimitive, type TooltipProviderProps } from 'reka-ui'\n\ndefineProps<TooltipProviderProps>()\n</script>\n\n<template>\n  <TooltipProviderPrimitive v-bind=\"$props\">\n    <slot />\n  </TooltipProviderPrimitive>\n</template>\n",
+      "type": "registry:ui",
+      "target": "components/ui/TooltipProvider.vue"
+    }
+  ]
+}

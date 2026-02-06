@@ -1,0 +1,60 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "table",
+  "type": "registry:ui",
+  "description": "A responsive table component",
+  "dependencies": [],
+  "registryDependencies": [
+    "utils"
+  ],
+  "files": [
+    {
+      "path": "registry/default/ui/Table.vue",
+      "content": "<script setup lang=\"ts\">\nimport { cn } from '@/lib/utils'\n\ndefineProps<{\n  class?: string\n}>()\n</script>\n\n<template>\n  <div class=\"relative w-full overflow-auto\">\n    <table\n      :class=\"\n        cn(\n          'w-full caption-bottom text-sm border-3 border-foreground shadow-[4px_4px_0px_hsl(var(--shadow-color))]',\n          $props.class\n        )\n      \"\n    >\n      <slot />\n    </table>\n  </div>\n</template>\n",
+      "type": "registry:ui",
+      "target": "components/ui/Table.vue"
+    },
+    {
+      "path": "registry/default/ui/TableHeader.vue",
+      "content": "<script setup lang=\"ts\">\nimport { cn } from '@/lib/utils'\n\ndefineProps<{\n  class?: string\n}>()\n</script>\n\n<template>\n  <thead :class=\"cn('bg-muted [&_tr]:border-b-3', $props.class)\">\n    <slot />\n  </thead>\n</template>\n",
+      "type": "registry:ui",
+      "target": "components/ui/TableHeader.vue"
+    },
+    {
+      "path": "registry/default/ui/TableBody.vue",
+      "content": "<script setup lang=\"ts\">\nimport { cn } from '@/lib/utils'\n\ndefineProps<{\n  class?: string\n}>()\n</script>\n\n<template>\n  <tbody :class=\"cn('[&_tr:last-child]:border-0', $props.class)\">\n    <slot />\n  </tbody>\n</template>\n",
+      "type": "registry:ui",
+      "target": "components/ui/TableBody.vue"
+    },
+    {
+      "path": "registry/default/ui/TableFooter.vue",
+      "content": "<script setup lang=\"ts\">\nimport { cn } from '@/lib/utils'\n\ndefineProps<{\n  class?: string\n}>()\n</script>\n\n<template>\n  <tfoot :class=\"cn('border-t-3 bg-muted/50 font-bold [&>tr]:last:border-b-0', $props.class)\">\n    <slot />\n  </tfoot>\n</template>\n",
+      "type": "registry:ui",
+      "target": "components/ui/TableFooter.vue"
+    },
+    {
+      "path": "registry/default/ui/TableHead.vue",
+      "content": "<script setup lang=\"ts\">\nimport { cn } from '@/lib/utils'\n\ndefineProps<{\n  class?: string\n}>()\n</script>\n\n<template>\n  <th\n    :class=\"\n      cn(\n        'h-12 px-4 text-left align-middle font-bold uppercase tracking-wide text-foreground [&:has([role=checkbox])]:pr-0',\n        $props.class\n      )\n    \"\n  >\n    <slot />\n  </th>\n</template>\n",
+      "type": "registry:ui",
+      "target": "components/ui/TableHead.vue"
+    },
+    {
+      "path": "registry/default/ui/TableRow.vue",
+      "content": "<script setup lang=\"ts\">\nimport { cn } from '@/lib/utils'\n\ndefineProps<{\n  class?: string\n}>()\n</script>\n\n<template>\n  <tr\n    :class=\"\n      cn(\n        'border-b-3 border-foreground transition-colors hover:bg-muted/50 data-[state=selected]:bg-accent',\n        $props.class\n      )\n    \"\n  >\n    <slot />\n  </tr>\n</template>\n",
+      "type": "registry:ui",
+      "target": "components/ui/TableRow.vue"
+    },
+    {
+      "path": "registry/default/ui/TableCell.vue",
+      "content": "<script setup lang=\"ts\">\nimport { cn } from '@/lib/utils'\n\ndefineProps<{\n  class?: string\n}>()\n</script>\n\n<template>\n  <td :class=\"cn('p-4 align-middle [&:has([role=checkbox])]:pr-0', $props.class)\">\n    <slot />\n  </td>\n</template>\n",
+      "type": "registry:ui",
+      "target": "components/ui/TableCell.vue"
+    },
+    {
+      "path": "registry/default/ui/TableCaption.vue",
+      "content": "<script setup lang=\"ts\">\nimport { cn } from '@/lib/utils'\n\ndefineProps<{\n  class?: string\n}>()\n</script>\n\n<template>\n  <caption :class=\"cn('mt-4 text-sm text-muted-foreground', $props.class)\">\n    <slot />\n  </caption>\n</template>\n",
+      "type": "registry:ui",
+      "target": "components/ui/TableCaption.vue"
+    }
+  ]
+}

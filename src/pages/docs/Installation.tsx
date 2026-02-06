@@ -5,8 +5,9 @@ import { Copy, Check, Terminal } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { toast } from 'sonner'
+import { useFramework, FrameworkToggle, ReactIcon, VueIcon } from '@/hooks/use-framework'
 
-function CodeBlock({ code }: { code: string }) {
+function CodeBlock({ code, language }: { code: string; language?: string }) {
   const [copied, setCopied] = useState(false)
 
   const copyCode = () => {
@@ -17,6 +18,11 @@ function CodeBlock({ code }: { code: string }) {
 
   return (
     <div className="relative my-4">
+      {language && (
+        <div className="absolute right-12 top-2 text-xs text-muted-foreground font-mono bg-muted px-2 py-0.5 border border-foreground/20">
+          {language}
+        </div>
+      )}
       <pre className="overflow-x-auto border-3 border-foreground bg-muted p-4 text-sm bk-shadow">
         <code>{code}</code>
       </pre>
@@ -69,7 +75,7 @@ const allComponents = [
   { name: 'skeleton', description: 'Loading placeholders' },
   { name: 'slider', description: 'Range selection' },
   { name: 'sonner', description: 'Toast notifications' },
-  { name: 'sticker', description: 'Rotated labels' },
+  { name: 'sticker', description: 'Decorative labels' },
   { name: 'switch', description: 'Toggle switches' },
   { name: 'table', description: 'Data tables' },
   { name: 'tabs', description: 'Tabbed interfaces' },
@@ -79,9 +85,11 @@ const allComponents = [
   { name: 'tooltip', description: 'Hover information' },
 ]
 
-function ComponentRow({ name, description }: { name: string; description: string }) {
+function ComponentRow({ name, description, framework }: { name: string; description: string; framework: 'react' | 'vue' }) {
   const [copied, setCopied] = useState(false)
-  const command = `npx shadcn@latest add https://boldkit.dev/r/${name}.json`
+  const registryPath = framework === 'vue' ? `/r/vue/${name}.json` : `/r/${name}.json`
+  const cli = framework === 'vue' ? 'shadcn-vue' : 'shadcn'
+  const command = `npx ${cli}@latest add https://boldkit.dev${registryPath}`
 
   const copyCommand = () => {
     navigator.clipboard.writeText(command)
@@ -110,6 +118,9 @@ function ComponentRow({ name, description }: { name: string; description: string
 }
 
 export function Installation() {
+  // Use global framework context
+  const { framework } = useFramework()
+
   return (
     <div className="space-y-8">
       <div>
@@ -118,19 +129,28 @@ export function Installation() {
           Installation
         </h1>
         <p className="mt-4 text-lg text-muted-foreground">
-          How to install and set up BoldKit in your React project.
+          How to install and set up BoldKit in your project.
         </p>
+      </div>
+
+      {/* Framework Toggle */}
+      <div className="flex items-center gap-4">
+        <span className="font-bold text-sm uppercase">Choose Framework:</span>
+        <FrameworkToggle />
       </div>
 
       <div className="space-y-8">
         {/* shadcn CLI Method */}
-        <Card className="border-primary">
-          <CardHeader className="bg-primary">
-            <CardTitle>Recommended: shadcn CLI</CardTitle>
+        <Card className={framework === 'vue' ? 'border-success' : 'border-primary'}>
+          <CardHeader className={framework === 'vue' ? 'bg-success' : 'bg-primary'}>
+            <CardTitle className="flex items-center gap-2">
+              {framework === 'vue' ? <VueIcon /> : <ReactIcon />}
+              Recommended: {framework === 'vue' ? 'shadcn-vue' : 'shadcn'} CLI
+            </CardTitle>
           </CardHeader>
           <CardContent className="pt-6 space-y-6">
             <p className="text-muted-foreground">
-              The fastest way to add BoldKit components is using the shadcn CLI with our registry.
+              The fastest way to add BoldKit components is using the {framework === 'vue' ? 'shadcn-vue' : 'shadcn'} CLI with our registry.
             </p>
 
             <div>
@@ -138,12 +158,21 @@ export function Installation() {
               <p className="text-sm text-muted-foreground mb-2">
                 Add BoldKit to the registries in your <code className="bg-muted px-1 border">components.json</code>:
               </p>
-              <CodeBlock code={`{
+              {framework === 'react' ? (
+                <CodeBlock code={`{
   "$schema": "https://ui.shadcn.com/schema.json",
   "registries": {
     "@boldkit": "https://boldkit.dev/r"
   }
-}`} />
+}`} language="json" />
+              ) : (
+                <CodeBlock code={`{
+  "$schema": "https://shadcn-vue.com/schema.json",
+  "registries": {
+    "@boldkit": "https://boldkit.dev/r/vue"
+  }
+}`} language="json" />
+              )}
             </div>
 
             <div>
@@ -154,20 +183,32 @@ export function Installation() {
                   <TabsTrigger value="multiple">Multiple</TabsTrigger>
                 </TabsList>
                 <TabsContent value="single">
-                  <CodeBlock code="npx shadcn@latest add @boldkit/button" />
+                  {framework === 'react' ? (
+                    <CodeBlock code="npx shadcn@latest add @boldkit/button" />
+                  ) : (
+                    <CodeBlock code="npx shadcn-vue@latest add @boldkit/button" />
+                  )}
                 </TabsContent>
                 <TabsContent value="multiple">
-                  <CodeBlock code="npx shadcn@latest add @boldkit/button @boldkit/card @boldkit/input @boldkit/badge" />
+                  {framework === 'react' ? (
+                    <CodeBlock code="npx shadcn@latest add @boldkit/button @boldkit/card @boldkit/input @boldkit/badge" />
+                  ) : (
+                    <CodeBlock code="npx shadcn-vue@latest add @boldkit/button @boldkit/card @boldkit/input @boldkit/badge" />
+                  )}
                 </TabsContent>
               </Tabs>
             </div>
 
             <div>
-              <h3 className="font-bold uppercase tracking-wide mb-2">Step 3: Install Theme (Optional)</h3>
+              <h3 className="font-bold uppercase tracking-wide mb-2">Step 3: Install Styles</h3>
               <p className="text-sm text-muted-foreground mb-2">
                 Install the BoldKit theme for CSS variables:
               </p>
-              <CodeBlock code="npx shadcn@latest add @boldkit/theme" />
+              {framework === 'react' ? (
+                <CodeBlock code="npx shadcn@latest add https://boldkit.dev/r/styles.json" />
+              ) : (
+                <CodeBlock code="npx shadcn-vue@latest add https://boldkit.dev/r/vue/styles.json" />
+              )}
             </div>
 
             <div>
@@ -175,7 +216,11 @@ export function Installation() {
               <p className="text-sm text-muted-foreground mb-2">
                 You can also install directly from the registry URL:
               </p>
-              <CodeBlock code="npx shadcn@latest add https://boldkit.dev/r/button.json" />
+              {framework === 'react' ? (
+                <CodeBlock code="npx shadcn@latest add https://boldkit.dev/r/button.json" />
+              ) : (
+                <CodeBlock code="npx shadcn-vue@latest add https://boldkit.dev/r/vue/button.json" />
+              )}
             </div>
           </CardContent>
         </Card>
@@ -184,7 +229,7 @@ export function Installation() {
         <section>
           <h2 className="text-2xl font-bold uppercase tracking-wide mb-4">Manual Installation</h2>
           <p className="text-muted-foreground mb-6">
-            If you prefer to set up manually or don't use shadcn CLI, follow these steps:
+            If you prefer to set up manually or don't use {framework === 'vue' ? 'shadcn-vue' : 'shadcn'} CLI, follow these steps:
           </p>
         </section>
 
@@ -193,17 +238,25 @@ export function Installation() {
           <p className="text-muted-foreground mb-4">
             BoldKit is built on top of Tailwind CSS v4 and requires the following:
           </p>
-          <ul className="list-disc list-inside space-y-2 text-muted-foreground">
-            <li>React 19</li>
-            <li>Tailwind CSS v4</li>
-            <li>TypeScript (recommended)</li>
-          </ul>
+          {framework === 'react' ? (
+            <ul className="list-disc list-inside space-y-2 text-muted-foreground">
+              <li>React 18 or 19</li>
+              <li>Tailwind CSS v4</li>
+              <li>TypeScript (recommended)</li>
+            </ul>
+          ) : (
+            <ul className="list-disc list-inside space-y-2 text-muted-foreground">
+              <li>Vue 3.5+</li>
+              <li>Tailwind CSS v4</li>
+              <li>TypeScript (recommended)</li>
+            </ul>
+          )}
         </section>
 
         <section>
           <h3 className="text-xl font-bold uppercase tracking-wide mb-4">Step 1: Create Project</h3>
           <p className="text-muted-foreground mb-4">
-            Start with a new Vite + React + TypeScript project:
+            Start with a new Vite + {framework === 'vue' ? 'Vue' : 'React'} + TypeScript project:
           </p>
           <Tabs defaultValue="npm">
             <TabsList>
@@ -212,13 +265,25 @@ export function Installation() {
               <TabsTrigger value="bun">bun</TabsTrigger>
             </TabsList>
             <TabsContent value="npm">
-              <CodeBlock code="npm create vite@latest my-app -- --template react-ts" />
+              {framework === 'react' ? (
+                <CodeBlock code="npm create vite@latest my-app -- --template react-ts" />
+              ) : (
+                <CodeBlock code="npm create vite@latest my-app -- --template vue-ts" />
+              )}
             </TabsContent>
             <TabsContent value="pnpm">
-              <CodeBlock code="pnpm create vite my-app --template react-ts" />
+              {framework === 'react' ? (
+                <CodeBlock code="pnpm create vite my-app --template react-ts" />
+              ) : (
+                <CodeBlock code="pnpm create vite my-app --template vue-ts" />
+              )}
             </TabsContent>
             <TabsContent value="bun">
-              <CodeBlock code="bun create vite my-app --template react-ts" />
+              {framework === 'react' ? (
+                <CodeBlock code="bun create vite my-app --template react-ts" />
+              ) : (
+                <CodeBlock code="bun create vite my-app --template vue-ts" />
+              )}
             </TabsContent>
           </Tabs>
         </section>
@@ -254,15 +319,31 @@ export function Installation() {
               <TabsTrigger value="pnpm">pnpm</TabsTrigger>
               <TabsTrigger value="bun">bun</TabsTrigger>
             </TabsList>
-            <TabsContent value="npm">
-              <CodeBlock code="npm install clsx tailwind-merge class-variance-authority lucide-react" />
-            </TabsContent>
-            <TabsContent value="pnpm">
-              <CodeBlock code="pnpm add clsx tailwind-merge class-variance-authority lucide-react" />
-            </TabsContent>
-            <TabsContent value="bun">
-              <CodeBlock code="bun add clsx tailwind-merge class-variance-authority lucide-react" />
-            </TabsContent>
+            {framework === 'react' ? (
+              <>
+                <TabsContent value="npm">
+                  <CodeBlock code="npm install clsx tailwind-merge class-variance-authority lucide-react @radix-ui/react-slot" />
+                </TabsContent>
+                <TabsContent value="pnpm">
+                  <CodeBlock code="pnpm add clsx tailwind-merge class-variance-authority lucide-react @radix-ui/react-slot" />
+                </TabsContent>
+                <TabsContent value="bun">
+                  <CodeBlock code="bun add clsx tailwind-merge class-variance-authority lucide-react @radix-ui/react-slot" />
+                </TabsContent>
+              </>
+            ) : (
+              <>
+                <TabsContent value="npm">
+                  <CodeBlock code="npm install clsx tailwind-merge class-variance-authority lucide-vue-next reka-ui" />
+                </TabsContent>
+                <TabsContent value="pnpm">
+                  <CodeBlock code="pnpm add clsx tailwind-merge class-variance-authority lucide-vue-next reka-ui" />
+                </TabsContent>
+                <TabsContent value="bun">
+                  <CodeBlock code="bun add clsx tailwind-merge class-variance-authority lucide-vue-next reka-ui" />
+                </TabsContent>
+              </>
+            )}
           </Tabs>
         </section>
 
@@ -271,8 +352,9 @@ export function Installation() {
           <p className="text-muted-foreground mb-4">
             Update your <code className="bg-muted px-1 border">vite.config.ts</code>:
           </p>
-          <CodeBlock
-            code={`import { defineConfig } from 'vite'
+          {framework === 'react' ? (
+            <CodeBlock
+              code={`import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import tailwindcss from '@tailwindcss/vite'
 import path from 'path'
@@ -285,7 +367,26 @@ export default defineConfig({
     },
   },
 })`}
-          />
+              language="typescript"
+            />
+          ) : (
+            <CodeBlock
+              code={`import { defineConfig } from 'vite'
+import vue from '@vitejs/plugin-vue'
+import tailwindcss from '@tailwindcss/vite'
+import path from 'path'
+
+export default defineConfig({
+  plugins: [vue(), tailwindcss()],
+  resolve: {
+    alias: {
+      '@': path.resolve(__dirname, './src'),
+    },
+  },
+})`}
+              language="typescript"
+            />
+          )}
         </section>
 
         <section>
@@ -308,6 +409,7 @@ import { twMerge } from 'tailwind-merge'
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
 }`}
+            language="typescript"
           />
         </section>
 
@@ -323,29 +425,86 @@ export function cn(...inputs: ClassValue[]) {
         <section className="mt-12">
           <h2 className="text-2xl font-bold uppercase tracking-wide mb-4">All Components</h2>
           <p className="text-muted-foreground mb-6">
-            Click to copy the shadcn CLI install command for any component:
+            Click to copy the {framework === 'vue' ? 'shadcn-vue' : 'shadcn'} CLI install command for any component:
           </p>
           <Card>
             <CardHeader className="py-3 bg-muted">
               <div className="flex items-center justify-between">
-                <span className="font-bold uppercase text-sm">46 Components Available</span>
-                <Badge variant="secondary">shadcn CLI</Badge>
+                <span className="font-bold uppercase text-sm flex items-center gap-2">
+                  {framework === 'vue' ? <VueIcon /> : <ReactIcon />}
+                  46 Components Available
+                </span>
+                <Badge variant={framework === 'vue' ? 'success' : 'secondary'}>
+                  {framework === 'vue' ? 'shadcn-vue CLI' : 'shadcn CLI'}
+                </Badge>
               </div>
             </CardHeader>
             <CardContent className="p-0 max-h-[400px] overflow-y-auto">
               {allComponents.map((component) => (
-                <ComponentRow key={component.name} name={component.name} description={component.description} />
+                <ComponentRow
+                  key={component.name}
+                  name={component.name}
+                  description={component.description}
+                  framework={framework}
+                />
               ))}
             </CardContent>
           </Card>
           <p className="text-sm text-muted-foreground mt-4">
-            You can also install the theme and utilities:
+            You can also install the styles and utilities:
           </p>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 mt-2">
-            <CodeBlock code="npx shadcn@latest add https://boldkit.dev/r/theme.json" />
-            <CodeBlock code="npx shadcn@latest add https://boldkit.dev/r/utils.json" />
+            {framework === 'react' ? (
+              <>
+                <CodeBlock code="npx shadcn@latest add https://boldkit.dev/r/styles.json" />
+                <CodeBlock code="npx shadcn@latest add https://boldkit.dev/r/utils.json" />
+              </>
+            ) : (
+              <>
+                <CodeBlock code="npx shadcn-vue@latest add https://boldkit.dev/r/vue/styles.json" />
+                <CodeBlock code="npx shadcn-vue@latest add https://boldkit.dev/r/vue/utils.json" />
+              </>
+            )}
           </div>
         </section>
+
+        {/* Vue-specific notes */}
+        {framework === 'vue' && (
+          <section className="mt-8">
+            <Card className="border-info">
+              <CardHeader className="bg-info">
+                <CardTitle className="flex items-center gap-2">
+                  <VueIcon /> Vue 3 Notes
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="pt-6 space-y-4">
+                <div>
+                  <h4 className="font-bold mb-2">Reka UI Primitives</h4>
+                  <p className="text-sm text-muted-foreground">
+                    BoldKit Vue uses <a href="https://reka-ui.com" className="text-primary underline" target="_blank" rel="noopener noreferrer">Reka UI</a> as the headless component primitive layer (the Vue equivalent of Radix UI).
+                  </p>
+                </div>
+                <div>
+                  <h4 className="font-bold mb-2">Composition API</h4>
+                  <p className="text-sm text-muted-foreground">
+                    All components use Vue 3 Composition API with <code className="bg-muted px-1 border">&lt;script setup&gt;</code> syntax for optimal developer experience.
+                  </p>
+                </div>
+                <div>
+                  <h4 className="font-bold mb-2">Additional Dependencies</h4>
+                  <p className="text-sm text-muted-foreground mb-2">
+                    Some components require additional packages:
+                  </p>
+                  <ul className="list-disc list-inside text-sm text-muted-foreground space-y-1">
+                    <li><code className="bg-muted px-1 border">vue-sonner</code> for toast notifications</li>
+                    <li><code className="bg-muted px-1 border">vaul-vue</code> for drawer component</li>
+                    <li><code className="bg-muted px-1 border">vue-echarts</code> + <code className="bg-muted px-1 border">echarts</code> for charts</li>
+                  </ul>
+                </div>
+              </CardContent>
+            </Card>
+          </section>
+        )}
       </div>
     </div>
   )

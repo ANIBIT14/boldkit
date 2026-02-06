@@ -1,0 +1,222 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry.json",
+  "name": "boldkit-vue",
+  "homepage": "https://boldkit.dev",
+  "items": [
+    {
+      "name": "button",
+      "type": "registry:ui",
+      "registryUrl": "https://boldkit.dev/r/vue/button.json"
+    },
+    {
+      "name": "input",
+      "type": "registry:ui",
+      "registryUrl": "https://boldkit.dev/r/vue/input.json"
+    },
+    {
+      "name": "label",
+      "type": "registry:ui",
+      "registryUrl": "https://boldkit.dev/r/vue/label.json"
+    },
+    {
+      "name": "badge",
+      "type": "registry:ui",
+      "registryUrl": "https://boldkit.dev/r/vue/badge.json"
+    },
+    {
+      "name": "separator",
+      "type": "registry:ui",
+      "registryUrl": "https://boldkit.dev/r/vue/separator.json"
+    },
+    {
+      "name": "skeleton",
+      "type": "registry:ui",
+      "registryUrl": "https://boldkit.dev/r/vue/skeleton.json"
+    },
+    {
+      "name": "textarea",
+      "type": "registry:ui",
+      "registryUrl": "https://boldkit.dev/r/vue/textarea.json"
+    },
+    {
+      "name": "card",
+      "type": "registry:ui",
+      "registryUrl": "https://boldkit.dev/r/vue/card.json"
+    },
+    {
+      "name": "accordion",
+      "type": "registry:ui",
+      "registryUrl": "https://boldkit.dev/r/vue/accordion.json"
+    },
+    {
+      "name": "dialog",
+      "type": "registry:ui",
+      "registryUrl": "https://boldkit.dev/r/vue/dialog.json"
+    },
+    {
+      "name": "checkbox",
+      "type": "registry:ui",
+      "registryUrl": "https://boldkit.dev/r/vue/checkbox.json"
+    },
+    {
+      "name": "radio-group",
+      "type": "registry:ui",
+      "registryUrl": "https://boldkit.dev/r/vue/radio-group.json"
+    },
+    {
+      "name": "select",
+      "type": "registry:ui",
+      "registryUrl": "https://boldkit.dev/r/vue/select.json"
+    },
+    {
+      "name": "switch",
+      "type": "registry:ui",
+      "registryUrl": "https://boldkit.dev/r/vue/switch.json"
+    },
+    {
+      "name": "tabs",
+      "type": "registry:ui",
+      "registryUrl": "https://boldkit.dev/r/vue/tabs.json"
+    },
+    {
+      "name": "tooltip",
+      "type": "registry:ui",
+      "registryUrl": "https://boldkit.dev/r/vue/tooltip.json"
+    },
+    {
+      "name": "popover",
+      "type": "registry:ui",
+      "registryUrl": "https://boldkit.dev/r/vue/popover.json"
+    },
+    {
+      "name": "progress",
+      "type": "registry:ui",
+      "registryUrl": "https://boldkit.dev/r/vue/progress.json"
+    },
+    {
+      "name": "dropdown-menu",
+      "type": "registry:ui",
+      "registryUrl": "https://boldkit.dev/r/vue/dropdown-menu.json"
+    },
+    {
+      "name": "alert-dialog",
+      "type": "registry:ui",
+      "registryUrl": "https://boldkit.dev/r/vue/alert-dialog.json"
+    },
+    {
+      "name": "sheet",
+      "type": "registry:ui",
+      "registryUrl": "https://boldkit.dev/r/vue/sheet.json"
+    },
+    {
+      "name": "hover-card",
+      "type": "registry:ui",
+      "registryUrl": "https://boldkit.dev/r/vue/hover-card.json"
+    },
+    {
+      "name": "collapsible",
+      "type": "registry:ui",
+      "registryUrl": "https://boldkit.dev/r/vue/collapsible.json"
+    },
+    {
+      "name": "slider",
+      "type": "registry:ui",
+      "registryUrl": "https://boldkit.dev/r/vue/slider.json"
+    },
+    {
+      "name": "toggle",
+      "type": "registry:ui",
+      "registryUrl": "https://boldkit.dev/r/vue/toggle.json"
+    },
+    {
+      "name": "toggle-group",
+      "type": "registry:ui",
+      "registryUrl": "https://boldkit.dev/r/vue/toggle-group.json"
+    },
+    {
+      "name": "scroll-area",
+      "type": "registry:ui",
+      "registryUrl": "https://boldkit.dev/r/vue/scroll-area.json"
+    },
+    {
+      "name": "table",
+      "type": "registry:ui",
+      "registryUrl": "https://boldkit.dev/r/vue/table.json"
+    },
+    {
+      "name": "alert",
+      "type": "registry:ui",
+      "registryUrl": "https://boldkit.dev/r/vue/alert.json"
+    },
+    {
+      "name": "pagination",
+      "type": "registry:ui",
+      "registryUrl": "https://boldkit.dev/r/vue/pagination.json"
+    },
+    {
+      "name": "breadcrumb",
+      "type": "registry:ui",
+      "registryUrl": "https://boldkit.dev/r/vue/breadcrumb.json"
+    },
+    {
+      "name": "drawer",
+      "type": "registry:ui",
+      "registryUrl": "https://boldkit.dev/r/vue/drawer.json"
+    },
+    {
+      "name": "sonner",
+      "type": "registry:ui",
+      "registryUrl": "https://boldkit.dev/r/vue/sonner.json"
+    },
+    {
+      "name": "calendar",
+      "type": "registry:ui",
+      "registryUrl": "https://boldkit.dev/r/vue/calendar.json"
+    },
+    {
+      "name": "input-otp",
+      "type": "registry:ui",
+      "registryUrl": "https://boldkit.dev/r/vue/input-otp.json"
+    },
+    {
+      "name": "command",
+      "type": "registry:ui",
+      "registryUrl": "https://boldkit.dev/r/vue/command.json"
+    },
+    {
+      "name": "marquee",
+      "type": "registry:ui",
+      "registryUrl": "https://boldkit.dev/r/vue/marquee.json"
+    },
+    {
+      "name": "sticker",
+      "type": "registry:ui",
+      "registryUrl": "https://boldkit.dev/r/vue/sticker.json"
+    },
+    {
+      "name": "layered-card",
+      "type": "registry:ui",
+      "registryUrl": "https://boldkit.dev/r/vue/layered-card.json"
+    },
+    {
+      "name": "aspect-ratio",
+      "type": "registry:ui",
+      "registryUrl": "https://boldkit.dev/r/vue/aspect-ratio.json"
+    },
+    {
+      "name": "avatar",
+      "type": "registry:ui",
+      "registryUrl": "https://boldkit.dev/r/vue/avatar.json"
+    },
+    {
+      "name": "chart",
+      "type": "registry:ui",
+      "registryUrl": "https://boldkit.dev/r/vue/chart.json"
+    },
+    {
+      "name": "shapes",
+      "type": "registry:ui",
+      "registryUrl": "https://boldkit.dev/r/vue/shapes.json"
+    }
+  ]
+}

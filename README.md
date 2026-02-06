@@ -6,14 +6,15 @@
 
 **Bold. Raw. Beautiful.**
 
-A neubrutalism React component library built on shadcn/ui.
+A neubrutalism component library for React and Vue 3, built on shadcn/ui.
 
 [![MIT License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 [![React](https://img.shields.io/badge/React-19-61DAFB?logo=react)](https://react.dev)
+[![Vue](https://img.shields.io/badge/Vue-3-4FC08D?logo=vuedotjs)](https://vuejs.org)
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind-v4-38B2AC?logo=tailwindcss)](https://tailwindcss.com)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.0-3178C6?logo=typescript)](https://typescriptlang.org)
-[![Components](https://img.shields.io/badge/Components-45-FF6B6B)](https://boldkit.dev/components)
-[![Shapes](https://img.shields.io/badge/SVG_Shapes-30-FFD93D)](https://boldkit.dev/shapes)
+[![Components](https://img.shields.io/badge/Components-45+-FF6B6B)](https://boldkit.dev/components)
+[![Shapes](https://img.shields.io/badge/SVG_Shapes-35-FFD93D)](https://boldkit.dev/shapes)
 
 [Website](https://boldkit.dev) · [Documentation](https://boldkit.dev/docs) · [Components](https://boldkit.dev/components) · [Shapes](https://boldkit.dev/shapes)
 
@@ -27,7 +28,7 @@ A neubrutalism React component library built on shadcn/ui.
 
 ![BoldKit Components](assets/preview.png)
 
-*45 beautifully crafted neubrutalism components*
+*45+ beautifully crafted neubrutalism components for React and Vue 3*
 
 </div>
 
@@ -51,17 +52,18 @@ Neubrutalism (or neo-brutalism) is a bold design aesthetic characterized by:
 
 | Feature | Description |
 |---------|-------------|
-| **45 Components** | Buttons, Cards, Dialogs, Forms, and more |
-| **30 SVG Shapes** | Decorative shapes for unique layouts |
-| **shadcn CLI** | Install directly via `npx shadcn@latest add` |
-| **Accessible** | Built on Radix UI primitives |
+| **45+ Components** | Buttons, Cards, Dialogs, Forms, and more |
+| **35 SVG Shapes** | Decorative shapes for unique layouts |
+| **React & Vue 3** | Full support for both frameworks |
+| **shadcn CLI** | Install via `shadcn` (React) or `shadcn-vue` (Vue) |
+| **Accessible** | Built on Radix UI (React) & Reka UI (Vue) |
 | **Dark Mode** | Full light/dark theme support |
 | **TypeScript** | Complete type safety |
 | **Tailwind v4** | Modern CSS with latest Tailwind |
 
 ## Quick Start
 
-### Install with shadcn CLI (Recommended)
+### React (shadcn CLI)
 
 ```bash
 # Install a component
@@ -77,9 +79,25 @@ npx shadcn@latest add https://boldkit.dev/r/shapes.json
 npx shadcn@latest add https://boldkit.dev/r/theme.json
 ```
 
+### Vue 3 (shadcn-vue CLI)
+
+```bash
+# Install a component
+npx shadcn-vue@latest add https://boldkit.dev/r/vue/button.json
+
+# Install multiple components
+npx shadcn-vue@latest add https://boldkit.dev/r/vue/button.json https://boldkit.dev/r/vue/card.json https://boldkit.dev/r/vue/input.json
+
+# Install shapes
+npx shadcn-vue@latest add https://boldkit.dev/r/vue/shapes.json
+
+# Install theme (CSS variables)
+npx shadcn-vue@latest add https://boldkit.dev/r/vue/theme.json
+```
+
 ### Using Registry Alias
 
-Add to your `components.json`:
+**React** - Add to your `components.json`:
 
 ```json
 {
@@ -89,13 +107,27 @@ Add to your `components.json`:
 }
 ```
 
+**Vue** - Add to your `components.json`:
+
+```json
+{
+  "registries": {
+    "@boldkit": "https://boldkit.dev/r/vue"
+  }
+}
+```
+
 Then install:
 
 ```bash
 npx shadcn@latest add @boldkit/button @boldkit/card @boldkit/input
+# or for Vue
+npx shadcn-vue@latest add @boldkit/button @boldkit/card @boldkit/input
 ```
 
 ## Usage
+
+### React
 
 ```tsx
 import { Button } from '@/components/ui/button'
@@ -122,6 +154,35 @@ export function Example() {
     </Card>
   )
 }
+```
+
+### Vue 3
+
+```vue
+<script setup lang="ts">
+import { Button } from '@/components/ui/button'
+import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card'
+import { Badge } from '@/components/ui/badge'
+</script>
+
+<template>
+  <Card>
+    <CardHeader class="bg-primary">
+      <CardTitle class="flex items-center gap-2">
+        Welcome to BoldKit
+        <Badge variant="secondary">New</Badge>
+      </CardTitle>
+    </CardHeader>
+    <CardContent class="space-y-4">
+      <p>Build bold, beautiful interfaces with ease.</p>
+      <div class="flex gap-2">
+        <Button>Primary</Button>
+        <Button variant="secondary">Secondary</Button>
+        <Button variant="accent">Accent</Button>
+      </div>
+    </CardContent>
+  </Card>
+</template>
 ```
 
 <div align="center">
@@ -196,7 +257,7 @@ export function Example() {
 - Avatar
 - Table
 - Calendar
-- Charts (via Recharts)
+- Charts (Recharts for React, vue-echarts for Vue)
 
 </details>
 
@@ -205,13 +266,15 @@ export function Example() {
 
 - Sticker (rotated labels)
 - Marquee (scrolling ticker)
-- 30 SVG Shapes (Burst, Blob, Lightning, Heart, Star, and more)
+- 35 SVG Shapes (Burst, Blob, Lightning, Heart, Star, and more)
 
 </details>
 
 ## Shapes
 
-30 decorative SVG shapes for unique neubrutalism layouts:
+35 decorative SVG shapes for unique neubrutalism layouts:
+
+### React
 
 ```tsx
 import { BurstShape, HeartShape, LightningShape } from '@/components/ui/shapes'
@@ -219,6 +282,20 @@ import { BurstShape, HeartShape, LightningShape } from '@/components/ui/shapes'
 <BurstShape size={100} className="text-primary" />
 <HeartShape size={80} filled={false} strokeWidth={4} />
 <LightningShape size={60} className="text-accent" />
+```
+
+### Vue 3
+
+```vue
+<script setup lang="ts">
+import { BurstShape, HeartShape, LightningShape } from '@/components/ui/shapes'
+</script>
+
+<template>
+  <BurstShape :size="100" class="text-primary" />
+  <HeartShape :size="80" :filled="false" :stroke-width="4" />
+  <LightningShape :size="60" class="text-accent" />
+</template>
 ```
 
 <div align="center">
@@ -229,7 +306,7 @@ import { BurstShape, HeartShape, LightningShape } from '@/components/ui/shapes'
 
 ## Theming
 
-Customize with CSS variables:
+Customize with CSS variables (works for both React and Vue):
 
 ```css
 :root {
@@ -246,12 +323,38 @@ Visit the [Theme Builder](https://boldkit.dev/themes) to create custom themes.
 
 ## Tech Stack
 
+### React
 - **React 19** - Latest React with concurrent features
-- **Tailwind CSS v4** - Modern utility-first CSS
 - **Radix UI** - Accessible primitives
+- **Recharts** - Data visualization
+
+### Vue 3
+- **Vue 3** - Composition API with `<script setup>`
+- **Reka UI** - Accessible primitives (Radix port for Vue)
+- **vue-echarts** - Data visualization
+
+### Shared
+- **Tailwind CSS v4** - Modern utility-first CSS
 - **TypeScript** - Full type safety
 - **Class Variance Authority** - Variant management
 - **Vite** - Fast development and builds
+
+## Project Structure
+
+```
+boldkit/
+├── src/                    # React documentation site
+├── packages/
+│   └── vue/               # Vue 3 components
+│       └── src/
+│           └── components/
+│               └── ui/    # Vue SFC components
+├── public/
+│   └── r/                 # Component registry
+│       ├── *.json         # React registry
+│       └── vue/
+│           └── *.json     # Vue registry
+```
 
 ## Development
 
@@ -263,7 +366,7 @@ cd boldkit
 # Install
 npm install
 
-# Dev server
+# Dev server (React docs site)
 npm run dev
 
 # Build

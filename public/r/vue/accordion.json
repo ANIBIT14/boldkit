@@ -1,0 +1,38 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "accordion",
+  "type": "registry:ui",
+  "description": "A vertically stacked set of interactive headings",
+  "dependencies": [
+    "reka-ui"
+  ],
+  "registryDependencies": [
+    "utils"
+  ],
+  "files": [
+    {
+      "path": "registry/default/ui/Accordion.vue",
+      "content": "<script setup lang=\"ts\">\nimport { AccordionRoot, type AccordionRootProps } from 'reka-ui'\n\nconst props = defineProps<AccordionRootProps>()\n</script>\n\n<template>\n  <AccordionRoot v-bind=\"props\">\n    <slot />\n  </AccordionRoot>\n</template>\n",
+      "type": "registry:ui",
+      "target": "components/ui/Accordion.vue"
+    },
+    {
+      "path": "registry/default/ui/AccordionItem.vue",
+      "content": "<script setup lang=\"ts\">\nimport { AccordionItem as AccordionItemPrimitive, type AccordionItemProps } from 'reka-ui'\nimport { cn } from '@/lib/utils'\n\ninterface Props extends AccordionItemProps {\n  class?: string\n}\n\nconst props = defineProps<Props>()\n</script>\n\n<template>\n  <AccordionItemPrimitive\n    v-bind=\"props\"\n    :class=\"\n      cn(\n        'border-3 border-foreground border-b-0 last:border-b-3 shadow-[4px_4px_0px_hsl(var(--shadow-color))]',\n        props.class\n      )\n    \"\n  >\n    <slot />\n  </AccordionItemPrimitive>\n</template>\n",
+      "type": "registry:ui",
+      "target": "components/ui/AccordionItem.vue"
+    },
+    {
+      "path": "registry/default/ui/AccordionTrigger.vue",
+      "content": "<script setup lang=\"ts\">\nimport { AccordionHeader, AccordionTrigger as AccordionTriggerPrimitive } from 'reka-ui'\nimport { ChevronDown } from 'lucide-vue-next'\nimport { cn } from '@/lib/utils'\n\ndefineProps<{\n  class?: string\n}>()\n</script>\n\n<template>\n  <AccordionHeader class=\"flex\">\n    <AccordionTriggerPrimitive\n      :class=\"\n        cn(\n          'flex flex-1 items-center justify-between bg-background py-4 px-4 font-bold uppercase tracking-wide transition-all duration-200 hover:bg-muted [&[data-state=open]]:bg-accent [&[data-state=open]>svg]:rotate-180',\n          $props.class\n        )\n      \"\n    >\n      <slot />\n      <ChevronDown class=\"h-5 w-5 shrink-0 stroke-[3] transition-transform duration-200\" />\n    </AccordionTriggerPrimitive>\n  </AccordionHeader>\n</template>\n",
+      "type": "registry:ui",
+      "target": "components/ui/AccordionTrigger.vue"
+    },
+    {
+      "path": "registry/default/ui/AccordionContent.vue",
+      "content": "<script setup lang=\"ts\">\nimport { AccordionContent as AccordionContentPrimitive } from 'reka-ui'\nimport { cn } from '@/lib/utils'\n\ndefineProps<{\n  class?: string\n}>()\n</script>\n\n<template>\n  <AccordionContentPrimitive\n    class=\"overflow-hidden text-sm transition-all data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down border-t-3 border-foreground\"\n  >\n    <div :class=\"cn('p-4', $props.class)\">\n      <slot />\n    </div>\n  </AccordionContentPrimitive>\n</template>\n",
+      "type": "registry:ui",
+      "target": "components/ui/AccordionContent.vue"
+    }
+  ]
+}

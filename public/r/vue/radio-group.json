@@ -1,0 +1,26 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "radio-group",
+  "type": "registry:ui",
+  "description": "A set of radio buttons",
+  "dependencies": [
+    "reka-ui"
+  ],
+  "registryDependencies": [
+    "utils"
+  ],
+  "files": [
+    {
+      "path": "registry/default/ui/RadioGroup.vue",
+      "content": "<script setup lang=\"ts\">\nimport { RadioGroupRoot, type RadioGroupRootProps } from 'reka-ui'\nimport { cn } from '@/lib/utils'\n\ninterface Props extends RadioGroupRootProps {\n  class?: string\n}\n\nconst props = defineProps<Props>()\nconst emit = defineEmits<{\n  'update:modelValue': [value: string]\n}>()\n</script>\n\n<template>\n  <RadioGroupRoot\n    v-bind=\"props\"\n    :class=\"cn('grid gap-2', props.class)\"\n    @update:model-value=\"emit('update:modelValue', $event)\"\n  >\n    <slot />\n  </RadioGroupRoot>\n</template>\n",
+      "type": "registry:ui",
+      "target": "components/ui/RadioGroup.vue"
+    },
+    {
+      "path": "registry/default/ui/RadioGroupItem.vue",
+      "content": "<script setup lang=\"ts\">\nimport { RadioGroupItem as RadioGroupItemPrimitive, RadioGroupIndicator } from 'reka-ui'\nimport { Circle } from 'lucide-vue-next'\nimport { cn } from '@/lib/utils'\n\ndefineProps<{\n  class?: string\n  value: string\n}>()\n</script>\n\n<template>\n  <RadioGroupItemPrimitive\n    :value=\"value\"\n    :class=\"\n      cn(\n        'aspect-square h-5 w-5 rounded-full border-3 border-foreground bg-background shadow-[4px_4px_0px_hsl(var(--shadow-color))] transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 hover:translate-x-[4px] hover:translate-y-[4px] hover:shadow-none active:translate-x-[4px] active:translate-y-[4px] active:shadow-none data-[state=checked]:bg-primary',\n        $props.class\n      )\n    \"\n  >\n    <RadioGroupIndicator class=\"flex items-center justify-center\">\n      <Circle class=\"h-2.5 w-2.5 fill-primary stroke-none\" />\n    </RadioGroupIndicator>\n  </RadioGroupItemPrimitive>\n</template>\n",
+      "type": "registry:ui",
+      "target": "components/ui/RadioGroupItem.vue"
+    }
+  ]
+}

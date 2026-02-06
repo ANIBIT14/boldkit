@@ -5,6 +5,7 @@ import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet'
 import { ScrollArea } from '@/components/ui/scroll-area'
 import { Menu } from 'lucide-react'
 import { Header } from '@/components/layout'
+import { FrameworkToggle, useFramework, VueIcon } from '@/hooks/use-framework'
 
 const components = [
   { name: 'Accordion', href: '/components/accordion' },
@@ -52,10 +53,30 @@ const components = [
 
 function Sidebar({ className }: { className?: string }) {
   const location = useLocation()
+  const { framework } = useFramework()
 
   return (
     <div className={cn('pb-12', className)}>
       <div className="space-y-6 py-4">
+        {/* Framework Toggle */}
+        <div className="px-3">
+          <div className="px-4 mb-2">
+            <span className="text-xs font-bold uppercase tracking-wide text-muted-foreground">
+              Framework
+            </span>
+          </div>
+          <div className="px-4">
+            <FrameworkToggle size="sm" />
+          </div>
+          {framework === 'vue' && (
+            <div className="px-4 mt-2">
+              <span className="inline-flex items-center gap-1 text-xs text-success font-medium">
+                <VueIcon className="h-3 w-3" /> Vue 3 mode
+              </span>
+            </div>
+          )}
+        </div>
+
         {/* Getting Started Section */}
         <div className="px-3">
           <h2 className="mb-3 px-4 text-sm font-bold uppercase tracking-wide text-muted-foreground">

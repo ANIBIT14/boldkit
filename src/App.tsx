@@ -1,5 +1,6 @@
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
 import { ThemeProvider } from '@/hooks/use-theme'
+import { FrameworkProvider } from '@/hooks/use-framework'
 import { TooltipProvider } from '@/components/ui/tooltip'
 import { Toaster } from '@/components/ui/sonner'
 import { Home, ThemeBuilder, Charts, Shapes, Templates } from '@/pages'
@@ -56,8 +57,9 @@ import '@/styles/globals.css'
 function App() {
   return (
     <ThemeProvider defaultTheme="light">
-      <TooltipProvider>
-        <BrowserRouter>
+      <FrameworkProvider>
+        <TooltipProvider>
+          <BrowserRouter>
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/themes" element={<ThemeBuilder />} />
@@ -122,9 +124,10 @@ function App() {
               <Route path="*" element={<Navigate to="/components/button" replace />} />
             </Route>
           </Routes>
-        </BrowserRouter>
-        <Toaster />
-      </TooltipProvider>
+          </BrowserRouter>
+          <Toaster />
+        </TooltipProvider>
+      </FrameworkProvider>
     </ThemeProvider>
   )
 }

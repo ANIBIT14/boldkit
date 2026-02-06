@@ -1,0 +1,21 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "checkbox",
+  "type": "registry:ui",
+  "description": "A checkbox input control",
+  "dependencies": [
+    "reka-ui",
+    "lucide-vue-next"
+  ],
+  "registryDependencies": [
+    "utils"
+  ],
+  "files": [
+    {
+      "path": "registry/default/ui/Checkbox.vue",
+      "content": "<script setup lang=\"ts\">\nimport { CheckboxRoot, CheckboxIndicator, type CheckboxRootProps } from 'reka-ui'\nimport { Check } from 'lucide-vue-next'\nimport { cn } from '@/lib/utils'\n\ninterface Props extends CheckboxRootProps {\n  class?: string\n}\n\nconst props = defineProps<Props>()\nconst emit = defineEmits<{\n  'update:checked': [value: boolean]\n}>()\n</script>\n\n<template>\n  <CheckboxRoot\n    v-bind=\"props\"\n    :class=\"\n      cn(\n        'peer h-5 w-5 shrink-0 border-3 border-foreground bg-background shadow-[4px_4px_0px_hsl(var(--shadow-color))] transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground hover:translate-x-[4px] hover:translate-y-[4px] hover:shadow-none active:translate-x-[4px] active:translate-y-[4px] active:shadow-none',\n        props.class\n      )\n    \"\n    @update:checked=\"emit('update:checked', $event as boolean)\"\n  >\n    <CheckboxIndicator class=\"flex items-center justify-center text-current\">\n      <Check class=\"h-4 w-4 stroke-[3]\" />\n    </CheckboxIndicator>\n  </CheckboxRoot>\n</template>\n",
+      "type": "registry:ui",
+      "target": "components/ui/Checkbox.vue"
+    }
+  ]
+}

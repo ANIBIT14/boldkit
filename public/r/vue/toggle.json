@@ -1,0 +1,27 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "toggle",
+  "type": "registry:ui",
+  "description": "A two-state button",
+  "dependencies": [
+    "reka-ui",
+    "class-variance-authority"
+  ],
+  "registryDependencies": [
+    "utils"
+  ],
+  "files": [
+    {
+      "path": "registry/default/ui/Toggle.vue",
+      "content": "<script setup lang=\"ts\">\nimport { Toggle as TogglePrimitive } from 'reka-ui'\nimport { type VariantProps } from 'class-variance-authority'\nimport { cn } from '@/lib/utils'\nimport { toggleVariants } from './toggle-variants'\n\ntype ToggleVariants = VariantProps<typeof toggleVariants>\n\ninterface Props {\n  class?: string\n  variant?: ToggleVariants['variant']\n  size?: ToggleVariants['size']\n  modelValue?: boolean\n  defaultValue?: boolean\n  disabled?: boolean\n  name?: string\n  required?: boolean\n}\n\nconst props = withDefaults(defineProps<Props>(), {\n  variant: 'default',\n  size: 'default',\n})\n\nconst emit = defineEmits<{\n  'update:modelValue': [value: boolean]\n}>()\n</script>\n\n<template>\n  <TogglePrimitive\n    :model-value=\"props.modelValue\"\n    :default-value=\"props.defaultValue\"\n    :disabled=\"props.disabled\"\n    :name=\"props.name\"\n    :required=\"props.required\"\n    :class=\"cn(toggleVariants({ variant: props.variant, size: props.size }), props.class)\"\n    @update:model-value=\"emit('update:modelValue', $event)\"\n  >\n    <slot />\n  </TogglePrimitive>\n</template>\n",
+      "type": "registry:ui",
+      "target": "components/ui/Toggle.vue"
+    },
+    {
+      "path": "registry/default/ui/toggle-variants.ts",
+      "content": "import { cva } from 'class-variance-authority'\n\nexport const toggleVariants = cva(\n  'inline-flex items-center justify-center text-sm font-bold uppercase tracking-wide transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border-3 border-foreground shadow-[4px_4px_0px_hsl(var(--shadow-color))] [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 gap-2 hover:translate-x-[4px] hover:translate-y-[4px] hover:shadow-none active:translate-x-[4px] active:translate-y-[4px] active:shadow-none data-[state=on]:bg-primary data-[state=on]:text-primary-foreground data-[state=on]:translate-x-[4px] data-[state=on]:translate-y-[4px] data-[state=on]:shadow-none',\n  {\n    variants: {\n      variant: {\n        default: 'bg-transparent hover:bg-muted',\n        outline: 'bg-background hover:bg-muted',\n      },\n      size: {\n        default: 'h-10 px-3 min-w-10',\n        sm: 'h-9 px-2.5 min-w-9',\n        lg: 'h-11 px-5 min-w-11',\n      },\n    },\n    defaultVariants: {\n      variant: 'default',\n      size: 'default',\n    },\n  }\n)\n",
+      "type": "registry:ui",
+      "target": "components/ui/toggle-variants.ts"
+    }
+  ]
+}

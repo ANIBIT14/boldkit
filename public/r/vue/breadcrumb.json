@@ -1,0 +1,57 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "breadcrumb",
+  "type": "registry:ui",
+  "description": "Displays the path to the current resource",
+  "dependencies": [
+    "reka-ui",
+    "lucide-vue-next"
+  ],
+  "registryDependencies": [
+    "utils"
+  ],
+  "files": [
+    {
+      "path": "registry/default/ui/Breadcrumb.vue",
+      "content": "<script setup lang=\"ts\">\ndefineProps<{\n  class?: string\n}>()\n</script>\n\n<template>\n  <nav aria-label=\"breadcrumb\" :class=\"$props.class\">\n    <slot />\n  </nav>\n</template>\n",
+      "type": "registry:ui",
+      "target": "components/ui/Breadcrumb.vue"
+    },
+    {
+      "path": "registry/default/ui/BreadcrumbList.vue",
+      "content": "<script setup lang=\"ts\">\nimport { cn } from '@/lib/utils'\n\ndefineProps<{\n  class?: string\n}>()\n</script>\n\n<template>\n  <ol\n    :class=\"\n      cn(\n        'flex flex-wrap items-center gap-1.5 break-words text-sm text-muted-foreground sm:gap-2.5',\n        $props.class\n      )\n    \"\n  >\n    <slot />\n  </ol>\n</template>\n",
+      "type": "registry:ui",
+      "target": "components/ui/BreadcrumbList.vue"
+    },
+    {
+      "path": "registry/default/ui/BreadcrumbItem.vue",
+      "content": "<script setup lang=\"ts\">\nimport { cn } from '@/lib/utils'\n\ndefineProps<{\n  class?: string\n}>()\n</script>\n\n<template>\n  <li :class=\"cn('inline-flex items-center gap-1.5', $props.class)\">\n    <slot />\n  </li>\n</template>\n",
+      "type": "registry:ui",
+      "target": "components/ui/BreadcrumbItem.vue"
+    },
+    {
+      "path": "registry/default/ui/BreadcrumbLink.vue",
+      "content": "<script setup lang=\"ts\">\nimport { Primitive, type PrimitiveProps } from 'reka-ui'\nimport { cn } from '@/lib/utils'\n\ninterface Props extends PrimitiveProps {\n  class?: string\n}\n\nconst props = withDefaults(defineProps<Props>(), {\n  as: 'a',\n})\n</script>\n\n<template>\n  <Primitive\n    :as=\"props.as\"\n    :as-child=\"props.asChild\"\n    :class=\"cn('transition-colors hover:text-foreground font-medium', props.class)\"\n  >\n    <slot />\n  </Primitive>\n</template>\n",
+      "type": "registry:ui",
+      "target": "components/ui/BreadcrumbLink.vue"
+    },
+    {
+      "path": "registry/default/ui/BreadcrumbPage.vue",
+      "content": "<script setup lang=\"ts\">\nimport { cn } from '@/lib/utils'\n\ndefineProps<{\n  class?: string\n}>()\n</script>\n\n<template>\n  <span\n    role=\"link\"\n    aria-disabled=\"true\"\n    aria-current=\"page\"\n    :class=\"cn('font-bold text-foreground', $props.class)\"\n  >\n    <slot />\n  </span>\n</template>\n",
+      "type": "registry:ui",
+      "target": "components/ui/BreadcrumbPage.vue"
+    },
+    {
+      "path": "registry/default/ui/BreadcrumbSeparator.vue",
+      "content": "<script setup lang=\"ts\">\nimport { ChevronRight } from 'lucide-vue-next'\nimport { cn } from '@/lib/utils'\n\ndefineProps<{\n  class?: string\n}>()\n</script>\n\n<template>\n  <li\n    role=\"presentation\"\n    aria-hidden=\"true\"\n    :class=\"cn('[&>svg]:h-3.5 [&>svg]:w-3.5', $props.class)\"\n  >\n    <slot>\n      <ChevronRight class=\"stroke-[3]\" />\n    </slot>\n  </li>\n</template>\n",
+      "type": "registry:ui",
+      "target": "components/ui/BreadcrumbSeparator.vue"
+    },
+    {
+      "path": "registry/default/ui/BreadcrumbEllipsis.vue",
+      "content": "<script setup lang=\"ts\">\nimport { MoreHorizontal } from 'lucide-vue-next'\nimport { cn } from '@/lib/utils'\n\ndefineProps<{\n  class?: string\n}>()\n</script>\n\n<template>\n  <span\n    role=\"presentation\"\n    aria-hidden=\"true\"\n    :class=\"cn('flex h-9 w-9 items-center justify-center', $props.class)\"\n  >\n    <MoreHorizontal class=\"h-4 w-4 stroke-[3]\" />\n    <span class=\"sr-only\">More</span>\n  </span>\n</template>\n",
+      "type": "registry:ui",
+      "target": "components/ui/BreadcrumbEllipsis.vue"
+    }
+  ]
+}

@@ -1,0 +1,26 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "scroll-area",
+  "type": "registry:ui",
+  "description": "Augments native scroll functionality",
+  "dependencies": [
+    "reka-ui"
+  ],
+  "registryDependencies": [
+    "utils"
+  ],
+  "files": [
+    {
+      "path": "registry/default/ui/ScrollArea.vue",
+      "content": "<script setup lang=\"ts\">\nimport {\n  ScrollAreaRoot,\n  ScrollAreaViewport,\n  ScrollAreaScrollbar,\n  ScrollAreaThumb,\n  ScrollAreaCorner,\n} from 'reka-ui'\nimport { cn } from '@/lib/utils'\n\ndefineProps<{\n  class?: string\n}>()\n</script>\n\n<template>\n  <ScrollAreaRoot :class=\"cn('relative overflow-hidden', $props.class)\">\n    <ScrollAreaViewport class=\"h-full w-full rounded-[inherit]\">\n      <slot />\n    </ScrollAreaViewport>\n    <ScrollAreaScrollbar\n      orientation=\"vertical\"\n      class=\"flex touch-none select-none transition-colors h-full w-3 border-l-3 border-l-transparent p-[1px]\"\n    >\n      <ScrollAreaThumb class=\"relative flex-1 bg-foreground\" />\n    </ScrollAreaScrollbar>\n    <ScrollAreaScrollbar\n      orientation=\"horizontal\"\n      class=\"flex touch-none select-none transition-colors h-3 flex-col border-t-3 border-t-transparent p-[1px]\"\n    >\n      <ScrollAreaThumb class=\"relative flex-1 bg-foreground\" />\n    </ScrollAreaScrollbar>\n    <ScrollAreaCorner />\n  </ScrollAreaRoot>\n</template>\n",
+      "type": "registry:ui",
+      "target": "components/ui/ScrollArea.vue"
+    },
+    {
+      "path": "registry/default/ui/ScrollBar.vue",
+      "content": "<script setup lang=\"ts\">\nimport { ScrollAreaScrollbar, ScrollAreaThumb } from 'reka-ui'\nimport { cn } from '@/lib/utils'\n\ninterface Props {\n  class?: string\n  orientation?: 'vertical' | 'horizontal'\n}\n\nconst props = withDefaults(defineProps<Props>(), {\n  orientation: 'vertical',\n})\n</script>\n\n<template>\n  <ScrollAreaScrollbar\n    :orientation=\"props.orientation\"\n    :class=\"\n      cn(\n        'flex touch-none select-none transition-colors',\n        props.orientation === 'vertical' && 'h-full w-3 border-l-3 border-l-transparent p-[1px]',\n        props.orientation === 'horizontal' && 'h-3 flex-col border-t-3 border-t-transparent p-[1px]',\n        props.class\n      )\n    \"\n  >\n    <ScrollAreaThumb class=\"relative flex-1 bg-foreground\" />\n  </ScrollAreaScrollbar>\n</template>\n",
+      "type": "registry:ui",
+      "target": "components/ui/ScrollBar.vue"
+    }
+  ]
+}

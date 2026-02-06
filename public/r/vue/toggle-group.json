@@ -1,0 +1,27 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "toggle-group",
+  "type": "registry:ui",
+  "description": "A set of two-state buttons",
+  "dependencies": [
+    "reka-ui",
+    "class-variance-authority"
+  ],
+  "registryDependencies": [
+    "utils"
+  ],
+  "files": [
+    {
+      "path": "registry/default/ui/ToggleGroup.vue",
+      "content": "<script setup lang=\"ts\">\nimport { ToggleGroupRoot, type ToggleGroupRootProps } from 'reka-ui'\nimport { type VariantProps } from 'class-variance-authority'\nimport { provide, type InjectionKey } from 'vue'\nimport { cn } from '@/lib/utils'\nimport { toggleVariants } from './toggle-variants'\n\ntype ToggleVariants = VariantProps<typeof toggleVariants>\n\ninterface Props extends ToggleGroupRootProps {\n  class?: string\n  variant?: ToggleVariants['variant']\n  size?: ToggleVariants['size']\n}\n\nconst props = withDefaults(defineProps<Props>(), {\n  variant: 'default',\n  size: 'default',\n})\n\nconst emit = defineEmits<{\n  'update:modelValue': [value: string | string[] | null]\n}>()\n\nexport interface ToggleGroupContext {\n  variant: ToggleVariants['variant']\n  size: ToggleVariants['size']\n}\n\nexport const ToggleGroupContextKey: InjectionKey<ToggleGroupContext> = Symbol('ToggleGroupContext')\n\nprovide(ToggleGroupContextKey, {\n  variant: props.variant,\n  size: props.size,\n})\n</script>\n\n<template>\n  <ToggleGroupRoot\n    v-bind=\"props\"\n    :class=\"cn('flex items-center justify-center gap-1', props.class)\"\n    @update:model-value=\"(val) => emit('update:modelValue', val as string | string[] | null)\"\n  >\n    <slot />\n  </ToggleGroupRoot>\n</template>\n",
+      "type": "registry:ui",
+      "target": "components/ui/ToggleGroup.vue"
+    },
+    {
+      "path": "registry/default/ui/ToggleGroupItem.vue",
+      "content": "<script setup lang=\"ts\">\nimport { ToggleGroupItem as ToggleGroupItemPrimitive } from 'reka-ui'\nimport { type VariantProps } from 'class-variance-authority'\nimport { inject } from 'vue'\nimport { cn } from '@/lib/utils'\nimport { toggleVariants } from './toggle-variants'\nimport { ToggleGroupContextKey, type ToggleGroupContext } from './ToggleGroup.vue'\n\ntype ToggleVariants = VariantProps<typeof toggleVariants>\n\ninterface Props {\n  class?: string\n  value: string\n  variant?: ToggleVariants['variant']\n  size?: ToggleVariants['size']\n  disabled?: boolean\n}\n\nconst props = defineProps<Props>()\n\nconst context = inject<ToggleGroupContext>(ToggleGroupContextKey, {\n  variant: 'default',\n  size: 'default',\n})\n</script>\n\n<template>\n  <ToggleGroupItemPrimitive\n    :value=\"value\"\n    :disabled=\"disabled\"\n    :class=\"\n      cn(\n        toggleVariants({\n          variant: props.variant || context.variant,\n          size: props.size || context.size,\n        }),\n        props.class\n      )\n    \"\n  >\n    <slot />\n  </ToggleGroupItemPrimitive>\n</template>\n",
+      "type": "registry:ui",
+      "target": "components/ui/ToggleGroupItem.vue"
+    }
+  ]
+}

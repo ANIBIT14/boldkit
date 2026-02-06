@@ -1,0 +1,32 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "avatar",
+  "type": "registry:ui",
+  "description": "An image element with fallback",
+  "dependencies": [
+    "reka-ui"
+  ],
+  "registryDependencies": [
+    "utils"
+  ],
+  "files": [
+    {
+      "path": "registry/default/ui/Avatar.vue",
+      "content": "<script setup lang=\"ts\">\nimport { AvatarRoot } from 'reka-ui'\nimport { cn } from '@/lib/utils'\n\ndefineProps<{\n  class?: string\n}>()\n</script>\n\n<template>\n  <AvatarRoot\n    :class=\"\n      cn(\n        'relative flex h-10 w-10 shrink-0 overflow-hidden border-3 border-foreground shadow-[4px_4px_0px_hsl(var(--shadow-color))] transition-all duration-200 hover:translate-x-[4px] hover:translate-y-[4px] hover:shadow-none',\n        $props.class\n      )\n    \"\n  >\n    <slot />\n  </AvatarRoot>\n</template>\n",
+      "type": "registry:ui",
+      "target": "components/ui/Avatar.vue"
+    },
+    {
+      "path": "registry/default/ui/AvatarImage.vue",
+      "content": "<script setup lang=\"ts\">\nimport { AvatarImage as AvatarImagePrimitive } from 'reka-ui'\nimport { cn } from '@/lib/utils'\n\nconst props = defineProps<{\n  class?: string\n  src?: string\n  alt?: string\n}>()\n</script>\n\n<template>\n  <AvatarImagePrimitive\n    :src=\"props.src ?? ''\"\n    :alt=\"props.alt\"\n    :class=\"cn('aspect-square h-full w-full object-cover', props.class)\"\n  />\n</template>\n",
+      "type": "registry:ui",
+      "target": "components/ui/AvatarImage.vue"
+    },
+    {
+      "path": "registry/default/ui/AvatarFallback.vue",
+      "content": "<script setup lang=\"ts\">\nimport { AvatarFallback as AvatarFallbackPrimitive } from 'reka-ui'\nimport { cn } from '@/lib/utils'\n\ndefineProps<{\n  class?: string\n  delayMs?: number\n}>()\n</script>\n\n<template>\n  <AvatarFallbackPrimitive\n    :delay-ms=\"delayMs\"\n    :class=\"\n      cn(\n        'flex h-full w-full items-center justify-center bg-primary text-primary-foreground font-bold uppercase',\n        $props.class\n      )\n    \"\n  >\n    <slot />\n  </AvatarFallbackPrimitive>\n</template>\n",
+      "type": "registry:ui",
+      "target": "components/ui/AvatarFallback.vue"
+    }
+  ]
+}

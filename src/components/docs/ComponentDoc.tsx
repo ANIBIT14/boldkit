@@ -6,6 +6,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { Copy, Check, Terminal } from 'lucide-react'
 import { OpenInV0Button } from './OpenInV0Button'
 import { SEO, getComponentSEO } from '@/components/SEO'
+import { useFramework, FrameworkToggle, VueIcon } from '@/hooks/use-framework'
 
 export function CodeBlock({ code, language = 'tsx' }: { code: string; language?: string }) {
   const [copied, setCopied] = useState(false)
@@ -48,8 +49,8 @@ export function InstallCommand({ command }: { command: string }) {
   return (
     <div className="flex items-center gap-2 border-3 border-foreground bg-muted p-3 bk-shadow">
       <Terminal className="h-4 w-4 text-muted-foreground" />
-      <code className="flex-1 text-sm">{command}</code>
-      <Button variant="ghost" size="icon" className="h-8 w-8" onClick={copyCommand}>
+      <code className="flex-1 text-sm overflow-x-auto">{command}</code>
+      <Button variant="ghost" size="icon" className="h-8 w-8 shrink-0" onClick={copyCommand}>
         {copied ? <Check className="h-4 w-4" /> : <Copy className="h-4 w-4" />}
       </Button>
     </div>
@@ -65,6 +66,10 @@ interface ComponentDocProps {
   sourceCode: string
   usageCode: string
   registryName?: string
+  // Vue-specific props
+  vueSourceCode?: string
+  vueUsageCode?: string
+  vueDependencies?: string[]
 }
 
 export function ComponentDoc({
@@ -76,14 +81,30 @@ export function ComponentDoc({
   sourceCode,
   usageCode,
   registryName,
+  vueSourceCode,
+  vueUsageCode,
+  vueDependencies,
 }: ComponentDocProps) {
+  // Use global framework context
+  const { framework } = useFramework()
+
   // Convert component name to registry name (e.g., "Alert Dialog" -> "alert-dialog")
   const componentRegistryName = registryName || name.toLowerCase().replace(/\s+/g, '-')
 
-  // Generate the correct shadcn CLI command
-  const cliCommand = installCommand || `npx shadcn@latest add https://boldkit.dev/r/${componentRegistryName}.json`
+  // Generate the correct CLI commands for each framework
+  const reactCliCommand = installCommand || `npx shadcn@latest add https://boldkit.dev/r/${componentRegistryName}.json`
+  const vueCliCommand = `npx shadcn-vue@latest add https://boldkit.dev/r/vue/${componentRegistryName}.json`
+
+  const currentCliCommand = framework === 'react' ? reactCliCommand : vueCliCommand
+  const currentSourceCode = framework === 'react' ? sourceCode : (vueSourceCode || sourceCode)
+  const currentUsageCode = framework === 'react' ? usageCode : (vueUsageCode || usageCode)
+  const currentDependencies = framework === 'react' ? dependencies : (vueDependencies || dependencies)
+  const fileExtension = framework === 'react' ? 'tsx' : 'vue'
 
   const componentSEO = getComponentSEO(componentRegistryName, name)
+
+  // Check if Vue code is available
+  const hasVueCode = !!vueSourceCode
 
   return (
     <>
@@ -91,9 +112,12 @@ export function ComponentDoc({
       <div className="space-y-8">
       {/* Header */}
       <div>
-        <div className="flex items-center gap-3 mb-4">
-          <Badge variant="secondary">Component</Badge>
-          <OpenInV0Button name={componentRegistryName} />
+        <div className="flex items-center justify-between gap-3 mb-4 flex-wrap">
+          <div className="flex items-center gap-3">
+            <Badge variant="secondary">Component</Badge>
+            <OpenInV0Button name={componentRegistryName} />
+          </div>
+          <FrameworkToggle size="sm" />
         </div>
         <h1 className="text-3xl font-black uppercase tracking-tight md:text-4xl">
           {name}
@@ -101,6 +125,13 @@ export function ComponentDoc({
         <p className="mt-4 text-lg text-muted-foreground">
           {description}
         </p>
+        {framework === 'vue' && !hasVueCode && (
+          <div className="mt-4 p-3 border-3 border-info bg-info/10">
+            <p className="text-sm font-medium flex items-center gap-2">
+              <VueIcon /> Vue code sample coming soon. The component is available in the registry.
+            </p>
+          </div>
+        )}
       </div>
 
       {/* Preview */}
@@ -128,26 +159,31 @@ export function ComponentDoc({
             <p className="text-muted-foreground">
               Run the following command to add this component:
             </p>
-            <InstallCommand command={cliCommand} />
+            <InstallCommand command={currentCliCommand} />
+            {framework === 'vue' && (
+              <p className="text-sm text-muted-foreground">
+                Using <a href="https://shadcn-vue.com" className="text-primary underline" target="_blank" rel="noopener noreferrer">shadcn-vue</a> CLI with BoldKit Vue registry.
+              </p>
+            )}
           </TabsContent>
 
           <TabsContent value="manual" className="space-y-4">
-            {dependencies.length > 0 && (
+            {currentDependencies.length > 0 && (
               <div>
                 <p className="text-muted-foreground mb-2">
                   Install the required dependencies:
                 </p>
-                <InstallCommand command={`npm install ${dependencies.join(' ')}`} />
+                <InstallCommand command={`npm install ${currentDependencies.join(' ')}`} />
               </div>
             )}
             <div>
               <p className="text-muted-foreground mb-2">
                 Copy and paste the following code into{' '}
                 <code className="bg-muted px-1 border text-sm">
-                  src/components/ui/{name.toLowerCase()}.tsx
+                  src/components/ui/{name.toLowerCase().replace(/\s+/g, '-')}.{fileExtension}
                 </code>
               </p>
-              <CodeBlock code={sourceCode} />
+              <CodeBlock code={currentSourceCode} language={fileExtension} />
             </div>
           </TabsContent>
         </Tabs>
@@ -156,7 +192,7 @@ export function ComponentDoc({
       {/* Usage */}
       <section>
         <h2 className="text-2xl font-bold uppercase tracking-wide mb-4">Usage</h2>
-        <CodeBlock code={usageCode} />
+        <CodeBlock code={currentUsageCode} language={fileExtension} />
       </section>
     </div>
     </>
@@ -168,9 +204,14 @@ interface ExampleSectionProps {
   description?: string
   children: ReactNode
   code: string
+  vueCode?: string
 }
 
-export function ExampleSection({ title, description, children, code }: ExampleSectionProps) {
+export function ExampleSection({ title, description, children, code, vueCode }: ExampleSectionProps) {
+  const { framework } = useFramework()
+  const currentCode = framework === 'react' ? code : (vueCode || code)
+  const language = framework === 'react' ? 'tsx' : 'vue'
+
   return (
     <section className="mt-12">
       <h2 className="text-2xl font-bold uppercase tracking-wide mb-2">{title}</h2>
@@ -190,7 +231,7 @@ export function ExampleSection({ title, description, children, code }: ExampleSe
           </Card>
         </TabsContent>
         <TabsContent value="code">
-          <CodeBlock code={code} />
+          <CodeBlock code={currentCode} language={language} />
         </TabsContent>
       </Tabs>
     </section>

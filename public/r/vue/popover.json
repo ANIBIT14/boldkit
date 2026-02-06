@@ -1,0 +1,32 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "popover",
+  "type": "registry:ui",
+  "description": "Displays rich content in a portal",
+  "dependencies": [
+    "reka-ui"
+  ],
+  "registryDependencies": [
+    "utils"
+  ],
+  "files": [
+    {
+      "path": "registry/default/ui/Popover.vue",
+      "content": "<script setup lang=\"ts\">\nimport { PopoverRoot, type PopoverRootProps } from 'reka-ui'\n\nconst props = defineProps<PopoverRootProps>()\nconst emit = defineEmits<{\n  'update:open': [value: boolean]\n}>()\n</script>\n\n<template>\n  <PopoverRoot v-bind=\"props\" @update:open=\"emit('update:open', $event)\">\n    <slot />\n  </PopoverRoot>\n</template>\n",
+      "type": "registry:ui",
+      "target": "components/ui/Popover.vue"
+    },
+    {
+      "path": "registry/default/ui/PopoverTrigger.vue",
+      "content": "<script setup lang=\"ts\">\nimport { PopoverTrigger as PopoverTriggerPrimitive } from 'reka-ui'\n</script>\n\n<template>\n  <PopoverTriggerPrimitive as-child>\n    <slot />\n  </PopoverTriggerPrimitive>\n</template>\n",
+      "type": "registry:ui",
+      "target": "components/ui/PopoverTrigger.vue"
+    },
+    {
+      "path": "registry/default/ui/PopoverContent.vue",
+      "content": "<script setup lang=\"ts\">\nimport { PopoverPortal, PopoverContent as PopoverContentPrimitive } from 'reka-ui'\nimport { cn } from '@/lib/utils'\n\ninterface Props {\n  class?: string\n  align?: 'start' | 'center' | 'end'\n  sideOffset?: number\n}\n\nconst props = withDefaults(defineProps<Props>(), {\n  align: 'center',\n  sideOffset: 4,\n})\n</script>\n\n<template>\n  <PopoverPortal>\n    <PopoverContentPrimitive\n      :align=\"props.align\"\n      :side-offset=\"props.sideOffset\"\n      :class=\"\n        cn(\n          'z-50 w-72 border-3 border-foreground bg-popover p-4 text-popover-foreground shadow-[4px_4px_0px_hsl(var(--shadow-color))] outline-none',\n          props.class\n        )\n      \"\n    >\n      <slot />\n    </PopoverContentPrimitive>\n  </PopoverPortal>\n</template>\n",
+      "type": "registry:ui",
+      "target": "components/ui/PopoverContent.vue"
+    }
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "textarea",
+  "type": "registry:ui",
+  "description": "Displays a multi-line text input",
+  "dependencies": [],
+  "registryDependencies": [
+    "utils"
+  ],
+  "files": [
+    {
+      "path": "registry/default/ui/Textarea.vue",
+      "content": "<script setup lang=\"ts\">\nimport { computed } from 'vue'\nimport { cn } from '@/lib/utils'\n\nconst props = defineProps<{\n  class?: string\n  modelValue?: string\n}>()\n\nconst emit = defineEmits<{\n  'update:modelValue': [value: string]\n}>()\n\nconst modelValue = computed({\n  get: () => props.modelValue,\n  set: (value) => emit('update:modelValue', value ?? ''),\n})\n</script>\n\n<template>\n  <textarea\n    v-model=\"modelValue\"\n    :class=\"\n      cn(\n        'flex min-h-[100px] w-full border-3 border-input bg-background px-4 py-3 text-base shadow-[4px_4px_0px_hsl(var(--shadow-color))] transition-all duration-200 placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-0 focus-visible:translate-x-[4px] focus-visible:translate-y-[4px] focus-visible:shadow-none disabled:cursor-not-allowed disabled:opacity-50 md:text-sm',\n        props.class\n      )\n    \"\n  />\n</template>\n",
+      "type": "registry:ui",
+      "target": "components/ui/Textarea.vue"
+    }
+  ]
+}

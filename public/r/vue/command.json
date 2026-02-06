@@ -1,0 +1,69 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "command",
+  "type": "registry:ui",
+  "description": "Fast, composable command menu",
+  "dependencies": [
+    "reka-ui",
+    "lucide-vue-next"
+  ],
+  "registryDependencies": [
+    "utils"
+  ],
+  "files": [
+    {
+      "path": "registry/default/ui/Command.vue",
+      "content": "<script setup lang=\"ts\">\nimport { ComboboxRoot, type ComboboxRootProps } from 'reka-ui'\nimport { cn } from '@/lib/utils'\n\ninterface Props extends /* @vue-ignore */ Omit<ComboboxRootProps, 'open' | 'searchTerm'> {\n  class?: string\n}\n\nconst props = defineProps<Props>()\n</script>\n\n<template>\n  <ComboboxRoot\n    v-bind=\"props\"\n    :open=\"true\"\n    :class=\"\n      cn(\n        'flex h-full w-full flex-col overflow-hidden bg-popover text-popover-foreground',\n        props.class\n      )\n    \"\n  >\n    <slot />\n  </ComboboxRoot>\n</template>\n",
+      "type": "registry:ui",
+      "target": "components/ui/Command.vue"
+    },
+    {
+      "path": "registry/default/ui/CommandDialog.vue",
+      "content": "<script setup lang=\"ts\">\nimport { type DialogRootProps } from 'reka-ui'\nimport { Dialog, DialogContent } from '@/components/ui'\nimport Command from './Command.vue'\n\ninterface Props extends DialogRootProps {\n  class?: string\n}\n\nconst props = defineProps<Props>()\nconst emit = defineEmits<{\n  'update:open': [value: boolean]\n}>()\n</script>\n\n<template>\n  <Dialog v-bind=\"props\" @update:open=\"emit('update:open', $event)\">\n    <DialogContent class=\"overflow-hidden p-0\">\n      <Command\n        class=\"[&_[cmdk-group-heading]]:px-2 [&_[cmdk-group-heading]]:font-bold [&_[cmdk-group-heading]]:uppercase [&_[cmdk-group-heading]]:tracking-wide [&_[cmdk-group-heading]]:text-muted-foreground [&_[cmdk-group]:not([hidden])_~[cmdk-group]]:pt-0 [&_[cmdk-group]]:px-2 [&_[cmdk-input-wrapper]_svg]:h-5 [&_[cmdk-input-wrapper]_svg]:w-5 [&_[cmdk-input]]:h-12 [&_[cmdk-item]]:px-2 [&_[cmdk-item]]:py-3 [&_[cmdk-item]_svg]:h-5 [&_[cmdk-item]_svg]:w-5\"\n      >\n        <slot />\n      </Command>\n    </DialogContent>\n  </Dialog>\n</template>\n",
+      "type": "registry:ui",
+      "target": "components/ui/CommandDialog.vue"
+    },
+    {
+      "path": "registry/default/ui/CommandInput.vue",
+      "content": "<script setup lang=\"ts\">\nimport { ComboboxInput, type ComboboxInputProps } from 'reka-ui'\nimport { Search } from 'lucide-vue-next'\nimport { cn } from '@/lib/utils'\n\ninterface Props extends /* @vue-ignore */ ComboboxInputProps {\n  class?: string\n}\n\nconst props = defineProps<Props>()\n</script>\n\n<template>\n  <div class=\"flex items-center border-b-3 border-foreground px-3\" cmdk-input-wrapper=\"\">\n    <Search class=\"mr-2 h-4 w-4 shrink-0 opacity-50 stroke-[3]\" />\n    <ComboboxInput\n      v-bind=\"props\"\n      :class=\"\n        cn(\n          'flex h-11 w-full bg-transparent py-3 text-sm outline-none placeholder:text-muted-foreground disabled:cursor-not-allowed disabled:opacity-50',\n          props.class\n        )\n      \"\n    />\n  </div>\n</template>\n",
+      "type": "registry:ui",
+      "target": "components/ui/CommandInput.vue"
+    },
+    {
+      "path": "registry/default/ui/CommandList.vue",
+      "content": "<script setup lang=\"ts\">\nimport { ComboboxContent, type ComboboxContentProps } from 'reka-ui'\nimport { cn } from '@/lib/utils'\n\ninterface Props extends /* @vue-ignore */ ComboboxContentProps {\n  class?: string\n}\n\nconst props = defineProps<Props>()\n</script>\n\n<template>\n  <ComboboxContent\n    v-bind=\"props\"\n    :class=\"cn('max-h-[300px] overflow-y-auto overflow-x-hidden', props.class)\"\n  >\n    <slot />\n  </ComboboxContent>\n</template>\n",
+      "type": "registry:ui",
+      "target": "components/ui/CommandList.vue"
+    },
+    {
+      "path": "registry/default/ui/CommandEmpty.vue",
+      "content": "<script setup lang=\"ts\">\nimport { ComboboxEmpty } from 'reka-ui'\nimport { cn } from '@/lib/utils'\n\ndefineProps<{\n  class?: string\n}>()\n</script>\n\n<template>\n  <ComboboxEmpty :class=\"cn('py-6 text-center text-sm', $props.class)\">\n    <slot />\n  </ComboboxEmpty>\n</template>\n",
+      "type": "registry:ui",
+      "target": "components/ui/CommandEmpty.vue"
+    },
+    {
+      "path": "registry/default/ui/CommandGroup.vue",
+      "content": "<script setup lang=\"ts\">\nimport { ComboboxGroup, ComboboxLabel } from 'reka-ui'\nimport { cn } from '@/lib/utils'\n\ndefineProps<{\n  class?: string\n  heading?: string\n}>()\n</script>\n\n<template>\n  <ComboboxGroup\n    :class=\"\n      cn(\n        'overflow-hidden p-1 text-foreground [&_[cmdk-group-heading]]:px-2 [&_[cmdk-group-heading]]:py-1.5 [&_[cmdk-group-heading]]:text-xs [&_[cmdk-group-heading]]:font-bold [&_[cmdk-group-heading]]:uppercase [&_[cmdk-group-heading]]:tracking-wide [&_[cmdk-group-heading]]:text-muted-foreground',\n        $props.class\n      )\n    \"\n  >\n    <ComboboxLabel v-if=\"heading\" cmdk-group-heading=\"\" class=\"px-2 py-1.5 text-xs font-bold uppercase tracking-wide text-muted-foreground\">\n      {{ heading }}\n    </ComboboxLabel>\n    <slot />\n  </ComboboxGroup>\n</template>\n",
+      "type": "registry:ui",
+      "target": "components/ui/CommandGroup.vue"
+    },
+    {
+      "path": "registry/default/ui/CommandItem.vue",
+      "content": "<script setup lang=\"ts\">\nimport { ComboboxItem, type ComboboxItemProps } from 'reka-ui'\nimport { cn } from '@/lib/utils'\n\ninterface Props extends ComboboxItemProps {\n  class?: string\n}\n\nconst props = defineProps<Props>()\nconst emit = defineEmits<{\n  select: [event: Event]\n}>()\n</script>\n\n<template>\n  <ComboboxItem\n    v-bind=\"props\"\n    :class=\"\n      cn(\n        'relative flex cursor-default gap-2 select-none items-center px-2 py-1.5 text-sm outline-none data-[disabled]:pointer-events-none data-[highlighted]:bg-accent data-[highlighted]:text-accent-foreground data-[disabled]:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0',\n        props.class\n      )\n    \"\n    @select=\"emit('select', $event)\"\n  >\n    <slot />\n  </ComboboxItem>\n</template>\n",
+      "type": "registry:ui",
+      "target": "components/ui/CommandItem.vue"
+    },
+    {
+      "path": "registry/default/ui/CommandSeparator.vue",
+      "content": "<script setup lang=\"ts\">\nimport { ComboboxSeparator } from 'reka-ui'\nimport { cn } from '@/lib/utils'\n\ndefineProps<{\n  class?: string\n}>()\n</script>\n\n<template>\n  <ComboboxSeparator :class=\"cn('-mx-1 h-px bg-foreground', $props.class)\" />\n</template>\n",
+      "type": "registry:ui",
+      "target": "components/ui/CommandSeparator.vue"
+    },
+    {
+      "path": "registry/default/ui/CommandShortcut.vue",
+      "content": "<script setup lang=\"ts\">\nimport { cn } from '@/lib/utils'\n\ndefineProps<{\n  class?: string\n}>()\n</script>\n\n<template>\n  <span :class=\"cn('ml-auto text-xs tracking-widest text-muted-foreground', $props.class)\">\n    <slot />\n  </span>\n</template>\n",
+      "type": "registry:ui",
+      "target": "components/ui/CommandShortcut.vue"
+    }
+  ]
+}

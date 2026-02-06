@@ -1,0 +1,20 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "slider",
+  "type": "registry:ui",
+  "description": "An input for selecting a value within a range",
+  "dependencies": [
+    "reka-ui"
+  ],
+  "registryDependencies": [
+    "utils"
+  ],
+  "files": [
+    {
+      "path": "registry/default/ui/Slider.vue",
+      "content": "<script setup lang=\"ts\">\nimport { SliderRoot, SliderTrack, SliderRange, SliderThumb, type SliderRootProps } from 'reka-ui'\nimport { cn } from '@/lib/utils'\n\ninterface Props extends SliderRootProps {\n  class?: string\n}\n\nconst props = defineProps<Props>()\nconst emit = defineEmits<{\n  'update:modelValue': [value: number[] | undefined]\n}>()\n</script>\n\n<template>\n  <SliderRoot\n    v-bind=\"props\"\n    :class=\"cn('relative flex w-full touch-none select-none items-center', props.class)\"\n    @update:model-value=\"(val) => emit('update:modelValue', val)\"\n  >\n    <SliderTrack\n      class=\"relative h-3 w-full grow overflow-hidden border-3 border-foreground bg-muted shadow-[4px_4px_0px_hsl(var(--shadow-color))]\"\n    >\n      <SliderRange class=\"absolute h-full bg-primary transition-all\" />\n    </SliderTrack>\n    <SliderThumb\n      class=\"block h-6 w-6 border-3 border-foreground bg-background shadow-[4px_4px_0px_hsl(var(--shadow-color))] transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 hover:translate-x-[4px] hover:translate-y-[4px] hover:shadow-none active:translate-x-[4px] active:translate-y-[4px] active:shadow-none cursor-grab active:cursor-grabbing\"\n    />\n  </SliderRoot>\n</template>\n",
+      "type": "registry:ui",
+      "target": "components/ui/Slider.vue"
+    }
+  ]
+}

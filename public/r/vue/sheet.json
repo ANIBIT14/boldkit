@@ -1,0 +1,64 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "sheet",
+  "type": "registry:ui",
+  "description": "A side panel that slides in",
+  "dependencies": [
+    "reka-ui",
+    "lucide-vue-next",
+    "class-variance-authority"
+  ],
+  "registryDependencies": [
+    "utils"
+  ],
+  "files": [
+    {
+      "path": "registry/default/ui/Sheet.vue",
+      "content": "<script setup lang=\"ts\">\nimport { DialogRoot, type DialogRootProps } from 'reka-ui'\n\nconst props = defineProps<DialogRootProps>()\nconst emit = defineEmits<{\n  'update:open': [value: boolean]\n}>()\n</script>\n\n<template>\n  <DialogRoot v-bind=\"props\" @update:open=\"emit('update:open', $event)\">\n    <slot />\n  </DialogRoot>\n</template>\n",
+      "type": "registry:ui",
+      "target": "components/ui/Sheet.vue"
+    },
+    {
+      "path": "registry/default/ui/SheetTrigger.vue",
+      "content": "<script setup lang=\"ts\">\nimport { DialogTrigger } from 'reka-ui'\n</script>\n\n<template>\n  <DialogTrigger as-child>\n    <slot />\n  </DialogTrigger>\n</template>\n",
+      "type": "registry:ui",
+      "target": "components/ui/SheetTrigger.vue"
+    },
+    {
+      "path": "registry/default/ui/SheetContent.vue",
+      "content": "<script setup lang=\"ts\">\nimport { DialogPortal, DialogOverlay, DialogContent, DialogClose } from 'reka-ui'\nimport { X } from 'lucide-vue-next'\nimport { cva, type VariantProps } from 'class-variance-authority'\nimport { cn } from '@/lib/utils'\n\nconst sheetVariants = cva(\n  'fixed z-50 gap-4 bg-background border-3 border-foreground p-6 shadow-[8px_8px_0px_hsl(var(--shadow-color))] transition ease-in-out data-[state=closed]:duration-300 data-[state=open]:duration-500 data-[state=open]:animate-in data-[state=closed]:animate-out',\n  {\n    variants: {\n      side: {\n        top: 'inset-x-0 top-0 border-t-0 data-[state=closed]:slide-out-to-top data-[state=open]:slide-in-from-top',\n        bottom:\n          'inset-x-0 bottom-0 border-b-0 data-[state=closed]:slide-out-to-bottom data-[state=open]:slide-in-from-bottom',\n        left: 'inset-y-0 left-0 h-full w-3/4 border-l-0 data-[state=closed]:slide-out-to-left data-[state=open]:slide-in-from-left sm:max-w-sm',\n        right:\n          'inset-y-0 right-0 h-full w-3/4 border-r-0 data-[state=closed]:slide-out-to-right data-[state=open]:slide-in-from-right sm:max-w-sm',\n      },\n    },\n    defaultVariants: {\n      side: 'right',\n    },\n  }\n)\n\ntype SheetVariants = VariantProps<typeof sheetVariants>\n\ninterface Props {\n  class?: string\n  side?: SheetVariants['side']\n}\n\nconst props = withDefaults(defineProps<Props>(), {\n  side: 'right',\n})\n</script>\n\n<template>\n  <DialogPortal>\n    <DialogOverlay\n      class=\"fixed inset-0 z-50 bg-black/70 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0\"\n    />\n    <DialogContent :class=\"cn(sheetVariants({ side: props.side }), props.class)\">\n      <DialogClose\n        class=\"absolute right-4 top-4 border-2 border-foreground bg-background p-1 shadow-[4px_4px_0px_hsl(var(--shadow-color))] transition-all duration-200 hover:translate-x-[4px] hover:translate-y-[4px] hover:shadow-none active:translate-x-[4px] active:translate-y-[4px] active:shadow-none focus:outline-none focus:ring-2 focus:ring-ring disabled:pointer-events-none\"\n      >\n        <X class=\"h-4 w-4 stroke-[3]\" />\n        <span class=\"sr-only\">Close</span>\n      </DialogClose>\n      <slot />\n    </DialogContent>\n  </DialogPortal>\n</template>\n",
+      "type": "registry:ui",
+      "target": "components/ui/SheetContent.vue"
+    },
+    {
+      "path": "registry/default/ui/SheetHeader.vue",
+      "content": "<script setup lang=\"ts\">\nimport { cn } from '@/lib/utils'\n\ndefineProps<{\n  class?: string\n}>()\n</script>\n\n<template>\n  <div :class=\"cn('flex flex-col space-y-2 text-center sm:text-left', $props.class)\">\n    <slot />\n  </div>\n</template>\n",
+      "type": "registry:ui",
+      "target": "components/ui/SheetHeader.vue"
+    },
+    {
+      "path": "registry/default/ui/SheetFooter.vue",
+      "content": "<script setup lang=\"ts\">\nimport { cn } from '@/lib/utils'\n\ndefineProps<{\n  class?: string\n}>()\n</script>\n\n<template>\n  <div :class=\"cn('flex flex-col-reverse sm:flex-row sm:justify-end sm:space-x-2', $props.class)\">\n    <slot />\n  </div>\n</template>\n",
+      "type": "registry:ui",
+      "target": "components/ui/SheetFooter.vue"
+    },
+    {
+      "path": "registry/default/ui/SheetTitle.vue",
+      "content": "<script setup lang=\"ts\">\nimport { DialogTitle } from 'reka-ui'\nimport { cn } from '@/lib/utils'\n\ndefineProps<{\n  class?: string\n}>()\n</script>\n\n<template>\n  <DialogTitle :class=\"cn('text-lg font-bold uppercase tracking-wide', $props.class)\">\n    <slot />\n  </DialogTitle>\n</template>\n",
+      "type": "registry:ui",
+      "target": "components/ui/SheetTitle.vue"
+    },
+    {
+      "path": "registry/default/ui/SheetDescription.vue",
+      "content": "<script setup lang=\"ts\">\nimport { DialogDescription } from 'reka-ui'\nimport { cn } from '@/lib/utils'\n\ndefineProps<{\n  class?: string\n}>()\n</script>\n\n<template>\n  <DialogDescription :class=\"cn('text-sm text-muted-foreground', $props.class)\">\n    <slot />\n  </DialogDescription>\n</template>\n",
+      "type": "registry:ui",
+      "target": "components/ui/SheetDescription.vue"
+    },
+    {
+      "path": "registry/default/ui/SheetClose.vue",
+      "content": "<script setup lang=\"ts\">\nimport { DialogClose } from 'reka-ui'\n</script>\n\n<template>\n  <DialogClose as-child>\n    <slot />\n  </DialogClose>\n</template>\n",
+      "type": "registry:ui",
+      "target": "components/ui/SheetClose.vue"
+    }
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "collapsible",
+  "type": "registry:ui",
+  "description": "An interactive component that expands/collapses",
+  "dependencies": [
+    "reka-ui"
+  ],
+  "registryDependencies": [
+    "utils"
+  ],
+  "files": [
+    {
+      "path": "registry/default/ui/Collapsible.vue",
+      "content": "<script setup lang=\"ts\">\nimport { CollapsibleRoot, type CollapsibleRootProps } from 'reka-ui'\n\nconst props = defineProps<CollapsibleRootProps>()\nconst emit = defineEmits<{\n  'update:open': [value: boolean]\n}>()\n</script>\n\n<template>\n  <CollapsibleRoot v-bind=\"props\" @update:open=\"emit('update:open', $event)\">\n    <slot />\n  </CollapsibleRoot>\n</template>\n",
+      "type": "registry:ui",
+      "target": "components/ui/Collapsible.vue"
+    },
+    {
+      "path": "registry/default/ui/CollapsibleTrigger.vue",
+      "content": "<script setup lang=\"ts\">\nimport { CollapsibleTrigger as CollapsibleTriggerPrimitive } from 'reka-ui'\nimport { cn } from '@/lib/utils'\n\ndefineProps<{\n  class?: string\n}>()\n</script>\n\n<template>\n  <CollapsibleTriggerPrimitive\n    :class=\"cn('transition-all duration-150 [&[data-state=open]>svg]:rotate-180', $props.class)\"\n  >\n    <slot />\n  </CollapsibleTriggerPrimitive>\n</template>\n",
+      "type": "registry:ui",
+      "target": "components/ui/CollapsibleTrigger.vue"
+    },
+    {
+      "path": "registry/default/ui/CollapsibleContent.vue",
+      "content": "<script setup lang=\"ts\">\nimport { CollapsibleContent as CollapsibleContentPrimitive } from 'reka-ui'\nimport { cn } from '@/lib/utils'\n\ndefineProps<{\n  class?: string\n}>()\n</script>\n\n<template>\n  <CollapsibleContentPrimitive\n    :class=\"\n      cn(\n        'overflow-hidden transition-all data-[state=closed]:animate-collapsible-up data-[state=open]:animate-collapsible-down',\n        $props.class\n      )\n    \"\n  >\n    <slot />\n  </CollapsibleContentPrimitive>\n</template>\n",
+      "type": "registry:ui",
+      "target": "components/ui/CollapsibleContent.vue"
+    }
+  ]
+}

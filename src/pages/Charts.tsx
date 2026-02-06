@@ -37,6 +37,7 @@ import {
 } from 'recharts'
 import { TrendingUp, TrendingDown, Code, Copy, Check } from 'lucide-react'
 import { Layout } from '@/components/layout'
+import { useFramework, FrameworkToggle, ReactIcon, VueIcon } from '@/hooks/use-framework'
 
 // Sample data for charts
 const areaData = [
@@ -104,6 +105,249 @@ const pieChartConfig: ChartConfig = {
   firefox: { label: 'Firefox', color: 'hsl(var(--accent))' },
   edge: { label: 'Edge', color: 'hsl(var(--success))' },
   other: { label: 'Other', color: 'hsl(var(--muted))' },
+}
+
+// Vue code examples for copy functionality
+const vueChartCodes = {
+  areaBasic: `<script setup lang="ts">
+import { use } from 'echarts/core'
+import { CanvasRenderer } from 'echarts/renderers'
+import { LineChart } from 'echarts/charts'
+import { GridComponent, TooltipComponent } from 'echarts/components'
+import VChart from 'vue-echarts'
+import { ref } from 'vue'
+
+use([CanvasRenderer, LineChart, GridComponent, TooltipComponent])
+
+const option = ref({
+  grid: { top: 20, right: 20, bottom: 40, left: 50 },
+  xAxis: {
+    type: 'category',
+    data: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+    axisLine: { show: false },
+    axisTick: { show: false }
+  },
+  yAxis: { type: 'value', axisLine: { show: false }, axisTick: { show: false } },
+  tooltip: { trigger: 'axis' },
+  series: [{
+    type: 'line',
+    data: [186, 305, 237, 73, 209, 214],
+    areaStyle: { color: 'hsl(var(--primary))', opacity: 0.6 },
+    lineStyle: { color: 'hsl(var(--foreground))', width: 3 },
+    smooth: true
+  }]
+})
+</script>
+
+<template>
+  <VChart :option="option" class="h-[300px] w-full" autoresize />
+</template>`,
+
+  areaStacked: `<script setup lang="ts">
+import { use } from 'echarts/core'
+import { CanvasRenderer } from 'echarts/renderers'
+import { LineChart } from 'echarts/charts'
+import { GridComponent, TooltipComponent, LegendComponent } from 'echarts/components'
+import VChart from 'vue-echarts'
+import { ref } from 'vue'
+
+use([CanvasRenderer, LineChart, GridComponent, TooltipComponent, LegendComponent])
+
+const option = ref({
+  grid: { top: 40, right: 20, bottom: 60, left: 50 },
+  legend: { bottom: 0 },
+  xAxis: { type: 'category', data: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'] },
+  yAxis: { type: 'value' },
+  tooltip: { trigger: 'axis' },
+  series: [
+    {
+      name: 'Desktop',
+      type: 'line',
+      stack: 'total',
+      data: [186, 305, 237, 73, 209, 214],
+      areaStyle: { color: 'hsl(var(--primary))', opacity: 0.6 },
+      lineStyle: { color: 'hsl(var(--foreground))', width: 3 },
+      smooth: true
+    },
+    {
+      name: 'Mobile',
+      type: 'line',
+      stack: 'total',
+      data: [80, 200, 120, 190, 130, 140],
+      areaStyle: { color: 'hsl(var(--secondary))', opacity: 0.6 },
+      lineStyle: { color: 'hsl(var(--foreground))', width: 3 },
+      smooth: true
+    }
+  ]
+})
+</script>
+
+<template>
+  <VChart :option="option" class="h-[300px] w-full" autoresize />
+</template>`,
+
+  barBasic: `<script setup lang="ts">
+import { use } from 'echarts/core'
+import { CanvasRenderer } from 'echarts/renderers'
+import { BarChart } from 'echarts/charts'
+import { GridComponent, TooltipComponent } from 'echarts/components'
+import VChart from 'vue-echarts'
+import { ref } from 'vue'
+
+use([CanvasRenderer, BarChart, GridComponent, TooltipComponent])
+
+const option = ref({
+  grid: { top: 20, right: 20, bottom: 40, left: 50 },
+  xAxis: { type: 'category', data: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'] },
+  yAxis: { type: 'value' },
+  tooltip: { trigger: 'axis' },
+  series: [{
+    type: 'bar',
+    data: [186, 305, 237, 73, 209, 214],
+    itemStyle: {
+      color: 'hsl(var(--primary))',
+      borderColor: 'hsl(var(--foreground))',
+      borderWidth: 3
+    }
+  }]
+})
+</script>
+
+<template>
+  <VChart :option="option" class="h-[300px] w-full" autoresize />
+</template>`,
+
+  barMultiple: `<script setup lang="ts">
+import { use } from 'echarts/core'
+import { CanvasRenderer } from 'echarts/renderers'
+import { BarChart } from 'echarts/charts'
+import { GridComponent, TooltipComponent, LegendComponent } from 'echarts/components'
+import VChart from 'vue-echarts'
+import { ref } from 'vue'
+
+use([CanvasRenderer, BarChart, GridComponent, TooltipComponent, LegendComponent])
+
+const option = ref({
+  legend: { bottom: 0 },
+  xAxis: { type: 'category', data: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'] },
+  yAxis: { type: 'value' },
+  tooltip: { trigger: 'axis' },
+  series: [
+    {
+      name: 'Desktop',
+      type: 'bar',
+      data: [186, 305, 237, 73, 209, 214],
+      itemStyle: { color: 'hsl(var(--primary))', borderColor: 'hsl(var(--foreground))', borderWidth: 3 }
+    },
+    {
+      name: 'Mobile',
+      type: 'bar',
+      data: [80, 200, 120, 190, 130, 140],
+      itemStyle: { color: 'hsl(var(--secondary))', borderColor: 'hsl(var(--foreground))', borderWidth: 3 }
+    }
+  ]
+})
+</script>
+
+<template>
+  <VChart :option="option" class="h-[300px] w-full" autoresize />
+</template>`,
+
+  lineBasic: `<script setup lang="ts">
+import { use } from 'echarts/core'
+import { CanvasRenderer } from 'echarts/renderers'
+import { LineChart } from 'echarts/charts'
+import { GridComponent, TooltipComponent } from 'echarts/components'
+import VChart from 'vue-echarts'
+import { ref } from 'vue'
+
+use([CanvasRenderer, LineChart, GridComponent, TooltipComponent])
+
+const option = ref({
+  xAxis: { type: 'category', data: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'] },
+  yAxis: { type: 'value' },
+  tooltip: { trigger: 'axis' },
+  series: [{
+    type: 'line',
+    data: [186, 305, 237, 73, 209, 214],
+    lineStyle: { color: 'hsl(var(--primary))', width: 4 },
+    symbol: 'circle',
+    symbolSize: 10,
+    itemStyle: {
+      color: 'hsl(var(--primary))',
+      borderColor: 'hsl(var(--foreground))',
+      borderWidth: 3
+    },
+    smooth: true
+  }]
+})
+</script>
+
+<template>
+  <VChart :option="option" class="h-[300px] w-full" autoresize />
+</template>`,
+
+  pieBasic: `<script setup lang="ts">
+import { use } from 'echarts/core'
+import { CanvasRenderer } from 'echarts/renderers'
+import { PieChart } from 'echarts/charts'
+import { TooltipComponent } from 'echarts/components'
+import VChart from 'vue-echarts'
+import { ref } from 'vue'
+
+use([CanvasRenderer, PieChart, TooltipComponent])
+
+const option = ref({
+  tooltip: { trigger: 'item' },
+  series: [{
+    type: 'pie',
+    radius: '70%',
+    data: [
+      { value: 275, name: 'Chrome', itemStyle: { color: 'hsl(var(--primary))' } },
+      { value: 200, name: 'Safari', itemStyle: { color: 'hsl(var(--secondary))' } },
+      { value: 187, name: 'Firefox', itemStyle: { color: 'hsl(var(--accent))' } },
+      { value: 173, name: 'Edge', itemStyle: { color: 'hsl(var(--success))' } },
+      { value: 90, name: 'Other', itemStyle: { color: 'hsl(var(--muted))' } }
+    ],
+    itemStyle: { borderColor: 'hsl(var(--foreground))', borderWidth: 3 }
+  }]
+})
+</script>
+
+<template>
+  <VChart :option="option" class="h-[300px] w-full" autoresize />
+</template>`,
+
+  pieDonut: `<script setup lang="ts">
+import { use } from 'echarts/core'
+import { CanvasRenderer } from 'echarts/renderers'
+import { PieChart } from 'echarts/charts'
+import { TooltipComponent } from 'echarts/components'
+import VChart from 'vue-echarts'
+import { ref } from 'vue'
+
+use([CanvasRenderer, PieChart, TooltipComponent])
+
+const option = ref({
+  tooltip: { trigger: 'item' },
+  series: [{
+    type: 'pie',
+    radius: ['40%', '70%'],
+    data: [
+      { value: 275, name: 'Chrome', itemStyle: { color: 'hsl(var(--primary))' } },
+      { value: 200, name: 'Safari', itemStyle: { color: 'hsl(var(--secondary))' } },
+      { value: 187, name: 'Firefox', itemStyle: { color: 'hsl(var(--accent))' } },
+      { value: 173, name: 'Edge', itemStyle: { color: 'hsl(var(--success))' } },
+      { value: 90, name: 'Other', itemStyle: { color: 'hsl(var(--muted))' } }
+    ],
+    itemStyle: { borderColor: 'hsl(var(--foreground))', borderWidth: 3 }
+  }]
+})
+</script>
+
+<template>
+  <VChart :option="option" class="h-[300px] w-full" autoresize />
+</template>`
 }
 
 // Code examples for copy functionality
@@ -761,6 +1005,7 @@ function ChartCard({
   trend,
   trendValue,
   code,
+  vueCode,
   children,
 }: {
   title: string
@@ -768,12 +1013,16 @@ function ChartCard({
   trend?: 'up' | 'down'
   trendValue?: string
   code: string
+  vueCode?: string
   children: React.ReactNode
 }) {
   const [copied, setCopied] = useState(false)
+  const { framework } = useFramework()
+
+  const currentCode = framework === 'react' ? code : (vueCode || code)
 
   const copyCode = () => {
-    navigator.clipboard.writeText(code)
+    navigator.clipboard.writeText(currentCode)
     setCopied(true)
     setTimeout(() => setCopied(false), 2000)
   }
@@ -793,7 +1042,13 @@ function ChartCard({
           </DialogTrigger>
           <DialogContent className="max-w-3xl max-h-[80vh] p-0">
             <DialogHeader className="p-6 pb-4 pr-14">
-              <DialogTitle>{title}</DialogTitle>
+              <DialogTitle className="flex items-center gap-2">
+                {title}
+                <Badge variant={framework === 'react' ? 'info' : 'success'} className="gap-1">
+                  {framework === 'react' ? <ReactIcon className="h-3 w-3" /> : <VueIcon className="h-3 w-3" />}
+                  {framework === 'react' ? 'React' : 'Vue'}
+                </Badge>
+              </DialogTitle>
               <div className="pt-2">
                 <Button variant="outline" size="sm" onClick={copyCode} className="gap-2">
                   {copied ? <Check className="h-4 w-4" /> : <Copy className="h-4 w-4" />}
@@ -803,8 +1058,13 @@ function ChartCard({
             </DialogHeader>
             <ScrollArea className="max-h-[60vh] px-6 pb-6">
               <pre className="p-4 bg-muted border-3 border-foreground text-sm whitespace-pre-wrap break-words">
-                <code className="text-xs leading-relaxed block">{code}</code>
+                <code className="text-xs leading-relaxed block">{currentCode}</code>
               </pre>
+              {framework === 'vue' && !vueCode && (
+                <p className="mt-4 text-sm text-muted-foreground flex items-center gap-2">
+                  <VueIcon className="h-4 w-4" /> Vue code sample coming soon. Uses vue-echarts for charting.
+                </p>
+              )}
             </ScrollArea>
           </DialogContent>
         </Dialog>
@@ -829,19 +1089,27 @@ function ChartCard({
 
 export function Charts() {
   const [activeSlice, setActiveSlice] = useState(0)
+  const { framework } = useFramework()
 
   return (
     <Layout>
       {/* Header */}
       <header className="border-b-3 border-foreground bg-background">
         <div className="container mx-auto py-12 px-4 md:px-6 text-center">
-          <Badge variant="accent" className="mb-4">Charts</Badge>
+          <div className="flex items-center justify-center gap-3 mb-4">
+            <Badge variant="accent">Charts</Badge>
+            <Badge variant={framework === 'react' ? 'info' : 'success'} className="gap-1.5">
+              {framework === 'react' ? <ReactIcon className="h-4 w-4" /> : <VueIcon className="h-4 w-4" />}
+              {framework === 'react' ? 'React' : 'Vue 3'}
+            </Badge>
+          </div>
           <h1 className="text-3xl font-black uppercase tracking-tight md:text-5xl">
             Chart Components
           </h1>
-          <p className="mt-4 text-lg text-muted-foreground max-w-2xl mx-auto">
-            Beautiful charts with neubrutalism styling. Built on top of Recharts with bold borders and hard shadows.
+          <p className="mt-4 text-lg text-muted-foreground max-w-2xl mx-auto mb-6">
+            Beautiful charts with neubrutalism styling. Built on top of {framework === 'react' ? 'Recharts' : 'vue-echarts'} with bold borders and hard shadows.
           </p>
+          <FrameworkToggle />
         </div>
       </header>
 
@@ -866,6 +1134,7 @@ export function Charts() {
                 trend="up"
                 trendValue="+5.2%"
                 code={chartCodes.areaBasic}
+                vueCode={vueChartCodes.areaBasic}
               >
                 <ChartContainer config={chartConfig} className="h-[300px] w-full">
                   <AreaChart data={areaData}>
@@ -891,6 +1160,7 @@ export function Charts() {
                 trend="up"
                 trendValue="+12.5%"
                 code={chartCodes.areaStacked}
+                vueCode={vueChartCodes.areaStacked}
               >
                 <ChartContainer config={chartConfig} className="h-[300px] w-full">
                   <AreaChart data={areaData}>
@@ -978,6 +1248,7 @@ export function Charts() {
                 trend="up"
                 trendValue="+8.1%"
                 code={chartCodes.barBasic}
+                vueCode={vueChartCodes.barBasic}
               >
                 <ChartContainer config={chartConfig} className="h-[300px] w-full">
                   <BarChart data={barData}>
@@ -999,6 +1270,7 @@ export function Charts() {
                 title="Bar Chart - Multiple"
                 description="Comparing desktop and mobile"
                 code={chartCodes.barMultiple}
+                vueCode={vueChartCodes.barMultiple}
               >
                 <ChartContainer config={chartConfig} className="h-[300px] w-full">
                   <BarChart data={barData}>
@@ -1085,6 +1357,7 @@ export function Charts() {
                 trend="up"
                 trendValue="+3.7%"
                 code={chartCodes.lineBasic}
+                vueCode={vueChartCodes.lineBasic}
               >
                 <ChartContainer config={chartConfig} className="h-[300px] w-full">
                   <LineChart data={lineData}>
@@ -1186,6 +1459,7 @@ export function Charts() {
                 title="Pie Chart"
                 description="Browser usage breakdown"
                 code={chartCodes.pieBasic}
+                vueCode={vueChartCodes.pieBasic}
               >
                 <ChartContainer config={pieChartConfig} className="h-[300px] w-full">
                   <PieChart>
@@ -1212,6 +1486,7 @@ export function Charts() {
                 title="Pie Chart - Donut"
                 description="Donut style visualization"
                 code={chartCodes.pieDonut}
+                vueCode={vueChartCodes.pieDonut}
               >
                 <ChartContainer config={pieChartConfig} className="h-[300px] w-full">
                   <PieChart>
@@ -1506,12 +1781,18 @@ export function Charts() {
             {/* Code Example */}
             <Card className="bg-muted/30">
               <CardHeader>
-                <CardTitle>Usage Example</CardTitle>
+                <CardTitle className="flex items-center gap-2">
+                  Usage Example
+                  <Badge variant={framework === 'react' ? 'info' : 'success'} className="gap-1">
+                    {framework === 'react' ? <ReactIcon className="h-3 w-3" /> : <VueIcon className="h-3 w-3" />}
+                    {framework === 'react' ? 'React' : 'Vue'}
+                  </Badge>
+                </CardTitle>
                 <CardDescription>How to use the chart utilities</CardDescription>
               </CardHeader>
               <CardContent>
                 <pre className="p-4 bg-background border-3 border-foreground text-sm overflow-x-auto shadow-[4px_4px_0px_hsl(var(--shadow-color))]">
-                  <code>{`import { ChartContainer, CHART_PALETTES, getChartColor, createChartConfig } from '@/components/ui/chart'
+                  <code>{framework === 'react' ? `import { ChartContainer, CHART_PALETTES, getChartColor, createChartConfig } from '@/components/ui/chart'
 
 // Use pre-built palettes
 const colors = CHART_PALETTES.vibrant // ['hsl(0 84% 60%)', 'hsl(174 62% 50%)', ...]
@@ -1529,7 +1810,57 @@ const config = createChartConfig(['sales', 'profit'], ['Sales', 'Profit'], 'bold
     <Bar dataKey="sales" fill={getChartColor('vibrant', 0)} />
     <Bar dataKey="profit" fill={getChartColor('vibrant', 1)} />
   </BarChart>
-</ChartContainer>`}</code>
+</ChartContainer>` : `<script setup lang="ts">
+import { use } from 'echarts/core'
+import { CanvasRenderer } from 'echarts/renderers'
+import { BarChart } from 'echarts/charts'
+import { GridComponent, TooltipComponent, LegendComponent } from 'echarts/components'
+import VChart from 'vue-echarts'
+import { ref } from 'vue'
+import { CHART_PALETTES, getChartColor } from '@/lib/chart-utils'
+
+use([CanvasRenderer, BarChart, GridComponent, TooltipComponent, LegendComponent])
+
+// Use pre-built palettes
+const colors = CHART_PALETTES.vibrant
+
+// Get individual colors by index
+const primaryColor = getChartColor('vibrant', 0)
+const secondaryColor = getChartColor('vibrant', 1)
+
+const option = ref({
+  legend: { bottom: 0 },
+  xAxis: { type: 'category', data: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'] },
+  yAxis: { type: 'value' },
+  tooltip: { trigger: 'axis' },
+  series: [
+    {
+      name: 'Sales',
+      type: 'bar',
+      data: [186, 305, 237, 73, 209, 214],
+      itemStyle: {
+        color: primaryColor,
+        borderColor: 'hsl(var(--foreground))',
+        borderWidth: 3
+      }
+    },
+    {
+      name: 'Profit',
+      type: 'bar',
+      data: [80, 200, 120, 190, 130, 140],
+      itemStyle: {
+        color: secondaryColor,
+        borderColor: 'hsl(var(--foreground))',
+        borderWidth: 3
+      }
+    }
+  ]
+})
+</script>
+
+<template>
+  <VChart :option="option" class="h-[300px] w-full" autoresize />
+</template>`}</code>
                 </pre>
               </CardContent>
             </Card>

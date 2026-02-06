@@ -104,6 +104,59 @@ export default function Example() {
   )
 }`
 
+const vueSourceCode = `<!-- Card.vue -->
+<script setup lang="ts">
+import { cn } from '@/lib/utils'
+
+defineProps<{
+  class?: string
+  interactive?: boolean
+}>()
+</script>
+
+<template>
+  <div
+    :class="
+      cn(
+        'bg-card text-card-foreground border-3 border-foreground shadow-[4px_4px_0px_hsl(var(--shadow-color))] transition-all duration-200',
+        interactive &&
+          'cursor-pointer hover:translate-x-[4px] hover:translate-y-[4px] hover:shadow-none',
+        $props.class
+      )
+    "
+  >
+    <slot />
+  </div>
+</template>
+
+<!-- Also includes: CardHeader, CardTitle, CardDescription, CardContent, CardFooter -->`
+
+const vueUsageCode = `<script setup lang="ts">
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from '@/components/ui'
+</script>
+
+<template>
+  <Card>
+    <CardHeader>
+      <CardTitle>Card Title</CardTitle>
+      <CardDescription>Card Description</CardDescription>
+    </CardHeader>
+    <CardContent>
+      <p>Card Content</p>
+    </CardContent>
+    <CardFooter>
+      <p>Card Footer</p>
+    </CardFooter>
+  </Card>
+</template>`
+
 export function CardDoc() {
   return (
     <>
@@ -111,8 +164,11 @@ export function CardDoc() {
         name="Card"
         description="A container component with header, content, and footer sections. Perfect for displaying grouped content."
         dependencies={[]}
+        vueDependencies={[]}
         sourceCode={sourceCode}
+        vueSourceCode={vueSourceCode}
         usageCode={usageCode}
+        vueUsageCode={vueUsageCode}
       >
         <Card className="max-w-sm">
           <CardHeader>
@@ -153,6 +209,29 @@ export function CardDoc() {
     <Button className="w-full">Create Account</Button>
   </CardFooter>
 </Card>`}
+        vueCode={`<template>
+  <Card class="w-[350px]">
+    <CardHeader>
+      <CardTitle>Create Account</CardTitle>
+      <CardDescription>Enter your details below</CardDescription>
+    </CardHeader>
+    <CardContent>
+      <div class="grid gap-4">
+        <div class="grid gap-2">
+          <Label for="name">Name</Label>
+          <Input id="name" placeholder="John Doe" />
+        </div>
+        <div class="grid gap-2">
+          <Label for="email">Email</Label>
+          <Input id="email" type="email" placeholder="john@example.com" />
+        </div>
+      </div>
+    </CardContent>
+    <CardFooter>
+      <Button class="w-full">Create Account</Button>
+    </CardFooter>
+  </Card>
+</template>`}
       >
         <Card className="w-[350px]">
           <CardHeader>
@@ -189,6 +268,16 @@ export function CardDoc() {
     <p>This card has a colored header.</p>
   </CardContent>
 </Card>`}
+        vueCode={`<template>
+  <Card class="w-[350px]">
+    <CardHeader class="bg-primary">
+      <CardTitle>Featured</CardTitle>
+    </CardHeader>
+    <CardContent class="pt-6">
+      <p>This card has a colored header.</p>
+    </CardContent>
+  </Card>
+</template>`}
       >
         <Card className="w-[350px]">
           <CardHeader className="bg-primary">

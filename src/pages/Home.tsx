@@ -9,15 +9,23 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { LayeredCard, LayeredCardContent, LayeredCardHeader, LayeredCardTitle } from '@/components/ui/layered-card'
 import { Sticker, Stamp } from '@/components/ui/sticker'
 import { Layout } from '@/components/layout'
-import { Copy, Check, ArrowRight, Zap, Palette, Code2, Smartphone, Github } from 'lucide-react'
+import { Copy, Check, ArrowRight, Zap, Palette, Code2, Smartphone, Github, Layers } from 'lucide-react'
 import { useState } from 'react'
 import { SEO, pageSEO } from '@/components/SEO'
+import { useFramework, ReactIcon, VueIcon } from '@/hooks/use-framework'
 
 export function Home() {
   const [copied, setCopied] = useState(false)
+  // Use global framework context
+  const { framework, setFramework } = useFramework()
+
+  const commands = {
+    react: 'npx shadcn@latest add https://boldkit.dev/r/button.json',
+    vue: 'npx shadcn-vue@latest add https://boldkit.dev/r/vue/button.json'
+  }
 
   const copyCommand = () => {
-    navigator.clipboard.writeText('npx shadcn@latest add https://boldkit.dev/r/button.json')
+    navigator.clipboard.writeText(commands[framework])
     setCopied(true)
     setTimeout(() => setCopied(false), 2000)
   }
@@ -32,9 +40,16 @@ export function Home() {
         <div className="grid-pattern absolute inset-0 opacity-50" />
         <div className="container relative mx-auto px-4 py-20 md:py-32">
           <div className="mx-auto max-w-4xl text-center">
-            <Badge variant="accent" className="mb-6">
-              Open Source UI Library
-            </Badge>
+            {/* Framework badges */}
+            <div className="mb-6 flex items-center justify-center gap-3">
+              <Badge variant="accent" className="gap-1.5">
+                <ReactIcon className="h-5 w-5" /> React
+              </Badge>
+              <Badge variant="success" className="gap-1.5">
+                <VueIcon className="h-5 w-5" /> Vue 3
+                <span className="ml-1 rounded bg-background/20 px-1 py-0.5 text-[10px] font-bold">NEW</span>
+              </Badge>
+            </div>
             <h1 className="mb-6 text-4xl font-black uppercase tracking-tight md:text-6xl lg:text-7xl">
               Bold. Raw.{' '}
               <span className="relative inline-block bg-primary px-2 py-1 border-3 border-foreground bk-shadow">
@@ -42,7 +57,7 @@ export function Home() {
               </span>
             </h1>
             <p className="mx-auto mb-8 max-w-2xl text-lg text-muted-foreground md:text-xl">
-              A neubrutalism React component library built on top of shadcn/ui.
+              A neubrutalism component library for React and Vue 3.
               High-contrast colors, thick borders, and hard shadows that make your UI pop.
             </p>
             <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
@@ -58,12 +73,32 @@ export function Home() {
               </Link>
             </div>
 
-            {/* CLI Command */}
-            <div className="mt-8 inline-flex items-center gap-2 border-3 border-foreground bg-muted px-4 py-2 bk-shadow">
-              <code className="text-sm font-mono">npx boldkit-ui init</code>
-              <Button variant="ghost" size="icon" className="h-8 w-8" onClick={copyCommand}>
-                {copied ? <Check className="h-4 w-4" /> : <Copy className="h-4 w-4" />}
-              </Button>
+            {/* Framework Toggle + CLI Command */}
+            <div className="mt-8 flex flex-col items-center gap-3">
+              <div className="inline-flex border-3 border-foreground bg-background">
+                <button
+                  onClick={() => setFramework('react')}
+                  className={`flex items-center gap-2 px-4 py-2 font-bold transition-colors ${
+                    framework === 'react' ? 'bg-primary' : 'hover:bg-muted'
+                  }`}
+                >
+                  <ReactIcon className="h-5 w-5" /> React
+                </button>
+                <button
+                  onClick={() => setFramework('vue')}
+                  className={`flex items-center gap-2 px-4 py-2 font-bold transition-colors border-l-3 border-foreground ${
+                    framework === 'vue' ? 'bg-success' : 'hover:bg-muted'
+                  }`}
+                >
+                  <VueIcon className="h-5 w-5" /> Vue
+                </button>
+              </div>
+              <div className="inline-flex items-center gap-2 border-3 border-foreground bg-muted px-4 py-2 bk-shadow">
+                <code className="text-sm font-mono">{commands[framework]}</code>
+                <Button variant="ghost" size="icon" className="h-8 w-8" onClick={copyCommand}>
+                  {copied ? <Check className="h-4 w-4" /> : <Copy className="h-4 w-4" />}
+                </Button>
+              </div>
             </div>
           </div>
         </div>
@@ -72,7 +107,19 @@ export function Home() {
       {/* Features */}
       <section className="border-b-3 border-foreground py-20">
         <div className="container mx-auto px-4">
-          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-5">
+            <Card interactive>
+              <CardHeader className="bg-info">
+                <Layers className="h-8 w-8 stroke-[3]" />
+                <CardTitle>Multi-Framework</CardTitle>
+              </CardHeader>
+              <CardContent className="pt-4">
+                <p className="text-muted-foreground">
+                  Available for React and Vue 3. Same design, same components, your framework.
+                </p>
+              </CardContent>
+            </Card>
+
             <Card interactive>
               <CardHeader className="bg-primary">
                 <Zap className="h-8 w-8 stroke-[3]" />

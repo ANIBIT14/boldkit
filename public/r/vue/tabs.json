@@ -1,0 +1,38 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "tabs",
+  "type": "registry:ui",
+  "description": "A set of layered sections of content",
+  "dependencies": [
+    "reka-ui"
+  ],
+  "registryDependencies": [
+    "utils"
+  ],
+  "files": [
+    {
+      "path": "registry/default/ui/Tabs.vue",
+      "content": "<script setup lang=\"ts\">\nimport { TabsRoot, type TabsRootProps } from 'reka-ui'\nimport { cn } from '@/lib/utils'\n\ninterface Props extends TabsRootProps {\n  class?: string\n}\n\nconst props = defineProps<Props>()\nconst emit = defineEmits<{\n  'update:modelValue': [value: string | number]\n}>()\n</script>\n\n<template>\n  <TabsRoot\n    v-bind=\"props\"\n    :class=\"cn('w-full', props.class)\"\n    @update:model-value=\"emit('update:modelValue', $event)\"\n  >\n    <slot />\n  </TabsRoot>\n</template>\n",
+      "type": "registry:ui",
+      "target": "components/ui/Tabs.vue"
+    },
+    {
+      "path": "registry/default/ui/TabsList.vue",
+      "content": "<script setup lang=\"ts\">\nimport { TabsList as TabsListPrimitive } from 'reka-ui'\nimport { cn } from '@/lib/utils'\n\ndefineProps<{\n  class?: string\n}>()\n</script>\n\n<template>\n  <TabsListPrimitive\n    :class=\"\n      cn(\n        'inline-flex h-12 items-center justify-center border-3 border-foreground bg-background p-1 text-foreground shadow-[4px_4px_0px_hsl(var(--shadow-color))]',\n        $props.class\n      )\n    \"\n  >\n    <slot />\n  </TabsListPrimitive>\n</template>\n",
+      "type": "registry:ui",
+      "target": "components/ui/TabsList.vue"
+    },
+    {
+      "path": "registry/default/ui/TabsTrigger.vue",
+      "content": "<script setup lang=\"ts\">\nimport { TabsTrigger as TabsTriggerPrimitive } from 'reka-ui'\nimport { cn } from '@/lib/utils'\n\ndefineProps<{\n  class?: string\n  value: string\n}>()\n</script>\n\n<template>\n  <TabsTriggerPrimitive\n    :value=\"value\"\n    :class=\"\n      cn(\n        'inline-flex items-center justify-center whitespace-nowrap border-2 border-transparent px-4 py-1.5 gap-1.5 text-sm font-bold uppercase tracking-wide transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 data-[state=active]:bg-primary data-[state=active]:text-primary-foreground data-[state=active]:border-foreground',\n        $props.class\n      )\n    \"\n  >\n    <slot />\n  </TabsTriggerPrimitive>\n</template>\n",
+      "type": "registry:ui",
+      "target": "components/ui/TabsTrigger.vue"
+    },
+    {
+      "path": "registry/default/ui/TabsContent.vue",
+      "content": "<script setup lang=\"ts\">\nimport { TabsContent as TabsContentPrimitive } from 'reka-ui'\nimport { cn } from '@/lib/utils'\n\ndefineProps<{\n  class?: string\n  value: string\n}>()\n</script>\n\n<template>\n  <TabsContentPrimitive\n    :value=\"value\"\n    :class=\"\n      cn(\n        'mt-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2',\n        $props.class\n      )\n    \"\n  >\n    <slot />\n  </TabsContentPrimitive>\n</template>\n",
+      "type": "registry:ui",
+      "target": "components/ui/TabsContent.vue"
+    }
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "aspect-ratio",
+  "type": "registry:ui",
+  "description": "Displays content within a desired aspect ratio",
+  "dependencies": [
+    "reka-ui"
+  ],
+  "registryDependencies": [
+    "utils"
+  ],
+  "files": [
+    {
+      "path": "registry/default/ui/AspectRatio.vue",
+      "content": "<script setup lang=\"ts\">\nimport { AspectRatio as AspectRatioPrimitive } from 'reka-ui'\n\ndefineProps<{\n  ratio?: number\n}>()\n</script>\n\n<template>\n  <AspectRatioPrimitive :ratio=\"ratio\">\n    <slot />\n  </AspectRatioPrimitive>\n</template>\n",
+      "type": "registry:ui",
+      "target": "components/ui/AspectRatio.vue"
+    }
+  ]
+}

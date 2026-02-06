@@ -1,0 +1,39 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "input-otp",
+  "type": "registry:ui",
+  "description": "Accessible one-time password input",
+  "dependencies": [
+    "reka-ui",
+    "lucide-vue-next"
+  ],
+  "registryDependencies": [
+    "utils"
+  ],
+  "files": [
+    {
+      "path": "registry/default/ui/InputOTP.vue",
+      "content": "<script setup lang=\"ts\">\nimport { PinInputRoot, type PinInputRootProps } from 'reka-ui'\nimport { cn } from '@/lib/utils'\n\ninterface Props extends PinInputRootProps {\n  class?: string\n  containerClass?: string\n}\n\nconst props = defineProps<Props>()\nconst emit = defineEmits<{\n  'update:modelValue': [value: string[]]\n  complete: [value: string[]]\n}>()\n</script>\n\n<template>\n  <PinInputRoot\n    v-bind=\"props\"\n    :class=\"cn('disabled:cursor-not-allowed', props.class)\"\n    @update:model-value=\"emit('update:modelValue', $event)\"\n    @complete=\"emit('complete', $event)\"\n  >\n    <div :class=\"cn('flex items-center gap-2 has-[:disabled]:opacity-50', props.containerClass)\">\n      <slot />\n    </div>\n  </PinInputRoot>\n</template>\n",
+      "type": "registry:ui",
+      "target": "components/ui/InputOTP.vue"
+    },
+    {
+      "path": "registry/default/ui/InputOTPGroup.vue",
+      "content": "<script setup lang=\"ts\">\nimport { cn } from '@/lib/utils'\n\ndefineProps<{\n  class?: string\n}>()\n</script>\n\n<template>\n  <div :class=\"cn('flex items-center', $props.class)\">\n    <slot />\n  </div>\n</template>\n",
+      "type": "registry:ui",
+      "target": "components/ui/InputOTPGroup.vue"
+    },
+    {
+      "path": "registry/default/ui/InputOTPSlot.vue",
+      "content": "<script setup lang=\"ts\">\nimport { PinInputInput } from 'reka-ui'\nimport { cn } from '@/lib/utils'\n\ndefineProps<{\n  class?: string\n  index: number\n}>()\n</script>\n\n<template>\n  <PinInputInput\n    :index=\"index\"\n    :class=\"\n      cn(\n        'relative flex h-12 w-12 items-center justify-center border-3 border-foreground bg-background text-sm font-bold uppercase shadow-[4px_4px_0px_hsl(var(--shadow-color))] transition-all duration-200 first:border-l-3 first:rounded-l-none last:rounded-r-none text-center',\n        'focus:z-10 focus:ring-2 focus:ring-ring focus:ring-offset-background focus:translate-x-[4px] focus:translate-y-[4px] focus:shadow-none',\n        $props.class\n      )\n    \"\n  />\n</template>\n",
+      "type": "registry:ui",
+      "target": "components/ui/InputOTPSlot.vue"
+    },
+    {
+      "path": "registry/default/ui/InputOTPSeparator.vue",
+      "content": "<script setup lang=\"ts\">\nimport { Dot } from 'lucide-vue-next'\n</script>\n\n<template>\n  <div role=\"separator\">\n    <slot>\n      <Dot class=\"h-4 w-4\" />\n    </slot>\n  </div>\n</template>\n",
+      "type": "registry:ui",
+      "target": "components/ui/InputOTPSeparator.vue"
+    }
+  ]
+}

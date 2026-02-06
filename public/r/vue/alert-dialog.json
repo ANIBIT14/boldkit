@@ -1,0 +1,68 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "alert-dialog",
+  "type": "registry:ui",
+  "description": "A modal dialog that interrupts the user",
+  "dependencies": [
+    "reka-ui"
+  ],
+  "registryDependencies": [
+    "utils"
+  ],
+  "files": [
+    {
+      "path": "registry/default/ui/AlertDialog.vue",
+      "content": "<script setup lang=\"ts\">\nimport { AlertDialogRoot } from 'reka-ui'\n\nconst props = defineProps<{\n  open?: boolean\n  defaultOpen?: boolean\n}>()\nconst emit = defineEmits<{\n  'update:open': [value: boolean]\n}>()\n</script>\n\n<template>\n  <AlertDialogRoot v-bind=\"props\" @update:open=\"emit('update:open', $event)\">\n    <slot />\n  </AlertDialogRoot>\n</template>\n",
+      "type": "registry:ui",
+      "target": "components/ui/AlertDialog.vue"
+    },
+    {
+      "path": "registry/default/ui/AlertDialogTrigger.vue",
+      "content": "<script setup lang=\"ts\">\nimport { AlertDialogTrigger as AlertDialogTriggerPrimitive } from 'reka-ui'\n</script>\n\n<template>\n  <AlertDialogTriggerPrimitive as-child>\n    <slot />\n  </AlertDialogTriggerPrimitive>\n</template>\n",
+      "type": "registry:ui",
+      "target": "components/ui/AlertDialogTrigger.vue"
+    },
+    {
+      "path": "registry/default/ui/AlertDialogContent.vue",
+      "content": "<script setup lang=\"ts\">\nimport {\n  AlertDialogPortal,\n  AlertDialogOverlay,\n  AlertDialogContent as AlertDialogContentPrimitive,\n} from 'reka-ui'\nimport { cn } from '@/lib/utils'\n\ndefineProps<{\n  class?: string\n}>()\n</script>\n\n<template>\n  <AlertDialogPortal>\n    <AlertDialogOverlay\n      class=\"fixed inset-0 z-50 bg-black/70 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0\"\n    />\n    <AlertDialogContentPrimitive\n      :class=\"\n        cn(\n          'fixed left-[50%] top-[50%] z-50 grid w-full max-w-lg translate-x-[-50%] translate-y-[-50%] gap-4 border-3 border-foreground bg-background p-6 shadow-[8px_8px_0px_hsl(var(--shadow-color))] duration-200 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[state=closed]:slide-out-to-left-1/2 data-[state=closed]:slide-out-to-top-[48%] data-[state=open]:slide-in-from-left-1/2 data-[state=open]:slide-in-from-top-[48%]',\n          $props.class\n        )\n      \"\n    >\n      <slot />\n    </AlertDialogContentPrimitive>\n  </AlertDialogPortal>\n</template>\n",
+      "type": "registry:ui",
+      "target": "components/ui/AlertDialogContent.vue"
+    },
+    {
+      "path": "registry/default/ui/AlertDialogHeader.vue",
+      "content": "<script setup lang=\"ts\">\nimport { cn } from '@/lib/utils'\n\ndefineProps<{\n  class?: string\n}>()\n</script>\n\n<template>\n  <div :class=\"cn('flex flex-col space-y-2 text-center sm:text-left', $props.class)\">\n    <slot />\n  </div>\n</template>\n",
+      "type": "registry:ui",
+      "target": "components/ui/AlertDialogHeader.vue"
+    },
+    {
+      "path": "registry/default/ui/AlertDialogFooter.vue",
+      "content": "<script setup lang=\"ts\">\nimport { cn } from '@/lib/utils'\n\ndefineProps<{\n  class?: string\n}>()\n</script>\n\n<template>\n  <div :class=\"cn('flex flex-col-reverse gap-3 sm:flex-row sm:justify-end', $props.class)\">\n    <slot />\n  </div>\n</template>\n",
+      "type": "registry:ui",
+      "target": "components/ui/AlertDialogFooter.vue"
+    },
+    {
+      "path": "registry/default/ui/AlertDialogTitle.vue",
+      "content": "<script setup lang=\"ts\">\nimport { AlertDialogTitle as AlertDialogTitlePrimitive } from 'reka-ui'\nimport { cn } from '@/lib/utils'\n\ndefineProps<{\n  class?: string\n}>()\n</script>\n\n<template>\n  <AlertDialogTitlePrimitive\n    :class=\"cn('text-lg font-bold uppercase tracking-wide', $props.class)\"\n  >\n    <slot />\n  </AlertDialogTitlePrimitive>\n</template>\n",
+      "type": "registry:ui",
+      "target": "components/ui/AlertDialogTitle.vue"
+    },
+    {
+      "path": "registry/default/ui/AlertDialogDescription.vue",
+      "content": "<script setup lang=\"ts\">\nimport { AlertDialogDescription as AlertDialogDescriptionPrimitive } from 'reka-ui'\nimport { cn } from '@/lib/utils'\n\ndefineProps<{\n  class?: string\n}>()\n</script>\n\n<template>\n  <AlertDialogDescriptionPrimitive :class=\"cn('text-sm text-muted-foreground', $props.class)\">\n    <slot />\n  </AlertDialogDescriptionPrimitive>\n</template>\n",
+      "type": "registry:ui",
+      "target": "components/ui/AlertDialogDescription.vue"
+    },
+    {
+      "path": "registry/default/ui/AlertDialogAction.vue",
+      "content": "<script setup lang=\"ts\">\nimport { AlertDialogAction as AlertDialogActionPrimitive } from 'reka-ui'\nimport { cn } from '@/lib/utils'\nimport { buttonVariants } from './button-variants'\n\ndefineProps<{\n  class?: string\n}>()\n</script>\n\n<template>\n  <AlertDialogActionPrimitive :class=\"cn(buttonVariants(), $props.class)\">\n    <slot />\n  </AlertDialogActionPrimitive>\n</template>\n",
+      "type": "registry:ui",
+      "target": "components/ui/AlertDialogAction.vue"
+    },
+    {
+      "path": "registry/default/ui/AlertDialogCancel.vue",
+      "content": "<script setup lang=\"ts\">\nimport { AlertDialogCancel as AlertDialogCancelPrimitive } from 'reka-ui'\nimport { cn } from '@/lib/utils'\nimport { buttonVariants } from './button-variants'\n\ndefineProps<{\n  class?: string\n}>()\n</script>\n\n<template>\n  <AlertDialogCancelPrimitive :class=\"cn(buttonVariants({ variant: 'outline' }), $props.class)\">\n    <slot />\n  </AlertDialogCancelPrimitive>\n</template>\n",
+      "type": "registry:ui",
+      "target": "components/ui/AlertDialogCancel.vue"
+    }
+  ]
+}

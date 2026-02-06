@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "input",
+  "type": "registry:ui",
+  "description": "Displays a form input with thick borders",
+  "dependencies": [],
+  "registryDependencies": [
+    "utils"
+  ],
+  "files": [
+    {
+      "path": "registry/default/ui/Input.vue",
+      "content": "<script setup lang=\"ts\">\nimport { computed } from 'vue'\nimport { cn } from '@/lib/utils'\n\nconst props = defineProps<{\n  class?: string\n  modelValue?: string | number\n  type?: string\n}>()\n\nconst emit = defineEmits<{\n  'update:modelValue': [value: string]\n}>()\n\nconst modelValue = computed({\n  get: () => props.modelValue,\n  set: (value) => emit('update:modelValue', String(value)),\n})\n</script>\n\n<template>\n  <input\n    v-model=\"modelValue\"\n    :type=\"type\"\n    :class=\"\n      cn(\n        'flex h-11 w-full border-3 border-input bg-background px-4 py-2 text-base shadow-[4px_4px_0px_hsl(var(--shadow-color))] transition-all duration-200 file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-0 focus-visible:translate-x-[4px] focus-visible:translate-y-[4px] focus-visible:shadow-none disabled:cursor-not-allowed disabled:opacity-50 md:text-sm',\n        props.class\n      )\n    \"\n  />\n</template>\n",
+      "type": "registry:ui",
+      "target": "components/ui/Input.vue"
+    }
+  ]
+}
