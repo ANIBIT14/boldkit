@@ -1,9 +1,18 @@
 import { useState, type ReactNode } from 'react'
+import { Link } from 'react-router-dom'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
+import {
+  Breadcrumb,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbList,
+  BreadcrumbPage,
+  BreadcrumbSeparator,
+} from '@/components/ui/breadcrumb'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
-import { Copy, Check, Terminal } from 'lucide-react'
+import { Copy, Check, Terminal, Home } from 'lucide-react'
 import { OpenInV0Button } from './OpenInV0Button'
 import { SEO, getComponentSEO } from '@/components/SEO'
 import { useFramework, FrameworkToggle, VueIcon } from '@/hooks/use-framework'
@@ -110,6 +119,29 @@ export function ComponentDoc({
     <>
       <SEO {...componentSEO} />
       <div className="space-y-8">
+      {/* Breadcrumbs */}
+      <Breadcrumb>
+        <BreadcrumbList>
+          <BreadcrumbItem>
+            <BreadcrumbLink asChild>
+              <Link to="/">
+                <Home className="h-4 w-4" />
+              </Link>
+            </BreadcrumbLink>
+          </BreadcrumbItem>
+          <BreadcrumbSeparator />
+          <BreadcrumbItem>
+            <BreadcrumbLink asChild>
+              <Link to="/components">Components</Link>
+            </BreadcrumbLink>
+          </BreadcrumbItem>
+          <BreadcrumbSeparator />
+          <BreadcrumbItem>
+            <BreadcrumbPage>{name}</BreadcrumbPage>
+          </BreadcrumbItem>
+        </BreadcrumbList>
+      </Breadcrumb>
+
       {/* Header */}
       <div>
         <div className="flex items-center justify-between gap-3 mb-4 flex-wrap">

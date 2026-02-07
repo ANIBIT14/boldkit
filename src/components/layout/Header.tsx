@@ -1,6 +1,7 @@
 import { Link, useLocation } from 'react-router-dom'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
+import { SearchCommand } from '@/components/SearchCommand'
 import { useTheme } from '@/hooks/use-theme'
 import {
   Moon,
@@ -34,6 +35,13 @@ export function Header() {
 
   return (
     <nav className="sticky top-0 z-50 border-b-3 border-foreground bg-background">
+      {/* Skip to main content link for keyboard navigation */}
+      <a
+        href="#main-content"
+        className="sr-only focus:not-sr-only focus:absolute focus:z-[100] focus:top-2 focus:left-2 focus:px-4 focus:py-2 focus:bg-primary focus:text-primary-foreground focus:font-bold focus:border-3 focus:border-foreground"
+      >
+        Skip to main content
+      </a>
       <div className="container mx-auto flex h-14 items-center justify-between px-3 lg:px-4">
         {/* Logo */}
         <Link to="/" className="flex items-center gap-1.5 shrink-0">
@@ -70,13 +78,15 @@ export function Header() {
 
         {/* Right side actions */}
         <div className="flex items-center gap-1">
+          <SearchCommand />
           <a
             href="https://github.com/ANIBIT14/boldkit"
             target="_blank"
             rel="noopener noreferrer"
             className="hidden sm:block"
+            aria-label="View BoldKit on GitHub"
           >
-            <Button variant="ghost" size="sm" className="h-8 w-8 p-0">
+            <Button variant="ghost" size="sm" className="h-8 w-8 p-0" aria-label="GitHub repository">
               <Github className="h-4 w-4" />
             </Button>
           </a>
@@ -85,6 +95,7 @@ export function Header() {
             size="sm"
             className="h-8 w-8 p-0"
             onClick={() => setTheme(resolvedTheme === 'light' ? 'dark' : 'light')}
+            aria-label={resolvedTheme === 'light' ? 'Switch to dark mode' : 'Switch to light mode'}
           >
             {resolvedTheme === 'light' ? <Moon className="h-4 w-4" /> : <Sun className="h-4 w-4" />}
           </Button>
@@ -95,6 +106,8 @@ export function Header() {
             size="sm"
             className="h-8 w-8 p-0 lg:hidden"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            aria-label={mobileMenuOpen ? 'Close navigation menu' : 'Open navigation menu'}
+            aria-expanded={mobileMenuOpen}
           >
             {mobileMenuOpen ? <X className="h-4 w-4" /> : <Menu className="h-4 w-4" />}
           </Button>

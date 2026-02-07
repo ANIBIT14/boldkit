@@ -155,7 +155,7 @@ toast.info('Information')`}
   description: 'Your event has been scheduled.',
   action: {
     label: 'Undo',
-    onClick: () => console.log('Undo'),
+    onClick: () => toast.info('Action undone'),
   },
 })`}
       >
@@ -165,7 +165,7 @@ toast.info('Information')`}
               description: 'Your event has been scheduled.',
               action: {
                 label: 'Undo',
-                onClick: () => console.log('Undo'),
+                onClick: () => toast.info('Action undone'),
               },
             })
           }
