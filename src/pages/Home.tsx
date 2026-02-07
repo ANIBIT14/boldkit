@@ -107,63 +107,107 @@ export function Home() {
       {/* Features */}
       <section className="border-b-3 border-foreground py-20">
         <div className="container mx-auto px-4">
-          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-5">
-            <Card interactive>
+          <div className="columns-1 md:columns-2 lg:columns-3 gap-6 space-y-6">
+            {/* Multi-Framework - Large feature card */}
+            <Card interactive className="break-inside-avoid">
               <CardHeader className="bg-info">
-                <Layers className="h-8 w-8 stroke-[3]" />
-                <CardTitle>Multi-Framework</CardTitle>
+                <div className="flex items-center gap-3">
+                  <Layers className="h-10 w-10 stroke-[3]" />
+                  <div>
+                    <CardTitle className="text-xl">Multi-Framework</CardTitle>
+                    <p className="text-sm font-medium mt-1">React & Vue 3</p>
+                  </div>
+                </div>
               </CardHeader>
-              <CardContent className="pt-4">
+              <CardContent className="pt-4 space-y-4">
                 <p className="text-muted-foreground">
-                  Available for React and Vue 3. Same design, same components, your framework.
+                  Same design system, same components, your choice of framework. Build with what you love.
                 </p>
+                <div className="flex gap-2">
+                  <Badge variant="outline" className="gap-1">
+                    <ReactIcon className="h-3 w-3" /> React
+                  </Badge>
+                  <Badge variant="outline" className="gap-1">
+                    <VueIcon className="h-3 w-3" /> Vue
+                  </Badge>
+                </div>
               </CardContent>
             </Card>
 
-            <Card interactive>
+            {/* Fast Setup - Compact */}
+            <Card interactive className="break-inside-avoid">
               <CardHeader className="bg-primary">
                 <Zap className="h-8 w-8 stroke-[3]" />
                 <CardTitle>Fast Setup</CardTitle>
               </CardHeader>
               <CardContent className="pt-4">
                 <p className="text-muted-foreground">
-                  Get started in minutes with our CLI. Copy-paste components directly into your project.
+                  One command to install. Copy-paste into your project.
                 </p>
               </CardContent>
             </Card>
 
-            <Card interactive>
+            {/* Themeable - With visual example */}
+            <Card interactive className="break-inside-avoid">
               <CardHeader className="bg-secondary">
                 <Palette className="h-8 w-8 stroke-[3]" />
                 <CardTitle>Themeable</CardTitle>
               </CardHeader>
-              <CardContent className="pt-4">
+              <CardContent className="pt-4 space-y-4">
                 <p className="text-muted-foreground">
-                  Customize colors, shadows, and borders with CSS variables. Dark mode included.
+                  Customize everything with CSS variables. Dark mode included out of the box.
                 </p>
+                <div className="flex gap-2 flex-wrap">
+                  <div className="w-6 h-6 rounded-full bg-primary border-2 border-foreground" />
+                  <div className="w-6 h-6 rounded-full bg-secondary border-2 border-foreground" />
+                  <div className="w-6 h-6 rounded-full bg-accent border-2 border-foreground" />
+                  <div className="w-6 h-6 rounded-full bg-success border-2 border-foreground" />
+                  <div className="w-6 h-6 rounded-full bg-info border-2 border-foreground" />
+                </div>
               </CardContent>
             </Card>
 
-            <Card interactive>
+            {/* TypeScript - Compact with code hint */}
+            <Card interactive className="break-inside-avoid">
               <CardHeader className="bg-accent">
                 <Code2 className="h-8 w-8 stroke-[3]" />
                 <CardTitle>TypeScript</CardTitle>
               </CardHeader>
+              <CardContent className="pt-4 space-y-3">
+                <p className="text-muted-foreground">
+                  Complete type definitions for all components.
+                </p>
+                <code className="block text-xs bg-muted p-2 border-2 border-foreground font-mono">
+                  {'<Button variant="primary" />'}
+                </code>
+              </CardContent>
+            </Card>
+
+            {/* Accessible - Important feature */}
+            <Card interactive className="break-inside-avoid">
+              <CardHeader className="bg-warning">
+                <svg className="h-8 w-8 stroke-[3]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+                  <circle cx="12" cy="12" r="10" />
+                  <path d="m16 10-4 4-4-4" />
+                </svg>
+                <CardTitle>Accessible</CardTitle>
+              </CardHeader>
               <CardContent className="pt-4">
                 <p className="text-muted-foreground">
-                  Full TypeScript support with complete type definitions for all components.
+                  Built on Radix UI & Reka UI. Keyboard navigation and screen reader support included.
                 </p>
               </CardContent>
             </Card>
 
-            <Card interactive>
+            {/* Responsive - Compact */}
+            <Card interactive className="break-inside-avoid">
               <CardHeader className="bg-success">
                 <Smartphone className="h-8 w-8 stroke-[3]" />
                 <CardTitle>Responsive</CardTitle>
               </CardHeader>
               <CardContent className="pt-4">
                 <p className="text-muted-foreground">
-                  Mobile-first design. All components work beautifully on any screen size.
+                  Mobile-first. Works on any screen size.
                 </p>
               </CardContent>
             </Card>
