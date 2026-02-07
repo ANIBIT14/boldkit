@@ -1,4 +1,5 @@
 import { Button } from '@/components/ui/button'
+import { useFramework } from '@/hooks/use-framework'
 
 interface OpenInV0ButtonProps {
   name: string
@@ -6,6 +7,13 @@ interface OpenInV0ButtonProps {
 }
 
 export function OpenInV0Button({ name, className }: OpenInV0ButtonProps) {
+  const { framework } = useFramework()
+
+  // v0 only supports React, hide button when Vue is selected
+  if (framework === 'vue') {
+    return null
+  }
+
   const registryUrl = `https://boldkit.dev/r/${name}.json`
   const v0Url = `https://v0.dev/chat/api/open?url=${encodeURIComponent(registryUrl)}`
 
