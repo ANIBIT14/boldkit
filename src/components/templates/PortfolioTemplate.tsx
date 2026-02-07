@@ -188,6 +188,7 @@ function HeroSection() {
                   src={portfolioData.avatar}
                   alt={portfolioData.name}
                   className="w-full aspect-square object-cover"
+                  loading="lazy"
                 />
               </div>
               {/* Floating sticker */}
@@ -321,6 +322,7 @@ function ProjectsSection() {
                     src={project.image}
                     alt={project.title}
                     className="w-full h-64 lg:h-full object-cover"
+                    loading="lazy"
                   />
                 </div>
 

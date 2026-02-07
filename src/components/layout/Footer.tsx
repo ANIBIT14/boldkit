@@ -14,6 +14,7 @@ export function Footer() {
                 src="https://ik.imagekit.io/fincalfy/304a4c07-8de1-41af-813e-e7556234b973.png"
                 alt="BoldKit"
                 className="h-6 w-6"
+                loading="lazy"
               />
               <span className="font-bold uppercase tracking-wide">BoldKit</span>
               <Badge variant="secondary" className="text-[10px] px-1.5 py-0">Beta</Badge>

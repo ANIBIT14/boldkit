@@ -65,6 +65,7 @@ export function AspectRatioDoc() {
               src="https://images.unsplash.com/photo-1588345921523-c2dcdb7f1dcd?w=800&dpr=2&q=80"
               alt="Photo by Drew Beamer"
               className="h-full w-full object-cover"
+              loading="lazy"
             />
           </AspectRatio>
         </div>
@@ -88,6 +89,7 @@ export function AspectRatioDoc() {
               src="https://images.unsplash.com/photo-1588345921523-c2dcdb7f1dcd?w=800&dpr=2&q=80"
               alt="Widescreen photo"
               className="h-full w-full object-cover"
+              loading="lazy"
             />
           </AspectRatio>
         </div>
@@ -111,6 +113,7 @@ export function AspectRatioDoc() {
               src="https://images.unsplash.com/photo-1535025183041-0991a977e25b?w=600&dpr=2&q=80"
               alt="Classic ratio photo"
               className="h-full w-full object-cover"
+              loading="lazy"
             />
           </AspectRatio>
         </div>
@@ -134,6 +137,7 @@ export function AspectRatioDoc() {
               src="https://images.unsplash.com/photo-1492633423870-43d1cd2775eb?w=400&dpr=2&q=80"
               alt="Square photo"
               className="h-full w-full object-cover"
+              loading="lazy"
             />
           </AspectRatio>
         </div>
@@ -157,6 +161,7 @@ export function AspectRatioDoc() {
               src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=400&dpr=2&q=80"
               alt="Portrait photo"
               className="h-full w-full object-cover"
+              loading="lazy"
             />
           </AspectRatio>
         </div>
