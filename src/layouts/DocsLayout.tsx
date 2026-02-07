@@ -7,6 +7,7 @@ import { ScrollArea } from '@/components/ui/scroll-area'
 import { Menu } from 'lucide-react'
 import { Header } from '@/components/layout'
 import { FrameworkToggle } from '@/hooks/use-framework'
+import { TableOfContents } from '@/components/TableOfContents'
 
 const components = [
   { name: 'Accordion', href: '/components/accordion' },
@@ -162,7 +163,7 @@ export function DocsLayout() {
         </div>
       </div>
 
-      <div className="container flex-1 items-start md:grid md:grid-cols-[220px_minmax(0,1fr)] md:gap-6 lg:grid-cols-[240px_minmax(0,1fr)] lg:gap-10 px-3 md:px-4">
+      <div className="container flex-1 items-start md:grid md:grid-cols-[220px_minmax(0,1fr)] md:gap-6 lg:grid-cols-[240px_minmax(0,1fr)] lg:gap-10 xl:grid-cols-[240px_minmax(0,1fr)_200px] px-3 md:px-4">
         <aside className="fixed top-14 z-30 hidden h-[calc(100vh-3.5rem)] w-full shrink-0 md:sticky md:block">
           <ScrollArea className="h-full py-6 pr-4">
             <Sidebar />
@@ -173,6 +174,11 @@ export function DocsLayout() {
             <Outlet />
           </div>
         </main>
+        <aside className="hidden xl:block">
+          <div className="sticky top-20 py-6">
+            <TableOfContents />
+          </div>
+        </aside>
       </div>
     </div>
   )
