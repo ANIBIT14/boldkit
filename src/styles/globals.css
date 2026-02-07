@@ -575,6 +575,14 @@ body {
   @apply outline-none ring-2 ring-ring ring-offset-2 ring-offset-background;
 }
 
+/* Remove focus ring from command input */
+[cmdk-input]:focus,
+[cmdk-input]:focus-visible {
+  outline: none !important;
+  box-shadow: none !important;
+  ring: none !important;
+}
+
 /* Scrollbar styling */
 ::-webkit-scrollbar {
   width: 12px;
