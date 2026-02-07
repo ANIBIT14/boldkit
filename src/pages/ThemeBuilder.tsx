@@ -299,9 +299,9 @@ export function ThemeBuilder() {
 
   return (
     <Layout showFooter={false}>
-      <div className="container mx-auto px-4 py-8">
-        <div className="mb-8">
-          <div className="flex items-center gap-2 mb-4 flex-wrap">
+      <div className="container mx-auto px-3 md:px-4 py-6 md:py-8 overflow-x-hidden">
+        <div className="mb-6 md:mb-8">
+          <div className="flex items-center gap-2 mb-3 md:mb-4 flex-wrap">
             <Badge variant="accent">
               <Palette className="mr-1 h-3 w-3" /> Theme Builder
             </Badge>
@@ -312,22 +312,22 @@ export function ThemeBuilder() {
               <VueIcon className="h-3 w-3" /> Vue 3
             </Badge>
           </div>
-          <h1 className="text-3xl font-black uppercase tracking-tight md:text-4xl">
+          <h1 className="text-2xl md:text-3xl font-black uppercase tracking-tight lg:text-4xl">
             Customize Your Theme
           </h1>
-          <p className="mt-2 text-muted-foreground">
+          <p className="mt-2 text-sm md:text-base text-muted-foreground">
             Adjust colors, shadows, and borders to match your brand. CSS variables work identically for both React and Vue.
           </p>
         </div>
 
-        <div className="grid gap-8 lg:grid-cols-[1fr_400px]">
+        <div className="grid gap-6 md:gap-8 lg:grid-cols-[1fr_380px]">
           {/* Preview */}
-          <div className="space-y-6">
-            <Card>
-              <CardHeader className="bg-muted">
-                <CardTitle>Live Preview</CardTitle>
+          <div className="space-y-4 md:space-y-6">
+            <Card className="overflow-hidden">
+              <CardHeader className="bg-muted py-3 md:py-4">
+                <CardTitle className="text-lg md:text-xl">Live Preview</CardTitle>
               </CardHeader>
-              <CardContent className="pt-6 space-y-6">
+              <CardContent className="pt-4 md:pt-6 px-3 md:px-6 space-y-4 md:space-y-6">
                 {/* Buttons */}
                 <div>
                   <Label className="mb-3 block">Buttons</Label>
@@ -401,17 +401,17 @@ export function ThemeBuilder() {
             </Card>
 
             {/* Generated CSS */}
-            <Card>
+            <Card className="overflow-hidden">
               <CardHeader className="bg-muted">
-                <CardTitle>Generated CSS</CardTitle>
+                <CardTitle className="text-lg md:text-xl">Generated CSS</CardTitle>
               </CardHeader>
-              <CardContent className="pt-6">
-                <pre className="overflow-x-auto border-3 border-foreground bg-muted p-4 text-sm">
+              <CardContent className="pt-4 md:pt-6 px-3 md:px-6">
+                <pre className="overflow-x-auto border-3 border-foreground bg-muted p-3 md:p-4 text-xs md:text-sm max-h-[300px] md:max-h-none">
                   <code>{generateCSS()}</code>
                 </pre>
               </CardContent>
-              <CardFooter>
-                <Button onClick={copyCSS} className="gap-2">
+              <CardFooter className="px-3 md:px-6">
+                <Button onClick={copyCSS} className="gap-2 w-full sm:w-auto">
                   {copied ? <Check className="h-4 w-4" /> : <Copy className="h-4 w-4" />}
                   {copied ? 'Copied!' : 'Copy CSS'}
                 </Button>
@@ -420,13 +420,13 @@ export function ThemeBuilder() {
           </div>
 
           {/* Controls */}
-          <div className="space-y-6">
+          <div className="space-y-4 md:space-y-6">
             {/* Presets */}
             <Card>
-              <CardHeader className="bg-accent">
-                <CardTitle>Presets</CardTitle>
+              <CardHeader className="bg-accent py-3 md:py-4">
+                <CardTitle className="text-lg md:text-xl">Presets</CardTitle>
               </CardHeader>
-              <CardContent className="pt-6">
+              <CardContent className="pt-4 md:pt-6 px-3 md:px-6">
                 <div className="grid grid-cols-2 gap-2">
                   {presetThemes.map((preset) => (
                     <Button
@@ -449,12 +449,12 @@ export function ThemeBuilder() {
 
             {/* Colors */}
             <Card>
-              <CardHeader className="bg-secondary">
-                <CardTitle>Colors</CardTitle>
+              <CardHeader className="bg-secondary py-3 md:py-4">
+                <CardTitle className="text-lg md:text-xl">Colors</CardTitle>
               </CardHeader>
-              <CardContent className="pt-6">
+              <CardContent className="pt-4 md:pt-6 px-3 md:px-6">
                 <Tabs defaultValue="light">
-                  <TabsList className="w-full mb-4">
+                  <TabsList className="w-full mb-3 md:mb-4">
                     <TabsTrigger value="light" className="flex-1 gap-2">
                       <Sun className="h-4 w-4" /> Light
                     </TabsTrigger>
@@ -534,10 +534,10 @@ export function ThemeBuilder() {
 
             {/* Effects */}
             <Card>
-              <CardHeader className="bg-primary">
-                <CardTitle>Effects</CardTitle>
+              <CardHeader className="bg-primary py-3 md:py-4">
+                <CardTitle className="text-lg md:text-xl">Effects</CardTitle>
               </CardHeader>
-              <CardContent className="pt-6 space-y-6">
+              <CardContent className="pt-4 md:pt-6 px-3 md:px-6 space-y-4 md:space-y-6">
                 <div>
                   <div className="mb-2 flex items-center justify-between">
                     <Label>Shadow Offset</Label>
