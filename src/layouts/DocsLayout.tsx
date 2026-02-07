@@ -1,4 +1,3 @@
-import { useState } from 'react'
 import { Link, Outlet, useLocation } from 'react-router-dom'
 import { cn } from '@/lib/utils'
 import { Button } from '@/components/ui/button'
@@ -6,7 +5,7 @@ import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet'
 import { ScrollArea } from '@/components/ui/scroll-area'
 import { Menu } from 'lucide-react'
 import { Header } from '@/components/layout'
-import { FrameworkToggle, useFramework, VueIcon } from '@/hooks/use-framework'
+import { FrameworkToggle, useFramework } from '@/hooks/use-framework'
 
 const components = [
   { name: 'Accordion', href: '/components/accordion' },
@@ -52,7 +51,7 @@ const components = [
   { name: 'Tooltip', href: '/components/tooltip' },
 ]
 
-function Sidebar({ className, onLinkClick }: { className?: string; onLinkClick?: () => void }) {
+function Sidebar({ className }: { className?: string }) {
   const location = useLocation()
   const { framework } = useFramework()
 
@@ -69,13 +68,6 @@ function Sidebar({ className, onLinkClick }: { className?: string; onLinkClick?:
           <div className="px-4">
             <FrameworkToggle size="sm" />
           </div>
-          {framework === 'vue' && (
-            <div className="px-4 mt-2">
-              <span className="inline-flex items-center gap-1 text-xs text-success font-medium">
-                <VueIcon className="h-3 w-3" /> Vue 3 mode
-              </span>
-            </div>
-          )}
         </div>
 
         {/* Getting Started Section */}
@@ -84,7 +76,7 @@ function Sidebar({ className, onLinkClick }: { className?: string; onLinkClick?:
             Getting Started
           </h2>
           <div className="space-y-1">
-            <Link to="/docs" onClick={onLinkClick}>
+            <Link to="/docs">
               <Button
                 variant={location.pathname === '/docs' ? 'secondary' : 'ghost'}
                 className="w-full justify-start h-9"
@@ -93,7 +85,7 @@ function Sidebar({ className, onLinkClick }: { className?: string; onLinkClick?:
                 Introduction
               </Button>
             </Link>
-            <Link to="/docs/installation" onClick={onLinkClick}>
+            <Link to="/docs/installation">
               <Button
                 variant={location.pathname === '/docs/installation' ? 'secondary' : 'ghost'}
                 className="w-full justify-start h-9"
@@ -102,7 +94,7 @@ function Sidebar({ className, onLinkClick }: { className?: string; onLinkClick?:
                 Installation
               </Button>
             </Link>
-            <Link to="/docs/theming" onClick={onLinkClick}>
+            <Link to="/docs/theming">
               <Button
                 variant={location.pathname === '/docs/theming' ? 'secondary' : 'ghost'}
                 className="w-full justify-start h-9"
@@ -121,7 +113,7 @@ function Sidebar({ className, onLinkClick }: { className?: string; onLinkClick?:
           </h2>
           <div className="space-y-1">
             {components.map((component) => (
-              <Link key={component.href} to={component.href} onClick={onLinkClick}>
+              <Link key={component.href} to={component.href}>
                 <Button
                   variant={location.pathname === component.href ? 'secondary' : 'ghost'}
                   className="w-full justify-start h-9"
@@ -139,8 +131,6 @@ function Sidebar({ className, onLinkClick }: { className?: string; onLinkClick?:
 }
 
 export function DocsLayout() {
-  const [sidebarOpen, setSidebarOpen] = useState(false)
-
   return (
     <div className="min-h-screen bg-background flex flex-col">
       {/* Shared Header */}
@@ -149,7 +139,7 @@ export function DocsLayout() {
       {/* Mobile Sidebar Toggle */}
       <div className="md:hidden border-b-3 border-foreground bg-muted/30">
         <div className="container px-3 py-2">
-          <Sheet open={sidebarOpen} onOpenChange={setSidebarOpen}>
+          <Sheet>
             <SheetTrigger asChild>
               <Button variant="outline" size="sm" className="h-8 gap-2">
                 <Menu className="h-4 w-4" />
@@ -158,7 +148,7 @@ export function DocsLayout() {
             </SheetTrigger>
             <SheetContent side="left" className="w-[280px] p-0">
               <ScrollArea className="h-full">
-                <Sidebar className="px-2" onLinkClick={() => setSidebarOpen(false)} />
+                <Sidebar className="px-2" />
               </ScrollArea>
             </SheetContent>
           </Sheet>
@@ -171,7 +161,7 @@ export function DocsLayout() {
             <Sidebar />
           </ScrollArea>
         </aside>
-        <main id="main-content" className="relative py-6 lg:py-8">
+        <main className="relative py-6 lg:py-8">
           <div className="mx-auto w-full min-w-0">
             <Outlet />
           </div>
