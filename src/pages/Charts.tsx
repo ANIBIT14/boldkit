@@ -1285,7 +1285,7 @@ function ChartCard({
   }
 
   return (
-    <Card>
+    <Card className="overflow-hidden min-w-0">
       <CardHeader className="flex flex-row items-start justify-between space-y-0">
         <div>
           <CardTitle>{title}</CardTitle>
@@ -1370,21 +1370,23 @@ export function Charts() {
         </div>
       </header>
 
-      <main className="container mx-auto py-8 px-4 md:px-6">
+      <main className="container mx-auto py-6 md:py-8 px-4 md:px-6 overflow-x-hidden">
         <Tabs defaultValue="area" className="w-full">
-          <div className="flex justify-center mb-8">
-            <TabsList>
-            <TabsTrigger value="area">Area</TabsTrigger>
-            <TabsTrigger value="bar">Bar</TabsTrigger>
-            <TabsTrigger value="line">Line</TabsTrigger>
-            <TabsTrigger value="pie">Pie</TabsTrigger>
-            <TabsTrigger value="styles">Styles</TabsTrigger>
-            </TabsList>
+          <div className="flex justify-center mb-6 md:mb-8 -mx-4 px-4 md:mx-0 md:px-0">
+            <ScrollArea className="w-full md:w-auto">
+              <TabsList className="inline-flex w-max md:w-auto">
+                <TabsTrigger value="area">Area</TabsTrigger>
+                <TabsTrigger value="bar">Bar</TabsTrigger>
+                <TabsTrigger value="line">Line</TabsTrigger>
+                <TabsTrigger value="pie">Pie</TabsTrigger>
+                <TabsTrigger value="styles">Styles</TabsTrigger>
+              </TabsList>
+            </ScrollArea>
           </div>
 
           {/* Area Charts */}
-          <TabsContent value="area" className="space-y-8">
-            <div className="grid gap-8 md:grid-cols-2">
+          <TabsContent value="area" className="space-y-6 md:space-y-8">
+            <div className="grid gap-6 md:gap-8 md:grid-cols-2">
               <ChartCard
                 title="Area Chart"
                 description="Showing total visitors for the last 6 months"
@@ -1859,7 +1861,7 @@ export function Charts() {
               </div>
               <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
                 {(['default', 'elevated', 'flat', 'filled', 'accent', 'primary', 'minimal'] as const).map((variant) => (
-                  <Card key={variant}>
+                  <Card key={variant} className="overflow-hidden min-w-0">
                     <CardHeader className="pb-2">
                       <CardTitle className="capitalize">{variant}</CardTitle>
                       <CardDescription>variant="{variant}"</CardDescription>
@@ -1896,7 +1898,7 @@ export function Charts() {
                   }))
 
                   return (
-                    <Card key={paletteName}>
+                    <Card key={paletteName} className="overflow-hidden min-w-0">
                       <CardHeader>
                         <CardTitle className="capitalize">{paletteName} Palette</CardTitle>
                         <CardDescription>CHART_PALETTES.{paletteName}</CardDescription>
@@ -1935,7 +1937,7 @@ export function Charts() {
                 <p className="text-muted-foreground">Copy these patterns for instant neubrutalism chart styling.</p>
               </div>
               <div className="grid gap-6 md:grid-cols-2">
-                <Card>
+                <Card className="overflow-hidden min-w-0">
                   <CardHeader>
                     <CardTitle>Vibrant Stacked Area</CardTitle>
                     <CardDescription>Using the vibrant palette with elevated variant</CardDescription>
@@ -1970,7 +1972,7 @@ export function Charts() {
                   </CardContent>
                 </Card>
 
-                <Card>
+                <Card className="overflow-hidden min-w-0">
                   <CardHeader>
                     <CardTitle>Accent Highlighted Bars</CardTitle>
                     <CardDescription>Using accent variant with pastel colors</CardDescription>
@@ -1989,7 +1991,7 @@ export function Charts() {
                   </CardContent>
                 </Card>
 
-                <Card>
+                <Card className="overflow-hidden min-w-0">
                   <CardHeader>
                     <CardTitle>Primary Line Chart</CardTitle>
                     <CardDescription>Primary variant with thick line strokes</CardDescription>
@@ -2013,7 +2015,7 @@ export function Charts() {
                   </CardContent>
                 </Card>
 
-                <Card>
+                <Card className="overflow-hidden min-w-0">
                   <CardHeader>
                     <CardTitle>Vibrant Donut</CardTitle>
                     <CardDescription>Using filled variant with vibrant colors</CardDescription>

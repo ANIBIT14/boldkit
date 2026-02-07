@@ -93,7 +93,7 @@ function useChart() {
 }
 
 const chartContainerVariants = cva(
-  'flex aspect-video justify-center text-xs [&_.recharts-cartesian-axis-tick_text]:fill-foreground [&_.recharts-cartesian-grid_line[stroke="#ccc"]]:stroke-muted-foreground/30 [&_.recharts-curve.recharts-tooltip-cursor]:stroke-muted-foreground [&_.recharts-polar-grid_[stroke="#ccc"]]:stroke-foreground [&_.recharts-reference-line_[stroke="#ccc"]]:stroke-foreground [&_.recharts-dot[stroke="#fff"]]:stroke-transparent [&_.recharts-sector]:outline-hidden [&_.recharts-sector[stroke="#fff"]]:stroke-foreground [&_.recharts-surface]:outline-hidden [&_.recharts-layer_path]:[fill-opacity:1] [&_.recharts-layer_path]:[stroke-width:3] [&_.recharts-layer_path]:[stroke:hsl(var(--foreground))]',
+  'flex aspect-video justify-center text-xs overflow-hidden [&_.recharts-cartesian-axis-tick_text]:fill-foreground [&_.recharts-cartesian-grid_line[stroke="#ccc"]]:stroke-muted-foreground/30 [&_.recharts-curve.recharts-tooltip-cursor]:stroke-muted-foreground [&_.recharts-polar-grid_[stroke="#ccc"]]:stroke-foreground [&_.recharts-reference-line_[stroke="#ccc"]]:stroke-foreground [&_.recharts-dot[stroke="#fff"]]:stroke-transparent [&_.recharts-sector]:outline-hidden [&_.recharts-sector[stroke="#fff"]]:stroke-foreground [&_.recharts-surface]:outline-hidden [&_.recharts-layer_path]:[fill-opacity:1] [&_.recharts-layer_path]:[stroke-width:3] [&_.recharts-layer_path]:[stroke:hsl(var(--foreground))]',
   {
     variants: {
       variant: {

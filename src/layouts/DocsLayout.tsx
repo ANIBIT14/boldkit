@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { Link, Outlet, useLocation } from 'react-router-dom'
 import { cn } from '@/lib/utils'
 import { Button } from '@/components/ui/button'
@@ -51,7 +52,7 @@ const components = [
   { name: 'Tooltip', href: '/components/tooltip' },
 ]
 
-function Sidebar({ className }: { className?: string }) {
+function Sidebar({ className, onLinkClick }: { className?: string; onLinkClick?: () => void }) {
   const location = useLocation()
 
   return (
@@ -75,7 +76,7 @@ function Sidebar({ className }: { className?: string }) {
             Getting Started
           </h2>
           <div className="space-y-1">
-            <Link to="/docs">
+            <Link to="/docs" onClick={onLinkClick}>
               <Button
                 variant={location.pathname === '/docs' ? 'secondary' : 'ghost'}
                 className="w-full justify-start h-9"
@@ -84,7 +85,7 @@ function Sidebar({ className }: { className?: string }) {
                 Introduction
               </Button>
             </Link>
-            <Link to="/docs/installation">
+            <Link to="/docs/installation" onClick={onLinkClick}>
               <Button
                 variant={location.pathname === '/docs/installation' ? 'secondary' : 'ghost'}
                 className="w-full justify-start h-9"
@@ -93,7 +94,7 @@ function Sidebar({ className }: { className?: string }) {
                 Installation
               </Button>
             </Link>
-            <Link to="/docs/theming">
+            <Link to="/docs/theming" onClick={onLinkClick}>
               <Button
                 variant={location.pathname === '/docs/theming' ? 'secondary' : 'ghost'}
                 className="w-full justify-start h-9"
@@ -112,7 +113,7 @@ function Sidebar({ className }: { className?: string }) {
           </h2>
           <div className="space-y-1">
             {components.map((component) => (
-              <Link key={component.href} to={component.href}>
+              <Link key={component.href} to={component.href} onClick={onLinkClick}>
                 <Button
                   variant={location.pathname === component.href ? 'secondary' : 'ghost'}
                   className="w-full justify-start h-9"
@@ -130,6 +131,13 @@ function Sidebar({ className }: { className?: string }) {
 }
 
 export function DocsLayout() {
+  const [sidebarOpen, setSidebarOpen] = useState(false)
+
+  const handleLinkClick = () => {
+    // Small delay to prevent flicker during navigation
+    setTimeout(() => setSidebarOpen(false), 100)
+  }
+
   return (
     <div className="min-h-screen bg-background flex flex-col">
       {/* Shared Header */}
@@ -138,16 +146,16 @@ export function DocsLayout() {
       {/* Mobile Sidebar Toggle */}
       <div className="md:hidden border-b-3 border-foreground bg-muted/30">
         <div className="container px-3 py-2">
-          <Sheet>
+          <Sheet open={sidebarOpen} onOpenChange={setSidebarOpen}>
             <SheetTrigger asChild>
               <Button variant="outline" size="sm" className="h-8 gap-2">
                 <Menu className="h-4 w-4" />
                 Menu
               </Button>
             </SheetTrigger>
-            <SheetContent side="left" className="w-[280px] p-0">
+            <SheetContent side="left" className="w-[280px] p-0 pt-14">
               <ScrollArea className="h-full">
-                <Sidebar className="px-2" />
+                <Sidebar className="px-2" onLinkClick={handleLinkClick} />
               </ScrollArea>
             </SheetContent>
           </Sheet>
@@ -160,7 +168,7 @@ export function DocsLayout() {
             <Sidebar />
           </ScrollArea>
         </aside>
-        <main className="relative py-6 lg:py-8">
+        <main id="main-content" className="relative py-6 lg:py-8">
           <div className="mx-auto w-full min-w-0">
             <Outlet />
           </div>
