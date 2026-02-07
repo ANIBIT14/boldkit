@@ -104,6 +104,95 @@ export default function Example() {
   )
 }`
 
+const vueSourceCode = `<script setup lang="ts">
+import { ComboboxRoot, ComboboxInput, ComboboxContent, ComboboxEmpty, ComboboxGroup, ComboboxItem, ComboboxSeparator } from 'reka-ui'
+import { Search } from 'lucide-vue-next'
+import { cn } from '@/lib/utils'
+
+defineProps<{
+  class?: string
+}>()
+</script>
+
+<!-- Command -->
+<template>
+  <ComboboxRoot :class="cn('flex h-full w-full flex-col overflow-hidden bg-popover text-popover-foreground', props.class)">
+    <slot />
+  </ComboboxRoot>
+</template>
+
+<!-- CommandInput -->
+<template>
+  <div class="flex items-center border-b-3 border-foreground px-3">
+    <Search class="mr-2 h-4 w-4 shrink-0 opacity-50 stroke-[3]" />
+    <ComboboxInput
+      :class="cn(
+        'flex h-11 w-full bg-transparent py-3 text-sm outline-none placeholder:text-muted-foreground disabled:cursor-not-allowed disabled:opacity-50',
+        props.class
+      )"
+      v-bind="$attrs"
+    />
+  </div>
+</template>
+
+<!-- CommandList -->
+<template>
+  <ComboboxContent class="max-h-[300px] overflow-y-auto overflow-x-hidden">
+    <slot />
+  </ComboboxContent>
+</template>
+
+<!-- CommandEmpty -->
+<template>
+  <ComboboxEmpty class="py-6 text-center text-sm">
+    <slot />
+  </ComboboxEmpty>
+</template>
+
+<!-- CommandGroup -->
+<template>
+  <ComboboxGroup class="overflow-hidden p-1 text-foreground [&_[cmdk-group-heading]]:px-2 [&_[cmdk-group-heading]]:py-1.5 [&_[cmdk-group-heading]]:text-xs [&_[cmdk-group-heading]]:font-bold [&_[cmdk-group-heading]]:uppercase [&_[cmdk-group-heading]]:tracking-wide [&_[cmdk-group-heading]]:text-muted-foreground">
+    <slot />
+  </ComboboxGroup>
+</template>
+
+<!-- CommandItem -->
+<template>
+  <ComboboxItem
+    :class="cn(
+      'relative flex cursor-default gap-2 select-none items-center px-2 py-1.5 text-sm outline-none data-[highlighted]:bg-accent data-[highlighted]:text-accent-foreground data-[disabled]:pointer-events-none data-[disabled]:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0',
+      props.class
+    )"
+  >
+    <slot />
+  </ComboboxItem>
+</template>`
+
+const vueUsageCode = `<script setup lang="ts">
+import {
+  Command,
+  CommandEmpty,
+  CommandGroup,
+  CommandInput,
+  CommandItem,
+  CommandList,
+} from '@/components/ui'
+</script>
+
+<template>
+  <Command>
+    <CommandInput placeholder="Type a command or search..." />
+    <CommandList>
+      <CommandEmpty>No results found.</CommandEmpty>
+      <CommandGroup heading="Suggestions">
+        <CommandItem>Calendar</CommandItem>
+        <CommandItem>Search</CommandItem>
+        <CommandItem>Settings</CommandItem>
+      </CommandGroup>
+    </CommandList>
+  </Command>
+</template>`
+
 export function CommandDoc() {
   const [open, setOpen] = useState(false)
 
@@ -113,8 +202,11 @@ export function CommandDoc() {
         name="Command"
         description="A command menu component for searching and selecting actions with keyboard navigation."
         dependencies={['cmdk', '@radix-ui/react-dialog']}
+        vueDependencies={['reka-ui']}
         sourceCode={sourceCode}
+        vueSourceCode={vueSourceCode}
         usageCode={usageCode}
+        vueUsageCode={vueUsageCode}
       >
         <Command className="border-3 border-foreground bk-shadow max-w-md">
           <CommandInput placeholder="Type a command or search..." />

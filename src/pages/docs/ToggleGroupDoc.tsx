@@ -80,6 +80,79 @@ export default function Example() {
   )
 }`
 
+const vueSourceCode = `<script setup lang="ts">
+import { ToggleGroupRoot, ToggleGroupItem as ToggleGroupItemPrimitive } from 'reka-ui'
+import { type VariantProps } from 'class-variance-authority'
+import { cn } from '@/lib/utils'
+import { toggleVariants } from './Toggle.vue'
+import { provide, inject, type InjectionKey } from 'vue'
+
+type ToggleGroupContext = VariantProps<typeof toggleVariants>
+const toggleGroupKey: InjectionKey<ToggleGroupContext> = Symbol('toggleGroup')
+
+defineProps<{
+  class?: string
+  variant?: ToggleGroupContext['variant']
+  size?: ToggleGroupContext['size']
+}>()
+
+provide(toggleGroupKey, { variant: props.variant, size: props.size })
+</script>
+
+<!-- ToggleGroup -->
+<template>
+  <ToggleGroupRoot :class="cn('flex items-center justify-center gap-1', props.class)" v-bind="$attrs">
+    <slot />
+  </ToggleGroupRoot>
+</template>
+
+<!-- ToggleGroupItem -->
+<script setup lang="ts">
+const context = inject(toggleGroupKey, { size: 'default', variant: 'default' })
+
+defineProps<{
+  class?: string
+  value: string
+  variant?: ToggleGroupContext['variant']
+  size?: ToggleGroupContext['size']
+}>()
+</script>
+
+<template>
+  <ToggleGroupItemPrimitive
+    :value="value"
+    :class="cn(
+      toggleVariants({
+        variant: context.variant ?? variant,
+        size: context.size ?? size,
+      }),
+      props.class
+    )"
+    v-bind="$attrs"
+  >
+    <slot />
+  </ToggleGroupItemPrimitive>
+</template>`
+
+const vueUsageCode = `<script setup lang="ts">
+import { ToggleGroup, ToggleGroupItem } from '@/components/ui'
+import { AlignLeft, AlignCenter, AlignRight } from 'lucide-vue-next'
+</script>
+
+<template>
+  <ToggleGroup type="single">
+    <ToggleGroupItem value="left" aria-label="Align left">
+      <AlignLeft class="h-4 w-4" />
+    </ToggleGroupItem>
+    <ToggleGroupItem value="center" aria-label="Align center">
+      <AlignCenter class="h-4 w-4" />
+    </ToggleGroupItem>
+    <ToggleGroupItem value="right" aria-label="Align right">
+      <AlignRight class="h-4 w-4" />
+    </ToggleGroupItem>
+  </ToggleGroup>
+</template>`
+
 export function ToggleGroupDoc() {
   return (
     <>
@@ -87,8 +160,11 @@ export function ToggleGroupDoc() {
         name="Toggle Group"
         description="A group of toggle buttons where only one or multiple can be selected with bold neubrutalism styling."
         dependencies={['@radix-ui/react-toggle-group']}
+        vueDependencies={['reka-ui']}
         sourceCode={sourceCode}
+        vueSourceCode={vueSourceCode}
         usageCode={usageCode}
+        vueUsageCode={vueUsageCode}
       >
         <ToggleGroup type="single" defaultValue="center">
           <ToggleGroupItem value="left" aria-label="Align left">

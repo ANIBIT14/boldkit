@@ -21,6 +21,30 @@ export default function Example() {
   )
 }`
 
+const vueSourceCode = `<script setup lang="ts">
+import { AspectRatio as AspectRatioPrimitive } from 'reka-ui'
+</script>
+
+<template>
+  <AspectRatioPrimitive v-bind="$attrs">
+    <slot />
+  </AspectRatioPrimitive>
+</template>`
+
+const vueUsageCode = `<script setup lang="ts">
+import { AspectRatio } from '@/components/ui'
+</script>
+
+<template>
+  <AspectRatio :ratio="16 / 9">
+    <img
+      src="https://images.unsplash.com/photo-1588345921523-c2dcdb7f1dcd?w=800"
+      alt="Photo"
+      class="h-full w-full object-cover"
+    />
+  </AspectRatio>
+</template>`
+
 export function AspectRatioDoc() {
   return (
     <>
@@ -29,8 +53,11 @@ export function AspectRatioDoc() {
         description="Displays content within a desired ratio, perfect for images and videos with consistent dimensions."
         registryName="aspect-ratio"
         dependencies={['@radix-ui/react-aspect-ratio']}
+        vueDependencies={['reka-ui']}
         sourceCode={sourceCode}
+        vueSourceCode={vueSourceCode}
         usageCode={usageCode}
+        vueUsageCode={vueUsageCode}
       >
         <div className="w-full max-w-md border-3 border-foreground bk-shadow overflow-hidden">
           <AspectRatio ratio={16 / 9}>

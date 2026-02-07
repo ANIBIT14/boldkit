@@ -44,6 +44,53 @@ export default function Example() {
   return <Badge>Badge</Badge>
 }`
 
+const vueSourceCode = `<script setup lang="ts">
+import { cva, type VariantProps } from 'class-variance-authority'
+import { cn } from '@/lib/utils'
+
+const badgeVariants = cva(
+  'inline-flex items-center border-2 border-foreground px-2.5 py-0.5 text-xs font-bold uppercase tracking-wide transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 shadow-[2px_2px_0px_hsl(var(--shadow-color))]',
+  {
+    variants: {
+      variant: {
+        default: 'bg-primary text-primary-foreground',
+        secondary: 'bg-secondary text-secondary-foreground',
+        accent: 'bg-accent text-accent-foreground',
+        destructive: 'bg-destructive text-destructive-foreground',
+        success: 'bg-success text-success-foreground',
+        warning: 'bg-warning text-warning-foreground',
+        info: 'bg-info text-info-foreground',
+        outline: 'bg-background text-foreground',
+      },
+    },
+    defaultVariants: {
+      variant: 'default',
+    },
+  }
+)
+
+type BadgeVariants = VariantProps<typeof badgeVariants>
+
+defineProps<{
+  class?: string
+  variant?: BadgeVariants['variant']
+}>()
+</script>
+
+<template>
+  <div :class="cn(badgeVariants({ variant }), $props.class)">
+    <slot />
+  </div>
+</template>`
+
+const vueUsageCode = `<script setup lang="ts">
+import { Badge } from '@/components/ui'
+</script>
+
+<template>
+  <Badge>Badge</Badge>
+</template>`
+
 export function BadgeDoc() {
   return (
     <>
@@ -53,6 +100,9 @@ export function BadgeDoc() {
         dependencies={['class-variance-authority']}
         sourceCode={sourceCode}
         usageCode={usageCode}
+        vueDependencies={['class-variance-authority']}
+        vueSourceCode={vueSourceCode}
+        vueUsageCode={vueUsageCode}
       >
         <Badge>Badge</Badge>
       </ComponentDoc>
@@ -62,6 +112,14 @@ export function BadgeDoc() {
         title="Variants"
         description="The badge comes with several variants to convey different meanings."
         code={`<Badge variant="default">Default</Badge>
+<Badge variant="secondary">Secondary</Badge>
+<Badge variant="accent">Accent</Badge>
+<Badge variant="destructive">Destructive</Badge>
+<Badge variant="success">Success</Badge>
+<Badge variant="warning">Warning</Badge>
+<Badge variant="info">Info</Badge>
+<Badge variant="outline">Outline</Badge>`}
+        vueCode={`<Badge variant="default">Default</Badge>
 <Badge variant="secondary">Secondary</Badge>
 <Badge variant="accent">Accent</Badge>
 <Badge variant="destructive">Destructive</Badge>
@@ -90,6 +148,10 @@ export function BadgeDoc() {
 <Badge variant="warning">Pending</Badge>
 <Badge variant="destructive">Inactive</Badge>
 <Badge variant="info">In Progress</Badge>`}
+        vueCode={`<Badge variant="success">Active</Badge>
+<Badge variant="warning">Pending</Badge>
+<Badge variant="destructive">Inactive</Badge>
+<Badge variant="info">In Progress</Badge>`}
       >
         <div className="flex flex-wrap gap-2">
           <Badge variant="success">Active</Badge>
@@ -106,6 +168,9 @@ export function BadgeDoc() {
         code={`<Badge>New 5</Badge>
 <Badge variant="destructive">Errors 12</Badge>
 <Badge variant="secondary">Messages 99+</Badge>`}
+        vueCode={`<Badge>New 5</Badge>
+<Badge variant="destructive">Errors 12</Badge>
+<Badge variant="secondary">Messages 99+</Badge>`}
       >
         <div className="flex flex-wrap gap-2">
           <Badge>New 5</Badge>
@@ -119,6 +184,10 @@ export function BadgeDoc() {
         title="Category Badges"
         description="Use badges to categorize content."
         code={`<Badge variant="accent">Design</Badge>
+<Badge variant="info">Development</Badge>
+<Badge variant="secondary">Marketing</Badge>
+<Badge variant="outline">Documentation</Badge>`}
+        vueCode={`<Badge variant="accent">Design</Badge>
 <Badge variant="info">Development</Badge>
 <Badge variant="secondary">Marketing</Badge>
 <Badge variant="outline">Documentation</Badge>`}

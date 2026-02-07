@@ -51,6 +51,33 @@ export default function Example() {
   )
 }`
 
+const vueSourceCode = `<script setup lang="ts">
+import { PopoverRoot, PopoverContent, PopoverTrigger } from 'reka-ui'
+import { cn } from '@/lib/utils'
+</script>
+
+<template>
+  <PopoverRoot v-bind="$attrs">
+    <slot />
+  </PopoverRoot>
+</template>`
+
+const vueUsageCode = `<script setup lang="ts">
+import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui'
+import { Button } from '@/components/ui'
+</script>
+
+<template>
+  <Popover>
+    <PopoverTrigger as-child>
+      <Button>Open Popover</Button>
+    </PopoverTrigger>
+    <PopoverContent>
+      Place content for the popover here.
+    </PopoverContent>
+  </Popover>
+</template>`
+
 export function PopoverDoc() {
   return (
     <>
@@ -58,8 +85,11 @@ export function PopoverDoc() {
         name="Popover"
         description="Displays rich content in a portal, triggered by a button with bold neubrutalism styling."
         dependencies={['@radix-ui/react-popover']}
+        vueDependencies={['reka-ui']}
         sourceCode={sourceCode}
+        vueSourceCode={vueSourceCode}
         usageCode={usageCode}
+        vueUsageCode={vueUsageCode}
       >
         <Popover>
           <PopoverTrigger asChild>

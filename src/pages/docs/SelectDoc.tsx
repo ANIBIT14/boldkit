@@ -96,6 +96,40 @@ export default function Example() {
   )
 }`
 
+const vueSourceCode = `<script setup lang="ts">
+import { SelectRoot, SelectContent, SelectItem, SelectTrigger, SelectValue } from 'reka-ui'
+import { cn } from '@/lib/utils'
+</script>
+
+<template>
+  <SelectRoot v-bind="$attrs">
+    <slot />
+  </SelectRoot>
+</template>`
+
+const vueUsageCode = `<script setup lang="ts">
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui'
+</script>
+
+<template>
+  <Select>
+    <SelectTrigger class="w-[180px]">
+      <SelectValue placeholder="Select a fruit" />
+    </SelectTrigger>
+    <SelectContent>
+      <SelectItem value="apple">Apple</SelectItem>
+      <SelectItem value="banana">Banana</SelectItem>
+      <SelectItem value="orange">Orange</SelectItem>
+    </SelectContent>
+  </Select>
+</template>`
+
 export function SelectDoc() {
   const [value, setValue] = useState('')
 
@@ -105,8 +139,11 @@ export function SelectDoc() {
         name="Select"
         description="Displays a list of options for the user to pick from with bold neubrutalism styling."
         dependencies={['@radix-ui/react-select']}
+        vueDependencies={['reka-ui']}
         sourceCode={sourceCode}
+        vueSourceCode={vueSourceCode}
         usageCode={usageCode}
+        vueUsageCode={vueUsageCode}
       >
         <Select>
           <SelectTrigger className="w-[180px]">

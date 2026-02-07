@@ -63,6 +63,39 @@ export default function Example() {
   )
 }`
 
+const vueSourceCode = `<script setup lang="ts">
+import { RadioGroupRoot, RadioGroupItem, RadioGroupIndicator } from 'reka-ui'
+import { Circle } from 'lucide-vue-next'
+import { cn } from '@/lib/utils'
+</script>
+
+<template>
+  <RadioGroupRoot :class="cn('grid gap-2', props.class)" v-bind="$attrs">
+    <slot />
+  </RadioGroupRoot>
+</template>`
+
+const vueUsageCode = `<script setup lang="ts">
+import { ref } from 'vue'
+import { RadioGroup, RadioGroupItem } from '@/components/ui'
+import { Label } from '@/components/ui'
+
+const value = ref('option-one')
+</script>
+
+<template>
+  <RadioGroup v-model="value">
+    <div class="flex items-center space-x-2">
+      <RadioGroupItem value="option-one" id="option-one" />
+      <Label for="option-one">Option One</Label>
+    </div>
+    <div class="flex items-center space-x-2">
+      <RadioGroupItem value="option-two" id="option-two" />
+      <Label for="option-two">Option Two</Label>
+    </div>
+  </RadioGroup>
+</template>`
+
 export function RadioGroupDoc() {
   const [value, setValue] = useState('comfortable')
 
@@ -73,8 +106,11 @@ export function RadioGroupDoc() {
         description="A set of checkable buttons where only one can be checked at a time with bold neubrutalism styling."
         registryName="radio-group"
         dependencies={['@radix-ui/react-radio-group']}
+        vueDependencies={['reka-ui']}
         sourceCode={sourceCode}
+        vueSourceCode={vueSourceCode}
         usageCode={usageCode}
+        vueUsageCode={vueUsageCode}
       >
         <RadioGroup defaultValue="comfortable">
           <div className="flex items-center space-x-2">

@@ -57,6 +57,75 @@ export default function Example() {
   )
 }`
 
+const vueSourceCode = `<script setup lang="ts">
+import { CalendarRoot, CalendarHeader, CalendarHeading, CalendarGrid, CalendarCell, CalendarHeadCell, CalendarGridHead, CalendarGridBody, CalendarGridRow, CalendarCellTrigger, CalendarPrev, CalendarNext } from 'reka-ui'
+import { ChevronLeft, ChevronRight } from 'lucide-vue-next'
+import { cn } from '@/lib/utils'
+import { buttonVariants } from './Button.vue'
+
+defineProps<{
+  class?: string
+}>()
+
+const modelValue = defineModel<Date>()
+</script>
+
+<template>
+  <CalendarRoot
+    v-model="modelValue"
+    :class="cn('p-3 border-3 border-foreground bg-background shadow-[4px_4px_0px_hsl(var(--shadow-color))]', props.class)"
+  >
+    <CalendarHeader class="relative flex w-full items-center justify-between pt-1">
+      <CalendarPrev :class="cn(buttonVariants({ variant: 'outline' }), 'h-8 w-8 bg-transparent p-0')">
+        <ChevronLeft class="h-4 w-4 stroke-[3]" />
+      </CalendarPrev>
+      <CalendarHeading class="text-sm font-bold uppercase tracking-wide" />
+      <CalendarNext :class="cn(buttonVariants({ variant: 'outline' }), 'h-8 w-8 bg-transparent p-0')">
+        <ChevronRight class="h-4 w-4 stroke-[3]" />
+      </CalendarNext>
+    </CalendarHeader>
+    <CalendarGrid class="w-full border-collapse mt-4">
+      <CalendarGridHead>
+        <CalendarGridRow class="flex">
+          <CalendarHeadCell
+            v-for="day in ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa']"
+            :key="day"
+            class="text-muted-foreground w-9 font-bold text-[0.8rem] uppercase"
+          >
+            {{ day }}
+          </CalendarHeadCell>
+        </CalendarGridRow>
+      </CalendarGridHead>
+      <CalendarGridBody>
+        <template v-for="(week, index) in 6" :key="index">
+          <CalendarGridRow class="flex w-full mt-2">
+            <CalendarCell
+              v-for="day in 7"
+              :key="day"
+              class="relative p-0 text-center text-sm"
+            >
+              <CalendarCellTrigger
+                :class="cn(buttonVariants({ variant: 'ghost' }), 'h-9 w-9 p-0 font-medium border-0')"
+              />
+            </CalendarCell>
+          </CalendarGridRow>
+        </template>
+      </CalendarGridBody>
+    </CalendarGrid>
+  </CalendarRoot>
+</template>`
+
+const vueUsageCode = `<script setup lang="ts">
+import { ref } from 'vue'
+import { Calendar } from '@/components/ui'
+
+const date = ref<Date>(new Date())
+</script>
+
+<template>
+  <Calendar v-model="date" />
+</template>`
+
 export function CalendarDoc() {
   const [date, setDate] = useState<Date | undefined>(new Date())
   const [dateRange, setDateRange] = useState<{ from: Date | undefined; to: Date | undefined }>({
@@ -71,8 +140,11 @@ export function CalendarDoc() {
         name="Calendar"
         description="A date field component that allows users to enter and edit date with neubrutalism styling."
         dependencies={['react-day-picker', 'date-fns']}
+        vueDependencies={['reka-ui']}
         sourceCode={sourceCode}
+        vueSourceCode={vueSourceCode}
         usageCode={usageCode}
+        vueUsageCode={vueUsageCode}
       >
         <Calendar
           mode="single"

@@ -95,6 +95,43 @@ export default function Example() {
   )
 }`
 
+const vueSourceCode = `<script setup lang="ts">
+import { DropdownMenuRoot } from 'reka-ui'
+</script>
+
+<template>
+  <DropdownMenuRoot v-bind="$attrs">
+    <slot />
+  </DropdownMenuRoot>
+</template>`
+
+const vueUsageCode = `<script setup lang="ts">
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from '@/components/ui'
+import { Button } from '@/components/ui'
+</script>
+
+<template>
+  <DropdownMenu>
+    <DropdownMenuTrigger as-child>
+      <Button>Open Menu</Button>
+    </DropdownMenuTrigger>
+    <DropdownMenuContent>
+      <DropdownMenuLabel>My Account</DropdownMenuLabel>
+      <DropdownMenuSeparator />
+      <DropdownMenuItem>Profile</DropdownMenuItem>
+      <DropdownMenuItem>Settings</DropdownMenuItem>
+      <DropdownMenuItem>Logout</DropdownMenuItem>
+    </DropdownMenuContent>
+  </DropdownMenu>
+</template>`
+
 export function DropdownMenuDoc() {
   const [showStatusBar, setShowStatusBar] = useState(true)
   const [showPanel, setShowPanel] = useState(false)
@@ -107,8 +144,11 @@ export function DropdownMenuDoc() {
         description="Displays a menu of actions or options triggered by a button with bold neubrutalism styling."
         registryName="dropdown-menu"
         dependencies={['@radix-ui/react-dropdown-menu']}
+        vueDependencies={['reka-ui']}
         sourceCode={sourceCode}
+        vueSourceCode={vueSourceCode}
         usageCode={usageCode}
+        vueUsageCode={vueUsageCode}
       >
         <DropdownMenu>
           <DropdownMenuTrigger asChild>

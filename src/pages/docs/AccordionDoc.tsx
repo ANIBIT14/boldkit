@@ -81,6 +81,42 @@ export default function Example() {
   )
 }`
 
+const vueSourceCode = `<script setup lang="ts">
+import { AccordionContent, AccordionHeader, AccordionItem, AccordionRoot, AccordionTrigger } from 'reka-ui'
+import { ChevronDown } from 'lucide-vue-next'
+import { cn } from '@/lib/utils'
+
+defineProps<{
+  class?: string
+}>()
+</script>
+
+<template>
+  <AccordionRoot :class="cn('w-full', props.class)">
+    <slot />
+  </AccordionRoot>
+</template>`
+
+const vueUsageCode = `<script setup lang="ts">
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from '@/components/ui'
+</script>
+
+<template>
+  <Accordion type="single" collapsible>
+    <AccordionItem value="item-1">
+      <AccordionTrigger>Is it accessible?</AccordionTrigger>
+      <AccordionContent>
+        Yes. It adheres to the WAI-ARIA design pattern.
+      </AccordionContent>
+    </AccordionItem>
+  </Accordion>
+</template>`
+
 export function AccordionDoc() {
   return (
     <>
@@ -88,8 +124,11 @@ export function AccordionDoc() {
         name="Accordion"
         description="A vertically stacked set of interactive headings that each reveal a section of content with bold neubrutalism styling."
         dependencies={['@radix-ui/react-accordion']}
+        vueDependencies={['reka-ui']}
         sourceCode={sourceCode}
+        vueSourceCode={vueSourceCode}
         usageCode={usageCode}
+        vueUsageCode={vueUsageCode}
       >
         <Accordion type="single" collapsible className="w-full max-w-md">
           <AccordionItem value="item-1">
@@ -127,6 +166,18 @@ export function AccordionDoc() {
     <AccordionContent>Content for section 2</AccordionContent>
   </AccordionItem>
 </Accordion>`}
+        vueCode={`<template>
+  <Accordion type="single" collapsible>
+    <AccordionItem value="item-1">
+      <AccordionTrigger>Section 1</AccordionTrigger>
+      <AccordionContent>Content for section 1</AccordionContent>
+    </AccordionItem>
+    <AccordionItem value="item-2">
+      <AccordionTrigger>Section 2</AccordionTrigger>
+      <AccordionContent>Content for section 2</AccordionContent>
+    </AccordionItem>
+  </Accordion>
+</template>`}
       >
         <Accordion type="single" collapsible className="w-full max-w-md">
           <AccordionItem value="item-1">
@@ -158,6 +209,18 @@ export function AccordionDoc() {
     <AccordionContent>Second item content</AccordionContent>
   </AccordionItem>
 </Accordion>`}
+        vueCode={`<template>
+  <Accordion type="multiple">
+    <AccordionItem value="item-1">
+      <AccordionTrigger>First Item</AccordionTrigger>
+      <AccordionContent>First item content</AccordionContent>
+    </AccordionItem>
+    <AccordionItem value="item-2">
+      <AccordionTrigger>Second Item</AccordionTrigger>
+      <AccordionContent>Second item content</AccordionContent>
+    </AccordionItem>
+  </Accordion>
+</template>`}
       >
         <Accordion type="multiple" className="w-full max-w-md">
           <AccordionItem value="item-1">
@@ -189,6 +252,18 @@ export function AccordionDoc() {
     <AccordionContent>This item starts closed.</AccordionContent>
   </AccordionItem>
 </Accordion>`}
+        vueCode={`<template>
+  <Accordion type="single" collapsible default-value="item-1">
+    <AccordionItem value="item-1">
+      <AccordionTrigger>Open by Default</AccordionTrigger>
+      <AccordionContent>This item is open by default.</AccordionContent>
+    </AccordionItem>
+    <AccordionItem value="item-2">
+      <AccordionTrigger>Another Item</AccordionTrigger>
+      <AccordionContent>This item starts closed.</AccordionContent>
+    </AccordionItem>
+  </Accordion>
+</template>`}
       >
         <Accordion type="single" collapsible defaultValue="item-1" className="w-full max-w-md">
           <AccordionItem value="item-1">

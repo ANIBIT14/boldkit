@@ -31,6 +31,32 @@ export default function Example() {
   )
 }`
 
+const vueSourceCode = `<script setup lang="ts">
+import { cn } from '@/lib/utils'
+
+defineProps<{
+  class?: string
+}>()
+</script>
+
+<template>
+  <div :class="cn('animate-pulse bg-muted border-2 border-foreground/20', props.class)" />
+</template>`
+
+const vueUsageCode = `<script setup lang="ts">
+import { Skeleton } from '@/components/ui'
+</script>
+
+<template>
+  <div class="flex items-center space-x-4">
+    <Skeleton class="h-12 w-12 rounded-full" />
+    <div class="space-y-2">
+      <Skeleton class="h-4 w-[250px]" />
+      <Skeleton class="h-4 w-[200px]" />
+    </div>
+  </div>
+</template>`
+
 export function SkeletonDoc() {
   return (
     <>
@@ -38,8 +64,11 @@ export function SkeletonDoc() {
         name="Skeleton"
         description="A placeholder loading animation with neubrutalism styling to indicate content is being loaded."
         dependencies={[]}
+        vueDependencies={[]}
         sourceCode={sourceCode}
+        vueSourceCode={vueSourceCode}
         usageCode={usageCode}
+        vueUsageCode={vueUsageCode}
       >
         <div className="flex items-center space-x-4">
           <Skeleton className="h-12 w-12 rounded-full" />

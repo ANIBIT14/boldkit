@@ -36,6 +36,43 @@ export default function Example() {
   )
 }`
 
+const vueSourceCode = `<script setup lang="ts">
+import { SliderRoot, SliderTrack, SliderRange, SliderThumb } from 'reka-ui'
+import { cn } from '@/lib/utils'
+
+const props = defineProps<{
+  class?: string
+  defaultValue?: number[]
+  modelValue?: number[]
+  max?: number
+  min?: number
+  step?: number
+}>()
+</script>
+
+<template>
+  <SliderRoot
+    :class="cn('relative flex w-full touch-none select-none items-center', props.class)"
+    v-bind="$attrs"
+  >
+    <SliderTrack class="relative h-3 w-full grow overflow-hidden border-3 border-foreground bg-muted shadow-[2px_2px_0px_hsl(var(--shadow-color))]">
+      <SliderRange class="absolute h-full bg-primary" />
+    </SliderTrack>
+    <SliderThumb class="block h-6 w-6 border-3 border-foreground bg-background shadow-[2px_2px_0px_hsl(var(--shadow-color))] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring" />
+  </SliderRoot>
+</template>`
+
+const vueUsageCode = `<script setup lang="ts">
+import { ref } from 'vue'
+import { Slider } from '@/components/ui'
+
+const value = ref([50])
+</script>
+
+<template>
+  <Slider v-model="value" :max="100" :step="1" />
+</template>`
+
 export function SliderDoc() {
   const [value, setValue] = useState([50])
 
@@ -45,8 +82,11 @@ export function SliderDoc() {
         name="Slider"
         description="A draggable slider input with bold neubrutalism styling for selecting values from a range."
         dependencies={['@radix-ui/react-slider']}
+        vueDependencies={['reka-ui']}
         sourceCode={sourceCode}
+        vueSourceCode={vueSourceCode}
         usageCode={usageCode}
+        vueUsageCode={vueUsageCode}
       >
         <div className="w-full max-w-md">
           <Slider defaultValue={[50]} max={100} step={1} />

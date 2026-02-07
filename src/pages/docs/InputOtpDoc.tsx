@@ -89,6 +89,80 @@ export default function Example() {
   )
 }`
 
+const vueSourceCode = `<script setup lang="ts">
+import { PinInputRoot, PinInputInput } from 'reka-ui'
+import { Minus } from 'lucide-vue-next'
+import { cn } from '@/lib/utils'
+
+defineProps<{
+  class?: string
+  maxLength?: number
+}>()
+
+const modelValue = defineModel<string[]>()
+</script>
+
+<!-- InputOTP -->
+<template>
+  <PinInputRoot
+    v-model="modelValue"
+    :class="cn('flex items-center gap-2 has-[:disabled]:opacity-50', props.class)"
+    v-bind="$attrs"
+  >
+    <slot />
+  </PinInputRoot>
+</template>
+
+<!-- InputOTPGroup -->
+<template>
+  <div :class="cn('flex items-center', props.class)">
+    <slot />
+  </div>
+</template>
+
+<!-- InputOTPSlot -->
+<template>
+  <PinInputInput
+    :index="index"
+    :class="cn(
+      'relative flex h-12 w-12 items-center justify-center border-3 border-foreground bg-background text-lg font-bold uppercase transition-all shadow-[4px_4px_0px_hsl(var(--shadow-color))]',
+      'focus:z-10 focus:ring-2 focus:ring-ring focus:ring-offset-2',
+      props.class
+    )"
+  />
+</template>
+
+<!-- InputOTPSeparator -->
+<template>
+  <div role="separator">
+    <Minus class="stroke-[3]" />
+  </div>
+</template>`
+
+const vueUsageCode = `<script setup lang="ts">
+import { ref } from 'vue'
+import {
+  InputOTP,
+  InputOTPGroup,
+  InputOTPSlot,
+} from '@/components/ui'
+
+const value = ref<string[]>([])
+</script>
+
+<template>
+  <InputOTP v-model="value" :max-length="6">
+    <InputOTPGroup>
+      <InputOTPSlot :index="0" />
+      <InputOTPSlot :index="1" />
+      <InputOTPSlot :index="2" />
+      <InputOTPSlot :index="3" />
+      <InputOTPSlot :index="4" />
+      <InputOTPSlot :index="5" />
+    </InputOTPGroup>
+  </InputOTP>
+</template>`
+
 export function InputOtpDoc() {
   return (
     <>
@@ -96,8 +170,11 @@ export function InputOtpDoc() {
         name="Input OTP"
         description="Accessible one-time password component with copy paste functionality and neubrutalism styling."
         dependencies={['input-otp']}
+        vueDependencies={['reka-ui']}
         sourceCode={sourceCode}
+        vueSourceCode={vueSourceCode}
         usageCode={usageCode}
+        vueUsageCode={vueUsageCode}
       >
         <InputOTP maxLength={6}>
           <InputOTPGroup>

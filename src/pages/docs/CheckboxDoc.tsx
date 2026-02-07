@@ -31,6 +31,76 @@ Checkbox.displayName = CheckboxPrimitive.Root.displayName
 
 export { Checkbox }`
 
+const vueSourceCode = `<script setup lang="ts">
+import { computed } from 'vue'
+import { CheckboxRoot, CheckboxIndicator } from 'reka-ui'
+import { Check } from 'lucide-vue-next'
+import { cn } from '@/lib/utils'
+
+const props = withDefaults(
+  defineProps<{
+    checked?: boolean
+    defaultChecked?: boolean
+    disabled?: boolean
+    required?: boolean
+    name?: string
+    value?: string
+    id?: string
+    class?: string
+  }>(),
+  {
+    checked: undefined,
+    defaultChecked: false,
+    disabled: false,
+    required: false,
+  }
+)
+
+const emit = defineEmits<{
+  'update:checked': [value: boolean]
+}>()
+
+const modelValue = computed({
+  get: () => props.checked,
+  set: (value) => emit('update:checked', value as boolean),
+})
+</script>
+
+<template>
+  <CheckboxRoot
+    v-model:checked="modelValue"
+    :default-checked="defaultChecked"
+    :disabled="disabled"
+    :required="required"
+    :name="name"
+    :value="value"
+    :id="id"
+    :class="cn(
+      'peer h-5 w-5 shrink-0 border-3 border-foreground bg-background bk-shadow-sm transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground',
+      props.class
+    )"
+  >
+    <CheckboxIndicator class="flex items-center justify-center text-current">
+      <Check class="h-4 w-4 stroke-[3]" />
+    </CheckboxIndicator>
+  </CheckboxRoot>
+</template>`
+
+const vueUsageCode = `<script setup lang="ts">
+import { ref } from 'vue'
+import { Checkbox } from '@/components/ui'
+import { Label } from '@/components/ui'
+
+const checked = ref(false)
+</script>
+
+<template>
+  <div class="flex items-center space-x-2">
+    <Checkbox id="terms" v-model:checked="checked" />
+    <Label for="terms">Accept terms</Label>
+  </div>
+</template>`
+
 const usageCode = `import { Checkbox } from '@/components/ui/checkbox'
 import { Label } from '@/components/ui/label'
 
@@ -54,6 +124,9 @@ export function CheckboxDoc() {
         dependencies={['@radix-ui/react-checkbox']}
         sourceCode={sourceCode}
         usageCode={usageCode}
+        vueDependencies={['reka-ui']}
+        vueSourceCode={vueSourceCode}
+        vueUsageCode={vueUsageCode}
       >
         <div className="flex items-center space-x-2">
           <Checkbox id="preview-terms" />
@@ -69,6 +142,12 @@ export function CheckboxDoc() {
   <Checkbox id="terms" />
   <Label htmlFor="terms">Accept terms and conditions</Label>
 </div>`}
+        vueCode={`<template>
+  <div class="flex items-center space-x-2">
+    <Checkbox id="terms" />
+    <Label for="terms">Accept terms and conditions</Label>
+  </div>
+</template>`}
       >
         <div className="flex items-center space-x-2">
           <Checkbox id="basic-terms" />
@@ -92,6 +171,23 @@ export function CheckboxDoc() {
     {checked ? 'Checked' : 'Unchecked'}
   </Label>
 </div>`}
+        vueCode={`<script setup lang="ts">
+import { ref } from 'vue'
+
+const checked = ref(false)
+</script>
+
+<template>
+  <div class="flex items-center space-x-2">
+    <Checkbox
+      id="controlled"
+      v-model:checked="checked"
+    />
+    <Label for="controlled">
+      {{ checked ? 'Checked' : 'Unchecked' }}
+    </Label>
+  </div>
+</template>`}
       >
         <div className="flex items-center space-x-2">
           <Checkbox
@@ -117,6 +213,16 @@ export function CheckboxDoc() {
   <Checkbox id="disabled-checked" disabled checked />
   <Label htmlFor="disabled-checked" className="opacity-50">Disabled checked</Label>
 </div>`}
+        vueCode={`<template>
+  <div class="flex items-center space-x-2">
+    <Checkbox id="disabled" disabled />
+    <Label for="disabled" class="opacity-50">Disabled checkbox</Label>
+  </div>
+  <div class="flex items-center space-x-2">
+    <Checkbox id="disabled-checked" disabled :checked="true" />
+    <Label for="disabled-checked" class="opacity-50">Disabled checked</Label>
+  </div>
+</template>`}
       >
         <div className="space-y-4">
           <div className="flex items-center space-x-2">

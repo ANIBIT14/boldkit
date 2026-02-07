@@ -55,6 +55,50 @@ export default function Example() {
   )
 }`
 
+const vueSourceCode = `<script setup lang="ts">
+import { Toggle as TogglePrimitive } from 'reka-ui'
+import { cva, type VariantProps } from 'class-variance-authority'
+import { cn } from '@/lib/utils'
+
+const toggleVariants = cva(
+  'inline-flex items-center justify-center text-sm font-bold uppercase tracking-wide transition-all hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 data-[state=on]:bg-primary data-[state=on]:text-primary-foreground border-3 border-foreground shadow-[2px_2px_0px_hsl(var(--shadow-color))]',
+  {
+    variants: {
+      variant: {
+        default: 'bg-transparent',
+        outline: 'bg-background',
+      },
+      size: {
+        default: 'h-10 px-3 min-w-10',
+        sm: 'h-9 px-2.5 min-w-9',
+        lg: 'h-11 px-5 min-w-11',
+      },
+    },
+    defaultVariants: {
+      variant: 'default',
+      size: 'default',
+    },
+  }
+)
+</script>
+
+<template>
+  <TogglePrimitive :class="cn(toggleVariants({ variant, size }), props.class)">
+    <slot />
+  </TogglePrimitive>
+</template>`
+
+const vueUsageCode = `<script setup lang="ts">
+import { Toggle } from '@/components/ui'
+import { Bold } from 'lucide-vue-next'
+</script>
+
+<template>
+  <Toggle aria-label="Toggle bold">
+    <Bold class="h-4 w-4" />
+  </Toggle>
+</template>`
+
 export function ToggleDoc() {
   return (
     <>
@@ -62,8 +106,11 @@ export function ToggleDoc() {
         name="Toggle"
         description="A two-state button that can be toggled on or off with bold neubrutalism styling."
         dependencies={['@radix-ui/react-toggle', 'class-variance-authority']}
+        vueDependencies={['reka-ui', 'class-variance-authority']}
         sourceCode={sourceCode}
+        vueSourceCode={vueSourceCode}
         usageCode={usageCode}
+        vueUsageCode={vueUsageCode}
       >
         <Toggle aria-label="Toggle bold">
           <Bold className="h-4 w-4" />

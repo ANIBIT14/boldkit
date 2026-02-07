@@ -347,6 +347,263 @@ const option = ref({
 
 <template>
   <VChart :option="option" class="h-[300px] w-full" autoresize />
+</template>`,
+
+  areaStep: `<script setup lang="ts">
+import { use } from 'echarts/core'
+import { CanvasRenderer } from 'echarts/renderers'
+import { LineChart } from 'echarts/charts'
+import { GridComponent, TooltipComponent } from 'echarts/components'
+import VChart from 'vue-echarts'
+import { ref } from 'vue'
+
+use([CanvasRenderer, LineChart, GridComponent, TooltipComponent])
+
+const option = ref({
+  xAxis: { type: 'category', data: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'] },
+  yAxis: { type: 'value' },
+  tooltip: { trigger: 'axis' },
+  series: [{
+    type: 'line',
+    data: [186, 305, 237, 73, 209, 214],
+    areaStyle: { color: 'hsl(var(--accent))', opacity: 0.6 },
+    lineStyle: { color: 'hsl(var(--foreground))', width: 3 },
+    step: 'middle'
+  }]
+})
+</script>
+
+<template>
+  <VChart :option="option" class="h-[300px] w-full" autoresize />
+</template>`,
+
+  areaLinear: `<script setup lang="ts">
+import { use } from 'echarts/core'
+import { CanvasRenderer } from 'echarts/renderers'
+import { LineChart } from 'echarts/charts'
+import { GridComponent, TooltipComponent } from 'echarts/components'
+import VChart from 'vue-echarts'
+import { ref } from 'vue'
+
+use([CanvasRenderer, LineChart, GridComponent, TooltipComponent])
+
+const option = ref({
+  xAxis: { type: 'category', data: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'] },
+  yAxis: { type: 'value' },
+  tooltip: { trigger: 'axis' },
+  series: [{
+    type: 'line',
+    data: [186, 305, 237, 73, 209, 214],
+    areaStyle: { color: 'hsl(var(--success))', opacity: 0.6 },
+    lineStyle: { color: 'hsl(var(--foreground))', width: 3 },
+    smooth: false
+  }]
+})
+</script>
+
+<template>
+  <VChart :option="option" class="h-[300px] w-full" autoresize />
+</template>`,
+
+  barHorizontal: `<script setup lang="ts">
+import { use } from 'echarts/core'
+import { CanvasRenderer } from 'echarts/renderers'
+import { BarChart } from 'echarts/charts'
+import { GridComponent, TooltipComponent } from 'echarts/components'
+import VChart from 'vue-echarts'
+import { ref } from 'vue'
+
+use([CanvasRenderer, BarChart, GridComponent, TooltipComponent])
+
+const option = ref({
+  xAxis: { type: 'value' },
+  yAxis: { type: 'category', data: ['Chrome', 'Safari', 'Firefox', 'Edge', 'Other'] },
+  tooltip: { trigger: 'axis' },
+  series: [{
+    type: 'bar',
+    data: [275, 200, 187, 173, 90],
+    itemStyle: { color: 'hsl(var(--primary))', borderColor: 'hsl(var(--foreground))', borderWidth: 3 }
+  }]
+})
+</script>
+
+<template>
+  <VChart :option="option" class="h-[300px] w-full" autoresize />
+</template>`,
+
+  barStacked: `<script setup lang="ts">
+import { use } from 'echarts/core'
+import { CanvasRenderer } from 'echarts/renderers'
+import { BarChart } from 'echarts/charts'
+import { GridComponent, TooltipComponent, LegendComponent } from 'echarts/components'
+import VChart from 'vue-echarts'
+import { ref } from 'vue'
+
+use([CanvasRenderer, BarChart, GridComponent, TooltipComponent, LegendComponent])
+
+const option = ref({
+  legend: { bottom: 0 },
+  xAxis: { type: 'category', data: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'] },
+  yAxis: { type: 'value' },
+  tooltip: { trigger: 'axis' },
+  series: [
+    { name: 'Desktop', type: 'bar', stack: 'total', data: [186, 305, 237, 73, 209, 214], itemStyle: { color: 'hsl(var(--primary))', borderColor: 'hsl(var(--foreground))', borderWidth: 3 } },
+    { name: 'Mobile', type: 'bar', stack: 'total', data: [80, 200, 120, 190, 130, 140], itemStyle: { color: 'hsl(var(--secondary))', borderColor: 'hsl(var(--foreground))', borderWidth: 3 } }
+  ]
+})
+</script>
+
+<template>
+  <VChart :option="option" class="h-[300px] w-full" autoresize />
+</template>`,
+
+  lineMultiple: `<script setup lang="ts">
+import { use } from 'echarts/core'
+import { CanvasRenderer } from 'echarts/renderers'
+import { LineChart } from 'echarts/charts'
+import { GridComponent, TooltipComponent, LegendComponent } from 'echarts/components'
+import VChart from 'vue-echarts'
+import { ref } from 'vue'
+
+use([CanvasRenderer, LineChart, GridComponent, TooltipComponent, LegendComponent])
+
+const option = ref({
+  legend: { bottom: 0 },
+  xAxis: { type: 'category', data: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'] },
+  yAxis: { type: 'value' },
+  tooltip: { trigger: 'axis' },
+  series: [
+    { name: 'Desktop', type: 'line', data: [186, 305, 237, 73, 209, 214], lineStyle: { color: 'hsl(var(--primary))', width: 4 }, itemStyle: { color: 'hsl(var(--primary))', borderColor: 'hsl(var(--foreground))', borderWidth: 3 }, smooth: true },
+    { name: 'Mobile', type: 'line', data: [80, 200, 120, 190, 130, 140], lineStyle: { color: 'hsl(var(--secondary))', width: 4 }, itemStyle: { color: 'hsl(var(--secondary))', borderColor: 'hsl(var(--foreground))', borderWidth: 3 }, smooth: true }
+  ]
+})
+</script>
+
+<template>
+  <VChart :option="option" class="h-[300px] w-full" autoresize />
+</template>`,
+
+  lineStep: `<script setup lang="ts">
+import { use } from 'echarts/core'
+import { CanvasRenderer } from 'echarts/renderers'
+import { LineChart } from 'echarts/charts'
+import { GridComponent, TooltipComponent } from 'echarts/components'
+import VChart from 'vue-echarts'
+import { ref } from 'vue'
+
+use([CanvasRenderer, LineChart, GridComponent, TooltipComponent])
+
+const option = ref({
+  xAxis: { type: 'category', data: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'] },
+  yAxis: { type: 'value' },
+  tooltip: { trigger: 'axis' },
+  series: [{
+    type: 'line',
+    data: [186, 305, 237, 73, 209, 214],
+    step: 'middle',
+    lineStyle: { color: 'hsl(var(--accent))', width: 4 },
+    itemStyle: { color: 'hsl(var(--accent))', borderColor: 'hsl(var(--foreground))', borderWidth: 3 }
+  }]
+})
+</script>
+
+<template>
+  <VChart :option="option" class="h-[300px] w-full" autoresize />
+</template>`,
+
+  lineLinear: `<script setup lang="ts">
+import { use } from 'echarts/core'
+import { CanvasRenderer } from 'echarts/renderers'
+import { LineChart } from 'echarts/charts'
+import { GridComponent, TooltipComponent } from 'echarts/components'
+import VChart from 'vue-echarts'
+import { ref } from 'vue'
+
+use([CanvasRenderer, LineChart, GridComponent, TooltipComponent])
+
+const option = ref({
+  xAxis: { type: 'category', data: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'] },
+  yAxis: { type: 'value' },
+  tooltip: { trigger: 'axis' },
+  series: [{
+    type: 'line',
+    data: [186, 305, 237, 73, 209, 214],
+    smooth: false,
+    lineStyle: { color: 'hsl(var(--success))', width: 4 },
+    itemStyle: { color: 'hsl(var(--success))', borderColor: 'hsl(var(--foreground))', borderWidth: 3 }
+  }]
+})
+</script>
+
+<template>
+  <VChart :option="option" class="h-[300px] w-full" autoresize />
+</template>`,
+
+  pieLegend: `<script setup lang="ts">
+import { use } from 'echarts/core'
+import { CanvasRenderer } from 'echarts/renderers'
+import { PieChart } from 'echarts/charts'
+import { TooltipComponent, LegendComponent } from 'echarts/components'
+import VChart from 'vue-echarts'
+import { ref } from 'vue'
+
+use([CanvasRenderer, PieChart, TooltipComponent, LegendComponent])
+
+const option = ref({
+  legend: { orient: 'vertical', left: 'left' },
+  tooltip: { trigger: 'item' },
+  series: [{
+    type: 'pie',
+    radius: '70%',
+    center: ['60%', '50%'],
+    data: [
+      { value: 275, name: 'Chrome', itemStyle: { color: 'hsl(var(--primary))' } },
+      { value: 200, name: 'Safari', itemStyle: { color: 'hsl(var(--secondary))' } },
+      { value: 187, name: 'Firefox', itemStyle: { color: 'hsl(var(--accent))' } },
+      { value: 173, name: 'Edge', itemStyle: { color: 'hsl(var(--success))' } },
+      { value: 90, name: 'Other', itemStyle: { color: 'hsl(var(--muted))' } }
+    ],
+    itemStyle: { borderColor: 'hsl(var(--foreground))', borderWidth: 3 }
+  }]
+})
+</script>
+
+<template>
+  <VChart :option="option" class="h-[300px] w-full" autoresize />
+</template>`,
+
+  pieInteractive: `<script setup lang="ts">
+import { use } from 'echarts/core'
+import { CanvasRenderer } from 'echarts/renderers'
+import { PieChart } from 'echarts/charts'
+import { TooltipComponent, LegendComponent } from 'echarts/components'
+import VChart from 'vue-echarts'
+import { ref } from 'vue'
+
+use([CanvasRenderer, PieChart, TooltipComponent, LegendComponent])
+
+const option = ref({
+  tooltip: { trigger: 'item' },
+  legend: { bottom: 0 },
+  series: [{
+    type: 'pie',
+    radius: ['40%', '70%'],
+    label: { show: true, formatter: '{b}: {c}' },
+    emphasis: { itemStyle: { shadowBlur: 10, shadowOffsetX: 0 } },
+    data: [
+      { value: 275, name: 'Chrome', itemStyle: { color: 'hsl(var(--primary))' } },
+      { value: 200, name: 'Safari', itemStyle: { color: 'hsl(var(--secondary))' } },
+      { value: 187, name: 'Firefox', itemStyle: { color: 'hsl(var(--accent))' } },
+      { value: 173, name: 'Edge', itemStyle: { color: 'hsl(var(--success))' } },
+      { value: 90, name: 'Other', itemStyle: { color: 'hsl(var(--muted))' } }
+    ],
+    itemStyle: { borderColor: 'hsl(var(--foreground))', borderWidth: 3 }
+  }]
+})
+</script>
+
+<template>
+  <VChart :option="option" class="h-[300px] w-full" autoresize />
 </template>`
 }
 
@@ -1195,6 +1452,7 @@ export function Charts() {
                 title="Area Chart - Step"
                 description="Step interpolation for discrete data"
                 code={chartCodes.areaStep}
+                vueCode={vueChartCodes.areaStep}
               >
                 <ChartContainer config={chartConfig} className="h-[300px] w-full">
                   <AreaChart data={areaData}>
@@ -1218,6 +1476,7 @@ export function Charts() {
                 title="Area Chart - Linear"
                 description="Linear interpolation between points"
                 code={chartCodes.areaLinear}
+                vueCode={vueChartCodes.areaLinear}
               >
                 <ChartContainer config={chartConfig} className="h-[300px] w-full">
                   <AreaChart data={areaData}>
@@ -1299,6 +1558,7 @@ export function Charts() {
                 title="Bar Chart - Horizontal"
                 description="Browser usage statistics"
                 code={chartCodes.barHorizontal}
+                vueCode={vueChartCodes.barHorizontal}
               >
                 <ChartContainer config={chartConfig} className="h-[300px] w-full">
                   <BarChart data={horizontalBarData} layout="vertical">
@@ -1320,6 +1580,7 @@ export function Charts() {
                 title="Bar Chart - Stacked"
                 description="Stacked comparison view"
                 code={chartCodes.barStacked}
+                vueCode={vueChartCodes.barStacked}
               >
                 <ChartContainer config={chartConfig} className="h-[300px] w-full">
                   <BarChart data={barData}>
@@ -1380,6 +1641,7 @@ export function Charts() {
                 title="Line Chart - Multiple"
                 description="Multiple data series"
                 code={chartCodes.lineMultiple}
+                vueCode={vueChartCodes.lineMultiple}
               >
                 <ChartContainer config={chartConfig} className="h-[300px] w-full">
                   <LineChart data={lineData}>
@@ -1410,6 +1672,7 @@ export function Charts() {
                 title="Line Chart - Step"
                 description="Step-wise progression"
                 code={chartCodes.lineStep}
+                vueCode={vueChartCodes.lineStep}
               >
                 <ChartContainer config={chartConfig} className="h-[300px] w-full">
                   <LineChart data={lineData}>
@@ -1432,6 +1695,7 @@ export function Charts() {
                 title="Line Chart - Linear"
                 description="Linear interpolation"
                 code={chartCodes.lineLinear}
+                vueCode={vueChartCodes.lineLinear}
               >
                 <ChartContainer config={chartConfig} className="h-[300px] w-full">
                   <LineChart data={lineData}>
@@ -1514,6 +1778,7 @@ export function Charts() {
                 title="Pie Chart - With Legend"
                 description="Including data legend"
                 code={chartCodes.pieLegend}
+                vueCode={vueChartCodes.pieLegend}
               >
                 <ChartContainer config={pieChartConfig} className="h-[300px] w-full">
                   <PieChart>
@@ -1544,6 +1809,7 @@ export function Charts() {
                 title="Pie Chart - Interactive"
                 description="Hover to highlight segments"
                 code={chartCodes.pieInteractive}
+                vueCode={vueChartCodes.pieInteractive}
               >
                 <div className="text-center mb-4">
                   <p className="text-2xl font-black">{pieData[activeSlice].visitors}</p>

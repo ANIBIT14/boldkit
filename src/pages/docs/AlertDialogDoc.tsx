@@ -102,6 +102,51 @@ export default function Example() {
   )
 }`
 
+const vueSourceCode = `<script setup lang="ts">
+import { AlertDialogRoot } from 'reka-ui'
+</script>
+
+<template>
+  <AlertDialogRoot v-bind="$attrs">
+    <slot />
+  </AlertDialogRoot>
+</template>`
+
+const vueUsageCode = `<script setup lang="ts">
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from '@/components/ui'
+import { Button } from '@/components/ui'
+</script>
+
+<template>
+  <AlertDialog>
+    <AlertDialogTrigger as-child>
+      <Button variant="destructive">Delete</Button>
+    </AlertDialogTrigger>
+    <AlertDialogContent>
+      <AlertDialogHeader>
+        <AlertDialogTitle>Are you sure?</AlertDialogTitle>
+        <AlertDialogDescription>
+          This action cannot be undone.
+        </AlertDialogDescription>
+      </AlertDialogHeader>
+      <AlertDialogFooter>
+        <AlertDialogCancel>Cancel</AlertDialogCancel>
+        <AlertDialogAction>Continue</AlertDialogAction>
+      </AlertDialogFooter>
+    </AlertDialogContent>
+  </AlertDialog>
+</template>`
+
 export function AlertDialogDoc() {
   return (
     <>
@@ -109,8 +154,11 @@ export function AlertDialogDoc() {
         name="Alert Dialog"
         description="A modal dialog that interrupts the user with important content and expects a response."
         dependencies={['@radix-ui/react-alert-dialog']}
+        vueDependencies={['reka-ui']}
         sourceCode={sourceCode}
+        vueSourceCode={vueSourceCode}
         usageCode={usageCode}
+        vueUsageCode={vueUsageCode}
       >
         <AlertDialog>
           <AlertDialogTrigger asChild>

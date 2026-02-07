@@ -153,6 +153,107 @@ export default function Example() {
   )
 }`
 
+const vueSourceCode = `<script setup lang="ts">
+import { Primitive } from 'reka-ui'
+import { ChevronRight, MoreHorizontal } from 'lucide-vue-next'
+import { cn } from '@/lib/utils'
+
+defineProps<{
+  class?: string
+  asChild?: boolean
+}>()
+</script>
+
+<!-- Breadcrumb -->
+<template>
+  <nav aria-label="breadcrumb">
+    <slot />
+  </nav>
+</template>
+
+<!-- BreadcrumbList -->
+<template>
+  <ol :class="cn('flex flex-wrap items-center gap-1.5 break-words text-sm text-muted-foreground sm:gap-2.5', props.class)">
+    <slot />
+  </ol>
+</template>
+
+<!-- BreadcrumbItem -->
+<template>
+  <li :class="cn('inline-flex items-center gap-1.5', props.class)">
+    <slot />
+  </li>
+</template>
+
+<!-- BreadcrumbLink -->
+<template>
+  <Primitive
+    :as-child="asChild"
+    as="a"
+    :class="cn('transition-colors hover:text-foreground font-medium', props.class)"
+  >
+    <slot />
+  </Primitive>
+</template>
+
+<!-- BreadcrumbPage -->
+<template>
+  <span
+    role="link"
+    aria-disabled="true"
+    aria-current="page"
+    :class="cn('font-bold text-foreground', props.class)"
+  >
+    <slot />
+  </span>
+</template>
+
+<!-- BreadcrumbSeparator -->
+<template>
+  <li role="presentation" aria-hidden="true" :class="cn('[&>svg]:h-3.5 [&>svg]:w-3.5', props.class)">
+    <slot>
+      <ChevronRight class="stroke-[3]" />
+    </slot>
+  </li>
+</template>
+
+<!-- BreadcrumbEllipsis -->
+<template>
+  <span role="presentation" aria-hidden="true" :class="cn('flex h-9 w-9 items-center justify-center', props.class)">
+    <MoreHorizontal class="h-4 w-4 stroke-[3]" />
+    <span class="sr-only">More</span>
+  </span>
+</template>`
+
+const vueUsageCode = `<script setup lang="ts">
+import {
+  Breadcrumb,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbList,
+  BreadcrumbPage,
+  BreadcrumbSeparator,
+} from '@/components/ui'
+</script>
+
+<template>
+  <Breadcrumb>
+    <BreadcrumbList>
+      <BreadcrumbItem>
+        <BreadcrumbLink href="/">Home</BreadcrumbLink>
+      </BreadcrumbItem>
+      <BreadcrumbSeparator />
+      <BreadcrumbItem>
+        <BreadcrumbLink href="/docs">Docs</BreadcrumbLink>
+      </BreadcrumbItem>
+      <BreadcrumbSeparator />
+      <BreadcrumbItem>
+        <BreadcrumbPage>Breadcrumb</BreadcrumbPage>
+      </BreadcrumbItem>
+    </BreadcrumbList>
+  </Breadcrumb>
+</template>`
+
 export function BreadcrumbDoc() {
   return (
     <>
@@ -160,8 +261,11 @@ export function BreadcrumbDoc() {
         name="Breadcrumb"
         description="Displays the path to the current resource using a hierarchy of links with bold typography."
         dependencies={['@radix-ui/react-slot']}
+        vueDependencies={['reka-ui']}
         sourceCode={sourceCode}
+        vueSourceCode={vueSourceCode}
         usageCode={usageCode}
+        vueUsageCode={vueUsageCode}
       >
         <Breadcrumb>
           <BreadcrumbList>

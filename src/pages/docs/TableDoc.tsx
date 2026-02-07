@@ -155,6 +155,50 @@ export default function Example() {
   )
 }`
 
+const vueSourceCode = `<script setup lang="ts">
+import { cn } from '@/lib/utils'
+
+defineProps<{
+  class?: string
+}>()
+</script>
+
+<template>
+  <div class="relative w-full overflow-auto">
+    <table :class="cn('w-full caption-bottom text-sm border-3 border-foreground shadow-[4px_4px_0px_hsl(var(--shadow-color))]', props.class)">
+      <slot />
+    </table>
+  </div>
+</template>`
+
+const vueUsageCode = `<script setup lang="ts">
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from '@/components/ui'
+</script>
+
+<template>
+  <Table>
+    <TableHeader>
+      <TableRow>
+        <TableHead>Name</TableHead>
+        <TableHead>Status</TableHead>
+      </TableRow>
+    </TableHeader>
+    <TableBody>
+      <TableRow>
+        <TableCell>John Doe</TableCell>
+        <TableCell>Active</TableCell>
+      </TableRow>
+    </TableBody>
+  </Table>
+</template>`
+
 const invoices = [
   { invoice: 'INV001', status: 'Paid', method: 'Credit Card', amount: '$250.00' },
   { invoice: 'INV002', status: 'Pending', method: 'PayPal', amount: '$150.00' },
@@ -170,8 +214,11 @@ export function TableDoc() {
         name="Table"
         description="A responsive table component with bold neubrutalism styling for displaying tabular data."
         dependencies={[]}
+        vueDependencies={[]}
         sourceCode={sourceCode}
+        vueSourceCode={vueSourceCode}
         usageCode={usageCode}
+        vueUsageCode={vueUsageCode}
       >
         <Table>
           <TableCaption>A list of your recent invoices.</TableCaption>

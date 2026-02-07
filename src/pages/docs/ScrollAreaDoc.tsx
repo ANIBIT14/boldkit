@@ -60,6 +60,48 @@ export default function Example() {
   )
 }`
 
+const vueSourceCode = `<script setup lang="ts">
+import { ScrollAreaRoot, ScrollAreaViewport, ScrollAreaScrollbar, ScrollAreaThumb, ScrollAreaCorner } from 'reka-ui'
+import { cn } from '@/lib/utils'
+
+defineProps<{
+  class?: string
+  orientation?: 'vertical' | 'horizontal'
+}>()
+</script>
+
+<template>
+  <ScrollAreaRoot :class="cn('relative overflow-hidden', props.class)">
+    <ScrollAreaViewport class="h-full w-full rounded-[inherit]">
+      <slot />
+    </ScrollAreaViewport>
+    <ScrollAreaScrollbar
+      :orientation="orientation ?? 'vertical'"
+      :class="cn(
+        'flex touch-none select-none transition-colors',
+        orientation === 'horizontal'
+          ? 'h-3 flex-col border-t-3 border-t-transparent p-[1px]'
+          : 'h-full w-3 border-l-3 border-l-transparent p-[1px]'
+      )"
+    >
+      <ScrollAreaThumb class="relative flex-1 bg-foreground" />
+    </ScrollAreaScrollbar>
+    <ScrollAreaCorner />
+  </ScrollAreaRoot>
+</template>`
+
+const vueUsageCode = `<script setup lang="ts">
+import { ScrollArea } from '@/components/ui'
+</script>
+
+<template>
+  <ScrollArea class="h-[200px] w-[350px] border-3 border-foreground p-4">
+    <div>
+      <!-- Long content here -->
+    </div>
+  </ScrollArea>
+</template>`
+
 const tags = Array.from({ length: 50 }).map(
   (_, i, a) => `Tag ${a.length - i}`
 )
@@ -85,8 +127,11 @@ export function ScrollAreaDoc() {
         description="Augments native scroll functionality for custom, cross-browser styling with bold scrollbar design."
         registryName="scroll-area"
         dependencies={['@radix-ui/react-scroll-area']}
+        vueDependencies={['reka-ui']}
         sourceCode={sourceCode}
+        vueSourceCode={vueSourceCode}
         usageCode={usageCode}
+        vueUsageCode={vueUsageCode}
       >
         <ScrollArea className="h-72 w-48 border-3 border-foreground bk-shadow">
           <div className="p-4">

@@ -96,6 +96,57 @@ export default function Example() {
   )
 }`
 
+const vueSourceCode = `<script setup lang="ts">
+import { DrawerRoot, DrawerTrigger, DrawerPortal, DrawerOverlay, DrawerContent, DrawerClose, DrawerTitle, DrawerDescription } from 'vaul-vue'
+import { cn } from '@/lib/utils'
+
+defineProps<{
+  shouldScaleBackground?: boolean
+  class?: string
+}>()
+</script>
+
+<template>
+  <DrawerPortal>
+    <DrawerOverlay class="fixed inset-0 z-50 bg-black/70" />
+    <DrawerContent
+      :class="cn(
+        'fixed inset-x-0 bottom-0 z-50 mt-24 flex h-auto flex-col border-t-3 border-x-3 border-foreground bg-background shadow-[0px_-8px_0px_hsl(var(--shadow-color))]',
+        props.class
+      )"
+    >
+      <div class="mx-auto mt-4 h-2 w-[100px] bg-foreground" />
+      <slot />
+    </DrawerContent>
+  </DrawerPortal>
+</template>`
+
+const vueUsageCode = `<script setup lang="ts">
+import {
+  Drawer,
+  DrawerContent,
+  DrawerDescription,
+  DrawerHeader,
+  DrawerTitle,
+  DrawerTrigger,
+} from '@/components/ui'
+import { Button } from '@/components/ui'
+</script>
+
+<template>
+  <Drawer>
+    <DrawerTrigger as-child>
+      <Button>Open Drawer</Button>
+    </DrawerTrigger>
+    <DrawerContent>
+      <DrawerHeader>
+        <DrawerTitle>Drawer Title</DrawerTitle>
+        <DrawerDescription>Drawer description.</DrawerDescription>
+      </DrawerHeader>
+    </DrawerContent>
+  </Drawer>
+</template>`
+
 export function DrawerDoc() {
   return (
     <>
@@ -103,8 +154,11 @@ export function DrawerDoc() {
         name="Drawer"
         description="A drawer component that slides in from the bottom of the screen with neubrutalism styling."
         dependencies={['vaul']}
+        vueDependencies={['vaul-vue']}
         sourceCode={sourceCode}
+        vueSourceCode={vueSourceCode}
         usageCode={usageCode}
+        vueUsageCode={vueUsageCode}
       >
         <Drawer>
           <DrawerTrigger asChild>

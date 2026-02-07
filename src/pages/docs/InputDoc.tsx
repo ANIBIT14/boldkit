@@ -34,6 +34,39 @@ export default function Example() {
   return <Input type="email" placeholder="Email" />
 }`
 
+const vueSourceCode = `<script setup lang="ts">
+import { computed } from 'vue'
+import { cn } from '@/lib/utils'
+
+const props = defineProps<{
+  class?: string
+  modelValue?: string
+}>()
+
+const emit = defineEmits<{
+  'update:modelValue': [value: string]
+}>()
+</script>
+
+<template>
+  <input
+    :class="cn('flex h-11 w-full border-3 border-foreground bg-background px-3 py-2 text-sm placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50 shadow-[4px_4px_0px_hsl(var(--shadow-color))]', props.class)"
+    :value="modelValue"
+    @input="emit('update:modelValue', ($event.target as HTMLInputElement).value)"
+  />
+</template>`
+
+const vueUsageCode = `<script setup lang="ts">
+import { ref } from 'vue'
+import { Input } from '@/components/ui/input'
+
+const email = ref('')
+</script>
+
+<template>
+  <Input v-model="email" type="email" placeholder="Email" />
+</template>`
+
 export function InputDoc() {
   return (
     <>
@@ -43,6 +76,9 @@ export function InputDoc() {
         dependencies={[]}
         sourceCode={sourceCode}
         usageCode={usageCode}
+        vueDependencies={[]}
+        vueSourceCode={vueSourceCode}
+        vueUsageCode={vueUsageCode}
       >
         <Input type="email" placeholder="Email" className="max-w-sm" />
       </ComponentDoc>
@@ -51,6 +87,7 @@ export function InputDoc() {
       <ExampleSection
         title="Default"
         code={`<Input placeholder="Enter your name..." />`}
+        vueCode={`<Input placeholder="Enter your name..." />`}
       >
         <Input placeholder="Enter your name..." className="max-w-sm" />
       </ExampleSection>
@@ -61,6 +98,10 @@ export function InputDoc() {
         description="Pair inputs with labels for better accessibility."
         code={`<div className="grid w-full max-w-sm gap-2">
   <Label htmlFor="email">Email</Label>
+  <Input type="email" id="email" placeholder="Enter your email" />
+</div>`}
+        vueCode={`<div class="grid w-full max-w-sm gap-2">
+  <Label for="email">Email</Label>
   <Input type="email" id="email" placeholder="Enter your email" />
 </div>`}
       >
@@ -78,6 +119,10 @@ export function InputDoc() {
   <Input type="email" placeholder="Email" />
   <Button>Subscribe</Button>
 </div>`}
+        vueCode={`<div class="flex w-full max-w-sm gap-2">
+  <Input type="email" placeholder="Email" />
+  <Button>Subscribe</Button>
+</div>`}
       >
         <div className="flex w-full max-w-sm gap-2">
           <Input type="email" placeholder="Email" />
@@ -89,6 +134,7 @@ export function InputDoc() {
       <ExampleSection
         title="File Input"
         code={`<Input type="file" />`}
+        vueCode={`<Input type="file" />`}
       >
         <Input type="file" className="max-w-sm" />
       </ExampleSection>
@@ -97,6 +143,7 @@ export function InputDoc() {
       <ExampleSection
         title="Disabled"
         code={`<Input disabled placeholder="Disabled input" />`}
+        vueCode={`<Input disabled placeholder="Disabled input" />`}
       >
         <Input disabled placeholder="Disabled input" className="max-w-sm" />
       </ExampleSection>
@@ -108,6 +155,10 @@ export function InputDoc() {
         code={`<div className="relative max-w-sm">
   <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
   <Input placeholder="Search..." className="pl-10" />
+</div>`}
+        vueCode={`<div class="relative max-w-sm">
+  <Search class="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
+  <Input placeholder="Search..." class="pl-10" />
 </div>`}
       >
         <div className="relative max-w-sm">

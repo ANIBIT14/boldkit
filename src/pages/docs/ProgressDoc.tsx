@@ -35,6 +35,45 @@ export default function Example() {
   return <Progress value={60} />
 }`
 
+const vueSourceCode = `<script setup lang="ts">
+import {
+  ProgressIndicator,
+  ProgressRoot,
+  type ProgressRootProps,
+} from 'reka-ui'
+import { cn } from '@/lib/utils'
+
+const props = defineProps<ProgressRootProps & { class?: string }>()
+</script>
+
+<template>
+  <ProgressRoot
+    v-bind="props"
+    :class="
+      cn(
+        'relative h-5 w-full overflow-hidden border-3 border-foreground bg-muted bk-shadow-sm',
+        props.class
+      )
+    "
+  >
+    <ProgressIndicator
+      class="h-full w-full flex-1 bg-primary transition-all"
+      :style="{ transform: \`translateX(-\${100 - (props.modelValue || 0)}%)\` }"
+    />
+  </ProgressRoot>
+</template>`
+
+const vueUsageCode = `<script setup lang="ts">
+import { ref } from 'vue'
+import { Progress } from '@/components/ui'
+
+const progress = ref(60)
+</script>
+
+<template>
+  <Progress :model-value="progress" class="w-[60%]" />
+</template>`
+
 export function ProgressDoc() {
   const [progress, setProgress] = useState(13)
 
@@ -49,8 +88,11 @@ export function ProgressDoc() {
         name="Progress"
         description="Displays an indicator showing the completion progress of a task with bold neubrutalism styling."
         dependencies={['@radix-ui/react-progress']}
+        vueDependencies={['reka-ui']}
         sourceCode={sourceCode}
+        vueSourceCode={vueSourceCode}
         usageCode={usageCode}
+        vueUsageCode={vueUsageCode}
       >
         <Progress value={progress} className="w-full max-w-md" />
       </ComponentDoc>

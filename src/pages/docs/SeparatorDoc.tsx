@@ -47,6 +47,46 @@ export default function Example() {
   )
 }`
 
+const vueSourceCode = `<script setup lang="ts">
+import { Separator as SeparatorPrimitive } from 'reka-ui'
+import { cn } from '@/lib/utils'
+
+const props = withDefaults(defineProps<{
+  class?: string
+  orientation?: 'horizontal' | 'vertical'
+}>(), {
+  orientation: 'horizontal',
+})
+</script>
+
+<template>
+  <SeparatorPrimitive
+    :class="cn(
+      'shrink-0 bg-foreground',
+      orientation === 'horizontal' ? 'h-[3px] w-full' : 'h-full w-[3px]',
+      props.class
+    )"
+    :orientation="orientation"
+  />
+</template>`
+
+const vueUsageCode = `<script setup lang="ts">
+import { Separator } from '@/components/ui'
+</script>
+
+<template>
+  <div>
+    <div class="space-y-1">
+      <h4 class="text-sm font-bold">Radix Primitives</h4>
+      <p class="text-sm text-muted-foreground">
+        An open-source UI component library.
+      </p>
+    </div>
+    <Separator class="my-4" />
+    <div class="text-sm">More content here</div>
+  </div>
+</template>`
+
 export function SeparatorDoc() {
   return (
     <>
@@ -54,8 +94,11 @@ export function SeparatorDoc() {
         name="Separator"
         description="Visually or semantically separates content with a bold 3px line."
         dependencies={['@radix-ui/react-separator']}
+        vueDependencies={['reka-ui']}
         sourceCode={sourceCode}
+        vueSourceCode={vueSourceCode}
         usageCode={usageCode}
+        vueUsageCode={vueUsageCode}
       >
         <div>
           <div className="space-y-1">

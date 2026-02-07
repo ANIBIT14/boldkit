@@ -54,6 +54,40 @@ export default function Example() {
   )
 }`
 
+const vueSourceCode = `<script setup lang="ts">
+import { TooltipRoot, TooltipContent, TooltipTrigger, TooltipProvider } from 'reka-ui'
+import { cn } from '@/lib/utils'
+</script>
+
+<template>
+  <TooltipRoot v-bind="$attrs">
+    <slot />
+  </TooltipRoot>
+</template>`
+
+const vueUsageCode = `<script setup lang="ts">
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+  TooltipProvider,
+} from '@/components/ui'
+import { Button } from '@/components/ui'
+</script>
+
+<template>
+  <TooltipProvider>
+    <Tooltip>
+      <TooltipTrigger as-child>
+        <Button variant="outline">Hover me</Button>
+      </TooltipTrigger>
+      <TooltipContent>
+        <p>Tooltip content</p>
+      </TooltipContent>
+    </Tooltip>
+  </TooltipProvider>
+</template>`
+
 export function TooltipDoc() {
   return (
     <>
@@ -61,8 +95,11 @@ export function TooltipDoc() {
         name="Tooltip"
         description="A popup that displays information related to an element when it receives keyboard focus or the mouse hovers over it."
         dependencies={['@radix-ui/react-tooltip']}
+        vueDependencies={['reka-ui']}
         sourceCode={sourceCode}
+        vueSourceCode={vueSourceCode}
         usageCode={usageCode}
+        vueUsageCode={vueUsageCode}
       >
         <Tooltip>
           <TooltipTrigger asChild>

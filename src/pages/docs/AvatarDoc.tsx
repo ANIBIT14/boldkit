@@ -60,6 +60,28 @@ export default function Example() {
   )
 }`
 
+const vueSourceCode = `<script setup lang="ts">
+import { AvatarRoot, AvatarImage, AvatarFallback } from 'reka-ui'
+import { cn } from '@/lib/utils'
+</script>
+
+<template>
+  <AvatarRoot :class="cn('relative flex h-10 w-10 shrink-0 overflow-hidden border-3 border-foreground shadow-[2px_2px_0px_hsl(var(--shadow-color))]', props.class)">
+    <slot />
+  </AvatarRoot>
+</template>`
+
+const vueUsageCode = `<script setup lang="ts">
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui'
+</script>
+
+<template>
+  <Avatar>
+    <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
+    <AvatarFallback>CN</AvatarFallback>
+  </Avatar>
+</template>`
+
 export function AvatarDoc() {
   return (
     <>
@@ -67,8 +89,11 @@ export function AvatarDoc() {
         name="Avatar"
         description="An image element with a fallback for representing the user with bold neubrutalism borders."
         dependencies={['@radix-ui/react-avatar']}
+        vueDependencies={['reka-ui']}
         sourceCode={sourceCode}
+        vueSourceCode={vueSourceCode}
         usageCode={usageCode}
+        vueUsageCode={vueUsageCode}
       >
         <Avatar>
           <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />

@@ -52,6 +52,52 @@ export default function Example() {
   )
 }`
 
+const vueSourceCode = `<script setup lang="ts">
+import { HoverCardRoot, HoverCardTrigger, HoverCardPortal, HoverCardContent } from 'reka-ui'
+import { cn } from '@/lib/utils'
+
+defineProps<{
+  class?: string
+  align?: 'start' | 'center' | 'end'
+  sideOffset?: number
+}>()
+</script>
+
+<template>
+  <HoverCardPortal>
+    <HoverCardContent
+      :align="align ?? 'center'"
+      :side-offset="sideOffset ?? 4"
+      :class="cn(
+        'z-50 w-64 border-3 border-foreground bg-background p-4 shadow-[4px_4px_0px_hsl(var(--shadow-color))] outline-none data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95',
+        props.class
+      )"
+    >
+      <slot />
+    </HoverCardContent>
+  </HoverCardPortal>
+</template>`
+
+const vueUsageCode = `<script setup lang="ts">
+import {
+  HoverCard,
+  HoverCardContent,
+  HoverCardTrigger,
+} from '@/components/ui'
+import { Button } from '@/components/ui'
+</script>
+
+<template>
+  <HoverCard>
+    <HoverCardTrigger as-child>
+      <Button variant="link">@boldkit</Button>
+    </HoverCardTrigger>
+    <HoverCardContent>
+      <p>BoldKit - Neubrutalism UI Components</p>
+    </HoverCardContent>
+  </HoverCard>
+</template>`
+
 export function HoverCardDoc() {
   return (
     <>
@@ -59,8 +105,11 @@ export function HoverCardDoc() {
         name="Hover Card"
         description="For sighted users to preview content available behind a link with neubrutalism styling."
         dependencies={['@radix-ui/react-hover-card']}
+        vueDependencies={['reka-ui']}
         sourceCode={sourceCode}
+        vueSourceCode={vueSourceCode}
         usageCode={usageCode}
+        vueUsageCode={vueUsageCode}
       >
         <HoverCard>
           <HoverCardTrigger asChild>

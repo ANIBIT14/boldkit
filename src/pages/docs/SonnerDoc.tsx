@@ -45,6 +45,42 @@ export default function Example() {
   )
 }`
 
+const vueSourceCode = `<script setup lang="ts">
+import { Toaster as Sonner } from 'vue-sonner'
+import { useTheme } from '@/composables/useTheme'
+
+const { resolvedTheme } = useTheme()
+</script>
+
+<template>
+  <Sonner
+    :theme="resolvedTheme"
+    class="toaster group"
+    :toast-options="{
+      classNames: {
+        toast:
+          'group toast group-[.toaster]:bg-background group-[.toaster]:text-foreground group-[.toaster]:border-3 group-[.toaster]:border-foreground group-[.toaster]:shadow-[4px_4px_0px_hsl(var(--shadow-color))]',
+        description: 'group-[.toast]:text-muted-foreground',
+        actionButton:
+          'group-[.toast]:bg-primary group-[.toast]:text-primary-foreground group-[.toast]:border-2 group-[.toast]:border-foreground',
+        cancelButton:
+          'group-[.toast]:bg-muted group-[.toast]:text-muted-foreground group-[.toast]:border-2 group-[.toast]:border-foreground',
+      },
+    }"
+  />
+</template>`
+
+const vueUsageCode = `<script setup lang="ts">
+import { toast } from 'vue-sonner'
+import { Button } from '@/components/ui'
+</script>
+
+<template>
+  <Button @click="toast('Event has been created')">
+    Show Toast
+  </Button>
+</template>`
+
 export function SonnerDoc() {
   return (
     <>
@@ -52,8 +88,11 @@ export function SonnerDoc() {
         name="Sonner"
         description="Toast notifications with bold neubrutalism styling powered by the Sonner library."
         dependencies={['sonner']}
+        vueDependencies={['vue-sonner']}
         sourceCode={sourceCode}
+        vueSourceCode={vueSourceCode}
         usageCode={usageCode}
+        vueUsageCode={vueUsageCode}
       >
         <Button onClick={() => toast('Event has been created')}>
           Show Toast

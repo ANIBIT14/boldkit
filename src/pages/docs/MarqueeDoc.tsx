@@ -85,6 +85,76 @@ export default function Example() {
   )
 }`
 
+const vueSourceCode = `<script setup lang="ts">
+import { cn } from '@/lib/utils'
+
+defineProps<{
+  class?: string
+  direction?: 'left' | 'right'
+  speed?: 'slow' | 'normal' | 'fast'
+  pauseOnHover?: boolean
+  bordered?: boolean
+  repeat?: number
+}>()
+
+const speedClasses = {
+  slow: 'animate-marquee-slow',
+  normal: 'animate-marquee',
+  fast: 'animate-marquee-fast',
+}
+</script>
+
+<!-- Marquee -->
+<template>
+  <div
+    :class="cn(
+      'flex overflow-hidden',
+      bordered !== false && 'border-3 border-foreground bg-background',
+      props.class
+    )"
+  >
+    <div :class="cn('marquee-content flex shrink-0 items-center gap-8 py-3', direction === 'right' ? 'animate-marquee-reverse' : speedClasses[speed ?? 'normal'])">
+      <template v-for="i in (repeat ?? 4)" :key="i">
+        <slot />
+      </template>
+    </div>
+    <div :class="cn('marquee-content flex shrink-0 items-center gap-8 py-3', direction === 'right' ? 'animate-marquee-reverse' : speedClasses[speed ?? 'normal'])" aria-hidden="true">
+      <template v-for="i in (repeat ?? 4)" :key="i">
+        <slot />
+      </template>
+    </div>
+  </div>
+</template>
+
+<!-- MarqueeItem -->
+<template>
+  <span :class="cn('inline-flex items-center gap-2 whitespace-nowrap px-4 text-lg font-bold uppercase tracking-wide', props.class)">
+    <slot />
+  </span>
+</template>
+
+<!-- MarqueeSeparator -->
+<template>
+  <span :class="cn('text-2xl font-black text-muted-foreground', props.class)">
+    <slot>/</slot>
+  </span>
+</template>`
+
+const vueUsageCode = `<script setup lang="ts">
+import { Marquee, MarqueeItem, MarqueeSeparator } from '@/components/ui'
+</script>
+
+<template>
+  <Marquee>
+    <MarqueeItem>Welcome to BoldKit</MarqueeItem>
+    <MarqueeSeparator />
+    <MarqueeItem>Neubrutalism UI</MarqueeItem>
+    <MarqueeSeparator />
+    <MarqueeItem>Bold & Beautiful</MarqueeItem>
+    <MarqueeSeparator />
+  </Marquee>
+</template>`
+
 export function MarqueeDoc() {
   return (
     <>
@@ -92,8 +162,11 @@ export function MarqueeDoc() {
         name="Marquee"
         description="Auto-scrolling text ticker with neubrutalism styling - a common brutalist design element for announcements and emphasis."
         dependencies={[]}
+        vueDependencies={[]}
         sourceCode={sourceCode}
+        vueSourceCode={vueSourceCode}
         usageCode={usageCode}
+        vueUsageCode={vueUsageCode}
       >
         <Marquee>
           <MarqueeItem>Welcome to BoldKit</MarqueeItem>

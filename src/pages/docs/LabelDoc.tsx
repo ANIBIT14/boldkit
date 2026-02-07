@@ -39,6 +39,35 @@ export default function Example() {
   )
 }`
 
+const vueSourceCode = `<script setup lang="ts">
+import { Label as LabelPrimitive } from 'reka-ui'
+import { cn } from '@/lib/utils'
+
+defineProps<{
+  class?: string
+}>()
+</script>
+
+<template>
+  <LabelPrimitive
+    :class="cn('text-sm font-bold uppercase tracking-wide leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70', props.class)"
+  >
+    <slot />
+  </LabelPrimitive>
+</template>`
+
+const vueUsageCode = `<script setup lang="ts">
+import { Label } from '@/components/ui'
+import { Input } from '@/components/ui'
+</script>
+
+<template>
+  <div class="grid w-full max-w-sm items-center gap-1.5">
+    <Label for="email">Email</Label>
+    <Input type="email" id="email" placeholder="Email" />
+  </div>
+</template>`
+
 export function LabelDoc() {
   return (
     <>
@@ -46,8 +75,11 @@ export function LabelDoc() {
         name="Label"
         description="Renders an accessible label associated with form controls with bold uppercase styling."
         dependencies={['@radix-ui/react-label', 'class-variance-authority']}
+        vueDependencies={['reka-ui']}
         sourceCode={sourceCode}
+        vueSourceCode={vueSourceCode}
         usageCode={usageCode}
+        vueUsageCode={vueUsageCode}
       >
         <div className="grid w-full max-w-sm items-center gap-1.5">
           <Label htmlFor="email-preview">Email</Label>

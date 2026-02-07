@@ -43,6 +43,41 @@ export default function Example() {
   )
 }`
 
+const vueSourceCode = `<script setup lang="ts">
+import { CollapsibleRoot, CollapsibleContent, CollapsibleTrigger } from 'reka-ui'
+</script>
+
+<template>
+  <CollapsibleRoot v-bind="$attrs">
+    <slot />
+  </CollapsibleRoot>
+</template>`
+
+const vueUsageCode = `<script setup lang="ts">
+import {
+  Collapsible,
+  CollapsibleContent,
+  CollapsibleTrigger,
+} from '@/components/ui'
+import { Button } from '@/components/ui'
+import { ChevronsUpDown } from 'lucide-vue-next'
+</script>
+
+<template>
+  <Collapsible>
+    <CollapsibleTrigger as-child>
+      <Button variant="outline">
+        Toggle <ChevronsUpDown class="ml-2 h-4 w-4" />
+      </Button>
+    </CollapsibleTrigger>
+    <CollapsibleContent class="mt-2">
+      <div class="border-3 border-foreground p-4">
+        Collapsible content here.
+      </div>
+    </CollapsibleContent>
+  </Collapsible>
+</template>`
+
 export function CollapsibleDoc() {
   const [isOpen, setIsOpen] = useState(false)
 
@@ -52,8 +87,11 @@ export function CollapsibleDoc() {
         name="Collapsible"
         description="An interactive component which expands/collapses a panel with smooth animations."
         dependencies={['@radix-ui/react-collapsible']}
+        vueDependencies={['reka-ui']}
         sourceCode={sourceCode}
+        vueSourceCode={vueSourceCode}
         usageCode={usageCode}
+        vueUsageCode={vueUsageCode}
       >
         <Collapsible className="w-full max-w-sm">
           <CollapsibleTrigger asChild>

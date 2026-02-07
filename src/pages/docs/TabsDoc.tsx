@@ -83,6 +83,36 @@ export default function Example() {
   )
 }`
 
+const vueSourceCode = `<script setup lang="ts">
+import { TabsRoot, TabsList, TabsTrigger, TabsContent } from 'reka-ui'
+import { cn } from '@/lib/utils'
+</script>
+
+<template>
+  <TabsRoot v-bind="$attrs">
+    <slot />
+  </TabsRoot>
+</template>`
+
+const vueUsageCode = `<script setup lang="ts">
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui'
+</script>
+
+<template>
+  <Tabs default-value="account">
+    <TabsList>
+      <TabsTrigger value="account">Account</TabsTrigger>
+      <TabsTrigger value="password">Password</TabsTrigger>
+    </TabsList>
+    <TabsContent value="account">
+      Make changes to your account here.
+    </TabsContent>
+    <TabsContent value="password">
+      Change your password here.
+    </TabsContent>
+  </Tabs>
+</template>`
+
 export function TabsDoc() {
   return (
     <>
@@ -90,8 +120,11 @@ export function TabsDoc() {
         name="Tabs"
         description="A tabbed interface component with bold neubrutalism styling for organizing content into selectable panels."
         dependencies={['@radix-ui/react-tabs']}
+        vueDependencies={['reka-ui']}
         sourceCode={sourceCode}
+        vueSourceCode={vueSourceCode}
         usageCode={usageCode}
+        vueUsageCode={vueUsageCode}
       >
         <Tabs defaultValue="account" className="w-full max-w-md">
           <TabsList>

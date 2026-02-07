@@ -78,6 +78,66 @@ export default function Example() {
   )
 }`
 
+const vueSourceCode = `<script setup lang="ts">
+import { computed, type HTMLAttributes } from 'vue'
+import { cva, type VariantProps } from 'class-variance-authority'
+import { cn } from '@/lib/utils'
+
+const alertVariants = cva(
+  'relative w-full border-3 border-foreground p-4 bk-shadow [&>svg~*]:pl-8 [&>svg+div]:translate-y-[-3px] [&>svg]:absolute [&>svg]:left-4 [&>svg]:top-4 [&>svg]:text-foreground',
+  {
+    variants: {
+      variant: {
+        default: 'bg-background text-foreground',
+        destructive: 'bg-destructive text-destructive-foreground [&>svg]:text-destructive-foreground',
+        success: 'bg-success text-success-foreground',
+        warning: 'bg-warning text-warning-foreground',
+        info: 'bg-info text-info-foreground',
+      },
+    },
+    defaultVariants: {
+      variant: 'default',
+    },
+  }
+)
+
+type AlertVariants = VariantProps<typeof alertVariants>
+
+const props = defineProps<{
+  class?: HTMLAttributes['class']
+  variant?: AlertVariants['variant']
+}>()
+
+const delegatedProps = computed(() => {
+  const { class: _, ...delegated } = props
+  return delegated
+})
+</script>
+
+<template>
+  <div
+    role="alert"
+    :class="cn(alertVariants({ variant: delegatedProps.variant }), props.class)"
+  >
+    <slot />
+  </div>
+</template>`
+
+const vueUsageCode = `<script setup lang="ts">
+import { Alert, AlertTitle, AlertDescription } from '@/components/ui'
+import { AlertCircle } from 'lucide-vue-next'
+</script>
+
+<template>
+  <Alert>
+    <AlertCircle class="h-4 w-4" />
+    <AlertTitle>Heads up!</AlertTitle>
+    <AlertDescription>
+      You can add components and dependencies to your app.
+    </AlertDescription>
+  </Alert>
+</template>`
+
 export function AlertDoc() {
   return (
     <>
@@ -87,6 +147,9 @@ export function AlertDoc() {
         dependencies={['class-variance-authority']}
         sourceCode={sourceCode}
         usageCode={usageCode}
+        vueDependencies={['class-variance-authority']}
+        vueSourceCode={vueSourceCode}
+        vueUsageCode={vueUsageCode}
       >
         <Alert className="max-w-md">
           <Terminal className="h-4 w-4" />
@@ -130,6 +193,37 @@ export function AlertDoc() {
   <AlertTitle>Info</AlertTitle>
   <AlertDescription>Here is some information.</AlertDescription>
 </Alert>`}
+        vueCode={`<template>
+  <Alert variant="default">
+    <Terminal class="h-4 w-4" />
+    <AlertTitle>Default</AlertTitle>
+    <AlertDescription>This is a default alert.</AlertDescription>
+  </Alert>
+
+  <Alert variant="destructive">
+    <AlertCircle class="h-4 w-4" />
+    <AlertTitle>Error</AlertTitle>
+    <AlertDescription>Something went wrong.</AlertDescription>
+  </Alert>
+
+  <Alert variant="success">
+    <CheckCircle class="h-4 w-4" />
+    <AlertTitle>Success</AlertTitle>
+    <AlertDescription>Operation completed.</AlertDescription>
+  </Alert>
+
+  <Alert variant="warning">
+    <AlertTriangle class="h-4 w-4" />
+    <AlertTitle>Warning</AlertTitle>
+    <AlertDescription>Please be careful.</AlertDescription>
+  </Alert>
+
+  <Alert variant="info">
+    <Info class="h-4 w-4" />
+    <AlertTitle>Info</AlertTitle>
+    <AlertDescription>Here is some information.</AlertDescription>
+  </Alert>
+</template>`}
       >
         <div className="space-y-4 max-w-md">
           <Alert variant="default">
@@ -174,6 +268,14 @@ export function AlertDoc() {
     This is a simple alert without an icon.
   </AlertDescription>
 </Alert>`}
+        vueCode={`<template>
+  <Alert>
+    <AlertTitle>Notice</AlertTitle>
+    <AlertDescription>
+      This is a simple alert without an icon.
+    </AlertDescription>
+  </Alert>
+</template>`}
       >
         <Alert className="max-w-md">
           <AlertTitle>Notice</AlertTitle>
@@ -193,6 +295,14 @@ export function AlertDoc() {
     Your session will expire in 5 minutes.
   </AlertDescription>
 </Alert>`}
+        vueCode={`<template>
+  <Alert variant="info">
+    <Info class="h-4 w-4" />
+    <AlertDescription>
+      Your session will expire in 5 minutes.
+    </AlertDescription>
+  </Alert>
+</template>`}
       >
         <Alert variant="info" className="max-w-md">
           <Info className="h-4 w-4" />
