@@ -63,6 +63,17 @@ function formatHsl(h: number, s: number, l: number): string {
   return `${Math.round(h)} ${Math.round(s)}% ${Math.round(l)}%`
 }
 
+// Determine if a color is light or dark based on luminance
+function isLightColor(hslString: string): boolean {
+  const { l } = parseHsl(hslString)
+  return l > 55
+}
+
+// Get appropriate foreground color for a background
+function getContrastForeground(bgHsl: string, lightFg: string, darkFg: string): string {
+  return isLightColor(bgHsl) ? darkFg : lightFg
+}
+
 // Color Picker Component
 function ColorPicker({
   label,
@@ -149,9 +160,27 @@ const presetThemes = [
   },
   {
     name: 'Monochrome',
-    primary: '0 0% 20%',
-    secondary: '0 0% 40%',
-    accent: '49 100% 71%',
+    primary: '0 0% 85%',
+    secondary: '0 0% 70%',
+    accent: '0 0% 20%',
+  },
+  {
+    name: 'Neon Pop',
+    primary: '318 100% 50%',
+    secondary: '180 100% 50%',
+    accent: '60 100% 50%',
+  },
+  {
+    name: 'Electric',
+    primary: '258 100% 65%',
+    secondary: '166 100% 50%',
+    accent: '45 100% 55%',
+  },
+  {
+    name: 'Candy',
+    primary: '340 82% 65%',
+    secondary: '280 70% 60%',
+    accent: '190 100% 60%',
   },
 ]
 
@@ -204,6 +233,18 @@ export function ThemeBuilder() {
   }, [])
 
   const generateCSS = () => {
+    // Calculate contrast-aware foreground colors
+    const lightFg = '0 0% 100%'  // white
+    const darkFg = '240 10% 10%' // dark
+
+    const primaryFg = getContrastForeground(colors.primary, lightFg, darkFg)
+    const secondaryFg = getContrastForeground(colors.secondary, lightFg, darkFg)
+    const accentFg = getContrastForeground(colors.accent, lightFg, darkFg)
+
+    const darkPrimaryFg = getContrastForeground(colors.darkPrimary, lightFg, darkFg)
+    const darkSecondaryFg = getContrastForeground(colors.darkSecondary, lightFg, darkFg)
+    const darkAccentFg = getContrastForeground(colors.darkAccent, lightFg, darkFg)
+
     return `/* BoldKit Theme - Light & Dark Mode */
 :root {
   /* Base Colors */
@@ -212,15 +253,15 @@ export function ThemeBuilder() {
 
   /* Primary */
   --primary: ${colors.primary};
-  --primary-foreground: ${colors.foreground};
+  --primary-foreground: ${primaryFg};
 
   /* Secondary */
   --secondary: ${colors.secondary};
-  --secondary-foreground: ${colors.foreground};
+  --secondary-foreground: ${secondaryFg};
 
   /* Accent */
   --accent: ${colors.accent};
-  --accent-foreground: ${colors.foreground};
+  --accent-foreground: ${accentFg};
 
   /* Muted */
   --muted: ${colors.muted};
@@ -257,15 +298,15 @@ export function ThemeBuilder() {
 
   /* Primary */
   --primary: ${colors.darkPrimary};
-  --primary-foreground: ${colors.darkBackground};
+  --primary-foreground: ${darkPrimaryFg};
 
   /* Secondary */
   --secondary: ${colors.darkSecondary};
-  --secondary-foreground: ${colors.darkBackground};
+  --secondary-foreground: ${darkSecondaryFg};
 
   /* Accent */
   --accent: ${colors.darkAccent};
-  --accent-foreground: ${colors.darkBackground};
+  --accent-foreground: ${darkAccentFg};
 
   /* Muted */
   --muted: ${colors.darkMuted};
@@ -427,20 +468,32 @@ export function ThemeBuilder() {
                 <CardTitle className="text-lg md:text-xl">Presets</CardTitle>
               </CardHeader>
               <CardContent className="pt-4 md:pt-6 px-3 md:px-6">
-                <div className="grid grid-cols-2 gap-2">
+                <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
                   {presetThemes.map((preset) => (
                     <Button
                       key={preset.name}
                       variant="outline"
                       size="sm"
                       onClick={() => applyPreset(preset)}
-                      className="justify-start"
+                      className="justify-start h-auto py-2 px-3"
                     >
-                      <span
-                        className="mr-2 h-4 w-4 border-2 border-foreground"
-                        style={{ backgroundColor: `hsl(${preset.primary})` }}
-                      />
-                      {preset.name}
+                      <div className="flex flex-col gap-1">
+                        <div className="flex gap-0.5">
+                          <span
+                            className="h-3 w-3 border border-foreground"
+                            style={{ backgroundColor: `hsl(${preset.primary})` }}
+                          />
+                          <span
+                            className="h-3 w-3 border border-foreground"
+                            style={{ backgroundColor: `hsl(${preset.secondary})` }}
+                          />
+                          <span
+                            className="h-3 w-3 border border-foreground"
+                            style={{ backgroundColor: `hsl(${preset.accent})` }}
+                          />
+                        </div>
+                        <span className="text-xs">{preset.name}</span>
+                      </div>
                     </Button>
                   ))}
                 </div>
