@@ -505,6 +505,129 @@ export function cn(...inputs: ClassValue[]) {
             </Card>
           </section>
         )}
+
+        {/* Nuxt Installation */}
+        {framework === 'vue' && (
+          <section id="nuxt-installation" className="mt-8">
+            <h2 className="text-2xl font-bold uppercase tracking-wide mb-4">Nuxt 3 Installation</h2>
+            <p className="text-muted-foreground mb-6">
+              BoldKit Vue components are fully compatible with Nuxt 3. Follow these steps to set up BoldKit in your Nuxt project.
+            </p>
+
+            <Card className="border-secondary mb-6">
+              <CardHeader className="bg-secondary">
+                <CardTitle>Quick Setup with shadcn-nuxt</CardTitle>
+              </CardHeader>
+              <CardContent className="pt-6 space-y-6">
+                <div>
+                  <h4 className="font-bold mb-2">Step 1: Create Nuxt Project</h4>
+                  <CodeBlock code="npx nuxi@latest init my-nuxt-app" />
+                </div>
+
+                <div>
+                  <h4 className="font-bold mb-2">Step 2: Add Tailwind CSS</h4>
+                  <CodeBlock code="npm install tailwindcss @tailwindcss/vite -D" />
+                  <p className="text-sm text-muted-foreground mt-2">
+                    Create <code className="bg-muted px-1 border">assets/css/tailwind.css</code>:
+                  </p>
+                  <CodeBlock code='@import "tailwindcss";' language="css" />
+                </div>
+
+                <div>
+                  <h4 className="font-bold mb-2">Step 3: Install shadcn-nuxt Module</h4>
+                  <CodeBlock code="npx nuxi@latest module add shadcn-nuxt" />
+                </div>
+
+                <div>
+                  <h4 className="font-bold mb-2">Step 4: Configure nuxt.config.ts</h4>
+                  <CodeBlock code={`import tailwindcss from '@tailwindcss/vite'
+
+export default defineNuxtConfig({
+  modules: ['shadcn-nuxt'],
+
+  shadcn: {
+    prefix: '',
+    componentDir: './components/ui'
+  },
+
+  vite: {
+    plugins: [tailwindcss()]
+  },
+
+  css: ['~/assets/css/tailwind.css']
+})`} language="typescript" />
+                </div>
+
+                <div>
+                  <h4 className="font-bold mb-2">Step 5: Initialize shadcn-vue</h4>
+                  <CodeBlock code="npx shadcn-vue@latest init" />
+                  <p className="text-sm text-muted-foreground mt-2">
+                    Select <strong>Nuxt</strong> when prompted for framework.
+                  </p>
+                </div>
+
+                <div>
+                  <h4 className="font-bold mb-2">Step 6: Add BoldKit Components</h4>
+                  <CodeBlock code="npx shadcn-vue@latest add https://boldkit.dev/r/vue/button.json" />
+                  <p className="text-sm text-muted-foreground mt-2">
+                    Nuxt will auto-import components from <code className="bg-muted px-1 border">components/ui</code>.
+                  </p>
+                </div>
+              </CardContent>
+            </Card>
+
+            <Card className="border-warning mb-6">
+              <CardHeader className="bg-warning">
+                <CardTitle>SSR Hydration Fix</CardTitle>
+              </CardHeader>
+              <CardContent className="pt-6 space-y-4">
+                <p className="text-sm text-muted-foreground">
+                  Some components use viewport width detection which can cause hydration mismatches.
+                  Add this plugin to fix SSR hydration errors on mobile:
+                </p>
+                <p className="text-sm text-muted-foreground">
+                  Create <code className="bg-muted px-1 border">plugins/ssr-width.ts</code>:
+                </p>
+                <CodeBlock code={`import { provideSSRWidth } from '@vueuse/core'
+
+export default defineNuxtPlugin((nuxtApp) => {
+  provideSSRWidth(1024, nuxtApp.vueApp)
+})`} language="typescript" />
+                <p className="text-sm text-muted-foreground">
+                  Install VueUse if not already installed:
+                </p>
+                <CodeBlock code="npm install @vueuse/core" />
+              </CardContent>
+            </Card>
+
+            <Card className="border-destructive">
+              <CardHeader className="bg-destructive text-destructive-foreground">
+                <CardTitle>Client-Only Components</CardTitle>
+              </CardHeader>
+              <CardContent className="pt-6 space-y-4">
+                <p className="text-sm text-muted-foreground">
+                  Some components require browser APIs and must be wrapped in <code className="bg-muted px-1 border">&lt;ClientOnly&gt;</code> to prevent SSR errors:
+                </p>
+                <ul className="list-disc list-inside text-sm text-muted-foreground space-y-1">
+                  <li><strong>Drawer</strong> - Uses vaul-vue with browser APIs</li>
+                  <li><strong>Sonner</strong> - Toast notifications</li>
+                  <li><strong>Command</strong> - Keyboard event handling</li>
+                  <li><strong>Calendar</strong> - Date picker interactions</li>
+                  <li><strong>Chart</strong> - ECharts canvas rendering</li>
+                </ul>
+                <p className="text-sm text-muted-foreground mt-4">Example usage:</p>
+                <CodeBlock code={`<template>
+  <ClientOnly>
+    <Drawer>
+      <DrawerTrigger>Open</DrawerTrigger>
+      <DrawerContent>Content here</DrawerContent>
+    </Drawer>
+  </ClientOnly>
+</template>`} language="vue" />
+              </CardContent>
+            </Card>
+          </section>
+        )}
       </div>
     </div>
   )
