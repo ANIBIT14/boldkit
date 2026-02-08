@@ -135,7 +135,7 @@ const presetThemes = [
     accent: '49 100% 71%',
   },
   {
-    name: 'Purple Dream',
+    name: 'Purple',
     primary: '271 76% 53%',
     secondary: '326 78% 60%',
     accent: '199 89% 48%',
@@ -159,13 +159,13 @@ const presetThemes = [
     accent: '49 100% 60%',
   },
   {
-    name: 'Monochrome',
-    primary: '0 0% 85%',
-    secondary: '0 0% 70%',
-    accent: '0 0% 20%',
+    name: 'Mono',
+    primary: '0 0% 90%',
+    secondary: '0 0% 75%',
+    accent: '49 100% 65%',
   },
   {
-    name: 'Neon Pop',
+    name: 'Neon',
     primary: '318 100% 50%',
     secondary: '180 100% 50%',
     accent: '60 100% 50%',
@@ -184,30 +184,52 @@ const presetThemes = [
   },
 ]
 
+const THEME_STORAGE_KEY = 'boldkit-theme-builder-colors'
+
+const defaultColors = {
+  // Light mode colors
+  primary: '0 84% 71%',
+  secondary: '174 62% 56%',
+  accent: '49 100% 71%',
+  background: '60 9% 98%',
+  foreground: '240 10% 10%',
+  muted: '60 5% 90%',
+  mutedForeground: '240 4% 46%',
+  // Dark mode colors
+  darkPrimary: '0 84% 71%',
+  darkSecondary: '174 62% 56%',
+  darkAccent: '49 100% 71%',
+  darkBackground: '240 10% 10%',
+  darkForeground: '60 9% 98%',
+  darkMuted: '240 10% 20%',
+  darkMutedForeground: '60 5% 65%',
+  // Effects
+  shadowOffset: 4,
+  borderWidth: 3,
+}
+
+function loadSavedColors() {
+  try {
+    const saved = localStorage.getItem(THEME_STORAGE_KEY)
+    if (saved) {
+      return { ...defaultColors, ...JSON.parse(saved) }
+    }
+  } catch {
+    // Ignore parse errors
+  }
+  return defaultColors
+}
+
 export function ThemeBuilder() {
   const [copied, setCopied] = useState(false)
-  const [colors, setColors] = useState({
-    // Light mode colors
-    primary: '0 84% 71%',
-    secondary: '174 62% 56%',
-    accent: '49 100% 71%',
-    background: '60 9% 98%',
-    foreground: '240 10% 10%',
-    muted: '60 5% 90%',
-    mutedForeground: '240 4% 46%',
-    // Dark mode colors
-    darkPrimary: '0 84% 71%',
-    darkSecondary: '174 62% 56%',
-    darkAccent: '49 100% 71%',
-    darkBackground: '240 10% 10%',
-    darkForeground: '60 9% 98%',
-    darkMuted: '240 10% 20%',
-    darkMutedForeground: '60 5% 65%',
-    // Effects
-    shadowOffset: 4,
-    borderWidth: 3,
-  })
+  const [colors, setColors] = useState(loadSavedColors)
 
+  // Save colors to localStorage whenever they change
+  useEffect(() => {
+    localStorage.setItem(THEME_STORAGE_KEY, JSON.stringify(colors))
+  }, [colors])
+
+  // Apply colors to CSS variables
   useEffect(() => {
     document.documentElement.style.setProperty('--primary', colors.primary)
     document.documentElement.style.setProperty('--secondary', colors.secondary)
@@ -228,8 +250,8 @@ export function ThemeBuilder() {
     })
   }
 
-  const updateColor = useCallback((key: keyof typeof colors, value: string | number) => {
-    setColors(prev => ({ ...prev, [key]: value }))
+  const updateColor = useCallback((key: keyof typeof defaultColors, value: string | number) => {
+    setColors((prev: typeof defaultColors) => ({ ...prev, [key]: value }))
   }, [])
 
   const generateCSS = () => {
@@ -468,33 +490,29 @@ export function ThemeBuilder() {
                 <CardTitle className="text-lg md:text-xl">Presets</CardTitle>
               </CardHeader>
               <CardContent className="pt-4 md:pt-6 px-3 md:px-6">
-                <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
+                <div className="grid grid-cols-3 gap-2">
                   {presetThemes.map((preset) => (
-                    <Button
+                    <button
                       key={preset.name}
-                      variant="outline"
-                      size="sm"
                       onClick={() => applyPreset(preset)}
-                      className="justify-start h-auto py-2 px-3"
+                      className="flex flex-col items-center gap-1.5 p-2 border-2 border-foreground hover:bg-muted transition-colors"
                     >
-                      <div className="flex flex-col gap-1">
-                        <div className="flex gap-0.5">
-                          <span
-                            className="h-3 w-3 border border-foreground"
-                            style={{ backgroundColor: `hsl(${preset.primary})` }}
-                          />
-                          <span
-                            className="h-3 w-3 border border-foreground"
-                            style={{ backgroundColor: `hsl(${preset.secondary})` }}
-                          />
-                          <span
-                            className="h-3 w-3 border border-foreground"
-                            style={{ backgroundColor: `hsl(${preset.accent})` }}
-                          />
-                        </div>
-                        <span className="text-xs">{preset.name}</span>
+                      <div className="flex gap-0.5">
+                        <span
+                          className="h-4 w-4 border border-foreground"
+                          style={{ backgroundColor: `hsl(${preset.primary})` }}
+                        />
+                        <span
+                          className="h-4 w-4 border border-foreground"
+                          style={{ backgroundColor: `hsl(${preset.secondary})` }}
+                        />
+                        <span
+                          className="h-4 w-4 border border-foreground"
+                          style={{ backgroundColor: `hsl(${preset.accent})` }}
+                        />
                       </div>
-                    </Button>
+                      <span className="text-[10px] font-bold uppercase">{preset.name}</span>
+                    </button>
                   ))}
                 </div>
               </CardContent>
