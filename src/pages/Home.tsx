@@ -52,7 +52,7 @@ export function Home() {
                 <svg className="h-5 w-5" viewBox="0 0 24 24" fill="currentColor">
                   <path d="M13.464 3.222L21 18.222h-4.151l-2.607-5.185-2.591 5.185H7.5L13.464 3.222zM3 18.222h4.151l2.607-5.185 2.591 5.185H16.5L10.536 3.222 3 18.222z"/>
                 </svg>
-                Nuxt 3
+                Nuxt
                 <span className="ml-1 rounded bg-background/20 px-1 py-0.5 text-[10px] font-bold">NEW</span>
               </Badge>
             </div>
@@ -63,7 +63,7 @@ export function Home() {
               </span>
             </h1>
             <p className="mx-auto mb-8 max-w-2xl text-lg text-muted-foreground md:text-xl">
-              A neubrutalism component library for React, Vue 3, and Nuxt 3.
+              A neubrutalism component library for React, Vue, and Nuxt.
               High-contrast colors, thick borders, and hard shadows that make your UI pop.
             </p>
             <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">

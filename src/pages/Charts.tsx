@@ -1370,7 +1370,7 @@ export function Charts() {
           {framework === 'vue' && (
             <div className="mt-4 p-3 border-3 border-warning bg-warning/10 max-w-xl mx-auto text-left">
               <p className="text-sm font-medium">
-                <strong>Nuxt 3:</strong> Charts require <code className="bg-muted px-1 border mx-1">&lt;ClientOnly&gt;</code> wrapper for SSR compatibility.
+                <strong>Nuxt:</strong> Charts require <code className="bg-muted px-1 border mx-1">&lt;ClientOnly&gt;</code> wrapper for SSR compatibility.
               </p>
               <pre className="mt-2 text-xs bg-muted p-2 border overflow-x-auto">
                 <code>{`<ClientOnly>\n  <VChart :option="option" />\n</ClientOnly>`}</code>

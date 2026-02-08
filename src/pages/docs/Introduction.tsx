@@ -34,7 +34,7 @@ export function Introduction() {
           Introduction
         </h1>
         <p className="mt-4 text-lg text-muted-foreground">
-          BoldKit is a neubrutalism-styled component library for React, Vue 3, and Nuxt 3, built on top of shadcn/ui primitives.
+          BoldKit is a neubrutalism-styled component library for React, Vue, and Nuxt, built on top of shadcn/ui primitives.
         </p>
       </div>
 
@@ -81,7 +81,7 @@ export function Introduction() {
           {framework === 'vue' && (
             <li className="flex items-start gap-2">
               <span className="text-primary font-bold">◼</span>
-              <span><strong>Nuxt 3 Ready</strong> - Full SSR support with shadcn-nuxt module</span>
+              <span><strong>Nuxt Ready</strong> - Full SSR support with shadcn-nuxt module</span>
             </li>
           )}
         </ul>

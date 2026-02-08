@@ -170,7 +170,7 @@ export function ComponentDoc({
         {framework === 'vue' && nuxtClientOnly && (
           <div className="mt-4 p-3 border-3 border-warning bg-warning/10">
             <p className="text-sm font-medium">
-              <strong>Nuxt 3:</strong> This component requires <code className="bg-muted px-1 border mx-1">&lt;ClientOnly&gt;</code> wrapper for SSR compatibility.
+              <strong>Nuxt:</strong> This component requires <code className="bg-muted px-1 border mx-1">&lt;ClientOnly&gt;</code> wrapper for SSR compatibility.
             </p>
             <pre className="mt-2 text-xs bg-muted p-2 border overflow-x-auto">
               <code>{`<ClientOnly>\n  <${name.replace(/\s+/g, '')}>\n    ...\n  </${name.replace(/\s+/g, '')}>\n</ClientOnly>`}</code>

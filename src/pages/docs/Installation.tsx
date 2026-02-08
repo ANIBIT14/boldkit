@@ -509,9 +509,9 @@ export function cn(...inputs: ClassValue[]) {
         {/* Nuxt Installation */}
         {framework === 'vue' && (
           <section id="nuxt-installation" className="mt-8">
-            <h2 className="text-2xl font-bold uppercase tracking-wide mb-4">Nuxt 3 Installation</h2>
+            <h2 className="text-2xl font-bold uppercase tracking-wide mb-4">Nuxt Installation</h2>
             <p className="text-muted-foreground mb-6">
-              BoldKit Vue components are fully compatible with Nuxt 3. Follow these steps to set up BoldKit in your Nuxt project.
+              BoldKit Vue components are fully compatible with Nuxt. Follow these steps to set up BoldKit in your Nuxt project.
             </p>
 
             <Card className="border-secondary mb-6">
