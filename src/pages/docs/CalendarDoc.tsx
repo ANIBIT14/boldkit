@@ -145,6 +145,7 @@ export function CalendarDoc() {
         vueSourceCode={vueSourceCode}
         usageCode={usageCode}
         vueUsageCode={vueUsageCode}
+        nuxtClientOnly={true}
       >
         <Calendar
           mode="single"

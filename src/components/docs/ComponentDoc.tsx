@@ -79,6 +79,8 @@ interface ComponentDocProps {
   vueSourceCode?: string
   vueUsageCode?: string
   vueDependencies?: string[]
+  // Nuxt-specific
+  nuxtClientOnly?: boolean
 }
 
 export function ComponentDoc({
@@ -93,6 +95,7 @@ export function ComponentDoc({
   vueSourceCode,
   vueUsageCode,
   vueDependencies,
+  nuxtClientOnly = false,
 }: ComponentDocProps) {
   // Use global framework context
   const { framework } = useFramework()
@@ -162,6 +165,16 @@ export function ComponentDoc({
             <p className="text-sm font-medium flex items-center gap-2">
               <VueIcon /> Vue code sample coming soon. The component is available in the registry.
             </p>
+          </div>
+        )}
+        {framework === 'vue' && nuxtClientOnly && (
+          <div className="mt-4 p-3 border-3 border-warning bg-warning/10">
+            <p className="text-sm font-medium">
+              <strong>Nuxt 3:</strong> This component requires <code className="bg-muted px-1 border mx-1">&lt;ClientOnly&gt;</code> wrapper for SSR compatibility.
+            </p>
+            <pre className="mt-2 text-xs bg-muted p-2 border overflow-x-auto">
+              <code>{`<ClientOnly>\n  <${name.replace(/\s+/g, '')}>\n    ...\n  </${name.replace(/\s+/g, '')}>\n</ClientOnly>`}</code>
+            </pre>
           </div>
         )}
       </div>

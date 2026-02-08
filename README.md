@@ -11,6 +11,7 @@ A neubrutalism component library for React and Vue 3, built on shadcn/ui.
 [![MIT License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 [![React](https://img.shields.io/badge/React-19-61DAFB?logo=react)](https://react.dev)
 [![Vue](https://img.shields.io/badge/Vue-3-4FC08D?logo=vuedotjs)](https://vuejs.org)
+[![Nuxt](https://img.shields.io/badge/Nuxt-3-00DC82?logo=nuxtdotjs)](https://nuxt.com)
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind-v4-38B2AC?logo=tailwindcss)](https://tailwindcss.com)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.0-3178C6?logo=typescript)](https://typescriptlang.org)
 [![Components](https://img.shields.io/badge/Components-45+-FF6B6B)](https://boldkit.dev/components)
@@ -55,7 +56,8 @@ Neubrutalism (or neo-brutalism) is a bold design aesthetic characterized by:
 | **45+ Components** | Buttons, Cards, Dialogs, Forms, and more |
 | **35 SVG Shapes** | Decorative shapes for unique layouts |
 | **React & Vue 3** | Full support for both frameworks |
-| **shadcn CLI** | Install via `shadcn` (React) or `shadcn-vue` (Vue) |
+| **Nuxt 3 Ready** | SSR-compatible with shadcn-nuxt module |
+| **shadcn CLI** | Install via `shadcn` (React) or `shadcn-vue` (Vue/Nuxt) |
 | **Accessible** | Built on Radix UI (React) & Reka UI (Vue) |
 | **Dark Mode** | Full light/dark theme support |
 | **TypeScript** | Complete type safety |
@@ -94,6 +96,33 @@ npx shadcn-vue@latest add https://boldkit.dev/r/vue/shapes.json
 # Install theme (CSS variables)
 npx shadcn-vue@latest add https://boldkit.dev/r/vue/theme.json
 ```
+
+### Nuxt 3
+
+```bash
+# 1. Add shadcn-nuxt module
+npx nuxi@latest module add shadcn-nuxt
+
+# 2. Initialize shadcn-vue (select Nuxt when prompted)
+npx shadcn-vue@latest init
+
+# 3. Install BoldKit components
+npx shadcn-vue@latest add https://boldkit.dev/r/vue/button.json
+```
+
+**nuxt.config.ts:**
+
+```typescript
+export default defineNuxtConfig({
+  modules: ['shadcn-nuxt'],
+  shadcn: {
+    prefix: '',
+    componentDir: './components/ui'
+  }
+})
+```
+
+> **Note:** Some components (Drawer, Sonner, Command, Calendar, Chart) require `<ClientOnly>` wrapper for SSR. See the [Nuxt installation guide](https://boldkit.dev/docs/installation#nuxt-installation) for details.
 
 ### Using Registry Alias
 
@@ -332,6 +361,12 @@ Visit the [Theme Builder](https://boldkit.dev/themes) to create custom themes.
 - **Vue 3** - Composition API with `<script setup>`
 - **Reka UI** - Accessible primitives (Radix port for Vue)
 - **vue-echarts** - Data visualization
+
+### Nuxt 3
+- **Nuxt 3** - Vue meta-framework with SSR support
+- **shadcn-nuxt** - Official Nuxt module for shadcn-vue
+- **Auto-imports** - Components auto-imported from `components/ui`
+- **VueUse** - SSR-safe composables
 
 ### Shared
 - **Tailwind CSS v4** - Modern utility-first CSS

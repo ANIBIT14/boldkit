@@ -159,6 +159,7 @@ export function DrawerDoc() {
         vueSourceCode={vueSourceCode}
         usageCode={usageCode}
         vueUsageCode={vueUsageCode}
+        nuxtClientOnly={true}
       >
         <Drawer>
           <DrawerTrigger asChild>

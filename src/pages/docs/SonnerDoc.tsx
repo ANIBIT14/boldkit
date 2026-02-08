@@ -93,6 +93,7 @@ export function SonnerDoc() {
         vueSourceCode={vueSourceCode}
         usageCode={usageCode}
         vueUsageCode={vueUsageCode}
+        nuxtClientOnly={true}
       >
         <Button onClick={() => toast('Event has been created')}>
           Show Toast

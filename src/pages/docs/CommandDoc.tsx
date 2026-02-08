@@ -207,6 +207,7 @@ export function CommandDoc() {
         vueSourceCode={vueSourceCode}
         usageCode={usageCode}
         vueUsageCode={vueUsageCode}
+        nuxtClientOnly={true}
       >
         <Command className="border-3 border-foreground bk-shadow max-w-md">
           <CommandInput placeholder="Type a command or search..." />
