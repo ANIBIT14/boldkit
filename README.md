@@ -15,7 +15,7 @@ A neubrutalism component library for React and Vue 3, built on shadcn/ui.
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind-v4-38B2AC?logo=tailwindcss)](https://tailwindcss.com)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.0-3178C6?logo=typescript)](https://typescriptlang.org)
 [![Components](https://img.shields.io/badge/Components-45+-FF6B6B)](https://boldkit.dev/components)
-[![Shapes](https://img.shields.io/badge/SVG_Shapes-35-FFD93D)](https://boldkit.dev/shapes)
+[![Shapes](https://img.shields.io/badge/SVG_Shapes-42-FFD93D)](https://boldkit.dev/shapes)
 
 [Website](https://boldkit.dev) · [Documentation](https://boldkit.dev/docs) · [Components](https://boldkit.dev/components) · [Shapes](https://boldkit.dev/shapes)
 
@@ -54,7 +54,7 @@ Neubrutalism (or neo-brutalism) is a bold design aesthetic characterized by:
 | Feature | Description |
 |---------|-------------|
 | **45+ Components** | Buttons, Cards, Dialogs, Forms, and more |
-| **35 SVG Shapes** | Decorative shapes for unique layouts |
+| **42 SVG Shapes** | Decorative shapes for unique layouts |
 | **React & Vue 3** | Full support for both frameworks |
 | **Nuxt Ready** | SSR-compatible with shadcn-nuxt module |
 | **shadcn CLI** | Install via `shadcn` (React) or `shadcn-vue` (Vue/Nuxt) |
@@ -295,13 +295,13 @@ import { Badge } from '@/components/ui/badge'
 
 - Sticker (rotated labels)
 - Marquee (scrolling ticker)
-- 35 SVG Shapes (Burst, Blob, Lightning, Heart, Star, and more)
+- 42 SVG Shapes (Burst, Blob, Lightning, Heart, Star, Sun, Planet, and more)
 
 </details>
 
 ## Shapes
 
-35 decorative SVG shapes for unique neubrutalism layouts:
+42 decorative SVG shapes for unique neubrutalism layouts:
 
 ### React
 

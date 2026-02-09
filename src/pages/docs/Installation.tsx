@@ -69,7 +69,7 @@ const allComponents = [
   { name: 'scroll-area', description: 'Custom scrollbars' },
   { name: 'select', description: 'Dropdown selection' },
   { name: 'separator', description: 'Visual dividers' },
-  { name: 'shapes', description: '35 SVG shapes' },
+  { name: 'shapes', description: '42 SVG shapes' },
   { name: 'sticky-note', description: 'Post-it style notes' },
   { name: 'sheet', description: 'Side panels' },
   { name: 'skeleton', description: 'Loading placeholders' },

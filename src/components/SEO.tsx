@@ -18,7 +18,7 @@ interface SEOProps {
 
 const defaultMeta = {
   title: 'BoldKit - Neubrutalism UI Components for React & Vue 3',
-  description: 'Free neubrutalism component library for React and Vue 3 with 45+ UI components and 35 SVG shapes. Built on shadcn/ui with thick borders, hard shadows, and bold colors.',
+  description: 'Free neubrutalism component library for React and Vue 3 with 45+ UI components and 42 SVG shapes. Built on shadcn/ui with thick borders, hard shadows, and bold colors.',
   keywords: 'neubrutalism, neubrutalism ui, React components, Vue 3 components, shadcn, shadcn-vue, Tailwind CSS, TypeScript, UI library',
   ogImage: 'https://ik.imagekit.io/fincalfy/304a4c07-8de1-41af-813e-e7556234b973.png',
 }
@@ -125,7 +125,7 @@ export function SEO({
 export const pageSEO = {
   home: {
     title: undefined, // Uses default
-    description: 'Free neubrutalism component library for React and Vue 3 with 45+ UI components and 35 SVG shapes. Built on shadcn/ui with thick borders, hard shadows, and bold colors. Install via CLI.',
+    description: 'Free neubrutalism component library for React and Vue 3 with 45+ UI components and 42 SVG shapes. Built on shadcn/ui with thick borders, hard shadows, and bold colors. Install via CLI.',
     keywords: 'neubrutalism, neubrutalism ui, neubrutalism components, brutalist design, React UI library, Vue 3 components, shadcn components, shadcn-vue, Tailwind CSS, TypeScript',
     canonical: 'https://boldkit.dev/',
     breadcrumbs: [{ name: 'Home' }],
@@ -162,8 +162,8 @@ export const pageSEO = {
     ],
   },
   shapes: {
-    title: '35 Neubrutalism SVG Shapes',
-    description: 'Collection of 35 unique neubrutalism SVG shapes for React and Vue 3. Bursts, hearts, stars, badges, and decorative shapes with thick borders.',
+    title: '42 Neubrutalism SVG Shapes',
+    description: 'Collection of 42 unique neubrutalism SVG shapes for React and Vue 3. Bursts, hearts, stars, badges, celestial, and decorative shapes with thick borders.',
     keywords: 'SVG shapes, neubrutalism shapes, React SVG components, Vue 3 SVG components, decorative shapes, badges, stickers',
     canonical: 'https://boldkit.dev/shapes',
     breadcrumbs: [

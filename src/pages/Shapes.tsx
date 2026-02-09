@@ -22,6 +22,7 @@ import {
   // Stars & Bursts
   Star4Shape,
   Star5Shape,
+  Star6Shape,
   BurstShape,
   ExplosionShape,
   SplatShape,
@@ -31,6 +32,13 @@ import {
   WaveShape,
   CloudShape,
   HeartShape,
+  AppleShape,
+  // Celestial & Nature
+  SunShape,
+  CrescentShape,
+  RainbowShape,
+  PlanetShape,
+  UmbrellaShape,
   // Badges & UI
   ArrowBadge,
   ZigzagBanner,
@@ -77,6 +85,7 @@ const shapeCategories = [
     shapes: [
       { name: 'Star 4-Point', component: Star4Shape, code: '<Star4Shape size={100} />', vueCode: '<Star4Shape :size="100" />' },
       { name: 'Star 5-Point', component: Star5Shape, code: '<Star5Shape size={100} />', vueCode: '<Star5Shape :size="100" />' },
+      { name: 'Star 6-Point', component: Star6Shape, code: '<Star6Shape size={100} />', vueCode: '<Star6Shape :size="100" />' },
       { name: 'Burst', component: BurstShape, code: '<BurstShape size={100} />', vueCode: '<BurstShape :size="100" />' },
       { name: 'Explosion', component: ExplosionShape, code: '<ExplosionShape size={100} />', vueCode: '<ExplosionShape :size="100" />' },
       { name: 'Splat', component: SplatShape, code: '<SplatShape size={100} />', vueCode: '<SplatShape :size="100" />' },
@@ -92,6 +101,19 @@ const shapeCategories = [
       { name: 'Wave', component: WaveShape, code: '<WaveShape size={100} />', vueCode: '<WaveShape :size="100" />' },
       { name: 'Cloud', component: CloudShape, code: '<CloudShape size={100} />', vueCode: '<CloudShape :size="100" />' },
       { name: 'Heart', component: HeartShape, code: '<HeartShape size={100} />', vueCode: '<HeartShape :size="100" />' },
+      { name: 'Apple', component: AppleShape, code: '<AppleShape size={100} />', vueCode: '<AppleShape :size="100" />' },
+    ]
+  },
+  {
+    name: 'Celestial & Nature',
+    description: 'Sun, moon, planets, and natural phenomena',
+    color: 'bg-warning/10',
+    shapes: [
+      { name: 'Sun', component: SunShape, code: '<SunShape size={100} />', vueCode: '<SunShape :size="100" />' },
+      { name: 'Crescent', component: CrescentShape, code: '<CrescentShape size={100} />', vueCode: '<CrescentShape :size="100" />' },
+      { name: 'Rainbow', component: RainbowShape, code: '<RainbowShape size={100} />', vueCode: '<RainbowShape :size="100" />' },
+      { name: 'Planet', component: PlanetShape, code: '<PlanetShape size={100} />', vueCode: '<PlanetShape :size="100" />' },
+      { name: 'Umbrella', component: UmbrellaShape, code: '<UmbrellaShape size={100} />', vueCode: '<UmbrellaShape :size="100" />' },
     ]
   },
   {
@@ -365,8 +387,9 @@ import { GeometricShapes, StarShapes, OrganicShapes } from '@/components/ui/shap
                   <code>{framework === 'react' ? `// Import category groups
 import {
   GeometricShapes,   // Triangle, Diamond, Pentagon, etc.
-  StarShapes,        // Star4, Star5, Burst, Explosion, etc.
-  OrganicShapes,     // Blob, Wave, Cloud, Heart
+  StarShapes,        // Star4, Star5, Star6, Burst, etc.
+  OrganicShapes,     // Blob, Wave, Cloud, Heart, Apple
+  CelestialShapes,   // Sun, Crescent, Rainbow, Planet, Umbrella
   BadgeShapes,       // Arrow, Ribbon, Tag, Ticket, etc.
   CommunicationShapes, // SpeechBubble, Cursor, Eye
   DecorativeShapes   // ScribbleCircle, ScribbleUnderline, PaperTear
@@ -374,12 +397,13 @@ import {
 
 // Use shapes from category
 <GeometricShapes.TriangleShape size={100} />
-<StarShapes.BurstShape size={100} />` : `<script setup>
+<CelestialShapes.SunShape size={100} />` : `<script setup>
 // Import category groups
 import {
   GeometricShapes,
   StarShapes,
   OrganicShapes,
+  CelestialShapes,
   BadgeShapes,
   CommunicationShapes,
   DecorativeShapes

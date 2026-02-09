@@ -5,7 +5,7 @@
 ## Quick Facts
 
 - **Components:** 46 UI components
-- **Shapes:** 35 SVG decorative shapes
+- **Shapes:** 42 SVG decorative shapes
 - **License:** MIT (free for commercial use)
 - **Framework:** React 19
 - **Styling:** Tailwind CSS v4
@@ -20,7 +20,7 @@
 # Install any component
 npx shadcn@latest add https://boldkit.dev/r/button.json
 
-# Install shapes (35 SVG shapes)
+# Install shapes (42 SVG shapes)
 npx shadcn@latest add https://boldkit.dev/r/shapes.json
 
 # Install theme
@@ -175,13 +175,15 @@ import { BurstShape, HeartShape, LightningShape, Star5Shape } from '@/components
 // Custom stroke width
 <Star5Shape size={100} strokeWidth={5} />
 
-// All 30 shapes available:
+// All 42 shapes available:
 // BurstShape, BlobShape, ArrowBadge, ZigzagBanner, ScribbleCircle,
 // TicketShape, SplatShape, SpeechBubble, DiamondBadge, HexagonShape,
 // CrossShape, LightningShape, HeartShape, Star4Shape, ShieldShape,
 // RibbonShape, WaveShape, OctagonShape, CloudShape, TagShape,
-// Star5Shape, PentagonShape, TrapezoidShape, ParallelogramShape,
-// CursorShape, BookmarkShape, FlagShape, PillShape, EyeShape, TriangleShape
+// Star5Shape, Star6Shape, PentagonShape, TrapezoidShape, ParallelogramShape,
+// CursorShape, BookmarkShape, FlagShape, PillShape, EyeShape, TriangleShape,
+// SunShape, CrescentShape, RainbowShape, PlanetShape, UmbrellaShape, AppleShape,
+// PriceTagShape, CouponShape, ScribbleUnderline, PaperTearShape, ExplosionShape
 ```
 
 ### Layered Card (Stacked Paper Effect)
@@ -311,7 +313,7 @@ const color = getChartColor('vibrant', 0) // 'hsl(0 84% 60%)'
 - Avatar, Table, Hover Card, Tooltip, Calendar, Charts (Area, Bar, Line, Pie)
 
 ### Decorative (Neubrutalism Special)
-- Sticker, Stamp, StickyNote, Marquee, 35 SVG Shapes
+- Sticker, Stamp, StickyNote, Marquee, 42 SVG Shapes
 
 ## Tech Stack
 

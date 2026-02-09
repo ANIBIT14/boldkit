@@ -711,6 +711,221 @@ export const EyeShape = React.forwardRef<SVGSVGElement, ShapeProps>(
 EyeShape.displayName = 'EyeShape'
 
 // ============================================================================
+// NATURE & CELESTIAL SHAPES - Sun, moon, planet, rainbow, and natural forms
+// ============================================================================
+
+export const SunShape = React.forwardRef<SVGSVGElement, ShapeProps>(
+  ({ size = 100, strokeWidth = 3, filled = true, color, className, ...props }, ref) => (
+    <svg
+      ref={ref}
+      width={size}
+      height={size}
+      viewBox="0 0 100 100"
+      className={cn('text-warning', className)}
+      {...props}
+    >
+      <circle
+        cx="50"
+        cy="50"
+        r="22"
+        fill={filled ? (color || 'currentColor') : 'none'}
+        stroke="hsl(var(--foreground))"
+        strokeWidth={strokeWidth}
+      />
+      <path
+        d="M50 5 L54 22 L46 22 Z M50 95 L54 78 L46 78 Z M5 50 L22 46 L22 54 Z M95 50 L78 46 L78 54 Z M18 18 L32 28 L28 32 Z M82 18 L68 28 L72 32 Z M18 82 L28 68 L32 72 Z M82 82 L72 68 L68 72 Z"
+        fill="hsl(var(--foreground))"
+        stroke="hsl(var(--foreground))"
+        strokeWidth={strokeWidth - 2}
+        strokeLinejoin="round"
+      />
+    </svg>
+  )
+)
+SunShape.displayName = 'SunShape'
+
+export const Star6Shape = React.forwardRef<SVGSVGElement, ShapeProps>(
+  ({ size = 100, strokeWidth = 3, filled = true, color, className, ...props }, ref) => (
+    <svg
+      ref={ref}
+      width={size}
+      height={size}
+      viewBox="0 0 100 100"
+      className={cn('text-accent', className)}
+      {...props}
+    >
+      <path
+        d="M50 5 L58 35 L88 20 L68 45 L95 50 L68 55 L88 80 L58 65 L50 95 L42 65 L12 80 L32 55 L5 50 L32 45 L12 20 L42 35 Z"
+        fill={filled ? (color || 'currentColor') : 'none'}
+        stroke="hsl(var(--foreground))"
+        strokeWidth={strokeWidth}
+      />
+    </svg>
+  )
+)
+Star6Shape.displayName = 'Star6Shape'
+
+export const CrescentShape = React.forwardRef<SVGSVGElement, ShapeProps>(
+  ({ size = 100, strokeWidth = 3, filled = true, color, className, ...props }, ref) => (
+    <svg
+      ref={ref}
+      width={size}
+      height={size}
+      viewBox="0 0 100 100"
+      className={cn('text-warning', className)}
+      {...props}
+    >
+      <path
+        d="M70 10 Q90 30 90 55 Q90 80 65 92 Q80 75 80 55 Q80 30 60 15 Q55 12 70 10 Z"
+        fill={filled ? (color || 'currentColor') : 'none'}
+        stroke="hsl(var(--foreground))"
+        strokeWidth={strokeWidth}
+        strokeLinejoin="round"
+      />
+    </svg>
+  )
+)
+CrescentShape.displayName = 'CrescentShape'
+
+export const RainbowShape = React.forwardRef<SVGSVGElement, ShapeProps>(
+  ({ size = 100, strokeWidth = 3, filled = true, color, className, ...props }, ref) => (
+    <svg
+      ref={ref}
+      width={size}
+      height={size * 0.6}
+      viewBox="0 0 100 60"
+      className={cn('text-primary', className)}
+      {...props}
+    >
+      <path
+        d="M5 55 Q5 10 50 10 Q95 10 95 55"
+        fill="none"
+        stroke={filled ? (color || 'currentColor') : 'none'}
+        strokeWidth={12}
+        strokeLinecap="round"
+      />
+      <path
+        d="M5 55 Q5 10 50 10 Q95 10 95 55"
+        fill="none"
+        stroke="hsl(var(--foreground))"
+        strokeWidth={strokeWidth}
+        strokeLinecap="round"
+      />
+      <path
+        d="M15 55 Q15 22 50 22 Q85 22 85 55"
+        fill="none"
+        stroke="hsl(var(--foreground))"
+        strokeWidth={strokeWidth}
+        strokeLinecap="round"
+      />
+      <path
+        d="M25 55 Q25 34 50 34 Q75 34 75 55"
+        fill="none"
+        stroke="hsl(var(--foreground))"
+        strokeWidth={strokeWidth}
+        strokeLinecap="round"
+      />
+    </svg>
+  )
+)
+RainbowShape.displayName = 'RainbowShape'
+
+export const PlanetShape = React.forwardRef<SVGSVGElement, ShapeProps>(
+  ({ size = 100, strokeWidth = 3, filled = true, color, className, ...props }, ref) => (
+    <svg
+      ref={ref}
+      width={size}
+      height={size}
+      viewBox="0 0 100 100"
+      className={cn('text-secondary', className)}
+      {...props}
+    >
+      <circle
+        cx="50"
+        cy="50"
+        r="28"
+        fill={filled ? (color || 'currentColor') : 'none'}
+        stroke="hsl(var(--foreground))"
+        strokeWidth={strokeWidth}
+      />
+      <ellipse
+        cx="50"
+        cy="50"
+        rx="45"
+        ry="14"
+        fill="none"
+        stroke="hsl(var(--foreground))"
+        strokeWidth={strokeWidth}
+        transform="rotate(-25 50 50)"
+      />
+    </svg>
+  )
+)
+PlanetShape.displayName = 'PlanetShape'
+
+export const UmbrellaShape = React.forwardRef<SVGSVGElement, ShapeProps>(
+  ({ size = 100, strokeWidth = 3, filled = true, color, className, ...props }, ref) => (
+    <svg
+      ref={ref}
+      width={size}
+      height={size}
+      viewBox="0 0 100 100"
+      className={cn('text-info', className)}
+      {...props}
+    >
+      <path
+        d="M50 10 Q15 10 5 45 L25 45 Q25 30 35 30 Q40 30 40 45 L60 45 Q60 30 65 30 Q75 30 75 45 L95 45 Q85 10 50 10 Z"
+        fill={filled ? (color || 'currentColor') : 'none'}
+        stroke="hsl(var(--foreground))"
+        strokeWidth={strokeWidth}
+      />
+      <path
+        d="M50 10 L50 80 Q50 92 40 92 Q32 92 32 85"
+        fill="none"
+        stroke="hsl(var(--foreground))"
+        strokeWidth={strokeWidth}
+        strokeLinecap="round"
+      />
+    </svg>
+  )
+)
+UmbrellaShape.displayName = 'UmbrellaShape'
+
+export const AppleShape = React.forwardRef<SVGSVGElement, ShapeProps>(
+  ({ size = 100, strokeWidth = 3, filled = true, color, className, ...props }, ref) => (
+    <svg
+      ref={ref}
+      width={size}
+      height={size}
+      viewBox="0 0 100 100"
+      className={cn('text-destructive', className)}
+      {...props}
+    >
+      <path
+        d="M50 25 Q30 20 15 35 Q0 55 15 75 Q25 92 40 95 Q50 97 50 90 Q50 97 60 95 Q75 92 85 75 Q100 55 85 35 Q70 20 50 25 Z"
+        fill={filled ? (color || 'currentColor') : 'none'}
+        stroke="hsl(var(--foreground))"
+        strokeWidth={strokeWidth}
+      />
+      <path
+        d="M50 25 Q55 10 60 5"
+        fill="none"
+        stroke="hsl(var(--foreground))"
+        strokeWidth={strokeWidth}
+        strokeLinecap="round"
+      />
+      <path
+        d="M58 12 Q68 8 72 15 Q70 20 62 18"
+        fill="hsl(var(--foreground))"
+        stroke="hsl(var(--foreground))"
+        strokeWidth={strokeWidth - 2}
+      />
+    </svg>
+  )
+)
+AppleShape.displayName = 'AppleShape'
+
+// ============================================================================
 // DECORATIVE SHAPES - Scribbles, tears, and artistic effects
 // ============================================================================
 
@@ -813,6 +1028,7 @@ export const GeometricShapes = {
 export const StarShapes = {
   Star4Shape,
   Star5Shape,
+  Star6Shape,
   BurstShape,
   ExplosionShape,
   SplatShape,
@@ -824,6 +1040,15 @@ export const OrganicShapes = {
   WaveShape,
   CloudShape,
   HeartShape,
+  AppleShape,
+}
+
+export const CelestialShapes = {
+  SunShape,
+  CrescentShape,
+  RainbowShape,
+  PlanetShape,
+  UmbrellaShape,
 }
 
 export const BadgeShapes = {
@@ -869,6 +1094,7 @@ export const shapes = {
   // Stars & Bursts
   Star4Shape,
   Star5Shape,
+  Star6Shape,
   BurstShape,
   ExplosionShape,
   SplatShape,
@@ -878,6 +1104,13 @@ export const shapes = {
   WaveShape,
   CloudShape,
   HeartShape,
+  AppleShape,
+  // Celestial & Nature
+  SunShape,
+  CrescentShape,
+  RainbowShape,
+  PlanetShape,
+  UmbrellaShape,
   // Badges & UI
   ArrowBadge,
   ZigzagBanner,
