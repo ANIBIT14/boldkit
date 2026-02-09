@@ -754,8 +754,9 @@ export const Star6Shape = React.forwardRef<SVGSVGElement, ShapeProps>(
       className={cn('text-accent', className)}
       {...props}
     >
+      {/* 6-pointed star (hexagram) - two overlapping triangles */}
       <path
-        d="M50 5 L58 35 L88 20 L68 45 L95 50 L68 55 L88 80 L58 65 L50 95 L42 65 L12 80 L32 55 L5 50 L32 45 L12 20 L42 35 Z"
+        d="M50 5 L61 40 L95 40 L68 60 L79 95 L50 75 L21 95 L32 60 L5 40 L39 40 Z"
         fill={filled ? (color || 'currentColor') : 'none'}
         stroke="hsl(var(--foreground))"
         strokeWidth={strokeWidth}
