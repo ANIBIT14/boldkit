@@ -13,6 +13,7 @@ import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert'
 import { Copy, Check, AlertCircle, Palette, Sun, Moon } from 'lucide-react'
 import { Layout } from '@/components/layout'
 import { ReactIcon, VueIcon } from '@/hooks/use-framework'
+import { SEO, pageSEO } from '@/components/SEO'
 
 // Helper functions for color conversion
 function hslToHex(h: number, s: number, l: number): string {
@@ -361,7 +362,9 @@ export function ThemeBuilder() {
   }
 
   return (
-    <Layout showFooter={false}>
+    <>
+      <SEO {...pageSEO.themes} />
+      <Layout showFooter={false}>
       <div className="container mx-auto px-3 md:px-4 py-6 md:py-8 overflow-x-hidden">
         <div className="mb-6 md:mb-8">
           <div className="flex items-center gap-2 mb-3 md:mb-4 flex-wrap">
@@ -642,5 +645,6 @@ export function ThemeBuilder() {
         </div>
       </div>
     </Layout>
+    </>
   )
 }

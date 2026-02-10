@@ -38,6 +38,7 @@ import {
 import { TrendingUp, TrendingDown, Code, Copy, Check } from 'lucide-react'
 import { Layout } from '@/components/layout'
 import { useFramework, FrameworkToggle, ReactIcon, VueIcon } from '@/hooks/use-framework'
+import { SEO, pageSEO } from '@/components/SEO'
 
 // Sample data for charts
 const areaData = [
@@ -1349,7 +1350,9 @@ export function Charts() {
   const { framework } = useFramework()
 
   return (
-    <Layout>
+    <>
+      <SEO {...pageSEO.charts} />
+      <Layout>
       {/* Header */}
       <header className="border-b-3 border-foreground bg-background">
         <div className="container mx-auto py-12 px-4 md:px-6 text-center">
@@ -2147,5 +2150,6 @@ const option = ref({
       </main>
 
     </Layout>
+    </>
   )
 }
