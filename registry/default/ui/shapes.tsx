@@ -1,3 +1,4 @@
+/* eslint-disable react-refresh/only-export-components */
 import * as React from 'react'
 import { cn } from '@/lib/utils'
 
@@ -801,8 +802,22 @@ export const RainbowShape = React.forwardRef<SVGSVGElement, ShapeProps>(
       <path
         d="M5 55 Q5 10 50 10 Q95 10 95 55"
         fill="none"
-        stroke={filled ? (color || 'currentColor') : 'none'}
-        strokeWidth={12}
+        stroke={filled ? (color || "hsl(var(--destructive))") : 'none'}
+        strokeWidth={10}
+        strokeLinecap="round"
+      />
+      <path
+        d="M15 55 Q15 22 50 22 Q85 22 85 55"
+        fill="none"
+        stroke={filled ? (color || "hsl(var(--warning))") : 'none'}
+        strokeWidth={10}
+        strokeLinecap="round"
+      />
+      <path
+        d="M25 55 Q25 34 50 34 Q75 34 75 55"
+        fill="none"
+        stroke={filled ? (color || "hsl(var(--info))") : 'none'}
+        strokeWidth={10}
         strokeLinecap="round"
       />
       <path

@@ -26,8 +26,22 @@ const props = withDefaults(defineProps<Props>(), {
     <path
       d="M5 55 Q5 10 50 10 Q95 10 95 55"
       fill="none"
-      :stroke="filled ? (color || 'currentColor') : 'none'"
-      stroke-width="12"
+      :stroke="filled ? (color || 'hsl(var(--destructive))') : 'none'"
+      stroke-width="10"
+      stroke-linecap="round"
+    />
+    <path
+      d="M15 55 Q15 22 50 22 Q85 22 85 55"
+      fill="none"
+      :stroke="filled ? (color || 'hsl(var(--warning))') : 'none'"
+      stroke-width="10"
+      stroke-linecap="round"
+    />
+    <path
+      d="M25 55 Q25 34 50 34 Q75 34 75 55"
+      fill="none"
+      :stroke="filled ? (color || 'hsl(var(--info))') : 'none'"
+      stroke-width="10"
       stroke-linecap="round"
     />
     <path
