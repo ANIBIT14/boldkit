@@ -33,7 +33,7 @@ const program = new Command()
 program
   .name('boldkit')
   .description('CLI for adding BoldKit Angular components to your project')
-  .version('0.1.1')
+  .version('0.1.2')
 
 program
   .command('add')
@@ -230,9 +230,12 @@ async function writeComponentFiles(
     }
 
     // Fix import paths in content
+    // Components are at src/components/ui/[component]/file.ts
+    // Utils is at src/lib/utils.ts
+    // So relative path is ../../../lib/utils
     const fixedContent = file.content
-      .replace(/from ['"]\.\.\/lib\/utils['"]/g, "from '../../lib/utils'")
-      .replace(/from ['"]\.\.\/\.\.\/utils\/cn['"]/g, "from '../../lib/utils'")
+      .replace(/from ['"]\.\.\/lib\/utils['"]/g, "from '../../../lib/utils'")
+      .replace(/from ['"]\.\.\/\.\.\/utils\/cn['"]/g, "from '../../../lib/utils'")
 
     await fs.writeFile(filePath, fixedContent)
   }

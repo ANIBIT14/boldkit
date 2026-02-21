@@ -242,8 +242,11 @@ function generateComponentRegistry(componentName) {
     const filePath = path.join(componentDir, file)
     const content = fs.readFileSync(filePath, 'utf-8')
       // Update import paths for standalone usage
-      .replace(/from ['"]\.\.\/\.\.\/utils\/cn['"]/g, "from '../lib/utils'")
-      .replace(/from ['"]\.\.\/utils\/cn['"]/g, "from '../lib/utils'")
+      // Components will be at src/components/ui/[name]/file.ts
+      // Utils will be at src/lib/utils.ts
+      // So relative path is ../../../lib/utils
+      .replace(/from ['"]\.\.\/\.\.\/utils\/cn['"]/g, "from '../../../lib/utils'")
+      .replace(/from ['"]\.\.\/utils\/cn['"]/g, "from '../../../lib/utils'")
 
     files.push({
       "path": `components/ui/${componentName}/${file}`,

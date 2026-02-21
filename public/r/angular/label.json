@@ -19,7 +19,7 @@
     },
     {
       "path": "components/ui/label/label.component.ts",
-      "content": "import { Component, Input, HostBinding, ChangeDetectionStrategy } from '@angular/core'\nimport { cva, type VariantProps } from 'class-variance-authority'\nimport { cn } from '../lib/utils'\n\nexport const labelVariants = cva(\n  'text-sm font-bold uppercase tracking-wide leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70'\n)\n\nexport type LabelVariants = VariantProps<typeof labelVariants>\n\n@Component({\n  selector: 'bk-label, label[bkLabel]',\n  standalone: true,\n  template: `<ng-content></ng-content>`,\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class LabelComponent {\n  @Input() class: string = ''\n\n  @HostBinding('class')\n  get hostClass(): string {\n    return cn(labelVariants(), this.class)\n  }\n}\n",
+      "content": "import { Component, Input, HostBinding, ChangeDetectionStrategy } from '@angular/core'\nimport { cva, type VariantProps } from 'class-variance-authority'\nimport { cn } from '../../../lib/utils'\n\nexport const labelVariants = cva(\n  'text-sm font-bold uppercase tracking-wide leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70'\n)\n\nexport type LabelVariants = VariantProps<typeof labelVariants>\n\n@Component({\n  selector: 'bk-label, label[bkLabel]',\n  standalone: true,\n  template: `<ng-content></ng-content>`,\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class LabelComponent {\n  @Input() class: string = ''\n\n  @HostBinding('class')\n  get hostClass(): string {\n    return cn(labelVariants(), this.class)\n  }\n}\n",
       "type": "registry:ui",
       "target": "components/ui/label/label.component.ts"
     }
