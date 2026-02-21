@@ -25,21 +25,27 @@ interface RegistryItem {
   files: RegistryFile[]
 }
 
+// Track already added dependencies to avoid duplicates
+const addedDependencies = new Set<string>()
+
 const program = new Command()
 
 program
   .name('boldkit')
   .description('CLI for adding BoldKit Angular components to your project')
-  .version('0.1.0')
+  .version('0.1.1')
 
 program
   .command('add')
   .description('Add components to your project')
   .argument('[components...]', 'Components to add')
-  .option('-y, --yes', 'Skip confirmation prompt')
+  .option('-y, --yes', 'Skip confirmation prompts')
   .option('-o, --overwrite', 'Overwrite existing files')
   .option('-p, --path <path>', 'Path to add components to', 'src/components/ui')
   .action(async (components: string[], options) => {
+    // Handle Ctrl+C gracefully
+    prompts.override({ onCancel: () => process.exit(0) })
+
     if (!components.length) {
       // Show available components
       console.log(chalk.cyan('\nAvailable components:\n'))
@@ -66,12 +72,21 @@ program
     console.log(chalk.cyan(`\nAdding ${components.length} component(s) to your project...\n`))
 
     const targetPath = path.resolve(process.cwd(), options.path)
+    const libPath = path.resolve(process.cwd(), 'src/lib')
 
-    // Create target directory if it doesn't exist
+    // Create target directories
     await fs.ensureDir(targetPath)
+    await fs.ensureDir(libPath)
 
     const allDependencies: Set<string> = new Set()
     const failedComponents: string[] = []
+    const shouldOverwrite = options.overwrite || options.yes
+
+    // Add utils first if not already added
+    if (!addedDependencies.has('utils')) {
+      await addUtilsFile(libPath)
+      addedDependencies.add('utils')
+    }
 
     for (const component of components) {
       const spinner = ora(`Adding ${component}...`).start()
@@ -86,29 +101,8 @@ program
 
         const registry: RegistryItem = await response.json()
 
-        // Check for registry dependencies and add them first
-        if (registry.registryDependencies?.length) {
-          for (const dep of registry.registryDependencies) {
-            if (!components.includes(dep)) {
-              spinner.text = `Adding dependency: ${dep}...`
-              try {
-                const depResponse = await fetch(`${REGISTRY_BASE_URL}/${dep}.json`)
-                if (depResponse.ok) {
-                  const depRegistry: RegistryItem = await depResponse.json()
-                  await writeComponentFiles(depRegistry, targetPath, options.overwrite)
-                  if (depRegistry.dependencies) {
-                    depRegistry.dependencies.forEach(d => allDependencies.add(d))
-                  }
-                }
-              } catch {
-                // Dependency might not exist or already be installed
-              }
-            }
-          }
-        }
-
         // Write component files
-        await writeComponentFiles(registry, targetPath, options.overwrite)
+        await writeComponentFiles(registry, targetPath, shouldOverwrite, spinner)
 
         // Collect npm dependencies
         if (registry.dependencies) {
@@ -131,9 +125,9 @@ program
     }
 
     // Remind about styles
-    console.log(chalk.cyan('Add styles to your src/styles.css:\n'))
-    console.log(chalk.gray(`  @import "https://boldkit.dev/r/angular/styles.css";\n`))
-    console.log(chalk.gray('  Or copy from: https://github.com/ANIBIT14/boldkit/blob/main/packages/angular/projects/boldkit/src/lib/styles/globals.css\n'))
+    console.log(chalk.cyan('Add BoldKit styles to your src/styles.css:\n'))
+    console.log(chalk.gray('  Copy the CSS from:'))
+    console.log(chalk.gray('  https://github.com/ANIBIT14/boldkit/blob/main/packages/angular/projects/boldkit/src/lib/styles/globals.css\n'))
 
     if (failedComponents.length > 0) {
       console.log(chalk.yellow(`\nFailed to add: ${failedComponents.join(', ')}`))
@@ -145,7 +139,8 @@ program
 program
   .command('init')
   .description('Initialize BoldKit in your Angular project')
-  .action(async () => {
+  .option('-y, --yes', 'Skip prompts and use defaults')
+  .action(async (options) => {
     console.log(chalk.cyan('\n🎨 Initializing BoldKit for Angular...\n'))
 
     // Check if we're in an Angular project
@@ -155,68 +150,91 @@ program
       process.exit(1)
     }
 
-    const response = await prompts([
-      {
+    let componentsPath = 'src/components/ui'
+
+    if (!options.yes) {
+      const response = await prompts({
         type: 'text',
         name: 'componentsPath',
         message: 'Where would you like to add components?',
         initial: 'src/components/ui'
-      },
-      {
-        type: 'confirm',
-        name: 'installDeps',
-        message: 'Install dependencies (class-variance-authority, clsx, tailwind-merge)?',
-        initial: true
-      }
-    ])
+      }, { onCancel: () => process.exit(0) })
+      componentsPath = response.componentsPath || componentsPath
+    }
 
     // Create components directory
-    const componentsPath = path.resolve(process.cwd(), response.componentsPath)
-    await fs.ensureDir(componentsPath)
-    console.log(chalk.green(`✓ Created ${response.componentsPath}`))
+    const fullComponentsPath = path.resolve(process.cwd(), componentsPath)
+    await fs.ensureDir(fullComponentsPath)
+    console.log(chalk.green(`✓ Created ${componentsPath}`))
 
     // Create utils file
-    const utilsContent = `import { clsx, type ClassValue } from 'clsx'
+    const libPath = path.resolve(process.cwd(), 'src/lib')
+    await addUtilsFile(libPath)
+    console.log(chalk.green(`✓ Created src/lib/utils.ts`))
+
+    console.log(chalk.cyan('\nInstall these dependencies:\n'))
+    console.log(chalk.gray('  npm install class-variance-authority clsx tailwind-merge\n'))
+
+    console.log(chalk.cyan('Add BoldKit styles to your src/styles.css:\n'))
+    console.log(chalk.gray('  Copy the CSS from:'))
+    console.log(chalk.gray('  https://github.com/ANIBIT14/boldkit/blob/main/packages/angular/projects/boldkit/src/lib/styles/globals.css\n'))
+
+    console.log(chalk.green('✓ BoldKit initialized! Now add components with:\n'))
+    console.log(chalk.gray('  npx boldkit add button card badge\n'))
+  })
+
+async function addUtilsFile(libPath: string) {
+  await fs.ensureDir(libPath)
+  const utilsContent = `import { clsx, type ClassValue } from 'clsx'
 import { twMerge } from 'tailwind-merge'
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
 }
 `
-    const utilsPath = path.join(componentsPath, '..', 'lib', 'utils.ts')
-    await fs.ensureDir(path.dirname(utilsPath))
-    await fs.writeFile(utilsPath, utilsContent)
-    console.log(chalk.green(`✓ Created src/lib/utils.ts`))
+  const utilsPath = path.join(libPath, 'utils.ts')
+  await fs.writeFile(utilsPath, utilsContent)
+}
 
-    if (response.installDeps) {
-      console.log(chalk.cyan('\nInstall these dependencies:\n'))
-      console.log(chalk.gray('  npm install class-variance-authority clsx tailwind-merge\n'))
-    }
-
-    console.log(chalk.cyan('\nAdd BoldKit styles to your src/styles.css:\n'))
-    console.log(chalk.gray('  Copy from: https://github.com/ANIBIT14/boldkit/blob/main/packages/angular/projects/boldkit/src/lib/styles/globals.css\n'))
-
-    console.log(chalk.green('✓ BoldKit initialized! Now add components with:\n'))
-    console.log(chalk.gray('  npx boldkit add button card badge\n'))
-  })
-
-async function writeComponentFiles(registry: RegistryItem, targetPath: string, overwrite?: boolean) {
+async function writeComponentFiles(
+  registry: RegistryItem,
+  targetPath: string,
+  overwrite: boolean,
+  spinner: ReturnType<typeof ora>
+) {
   for (const file of registry.files) {
+    // Get just the filename
     const fileName = path.basename(file.target)
-    const filePath = path.join(targetPath, fileName)
+
+    // Create component subdirectory
+    const componentDir = path.join(targetPath, registry.name)
+    await fs.ensureDir(componentDir)
+
+    const filePath = path.join(componentDir, fileName)
 
     // Check if file exists
     if (await fs.pathExists(filePath) && !overwrite) {
+      spinner.stop()
       const { shouldOverwrite } = await prompts({
         type: 'confirm',
         name: 'shouldOverwrite',
         message: `${fileName} already exists. Overwrite?`,
         initial: false
-      })
-      if (!shouldOverwrite) continue
+      }, { onCancel: () => process.exit(0) })
+
+      if (!shouldOverwrite) {
+        spinner.start()
+        continue
+      }
+      spinner.start()
     }
 
-    await fs.writeFile(filePath, file.content)
+    // Fix import paths in content
+    const fixedContent = file.content
+      .replace(/from ['"]\.\.\/lib\/utils['"]/g, "from '../../lib/utils'")
+      .replace(/from ['"]\.\.\/\.\.\/utils\/cn['"]/g, "from '../../lib/utils'")
+
+    await fs.writeFile(filePath, fixedContent)
   }
 }
 
