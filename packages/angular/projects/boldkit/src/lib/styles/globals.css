@@ -2,6 +2,196 @@
 
 @custom-variant dark (&:is(.dark *));
 
+/* Custom border utilities for neubrutalism */
+@utility border-3 {
+  border-width: 3px;
+}
+@utility border-b-3 {
+  border-bottom-width: 3px;
+}
+@utility border-t-3 {
+  border-top-width: 3px;
+}
+@utility border-l-3 {
+  border-left-width: 3px;
+}
+@utility border-r-3 {
+  border-right-width: 3px;
+}
+
+/* Custom color utilities for Tailwind v4 */
+@utility bg-primary {
+  background-color: var(--color-primary);
+}
+@utility bg-primary-foreground {
+  background-color: var(--color-primary-foreground);
+}
+@utility bg-secondary {
+  background-color: var(--color-secondary);
+}
+@utility bg-secondary-foreground {
+  background-color: var(--color-secondary-foreground);
+}
+@utility bg-accent {
+  background-color: var(--color-accent);
+}
+@utility bg-accent-foreground {
+  background-color: var(--color-accent-foreground);
+}
+@utility bg-destructive {
+  background-color: var(--color-destructive);
+}
+@utility bg-destructive-foreground {
+  background-color: var(--color-destructive-foreground);
+}
+@utility bg-muted {
+  background-color: var(--color-muted);
+}
+@utility bg-muted-foreground {
+  background-color: var(--color-muted-foreground);
+}
+@utility bg-success {
+  background-color: var(--color-success);
+}
+@utility bg-success-foreground {
+  background-color: var(--color-success-foreground);
+}
+@utility bg-warning {
+  background-color: var(--color-warning);
+}
+@utility bg-warning-foreground {
+  background-color: var(--color-warning-foreground);
+}
+@utility bg-info {
+  background-color: var(--color-info);
+}
+@utility bg-info-foreground {
+  background-color: var(--color-info-foreground);
+}
+@utility bg-background {
+  background-color: var(--color-background);
+}
+@utility bg-foreground {
+  background-color: var(--color-foreground);
+}
+@utility bg-card {
+  background-color: var(--color-card);
+}
+@utility bg-card-foreground {
+  background-color: var(--color-card-foreground);
+}
+@utility bg-popover {
+  background-color: var(--color-popover);
+}
+@utility bg-popover-foreground {
+  background-color: var(--color-popover-foreground);
+}
+
+@utility text-primary {
+  color: var(--color-primary);
+}
+@utility text-primary-foreground {
+  color: var(--color-primary-foreground);
+}
+@utility text-secondary {
+  color: var(--color-secondary);
+}
+@utility text-secondary-foreground {
+  color: var(--color-secondary-foreground);
+}
+@utility text-accent {
+  color: var(--color-accent);
+}
+@utility text-accent-foreground {
+  color: var(--color-accent-foreground);
+}
+@utility text-destructive {
+  color: var(--color-destructive);
+}
+@utility text-destructive-foreground {
+  color: var(--color-destructive-foreground);
+}
+@utility text-muted {
+  color: var(--color-muted);
+}
+@utility text-muted-foreground {
+  color: var(--color-muted-foreground);
+}
+@utility text-success {
+  color: var(--color-success);
+}
+@utility text-success-foreground {
+  color: var(--color-success-foreground);
+}
+@utility text-warning {
+  color: var(--color-warning);
+}
+@utility text-warning-foreground {
+  color: var(--color-warning-foreground);
+}
+@utility text-info {
+  color: var(--color-info);
+}
+@utility text-info-foreground {
+  color: var(--color-info-foreground);
+}
+@utility text-background {
+  color: var(--color-background);
+}
+@utility text-foreground {
+  color: var(--color-foreground);
+}
+@utility text-card {
+  color: var(--color-card);
+}
+@utility text-card-foreground {
+  color: var(--color-card-foreground);
+}
+
+@utility border-primary {
+  border-color: var(--color-primary);
+}
+@utility border-secondary {
+  border-color: var(--color-secondary);
+}
+@utility border-accent {
+  border-color: var(--color-accent);
+}
+@utility border-destructive {
+  border-color: var(--color-destructive);
+}
+@utility border-muted {
+  border-color: var(--color-muted);
+}
+@utility border-success {
+  border-color: var(--color-success);
+}
+@utility border-warning {
+  border-color: var(--color-warning);
+}
+@utility border-info {
+  border-color: var(--color-info);
+}
+@utility border-foreground {
+  border-color: var(--color-foreground);
+}
+@utility border-background {
+  border-color: var(--color-background);
+}
+@utility border-border {
+  border-color: var(--color-border);
+}
+@utility border-input {
+  border-color: var(--color-input);
+}
+
+@utility ring-ring {
+  --tw-ring-color: var(--color-ring);
+}
+@utility ring-offset-background {
+  --tw-ring-offset-color: var(--color-background);
+}
+
 /* BoldKit Theme Definition for Tailwind v4 */
 @theme {
   /* Border widths for neubrutalism */
