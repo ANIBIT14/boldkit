@@ -6,7 +6,7 @@ import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet'
 import { ScrollArea } from '@/components/ui/scroll-area'
 import { Menu } from 'lucide-react'
 import { Header } from '@/components/layout'
-import { FrameworkToggle } from '@/hooks/use-framework'
+import { FrameworkToggle, useFramework } from '@/hooks/use-framework'
 import { TableOfContents } from '@/components/TableOfContents'
 
 const components = [
@@ -55,19 +55,29 @@ const components = [
 
 function Sidebar({ className, onLinkClick }: { className?: string; onLinkClick?: () => void }) {
   const location = useLocation()
+  const { framework } = useFramework()
+
+  const frameworkLabels: Record<string, string> = {
+    react: 'React',
+    vue: 'Vue 3',
+    angular: 'Angular'
+  }
 
   return (
     <div className={cn('pb-12', className)}>
       <div className="space-y-6 py-4">
         {/* Framework Toggle */}
         <div className="px-3">
-          <div className="px-4 mb-2">
+          <div className="px-4 mb-2 flex items-center justify-between">
             <span className="text-xs font-bold uppercase tracking-wide text-muted-foreground">
               Framework
             </span>
+            <span className="text-xs font-bold text-foreground">
+              {frameworkLabels[framework]}
+            </span>
           </div>
           <div className="px-4">
-            <FrameworkToggle size="sm" />
+            <FrameworkToggle variant="compact" />
           </div>
         </div>
 

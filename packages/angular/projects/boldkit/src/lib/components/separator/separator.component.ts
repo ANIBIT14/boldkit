@@ -5,6 +5,7 @@ import { cn } from '../../utils/cn'
   selector: 'bk-separator',
   standalone: true,
   template: ``,
+  styles: [`:host { display: block; }`],
   host: { 'role': 'separator' },
   changeDetection: ChangeDetectionStrategy.OnPush,
 })

@@ -12,16 +12,17 @@ import { Layout } from '@/components/layout'
 import { Copy, Check, ArrowRight, Zap, Palette, Code2, Smartphone, Github, Layers } from 'lucide-react'
 import { useState } from 'react'
 import { SEO, pageSEO } from '@/components/SEO'
-import { useFramework, ReactIcon, VueIcon } from '@/hooks/use-framework'
+import { useFramework, ReactIcon, VueIcon, AngularIcon } from '@/hooks/use-framework'
 
 export function Home() {
   const [copied, setCopied] = useState(false)
   // Use global framework context
   const { framework, setFramework } = useFramework()
 
-  const commands = {
+  const commands: Record<string, string> = {
     react: 'npx shadcn@latest add https://boldkit.dev/r/button.json',
-    vue: 'npx shadcn-vue@latest add https://boldkit.dev/r/vue/button.json'
+    vue: 'npx shadcn-vue@latest add https://boldkit.dev/r/vue/button.json',
+    angular: 'npm install @boldkit/angular'
   }
 
   const copyCommand = () => {
@@ -47,6 +48,9 @@ export function Home() {
               </Badge>
               <Badge variant="success" className="gap-1.5">
                 <VueIcon className="h-5 w-5" /> Vue 3
+              </Badge>
+              <Badge variant="destructive" className="gap-1.5">
+                <AngularIcon className="h-5 w-5" /> Angular
               </Badge>
               <Badge variant="secondary" className="gap-1.5">
                 <svg className="h-5 w-5" viewBox="0 0 24 24" fill="currentColor">
@@ -97,6 +101,14 @@ export function Home() {
                   }`}
                 >
                   <VueIcon className="h-5 w-5" /> Vue
+                </button>
+                <button
+                  onClick={() => setFramework('angular')}
+                  className={`flex items-center gap-2 px-4 py-2 font-bold transition-colors border-l-3 border-foreground ${
+                    framework === 'angular' ? 'bg-destructive' : 'hover:bg-muted'
+                  }`}
+                >
+                  <AngularIcon className="h-5 w-5" /> Angular
                 </button>
               </div>
               <div className="inline-flex items-center gap-2 border-3 border-foreground bg-muted px-4 py-2 bk-shadow">

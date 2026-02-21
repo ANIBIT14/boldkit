@@ -10,6 +10,7 @@ import { cn } from '../../utils/cn'
       [style.transform]="'translateX(-' + (100 - (value || 0)) + '%)'">
     </div>
   `,
+  styles: [`:host { display: block; }`],
   host: {
     'role': 'progressbar',
   },

@@ -4,6 +4,12 @@
 
 /* BoldKit Theme Definition for Tailwind v4 */
 @theme {
+  /* Border widths for neubrutalism */
+  --border-width-3: 3px;
+  --border-width-4: 4px;
+  --border-width-5: 5px;
+  --border-width-6: 6px;
+
   --color-background: hsl(var(--background));
   --color-foreground: hsl(var(--foreground));
   --color-card: hsl(var(--card));

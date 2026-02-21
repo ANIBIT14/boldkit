@@ -33,8 +33,9 @@ const templates = [
     path: '/templates/landing-page',
     sourceUrl: {
       react: 'https://github.com/ANIBIT14/boldkit/blob/main/src/components/templates/LandingPageTemplate.tsx',
-      vue: 'https://github.com/ANIBIT14/boldkit/blob/main/packages/vue/src/components/templates/LandingPageTemplate.vue'
-    },
+      vue: 'https://github.com/ANIBIT14/boldkit/blob/main/packages/vue/src/components/templates/LandingPageTemplate.vue',
+      angular: 'https://github.com/ANIBIT14/boldkit/tree/main/packages/angular'
+    } as Record<string, string>,
     code: {
       react: `import { LandingPageTemplate } from '@/components/templates/LandingPageTemplate'
 
@@ -47,8 +48,10 @@ import LandingPageTemplate from '@/components/templates/LandingPageTemplate.vue'
 
 <template>
   <LandingPageTemplate />
-</template>`
-    },
+</template>`,
+      angular: `// Angular templates coming soon
+// Install the package: npm install @boldkit/angular`
+    } as Record<string, string>,
   },
   {
     name: 'Portfolio',
@@ -57,8 +60,9 @@ import LandingPageTemplate from '@/components/templates/LandingPageTemplate.vue'
     path: '/templates/portfolio',
     sourceUrl: {
       react: 'https://github.com/ANIBIT14/boldkit/blob/main/src/components/templates/PortfolioTemplate.tsx',
-      vue: 'https://github.com/ANIBIT14/boldkit/blob/main/packages/vue/src/components/templates/PortfolioTemplate.vue'
-    },
+      vue: 'https://github.com/ANIBIT14/boldkit/blob/main/packages/vue/src/components/templates/PortfolioTemplate.vue',
+      angular: 'https://github.com/ANIBIT14/boldkit/tree/main/packages/angular'
+    } as Record<string, string>,
     code: {
       react: `import { PortfolioTemplate } from '@/components/templates/PortfolioTemplate'
 
@@ -71,8 +75,10 @@ import PortfolioTemplate from '@/components/templates/PortfolioTemplate.vue'
 
 <template>
   <PortfolioTemplate />
-</template>`
-    },
+</template>`,
+      angular: `// Angular templates coming soon
+// Install the package: npm install @boldkit/angular`
+    } as Record<string, string>,
   },
 ]
 

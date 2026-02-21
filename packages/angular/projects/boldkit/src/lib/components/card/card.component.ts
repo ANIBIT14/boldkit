@@ -5,6 +5,7 @@ import { cn } from '../../utils/cn'
   selector: 'bk-card',
   standalone: true,
   template: `<ng-content></ng-content>`,
+  styles: [`:host { display: block; }`],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CardComponent {
@@ -25,6 +26,7 @@ export class CardComponent {
   selector: 'bk-card-header',
   standalone: true,
   template: `<ng-content></ng-content>`,
+  styles: [`:host { display: block; }`],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CardHeaderComponent {
@@ -40,6 +42,7 @@ export class CardHeaderComponent {
   selector: 'bk-card-title',
   standalone: true,
   template: `<ng-content></ng-content>`,
+  styles: [`:host { display: block; }`],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CardTitleComponent {
@@ -55,6 +58,7 @@ export class CardTitleComponent {
   selector: 'bk-card-description',
   standalone: true,
   template: `<ng-content></ng-content>`,
+  styles: [`:host { display: block; }`],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CardDescriptionComponent {
@@ -70,6 +74,7 @@ export class CardDescriptionComponent {
   selector: 'bk-card-content',
   standalone: true,
   template: `<ng-content></ng-content>`,
+  styles: [`:host { display: block; }`],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CardContentComponent {
@@ -85,6 +90,7 @@ export class CardContentComponent {
   selector: 'bk-card-footer',
   standalone: true,
   template: `<ng-content></ng-content>`,
+  styles: [`:host { display: block; }`],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CardFooterComponent {

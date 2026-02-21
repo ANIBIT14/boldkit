@@ -5,6 +5,7 @@ import { cn } from '../../utils/cn'
   selector: 'bk-skeleton',
   standalone: true,
   template: ``,
+  styles: [`:host { display: block; }`],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SkeletonComponent {

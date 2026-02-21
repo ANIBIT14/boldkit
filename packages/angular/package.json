@@ -39,7 +39,7 @@
     "@radix-ng/primitives": "^0.25.0",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
-    "lucide-angular": "^0.400.0",
+    "lucide-angular": "^0.511.0",
     "tailwind-merge": "^3.4.0",
     "rxjs": "~7.8.0",
     "tslib": "^2.6.0",

@@ -26,6 +26,7 @@ export type AlertVariants = VariantProps<typeof alertVariants>
   selector: 'bk-alert',
   standalone: true,
   template: `<ng-content></ng-content>`,
+  styles: [`:host { display: block; }`],
   host: { 'role': 'alert' },
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
@@ -43,6 +44,7 @@ export class AlertComponent {
   selector: 'bk-alert-title',
   standalone: true,
   template: `<ng-content></ng-content>`,
+  styles: [`:host { display: block; }`],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AlertTitleComponent {
@@ -58,6 +60,7 @@ export class AlertTitleComponent {
   selector: 'bk-alert-description',
   standalone: true,
   template: `<ng-content></ng-content>`,
+  styles: [`:host { display: block; }`],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AlertDescriptionComponent {

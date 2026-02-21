@@ -85,11 +85,17 @@ const allComponents = [
   { name: 'tooltip', description: 'Hover information' },
 ]
 
-function ComponentRow({ name, description, framework }: { name: string; description: string; framework: 'react' | 'vue' }) {
+function ComponentRow({ name, description, framework }: { name: string; description: string; framework: 'react' | 'vue' | 'angular' }) {
   const [copied, setCopied] = useState(false)
-  const registryPath = framework === 'vue' ? `/r/vue/${name}.json` : `/r/${name}.json`
-  const cli = framework === 'vue' ? 'shadcn-vue' : 'shadcn'
-  const command = `npx ${cli}@latest add https://boldkit.dev${registryPath}`
+  const getCommand = () => {
+    if (framework === 'angular') {
+      return 'npm install @boldkit/angular'
+    }
+    const registryPath = framework === 'vue' ? `/r/vue/${name}.json` : `/r/${name}.json`
+    const cli = framework === 'vue' ? 'shadcn-vue' : 'shadcn'
+    return `npx ${cli}@latest add https://boldkit.dev${registryPath}`
+  }
+  const command = getCommand()
 
   const copyCommand = () => {
     navigator.clipboard.writeText(command)

@@ -1,6 +1,6 @@
 import { createContext, useContext, useEffect, useState, type ReactNode } from 'react'
 
-type Framework = 'react' | 'vue'
+type Framework = 'react' | 'vue' | 'angular'
 
 interface FrameworkContextType {
   framework: Framework
@@ -16,7 +16,7 @@ export function FrameworkProvider({ children }: { children: ReactNode }) {
     // Check localStorage on initial load
     if (typeof window !== 'undefined') {
       const stored = localStorage.getItem(STORAGE_KEY)
-      if (stored === 'vue' || stored === 'react') {
+      if (stored === 'vue' || stored === 'react' || stored === 'angular') {
         return stored
       }
     }
@@ -31,7 +31,7 @@ export function FrameworkProvider({ children }: { children: ReactNode }) {
   // Sync with localStorage on mount
   useEffect(() => {
     const stored = localStorage.getItem(STORAGE_KEY)
-    if (stored === 'vue' || stored === 'react') {
+    if (stored === 'vue' || stored === 'react' || stored === 'angular') {
       setFrameworkState(stored)
     }
   }, [])
@@ -64,15 +64,60 @@ export const VueIcon = ({ className = 'h-4 w-4' }: { className?: string }) => (
   </svg>
 )
 
+export const AngularIcon = ({ className = 'h-4 w-4' }: { className?: string }) => (
+  <svg viewBox="0 0 24 24" className={className} fill="currentColor" aria-hidden="true">
+    <path d="M9.93 12.64h4.14L12 7.07l-2.07 5.57zM12 2L2 7l1.63 14L12 22l8.37-5L22 7L12 2zm6.65 15.55h-2.29L15.5 15.4H8.5l-.86 2.15H5.35L12 4.45l6.65 13.1z"/>
+  </svg>
+)
+
 // Reusable framework toggle component
-export function FrameworkToggle({ size = 'default' }: { size?: 'default' | 'sm' }) {
+export function FrameworkToggle({ size = 'default', variant = 'horizontal' }: { size?: 'default' | 'sm'; variant?: 'horizontal' | 'compact' }) {
   const { framework, setFramework } = useFramework()
 
+  const iconClass = size === 'sm' ? 'h-3.5 w-3.5' : 'h-4 w-4'
+
+  // Compact variant - icon-only buttons in a row (for sidebar)
+  if (variant === 'compact') {
+    return (
+      <div className="inline-flex border-3 border-foreground bg-background">
+        <button
+          onClick={() => setFramework('react')}
+          className={`flex items-center justify-center p-1.5 transition-colors ${
+            framework === 'react' ? 'bg-primary' : 'hover:bg-muted'
+          }`}
+          title="React"
+          aria-label="Switch to React"
+        >
+          <ReactIcon className={iconClass} />
+        </button>
+        <button
+          onClick={() => setFramework('vue')}
+          className={`flex items-center justify-center p-1.5 transition-colors border-l-3 border-foreground ${
+            framework === 'vue' ? 'bg-success' : 'hover:bg-muted'
+          }`}
+          title="Vue"
+          aria-label="Switch to Vue"
+        >
+          <VueIcon className={iconClass} />
+        </button>
+        <button
+          onClick={() => setFramework('angular')}
+          className={`flex items-center justify-center p-1.5 transition-colors border-l-3 border-foreground ${
+            framework === 'angular' ? 'bg-destructive' : 'hover:bg-muted'
+          }`}
+          title="Angular"
+          aria-label="Switch to Angular"
+        >
+          <AngularIcon className={iconClass} />
+        </button>
+      </div>
+    )
+  }
+
+  // Default horizontal variant with text labels
   const buttonClass = size === 'sm'
     ? 'px-2 py-1 text-xs gap-1'
     : 'px-3 py-1.5 text-sm gap-1.5'
-
-  const iconClass = size === 'sm' ? 'h-3 w-3' : 'h-4 w-4'
 
   return (
     <div className="inline-flex border-3 border-foreground bg-background">
@@ -93,6 +138,15 @@ export function FrameworkToggle({ size = 'default' }: { size?: 'default' | 'sm' 
         title="Switch to Vue"
       >
         <VueIcon className={iconClass} /> Vue
+      </button>
+      <button
+        onClick={() => setFramework('angular')}
+        className={`flex items-center font-bold transition-colors border-l-3 border-foreground ${buttonClass} ${
+          framework === 'angular' ? 'bg-destructive' : 'hover:bg-muted'
+        }`}
+        title="Switch to Angular"
+      >
+        <AngularIcon className={iconClass} /> Angular
       </button>
     </div>
   )

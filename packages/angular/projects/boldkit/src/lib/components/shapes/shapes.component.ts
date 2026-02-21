@@ -10,8 +10,16 @@ export interface ShapeProps {
   class?: string
 }
 
+// Shape type definition
+interface ShapeData {
+  path: string
+  colorClass: string
+  viewBox?: string
+  fill?: string
+}
+
 // Shape data for generating components
-const SHAPES = {
+const SHAPES: Record<string, ShapeData> = {
   // GEOMETRIC SHAPES
   triangle: { path: 'M50 5 L95 90 L5 90 Z', colorClass: 'text-accent' },
   diamond: { path: 'M50 5 L95 50 L50 95 L5 50 Z', colorClass: 'text-primary' },
@@ -88,15 +96,15 @@ const SHAPES = {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ShapeComponent {
-  @Input() shape: keyof typeof SHAPES = 'heart'
+  @Input() shape: string = 'heart'
   @Input() size: number = 100
   @Input() strokeWidth: number = 3
   @Input() filled: boolean = true
   @Input() color?: string
   @Input() class: string = ''
 
-  get shapeData() {
-    return SHAPES[this.shape] || SHAPES.heart
+  get shapeData(): ShapeData {
+    return SHAPES[this.shape] || SHAPES['heart']
   }
 
   get path(): string {
@@ -308,4 +316,4 @@ export const ShapeComponents = [
 ]
 
 // Export shape names for dynamic usage
-export const SHAPE_NAMES = Object.keys(SHAPES) as (keyof typeof SHAPES)[]
+export const SHAPE_NAMES = Object.keys(SHAPES)
