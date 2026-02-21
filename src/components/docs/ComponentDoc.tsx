@@ -15,7 +15,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { Copy, Check, Terminal, Home } from 'lucide-react'
 import { OpenInV0Button } from './OpenInV0Button'
 import { SEO, getComponentSEO } from '@/components/SEO'
-import { useFramework, FrameworkToggle, VueIcon, AngularIcon } from '@/hooks/use-framework'
+import { useFramework, FrameworkToggle, VueIcon } from '@/hooks/use-framework'
 
 export function CodeBlock({ code, language = 'tsx' }: { code: string; language?: string }) {
   const [copied, setCopied] = useState(false)
@@ -81,10 +81,6 @@ interface ComponentDocProps {
   vueDependencies?: string[]
   // Nuxt-specific
   nuxtClientOnly?: boolean
-  // Angular-specific props
-  angularSourceCode?: string
-  angularUsageCode?: string
-  angularDependencies?: string[]
 }
 
 export function ComponentDoc({
@@ -100,9 +96,6 @@ export function ComponentDoc({
   vueUsageCode,
   vueDependencies,
   nuxtClientOnly = false,
-  angularSourceCode,
-  angularUsageCode,
-  angularDependencies,
 }: ComponentDocProps) {
   // Use global framework context
   const { framework } = useFramework()
@@ -113,19 +106,17 @@ export function ComponentDoc({
   // Generate the correct CLI commands for each framework
   const reactCliCommand = installCommand || `npx shadcn@latest add https://boldkit.dev/r/${componentRegistryName}.json`
   const vueCliCommand = `npx shadcn-vue@latest add https://boldkit.dev/r/vue/${componentRegistryName}.json`
-  const angularCliCommand = `npm install @boldkit/angular`
 
-  const currentCliCommand = framework === 'react' ? reactCliCommand : framework === 'vue' ? vueCliCommand : angularCliCommand
-  const currentSourceCode = framework === 'react' ? sourceCode : framework === 'vue' ? (vueSourceCode || sourceCode) : (angularSourceCode || sourceCode)
-  const currentUsageCode = framework === 'react' ? usageCode : framework === 'vue' ? (vueUsageCode || usageCode) : (angularUsageCode || usageCode)
-  const currentDependencies = framework === 'react' ? dependencies : framework === 'vue' ? (vueDependencies || dependencies) : (angularDependencies || ['@boldkit/angular'])
-  const fileExtension = framework === 'react' ? 'tsx' : framework === 'vue' ? 'vue' : 'ts'
+  const currentCliCommand = framework === 'react' ? reactCliCommand : vueCliCommand
+  const currentSourceCode = framework === 'react' ? sourceCode : (vueSourceCode || sourceCode)
+  const currentUsageCode = framework === 'react' ? usageCode : (vueUsageCode || usageCode)
+  const currentDependencies = framework === 'react' ? dependencies : (vueDependencies || dependencies)
+  const fileExtension = framework === 'react' ? 'tsx' : 'vue'
 
   const componentSEO = getComponentSEO(componentRegistryName, name)
 
-  // Check if Vue/Angular code is available
+  // Check if Vue code is available
   const hasVueCode = !!vueSourceCode
-  const hasAngularCode = !!angularSourceCode
 
   return (
     <>
@@ -173,13 +164,6 @@ export function ComponentDoc({
           <div className="mt-4 p-3 border-3 border-info bg-info/10">
             <p className="text-sm font-medium flex items-center gap-2">
               <VueIcon /> Vue code sample coming soon. The component is available in the registry.
-            </p>
-          </div>
-        )}
-        {framework === 'angular' && !hasAngularCode && (
-          <div className="mt-4 p-3 border-3 border-destructive bg-destructive/10">
-            <p className="text-sm font-medium flex items-center gap-2">
-              <AngularIcon /> Angular code sample coming soon. Install the package with <code className="bg-muted px-1 border mx-1">npm install @boldkit/angular</code>
             </p>
           </div>
         )}
@@ -266,13 +250,12 @@ interface ExampleSectionProps {
   children: ReactNode
   code: string
   vueCode?: string
-  angularCode?: string
 }
 
-export function ExampleSection({ title, description, children, code, vueCode, angularCode }: ExampleSectionProps) {
+export function ExampleSection({ title, description, children, code, vueCode }: ExampleSectionProps) {
   const { framework } = useFramework()
-  const currentCode = framework === 'react' ? code : framework === 'vue' ? (vueCode || code) : (angularCode || code)
-  const language = framework === 'react' ? 'tsx' : framework === 'vue' ? 'vue' : 'ts'
+  const currentCode = framework === 'react' ? code : (vueCode || code)
+  const language = framework === 'react' ? 'tsx' : 'vue'
 
   return (
     <section className="mt-12">

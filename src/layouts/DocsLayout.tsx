@@ -59,8 +59,7 @@ function Sidebar({ className, onLinkClick }: { className?: string; onLinkClick?:
 
   const frameworkLabels: Record<string, string> = {
     react: 'React',
-    vue: 'Vue 3',
-    angular: 'Angular'
+    vue: 'Vue 3'
   }
 
   return (

@@ -151,86 +151,6 @@ import { Button } from '@/components/ui'
   <Button>Click me</Button>
 </template>`
 
-const angularSourceCode = `import { Component, Input, HostBinding, ChangeDetectionStrategy } from '@angular/core'
-import { cva, type VariantProps } from 'class-variance-authority'
-import { cn } from '../../utils/cn'
-
-export const buttonVariants = cva(
-  'inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-bold uppercase tracking-wide transition-all duration-200 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 border-3 border-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2',
-  {
-    variants: {
-      variant: {
-        default:
-          'bg-primary text-primary-foreground shadow-[4px_4px_0px_hsl(var(--shadow-color))] hover:translate-x-[4px] hover:translate-y-[4px] hover:shadow-none',
-        secondary:
-          'bg-secondary text-secondary-foreground shadow-[4px_4px_0px_hsl(var(--shadow-color))] hover:translate-x-[4px] hover:translate-y-[4px] hover:shadow-none',
-        accent:
-          'bg-accent text-accent-foreground shadow-[4px_4px_0px_hsl(var(--shadow-color))] hover:translate-x-[4px] hover:translate-y-[4px] hover:shadow-none',
-        destructive:
-          'bg-destructive text-destructive-foreground shadow-[4px_4px_0px_hsl(var(--shadow-color))] hover:translate-x-[4px] hover:translate-y-[4px] hover:shadow-none',
-        outline:
-          'bg-background text-foreground shadow-[4px_4px_0px_hsl(var(--shadow-color))] hover:translate-x-[4px] hover:translate-y-[4px] hover:shadow-none hover:bg-muted',
-        ghost: 'border-transparent shadow-none hover:bg-muted hover:border-foreground',
-        link: 'border-transparent shadow-none underline-offset-4 hover:underline text-primary',
-      },
-      size: {
-        default: 'h-11 px-5 py-2',
-        sm: 'h-9 px-4 text-xs',
-        lg: 'h-12 px-8 text-base',
-        xl: 'h-14 px-10 text-lg',
-        icon: 'h-11 w-11',
-      },
-      animation: {
-        none: '',
-        pulse: 'animate-[brutal-pulse_2s_ease-in-out_infinite]',
-        bounce: 'animate-[brutal-bounce_0.5s_ease-in-out_infinite]',
-        shake: 'hover:animate-[brutal-shake_0.4s_ease-in-out]',
-        wiggle: 'hover:animate-[brutal-wiggle_0.3s_ease-in-out]',
-        pop: 'hover:animate-[brutal-pop_0.2s_ease-out] active:scale-95',
-      },
-    },
-    defaultVariants: {
-      variant: 'default',
-      size: 'default',
-      animation: 'none',
-    },
-  }
-)
-
-export type ButtonVariants = VariantProps<typeof buttonVariants>
-
-@Component({
-  selector: 'bk-button, button[bkButton]',
-  standalone: true,
-  template: \`<ng-content></ng-content>\`,
-  changeDetection: ChangeDetectionStrategy.OnPush,
-})
-export class ButtonComponent {
-  @Input() variant: ButtonVariants['variant'] = 'default'
-  @Input() size: ButtonVariants['size'] = 'default'
-  @Input() animation: ButtonVariants['animation'] = 'none'
-  @Input() class: string = ''
-
-  @HostBinding('class')
-  get hostClass(): string {
-    return cn(
-      buttonVariants({ variant: this.variant, size: this.size, animation: this.animation }),
-      this.class
-    )
-  }
-}`
-
-const angularUsageCode = `import { Component } from '@angular/core'
-import { ButtonComponent } from '@boldkit/angular'
-
-@Component({
-  selector: 'app-example',
-  standalone: true,
-  imports: [ButtonComponent],
-  template: \`<button bkButton>Click me</button>\`
-})
-export class ExampleComponent {}`
-
 export function ButtonDoc() {
   const [loading, setLoading] = useState(false)
 
@@ -241,13 +161,10 @@ export function ButtonDoc() {
         description="Displays a button or a component that looks like a button with neubrutalism styling."
         dependencies={['@radix-ui/react-slot', 'class-variance-authority']}
         vueDependencies={['reka-ui', 'class-variance-authority']}
-        angularDependencies={['@boldkit/angular', 'class-variance-authority']}
         sourceCode={sourceCode}
         vueSourceCode={vueSourceCode}
-        angularSourceCode={angularSourceCode}
         usageCode={usageCode}
         vueUsageCode={vueUsageCode}
-        angularUsageCode={angularUsageCode}
       >
         <div className="flex flex-wrap gap-4">
           <Button>Button</Button>
@@ -274,13 +191,6 @@ export function ButtonDoc() {
   <Button variant="ghost">Ghost</Button>
   <Button variant="link">Link</Button>
 </template>`}
-        angularCode={`<button bkButton>Default</button>
-<button bkButton variant="secondary">Secondary</button>
-<button bkButton variant="accent">Accent</button>
-<button bkButton variant="destructive">Destructive</button>
-<button bkButton variant="outline">Outline</button>
-<button bkButton variant="ghost">Ghost</button>
-<button bkButton variant="link">Link</button>`}
       >
         <div className="flex flex-wrap gap-4">
           <Button variant="default">Default</Button>
@@ -311,13 +221,6 @@ export function ButtonDoc() {
     <Mail class="h-4 w-4" />
   </Button>
 </template>`}
-        angularCode={`<button bkButton size="sm">Small</button>
-<button bkButton size="default">Default</button>
-<button bkButton size="lg">Large</button>
-<button bkButton size="xl">Extra Large</button>
-<button bkButton size="icon">
-  <lucide-icon name="mail" class="h-4 w-4"></lucide-icon>
-</button>`}
       >
         <div className="flex flex-wrap items-center gap-4">
           <Button size="sm">Small</Button>
@@ -346,14 +249,6 @@ export function ButtonDoc() {
     Next <ChevronRight class="ml-2 h-4 w-4" />
   </Button>
 </template>`}
-        angularCode={`<button bkButton>
-  <lucide-icon name="mail" class="mr-2 h-4 w-4"></lucide-icon>
-  Login with Email
-</button>
-<button bkButton variant="secondary">
-  Next
-  <lucide-icon name="chevron-right" class="ml-2 h-4 w-4"></lucide-icon>
-</button>`}
       >
         <div className="flex flex-wrap gap-4">
           <Button>
@@ -384,10 +279,6 @@ const loading = ref(false)
     Please wait
   </Button>
 </template>`}
-        angularCode={`<button bkButton [disabled]="true">
-  <lucide-icon name="loader-2" class="mr-2 h-4 w-4 animate-spin"></lucide-icon>
-  Please wait
-</button>`}
       >
         <div className="flex flex-wrap gap-4">
           <Button disabled>
@@ -423,11 +314,6 @@ const loading = ref(false)
   <Button animation="wiggle">Wiggle (hover)</Button>
   <Button animation="pop">Pop (hover)</Button>
 </template>`}
-        angularCode={`<button bkButton animation="pulse">Pulse</button>
-<button bkButton animation="bounce">Bounce</button>
-<button bkButton animation="shake">Shake (hover)</button>
-<button bkButton animation="wiggle">Wiggle (hover)</button>
-<button bkButton animation="pop">Pop (hover)</button>`}
       >
         <div className="flex flex-wrap gap-4">
           <Button animation="pulse">Pulse</Button>
@@ -449,8 +335,6 @@ const loading = ref(false)
   <!-- In Vue, use the 'as' prop to change the element -->
   <Button as="a" href="#">Link styled as Button</Button>
 </template>`}
-        angularCode={`<!-- In Angular, apply the directive to any element -->
-<a bkButton href="#">Link styled as Button</a>`}
       >
         <Button asChild>
           <a href="#">Link styled as Button</a>

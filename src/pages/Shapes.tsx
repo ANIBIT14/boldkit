@@ -163,11 +163,10 @@ function ShapeCard({ name, Component, code, vueCode }: { name: string; Component
 
   const cliCommands: Record<string, string> = {
     react: 'npx shadcn@latest add https://boldkit.dev/r/shapes.json',
-    vue: 'npx shadcn-vue@latest add https://boldkit.dev/r/vue/shapes.json',
-    angular: 'npm install @boldkit/angular'
+    vue: 'npx shadcn-vue@latest add https://boldkit.dev/r/vue/shapes.json'
   }
 
-  const currentCode = framework === 'angular' ? `<bk-shape shape="${name.toLowerCase()}" [size]="100"></bk-shape>` : framework === 'react' ? code : vueCode
+  const currentCode = framework === 'react' ? code : vueCode
 
   const copyCode = () => {
     navigator.clipboard.writeText(currentCode)
@@ -222,8 +221,7 @@ export function Shapes() {
 
   const cliCommands: Record<string, string> = {
     react: 'npx shadcn@latest add https://boldkit.dev/r/shapes.json',
-    vue: 'npx shadcn-vue@latest add https://boldkit.dev/r/vue/shapes.json',
-    angular: 'npm install @boldkit/angular'
+    vue: 'npx shadcn-vue@latest add https://boldkit.dev/r/vue/shapes.json'
   }
 
   const copyInstall = () => {

@@ -1,6 +1,6 @@
 import { createContext, useContext, useEffect, useState, type ReactNode } from 'react'
 
-type Framework = 'react' | 'vue' | 'angular'
+type Framework = 'react' | 'vue'
 
 interface FrameworkContextType {
   framework: Framework
@@ -16,7 +16,7 @@ export function FrameworkProvider({ children }: { children: ReactNode }) {
     // Check localStorage on initial load
     if (typeof window !== 'undefined') {
       const stored = localStorage.getItem(STORAGE_KEY)
-      if (stored === 'vue' || stored === 'react' || stored === 'angular') {
+      if (stored === 'vue' || stored === 'react') {
         return stored
       }
     }
@@ -31,7 +31,7 @@ export function FrameworkProvider({ children }: { children: ReactNode }) {
   // Sync with localStorage on mount
   useEffect(() => {
     const stored = localStorage.getItem(STORAGE_KEY)
-    if (stored === 'vue' || stored === 'react' || stored === 'angular') {
+    if (stored === 'vue' || stored === 'react') {
       setFrameworkState(stored)
     }
   }, [])
@@ -61,12 +61,6 @@ export const ReactIcon = ({ className = 'h-4 w-4' }: { className?: string }) => 
 export const VueIcon = ({ className = 'h-4 w-4' }: { className?: string }) => (
   <svg viewBox="0 0 24 24" className={className} fill="currentColor" aria-hidden="true">
     <path d="M2 3h3.5L12 15l6.5-12H22L12 22 2 3m4.5 0h3L12 8l2.5-5h3L12 13 6.5 3z"/>
-  </svg>
-)
-
-export const AngularIcon = ({ className = 'h-4 w-4' }: { className?: string }) => (
-  <svg viewBox="0 0 24 24" className={className} fill="currentColor" aria-hidden="true">
-    <path d="M9.93 12.64h4.14L12 7.07l-2.07 5.57zM12 2L2 7l1.63 14L12 22l8.37-5L22 7L12 2zm6.65 15.55h-2.29L15.5 15.4H8.5l-.86 2.15H5.35L12 4.45l6.65 13.1z"/>
   </svg>
 )
 
@@ -100,16 +94,6 @@ export function FrameworkToggle({ size = 'default', variant = 'horizontal' }: { 
         >
           <VueIcon className={iconClass} />
         </button>
-        <button
-          onClick={() => setFramework('angular')}
-          className={`flex items-center justify-center p-1.5 transition-colors border-l-3 border-foreground ${
-            framework === 'angular' ? 'bg-destructive' : 'hover:bg-muted'
-          }`}
-          title="Angular"
-          aria-label="Switch to Angular"
-        >
-          <AngularIcon className={iconClass} />
-        </button>
       </div>
     )
   }
@@ -138,15 +122,6 @@ export function FrameworkToggle({ size = 'default', variant = 'horizontal' }: { 
         title="Switch to Vue"
       >
         <VueIcon className={iconClass} /> Vue
-      </button>
-      <button
-        onClick={() => setFramework('angular')}
-        className={`flex items-center font-bold transition-colors border-l-3 border-foreground ${buttonClass} ${
-          framework === 'angular' ? 'bg-destructive' : 'hover:bg-muted'
-        }`}
-        title="Switch to Angular"
-      >
-        <AngularIcon className={iconClass} /> Angular
       </button>
     </div>
   )
