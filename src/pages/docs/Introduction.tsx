@@ -6,6 +6,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { ArrowRight, Copy, Check } from 'lucide-react'
 import { useState } from 'react'
 import { useFramework, FrameworkToggle, ReactIcon, VueIcon } from '@/hooks/use-framework'
+import { SEO, pageSEO } from '@/components/SEO'
 
 function CopyButton({ text }: { text: string }) {
   const [copied, setCopied] = useState(false)
@@ -28,6 +29,7 @@ export function Introduction() {
 
   return (
     <div className="space-y-8">
+      <SEO {...pageSEO.docs} />
       <div>
         <Badge variant="accent" className="mb-4">Documentation</Badge>
         <h1 className="text-3xl font-black uppercase tracking-tight md:text-4xl">

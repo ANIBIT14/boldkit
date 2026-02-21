@@ -5,6 +5,11 @@ export interface BreadcrumbItem {
   url?: string
 }
 
+export interface FAQItem {
+  question: string
+  answer: string
+}
+
 interface SEOProps {
   title?: string
   description?: string
@@ -14,6 +19,8 @@ interface SEOProps {
   ogType?: 'website' | 'article'
   noIndex?: boolean
   breadcrumbs?: BreadcrumbItem[]
+  faq?: FAQItem[]
+  structuredData?: Record<string, any>
 }
 
 const defaultMeta = {
@@ -21,6 +28,8 @@ const defaultMeta = {
   description: 'Free neubrutalism component library for React and Vue 3 with 45+ UI components and 42 SVG shapes. Built on shadcn/ui with thick borders, hard shadows, and bold colors.',
   keywords: 'neubrutalism, neubrutalism ui, React components, Vue 3 components, shadcn, shadcn-vue, Tailwind CSS, TypeScript, UI library',
   ogImage: 'https://ik.imagekit.io/fincalfy/304a4c07-8de1-41af-813e-e7556234b973.png',
+  twitterCreator: '@boldkitdev',
+  siteName: 'BoldKit',
 }
 
 export function SEO({
@@ -32,6 +41,8 @@ export function SEO({
   ogType = 'website',
   noIndex = false,
   breadcrumbs,
+  faq,
+  structuredData,
 }: SEOProps) {
   useEffect(() => {
     // Update title
@@ -57,12 +68,15 @@ export function SEO({
     // Standard meta tags
     updateMeta('description', description || defaultMeta.description)
     updateMeta('keywords', keywords || defaultMeta.keywords)
+    updateMeta('author', 'Aniruddha Agarwal')
+    updateMeta('rating', 'general')
+    updateMeta('distribution', 'global')
 
     // Robots
     if (noIndex) {
       updateMeta('robots', 'noindex, nofollow')
     } else {
-      updateMeta('robots', 'index, follow, max-image-preview:large')
+      updateMeta('robots', 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1')
     }
 
     // Open Graph
@@ -70,6 +84,8 @@ export function SEO({
     updateMeta('og:description', description || defaultMeta.description, true)
     updateMeta('og:type', ogType, true)
     updateMeta('og:image', ogImage || defaultMeta.ogImage, true)
+    updateMeta('og:site_name', defaultMeta.siteName, true)
+    updateMeta('og:locale', 'en_US', true)
 
     if (canonical) {
       updateMeta('og:url', canonical, true)
@@ -87,18 +103,31 @@ export function SEO({
     }
 
     // Twitter
+    updateMeta('twitter:card', 'summary_large_image')
     updateMeta('twitter:title', fullTitle)
     updateMeta('twitter:description', description || defaultMeta.description)
     updateMeta('twitter:image', ogImage || defaultMeta.ogImage)
+    updateMeta('twitter:creator', defaultMeta.twitterCreator)
 
-    // JSON-LD Breadcrumb Schema
-    const existingJsonLd = document.querySelector('script[data-schema="breadcrumb"]')
-    if (existingJsonLd) {
-      existingJsonLd.remove()
+    // Helper to manage JSON-LD scripts
+    const updateJsonLd = (id: string, schema: object) => {
+      const existingScript = document.querySelector(`script[data-schema="${id}"]`)
+      if (existingScript) {
+        existingScript.remove()
+      }
+
+      if (schema) {
+        const script = document.createElement('script')
+        script.type = 'application/ld+json'
+        script.setAttribute('data-schema', id)
+        script.textContent = JSON.stringify(schema)
+        document.head.appendChild(script)
+      }
     }
 
+    // Breadcrumb Schema
     if (breadcrumbs && breadcrumbs.length > 0) {
-      const jsonLdSchema = {
+      updateJsonLd('breadcrumb', {
         '@context': 'https://schema.org',
         '@type': 'BreadcrumbList',
         itemListElement: breadcrumbs.map((item, index) => ({
@@ -107,16 +136,31 @@ export function SEO({
           name: item.name,
           ...(item.url && { item: item.url }),
         })),
-      }
-
-      const script = document.createElement('script')
-      script.type = 'application/ld+json'
-      script.setAttribute('data-schema', 'breadcrumb')
-      script.textContent = JSON.stringify(jsonLdSchema)
-      document.head.appendChild(script)
+      })
     }
 
-  }, [title, description, keywords, canonical, ogImage, ogType, noIndex, breadcrumbs])
+    // FAQ Schema
+    if (faq && faq.length > 0) {
+      updateJsonLd('faq', {
+        '@context': 'https://schema.org',
+        '@type': 'FAQPage',
+        mainEntity: faq.map(item => ({
+          '@type': 'Question',
+          name: item.question,
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: item.answer,
+          },
+        })),
+      })
+    }
+
+    // Custom Structured Data
+    if (structuredData) {
+      updateJsonLd('custom', structuredData)
+    }
+
+  }, [title, description, keywords, canonical, ogImage, ogType, noIndex, breadcrumbs, faq, structuredData])
 
   return null
 }

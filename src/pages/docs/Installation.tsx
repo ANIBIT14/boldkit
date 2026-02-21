@@ -6,6 +6,7 @@ import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { toast } from 'sonner'
 import { useFramework, FrameworkToggle, ReactIcon, VueIcon } from '@/hooks/use-framework'
+import { SEO, pageSEO } from '@/components/SEO'
 
 function CodeBlock({ code, language }: { code: string; language?: string }) {
   const [copied, setCopied] = useState(false)
@@ -126,6 +127,7 @@ export function Installation() {
 
   return (
     <div className="space-y-8">
+      <SEO {...pageSEO.installation} />
       <div>
         <Badge variant="secondary" className="mb-4">Getting Started</Badge>
         <h1 className="text-3xl font-black uppercase tracking-tight md:text-4xl">

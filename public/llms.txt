@@ -332,6 +332,12 @@ Component JSON files are available at:
 
 Example: `https://boldkit.dev/r/button.json`
 
+## Sitemap for Crawlers
+
+- Full Sitemap: `https://boldkit.dev/sitemap.xml`
+- Main Pages: `https://boldkit.dev/`, `https://boldkit.dev/docs`, `https://boldkit.dev/components`
+- Templates: `https://boldkit.dev/templates`, `https://boldkit.dev/templates/landing-page`, `https://boldkit.dev/templates/portfolio`
+
 ## Contact
 
 - Author: Aniruddha Agarwal

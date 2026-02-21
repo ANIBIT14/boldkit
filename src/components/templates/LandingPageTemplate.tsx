@@ -6,6 +6,7 @@ import { Input } from '@/components/ui/input'
 import { BurstShape, Star5Shape, LightningShape, HeartShape } from '@/components/ui/shapes'
 import { Sticker } from '@/components/ui/sticker'
 import { Check, ArrowRight, Zap, Shield, Sparkles, Users } from 'lucide-react'
+import { SEO } from '@/components/SEO'
 
 // ============================================
 // LANDING PAGE TEMPLATE - NEUBRUTALISM STYLE
@@ -112,6 +113,17 @@ function TestimonialCard({ quote, author, role }: TestimonialCardProps) {
 export function LandingPageTemplate() {
   return (
     <div className="min-h-screen bg-background">
+      <SEO
+        title="Landing Page Template"
+        description="A complete SaaS landing page template with hero, features, pricing, testimonials, and footer sections. Built with BoldKit neubrutalism components."
+        keywords="landing page template, react landing page, vue landing page, saas template, neubrutalism template"
+        canonical="https://boldkit.dev/templates/landing-page"
+        breadcrumbs={[
+          { name: 'Home', url: 'https://boldkit.dev/' },
+          { name: 'Templates', url: 'https://boldkit.dev/templates' },
+          { name: 'Landing Page' },
+        ]}
+      />
       {/* Navigation */}
       <nav className="border-b-3 border-foreground bg-background sticky top-0 z-50">
         <div className="container mx-auto px-4 h-16 flex items-center justify-between">

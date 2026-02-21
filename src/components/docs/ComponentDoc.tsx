@@ -113,7 +113,26 @@ export function ComponentDoc({
   const currentDependencies = framework === 'react' ? dependencies : (vueDependencies || dependencies)
   const fileExtension = framework === 'react' ? 'tsx' : 'vue'
 
-  const componentSEO = getComponentSEO(componentRegistryName, name)
+  const componentSEO = {
+    ...getComponentSEO(componentRegistryName, name),
+    structuredData: {
+      '@context': 'https://schema.org',
+      '@type': 'TechArticle',
+      headline: `${name} Component - BoldKit`,
+      description: description,
+      articleSection: 'Components',
+      dependencies: currentDependencies.join(', '),
+      proficiencyLevel: 'Beginner',
+      programmingLanguage: framework === 'react' ? 'React' : 'Vue',
+      author: {
+        '@type': 'Person',
+        name: 'Aniruddha Agarwal',
+        url: 'https://boldkit.dev'
+      },
+      datePublished: '2024-01-01',
+      dateModified: new Date().toISOString().split('T')[0]
+    }
+  }
 
   // Check if Vue code is available
   const hasVueCode = !!vueSourceCode

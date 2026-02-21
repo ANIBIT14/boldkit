@@ -16,6 +16,7 @@ import {
   MapPin,
   Star,
 } from 'lucide-react'
+import { SEO } from '@/components/SEO'
 
 // ============================================
 // PORTFOLIO TEMPLATE - NEUBRUTALISM STYLE
@@ -506,7 +507,18 @@ function PortfolioFooter() {
 // --- MAIN TEMPLATE ---
 export function PortfolioTemplate() {
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background text-foreground">
+      <SEO
+        title="Portfolio Template"
+        description="A professional portfolio template for developers and designers with hero, services, projects, and contact sections. Built with BoldKit neubrutalism components."
+        keywords="portfolio template, developer portfolio, designer portfolio, react portfolio, vue portfolio, neubrutalism portfolio"
+        canonical="https://boldkit.dev/templates/portfolio"
+        breadcrumbs={[
+          { name: 'Home', url: 'https://boldkit.dev/' },
+          { name: 'Templates', url: 'https://boldkit.dev/templates' },
+          { name: 'Portfolio' },
+        ]}
+      />
       {/* Navigation */}
       <nav className="sticky top-0 z-50 border-b-3 border-foreground bg-background">
         <div className="container mx-auto flex h-16 items-center justify-between px-4">
