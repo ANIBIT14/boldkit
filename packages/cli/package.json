@@ -1,6 +1,6 @@
 {
   "name": "boldkit",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "CLI for adding BoldKit Angular components to your project",
   "keywords": ["boldkit", "angular", "neubrutalism", "cli", "components"],
   "author": "ANIBIT14",

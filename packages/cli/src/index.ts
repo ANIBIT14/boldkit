@@ -6,8 +6,10 @@ import ora from 'ora'
 import prompts from 'prompts'
 import fs from 'fs-extra'
 import path from 'path'
+import { execSync } from 'child_process'
 
 const REGISTRY_BASE_URL = 'https://boldkit.dev/r/angular'
+const STYLES_URL = 'https://raw.githubusercontent.com/ANIBIT14/boldkit/main/packages/angular/projects/boldkit/src/lib/styles/globals.css'
 
 interface RegistryFile {
   path: string
@@ -33,7 +35,7 @@ const program = new Command()
 program
   .name('boldkit')
   .description('CLI for adding BoldKit Angular components to your project')
-  .version('0.1.2')
+  .version('0.1.3')
 
 program
   .command('add')
@@ -124,11 +126,6 @@ program
       console.log(chalk.gray(`  npm install ${Array.from(allDependencies).join(' ')}\n`))
     }
 
-    // Remind about styles
-    console.log(chalk.cyan('Add BoldKit styles to your src/styles.css:\n'))
-    console.log(chalk.gray('  Copy the CSS from:'))
-    console.log(chalk.gray('  https://github.com/ANIBIT14/boldkit/blob/main/packages/angular/projects/boldkit/src/lib/styles/globals.css\n'))
-
     if (failedComponents.length > 0) {
       console.log(chalk.yellow(`\nFailed to add: ${failedComponents.join(', ')}`))
     }
@@ -138,8 +135,9 @@ program
 
 program
   .command('init')
-  .description('Initialize BoldKit in your Angular project')
+  .description('Initialize BoldKit in your Angular project (installs deps, configures Tailwind, adds styles)')
   .option('-y, --yes', 'Skip prompts and use defaults')
+  .option('--skip-deps', 'Skip installing dependencies')
   .action(async (options) => {
     console.log(chalk.cyan('\n🎨 Initializing BoldKit for Angular...\n'))
 
@@ -162,24 +160,79 @@ program
       componentsPath = response.componentsPath || componentsPath
     }
 
-    // Create components directory
+    // Step 1: Install dependencies
+    if (!options.skipDeps) {
+      const spinner = ora('Installing dependencies...').start()
+      try {
+        execSync('npm install tailwindcss @tailwindcss/postcss postcss class-variance-authority clsx tailwind-merge', {
+          stdio: 'pipe',
+          cwd: process.cwd()
+        })
+        spinner.succeed(chalk.green('Installed dependencies'))
+      } catch (error) {
+        spinner.fail(chalk.red('Failed to install dependencies'))
+        console.log(chalk.yellow('\nRun manually: npm install tailwindcss @tailwindcss/postcss postcss class-variance-authority clsx tailwind-merge\n'))
+      }
+    }
+
+    // Step 2: Create postcss.config.js
+    const postcssPath = path.join(process.cwd(), 'postcss.config.js')
+    if (!await fs.pathExists(postcssPath)) {
+      const postcssConfig = `module.exports = {
+  plugins: {
+    '@tailwindcss/postcss': {},
+  },
+}
+`
+      await fs.writeFile(postcssPath, postcssConfig)
+      console.log(chalk.green('✓ Created postcss.config.js'))
+    } else {
+      console.log(chalk.gray('✓ postcss.config.js already exists'))
+    }
+
+    // Step 3: Create components directory
     const fullComponentsPath = path.resolve(process.cwd(), componentsPath)
     await fs.ensureDir(fullComponentsPath)
     console.log(chalk.green(`✓ Created ${componentsPath}`))
 
-    // Create utils file
+    // Step 4: Create utils file
     const libPath = path.resolve(process.cwd(), 'src/lib')
     await addUtilsFile(libPath)
-    console.log(chalk.green(`✓ Created src/lib/utils.ts`))
+    console.log(chalk.green('✓ Created src/lib/utils.ts'))
 
-    console.log(chalk.cyan('\nInstall these dependencies:\n'))
-    console.log(chalk.gray('  npm install class-variance-authority clsx tailwind-merge\n'))
+    // Step 5: Download and add BoldKit styles
+    const stylesPath = path.join(process.cwd(), 'src/styles.css')
+    const spinner = ora('Downloading BoldKit styles...').start()
+    try {
+      const stylesResponse = await fetch(STYLES_URL)
+      if (stylesResponse.ok) {
+        const stylesContent = await stylesResponse.text()
 
-    console.log(chalk.cyan('Add BoldKit styles to your src/styles.css:\n'))
-    console.log(chalk.gray('  Copy the CSS from:'))
-    console.log(chalk.gray('  https://github.com/ANIBIT14/boldkit/blob/main/packages/angular/projects/boldkit/src/lib/styles/globals.css\n'))
+        // Check if styles.css exists
+        let existingStyles = ''
+        if (await fs.pathExists(stylesPath)) {
+          existingStyles = await fs.readFile(stylesPath, 'utf-8')
+        }
 
-    console.log(chalk.green('✓ BoldKit initialized! Now add components with:\n'))
+        // Only add if not already present
+        if (!existingStyles.includes('@import') || !existingStyles.includes('tailwindcss')) {
+          const newStyles = stylesContent + '\n' + existingStyles
+          await fs.writeFile(stylesPath, newStyles)
+          spinner.succeed(chalk.green('Added BoldKit styles to src/styles.css'))
+        } else {
+          spinner.succeed(chalk.gray('BoldKit styles already in src/styles.css'))
+        }
+      } else {
+        throw new Error('Failed to fetch styles')
+      }
+    } catch (error) {
+      spinner.fail(chalk.yellow('Could not download styles automatically'))
+      console.log(chalk.gray('\nCopy styles manually from:'))
+      console.log(chalk.gray('https://github.com/ANIBIT14/boldkit/blob/main/packages/angular/projects/boldkit/src/lib/styles/globals.css\n'))
+    }
+
+    console.log(chalk.green('\n✓ BoldKit initialized!\n'))
+    console.log(chalk.cyan('Next steps:\n'))
     console.log(chalk.gray('  npx boldkit add button card badge\n'))
   })
 
