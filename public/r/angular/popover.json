@@ -1,0 +1,27 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "popover",
+  "type": "registry:ui",
+  "description": "A popover/dropdown component",
+  "dependencies": [
+    "clsx",
+    "tailwind-merge"
+  ],
+  "registryDependencies": [
+    "utils"
+  ],
+  "files": [
+    {
+      "path": "components/ui/popover/index.ts",
+      "content": "export { PopoverComponent, PopoverContentComponent, PopoverComponents } from './popover.component'\n",
+      "type": "registry:ui",
+      "target": "components/ui/popover/index.ts"
+    },
+    {
+      "path": "components/ui/popover/popover.component.ts",
+      "content": "import { Component, Input, Output, EventEmitter, HostListener, ChangeDetectionStrategy } from '@angular/core'\nimport { CommonModule } from '@angular/common'\nimport { cn } from '../lib/utils'\n\n@Component({\n  selector: 'bk-popover',\n  standalone: true,\n  imports: [CommonModule],\n  template: `\n    <div class=\"relative inline-block\">\n      <div (click)=\"toggle()\">\n        <ng-content select=\"[bkPopoverTrigger]\"></ng-content>\n      </div>\n      <div\n        *ngIf=\"open\"\n        [class]=\"contentClass\"\n        [style.position]=\"'absolute'\"\n        [style.top]=\"'100%'\"\n        [style.left]=\"align === 'start' ? '0' : align === 'end' ? 'auto' : '50%'\"\n        [style.right]=\"align === 'end' ? '0' : 'auto'\"\n        [style.transform]=\"align === 'center' ? 'translateX(-50%)' : 'none'\"\n        [style.margin-top]=\"'4px'\">\n        <ng-content select=\"bk-popover-content\"></ng-content>\n      </div>\n    </div>\n  `,\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class PopoverComponent {\n  @Input() open: boolean = false\n  @Input() align: 'start' | 'center' | 'end' = 'center'\n  @Input() class: string = ''\n\n  @Output() openChange = new EventEmitter<boolean>()\n\n  get contentClass(): string {\n    return cn(\n      'z-50 w-72 border-3 border-foreground bg-popover p-4 text-popover-foreground shadow-[4px_4px_0px_hsl(var(--shadow-color))] outline-none',\n      this.class\n    )\n  }\n\n  toggle(): void {\n    this.open = !this.open\n    this.openChange.emit(this.open)\n  }\n\n  close(): void {\n    this.open = false\n    this.openChange.emit(false)\n  }\n\n  @HostListener('document:click', ['$event'])\n  onDocumentClick(event: Event): void {\n    // Close on click outside - would need more sophisticated handling\n  }\n}\n\n@Component({\n  selector: 'bk-popover-content',\n  standalone: true,\n  template: `<ng-content></ng-content>`,\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class PopoverContentComponent {\n  @Input() class: string = ''\n}\n\nexport const PopoverComponents = [PopoverComponent, PopoverContentComponent]\n",
+      "type": "registry:ui",
+      "target": "components/ui/popover/popover.component.ts"
+    }
+  ]
+}

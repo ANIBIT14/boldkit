@@ -1,0 +1,28 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "toggle-group",
+  "type": "registry:ui",
+  "description": "A group of toggle buttons",
+  "dependencies": [
+    "class-variance-authority",
+    "clsx",
+    "tailwind-merge"
+  ],
+  "registryDependencies": [
+    "utils"
+  ],
+  "files": [
+    {
+      "path": "components/ui/toggle-group/index.ts",
+      "content": "export { ToggleGroupComponent, ToggleGroupItemComponent, ToggleGroupComponents } from './toggle-group.component'\n",
+      "type": "registry:ui",
+      "target": "components/ui/toggle-group/index.ts"
+    },
+    {
+      "path": "components/ui/toggle-group/toggle-group.component.ts",
+      "content": "import { Component, Input, Output, EventEmitter, HostBinding, ChangeDetectionStrategy, ContentChildren, QueryList, AfterContentInit, forwardRef } from '@angular/core'\nimport { CommonModule } from '@angular/common'\nimport { cn } from '../lib/utils'\nimport { toggleVariants, type ToggleVariants } from '../toggle/toggle.component'\n\n@Component({\n  selector: 'bk-toggle-group',\n  standalone: true,\n  imports: [CommonModule],\n  template: `<ng-content></ng-content>`,\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class ToggleGroupComponent implements AfterContentInit {\n  @Input() type: 'single' | 'multiple' = 'single'\n  @Input() value: string | string[] = ''\n  @Input() variant: ToggleVariants['variant'] = 'default'\n  @Input() size: ToggleVariants['size'] = 'default'\n  @Input() disabled: boolean = false\n  @Input() class: string = ''\n\n  @Output() valueChange = new EventEmitter<string | string[]>()\n\n  @ContentChildren(forwardRef(() => ToggleGroupItemComponent)) items!: QueryList<ToggleGroupItemComponent>\n\n  @HostBinding('class')\n  get hostClass(): string {\n    return cn('inline-flex items-center justify-center gap-1', this.class)\n  }\n\n  @HostBinding('attr.role') role = 'group'\n\n  ngAfterContentInit(): void {\n    this.updateItems()\n  }\n\n  toggleItem(itemValue: string): void {\n    if (this.type === 'single') {\n      this.value = this.value === itemValue ? '' : itemValue\n    } else {\n      const values = Array.isArray(this.value) ? [...this.value] : []\n      const index = values.indexOf(itemValue)\n      if (index > -1) {\n        values.splice(index, 1)\n      } else {\n        values.push(itemValue)\n      }\n      this.value = values\n    }\n    this.valueChange.emit(this.value)\n    this.updateItems()\n  }\n\n  isSelected(itemValue: string): boolean {\n    if (this.type === 'single') {\n      return this.value === itemValue\n    }\n    return Array.isArray(this.value) && this.value.includes(itemValue)\n  }\n\n  private updateItems(): void {\n    if (this.items) {\n      this.items.forEach(item => {\n        item.isSelected = this.isSelected(item.value)\n        item.group = this\n      })\n    }\n  }\n}\n\n@Component({\n  selector: 'bk-toggle-group-item',\n  standalone: true,\n  template: `<ng-content></ng-content>`,\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class ToggleGroupItemComponent {\n  @Input() value: string = ''\n  @Input() disabled: boolean = false\n  @Input() class: string = ''\n\n  isSelected: boolean = false\n  group: ToggleGroupComponent | null = null\n\n  @HostBinding('class')\n  get hostClass(): string {\n    return cn(\n      toggleVariants({\n        variant: this.group?.variant || 'default',\n        size: this.group?.size || 'default',\n      }),\n      this.class\n    )\n  }\n\n  @HostBinding('attr.data-state')\n  get dataState(): string {\n    return this.isSelected ? 'on' : 'off'\n  }\n\n  @HostBinding('attr.aria-pressed')\n  get ariaPressed(): boolean {\n    return this.isSelected\n  }\n}\n\nexport const ToggleGroupComponents = [ToggleGroupComponent, ToggleGroupItemComponent]\n",
+      "type": "registry:ui",
+      "target": "components/ui/toggle-group/toggle-group.component.ts"
+    }
+  ]
+}

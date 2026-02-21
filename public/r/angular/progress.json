@@ -1,0 +1,27 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "progress",
+  "type": "registry:ui",
+  "description": "A progress bar with neubrutalism styling",
+  "dependencies": [
+    "clsx",
+    "tailwind-merge"
+  ],
+  "registryDependencies": [
+    "utils"
+  ],
+  "files": [
+    {
+      "path": "components/ui/progress/index.ts",
+      "content": "export { ProgressComponent } from './progress.component'\n",
+      "type": "registry:ui",
+      "target": "components/ui/progress/index.ts"
+    },
+    {
+      "path": "components/ui/progress/progress.component.ts",
+      "content": "import { Component, Input, HostBinding, ChangeDetectionStrategy } from '@angular/core'\nimport { cn } from '../lib/utils'\n\n@Component({\n  selector: 'bk-progress',\n  standalone: true,\n  template: `\n    <div\n      class=\"h-full w-full flex-1 bg-primary transition-all duration-500 ease-out\"\n      [style.transform]=\"'translateX(-' + (100 - (value || 0)) + '%)'\">\n    </div>\n  `,\n  styles: [`:host { display: block; }`],\n  host: {\n    'role': 'progressbar',\n  },\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class ProgressComponent {\n  @Input() value: number = 0\n  @Input() max: number = 100\n  @Input() class: string = ''\n\n  @HostBinding('class')\n  get hostClass(): string {\n    return cn(\n      'relative h-5 w-full overflow-hidden border-3 border-foreground bg-muted shadow-[4px_4px_0px_hsl(var(--shadow-color))]',\n      this.class\n    )\n  }\n\n  @HostBinding('attr.aria-valuenow')\n  get ariaValueNow(): number {\n    return this.value\n  }\n\n  @HostBinding('attr.aria-valuemin')\n  get ariaValueMin(): number {\n    return 0\n  }\n\n  @HostBinding('attr.aria-valuemax')\n  get ariaValueMax(): number {\n    return this.max\n  }\n}\n",
+      "type": "registry:ui",
+      "target": "components/ui/progress/progress.component.ts"
+    }
+  ]
+}

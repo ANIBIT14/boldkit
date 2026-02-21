@@ -1,0 +1,27 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "avatar",
+  "type": "registry:ui",
+  "description": "An avatar/profile image component",
+  "dependencies": [
+    "clsx",
+    "tailwind-merge"
+  ],
+  "registryDependencies": [
+    "utils"
+  ],
+  "files": [
+    {
+      "path": "components/ui/avatar/avatar.component.ts",
+      "content": "import { Component, Input, HostBinding, ChangeDetectionStrategy } from '@angular/core'\nimport { cn } from '../lib/utils'\n\n@Component({\n  selector: 'bk-avatar',\n  standalone: true,\n  template: `<ng-content></ng-content>`,\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class AvatarComponent {\n  @Input() class: string = ''\n\n  @HostBinding('class')\n  get hostClass(): string {\n    return cn(\n      'relative flex h-10 w-10 shrink-0 overflow-hidden border-3 border-foreground shadow-[4px_4px_0px_hsl(var(--shadow-color))] transition-all duration-200 hover:translate-x-[4px] hover:translate-y-[4px] hover:shadow-none',\n      this.class\n    )\n  }\n}\n\n@Component({\n  selector: 'bk-avatar-image, img[bkAvatarImage]',\n  standalone: true,\n  template: `<ng-content></ng-content>`,\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class AvatarImageComponent {\n  @Input() class: string = ''\n\n  @HostBinding('class')\n  get hostClass(): string {\n    return cn('aspect-square h-full w-full object-cover', this.class)\n  }\n}\n\n@Component({\n  selector: 'bk-avatar-fallback',\n  standalone: true,\n  template: `<ng-content></ng-content>`,\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class AvatarFallbackComponent {\n  @Input() class: string = ''\n\n  @HostBinding('class')\n  get hostClass(): string {\n    return cn(\n      'flex h-full w-full items-center justify-center bg-primary text-primary-foreground font-bold uppercase',\n      this.class\n    )\n  }\n}\n\nexport const AvatarComponents = [AvatarComponent, AvatarImageComponent, AvatarFallbackComponent]\n",
+      "type": "registry:ui",
+      "target": "components/ui/avatar/avatar.component.ts"
+    },
+    {
+      "path": "components/ui/avatar/index.ts",
+      "content": "export {\n  AvatarComponent,\n  AvatarImageComponent,\n  AvatarFallbackComponent,\n  AvatarComponents,\n} from './avatar.component'\n",
+      "type": "registry:ui",
+      "target": "components/ui/avatar/index.ts"
+    }
+  ]
+}

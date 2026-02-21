@@ -1,0 +1,27 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "skeleton",
+  "type": "registry:ui",
+  "description": "A skeleton loading placeholder",
+  "dependencies": [
+    "clsx",
+    "tailwind-merge"
+  ],
+  "registryDependencies": [
+    "utils"
+  ],
+  "files": [
+    {
+      "path": "components/ui/skeleton/index.ts",
+      "content": "export { SkeletonComponent } from './skeleton.component'\n",
+      "type": "registry:ui",
+      "target": "components/ui/skeleton/index.ts"
+    },
+    {
+      "path": "components/ui/skeleton/skeleton.component.ts",
+      "content": "import { Component, Input, HostBinding, ChangeDetectionStrategy } from '@angular/core'\nimport { cn } from '../lib/utils'\n\n@Component({\n  selector: 'bk-skeleton',\n  standalone: true,\n  template: ``,\n  styles: [`:host { display: block; }`],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class SkeletonComponent {\n  @Input() class: string = ''\n\n  @HostBinding('class')\n  get hostClass(): string {\n    return cn('animate-pulse bg-muted border-2 border-foreground/20', this.class)\n  }\n}\n",
+      "type": "registry:ui",
+      "target": "components/ui/skeleton/skeleton.component.ts"
+    }
+  ]
+}

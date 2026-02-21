@@ -1,0 +1,27 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "separator",
+  "type": "registry:ui",
+  "description": "A horizontal or vertical separator",
+  "dependencies": [
+    "clsx",
+    "tailwind-merge"
+  ],
+  "registryDependencies": [
+    "utils"
+  ],
+  "files": [
+    {
+      "path": "components/ui/separator/index.ts",
+      "content": "export { SeparatorComponent } from './separator.component'\n",
+      "type": "registry:ui",
+      "target": "components/ui/separator/index.ts"
+    },
+    {
+      "path": "components/ui/separator/separator.component.ts",
+      "content": "import { Component, Input, HostBinding, ChangeDetectionStrategy } from '@angular/core'\nimport { cn } from '../lib/utils'\n\n@Component({\n  selector: 'bk-separator',\n  standalone: true,\n  template: ``,\n  styles: [`:host { display: block; }`],\n  host: { 'role': 'separator' },\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class SeparatorComponent {\n  @Input() orientation: 'horizontal' | 'vertical' = 'horizontal'\n  @Input() decorative: boolean = true\n  @Input() class: string = ''\n\n  @HostBinding('class')\n  get hostClass(): string {\n    return cn(\n      'shrink-0 bg-foreground',\n      this.orientation === 'horizontal' ? 'h-[3px] w-full' : 'h-full w-[3px]',\n      this.class\n    )\n  }\n\n  @HostBinding('attr.aria-orientation')\n  get ariaOrientation(): string | null {\n    return this.decorative ? null : this.orientation\n  }\n\n  @HostBinding('attr.aria-hidden')\n  get ariaHidden(): string | null {\n    return this.decorative ? 'true' : null\n  }\n}\n",
+      "type": "registry:ui",
+      "target": "components/ui/separator/separator.component.ts"
+    }
+  ]
+}

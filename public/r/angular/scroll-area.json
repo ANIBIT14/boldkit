@@ -1,0 +1,27 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "scroll-area",
+  "type": "registry:ui",
+  "description": "A scrollable area with custom scrollbar",
+  "dependencies": [
+    "clsx",
+    "tailwind-merge"
+  ],
+  "registryDependencies": [
+    "utils"
+  ],
+  "files": [
+    {
+      "path": "components/ui/scroll-area/index.ts",
+      "content": "export { ScrollAreaComponent } from './scroll-area.component'\n",
+      "type": "registry:ui",
+      "target": "components/ui/scroll-area/index.ts"
+    },
+    {
+      "path": "components/ui/scroll-area/scroll-area.component.ts",
+      "content": "import { Component, Input, HostBinding, ChangeDetectionStrategy } from '@angular/core'\nimport { cn } from '../lib/utils'\n\n@Component({\n  selector: 'bk-scroll-area',\n  standalone: true,\n  template: `\n    <div [class]=\"viewportClass\">\n      <ng-content></ng-content>\n    </div>\n  `,\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class ScrollAreaComponent {\n  @Input() class: string = ''\n  @Input() orientation: 'vertical' | 'horizontal' | 'both' = 'vertical'\n\n  @HostBinding('class')\n  get hostClass(): string {\n    return cn('relative overflow-hidden', this.class)\n  }\n\n  get viewportClass(): string {\n    return cn(\n      'h-full w-full',\n      this.orientation === 'vertical' && 'overflow-y-auto overflow-x-hidden',\n      this.orientation === 'horizontal' && 'overflow-x-auto overflow-y-hidden',\n      this.orientation === 'both' && 'overflow-auto'\n    )\n  }\n}\n",
+      "type": "registry:ui",
+      "target": "components/ui/scroll-area/scroll-area.component.ts"
+    }
+  ]
+}

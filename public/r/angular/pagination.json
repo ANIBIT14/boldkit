@@ -1,0 +1,27 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "pagination",
+  "type": "registry:ui",
+  "description": "A pagination component",
+  "dependencies": [
+    "clsx",
+    "tailwind-merge"
+  ],
+  "registryDependencies": [
+    "utils"
+  ],
+  "files": [
+    {
+      "path": "components/ui/pagination/index.ts",
+      "content": "export {\n  PaginationComponent,\n  PaginationContentComponent,\n  PaginationItemComponent,\n  PaginationLinkDirective,\n  PaginationPreviousComponent,\n  PaginationNextComponent,\n  PaginationEllipsisComponent,\n  PaginationComponents,\n} from './pagination.component'\n",
+      "type": "registry:ui",
+      "target": "components/ui/pagination/index.ts"
+    },
+    {
+      "path": "components/ui/pagination/pagination.component.ts",
+      "content": "import { Component, Input, HostBinding, ChangeDetectionStrategy, Directive } from '@angular/core'\nimport { cn } from '../lib/utils'\nimport { buttonVariants } from '../button/button.component'\n\n@Component({\n  selector: 'bk-pagination',\n  standalone: true,\n  template: `<ng-content></ng-content>`,\n  host: {\n    'role': 'navigation',\n    'aria-label': 'pagination',\n  },\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class PaginationComponent {\n  @Input() class: string = ''\n\n  @HostBinding('class')\n  get hostClass(): string {\n    return cn('mx-auto flex w-full justify-center', this.class)\n  }\n}\n\n@Component({\n  selector: 'bk-pagination-content',\n  standalone: true,\n  template: `<ng-content></ng-content>`,\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class PaginationContentComponent {\n  @Input() class: string = ''\n\n  @HostBinding('class')\n  get hostClass(): string {\n    return cn('flex flex-row items-center gap-1', this.class)\n  }\n}\n\n@Component({\n  selector: 'bk-pagination-item',\n  standalone: true,\n  template: `<ng-content></ng-content>`,\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class PaginationItemComponent {\n  @Input() class: string = ''\n\n  @HostBinding('class')\n  get hostClass(): string {\n    return cn('', this.class)\n  }\n}\n\n@Directive({\n  selector: 'a[bkPaginationLink]',\n  standalone: true,\n})\nexport class PaginationLinkDirective {\n  @Input() isActive: boolean = false\n  @Input() size: 'default' | 'sm' | 'lg' | 'icon' = 'icon'\n  @Input() class: string = ''\n\n  @HostBinding('class')\n  get hostClass(): string {\n    return cn(\n      buttonVariants({\n        variant: this.isActive ? 'default' : 'outline',\n        size: this.size,\n      }),\n      this.class\n    )\n  }\n\n  @HostBinding('attr.aria-current')\n  get ariaCurrent(): string | null {\n    return this.isActive ? 'page' : null\n  }\n}\n\n@Component({\n  selector: 'bk-pagination-previous',\n  standalone: true,\n  template: `\n    <svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"3\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"m15 18-6-6 6-6\"/></svg>\n    <span>Previous</span>\n  `,\n  host: { 'aria-label': 'Go to previous page' },\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class PaginationPreviousComponent {\n  @Input() class: string = ''\n\n  @HostBinding('class')\n  get hostClass(): string {\n    return cn(buttonVariants({ variant: 'outline', size: 'default' }), 'gap-1 pl-2.5', this.class)\n  }\n}\n\n@Component({\n  selector: 'bk-pagination-next',\n  standalone: true,\n  template: `\n    <span>Next</span>\n    <svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"3\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"m9 18 6-6-6-6\"/></svg>\n  `,\n  host: { 'aria-label': 'Go to next page' },\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class PaginationNextComponent {\n  @Input() class: string = ''\n\n  @HostBinding('class')\n  get hostClass(): string {\n    return cn(buttonVariants({ variant: 'outline', size: 'default' }), 'gap-1 pr-2.5', this.class)\n  }\n}\n\n@Component({\n  selector: 'bk-pagination-ellipsis',\n  standalone: true,\n  template: `\n    <svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"3\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><circle cx=\"12\" cy=\"12\" r=\"1\"/><circle cx=\"19\" cy=\"12\" r=\"1\"/><circle cx=\"5\" cy=\"12\" r=\"1\"/></svg>\n    <span class=\"sr-only\">More pages</span>\n  `,\n  host: { 'aria-hidden': 'true' },\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class PaginationEllipsisComponent {\n  @Input() class: string = ''\n\n  @HostBinding('class')\n  get hostClass(): string {\n    return cn('flex h-9 w-9 items-center justify-center', this.class)\n  }\n}\n\nexport const PaginationComponents = [\n  PaginationComponent,\n  PaginationContentComponent,\n  PaginationItemComponent,\n  PaginationLinkDirective,\n  PaginationPreviousComponent,\n  PaginationNextComponent,\n  PaginationEllipsisComponent,\n]\n",
+      "type": "registry:ui",
+      "target": "components/ui/pagination/pagination.component.ts"
+    }
+  ]
+}

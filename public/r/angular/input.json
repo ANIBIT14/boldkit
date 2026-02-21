@@ -1,0 +1,27 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "input",
+  "type": "registry:ui",
+  "description": "A text input with neubrutalism styling",
+  "dependencies": [
+    "clsx",
+    "tailwind-merge"
+  ],
+  "registryDependencies": [
+    "utils"
+  ],
+  "files": [
+    {
+      "path": "components/ui/input/index.ts",
+      "content": "export { InputDirective } from './input.directive'\n",
+      "type": "registry:ui",
+      "target": "components/ui/input/index.ts"
+    },
+    {
+      "path": "components/ui/input/input.directive.ts",
+      "content": "import { Directive, Input, HostBinding } from '@angular/core'\nimport { cn } from '../lib/utils'\n\n/**\n * Input directive that applies BoldKit neubrutalism styles to native input elements\n *\n * Usage:\n * <input bkInput placeholder=\"Enter text...\" />\n * <input bkInput class=\"custom-class\" />\n */\n@Directive({\n  selector: 'input[bkInput], textarea[bkInput]',\n  standalone: true,\n})\nexport class InputDirective {\n  @Input() class: string = ''\n\n  @HostBinding('class')\n  get hostClass(): string {\n    return cn(\n      'flex h-11 w-full border-3 border-input bg-background px-4 py-2 text-base shadow-[4px_4px_0px_hsl(var(--shadow-color))] transition-all duration-200 file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-0 focus-visible:translate-x-[4px] focus-visible:translate-y-[4px] focus-visible:shadow-none disabled:cursor-not-allowed disabled:opacity-50 md:text-sm',\n      this.class\n    )\n  }\n}\n",
+      "type": "registry:ui",
+      "target": "components/ui/input/input.directive.ts"
+    }
+  ]
+}
