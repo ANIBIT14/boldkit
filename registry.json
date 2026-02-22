@@ -692,7 +692,7 @@
     {
       "name": "shapes",
       "type": "registry:ui",
-      "description": "42 neubrutalist SVG shapes organized by category for badges, decorations, and visual accents",
+      "description": "45 neubrutalist SVG shapes organized by category for badges, decorations, and visual accents",
       "dependencies": [],
       "registryDependencies": ["utils"],
       "files": [

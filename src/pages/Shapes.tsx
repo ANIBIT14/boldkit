@@ -51,6 +51,8 @@ import {
   BookmarkShape,
   FlagShape,
   PillShape,
+  SealShape,
+  WavyRectangleShape,
   // Communication
   SpeechBubble,
   CursorShape,
@@ -59,6 +61,8 @@ import {
   ScribbleCircle,
   ScribbleUnderline,
   PaperTearShape,
+  // Mechanical
+  GearShape,
 } from '@/components/ui/shapes'
 
 // Shape categories for organized display
@@ -132,6 +136,8 @@ const shapeCategories = [
       { name: 'Bookmark', component: BookmarkShape, code: '<BookmarkShape size={100} />', vueCode: '<BookmarkShape :size="100" />' },
       { name: 'Flag', component: FlagShape, code: '<FlagShape size={100} />', vueCode: '<FlagShape :size="100" />' },
       { name: 'Pill', component: PillShape, code: '<PillShape size={100} />', vueCode: '<PillShape :size="100" />' },
+      { name: 'Seal', component: SealShape, code: '<SealShape size={100} />', vueCode: '<SealShape :size="100" />', isNew: true },
+      { name: 'Wavy Rectangle', component: WavyRectangleShape, code: '<WavyRectangleShape size={100} />', vueCode: '<WavyRectangleShape :size="100" />', isNew: true },
     ]
   },
   {
@@ -154,9 +160,17 @@ const shapeCategories = [
       { name: 'Paper Tear', component: PaperTearShape, code: '<PaperTearShape size={100} />', vueCode: '<PaperTearShape :size="100" />' },
     ]
   },
+  {
+    name: 'Mechanical',
+    description: 'Gears, cogs, and technical elements',
+    color: 'bg-muted',
+    shapes: [
+      { name: 'Gear', component: GearShape, code: '<GearShape size={100} />', vueCode: '<GearShape :size="100" />', isNew: true },
+    ]
+  },
 ]
 
-function ShapeCard({ name, Component, code, vueCode }: { name: string; Component: React.ComponentType<any>; code: string; vueCode: string }) {
+function ShapeCard({ name, Component, code, vueCode, isNew }: { name: string; Component: React.ComponentType<any>; code: string; vueCode: string; isNew?: boolean }) {
   const [copiedCode, setCopiedCode] = useState(false)
   const [copiedCli, setCopiedCli] = useState(false)
   const { framework } = useFramework()
@@ -184,6 +198,11 @@ function ShapeCard({ name, Component, code, vueCode }: { name: string; Component
 
   return (
     <Card className="group relative overflow-hidden">
+      {isNew && (
+        <Badge variant="accent" className="absolute top-2 right-2 text-[10px] px-1.5 py-0.5 z-10">
+          New
+        </Badge>
+      )}
       <CardContent className="flex flex-col items-center justify-center p-4 md:p-6 min-h-[160px] md:min-h-[200px]">
         <div className="mb-3 md:mb-4 transition-transform group-hover:scale-110">
           <Component size={50} className="md:hidden" />
@@ -445,6 +464,7 @@ import {
                       Component={shape.component}
                       code={shape.code}
                       vueCode={shape.vueCode}
+                      isNew={'isNew' in shape ? shape.isNew : undefined}
                     />
                   ))}
                 </div>

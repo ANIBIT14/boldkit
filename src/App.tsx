@@ -9,6 +9,10 @@ import { Skeleton } from '@/components/ui/skeleton'
 import { Home, ThemeBuilder, Charts, Shapes, Templates } from '@/pages'
 import { LandingPageTemplate } from '@/components/templates/LandingPageTemplate'
 import { PortfolioTemplate } from '@/components/templates/PortfolioTemplate'
+import { DashboardTemplate } from '@/components/templates/DashboardTemplate'
+import { PricingTemplate } from '@/components/templates/PricingTemplate'
+import { BlogTemplate } from '@/components/templates/BlogTemplate'
+import { ProductTemplate } from '@/components/templates/ProductTemplate'
 import { DocsLayout } from '@/layouts/DocsLayout'
 import '@/styles/globals.css'
 
@@ -91,6 +95,10 @@ function App() {
             <Route path="/templates" element={<Templates />} />
             <Route path="/templates/landing-page" element={<LandingPageTemplate />} />
             <Route path="/templates/portfolio" element={<PortfolioTemplate />} />
+            <Route path="/templates/dashboard" element={<DashboardTemplate />} />
+            <Route path="/templates/pricing" element={<PricingTemplate />} />
+            <Route path="/templates/blog" element={<BlogTemplate />} />
+            <Route path="/templates/product" element={<ProductTemplate />} />
 
             {/* Documentation routes */}
             <Route path="/docs" element={<DocsLayout />}>

@@ -1027,6 +1027,81 @@ export const PaperTearShape = React.forwardRef<SVGSVGElement, ShapeProps>(
 PaperTearShape.displayName = 'PaperTearShape'
 
 // ============================================================================
+// NEW SHAPES - Seals, Gears, and Wavy Forms
+// ============================================================================
+
+export const SealShape = React.forwardRef<SVGSVGElement, ShapeProps>(
+  ({ size = 100, strokeWidth = 3, filled = true, color, className, ...props }, ref) => (
+    <svg
+      ref={ref}
+      width={size}
+      height={size}
+      viewBox="0 0 100 100"
+      className={cn('text-success', className)}
+      {...props}
+    >
+      <path
+        d="M50 5 Q60 5 65 12 Q72 8 78 15 Q85 12 88 22 Q95 22 95 32 Q100 40 95 50 Q100 60 95 68 Q95 78 88 78 Q85 88 78 85 Q72 92 65 88 Q60 95 50 95 Q40 95 35 88 Q28 92 22 85 Q15 88 12 78 Q5 78 5 68 Q0 60 5 50 Q0 40 5 32 Q5 22 12 22 Q15 12 22 15 Q28 8 35 12 Q40 5 50 5 Z"
+        fill={filled ? (color || 'currentColor') : 'none'}
+        stroke="hsl(var(--foreground))"
+        strokeWidth={strokeWidth}
+      />
+    </svg>
+  )
+)
+SealShape.displayName = 'SealShape'
+
+export const GearShape = React.forwardRef<SVGSVGElement, ShapeProps>(
+  ({ size = 100, strokeWidth = 3, filled = true, color, className, ...props }, ref) => (
+    <svg
+      ref={ref}
+      width={size}
+      height={size}
+      viewBox="0 0 100 100"
+      className={cn('text-muted-foreground', className)}
+      {...props}
+    >
+      <path
+        d="M42 8 L58 8 L60 18 L68 14 L76 22 L72 30 L82 34 L82 48 L72 50 L76 58 L68 66 L60 62 L58 72 L42 72 L40 62 L32 66 L24 58 L28 50 L18 48 L18 34 L28 30 L24 22 L32 14 L40 18 Z"
+        fill={filled ? (color || 'currentColor') : 'none'}
+        stroke="hsl(var(--foreground))"
+        strokeWidth={strokeWidth}
+      />
+      <circle
+        cx="50"
+        cy="40"
+        r="12"
+        fill="hsl(var(--background))"
+        stroke="hsl(var(--foreground))"
+        strokeWidth={strokeWidth}
+      />
+    </svg>
+  )
+)
+GearShape.displayName = 'GearShape'
+
+export const WavyRectangleShape = React.forwardRef<SVGSVGElement, ShapeProps>(
+  ({ size = 100, strokeWidth = 3, filled = true, color, className, ...props }, ref) => (
+    <svg
+      ref={ref}
+      width={size}
+      height={size * 0.7}
+      viewBox="0 0 100 70"
+      className={cn('text-accent', className)}
+      {...props}
+    >
+      <path
+        d="M10 15 Q15 10 20 15 Q25 20 30 15 Q35 10 40 15 Q45 20 50 15 Q55 10 60 15 Q65 20 70 15 Q75 10 80 15 Q85 20 90 15 L90 20 Q95 25 90 30 Q85 35 90 40 Q95 45 90 50 Q85 55 90 55 L90 60 Q85 65 80 60 Q75 55 70 60 Q65 65 60 60 Q55 55 50 60 Q45 65 40 60 Q35 55 30 60 Q25 65 20 60 Q15 55 10 60 L10 55 Q5 50 10 45 Q15 40 10 35 Q5 30 10 25 Q15 20 10 20 Z"
+        fill={filled ? (color || 'currentColor') : 'none'}
+        stroke="hsl(var(--foreground))"
+        strokeWidth={strokeWidth}
+      />
+    </svg>
+  )
+)
+WavyRectangleShape.displayName = 'WavyRectangleShape'
+
+// ============================================================================
 // SHAPE CATEGORIES - Grouped exports for easy access
 // ============================================================================
 
@@ -1093,6 +1168,15 @@ export const DecorativeShapes = {
   PaperTearShape,
 }
 
+export const TicketShapes = {
+  SealShape,
+  WavyRectangleShape,
+}
+
+export const MechanicalShapes = {
+  GearShape,
+}
+
 // ============================================================================
 // ALL SHAPES - Combined export for backwards compatibility
 // ============================================================================
@@ -1139,6 +1223,8 @@ export const shapes = {
   BookmarkShape,
   FlagShape,
   PillShape,
+  SealShape,
+  WavyRectangleShape,
   // Communication
   SpeechBubble,
   CursorShape,
@@ -1147,4 +1233,6 @@ export const shapes = {
   ScribbleCircle,
   ScribbleUnderline,
   PaperTearShape,
+  // Mechanical
+  GearShape,
 }
