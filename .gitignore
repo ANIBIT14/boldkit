@@ -40,3 +40,6 @@ Thumbs.db
 # Testing
 coverage
 .angular/
+
+# Claude AI
+CLAUDE.md
