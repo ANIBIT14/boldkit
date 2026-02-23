@@ -1,0 +1,27 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "kbd",
+  "type": "registry:ui",
+  "description": "Keyboard key display component with neubrutalism styling for showing keyboard shortcuts",
+  "dependencies": [
+    "reka-ui",
+    "class-variance-authority"
+  ],
+  "registryDependencies": [
+    "utils"
+  ],
+  "files": [
+    {
+      "path": "registry/default/ui/Kbd.vue",
+      "content": "<script setup lang=\"ts\">\nimport { computed } from 'vue'\nimport { Primitive, type PrimitiveProps } from 'reka-ui'\nimport { cva, type VariantProps } from 'class-variance-authority'\nimport { cn } from '@/lib/utils'\n\nconst kbdVariants = cva(\n  'inline-flex items-center justify-center font-mono font-bold uppercase border-3 border-foreground',\n  {\n    variants: {\n      variant: {\n        default: 'bg-muted shadow-[2px_2px_0px_hsl(var(--shadow-color))]',\n        outline: 'bg-background',\n        ghost: 'bg-transparent border-transparent text-muted-foreground',\n      },\n      size: {\n        sm: 'min-w-5 h-5 px-1 text-[10px]',\n        md: 'min-w-6 h-6 px-1.5 text-xs',\n        lg: 'min-w-8 h-8 px-2 text-sm',\n      },\n    },\n    defaultVariants: {\n      variant: 'default',\n      size: 'md',\n    },\n  }\n)\n\ntype KbdVariants = VariantProps<typeof kbdVariants>\n\ninterface KbdProps extends PrimitiveProps {\n  variant?: KbdVariants['variant']\n  size?: KbdVariants['size']\n  class?: string\n}\n\nconst props = withDefaults(defineProps<KbdProps>(), {\n  as: 'kbd',\n  variant: 'default',\n  size: 'md',\n})\n\nconst delegatedProps = computed(() => {\n  const { class: _, variant: __, size: ___, ...rest } = props\n  return rest\n})\n</script>\n\n<template>\n  <Primitive\n    v-bind=\"delegatedProps\"\n    :class=\"cn(kbdVariants({ variant, size }), props.class)\"\n  >\n    <slot />\n  </Primitive>\n</template>\n",
+      "type": "registry:ui",
+      "target": "components/ui/Kbd.vue"
+    },
+    {
+      "path": "registry/default/ui/KbdCombo.vue",
+      "content": "<script setup lang=\"ts\">\nimport { cva, type VariantProps } from 'class-variance-authority'\nimport { cn } from '@/lib/utils'\nimport Kbd from './Kbd.vue'\n\nconst kbdVariants = cva(\n  'inline-flex items-center justify-center font-mono font-bold uppercase border-3 border-foreground',\n  {\n    variants: {\n      variant: {\n        default: 'bg-muted shadow-[2px_2px_0px_hsl(var(--shadow-color))]',\n        outline: 'bg-background',\n        ghost: 'bg-transparent border-transparent text-muted-foreground',\n      },\n      size: {\n        sm: 'min-w-5 h-5 px-1 text-[10px]',\n        md: 'min-w-6 h-6 px-1.5 text-xs',\n        lg: 'min-w-8 h-8 px-2 text-sm',\n      },\n    },\n    defaultVariants: {\n      variant: 'default',\n      size: 'md',\n    },\n  }\n)\n\ntype KbdVariants = VariantProps<typeof kbdVariants>\n\ninterface KbdComboProps {\n  keys: string[]\n  separator?: string\n  variant?: KbdVariants['variant']\n  size?: KbdVariants['size']\n  class?: string\n}\n\nconst props = withDefaults(defineProps<KbdComboProps>(), {\n  separator: '+',\n  variant: 'default',\n  size: 'md',\n})\n</script>\n\n<template>\n  <div :class=\"cn('inline-flex items-center gap-1', props.class)\">\n    <template v-for=\"(key, index) in keys\" :key=\"index\">\n      <span v-if=\"index > 0\" class=\"text-muted-foreground text-xs font-bold\">{{ separator }}</span>\n      <Kbd :variant=\"variant\" :size=\"size\">{{ key }}</Kbd>\n    </template>\n  </div>\n</template>\n",
+      "type": "registry:ui",
+      "target": "components/ui/KbdCombo.vue"
+    }
+  ]
+}

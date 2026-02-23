@@ -1,0 +1,21 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "radial-bar-chart",
+  "type": "registry:ui",
+  "description": "Circular progress bars with nested rings for multiple metrics",
+  "dependencies": [
+    "recharts"
+  ],
+  "registryDependencies": [
+    "utils",
+    "chart"
+  ],
+  "files": [
+    {
+      "path": "registry/default/ui/radial-bar-chart.tsx",
+      "content": "import * as React from 'react'\nimport { cn } from '@/lib/utils'\nimport {\n  RadialBarChart as RechartsRadialBarChart,\n  RadialBar,\n  PolarAngleAxis,\n} from 'recharts'\nimport { ChartContainer, ChartTooltip, ChartTooltipContent, ChartLegend, ChartLegendContent, type ChartConfig } from './chart'\n\nexport interface RadialBarChartData {\n  name: string\n  value: number\n  fill?: string\n}\n\nexport interface RadialBarChartProps extends React.HTMLAttributes<HTMLDivElement> {\n  data: RadialBarChartData[]\n  config: ChartConfig\n  variant?: 'default' | 'stacked' | 'nested'\n  innerRadius?: string | number\n  outerRadius?: string | number\n  showLabel?: boolean\n  showBackground?: boolean\n  showLegend?: boolean\n  showTooltip?: boolean\n  startAngle?: number\n  endAngle?: number\n  animated?: boolean\n  maxValue?: number\n}\n\nconst RadialBarChartComponent = React.forwardRef<HTMLDivElement, RadialBarChartProps>(\n  (\n    {\n      data,\n      config,\n      variant = 'default',\n      innerRadius = '30%',\n      outerRadius = '100%',\n      showLabel = true,\n      showBackground = true,\n      showLegend = false,\n      showTooltip = true,\n      startAngle = 90,\n      endAngle = -270,\n      animated = true,\n      maxValue,\n      className,\n      ...props\n    },\n    ref\n  ) => {\n    // Calculate max value for the scale\n    const calculatedMax = maxValue || Math.max(...data.map((d) => d.value))\n\n    // Transform data for nested variant (each item gets its own ring)\n    const chartData = React.useMemo(() => {\n      if (variant === 'nested') {\n        return data.map((item, index) => ({\n          ...item,\n          fill: item.fill || `hsl(var(--chart-${(index % 5) + 1}))`,\n        }))\n      }\n      return data.map((item, index) => ({\n        ...item,\n        fill: item.fill || `hsl(var(--chart-${(index % 5) + 1}))`,\n      }))\n    }, [data, variant])\n\n    return (\n      <ChartContainer\n        ref={ref}\n        config={config}\n        className={cn('aspect-square max-h-[300px]', className)}\n        {...props}\n      >\n        <RechartsRadialBarChart\n          cx=\"50%\"\n          cy=\"50%\"\n          innerRadius={innerRadius}\n          outerRadius={outerRadius}\n          data={chartData}\n          startAngle={startAngle}\n          endAngle={endAngle}\n          barSize={variant === 'nested' ? 15 : 20}\n        >\n          {showBackground && (\n            <PolarAngleAxis\n              type=\"number\"\n              domain={[0, calculatedMax]}\n              angleAxisId={0}\n              tick={false}\n            />\n          )}\n          {showTooltip && (\n            <ChartTooltip\n              cursor={false}\n              content={<ChartTooltipContent hideLabel nameKey=\"name\" />}\n            />\n          )}\n          <RadialBar\n            dataKey=\"value\"\n            background={showBackground ? { fill: 'hsl(var(--muted))' } : undefined}\n            cornerRadius={0}\n            isAnimationActive={animated}\n            animationDuration={400}\n            label={\n              showLabel\n                ? {\n                    position: 'insideStart',\n                    fill: 'hsl(var(--foreground))',\n                    fontWeight: 700,\n                    fontSize: 12,\n                  }\n                : false\n            }\n          />\n          {showLegend && (\n            <ChartLegend\n              content={<ChartLegendContent nameKey=\"name\" />}\n              verticalAlign=\"bottom\"\n            />\n          )}\n        </RechartsRadialBarChart>\n      </ChartContainer>\n    )\n  }\n)\nRadialBarChartComponent.displayName = 'RadialBarChart'\n\nexport { RadialBarChartComponent as RadialBarChart }\n",
+      "type": "registry:ui",
+      "target": "components/ui/chart/radial-bar-chart.tsx"
+    }
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "kbd",
+  "type": "registry:ui",
+  "description": "Keyboard key indicator for displaying shortcuts and hotkeys with neubrutalism styling",
+  "dependencies": [
+    "class-variance-authority"
+  ],
+  "registryDependencies": [
+    "utils"
+  ],
+  "files": [
+    {
+      "path": "registry/default/ui/kbd.tsx",
+      "content": "import * as React from 'react'\nimport { cva, type VariantProps } from 'class-variance-authority'\nimport { cn } from '@/lib/utils'\n\nconst kbdVariants = cva(\n  'inline-flex items-center justify-center font-mono font-bold uppercase border-3 border-foreground',\n  {\n    variants: {\n      variant: {\n        default: 'bg-muted shadow-[2px_2px_0px_hsl(var(--shadow-color))]',\n        outline: 'bg-background',\n        ghost: 'bg-transparent border-transparent text-muted-foreground',\n      },\n      size: {\n        sm: 'min-w-5 h-5 px-1 text-[10px]',\n        md: 'min-w-6 h-6 px-1.5 text-xs',\n        lg: 'min-w-8 h-8 px-2 text-sm',\n      },\n    },\n    defaultVariants: {\n      variant: 'default',\n      size: 'md',\n    },\n  }\n)\n\nexport interface KbdProps\n  extends React.HTMLAttributes<HTMLElement>,\n    VariantProps<typeof kbdVariants> {}\n\nconst Kbd = React.forwardRef<HTMLElement, KbdProps>(\n  ({ className, variant, size, ...props }, ref) => {\n    return (\n      <kbd\n        ref={ref}\n        className={cn(kbdVariants({ variant, size, className }))}\n        {...props}\n      />\n    )\n  }\n)\nKbd.displayName = 'Kbd'\n\nexport interface KbdComboProps extends Omit<KbdProps, 'children'> {\n  keys: string[]\n  separator?: React.ReactNode\n}\n\nconst KbdCombo = React.forwardRef<HTMLDivElement, KbdComboProps>(\n  ({ keys, separator = '+', variant, size, className, ...props }, ref) => {\n    return (\n      <div\n        ref={ref}\n        className={cn('inline-flex items-center gap-1', className)}\n        {...props}\n      >\n        {keys.map((key, index) => (\n          <React.Fragment key={index}>\n            {index > 0 && (\n              <span className=\"text-muted-foreground text-xs font-bold\">{separator}</span>\n            )}\n            <Kbd variant={variant} size={size}>\n              {key}\n            </Kbd>\n          </React.Fragment>\n        ))}\n      </div>\n    )\n  }\n)\nKbdCombo.displayName = 'KbdCombo'\n\nexport { Kbd, KbdCombo, kbdVariants }\n",
+      "type": "registry:ui",
+      "target": "components/ui/kbd.tsx"
+    }
+  ]
+}

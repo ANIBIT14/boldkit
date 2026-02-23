@@ -1,0 +1,19 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "sparkline",
+  "type": "registry:ui",
+  "description": "Tiny inline trend charts for tables and stat cards - line, area, and bar variants",
+  "dependencies": [
+    "recharts"
+  ],
+  "registryDependencies": [
+    "utils"
+  ],
+  "files": [
+    {
+      "path": "registry/default/ui/sparkline.tsx",
+      "type": "registry:ui",
+      "target": "components/ui/chart/sparkline.tsx"
+    }
+  ]
+}

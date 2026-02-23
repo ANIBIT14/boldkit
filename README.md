@@ -14,10 +14,11 @@ A neubrutalism component library for React and Vue 3, built on shadcn/ui.
 [![Nuxt](https://img.shields.io/badge/Nuxt-00DC82?logo=nuxtdotjs)](https://nuxt.com)
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind-v4-38B2AC?logo=tailwindcss)](https://tailwindcss.com)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.0-3178C6?logo=typescript)](https://typescriptlang.org)
-[![Components](https://img.shields.io/badge/Components-45+-FF6B6B)](https://boldkit.dev/components)
+[![Components](https://img.shields.io/badge/Components-50+-FF6B6B)](https://boldkit.dev/components)
+[![Charts](https://img.shields.io/badge/Charts-10-9B59B6)](https://boldkit.dev/charts)
 [![Shapes](https://img.shields.io/badge/SVG_Shapes-42-FFD93D)](https://boldkit.dev/shapes)
 
-[Website](https://boldkit.dev) · [Documentation](https://boldkit.dev/docs) · [Components](https://boldkit.dev/components) · [Shapes](https://boldkit.dev/shapes)
+[Website](https://boldkit.dev) · [Documentation](https://boldkit.dev/docs) · [Components](https://boldkit.dev/components) · [Charts](https://boldkit.dev/charts) · [Shapes](https://boldkit.dev/shapes)
 
 </div>
 
@@ -29,7 +30,7 @@ A neubrutalism component library for React and Vue 3, built on shadcn/ui.
 
 ![BoldKit Components](assets/preview.png)
 
-*45+ beautifully crafted neubrutalism components for React and Vue 3*
+*50+ beautifully crafted neubrutalism components and 10 chart types for React and Vue 3*
 
 </div>
 
@@ -53,7 +54,8 @@ Neubrutalism (or neo-brutalism) is a bold design aesthetic characterized by:
 
 | Feature | Description |
 |---------|-------------|
-| **45+ Components** | Buttons, Cards, Dialogs, Forms, and more |
+| **50+ Components** | Buttons, Cards, Dialogs, Forms, Spinners, Steppers, and more |
+| **10 Chart Types** | Bar, Line, Area, Pie, Donut, Radar, Radial, Gauge, Sparkline |
 | **42 SVG Shapes** | Decorative shapes for unique layouts |
 | **React & Vue 3** | Full support for both frameworks |
 | **Nuxt Ready** | SSR-compatible with shadcn-nuxt module |
@@ -235,6 +237,7 @@ import { Badge } from '@/components/ui/badge'
 - Slider
 - Label
 - Input OTP
+- **Dropzone** (drag-and-drop file upload) ✨ NEW
 
 </details>
 
@@ -243,12 +246,14 @@ import { Badge } from '@/components/ui/badge'
 
 - Card
 - Layered Card (stacked paper effect)
+- **Stat Card** (statistics display) ✨ NEW
 - Dialog
 - Drawer
 - Sheet
 - Accordion
 - Collapsible
 - Tabs
+- **Stepper** (multi-step forms/wizards) ✨ NEW
 - Scroll Area
 - Aspect Ratio
 - Separator
@@ -263,6 +268,7 @@ import { Badge } from '@/components/ui/badge'
 - Badge
 - Progress
 - Skeleton
+- **Spinner** (5 animation variants) ✨ NEW
 - Sonner (Toast)
 
 </details>
@@ -286,7 +292,22 @@ import { Badge } from '@/components/ui/badge'
 - Avatar
 - Table
 - Calendar
-- Charts (Recharts for React, vue-echarts for Vue)
+- **Kbd** (keyboard shortcut hints) ✨ NEW
+
+</details>
+
+<details>
+<summary><strong>Charts (10 Types)</strong></summary>
+
+- Area Chart
+- Bar Chart
+- Line Chart
+- Pie Chart
+- **Donut Chart** (pie with center content) ✨ NEW
+- **Radar Chart** (multi-variable comparison) ✨ NEW
+- **Radial Bar Chart** (circular progress) ✨ NEW
+- **Gauge Chart** (speedometer KPI) ✨ NEW
+- **Sparkline** (inline trend charts) ✨ NEW
 
 </details>
 

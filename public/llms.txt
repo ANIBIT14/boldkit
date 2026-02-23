@@ -1,20 +1,21 @@
-# BoldKit - Neubrutalism React UI Component Library
+# BoldKit - Neubrutalism UI Component Library for React & Vue 3
 
-> BoldKit is a free, open-source React component library featuring neubrutalism design aesthetics. Built on shadcn/ui with Radix UI primitives and Tailwind CSS v4.
+> BoldKit is a free, open-source component library featuring neubrutalism design aesthetics. Built on shadcn/ui with Radix UI (React) and Reka UI (Vue) primitives and Tailwind CSS v4.
 
 ## Quick Facts
 
-- **Components:** 46 UI components
+- **Components:** 50+ UI components
+- **Charts:** 10 chart types (Bar, Line, Area, Pie, Donut, Radar, Radial, Gauge, Sparkline)
 - **Shapes:** 42 SVG decorative shapes
 - **License:** MIT (free for commercial use)
-- **Framework:** React 19
+- **Frameworks:** React 19 & Vue 3
 - **Styling:** Tailwind CSS v4
 - **TypeScript:** Full type support
-- **Accessibility:** Built on Radix UI primitives
+- **Accessibility:** Built on Radix UI (React) & Reka UI (Vue) primitives
 
 ## Installation
 
-### Using shadcn CLI (Recommended)
+### React (shadcn CLI)
 
 ```bash
 # Install any component
@@ -25,6 +26,19 @@ npx shadcn@latest add https://boldkit.dev/r/shapes.json
 
 # Install theme
 npx shadcn@latest add https://boldkit.dev/r/theme.json
+```
+
+### Vue 3 (shadcn-vue CLI)
+
+```bash
+# Install any component
+npx shadcn-vue@latest add https://boldkit.dev/r/vue/button.json
+
+# Install shapes
+npx shadcn-vue@latest add https://boldkit.dev/r/vue/shapes.json
+
+# Install theme
+npx shadcn-vue@latest add https://boldkit.dev/r/vue/theme.json
 ```
 
 ### All Available Components
@@ -73,6 +87,20 @@ npx shadcn@latest add https://boldkit.dev/r/textarea.json
 npx shadcn@latest add https://boldkit.dev/r/toggle.json
 npx shadcn@latest add https://boldkit.dev/r/toggle-group.json
 npx shadcn@latest add https://boldkit.dev/r/tooltip.json
+
+# NEW v2.5.0 Components
+npx shadcn@latest add https://boldkit.dev/r/spinner.json
+npx shadcn@latest add https://boldkit.dev/r/kbd.json
+npx shadcn@latest add https://boldkit.dev/r/stepper.json
+npx shadcn@latest add https://boldkit.dev/r/dropzone.json
+npx shadcn@latest add https://boldkit.dev/r/stat-card.json
+
+# NEW v2.5.0 Charts
+npx shadcn@latest add https://boldkit.dev/r/sparkline.json
+npx shadcn@latest add https://boldkit.dev/r/donut-chart.json
+npx shadcn@latest add https://boldkit.dev/r/radar-chart.json
+npx shadcn@latest add https://boldkit.dev/r/radial-bar-chart.json
+npx shadcn@latest add https://boldkit.dev/r/gauge-chart.json
 ```
 
 ## Documentation URLs
@@ -260,6 +288,196 @@ const color = getChartColor('vibrant', 0) // 'hsl(0 84% 60%)'
 // CHART_PALETTES.monochrome - Foreground color with opacity variations
 ```
 
+### Spinner Component (NEW v2.5.0)
+
+```tsx
+import { Spinner } from '@/components/ui/spinner'
+
+// Variants: default, dots, bars, blocks, brutal
+<Spinner variant="default" />
+<Spinner variant="dots" />
+<Spinner variant="bars" />
+<Spinner variant="blocks" />
+<Spinner variant="brutal" />
+
+// Sizes: xs, sm, md, lg, xl
+<Spinner size="xs" />
+<Spinner size="lg" />
+```
+
+### Kbd Component (NEW v2.5.0)
+
+```tsx
+import { Kbd, KbdCombo } from '@/components/ui/kbd'
+
+// Single key
+<Kbd>⌘</Kbd>
+<Kbd>Shift</Kbd>
+
+// Key combination
+<KbdCombo keys={['⌘', 'K']} />
+<KbdCombo keys={['Ctrl', 'Shift', 'P']} />
+
+// Variants: default, outline, ghost
+// Sizes: sm, md, lg
+<Kbd variant="outline" size="lg">Enter</Kbd>
+```
+
+### Stepper Component (NEW v2.5.0)
+
+```tsx
+import { Stepper, StepperList, StepperItem, StepperTrigger, StepperContent, StepperSeparator } from '@/components/ui/stepper'
+
+<Stepper defaultValue={1}>
+  <StepperList>
+    <StepperItem value={1}>
+      <StepperTrigger>Step 1</StepperTrigger>
+    </StepperItem>
+    <StepperSeparator />
+    <StepperItem value={2}>
+      <StepperTrigger>Step 2</StepperTrigger>
+    </StepperItem>
+  </StepperList>
+  <StepperContent value={1}>Step 1 content</StepperContent>
+  <StepperContent value={2}>Step 2 content</StepperContent>
+</Stepper>
+
+// Orientation: horizontal, vertical
+// Sizes: sm, md, lg
+```
+
+### Dropzone Component (NEW v2.5.0)
+
+```tsx
+import { Dropzone, FileList } from '@/components/ui/dropzone'
+
+<Dropzone
+  onFilesAccepted={(files) => console.log(files)}
+  onFilesRejected={(rejections) => console.log(rejections)}
+  accept={{ 'image/*': ['.png', '.jpg', '.jpeg'] }}
+  maxSize={5 * 1024 * 1024} // 5MB
+  maxFiles={5}
+>
+  {/* Custom content or use default */}
+</Dropzone>
+
+// Variants: default, compact, minimal
+// With file list:
+<FileList
+  files={uploadedFiles}
+  onRemove={(file) => handleRemove(file)}
+/>
+```
+
+### StatCard Component (NEW v2.5.0)
+
+```tsx
+import { StatCard } from '@/components/ui/stat-card'
+
+<StatCard
+  title="Total Revenue"
+  value="$45,231"
+  change="+20.1%"
+  trend="up"
+  icon={<DollarSign />}
+  color="success"
+/>
+
+// Props:
+// trend: "up" | "down"
+// color: "primary" | "secondary" | "accent" | "success" | "warning" | "info" | "destructive"
+// variant: "default" | "compact" | "large"
+```
+
+### Gauge Chart (NEW v2.5.0)
+
+```tsx
+import { GaugeChart } from '@/components/ui/chart'
+
+<GaugeChart
+  value={75}
+  min={0}
+  max={100}
+  label="Performance"
+  zones={[
+    { from: 0, to: 33, color: 'hsl(var(--destructive))', label: 'Low' },
+    { from: 33, to: 66, color: 'hsl(var(--warning))', label: 'Medium' },
+    { from: 66, to: 100, color: 'hsl(var(--success))', label: 'High' },
+  ]}
+/>
+
+// Sizes: sm, md, lg
+// Shows animated needle, zones, and value display
+```
+
+### Sparkline (NEW v2.5.0)
+
+```tsx
+import { Sparkline } from '@/components/ui/chart'
+
+<Sparkline
+  data={[10, 25, 15, 30, 20, 45, 35]}
+  type="line"
+  color="hsl(var(--primary))"
+  height={32}
+  showEndDot
+/>
+
+// Types: line, area, bar
+// Great for inline trend visualization in tables or stat cards
+```
+
+### Donut Chart (NEW v2.5.0)
+
+```tsx
+import { DonutChart, DonutChartCenter } from '@/components/ui/chart'
+
+<DonutChart
+  data={chartData}
+  config={chartConfig}
+  innerRadius="60%"
+  outerRadius="80%"
+>
+  <DonutChartCenter>
+    <div className="text-2xl font-bold">$12.5K</div>
+    <div className="text-sm text-muted-foreground">Total</div>
+  </DonutChartCenter>
+</DonutChart>
+
+// Variants: default, separated (with gaps between segments)
+```
+
+### Radar Chart (NEW v2.5.0)
+
+```tsx
+import { RadarChart } from '@/components/ui/chart'
+
+<RadarChart
+  data={skillsData}
+  dataKeys={['current', 'target']}
+  config={chartConfig}
+  showLegend
+/>
+
+// Great for multi-variable comparison (skills, metrics, etc.)
+```
+
+### Radial Bar Chart (NEW v2.5.0)
+
+```tsx
+import { RadialBarChart } from '@/components/ui/chart'
+
+<RadialBarChart
+  data={progressData}
+  config={chartConfig}
+  showLabel
+  showBackground
+/>
+
+// Variants: default, stacked, nested
+// Shows circular progress bars
+```
+
 ## Design Tokens (CSS Variables)
 
 ### Colors (HSL Format)
@@ -298,29 +516,42 @@ const color = getChartColor('vibrant', 0) // 'hsl(0 84% 60%)'
 ## Component Categories
 
 ### Layout & Containers
-- Card, Layered Card, Dialog, Drawer, Sheet, Accordion, Collapsible, Tabs, Scroll Area
+- Card, Layered Card, StatCard (NEW), Dialog, Drawer, Sheet, Accordion, Collapsible, Tabs, Stepper (NEW), Scroll Area
 
 ### Form Controls
-- Button, Input, Textarea, Checkbox, Radio Group, Select, Switch, Slider, Input OTP, Label
+- Button, Input, Textarea, Checkbox, Radio Group, Select, Switch, Slider, Input OTP, Label, Dropzone (NEW)
 
 ### Feedback & Status
-- Alert, Alert Dialog, Badge, Progress, Skeleton, Sonner (Toast)
+- Alert, Alert Dialog, Badge, Progress, Skeleton, Spinner (NEW), Sonner (Toast)
 
 ### Navigation
 - Breadcrumb, Dropdown Menu, Pagination, Command (Command Palette)
 
 ### Data Display
-- Avatar, Table, Hover Card, Tooltip, Calendar, Charts (Area, Bar, Line, Pie)
+- Avatar, Table, Hover Card, Tooltip, Calendar, Kbd (NEW)
+
+### Charts (10 Types)
+- Area Chart, Bar Chart, Line Chart, Pie Chart
+- Donut Chart (NEW), Radar Chart (NEW), Radial Bar Chart (NEW), Gauge Chart (NEW), Sparkline (NEW)
 
 ### Decorative (Neubrutalism Special)
 - Sticker, Stamp, StickyNote, Marquee, 42 SVG Shapes
 
 ## Tech Stack
 
+### React
 - React 19
+- Radix UI Primitives (accessibility)
+- Recharts (data visualization)
+
+### Vue 3
+- Vue 3 with Composition API
+- Reka UI Primitives (Radix port for Vue)
+- vue-echarts (data visualization)
+
+### Shared
 - TypeScript
 - Tailwind CSS v4
-- Radix UI Primitives (accessibility)
 - Class Variance Authority (variants)
 - Vite (build tool)
 

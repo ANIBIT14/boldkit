@@ -19,6 +19,12 @@ import {
   ChartLegendContent,
   CHART_PALETTES,
   getChartColor,
+  Sparkline,
+  DonutChart,
+  DonutChartCenter,
+  RadialBarChart,
+  RadarChart,
+  GaugeChart,
 } from '@/components/ui/chart'
 import type { ChartConfig, ChartPalette } from '@/components/ui/chart'
 import {
@@ -35,7 +41,7 @@ import {
   YAxis,
   Cell,
 } from 'recharts'
-import { TrendingUp, TrendingDown, Code, Copy, Check } from 'lucide-react'
+import { TrendingUp, TrendingDown, Code, Copy, Check, AreaChart as AreaIcon, BarChart3, LineChart as LineIcon, PieChart as PieIcon, Circle, Target, Radar, Gauge, Sparkles, Palette } from 'lucide-react'
 import { Layout } from '@/components/layout'
 import { useFramework, FrameworkToggle, ReactIcon, VueIcon } from '@/hooks/use-framework'
 import { SEO, pageSEO } from '@/components/SEO'
@@ -1385,16 +1391,82 @@ export function Charts() {
 
       <main className="container mx-auto py-6 md:py-8 px-4 md:px-6 overflow-x-hidden">
         <Tabs defaultValue="area" className="w-full">
-          <div className="flex justify-center mb-6 md:mb-8 -mx-4 px-4 md:mx-0 md:px-0">
-            <ScrollArea className="w-full md:w-auto">
-              <TabsList className="inline-flex w-max md:w-auto">
-                <TabsTrigger value="area">Area</TabsTrigger>
-                <TabsTrigger value="bar">Bar</TabsTrigger>
-                <TabsTrigger value="line">Line</TabsTrigger>
-                <TabsTrigger value="pie">Pie</TabsTrigger>
-                <TabsTrigger value="styles">Styles</TabsTrigger>
+          {/* Chart Type Selector */}
+          <div className="mb-8 md:mb-10">
+            <div className="grid grid-cols-5 md:grid-cols-10 gap-2 md:gap-3 max-w-4xl mx-auto">
+              <TabsList className="contents">
+                <TabsTrigger
+                  value="area"
+                  className="flex flex-col items-center gap-1.5 h-auto py-3 px-2 md:px-4 data-[state=active]:shadow-[3px_3px_0px_hsl(var(--shadow-color))]"
+                >
+                  <AreaIcon className="h-5 w-5 md:h-6 md:w-6" />
+                  <span className="text-[10px] md:text-xs font-bold uppercase tracking-wide">Area</span>
+                </TabsTrigger>
+                <TabsTrigger
+                  value="bar"
+                  className="flex flex-col items-center gap-1.5 h-auto py-3 px-2 md:px-4 data-[state=active]:shadow-[3px_3px_0px_hsl(var(--shadow-color))]"
+                >
+                  <BarChart3 className="h-5 w-5 md:h-6 md:w-6" />
+                  <span className="text-[10px] md:text-xs font-bold uppercase tracking-wide">Bar</span>
+                </TabsTrigger>
+                <TabsTrigger
+                  value="line"
+                  className="flex flex-col items-center gap-1.5 h-auto py-3 px-2 md:px-4 data-[state=active]:shadow-[3px_3px_0px_hsl(var(--shadow-color))]"
+                >
+                  <LineIcon className="h-5 w-5 md:h-6 md:w-6" />
+                  <span className="text-[10px] md:text-xs font-bold uppercase tracking-wide">Line</span>
+                </TabsTrigger>
+                <TabsTrigger
+                  value="pie"
+                  className="flex flex-col items-center gap-1.5 h-auto py-3 px-2 md:px-4 data-[state=active]:shadow-[3px_3px_0px_hsl(var(--shadow-color))]"
+                >
+                  <PieIcon className="h-5 w-5 md:h-6 md:w-6" />
+                  <span className="text-[10px] md:text-xs font-bold uppercase tracking-wide">Pie</span>
+                </TabsTrigger>
+                <TabsTrigger
+                  value="donut"
+                  className="flex flex-col items-center gap-1.5 h-auto py-3 px-2 md:px-4 data-[state=active]:shadow-[3px_3px_0px_hsl(var(--shadow-color))]"
+                >
+                  <Circle className="h-5 w-5 md:h-6 md:w-6" />
+                  <span className="text-[10px] md:text-xs font-bold uppercase tracking-wide">Donut</span>
+                </TabsTrigger>
+                <TabsTrigger
+                  value="radial"
+                  className="flex flex-col items-center gap-1.5 h-auto py-3 px-2 md:px-4 data-[state=active]:shadow-[3px_3px_0px_hsl(var(--shadow-color))]"
+                >
+                  <Target className="h-5 w-5 md:h-6 md:w-6" />
+                  <span className="text-[10px] md:text-xs font-bold uppercase tracking-wide">Radial</span>
+                </TabsTrigger>
+                <TabsTrigger
+                  value="radar"
+                  className="flex flex-col items-center gap-1.5 h-auto py-3 px-2 md:px-4 data-[state=active]:shadow-[3px_3px_0px_hsl(var(--shadow-color))]"
+                >
+                  <Radar className="h-5 w-5 md:h-6 md:w-6" />
+                  <span className="text-[10px] md:text-xs font-bold uppercase tracking-wide">Radar</span>
+                </TabsTrigger>
+                <TabsTrigger
+                  value="gauge"
+                  className="flex flex-col items-center gap-1.5 h-auto py-3 px-2 md:px-4 data-[state=active]:shadow-[3px_3px_0px_hsl(var(--shadow-color))]"
+                >
+                  <Gauge className="h-5 w-5 md:h-6 md:w-6" />
+                  <span className="text-[10px] md:text-xs font-bold uppercase tracking-wide">Gauge</span>
+                </TabsTrigger>
+                <TabsTrigger
+                  value="sparkline"
+                  className="flex flex-col items-center gap-1.5 h-auto py-3 px-2 md:px-4 data-[state=active]:shadow-[3px_3px_0px_hsl(var(--shadow-color))]"
+                >
+                  <Sparkles className="h-5 w-5 md:h-6 md:w-6" />
+                  <span className="text-[10px] md:text-xs font-bold uppercase tracking-wide">Spark</span>
+                </TabsTrigger>
+                <TabsTrigger
+                  value="styles"
+                  className="flex flex-col items-center gap-1.5 h-auto py-3 px-2 md:px-4 data-[state=active]:shadow-[3px_3px_0px_hsl(var(--shadow-color))]"
+                >
+                  <Palette className="h-5 w-5 md:h-6 md:w-6" />
+                  <span className="text-[10px] md:text-xs font-bold uppercase tracking-wide">Styles</span>
+                </TabsTrigger>
               </TabsList>
-            </ScrollArea>
+            </div>
           </div>
 
           {/* Area Charts */}
@@ -1860,6 +1932,474 @@ export function Charts() {
                     </Pie>
                   </PieChart>
                 </ChartContainer>
+              </ChartCard>
+            </div>
+          </TabsContent>
+
+          {/* Donut Charts */}
+          <TabsContent value="donut" className="space-y-8">
+            <div className="grid gap-8 md:grid-cols-2">
+              <ChartCard
+                title="Donut Chart"
+                description="Browser market share distribution"
+                trend="up"
+                trendValue="+12.5%"
+                code={`<DonutChart
+  data={[
+    { name: 'Chrome', value: 275, fill: 'hsl(var(--primary))' },
+    { name: 'Safari', value: 200, fill: 'hsl(var(--secondary))' },
+    { name: 'Firefox', value: 187, fill: 'hsl(var(--accent))' },
+    { name: 'Edge', value: 173, fill: 'hsl(var(--success))' },
+  ]}
+  config={chartConfig}
+/>`}
+                vueCode={`<!-- Vue: Use vue-echarts with pie chart type -->`}
+              >
+                <DonutChart
+                  data={[
+                    { name: 'Chrome', value: 275, fill: 'hsl(var(--primary))' },
+                    { name: 'Safari', value: 200, fill: 'hsl(var(--secondary))' },
+                    { name: 'Firefox', value: 187, fill: 'hsl(var(--accent))' },
+                    { name: 'Edge', value: 173, fill: 'hsl(var(--success))' },
+                  ]}
+                  config={pieChartConfig}
+                  className="h-[300px] w-full"
+                />
+              </ChartCard>
+
+              <ChartCard
+                title="Donut with Center Content"
+                description="Total visitors displayed in center"
+                trend="up"
+                trendValue="+8.3%"
+                code={`<DonutChart
+  data={donutData}
+  config={chartConfig}
+  centerContent={<DonutChartCenter value="835" label="Total" />}
+/>`}
+                vueCode={`<!-- Vue: Use vue-echarts with center label -->`}
+              >
+                <DonutChart
+                  data={[
+                    { name: 'Chrome', value: 275, fill: 'hsl(var(--primary))' },
+                    { name: 'Safari', value: 200, fill: 'hsl(var(--secondary))' },
+                    { name: 'Firefox', value: 187, fill: 'hsl(var(--accent))' },
+                    { name: 'Edge', value: 173, fill: 'hsl(var(--success))' },
+                  ]}
+                  config={pieChartConfig}
+                  centerContent={<DonutChartCenter value="835" label="Total" />}
+                  className="h-[300px] w-full"
+                />
+              </ChartCard>
+
+              <ChartCard
+                title="Separated Donut"
+                description="Segments with visual separation"
+                trend="up"
+                trendValue="0%"
+                code={`<DonutChart data={data} config={config} variant="separated" />`}
+                vueCode={`<!-- Vue: Use vue-echarts with padAngle -->`}
+              >
+                <DonutChart
+                  data={[
+                    { name: 'Desktop', value: 450, fill: 'hsl(var(--primary))' },
+                    { name: 'Mobile', value: 320, fill: 'hsl(var(--secondary))' },
+                    { name: 'Tablet', value: 180, fill: 'hsl(var(--accent))' },
+                  ]}
+                  config={chartConfig}
+                  variant="separated"
+                  className="h-[300px] w-full"
+                />
+              </ChartCard>
+
+              <ChartCard
+                title="Donut with Labels"
+                description="Outside labels showing percentages"
+                trend="down"
+                trendValue="-3.2%"
+                code={`<DonutChart data={data} config={config} showLabels="outside" />`}
+                vueCode={`<!-- Vue: Use vue-echarts with label config -->`}
+              >
+                <DonutChart
+                  data={[
+                    { name: 'Q1', value: 250, fill: 'hsl(var(--primary))' },
+                    { name: 'Q2', value: 300, fill: 'hsl(var(--secondary))' },
+                    { name: 'Q3', value: 280, fill: 'hsl(var(--accent))' },
+                    { name: 'Q4', value: 320, fill: 'hsl(var(--success))' },
+                  ]}
+                  config={chartConfig}
+                  showLabels="outside"
+                  className="h-[300px] w-full"
+                />
+              </ChartCard>
+            </div>
+          </TabsContent>
+
+          {/* Radial Bar Charts */}
+          <TabsContent value="radial" className="space-y-8">
+            <div className="grid gap-8 md:grid-cols-2">
+              <ChartCard
+                title="Radial Bar Chart"
+                description="Progress rings for multiple metrics"
+                trend="up"
+                trendValue="+15.2%"
+                code={`<RadialBarChart
+  data={[
+    { name: 'Progress', value: 75 },
+    { name: 'Goals', value: 60 },
+    { name: 'Tasks', value: 45 },
+  ]}
+  config={chartConfig}
+/>`}
+                vueCode={`<!-- Vue: Use vue-echarts with gauge type -->`}
+              >
+                <RadialBarChart
+                  data={[
+                    { name: 'Progress', value: 75, fill: 'hsl(var(--primary))' },
+                    { name: 'Goals', value: 60, fill: 'hsl(var(--secondary))' },
+                    { name: 'Tasks', value: 45, fill: 'hsl(var(--accent))' },
+                  ]}
+                  config={{
+                    Progress: { label: 'Progress', color: 'hsl(var(--primary))' },
+                    Goals: { label: 'Goals', color: 'hsl(var(--secondary))' },
+                    Tasks: { label: 'Tasks', color: 'hsl(var(--accent))' },
+                  }}
+                  className="h-[300px] w-full"
+                />
+              </ChartCard>
+
+              <ChartCard
+                title="Radial with Legend"
+                description="Shows legend at bottom"
+                trend="up"
+                trendValue="+7.8%"
+                code={`<RadialBarChart data={data} config={config} showLegend />`}
+                vueCode={`<!-- Vue: Use vue-echarts with legend -->`}
+              >
+                <RadialBarChart
+                  data={[
+                    { name: 'Sales', value: 85, fill: 'hsl(var(--success))' },
+                    { name: 'Revenue', value: 70, fill: 'hsl(var(--primary))' },
+                    { name: 'Expenses', value: 55, fill: 'hsl(var(--warning))' },
+                  ]}
+                  config={{
+                    Sales: { label: 'Sales', color: 'hsl(var(--success))' },
+                    Revenue: { label: 'Revenue', color: 'hsl(var(--primary))' },
+                    Expenses: { label: 'Expenses', color: 'hsl(var(--warning))' },
+                  }}
+                  showLegend
+                  className="h-[300px] w-full"
+                />
+              </ChartCard>
+            </div>
+          </TabsContent>
+
+          {/* Radar Charts */}
+          <TabsContent value="radar" className="space-y-8">
+            <div className="grid gap-8 md:grid-cols-2">
+              <ChartCard
+                title="Radar Chart"
+                description="Multi-variable comparison"
+                trend="up"
+                trendValue="+9.4%"
+                code={`<RadarChart
+  data={[
+    { subject: 'Math', A: 120, B: 110 },
+    { subject: 'Chinese', A: 98, B: 130 },
+    { subject: 'English', A: 86, B: 130 },
+    { subject: 'Geography', A: 99, B: 100 },
+    { subject: 'Physics', A: 85, B: 90 },
+  ]}
+  dataKeys={['A', 'B']}
+  config={chartConfig}
+/>`}
+                vueCode={`<!-- Vue: Use vue-echarts with radar type -->`}
+              >
+                <RadarChart
+                  data={[
+                    { subject: 'Math', A: 120, B: 110 },
+                    { subject: 'Chinese', A: 98, B: 130 },
+                    { subject: 'English', A: 86, B: 130 },
+                    { subject: 'Geography', A: 99, B: 100 },
+                    { subject: 'Physics', A: 85, B: 90 },
+                    { subject: 'Chemistry', A: 65, B: 85 },
+                  ]}
+                  dataKeys={['A', 'B']}
+                  config={{
+                    A: { label: 'Student A', color: 'hsl(var(--primary))' },
+                    B: { label: 'Student B', color: 'hsl(var(--secondary))' },
+                  }}
+                  className="h-[300px] w-full"
+                />
+              </ChartCard>
+
+              <ChartCard
+                title="Filled Radar"
+                description="Solid fill with opacity"
+                trend="up"
+                trendValue="0%"
+                code={`<RadarChart data={data} dataKeys={keys} variant="filled" />`}
+                vueCode={`<!-- Vue: Use vue-echarts with areaStyle -->`}
+              >
+                <RadarChart
+                  data={[
+                    { subject: 'Speed', value: 80 },
+                    { subject: 'Strength', value: 90 },
+                    { subject: 'Defense', value: 70 },
+                    { subject: 'Magic', value: 85 },
+                    { subject: 'Stamina', value: 75 },
+                  ]}
+                  dataKeys={['value']}
+                  config={{
+                    value: { label: 'Stats', color: 'hsl(var(--primary))' },
+                  }}
+                  variant="filled"
+                  showLegend={false}
+                  className="h-[300px] w-full"
+                />
+              </ChartCard>
+
+              <ChartCard
+                title="Outlined Radar"
+                description="Line only, no fill"
+                trend="down"
+                trendValue="-2.1%"
+                code={`<RadarChart data={data} dataKeys={keys} variant="outlined" />`}
+                vueCode={`<!-- Vue: Use vue-echarts without areaStyle -->`}
+              >
+                <RadarChart
+                  data={[
+                    { subject: 'Jan', sales: 65, target: 80 },
+                    { subject: 'Feb', sales: 75, target: 80 },
+                    { subject: 'Mar', sales: 90, target: 80 },
+                    { subject: 'Apr', sales: 70, target: 80 },
+                    { subject: 'May', sales: 85, target: 80 },
+                    { subject: 'Jun', sales: 95, target: 80 },
+                  ]}
+                  dataKeys={['sales', 'target']}
+                  config={{
+                    sales: { label: 'Sales', color: 'hsl(var(--primary))' },
+                    target: { label: 'Target', color: 'hsl(var(--destructive))' },
+                  }}
+                  variant="outlined"
+                  className="h-[300px] w-full"
+                />
+              </ChartCard>
+            </div>
+          </TabsContent>
+
+          {/* Gauge Charts */}
+          <TabsContent value="gauge" className="space-y-8">
+            <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+              <ChartCard
+                title="Gauge Chart"
+                description="Performance indicator"
+                trend="up"
+                trendValue="+5%"
+                code={`<GaugeChart value={72} label="Performance" />`}
+                vueCode={`<!-- Vue: Use vue-echarts with gauge type -->`}
+              >
+                <div className="flex justify-center py-4">
+                  <GaugeChart value={72} label="Performance" />
+                </div>
+              </ChartCard>
+
+              <ChartCard
+                title="Low Value"
+                description="In the danger zone"
+                trend="down"
+                trendValue="-15%"
+                code={`<GaugeChart value={25} label="CPU" />`}
+                vueCode={`<!-- Vue: Use vue-echarts gauge -->`}
+              >
+                <div className="flex justify-center py-4">
+                  <GaugeChart value={25} label="CPU" />
+                </div>
+              </ChartCard>
+
+              <ChartCard
+                title="High Value"
+                description="Excellent performance"
+                trend="up"
+                trendValue="+20%"
+                code={`<GaugeChart value={92} label="Score" />`}
+                vueCode={`<!-- Vue: Use vue-echarts gauge -->`}
+              >
+                <div className="flex justify-center py-4">
+                  <GaugeChart value={92} label="Score" />
+                </div>
+              </ChartCard>
+
+              <ChartCard
+                title="Custom Zones"
+                description="Temperature monitoring"
+                trend="up"
+                trendValue=""
+                code={`<GaugeChart
+  value={65}
+  zones={[
+    { from: 0, to: 50, color: 'hsl(var(--info))' },
+    { from: 50, to: 80, color: 'hsl(var(--warning))' },
+    { from: 80, to: 100, color: 'hsl(var(--destructive))' },
+  ]}
+  label="Temp"
+/>`}
+                vueCode={`<!-- Vue: Use vue-echarts with axisLine data -->`}
+              >
+                <div className="flex justify-center py-4">
+                  <GaugeChart
+                    value={65}
+                    zones={[
+                      { from: 0, to: 50, color: 'hsl(var(--info))' },
+                      { from: 50, to: 80, color: 'hsl(var(--warning))' },
+                      { from: 80, to: 100, color: 'hsl(var(--destructive))' },
+                    ]}
+                    label="Temp"
+                  />
+                </div>
+              </ChartCard>
+
+              <ChartCard
+                title="Small Size"
+                description="Compact gauge"
+                trend="up"
+                trendValue="+3%"
+                code={`<GaugeChart value={60} size="sm" />`}
+                vueCode={`<!-- Vue: Adjust size in styles -->`}
+              >
+                <div className="flex justify-center py-4">
+                  <GaugeChart value={60} size="sm" />
+                </div>
+              </ChartCard>
+
+              <ChartCard
+                title="Large Size"
+                description="Prominent display"
+                trend="up"
+                trendValue="+8%"
+                code={`<GaugeChart value={85} size="lg" label="Health" />`}
+                vueCode={`<!-- Vue: Adjust size in styles -->`}
+              >
+                <div className="flex justify-center py-4">
+                  <GaugeChart value={85} size="lg" label="Health" />
+                </div>
+              </ChartCard>
+            </div>
+          </TabsContent>
+
+          {/* Sparkline Charts */}
+          <TabsContent value="sparkline" className="space-y-8">
+            <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+              <ChartCard
+                title="Line Sparkline"
+                description="Inline trend indicator"
+                trend="up"
+                trendValue="+12%"
+                code={`<Sparkline data={[10, 25, 15, 30, 20, 35, 28]} type="line" />`}
+                vueCode={`<!-- Vue: Use vue-echarts mini line chart -->`}
+              >
+                <div className="flex items-center justify-center h-[100px]">
+                  <Sparkline
+                    data={[10, 25, 15, 30, 20, 35, 28]}
+                    type="line"
+                    height={48}
+                    width={200}
+                  />
+                </div>
+              </ChartCard>
+
+              <ChartCard
+                title="Area Sparkline"
+                description="With gradient fill"
+                trend="up"
+                trendValue="+8%"
+                code={`<Sparkline data={data} type="area" trend="up" />`}
+                vueCode={`<!-- Vue: Use vue-echarts with areaStyle -->`}
+              >
+                <div className="flex items-center justify-center h-[100px]">
+                  <Sparkline
+                    data={[5, 15, 10, 25, 18, 30, 22, 35]}
+                    type="area"
+                    trend="up"
+                    height={48}
+                    width={200}
+                  />
+                </div>
+              </ChartCard>
+
+              <ChartCard
+                title="Bar Sparkline"
+                description="Mini bar chart"
+                trend="up"
+                trendValue="0%"
+                code={`<Sparkline data={data} type="bar" />`}
+                vueCode={`<!-- Vue: Use vue-echarts bar type -->`}
+              >
+                <div className="flex items-center justify-center h-[100px]">
+                  <Sparkline
+                    data={[20, 35, 25, 40, 30, 45, 35]}
+                    type="bar"
+                    height={48}
+                    width={200}
+                  />
+                </div>
+              </ChartCard>
+
+              <ChartCard
+                title="Upward Trend"
+                description="Success coloring"
+                trend="up"
+                trendValue="+25%"
+                code={`<Sparkline data={data} trend="up" showEndDot />`}
+                vueCode={`<!-- Vue: Style with success color -->`}
+              >
+                <div className="flex items-center justify-center h-[100px]">
+                  <Sparkline
+                    data={[10, 12, 15, 14, 18, 22, 25, 30]}
+                    trend="up"
+                    showEndDot
+                    height={48}
+                    width={200}
+                  />
+                </div>
+              </ChartCard>
+
+              <ChartCard
+                title="Downward Trend"
+                description="Destructive coloring"
+                trend="down"
+                trendValue="-18%"
+                code={`<Sparkline data={data} trend="down" showEndDot />`}
+                vueCode={`<!-- Vue: Style with destructive color -->`}
+              >
+                <div className="flex items-center justify-center h-[100px]">
+                  <Sparkline
+                    data={[30, 28, 25, 22, 20, 18, 15, 12]}
+                    trend="down"
+                    showEndDot
+                    height={48}
+                    width={200}
+                  />
+                </div>
+              </ChartCard>
+
+              <ChartCard
+                title="With End Dot"
+                description="Highlights current value"
+                trend="up"
+                trendValue=""
+                code={`<Sparkline data={data} type="area" showEndDot />`}
+                vueCode={`<!-- Vue: Add markPoint for end -->`}
+              >
+                <div className="flex items-center justify-center h-[100px]">
+                  <Sparkline
+                    data={[15, 20, 18, 25, 22, 28, 24]}
+                    type="area"
+                    showEndDot
+                    height={48}
+                    width={200}
+                  />
+                </div>
               </ChartCard>
             </div>
           </TabsContent>

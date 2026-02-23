@@ -63,6 +63,15 @@ const ToggleDoc = lazy(() => import('@/pages/docs/ToggleDoc').then(m => ({ defau
 const ToggleGroupDoc = lazy(() => import('@/pages/docs/ToggleGroupDoc').then(m => ({ default: m.ToggleGroupDoc })))
 const TooltipDoc = lazy(() => import('@/pages/docs/TooltipDoc').then(m => ({ default: m.TooltipDoc })))
 
+// New v2.5.0 component documentation pages
+const SpinnerDoc = lazy(() => import('@/pages/docs/SpinnerDoc').then(m => ({ default: m.SpinnerDoc })))
+const KbdDoc = lazy(() => import('@/pages/docs/KbdDoc').then(m => ({ default: m.KbdDoc })))
+const StatCardDoc = lazy(() => import('@/pages/docs/StatCardDoc').then(m => ({ default: m.StatCardDoc })))
+const StepperDoc = lazy(() => import('@/pages/docs/StepperDoc').then(m => ({ default: m.StepperDoc })))
+const DropzoneDoc = lazy(() => import('@/pages/docs/DropzoneDoc').then(m => ({ default: m.DropzoneDoc })))
+
+// Note: Chart documentation is now on the /charts page, not individual routes
+
 // Loading fallback for lazy loaded pages
 function PageLoader() {
   return (
@@ -152,6 +161,12 @@ function App() {
               <Route path="toggle" element={<Suspense fallback={<PageLoader />}><ToggleDoc /></Suspense>} />
               <Route path="toggle-group" element={<Suspense fallback={<PageLoader />}><ToggleGroupDoc /></Suspense>} />
               <Route path="tooltip" element={<Suspense fallback={<PageLoader />}><TooltipDoc /></Suspense>} />
+              {/* v2.5.0 Components */}
+              <Route path="spinner" element={<Suspense fallback={<PageLoader />}><SpinnerDoc /></Suspense>} />
+              <Route path="kbd" element={<Suspense fallback={<PageLoader />}><KbdDoc /></Suspense>} />
+              <Route path="stat-card" element={<Suspense fallback={<PageLoader />}><StatCardDoc /></Suspense>} />
+              <Route path="stepper" element={<Suspense fallback={<PageLoader />}><StepperDoc /></Suspense>} />
+              <Route path="dropzone" element={<Suspense fallback={<PageLoader />}><DropzoneDoc /></Suspense>} />
               <Route path="*" element={<Navigate to="/components/button" replace />} />
             </Route>
           </Routes>

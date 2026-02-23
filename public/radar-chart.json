@@ -1,0 +1,20 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "radar-chart",
+  "type": "registry:ui",
+  "description": "Multi-variable comparison chart for skills, metrics, and feature comparisons",
+  "dependencies": [
+    "recharts"
+  ],
+  "registryDependencies": [
+    "utils",
+    "chart"
+  ],
+  "files": [
+    {
+      "path": "registry/default/ui/radar-chart.tsx",
+      "type": "registry:ui",
+      "target": "components/ui/chart/radar-chart.tsx"
+    }
+  ]
+}

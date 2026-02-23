@@ -1,0 +1,23 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "stat-card",
+  "type": "registry:ui",
+  "description": "A statistics display card with trend indicators, progress bars, and color schemes",
+  "dependencies": [
+    "class-variance-authority",
+    "lucide-vue-next"
+  ],
+  "registryDependencies": [
+    "utils",
+    "card",
+    "progress"
+  ],
+  "files": [
+    {
+      "path": "registry/default/ui/StatCard.vue",
+      "content": "<script setup lang=\"ts\">\nimport { computed } from 'vue'\nimport { cva, type VariantProps } from 'class-variance-authority'\nimport { cn } from '@/lib/utils'\nimport Card from './Card.vue'\nimport CardContent from './CardContent.vue'\nimport Progress from './Progress.vue'\nimport { TrendingUp, TrendingDown, Minus } from 'lucide-vue-next'\n\nconst statCardVariants = cva(\n  'relative overflow-hidden',\n  {\n    variants: {\n      variant: {\n        default: '',\n        compact: '[&_.stat-content]:p-4',\n        large: 'md:col-span-2',\n      },\n      colorScheme: {\n        primary: '[&_.stat-icon]:bg-primary [&_.stat-bg]:bg-primary',\n        secondary: '[&_.stat-icon]:bg-secondary [&_.stat-bg]:bg-secondary',\n        accent: '[&_.stat-icon]:bg-accent [&_.stat-bg]:bg-accent',\n        success: '[&_.stat-icon]:bg-success [&_.stat-bg]:bg-success',\n        warning: '[&_.stat-icon]:bg-warning [&_.stat-bg]:bg-warning',\n        info: '[&_.stat-icon]:bg-info [&_.stat-bg]:bg-info',\n        destructive: '[&_.stat-icon]:bg-destructive [&_.stat-bg]:bg-destructive',\n      },\n    },\n    defaultVariants: {\n      variant: 'default',\n      colorScheme: 'primary',\n    },\n  }\n)\n\ntype StatCardVariants = VariantProps<typeof statCardVariants>\n\ninterface StatCardProps {\n  title: string\n  value: string | number\n  change?: string\n  trend?: 'up' | 'down' | 'neutral'\n  progress?: { value: number; label?: string }\n  comparison?: string\n  variant?: StatCardVariants['variant']\n  colorScheme?: StatCardVariants['colorScheme']\n  /** @deprecated Use colorScheme instead */\n  color?: 'primary' | 'secondary' | 'accent' | 'success' | 'warning' | 'info' | 'destructive'\n  class?: string\n}\n\nconst props = withDefaults(defineProps<StatCardProps>(), {\n  trend: 'neutral',\n  comparison: 'vs last month',\n  variant: 'default',\n  colorScheme: undefined,\n  color: undefined,\n})\n\nconst resolvedColorScheme = computed(() => props.colorScheme ?? props.color ?? 'primary')\n\nconst TrendIcon = computed(() => {\n  if (props.trend === 'up') return TrendingUp\n  if (props.trend === 'down') return TrendingDown\n  return Minus\n})\n\nconst trendColor = computed(() => {\n  if (props.trend === 'up') return 'text-success'\n  if (props.trend === 'down') return 'text-destructive'\n  return 'text-muted-foreground'\n})\n</script>\n\n<template>\n  <Card :class=\"cn(statCardVariants({ variant, colorScheme: resolvedColorScheme }), props.class)\">\n    <!-- Decorative background element -->\n    <div class=\"stat-bg absolute top-0 right-0 w-24 h-24 opacity-20 -translate-y-8 translate-x-8 rotate-12\" />\n\n    <CardContent class=\"stat-content p-6\">\n      <div class=\"flex items-start justify-between\">\n        <div>\n          <p class=\"text-sm font-bold uppercase tracking-wide text-muted-foreground mb-1\">\n            {{ title }}\n          </p>\n          <p class=\"text-3xl font-black\">{{ value }}</p>\n          <div v-if=\"change\" :class=\"cn('flex items-center gap-1 mt-2', trendColor)\">\n            <component :is=\"TrendIcon\" class=\"h-4 w-4\" />\n            <span class=\"text-sm font-bold\">{{ change }}</span>\n            <span class=\"text-sm text-muted-foreground\">{{ comparison }}</span>\n          </div>\n        </div>\n        <div v-if=\"$slots.icon\" class=\"stat-icon w-12 h-12 border-3 border-foreground flex items-center justify-center shadow-[3px_3px_0px_hsl(var(--shadow-color))] text-foreground\">\n          <slot name=\"icon\" />\n        </div>\n      </div>\n\n      <!-- Progress section for large variant -->\n      <div v-if=\"(variant === 'large' || progress) && progress\" class=\"mt-4 pt-4 border-t-2 border-foreground/10\">\n        <div class=\"flex items-center justify-between text-sm mb-2\">\n          <span class=\"text-muted-foreground\">{{ progress.label || 'Progress' }}</span>\n          <span class=\"font-bold\">{{ progress.value }}%</span>\n        </div>\n        <Progress :model-value=\"progress.value\" class=\"h-3\" />\n      </div>\n    </CardContent>\n  </Card>\n</template>\n",
+      "type": "registry:ui",
+      "target": "components/ui/StatCard.vue"
+    }
+  ]
+}
