@@ -1,0 +1,51 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "stepper",
+  "type": "registry:ui",
+  "description": "A multi-step wizard component with horizontal and vertical orientations",
+  "dependencies": [
+    "class-variance-authority",
+    "lucide-vue-next"
+  ],
+  "registryDependencies": [
+    "utils"
+  ],
+  "files": [
+    {
+      "path": "registry/default/ui/Stepper.vue",
+      "content": "<script setup lang=\"ts\">\nimport { provide, ref, computed, readonly } from 'vue'\nimport { cn } from '@/lib/utils'\n\nexport interface StepperContext {\n  activeStep: Readonly<ReturnType<typeof ref<number>>>\n  setActiveStep: (step: number) => void\n  totalSteps: Readonly<ReturnType<typeof ref<number>>>\n  orientation: 'horizontal' | 'vertical'\n}\n\nexport const STEPPER_INJECTION_KEY = Symbol('stepper')\n\ninterface StepperProps {\n  activeStep?: number\n  orientation?: 'horizontal' | 'vertical'\n  class?: string\n}\n\nconst props = withDefaults(defineProps<StepperProps>(), {\n  activeStep: undefined,\n  orientation: 'horizontal',\n})\n\nconst emit = defineEmits<{\n  'update:activeStep': [step: number]\n  stepChange: [step: number]\n}>()\n\nconst uncontrolledActiveStep = ref(0)\nconst totalSteps = ref(0)\n\nconst isControlled = computed(() => props.activeStep !== undefined)\nconst currentActiveStep = computed(() => isControlled.value ? props.activeStep! : uncontrolledActiveStep.value)\n\nconst setActiveStep = (step: number) => {\n  if (!isControlled.value) {\n    uncontrolledActiveStep.value = step\n  }\n  emit('update:activeStep', step)\n  emit('stepChange', step)\n}\n\nconst setTotalSteps = (count: number) => {\n  totalSteps.value = count\n}\n\nprovide(STEPPER_INJECTION_KEY, {\n  activeStep: readonly(computed(() => currentActiveStep.value)),\n  setActiveStep,\n  totalSteps: readonly(totalSteps),\n  orientation: props.orientation,\n  setTotalSteps,\n})\n</script>\n\n<template>\n  <div\n    :class=\"cn(\n      'flex',\n      orientation === 'horizontal' ? 'flex-col' : 'flex-row',\n      props.class\n    )\"\n  >\n    <slot />\n  </div>\n</template>\n",
+      "type": "registry:ui",
+      "target": "components/ui/Stepper.vue"
+    },
+    {
+      "path": "registry/default/ui/StepperList.vue",
+      "content": "<script setup lang=\"ts\">\nimport { inject } from 'vue'\nimport { cn } from '@/lib/utils'\nimport { STEPPER_INJECTION_KEY, type StepperContext } from './Stepper.vue'\n\ninterface StepperListProps {\n  class?: string\n}\n\nconst props = defineProps<StepperListProps>()\n\nconst context = inject<StepperContext>(STEPPER_INJECTION_KEY)\nif (!context) {\n  throw new Error('StepperList must be used within a Stepper')\n}\n</script>\n\n<template>\n  <div\n    role=\"tablist\"\n    :class=\"cn(\n      'flex items-center',\n      context.orientation === 'horizontal' ? 'flex-row' : 'flex-col items-start',\n      props.class\n    )\"\n  >\n    <slot />\n  </div>\n</template>\n",
+      "type": "registry:ui",
+      "target": "components/ui/StepperList.vue"
+    },
+    {
+      "path": "registry/default/ui/StepperItem.vue",
+      "content": "<script setup lang=\"ts\">\nimport { provide, inject } from 'vue'\nimport { cn } from '@/lib/utils'\nimport { STEPPER_INJECTION_KEY, type StepperContext } from './Stepper.vue'\n\nexport const STEPPER_ITEM_INJECTION_KEY = Symbol('stepper-item')\n\nexport interface StepperItemContext {\n  index: number\n}\n\ninterface StepperItemProps {\n  index: number\n  class?: string\n}\n\nconst props = defineProps<StepperItemProps>()\n\nconst context = inject<StepperContext>(STEPPER_INJECTION_KEY)\nif (!context) {\n  throw new Error('StepperItem must be used within a Stepper')\n}\n\nprovide(STEPPER_ITEM_INJECTION_KEY, {\n  index: props.index,\n})\n</script>\n\n<template>\n  <div\n    :class=\"cn(\n      'flex items-center',\n      context.orientation === 'horizontal' ? 'flex-row' : 'flex-col',\n      props.class\n    )\"\n  >\n    <slot />\n  </div>\n</template>\n",
+      "type": "registry:ui",
+      "target": "components/ui/StepperItem.vue"
+    },
+    {
+      "path": "registry/default/ui/StepperTrigger.vue",
+      "content": "<script setup lang=\"ts\">\nimport { computed, inject } from 'vue'\nimport { cva, type VariantProps } from 'class-variance-authority'\nimport { cn } from '@/lib/utils'\nimport { Check } from 'lucide-vue-next'\nimport { STEPPER_INJECTION_KEY, type StepperContext } from './Stepper.vue'\nimport { STEPPER_ITEM_INJECTION_KEY, type StepperItemContext } from './StepperItem.vue'\n\nconst stepVariants = cva(\n  'flex items-center justify-center border-3 border-foreground font-bold transition-all duration-200',\n  {\n    variants: {\n      state: {\n        completed: 'bg-success text-success-foreground shadow-[4px_4px_0px_hsl(var(--shadow-color))]',\n        active: 'bg-primary text-primary-foreground shadow-[4px_4px_0px_hsl(var(--shadow-color))] scale-110',\n        upcoming: 'bg-muted text-muted-foreground',\n      },\n      size: {\n        sm: 'h-8 w-8 text-sm',\n        md: 'h-10 w-10',\n        lg: 'h-12 w-12 text-lg',\n      },\n    },\n    defaultVariants: {\n      state: 'upcoming',\n      size: 'md',\n    },\n  }\n)\n\ntype StepVariants = VariantProps<typeof stepVariants>\n\ninterface StepperTriggerProps {\n  size?: StepVariants['size']\n  showStepNumber?: boolean\n  class?: string\n}\n\nconst props = withDefaults(defineProps<StepperTriggerProps>(), {\n  size: 'md',\n  showStepNumber: true,\n})\n\nconst stepperContext = inject<StepperContext>(STEPPER_INJECTION_KEY)\nconst itemContext = inject<StepperItemContext>(STEPPER_ITEM_INJECTION_KEY)\n\nif (!stepperContext || !itemContext) {\n  throw new Error('StepperTrigger must be used within a StepperItem')\n}\n\nconst state = computed<'completed' | 'active' | 'upcoming'>(() => {\n  const activeStep = typeof stepperContext.activeStep === 'object' && 'value' in stepperContext.activeStep\n    ? stepperContext.activeStep.value\n    : stepperContext.activeStep\n  if (itemContext.index < activeStep) return 'completed'\n  if (itemContext.index === activeStep) return 'active'\n  return 'upcoming'\n})\n\nconst handleClick = () => {\n  stepperContext.setActiveStep(itemContext.index)\n}\n</script>\n\n<template>\n  <button\n    type=\"button\"\n    role=\"tab\"\n    :aria-selected=\"state === 'active'\"\n    :class=\"cn(stepVariants({ state, size }), props.class)\"\n    @click=\"handleClick\"\n  >\n    <Check v-if=\"state === 'completed'\" class=\"h-5 w-5\" />\n    <template v-else-if=\"showStepNumber\">{{ itemContext.index + 1 }}</template>\n    <slot v-else />\n  </button>\n</template>\n",
+      "type": "registry:ui",
+      "target": "components/ui/StepperTrigger.vue"
+    },
+    {
+      "path": "registry/default/ui/StepperSeparator.vue",
+      "content": "<script setup lang=\"ts\">\nimport { computed, inject } from 'vue'\nimport { cn } from '@/lib/utils'\nimport { STEPPER_INJECTION_KEY, type StepperContext } from './Stepper.vue'\nimport { STEPPER_ITEM_INJECTION_KEY, type StepperItemContext } from './StepperItem.vue'\n\ninterface StepperSeparatorProps {\n  class?: string\n}\n\nconst props = defineProps<StepperSeparatorProps>()\n\nconst stepperContext = inject<StepperContext>(STEPPER_INJECTION_KEY)\nconst itemContext = inject<StepperItemContext>(STEPPER_ITEM_INJECTION_KEY)\n\nif (!stepperContext || !itemContext) {\n  throw new Error('StepperSeparator must be used within a StepperItem')\n}\n\nconst isCompleted = computed(() => {\n  const activeStep = typeof stepperContext.activeStep === 'object' && 'value' in stepperContext.activeStep\n    ? stepperContext.activeStep.value\n    : stepperContext.activeStep\n  return itemContext.index < activeStep\n})\n</script>\n\n<template>\n  <div\n    :class=\"cn(\n      'transition-all duration-200',\n      stepperContext.orientation === 'horizontal'\n        ? 'h-[3px] flex-1 min-w-8 mx-2'\n        : 'w-[3px] min-h-8 my-2 ml-5',\n      isCompleted\n        ? 'bg-foreground'\n        : 'bg-foreground/30 border-foreground/30',\n      !isCompleted && 'border-dashed border-2 bg-transparent',\n      props.class\n    )\"\n  />\n</template>\n",
+      "type": "registry:ui",
+      "target": "components/ui/StepperSeparator.vue"
+    },
+    {
+      "path": "registry/default/ui/StepperContent.vue",
+      "content": "<script setup lang=\"ts\">\nimport { computed, inject } from 'vue'\nimport { cn } from '@/lib/utils'\nimport { STEPPER_INJECTION_KEY, type StepperContext } from './Stepper.vue'\n\ninterface StepperContentProps {\n  index: number\n  class?: string\n}\n\nconst props = defineProps<StepperContentProps>()\n\nconst context = inject<StepperContext>(STEPPER_INJECTION_KEY)\nif (!context) {\n  throw new Error('StepperContent must be used within a Stepper')\n}\n\nconst isActive = computed(() => {\n  const activeStep = typeof context.activeStep === 'object' && 'value' in context.activeStep\n    ? context.activeStep.value\n    : context.activeStep\n  return props.index === activeStep\n})\n</script>\n\n<template>\n  <div\n    v-if=\"isActive\"\n    role=\"tabpanel\"\n    :class=\"cn('mt-4 animate-[slide-in-from-bottom_200ms_ease-out]', props.class)\"\n  >\n    <slot />\n  </div>\n</template>\n",
+      "type": "registry:ui",
+      "target": "components/ui/StepperContent.vue"
+    }
+  ]
+}

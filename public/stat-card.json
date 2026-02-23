@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "stat-card",
+  "type": "registry:ui",
+  "description": "Statistics card with trend indicators, icons, and optional progress bars",
+  "dependencies": [
+    "class-variance-authority",
+    "lucide-react"
+  ],
+  "registryDependencies": [
+    "utils",
+    "card",
+    "progress"
+  ],
+  "files": [
+    {
+      "path": "registry/default/ui/stat-card.tsx",
+      "type": "registry:ui",
+      "target": "components/ui/stat-card.tsx"
+    }
+  ]
+}

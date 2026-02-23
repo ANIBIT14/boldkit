@@ -1,0 +1,19 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "gauge-chart",
+  "type": "registry:ui",
+  "description": "Speedometer-style gauge with color zones and animated needle - custom SVG implementation",
+  "dependencies": [
+    "class-variance-authority"
+  ],
+  "registryDependencies": [
+    "utils"
+  ],
+  "files": [
+    {
+      "path": "registry/default/ui/gauge-chart.tsx",
+      "type": "registry:ui",
+      "target": "components/ui/chart/gauge-chart.tsx"
+    }
+  ]
+}

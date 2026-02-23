@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "sparkline",
+  "type": "registry:ui",
+  "description": "A compact sparkline chart component for inline data visualization with line, area, and bar variants",
+  "dependencies": [
+    "vue-echarts",
+    "echarts",
+    "class-variance-authority"
+  ],
+  "registryDependencies": [
+    "utils"
+  ],
+  "files": [
+    {
+      "path": "registry/default/ui/SparklineChart.vue",
+      "content": "<script setup lang=\"ts\">\nimport { computed } from 'vue'\nimport { use } from 'echarts/core'\nimport { CanvasRenderer } from 'echarts/renderers'\nimport { BarChart, LineChart } from 'echarts/charts'\nimport { GridComponent } from 'echarts/components'\nimport VChart from 'vue-echarts'\nimport { cn } from '@/lib/utils'\n\n// Register ECharts components\nuse([CanvasRenderer, BarChart, LineChart, GridComponent])\n\ninterface SparklineProps {\n  data: number[]\n  type?: 'line' | 'area' | 'bar'\n  color?: string\n  height?: number\n  width?: number | string\n  showEndDot?: boolean\n  strokeWidth?: number\n  trend?: 'up' | 'down' | 'neutral'\n  animated?: boolean\n  class?: string\n}\n\nconst props = withDefaults(defineProps<SparklineProps>(), {\n  type: 'line',\n  height: 32,\n  width: '100%',\n  showEndDot: false,\n  strokeWidth: 2,\n  animated: true,\n})\n\nconst resolvedColor = computed(() => {\n  if (props.color) return props.color\n  if (props.trend === 'up') return 'hsl(var(--success))'\n  if (props.trend === 'down') return 'hsl(var(--destructive))'\n  return 'hsl(var(--primary))'\n})\n\nconst strokeColor = 'hsl(var(--foreground))'\n\nconst option = computed(() => {\n  const baseOption = {\n    animation: props.animated,\n    animationDuration: 300,\n    grid: {\n      left: 0,\n      right: 0,\n      top: 0,\n      bottom: 0,\n    },\n    xAxis: {\n      type: 'category',\n      show: false,\n      data: props.data.map((_, i) => i),\n    },\n    yAxis: {\n      type: 'value',\n      show: false,\n      min: Math.min(...props.data) * 0.9,\n      max: Math.max(...props.data) * 1.1,\n    },\n  }\n\n  if (props.type === 'bar') {\n    return {\n      ...baseOption,\n      series: [{\n        type: 'bar',\n        data: props.data,\n        itemStyle: {\n          color: resolvedColor.value,\n          borderColor: strokeColor,\n          borderWidth: 1,\n        },\n      }],\n    }\n  }\n\n  if (props.type === 'area') {\n    return {\n      ...baseOption,\n      series: [{\n        type: 'line',\n        data: props.data,\n        smooth: true,\n        symbol: props.showEndDot ? 'circle' : 'none',\n        symbolSize: (_, params) => params.dataIndex === props.data.length - 1 ? 8 : 0,\n        lineStyle: {\n          color: strokeColor,\n          width: props.strokeWidth,\n        },\n        itemStyle: {\n          color: resolvedColor.value,\n          borderColor: strokeColor,\n          borderWidth: 2,\n        },\n        areaStyle: {\n          color: {\n            type: 'linear',\n            x: 0,\n            y: 0,\n            x2: 0,\n            y2: 1,\n            colorStops: [\n              { offset: 0, color: resolvedColor.value.replace(')', ' / 0.6)').replace('hsl', 'hsla') },\n              { offset: 1, color: resolvedColor.value.replace(')', ' / 0.1)').replace('hsl', 'hsla') },\n            ],\n          },\n        },\n      }],\n    }\n  }\n\n  // Default: line\n  return {\n    ...baseOption,\n    series: [{\n      type: 'line',\n      data: props.data,\n      smooth: true,\n      symbol: props.showEndDot ? 'circle' : 'none',\n      symbolSize: (_, params) => params.dataIndex === props.data.length - 1 ? 8 : 0,\n      lineStyle: {\n        color: strokeColor,\n        width: props.strokeWidth,\n      },\n      itemStyle: {\n        color: resolvedColor.value,\n        borderColor: strokeColor,\n        borderWidth: 2,\n      },\n    }],\n  }\n})\n</script>\n\n<template>\n  <div\n    :class=\"cn('inline-block', props.class)\"\n    :style=\"{ width: typeof width === 'number' ? `${width}px` : width, height: `${height}px` }\"\n  >\n    <VChart :option=\"option\" :autoresize=\"true\" style=\"width: 100%; height: 100%\" />\n  </div>\n</template>\n",
+      "type": "registry:ui",
+      "target": "components/ui/SparklineChart.vue"
+    }
+  ]
+}

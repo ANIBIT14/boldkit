@@ -714,6 +714,146 @@
           "target": "styles/globals.css"
         }
       ]
+    },
+    {
+      "name": "spinner",
+      "type": "registry:ui",
+      "description": "Loading spinner with multiple animation variants - dots, bars, blocks, and brutal shadow spin",
+      "dependencies": ["class-variance-authority"],
+      "registryDependencies": ["utils"],
+      "files": [
+        {
+          "path": "registry/default/ui/spinner.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/spinner.tsx"
+        }
+      ]
+    },
+    {
+      "name": "kbd",
+      "type": "registry:ui",
+      "description": "Keyboard key indicator for displaying shortcuts and hotkeys with neubrutalism styling",
+      "dependencies": ["class-variance-authority"],
+      "registryDependencies": ["utils"],
+      "files": [
+        {
+          "path": "registry/default/ui/kbd.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/kbd.tsx"
+        }
+      ]
+    },
+    {
+      "name": "stat-card",
+      "type": "registry:ui",
+      "description": "Statistics card with trend indicators, icons, and optional progress bars",
+      "dependencies": ["class-variance-authority", "lucide-react"],
+      "registryDependencies": ["utils", "card", "progress"],
+      "files": [
+        {
+          "path": "registry/default/ui/stat-card.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/stat-card.tsx"
+        }
+      ]
+    },
+    {
+      "name": "stepper",
+      "type": "registry:ui",
+      "description": "Multi-step form wizard with progress indicators, compound components pattern",
+      "dependencies": ["class-variance-authority", "lucide-react"],
+      "registryDependencies": ["utils"],
+      "files": [
+        {
+          "path": "registry/default/ui/stepper.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/stepper.tsx"
+        }
+      ]
+    },
+    {
+      "name": "dropzone",
+      "type": "registry:ui",
+      "description": "Drag-and-drop file upload with validation, progress tracking, and file list",
+      "dependencies": ["class-variance-authority", "lucide-react"],
+      "registryDependencies": ["utils", "progress", "spinner"],
+      "files": [
+        {
+          "path": "registry/default/ui/dropzone.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/dropzone.tsx"
+        }
+      ]
+    },
+    {
+      "name": "sparkline",
+      "type": "registry:ui",
+      "description": "Tiny inline trend charts for tables and stat cards - line, area, and bar variants",
+      "dependencies": ["recharts"],
+      "registryDependencies": ["utils"],
+      "files": [
+        {
+          "path": "registry/default/ui/sparkline.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/chart/sparkline.tsx"
+        }
+      ]
+    },
+    {
+      "name": "donut-chart",
+      "type": "registry:ui",
+      "description": "Pie chart with center hole for KPI display, supports center content slot",
+      "dependencies": ["recharts"],
+      "registryDependencies": ["utils", "chart"],
+      "files": [
+        {
+          "path": "registry/default/ui/donut-chart.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/chart/donut-chart.tsx"
+        }
+      ]
+    },
+    {
+      "name": "radial-bar-chart",
+      "type": "registry:ui",
+      "description": "Circular progress bars with nested rings for multiple metrics",
+      "dependencies": ["recharts"],
+      "registryDependencies": ["utils", "chart"],
+      "files": [
+        {
+          "path": "registry/default/ui/radial-bar-chart.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/chart/radial-bar-chart.tsx"
+        }
+      ]
+    },
+    {
+      "name": "radar-chart",
+      "type": "registry:ui",
+      "description": "Multi-variable comparison chart for skills, metrics, and feature comparisons",
+      "dependencies": ["recharts"],
+      "registryDependencies": ["utils", "chart"],
+      "files": [
+        {
+          "path": "registry/default/ui/radar-chart.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/chart/radar-chart.tsx"
+        }
+      ]
+    },
+    {
+      "name": "gauge-chart",
+      "type": "registry:ui",
+      "description": "Speedometer-style gauge with color zones and animated needle - custom SVG implementation",
+      "dependencies": ["class-variance-authority"],
+      "registryDependencies": ["utils"],
+      "files": [
+        {
+          "path": "registry/default/ui/gauge-chart.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/chart/gauge-chart.tsx"
+        }
+      ]
     }
   ]
 }

@@ -25,8 +25,8 @@ interface SEOProps {
 
 const defaultMeta = {
   title: 'BoldKit - Neubrutalism UI Components for React & Vue 3',
-  description: 'Free neubrutalism component library for React and Vue 3 with 45+ UI components and 42 SVG shapes. Built on shadcn/ui with thick borders, hard shadows, and bold colors.',
-  keywords: 'neubrutalism, neubrutalism ui, React components, Vue 3 components, shadcn, shadcn-vue, Tailwind CSS, TypeScript, UI library',
+  description: 'Free neubrutalism component library for React and Vue 3 with 50+ UI components, 10 chart types, and 42 SVG shapes. Built on shadcn/ui with thick borders, hard shadows, and bold colors.',
+  keywords: 'neubrutalism, neubrutalism ui, React components, Vue 3 components, shadcn, shadcn-vue, Tailwind CSS, TypeScript, UI library, charts, data visualization',
   ogImage: 'https://ik.imagekit.io/fincalfy/304a4c07-8de1-41af-813e-e7556234b973.png',
   twitterCreator: '@boldkitdev',
   siteName: 'BoldKit',
@@ -169,8 +169,8 @@ export function SEO({
 export const pageSEO = {
   home: {
     title: undefined, // Uses default
-    description: 'Free neubrutalism component library for React and Vue 3 with 45+ UI components and 42 SVG shapes. Built on shadcn/ui with thick borders, hard shadows, and bold colors. Install via CLI.',
-    keywords: 'neubrutalism, neubrutalism ui, neubrutalism components, brutalist design, React UI library, Vue 3 components, shadcn components, shadcn-vue, Tailwind CSS, TypeScript',
+    description: 'Free neubrutalism component library for React and Vue 3 with 50+ UI components, 10 chart types, and 42 SVG shapes. Built on shadcn/ui with thick borders, hard shadows, and bold colors. Install via CLI.',
+    keywords: 'neubrutalism, neubrutalism ui, neubrutalism components, brutalist design, React UI library, Vue 3 components, shadcn components, shadcn-vue, Tailwind CSS, TypeScript, charts, spinners, steppers',
     canonical: 'https://boldkit.dev/',
     breadcrumbs: [{ name: 'Home' }],
   },
@@ -197,8 +197,8 @@ export const pageSEO = {
   },
   components: {
     title: 'Components',
-    description: 'Browse 45+ neubrutalism components for React and Vue 3. Buttons, cards, inputs, dialogs, and more with thick borders and hard shadows.',
-    keywords: 'React components, Vue 3 components, UI components, neubrutalism buttons, neubrutalism cards, form components',
+    description: 'Browse 50+ neubrutalism components for React and Vue 3. Buttons, cards, inputs, dialogs, spinners, steppers, dropzones and more with thick borders and hard shadows.',
+    keywords: 'React components, Vue 3 components, UI components, neubrutalism buttons, neubrutalism cards, form components, spinner, stepper, dropzone, stat card, kbd',
     canonical: 'https://boldkit.dev/components',
     breadcrumbs: [
       { name: 'Home', url: 'https://boldkit.dev/' },
@@ -216,9 +216,9 @@ export const pageSEO = {
     ],
   },
   charts: {
-    title: 'Charts',
-    description: 'Neubrutalism styled charts and data visualization components for React (Recharts) and Vue 3 (vue-echarts). Bar charts, line charts, pie charts with bold styling.',
-    keywords: 'React charts, Vue 3 charts, neubrutalism charts, data visualization, chart components, Recharts, vue-echarts',
+    title: 'Charts - 10 Neubrutalism Chart Types',
+    description: 'Neubrutalism styled charts and data visualization for React and Vue 3. 10 chart types including bar, line, area, pie, donut, radar, radial bar, gauge, and sparkline charts.',
+    keywords: 'React charts, Vue 3 charts, neubrutalism charts, data visualization, chart components, Recharts, vue-echarts, gauge chart, radar chart, donut chart, sparkline, radial bar chart',
     canonical: 'https://boldkit.dev/charts',
     breadcrumbs: [
       { name: 'Home', url: 'https://boldkit.dev/' },

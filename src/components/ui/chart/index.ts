@@ -20,3 +20,23 @@ export type { ChartLegendContentProps } from './legend'
 
 // Utility functions
 export { getPayloadConfigFromPayload } from './utils'
+
+// Sparkline chart
+export { Sparkline } from './sparkline'
+export type { SparklineProps } from './sparkline'
+
+// Donut chart
+export { DonutChart, DonutChartCenter } from './donut-chart'
+export type { DonutChartProps, DonutChartData, DonutChartCenterProps } from './donut-chart'
+
+// Radial bar chart
+export { RadialBarChart } from './radial-bar-chart'
+export type { RadialBarChartProps, RadialBarChartData } from './radial-bar-chart'
+
+// Radar chart
+export { RadarChart } from './radar-chart'
+export type { RadarChartProps, RadarChartData } from './radar-chart'
+
+// Gauge chart
+export { GaugeChart, gaugeChartVariants } from './gauge-chart'
+export type { GaugeChartProps, GaugeChartZone } from './gauge-chart'

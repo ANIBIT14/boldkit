@@ -217,6 +217,61 @@
       "name": "shapes",
       "type": "registry:ui",
       "registryUrl": "https://boldkit.dev/r/vue/shapes.json"
+    },
+    {
+      "name": "spinner",
+      "type": "registry:ui",
+      "registryUrl": "https://boldkit.dev/r/vue/spinner.json"
+    },
+    {
+      "name": "kbd",
+      "type": "registry:ui",
+      "registryUrl": "https://boldkit.dev/r/vue/kbd.json"
+    },
+    {
+      "name": "stat-card",
+      "type": "registry:ui",
+      "registryUrl": "https://boldkit.dev/r/vue/stat-card.json"
+    },
+    {
+      "name": "stepper",
+      "type": "registry:ui",
+      "registryUrl": "https://boldkit.dev/r/vue/stepper.json"
+    },
+    {
+      "name": "dropzone",
+      "type": "registry:ui",
+      "registryUrl": "https://boldkit.dev/r/vue/dropzone.json"
+    },
+    {
+      "name": "gauge-chart",
+      "type": "registry:ui",
+      "registryUrl": "https://boldkit.dev/r/vue/gauge-chart.json"
+    },
+    {
+      "name": "sparkline",
+      "type": "registry:ui",
+      "registryUrl": "https://boldkit.dev/r/vue/sparkline.json"
+    },
+    {
+      "name": "donut-chart",
+      "type": "registry:ui",
+      "registryUrl": "https://boldkit.dev/r/vue/donut-chart.json"
+    },
+    {
+      "name": "radar-chart",
+      "type": "registry:ui",
+      "registryUrl": "https://boldkit.dev/r/vue/radar-chart.json"
+    },
+    {
+      "name": "radial-bar-chart",
+      "type": "registry:ui",
+      "registryUrl": "https://boldkit.dev/r/vue/radial-bar-chart.json"
+    },
+    {
+      "name": "chart-utils",
+      "type": "registry:ui",
+      "registryUrl": "https://boldkit.dev/r/vue/chart-utils.json"
     }
   ]
 }

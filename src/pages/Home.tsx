@@ -8,8 +8,10 @@ import { Progress } from '@/components/ui/progress'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { LayeredCard, LayeredCardContent, LayeredCardHeader, LayeredCardTitle } from '@/components/ui/layered-card'
 import { Sticker, Stamp } from '@/components/ui/sticker'
+import { StatCard } from '@/components/ui/stat-card'
+import { Spinner } from '@/components/ui/spinner'
 import { Layout } from '@/components/layout'
-import { Copy, Check, ArrowRight, Zap, Palette, Code2, Smartphone, Github, Layers } from 'lucide-react'
+import { Copy, Check, ArrowRight, Zap, Palette, Code2, Smartphone, Github, Layers, TrendingUp, DollarSign } from 'lucide-react'
 import { useState } from 'react'
 import { SEO, pageSEO } from '@/components/SEO'
 import { useFramework, ReactIcon, VueIcon } from '@/hooks/use-framework'
@@ -225,7 +227,7 @@ export function Home() {
       <section className="border-b-3 border-foreground py-20">
         <div className="container mx-auto px-4">
           <div className="mb-12 text-center">
-            <Badge variant="secondary" className="mb-4">40+ Components</Badge>
+            <Badge variant="secondary" className="mb-4">50+ Components</Badge>
             <h2 className="text-3xl font-black uppercase tracking-tight md:text-4xl">
               Component Preview
             </h2>
@@ -303,13 +305,70 @@ export function Home() {
               </CardContent>
             </Card>
 
-            {/* Stickers & Stamps - NEW */}
+            {/* StatCard - NEW */}
             <Card>
-              <CardHeader className="bg-primary">
+              <CardHeader className="bg-success">
                 <CardTitle className="flex items-center gap-2">
-                  Stickers & Stamps
+                  Stat Card
                   <Badge variant="accent" className="text-[10px]">New</Badge>
                 </CardTitle>
+              </CardHeader>
+              <CardContent className="pt-6">
+                <div className="grid gap-4 sm:grid-cols-2">
+                  <StatCard
+                    title="Revenue"
+                    value="$45,231"
+                    change="+20.1%"
+                    trend="up"
+                    icon={<DollarSign className="h-5 w-5" />}
+                    color="success"
+                  />
+                  <StatCard
+                    title="Growth"
+                    value="12.5%"
+                    change="+4.3%"
+                    trend="up"
+                    icon={<TrendingUp className="h-5 w-5" />}
+                    color="primary"
+                  />
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Spinner - NEW */}
+            <Card>
+              <CardHeader className="bg-accent">
+                <CardTitle className="flex items-center gap-2">
+                  Spinner
+                  <Badge variant="secondary" className="text-[10px]">New</Badge>
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="pt-6">
+                <div className="flex flex-wrap items-center gap-8">
+                  <div className="flex flex-col items-center gap-2">
+                    <Spinner variant="brutal" size="lg" />
+                    <span className="text-xs font-bold uppercase">Brutal</span>
+                  </div>
+                  <div className="flex flex-col items-center gap-2">
+                    <Spinner variant="dots" size="lg" />
+                    <span className="text-xs font-bold uppercase">Dots</span>
+                  </div>
+                  <div className="flex flex-col items-center gap-2">
+                    <Spinner variant="bars" size="lg" />
+                    <span className="text-xs font-bold uppercase">Bars</span>
+                  </div>
+                  <div className="flex flex-col items-center gap-2">
+                    <Spinner variant="blocks" size="lg" />
+                    <span className="text-xs font-bold uppercase">Blocks</span>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Stickers & Stamps */}
+            <Card>
+              <CardHeader className="bg-primary">
+                <CardTitle>Stickers & Stamps</CardTitle>
               </CardHeader>
               <CardContent className="pt-6">
                 <div className="flex flex-wrap gap-6 items-center py-4">
@@ -322,13 +381,10 @@ export function Home() {
               </CardContent>
             </Card>
 
-            {/* Layered Cards - NEW */}
+            {/* Layered Cards */}
             <Card>
               <CardHeader className="bg-secondary">
-                <CardTitle className="flex items-center gap-2">
-                  Layered Cards
-                  <Badge variant="accent" className="text-[10px]">New</Badge>
-                </CardTitle>
+                <CardTitle>Layered Cards</CardTitle>
               </CardHeader>
               <CardContent className="pt-6 pb-10 pr-10">
                 <div className="flex gap-8 items-start">

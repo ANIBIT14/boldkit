@@ -26,9 +26,11 @@ const components = [
   { name: 'Dialog', href: '/components/dialog' },
   { name: 'Drawer', href: '/components/drawer' },
   { name: 'Dropdown Menu', href: '/components/dropdown-menu' },
+  { name: 'Dropzone', href: '/components/dropzone', isNew: true },
   { name: 'Hover Card', href: '/components/hover-card' },
   { name: 'Input', href: '/components/input' },
   { name: 'Input OTP', href: '/components/input-otp' },
+  { name: 'Kbd', href: '/components/kbd', isNew: true },
   { name: 'Label', href: '/components/label' },
   { name: 'Layered Card', href: '/components/layered-card' },
   { name: 'Marquee', href: '/components/marquee' },
@@ -43,6 +45,9 @@ const components = [
   { name: 'Skeleton', href: '/components/skeleton' },
   { name: 'Slider', href: '/components/slider' },
   { name: 'Sonner', href: '/components/sonner' },
+  { name: 'Spinner', href: '/components/spinner', isNew: true },
+  { name: 'Stat Card', href: '/components/stat-card', isNew: true },
+  { name: 'Stepper', href: '/components/stepper', isNew: true },
   { name: 'Sticker', href: '/components/sticker' },
   { name: 'Switch', href: '/components/switch' },
   { name: 'Table', href: '/components/table' },
@@ -52,6 +57,7 @@ const components = [
   { name: 'Toggle Group', href: '/components/toggle-group' },
   { name: 'Tooltip', href: '/components/tooltip' },
 ]
+
 
 function Sidebar({ className, onLinkClick }: { className?: string; onLinkClick?: () => void }) {
   const location = useLocation()
@@ -126,15 +132,21 @@ function Sidebar({ className, onLinkClick }: { className?: string; onLinkClick?:
               <Link key={component.href} to={component.href} onClick={onLinkClick}>
                 <Button
                   variant={location.pathname === component.href ? 'secondary' : 'ghost'}
-                  className="w-full justify-start h-9"
+                  className="w-full justify-between h-9"
                   size="sm"
                 >
-                  {component.name}
+                  <span>{component.name}</span>
+                  {component.isNew && (
+                    <span className="ml-auto px-1.5 py-0.5 text-[9px] font-bold uppercase tracking-wide bg-primary text-primary-foreground border border-foreground">
+                      New
+                    </span>
+                  )}
                 </Button>
               </Link>
             ))}
           </div>
         </div>
+
       </div>
     </div>
   )
