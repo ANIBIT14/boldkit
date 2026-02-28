@@ -11,7 +11,7 @@ import { Sticker, Stamp } from '@/components/ui/sticker'
 import { StatCard } from '@/components/ui/stat-card'
 import { Spinner } from '@/components/ui/spinner'
 import { Layout } from '@/components/layout'
-import { Copy, Check, ArrowRight, Zap, Palette, Code2, Smartphone, Github, Layers, TrendingUp, DollarSign } from 'lucide-react'
+import { Copy, Check, ArrowRight, Zap, Palette, Code2, Smartphone, Github, Layers, TrendingUp, DollarSign, LayoutGrid, Sparkles, Settings, LogIn, FileX } from 'lucide-react'
 import { useState } from 'react'
 import { SEO, pageSEO } from '@/components/SEO'
 import { useFramework, ReactIcon, VueIcon } from '@/hooks/use-framework'
@@ -411,6 +411,111 @@ export function Home() {
             <Link to="/components">
               <Button size="lg" variant="outline" className="gap-2">
                 View All Components <ArrowRight className="h-4 w-4" />
+              </Button>
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* Blocks Launch Section */}
+      <section className="border-b-3 border-foreground bg-accent py-20 relative overflow-hidden">
+        <div className="absolute inset-0 grid-pattern opacity-30" />
+        <div className="container mx-auto px-4 relative">
+          <div className="text-center mb-12">
+            <Badge variant="secondary" className="mb-4 gap-2">
+              <Sparkles className="h-4 w-4" /> New
+            </Badge>
+            <h2 className="text-3xl font-black uppercase tracking-tight md:text-5xl mb-4">
+              Section Blocks
+            </h2>
+            <p className="mx-auto max-w-2xl text-lg">
+              15 pre-built sections for landing pages & web apps. Marketing blocks for stunning landing pages.
+              Application blocks for auth, settings & more. Copy, paste, ship.
+            </p>
+          </div>
+
+          {/* Block Categories */}
+          <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+            {/* Marketing Blocks */}
+            <Card className="bg-background">
+              <CardHeader className="bg-primary">
+                <div className="flex items-center gap-3">
+                  <LayoutGrid className="h-8 w-8 stroke-[3]" />
+                  <div>
+                    <CardTitle>Marketing Blocks</CardTitle>
+                    <p className="text-sm font-medium mt-1">10 Sections</p>
+                  </div>
+                </div>
+              </CardHeader>
+              <CardContent className="pt-4 space-y-3">
+                <p className="text-muted-foreground text-sm">
+                  Everything you need for stunning landing pages.
+                </p>
+                <div className="flex flex-wrap gap-2">
+                  <Badge variant="outline">Hero</Badge>
+                  <Badge variant="outline">Features</Badge>
+                  <Badge variant="outline">Testimonials</Badge>
+                  <Badge variant="outline">CTA</Badge>
+                  <Badge variant="outline">Stats</Badge>
+                  <Badge variant="outline">Team</Badge>
+                  <Badge variant="outline">FAQ</Badge>
+                  <Badge variant="outline">Footer</Badge>
+                  <Badge variant="outline">Contact</Badge>
+                  <Badge variant="outline">Logo Cloud</Badge>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Application Blocks */}
+            <Card className="bg-background">
+              <CardHeader className="bg-secondary">
+                <div className="flex items-center gap-3">
+                  <Settings className="h-8 w-8 stroke-[3]" />
+                  <div>
+                    <CardTitle>Application Blocks</CardTitle>
+                    <p className="text-sm font-medium mt-1">5 Sections</p>
+                  </div>
+                </div>
+              </CardHeader>
+              <CardContent className="pt-4 space-y-3">
+                <p className="text-muted-foreground text-sm">
+                  Essential app sections ready to use.
+                </p>
+                <div className="flex flex-wrap gap-2">
+                  <Badge variant="outline" className="gap-1"><LogIn className="h-3 w-3" /> Auth</Badge>
+                  <Badge variant="outline" className="gap-1"><Settings className="h-3 w-3" /> Settings</Badge>
+                  <Badge variant="outline" className="gap-1"><Sparkles className="h-3 w-3" /> Onboarding</Badge>
+                  <Badge variant="outline" className="gap-1"><FileX className="h-3 w-3" /> Error Pages</Badge>
+                  <Badge variant="outline" className="gap-1">Invoice</Badge>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+
+          {/* Preview Grid */}
+          <div className="mt-12 grid grid-cols-2 md:grid-cols-5 gap-4">
+            {[
+              { name: 'Hero', color: 'bg-primary' },
+              { name: 'Features', color: 'bg-info' },
+              { name: 'Stats', color: 'bg-success' },
+              { name: 'Auth', color: 'bg-secondary' },
+              { name: 'Settings', color: 'bg-warning' },
+            ].map((block) => (
+              <div
+                key={block.name}
+                className={`${block.color} border-3 border-foreground bk-shadow p-4 text-center`}
+              >
+                <div className="h-16 flex items-center justify-center">
+                  <span className="font-black uppercase text-sm">{block.name}</span>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <div className="mt-10 text-center">
+            <Link to="/blocks">
+              <Button size="lg" className="gap-2">
+                Explore All Blocks <ArrowRight className="h-4 w-4" />
               </Button>
             </Link>
           </div>

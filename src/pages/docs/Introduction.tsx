@@ -1,9 +1,9 @@
 import { Link } from 'react-router-dom'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
+import { Card, CardContent } from '@/components/ui/card'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
-import { ArrowRight, Copy, Check, Sparkles, LayoutGrid, Box, Shapes } from 'lucide-react'
+import { ArrowRight, Copy, Check, LayoutGrid, Settings } from 'lucide-react'
 import { useState } from 'react'
 import { useFramework, FrameworkToggle, ReactIcon, VueIcon } from '@/hooks/use-framework'
 import { SEO, pageSEO } from '@/components/SEO'
@@ -46,120 +46,6 @@ export function Introduction() {
         <FrameworkToggle />
       </div>
 
-      {/* What's New Section */}
-      <section className="space-y-4">
-        <div className="flex items-center gap-2">
-          <Sparkles className="h-5 w-5 text-primary" />
-          <h2 className="text-2xl font-bold uppercase tracking-wide">What's New</h2>
-        </div>
-
-        <div className="grid gap-4 md:grid-cols-2">
-          <Card className="border-primary/50 bg-primary/5">
-            <CardHeader className="pb-2">
-              <div className="flex items-center justify-between">
-                <Badge variant="default">v2.6.0</Badge>
-                <span className="text-xs text-muted-foreground">Latest</span>
-              </div>
-              <CardTitle className="text-lg flex items-center gap-2">
-                <LayoutGrid className="h-4 w-4" />
-                Blocks Release
-              </CardTitle>
-            </CardHeader>
-            <CardContent className="space-y-2 text-sm">
-              <p className="text-muted-foreground">Section-level building blocks for rapid development</p>
-              <ul className="space-y-1">
-                <li className="flex items-center gap-2">
-                  <span className="text-primary font-bold">◼</span>
-                  <span><strong>10 Marketing Blocks</strong> - Hero, Features, Testimonials, FAQ, etc.</span>
-                </li>
-                <li className="flex items-center gap-2">
-                  <span className="text-primary font-bold">◼</span>
-                  <span><strong>5 Application Blocks</strong> - Auth, Settings, Onboarding, Errors, Invoice</span>
-                </li>
-                <li className="flex items-center gap-2">
-                  <span className="text-primary font-bold">◼</span>
-                  <span><strong>Empty State Component</strong> - With 8 presets</span>
-                </li>
-              </ul>
-              <Link to="/blocks">
-                <Button size="sm" variant="outline" className="mt-2 gap-1">
-                  Explore Blocks <ArrowRight className="h-3 w-3" />
-                </Button>
-              </Link>
-            </CardContent>
-          </Card>
-
-          <Card>
-            <CardHeader className="pb-2">
-              <div className="flex items-center justify-between">
-                <Badge variant="secondary">v2.5.0</Badge>
-              </div>
-              <CardTitle className="text-lg flex items-center gap-2">
-                <Box className="h-4 w-4" />
-                New Components & Charts
-              </CardTitle>
-            </CardHeader>
-            <CardContent className="space-y-2 text-sm">
-              <p className="text-muted-foreground">New UI components and chart types</p>
-              <ul className="space-y-1">
-                <li className="flex items-center gap-2">
-                  <span className="text-secondary font-bold">◼</span>
-                  <span><strong>Components:</strong> Spinner, Kbd, Stepper, Dropzone, StatCard</span>
-                </li>
-                <li className="flex items-center gap-2">
-                  <span className="text-secondary font-bold">◼</span>
-                  <span><strong>Charts:</strong> Sparkline, Donut, Radar, Radial Bar, Gauge</span>
-                </li>
-              </ul>
-            </CardContent>
-          </Card>
-
-          <Card>
-            <CardHeader className="pb-2">
-              <Badge variant="outline">v2.4.0</Badge>
-              <CardTitle className="text-lg flex items-center gap-2">
-                <Shapes className="h-4 w-4" />
-                Shapes & Templates
-              </CardTitle>
-            </CardHeader>
-            <CardContent className="space-y-2 text-sm">
-              <ul className="space-y-1">
-                <li className="flex items-center gap-2">
-                  <span className="text-accent font-bold">◼</span>
-                  <span><strong>42 SVG Shapes</strong> - Decorative shapes for visual flair</span>
-                </li>
-                <li className="flex items-center gap-2">
-                  <span className="text-accent font-bold">◼</span>
-                  <span><strong>6 Full-Page Templates</strong> - Landing, Dashboard, Portfolio, etc.</span>
-                </li>
-              </ul>
-            </CardContent>
-          </Card>
-
-          <Card>
-            <CardHeader className="pb-2">
-              <Badge variant="outline">v2.0.0</Badge>
-              <CardTitle className="text-lg flex items-center gap-2">
-                <VueIcon className="h-4 w-4" />
-                Vue 3 Support
-              </CardTitle>
-            </CardHeader>
-            <CardContent className="space-y-2 text-sm">
-              <ul className="space-y-1">
-                <li className="flex items-center gap-2">
-                  <span className="text-success font-bold">◼</span>
-                  <span><strong>Vue 3 Components</strong> - All components ported to Vue</span>
-                </li>
-                <li className="flex items-center gap-2">
-                  <span className="text-success font-bold">◼</span>
-                  <span><strong>Nuxt Ready</strong> - Full SSR support with shadcn-nuxt</span>
-                </li>
-              </ul>
-            </CardContent>
-          </Card>
-        </div>
-      </section>
-
       <div className="prose prose-neutral dark:prose-invert max-w-none">
         <h2 className="text-2xl font-bold uppercase tracking-wide">What is BoldKit?</h2>
         <p>
@@ -172,27 +58,35 @@ export function Introduction() {
         <ul className="space-y-2 list-none pl-0">
           <li className="flex items-start gap-2">
             <span className="text-primary font-bold">◼</span>
-            <span><strong>45+ Components</strong> - All shadcn/ui components with neubrutalism styling</span>
+            <span><strong>50+ Components</strong> - All shadcn/ui components with neubrutalism styling</span>
           </li>
           <li className="flex items-start gap-2">
             <span className="text-primary font-bold">◼</span>
-            <span><strong>{framework === 'vue' ? 'shadcn-vue' : 'shadcn'} CLI Compatible</strong> - Install components directly using the {framework === 'vue' ? 'shadcn-vue' : 'shadcn'} CLI</span>
+            <span><strong>15 Section Blocks</strong> - Pre-built hero, features, auth, settings, and more</span>
           </li>
           <li className="flex items-start gap-2">
             <span className="text-primary font-bold">◼</span>
-            <span><strong>Accessible</strong> - Built on {framework === 'vue' ? 'Reka UI' : 'Radix UI'} primitives with full keyboard navigation</span>
+            <span><strong>6 Page Templates</strong> - Landing, dashboard, portfolio, pricing, blog, product</span>
           </li>
           <li className="flex items-start gap-2">
             <span className="text-primary font-bold">◼</span>
-            <span><strong>Customizable</strong> - CSS variables for easy theming</span>
+            <span><strong>42 Decorative Shapes</strong> - SVG shapes for visual impact</span>
           </li>
           <li className="flex items-start gap-2">
             <span className="text-primary font-bold">◼</span>
-            <span><strong>TypeScript</strong> - Full type safety and IntelliSense support</span>
+            <span><strong>10 Chart Types</strong> - Bar, line, area, pie, donut, radar, gauge, sparkline</span>
           </li>
           <li className="flex items-start gap-2">
             <span className="text-primary font-bold">◼</span>
-            <span><strong>Dark Mode</strong> - Built-in support for light and dark themes</span>
+            <span><strong>{framework === 'vue' ? 'shadcn-vue' : 'shadcn'} CLI Compatible</strong> - Install components directly using the CLI</span>
+          </li>
+          <li className="flex items-start gap-2">
+            <span className="text-primary font-bold">◼</span>
+            <span><strong>Accessible</strong> - Built on {framework === 'vue' ? 'Reka UI' : 'Radix UI'} primitives</span>
+          </li>
+          <li className="flex items-start gap-2">
+            <span className="text-primary font-bold">◼</span>
+            <span><strong>TypeScript + Dark Mode</strong> - Full type safety and theme support</span>
           </li>
           {framework === 'vue' && (
             <li className="flex items-start gap-2">
@@ -217,6 +111,50 @@ export function Introduction() {
             </ul>
           </CardContent>
         </Card>
+
+        <h3 className="text-xl font-bold uppercase tracking-wide mt-8 flex items-center gap-2">
+          Section Blocks
+          <Badge variant="accent" className="text-[10px]">New</Badge>
+        </h3>
+        <p>
+          BoldKit introduces <strong>15 pre-built section blocks</strong> to accelerate your development.
+          These ready-to-use sections let you build complete pages in minutes.
+        </p>
+
+        <div className="not-prose grid sm:grid-cols-2 gap-4 my-6">
+          <Card>
+            <CardContent className="pt-4">
+              <div className="flex items-center gap-2 mb-3">
+                <LayoutGrid className="h-5 w-5 text-primary" />
+                <span className="font-bold uppercase text-sm">Marketing Blocks</span>
+              </div>
+              <p className="text-sm text-muted-foreground mb-3">
+                10 sections for landing pages: Hero, Features, Testimonials, CTA, Stats, Team, FAQ, Footer, Contact, Logo Cloud.
+              </p>
+              <Link to="/blocks">
+                <Button size="sm" variant="outline" className="gap-1">
+                  View Blocks <ArrowRight className="h-3 w-3" />
+                </Button>
+              </Link>
+            </CardContent>
+          </Card>
+          <Card>
+            <CardContent className="pt-4">
+              <div className="flex items-center gap-2 mb-3">
+                <Settings className="h-5 w-5 text-secondary" />
+                <span className="font-bold uppercase text-sm">Application Blocks</span>
+              </div>
+              <p className="text-sm text-muted-foreground mb-3">
+                5 app sections: Auth Forms, Settings Page, Onboarding Flow, Error Pages, Invoice.
+              </p>
+              <Link to="/blocks">
+                <Button size="sm" variant="outline" className="gap-1">
+                  View Blocks <ArrowRight className="h-3 w-3" />
+                </Button>
+              </Link>
+            </CardContent>
+          </Card>
+        </div>
 
         <h3 className="text-xl font-bold uppercase tracking-wide mt-8 flex items-center gap-2">
           Quick Start with {framework === 'vue' ? 'shadcn-vue' : 'shadcn'} CLI

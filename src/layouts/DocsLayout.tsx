@@ -9,6 +9,27 @@ import { Header } from '@/components/layout'
 import { FrameworkToggle, useFramework } from '@/hooks/use-framework'
 import { TableOfContents } from '@/components/TableOfContents'
 
+const marketingBlocks = [
+  { name: 'Hero Section', href: '/blocks/hero-section', isNew: true },
+  { name: 'Feature Grid', href: '/blocks/feature-grid', isNew: true },
+  { name: 'Testimonials', href: '/blocks/testimonials', isNew: true },
+  { name: 'Logo Cloud', href: '/blocks/logo-cloud', isNew: true },
+  { name: 'CTA Section', href: '/blocks/cta-section', isNew: true },
+  { name: 'Stats Section', href: '/blocks/stats-section', isNew: true },
+  { name: 'Team Section', href: '/blocks/team-section', isNew: true },
+  { name: 'FAQ Section', href: '/blocks/faq-section', isNew: true },
+  { name: 'Footer Section', href: '/blocks/footer-section', isNew: true },
+  { name: 'Contact Section', href: '/blocks/contact-section', isNew: true },
+]
+
+const applicationBlocks = [
+  { name: 'Auth Forms', href: '/blocks/auth-forms', isNew: true },
+  { name: 'Error Pages', href: '/blocks/error-pages', isNew: true },
+  { name: 'Settings Page', href: '/blocks/settings-page', isNew: true },
+  { name: 'Onboarding Flow', href: '/blocks/onboarding-flow', isNew: true },
+  { name: 'Invoice', href: '/blocks/invoice', isNew: true },
+]
+
 const components = [
   { name: 'Accordion', href: '/components/accordion' },
   { name: 'Alert', href: '/components/alert' },
@@ -138,6 +159,56 @@ function Sidebar({ className, onLinkClick }: { className?: string; onLinkClick?:
                 >
                   <span>{component.name}</span>
                   {component.isNew && (
+                    <span className="ml-auto px-1.5 py-0.5 text-[9px] font-bold uppercase tracking-wide bg-primary text-primary-foreground border border-foreground">
+                      New
+                    </span>
+                  )}
+                </Button>
+              </Link>
+            ))}
+          </div>
+        </div>
+
+        {/* Marketing Blocks Section */}
+        <div className="px-3">
+          <h2 className="mb-3 px-4 text-sm font-bold uppercase tracking-wide text-muted-foreground">
+            Marketing Blocks
+          </h2>
+          <div className="space-y-1">
+            {marketingBlocks.map((block) => (
+              <Link key={block.href} to={block.href} onClick={onLinkClick}>
+                <Button
+                  variant={location.pathname === block.href ? 'secondary' : 'ghost'}
+                  className="w-full justify-between h-9"
+                  size="sm"
+                >
+                  <span>{block.name}</span>
+                  {block.isNew && (
+                    <span className="ml-auto px-1.5 py-0.5 text-[9px] font-bold uppercase tracking-wide bg-primary text-primary-foreground border border-foreground">
+                      New
+                    </span>
+                  )}
+                </Button>
+              </Link>
+            ))}
+          </div>
+        </div>
+
+        {/* Application Blocks Section */}
+        <div className="px-3">
+          <h2 className="mb-3 px-4 text-sm font-bold uppercase tracking-wide text-muted-foreground">
+            Application Blocks
+          </h2>
+          <div className="space-y-1">
+            {applicationBlocks.map((block) => (
+              <Link key={block.href} to={block.href} onClick={onLinkClick}>
+                <Button
+                  variant={location.pathname === block.href ? 'secondary' : 'ghost'}
+                  className="w-full justify-between h-9"
+                  size="sm"
+                >
+                  <span>{block.name}</span>
+                  {block.isNew && (
                     <span className="ml-auto px-1.5 py-0.5 text-[9px] font-bold uppercase tracking-wide bg-primary text-primary-foreground border border-foreground">
                       New
                     </span>

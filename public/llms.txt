@@ -674,6 +674,8 @@ import { AuthForms } from '@/components/blocks/application'
 - Full Sitemap: `https://boldkit.dev/sitemap.xml`
 - Main Pages: `https://boldkit.dev/`, `https://boldkit.dev/docs`, `https://boldkit.dev/components`, `https://boldkit.dev/blocks`
 - Templates: `https://boldkit.dev/templates`, `https://boldkit.dev/templates/landing-page`, `https://boldkit.dev/templates/portfolio`, `https://boldkit.dev/templates/dashboard`, `https://boldkit.dev/templates/pricing`, `https://boldkit.dev/templates/blog`, `https://boldkit.dev/templates/product`
+- Marketing Blocks: `https://boldkit.dev/blocks/hero-section`, `https://boldkit.dev/blocks/feature-grid`, `https://boldkit.dev/blocks/testimonials`, `https://boldkit.dev/blocks/logo-cloud`, `https://boldkit.dev/blocks/cta-section`, `https://boldkit.dev/blocks/stats-section`, `https://boldkit.dev/blocks/team-section`, `https://boldkit.dev/blocks/faq-section`, `https://boldkit.dev/blocks/footer-section`, `https://boldkit.dev/blocks/contact-section`
+- Application Blocks: `https://boldkit.dev/blocks/auth-forms`, `https://boldkit.dev/blocks/settings-page`, `https://boldkit.dev/blocks/onboarding-flow`, `https://boldkit.dev/blocks/error-pages`, `https://boldkit.dev/blocks/invoice`
 
 ## Contact
 

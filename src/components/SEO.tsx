@@ -25,8 +25,8 @@ interface SEOProps {
 
 const defaultMeta = {
   title: 'BoldKit - Neubrutalism UI Components for React & Vue 3',
-  description: 'Free neubrutalism component library for React and Vue 3 with 50+ UI components, 10 chart types, and 42 SVG shapes. Built on shadcn/ui with thick borders, hard shadows, and bold colors.',
-  keywords: 'neubrutalism, neubrutalism ui, React components, Vue 3 components, shadcn, shadcn-vue, Tailwind CSS, TypeScript, UI library, charts, data visualization',
+  description: 'Free neubrutalism component library for React and Vue 3 with 50+ UI components, 15 section blocks, 6 templates, 10 chart types, and 42 SVG shapes. Built on shadcn/ui with thick borders, hard shadows, and bold colors.',
+  keywords: 'neubrutalism, neubrutalism ui, React components, Vue 3 components, shadcn, shadcn-vue, Tailwind CSS, TypeScript, UI library, charts, data visualization, section blocks, marketing blocks, application blocks',
   ogImage: 'https://ik.imagekit.io/fincalfy/304a4c07-8de1-41af-813e-e7556234b973.png',
   twitterCreator: '@boldkitdev',
   siteName: 'BoldKit',
@@ -245,6 +245,16 @@ export const pageSEO = {
       { name: 'Templates' },
     ],
   },
+  blocks: {
+    title: 'Section Blocks - 15 Marketing & Application Blocks',
+    description: 'Free neubrutalism section blocks for React and Vue 3. 10 marketing blocks (hero, features, testimonials, CTA, stats, team, FAQ, footer, contact, logo cloud) and 5 application blocks (auth forms, settings, onboarding, error pages, invoice).',
+    keywords: 'section blocks, marketing blocks, application blocks, hero section, feature grid, testimonials, CTA section, auth forms, settings page, onboarding flow, error pages, invoice template, React blocks, Vue 3 blocks',
+    canonical: 'https://boldkit.dev/blocks',
+    breadcrumbs: [
+      { name: 'Home', url: 'https://boldkit.dev/' },
+      { name: 'Blocks' },
+    ],
+  },
 }
 
 // Component-specific SEO generator
@@ -258,6 +268,22 @@ export function getComponentSEO(componentName: string, componentTitle: string) {
       { name: 'Home', url: 'https://boldkit.dev/' },
       { name: 'Components', url: 'https://boldkit.dev/components' },
       { name: componentTitle },
+    ],
+  }
+}
+
+// Block-specific SEO generator
+export function getBlockSEO(blockSlug: string, blockTitle: string, category: 'marketing' | 'application', variants: string[]) {
+  const categoryLabel = category === 'marketing' ? 'Marketing' : 'Application'
+  return {
+    title: `${blockTitle} Block - ${categoryLabel} Section for React & Vue 3`,
+    description: `${blockTitle} block with neubrutalism styling for React and Vue 3. ${variants.length} variants: ${variants.join(', ')}. Perfect for landing pages and web applications.`,
+    keywords: `${blockTitle} block, ${blockTitle} section, React ${blockTitle}, Vue 3 ${blockTitle}, neubrutalism ${blockTitle}, ${category} block, landing page section`,
+    canonical: `https://boldkit.dev/blocks/${blockSlug}`,
+    breadcrumbs: [
+      { name: 'Home', url: 'https://boldkit.dev/' },
+      { name: 'Blocks', url: 'https://boldkit.dev/blocks' },
+      { name: blockTitle },
     ],
   }
 }

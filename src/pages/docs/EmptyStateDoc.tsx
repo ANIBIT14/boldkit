@@ -165,7 +165,7 @@ export function EmptyStateDoc() {
               {framework === 'react' ? <ReactIcon className="h-3.5 w-3.5" /> : <VueIcon className="h-3.5 w-3.5" />}
               {framework === 'react' ? 'React' : 'Vue 3'}
             </Badge>
-            <Badge variant="info">New in v2.6</Badge>
+            <Badge variant="info">New</Badge>
           </div>
           <p className="text-lg md:text-xl text-muted-foreground max-w-3xl">
             A flexible empty state component for displaying placeholder content when there's no data to show.

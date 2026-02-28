@@ -71,6 +71,23 @@ const StepperDoc = lazy(() => import('@/pages/docs/StepperDoc').then(m => ({ def
 const DropzoneDoc = lazy(() => import('@/pages/docs/DropzoneDoc').then(m => ({ default: m.DropzoneDoc })))
 const EmptyStateDoc = lazy(() => import('@/pages/docs/EmptyStateDoc').then(m => ({ default: m.EmptyStateDoc })))
 
+// Block documentation pages
+const HeroSectionDoc = lazy(() => import('@/pages/docs/blocks/HeroSectionDoc').then(m => ({ default: m.HeroSectionDoc })))
+const FeatureGridDoc = lazy(() => import('@/pages/docs/blocks/FeatureGridDoc').then(m => ({ default: m.FeatureGridDoc })))
+const TestimonialsDoc = lazy(() => import('@/pages/docs/blocks/TestimonialsDoc').then(m => ({ default: m.TestimonialsDoc })))
+const LogoCloudDoc = lazy(() => import('@/pages/docs/blocks/LogoCloudDoc').then(m => ({ default: m.LogoCloudDoc })))
+const CTASectionDoc = lazy(() => import('@/pages/docs/blocks/CTASectionDoc').then(m => ({ default: m.CTASectionDoc })))
+const StatsSectionDoc = lazy(() => import('@/pages/docs/blocks/StatsSectionDoc').then(m => ({ default: m.StatsSectionDoc })))
+const TeamSectionDoc = lazy(() => import('@/pages/docs/blocks/TeamSectionDoc').then(m => ({ default: m.TeamSectionDoc })))
+const FAQSectionDoc = lazy(() => import('@/pages/docs/blocks/FAQSectionDoc').then(m => ({ default: m.FAQSectionDoc })))
+const FooterSectionDoc = lazy(() => import('@/pages/docs/blocks/FooterSectionDoc').then(m => ({ default: m.FooterSectionDoc })))
+const ContactSectionDoc = lazy(() => import('@/pages/docs/blocks/ContactSectionDoc').then(m => ({ default: m.ContactSectionDoc })))
+const AuthFormsDoc = lazy(() => import('@/pages/docs/blocks/AuthFormsDoc').then(m => ({ default: m.AuthFormsDoc })))
+const ErrorPagesDoc = lazy(() => import('@/pages/docs/blocks/ErrorPagesDoc').then(m => ({ default: m.ErrorPagesDoc })))
+const SettingsPageDoc = lazy(() => import('@/pages/docs/blocks/SettingsPageDoc').then(m => ({ default: m.SettingsPageDoc })))
+const OnboardingFlowDoc = lazy(() => import('@/pages/docs/blocks/OnboardingFlowDoc').then(m => ({ default: m.OnboardingFlowDoc })))
+const InvoiceDoc = lazy(() => import('@/pages/docs/blocks/InvoiceDoc').then(m => ({ default: m.InvoiceDoc })))
+
 // Note: Chart documentation is now on the /charts page, not individual routes
 
 // Loading fallback for lazy loaded pages
@@ -171,6 +188,25 @@ function App() {
               <Route path="dropzone" element={<Suspense fallback={<PageLoader />}><DropzoneDoc /></Suspense>} />
               <Route path="empty-state" element={<Suspense fallback={<PageLoader />}><EmptyStateDoc /></Suspense>} />
               <Route path="*" element={<Navigate to="/components/button" replace />} />
+            </Route>
+
+            {/* Block documentation routes */}
+            <Route path="/blocks" element={<DocsLayout />}>
+              <Route path="hero-section" element={<Suspense fallback={<PageLoader />}><HeroSectionDoc /></Suspense>} />
+              <Route path="feature-grid" element={<Suspense fallback={<PageLoader />}><FeatureGridDoc /></Suspense>} />
+              <Route path="testimonials" element={<Suspense fallback={<PageLoader />}><TestimonialsDoc /></Suspense>} />
+              <Route path="logo-cloud" element={<Suspense fallback={<PageLoader />}><LogoCloudDoc /></Suspense>} />
+              <Route path="cta-section" element={<Suspense fallback={<PageLoader />}><CTASectionDoc /></Suspense>} />
+              <Route path="stats-section" element={<Suspense fallback={<PageLoader />}><StatsSectionDoc /></Suspense>} />
+              <Route path="team-section" element={<Suspense fallback={<PageLoader />}><TeamSectionDoc /></Suspense>} />
+              <Route path="faq-section" element={<Suspense fallback={<PageLoader />}><FAQSectionDoc /></Suspense>} />
+              <Route path="footer-section" element={<Suspense fallback={<PageLoader />}><FooterSectionDoc /></Suspense>} />
+              <Route path="contact-section" element={<Suspense fallback={<PageLoader />}><ContactSectionDoc /></Suspense>} />
+              <Route path="auth-forms" element={<Suspense fallback={<PageLoader />}><AuthFormsDoc /></Suspense>} />
+              <Route path="error-pages" element={<Suspense fallback={<PageLoader />}><ErrorPagesDoc /></Suspense>} />
+              <Route path="settings-page" element={<Suspense fallback={<PageLoader />}><SettingsPageDoc /></Suspense>} />
+              <Route path="onboarding-flow" element={<Suspense fallback={<PageLoader />}><OnboardingFlowDoc /></Suspense>} />
+              <Route path="invoice" element={<Suspense fallback={<PageLoader />}><InvoiceDoc /></Suspense>} />
             </Route>
           </Routes>
             </BrowserRouter>
