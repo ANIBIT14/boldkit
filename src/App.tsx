@@ -6,7 +6,7 @@ import { TooltipProvider } from '@/components/ui/tooltip'
 import { Toaster } from '@/components/ui/sonner'
 import { ErrorBoundary } from '@/components/ErrorBoundary'
 import { Skeleton } from '@/components/ui/skeleton'
-import { Home, ThemeBuilder, Charts, Shapes, Templates } from '@/pages'
+import { Home, ThemeBuilder, Charts, Shapes, Templates, Blocks } from '@/pages'
 import { LandingPageTemplate } from '@/components/templates/LandingPageTemplate'
 import { PortfolioTemplate } from '@/components/templates/PortfolioTemplate'
 import { DashboardTemplate } from '@/components/templates/DashboardTemplate'
@@ -69,6 +69,7 @@ const KbdDoc = lazy(() => import('@/pages/docs/KbdDoc').then(m => ({ default: m.
 const StatCardDoc = lazy(() => import('@/pages/docs/StatCardDoc').then(m => ({ default: m.StatCardDoc })))
 const StepperDoc = lazy(() => import('@/pages/docs/StepperDoc').then(m => ({ default: m.StepperDoc })))
 const DropzoneDoc = lazy(() => import('@/pages/docs/DropzoneDoc').then(m => ({ default: m.DropzoneDoc })))
+const EmptyStateDoc = lazy(() => import('@/pages/docs/EmptyStateDoc').then(m => ({ default: m.EmptyStateDoc })))
 
 // Note: Chart documentation is now on the /charts page, not individual routes
 
@@ -102,6 +103,7 @@ function App() {
             <Route path="/charts" element={<Charts />} />
             <Route path="/shapes" element={<Shapes />} />
             <Route path="/templates" element={<Templates />} />
+            <Route path="/blocks" element={<Blocks />} />
             <Route path="/templates/landing-page" element={<LandingPageTemplate />} />
             <Route path="/templates/portfolio" element={<PortfolioTemplate />} />
             <Route path="/templates/dashboard" element={<DashboardTemplate />} />
@@ -167,6 +169,7 @@ function App() {
               <Route path="stat-card" element={<Suspense fallback={<PageLoader />}><StatCardDoc /></Suspense>} />
               <Route path="stepper" element={<Suspense fallback={<PageLoader />}><StepperDoc /></Suspense>} />
               <Route path="dropzone" element={<Suspense fallback={<PageLoader />}><DropzoneDoc /></Suspense>} />
+              <Route path="empty-state" element={<Suspense fallback={<PageLoader />}><EmptyStateDoc /></Suspense>} />
               <Route path="*" element={<Navigate to="/components/button" replace />} />
             </Route>
           </Routes>

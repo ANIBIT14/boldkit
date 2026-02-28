@@ -27,6 +27,7 @@ const components = [
   { name: 'Drawer', href: '/components/drawer' },
   { name: 'Dropdown Menu', href: '/components/dropdown-menu' },
   { name: 'Dropzone', href: '/components/dropzone', isNew: true },
+  { name: 'Empty State', href: '/components/empty-state', isNew: true },
   { name: 'Hover Card', href: '/components/hover-card' },
   { name: 'Input', href: '/components/input' },
   { name: 'Input OTP', href: '/components/input-otp' },

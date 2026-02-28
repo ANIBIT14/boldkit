@@ -5,6 +5,8 @@
 ## Quick Facts
 
 - **Components:** 50+ UI components
+- **Blocks:** 15 section blocks (10 marketing + 5 application)
+- **Templates:** 6 full-page templates
 - **Charts:** 10 chart types (Bar, Line, Area, Pie, Donut, Radar, Radial, Gauge, Sparkline)
 - **Shapes:** 42 SVG decorative shapes
 - **License:** MIT (free for commercial use)
@@ -101,6 +103,9 @@ npx shadcn@latest add https://boldkit.dev/r/donut-chart.json
 npx shadcn@latest add https://boldkit.dev/r/radar-chart.json
 npx shadcn@latest add https://boldkit.dev/r/radial-bar-chart.json
 npx shadcn@latest add https://boldkit.dev/r/gauge-chart.json
+
+# NEW v2.6.0 Components
+npx shadcn@latest add https://boldkit.dev/r/empty-state.json
 ```
 
 ## Documentation URLs
@@ -109,6 +114,8 @@ npx shadcn@latest add https://boldkit.dev/r/gauge-chart.json
 - Documentation: https://boldkit.dev/docs
 - Installation: https://boldkit.dev/docs/installation
 - Components: https://boldkit.dev/components
+- Blocks: https://boldkit.dev/blocks
+- Templates: https://boldkit.dev/templates
 - Shapes: https://boldkit.dev/shapes
 - Charts: https://boldkit.dev/charts
 - Theme Builder: https://boldkit.dev/themes
@@ -478,6 +485,46 @@ import { RadialBarChart } from '@/components/ui/chart'
 // Shows circular progress bars
 ```
 
+### Empty State Component (NEW v2.6.0)
+
+```tsx
+import {
+  EmptyState,
+  EmptyStateIcon,
+  EmptyStateTitle,
+  EmptyStateDescription,
+  EmptyStateActions,
+  EmptyStatePreset,
+} from '@/components/ui/empty-state'
+import { Inbox, Plus } from 'lucide-react'
+
+// Composable API
+<EmptyState>
+  <EmptyStateIcon>
+    <Inbox className="h-10 w-10" />
+  </EmptyStateIcon>
+  <EmptyStateTitle>No messages</EmptyStateTitle>
+  <EmptyStateDescription>Your inbox is empty</EmptyStateDescription>
+  <EmptyStateActions>
+    <Button><Plus className="mr-2 h-4 w-4" />Compose</Button>
+  </EmptyStateActions>
+</EmptyState>
+
+// Preset API for common scenarios
+<EmptyStatePreset
+  preset="no-results"
+  action={<Button>Clear search</Button>}
+/>
+
+// Available presets:
+// 'no-results', 'no-data', 'empty-inbox', 'empty-folder',
+// 'no-users', 'empty-cart', 'no-notifications', 'no-images'
+
+// Variants: default, filled, card
+// Sizes: sm, md, lg
+// Icon colors: default, primary, secondary, accent, muted
+```
+
 ## Design Tokens (CSS Variables)
 
 ### Colors (HSL Format)
@@ -563,11 +610,70 @@ Component JSON files are available at:
 
 Example: `https://boldkit.dev/r/button.json`
 
+## Section Blocks (NEW v2.6.0)
+
+### Marketing Blocks (10)
+- Hero Section: Centered, Split, WithStats, Minimal, WithVideo
+- Feature Grid: WithIcons, WithImages, Alternating, Bento
+- Testimonials: Grid, Single, Masonry, WithAvatars
+- Logo Cloud: Grid, Marquee, Cards, WithStats
+- CTA Section: Simple, WithBackground, Newsletter, Split, Banner
+- Stats Section: Grid, Cards, Split, Inline, WithIcons
+- Team Section: Grid, List, LargePhotos, Compact
+- FAQ Section: Accordion, TwoColumns, WithCategories, WithContact, SimpleList
+- Footer Section: MultiColumn, WithNewsletter, Simple, Minimal, WithCTA
+- Contact Section: Split, Centered, WithCards, WithMap
+
+### Application Blocks (5)
+- Auth Forms: Login, SignUp, ForgotPassword, OTPVerification, SplitLayout
+- Settings Page: Profile, Notifications, Security, Appearance, DangerZone, FullPage
+- Onboarding Flow: Wizard, Welcome, ProfileSetup, WorkspaceSetup, GoalSelection, Completion
+- Error Pages: NotFound (404), ServerError (500), Maintenance, Offline, Forbidden (403), ComingSoon, Generic
+- Invoice: Full, Receipt, Summary, List
+
+### Blocks Usage
+
+```tsx
+// Marketing Block
+import { HeroSection } from '@/components/blocks/marketing'
+
+<HeroSection.Centered
+  title="Welcome"
+  description="Your description here"
+  primaryAction={{ label: 'Get Started', href: '/signup' }}
+/>
+
+// Application Block
+import { AuthForms } from '@/components/blocks/application'
+
+<AuthForms.Login
+  onSubmit={(data) => console.log(data)}
+  socialProviders={['google', 'github']}
+/>
+```
+
+## Full-Page Templates (6)
+
+1. **Landing Page** - SaaS landing with hero, features, pricing, testimonials
+2. **Portfolio** - Personal portfolio with hero, services, projects, contact
+3. **Dashboard** - Admin panel with sidebar, stats, charts, data tables
+4. **Pricing** - 3-tier pricing with comparison table and FAQ
+5. **Blog** - Magazine-style blog with featured articles and newsletter
+6. **Product** - E-commerce product page with gallery, reviews, related items
+
+### Template URLs
+- Landing: https://boldkit.dev/templates/landing-page
+- Portfolio: https://boldkit.dev/templates/portfolio
+- Dashboard: https://boldkit.dev/templates/dashboard
+- Pricing: https://boldkit.dev/templates/pricing
+- Blog: https://boldkit.dev/templates/blog
+- Product: https://boldkit.dev/templates/product
+
 ## Sitemap for Crawlers
 
 - Full Sitemap: `https://boldkit.dev/sitemap.xml`
-- Main Pages: `https://boldkit.dev/`, `https://boldkit.dev/docs`, `https://boldkit.dev/components`
-- Templates: `https://boldkit.dev/templates`, `https://boldkit.dev/templates/landing-page`, `https://boldkit.dev/templates/portfolio`
+- Main Pages: `https://boldkit.dev/`, `https://boldkit.dev/docs`, `https://boldkit.dev/components`, `https://boldkit.dev/blocks`
+- Templates: `https://boldkit.dev/templates`, `https://boldkit.dev/templates/landing-page`, `https://boldkit.dev/templates/portfolio`, `https://boldkit.dev/templates/dashboard`, `https://boldkit.dev/templates/pricing`, `https://boldkit.dev/templates/blog`, `https://boldkit.dev/templates/product`
 
 ## Contact
 
