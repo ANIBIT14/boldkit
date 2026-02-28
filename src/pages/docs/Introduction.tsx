@@ -1,9 +1,9 @@
 import { Link } from 'react-router-dom'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
-import { Card, CardContent } from '@/components/ui/card'
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
-import { ArrowRight, Copy, Check } from 'lucide-react'
+import { ArrowRight, Copy, Check, Sparkles, LayoutGrid, Box, Shapes } from 'lucide-react'
 import { useState } from 'react'
 import { useFramework, FrameworkToggle, ReactIcon, VueIcon } from '@/hooks/use-framework'
 import { SEO, pageSEO } from '@/components/SEO'
@@ -45,6 +45,120 @@ export function Introduction() {
         <span className="font-bold text-sm uppercase">Choose Framework:</span>
         <FrameworkToggle />
       </div>
+
+      {/* What's New Section */}
+      <section className="space-y-4">
+        <div className="flex items-center gap-2">
+          <Sparkles className="h-5 w-5 text-primary" />
+          <h2 className="text-2xl font-bold uppercase tracking-wide">What's New</h2>
+        </div>
+
+        <div className="grid gap-4 md:grid-cols-2">
+          <Card className="border-primary/50 bg-primary/5">
+            <CardHeader className="pb-2">
+              <div className="flex items-center justify-between">
+                <Badge variant="default">v2.6.0</Badge>
+                <span className="text-xs text-muted-foreground">Latest</span>
+              </div>
+              <CardTitle className="text-lg flex items-center gap-2">
+                <LayoutGrid className="h-4 w-4" />
+                Blocks Release
+              </CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-2 text-sm">
+              <p className="text-muted-foreground">Section-level building blocks for rapid development</p>
+              <ul className="space-y-1">
+                <li className="flex items-center gap-2">
+                  <span className="text-primary font-bold">◼</span>
+                  <span><strong>10 Marketing Blocks</strong> - Hero, Features, Testimonials, FAQ, etc.</span>
+                </li>
+                <li className="flex items-center gap-2">
+                  <span className="text-primary font-bold">◼</span>
+                  <span><strong>5 Application Blocks</strong> - Auth, Settings, Onboarding, Errors, Invoice</span>
+                </li>
+                <li className="flex items-center gap-2">
+                  <span className="text-primary font-bold">◼</span>
+                  <span><strong>Empty State Component</strong> - With 8 presets</span>
+                </li>
+              </ul>
+              <Link to="/blocks">
+                <Button size="sm" variant="outline" className="mt-2 gap-1">
+                  Explore Blocks <ArrowRight className="h-3 w-3" />
+                </Button>
+              </Link>
+            </CardContent>
+          </Card>
+
+          <Card>
+            <CardHeader className="pb-2">
+              <div className="flex items-center justify-between">
+                <Badge variant="secondary">v2.5.0</Badge>
+              </div>
+              <CardTitle className="text-lg flex items-center gap-2">
+                <Box className="h-4 w-4" />
+                New Components & Charts
+              </CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-2 text-sm">
+              <p className="text-muted-foreground">New UI components and chart types</p>
+              <ul className="space-y-1">
+                <li className="flex items-center gap-2">
+                  <span className="text-secondary font-bold">◼</span>
+                  <span><strong>Components:</strong> Spinner, Kbd, Stepper, Dropzone, StatCard</span>
+                </li>
+                <li className="flex items-center gap-2">
+                  <span className="text-secondary font-bold">◼</span>
+                  <span><strong>Charts:</strong> Sparkline, Donut, Radar, Radial Bar, Gauge</span>
+                </li>
+              </ul>
+            </CardContent>
+          </Card>
+
+          <Card>
+            <CardHeader className="pb-2">
+              <Badge variant="outline">v2.4.0</Badge>
+              <CardTitle className="text-lg flex items-center gap-2">
+                <Shapes className="h-4 w-4" />
+                Shapes & Templates
+              </CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-2 text-sm">
+              <ul className="space-y-1">
+                <li className="flex items-center gap-2">
+                  <span className="text-accent font-bold">◼</span>
+                  <span><strong>42 SVG Shapes</strong> - Decorative shapes for visual flair</span>
+                </li>
+                <li className="flex items-center gap-2">
+                  <span className="text-accent font-bold">◼</span>
+                  <span><strong>6 Full-Page Templates</strong> - Landing, Dashboard, Portfolio, etc.</span>
+                </li>
+              </ul>
+            </CardContent>
+          </Card>
+
+          <Card>
+            <CardHeader className="pb-2">
+              <Badge variant="outline">v2.0.0</Badge>
+              <CardTitle className="text-lg flex items-center gap-2">
+                <VueIcon className="h-4 w-4" />
+                Vue 3 Support
+              </CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-2 text-sm">
+              <ul className="space-y-1">
+                <li className="flex items-center gap-2">
+                  <span className="text-success font-bold">◼</span>
+                  <span><strong>Vue 3 Components</strong> - All components ported to Vue</span>
+                </li>
+                <li className="flex items-center gap-2">
+                  <span className="text-success font-bold">◼</span>
+                  <span><strong>Nuxt Ready</strong> - Full SSR support with shadcn-nuxt</span>
+                </li>
+              </ul>
+            </CardContent>
+          </Card>
+        </div>
+      </section>
 
       <div className="prose prose-neutral dark:prose-invert max-w-none">
         <h2 className="text-2xl font-bold uppercase tracking-wide">What is BoldKit?</h2>
