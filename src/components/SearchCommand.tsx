@@ -18,6 +18,7 @@ import {
   Layers,
   Shapes,
   BarChart3,
+  LayoutGrid,
 } from 'lucide-react'
 
 const components = [
@@ -37,9 +38,12 @@ const components = [
   { name: 'Dialog', path: '/components/dialog' },
   { name: 'Drawer', path: '/components/drawer' },
   { name: 'Dropdown Menu', path: '/components/dropdown-menu' },
+  { name: 'Dropzone', path: '/components/dropzone' },
+  { name: 'Empty State', path: '/components/empty-state' },
   { name: 'Hover Card', path: '/components/hover-card' },
   { name: 'Input', path: '/components/input' },
   { name: 'Input OTP', path: '/components/input-otp' },
+  { name: 'Kbd', path: '/components/kbd' },
   { name: 'Label', path: '/components/label' },
   { name: 'Layered Card', path: '/components/layered-card' },
   { name: 'Marquee', path: '/components/marquee' },
@@ -54,6 +58,9 @@ const components = [
   { name: 'Skeleton', path: '/components/skeleton' },
   { name: 'Slider', path: '/components/slider' },
   { name: 'Sonner', path: '/components/sonner' },
+  { name: 'Spinner', path: '/components/spinner' },
+  { name: 'Stat Card', path: '/components/stat-card' },
+  { name: 'Stepper', path: '/components/stepper' },
   { name: 'Sticker', path: '/components/sticker' },
   { name: 'Switch', path: '/components/switch' },
   { name: 'Table', path: '/components/table' },
@@ -64,11 +71,33 @@ const components = [
   { name: 'Tooltip', path: '/components/tooltip' },
 ]
 
+const marketingBlocks = [
+  { name: 'Hero Section', path: '/blocks/hero-section' },
+  { name: 'Feature Grid', path: '/blocks/feature-grid' },
+  { name: 'Testimonials', path: '/blocks/testimonials' },
+  { name: 'Logo Cloud', path: '/blocks/logo-cloud' },
+  { name: 'CTA Section', path: '/blocks/cta-section' },
+  { name: 'Stats Section', path: '/blocks/stats-section' },
+  { name: 'Team Section', path: '/blocks/team-section' },
+  { name: 'FAQ Section', path: '/blocks/faq-section' },
+  { name: 'Footer Section', path: '/blocks/footer-section' },
+  { name: 'Contact Section', path: '/blocks/contact-section' },
+]
+
+const applicationBlocks = [
+  { name: 'Auth Forms', path: '/blocks/auth-forms' },
+  { name: 'Settings Page', path: '/blocks/settings-page' },
+  { name: 'Onboarding Flow', path: '/blocks/onboarding-flow' },
+  { name: 'Error Pages', path: '/blocks/error-pages' },
+  { name: 'Invoice', path: '/blocks/invoice' },
+]
+
 const pages = [
   { name: 'Home', path: '/', icon: Layout },
   { name: 'Documentation', path: '/docs', icon: FileText },
   { name: 'Installation', path: '/docs/installation', icon: FileText },
   { name: 'Components', path: '/components', icon: Layers },
+  { name: 'Blocks', path: '/blocks', icon: LayoutGrid },
   { name: 'Shapes', path: '/shapes', icon: Shapes },
   { name: 'Charts', path: '/charts', icon: BarChart3 },
   { name: 'Theme Builder', path: '/themes', icon: Palette },
@@ -134,6 +163,32 @@ export function SearchCommand() {
               >
                 <Box className="h-4 w-4 text-muted-foreground" />
                 <span>{component.name}</span>
+              </CommandItem>
+            ))}
+          </CommandGroup>
+          <CommandSeparator />
+          <CommandGroup heading="Marketing Blocks">
+            {marketingBlocks.map((block) => (
+              <CommandItem
+                key={block.path}
+                value={block.name}
+                onSelect={() => runCommand(() => navigate(block.path))}
+              >
+                <LayoutGrid className="h-4 w-4 text-muted-foreground" />
+                <span>{block.name}</span>
+              </CommandItem>
+            ))}
+          </CommandGroup>
+          <CommandSeparator />
+          <CommandGroup heading="Application Blocks">
+            {applicationBlocks.map((block) => (
+              <CommandItem
+                key={block.path}
+                value={block.name}
+                onSelect={() => runCommand(() => navigate(block.path))}
+              >
+                <LayoutGrid className="h-4 w-4 text-muted-foreground" />
+                <span>{block.name}</span>
               </CommandItem>
             ))}
           </CommandGroup>
