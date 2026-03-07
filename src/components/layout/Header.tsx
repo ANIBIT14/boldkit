@@ -2,6 +2,7 @@ import { Link, useLocation } from 'react-router-dom'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
 import { SearchCommand } from '@/components/SearchCommand'
+import { GitHubStars } from '@/components/GitHubStars'
 import { useTheme } from '@/hooks/use-theme'
 import {
   Moon,
@@ -77,19 +78,11 @@ export function Header() {
         </div>
 
         {/* Right side actions */}
-        <div className="flex items-center gap-1">
+        <div className="flex items-center gap-1 sm:gap-2">
           <SearchCommand />
-          <a
-            href="https://github.com/ANIBIT14/boldkit"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="hidden sm:block"
-            aria-label="View BoldKit on GitHub"
-          >
-            <Button variant="ghost" size="sm" className="h-8 w-8 p-0" aria-label="GitHub repository">
-              <Github className="h-4 w-4" />
-            </Button>
-          </a>
+          <div className="hidden sm:block">
+            <GitHubStars />
+          </div>
           <Button
             variant="ghost"
             size="sm"
