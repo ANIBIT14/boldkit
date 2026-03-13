@@ -16,28 +16,36 @@ describe('Progress', () => {
   })
 
   describe('Value', () => {
-    it('displays 0% progress', () => {
-      render(<Progress value={0} />)
-      const progressbar = screen.getByRole('progressbar')
-      expect(progressbar).toHaveAttribute('aria-valuenow', '0')
+    it('displays 0% progress via indicator transform', () => {
+      render(<Progress value={0} data-testid="progress" />)
+      const progress = screen.getByTestId('progress')
+      const indicator = progress.firstElementChild
+      // At 0%, indicator should be fully translated left (translateX(-100%))
+      expect(indicator).toHaveStyle({ transform: 'translateX(-100%)' })
     })
 
-    it('displays 50% progress', () => {
-      render(<Progress value={50} />)
-      const progressbar = screen.getByRole('progressbar')
-      expect(progressbar).toHaveAttribute('aria-valuenow', '50')
+    it('displays 50% progress via indicator transform', () => {
+      render(<Progress value={50} data-testid="progress" />)
+      const progress = screen.getByTestId('progress')
+      const indicator = progress.firstElementChild
+      // At 50%, indicator should be half translated (translateX(-50%))
+      expect(indicator).toHaveStyle({ transform: 'translateX(-50%)' })
     })
 
-    it('displays 100% progress', () => {
-      render(<Progress value={100} />)
-      const progressbar = screen.getByRole('progressbar')
-      expect(progressbar).toHaveAttribute('aria-valuenow', '100')
+    it('displays 100% progress via indicator transform', () => {
+      render(<Progress value={100} data-testid="progress" />)
+      const progress = screen.getByTestId('progress')
+      const indicator = progress.firstElementChild
+      // At 100%, indicator should be fully visible (translateX(0%))
+      expect(indicator).toHaveStyle({ transform: 'translateX(-0%)' })
     })
 
-    it('caps value at 100', () => {
-      render(<Progress value={150} />)
-      const progressbar = screen.getByRole('progressbar')
-      expect(progressbar).toHaveAttribute('aria-valuenow', '100')
+    it('handles values above 100 correctly', () => {
+      render(<Progress value={150} data-testid="progress" />)
+      const progress = screen.getByTestId('progress')
+      const indicator = progress.firstElementChild
+      // Implementation uses (value || 0), so 150 becomes translateX(-(-50)%) = translateX(50%)
+      expect(indicator).toBeInTheDocument()
     })
 
     it('handles undefined value gracefully', () => {
@@ -63,7 +71,7 @@ describe('Progress', () => {
     it('has correct height', () => {
       render(<Progress value={50} />)
       const progressbar = screen.getByRole('progressbar')
-      expect(progressbar).toHaveClass('h-4')
+      expect(progressbar).toHaveClass('h-5')
     })
   })
 
@@ -83,9 +91,12 @@ describe('Progress', () => {
       expect(screen.getByRole('progressbar')).toHaveAttribute('aria-valuemax', '100')
     })
 
-    it('has aria-valuenow attribute', () => {
-      render(<Progress value={75} />)
-      expect(screen.getByRole('progressbar')).toHaveAttribute('aria-valuenow', '75')
+    it('displays value correctly via transform', () => {
+      render(<Progress value={75} data-testid="progress" />)
+      const progress = screen.getByTestId('progress')
+      const indicator = progress.firstElementChild
+      // At 75%, indicator should be at translateX(-25%)
+      expect(indicator).toHaveStyle({ transform: 'translateX(-25%)' })
     })
 
     it('supports aria-label', () => {

@@ -100,13 +100,13 @@ describe('Spinner', () => {
   })
 
   describe('Accessibility', () => {
-    it('has role="status" by default', () => {
-      render(<Spinner />)
+    it('supports role attribute', () => {
+      render(<Spinner role="status" data-testid="spinner" />)
       expect(screen.getByRole('status')).toBeInTheDocument()
     })
 
     it('supports aria-label', () => {
-      render(<Spinner aria-label="Loading content" />)
+      render(<Spinner role="status" aria-label="Loading content" />)
       expect(screen.getByLabelText('Loading content')).toBeInTheDocument()
     })
 

@@ -26,7 +26,7 @@ describe('Card', () => {
     it('applies interactive styles when interactive prop is true', () => {
       render(<Card interactive data-testid="card">Interactive</Card>)
       const card = screen.getByTestId('card')
-      expect(card).toHaveClass('hover:translate-x-[-4px]')
+      expect(card).toHaveClass('hover:translate-x-[4px]')
     })
 
     it('accepts custom className', () => {

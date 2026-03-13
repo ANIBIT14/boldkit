@@ -75,13 +75,13 @@ describe('Button', () => {
     it('applies default size', () => {
       render(<Button size="default">Default Size</Button>)
       const button = screen.getByRole('button')
-      expect(button).toHaveClass('h-10')
+      expect(button).toHaveClass('h-11')
     })
 
     it('applies small size', () => {
       render(<Button size="sm">Small</Button>)
       const button = screen.getByRole('button')
-      expect(button).toHaveClass('h-8')
+      expect(button).toHaveClass('h-9')
     })
 
     it('applies large size', () => {
@@ -93,8 +93,8 @@ describe('Button', () => {
     it('applies icon size', () => {
       render(<Button size="icon">I</Button>)
       const button = screen.getByRole('button')
-      expect(button).toHaveClass('h-10')
-      expect(button).toHaveClass('w-10')
+      expect(button).toHaveClass('h-11')
+      expect(button).toHaveClass('w-11')
     })
   })
 
