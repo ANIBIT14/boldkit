@@ -71,6 +71,18 @@ const StepperDoc = lazy(() => import('@/pages/docs/StepperDoc').then(m => ({ def
 const DropzoneDoc = lazy(() => import('@/pages/docs/DropzoneDoc').then(m => ({ default: m.DropzoneDoc })))
 const EmptyStateDoc = lazy(() => import('@/pages/docs/EmptyStateDoc').then(m => ({ default: m.EmptyStateDoc })))
 
+// New v2.7.0 & v2.8.0 component documentation pages
+const RatingDoc = lazy(() => import('@/pages/docs/RatingDoc').then(m => ({ default: m.RatingDoc })))
+const TagInputDoc = lazy(() => import('@/pages/docs/TagInputDoc').then(m => ({ default: m.TagInputDoc })))
+const TimePickerDoc = lazy(() => import('@/pages/docs/TimePickerDoc').then(m => ({ default: m.TimePickerDoc })))
+const DateRangePickerDoc = lazy(() => import('@/pages/docs/DateRangePickerDoc').then(m => ({ default: m.DateRangePickerDoc })))
+const DataTableDoc = lazy(() => import('@/pages/docs/DataTableDoc').then(m => ({ default: m.DataTableDoc })))
+const CarouselDoc = lazy(() => import('@/pages/docs/CarouselDoc').then(m => ({ default: m.CarouselDoc })))
+const TimelineDoc = lazy(() => import('@/pages/docs/TimelineDoc').then(m => ({ default: m.TimelineDoc })))
+const TreeViewDoc = lazy(() => import('@/pages/docs/TreeViewDoc').then(m => ({ default: m.TreeViewDoc })))
+const SidebarDoc = lazy(() => import('@/pages/docs/SidebarDoc').then(m => ({ default: m.SidebarDoc })))
+const TourDoc = lazy(() => import('@/pages/docs/TourDoc').then(m => ({ default: m.TourDoc })))
+
 // Block documentation pages
 const HeroSectionDoc = lazy(() => import('@/pages/docs/blocks/HeroSectionDoc').then(m => ({ default: m.HeroSectionDoc })))
 const FeatureGridDoc = lazy(() => import('@/pages/docs/blocks/FeatureGridDoc').then(m => ({ default: m.FeatureGridDoc })))
@@ -187,6 +199,18 @@ function App() {
               <Route path="stepper" element={<Suspense fallback={<PageLoader />}><StepperDoc /></Suspense>} />
               <Route path="dropzone" element={<Suspense fallback={<PageLoader />}><DropzoneDoc /></Suspense>} />
               <Route path="empty-state" element={<Suspense fallback={<PageLoader />}><EmptyStateDoc /></Suspense>} />
+              {/* v2.7.0 Components */}
+              <Route path="rating" element={<Suspense fallback={<PageLoader />}><RatingDoc /></Suspense>} />
+              <Route path="tag-input" element={<Suspense fallback={<PageLoader />}><TagInputDoc /></Suspense>} />
+              <Route path="time-picker" element={<Suspense fallback={<PageLoader />}><TimePickerDoc /></Suspense>} />
+              <Route path="date-range-picker" element={<Suspense fallback={<PageLoader />}><DateRangePickerDoc /></Suspense>} />
+              <Route path="data-table" element={<Suspense fallback={<PageLoader />}><DataTableDoc /></Suspense>} />
+              {/* v2.8.0 Components */}
+              <Route path="carousel" element={<Suspense fallback={<PageLoader />}><CarouselDoc /></Suspense>} />
+              <Route path="timeline" element={<Suspense fallback={<PageLoader />}><TimelineDoc /></Suspense>} />
+              <Route path="tree-view" element={<Suspense fallback={<PageLoader />}><TreeViewDoc /></Suspense>} />
+              <Route path="sidebar" element={<Suspense fallback={<PageLoader />}><SidebarDoc /></Suspense>} />
+              <Route path="tour" element={<Suspense fallback={<PageLoader />}><TourDoc /></Suspense>} />
               <Route path="*" element={<Navigate to="/components/button" replace />} />
             </Route>
 

@@ -854,6 +854,146 @@
           "target": "components/ui/chart/gauge-chart.tsx"
         }
       ]
+    },
+    {
+      "name": "rating",
+      "type": "registry:ui",
+      "description": "Star rating component with half-values, multiple icons, and keyboard navigation",
+      "dependencies": ["class-variance-authority", "lucide-react"],
+      "registryDependencies": ["utils"],
+      "files": [
+        {
+          "path": "registry/default/ui/rating.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/rating.tsx"
+        }
+      ]
+    },
+    {
+      "name": "tag-input",
+      "type": "registry:ui",
+      "description": "Multi-tag input with suggestions, validation, and keyboard support",
+      "dependencies": ["lucide-react"],
+      "registryDependencies": ["utils"],
+      "files": [
+        {
+          "path": "registry/default/ui/tag-input.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/tag-input.tsx"
+        }
+      ]
+    },
+    {
+      "name": "time-picker",
+      "type": "registry:ui",
+      "description": "Popover-based time picker with 12h/24h format and scrollable columns",
+      "dependencies": ["lucide-react"],
+      "registryDependencies": ["utils", "button", "popover", "scroll-area"],
+      "files": [
+        {
+          "path": "registry/default/ui/time-picker.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/time-picker.tsx"
+        }
+      ]
+    },
+    {
+      "name": "date-range-picker",
+      "type": "registry:ui",
+      "description": "Date range picker with presets, dual calendars, and customizable options",
+      "dependencies": ["date-fns", "react-day-picker", "lucide-react"],
+      "registryDependencies": ["utils", "button", "calendar", "popover"],
+      "files": [
+        {
+          "path": "registry/default/ui/date-range-picker.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/date-range-picker.tsx"
+        }
+      ]
+    },
+    {
+      "name": "data-table",
+      "type": "registry:ui",
+      "description": "Powerful data table with sorting, filtering, pagination, and row selection",
+      "dependencies": ["@tanstack/react-table", "lucide-react"],
+      "registryDependencies": ["utils", "button", "checkbox", "dropdown-menu", "input", "select", "table"],
+      "files": [
+        {
+          "path": "registry/default/ui/data-table.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/data-table.tsx"
+        }
+      ]
+    },
+    {
+      "name": "carousel",
+      "type": "registry:ui",
+      "description": "Carousel component with navigation, dots, and touch support built on Embla",
+      "dependencies": ["embla-carousel-react", "lucide-react"],
+      "registryDependencies": ["utils", "button"],
+      "files": [
+        {
+          "path": "registry/default/ui/carousel.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/carousel.tsx"
+        }
+      ]
+    },
+    {
+      "name": "timeline",
+      "type": "registry:ui",
+      "description": "Composable timeline for activity feeds, order tracking, and version history",
+      "dependencies": ["class-variance-authority"],
+      "registryDependencies": ["utils"],
+      "files": [
+        {
+          "path": "registry/default/ui/timeline.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/timeline.tsx"
+        }
+      ]
+    },
+    {
+      "name": "tree-view",
+      "type": "registry:ui",
+      "description": "Hierarchical tree view with expand/collapse, selection, and checkboxes",
+      "dependencies": ["@radix-ui/react-collapsible", "lucide-react"],
+      "registryDependencies": ["utils", "checkbox", "collapsible"],
+      "files": [
+        {
+          "path": "registry/default/ui/tree-view.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/tree-view.tsx"
+        }
+      ]
+    },
+    {
+      "name": "sidebar",
+      "type": "registry:ui",
+      "description": "Collapsible sidebar with mobile drawer, tooltips, and keyboard shortcut",
+      "dependencies": ["class-variance-authority", "lucide-react"],
+      "registryDependencies": ["utils", "button", "sheet", "tooltip"],
+      "files": [
+        {
+          "path": "registry/default/ui/sidebar.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/sidebar.tsx"
+        }
+      ]
+    },
+    {
+      "name": "tour",
+      "type": "registry:ui",
+      "description": "Step-by-step product tour with spotlight highlighting and progress indicators",
+      "dependencies": ["lucide-react"],
+      "registryDependencies": ["utils", "button"],
+      "files": [
+        {
+          "path": "registry/default/ui/tour.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/tour.tsx"
+        }
+      ]
     }
   ]
 }

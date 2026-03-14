@@ -1,0 +1,24 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "date-range-picker",
+  "type": "registry:ui",
+  "description": "Date range picker with presets, dual calendars, and customizable options",
+  "dependencies": [
+    "date-fns",
+    "react-day-picker",
+    "lucide-react"
+  ],
+  "registryDependencies": [
+    "utils",
+    "button",
+    "calendar",
+    "popover"
+  ],
+  "files": [
+    {
+      "path": "registry/default/ui/date-range-picker.tsx",
+      "type": "registry:ui",
+      "target": "components/ui/date-range-picker.tsx"
+    }
+  ]
+}

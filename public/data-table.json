@@ -1,0 +1,26 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "data-table",
+  "type": "registry:ui",
+  "description": "Powerful data table with sorting, filtering, pagination, and row selection",
+  "dependencies": [
+    "@tanstack/react-table",
+    "lucide-react"
+  ],
+  "registryDependencies": [
+    "utils",
+    "button",
+    "checkbox",
+    "dropdown-menu",
+    "input",
+    "select",
+    "table"
+  ],
+  "files": [
+    {
+      "path": "registry/default/ui/data-table.tsx",
+      "type": "registry:ui",
+      "target": "components/ui/data-table.tsx"
+    }
+  ]
+}
