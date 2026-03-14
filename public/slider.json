@@ -2,10 +2,8 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "slider",
   "type": "registry:ui",
-  "description": "An input where the user selects a value from within a given range",
-  "dependencies": [
-    "@radix-ui/react-slider"
-  ],
+  "description": "A jelly slider with spring physics and bouncy animations",
+  "dependencies": [],
   "registryDependencies": [
     "utils"
   ],
