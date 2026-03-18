@@ -1,6 +1,6 @@
 import { describe, it, expect, vi } from 'vitest'
 import { render, screen, fireEvent } from '@/test/test-utils'
-import { Rating } from '../Rating'
+import { Rating } from '../rating'
 
 describe('Rating', () => {
   describe('Rendering', () => {

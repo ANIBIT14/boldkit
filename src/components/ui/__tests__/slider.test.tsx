@@ -1,6 +1,6 @@
 import { describe, it, expect, vi } from 'vitest'
 import { render, screen, fireEvent } from '@/test/test-utils'
-import { Slider } from '../Slider'
+import { Slider } from '../slider'
 
 describe('Slider', () => {
   describe('Rendering', () => {
