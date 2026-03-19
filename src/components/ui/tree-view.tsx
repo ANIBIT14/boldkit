@@ -78,13 +78,16 @@ const TreeView = React.forwardRef<HTMLDivElement, TreeViewProps>(
     const isExpandedControlled = controlledExpandedIds !== undefined
     const isSelectedControlled = controlledSelectedIds !== undefined
 
-    const expandedIds = isExpandedControlled
-      ? new Set(controlledExpandedIds)
-      : uncontrolledExpandedIds
+    // Memoize Set objects to prevent useCallback dependencies from changing on every render
+    const expandedIds = React.useMemo(
+      () => (isExpandedControlled ? new Set(controlledExpandedIds) : uncontrolledExpandedIds),
+      [isExpandedControlled, controlledExpandedIds, uncontrolledExpandedIds]
+    )
 
-    const selectedIds = isSelectedControlled
-      ? new Set(controlledSelectedIds)
-      : uncontrolledSelectedIds
+    const selectedIds = React.useMemo(
+      () => (isSelectedControlled ? new Set(controlledSelectedIds) : uncontrolledSelectedIds),
+      [isSelectedControlled, controlledSelectedIds, uncontrolledSelectedIds]
+    )
 
     const toggleExpanded = React.useCallback(
       (id: string) => {

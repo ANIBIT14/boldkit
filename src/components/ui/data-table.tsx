@@ -331,8 +331,14 @@ function DataTable<TData, TValue>({
     }
   }, [rowSelection, table, onRowSelectionChange])
 
+  // Memoize context value to prevent unnecessary re-renders
+  const contextValue = React.useMemo(
+    () => ({ table: table as TanstackTable<unknown> }),
+    [table]
+  )
+
   return (
-    <DataTableContext.Provider value={{ table: table as TanstackTable<unknown> }}>
+    <DataTableContext.Provider value={contextValue}>
       <div className="space-y-4">
         {/* Toolbar */}
         {(enableFiltering || enableColumnVisibility) && (
