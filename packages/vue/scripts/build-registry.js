@@ -136,6 +136,38 @@ const componentMeta = {
     desc: 'Hierarchical tree view with expand/collapse, selection, and checkboxes',
     files: ['TreeView']
   },
+
+  // v2.5.0 components - missing from registry
+  dropzone: {
+    deps: ['lucide-vue-next'],
+    desc: 'Drag-and-drop file upload with preview and validation',
+    files: ['Dropzone', 'FileList']
+  },
+  'empty-state': {
+    deps: ['lucide-vue-next', 'class-variance-authority'],
+    desc: 'Empty state placeholders with presets for common scenarios',
+    files: ['EmptyState', 'EmptyStateActions', 'EmptyStateDescription', 'EmptyStateIcon', 'EmptyStatePreset', 'EmptyStateTitle']
+  },
+  kbd: {
+    deps: [],
+    desc: 'Keyboard shortcut display component',
+    files: ['Kbd', 'KbdCombo']
+  },
+  spinner: {
+    deps: ['class-variance-authority'],
+    desc: 'Loading spinner with multiple variants',
+    files: ['Spinner']
+  },
+  'stat-card': {
+    deps: ['lucide-vue-next'],
+    desc: 'Statistics card for dashboards',
+    files: ['StatCard']
+  },
+  stepper: {
+    deps: ['class-variance-authority'],
+    desc: 'Multi-step wizard/stepper component',
+    files: ['Stepper', 'StepperContent', 'StepperItem', 'StepperList', 'StepperSeparator', 'StepperTrigger']
+  },
 }
 
 const SHAPES_DIR = path.join(UI_DIR, 'shapes')
