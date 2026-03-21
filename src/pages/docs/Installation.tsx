@@ -24,13 +24,13 @@ function CodeBlock({ code, language }: { code: string; language?: string }) {
           {language}
         </div>
       )}
-      <pre className="overflow-x-auto border-3 border-foreground bg-muted p-4 text-sm bk-shadow">
+      <pre className="overflow-x-auto border-3 border-foreground bg-muted p-4 pr-12 text-sm bk-shadow">
         <code>{code}</code>
       </pre>
       <Button
-        variant="ghost"
+        variant="outline"
         size="icon"
-        className="absolute right-2 top-2 h-8 w-8"
+        className="absolute right-2 top-2 h-8 w-8 bg-background"
         onClick={copyCode}
       >
         {copied ? <Check className="h-4 w-4" /> : <Copy className="h-4 w-4" />}

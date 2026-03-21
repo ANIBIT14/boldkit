@@ -221,7 +221,12 @@ function loadSavedColors() {
   return defaultColors
 }
 
-export function ThemeBuilder() {
+interface ThemeBuilderProps {
+  /** When true, skip the Layout wrapper (use when inside DocsLayout) */
+  embedded?: boolean
+}
+
+export function ThemeBuilder({ embedded = false }: ThemeBuilderProps) {
   const [copied, setCopied] = useState(false)
   const [colors, setColors] = useState(loadSavedColors)
 
@@ -361,11 +366,8 @@ export function ThemeBuilder() {
     setTimeout(() => setCopied(false), 2000)
   }
 
-  return (
-    <>
-      <SEO {...pageSEO.themes} />
-      <Layout showFooter={false}>
-      <div className="container mx-auto px-3 md:px-4 py-6 md:py-8 overflow-x-hidden">
+  const content = (
+    <div className="container mx-auto px-3 md:px-4 py-6 md:py-8 overflow-x-hidden">
         <div className="mb-6 md:mb-8">
           <div className="flex items-center gap-2 mb-3 md:mb-4 flex-wrap">
             <Badge variant="accent">
@@ -643,8 +645,24 @@ export function ThemeBuilder() {
             </Card>
           </div>
         </div>
-      </div>
-    </Layout>
+    </div>
+  )
+
+  if (embedded) {
+    return (
+      <>
+        <SEO {...pageSEO.themes} />
+        {content}
+      </>
+    )
+  }
+
+  return (
+    <>
+      <SEO {...pageSEO.themes} />
+      <Layout showFooter={false}>
+        {content}
+      </Layout>
     </>
   )
 }

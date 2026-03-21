@@ -144,7 +144,7 @@ function App() {
             <Route path="/docs" element={<DocsLayout />}>
               <Route index element={<Suspense fallback={<PageLoader />}><Introduction /></Suspense>} />
               <Route path="installation" element={<Suspense fallback={<PageLoader />}><Installation /></Suspense>} />
-              <Route path="theming" element={<ThemeBuilder />} />
+              <Route path="theming" element={<ThemeBuilder embedded />} />
               <Route path="*" element={<Suspense fallback={<PageLoader />}><Introduction /></Suspense>} />
             </Route>
 

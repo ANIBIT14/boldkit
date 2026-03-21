@@ -27,18 +27,18 @@ export function CodeBlock({ code, language = 'tsx' }: { code: string; language?:
 
   return (
     <div className="relative">
-      <div className="absolute right-2 top-2 flex items-center gap-2 z-10">
-        <span className="text-xs text-muted-foreground bg-muted px-2 py-0.5">{language}</span>
+      <div className="absolute right-2 top-2 flex items-center gap-2 z-10 bg-muted px-2 py-1 border border-foreground/20">
+        <span className="text-xs text-muted-foreground">{language}</span>
         <Button
           variant="ghost"
           size="icon"
-          className="h-8 w-8"
+          className="h-6 w-6"
           onClick={copyCode}
         >
-          {copied ? <Check className="h-4 w-4" /> : <Copy className="h-4 w-4" />}
+          {copied ? <Check className="h-3 w-3" /> : <Copy className="h-3 w-3" />}
         </Button>
       </div>
-      <pre className="overflow-x-auto border-3 border-foreground bg-muted p-4 pr-20 text-sm max-h-96">
+      <pre className="overflow-x-auto border-3 border-foreground bg-muted p-4 pr-24 text-sm max-h-96">
         <code>{code}</code>
       </pre>
     </div>
