@@ -404,6 +404,15 @@ body {
   @apply bg-accent text-accent-foreground;
 }
 
+/* Hide scrollbar globally */
+* {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+*::-webkit-scrollbar {
+  display: none;
+}
+
 /* ==========================================
    TYPOGRAPHY ENHANCEMENTS
    ========================================== */

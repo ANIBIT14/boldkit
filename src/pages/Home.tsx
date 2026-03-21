@@ -57,7 +57,7 @@ export function Home() {
             <div className="grid lg:grid-cols-[1fr_420px] xl:grid-cols-[1fr_500px] gap-8 lg:gap-12 items-center">
 
               {/* ── Left: Text Content ── */}
-              <div className="relative z-10">
+              <div className="relative z-10 min-w-0">
 
                 {/* Framework pills */}
                 <div className="mb-6 flex flex-wrap gap-2">
@@ -120,7 +120,7 @@ export function Home() {
                 </div>
 
                 {/* Framework toggle + CLI */}
-                <div className="space-y-2">
+                <div className="w-full space-y-2">
                   <div className="inline-flex border-3 border-foreground bg-background">
                     <button
                       onClick={() => setFramework('react')}
@@ -139,8 +139,8 @@ export function Home() {
                       <VueIcon className="h-4 w-4" /> Vue
                     </button>
                   </div>
-                  <div className="flex items-center gap-2 border-3 border-foreground bg-muted px-4 py-2 bk-shadow max-w-[520px]">
-                    <code className="flex-1 truncate text-xs font-mono">{commands[framework]}</code>
+                  <div className="flex w-full min-w-0 items-center gap-2 border-3 border-foreground bg-muted px-4 py-2 bk-shadow">
+                    <code className="min-w-0 flex-1 truncate text-xs font-mono">{commands[framework]}</code>
                     <Button variant="ghost" size="icon" className="h-7 w-7 shrink-0" onClick={copyCommand}>
                       {copied ? <Check className="h-3.5 w-3.5" /> : <Copy className="h-3.5 w-3.5" />}
                     </Button>
