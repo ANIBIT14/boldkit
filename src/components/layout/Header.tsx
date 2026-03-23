@@ -1,5 +1,4 @@
 import { Link, useLocation } from 'react-router-dom'
-import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
 import { SearchCommand } from '@/components/SearchCommand'
 import { GitHubStars } from '@/components/GitHubStars'
@@ -16,9 +15,12 @@ import {
   BarChart3,
   Palette,
   LayoutTemplate,
+  ArrowUpRight,
 } from 'lucide-react'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { cn } from '@/lib/utils'
+
+const DISPLAY: React.CSSProperties = { fontFamily: "'Bebas Neue', sans-serif" }
 
 const navItems = [
   { label: 'Docs', href: '/docs', icon: BookOpen },
@@ -34,119 +36,199 @@ export function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const location = useLocation()
 
+  // Close mobile menu on route change
+  useEffect(() => {
+    setMobileMenuOpen(false)
+  }, [location.pathname])
+
+  // Prevent body scroll when mobile menu is open
+  useEffect(() => {
+    if (mobileMenuOpen) {
+      document.body.style.overflow = 'hidden'
+    } else {
+      document.body.style.overflow = ''
+    }
+    return () => { document.body.style.overflow = '' }
+  }, [mobileMenuOpen])
+
   return (
-    <nav className="sticky top-0 z-50 border-b-3 border-foreground bg-background">
-      {/* Skip to main content link for keyboard navigation */}
+    <>
+      {/* Skip to main content */}
       <a
         href="#main-content"
-        className="sr-only focus:not-sr-only focus:absolute focus:z-[100] focus:top-2 focus:left-2 focus:px-4 focus:py-2 focus:bg-primary focus:text-primary-foreground focus:font-bold focus:border-3 focus:border-foreground"
+        className="sr-only focus:not-sr-only focus:fixed focus:z-[200] focus:top-2 focus:left-2 focus:px-4 focus:py-2 focus:bg-primary focus:text-primary-foreground focus:font-bold focus:border-3 focus:border-foreground"
       >
         Skip to main content
       </a>
-      <div className="container mx-auto flex h-14 items-center justify-between px-3 lg:px-4">
-        {/* Logo */}
-        <Link to="/" className="flex items-center gap-1.5 shrink-0">
-          <img
-            src="https://ik.imagekit.io/fincalfy/304a4c07-8de1-41af-813e-e7556234b973.png"
-            alt="BoldKit"
-            className="h-7 w-7"
-          />
-          <span className="text-lg font-black uppercase tracking-wider hidden sm:inline">BoldKit</span>
-          <Badge variant="secondary" className="text-[9px] px-1 py-0 hidden sm:inline-flex">Beta</Badge>
-        </Link>
 
-        {/* Desktop Navigation */}
-        <div className="hidden lg:flex items-center gap-0.5">
-          {navItems.map((item) => {
-            const Icon = item.icon
-            return (
-              <Link key={item.href} to={item.href}>
-                <Button
-                  variant="ghost"
-                  size="sm"
-                  className={cn(
-                    'h-8 px-2.5 text-xs font-bold gap-1.5',
-                    location.pathname.startsWith(item.href) && 'bg-muted'
-                  )}
-                >
-                  <Icon className="h-3.5 w-3.5" />
-                  {item.label}
-                </Button>
-              </Link>
-            )
-          })}
-        </div>
+      <header className="sticky top-0 z-50 bg-background border-b-3 border-foreground">
+        {/* Accent stripe */}
+        <div className="h-[3px] bg-primary w-full" />
 
-        {/* Right side actions */}
-        <div className="flex items-center gap-1 sm:gap-2">
-          <SearchCommand />
-          <div className="hidden sm:block">
-            <GitHubStars />
-          </div>
-          <Button
-            variant="ghost"
-            size="sm"
-            className="h-8 w-8 p-0"
-            onClick={() => setTheme(resolvedTheme === 'light' ? 'dark' : 'light')}
-            aria-label={resolvedTheme === 'light' ? 'Switch to dark mode' : 'Switch to light mode'}
+        <div className="container mx-auto flex h-14 items-center justify-between px-3 lg:px-6">
+
+          {/* Logo */}
+          <Link
+            to="/"
+            className="flex items-center gap-2 shrink-0 group"
+            aria-label="BoldKit home"
           >
-            {resolvedTheme === 'light' ? <Moon className="h-4 w-4" /> : <Sun className="h-4 w-4" />}
-          </Button>
+            <div className="relative">
+              <img
+                src="https://ik.imagekit.io/fincalfy/304a4c07-8de1-41af-813e-e7556234b973.png"
+                alt=""
+                className="h-7 w-7 transition-transform group-hover:rotate-[-6deg] duration-200"
+              />
+            </div>
+            <span
+              className="text-2xl leading-none tracking-wider"
+              style={DISPLAY}
+            >
+              BoldKit
+            </span>
+            <Badge
+              variant="secondary"
+              className="text-[9px] px-1 py-0 h-4 hidden sm:inline-flex"
+            >
+              Beta
+            </Badge>
+          </Link>
 
-          {/* Mobile menu button */}
-          <Button
-            variant="ghost"
-            size="sm"
-            className="h-8 w-8 p-0 lg:hidden"
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            aria-label={mobileMenuOpen ? 'Close navigation menu' : 'Open navigation menu'}
-            aria-expanded={mobileMenuOpen}
-          >
-            {mobileMenuOpen ? <X className="h-4 w-4" /> : <Menu className="h-4 w-4" />}
-          </Button>
-        </div>
-      </div>
-
-      {/* Mobile Navigation */}
-      {mobileMenuOpen && (
-        <div className="lg:hidden border-t-3 border-foreground bg-background">
-          <div className="container mx-auto px-3 py-3 flex flex-col gap-1">
+          {/* Desktop Navigation */}
+          <nav className="hidden lg:flex items-center" aria-label="Main navigation">
             {navItems.map((item) => {
-              const Icon = item.icon
+              const isActive = location.pathname.startsWith(item.href)
               return (
                 <Link
                   key={item.href}
                   to={item.href}
-                  onClick={() => setMobileMenuOpen(false)}
+                  className={cn(
+                    'relative px-3 h-14 flex items-center text-sm font-bold tracking-wide transition-colors duration-150',
+                    'hover:text-primary',
+                    isActive
+                      ? 'text-primary'
+                      : 'text-foreground/70 hover:text-foreground'
+                  )}
                 >
-                  <Button
-                    variant="ghost"
-                    size="sm"
-                    className={cn(
-                      'w-full justify-start h-9 text-sm font-bold gap-2',
-                      location.pathname.startsWith(item.href) && 'bg-muted'
-                    )}
-                  >
-                    <Icon className="h-4 w-4" />
-                    {item.label}
-                  </Button>
+                  {item.label}
+                  {/* Active underline — sits flush with bottom border */}
+                  {isActive && (
+                    <span className="absolute bottom-0 left-0 right-0 h-[3px] bg-primary" />
+                  )}
                 </Link>
               )
             })}
-            <a
-              href="https://github.com/ANIBIT14/boldkit"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="sm:hidden"
+          </nav>
+
+          {/* Right-side actions */}
+          <div className="flex items-center gap-1.5">
+            {/* Search */}
+            <SearchCommand />
+
+            {/* GitHub stars — hidden on xs, shown sm+ */}
+            <div className="hidden sm:block">
+              <GitHubStars />
+            </div>
+
+            {/* Theme toggle */}
+            <button
+              className="h-8 w-8 flex items-center justify-center border-3 border-foreground bg-background hover:bg-foreground hover:text-background transition-colors duration-150 shrink-0"
+              onClick={() => setTheme(resolvedTheme === 'light' ? 'dark' : 'light')}
+              aria-label={resolvedTheme === 'light' ? 'Switch to dark mode' : 'Switch to light mode'}
             >
-              <Button variant="ghost" size="sm" className="w-full justify-start h-9 text-sm font-bold gap-2">
-                <Github className="h-4 w-4" />
-                GitHub
-              </Button>
-            </a>
+              {resolvedTheme === 'light'
+                ? <Moon className="h-3.5 w-3.5" />
+                : <Sun className="h-3.5 w-3.5" />
+              }
+            </button>
+
+            {/* Mobile hamburger */}
+            <button
+              className="lg:hidden h-8 w-8 flex items-center justify-center border-3 border-foreground bg-background hover:bg-foreground hover:text-background transition-colors duration-150 shrink-0"
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              aria-label={mobileMenuOpen ? 'Close menu' : 'Open menu'}
+              aria-expanded={mobileMenuOpen}
+              aria-controls="mobile-menu"
+            >
+              {mobileMenuOpen ? <X className="h-4 w-4" /> : <Menu className="h-4 w-4" />}
+            </button>
+          </div>
+        </div>
+      </header>
+
+      {/* Mobile Menu Overlay */}
+      {mobileMenuOpen && (
+        <div
+          className="fixed inset-0 z-40 lg:hidden"
+          id="mobile-menu"
+          role="dialog"
+          aria-modal="true"
+          aria-label="Navigation menu"
+        >
+          {/* Backdrop */}
+          <div
+            className="absolute inset-0 bg-foreground/20"
+            onClick={() => setMobileMenuOpen(false)}
+          />
+
+          {/* Panel */}
+          <div className="absolute top-[calc(3px+56px+3px)] left-0 right-0 bottom-0 bg-background border-t-3 border-foreground overflow-y-auto">
+
+            {/* Nav links */}
+            <div className="px-4 pt-4 pb-2">
+              <p className="text-[10px] font-bold uppercase tracking-[0.15em] text-muted-foreground mb-2 px-1">
+                Navigate
+              </p>
+              <nav className="flex flex-col gap-1">
+                {navItems.map((item) => {
+                  const Icon = item.icon
+                  const isActive = location.pathname.startsWith(item.href)
+                  return (
+                    <Link
+                      key={item.href}
+                      to={item.href}
+                      onClick={() => setMobileMenuOpen(false)}
+                      className={cn(
+                        'flex items-center gap-3 px-3 py-3 font-bold text-base border-3 transition-all duration-100',
+                        isActive
+                          ? 'border-foreground bg-primary text-primary-foreground shadow-[3px_3px_0px_hsl(var(--foreground))]'
+                          : 'border-transparent hover:border-foreground hover:bg-muted hover:shadow-[3px_3px_0px_hsl(var(--foreground))] hover:translate-x-[-2px] hover:translate-y-[-2px]'
+                      )}
+                    >
+                      <Icon className="h-4 w-4 shrink-0" />
+                      <span>{item.label}</span>
+                      {isActive && <span className="ml-auto text-xs opacity-70">Current</span>}
+                    </Link>
+                  )
+                })}
+              </nav>
+            </div>
+
+            {/* Divider */}
+            <div className="mx-4 my-3 border-t-2 border-foreground/10" />
+
+            {/* GitHub & actions */}
+            <div className="px-4 pb-4">
+              <p className="text-[10px] font-bold uppercase tracking-[0.15em] text-muted-foreground mb-2 px-1">
+                More
+              </p>
+              <a
+                href="https://github.com/ANIBIT14/boldkit"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-3 px-3 py-3 font-bold text-base border-3 border-transparent hover:border-foreground hover:bg-muted hover:shadow-[3px_3px_0px_hsl(var(--foreground))] hover:translate-x-[-2px] hover:translate-y-[-2px] transition-all duration-100"
+              >
+                <Github className="h-4 w-4 shrink-0" />
+                <span>GitHub</span>
+                <ArrowUpRight className="h-3.5 w-3.5 ml-auto opacity-50" />
+              </a>
+            </div>
+
+            {/* Bottom safe area padding */}
+            <div className="h-[env(safe-area-inset-bottom,16px)]" />
           </div>
         </div>
       )}
-    </nav>
+    </>
   )
 }

@@ -129,11 +129,12 @@ export function SearchCommand() {
     <>
       <button
         onClick={() => setOpen(true)}
-        className="inline-flex items-center justify-center h-8 w-8 sm:w-auto sm:px-3 sm:gap-2 text-sm text-muted-foreground hover:text-foreground hover:bg-muted transition-colors"
+        className="inline-flex items-center gap-2 h-8 border-3 border-foreground bg-background px-2 sm:px-3 text-sm font-bold text-muted-foreground hover:bg-muted hover:text-foreground transition-colors duration-150 shrink-0"
         aria-label="Search (⌘K)"
       >
-        <Search className="h-4 w-4" />
-        <kbd className="hidden sm:inline-flex h-5 items-center gap-0.5 border border-foreground/20 bg-muted px-1.5 font-mono text-[10px] font-medium text-muted-foreground">
+        <Search className="h-3.5 w-3.5 shrink-0" />
+        <span className="hidden md:inline text-xs text-muted-foreground">Search...</span>
+        <kbd className="hidden sm:inline-flex h-5 items-center gap-0.5 border-2 border-foreground/30 bg-muted px-1.5 font-mono text-[10px] font-bold ml-1">
           <span className="text-xs">⌘</span>K
         </kbd>
       </button>
