@@ -1,31 +1,10 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { Badge } from '@/components/ui/badge'
-import { Marquee, MarqueeItem, MarqueeSeparator } from '@/components/ui/marquee'
-import { Github, Mail, ArrowUpRight, Triangle } from 'lucide-react'
+import { Github, Mail, ArrowUpRight } from 'lucide-react'
 
 const DISPLAY: React.CSSProperties = { fontFamily: "'Bebas Neue', sans-serif" }
 const MONO: React.CSSProperties = { fontFamily: "'DM Mono', monospace" }
-
-const marqueeItems = [
-  '50+ Components',
-  '10 Chart Types',
-  '45 SVG Shapes',
-  'React',
-  'Vue 3',
-  'Nuxt',
-  'Tailwind CSS',
-  'Radix UI',
-  'Reka UI',
-  'Neubrutalism',
-  'Open Source',
-  'MIT License',
-  'shadcn CLI',
-  'TypeScript',
-  'Dark Mode',
-  'Recharts',
-  'ECharts',
-]
 
 const exploreLinks = [
   { label: 'Documentation', href: '/docs' },
@@ -124,28 +103,6 @@ export function Footer() {
           </div>
 
         </div>
-      </div>
-
-      {/* ── Marquee strip ── */}
-      <div className="border-y-3 border-foreground">
-        <Marquee
-          speed="slow"
-          pauseOnHover
-          bordered={false}
-          repeat={3}
-          className="bg-primary"
-        >
-          {marqueeItems.map((item, i) => (
-            <React.Fragment key={i}>
-              <MarqueeItem className="text-primary-foreground text-sm">
-                {item}
-              </MarqueeItem>
-              <MarqueeSeparator className="text-primary-foreground/40">
-                <Triangle className="h-2 w-2 fill-current rotate-90" />
-              </MarqueeSeparator>
-            </React.Fragment>
-          ))}
-        </Marquee>
       </div>
 
       {/* ── Links grid ── */}
