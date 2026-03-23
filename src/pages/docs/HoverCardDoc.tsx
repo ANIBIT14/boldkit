@@ -150,6 +150,16 @@ export function HoverCardDoc() {
     <p>This is a hover card with some content.</p>
   </HoverCardContent>
 </HoverCard>`}
+        vueCode={`<template>
+  <HoverCard>
+    <HoverCardTrigger as-child>
+      <Button variant="link">Hover me</Button>
+    </HoverCardTrigger>
+    <HoverCardContent>
+      <p>This is a hover card with some content.</p>
+    </HoverCardContent>
+  </HoverCard>
+</template>`}
       >
         <HoverCard>
           <HoverCardTrigger asChild>
@@ -186,6 +196,34 @@ export function HoverCardDoc() {
     </div>
   </HoverCardContent>
 </HoverCard>`}
+        vueCode={`<script setup lang="ts">
+import { CalendarDays } from 'lucide-vue-next'
+import { HoverCard, HoverCardTrigger, HoverCardContent, Button, Avatar, AvatarImage, AvatarFallback } from '@/components/ui'
+</script>
+
+<template>
+  <HoverCard>
+    <HoverCardTrigger as-child>
+      <Button variant="link">@username</Button>
+    </HoverCardTrigger>
+    <HoverCardContent class="w-80">
+      <div class="flex justify-between space-x-4">
+        <Avatar>
+          <AvatarImage src="/avatar.png" />
+          <AvatarFallback>UN</AvatarFallback>
+        </Avatar>
+        <div class="space-y-1">
+          <h4 class="text-sm font-bold">@username</h4>
+          <p class="text-sm">Full-stack developer</p>
+          <div class="flex items-center pt-2">
+            <CalendarDays class="mr-2 h-4 w-4 opacity-70" />
+            <span class="text-xs text-muted-foreground">Joined January 2024</span>
+          </div>
+        </div>
+      </div>
+    </HoverCardContent>
+  </HoverCard>
+</template>`}
       >
         <HoverCard>
           <HoverCardTrigger asChild>
@@ -231,6 +269,21 @@ export function HoverCardDoc() {
     </div>
   </HoverCardContent>
 </HoverCard>`}
+        vueCode={`<template>
+  <HoverCard>
+    <HoverCardTrigger as-child>
+      <a href="#" class="underline font-medium">Read the docs</a>
+    </HoverCardTrigger>
+    <HoverCardContent>
+      <div class="space-y-2">
+        <h4 class="font-bold">Documentation</h4>
+        <p class="text-sm text-muted-foreground">
+          Learn how to use BoldKit components in your project.
+        </p>
+      </div>
+    </HoverCardContent>
+  </HoverCard>
+</template>`}
       >
         <HoverCard>
           <HoverCardTrigger asChild>

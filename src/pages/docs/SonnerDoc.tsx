@@ -109,6 +109,20 @@ toast.success('Success!')
 toast.error('Error occurred')
 toast.warning('Warning!')
 toast.info('Information')`}
+        vueCode={`<script setup>
+import { toast } from 'vue-sonner'
+import { Button } from '@/components/ui'
+</script>
+
+<template>
+  <div class="flex flex-wrap gap-2">
+    <Button variant="outline" @click="toast('Default toast')">Default</Button>
+    <Button variant="outline" @click="toast.success('Success!')">Success</Button>
+    <Button variant="outline" @click="toast.error('Error occurred')">Error</Button>
+    <Button variant="outline" @click="toast.warning('Warning!')">Warning</Button>
+    <Button variant="outline" @click="toast.info('Information')">Info</Button>
+  </div>
+</template>`}
       >
         <div className="flex flex-wrap gap-2">
           <Button variant="outline" onClick={() => toast('Default toast')}>
@@ -136,6 +150,20 @@ toast.info('Information')`}
         code={`toast('Event Created', {
   description: 'Your event has been scheduled for tomorrow at 3pm.',
 })`}
+        vueCode={`<script setup>
+import { toast } from 'vue-sonner'
+import { Button } from '@/components/ui'
+
+function showToast() {
+  toast('Event Created', {
+    description: 'Your event has been scheduled for tomorrow at 3pm.',
+  })
+}
+</script>
+
+<template>
+  <Button @click="showToast">With Description</Button>
+</template>`}
       >
         <Button
           onClick={() =>
@@ -159,6 +187,24 @@ toast.info('Information')`}
     onClick: () => toast.info('Action undone'),
   },
 })`}
+        vueCode={`<script setup>
+import { toast } from 'vue-sonner'
+import { Button } from '@/components/ui'
+
+function showToast() {
+  toast('Event Created', {
+    description: 'Your event has been scheduled.',
+    action: {
+      label: 'Undo',
+      onClick: () => toast.info('Action undone'),
+    },
+  })
+}
+</script>
+
+<template>
+  <Button @click="showToast">With Action</Button>
+</template>`}
       >
         <Button
           onClick={() =>
@@ -188,6 +234,23 @@ toast.promise(promise, {
   success: 'Data loaded!',
   error: 'Error loading data',
 })`}
+        vueCode={`<script setup>
+import { toast } from 'vue-sonner'
+import { Button } from '@/components/ui'
+
+function showPromiseToast() {
+  const promise = new Promise((resolve) => setTimeout(resolve, 2000))
+  toast.promise(promise, {
+    loading: 'Loading...',
+    success: 'Data loaded!',
+    error: 'Error loading data',
+  })
+}
+</script>
+
+<template>
+  <Button @click="showPromiseToast">Promise Toast</Button>
+</template>`}
       >
         <Button
           onClick={() => {

@@ -82,6 +82,15 @@ export function AspectRatioDoc() {
     className="h-full w-full object-cover"
   />
 </AspectRatio>`}
+        vueCode={`<template>
+  <AspectRatio :ratio="16 / 9">
+    <img
+      src="https://images.unsplash.com/photo-1588345921523-c2dcdb7f1dcd?w=800"
+      alt="Widescreen"
+      class="h-full w-full object-cover"
+    />
+  </AspectRatio>
+</template>`}
       >
         <div className="w-full max-w-md border-3 border-foreground bk-shadow overflow-hidden">
           <AspectRatio ratio={16 / 9}>
@@ -106,6 +115,15 @@ export function AspectRatioDoc() {
     className="h-full w-full object-cover"
   />
 </AspectRatio>`}
+        vueCode={`<template>
+  <AspectRatio :ratio="4 / 3">
+    <img
+      src="https://images.unsplash.com/photo-1535025183041-0991a977e25b?w=600"
+      alt="Classic ratio"
+      class="h-full w-full object-cover"
+    />
+  </AspectRatio>
+</template>`}
       >
         <div className="w-full max-w-sm border-3 border-foreground bk-shadow overflow-hidden">
           <AspectRatio ratio={4 / 3}>
@@ -130,6 +148,15 @@ export function AspectRatioDoc() {
     className="h-full w-full object-cover"
   />
 </AspectRatio>`}
+        vueCode={`<template>
+  <AspectRatio :ratio="1">
+    <img
+      src="https://images.unsplash.com/photo-1492633423870-43d1cd2775eb?w=400"
+      alt="Square"
+      class="h-full w-full object-cover"
+    />
+  </AspectRatio>
+</template>`}
       >
         <div className="w-48 border-3 border-foreground bk-shadow overflow-hidden">
           <AspectRatio ratio={1}>
@@ -154,6 +181,15 @@ export function AspectRatioDoc() {
     className="h-full w-full object-cover"
   />
 </AspectRatio>`}
+        vueCode={`<template>
+  <AspectRatio :ratio="2 / 3">
+    <img
+      src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=400"
+      alt="Portrait"
+      class="h-full w-full object-cover"
+    />
+  </AspectRatio>
+</template>`}
       >
         <div className="w-48 border-3 border-foreground bk-shadow overflow-hidden">
           <AspectRatio ratio={2 / 3}>
@@ -174,6 +210,11 @@ export function AspectRatioDoc() {
         code={`<AspectRatio ratio={16 / 9} className="bg-muted flex items-center justify-center">
   <span className="text-muted-foreground font-bold">16:9</span>
 </AspectRatio>`}
+        vueCode={`<template>
+  <AspectRatio :ratio="16 / 9" class="bg-muted flex items-center justify-center">
+    <span class="text-muted-foreground font-bold">16:9</span>
+  </AspectRatio>
+</template>`}
       >
         <div className="w-full max-w-md border-3 border-foreground bk-shadow overflow-hidden">
           <AspectRatio ratio={16 / 9} className="bg-muted flex items-center justify-center">

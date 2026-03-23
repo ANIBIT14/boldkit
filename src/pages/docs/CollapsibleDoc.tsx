@@ -124,6 +124,24 @@ export function CollapsibleDoc() {
     </div>
   </CollapsibleContent>
 </Collapsible>`}
+        vueCode={`<script setup lang="ts">
+import { ChevronsUpDown } from 'lucide-vue-next'
+</script>
+
+<template>
+  <Collapsible>
+    <CollapsibleTrigger as-child>
+      <Button variant="outline">
+        Toggle <ChevronsUpDown class="ml-2 h-4 w-4" />
+      </Button>
+    </CollapsibleTrigger>
+    <CollapsibleContent class="mt-2">
+      <div class="border-3 border-foreground p-4">
+        Hidden content revealed!
+      </div>
+    </CollapsibleContent>
+  </Collapsible>
+</template>`}
       >
         <Collapsible className="w-full max-w-sm">
           <CollapsibleTrigger asChild>
@@ -162,6 +180,31 @@ export function CollapsibleDoc() {
     </div>
   </CollapsibleContent>
 </Collapsible>`}
+        vueCode={`<script setup lang="ts">
+import { ref } from 'vue'
+
+const isOpen = ref(false)
+</script>
+
+<template>
+  <Collapsible v-model:open="isOpen">
+    <div class="flex items-center gap-4">
+      <CollapsibleTrigger as-child>
+        <Button variant="outline">
+          {{ isOpen ? 'Close' : 'Open' }}
+        </Button>
+      </CollapsibleTrigger>
+      <span class="text-sm text-muted-foreground">
+        State: {{ isOpen ? 'Open' : 'Closed' }}
+      </span>
+    </div>
+    <CollapsibleContent class="mt-2">
+      <div class="border-3 border-foreground p-4">
+        Controlled content
+      </div>
+    </CollapsibleContent>
+  </Collapsible>
+</template>`}
       >
         <Collapsible open={isOpen} onOpenChange={setIsOpen} className="w-full max-w-sm">
           <div className="flex items-center gap-4">
@@ -198,6 +241,24 @@ export function CollapsibleDoc() {
     </div>
   </CollapsibleContent>
 </Collapsible>`}
+        vueCode={`<script setup lang="ts">
+import { ChevronsUpDown } from 'lucide-vue-next'
+</script>
+
+<template>
+  <Collapsible default-open>
+    <CollapsibleTrigger as-child>
+      <Button variant="outline">
+        Toggle <ChevronsUpDown class="ml-2 h-4 w-4" />
+      </Button>
+    </CollapsibleTrigger>
+    <CollapsibleContent class="mt-2">
+      <div class="border-3 border-foreground p-4">
+        This section is open by default.
+      </div>
+    </CollapsibleContent>
+  </Collapsible>
+</template>`}
       >
         <Collapsible defaultOpen className="w-full max-w-sm">
           <CollapsibleTrigger asChild>
@@ -232,6 +293,26 @@ export function CollapsibleDoc() {
     </Button>
   </CollapsibleTrigger>
 </Collapsible>`}
+        vueCode={`<script setup lang="ts">
+import { ChevronsUpDown } from 'lucide-vue-next'
+</script>
+
+<template>
+  <Collapsible class="w-full max-w-sm space-y-2">
+    <div class="border-3 border-foreground px-4 py-2">Item 1</div>
+    <div class="border-3 border-foreground px-4 py-2">Item 2</div>
+    <CollapsibleContent class="space-y-2">
+      <div class="border-3 border-foreground px-4 py-2">Item 3</div>
+      <div class="border-3 border-foreground px-4 py-2">Item 4</div>
+      <div class="border-3 border-foreground px-4 py-2">Item 5</div>
+    </CollapsibleContent>
+    <CollapsibleTrigger as-child>
+      <Button variant="ghost" size="sm" class="w-full">
+        Show more <ChevronsUpDown class="ml-2 h-4 w-4" />
+      </Button>
+    </CollapsibleTrigger>
+  </Collapsible>
+</template>`}
       >
         <Collapsible className="w-full max-w-sm space-y-2">
           <div className="border-3 border-foreground px-4 py-2 bk-shadow-sm font-medium">Item 1</div>

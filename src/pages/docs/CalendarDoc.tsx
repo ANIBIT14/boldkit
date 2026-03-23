@@ -165,6 +165,16 @@ export function CalendarDoc() {
   selected={date}
   onSelect={setDate}
 />`}
+        vueCode={`<script setup lang="ts">
+import { ref } from 'vue'
+import { Calendar } from '@/components/ui'
+
+const date = ref<Date>(new Date())
+</script>
+
+<template>
+  <Calendar v-model="date" />
+</template>`}
       >
         <Calendar
           mode="single"
@@ -185,6 +195,19 @@ export function CalendarDoc() {
   onSelect={setDateRange}
   numberOfMonths={2}
 />`}
+        vueCode={`<script setup lang="ts">
+import { ref } from 'vue'
+import { Calendar } from '@/components/ui'
+
+const dateRange = ref<{ start: Date | undefined; end: Date | undefined }>({
+  start: undefined,
+  end: undefined,
+})
+</script>
+
+<template>
+  <Calendar v-model="dateRange" mode="range" :number-of-months="2" />
+</template>`}
       >
         <Calendar
           mode="range"
@@ -205,6 +228,16 @@ export function CalendarDoc() {
   selected={dates}
   onSelect={setDates}
 />`}
+        vueCode={`<script setup lang="ts">
+import { ref } from 'vue'
+import { Calendar } from '@/components/ui'
+
+const dates = ref<Date[]>([])
+</script>
+
+<template>
+  <Calendar v-model="dates" mode="multiple" />
+</template>`}
       >
         <Calendar
           mode="multiple"
@@ -224,6 +257,12 @@ export function CalendarDoc() {
     { from: new Date(2024, 0, 15), to: new Date(2024, 0, 20) },
   ]}
 />`}
+        vueCode={`<template>
+  <Calendar
+    :is-date-disabled="(date) => date.getDay() === 0 || date.getDay() === 6"
+  />
+  <p class="text-sm text-muted-foreground mt-2">Weekends are disabled</p>
+</template>`}
       >
         <Calendar
           mode="single"

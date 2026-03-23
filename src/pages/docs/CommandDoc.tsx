@@ -251,6 +251,28 @@ export function CommandDoc() {
     </CommandGroup>
   </CommandList>
 </Command>`}
+        vueCode={`<script setup lang="ts">
+import { Calendar, Settings } from 'lucide-vue-next'
+</script>
+
+<template>
+  <Command class="border-3 border-foreground">
+    <CommandInput placeholder="Search..." />
+    <CommandList>
+      <CommandEmpty>No results found.</CommandEmpty>
+      <CommandGroup heading="Suggestions">
+        <CommandItem>
+          <Calendar class="mr-2 h-4 w-4" />
+          Calendar
+        </CommandItem>
+        <CommandItem>
+          <Settings class="mr-2 h-4 w-4" />
+          Settings
+        </CommandItem>
+      </CommandGroup>
+    </CommandList>
+  </Command>
+</template>`}
       >
         <Command className="border-3 border-foreground bk-shadow max-w-md">
           <CommandInput placeholder="Search..." />
@@ -297,6 +319,35 @@ export function CommandDoc() {
     </CommandGroup>
   </CommandList>
 </Command>`}
+        vueCode={`<script setup lang="ts">
+import { User, CreditCard, Settings } from 'lucide-vue-next'
+</script>
+
+<template>
+  <Command class="border-3 border-foreground">
+    <CommandInput placeholder="Type a command..." />
+    <CommandList>
+      <CommandEmpty>No results found.</CommandEmpty>
+      <CommandGroup heading="Actions">
+        <CommandItem>
+          <User class="mr-2 h-4 w-4" />
+          <span>Profile</span>
+          <CommandShortcut>Ctrl+P</CommandShortcut>
+        </CommandItem>
+        <CommandItem>
+          <CreditCard class="mr-2 h-4 w-4" />
+          <span>Billing</span>
+          <CommandShortcut>Ctrl+B</CommandShortcut>
+        </CommandItem>
+        <CommandItem>
+          <Settings class="mr-2 h-4 w-4" />
+          <span>Settings</span>
+          <CommandShortcut>Ctrl+S</CommandShortcut>
+        </CommandItem>
+      </CommandGroup>
+    </CommandList>
+  </Command>
+</template>`}
       >
         <Command className="border-3 border-foreground bk-shadow max-w-md">
           <CommandInput placeholder="Type a command..." />
@@ -342,6 +393,23 @@ export function CommandDoc() {
     </CommandGroup>
   </CommandList>
 </Command>`}
+        vueCode={`<template>
+  <Command class="border-3 border-foreground">
+    <CommandInput placeholder="Search..." />
+    <CommandList>
+      <CommandEmpty>No results found.</CommandEmpty>
+      <CommandGroup heading="Suggestions">
+        <CommandItem>Calendar</CommandItem>
+        <CommandItem>Calculator</CommandItem>
+      </CommandGroup>
+      <CommandSeparator />
+      <CommandGroup heading="Settings">
+        <CommandItem>Profile</CommandItem>
+        <CommandItem>Preferences</CommandItem>
+      </CommandGroup>
+    </CommandList>
+  </Command>
+</template>`}
       >
         <Command className="border-3 border-foreground bk-shadow max-w-md">
           <CommandInput placeholder="Search..." />
@@ -391,6 +459,29 @@ export function CommandDoc() {
     </CommandGroup>
   </CommandList>
 </CommandDialog>`}
+        vueCode={`<script setup lang="ts">
+import { ref } from 'vue'
+
+const open = ref(false)
+</script>
+
+<template>
+  <div>
+    <Button @click="open = true">
+      Open Command Menu
+    </Button>
+    <CommandDialog v-model:open="open">
+      <CommandInput placeholder="Type a command or search..." />
+      <CommandList>
+        <CommandEmpty>No results found.</CommandEmpty>
+        <CommandGroup heading="Suggestions">
+          <CommandItem @select="open = false">Calendar</CommandItem>
+          <CommandItem @select="open = false">Settings</CommandItem>
+        </CommandGroup>
+      </CommandList>
+    </CommandDialog>
+  </div>
+</template>`}
       >
         <div>
           <Button onClick={() => setOpen(true)}>

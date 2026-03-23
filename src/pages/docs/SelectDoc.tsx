@@ -173,6 +173,18 @@ export function SelectDoc() {
     <SelectItem value="orange">Orange</SelectItem>
   </SelectContent>
 </Select>`}
+        vueCode={`<template>
+  <Select>
+    <SelectTrigger class="w-[180px]">
+      <SelectValue placeholder="Select a fruit" />
+    </SelectTrigger>
+    <SelectContent>
+      <SelectItem value="apple">Apple</SelectItem>
+      <SelectItem value="banana">Banana</SelectItem>
+      <SelectItem value="orange">Orange</SelectItem>
+    </SelectContent>
+  </Select>
+</template>`}
       >
         <Select>
           <SelectTrigger className="w-[180px]">
@@ -204,6 +216,24 @@ export function SelectDoc() {
 </Select>
 
 <p>Selected: {value || 'none'}</p>`}
+        vueCode={`<script setup>
+import { ref } from 'vue'
+const value = ref('')
+</script>
+
+<template>
+  <Select v-model="value">
+    <SelectTrigger class="w-[180px]">
+      <SelectValue placeholder="Theme" />
+    </SelectTrigger>
+    <SelectContent>
+      <SelectItem value="light">Light</SelectItem>
+      <SelectItem value="dark">Dark</SelectItem>
+      <SelectItem value="system">System</SelectItem>
+    </SelectContent>
+  </Select>
+  <p>Selected: {{ value || 'none' }}</p>
+</template>`}
       >
         <div className="space-y-4">
           <Select value={value} onValueChange={setValue}>
@@ -245,6 +275,27 @@ export function SelectDoc() {
     </SelectGroup>
   </SelectContent>
 </Select>`}
+        vueCode={`<template>
+  <Select>
+    <SelectTrigger class="w-[200px]">
+      <SelectValue placeholder="Select a timezone" />
+    </SelectTrigger>
+    <SelectContent>
+      <SelectGroup>
+        <SelectLabel>North America</SelectLabel>
+        <SelectItem value="est">Eastern (EST)</SelectItem>
+        <SelectItem value="cst">Central (CST)</SelectItem>
+        <SelectItem value="pst">Pacific (PST)</SelectItem>
+      </SelectGroup>
+      <SelectSeparator />
+      <SelectGroup>
+        <SelectLabel>Europe</SelectLabel>
+        <SelectItem value="gmt">GMT</SelectItem>
+        <SelectItem value="cet">Central European (CET)</SelectItem>
+      </SelectGroup>
+    </SelectContent>
+  </Select>
+</template>`}
       >
         <Select>
           <SelectTrigger className="w-[200px]">
@@ -298,6 +349,27 @@ export function SelectDoc() {
     <SelectItem value="3">Available</SelectItem>
   </SelectContent>
 </Select>`}
+        vueCode={`<template>
+  <Select disabled>
+    <SelectTrigger class="w-[180px]">
+      <SelectValue placeholder="Disabled" />
+    </SelectTrigger>
+    <SelectContent>
+      <SelectItem value="1">Option 1</SelectItem>
+    </SelectContent>
+  </Select>
+
+  <Select>
+    <SelectTrigger class="w-[180px]">
+      <SelectValue placeholder="Select" />
+    </SelectTrigger>
+    <SelectContent>
+      <SelectItem value="1">Available</SelectItem>
+      <SelectItem value="2" disabled>Disabled</SelectItem>
+      <SelectItem value="3">Available</SelectItem>
+    </SelectContent>
+  </Select>
+</template>`}
       >
         <div className="flex flex-wrap gap-4">
           <Select disabled>
@@ -340,6 +412,22 @@ export function SelectDoc() {
     </SelectContent>
   </Select>
 </div>`}
+        vueCode={`<template>
+  <div class="grid w-full max-w-sm items-center gap-1.5">
+    <Label for="framework">Framework</Label>
+    <Select>
+      <SelectTrigger id="framework">
+        <SelectValue placeholder="Select" />
+      </SelectTrigger>
+      <SelectContent>
+        <SelectItem value="next">Next.js</SelectItem>
+        <SelectItem value="remix">Remix</SelectItem>
+        <SelectItem value="gatsby">Gatsby</SelectItem>
+        <SelectItem value="astro">Astro</SelectItem>
+      </SelectContent>
+    </Select>
+  </div>
+</template>`}
       >
         <div className="grid w-full max-w-sm items-center gap-1.5">
           <Label htmlFor="framework">Framework</Label>
@@ -371,6 +459,23 @@ export function SelectDoc() {
     <SelectItem value="orange">Orange</SelectItem>
   </SelectContent>
 </Select>`}
+        vueCode={`<script setup>
+import { ref } from 'vue'
+const value = ref('apple')
+</script>
+
+<template>
+  <Select v-model="value">
+    <SelectTrigger class="w-[180px]">
+      <SelectValue />
+    </SelectTrigger>
+    <SelectContent>
+      <SelectItem value="apple">Apple</SelectItem>
+      <SelectItem value="banana">Banana</SelectItem>
+      <SelectItem value="orange">Orange</SelectItem>
+    </SelectContent>
+  </Select>
+</template>`}
       >
         <Select defaultValue="apple">
           <SelectTrigger className="w-[180px]">

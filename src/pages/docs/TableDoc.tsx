@@ -274,6 +274,29 @@ export function TableDoc() {
     </TableRow>
   </TableBody>
 </Table>`}
+        vueCode={`<template>
+  <Table>
+    <TableHeader>
+      <TableRow>
+        <TableHead>Name</TableHead>
+        <TableHead>Email</TableHead>
+        <TableHead>Role</TableHead>
+      </TableRow>
+    </TableHeader>
+    <TableBody>
+      <TableRow>
+        <TableCell>Alice Johnson</TableCell>
+        <TableCell>alice@example.com</TableCell>
+        <TableCell>Admin</TableCell>
+      </TableRow>
+      <TableRow>
+        <TableCell>Bob Smith</TableCell>
+        <TableCell>bob@example.com</TableCell>
+        <TableCell>User</TableCell>
+      </TableRow>
+    </TableBody>
+  </Table>
+</template>`}
       >
         <Table>
           <TableHeader>
@@ -322,6 +345,23 @@ export function TableDoc() {
     </TableRow>
   </TableBody>
 </Table>`}
+        vueCode={`<template>
+  <Table>
+    <TableCaption>Team members and their roles.</TableCaption>
+    <TableHeader>
+      <TableRow>
+        <TableHead>Member</TableHead>
+        <TableHead>Department</TableHead>
+      </TableRow>
+    </TableHeader>
+    <TableBody>
+      <TableRow>
+        <TableCell>Jane Doe</TableCell>
+        <TableCell>Engineering</TableCell>
+      </TableRow>
+    </TableBody>
+  </Table>
+</template>`}
       >
         <Table>
           <TableCaption>Team members and their roles.</TableCaption>

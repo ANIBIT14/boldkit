@@ -134,6 +134,44 @@ export function TooltipDoc() {
     <p>Tooltip on bottom</p>
   </TooltipContent>
 </Tooltip>`}
+        vueCode={`<template>
+  <TooltipProvider>
+    <div class="flex gap-4">
+      <Tooltip>
+        <TooltipTrigger as-child>
+          <Button variant="outline">Top</Button>
+        </TooltipTrigger>
+        <TooltipContent side="top">
+          <p>Tooltip on top</p>
+        </TooltipContent>
+      </Tooltip>
+      <Tooltip>
+        <TooltipTrigger as-child>
+          <Button variant="outline">Right</Button>
+        </TooltipTrigger>
+        <TooltipContent side="right">
+          <p>Tooltip on right</p>
+        </TooltipContent>
+      </Tooltip>
+      <Tooltip>
+        <TooltipTrigger as-child>
+          <Button variant="outline">Bottom</Button>
+        </TooltipTrigger>
+        <TooltipContent side="bottom">
+          <p>Tooltip on bottom</p>
+        </TooltipContent>
+      </Tooltip>
+      <Tooltip>
+        <TooltipTrigger as-child>
+          <Button variant="outline">Left</Button>
+        </TooltipTrigger>
+        <TooltipContent side="left">
+          <p>Tooltip on left</p>
+        </TooltipContent>
+      </Tooltip>
+    </div>
+  </TooltipProvider>
+</template>`}
       >
         <div className="flex gap-4">
           <Tooltip>
@@ -188,6 +226,46 @@ export function TooltipDoc() {
     <p>More information</p>
   </TooltipContent>
 </Tooltip>`}
+        vueCode={`<script setup>
+import { Info, Settings, Plus } from 'lucide-vue-next'
+</script>
+
+<template>
+  <TooltipProvider>
+    <div class="flex gap-4">
+      <Tooltip>
+        <TooltipTrigger as-child>
+          <Button variant="outline" size="icon">
+            <Info class="h-4 w-4" />
+          </Button>
+        </TooltipTrigger>
+        <TooltipContent>
+          <p>More information</p>
+        </TooltipContent>
+      </Tooltip>
+      <Tooltip>
+        <TooltipTrigger as-child>
+          <Button variant="outline" size="icon">
+            <Settings class="h-4 w-4" />
+          </Button>
+        </TooltipTrigger>
+        <TooltipContent>
+          <p>Settings</p>
+        </TooltipContent>
+      </Tooltip>
+      <Tooltip>
+        <TooltipTrigger as-child>
+          <Button variant="outline" size="icon">
+            <Plus class="h-4 w-4" />
+          </Button>
+        </TooltipTrigger>
+        <TooltipContent>
+          <p>Add new item</p>
+        </TooltipContent>
+      </Tooltip>
+    </div>
+  </TooltipProvider>
+</template>`}
       >
         <div className="flex gap-4">
           <Tooltip>
@@ -246,6 +324,28 @@ export function TooltipDoc() {
     <p>Shows after 1 second</p>
   </TooltipContent>
 </Tooltip>`}
+        vueCode={`<template>
+  <TooltipProvider>
+    <div class="flex gap-4">
+      <Tooltip :delay-duration="0">
+        <TooltipTrigger as-child>
+          <Button variant="outline">No delay</Button>
+        </TooltipTrigger>
+        <TooltipContent>
+          <p>Shows immediately</p>
+        </TooltipContent>
+      </Tooltip>
+      <Tooltip :delay-duration="1000">
+        <TooltipTrigger as-child>
+          <Button variant="outline">1s delay</Button>
+        </TooltipTrigger>
+        <TooltipContent>
+          <p>Shows after 1 second</p>
+        </TooltipContent>
+      </Tooltip>
+    </div>
+  </TooltipProvider>
+</template>`}
       >
         <div className="flex gap-4">
           <Tooltip delayDuration={0}>

@@ -317,6 +317,68 @@ export function SheetDoc() {
     </SheetHeader>
   </SheetContent>
 </Sheet>`}
+        vueCode={`<script setup>
+import { ref } from 'vue'
+import {
+  Sheet,
+  SheetTrigger,
+  SheetContent,
+  SheetHeader,
+  SheetTitle,
+} from '@/components/ui'
+import { Button } from '@/components/ui'
+
+const rightOpen = ref(false)
+const leftOpen = ref(false)
+const topOpen = ref(false)
+const bottomOpen = ref(false)
+</script>
+
+<template>
+  <Sheet v-model:open="rightOpen">
+    <SheetTrigger as-child>
+      <Button variant="outline">Right</Button>
+    </SheetTrigger>
+    <SheetContent side="right">
+      <SheetHeader>
+        <SheetTitle>Right Sheet</SheetTitle>
+      </SheetHeader>
+    </SheetContent>
+  </Sheet>
+
+  <Sheet v-model:open="leftOpen">
+    <SheetTrigger as-child>
+      <Button variant="outline">Left</Button>
+    </SheetTrigger>
+    <SheetContent side="left">
+      <SheetHeader>
+        <SheetTitle>Left Sheet</SheetTitle>
+      </SheetHeader>
+    </SheetContent>
+  </Sheet>
+
+  <Sheet v-model:open="topOpen">
+    <SheetTrigger as-child>
+      <Button variant="outline">Top</Button>
+    </SheetTrigger>
+    <SheetContent side="top">
+      <SheetHeader>
+        <SheetTitle>Top Sheet</SheetTitle>
+      </SheetHeader>
+    </SheetContent>
+  </Sheet>
+
+  <Sheet v-model:open="bottomOpen">
+    <SheetTrigger as-child>
+      <Button variant="outline">Bottom</Button>
+    </SheetTrigger>
+    <SheetContent side="bottom">
+      <SheetHeader>
+        <SheetTitle>Bottom Sheet</SheetTitle>
+      </SheetHeader>
+    </SheetContent>
+  </Sheet>
+</template>`}
       >
         <div className="flex gap-4">
           <Sheet>

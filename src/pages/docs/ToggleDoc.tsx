@@ -125,6 +125,18 @@ export function ToggleDoc() {
   <Italic className="h-4 w-4" />
   Italic
 </Toggle>`}
+        vueCode={`<script setup>
+import { ref } from 'vue'
+import { Italic } from 'lucide-vue-next'
+const pressed = ref(false)
+</script>
+
+<template>
+  <Toggle v-model:pressed="pressed" aria-label="Toggle italic">
+    <Italic class="h-4 w-4" />
+    Italic
+  </Toggle>
+</template>`}
       >
         <Toggle aria-label="Toggle italic">
           <Italic className="h-4 w-4" />
@@ -139,6 +151,17 @@ export function ToggleDoc() {
         code={`<Toggle variant="outline" aria-label="Toggle underline">
   <Underline className="h-4 w-4" />
 </Toggle>`}
+        vueCode={`<script setup>
+import { ref } from 'vue'
+import { Underline } from 'lucide-vue-next'
+const pressed = ref(false)
+</script>
+
+<template>
+  <Toggle variant="outline" v-model:pressed="pressed" aria-label="Toggle underline">
+    <Underline class="h-4 w-4" />
+  </Toggle>
+</template>`}
       >
         <Toggle variant="outline" aria-label="Toggle underline">
           <Underline className="h-4 w-4" />
@@ -160,6 +183,27 @@ export function ToggleDoc() {
 <Toggle size="lg" aria-label="Toggle large">
   <Bold className="h-4 w-4" />
 </Toggle>`}
+        vueCode={`<script setup>
+import { ref } from 'vue'
+import { Bold } from 'lucide-vue-next'
+const sm = ref(false)
+const md = ref(false)
+const lg = ref(false)
+</script>
+
+<template>
+  <div class="flex items-center gap-4">
+    <Toggle size="sm" v-model:pressed="sm" aria-label="Toggle small">
+      <Bold class="h-4 w-4" />
+    </Toggle>
+    <Toggle size="default" v-model:pressed="md" aria-label="Toggle default">
+      <Bold class="h-4 w-4" />
+    </Toggle>
+    <Toggle size="lg" v-model:pressed="lg" aria-label="Toggle large">
+      <Bold class="h-4 w-4" />
+    </Toggle>
+  </div>
+</template>`}
       >
         <div className="flex items-center gap-4">
           <Toggle size="sm" aria-label="Toggle small">
@@ -181,6 +225,15 @@ export function ToggleDoc() {
         code={`<Toggle aria-label="Toggle disabled" disabled>
   <Bold className="h-4 w-4" />
 </Toggle>`}
+        vueCode={`<script setup>
+import { Bold } from 'lucide-vue-next'
+</script>
+
+<template>
+  <Toggle aria-label="Toggle disabled" disabled>
+    <Bold class="h-4 w-4" />
+  </Toggle>
+</template>`}
       >
         <Toggle aria-label="Toggle disabled" disabled>
           <Bold className="h-4 w-4" />
@@ -194,6 +247,17 @@ export function ToggleDoc() {
         code={`<Toggle defaultPressed aria-label="Toggle bold">
   <Bold className="h-4 w-4" />
 </Toggle>`}
+        vueCode={`<script setup>
+import { ref } from 'vue'
+import { Bold } from 'lucide-vue-next'
+const pressed = ref(true)
+</script>
+
+<template>
+  <Toggle v-model:pressed="pressed" aria-label="Toggle bold">
+    <Bold class="h-4 w-4" />
+  </Toggle>
+</template>`}
       >
         <Toggle defaultPressed aria-label="Toggle bold">
           <Bold className="h-4 w-4" />

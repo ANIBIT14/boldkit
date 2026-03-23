@@ -86,6 +86,12 @@ export function TextareaDoc() {
   <Label htmlFor="message">Your Message</Label>
   <Textarea placeholder="Type your message here." id="message" />
 </div>`}
+        vueCode={`<template>
+  <div class="grid w-full gap-1.5">
+    <Label for="message">Your Message</Label>
+    <Textarea placeholder="Type your message here." id="message" />
+  </div>
+</template>`}
       >
         <div className="grid w-full max-w-md gap-1.5">
           <Label htmlFor="message">Your Message</Label>
@@ -104,6 +110,15 @@ export function TextareaDoc() {
     Your bio will be visible to other users.
   </p>
 </div>`}
+        vueCode={`<template>
+  <div class="grid w-full gap-1.5">
+    <Label for="bio">Bio</Label>
+    <Textarea placeholder="Tell us about yourself" id="bio" />
+    <p class="text-sm text-muted-foreground">
+      Your bio will be visible to other users.
+    </p>
+  </div>
+</template>`}
       >
         <div className="grid w-full max-w-md gap-1.5">
           <Label htmlFor="bio">Bio</Label>
@@ -119,6 +134,9 @@ export function TextareaDoc() {
         title="Disabled"
         description="A disabled textarea that cannot be edited."
         code={`<Textarea placeholder="This textarea is disabled" disabled />`}
+        vueCode={`<template>
+  <Textarea placeholder="This textarea is disabled" disabled />
+</template>`}
       >
         <div className="w-full max-w-md">
           <Textarea placeholder="This textarea is disabled" disabled />
@@ -130,6 +148,14 @@ export function TextareaDoc() {
         title="Default Value"
         description="Textarea with a pre-filled default value."
         code={`<Textarea defaultValue="This is the default value for the textarea." />`}
+        vueCode={`<script setup>
+import { ref } from 'vue'
+const text = ref('This is the default value for the textarea.')
+</script>
+
+<template>
+  <Textarea v-model="text" />
+</template>`}
       >
         <div className="w-full max-w-md">
           <Textarea defaultValue="This is the default value for the textarea. You can edit this text." />
@@ -141,6 +167,9 @@ export function TextareaDoc() {
         title="Custom Height"
         description="Textarea with custom number of visible rows."
         code={`<Textarea placeholder="This textarea has 6 rows" rows={6} />`}
+        vueCode={`<template>
+  <Textarea placeholder="This textarea has 6 rows" :rows="6" />
+</template>`}
       >
         <div className="w-full max-w-md">
           <Textarea placeholder="This textarea has 6 rows" rows={6} />

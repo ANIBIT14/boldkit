@@ -158,6 +158,23 @@ export function TabsDoc() {
   <TabsContent value="analytics">Analytics content</TabsContent>
   <TabsContent value="reports">Reports content</TabsContent>
 </Tabs>`}
+        vueCode={`<script setup>
+import { ref } from 'vue'
+const tab = ref('overview')
+</script>
+
+<template>
+  <Tabs v-model="tab">
+    <TabsList>
+      <TabsTrigger value="overview">Overview</TabsTrigger>
+      <TabsTrigger value="analytics">Analytics</TabsTrigger>
+      <TabsTrigger value="reports">Reports</TabsTrigger>
+    </TabsList>
+    <TabsContent value="overview">Overview content</TabsContent>
+    <TabsContent value="analytics">Analytics content</TabsContent>
+    <TabsContent value="reports">Reports content</TabsContent>
+  </Tabs>
+</template>`}
       >
         <Tabs defaultValue="overview" className="w-full max-w-md">
           <TabsList>
@@ -197,6 +214,23 @@ export function TabsDoc() {
   <TabsContent value="disabled">Disabled tab content</TabsContent>
   <TabsContent value="another">Another tab content</TabsContent>
 </Tabs>`}
+        vueCode={`<script setup>
+import { ref } from 'vue'
+const tab = ref('active')
+</script>
+
+<template>
+  <Tabs v-model="tab">
+    <TabsList>
+      <TabsTrigger value="active">Active</TabsTrigger>
+      <TabsTrigger value="disabled" disabled>Disabled</TabsTrigger>
+      <TabsTrigger value="another">Another</TabsTrigger>
+    </TabsList>
+    <TabsContent value="active">Active tab content</TabsContent>
+    <TabsContent value="disabled">Disabled tab content</TabsContent>
+    <TabsContent value="another">Another tab content</TabsContent>
+  </Tabs>
+</template>`}
       >
         <Tabs defaultValue="active" className="w-full max-w-md">
           <TabsList>

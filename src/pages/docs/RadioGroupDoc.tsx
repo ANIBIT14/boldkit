@@ -142,6 +142,18 @@ export function RadioGroupDoc() {
     <Label htmlFor="option-two">Option Two</Label>
   </div>
 </RadioGroup>`}
+        vueCode={`<template>
+  <RadioGroup default-value="option-one">
+    <div class="flex items-center space-x-2">
+      <RadioGroupItem value="option-one" id="option-one" />
+      <Label for="option-one">Option One</Label>
+    </div>
+    <div class="flex items-center space-x-2">
+      <RadioGroupItem value="option-two" id="option-two" />
+      <Label for="option-two">Option Two</Label>
+    </div>
+  </RadioGroup>
+</template>`}
       >
         <RadioGroup defaultValue="option-one">
           <div className="flex items-center space-x-2">
@@ -177,6 +189,28 @@ export function RadioGroupDoc() {
 </RadioGroup>
 
 <p>Selected: {value}</p>`}
+        vueCode={`<script setup>
+import { ref } from 'vue'
+const value = ref('comfortable')
+</script>
+
+<template>
+  <RadioGroup v-model="value">
+    <div class="flex items-center space-x-2">
+      <RadioGroupItem value="default" id="controlled-1" />
+      <Label for="controlled-1">Default</Label>
+    </div>
+    <div class="flex items-center space-x-2">
+      <RadioGroupItem value="comfortable" id="controlled-2" />
+      <Label for="controlled-2">Comfortable</Label>
+    </div>
+    <div class="flex items-center space-x-2">
+      <RadioGroupItem value="compact" id="controlled-3" />
+      <Label for="controlled-3">Compact</Label>
+    </div>
+  </RadioGroup>
+  <p>Selected: {{ value }}</p>
+</template>`}
       >
         <div className="space-y-4">
           <RadioGroup value={value} onValueChange={setValue}>
@@ -215,6 +249,22 @@ export function RadioGroupDoc() {
     <Label htmlFor="disabled-3">Available</Label>
   </div>
 </RadioGroup>`}
+        vueCode={`<template>
+  <RadioGroup default-value="option-one">
+    <div class="flex items-center space-x-2">
+      <RadioGroupItem value="option-one" id="disabled-1" />
+      <Label for="disabled-1">Available</Label>
+    </div>
+    <div class="flex items-center space-x-2">
+      <RadioGroupItem value="option-two" id="disabled-2" disabled />
+      <Label for="disabled-2" class="opacity-50">Disabled</Label>
+    </div>
+    <div class="flex items-center space-x-2">
+      <RadioGroupItem value="option-three" id="disabled-3" />
+      <Label for="disabled-3">Available</Label>
+    </div>
+  </RadioGroup>
+</template>`}
       >
         <RadioGroup defaultValue="option-one">
           <div className="flex items-center space-x-2">
@@ -265,6 +315,37 @@ export function RadioGroupDoc() {
     </div>
   </div>
 </RadioGroup>`}
+        vueCode={`<template>
+  <RadioGroup default-value="card">
+    <div class="flex items-start space-x-2">
+      <RadioGroupItem value="card" id="card" class="mt-1" />
+      <div class="grid gap-1.5 leading-none">
+        <Label for="card">Card</Label>
+        <p class="text-sm text-muted-foreground">
+          Pay with credit or debit card.
+        </p>
+      </div>
+    </div>
+    <div class="flex items-start space-x-2">
+      <RadioGroupItem value="paypal" id="paypal" class="mt-1" />
+      <div class="grid gap-1.5 leading-none">
+        <Label for="paypal">PayPal</Label>
+        <p class="text-sm text-muted-foreground">
+          Pay with your PayPal account.
+        </p>
+      </div>
+    </div>
+    <div class="flex items-start space-x-2">
+      <RadioGroupItem value="bank" id="bank" class="mt-1" />
+      <div class="grid gap-1.5 leading-none">
+        <Label for="bank">Bank Transfer</Label>
+        <p class="text-sm text-muted-foreground">
+          Pay directly from your bank account.
+        </p>
+      </div>
+    </div>
+  </RadioGroup>
+</template>`}
       >
         <RadioGroup defaultValue="card">
           <div className="flex items-start space-x-2">
@@ -315,6 +396,22 @@ export function RadioGroupDoc() {
     <Label htmlFor="large">Large</Label>
   </div>
 </RadioGroup>`}
+        vueCode={`<template>
+  <RadioGroup default-value="small" class="flex gap-4">
+    <div class="flex items-center space-x-2">
+      <RadioGroupItem value="small" id="small" />
+      <Label for="small">Small</Label>
+    </div>
+    <div class="flex items-center space-x-2">
+      <RadioGroupItem value="medium" id="medium" />
+      <Label for="medium">Medium</Label>
+    </div>
+    <div class="flex items-center space-x-2">
+      <RadioGroupItem value="large" id="large" />
+      <Label for="large">Large</Label>
+    </div>
+  </RadioGroup>
+</template>`}
       >
         <RadioGroup defaultValue="small" className="flex flex-wrap gap-4">
           <div className="flex items-center space-x-2">

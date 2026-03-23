@@ -200,6 +200,25 @@ export function AlertDialogDoc() {
     </AlertDialogFooter>
   </AlertDialogContent>
 </AlertDialog>`}
+        vueCode={`<template>
+  <AlertDialog>
+    <AlertDialogTrigger as-child>
+      <Button>Show Dialog</Button>
+    </AlertDialogTrigger>
+    <AlertDialogContent>
+      <AlertDialogHeader>
+        <AlertDialogTitle>Are you sure?</AlertDialogTitle>
+        <AlertDialogDescription>
+          This action cannot be undone.
+        </AlertDialogDescription>
+      </AlertDialogHeader>
+      <AlertDialogFooter>
+        <AlertDialogCancel>Cancel</AlertDialogCancel>
+        <AlertDialogAction>Continue</AlertDialogAction>
+      </AlertDialogFooter>
+    </AlertDialogContent>
+  </AlertDialog>
+</template>`}
       >
         <AlertDialog>
           <AlertDialogTrigger asChild>
@@ -243,6 +262,27 @@ export function AlertDialogDoc() {
     </AlertDialogFooter>
   </AlertDialogContent>
 </AlertDialog>`}
+        vueCode={`<template>
+  <AlertDialog>
+    <AlertDialogTrigger as-child>
+      <Button variant="destructive">Delete Project</Button>
+    </AlertDialogTrigger>
+    <AlertDialogContent>
+      <AlertDialogHeader>
+        <AlertDialogTitle>Delete Project</AlertDialogTitle>
+        <AlertDialogDescription>
+          This will permanently delete the project and all associated data.
+        </AlertDialogDescription>
+      </AlertDialogHeader>
+      <AlertDialogFooter>
+        <AlertDialogCancel>Cancel</AlertDialogCancel>
+        <AlertDialogAction class="bg-destructive text-destructive-foreground">
+          Delete
+        </AlertDialogAction>
+      </AlertDialogFooter>
+    </AlertDialogContent>
+  </AlertDialog>
+</template>`}
       >
         <AlertDialog>
           <AlertDialogTrigger asChild>

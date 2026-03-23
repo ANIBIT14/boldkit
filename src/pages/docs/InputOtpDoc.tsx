@@ -202,6 +202,25 @@ export function InputOtpDoc() {
     <InputOTPSlot index={5} />
   </InputOTPGroup>
 </InputOTP>`}
+        vueCode={`<script setup lang="ts">
+import { ref } from 'vue'
+import { InputOTP, InputOTPGroup, InputOTPSlot } from '@/components/ui'
+
+const value = ref<string[]>([])
+</script>
+
+<template>
+  <InputOTP v-model="value" :max-length="6">
+    <InputOTPGroup>
+      <InputOTPSlot :index="0" />
+      <InputOTPSlot :index="1" />
+      <InputOTPSlot :index="2" />
+      <InputOTPSlot :index="3" />
+      <InputOTPSlot :index="4" />
+      <InputOTPSlot :index="5" />
+    </InputOTPGroup>
+  </InputOTP>
+</template>`}
       >
         <InputOTP maxLength={6}>
           <InputOTPGroup>
@@ -232,6 +251,28 @@ export function InputOtpDoc() {
     <InputOTPSlot index={5} />
   </InputOTPGroup>
 </InputOTP>`}
+        vueCode={`<script setup lang="ts">
+import { ref } from 'vue'
+import { InputOTP, InputOTPGroup, InputOTPSlot, InputOTPSeparator } from '@/components/ui'
+
+const value = ref<string[]>([])
+</script>
+
+<template>
+  <InputOTP v-model="value" :max-length="6">
+    <InputOTPGroup>
+      <InputOTPSlot :index="0" />
+      <InputOTPSlot :index="1" />
+      <InputOTPSlot :index="2" />
+    </InputOTPGroup>
+    <InputOTPSeparator />
+    <InputOTPGroup>
+      <InputOTPSlot :index="3" />
+      <InputOTPSlot :index="4" />
+      <InputOTPSlot :index="5" />
+    </InputOTPGroup>
+  </InputOTP>
+</template>`}
       >
         <InputOTP maxLength={6}>
           <InputOTPGroup>
@@ -260,6 +301,23 @@ export function InputOtpDoc() {
     <InputOTPSlot index={3} />
   </InputOTPGroup>
 </InputOTP>`}
+        vueCode={`<script setup lang="ts">
+import { ref } from 'vue'
+import { InputOTP, InputOTPGroup, InputOTPSlot } from '@/components/ui'
+
+const value = ref<string[]>([])
+</script>
+
+<template>
+  <InputOTP v-model="value" :max-length="4">
+    <InputOTPGroup>
+      <InputOTPSlot :index="0" />
+      <InputOTPSlot :index="1" />
+      <InputOTPSlot :index="2" />
+      <InputOTPSlot :index="3" />
+    </InputOTPGroup>
+  </InputOTP>
+</template>`}
       >
         <InputOTP maxLength={4}>
           <InputOTPGroup>
@@ -285,6 +343,25 @@ export function InputOtpDoc() {
     <InputOTPSlot index={5} />
   </InputOTPGroup>
 </InputOTP>`}
+        vueCode={`<script setup lang="ts">
+import { ref } from 'vue'
+import { InputOTP, InputOTPGroup, InputOTPSlot } from '@/components/ui'
+
+const value = ref<string[]>([])
+</script>
+
+<template>
+  <InputOTP v-model="value" :max-length="6" pattern="^[0-9]+$">
+    <InputOTPGroup>
+      <InputOTPSlot :index="0" />
+      <InputOTPSlot :index="1" />
+      <InputOTPSlot :index="2" />
+      <InputOTPSlot :index="3" />
+      <InputOTPSlot :index="4" />
+      <InputOTPSlot :index="5" />
+    </InputOTPGroup>
+  </InputOTP>
+</template>`}
       >
         <div className="space-y-2">
           <InputOTP maxLength={6} pattern="^[0-9]+$">

@@ -114,6 +114,20 @@ export function SwitchDoc() {
   <Switch id="notifications" defaultChecked />
   <Label htmlFor="notifications">Enable Notifications</Label>
 </div>`}
+        vueCode={`<script setup>
+import { ref } from 'vue'
+import { Switch } from '@/components/ui'
+import { Label } from '@/components/ui'
+
+const notifications = ref(true)
+</script>
+
+<template>
+  <div class="flex items-center space-x-2">
+    <Switch id="notifications" v-model:checked="notifications" />
+    <Label for="notifications">Enable Notifications</Label>
+  </div>
+</template>`}
       >
         <div className="flex items-center space-x-2">
           <Switch id="notifications" defaultChecked />
@@ -135,6 +149,26 @@ export function SwitchDoc() {
     <Label htmlFor="disabled-on">Disabled On</Label>
   </div>
 </div>`}
+        vueCode={`<script setup>
+import { ref } from 'vue'
+import { Switch } from '@/components/ui'
+import { Label } from '@/components/ui'
+
+const disabledOn = ref(true)
+</script>
+
+<template>
+  <div class="space-y-4">
+    <div class="flex items-center space-x-2">
+      <Switch id="disabled-off" disabled />
+      <Label for="disabled-off">Disabled Off</Label>
+    </div>
+    <div class="flex items-center space-x-2">
+      <Switch id="disabled-on" disabled v-model:checked="disabledOn" />
+      <Label for="disabled-on">Disabled On</Label>
+    </div>
+  </div>
+</template>`}
       >
         <div className="space-y-4">
           <div className="flex items-center space-x-2">
@@ -166,6 +200,32 @@ export function SwitchDoc() {
     <Switch id="updates" />
   </div>
 </div>`}
+        vueCode={`<script setup>
+import { ref } from 'vue'
+import { Switch } from '@/components/ui'
+import { Label } from '@/components/ui'
+
+const marketing = ref(false)
+const security = ref(true)
+const updates = ref(false)
+</script>
+
+<template>
+  <div class="w-full max-w-sm space-y-4">
+    <div class="flex items-center justify-between">
+      <Label for="marketing">Marketing emails</Label>
+      <Switch id="marketing" v-model:checked="marketing" />
+    </div>
+    <div class="flex items-center justify-between">
+      <Label for="security">Security alerts</Label>
+      <Switch id="security" v-model:checked="security" />
+    </div>
+    <div class="flex items-center justify-between">
+      <Label for="updates">Product updates</Label>
+      <Switch id="updates" v-model:checked="updates" />
+    </div>
+  </div>
+</template>`}
       >
         <div className="w-full max-w-sm space-y-4">
           <div className="flex items-center justify-between">

@@ -249,6 +249,19 @@ export function LayeredCardDoc() {
 <LayeredCard layers="triple">
   <LayeredCardContent>Triple Layer</LayeredCardContent>
 </LayeredCard>`}
+        vueCode={`<template>
+  <LayeredCard layers="single">
+    <LayeredCardContent>Single Layer</LayeredCardContent>
+  </LayeredCard>
+
+  <LayeredCard layers="double">
+    <LayeredCardContent>Double Layer (Default)</LayeredCardContent>
+  </LayeredCard>
+
+  <LayeredCard layers="triple">
+    <LayeredCardContent>Triple Layer</LayeredCardContent>
+  </LayeredCard>
+</template>`}
       >
         <div className="flex flex-wrap gap-12 items-start pb-8 pr-8">
           <LayeredCard layers="single" className="w-[200px]">
@@ -284,6 +297,19 @@ export function LayeredCardDoc() {
 <LayeredCard offset="lg">
   <LayeredCardContent>Large Offset</LayeredCardContent>
 </LayeredCard>`}
+        vueCode={`<template>
+  <LayeredCard offset="sm">
+    <LayeredCardContent>Small Offset</LayeredCardContent>
+  </LayeredCard>
+
+  <LayeredCard offset="default">
+    <LayeredCardContent>Default Offset</LayeredCardContent>
+  </LayeredCard>
+
+  <LayeredCard offset="lg">
+    <LayeredCardContent>Large Offset</LayeredCardContent>
+  </LayeredCard>
+</template>`}
       >
         <div className="flex flex-wrap gap-12 items-start pb-8 pr-8">
           <LayeredCard offset="sm" className="w-[200px]">
@@ -319,6 +345,19 @@ export function LayeredCardDoc() {
 <LayeredCard layerColor="accent">
   <LayeredCardContent>Accent Layers</LayeredCardContent>
 </LayeredCard>`}
+        vueCode={`<template>
+  <LayeredCard layer-color="primary">
+    <LayeredCardContent>Primary Layers</LayeredCardContent>
+  </LayeredCard>
+
+  <LayeredCard layer-color="secondary">
+    <LayeredCardContent>Secondary Layers</LayeredCardContent>
+  </LayeredCard>
+
+  <LayeredCard layer-color="accent">
+    <LayeredCardContent>Accent Layers</LayeredCardContent>
+  </LayeredCard>
+</template>`}
       >
         <div className="flex flex-wrap gap-12 items-start pb-8 pr-8">
           <LayeredCard layerColor="primary" className="w-[200px]">
@@ -351,6 +390,16 @@ export function LayeredCardDoc() {
     <p>This card lifts up on hover!</p>
   </LayeredCardContent>
 </LayeredCard>`}
+        vueCode={`<template>
+  <LayeredCard interactive>
+    <LayeredCardHeader>
+      <LayeredCardTitle>Hover Me</LayeredCardTitle>
+    </LayeredCardHeader>
+    <LayeredCardContent>
+      <p>This card lifts up on hover!</p>
+    </LayeredCardContent>
+  </LayeredCard>
+</template>`}
       >
         <div className="pb-6 pr-6">
           <LayeredCard interactive className="w-[300px]">
@@ -385,6 +434,25 @@ export function LayeredCardDoc() {
     <Button className="w-full">Get Started</Button>
   </LayeredCardFooter>
 </LayeredCard>`}
+        vueCode={`<template>
+  <LayeredCard layer-color="primary" class="w-[350px]">
+    <LayeredCardHeader>
+      <LayeredCardTitle>Subscription Plan</LayeredCardTitle>
+      <LayeredCardDescription>Everything you need to get started</LayeredCardDescription>
+    </LayeredCardHeader>
+    <LayeredCardContent class="space-y-4">
+      <div class="text-4xl font-black">$29<span class="text-lg font-normal">/mo</span></div>
+      <ul class="space-y-2 text-sm">
+        <li>✓ Unlimited projects</li>
+        <li>✓ Priority support</li>
+        <li>✓ Advanced analytics</li>
+      </ul>
+    </LayeredCardContent>
+    <LayeredCardFooter>
+      <Button class="w-full">Get Started</Button>
+    </LayeredCardFooter>
+  </LayeredCard>
+</template>`}
       >
         <div className="pb-6 pr-6">
           <LayeredCard layerColor="primary" className="w-[350px]">
@@ -431,6 +499,28 @@ export function LayeredCardDoc() {
     </LayeredCardContent>
   </LayeredCard>
 </div>`}
+        vueCode={`<template>
+  <div class="grid grid-cols-3 gap-8">
+    <LayeredCard layer-color="primary">
+      <LayeredCardContent class="text-center">
+        <div class="text-3xl font-black">01</div>
+        <p class="mt-2 font-bold">Design</p>
+      </LayeredCardContent>
+    </LayeredCard>
+    <LayeredCard layer-color="secondary">
+      <LayeredCardContent class="text-center">
+        <div class="text-3xl font-black">02</div>
+        <p class="mt-2 font-bold">Develop</p>
+      </LayeredCardContent>
+    </LayeredCard>
+    <LayeredCard layer-color="accent">
+      <LayeredCardContent class="text-center">
+        <div class="text-3xl font-black">03</div>
+        <p class="mt-2 font-bold">Deploy</p>
+      </LayeredCardContent>
+    </LayeredCard>
+  </div>
+</template>`}
       >
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 pb-6 pr-6">
           <LayeredCard layerColor="primary">

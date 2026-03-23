@@ -196,6 +196,27 @@ export function MarqueeDoc() {
   </MarqueeItem>
   <MarqueeSeparator>•</MarqueeSeparator>
 </Marquee>`}
+        vueCode={`<script setup lang="ts">
+import { Star, Zap, Heart } from 'lucide-vue-next'
+import { Marquee, MarqueeItem, MarqueeSeparator } from '@/components/ui'
+</script>
+
+<template>
+  <Marquee>
+    <MarqueeItem>
+      <Star class="h-5 w-5" /> Featured
+    </MarqueeItem>
+    <MarqueeSeparator>•</MarqueeSeparator>
+    <MarqueeItem>
+      <Zap class="h-5 w-5" /> Fast
+    </MarqueeItem>
+    <MarqueeSeparator>•</MarqueeSeparator>
+    <MarqueeItem>
+      <Heart class="h-5 w-5" /> Beautiful
+    </MarqueeItem>
+    <MarqueeSeparator>•</MarqueeSeparator>
+  </Marquee>
+</template>`}
       >
         <Marquee>
           <MarqueeItem>
@@ -231,6 +252,22 @@ export function MarqueeDoc() {
   <MarqueeItem>Fast Scrolling</MarqueeItem>
   <MarqueeSeparator />
 </Marquee>`}
+        vueCode={`<template>
+  <Marquee speed="slow">
+    <MarqueeItem>Slow Scrolling</MarqueeItem>
+    <MarqueeSeparator />
+  </Marquee>
+
+  <Marquee speed="normal">
+    <MarqueeItem>Normal Speed</MarqueeItem>
+    <MarqueeSeparator />
+  </Marquee>
+
+  <Marquee speed="fast">
+    <MarqueeItem>Fast Scrolling</MarqueeItem>
+    <MarqueeSeparator />
+  </Marquee>
+</template>`}
       >
         <div className="space-y-4">
           <Marquee speed="slow">
@@ -258,6 +295,19 @@ export function MarqueeDoc() {
   </MarqueeItem>
   <MarqueeSeparator />
 </Marquee>`}
+        vueCode={`<script setup lang="ts">
+import { Rocket } from 'lucide-vue-next'
+import { Marquee, MarqueeItem, MarqueeSeparator } from '@/components/ui'
+</script>
+
+<template>
+  <Marquee direction="right">
+    <MarqueeItem>
+      <Rocket class="h-5 w-5" /> Scrolling Right
+    </MarqueeItem>
+    <MarqueeSeparator />
+  </Marquee>
+</template>`}
       >
         <Marquee direction="right">
           <MarqueeItem>
@@ -277,6 +327,14 @@ export function MarqueeDoc() {
   <MarqueeItem>50% Off Everything</MarqueeItem>
   <MarqueeSeparator className="text-primary-foreground/50">★</MarqueeSeparator>
 </Marquee>`}
+        vueCode={`<template>
+  <Marquee :bordered="false" class="bg-primary text-primary-foreground">
+    <MarqueeItem>Sale Ends Soon</MarqueeItem>
+    <MarqueeSeparator class="text-primary-foreground/50">★</MarqueeSeparator>
+    <MarqueeItem>50% Off Everything</MarqueeItem>
+    <MarqueeSeparator class="text-primary-foreground/50">★</MarqueeSeparator>
+  </Marquee>
+</template>`}
       >
         <Marquee bordered={false} className="bg-primary text-primary-foreground">
           <MarqueeItem>Sale Ends Soon</MarqueeItem>
@@ -296,6 +354,14 @@ export function MarqueeDoc() {
   <MarqueeItem>Check out the docs</MarqueeItem>
   <MarqueeSeparator>→</MarqueeSeparator>
 </Marquee>`}
+        vueCode={`<template>
+  <Marquee :bordered="false" class="bg-accent text-accent-foreground border-y-3 border-foreground">
+    <MarqueeItem>New Feature Released</MarqueeItem>
+    <MarqueeSeparator>→</MarqueeSeparator>
+    <MarqueeItem>Check out the docs</MarqueeItem>
+    <MarqueeSeparator>→</MarqueeSeparator>
+  </Marquee>
+</template>`}
       >
         <Marquee bordered={false} className="bg-accent text-accent-foreground border-y-3 border-foreground">
           <MarqueeItem>New Feature Released</MarqueeItem>

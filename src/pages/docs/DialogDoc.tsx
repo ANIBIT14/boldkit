@@ -236,6 +236,21 @@ export function DialogDoc() {
     </DialogHeader>
   </DialogContent>
 </Dialog>`}
+        vueCode={`<template>
+  <Dialog>
+    <DialogTrigger as-child>
+      <Button>Open</Button>
+    </DialogTrigger>
+    <DialogContent>
+      <DialogHeader>
+        <DialogTitle>Are you sure?</DialogTitle>
+        <DialogDescription>
+          This action cannot be undone.
+        </DialogDescription>
+      </DialogHeader>
+    </DialogContent>
+  </Dialog>
+</template>`}
       >
         <Dialog>
           <DialogTrigger asChild>
@@ -282,6 +297,34 @@ export function DialogDoc() {
     </DialogFooter>
   </DialogContent>
 </Dialog>`}
+        vueCode={`<template>
+  <Dialog>
+    <DialogTrigger as-child>
+      <Button>Edit Profile</Button>
+    </DialogTrigger>
+    <DialogContent>
+      <DialogHeader>
+        <DialogTitle>Edit Profile</DialogTitle>
+        <DialogDescription>
+          Make changes to your profile here.
+        </DialogDescription>
+      </DialogHeader>
+      <div class="grid gap-4 py-4">
+        <div class="grid grid-cols-4 items-center gap-4">
+          <Label for="name" class="text-right">Name</Label>
+          <Input id="name" default-value="John Doe" class="col-span-3" />
+        </div>
+        <div class="grid grid-cols-4 items-center gap-4">
+          <Label for="username" class="text-right">Username</Label>
+          <Input id="username" default-value="@johndoe" class="col-span-3" />
+        </div>
+      </div>
+      <DialogFooter>
+        <Button type="submit">Save changes</Button>
+      </DialogFooter>
+    </DialogContent>
+  </Dialog>
+</template>`}
       >
         <Dialog>
           <DialogTrigger asChild>
@@ -333,6 +376,30 @@ export function DialogDoc() {
     </DialogFooter>
   </DialogContent>
 </Dialog>`}
+        vueCode={`<script setup lang="ts">
+import { ref } from 'vue'
+
+const open = ref(false)
+</script>
+
+<template>
+  <Dialog v-model:open="open">
+    <DialogTrigger as-child>
+      <Button>Controlled Dialog</Button>
+    </DialogTrigger>
+    <DialogContent>
+      <DialogHeader>
+        <DialogTitle>Controlled Dialog</DialogTitle>
+        <DialogDescription>
+          This dialog's state is controlled externally.
+        </DialogDescription>
+      </DialogHeader>
+      <DialogFooter>
+        <Button @click="open = false">Close</Button>
+      </DialogFooter>
+    </DialogContent>
+  </Dialog>
+</template>`}
       >
         <Dialog open={open} onOpenChange={setOpen}>
           <DialogTrigger asChild>
@@ -376,6 +443,27 @@ export function DialogDoc() {
     </DialogFooter>
   </DialogContent>
 </Dialog>`}
+        vueCode={`<template>
+  <Dialog>
+    <DialogTrigger as-child>
+      <Button variant="destructive">Delete Account</Button>
+    </DialogTrigger>
+    <DialogContent>
+      <DialogHeader>
+        <DialogTitle>Delete Account</DialogTitle>
+        <DialogDescription>
+          Are you sure you want to delete your account? This action is permanent.
+        </DialogDescription>
+      </DialogHeader>
+      <DialogFooter>
+        <DialogClose as-child>
+          <Button variant="outline">Cancel</Button>
+        </DialogClose>
+        <Button variant="destructive">Delete</Button>
+      </DialogFooter>
+    </DialogContent>
+  </Dialog>
+</template>`}
       >
         <Dialog>
           <DialogTrigger asChild>

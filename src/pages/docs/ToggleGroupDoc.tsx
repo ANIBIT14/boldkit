@@ -194,6 +194,25 @@ export function ToggleGroupDoc() {
     <AlignRight className="h-4 w-4" />
   </ToggleGroupItem>
 </ToggleGroup>`}
+        vueCode={`<script setup>
+import { ref } from 'vue'
+import { AlignLeft, AlignCenter, AlignRight } from 'lucide-vue-next'
+const value = ref('center')
+</script>
+
+<template>
+  <ToggleGroup type="single" v-model="value">
+    <ToggleGroupItem value="left" aria-label="Align left">
+      <AlignLeft class="h-4 w-4" />
+    </ToggleGroupItem>
+    <ToggleGroupItem value="center" aria-label="Align center">
+      <AlignCenter class="h-4 w-4" />
+    </ToggleGroupItem>
+    <ToggleGroupItem value="right" aria-label="Align right">
+      <AlignRight class="h-4 w-4" />
+    </ToggleGroupItem>
+  </ToggleGroup>
+</template>`}
       >
         <ToggleGroup type="single" defaultValue="center">
           <ToggleGroupItem value="left" aria-label="Align left">
@@ -223,6 +242,25 @@ export function ToggleGroupDoc() {
     <Underline className="h-4 w-4" />
   </ToggleGroupItem>
 </ToggleGroup>`}
+        vueCode={`<script setup>
+import { ref } from 'vue'
+import { Bold, Italic, Underline } from 'lucide-vue-next'
+const values = ref(['bold'])
+</script>
+
+<template>
+  <ToggleGroup type="multiple" v-model="values">
+    <ToggleGroupItem value="bold" aria-label="Toggle bold">
+      <Bold class="h-4 w-4" />
+    </ToggleGroupItem>
+    <ToggleGroupItem value="italic" aria-label="Toggle italic">
+      <Italic class="h-4 w-4" />
+    </ToggleGroupItem>
+    <ToggleGroupItem value="underline" aria-label="Toggle underline">
+      <Underline class="h-4 w-4" />
+    </ToggleGroupItem>
+  </ToggleGroup>
+</template>`}
       >
         <ToggleGroup type="multiple" defaultValue={['bold']}>
           <ToggleGroupItem value="bold" aria-label="Toggle bold">
@@ -252,6 +290,25 @@ export function ToggleGroupDoc() {
     <AlignRight className="h-4 w-4" />
   </ToggleGroupItem>
 </ToggleGroup>`}
+        vueCode={`<script setup>
+import { ref } from 'vue'
+import { AlignLeft, AlignCenter, AlignRight } from 'lucide-vue-next'
+const value = ref('left')
+</script>
+
+<template>
+  <ToggleGroup type="single" variant="outline" v-model="value">
+    <ToggleGroupItem value="left" aria-label="Align left">
+      <AlignLeft class="h-4 w-4" />
+    </ToggleGroupItem>
+    <ToggleGroupItem value="center" aria-label="Align center">
+      <AlignCenter class="h-4 w-4" />
+    </ToggleGroupItem>
+    <ToggleGroupItem value="right" aria-label="Align right">
+      <AlignRight class="h-4 w-4" />
+    </ToggleGroupItem>
+  </ToggleGroup>
+</template>`}
       >
         <ToggleGroup type="single" variant="outline" defaultValue="left">
           <ToggleGroupItem value="left" aria-label="Align left">
@@ -281,6 +338,51 @@ export function ToggleGroupDoc() {
 <ToggleGroup type="single" size="lg">
   ...
 </ToggleGroup>`}
+        vueCode={`<script setup>
+import { ref } from 'vue'
+import { AlignLeft, AlignCenter, AlignRight } from 'lucide-vue-next'
+const smVal = ref('left')
+const mdVal = ref('center')
+const lgVal = ref('right')
+</script>
+
+<template>
+  <div class="flex flex-col gap-4">
+    <ToggleGroup type="single" size="sm" v-model="smVal">
+      <ToggleGroupItem value="left" aria-label="Align left">
+        <AlignLeft class="h-4 w-4" />
+      </ToggleGroupItem>
+      <ToggleGroupItem value="center" aria-label="Align center">
+        <AlignCenter class="h-4 w-4" />
+      </ToggleGroupItem>
+      <ToggleGroupItem value="right" aria-label="Align right">
+        <AlignRight class="h-4 w-4" />
+      </ToggleGroupItem>
+    </ToggleGroup>
+    <ToggleGroup type="single" size="default" v-model="mdVal">
+      <ToggleGroupItem value="left" aria-label="Align left">
+        <AlignLeft class="h-4 w-4" />
+      </ToggleGroupItem>
+      <ToggleGroupItem value="center" aria-label="Align center">
+        <AlignCenter class="h-4 w-4" />
+      </ToggleGroupItem>
+      <ToggleGroupItem value="right" aria-label="Align right">
+        <AlignRight class="h-4 w-4" />
+      </ToggleGroupItem>
+    </ToggleGroup>
+    <ToggleGroup type="single" size="lg" v-model="lgVal">
+      <ToggleGroupItem value="left" aria-label="Align left">
+        <AlignLeft class="h-4 w-4" />
+      </ToggleGroupItem>
+      <ToggleGroupItem value="center" aria-label="Align center">
+        <AlignCenter class="h-4 w-4" />
+      </ToggleGroupItem>
+      <ToggleGroupItem value="right" aria-label="Align right">
+        <AlignRight class="h-4 w-4" />
+      </ToggleGroupItem>
+    </ToggleGroup>
+  </div>
+</template>`}
       >
         <div className="flex flex-col gap-4">
           <ToggleGroup type="single" size="sm" defaultValue="left">
@@ -336,6 +438,25 @@ export function ToggleGroupDoc() {
     <AlignRight className="h-4 w-4" />
   </ToggleGroupItem>
 </ToggleGroup>`}
+        vueCode={`<script setup>
+import { ref } from 'vue'
+import { AlignLeft, AlignCenter, AlignRight } from 'lucide-vue-next'
+const value = ref('left')
+</script>
+
+<template>
+  <ToggleGroup type="single" v-model="value">
+    <ToggleGroupItem value="left" aria-label="Align left">
+      <AlignLeft class="h-4 w-4" />
+    </ToggleGroupItem>
+    <ToggleGroupItem value="center" aria-label="Align center" disabled>
+      <AlignCenter class="h-4 w-4" />
+    </ToggleGroupItem>
+    <ToggleGroupItem value="right" aria-label="Align right">
+      <AlignRight class="h-4 w-4" />
+    </ToggleGroupItem>
+  </ToggleGroup>
+</template>`}
       >
         <ToggleGroup type="single" defaultValue="left">
           <ToggleGroupItem value="left" aria-label="Align left">

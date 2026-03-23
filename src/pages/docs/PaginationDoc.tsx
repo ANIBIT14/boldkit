@@ -264,6 +264,27 @@ export function PaginationDoc() {
     </PaginationItem>
   </PaginationContent>
 </Pagination>`}
+        vueCode={`<template>
+  <Pagination>
+    <PaginationContent>
+      <PaginationItem>
+        <PaginationPrevious href="#" />
+      </PaginationItem>
+      <PaginationItem>
+        <PaginationLink href="#">1</PaginationLink>
+      </PaginationItem>
+      <PaginationItem>
+        <PaginationLink href="#" is-active>2</PaginationLink>
+      </PaginationItem>
+      <PaginationItem>
+        <PaginationLink href="#">3</PaginationLink>
+      </PaginationItem>
+      <PaginationItem>
+        <PaginationNext href="#" />
+      </PaginationItem>
+    </PaginationContent>
+  </Pagination>
+</template>`}
       >
         <Pagination>
           <PaginationContent>
@@ -321,6 +342,39 @@ export function PaginationDoc() {
     </PaginationItem>
   </PaginationContent>
 </Pagination>`}
+        vueCode={`<template>
+  <Pagination>
+    <PaginationContent>
+      <PaginationItem>
+        <PaginationPrevious href="#" />
+      </PaginationItem>
+      <PaginationItem>
+        <PaginationLink href="#">1</PaginationLink>
+      </PaginationItem>
+      <PaginationItem>
+        <PaginationEllipsis />
+      </PaginationItem>
+      <PaginationItem>
+        <PaginationLink href="#">4</PaginationLink>
+      </PaginationItem>
+      <PaginationItem>
+        <PaginationLink href="#" is-active>5</PaginationLink>
+      </PaginationItem>
+      <PaginationItem>
+        <PaginationLink href="#">6</PaginationLink>
+      </PaginationItem>
+      <PaginationItem>
+        <PaginationEllipsis />
+      </PaginationItem>
+      <PaginationItem>
+        <PaginationLink href="#">10</PaginationLink>
+      </PaginationItem>
+      <PaginationItem>
+        <PaginationNext href="#" />
+      </PaginationItem>
+    </PaginationContent>
+  </Pagination>
+</template>`}
       >
         <Pagination>
           <PaginationContent>
@@ -381,6 +435,30 @@ export function PaginationDoc() {
     </PaginationItem>
   </PaginationContent>
 </Pagination>`}
+        vueCode={`<template>
+  <Pagination>
+    <PaginationContent>
+      <PaginationItem>
+        <PaginationPrevious href="#" class="pointer-events-none opacity-50" />
+      </PaginationItem>
+      <PaginationItem>
+        <PaginationLink href="#" is-active>1</PaginationLink>
+      </PaginationItem>
+      <PaginationItem>
+        <PaginationLink href="#">2</PaginationLink>
+      </PaginationItem>
+      <PaginationItem>
+        <PaginationLink href="#">3</PaginationLink>
+      </PaginationItem>
+      <PaginationItem>
+        <PaginationEllipsis />
+      </PaginationItem>
+      <PaginationItem>
+        <PaginationNext href="#" />
+      </PaginationItem>
+    </PaginationContent>
+  </Pagination>
+</template>`}
       >
         <Pagination>
           <PaginationContent>
@@ -423,6 +501,21 @@ export function PaginationDoc() {
     </PaginationItem>
   </PaginationContent>
 </Pagination>`}
+        vueCode={`<template>
+  <Pagination>
+    <PaginationContent>
+      <PaginationItem>
+        <PaginationPrevious href="#" />
+      </PaginationItem>
+      <PaginationItem>
+        <span class="px-4 text-sm font-medium">Page 2 of 10</span>
+      </PaginationItem>
+      <PaginationItem>
+        <PaginationNext href="#" />
+      </PaginationItem>
+    </PaginationContent>
+  </Pagination>
+</template>`}
       >
         <Pagination>
           <PaginationContent>

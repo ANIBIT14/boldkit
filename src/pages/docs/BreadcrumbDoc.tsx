@@ -299,6 +299,19 @@ export function BreadcrumbDoc() {
     </BreadcrumbItem>
   </BreadcrumbList>
 </Breadcrumb>`}
+        vueCode={`<template>
+  <Breadcrumb>
+    <BreadcrumbList>
+      <BreadcrumbItem>
+        <BreadcrumbLink href="/">Home</BreadcrumbLink>
+      </BreadcrumbItem>
+      <BreadcrumbSeparator />
+      <BreadcrumbItem>
+        <BreadcrumbPage>Current Page</BreadcrumbPage>
+      </BreadcrumbItem>
+    </BreadcrumbList>
+  </Breadcrumb>
+</template>`}
       >
         <Breadcrumb>
           <BreadcrumbList>
@@ -336,6 +349,31 @@ export function BreadcrumbDoc() {
     </BreadcrumbItem>
   </BreadcrumbList>
 </Breadcrumb>`}
+        vueCode={`<script setup lang="ts">
+import { Slash } from 'lucide-vue-next'
+</script>
+
+<template>
+  <Breadcrumb>
+    <BreadcrumbList>
+      <BreadcrumbItem>
+        <BreadcrumbLink href="/">Home</BreadcrumbLink>
+      </BreadcrumbItem>
+      <BreadcrumbSeparator>
+        <Slash class="h-4 w-4" />
+      </BreadcrumbSeparator>
+      <BreadcrumbItem>
+        <BreadcrumbLink href="/products">Products</BreadcrumbLink>
+      </BreadcrumbItem>
+      <BreadcrumbSeparator>
+        <Slash class="h-4 w-4" />
+      </BreadcrumbSeparator>
+      <BreadcrumbItem>
+        <BreadcrumbPage>Details</BreadcrumbPage>
+      </BreadcrumbItem>
+    </BreadcrumbList>
+  </Breadcrumb>
+</template>`}
       >
         <Breadcrumb>
           <BreadcrumbList>
@@ -381,6 +419,27 @@ export function BreadcrumbDoc() {
     </BreadcrumbItem>
   </BreadcrumbList>
 </Breadcrumb>`}
+        vueCode={`<template>
+  <Breadcrumb>
+    <BreadcrumbList>
+      <BreadcrumbItem>
+        <BreadcrumbLink href="/">Home</BreadcrumbLink>
+      </BreadcrumbItem>
+      <BreadcrumbSeparator />
+      <BreadcrumbItem>
+        <BreadcrumbEllipsis />
+      </BreadcrumbItem>
+      <BreadcrumbSeparator />
+      <BreadcrumbItem>
+        <BreadcrumbLink href="/category">Category</BreadcrumbLink>
+      </BreadcrumbItem>
+      <BreadcrumbSeparator />
+      <BreadcrumbItem>
+        <BreadcrumbPage>Current</BreadcrumbPage>
+      </BreadcrumbItem>
+    </BreadcrumbList>
+  </Breadcrumb>
+</template>`}
       >
         <Breadcrumb>
           <BreadcrumbList>
@@ -426,6 +485,27 @@ export function BreadcrumbDoc() {
     </BreadcrumbItem>
   </BreadcrumbList>
 </Breadcrumb>`}
+        vueCode={`<template>
+  <Breadcrumb>
+    <BreadcrumbList>
+      <BreadcrumbItem>
+        <BreadcrumbLink href="/">Home</BreadcrumbLink>
+      </BreadcrumbItem>
+      <BreadcrumbSeparator />
+      <BreadcrumbItem>
+        <BreadcrumbLink href="/docs">Documentation</BreadcrumbLink>
+      </BreadcrumbItem>
+      <BreadcrumbSeparator />
+      <BreadcrumbItem>
+        <BreadcrumbLink href="/docs/components">Components</BreadcrumbLink>
+      </BreadcrumbItem>
+      <BreadcrumbSeparator />
+      <BreadcrumbItem>
+        <BreadcrumbPage>Breadcrumb</BreadcrumbPage>
+      </BreadcrumbItem>
+    </BreadcrumbList>
+  </Breadcrumb>
+</template>`}
       >
         <Breadcrumb>
           <BreadcrumbList>

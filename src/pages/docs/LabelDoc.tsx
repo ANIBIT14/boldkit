@@ -95,6 +95,12 @@ export function LabelDoc() {
   <Label htmlFor="email">Email</Label>
   <Input type="email" id="email" placeholder="Email" />
 </div>`}
+        vueCode={`<template>
+  <div class="grid w-full max-w-sm items-center gap-1.5">
+    <Label for="email">Email</Label>
+    <Input type="email" id="email" placeholder="Email" />
+  </div>
+</template>`}
       >
         <div className="grid w-full max-w-sm items-center gap-1.5">
           <Label htmlFor="email-basic">Email</Label>
@@ -110,6 +116,12 @@ export function LabelDoc() {
   <Checkbox id="terms" />
   <Label htmlFor="terms">Accept terms and conditions</Label>
 </div>`}
+        vueCode={`<template>
+  <div class="flex items-center space-x-2">
+    <Checkbox id="terms" />
+    <Label for="terms">Accept terms and conditions</Label>
+  </div>
+</template>`}
       >
         <div className="flex items-center space-x-2">
           <Checkbox id="terms-label" />
@@ -127,6 +139,14 @@ export function LabelDoc() {
   </Label>
   <Input type="text" id="username" placeholder="Enter username" required />
 </div>`}
+        vueCode={`<template>
+  <div class="grid w-full max-w-sm items-center gap-1.5">
+    <Label for="username">
+      Username <span class="text-destructive">*</span>
+    </Label>
+    <Input type="text" id="username" placeholder="Enter username" required />
+  </div>
+</template>`}
       >
         <div className="grid w-full max-w-sm items-center gap-1.5">
           <Label htmlFor="username-required">
@@ -147,6 +167,15 @@ export function LabelDoc() {
     Password must be at least 8 characters.
   </p>
 </div>`}
+        vueCode={`<template>
+  <div class="grid w-full max-w-sm items-center gap-1.5">
+    <Label for="password">Password</Label>
+    <Input type="password" id="password" placeholder="Enter password" />
+    <p class="text-sm text-muted-foreground">
+      Password must be at least 8 characters.
+    </p>
+  </div>
+</template>`}
       >
         <div className="grid w-full max-w-sm items-center gap-1.5">
           <Label htmlFor="password-helper">Password</Label>
@@ -165,6 +194,12 @@ export function LabelDoc() {
   <Label htmlFor="disabled-input">Disabled Field</Label>
   <Input type="text" id="disabled-input" placeholder="Cannot edit" disabled />
 </div>`}
+        vueCode={`<template>
+  <div class="grid w-full max-w-sm items-center gap-1.5">
+    <Label for="disabled-input">Disabled Field</Label>
+    <Input type="text" id="disabled-input" placeholder="Cannot edit" disabled />
+  </div>
+</template>`}
       >
         <div className="grid w-full max-w-sm items-center gap-1.5">
           <Label htmlFor="disabled-input" className="peer-disabled:opacity-70">Disabled Field</Label>
@@ -190,6 +225,22 @@ export function LabelDoc() {
     <Input id="email-form" type="email" placeholder="john@example.com" />
   </div>
 </form>`}
+        vueCode={`<template>
+  <form class="grid w-full max-w-sm gap-4">
+    <div class="grid gap-1.5">
+      <Label for="first-name">First Name</Label>
+      <Input id="first-name" placeholder="John" />
+    </div>
+    <div class="grid gap-1.5">
+      <Label for="last-name">Last Name</Label>
+      <Input id="last-name" placeholder="Doe" />
+    </div>
+    <div class="grid gap-1.5">
+      <Label for="email-form">Email</Label>
+      <Input id="email-form" type="email" placeholder="john@example.com" />
+    </div>
+  </form>
+</template>`}
       >
         <form className="grid w-full max-w-sm gap-4">
           <div className="grid gap-1.5">

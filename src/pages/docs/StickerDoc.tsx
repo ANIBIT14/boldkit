@@ -193,6 +193,19 @@ export function StickerDoc() {
 <Sticker variant="secondary">Secondary</Sticker>
 <Sticker variant="destructive">Destructive</Sticker>
 <Sticker variant="outline">Outline</Sticker>`}
+        vueCode={`<script setup>
+import { Sticker } from '@/components/ui'
+</script>
+
+<template>
+  <div class="flex flex-wrap gap-6 items-center">
+    <Sticker variant="default">Default</Sticker>
+    <Sticker variant="primary">Primary</Sticker>
+    <Sticker variant="secondary">Secondary</Sticker>
+    <Sticker variant="destructive">Destructive</Sticker>
+    <Sticker variant="outline">Outline</Sticker>
+  </div>
+</template>`}
       >
         <div className="flex flex-wrap gap-6 items-center">
           <Sticker variant="default">Default</Sticker>
@@ -211,6 +224,18 @@ export function StickerDoc() {
 <Sticker size="default">Default</Sticker>
 <Sticker size="lg">Large</Sticker>
 <Sticker size="xl">Extra Large</Sticker>`}
+        vueCode={`<script setup>
+import { Sticker } from '@/components/ui'
+</script>
+
+<template>
+  <div class="flex flex-wrap gap-6 items-center">
+    <Sticker size="sm">Small</Sticker>
+    <Sticker size="default">Default</Sticker>
+    <Sticker size="lg">Large</Sticker>
+    <Sticker size="xl">Extra Large</Sticker>
+  </div>
+</template>`}
       >
         <div className="flex flex-wrap gap-6 items-center">
           <Sticker size="sm">Small</Sticker>
@@ -230,6 +255,20 @@ export function StickerDoc() {
 <Sticker rotation="heavy">Heavy</Sticker>
 <Sticker rotation="slight-right">Right</Sticker>
 <Sticker rotation="heavy-right">Heavy Right</Sticker>`}
+        vueCode={`<script setup>
+import { Sticker } from '@/components/ui'
+</script>
+
+<template>
+  <div class="flex flex-wrap gap-6 items-center py-4">
+    <Sticker rotation="none">No Rotation</Sticker>
+    <Sticker rotation="slight">Slight</Sticker>
+    <Sticker rotation="medium">Medium</Sticker>
+    <Sticker rotation="heavy">Heavy</Sticker>
+    <Sticker rotation="slight-right">Right</Sticker>
+    <Sticker rotation="heavy-right">Heavy Right</Sticker>
+  </div>
+</template>`}
       >
         <div className="flex flex-wrap gap-6 items-center py-4">
           <Sticker rotation="none">No Rotation</Sticker>
@@ -249,6 +288,18 @@ export function StickerDoc() {
 <Sticker shadow="default">Default</Sticker>
 <Sticker shadow="colored">Colored</Sticker>
 <Sticker shadow="double">Double</Sticker>`}
+        vueCode={`<script setup>
+import { Sticker } from '@/components/ui'
+</script>
+
+<template>
+  <div class="flex flex-wrap gap-6 items-center py-4">
+    <Sticker shadow="none">No Shadow</Sticker>
+    <Sticker shadow="default">Default</Sticker>
+    <Sticker shadow="colored">Colored</Sticker>
+    <Sticker shadow="double">Double</Sticker>
+  </div>
+</template>`}
       >
         <div className="flex flex-wrap gap-6 items-center py-4">
           <Sticker shadow="none">No Shadow</Sticker>
@@ -265,6 +316,17 @@ export function StickerDoc() {
         code={`<Sticker dashed>Cut Here</Sticker>
 <Sticker dashed variant="primary">Limited</Sticker>
 <Sticker dashed variant="destructive">Urgent</Sticker>`}
+        vueCode={`<script setup>
+import { Sticker } from '@/components/ui'
+</script>
+
+<template>
+  <div class="flex flex-wrap gap-8 items-center py-4">
+    <Sticker dashed>Cut Here</Sticker>
+    <Sticker dashed variant="primary">Limited</Sticker>
+    <Sticker dashed variant="destructive">Urgent</Sticker>
+  </div>
+</template>`}
       >
         <div className="flex flex-wrap gap-8 items-center py-4">
           <Sticker dashed>Cut Here</Sticker>
@@ -280,6 +342,17 @@ export function StickerDoc() {
         code={`<Sticker tape>Note</Sticker>
 <Sticker tape variant="outline">Remember</Sticker>
 <Sticker tape variant="primary" rotation="medium-right">Important</Sticker>`}
+        vueCode={`<script setup>
+import { Sticker } from '@/components/ui'
+</script>
+
+<template>
+  <div class="flex flex-wrap gap-8 items-center py-8">
+    <Sticker tape>Note</Sticker>
+    <Sticker tape variant="outline">Remember</Sticker>
+    <Sticker tape variant="primary" rotation="medium-right">Important</Sticker>
+  </div>
+</template>`}
       >
         <div className="flex flex-wrap gap-8 items-center py-8">
           <Sticker tape>Note</Sticker>
@@ -294,6 +367,16 @@ export function StickerDoc() {
         description="Make stickers clickable with hover effects."
         code={`<Sticker interactive>Click Me</Sticker>
 <Sticker interactive variant="primary">Press</Sticker>`}
+        vueCode={`<script setup>
+import { Sticker } from '@/components/ui'
+</script>
+
+<template>
+  <div class="flex flex-wrap gap-6 items-center">
+    <Sticker interactive>Click Me</Sticker>
+    <Sticker interactive variant="primary">Press</Sticker>
+  </div>
+</template>`}
       >
         <div className="flex flex-wrap gap-6 items-center">
           <Sticker interactive>Click Me</Sticker>
@@ -309,6 +392,18 @@ export function StickerDoc() {
 <Stamp variant="secondary">Verified</Stamp>
 <Stamp variant="accent">100%</Stamp>
 <Stamp variant="destructive" rotation="medium">Rejected</Stamp>`}
+        vueCode={`<script setup>
+import { Stamp } from '@/components/ui'
+</script>
+
+<template>
+  <div class="flex flex-wrap gap-8 items-center py-4">
+    <Stamp>OK</Stamp>
+    <Stamp variant="secondary">Verified</Stamp>
+    <Stamp variant="accent">100%</Stamp>
+    <Stamp variant="destructive" rotation="medium">Rejected</Stamp>
+  </div>
+</template>`}
       >
         <div className="flex flex-wrap gap-8 items-center py-4">
           <Stamp>OK</Stamp>
@@ -326,6 +421,18 @@ export function StickerDoc() {
 <Stamp size="default">Default</Stamp>
 <Stamp size="lg">Large</Stamp>
 <Stamp size="xl">Extra Large</Stamp>`}
+        vueCode={`<script setup>
+import { Stamp } from '@/components/ui'
+</script>
+
+<template>
+  <div class="flex flex-wrap gap-8 items-center py-4">
+    <Stamp size="sm">SM</Stamp>
+    <Stamp size="default">OK</Stamp>
+    <Stamp size="lg">Large</Stamp>
+    <Stamp size="xl">XL</Stamp>
+  </div>
+</template>`}
       >
         <div className="flex flex-wrap gap-8 items-center py-4">
           <Stamp size="sm">SM</Stamp>
@@ -341,6 +448,16 @@ export function StickerDoc() {
         description="Add a double ring effect to stamps for extra emphasis."
         code={`<Stamp doubleRing>Certified</Stamp>
 <Stamp doubleRing variant="secondary">Approved</Stamp>`}
+        vueCode={`<script setup>
+import { Stamp } from '@/components/ui'
+</script>
+
+<template>
+  <div class="flex flex-wrap gap-8 items-center py-4">
+    <Stamp double-ring>Certified</Stamp>
+    <Stamp double-ring variant="secondary">Approved</Stamp>
+  </div>
+</template>`}
       >
         <div className="flex flex-wrap gap-8 items-center py-4">
           <Stamp doubleRing>Certified</Stamp>
@@ -355,6 +472,17 @@ export function StickerDoc() {
         code={`<StickyNote>Remember to star the repo!</StickyNote>
 <StickyNote variant="pink">Important meeting at 3pm</StickyNote>
 <StickyNote variant="blue" pin>Don't forget!</StickyNote>`}
+        vueCode={`<script setup>
+import { StickyNote } from '@/components/ui'
+</script>
+
+<template>
+  <div class="flex flex-wrap gap-8 items-start py-8">
+    <StickyNote>Remember to star the repo!</StickyNote>
+    <StickyNote variant="pink">Important meeting at 3pm</StickyNote>
+    <StickyNote variant="blue" pin>Don't forget!</StickyNote>
+  </div>
+</template>`}
       >
         <div className="flex flex-wrap gap-8 items-start py-8">
           <StickyNote>Remember to star the repo!</StickyNote>
@@ -372,6 +500,19 @@ export function StickerDoc() {
 <StickyNote variant="blue">Blue</StickyNote>
 <StickyNote variant="green">Green</StickyNote>
 <StickyNote variant="purple">Purple</StickyNote>`}
+        vueCode={`<script setup>
+import { StickyNote } from '@/components/ui'
+</script>
+
+<template>
+  <div class="flex flex-wrap gap-6 items-start py-4">
+    <StickyNote variant="yellow">Yellow note</StickyNote>
+    <StickyNote variant="pink">Pink note</StickyNote>
+    <StickyNote variant="blue">Blue note</StickyNote>
+    <StickyNote variant="green">Green note</StickyNote>
+    <StickyNote variant="purple">Purple note</StickyNote>
+  </div>
+</template>`}
       >
         <div className="flex flex-wrap gap-6 items-start py-4">
           <StickyNote variant="yellow">Yellow note</StickyNote>
@@ -388,6 +529,17 @@ export function StickerDoc() {
         description="Add a push pin decoration to notes."
         code={`<StickyNote pin>Pinned to board</StickyNote>
 <StickyNote pin variant="pink" rotation="right">Todo list</StickyNote>`}
+        vueCode={`<script setup>
+import { StickyNote } from '@/components/ui'
+</script>
+
+<template>
+  <div class="flex flex-wrap gap-8 items-start py-8">
+    <StickyNote pin>Pinned to board</StickyNote>
+    <StickyNote pin variant="pink" rotation="right">Todo list</StickyNote>
+    <StickyNote pin variant="green" rotation="tilt-left">Great idea!</StickyNote>
+  </div>
+</template>`}
       >
         <div className="flex flex-wrap gap-8 items-start py-8">
           <StickyNote pin>Pinned to board</StickyNote>
@@ -403,6 +555,17 @@ export function StickerDoc() {
         code={`<StickyNote size="sm">Small</StickyNote>
 <StickyNote size="default">Default size note</StickyNote>
 <StickyNote size="lg">Large note with more space</StickyNote>`}
+        vueCode={`<script setup>
+import { StickyNote } from '@/components/ui'
+</script>
+
+<template>
+  <div class="flex flex-wrap gap-6 items-start py-4">
+    <StickyNote size="sm">Small</StickyNote>
+    <StickyNote size="default">Default size</StickyNote>
+    <StickyNote size="lg">Large note</StickyNote>
+  </div>
+</template>`}
       >
         <div className="flex flex-wrap gap-6 items-start py-4">
           <StickyNote size="sm">Small</StickyNote>

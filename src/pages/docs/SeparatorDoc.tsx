@@ -131,6 +131,17 @@ export function SeparatorDoc() {
   <h4 className="font-bold">Section 2</h4>
   <p className="text-sm text-muted-foreground">Content for section 2.</p>
 </div>`}
+        vueCode={`<template>
+  <div>
+    <h4 class="font-bold">Section 1</h4>
+    <p class="text-sm text-muted-foreground">Content for section 1.</p>
+  </div>
+  <Separator class="my-4" />
+  <div>
+    <h4 class="font-bold">Section 2</h4>
+    <p class="text-sm text-muted-foreground">Content for section 2.</p>
+  </div>
+</template>`}
       >
         <div className="max-w-md">
           <div>
@@ -156,6 +167,15 @@ export function SeparatorDoc() {
   <Separator orientation="vertical" />
   <div>Source</div>
 </div>`}
+        vueCode={`<template>
+  <div class="flex h-5 items-center space-x-4 text-sm">
+    <div>Blog</div>
+    <Separator orientation="vertical" />
+    <div>Docs</div>
+    <Separator orientation="vertical" />
+    <div>Source</div>
+  </div>
+</template>`}
       >
         <div className="flex h-5 items-center space-x-4 text-sm">
           <div className="font-medium">Blog</div>
@@ -191,6 +211,29 @@ export function SeparatorDoc() {
     <button className="text-sm text-destructive">Delete Account</button>
   </div>
 </div>`}
+        vueCode={`<template>
+  <div class="border-3 border-foreground p-4 bk-shadow max-w-sm">
+    <div class="flex items-center justify-between">
+      <h3 class="font-bold uppercase">Profile</h3>
+      <button class="text-sm text-primary">Edit</button>
+    </div>
+    <Separator class="my-4" />
+    <div class="space-y-3">
+      <div class="flex justify-between">
+        <span class="text-sm text-muted-foreground">Name</span>
+        <span class="text-sm font-medium">John Doe</span>
+      </div>
+      <div class="flex justify-between">
+        <span class="text-sm text-muted-foreground">Email</span>
+        <span class="text-sm font-medium">john@example.com</span>
+      </div>
+    </div>
+    <Separator class="my-4" />
+    <div class="flex justify-end">
+      <button class="text-sm text-destructive">Delete Account</button>
+    </div>
+  </div>
+</template>`}
       >
         <div className="border-3 border-foreground p-4 bk-shadow max-w-sm">
           <div className="flex items-center justify-between">
@@ -232,6 +275,17 @@ export function SeparatorDoc() {
   <Separator className="my-2" />
   <a href="#" className="block py-2 text-destructive font-medium">Logout</a>
 </nav>`}
+        vueCode={`<template>
+  <nav class="space-y-1">
+    <a href="#" class="block py-2 font-medium">Dashboard</a>
+    <a href="#" class="block py-2 font-medium">Analytics</a>
+    <Separator class="my-2" />
+    <a href="#" class="block py-2 font-medium">Settings</a>
+    <a href="#" class="block py-2 font-medium">Help</a>
+    <Separator class="my-2" />
+    <a href="#" class="block py-2 text-destructive font-medium">Logout</a>
+  </nav>
+</template>`}
       >
         <nav className="space-y-1 max-w-xs">
           <a href="#" className="block py-2 font-medium hover:text-primary transition-colors">Dashboard</a>
@@ -259,6 +313,18 @@ export function SeparatorDoc() {
     </span>
   </div>
 </div>`}
+        vueCode={`<template>
+  <div class="relative">
+    <div class="absolute inset-0 flex items-center">
+      <Separator class="w-full" />
+    </div>
+    <div class="relative flex justify-center text-xs uppercase">
+      <span class="bg-background px-2 text-muted-foreground font-bold">
+        Or continue with
+      </span>
+    </div>
+  </div>
+</template>`}
       >
         <div className="max-w-md">
           <div className="relative">

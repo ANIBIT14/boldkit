@@ -161,6 +161,21 @@ export function ScrollAreaDoc() {
     ))}
   </div>
 </ScrollArea>`}
+        vueCode={`<script setup>
+const tags = Array.from({ length: 20 }, (_, i, a) => \`Tag \${a.length - i}\`)
+</script>
+
+<template>
+  <ScrollArea class="h-72 w-48 border-3 border-foreground">
+    <div class="p-4">
+      <h4 class="mb-4 font-bold uppercase">Tags</h4>
+      <div v-for="tag in tags" :key="tag">
+        <div class="text-sm">{{ tag }}</div>
+        <Separator class="my-2" />
+      </div>
+    </div>
+  </ScrollArea>
+</template>`}
       >
         <ScrollArea className="h-72 w-48 border-3 border-foreground bk-shadow">
           <div className="p-4">
@@ -198,6 +213,33 @@ export function ScrollAreaDoc() {
   </div>
   <ScrollBar orientation="horizontal" />
 </ScrollArea>`}
+        vueCode={`<script setup>
+const artworks = [
+  { artist: 'Pablo Picasso', art: 'Guernica' },
+  { artist: 'Vincent van Gogh', art: 'Starry Night' },
+  { artist: 'Leonardo da Vinci', art: 'Mona Lisa' },
+]
+</script>
+
+<template>
+  <ScrollArea class="w-96 whitespace-nowrap border-3 border-foreground">
+    <div class="flex w-max space-x-4 p-4">
+      <figure v-for="artwork in artworks" :key="artwork.artist" class="shrink-0">
+        <div class="overflow-hidden border-3 border-foreground">
+          <div class="h-32 w-32 bg-muted flex items-center justify-center">
+            <span class="text-2xl">Art</span>
+          </div>
+        </div>
+        <figcaption class="pt-2 text-xs">
+          <span class="font-bold">{{ artwork.artist }}</span>
+          <br />
+          <span class="text-muted-foreground">{{ artwork.art }}</span>
+        </figcaption>
+      </figure>
+    </div>
+    <ScrollBar orientation="horizontal" />
+  </ScrollArea>
+</template>`}
       >
         <ScrollArea className="w-96 whitespace-nowrap border-3 border-foreground bk-shadow">
           <div className="flex w-max space-x-4 p-4">
@@ -234,6 +276,18 @@ export function ScrollAreaDoc() {
   </div>
   <ScrollBar orientation="horizontal" />
 </ScrollArea>`}
+        vueCode={`<template>
+  <ScrollArea class="h-72 w-72 border-3 border-foreground">
+    <div class="p-4" style="width: 500px">
+      <h4 class="mb-4 font-bold uppercase">Content</h4>
+      <p class="text-sm whitespace-nowrap">
+        This content is wider and taller than the container...
+      </p>
+      <!-- More content -->
+    </div>
+    <ScrollBar orientation="horizontal" />
+  </ScrollArea>
+</template>`}
       >
         <ScrollArea className="h-72 w-72 border-3 border-foreground bk-shadow">
           <div className="p-4" style={{ width: '500px' }}>
@@ -269,6 +323,28 @@ export function ScrollAreaDoc() {
     </div>
   </ScrollArea>
 </div>`}
+        vueCode={`<script setup>
+const messages = Array.from({ length: 10 }, (_, i) => ({
+  title: \`Message \${i + 1}\`,
+  body: \`This is the content of message \${i + 1}.\`,
+}))
+</script>
+
+<template>
+  <div class="border-3 border-foreground bg-background bk-shadow">
+    <div class="border-b-3 border-foreground p-4 bg-muted">
+      <h3 class="font-bold uppercase">Messages</h3>
+    </div>
+    <ScrollArea class="h-48">
+      <div class="p-4 space-y-4">
+        <div v-for="(msg, i) in messages" :key="i" class="border-3 border-foreground p-3">
+          <p class="text-sm font-medium">{{ msg.title }}</p>
+          <p class="text-xs text-muted-foreground mt-1">{{ msg.body }}</p>
+        </div>
+      </div>
+    </ScrollArea>
+  </div>
+</template>`}
       >
         <div className="border-3 border-foreground bg-background bk-shadow w-80">
           <div className="border-b-3 border-foreground p-4 bg-muted">

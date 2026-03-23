@@ -90,6 +90,19 @@ export function SkeletonDoc() {
     <Skeleton className="h-4 w-[200px]" />
   </div>
 </div>`}
+        vueCode={`<script setup>
+import { Skeleton } from '@/components/ui'
+</script>
+
+<template>
+  <div class="flex flex-col space-y-3">
+    <Skeleton class="h-[125px] w-[250px] rounded-xl" />
+    <div class="space-y-2">
+      <Skeleton class="h-4 w-[250px]" />
+      <Skeleton class="h-4 w-[200px]" />
+    </div>
+  </div>
+</template>`}
       >
         <div className="flex flex-col space-y-3">
           <Skeleton className="h-[125px] w-[250px] rounded-xl" />
@@ -111,6 +124,19 @@ export function SkeletonDoc() {
     <Skeleton className="h-4 w-[100px]" />
   </div>
 </div>`}
+        vueCode={`<script setup>
+import { Skeleton } from '@/components/ui'
+</script>
+
+<template>
+  <div class="flex items-center space-x-4">
+    <Skeleton class="h-16 w-16 rounded-full" />
+    <div class="space-y-2">
+      <Skeleton class="h-5 w-[150px]" />
+      <Skeleton class="h-4 w-[100px]" />
+    </div>
+  </div>
+</template>`}
       >
         <div className="flex items-center space-x-4">
           <Skeleton className="h-16 w-16 rounded-full" />
@@ -136,6 +162,21 @@ export function SkeletonDoc() {
     </div>
   ))}
 </div>`}
+        vueCode={`<script setup>
+import { Skeleton } from '@/components/ui'
+</script>
+
+<template>
+  <div class="space-y-4">
+    <div v-for="i in 3" :key="i" class="flex items-center space-x-4">
+      <Skeleton class="h-10 w-10" />
+      <div class="space-y-2 flex-1">
+        <Skeleton class="h-4 w-full" />
+        <Skeleton class="h-3 w-3/4" />
+      </div>
+    </div>
+  </div>
+</template>`}
       >
         <div className="space-y-4 max-w-md">
           {[1, 2, 3].map((i) => (

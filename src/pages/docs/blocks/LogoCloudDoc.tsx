@@ -7,11 +7,11 @@ import {
 } from '@/components/blocks/marketing/logo-cloud'
 
 const sampleLogos = [
-  { name: 'Company 1', logo: 'https://via.placeholder.com/120x40?text=Logo+1' },
-  { name: 'Company 2', logo: 'https://via.placeholder.com/120x40?text=Logo+2' },
-  { name: 'Company 3', logo: 'https://via.placeholder.com/120x40?text=Logo+3' },
-  { name: 'Company 4', logo: 'https://via.placeholder.com/120x40?text=Logo+4' },
-  { name: 'Company 5', logo: 'https://via.placeholder.com/120x40?text=Logo+5' },
+  { name: 'Vercel', logo: 'https://cdn.simpleicons.org/vercel/000000' },
+  { name: 'GitHub', logo: 'https://cdn.simpleicons.org/github/000000' },
+  { name: 'Linear', logo: 'https://cdn.simpleicons.org/linear/5E6AD2' },
+  { name: 'Notion', logo: 'https://cdn.simpleicons.org/notion/000000' },
+  { name: 'Stripe', logo: 'https://cdn.simpleicons.org/stripe/6772E5' },
 ]
 
 const variants = [

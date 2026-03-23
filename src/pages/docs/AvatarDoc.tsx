@@ -109,6 +109,12 @@ export function AvatarDoc() {
   <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
   <AvatarFallback>CN</AvatarFallback>
 </Avatar>`}
+        vueCode={`<template>
+  <Avatar>
+    <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
+    <AvatarFallback>CN</AvatarFallback>
+  </Avatar>
+</template>`}
       >
         <Avatar>
           <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
@@ -124,6 +130,12 @@ export function AvatarDoc() {
   <AvatarImage src="/broken-image.jpg" alt="User" />
   <AvatarFallback>JD</AvatarFallback>
 </Avatar>`}
+        vueCode={`<template>
+  <Avatar>
+    <AvatarImage src="/broken-image.jpg" alt="User" />
+    <AvatarFallback>JD</AvatarFallback>
+  </Avatar>
+</template>`}
       >
         <Avatar>
           <AvatarImage src="/broken-image.jpg" alt="User" />
@@ -147,6 +159,22 @@ export function AvatarDoc() {
 <Avatar className="h-20 w-20">
   <AvatarFallback>XL</AvatarFallback>
 </Avatar>`}
+        vueCode={`<template>
+  <div class="flex items-center gap-4">
+    <Avatar class="h-8 w-8">
+      <AvatarFallback>SM</AvatarFallback>
+    </Avatar>
+    <Avatar class="h-10 w-10">
+      <AvatarFallback>MD</AvatarFallback>
+    </Avatar>
+    <Avatar class="h-14 w-14">
+      <AvatarFallback>LG</AvatarFallback>
+    </Avatar>
+    <Avatar class="h-20 w-20">
+      <AvatarFallback>XL</AvatarFallback>
+    </Avatar>
+  </div>
+</template>`}
       >
         <div className="flex items-center gap-4">
           <Avatar className="h-8 w-8">
@@ -183,6 +211,23 @@ export function AvatarDoc() {
     <AvatarFallback className="bg-muted text-muted-foreground text-xs">+3</AvatarFallback>
   </Avatar>
 </div>`}
+        vueCode={`<template>
+  <div class="flex items-center">
+    <Avatar class="ring-2 ring-background z-40">
+      <AvatarImage src="https://github.com/shadcn.png" />
+      <AvatarFallback>CN</AvatarFallback>
+    </Avatar>
+    <Avatar class="ring-2 ring-background -ml-3 z-30">
+      <AvatarFallback class="bg-secondary">JD</AvatarFallback>
+    </Avatar>
+    <Avatar class="ring-2 ring-background -ml-3 z-20">
+      <AvatarFallback class="bg-accent">AB</AvatarFallback>
+    </Avatar>
+    <Avatar class="ring-2 ring-background -ml-3 z-10">
+      <AvatarFallback class="bg-muted text-muted-foreground text-xs">+3</AvatarFallback>
+    </Avatar>
+  </div>
+</template>`}
       >
         <div className="flex items-center">
           <Avatar className="ring-2 ring-background z-40">
@@ -217,6 +262,22 @@ export function AvatarDoc() {
 <Avatar>
   <AvatarFallback className="bg-destructive text-destructive-foreground">GH</AvatarFallback>
 </Avatar>`}
+        vueCode={`<template>
+  <div class="flex items-center gap-4">
+    <Avatar>
+      <AvatarFallback class="bg-primary">AB</AvatarFallback>
+    </Avatar>
+    <Avatar>
+      <AvatarFallback class="bg-secondary text-secondary-foreground">CD</AvatarFallback>
+    </Avatar>
+    <Avatar>
+      <AvatarFallback class="bg-accent text-accent-foreground">EF</AvatarFallback>
+    </Avatar>
+    <Avatar>
+      <AvatarFallback class="bg-destructive text-destructive-foreground">GH</AvatarFallback>
+    </Avatar>
+  </div>
+</template>`}
       >
         <div className="flex items-center gap-4">
           <Avatar>

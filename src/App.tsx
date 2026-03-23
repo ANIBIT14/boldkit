@@ -100,7 +100,12 @@ const SettingsPageDoc = lazy(() => import('@/pages/docs/blocks/SettingsPageDoc')
 const OnboardingFlowDoc = lazy(() => import('@/pages/docs/blocks/OnboardingFlowDoc').then(m => ({ default: m.OnboardingFlowDoc })))
 const InvoiceDoc = lazy(() => import('@/pages/docs/blocks/InvoiceDoc').then(m => ({ default: m.InvoiceDoc })))
 
-// Note: Chart documentation is now on the /charts page, not individual routes
+// Chart variant documentation pages (also accessible via /charts)
+const SparklineDoc = lazy(() => import('@/pages/docs/SparklineDoc').then(m => ({ default: m.SparklineDoc })))
+const DonutChartDoc = lazy(() => import('@/pages/docs/DonutChartDoc').then(m => ({ default: m.DonutChartDoc })))
+const GaugeChartDoc = lazy(() => import('@/pages/docs/GaugeChartDoc').then(m => ({ default: m.GaugeChartDoc })))
+const RadarChartDoc = lazy(() => import('@/pages/docs/RadarChartDoc').then(m => ({ default: m.RadarChartDoc })))
+const RadialBarChartDoc = lazy(() => import('@/pages/docs/RadialBarChartDoc').then(m => ({ default: m.RadialBarChartDoc })))
 
 // Loading fallback for lazy loaded pages
 function PageLoader() {
@@ -211,6 +216,12 @@ function App() {
               <Route path="tree-view" element={<Suspense fallback={<PageLoader />}><TreeViewDoc /></Suspense>} />
               <Route path="sidebar" element={<Suspense fallback={<PageLoader />}><SidebarDoc /></Suspense>} />
               <Route path="tour" element={<Suspense fallback={<PageLoader />}><TourDoc /></Suspense>} />
+              {/* Chart variant pages */}
+              <Route path="sparkline" element={<Suspense fallback={<PageLoader />}><SparklineDoc /></Suspense>} />
+              <Route path="donut-chart" element={<Suspense fallback={<PageLoader />}><DonutChartDoc /></Suspense>} />
+              <Route path="gauge-chart" element={<Suspense fallback={<PageLoader />}><GaugeChartDoc /></Suspense>} />
+              <Route path="radar-chart" element={<Suspense fallback={<PageLoader />}><RadarChartDoc /></Suspense>} />
+              <Route path="radial-bar-chart" element={<Suspense fallback={<PageLoader />}><RadialBarChartDoc /></Suspense>} />
               <Route path="*" element={<Navigate to="/components/button" replace />} />
             </Route>
 

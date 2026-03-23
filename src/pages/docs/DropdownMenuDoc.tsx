@@ -188,6 +188,18 @@ export function DropdownMenuDoc() {
     <DropdownMenuItem>Settings</DropdownMenuItem>
   </DropdownMenuContent>
 </DropdownMenu>`}
+        vueCode={`<template>
+  <DropdownMenu>
+    <DropdownMenuTrigger as-child>
+      <Button>Open</Button>
+    </DropdownMenuTrigger>
+    <DropdownMenuContent>
+      <DropdownMenuItem>Profile</DropdownMenuItem>
+      <DropdownMenuItem>Billing</DropdownMenuItem>
+      <DropdownMenuItem>Settings</DropdownMenuItem>
+    </DropdownMenuContent>
+  </DropdownMenu>
+</template>`}
       >
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
@@ -227,6 +239,34 @@ export function DropdownMenuDoc() {
     </DropdownMenuItem>
   </DropdownMenuContent>
 </DropdownMenu>`}
+        vueCode={`<script setup lang="ts">
+import { User, CreditCard, Settings } from 'lucide-vue-next'
+</script>
+
+<template>
+  <DropdownMenu>
+    <DropdownMenuTrigger as-child>
+      <Button>Actions</Button>
+    </DropdownMenuTrigger>
+    <DropdownMenuContent class="w-56">
+      <DropdownMenuItem>
+        <User class="mr-2 h-4 w-4" />
+        <span>Profile</span>
+        <DropdownMenuShortcut>Ctrl+P</DropdownMenuShortcut>
+      </DropdownMenuItem>
+      <DropdownMenuItem>
+        <CreditCard class="mr-2 h-4 w-4" />
+        <span>Billing</span>
+        <DropdownMenuShortcut>Ctrl+B</DropdownMenuShortcut>
+      </DropdownMenuItem>
+      <DropdownMenuItem>
+        <Settings class="mr-2 h-4 w-4" />
+        <span>Settings</span>
+        <DropdownMenuShortcut>Ctrl+S</DropdownMenuShortcut>
+      </DropdownMenuItem>
+    </DropdownMenuContent>
+  </DropdownMenu>
+</template>`}
       >
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
@@ -280,6 +320,34 @@ const [showPanel, setShowPanel] = useState(false)
     </DropdownMenuCheckboxItem>
   </DropdownMenuContent>
 </DropdownMenu>`}
+        vueCode={`<script setup lang="ts">
+import { ref } from 'vue'
+
+const showStatusBar = ref(true)
+const showPanel = ref(false)
+</script>
+
+<template>
+  <DropdownMenu>
+    <DropdownMenuTrigger as-child>
+      <Button>View Options</Button>
+    </DropdownMenuTrigger>
+    <DropdownMenuContent class="w-56">
+      <DropdownMenuLabel>Appearance</DropdownMenuLabel>
+      <DropdownMenuSeparator />
+      <DropdownMenuCheckboxItem
+        v-model:checked="showStatusBar"
+      >
+        Status Bar
+      </DropdownMenuCheckboxItem>
+      <DropdownMenuCheckboxItem
+        v-model:checked="showPanel"
+      >
+        Panel
+      </DropdownMenuCheckboxItem>
+    </DropdownMenuContent>
+  </DropdownMenu>
+</template>`}
       >
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
@@ -324,6 +392,28 @@ const [showPanel, setShowPanel] = useState(false)
     </DropdownMenuRadioGroup>
   </DropdownMenuContent>
 </DropdownMenu>`}
+        vueCode={`<script setup lang="ts">
+import { ref } from 'vue'
+
+const position = ref('bottom')
+</script>
+
+<template>
+  <DropdownMenu>
+    <DropdownMenuTrigger as-child>
+      <Button>Position</Button>
+    </DropdownMenuTrigger>
+    <DropdownMenuContent class="w-56">
+      <DropdownMenuLabel>Panel Position</DropdownMenuLabel>
+      <DropdownMenuSeparator />
+      <DropdownMenuRadioGroup v-model="position">
+        <DropdownMenuRadioItem value="top">Top</DropdownMenuRadioItem>
+        <DropdownMenuRadioItem value="bottom">Bottom</DropdownMenuRadioItem>
+        <DropdownMenuRadioItem value="right">Right</DropdownMenuRadioItem>
+      </DropdownMenuRadioGroup>
+    </DropdownMenuContent>
+  </DropdownMenu>
+</template>`}
       >
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
@@ -368,6 +458,35 @@ const [showPanel, setShowPanel] = useState(false)
     </DropdownMenuSub>
   </DropdownMenuContent>
 </DropdownMenu>`}
+        vueCode={`<script setup lang="ts">
+import { Mail, PlusCircle } from 'lucide-vue-next'
+</script>
+
+<template>
+  <DropdownMenu>
+    <DropdownMenuTrigger as-child>
+      <Button>More Options</Button>
+    </DropdownMenuTrigger>
+    <DropdownMenuContent class="w-56">
+      <DropdownMenuItem>
+        <Mail class="mr-2 h-4 w-4" />
+        <span>Email</span>
+      </DropdownMenuItem>
+      <DropdownMenuSub>
+        <DropdownMenuSubTrigger>
+          <PlusCircle class="mr-2 h-4 w-4" />
+          <span>Invite users</span>
+        </DropdownMenuSubTrigger>
+        <DropdownMenuSubContent>
+          <DropdownMenuItem>Email</DropdownMenuItem>
+          <DropdownMenuItem>Message</DropdownMenuItem>
+          <DropdownMenuSeparator />
+          <DropdownMenuItem>More...</DropdownMenuItem>
+        </DropdownMenuSubContent>
+      </DropdownMenuSub>
+    </DropdownMenuContent>
+  </DropdownMenu>
+</template>`}
       >
         <DropdownMenu>
           <DropdownMenuTrigger asChild>

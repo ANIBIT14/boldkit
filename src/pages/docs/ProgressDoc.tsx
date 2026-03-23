@@ -102,6 +102,9 @@ export function ProgressDoc() {
         title="Basic"
         description="A simple progress bar showing completion percentage."
         code={`<Progress value={60} />`}
+        vueCode={`<template>
+  <Progress :value="60" />
+</template>`}
       >
         <Progress value={60} className="w-full max-w-md" />
       </ExampleSection>
@@ -115,6 +118,13 @@ export function ProgressDoc() {
 <Progress value={50} />
 <Progress value={75} />
 <Progress value={100} />`}
+        vueCode={`<template>
+  <Progress :value="0" />
+  <Progress :value="25" />
+  <Progress :value="50" />
+  <Progress :value="75" />
+  <Progress :value="100" />
+</template>`}
       >
         <div className="w-full max-w-md space-y-4">
           <div className="space-y-1">
@@ -154,6 +164,24 @@ useEffect(() => {
 }, [])
 
 <Progress value={progress} />`}
+        vueCode={`<script setup>
+import { ref, onMounted, onUnmounted } from 'vue'
+
+const progress = ref(0)
+let timer
+
+onMounted(() => {
+  timer = setInterval(() => {
+    progress.value = progress.value >= 100 ? 0 : progress.value + 10
+  }, 1000)
+})
+
+onUnmounted(() => clearInterval(timer))
+</script>
+
+<template>
+  <Progress :value="progress" />
+</template>`}
       >
         <AnimatedProgress />
       </ExampleSection>
@@ -166,6 +194,12 @@ useEffect(() => {
   <Progress value={66} className="flex-1" />
   <span className="text-sm font-bold">66%</span>
 </div>`}
+        vueCode={`<template>
+  <div class="flex items-center gap-4">
+    <Progress :value="66" class="flex-1" />
+    <span class="text-sm font-bold">66%</span>
+  </div>
+</template>`}
       >
         <div className="w-full max-w-md flex items-center gap-4">
           <Progress value={66} className="flex-1" />
@@ -180,6 +214,11 @@ useEffect(() => {
         code={`<Progress value={50} className="h-2" />
 <Progress value={50} className="h-5" />
 <Progress value={50} className="h-8" />`}
+        vueCode={`<template>
+  <Progress :value="50" class="h-2" />
+  <Progress :value="50" class="h-5" />
+  <Progress :value="50" class="h-8" />
+</template>`}
       >
         <div className="w-full max-w-md space-y-4">
           <div className="space-y-1">
@@ -202,6 +241,9 @@ useEffect(() => {
         title="Loading State"
         description="Show loading progress without a specific value."
         code={`<Progress className="animate-pulse" />`}
+        vueCode={`<template>
+  <Progress class="animate-pulse" />
+</template>`}
       >
         <Progress className="w-full max-w-md animate-pulse" value={100} />
       </ExampleSection>

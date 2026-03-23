@@ -197,6 +197,19 @@ export function DrawerDoc() {
     </DrawerHeader>
   </DrawerContent>
 </Drawer>`}
+        vueCode={`<template>
+  <Drawer>
+    <DrawerTrigger as-child>
+      <Button>Open</Button>
+    </DrawerTrigger>
+    <DrawerContent>
+      <DrawerHeader>
+        <DrawerTitle>Are you sure?</DrawerTitle>
+        <DrawerDescription>This action cannot be undone.</DrawerDescription>
+      </DrawerHeader>
+    </DrawerContent>
+  </Drawer>
+</template>`}
       >
         <Drawer>
           <DrawerTrigger asChild>
@@ -250,6 +263,35 @@ export function DrawerDoc() {
     </DrawerFooter>
   </DrawerContent>
 </Drawer>`}
+        vueCode={`<template>
+  <Drawer>
+    <DrawerTrigger as-child>
+      <Button>Edit Profile</Button>
+    </DrawerTrigger>
+    <DrawerContent>
+      <DrawerHeader>
+        <DrawerTitle>Edit Profile</DrawerTitle>
+        <DrawerDescription>Make changes to your profile.</DrawerDescription>
+      </DrawerHeader>
+      <div class="p-4 space-y-4">
+        <div class="space-y-2">
+          <Label for="name">Name</Label>
+          <Input id="name" placeholder="Your name" />
+        </div>
+        <div class="space-y-2">
+          <Label for="email">Email</Label>
+          <Input id="email" type="email" placeholder="Your email" />
+        </div>
+      </div>
+      <DrawerFooter>
+        <Button>Save changes</Button>
+        <DrawerClose as-child>
+          <Button variant="outline">Cancel</Button>
+        </DrawerClose>
+      </DrawerFooter>
+    </DrawerContent>
+  </Drawer>
+</template>`}
       >
         <Drawer>
           <DrawerTrigger asChild>
@@ -313,6 +355,37 @@ export function DrawerDoc() {
     </div>
   </DrawerContent>
 </Drawer>`}
+        vueCode={`<template>
+  <Drawer>
+    <DrawerTrigger as-child>
+      <Button variant="secondary">Share</Button>
+    </DrawerTrigger>
+    <DrawerContent>
+      <DrawerHeader>
+        <DrawerTitle>Share this page</DrawerTitle>
+        <DrawerDescription>Choose how you want to share.</DrawerDescription>
+      </DrawerHeader>
+      <div class="p-4 grid grid-cols-4 gap-4">
+        <Button variant="outline" class="flex-col h-auto py-4">
+          <span class="text-2xl">📧</span>
+          <span class="text-xs mt-1">Email</span>
+        </Button>
+        <Button variant="outline" class="flex-col h-auto py-4">
+          <span class="text-2xl">💬</span>
+          <span class="text-xs mt-1">Message</span>
+        </Button>
+        <Button variant="outline" class="flex-col h-auto py-4">
+          <span class="text-2xl">🔗</span>
+          <span class="text-xs mt-1">Copy Link</span>
+        </Button>
+        <Button variant="outline" class="flex-col h-auto py-4">
+          <span class="text-2xl">📱</span>
+          <span class="text-xs mt-1">QR Code</span>
+        </Button>
+      </div>
+    </DrawerContent>
+  </Drawer>
+</template>`}
       >
         <Drawer>
           <DrawerTrigger asChild>
