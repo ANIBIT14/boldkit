@@ -1360,8 +1360,9 @@ export function Charts() {
       <SEO {...pageSEO.charts} />
       <Layout>
       {/* Header */}
-      <header className="border-b-3 border-foreground bg-background">
-        <div className="container mx-auto py-12 px-4 md:px-6 text-center">
+      <header className="relative border-b-3 border-foreground bg-info/20 overflow-hidden">
+        <div className="grid-pattern absolute inset-0 opacity-20" />
+        <div className="container relative mx-auto py-12 px-4 md:px-6 text-center">
           <div className="flex items-center justify-center gap-3 mb-4">
             <Badge variant="accent">Charts</Badge>
             <Badge variant={framework === 'react' ? 'info' : 'success'} className="gap-1.5">

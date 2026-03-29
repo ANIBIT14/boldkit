@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { Badge } from '@/components/ui/badge'
-import { Github, Mail, ArrowUpRight } from 'lucide-react'
+import { Github, Mail, ArrowUpRight, Package, BarChart3, LayoutGrid, Shield } from 'lucide-react'
 
 const DISPLAY: React.CSSProperties = { fontFamily: "'Bebas Neue', sans-serif" }
 const MONO: React.CSSProperties = { fontFamily: "'DM Mono', monospace" }
@@ -47,58 +47,32 @@ export function Footer() {
             </p>
           </div>
 
-          {/* Framework install cards */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-2xl">
-
-            {/* React card */}
-            <div className="border-3 border-white/20 bg-white/5 hover:bg-white/8 transition-colors group">
-              <div className="border-b-3 border-white/20 px-4 py-2.5 flex items-center justify-between">
-                <div className="flex items-center gap-2">
-                  {/* React logo SVG */}
-                  <svg className="h-4 w-4 text-[#61dafb]" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                    <path d="M12 9.861A2.139 2.139 0 1 0 12 14.139 2.139 2.139 0 1 0 12 9.861zM6.008 16.255l-.472-.12C2.018 15.246 0 13.737 0 11.996s2.018-3.25 5.536-4.139l.472-.12.133.468a23.53 23.53 0 0 0 1.363 3.578l.101.213-.101.213a23.307 23.307 0 0 0-1.363 3.578l-.133.468zM5.317 8.95c-2.674.751-4.315 1.9-4.315 3.046 0 1.145 1.641 2.294 4.315 3.046a24.95 24.95 0 0 1 1.182-3.046A24.752 24.752 0 0 1 5.317 8.95zM17.992 16.255l-.133-.468a23.307 23.307 0 0 0-1.363-3.578l-.101-.213.101-.213a23.53 23.53 0 0 0 1.363-3.578l.133-.468.472.12c3.518.889 5.536 2.398 5.536 4.139s-2.018 3.25-5.536 4.139l-.472.12zm.753-7.305a24.752 24.752 0 0 1-1.182 3.046 24.95 24.95 0 0 1 1.182 3.046c2.675-.752 4.315-1.901 4.315-3.046 0-1.146-1.641-2.294-4.315-3.046zM5.547 21.497l-.133-.469c-.446-1.579-.68-3.243-.68-4.934 0-1.693.234-3.357.68-4.934l.133-.468.468.133c1.075.305 2.22.578 3.405.811l.214.042.048.213a23.406 23.406 0 0 0 1.862 5.099l.109.218-.109.218c-.68 1.349-1.287 2.777-1.862 5.099l-.048.213-.214.042a36.96 36.96 0 0 0-3.405.811l-.468.133zM6.32 12.14a21.89 21.89 0 0 0-.527 4.954 21.89 21.89 0 0 0 .527 4.954 31.097 31.097 0 0 1 2.677-.629 24.455 24.455 0 0 1 1.7-4.325 24.3 24.3 0 0 1-1.7-4.325 31.165 31.165 0 0 1-2.677-.629zm12.132 9.908l-.468-.133a36.96 36.96 0 0 0-3.405-.811l-.214-.042-.048-.213a23.408 23.408 0 0 0-1.862-5.099l-.109-.218.109-.218c.674-1.346 1.287-2.774 1.862-5.099l.048-.213.214-.042a36.78 36.78 0 0 0 3.405-.811l.468-.133.133.468c.446 1.579.68 3.243.68 4.934 0 1.693-.234 3.357-.68 4.934l-.133.469zM17.68 17.094a24.3 24.3 0 0 1-1.7 4.325 31.097 31.097 0 0 1 2.677.629 21.89 21.89 0 0 0 .527-4.954 21.89 21.89 0 0 0-.527-4.954 31.165 31.165 0 0 1-2.677.629 24.455 24.455 0 0 1 1.7 4.325z"/>
-                  </svg>
-                  <span className="text-xs font-bold text-white uppercase tracking-wider">React</span>
-                </div>
-                <Badge className="text-[9px] px-1.5 py-0 h-4 bg-[#61dafb]/20 text-[#61dafb] border-[#61dafb]/40 border hover:bg-[#61dafb]/20">
-                  shadcn CLI
-                </Badge>
-              </div>
-              <div className="px-4 py-3">
-                <p className="text-[10px] text-white/50 uppercase tracking-wider font-bold mb-1.5">Install any component</p>
-                <code
-                  className="block text-[11px] sm:text-xs text-[#61dafb] break-all leading-relaxed"
-                  style={MONO}
+          {/* What's included grid */}
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-0 max-w-2xl border-3 border-white/20 overflow-hidden">
+            {[
+              { icon: Package,    value: '50+',  label: 'Components', desc: 'React & Vue 3',    accent: '#f87171' },
+              { icon: BarChart3,  value: '10',   label: 'Chart Types', desc: 'Recharts + ECharts', accent: '#4db8a8' },
+              { icon: LayoutGrid, value: '15',   label: 'Blocks',     desc: 'Copy & paste',     accent: '#fcd34d' },
+              { icon: Shield,     value: 'MIT',  label: 'License',    desc: 'Free forever',     accent: '#5cdb5c' },
+            ].map((item, i) => {
+              const Icon = item.icon
+              return (
+                <div
+                  key={item.label}
+                  className={`p-5 bg-white/5 hover:bg-white/8 transition-colors ${i < 3 ? 'border-r-3 border-white/20' : ''}`}
                 >
-                  npx shadcn@latest add "https://boldkit.dev/r/[component].json"
-                </code>
-              </div>
-            </div>
-
-            {/* Vue 3 card */}
-            <div className="border-3 border-white/20 bg-white/5 hover:bg-white/8 transition-colors group">
-              <div className="border-b-3 border-white/20 px-4 py-2.5 flex items-center justify-between">
-                <div className="flex items-center gap-2">
-                  {/* Vue logo SVG */}
-                  <svg className="h-4 w-4" viewBox="0 0 24 24" aria-hidden="true">
-                    <path fill="#42b883" d="M24,1.61H14.06L12,5.16,9.94,1.61H0L12,22.39ZM12,14.08,5.16,2.23H9.59L12,6.41l2.41-4.18h4.43Z"/>
-                  </svg>
-                  <span className="text-xs font-bold text-white uppercase tracking-wider">Vue 3 + Nuxt</span>
+                  <Icon className="h-4 w-4 mb-3" style={{ color: item.accent }} />
+                  <div
+                    className="text-2xl font-black leading-none text-white mb-1"
+                    style={DISPLAY}
+                  >
+                    {item.value}
+                  </div>
+                  <div className="text-[10px] font-bold uppercase tracking-widest text-white mb-0.5">{item.label}</div>
+                  <div className="text-[10px] text-white/40">{item.desc}</div>
                 </div>
-                <Badge className="text-[9px] px-1.5 py-0 h-4 bg-[#42b883]/20 text-[#42b883] border-[#42b883]/40 border hover:bg-[#42b883]/20">
-                  shadcn-vue
-                </Badge>
-              </div>
-              <div className="px-4 py-3">
-                <p className="text-[10px] text-white/50 uppercase tracking-wider font-bold mb-1.5">Install any component</p>
-                <code
-                  className="block text-[11px] sm:text-xs text-[#42b883] break-all leading-relaxed"
-                  style={MONO}
-                >
-                  npx shadcn-vue@latest add "https://boldkit.dev/r/vue/[component].json"
-                </code>
-              </div>
-            </div>
+              )
+            })}
           </div>
 
         </div>

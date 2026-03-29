@@ -62,8 +62,14 @@ export function Header() {
       </a>
 
       <header className="sticky top-0 z-50 bg-background border-b-3 border-foreground">
-        {/* Accent stripe */}
-        <div className="h-[3px] bg-primary w-full" />
+        {/* Multi-color palette stripe */}
+        <div className="flex w-full h-1">
+          <div className="flex-1 bg-primary" />
+          <div className="flex-1 bg-secondary" />
+          <div className="flex-1 bg-accent" />
+          <div className="flex-1 bg-success" />
+          <div className="flex-1 bg-info" />
+        </div>
 
         <div className="container mx-auto flex h-14 items-center justify-between px-3 lg:px-6">
 

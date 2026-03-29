@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { Link, Outlet, useLocation } from 'react-router-dom'
 import { cn } from '@/lib/utils'
 import { Button } from '@/components/ui/button'
+import { Badge } from '@/components/ui/badge'
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet'
 import { ScrollArea } from '@/components/ui/scroll-area'
 import { Menu } from 'lucide-react'
@@ -120,7 +121,7 @@ function Sidebar({ className, onLinkClick }: { className?: string; onLinkClick?:
 
         {/* Getting Started Section */}
         <div className="px-3">
-          <h2 className="mb-3 px-4 text-sm font-bold uppercase tracking-wide text-muted-foreground">
+          <h2 className="mb-3 px-4 text-xs font-black uppercase tracking-widest text-foreground border-l-3 border-primary pl-3">
             Getting Started
           </h2>
           <div className="space-y-1">
@@ -156,7 +157,7 @@ function Sidebar({ className, onLinkClick }: { className?: string; onLinkClick?:
 
         {/* Components Section */}
         <div className="px-3">
-          <h2 className="mb-3 px-4 text-sm font-bold uppercase tracking-wide text-muted-foreground">
+          <h2 className="mb-3 px-4 text-xs font-black uppercase tracking-widest text-foreground border-l-3 border-secondary pl-3">
             Components
           </h2>
           <div className="space-y-1">
@@ -169,9 +170,7 @@ function Sidebar({ className, onLinkClick }: { className?: string; onLinkClick?:
                 >
                   <span>{component.name}</span>
                   {component.isNew && (
-                    <span className="ml-auto px-1.5 py-0.5 text-[9px] font-bold uppercase tracking-wide bg-primary text-primary-foreground border border-foreground">
-                      New
-                    </span>
+                    <Badge className="ml-auto h-4 px-1.5 text-[9px]">New</Badge>
                   )}
                 </Button>
               </Link>
@@ -181,7 +180,7 @@ function Sidebar({ className, onLinkClick }: { className?: string; onLinkClick?:
 
         {/* Marketing Blocks Section */}
         <div className="px-3">
-          <h2 className="mb-3 px-4 text-sm font-bold uppercase tracking-wide text-muted-foreground">
+          <h2 className="mb-3 px-4 text-xs font-black uppercase tracking-widest text-foreground border-l-3 border-accent pl-3">
             Marketing Blocks
           </h2>
           <div className="space-y-1">
@@ -206,7 +205,7 @@ function Sidebar({ className, onLinkClick }: { className?: string; onLinkClick?:
 
         {/* Application Blocks Section */}
         <div className="px-3">
-          <h2 className="mb-3 px-4 text-sm font-bold uppercase tracking-wide text-muted-foreground">
+          <h2 className="mb-3 px-4 text-xs font-black uppercase tracking-widest text-foreground border-l-3 border-success pl-3">
             Application Blocks
           </h2>
           <div className="space-y-1">
@@ -248,13 +247,13 @@ export function DocsLayout() {
       <Header />
 
       {/* Mobile Sidebar Toggle */}
-      <div className="md:hidden border-b-3 border-foreground bg-muted/30">
-        <div className="container px-3 py-2">
+      <div className="md:hidden border-b-3 border-foreground bg-muted">
+        <div className="container px-3 py-2 flex items-center justify-between">
           <Sheet open={sidebarOpen} onOpenChange={setSidebarOpen}>
             <SheetTrigger asChild>
-              <Button variant="outline" size="sm" className="h-8 gap-2">
+              <Button variant="default" size="sm" className="h-8 gap-2">
                 <Menu className="h-4 w-4" />
-                Menu
+                Navigation
               </Button>
             </SheetTrigger>
             <SheetContent side="left" className="w-[280px] p-0 pt-14">
@@ -263,11 +262,14 @@ export function DocsLayout() {
               </ScrollArea>
             </SheetContent>
           </Sheet>
+          <span className="text-xs font-bold uppercase tracking-widest text-muted-foreground" style={{ fontFamily: "'DM Mono', monospace" }}>
+            BoldKit Docs
+          </span>
         </div>
       </div>
 
       <div className="container flex-1 items-start md:grid md:grid-cols-[220px_minmax(0,1fr)] md:gap-6 lg:grid-cols-[240px_minmax(0,1fr)] lg:gap-10 xl:grid-cols-[240px_minmax(0,1fr)_200px] px-3 md:px-4">
-        <aside className="fixed top-14 z-30 hidden h-[calc(100vh-3.5rem)] w-full shrink-0 md:sticky md:block">
+        <aside className="fixed top-14 z-30 hidden h-[calc(100vh-3.5rem)] w-full shrink-0 md:sticky md:block border-r-3 border-foreground">
           <ScrollArea className="h-full py-6 pr-4">
             <Sidebar />
           </ScrollArea>

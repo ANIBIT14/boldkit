@@ -653,8 +653,9 @@ export function Blocks() {
       <SEO {...pageSEO.blocks} />
       <Layout>
         {/* Header */}
-        <div className="border-b-3 border-foreground bg-muted/30">
-          <div className="container mx-auto px-4 py-8 md:py-16">
+        <div className="relative border-b-3 border-foreground bg-muted overflow-hidden">
+          <div className="grid-pattern absolute inset-0 opacity-20" />
+          <div className="container relative mx-auto px-4 py-8 md:py-16">
             <div className="flex flex-wrap items-center gap-2 mb-4">
               <Badge variant="secondary">Free Blocks</Badge>
               <Badge variant={framework === 'react' ? 'info' : 'success'} className="gap-1.5">
@@ -717,31 +718,29 @@ export function Blocks() {
           </Tabs>
 
           {/* Stats */}
-          <div className="mt-8 md:mt-12 border-3 border-foreground bg-primary/5 p-6 md:p-8">
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 text-center">
-              <div>
-                <div className="text-2xl md:text-4xl font-black">15</div>
-                <div className="text-xs md:text-sm text-muted-foreground uppercase font-bold">Total Blocks</div>
-              </div>
-              <div>
-                <div className="text-2xl md:text-4xl font-black">65+</div>
-                <div className="text-xs md:text-sm text-muted-foreground uppercase font-bold">Variants</div>
-              </div>
-              <div>
-                <div className="text-2xl md:text-4xl font-black">2</div>
-                <div className="text-xs md:text-sm text-muted-foreground uppercase font-bold">Frameworks</div>
-              </div>
-              <div>
-                <div className="text-2xl md:text-4xl font-black">Free</div>
-                <div className="text-xs md:text-sm text-muted-foreground uppercase font-bold">Forever</div>
-              </div>
+          <div className="mt-8 md:mt-12 border-3 border-foreground overflow-hidden">
+            <div className="grid grid-cols-2 md:grid-cols-4">
+              {[
+                { value: '15',   label: 'Total Blocks', bg: 'bg-primary' },
+                { value: '65+',  label: 'Variants',     bg: 'bg-secondary' },
+                { value: '2',    label: 'Frameworks',   bg: 'bg-accent' },
+                { value: 'Free', label: 'Forever',      bg: 'bg-success' },
+              ].map((stat, i) => (
+                <div
+                  key={stat.label}
+                  className={`${stat.bg} p-6 md:p-8 flex flex-col gap-1 ${i < 3 ? 'border-r-3 border-foreground' : ''} ${i < 2 ? 'border-b-3 md:border-b-0 border-foreground' : ''}`}
+                >
+                  <div className="text-2xl md:text-4xl font-black leading-none">{stat.value}</div>
+                  <div className="text-xs font-bold uppercase tracking-widest mt-1">{stat.label}</div>
+                </div>
+              ))}
             </div>
           </div>
 
           {/* CTA */}
-          <div className="mt-8 md:mt-12 text-center">
-            <h3 className="text-xl md:text-2xl font-bold uppercase mb-4">Need a Custom Block?</h3>
-            <p className="text-muted-foreground mb-6 text-sm md:text-base">
+          <div className="mt-8 md:mt-12 border-3 border-foreground bg-accent bk-shadow text-center px-6 py-10">
+            <h3 className="text-xl md:text-2xl font-black uppercase tracking-wide mb-3">Need a Custom Block?</h3>
+            <p className="text-foreground/70 mb-6 text-sm md:text-base max-w-md mx-auto">
               Can't find what you need? Request a new block or contribute your own.
             </p>
             <div className="flex flex-col sm:flex-row justify-center gap-3">

@@ -70,7 +70,7 @@ const shapeCategories = [
   {
     name: 'Geometric',
     description: 'Basic polygons and mathematical forms',
-    color: 'bg-primary/10',
+    color: 'bg-primary/20',
     shapes: [
       { name: 'Triangle', component: TriangleShape, code: '<TriangleShape size={100} />', vueCode: '<TriangleShape :size="100" />' },
       { name: 'Diamond', component: DiamondBadge, code: '<DiamondBadge size={100} />', vueCode: '<DiamondBadge :size="100" />' },
@@ -85,7 +85,7 @@ const shapeCategories = [
   {
     name: 'Stars & Bursts',
     description: 'Stars, explosions, and attention-grabbing shapes',
-    color: 'bg-warning/10',
+    color: 'bg-warning/20',
     shapes: [
       { name: 'Star 4-Point', component: Star4Shape, code: '<Star4Shape size={100} />', vueCode: '<Star4Shape :size="100" />' },
       { name: 'Star 5-Point', component: Star5Shape, code: '<Star5Shape size={100} />', vueCode: '<Star5Shape :size="100" />' },
@@ -99,7 +99,7 @@ const shapeCategories = [
   {
     name: 'Organic',
     description: 'Natural forms, blobs, and flowing shapes',
-    color: 'bg-secondary/10',
+    color: 'bg-secondary/20',
     shapes: [
       { name: 'Blob', component: BlobShape, code: '<BlobShape size={100} />', vueCode: '<BlobShape :size="100" />' },
       { name: 'Wave', component: WaveShape, code: '<WaveShape size={100} />', vueCode: '<WaveShape :size="100" />' },
@@ -111,7 +111,7 @@ const shapeCategories = [
   {
     name: 'Celestial & Nature',
     description: 'Sun, moon, planets, and natural phenomena',
-    color: 'bg-warning/10',
+    color: 'bg-warning/20',
     shapes: [
       { name: 'Sun', component: SunShape, code: '<SunShape size={100} />', vueCode: '<SunShape :size="100" />' },
       { name: 'Crescent', component: CrescentShape, code: '<CrescentShape size={100} />', vueCode: '<CrescentShape :size="100" />' },
@@ -123,7 +123,7 @@ const shapeCategories = [
   {
     name: 'Badges & UI',
     description: 'Tags, ribbons, tickets, and UI elements',
-    color: 'bg-accent/10',
+    color: 'bg-accent/20',
     shapes: [
       { name: 'Arrow Badge', component: ArrowBadge, code: '<ArrowBadge size={100} />', vueCode: '<ArrowBadge :size="100" />' },
       { name: 'Zigzag Banner', component: ZigzagBanner, code: '<ZigzagBanner size={100} />', vueCode: '<ZigzagBanner :size="100" />' },
@@ -143,7 +143,7 @@ const shapeCategories = [
   {
     name: 'Communication',
     description: 'Speech bubbles, cursors, and interactive elements',
-    color: 'bg-info/10',
+    color: 'bg-info/20',
     shapes: [
       { name: 'Speech Bubble', component: SpeechBubble, code: '<SpeechBubble size={100} />', vueCode: '<SpeechBubble :size="100" />' },
       { name: 'Cursor', component: CursorShape, code: '<CursorShape size={100} />', vueCode: '<CursorShape :size="100" />' },
@@ -153,7 +153,7 @@ const shapeCategories = [
   {
     name: 'Decorative',
     description: 'Scribbles, effects, and artistic touches',
-    color: 'bg-success/10',
+    color: 'bg-success/20',
     shapes: [
       { name: 'Scribble Circle', component: ScribbleCircle, code: '<ScribbleCircle size={100} />', vueCode: '<ScribbleCircle :size="100" />' },
       { name: 'Scribble Underline', component: ScribbleUnderline, code: '<ScribbleUnderline size={100} />', vueCode: '<ScribbleUnderline :size="100" />' },
@@ -257,8 +257,9 @@ export function Shapes() {
       <SEO {...pageSEO.shapes} />
       <Layout>
       {/* Hero */}
-      <section className="border-b-3 border-foreground py-10 md:py-16">
-        <div className="container mx-auto px-3 md:px-4">
+      <section className="relative border-b-3 border-foreground py-10 md:py-16 bg-accent/20 overflow-hidden">
+        <div className="grid-pattern absolute inset-0 opacity-20" />
+        <div className="container relative mx-auto px-3 md:px-4">
           <div className="max-w-3xl mx-auto text-center">
             <div className="flex items-center justify-center gap-2 md:gap-3 mb-3 md:mb-4 flex-wrap">
               <Badge variant="accent">{totalShapes} Shapes</Badge>
@@ -293,7 +294,7 @@ export function Shapes() {
       </section>
 
       {/* Install Section */}
-      <section className="border-b-3 border-foreground py-6 md:py-8 bg-primary/10">
+      <section className="border-b-3 border-foreground py-6 md:py-8 bg-primary/20">
         <div className="container mx-auto px-3 md:px-4">
           <div className="max-w-3xl mx-auto">
             <h3 className="text-xs md:text-sm font-bold uppercase tracking-wide mb-2 md:mb-3 text-center">

@@ -435,8 +435,9 @@ export function Templates() {
       <SEO {...pageSEO.templates} />
       <Layout>
         {/* Header */}
-        <div className="border-b-3 border-foreground bg-muted/30">
-          <div className="container mx-auto px-4 py-16">
+        <div className="relative border-b-3 border-foreground bg-secondary/20 overflow-hidden">
+          <div className="grid-pattern absolute inset-0 opacity-20" />
+          <div className="container relative mx-auto px-4 py-16">
             <div className="flex items-center gap-3 mb-4">
               <Badge variant="secondary">Free Templates</Badge>
               <Badge variant={framework === 'react' ? 'info' : 'success'} className="gap-1.5">

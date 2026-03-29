@@ -19,6 +19,7 @@ import {
 import { useState } from 'react'
 import { SEO, pageSEO } from '@/components/SEO'
 import { useFramework, ReactIcon, VueIcon } from '@/hooks/use-framework'
+import { useScrollReveal } from '@/hooks/use-scroll-reveal'
 
 const DISPLAY: React.CSSProperties = { fontFamily: "'Bebas Neue', sans-serif" }
 const MONO: React.CSSProperties    = { fontFamily: "'DM Mono', monospace" }
@@ -32,6 +33,12 @@ const MARQUEE_ITEMS = [
 export function Home() {
   const [copied, setCopied] = useState(false)
   const { framework, setFramework } = useFramework()
+
+  const statsReveal     = useScrollReveal()
+  const showcaseReveal  = useScrollReveal()
+  const featuresReveal  = useScrollReveal()
+  const blocksReveal    = useScrollReveal()
+  const ctaReveal       = useScrollReveal()
 
   const commands: Record<string, string> = {
     react: 'npx shadcn@latest add https://boldkit.dev/r/button.json',
@@ -60,7 +67,7 @@ export function Home() {
               <div className="relative z-10 min-w-0">
 
                 {/* Framework pills */}
-                <div className="mb-6 flex flex-wrap gap-2">
+                <div className="mb-6 flex flex-wrap gap-2 animate-stagger-fade-in stagger-1">
                   <Badge variant="accent" className="gap-1.5">
                     <ReactIcon className="h-4 w-4" /> React
                   </Badge>
@@ -79,13 +86,13 @@ export function Home() {
                 {/* Giant display text */}
                 <div className="mb-6 select-none">
                   <div
-                    className="leading-none text-primary"
+                    className="leading-none text-primary animate-stagger-fade-in stagger-2"
                     style={{ ...DISPLAY, fontSize: 'clamp(56px, 14vw, 180px)', lineHeight: 0.88 }}
                   >
                     BOLD
                   </div>
                   <div
-                    className="leading-none bk-text-outline-thick"
+                    className="leading-none bk-text-outline-thick animate-stagger-fade-in stagger-3"
                     style={{ ...DISPLAY, fontSize: 'clamp(56px, 14vw, 180px)', lineHeight: 0.88 }}
                   >
                     KIT
@@ -93,7 +100,7 @@ export function Home() {
                 </div>
 
                 {/* Divider + label */}
-                <div className="mb-5 flex items-center gap-3">
+                <div className="mb-5 flex items-center gap-3 animate-stagger-fade-in stagger-4">
                   <div className="h-[3px] w-10 bg-foreground" />
                   <span
                     className="text-xs font-bold uppercase tracking-widest text-muted-foreground"
@@ -103,12 +110,12 @@ export function Home() {
                   </span>
                 </div>
 
-                <p className="mb-8 max-w-md text-base leading-relaxed text-muted-foreground" style={MONO}>
+                <p className="mb-8 max-w-md text-lg leading-relaxed text-foreground/70 border-l-4 border-primary pl-4 animate-stagger-fade-in stagger-5">
                   High-contrast colors, thick borders, and hard shadows that make your UI impossible to ignore.
                 </p>
 
                 {/* CTAs */}
-                <div className="mb-8 flex flex-col sm:flex-row gap-3">
+                <div className="mb-8 flex flex-col sm:flex-row gap-3 animate-stagger-fade-in stagger-6">
                   <Link to="/docs" className="w-full sm:w-auto">
                     <Button size="lg" className="w-full sm:w-auto gap-2">
                       Get Started <ArrowRight className="h-4 w-4" />
@@ -120,7 +127,7 @@ export function Home() {
                 </div>
 
                 {/* Framework toggle + CLI */}
-                <div className="w-full space-y-2">
+                <div className="w-full space-y-2 animate-stagger-fade-in stagger-7">
                   <div className="inline-flex border-3 border-foreground bg-background">
                     <button
                       onClick={() => setFramework('react')}
@@ -152,12 +159,127 @@ export function Home() {
               <div className="relative hidden lg:block h-[540px]">
 
                 {/* Card: Buttons — top-left, tilted */}
+                <div className="absolute top-0 left-0 z-30 animate-stagger-fade-in" style={{ animationDelay: '300ms' }}>
+                  <div
+                    className="w-64 border-3 border-foreground bg-background p-4 bk-shadow-lg"
+                    style={{ transform: 'rotate(-2.5deg)' }}
+                  >
+                    <div className="mb-3 border-b-2 border-foreground pb-1.5 text-[10px] font-black uppercase tracking-widest" style={MONO}>Buttons</div>
+                    <div className="flex flex-wrap gap-2">
+                      <Button size="sm">Primary</Button>
+                      <Button size="sm" variant="secondary">Secondary</Button>
+                      <Button size="sm" variant="accent">Accent</Button>
+                      <Button size="sm" variant="outline">Outline</Button>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Card: Badges — top-right, slight tilt */}
+                <div className="absolute top-8 right-0 z-20 animate-stagger-fade-in" style={{ animationDelay: '400ms' }}>
+                  <div
+                    className="w-56 border-3 border-foreground bg-background p-4 bk-shadow"
+                    style={{ transform: 'rotate(2deg)' }}
+                  >
+                    <div className="mb-3 border-b-2 border-foreground pb-1.5 text-[10px] font-black uppercase tracking-widest" style={MONO}>Badges</div>
+                    <div className="flex flex-wrap gap-1.5">
+                      <Badge>Default</Badge>
+                      <Badge variant="secondary">Teal</Badge>
+                      <Badge variant="accent">Yellow</Badge>
+                      <Badge variant="success">Success</Badge>
+                      <Badge variant="warning">Warning</Badge>
+                      <Badge variant="info">Info</Badge>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Card: Stat Cards — center, slight tilt */}
+                <div className="absolute top-[170px] left-4 z-40 animate-stagger-fade-in" style={{ animationDelay: '500ms' }}>
+                  <div
+                    className="w-72 border-3 border-foreground bg-background p-4 bk-shadow-lg"
+                    style={{ transform: 'rotate(-1deg)' }}
+                  >
+                    <div className="mb-3 border-b-2 border-foreground pb-1.5 text-[10px] font-black uppercase tracking-widest" style={MONO}>Stat Cards</div>
+                    <div className="grid grid-cols-2 gap-3">
+                      <StatCard
+                        title="Revenue"
+                        value="$45K"
+                        change="+20%"
+                        trend="up"
+                        icon={<DollarSign className="h-4 w-4" />}
+                        color="success"
+                      />
+                      <StatCard
+                        title="Growth"
+                        value="12.5%"
+                        change="+4%"
+                        trend="up"
+                        icon={<TrendingUp className="h-4 w-4" />}
+                        color="primary"
+                      />
+                    </div>
+                  </div>
+                </div>
+
+                {/* Card: Spinners — bottom-right, tilted */}
+                <div className="absolute bottom-0 right-0 z-30 animate-stagger-fade-in" style={{ animationDelay: '600ms' }}>
+                  <div
+                    className="w-52 border-3 border-foreground bg-accent p-4 bk-shadow"
+                    style={{ transform: 'rotate(2.5deg)' }}
+                  >
+                    <div className="mb-3 border-b-2 border-foreground pb-1.5 text-[10px] font-black uppercase tracking-widest" style={MONO}>Spinners</div>
+                    <div className="flex items-center gap-4">
+                      <Spinner variant="brutal" />
+                      <Spinner variant="dots" />
+                      <Spinner variant="bars" />
+                      <Spinner variant="blocks" />
+                    </div>
+                  </div>
+                </div>
+
+                {/* Card: Stickers — bottom-left, big tilt */}
+                <div className="absolute bottom-12 left-0 z-20 animate-stagger-fade-in" style={{ animationDelay: '700ms' }}>
+                  <div
+                    className="w-48 border-3 border-foreground bg-primary p-4 bk-shadow"
+                    style={{ transform: 'rotate(-3deg)' }}
+                  >
+                    <div className="mb-3 border-b-2 border-foreground pb-1.5 text-[10px] font-black uppercase tracking-widest" style={MONO}>Stickers</div>
+                    <div className="flex items-center gap-3">
+                      <Sticker>New</Sticker>
+                      <Sticker variant="secondary" rotation="medium-right">Hot</Sticker>
+                      <Stamp size="sm">OK</Stamp>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Center decorative block */}
                 <div
-                  className="absolute top-0 left-0 z-30 w-64 border-3 border-foreground bg-background p-4 bk-shadow-lg"
-                  style={{ transform: 'rotate(-2.5deg)' }}
+                  className="absolute left-1/2 top-1/2 z-10 animate-stagger-fade-in"
+                  style={{ animationDelay: '800ms' }}
                 >
+                  <div
+                    className="flex h-12 w-12 items-center justify-center border-3 border-foreground bg-secondary bk-shadow"
+                    style={{ transform: 'translate(-50%, -50%) rotate(45deg)' }}
+                  >
+                    <span
+                      className="font-black text-xs"
+                      style={{ ...DISPLAY, transform: 'rotate(-45deg)', display: 'block' }}
+                    >
+                      UI
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+
+            {/* ── Mobile Component Showcase (< lg only) ── */}
+            <div className="block lg:hidden pt-8 pb-2 animate-stagger-fade-in stagger-8">
+              <div className="flex gap-4 overflow-x-auto pb-4 -mx-4 px-4 snap-x snap-mandatory scrollbar-none">
+
+                {/* Buttons */}
+                <div className="snap-start shrink-0 w-56 border-3 border-foreground bg-background p-4 bk-shadow" style={{ transform: 'rotate(-1.5deg)' }}>
                   <div className="mb-3 border-b-2 border-foreground pb-1.5 text-[10px] font-black uppercase tracking-widest" style={MONO}>Buttons</div>
-                  <div className="flex flex-wrap gap-2">
+                  <div className="flex flex-wrap gap-1.5">
                     <Button size="sm">Primary</Button>
                     <Button size="sm" variant="secondary">Secondary</Button>
                     <Button size="sm" variant="accent">Accent</Button>
@@ -165,55 +287,22 @@ export function Home() {
                   </div>
                 </div>
 
-                {/* Card: Badges — top-right, slight tilt */}
-                <div
-                  className="absolute top-8 right-0 z-20 w-56 border-3 border-foreground bg-background p-4 bk-shadow"
-                  style={{ transform: 'rotate(2deg)' }}
-                >
+                {/* Badges */}
+                <div className="snap-start shrink-0 w-52 border-3 border-foreground bg-background p-4 bk-shadow" style={{ transform: 'rotate(1.5deg)' }}>
                   <div className="mb-3 border-b-2 border-foreground pb-1.5 text-[10px] font-black uppercase tracking-widest" style={MONO}>Badges</div>
                   <div className="flex flex-wrap gap-1.5">
                     <Badge>Default</Badge>
                     <Badge variant="secondary">Teal</Badge>
                     <Badge variant="accent">Yellow</Badge>
                     <Badge variant="success">Success</Badge>
-                    <Badge variant="warning">Warning</Badge>
                     <Badge variant="info">Info</Badge>
                   </div>
                 </div>
 
-                {/* Card: Stat Cards — center, slight tilt */}
-                <div
-                  className="absolute top-[170px] left-4 z-40 w-72 border-3 border-foreground bg-background p-4 bk-shadow-lg"
-                  style={{ transform: 'rotate(-1deg)' }}
-                >
-                  <div className="mb-3 border-b-2 border-foreground pb-1.5 text-[10px] font-black uppercase tracking-widest" style={MONO}>Stat Cards</div>
-                  <div className="grid grid-cols-2 gap-3">
-                    <StatCard
-                      title="Revenue"
-                      value="$45K"
-                      change="+20%"
-                      trend="up"
-                      icon={<DollarSign className="h-4 w-4" />}
-                      color="success"
-                    />
-                    <StatCard
-                      title="Growth"
-                      value="12.5%"
-                      change="+4%"
-                      trend="up"
-                      icon={<TrendingUp className="h-4 w-4" />}
-                      color="primary"
-                    />
-                  </div>
-                </div>
-
-                {/* Card: Spinners — bottom-right, tilted */}
-                <div
-                  className="absolute bottom-0 right-0 z-30 w-52 border-3 border-foreground bg-accent p-4 bk-shadow"
-                  style={{ transform: 'rotate(2.5deg)' }}
-                >
+                {/* Spinners */}
+                <div className="snap-start shrink-0 w-48 border-3 border-foreground bg-accent p-4 bk-shadow" style={{ transform: 'rotate(-1deg)' }}>
                   <div className="mb-3 border-b-2 border-foreground pb-1.5 text-[10px] font-black uppercase tracking-widest" style={MONO}>Spinners</div>
-                  <div className="flex items-center gap-4">
+                  <div className="flex items-center gap-4 py-1">
                     <Spinner variant="brutal" />
                     <Spinner variant="dots" />
                     <Spinner variant="bars" />
@@ -221,11 +310,8 @@ export function Home() {
                   </div>
                 </div>
 
-                {/* Card: Stickers — bottom-left, big tilt */}
-                <div
-                  className="absolute bottom-12 left-0 z-20 w-48 border-3 border-foreground bg-primary p-4 bk-shadow"
-                  style={{ transform: 'rotate(-3deg)' }}
-                >
+                {/* Stickers */}
+                <div className="snap-start shrink-0 w-48 border-3 border-foreground bg-primary p-4 bk-shadow" style={{ transform: 'rotate(2deg)' }}>
                   <div className="mb-3 border-b-2 border-foreground pb-1.5 text-[10px] font-black uppercase tracking-widest" style={MONO}>Stickers</div>
                   <div className="flex items-center gap-3">
                     <Sticker>New</Sticker>
@@ -234,21 +320,9 @@ export function Home() {
                   </div>
                 </div>
 
-                {/* Center decorative block */}
-                <div
-                  className="absolute left-1/2 top-1/2 z-10 flex h-12 w-12 -translate-x-1/2 -translate-y-1/2 items-center justify-center border-3 border-foreground bg-secondary bk-shadow"
-                  style={{ transform: 'translate(-50%, -50%) rotate(45deg)' }}
-                >
-                  <span
-                    className="font-black text-xs"
-                    style={{ ...DISPLAY, transform: 'rotate(-45deg)', display: 'block' }}
-                  >
-                    UI
-                  </span>
-                </div>
               </div>
-
             </div>
+
           </div>
         </section>
 
@@ -270,14 +344,18 @@ export function Home() {
         </section>
 
         {/* ── STATS BAR ─────────────────────────────────────────────── */}
-        <section className="border-b-3 border-foreground">
+        <section
+          ref={statsReveal.ref}
+          className={`border-b-3 border-foreground transition-all duration-700 ease-out ${statsReveal.inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`}
+        >
           <div className="grid grid-cols-2 md:grid-cols-4">
             {[
+              // Colors are intentional: primary=flagship, info=data/charts, accent=decorative/shapes, secondary=structural/blocks
               // borders: [mobile-right, mobile-bottom, desktop-right]
               { number: '50+', label: 'Components', bg: 'bg-primary',   icon: <Package className="h-5 w-5" />,   borders: 'border-r-3 border-b-3 md:border-b-0 border-foreground' },
-              { number: '10',  label: 'Chart Types', bg: 'bg-secondary', icon: <BarChart3 className="h-5 w-5" />, borders: 'border-b-3 md:border-b-0 md:border-r-3 border-foreground' },
+              { number: '10',  label: 'Chart Types', bg: 'bg-info',     icon: <BarChart3 className="h-5 w-5" />, borders: 'border-b-3 md:border-b-0 md:border-r-3 border-foreground' },
               { number: '45',  label: 'SVG Shapes',  bg: 'bg-accent',   icon: <Sparkles className="h-5 w-5" />,  borders: 'border-r-3 md:border-r-3 border-foreground' },
-              { number: '15',  label: 'Blocks',      bg: 'bg-success',  icon: <LayoutGrid className="h-5 w-5" />, borders: '' },
+              { number: '15',  label: 'Blocks',      bg: 'bg-secondary', icon: <LayoutGrid className="h-5 w-5" />, borders: '' },
             ].map((stat) => (
               <div
                 key={stat.label}
@@ -299,7 +377,10 @@ export function Home() {
         </section>
 
         {/* ── COMPONENT SHOWCASE ────────────────────────────────────── */}
-        <section className="border-b-3 border-foreground py-14 md:py-20">
+        <section
+          ref={showcaseReveal.ref}
+          className={`border-b-3 border-foreground py-14 md:py-20 transition-all duration-700 ease-out ${showcaseReveal.inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`}
+        >
           <div className="container mx-auto px-4">
 
             <div className="mb-8 md:mb-12 flex items-end justify-between">
@@ -321,7 +402,7 @@ export function Home() {
 
               {/* Buttons — spans 2 cols */}
               <Card className="md:col-span-2 lg:col-span-2">
-                <CardHeader className="border-b-3 border-foreground bg-muted">
+                <CardHeader className="border-b-3 border-foreground bg-primary">
                   <CardTitle style={MONO}>Buttons</CardTitle>
                 </CardHeader>
                 <CardContent className="pt-6">
@@ -356,7 +437,7 @@ export function Home() {
 
               {/* Inputs */}
               <Card>
-                <CardHeader className="border-b-3 border-foreground bg-muted">
+                <CardHeader className="border-b-3 border-foreground bg-info">
                   <CardTitle style={MONO}>Inputs</CardTitle>
                 </CardHeader>
                 <CardContent className="pt-6 space-y-4">
@@ -389,7 +470,7 @@ export function Home() {
 
               {/* Progress & Tabs */}
               <Card>
-                <CardHeader className="border-b-3 border-foreground bg-muted">
+                <CardHeader className="border-b-3 border-foreground bg-secondary">
                   <CardTitle style={MONO}>Progress & Tabs</CardTitle>
                 </CardHeader>
                 <CardContent className="pt-6 space-y-4">
@@ -474,7 +555,10 @@ export function Home() {
         </section>
 
         {/* ── FEATURES ──────────────────────────────────────────────── */}
-        <section className="border-b-3 border-foreground py-14 md:py-20">
+        <section
+          ref={featuresReveal.ref}
+          className={`border-b-3 border-foreground py-14 md:py-20 transition-all duration-700 ease-out ${featuresReveal.inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`}
+        >
           <div className="container mx-auto px-4">
 
             <div className="mb-8 md:mb-12">
@@ -526,8 +610,22 @@ export function Home() {
                   <Zap className="h-8 w-8 stroke-[3]" />
                   <CardTitle>Fast Setup</CardTitle>
                 </CardHeader>
-                <CardContent className="pt-4">
+                <CardContent className="pt-4 space-y-3">
                   <p className="text-muted-foreground">One command to install. Copy-paste into your project and go.</p>
+                  <div className="space-y-1.5">
+                    {[
+                      { step: '1', label: 'Install via CLI', done: true },
+                      { step: '2', label: 'Import component', done: true },
+                      { step: '3', label: 'Ship it', done: true },
+                    ].map(({ step, label, done }) => (
+                      <div key={step} className="flex items-center gap-2 border-2 border-foreground bg-muted px-2.5 py-1.5">
+                        <div className="h-4 w-4 border-2 border-foreground bg-primary flex items-center justify-center shrink-0">
+                          <Check className="h-2.5 w-2.5" />
+                        </div>
+                        <span className="text-xs font-mono font-medium">{label}</span>
+                      </div>
+                    ))}
+                  </div>
                 </CardContent>
               </Card>
 
@@ -564,10 +662,15 @@ export function Home() {
                   <Smartphone className="h-8 w-8 stroke-[3]" />
                   <CardTitle>Accessible & Mobile</CardTitle>
                 </CardHeader>
-                <CardContent className="pt-4">
+                <CardContent className="pt-4 space-y-3">
                   <p className="text-muted-foreground">
                     Built on Radix UI & Reka UI. Keyboard navigation and screen reader support included.
                   </p>
+                  <div className="flex flex-wrap gap-1.5">
+                    {['aria-label', 'role="button"', 'tabIndex', 'aria-expanded', 'focus-visible'].map(attr => (
+                      <code key={attr} className="text-[10px] font-mono border-2 border-foreground bg-muted px-1.5 py-0.5">{attr}</code>
+                    ))}
+                  </div>
                 </CardContent>
               </Card>
 
@@ -576,7 +679,10 @@ export function Home() {
         </section>
 
         {/* ── BLOCKS SECTION ────────────────────────────────────────── */}
-        <section className="relative overflow-hidden border-b-3 border-foreground bg-accent py-14 md:py-20">
+        <section
+          ref={blocksReveal.ref}
+          className={`relative overflow-hidden border-b-3 border-foreground bg-accent py-14 md:py-20 transition-all duration-700 ease-out ${blocksReveal.inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`}
+        >
           <div className="grid-pattern absolute inset-0 opacity-20" />
           <div className="container relative mx-auto px-4">
 
@@ -589,7 +695,8 @@ export function Home() {
                   className="leading-none"
                   style={{ ...DISPLAY, fontSize: 'clamp(32px, 5.5vw, 76px)' }}
                 >
-                  SECTION<br className="hidden sm:block" />BLOCKS
+                  <span className="block">SECTION</span>
+                  <span className="block">BLOCKS</span>
                 </h2>
               </div>
               <Link to="/blocks" className="hidden md:block">
@@ -647,19 +754,94 @@ export function Home() {
 
             </div>
 
-            {/* Block preview strip */}
+            {/* Block preview strip — wireframe thumbnails */}
             <div className="mt-8 grid max-w-2xl grid-cols-3 sm:grid-cols-5 gap-3">
-              {[
-                { name: 'Hero',     color: 'bg-primary'   },
-                { name: 'Features', color: 'bg-info'      },
-                { name: 'Stats',    color: 'bg-success'   },
-                { name: 'Auth',     color: 'bg-secondary' },
-                { name: 'Settings', color: 'bg-warning'   },
-              ].map(b => (
-                <div key={b.name} className={`${b.color} border-3 border-foreground bk-shadow p-3 text-center`}>
-                  <span className="text-[11px] font-black uppercase" style={MONO}>{b.name}</span>
+
+              {/* Hero */}
+              <div className="border-3 border-foreground bg-background overflow-hidden">
+                <div className="h-[100px] flex flex-col items-center justify-center p-3 text-center">
+                  <div className="w-10 h-1.5 bg-primary/60 mb-2" />
+                  <div className="w-20 h-3 bg-foreground mb-1.5" />
+                  <div className="w-14 h-1.5 bg-muted-foreground/40 mb-3" />
+                  <div className="flex gap-1.5">
+                    <div className="w-10 h-4 bg-primary border border-foreground" />
+                    <div className="w-10 h-4 bg-muted border border-foreground" />
+                  </div>
                 </div>
-              ))}
+                <div className="border-t-2 border-foreground px-2 py-1 bg-muted/40">
+                  <span className="text-[9px] font-black uppercase" style={MONO}>Hero</span>
+                </div>
+              </div>
+
+              {/* Features */}
+              <div className="border-3 border-foreground bg-background overflow-hidden">
+                <div className="h-[100px] p-2">
+                  <div className="grid grid-cols-3 gap-1 h-full">
+                    {[1, 2, 3].map((i) => (
+                      <div key={i} className="flex flex-col items-center p-1 border border-foreground bg-card">
+                        <div className="w-4 h-4 bg-primary/20 border border-foreground mb-1" />
+                        <div className="w-full h-1 bg-foreground mb-0.5" />
+                        <div className="w-2/3 h-0.5 bg-muted-foreground/40" />
+                      </div>
+                    ))}
+                  </div>
+                </div>
+                <div className="border-t-2 border-foreground px-2 py-1 bg-muted/40">
+                  <span className="text-[9px] font-black uppercase" style={MONO}>Features</span>
+                </div>
+              </div>
+
+              {/* Stats */}
+              <div className="border-3 border-foreground bg-background overflow-hidden">
+                <div className="h-[100px] grid grid-cols-2 gap-0">
+                  {['bg-primary', 'bg-secondary', 'bg-accent', 'bg-success'].map((bg, i) => (
+                    <div key={i} className={`${bg} flex flex-col items-center justify-center ${i % 2 === 0 ? 'border-r border-foreground/50' : ''} ${i < 2 ? 'border-b border-foreground/50' : ''}`}>
+                      <div className="text-xs font-black leading-none">99</div>
+                      <div className="w-6 h-0.5 bg-foreground/40 mt-1" />
+                    </div>
+                  ))}
+                </div>
+                <div className="border-t-2 border-foreground px-2 py-1 bg-muted/40">
+                  <span className="text-[9px] font-black uppercase" style={MONO}>Stats</span>
+                </div>
+              </div>
+
+              {/* Auth */}
+              <div className="border-3 border-foreground bg-background overflow-hidden">
+                <div className="h-[100px] flex flex-col items-center justify-center p-3">
+                  <div className="w-16 h-2 bg-foreground mb-2" />
+                  <div className="w-full max-w-[72px] space-y-1.5">
+                    <div className="h-4 bg-muted border border-foreground" />
+                    <div className="h-4 bg-muted border border-foreground" />
+                    <div className="h-4 bg-primary border border-foreground" />
+                  </div>
+                </div>
+                <div className="border-t-2 border-foreground px-2 py-1 bg-muted/40">
+                  <span className="text-[9px] font-black uppercase" style={MONO}>Auth</span>
+                </div>
+              </div>
+
+              {/* Settings */}
+              <div className="border-3 border-foreground bg-background overflow-hidden">
+                <div className="h-[100px] flex gap-1.5 p-2">
+                  <div className="w-1/4 space-y-1">
+                    {[1, 2, 3].map((i) => (
+                      <div key={i} className={`h-3 ${i === 1 ? 'bg-primary/30' : 'bg-muted'} border border-foreground`} />
+                    ))}
+                  </div>
+                  <div className="flex-1 border border-foreground p-1">
+                    <div className="w-10 h-1.5 bg-foreground mb-1.5" />
+                    <div className="space-y-1">
+                      <div className="h-3 bg-muted border border-foreground/50" />
+                      <div className="h-3 bg-muted border border-foreground/50" />
+                    </div>
+                  </div>
+                </div>
+                <div className="border-t-2 border-foreground px-2 py-1 bg-muted/40">
+                  <span className="text-[9px] font-black uppercase" style={MONO}>Settings</span>
+                </div>
+              </div>
+
             </div>
 
             <div className="mt-8 md:hidden">
@@ -671,8 +853,37 @@ export function Home() {
         </section>
 
         {/* ── FINAL CTA ─────────────────────────────────────────────── */}
-        <section className="relative overflow-hidden bg-foreground py-20 md:py-28">
+        <section
+          ref={ctaReveal.ref}
+          className={`relative overflow-hidden bg-foreground py-20 md:py-28 transition-all duration-700 ease-out ${ctaReveal.inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`}
+        >
           <div className="grid-pattern absolute inset-0 opacity-10" />
+
+          {/* Decorative: top-left sticker */}
+          <div className="absolute -top-2 -left-4 opacity-90 hidden sm:block pointer-events-none select-none" style={{ transform: 'rotate(-8deg)' }}>
+            <Sticker variant="primary" size="lg" rotation="none">Free</Sticker>
+          </div>
+
+          {/* Decorative: top-right stamp */}
+          <div className="absolute top-6 -right-2 opacity-80 hidden sm:block pointer-events-none select-none" style={{ transform: 'rotate(12deg)' }}>
+            <Stamp size="sm" variant="secondary" rotation="none">MIT</Stamp>
+          </div>
+
+          {/* Decorative: bottom-left stamp */}
+          <div className="absolute -bottom-2 left-8 opacity-75 hidden md:block pointer-events-none select-none" style={{ transform: 'rotate(-6deg)' }}>
+            <Stamp size="sm" rotation="none">v2.6</Stamp>
+          </div>
+
+          {/* Decorative: bottom-right sticker */}
+          <div className="absolute bottom-4 -right-3 opacity-85 hidden sm:block pointer-events-none select-none" style={{ transform: 'rotate(9deg)' }}>
+            <Sticker variant="secondary" rotation="none" size="sm">Open Source</Sticker>
+          </div>
+
+          {/* Decorative sparkles */}
+          <span className="absolute top-8 left-1/4 text-primary text-3xl opacity-30 hidden lg:block select-none pointer-events-none">✦</span>
+          <span className="absolute bottom-10 right-1/4 text-secondary text-2xl opacity-25 hidden lg:block select-none pointer-events-none">✦</span>
+          <span className="absolute top-1/2 left-12 text-accent text-xl opacity-20 hidden lg:block select-none pointer-events-none">✦</span>
+
           <div className="container relative mx-auto px-4 text-center">
             <div
               className="mb-6 select-none leading-none text-background"
@@ -682,7 +893,7 @@ export function Home() {
               <span className="text-primary">BOLD.</span>
             </div>
             <p className="mx-auto mb-10 max-w-sm text-sm text-background/60" style={MONO}>
-              Free, open-source, and ready for production.<br />Start building in seconds.
+              Free, open-source, and ready for production. Start building in seconds.
             </p>
             <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
               <Link to="/docs/installation" className="w-full sm:w-auto">

@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
-import { Card, CardContent } from '@/components/ui/card'
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { ArrowRight, Copy, Check, LayoutGrid, Settings } from 'lucide-react'
 import { useState } from 'react'
@@ -35,7 +35,7 @@ export function Introduction() {
         <h1 className="text-3xl font-black uppercase tracking-tight md:text-4xl">
           Introduction
         </h1>
-        <p className="mt-4 text-lg text-muted-foreground">
+        <p className="mt-4 text-lg text-foreground/70 border-l-4 border-primary pl-4">
           BoldKit is a neubrutalism-styled component library for React, Vue, and Nuxt, built on top of shadcn/ui primitives.
         </p>
       </div>
@@ -101,7 +101,10 @@ export function Introduction() {
           Neubrutalism is characterized by:
         </p>
         <Card className="my-4">
-          <CardContent className="pt-6">
+          <CardHeader className="border-b-3 border-foreground bg-secondary py-3">
+            <CardTitle className="text-sm">Core Principles</CardTitle>
+          </CardHeader>
+          <CardContent className="pt-4">
             <ul className="space-y-3">
               <li><strong>Bold Colors:</strong> High-contrast, vibrant color palettes</li>
               <li><strong>Thick Borders:</strong> 3px solid borders that define elements</li>
@@ -123,11 +126,12 @@ export function Introduction() {
 
         <div className="not-prose grid sm:grid-cols-2 gap-4 my-6">
           <Card>
+            <CardHeader className="border-b-3 border-foreground bg-primary py-3">
+              <CardTitle className="text-sm flex items-center gap-2">
+                <LayoutGrid className="h-4 w-4" /> Marketing Blocks
+              </CardTitle>
+            </CardHeader>
             <CardContent className="pt-4">
-              <div className="flex items-center gap-2 mb-3">
-                <LayoutGrid className="h-5 w-5 text-primary" />
-                <span className="font-bold uppercase text-sm">Marketing Blocks</span>
-              </div>
               <p className="text-sm text-muted-foreground mb-3">
                 10 sections for landing pages: Hero, Features, Testimonials, CTA, Stats, Team, FAQ, Footer, Contact, Logo Cloud.
               </p>
@@ -139,11 +143,12 @@ export function Introduction() {
             </CardContent>
           </Card>
           <Card>
+            <CardHeader className="border-b-3 border-foreground bg-success py-3">
+              <CardTitle className="text-sm flex items-center gap-2">
+                <Settings className="h-4 w-4" /> Application Blocks
+              </CardTitle>
+            </CardHeader>
             <CardContent className="pt-4">
-              <div className="flex items-center gap-2 mb-3">
-                <Settings className="h-5 w-5 text-secondary" />
-                <span className="font-bold uppercase text-sm">Application Blocks</span>
-              </div>
               <p className="text-sm text-muted-foreground mb-3">
                 5 app sections: Auth Forms, Settings Page, Onboarding Flow, Error Pages, Invoice.
               </p>

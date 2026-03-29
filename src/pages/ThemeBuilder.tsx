@@ -367,8 +367,10 @@ export function ThemeBuilder({ embedded = false }: ThemeBuilderProps) {
   }
 
   const content = (
-    <div className="container mx-auto px-3 md:px-4 py-6 md:py-8 overflow-x-hidden">
-        <div className="mb-6 md:mb-8">
+    <div className="overflow-x-hidden">
+      <div className="relative border-b-3 border-foreground bg-warning/20 overflow-hidden">
+        <div className="grid-pattern absolute inset-0 opacity-20" />
+        <div className="container relative mx-auto px-3 md:px-4 py-10 md:py-14">
           <div className="flex items-center gap-2 mb-3 md:mb-4 flex-wrap">
             <Badge variant="accent">
               <Palette className="mr-1 h-3 w-3" /> Theme Builder
@@ -383,16 +385,17 @@ export function ThemeBuilder({ embedded = false }: ThemeBuilderProps) {
           <h1 className="text-2xl md:text-3xl font-black uppercase tracking-tight lg:text-4xl">
             Customize Your Theme
           </h1>
-          <p className="mt-2 text-sm md:text-base text-muted-foreground">
+          <p className="mt-2 text-sm md:text-base text-muted-foreground max-w-xl">
             Adjust colors, shadows, and borders to match your brand. CSS variables work identically for both React and Vue.
           </p>
         </div>
-
+      </div>
+      <div className="container mx-auto px-3 md:px-4 py-6 md:py-8">
         <div className="grid gap-6 md:gap-8 lg:grid-cols-[1fr_380px]">
           {/* Preview */}
           <div className="space-y-4 md:space-y-6">
             <Card className="overflow-hidden">
-              <CardHeader className="bg-muted py-3 md:py-4">
+              <CardHeader className="bg-primary border-b-3 border-foreground py-3 md:py-4">
                 <CardTitle className="text-lg md:text-xl">Live Preview</CardTitle>
               </CardHeader>
               <CardContent className="pt-4 md:pt-6 px-3 md:px-6 space-y-4 md:space-y-6">
@@ -470,7 +473,7 @@ export function ThemeBuilder({ embedded = false }: ThemeBuilderProps) {
 
             {/* Generated CSS */}
             <Card className="overflow-hidden">
-              <CardHeader className="bg-muted">
+              <CardHeader className="bg-accent border-b-3 border-foreground">
                 <CardTitle className="text-lg md:text-xl">Generated CSS</CardTitle>
               </CardHeader>
               <CardContent className="pt-4 md:pt-6 px-3 md:px-6">

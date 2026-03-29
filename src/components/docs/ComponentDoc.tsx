@@ -28,7 +28,7 @@ export function CodeBlock({ code, language = 'tsx' }: { code: string; language?:
 
   return (
     <div className="relative my-4">
-      <div className="absolute right-2 top-2 flex items-center gap-2 bg-muted px-2 py-1 border border-foreground/20">
+      <div className="absolute right-2 top-2 flex items-center gap-2 bg-muted px-2 py-1 border-2 border-foreground">
         <span className="text-xs text-muted-foreground">{language}</span>
         <Button
           variant="ghost"
@@ -200,12 +200,15 @@ export function ComponentDoc({
 
       {/* Preview */}
       <Card>
-        <CardHeader className="bg-muted flex flex-row items-center justify-between">
+        <CardHeader className="bg-primary border-b-3 border-foreground flex flex-row items-center justify-between">
           <CardTitle>Preview</CardTitle>
           <OpenInV0Button name={componentRegistryName} />
         </CardHeader>
-        <CardContent className="pt-6">
-          {children}
+        <CardContent className="relative pt-8 pb-8 overflow-hidden">
+          <div className="grid-pattern absolute inset-0 opacity-30" />
+          <div className="relative">
+            {children}
+          </div>
         </CardContent>
       </Card>
 
