@@ -179,7 +179,7 @@ export function DocsTemplate() {
       <SEO
         title="Documentation — BoldKit Docs Template"
         description="A documentation site template built with BoldKit neubrutalism components."
-        url="/templates/docs"
+        canonical="https://boldkit.dev/templates/docs"
       />
 
       {/* ── Primary color accent eyebrow ───────────────── */}
