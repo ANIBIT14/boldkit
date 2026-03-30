@@ -1,7 +1,6 @@
 import { useState, useMemo } from 'react'
 import { Link } from 'react-router-dom'
 import { Button } from '@/components/ui/button'
-import { Badge } from '@/components/ui/badge'
 import { Slider } from '@/components/ui/slider'
 import { Switch } from '@/components/ui/switch'
 import { Label } from '@/components/ui/label'
@@ -210,7 +209,6 @@ export function ShapeBuilder() {
               <div className="flex items-center gap-2">
                 <Wand2 className="h-5 w-5 text-primary" />
                 <h1 className="text-xl md:text-2xl font-black uppercase tracking-tight">Shape Builder</h1>
-                <Badge variant="accent" className="text-[10px] px-1.5 py-0.5">New in v3.0</Badge>
               </div>
             </div>
             <div className="md:ml-auto">
@@ -220,7 +218,7 @@ export function ShapeBuilder() {
         </div>
 
         {/* Main layout: left picker + right builder */}
-        <div className="max-w-screen-xl mx-auto flex flex-col lg:flex-row h-auto lg:h-[calc(100vh-160px)] overflow-hidden">
+        <div className="max-w-screen-xl mx-auto flex flex-col lg:flex-row h-auto lg:h-[calc(100vh-160px)] overflow-hidden mb-8 lg:mb-0">
 
           {/* LEFT: Shape Picker */}
           <div className="w-full lg:w-72 xl:w-80 border-b-3 lg:border-b-0 lg:border-r-3 border-foreground flex flex-col shrink-0">

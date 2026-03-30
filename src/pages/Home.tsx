@@ -14,12 +14,15 @@ import { Layout } from '@/components/layout'
 import {
   Copy, Check, ArrowRight, Zap, Palette, Code2, Smartphone,
   Github, Layers, TrendingUp, DollarSign, LayoutGrid, Sparkles,
-  Settings, LogIn, FileX, Package, BarChart3,
+  Settings, LogIn, FileX, Package, BarChart3, Wand2,
 } from 'lucide-react'
 import { useState } from 'react'
 import { SEO, pageSEO } from '@/components/SEO'
 import { useFramework, ReactIcon, VueIcon } from '@/hooks/use-framework'
 import { useScrollReveal } from '@/hooks/use-scroll-reveal'
+import {
+  GearShape, Star5Shape, BlobShape, LightningShape, BurstShape, HexagonShape,
+} from '@/components/ui/shapes'
 
 const DISPLAY: React.CSSProperties = { fontFamily: "'Bebas Neue', sans-serif" }
 const MONO: React.CSSProperties    = { fontFamily: "'DM Mono', monospace" }
@@ -34,11 +37,12 @@ export function Home() {
   const [copied, setCopied] = useState(false)
   const { framework, setFramework } = useFramework()
 
-  const statsReveal     = useScrollReveal()
-  const showcaseReveal  = useScrollReveal()
-  const featuresReveal  = useScrollReveal()
-  const blocksReveal    = useScrollReveal()
-  const ctaReveal       = useScrollReveal()
+  const statsReveal       = useScrollReveal()
+  const showcaseReveal    = useScrollReveal()
+  const featuresReveal    = useScrollReveal()
+  const shapeBuilderReveal = useScrollReveal()
+  const blocksReveal      = useScrollReveal()
+  const ctaReveal         = useScrollReveal()
 
   const commands: Record<string, string> = {
     react: 'npx shadcn@latest add https://boldkit.dev/r/button.json',
@@ -673,6 +677,86 @@ export function Home() {
                   </div>
                 </CardContent>
               </Card>
+
+            </div>
+          </div>
+        </section>
+
+        {/* ── SHAPE BUILDER ─────────────────────────────────────────── */}
+        <section
+          ref={shapeBuilderReveal.ref}
+          className={`relative overflow-hidden border-b-3 border-foreground bg-foreground transition-all duration-700 ease-out ${shapeBuilderReveal.inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`}
+        >
+          {/* Dot grid texture */}
+          <div
+            className="absolute inset-0 pointer-events-none opacity-[0.06]"
+            style={{ backgroundImage: 'radial-gradient(circle, hsl(var(--background)) 1px, transparent 1px)', backgroundSize: '20px 20px' }}
+          />
+
+          <div className="container relative mx-auto px-4 py-14 md:py-20">
+            <div className="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
+
+              {/* Left: Copy */}
+              <div>
+                <div className="flex items-center gap-2 mb-5">
+                  <div className="h-[3px] w-8 bg-primary" />
+                  <span className="text-[11px] font-black uppercase tracking-[0.2em] text-primary" style={MONO}>v3.0 Tool</span>
+                </div>
+                <h2
+                  className="leading-none text-background mb-5"
+                  style={{ ...DISPLAY, fontSize: 'clamp(48px, 8vw, 112px)', lineHeight: 0.9 }}
+                >
+                  SHAPE<br />
+                  <span className="text-primary">BUILDER</span>
+                </h2>
+                <p className="text-background/60 text-base leading-relaxed mb-8 max-w-sm border-l-2 border-primary/40 pl-4" style={MONO}>
+                  Pick any of the 42 neubrutalism shapes. Dial in size, color, fill, stroke, animation, and speed. Copy the generated code — React or Vue.
+                </p>
+
+                {/* Feature pills */}
+                <div className="flex flex-wrap gap-2 mb-8">
+                  {['42 Shapes', '7 Animations', 'React & Vue', 'Copy Code'].map(f => (
+                    <span
+                      key={f}
+                      className="border-2 border-background/20 text-background/70 text-[11px] font-bold uppercase tracking-wide px-3 py-1"
+                      style={MONO}
+                    >
+                      {f}
+                    </span>
+                  ))}
+                </div>
+
+                <Link to="/shapes/builder">
+                  <Button size="lg" variant="accent" className="gap-2 group">
+                    <Wand2 className="h-4 w-4 transition-transform group-hover:rotate-12" />
+                    Open Shape Builder
+                    <ArrowRight className="h-4 w-4" />
+                  </Button>
+                </Link>
+              </div>
+
+              {/* Right: Live animated shape grid */}
+              <div className="grid grid-cols-3 gap-3">
+                {([
+                  { Component: GearShape,      anim: 'spin',    label: 'Spin',    bg: 'bg-primary',   color: 'hsl(var(--primary-foreground))' },
+                  { Component: Star5Shape,     anim: 'pulse',   label: 'Pulse',   bg: 'bg-secondary', color: 'hsl(var(--secondary-foreground))' },
+                  { Component: BlobShape,      anim: 'float',   label: 'Float',   bg: 'bg-accent',    color: 'hsl(var(--accent-foreground))' },
+                  { Component: LightningShape, anim: 'wiggle',  label: 'Wiggle',  bg: 'bg-warning',   color: 'hsl(var(--warning-foreground))' },
+                  { Component: BurstShape,     anim: 'bounce',  label: 'Bounce',  bg: 'bg-info',      color: 'hsl(var(--info-foreground))' },
+                  { Component: HexagonShape,   anim: 'glitch',  label: 'Glitch',  bg: 'bg-success',   color: 'hsl(var(--success-foreground))' },
+                ] as const).map(({ Component, anim, label, bg, color }) => (
+                  <Link key={anim} to="/shapes/builder">
+                    <div className="group border-3 border-background/20 hover:border-background/60 transition-all hover:shadow-[4px_4px_0px_hsl(var(--primary))] hover:-translate-x-1 hover:-translate-y-1 overflow-hidden">
+                      <div className={`${bg} flex items-center justify-center py-5`}>
+                        <Component size={52} color={color} animation={anim} speed="normal" />
+                      </div>
+                      <div className="bg-background/5 border-t-2 border-background/20 px-2 py-1.5 text-center">
+                        <span className="text-[10px] font-black uppercase tracking-widest text-background/60" style={MONO}>{label}</span>
+                      </div>
+                    </div>
+                  </Link>
+                ))}
+              </div>
 
             </div>
           </div>
