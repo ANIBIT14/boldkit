@@ -986,7 +986,7 @@ export const ScribbleCircle = React.forwardRef<SVGSVGElement, ShapeProps>(
 ScribbleCircle.displayName = 'ScribbleCircle'
 
 export const ScribbleUnderline = React.forwardRef<SVGSVGElement, ShapeProps>(
-  ({ size = 100, strokeWidth = 3, className, ...props }, ref) => (
+  ({ size = 100, strokeWidth = 3, animation = 'none', speed = 'normal', className, ...props }, ref) => (
     <svg
       ref={ref}
       width={size}

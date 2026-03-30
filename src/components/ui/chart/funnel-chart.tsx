@@ -81,7 +81,7 @@ const FunnelChart = React.forwardRef<HTMLDivElement, FunnelChartProps>(
                   fontFamily: "'DM Mono', monospace",
                   fontSize: 12,
                 }}
-                formatter={(value: number, name: string) => [`${value.toLocaleString()}`, name]}
+                formatter={(value: number | undefined, name: string) => [`${(value ?? 0).toLocaleString()}`, name]}
               />
             )}
           </RechartsFC>

@@ -7,6 +7,7 @@ export interface TreemapChartData {
   value?: number
   children?: TreemapChartData[]
   fill?: string
+  [key: string]: unknown
 }
 
 export interface TreemapChartProps extends React.HTMLAttributes<HTMLDivElement> {
@@ -120,7 +121,7 @@ const TreemapChart = React.forwardRef<HTMLDivElement, TreemapChartProps>(
                   fontFamily: "'DM Mono', monospace",
                   fontSize: 12,
                 }}
-                formatter={(value: number, name: string) => [`${value.toLocaleString()}`, name]}
+                formatter={(value: number | undefined, name: string) => [`${(value ?? 0).toLocaleString()}`, name]}
               />
             )}
           </RechartsTreemap>

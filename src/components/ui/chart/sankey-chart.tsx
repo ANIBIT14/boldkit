@@ -118,7 +118,7 @@ function computeLayout(
     const totalNodeHeight = innerHeight - nodePadding * (ids.length - 1)
     let yOffset = padding.top
 
-    ids.forEach((id, i) => {
+    ids.forEach((id) => {
       const val = nodeValue.get(id) || 1
       const h = Math.max(8, (val / colTotal) * totalNodeHeight)
       const node = nodeMap.get(id)!
