@@ -34,6 +34,11 @@ export {
   // Gauge chart
   GaugeChart,
   gaugeChartVariants,
+  // Advanced charts (v3.0)
+  FunnelChart,
+  TreemapChart,
+  HeatmapChart,
+  SankeyChart,
 } from './chart/index'
 
 export type {
@@ -58,4 +63,14 @@ export type {
   // Gauge chart types
   GaugeChartProps,
   GaugeChartZone,
+  // Advanced chart types (v3.0)
+  FunnelChartProps,
+  FunnelChartData,
+  TreemapChartProps,
+  TreemapChartData,
+  HeatmapChartProps,
+  HeatmapCellData,
+  SankeyChartProps,
+  SankeyNode,
+  SankeyLink,
 } from './chart/index'
