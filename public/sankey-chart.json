@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "sankey-chart",
+  "type": "registry:ui",
+  "description": "Sankey flow diagram for showing proportional flows between nodes - custom SVG implementation",
+  "dependencies": [],
+  "registryDependencies": [
+    "utils"
+  ],
+  "files": [
+    {
+      "path": "registry/default/ui/sankey-chart.tsx",
+      "type": "registry:ui",
+      "target": "components/ui/chart/sankey-chart.tsx"
+    }
+  ]
+}

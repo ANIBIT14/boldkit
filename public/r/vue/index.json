@@ -214,6 +214,26 @@
       "registryUrl": "https://boldkit.dev/r/vue/chart.json"
     },
     {
+      "name": "funnel-chart",
+      "type": "registry:ui",
+      "registryUrl": "https://boldkit.dev/r/vue/funnel-chart.json"
+    },
+    {
+      "name": "treemap-chart",
+      "type": "registry:ui",
+      "registryUrl": "https://boldkit.dev/r/vue/treemap-chart.json"
+    },
+    {
+      "name": "heatmap-chart",
+      "type": "registry:ui",
+      "registryUrl": "https://boldkit.dev/r/vue/heatmap-chart.json"
+    },
+    {
+      "name": "sankey-chart",
+      "type": "registry:ui",
+      "registryUrl": "https://boldkit.dev/r/vue/sankey-chart.json"
+    },
+    {
       "name": "shapes",
       "type": "registry:ui",
       "registryUrl": "https://boldkit.dev/r/vue/shapes.json"

@@ -856,6 +856,62 @@
       ]
     },
     {
+      "name": "funnel-chart",
+      "type": "registry:ui",
+      "description": "Funnel chart for conversion flows and pipeline stages with neubrutalism styling",
+      "dependencies": ["recharts"],
+      "registryDependencies": ["utils"],
+      "files": [
+        {
+          "path": "registry/default/ui/funnel-chart.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/chart/funnel-chart.tsx"
+        }
+      ]
+    },
+    {
+      "name": "treemap-chart",
+      "type": "registry:ui",
+      "description": "Treemap for hierarchical data visualization with proportional rectangles",
+      "dependencies": ["recharts"],
+      "registryDependencies": ["utils"],
+      "files": [
+        {
+          "path": "registry/default/ui/treemap-chart.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/chart/treemap-chart.tsx"
+        }
+      ]
+    },
+    {
+      "name": "heatmap-chart",
+      "type": "registry:ui",
+      "description": "Heatmap grid for correlation and intensity data - custom CSS Grid implementation",
+      "dependencies": [],
+      "registryDependencies": ["utils"],
+      "files": [
+        {
+          "path": "registry/default/ui/heatmap-chart.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/chart/heatmap-chart.tsx"
+        }
+      ]
+    },
+    {
+      "name": "sankey-chart",
+      "type": "registry:ui",
+      "description": "Sankey flow diagram for showing proportional flows between nodes - custom SVG implementation",
+      "dependencies": [],
+      "registryDependencies": ["utils"],
+      "files": [
+        {
+          "path": "registry/default/ui/sankey-chart.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/chart/sankey-chart.tsx"
+        }
+      ]
+    },
+    {
       "name": "rating",
       "type": "registry:ui",
       "description": "Star rating component with half-values, multiple icons, and keyboard navigation",
