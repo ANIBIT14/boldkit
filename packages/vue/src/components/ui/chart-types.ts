@@ -22,7 +22,8 @@ export interface HeatmapCellData {
 
 export interface SankeyNode {
   id: string
-  label?: string
+  label: string
+  color?: string
 }
 
 export interface SankeyLink {

@@ -7,20 +7,9 @@ import { TooltipComponent } from 'echarts/components'
 import VChart from 'vue-echarts'
 import { cn } from '@/lib/utils'
 import { neubrutalismTheme } from './chart-utils'
+import type { SankeyNode, SankeyLink } from './chart-types'
 
 use([CanvasRenderer, EChartsSankey, TooltipComponent])
-
-export interface SankeyNode {
-  id: string
-  label: string
-  color?: string
-}
-
-export interface SankeyLink {
-  source: string
-  target: string
-  value: number
-}
 
 interface Props {
   nodes: SankeyNode[]

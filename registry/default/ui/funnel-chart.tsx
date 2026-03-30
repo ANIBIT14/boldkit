@@ -1,7 +1,6 @@
 import * as React from 'react'
 import { cn } from '@/lib/utils'
 import { FunnelChart as RechartsFC, Funnel, LabelList, Tooltip, ResponsiveContainer } from 'recharts'
-import type { ChartConfig } from './chart'
 
 export interface FunnelChartData {
   name: string
@@ -11,7 +10,6 @@ export interface FunnelChartData {
 
 export interface FunnelChartProps extends React.HTMLAttributes<HTMLDivElement> {
   data: FunnelChartData[]
-  config?: ChartConfig
   showLabels?: boolean
   showTooltip?: boolean
   animated?: boolean

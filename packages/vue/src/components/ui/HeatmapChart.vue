@@ -7,14 +7,9 @@ import { TooltipComponent, VisualMapComponent, GridComponent } from 'echarts/com
 import VChart from 'vue-echarts'
 import { cn } from '@/lib/utils'
 import { neubrutalismTheme } from './chart-utils'
+import type { HeatmapCellData } from './chart-types'
 
 use([CanvasRenderer, EChartsHeatmap, TooltipComponent, VisualMapComponent, GridComponent])
-
-export interface HeatmapCellData {
-  row: string
-  col: string
-  value: number
-}
 
 interface Props {
   data: HeatmapCellData[]

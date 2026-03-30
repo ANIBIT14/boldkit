@@ -147,14 +147,13 @@ function computeLayout(
   void totalVal
 
   const computedLinks: ComputedLink[] = links.map(link => {
-    const src = computedNodes.get(link.source)!
-    const tgt = computedNodes.get(link.target)!
+    const src = computedNodes.get(link.source)
+    const tgt = computedNodes.get(link.target)
     if (!src || !tgt) return null
 
-    const srcNode = computedNodes.get(link.source)!
     const srcTotal = (outLinks.get(link.source) || []).reduce((s, l) => s + l.value, 0)
     const tgtTotal = (inLinks.get(link.target) || []).reduce((s, l) => s + l.value, 0)
-    const thickness = Math.max(2, (link.value / Math.max(srcTotal, tgtTotal)) * srcNode.height)
+    const thickness = Math.max(2, (link.value / Math.max(srcTotal, tgtTotal)) * src.height)
 
     const sY = sourceOffsets.get(link.source)!
     const tY = targetOffsets.get(link.target)!

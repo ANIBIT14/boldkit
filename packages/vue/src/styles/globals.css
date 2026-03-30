@@ -191,7 +191,7 @@
 
 body {
   @apply bg-background text-foreground antialiased;
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-family: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
 }
 
 /* BoldKit Shadow Utility */
