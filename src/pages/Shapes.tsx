@@ -389,6 +389,16 @@ import { GeometricShapes, StarShapes, OrganicShapes } from '@/components/ui/shap
                       <td className="py-2 text-muted-foreground">string</td>
                       <td className="py-2">currentColor</td>
                     </tr>
+                    <tr className="border-b border-muted">
+                      <td className="py-2">animation</td>
+                      <td className="py-2 text-muted-foreground">'none' | 'spin' | 'pulse' | 'float' | 'wiggle' | 'bounce' | 'glitch'</td>
+                      <td className="py-2">'none'</td>
+                    </tr>
+                    <tr className="border-b border-muted">
+                      <td className="py-2">speed</td>
+                      <td className="py-2 text-muted-foreground">'slow' | 'normal' | 'fast'</td>
+                      <td className="py-2">'normal'</td>
+                    </tr>
                     <tr>
                       <td className="py-2">{framework === 'react' ? 'className' : 'class'}</td>
                       <td className="py-2 text-muted-foreground">string</td>
@@ -433,6 +443,57 @@ import {
               </div>
             </TabsContent>
           </Tabs>
+        </div>
+      </section>
+
+      {/* ── Animation Showcase ──────────────────────────────────── */}
+      <section className="border-b-3 border-foreground py-10 md:py-14">
+        <div className="container mx-auto px-3 md:px-4">
+          <div className="mb-6 md:mb-8 text-center">
+            <Badge variant="accent" className="mb-3">New in v3.0</Badge>
+            <h2 className="text-xl md:text-2xl font-black uppercase tracking-tight">
+              Animated Shapes
+            </h2>
+            <p className="mt-2 text-sm text-muted-foreground max-w-md mx-auto">
+              Add <code className="bg-muted px-1 border border-foreground text-xs">animation</code> and <code className="bg-muted px-1 border border-foreground text-xs">speed</code> props to any shape.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-0 border-3 border-foreground overflow-hidden max-w-4xl mx-auto">
+            {([
+              { anim: 'spin',   label: 'Spin',   color: 'bg-primary' },
+              { anim: 'pulse',  label: 'Pulse',  color: 'bg-secondary' },
+              { anim: 'float',  label: 'Float',  color: 'bg-accent' },
+              { anim: 'wiggle', label: 'Wiggle', color: 'bg-success' },
+              { anim: 'bounce', label: 'Bounce', color: 'bg-info' },
+              { anim: 'glitch', label: 'Glitch', color: 'bg-warning' },
+            ] as const).map(({ anim, label, color }, i) => (
+              <div
+                key={anim}
+                className={`${color} flex flex-col items-center justify-center gap-3 py-8 px-4 ${i < 5 ? 'border-r-3 border-foreground' : ''}`}
+              >
+                <Star5Shape size={52} animation={anim} />
+                <span className="text-[10px] font-black uppercase tracking-widest">{label}</span>
+              </div>
+            ))}
+          </div>
+
+          <div className="mt-6 max-w-4xl mx-auto">
+            <pre className="border-3 border-foreground bg-muted p-3 md:p-4 text-xs md:text-sm overflow-x-auto bk-shadow">
+              <code>{framework === 'react'
+                ? `<Star5Shape animation="spin" />
+<BurstShape animation="pulse" speed="slow" />
+<HeartShape animation="float" />
+<LightningShape animation="wiggle" speed="fast" />
+<HexagonShape animation="bounce" />
+<DiamondBadge animation="glitch" />`
+                : `<Star5Shape animation="spin" />
+<BurstShape animation="pulse" speed="slow" />
+<HeartShape animation="float" />
+<LightningShape animation="wiggle" speed="fast" />`
+              }</code>
+            </pre>
+          </div>
         </div>
       </section>
 

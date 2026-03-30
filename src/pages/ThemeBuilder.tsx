@@ -129,60 +129,22 @@ function ColorPicker({
 }
 
 const presetThemes = [
-  {
-    name: 'Coral',
-    primary: '0 84% 71%',
-    secondary: '174 62% 56%',
-    accent: '49 100% 71%',
-  },
-  {
-    name: 'Purple',
-    primary: '271 76% 53%',
-    secondary: '326 78% 60%',
-    accent: '199 89% 48%',
-  },
-  {
-    name: 'Forest',
-    primary: '152 69% 45%',
-    secondary: '82 68% 55%',
-    accent: '49 100% 60%',
-  },
-  {
-    name: 'Ocean',
-    primary: '199 89% 48%',
-    secondary: '174 62% 56%',
-    accent: '152 69% 69%',
-  },
-  {
-    name: 'Sunset',
-    primary: '14 100% 57%',
-    secondary: '326 78% 60%',
-    accent: '49 100% 60%',
-  },
-  {
-    name: 'Mono',
-    primary: '0 0% 90%',
-    secondary: '0 0% 75%',
-    accent: '49 100% 65%',
-  },
-  {
-    name: 'Neon',
-    primary: '318 100% 50%',
-    secondary: '180 100% 50%',
-    accent: '60 100% 50%',
-  },
-  {
-    name: 'Electric',
-    primary: '258 100% 65%',
-    secondary: '166 100% 50%',
-    accent: '45 100% 55%',
-  },
-  {
-    name: 'Candy',
-    primary: '340 82% 65%',
-    secondary: '280 70% 60%',
-    accent: '190 100% 60%',
-  },
+  // — Original 9 —
+  { name: 'Coral',    tag: 'warm & bold',       primary: '0 84% 71%',    secondary: '174 62% 56%', accent: '49 100% 71%' },
+  { name: 'Purple',   tag: 'vivid & dramatic',  primary: '271 76% 53%',  secondary: '326 78% 60%', accent: '199 89% 48%' },
+  { name: 'Forest',   tag: 'earthy & fresh',    primary: '152 69% 45%',  secondary: '82 68% 55%',  accent: '49 100% 60%' },
+  { name: 'Ocean',    tag: 'cool & serene',     primary: '199 89% 48%',  secondary: '174 62% 56%', accent: '152 69% 69%' },
+  { name: 'Sunset',   tag: 'fiery & expressive',primary: '14 100% 57%',  secondary: '326 78% 60%', accent: '49 100% 60%' },
+  { name: 'Mono',     tag: 'clean & minimal',   primary: '0 0% 90%',     secondary: '0 0% 75%',    accent: '49 100% 65%' },
+  { name: 'Neon',     tag: 'electric & raw',    primary: '318 100% 50%', secondary: '180 100% 50%',accent: '60 100% 50%' },
+  { name: 'Electric', tag: 'punchy & vibrant',  primary: '258 100% 65%', secondary: '166 100% 50%',accent: '45 100% 55%' },
+  { name: 'Candy',    tag: 'sweet & playful',   primary: '340 82% 65%',  secondary: '280 70% 60%', accent: '190 100% 60%' },
+  // — New v3.0 Presets —
+  { name: 'Cyberpunk',tag: 'toxic & dystopian', primary: '112 100% 54%', secondary: '342 100% 59%',accent: '193 100% 50%' },
+  { name: 'Retro',    tag: 'vintage & gritty',  primary: '22 91% 48%',   secondary: '173 43% 51%', accent: '45 90% 61%' },
+  { name: 'Pastel',   tag: 'soft & kawaii',     primary: '344 100% 82%', secondary: '154 56% 78%', accent: '260 53% 80%' },
+  { name: 'Gold',     tag: 'luxury & refined',  primary: '45 87% 55%',   secondary: '221 42% 30%', accent: '38 82% 52%' },
+  { name: 'Cherry',   tag: 'bold & japanese',   primary: '5 66% 46%',    secondary: '151 37% 22%', accent: '37 90% 51%' },
 ]
 
 const THEME_STORAGE_KEY = 'boldkit-theme-builder-colors'
@@ -498,28 +460,24 @@ export function ThemeBuilder({ embedded = false }: ThemeBuilderProps) {
                 <CardTitle className="text-lg md:text-xl">Presets</CardTitle>
               </CardHeader>
               <CardContent className="pt-4 md:pt-6 px-3 md:px-6">
-                <div className="grid grid-cols-3 gap-2">
+                <div className="grid grid-cols-2 gap-2">
                   {presetThemes.map((preset) => (
                     <button
                       key={preset.name}
                       onClick={() => applyPreset(preset)}
-                      className="flex flex-col items-center gap-1.5 p-2 border-2 border-foreground hover:bg-muted transition-colors"
+                      className="group flex flex-col border-2 border-foreground hover:shadow-[3px_3px_0px_hsl(var(--foreground))] hover:-translate-x-[1px] hover:-translate-y-[1px] transition-all duration-100 text-left overflow-hidden"
                     >
-                      <div className="flex gap-0.5">
-                        <span
-                          className="h-4 w-4 border border-foreground"
-                          style={{ backgroundColor: `hsl(${preset.primary})` }}
-                        />
-                        <span
-                          className="h-4 w-4 border border-foreground"
-                          style={{ backgroundColor: `hsl(${preset.secondary})` }}
-                        />
-                        <span
-                          className="h-4 w-4 border border-foreground"
-                          style={{ backgroundColor: `hsl(${preset.accent})` }}
-                        />
+                      {/* Color strip */}
+                      <div className="flex w-full h-5">
+                        <div className="flex-1" style={{ backgroundColor: `hsl(${preset.primary})` }} />
+                        <div className="flex-1" style={{ backgroundColor: `hsl(${preset.secondary})` }} />
+                        <div className="flex-1" style={{ backgroundColor: `hsl(${preset.accent})` }} />
                       </div>
-                      <span className="text-[10px] font-bold uppercase">{preset.name}</span>
+                      {/* Label */}
+                      <div className="px-2 py-1.5">
+                        <p className="text-[11px] font-black uppercase tracking-wide leading-none">{preset.name}</p>
+                        <p className="text-[9px] text-muted-foreground mt-0.5 leading-none">{preset.tag}</p>
+                      </div>
                     </button>
                   ))}
                 </div>

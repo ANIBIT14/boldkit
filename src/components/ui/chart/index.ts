@@ -40,3 +40,16 @@ export type { RadarChartProps, RadarChartData } from './radar-chart'
 // Gauge chart
 export { GaugeChart, gaugeChartVariants } from './gauge-chart'
 export type { GaugeChartProps, GaugeChartZone } from './gauge-chart'
+
+// Advanced charts (v3.0)
+export { FunnelChart } from './funnel-chart'
+export type { FunnelChartProps, FunnelChartData } from './funnel-chart'
+
+export { TreemapChart } from './treemap-chart'
+export type { TreemapChartProps, TreemapChartData } from './treemap-chart'
+
+export { HeatmapChart } from './heatmap-chart'
+export type { HeatmapChartProps, HeatmapCellData } from './heatmap-chart'
+
+export { SankeyChart } from './sankey-chart'
+export type { SankeyChartProps, SankeyNode, SankeyLink } from './sankey-chart'

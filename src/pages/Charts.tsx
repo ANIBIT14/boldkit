@@ -25,6 +25,10 @@ import {
   RadialBarChart,
   RadarChart,
   GaugeChart,
+  FunnelChart,
+  TreemapChart,
+  HeatmapChart,
+  SankeyChart,
 } from '@/components/ui/chart'
 import type { ChartConfig, ChartPalette } from '@/components/ui/chart'
 import {
@@ -41,7 +45,7 @@ import {
   YAxis,
   Cell,
 } from 'recharts'
-import { TrendingUp, TrendingDown, Code, Copy, Check, AreaChart as AreaIcon, BarChart3, LineChart as LineIcon, PieChart as PieIcon, Circle, Target, Radar, Gauge, Sparkles, Palette } from 'lucide-react'
+import { TrendingUp, TrendingDown, Code, Copy, Check, AreaChart as AreaIcon, BarChart3, LineChart as LineIcon, PieChart as PieIcon, Circle, Target, Radar, Gauge, Sparkles, Palette, LayoutGrid } from 'lucide-react'
 import { Layout } from '@/components/layout'
 import { useFramework, FrameworkToggle, ReactIcon, VueIcon } from '@/hooks/use-framework'
 import { SEO, pageSEO } from '@/components/SEO'
@@ -1460,6 +1464,34 @@ export function Charts() {
                   <span className="text-[10px] md:text-xs font-bold uppercase tracking-wide">Spark</span>
                 </TabsTrigger>
                 <TabsTrigger
+                  value="funnel"
+                  className="flex flex-col items-center gap-1.5 h-auto py-3 px-2 md:px-4 data-[state=active]:shadow-[3px_3px_0px_hsl(var(--shadow-color))]"
+                >
+                  <svg className="h-5 w-5 md:h-6 md:w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M3 4h18M6 8h12M9 12h6M12 16v5"/></svg>
+                  <span className="text-[10px] md:text-xs font-bold uppercase tracking-wide">Funnel</span>
+                </TabsTrigger>
+                <TabsTrigger
+                  value="treemap"
+                  className="flex flex-col items-center gap-1.5 h-auto py-3 px-2 md:px-4 data-[state=active]:shadow-[3px_3px_0px_hsl(var(--shadow-color))]"
+                >
+                  <LayoutGrid className="h-5 w-5 md:h-6 md:w-6" />
+                  <span className="text-[10px] md:text-xs font-bold uppercase tracking-wide">Treemap</span>
+                </TabsTrigger>
+                <TabsTrigger
+                  value="heatmap"
+                  className="flex flex-col items-center gap-1.5 h-auto py-3 px-2 md:px-4 data-[state=active]:shadow-[3px_3px_0px_hsl(var(--shadow-color))]"
+                >
+                  <svg className="h-5 w-5 md:h-6 md:w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><rect x="3" y="3" width="5" height="5"/><rect x="10" y="3" width="5" height="5"/><rect x="17" y="3" width="4" height="5"/><rect x="3" y="10" width="5" height="5"/><rect x="10" y="10" width="5" height="5"/><rect x="17" y="10" width="4" height="5"/><rect x="3" y="17" width="5" height="4"/><rect x="10" y="17" width="5" height="4"/><rect x="17" y="17" width="4" height="4"/></svg>
+                  <span className="text-[10px] md:text-xs font-bold uppercase tracking-wide">Heatmap</span>
+                </TabsTrigger>
+                <TabsTrigger
+                  value="sankey"
+                  className="flex flex-col items-center gap-1.5 h-auto py-3 px-2 md:px-4 data-[state=active]:shadow-[3px_3px_0px_hsl(var(--shadow-color))]"
+                >
+                  <svg className="h-5 w-5 md:h-6 md:w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M3 6h4v12H3M17 6h4v12h-4M7 9c3 0 7 2 10 3M7 15c3 0 7-2 10-3"/></svg>
+                  <span className="text-[10px] md:text-xs font-bold uppercase tracking-wide">Sankey</span>
+                </TabsTrigger>
+                <TabsTrigger
                   value="styles"
                   className="flex flex-col items-center gap-1.5 h-auto py-3 px-2 md:px-4 data-[state=active]:shadow-[3px_3px_0px_hsl(var(--shadow-color))]"
                 >
@@ -2687,6 +2719,298 @@ const option = ref({
               </CardContent>
             </Card>
           </TabsContent>
+          {/* ── FUNNEL ──────────────────────────────────────── */}
+          <TabsContent value="funnel" className="space-y-8">
+            <Card>
+              <CardHeader className="border-b-3 border-foreground bg-primary">
+                <CardTitle>Funnel Chart</CardTitle>
+                <CardDescription>Visualize conversion stages and drop-off rates</CardDescription>
+              </CardHeader>
+              <CardContent className="pt-6">
+                <FunnelChart
+                  data={[
+                    { name: 'Visitors',   value: 12400 },
+                    { name: 'Sign-ups',   value: 4800 },
+                    { name: 'Trials',     value: 2100 },
+                    { name: 'Customers',  value: 840 },
+                    { name: 'Advocates',  value: 210 },
+                  ]}
+                />
+              </CardContent>
+            </Card>
+            <Card>
+              <CardHeader className="border-b-3 border-foreground bg-muted">
+                <CardTitle className="flex items-center gap-2 text-base">
+                  <Code className="h-4 w-4" /> Code
+                  <Badge variant={framework === 'react' ? 'info' : 'success'} className="gap-1 ml-auto">
+                    {framework === 'react' ? <ReactIcon className="h-3 w-3" /> : <VueIcon className="h-3 w-3" />}
+                    {framework === 'react' ? 'React' : 'Vue'}
+                  </Badge>
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="p-0">
+                <pre className="p-4 bg-muted text-sm overflow-x-auto">
+                  <code>{framework === 'react' ? `import { FunnelChart } from '@/components/ui/chart'
+
+const data = [
+  { name: 'Visitors',  value: 12400 },
+  { name: 'Sign-ups',  value: 4800 },
+  { name: 'Trials',    value: 2100 },
+  { name: 'Customers', value: 840 },
+]
+
+<FunnelChart data={data} />` : `<script setup lang="ts">
+import { use } from 'echarts/core'
+import { FunnelChart } from 'echarts/charts'
+import VChart from 'vue-echarts'
+use([FunnelChart, /* renderers */])
+
+const option = ref({
+  series: [{
+    type: 'funnel',
+    data: [
+      { name: 'Visitors', value: 100 },
+      { name: 'Sign-ups', value: 38 },
+      { name: 'Trials',   value: 17 },
+      { name: 'Customers',value: 7 },
+    ]
+  }]
+})
+</script>
+
+<template>
+  <VChart :option="option" autoresize style="height: 300px" />
+</template>`}</code>
+                </pre>
+              </CardContent>
+            </Card>
+          </TabsContent>
+
+          {/* ── TREEMAP ──────────────────────────────────────── */}
+          <TabsContent value="treemap" className="space-y-8">
+            <Card>
+              <CardHeader className="border-b-3 border-foreground bg-secondary">
+                <CardTitle>Treemap Chart</CardTitle>
+                <CardDescription>Hierarchical data as nested rectangles sized by value</CardDescription>
+              </CardHeader>
+              <CardContent className="pt-6">
+                <TreemapChart
+                  data={[
+                    { name: 'Design',      value: 4200, children: [
+                      { name: 'UI/UX',    value: 2400 },
+                      { name: 'Branding', value: 1800 },
+                    ]},
+                    { name: 'Engineering', value: 8100, children: [
+                      { name: 'Frontend',  value: 3200 },
+                      { name: 'Backend',   value: 3100 },
+                      { name: 'DevOps',    value: 1800 },
+                    ]},
+                    { name: 'Marketing',   value: 3600, children: [
+                      { name: 'SEO',       value: 1400 },
+                      { name: 'Content',   value: 1200 },
+                      { name: 'Ads',       value: 1000 },
+                    ]},
+                    { name: 'Sales',       value: 2900 },
+                    { name: 'Support',     value: 1500 },
+                  ]}
+                />
+              </CardContent>
+            </Card>
+            <Card>
+              <CardHeader className="border-b-3 border-foreground bg-muted">
+                <CardTitle className="flex items-center gap-2 text-base">
+                  <Code className="h-4 w-4" /> Code
+                  <Badge variant={framework === 'react' ? 'info' : 'success'} className="gap-1 ml-auto">
+                    {framework === 'react' ? <ReactIcon className="h-3 w-3" /> : <VueIcon className="h-3 w-3" />}
+                    {framework === 'react' ? 'React' : 'Vue'}
+                  </Badge>
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="p-0">
+                <pre className="p-4 bg-muted text-sm overflow-x-auto">
+                  <code>{framework === 'react' ? `import { TreemapChart } from '@/components/ui/chart'
+
+const data = [
+  { name: 'Engineering', value: 8100 },
+  { name: 'Marketing',   value: 3600 },
+  { name: 'Design',      value: 4200 },
+  { name: 'Sales',       value: 2900 },
+]
+
+<TreemapChart data={data} height={320} />` : `<script setup lang="ts">
+import { use } from 'echarts/core'
+import { TreemapChart } from 'echarts/charts'
+import VChart from 'vue-echarts'
+use([TreemapChart, /* renderers */])
+
+const option = ref({
+  series: [{
+    type: 'treemap',
+    data: [
+      { name: 'Engineering', value: 8100 },
+      { name: 'Marketing',   value: 3600 },
+      { name: 'Design',      value: 4200 },
+    ]
+  }]
+})
+</script>`}</code>
+                </pre>
+              </CardContent>
+            </Card>
+          </TabsContent>
+
+          {/* ── HEATMAP ──────────────────────────────────────── */}
+          <TabsContent value="heatmap" className="space-y-8">
+            <Card>
+              <CardHeader className="border-b-3 border-foreground bg-accent">
+                <CardTitle>Heatmap Chart</CardTitle>
+                <CardDescription>Intensity matrix — great for activity grids and correlation tables</CardDescription>
+              </CardHeader>
+              <CardContent className="pt-6 overflow-x-auto">
+                <HeatmapChart
+                  rows={['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']}
+                  cols={['12am','3am','6am','9am','12pm','3pm','6pm','9pm']}
+                  data={[
+                    ...['Mon','Tue','Wed','Thu','Fri','Sat','Sun'].flatMap((row, ri) =>
+                      ['12am','3am','6am','9am','12pm','3pm','6pm','9pm'].map((col, ci) => ({
+                        row, col,
+                        value: Math.floor(Math.abs(Math.sin(ri * 7 + ci * 3)) * 100),
+                      }))
+                    )
+                  ]}
+                  cellSize={44}
+                />
+              </CardContent>
+            </Card>
+            <Card>
+              <CardHeader className="border-b-3 border-foreground bg-muted">
+                <CardTitle className="flex items-center gap-2 text-base">
+                  <Code className="h-4 w-4" /> Code
+                  <Badge variant={framework === 'react' ? 'info' : 'success'} className="gap-1 ml-auto">
+                    {framework === 'react' ? <ReactIcon className="h-3 w-3" /> : <VueIcon className="h-3 w-3" />}
+                    {framework === 'react' ? 'React' : 'Vue'}
+                  </Badge>
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="p-0">
+                <pre className="p-4 bg-muted text-sm overflow-x-auto">
+                  <code>{framework === 'react' ? `import { HeatmapChart } from '@/components/ui/chart'
+
+<HeatmapChart
+  rows={['Mon', 'Tue', 'Wed', 'Thu', 'Fri']}
+  cols={['9am', '12pm', '3pm', '6pm', '9pm']}
+  data={[
+    { row: 'Mon', col: '9am',  value: 42 },
+    { row: 'Mon', col: '12pm', value: 87 },
+    // ...
+  ]}
+  cellSize={44}
+/>` : `<script setup lang="ts">
+import { use } from 'echarts/core'
+import { HeatmapChart } from 'echarts/charts'
+import { GridComponent, VisualMapComponent } from 'echarts/components'
+import VChart from 'vue-echarts'
+
+const option = ref({
+  visualMap: { min: 0, max: 100, calculable: true },
+  series: [{
+    type: 'heatmap',
+    data: [[0, 0, 42], [0, 1, 87], /* ... */],
+  }]
+})
+</script>`}</code>
+                </pre>
+              </CardContent>
+            </Card>
+          </TabsContent>
+
+          {/* ── SANKEY ──────────────────────────────────────── */}
+          <TabsContent value="sankey" className="space-y-8">
+            <Card>
+              <CardHeader className="border-b-3 border-foreground bg-success">
+                <CardTitle>Sankey Diagram</CardTitle>
+                <CardDescription>Flow and allocation between stages — budget, traffic, energy</CardDescription>
+              </CardHeader>
+              <CardContent className="pt-6">
+                <SankeyChart
+                  height={300}
+                  nodes={[
+                    { id: 'organic',  label: 'Organic' },
+                    { id: 'paid',     label: 'Paid' },
+                    { id: 'social',   label: 'Social' },
+                    { id: 'direct',   label: 'Direct' },
+                    { id: 'landing',  label: 'Landing' },
+                    { id: 'pricing',  label: 'Pricing' },
+                    { id: 'blog',     label: 'Blog' },
+                    { id: 'trial',    label: 'Trial' },
+                    { id: 'purchase', label: 'Purchase' },
+                  ]}
+                  links={[
+                    { source: 'organic', target: 'landing',  value: 3200 },
+                    { source: 'organic', target: 'blog',     value: 1800 },
+                    { source: 'paid',    target: 'landing',  value: 2100 },
+                    { source: 'paid',    target: 'pricing',  value: 900 },
+                    { source: 'social',  target: 'blog',     value: 1400 },
+                    { source: 'direct',  target: 'pricing',  value: 1100 },
+                    { source: 'landing', target: 'trial',    value: 2800 },
+                    { source: 'pricing', target: 'trial',    value: 1200 },
+                    { source: 'blog',    target: 'trial',    value: 600 },
+                    { source: 'trial',   target: 'purchase', value: 1540 },
+                  ]}
+                />
+              </CardContent>
+            </Card>
+            <Card>
+              <CardHeader className="border-b-3 border-foreground bg-muted">
+                <CardTitle className="flex items-center gap-2 text-base">
+                  <Code className="h-4 w-4" /> Code
+                  <Badge variant={framework === 'react' ? 'info' : 'success'} className="gap-1 ml-auto">
+                    {framework === 'react' ? <ReactIcon className="h-3 w-3" /> : <VueIcon className="h-3 w-3" />}
+                    {framework === 'react' ? 'React' : 'Vue'}
+                  </Badge>
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="p-0">
+                <pre className="p-4 bg-muted text-sm overflow-x-auto">
+                  <code>{framework === 'react' ? `import { SankeyChart } from '@/components/ui/chart'
+
+<SankeyChart
+  nodes={[
+    { id: 'organic',  label: 'Organic' },
+    { id: 'landing',  label: 'Landing' },
+    { id: 'trial',    label: 'Trial' },
+    { id: 'purchase', label: 'Purchase' },
+  ]}
+  links={[
+    { source: 'organic',  target: 'landing',  value: 3200 },
+    { source: 'landing',  target: 'trial',    value: 2800 },
+    { source: 'trial',    target: 'purchase', value: 1540 },
+  ]}
+/>` : `<script setup lang="ts">
+import { use } from 'echarts/core'
+import { SankeyChart } from 'echarts/charts'
+import VChart from 'vue-echarts'
+
+const option = ref({
+  series: [{
+    type: 'sankey',
+    nodes: [
+      { name: 'Organic' },
+      { name: 'Landing' },
+      { name: 'Purchase' },
+    ],
+    links: [
+      { source: 'Organic', target: 'Landing',  value: 3200 },
+      { source: 'Landing', target: 'Purchase', value: 1540 },
+    ]
+  }]
+})
+</script>`}</code>
+                </pre>
+              </CardContent>
+            </Card>
+          </TabsContent>
+
         </Tabs>
       </main>
 

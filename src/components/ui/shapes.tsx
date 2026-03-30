@@ -5,11 +5,22 @@ import { cn } from '@/lib/utils'
 // Types & Factory
 // ============================================================================
 
+type ShapeAnimation = 'none' | 'spin' | 'pulse' | 'float' | 'wiggle' | 'bounce' | 'glitch'
+type ShapeSpeed = 'slow' | 'normal' | 'fast'
+
 interface ShapeProps extends React.SVGProps<SVGSVGElement> {
   size?: number
   strokeWidth?: number
   filled?: boolean
   color?: string
+  animation?: ShapeAnimation
+  speed?: ShapeSpeed
+}
+
+function getAnimClass(animation?: ShapeAnimation, speed?: ShapeSpeed): string {
+  if (!animation || animation === 'none') return ''
+  const s = speed && speed !== 'normal' ? `-${speed}` : ''
+  return `shape-animate-${animation}${s}`
 }
 
 // ============================================================================
@@ -17,13 +28,13 @@ interface ShapeProps extends React.SVGProps<SVGSVGElement> {
 // ============================================================================
 
 export const TriangleShape = React.forwardRef<SVGSVGElement, ShapeProps>(
-  ({ size = 100, strokeWidth = 3, filled = true, color, className, ...props }, ref) => (
+  ({ size = 100, strokeWidth = 3, filled = true, color, animation = 'none', speed = 'normal', className, ...props }, ref) => (
     <svg
       ref={ref}
       width={size}
       height={size}
       viewBox="0 0 100 100"
-      className={cn('text-accent', className)}
+      className={cn('text-accent', getAnimClass(animation, speed), className)}
       {...props}
     >
       <path
@@ -38,13 +49,13 @@ export const TriangleShape = React.forwardRef<SVGSVGElement, ShapeProps>(
 TriangleShape.displayName = 'TriangleShape'
 
 export const DiamondBadge = React.forwardRef<SVGSVGElement, ShapeProps>(
-  ({ size = 100, strokeWidth = 3, filled = true, color, className, ...props }, ref) => (
+  ({ size = 100, strokeWidth = 3, filled = true, color, animation = 'none', speed = 'normal', className, ...props }, ref) => (
     <svg
       ref={ref}
       width={size}
       height={size}
       viewBox="0 0 100 100"
-      className={cn('text-primary', className)}
+      className={cn('text-primary', getAnimClass(animation, speed), className)}
       {...props}
     >
       <path
@@ -59,13 +70,13 @@ export const DiamondBadge = React.forwardRef<SVGSVGElement, ShapeProps>(
 DiamondBadge.displayName = 'DiamondBadge'
 
 export const PentagonShape = React.forwardRef<SVGSVGElement, ShapeProps>(
-  ({ size = 100, strokeWidth = 3, filled = true, color, className, ...props }, ref) => (
+  ({ size = 100, strokeWidth = 3, filled = true, color, animation = 'none', speed = 'normal', className, ...props }, ref) => (
     <svg
       ref={ref}
       width={size}
       height={size}
       viewBox="0 0 100 100"
-      className={cn('text-primary', className)}
+      className={cn('text-primary', getAnimClass(animation, speed), className)}
       {...props}
     >
       <path
@@ -80,13 +91,13 @@ export const PentagonShape = React.forwardRef<SVGSVGElement, ShapeProps>(
 PentagonShape.displayName = 'PentagonShape'
 
 export const HexagonShape = React.forwardRef<SVGSVGElement, ShapeProps>(
-  ({ size = 100, strokeWidth = 3, filled = true, color, className, ...props }, ref) => (
+  ({ size = 100, strokeWidth = 3, filled = true, color, animation = 'none', speed = 'normal', className, ...props }, ref) => (
     <svg
       ref={ref}
       width={size}
       height={size}
       viewBox="0 0 100 100"
-      className={cn('text-secondary', className)}
+      className={cn('text-secondary', getAnimClass(animation, speed), className)}
       {...props}
     >
       <path
@@ -101,13 +112,13 @@ export const HexagonShape = React.forwardRef<SVGSVGElement, ShapeProps>(
 HexagonShape.displayName = 'HexagonShape'
 
 export const OctagonShape = React.forwardRef<SVGSVGElement, ShapeProps>(
-  ({ size = 100, strokeWidth = 3, filled = true, color, className, ...props }, ref) => (
+  ({ size = 100, strokeWidth = 3, filled = true, color, animation = 'none', speed = 'normal', className, ...props }, ref) => (
     <svg
       ref={ref}
       width={size}
       height={size}
       viewBox="0 0 100 100"
-      className={cn('text-accent', className)}
+      className={cn('text-accent', getAnimClass(animation, speed), className)}
       {...props}
     >
       <path
@@ -122,13 +133,13 @@ export const OctagonShape = React.forwardRef<SVGSVGElement, ShapeProps>(
 OctagonShape.displayName = 'OctagonShape'
 
 export const CrossShape = React.forwardRef<SVGSVGElement, ShapeProps>(
-  ({ size = 100, strokeWidth = 3, filled = true, color, className, ...props }, ref) => (
+  ({ size = 100, strokeWidth = 3, filled = true, color, animation = 'none', speed = 'normal', className, ...props }, ref) => (
     <svg
       ref={ref}
       width={size}
       height={size}
       viewBox="0 0 100 100"
-      className={cn('text-accent', className)}
+      className={cn('text-accent', getAnimClass(animation, speed), className)}
       {...props}
     >
       <path
@@ -143,13 +154,13 @@ export const CrossShape = React.forwardRef<SVGSVGElement, ShapeProps>(
 CrossShape.displayName = 'CrossShape'
 
 export const TrapezoidShape = React.forwardRef<SVGSVGElement, ShapeProps>(
-  ({ size = 100, strokeWidth = 3, filled = true, color, className, ...props }, ref) => (
+  ({ size = 100, strokeWidth = 3, filled = true, color, animation = 'none', speed = 'normal', className, ...props }, ref) => (
     <svg
       ref={ref}
       width={size}
       height={size * 0.6}
       viewBox="0 0 100 60"
-      className={cn('text-secondary', className)}
+      className={cn('text-secondary', getAnimClass(animation, speed), className)}
       {...props}
     >
       <path
@@ -164,13 +175,13 @@ export const TrapezoidShape = React.forwardRef<SVGSVGElement, ShapeProps>(
 TrapezoidShape.displayName = 'TrapezoidShape'
 
 export const ParallelogramShape = React.forwardRef<SVGSVGElement, ShapeProps>(
-  ({ size = 100, strokeWidth = 3, filled = true, color, className, ...props }, ref) => (
+  ({ size = 100, strokeWidth = 3, filled = true, color, animation = 'none', speed = 'normal', className, ...props }, ref) => (
     <svg
       ref={ref}
       width={size}
       height={size * 0.5}
       viewBox="0 0 100 50"
-      className={cn('text-info', className)}
+      className={cn('text-info', getAnimClass(animation, speed), className)}
       {...props}
     >
       <path
@@ -189,13 +200,13 @@ ParallelogramShape.displayName = 'ParallelogramShape'
 // ============================================================================
 
 export const Star4Shape = React.forwardRef<SVGSVGElement, ShapeProps>(
-  ({ size = 100, strokeWidth = 3, filled = true, color, className, ...props }, ref) => (
+  ({ size = 100, strokeWidth = 3, filled = true, color, animation = 'none', speed = 'normal', className, ...props }, ref) => (
     <svg
       ref={ref}
       width={size}
       height={size}
       viewBox="0 0 100 100"
-      className={cn('text-info', className)}
+      className={cn('text-info', getAnimClass(animation, speed), className)}
       {...props}
     >
       <path
@@ -210,13 +221,13 @@ export const Star4Shape = React.forwardRef<SVGSVGElement, ShapeProps>(
 Star4Shape.displayName = 'Star4Shape'
 
 export const Star5Shape = React.forwardRef<SVGSVGElement, ShapeProps>(
-  ({ size = 100, strokeWidth = 3, filled = true, color, className, ...props }, ref) => (
+  ({ size = 100, strokeWidth = 3, filled = true, color, animation = 'none', speed = 'normal', className, ...props }, ref) => (
     <svg
       ref={ref}
       width={size}
       height={size}
       viewBox="0 0 100 100"
-      className={cn('text-accent', className)}
+      className={cn('text-accent', getAnimClass(animation, speed), className)}
       {...props}
     >
       <path
@@ -231,13 +242,13 @@ export const Star5Shape = React.forwardRef<SVGSVGElement, ShapeProps>(
 Star5Shape.displayName = 'Star5Shape'
 
 export const BurstShape = React.forwardRef<SVGSVGElement, ShapeProps>(
-  ({ size = 100, strokeWidth = 3, filled = true, color, className, ...props }, ref) => (
+  ({ size = 100, strokeWidth = 3, filled = true, color, animation = 'none', speed = 'normal', className, ...props }, ref) => (
     <svg
       ref={ref}
       width={size}
       height={size}
       viewBox="0 0 100 100"
-      className={cn('text-primary', className)}
+      className={cn('text-primary', getAnimClass(animation, speed), className)}
       {...props}
     >
       <path
@@ -252,13 +263,13 @@ export const BurstShape = React.forwardRef<SVGSVGElement, ShapeProps>(
 BurstShape.displayName = 'BurstShape'
 
 export const ExplosionShape = React.forwardRef<SVGSVGElement, ShapeProps>(
-  ({ size = 100, strokeWidth = 3, filled = true, color, className, ...props }, ref) => (
+  ({ size = 100, strokeWidth = 3, filled = true, color, animation = 'none', speed = 'normal', className, ...props }, ref) => (
     <svg
       ref={ref}
       width={size}
       height={size}
       viewBox="0 0 100 100"
-      className={cn('text-warning', className)}
+      className={cn('text-warning', getAnimClass(animation, speed), className)}
       {...props}
     >
       <path
@@ -273,13 +284,13 @@ export const ExplosionShape = React.forwardRef<SVGSVGElement, ShapeProps>(
 ExplosionShape.displayName = 'ExplosionShape'
 
 export const SplatShape = React.forwardRef<SVGSVGElement, ShapeProps>(
-  ({ size = 100, strokeWidth = 3, filled = true, color, className, ...props }, ref) => (
+  ({ size = 100, strokeWidth = 3, filled = true, color, animation = 'none', speed = 'normal', className, ...props }, ref) => (
     <svg
       ref={ref}
       width={size}
       height={size}
       viewBox="0 0 100 100"
-      className={cn('text-destructive', className)}
+      className={cn('text-destructive', getAnimClass(animation, speed), className)}
       {...props}
     >
       <path
@@ -294,13 +305,13 @@ export const SplatShape = React.forwardRef<SVGSVGElement, ShapeProps>(
 SplatShape.displayName = 'SplatShape'
 
 export const LightningShape = React.forwardRef<SVGSVGElement, ShapeProps>(
-  ({ size = 100, strokeWidth = 3, filled = true, color, className, ...props }, ref) => (
+  ({ size = 100, strokeWidth = 3, filled = true, color, animation = 'none', speed = 'normal', className, ...props }, ref) => (
     <svg
       ref={ref}
       width={size * 0.6}
       height={size}
       viewBox="0 0 60 100"
-      className={cn('text-warning', className)}
+      className={cn('text-warning', getAnimClass(animation, speed), className)}
       {...props}
     >
       <path
@@ -319,13 +330,13 @@ LightningShape.displayName = 'LightningShape'
 // ============================================================================
 
 export const BlobShape = React.forwardRef<SVGSVGElement, ShapeProps>(
-  ({ size = 100, strokeWidth = 3, filled = true, color, className, ...props }, ref) => (
+  ({ size = 100, strokeWidth = 3, filled = true, color, animation = 'none', speed = 'normal', className, ...props }, ref) => (
     <svg
       ref={ref}
       width={size}
       height={size}
       viewBox="0 0 100 100"
-      className={cn('text-secondary', className)}
+      className={cn('text-secondary', getAnimClass(animation, speed), className)}
       {...props}
     >
       <path
@@ -340,13 +351,13 @@ export const BlobShape = React.forwardRef<SVGSVGElement, ShapeProps>(
 BlobShape.displayName = 'BlobShape'
 
 export const WaveShape = React.forwardRef<SVGSVGElement, ShapeProps>(
-  ({ size = 100, strokeWidth = 3, filled = true, color, className, ...props }, ref) => (
+  ({ size = 100, strokeWidth = 3, filled = true, color, animation = 'none', speed = 'normal', className, ...props }, ref) => (
     <svg
       ref={ref}
       width={size}
       height={size * 0.5}
       viewBox="0 0 100 50"
-      className={cn('text-secondary', className)}
+      className={cn('text-secondary', getAnimClass(animation, speed), className)}
       {...props}
     >
       <path
@@ -361,13 +372,13 @@ export const WaveShape = React.forwardRef<SVGSVGElement, ShapeProps>(
 WaveShape.displayName = 'WaveShape'
 
 export const CloudShape = React.forwardRef<SVGSVGElement, ShapeProps>(
-  ({ size = 100, strokeWidth = 3, filled = true, color, className, ...props }, ref) => (
+  ({ size = 100, strokeWidth = 3, filled = true, color, animation = 'none', speed = 'normal', className, ...props }, ref) => (
     <svg
       ref={ref}
       width={size}
       height={size * 0.7}
       viewBox="0 0 100 70"
-      className={cn('text-info', className)}
+      className={cn('text-info', getAnimClass(animation, speed), className)}
       {...props}
     >
       <path
@@ -382,13 +393,13 @@ export const CloudShape = React.forwardRef<SVGSVGElement, ShapeProps>(
 CloudShape.displayName = 'CloudShape'
 
 export const HeartShape = React.forwardRef<SVGSVGElement, ShapeProps>(
-  ({ size = 100, strokeWidth = 3, filled = true, color, className, ...props }, ref) => (
+  ({ size = 100, strokeWidth = 3, filled = true, color, animation = 'none', speed = 'normal', className, ...props }, ref) => (
     <svg
       ref={ref}
       width={size}
       height={size}
       viewBox="0 0 100 100"
-      className={cn('text-destructive', className)}
+      className={cn('text-destructive', getAnimClass(animation, speed), className)}
       {...props}
     >
       <path
@@ -407,13 +418,13 @@ HeartShape.displayName = 'HeartShape'
 // ============================================================================
 
 export const ArrowBadge = React.forwardRef<SVGSVGElement, ShapeProps>(
-  ({ size = 100, strokeWidth = 3, filled = true, color, className, ...props }, ref) => (
+  ({ size = 100, strokeWidth = 3, filled = true, color, animation = 'none', speed = 'normal', className, ...props }, ref) => (
     <svg
       ref={ref}
       width={size}
       height={size * 0.6}
       viewBox="0 0 100 60"
-      className={cn('text-accent', className)}
+      className={cn('text-accent', getAnimClass(animation, speed), className)}
       {...props}
     >
       <path
@@ -428,13 +439,13 @@ export const ArrowBadge = React.forwardRef<SVGSVGElement, ShapeProps>(
 ArrowBadge.displayName = 'ArrowBadge'
 
 export const ZigzagBanner = React.forwardRef<SVGSVGElement, ShapeProps>(
-  ({ size = 100, strokeWidth = 3, filled = true, color, className, ...props }, ref) => (
+  ({ size = 100, strokeWidth = 3, filled = true, color, animation = 'none', speed = 'normal', className, ...props }, ref) => (
     <svg
       ref={ref}
       width={size}
       height={size * 0.5}
       viewBox="0 0 100 50"
-      className={cn('text-warning', className)}
+      className={cn('text-warning', getAnimClass(animation, speed), className)}
       {...props}
     >
       <path
@@ -449,13 +460,13 @@ export const ZigzagBanner = React.forwardRef<SVGSVGElement, ShapeProps>(
 ZigzagBanner.displayName = 'ZigzagBanner'
 
 export const RibbonShape = React.forwardRef<SVGSVGElement, ShapeProps>(
-  ({ size = 100, strokeWidth = 3, filled = true, color, className, ...props }, ref) => (
+  ({ size = 100, strokeWidth = 3, filled = true, color, animation = 'none', speed = 'normal', className, ...props }, ref) => (
     <svg
       ref={ref}
       width={size}
       height={size * 0.4}
       viewBox="0 0 100 40"
-      className={cn('text-primary', className)}
+      className={cn('text-primary', getAnimClass(animation, speed), className)}
       {...props}
     >
       <path
@@ -470,13 +481,13 @@ export const RibbonShape = React.forwardRef<SVGSVGElement, ShapeProps>(
 RibbonShape.displayName = 'RibbonShape'
 
 export const ShieldShape = React.forwardRef<SVGSVGElement, ShapeProps>(
-  ({ size = 100, strokeWidth = 3, filled = true, color, className, ...props }, ref) => (
+  ({ size = 100, strokeWidth = 3, filled = true, color, animation = 'none', speed = 'normal', className, ...props }, ref) => (
     <svg
       ref={ref}
       width={size}
       height={size}
       viewBox="0 0 100 100"
-      className={cn('text-success', className)}
+      className={cn('text-success', getAnimClass(animation, speed), className)}
       {...props}
     >
       <path
@@ -491,13 +502,13 @@ export const ShieldShape = React.forwardRef<SVGSVGElement, ShapeProps>(
 ShieldShape.displayName = 'ShieldShape'
 
 export const TagShape = React.forwardRef<SVGSVGElement, ShapeProps>(
-  ({ size = 100, strokeWidth = 3, filled = true, color, className, ...props }, ref) => (
+  ({ size = 100, strokeWidth = 3, filled = true, color, animation = 'none', speed = 'normal', className, ...props }, ref) => (
     <svg
       ref={ref}
       width={size}
       height={size * 0.6}
       viewBox="0 0 100 60"
-      className={cn('text-warning', className)}
+      className={cn('text-warning', getAnimClass(animation, speed), className)}
       {...props}
     >
       <path
@@ -513,13 +524,13 @@ export const TagShape = React.forwardRef<SVGSVGElement, ShapeProps>(
 TagShape.displayName = 'TagShape'
 
 export const PriceTagShape = React.forwardRef<SVGSVGElement, ShapeProps>(
-  ({ size = 100, strokeWidth = 3, filled = true, color, className, ...props }, ref) => (
+  ({ size = 100, strokeWidth = 3, filled = true, color, animation = 'none', speed = 'normal', className, ...props }, ref) => (
     <svg
       ref={ref}
       width={size}
       height={size * 0.6}
       viewBox="0 0 100 60"
-      className={cn('text-accent', className)}
+      className={cn('text-accent', getAnimClass(animation, speed), className)}
       {...props}
     >
       <path
@@ -536,13 +547,13 @@ export const PriceTagShape = React.forwardRef<SVGSVGElement, ShapeProps>(
 PriceTagShape.displayName = 'PriceTagShape'
 
 export const TicketShape = React.forwardRef<SVGSVGElement, ShapeProps>(
-  ({ size = 100, strokeWidth = 3, filled = true, color, className, ...props }, ref) => (
+  ({ size = 100, strokeWidth = 3, filled = true, color, animation = 'none', speed = 'normal', className, ...props }, ref) => (
     <svg
       ref={ref}
       width={size}
       height={size * 0.5}
       viewBox="0 0 100 50"
-      className={cn('text-success', className)}
+      className={cn('text-success', getAnimClass(animation, speed), className)}
       {...props}
     >
       <path
@@ -557,13 +568,13 @@ export const TicketShape = React.forwardRef<SVGSVGElement, ShapeProps>(
 TicketShape.displayName = 'TicketShape'
 
 export const CouponShape = React.forwardRef<SVGSVGElement, ShapeProps>(
-  ({ size = 100, strokeWidth = 3, filled = true, color, className, ...props }, ref) => (
+  ({ size = 100, strokeWidth = 3, filled = true, color, animation = 'none', speed = 'normal', className, ...props }, ref) => (
     <svg
       ref={ref}
       width={size}
       height={size * 0.5}
       viewBox="0 0 100 50"
-      className={cn('text-success', className)}
+      className={cn('text-success', getAnimClass(animation, speed), className)}
       {...props}
     >
       <path
@@ -579,13 +590,13 @@ export const CouponShape = React.forwardRef<SVGSVGElement, ShapeProps>(
 CouponShape.displayName = 'CouponShape'
 
 export const BookmarkShape = React.forwardRef<SVGSVGElement, ShapeProps>(
-  ({ size = 100, strokeWidth = 3, filled = true, color, className, ...props }, ref) => (
+  ({ size = 100, strokeWidth = 3, filled = true, color, animation = 'none', speed = 'normal', className, ...props }, ref) => (
     <svg
       ref={ref}
       width={size * 0.6}
       height={size}
       viewBox="0 0 60 100"
-      className={cn('text-destructive', className)}
+      className={cn('text-destructive', getAnimClass(animation, speed), className)}
       {...props}
     >
       <path
@@ -600,13 +611,13 @@ export const BookmarkShape = React.forwardRef<SVGSVGElement, ShapeProps>(
 BookmarkShape.displayName = 'BookmarkShape'
 
 export const FlagShape = React.forwardRef<SVGSVGElement, ShapeProps>(
-  ({ size = 100, strokeWidth = 3, filled = true, color, className, ...props }, ref) => (
+  ({ size = 100, strokeWidth = 3, filled = true, color, animation = 'none', speed = 'normal', className, ...props }, ref) => (
     <svg
       ref={ref}
       width={size}
       height={size}
       viewBox="0 0 100 100"
-      className={cn('text-warning', className)}
+      className={cn('text-warning', getAnimClass(animation, speed), className)}
       {...props}
     >
       <path d="M10 5 L10 95" fill="none" stroke="hsl(var(--foreground))" strokeWidth={strokeWidth} />
@@ -622,13 +633,13 @@ export const FlagShape = React.forwardRef<SVGSVGElement, ShapeProps>(
 FlagShape.displayName = 'FlagShape'
 
 export const PillShape = React.forwardRef<SVGSVGElement, ShapeProps>(
-  ({ size = 100, strokeWidth = 3, filled = true, color, className, ...props }, ref) => (
+  ({ size = 100, strokeWidth = 3, filled = true, color, animation = 'none', speed = 'normal', className, ...props }, ref) => (
     <svg
       ref={ref}
       width={size}
       height={size * 0.4}
       viewBox="0 0 100 40"
-      className={cn('text-primary', className)}
+      className={cn('text-primary', getAnimClass(animation, speed), className)}
       {...props}
     >
       <path
@@ -647,13 +658,13 @@ PillShape.displayName = 'PillShape'
 // ============================================================================
 
 export const SpeechBubble = React.forwardRef<SVGSVGElement, ShapeProps>(
-  ({ size = 100, strokeWidth = 3, filled = true, color, className, ...props }, ref) => (
+  ({ size = 100, strokeWidth = 3, filled = true, color, animation = 'none', speed = 'normal', className, ...props }, ref) => (
     <svg
       ref={ref}
       width={size}
       height={size}
       viewBox="0 0 100 100"
-      className={cn('text-card', className)}
+      className={cn('text-card', getAnimClass(animation, speed), className)}
       {...props}
     >
       <path
@@ -668,13 +679,13 @@ export const SpeechBubble = React.forwardRef<SVGSVGElement, ShapeProps>(
 SpeechBubble.displayName = 'SpeechBubble'
 
 export const CursorShape = React.forwardRef<SVGSVGElement, ShapeProps>(
-  ({ size = 100, strokeWidth = 3, filled = true, color, className, ...props }, ref) => (
+  ({ size = 100, strokeWidth = 3, filled = true, color, animation = 'none', speed = 'normal', className, ...props }, ref) => (
     <svg
       ref={ref}
       width={size * 0.7}
       height={size}
       viewBox="0 0 70 100"
-      className={cn('text-success', className)}
+      className={cn('text-success', getAnimClass(animation, speed), className)}
       {...props}
     >
       <path
@@ -689,13 +700,13 @@ export const CursorShape = React.forwardRef<SVGSVGElement, ShapeProps>(
 CursorShape.displayName = 'CursorShape'
 
 export const EyeShape = React.forwardRef<SVGSVGElement, ShapeProps>(
-  ({ size = 100, strokeWidth = 3, filled = true, color, className, ...props }, ref) => (
+  ({ size = 100, strokeWidth = 3, filled = true, color, animation = 'none', speed = 'normal', className, ...props }, ref) => (
     <svg
       ref={ref}
       width={size}
       height={size * 0.6}
       viewBox="0 0 100 60"
-      className={cn('text-secondary', className)}
+      className={cn('text-secondary', getAnimClass(animation, speed), className)}
       {...props}
     >
       <path
@@ -715,13 +726,13 @@ EyeShape.displayName = 'EyeShape'
 // ============================================================================
 
 export const SunShape = React.forwardRef<SVGSVGElement, ShapeProps>(
-  ({ size = 100, strokeWidth = 3, filled = true, color, className, ...props }, ref) => (
+  ({ size = 100, strokeWidth = 3, filled = true, color, animation = 'none', speed = 'normal', className, ...props }, ref) => (
     <svg
       ref={ref}
       width={size}
       height={size}
       viewBox="0 0 100 100"
-      className={cn('text-warning', className)}
+      className={cn('text-warning', getAnimClass(animation, speed), className)}
       {...props}
     >
       <circle
@@ -745,13 +756,13 @@ export const SunShape = React.forwardRef<SVGSVGElement, ShapeProps>(
 SunShape.displayName = 'SunShape'
 
 export const Star6Shape = React.forwardRef<SVGSVGElement, ShapeProps>(
-  ({ size = 100, strokeWidth = 3, filled = true, color, className, ...props }, ref) => (
+  ({ size = 100, strokeWidth = 3, filled = true, color, animation = 'none', speed = 'normal', className, ...props }, ref) => (
     <svg
       ref={ref}
       width={size}
       height={size}
       viewBox="0 0 100 100"
-      className={cn('text-accent', className)}
+      className={cn('text-accent', getAnimClass(animation, speed), className)}
       {...props}
     >
       {/* 6-pointed star (hexagram) with 12 points alternating */}
@@ -767,13 +778,13 @@ export const Star6Shape = React.forwardRef<SVGSVGElement, ShapeProps>(
 Star6Shape.displayName = 'Star6Shape'
 
 export const CrescentShape = React.forwardRef<SVGSVGElement, ShapeProps>(
-  ({ size = 100, strokeWidth = 3, filled = true, color, className, ...props }, ref) => (
+  ({ size = 100, strokeWidth = 3, filled = true, color, animation = 'none', speed = 'normal', className, ...props }, ref) => (
     <svg
       ref={ref}
       width={size}
       height={size}
       viewBox="0 0 100 100"
-      className={cn('text-warning', className)}
+      className={cn('text-warning', getAnimClass(animation, speed), className)}
       {...props}
     >
       <path
@@ -789,13 +800,13 @@ export const CrescentShape = React.forwardRef<SVGSVGElement, ShapeProps>(
 CrescentShape.displayName = 'CrescentShape'
 
 export const RainbowShape = React.forwardRef<SVGSVGElement, ShapeProps>(
-  ({ size = 100, strokeWidth = 3, filled = true, color, className, ...props }, ref) => (
+  ({ size = 100, strokeWidth = 3, filled = true, color, animation = 'none', speed = 'normal', className, ...props }, ref) => (
     <svg
       ref={ref}
       width={size}
       height={size * 0.6}
       viewBox="0 0 100 60"
-      className={cn('text-primary', className)}
+      className={cn('text-primary', getAnimClass(animation, speed), className)}
       {...props}
     >
       <path
@@ -846,13 +857,13 @@ export const RainbowShape = React.forwardRef<SVGSVGElement, ShapeProps>(
 RainbowShape.displayName = 'RainbowShape'
 
 export const PlanetShape = React.forwardRef<SVGSVGElement, ShapeProps>(
-  ({ size = 100, strokeWidth = 3, filled = true, color, className, ...props }, ref) => (
+  ({ size = 100, strokeWidth = 3, filled = true, color, animation = 'none', speed = 'normal', className, ...props }, ref) => (
     <svg
       ref={ref}
       width={size}
       height={size}
       viewBox="0 0 100 100"
-      className={cn('text-secondary', className)}
+      className={cn('text-secondary', getAnimClass(animation, speed), className)}
       {...props}
     >
       <circle
@@ -879,13 +890,13 @@ export const PlanetShape = React.forwardRef<SVGSVGElement, ShapeProps>(
 PlanetShape.displayName = 'PlanetShape'
 
 export const UmbrellaShape = React.forwardRef<SVGSVGElement, ShapeProps>(
-  ({ size = 100, strokeWidth = 3, filled = true, color, className, ...props }, ref) => (
+  ({ size = 100, strokeWidth = 3, filled = true, color, animation = 'none', speed = 'normal', className, ...props }, ref) => (
     <svg
       ref={ref}
       width={size}
       height={size}
       viewBox="0 0 100 100"
-      className={cn('text-info', className)}
+      className={cn('text-info', getAnimClass(animation, speed), className)}
       {...props}
     >
       <path
@@ -907,13 +918,13 @@ export const UmbrellaShape = React.forwardRef<SVGSVGElement, ShapeProps>(
 UmbrellaShape.displayName = 'UmbrellaShape'
 
 export const AppleShape = React.forwardRef<SVGSVGElement, ShapeProps>(
-  ({ size = 100, strokeWidth = 3, filled = true, color, className, ...props }, ref) => (
+  ({ size = 100, strokeWidth = 3, filled = true, color, animation = 'none', speed = 'normal', className, ...props }, ref) => (
     <svg
       ref={ref}
       width={size}
       height={size}
       viewBox="0 0 100 100"
-      className={cn('text-destructive', className)}
+      className={cn('text-destructive', getAnimClass(animation, speed), className)}
       {...props}
     >
       <path
@@ -945,13 +956,13 @@ AppleShape.displayName = 'AppleShape'
 // ============================================================================
 
 export const ScribbleCircle = React.forwardRef<SVGSVGElement, ShapeProps>(
-  ({ size = 100, strokeWidth = 3, filled = true, color, className, ...props }, ref) => (
+  ({ size = 100, strokeWidth = 3, filled = true, color, animation = 'none', speed = 'normal', className, ...props }, ref) => (
     <svg
       ref={ref}
       width={size}
       height={size}
       viewBox="0 0 100 100"
-      className={cn('text-info', className)}
+      className={cn('text-info', getAnimClass(animation, speed), className)}
       {...props}
     >
       <circle
@@ -981,7 +992,7 @@ export const ScribbleUnderline = React.forwardRef<SVGSVGElement, ShapeProps>(
       width={size}
       height={size * 0.2}
       viewBox="0 0 100 20"
-      className={cn('text-primary', className)}
+      className={cn('text-primary', getAnimClass(animation, speed), className)}
       {...props}
     >
       <path
@@ -1005,13 +1016,13 @@ export const ScribbleUnderline = React.forwardRef<SVGSVGElement, ShapeProps>(
 ScribbleUnderline.displayName = 'ScribbleUnderline'
 
 export const PaperTearShape = React.forwardRef<SVGSVGElement, ShapeProps>(
-  ({ size = 100, strokeWidth = 3, filled = true, color, className, ...props }, ref) => (
+  ({ size = 100, strokeWidth = 3, filled = true, color, animation = 'none', speed = 'normal', className, ...props }, ref) => (
     <svg
       ref={ref}
       width={size}
       height={size * 0.3}
       viewBox="0 0 100 30"
-      className={cn('text-card', className)}
+      className={cn('text-card', getAnimClass(animation, speed), className)}
       {...props}
     >
       <path
@@ -1030,13 +1041,13 @@ PaperTearShape.displayName = 'PaperTearShape'
 // ============================================================================
 
 export const SealShape = React.forwardRef<SVGSVGElement, ShapeProps>(
-  ({ size = 100, strokeWidth = 3, filled = true, color, className, ...props }, ref) => (
+  ({ size = 100, strokeWidth = 3, filled = true, color, animation = 'none', speed = 'normal', className, ...props }, ref) => (
     <svg
       ref={ref}
       width={size}
       height={size}
       viewBox="0 0 100 100"
-      className={cn('text-success', className)}
+      className={cn('text-success', getAnimClass(animation, speed), className)}
       {...props}
     >
       <path
@@ -1051,13 +1062,13 @@ export const SealShape = React.forwardRef<SVGSVGElement, ShapeProps>(
 SealShape.displayName = 'SealShape'
 
 export const GearShape = React.forwardRef<SVGSVGElement, ShapeProps>(
-  ({ size = 100, strokeWidth = 3, filled = true, color, className, ...props }, ref) => (
+  ({ size = 100, strokeWidth = 3, filled = true, color, animation = 'none', speed = 'normal', className, ...props }, ref) => (
     <svg
       ref={ref}
       width={size}
       height={size}
       viewBox="0 0 100 100"
-      className={cn('text-muted-foreground', className)}
+      className={cn('text-muted-foreground', getAnimClass(animation, speed), className)}
       {...props}
     >
       <path
@@ -1080,13 +1091,13 @@ export const GearShape = React.forwardRef<SVGSVGElement, ShapeProps>(
 GearShape.displayName = 'GearShape'
 
 export const WavyRectangleShape = React.forwardRef<SVGSVGElement, ShapeProps>(
-  ({ size = 100, strokeWidth = 3, filled = true, color, className, ...props }, ref) => (
+  ({ size = 100, strokeWidth = 3, filled = true, color, animation = 'none', speed = 'normal', className, ...props }, ref) => (
     <svg
       ref={ref}
       width={size}
       height={size * 0.7}
       viewBox="0 0 100 70"
-      className={cn('text-accent', className)}
+      className={cn('text-accent', getAnimClass(animation, speed), className)}
       {...props}
     >
       <path

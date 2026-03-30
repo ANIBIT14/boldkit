@@ -224,6 +224,96 @@ function BlogPreview() {
   )
 }
 
+function DocsPreview() {
+  return (
+    <div className="flex flex-col h-full text-[6px]">
+      {/* Header */}
+      <div className="flex items-center justify-between bg-foreground text-background px-2 py-1 border-b border-background/20">
+        <div className="flex items-center gap-1">
+          <div className="w-2 h-2 bg-primary" />
+          <div className="w-6 h-1 bg-background" />
+        </div>
+        <div className="flex gap-1">
+          <div className="w-5 h-1 bg-background/50" />
+          <div className="w-5 h-1 bg-background/50" />
+          <div className="w-5 h-1 bg-background/50" />
+        </div>
+        <div className="w-8 h-1.5 bg-primary" />
+      </div>
+      {/* Body: sidebar + content + toc */}
+      <div className="flex flex-1 overflow-hidden">
+        {/* Sidebar */}
+        <div className="w-10 border-r border-foreground bg-muted/30 p-1 space-y-1 flex-shrink-0">
+          <div className="w-full h-0.5 bg-muted-foreground/40" />
+          <div className="space-y-0.5">
+            <div className="w-full h-1 bg-primary" />
+            <div className="w-3/4 h-0.5 bg-muted-foreground/50 pl-1" />
+            <div className="w-3/4 h-0.5 bg-muted-foreground/50 pl-1" />
+          </div>
+          <div className="w-full h-0.5 bg-muted-foreground/40" />
+          <div className="space-y-0.5">
+            <div className="w-full h-1 bg-foreground" />
+            <div className="w-3/4 h-0.5 bg-muted-foreground/50 pl-1" />
+            <div className="w-3/4 h-0.5 bg-foreground/70 pl-1" />
+            <div className="w-3/4 h-0.5 bg-muted-foreground/50 pl-1" />
+          </div>
+          <div className="w-full h-0.5 bg-muted-foreground/40" />
+          <div className="space-y-0.5">
+            <div className="w-full h-1 bg-foreground" />
+            <div className="w-3/4 h-0.5 bg-muted-foreground/50 pl-1" />
+          </div>
+        </div>
+        {/* Content */}
+        <div className="flex-1 p-1.5 space-y-1 min-w-0">
+          <div className="flex items-center gap-0.5 mb-1">
+            <div className="w-3 h-0.5 bg-muted-foreground/40" />
+            <div className="w-0.5 h-0.5 bg-muted-foreground/40" />
+            <div className="w-5 h-0.5 bg-foreground" />
+          </div>
+          <div className="w-3/4 h-2 bg-foreground" />
+          <div className="space-y-0.5">
+            <div className="w-full h-0.5 bg-muted-foreground/50" />
+            <div className="w-5/6 h-0.5 bg-muted-foreground/50" />
+          </div>
+          <div className="bg-muted border border-foreground p-1 space-y-0.5">
+            <div className="w-8 h-0.5 bg-success" />
+            <div className="w-full h-0.5 bg-info/70" />
+            <div className="w-3/4 h-0.5 bg-info/70" />
+          </div>
+          <div className="w-1/2 h-1.5 bg-foreground mt-1" />
+          <div className="space-y-0.5">
+            <div className="w-full h-0.5 bg-muted-foreground/50" />
+            <div className="w-full h-0.5 bg-muted-foreground/50" />
+            <div className="w-4/5 h-0.5 bg-muted-foreground/50" />
+          </div>
+          <div className="grid grid-cols-2 gap-0.5 mt-0.5">
+            <div className="bg-primary/10 border border-foreground p-0.5">
+              <div className="w-3 h-0.5 bg-primary mb-0.5" />
+              <div className="w-full h-0.5 bg-muted-foreground/40" />
+            </div>
+            <div className="bg-secondary/10 border border-foreground p-0.5">
+              <div className="w-3 h-0.5 bg-secondary mb-0.5" />
+              <div className="w-full h-0.5 bg-muted-foreground/40" />
+            </div>
+          </div>
+        </div>
+        {/* ToC */}
+        <div className="w-10 border-l border-foreground bg-muted/20 p-1 space-y-0.5 flex-shrink-0">
+          <div className="w-full h-0.5 bg-foreground mb-1" />
+          <div className="w-full h-0.5 bg-primary" />
+          <div className="w-3/4 h-0.5 bg-muted-foreground/50 pl-0.5" />
+          <div className="w-3/4 h-0.5 bg-muted-foreground/50 pl-0.5" />
+          <div className="w-full h-0.5 bg-muted-foreground/70" />
+          <div className="w-3/4 h-0.5 bg-muted-foreground/50 pl-0.5" />
+          <div className="w-full h-0.5 bg-muted-foreground/70" />
+          <div className="w-3/4 h-0.5 bg-muted-foreground/50 pl-0.5" />
+          <div className="w-3/4 h-0.5 bg-muted-foreground/50 pl-0.5" />
+        </div>
+      </div>
+    </div>
+  )
+}
+
 function ProductPreview() {
   return (
     <div className="p-2 space-y-2">
@@ -278,6 +368,7 @@ const previewComponents: Record<string, React.FC> = {
   'Pricing': PricingPreview,
   'Blog': BlogPreview,
   'Product': ProductPreview,
+  'Documentation Site': DocsPreview,
 }
 
 const templates = [
@@ -425,6 +516,30 @@ import ProductTemplate from '@/components/templates/ProductTemplate.vue'
 </template>`
     } as Record<string, string>,
   },
+  {
+    name: 'Documentation Site',
+    description: 'A full-featured documentation site template with sticky header, collapsible sidebar nav, MDX-ready content area with code blocks, and a sticky right-side table of contents.',
+    features: ['Sticky Header', 'Sidebar Nav', 'Code Blocks', 'Table of Contents', 'Breadcrumbs', 'Prev / Next Nav'],
+    path: '/templates/docs',
+    sourceUrl: {
+      react: 'https://github.com/ANIBIT14/boldkit/blob/main/src/components/templates/DocsTemplate.tsx',
+      vue: 'https://github.com/ANIBIT14/boldkit/blob/main/packages/vue/src/components/templates/DocsTemplate.vue'
+    } as Record<string, string>,
+    code: {
+      react: `import { DocsTemplate } from '@/components/templates/DocsTemplate'
+
+export default function Page() {
+  return <DocsTemplate />
+}`,
+      vue: `<script setup lang="ts">
+import DocsTemplate from '@/components/templates/DocsTemplate.vue'
+</script>
+
+<template>
+  <DocsTemplate />
+</template>`
+    } as Record<string, string>,
+  },
 ]
 
 export function Templates() {
@@ -558,7 +673,7 @@ export function Templates() {
           <div className="mt-12 text-center">
             <h3 className="text-2xl font-bold uppercase mb-4">More Templates Coming Soon</h3>
             <p className="text-muted-foreground mb-6">
-              Auth Pages, Contact Forms, 404 Pages, and more.
+              Auth Pages, Contact Forms, 404 Pages, and more in v2.6.0.
             </p>
             <Button variant="outline" asChild>
               <a
