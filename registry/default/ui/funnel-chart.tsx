@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { cn } from '@/lib/utils'
 import { FunnelChart as RechartsFC, Funnel, LabelList, Tooltip, ResponsiveContainer } from 'recharts'
-import type { ChartConfig } from './types'
+import type { ChartConfig } from './chart'
 
 export interface FunnelChartData {
   name: string
