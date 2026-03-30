@@ -522,57 +522,58 @@ export function InvoiceList({
   return (
     <div className={cn('border-3 border-foreground bg-card', className)}>
       {/* Header */}
-      <div className="grid grid-cols-12 gap-4 p-4 border-b-3 border-foreground bg-muted/50 font-bold uppercase text-xs">
-        <div className="col-span-3">Invoice</div>
+      <div className="grid grid-cols-12 gap-2 p-4 border-b-3 border-foreground bg-muted/50 font-bold uppercase text-xs">
+        <div className="col-span-2">Invoice</div>
         <div className="col-span-3">Client</div>
         <div className="col-span-2">Date</div>
         <div className="col-span-2 text-right">Amount</div>
         <div className="col-span-2 text-right">Status</div>
+        <div className="col-span-1" />
       </div>
 
       {/* Rows */}
       {invoices.map((invoice) => (
         <div
           key={invoice.id}
-          className="grid grid-cols-12 gap-4 p-4 border-b border-foreground/20 hover:bg-muted/30 transition-colors items-center"
+          className="grid grid-cols-12 gap-2 p-4 border-b border-foreground/20 hover:bg-muted/30 transition-colors items-center"
         >
-          <div className="col-span-3 font-bold">{invoice.invoiceNumber}</div>
-          <div className="col-span-3 text-muted-foreground">{invoice.clientName}</div>
+          <div className="col-span-2 font-bold truncate">{invoice.invoiceNumber}</div>
+          <div className="col-span-3 text-muted-foreground truncate">{invoice.clientName}</div>
           <div className="col-span-2 text-sm text-muted-foreground">{invoice.date}</div>
           <div className="col-span-2 text-right font-mono font-bold">
             ${invoice.amount.toFixed(2)}
           </div>
-          <div className="col-span-2 flex items-center justify-end gap-2">
+          <div className="col-span-2 flex justify-end">
             <span
               className={cn(
-                'px-2 py-0.5 text-xs font-bold uppercase',
+                'px-2 py-0.5 text-xs font-bold uppercase whitespace-nowrap',
                 statusConfig[invoice.status]
               )}
             >
               {invoice.status}
             </span>
-            <div className="flex gap-1">
-              {onDownload && (
-                <Button
-                  variant="ghost"
-                  size="sm"
-                  className="h-7 w-7 p-0"
-                  onClick={() => onDownload(invoice.id)}
-                >
-                  <Download className="h-3 w-3" />
-                </Button>
-              )}
-              {onView && (
-                <Button
-                  variant="ghost"
-                  size="sm"
-                  className="h-7 w-7 p-0"
-                  onClick={() => onView(invoice.id)}
-                >
-                  →
-                </Button>
-              )}
-            </div>
+          </div>
+          <div className="col-span-1 flex items-center justify-end gap-1">
+            {onDownload && (
+              <Button
+                variant="ghost"
+                size="sm"
+                className="h-7 w-7 p-0"
+                onClick={() => onDownload(invoice.id)}
+              >
+                <Download className="h-3 w-3" />
+              </Button>
+            )}
+            {onView && (
+              <Button
+                variant="ghost"
+                size="sm"
+                className="h-7 w-7 p-0"
+                onClick={() => onView(invoice.id)}
+              >
+                →
+              </Button>
+            )}
           </div>
         </div>
       ))}
