@@ -6,7 +6,7 @@ import { TooltipProvider } from '@/components/ui/tooltip'
 import { Toaster } from '@/components/ui/sonner'
 import { ErrorBoundary } from '@/components/ErrorBoundary'
 import { Skeleton } from '@/components/ui/skeleton'
-import { Home, ThemeBuilder, Charts, Shapes, Templates, Blocks } from '@/pages'
+import { Home, ThemeBuilder, Charts, Shapes, Templates, Blocks, ShapeBuilder } from '@/pages'
 import { LandingPageTemplate } from '@/components/templates/LandingPageTemplate'
 import { PortfolioTemplate } from '@/components/templates/PortfolioTemplate'
 import { DashboardTemplate } from '@/components/templates/DashboardTemplate'
@@ -137,6 +137,7 @@ function App() {
             <Route path="/themes" element={<ThemeBuilder />} />
             <Route path="/charts" element={<Charts />} />
             <Route path="/shapes" element={<Shapes />} />
+            <Route path="/shapes/builder" element={<ShapeBuilder />} />
             <Route path="/templates" element={<Templates />} />
             <Route path="/blocks" element={<Blocks />} />
             <Route path="/templates/landing-page" element={<LandingPageTemplate />} />

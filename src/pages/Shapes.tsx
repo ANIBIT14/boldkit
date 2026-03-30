@@ -5,7 +5,7 @@ import { Badge } from '@/components/ui/badge'
 import { Card, CardContent } from '@/components/ui/card'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { Layout } from '@/components/layout'
-import { Copy, Check, Terminal } from 'lucide-react'
+import { Copy, Check, Terminal, Wand2 } from 'lucide-react'
 import { toast } from 'sonner'
 import { SEO, pageSEO } from '@/components/SEO'
 import { useFramework, FrameworkToggle, ReactIcon, VueIcon } from '@/hooks/use-framework'
@@ -283,6 +283,12 @@ export function Shapes() {
                 {copiedInstall ? <Check className="h-4 w-4" /> : <Terminal className="h-4 w-4" />}
                 Copy Install Command
               </Button>
+              <Link to="/shapes/builder">
+                <Button size="lg" variant="secondary" className="w-full sm:w-auto gap-2">
+                  <Wand2 className="h-4 w-4" />
+                  Shape Builder
+                </Button>
+              </Link>
               <Link to="/docs">
                 <Button size="lg" variant="outline" className="w-full sm:w-auto">
                   Documentation
