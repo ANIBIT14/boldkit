@@ -1143,3 +1143,45 @@ body {
     transform: scale(1);
   }
 }
+
+/* ── Shape Animations ────────────────────────────────── */
+@keyframes shape-spin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+@keyframes shape-pulse {
+  0%, 100% { transform: scale(1); filter: drop-shadow(0 0 0 hsl(var(--primary))); }
+  50%       { transform: scale(1.12); filter: drop-shadow(0 0 8px hsl(var(--primary))); }
+}
+
+@keyframes shape-bounce {
+  0%, 100% { transform: translateY(0) scaleX(1); }
+  40%       { transform: translateY(-16px) scaleX(0.95); }
+  60%       { transform: translateY(-10px) scaleX(1.05); }
+}
+
+/* slow / normal / fast speed modifiers */
+.shape-animate-spin         { animation: shape-spin   2s linear infinite; }
+.shape-animate-spin-slow    { animation: shape-spin   4s linear infinite; }
+.shape-animate-spin-fast    { animation: shape-spin   0.8s linear infinite; }
+
+.shape-animate-pulse        { animation: shape-pulse  2s ease-in-out infinite; }
+.shape-animate-pulse-slow   { animation: shape-pulse  3.5s ease-in-out infinite; }
+.shape-animate-pulse-fast   { animation: shape-pulse  1s ease-in-out infinite; }
+
+.shape-animate-float        { animation: float        3s ease-in-out infinite; }
+.shape-animate-float-slow   { animation: float        5s ease-in-out infinite; }
+.shape-animate-float-fast   { animation: float        1.5s ease-in-out infinite; }
+
+.shape-animate-wiggle       { animation: wiggle       0.8s ease-in-out infinite; }
+.shape-animate-wiggle-slow  { animation: wiggle       1.5s ease-in-out infinite; }
+.shape-animate-wiggle-fast  { animation: wiggle       0.4s ease-in-out infinite; }
+
+.shape-animate-bounce       { animation: shape-bounce 1.2s ease-in-out infinite; }
+.shape-animate-bounce-slow  { animation: shape-bounce 2.2s ease-in-out infinite; }
+.shape-animate-bounce-fast  { animation: shape-bounce 0.6s ease-in-out infinite; }
+
+.shape-animate-glitch       { animation: glitch       2s steps(1) infinite; }
+.shape-animate-glitch-slow  { animation: glitch       4s steps(1) infinite; }
+.shape-animate-glitch-fast  { animation: glitch       0.8s steps(1) infinite; }

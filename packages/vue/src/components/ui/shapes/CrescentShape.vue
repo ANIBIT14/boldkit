@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { computed } from 'vue'
 import { cn } from '@/lib/utils'
 
 interface Props {
@@ -7,12 +8,23 @@ interface Props {
   strokeWidth?: number
   filled?: boolean
   color?: string
+  animation?: 'none' | 'spin' | 'pulse' | 'float' | 'wiggle' | 'bounce' | 'glitch'
+  speed?: 'slow' | 'normal' | 'fast'
 }
 
 const props = withDefaults(defineProps<Props>(), {
   size: 100,
   strokeWidth: 3,
   filled: true,
+  animation: 'none',
+  speed: 'normal',
+})
+
+const animClass = computed(() => {
+  const a = props.animation
+  if (!a || a === 'none') return ''
+  const s = props.speed && props.speed !== 'normal' ? `-${props.speed}` : ''
+  return `shape-animate-${a}${s}`
 })
 </script>
 
@@ -21,7 +33,7 @@ const props = withDefaults(defineProps<Props>(), {
     :width="size"
     :height="size"
     viewBox="0 0 100 100"
-    :class="cn('text-warning', props.class)"
+    :class="cn('text-warning', animClass, props.class)"
   >
     <path
       d="M70 10 Q90 30 90 55 Q90 80 65 92 Q80 75 80 55 Q80 30 60 15 Q55 12 70 10 Z"
