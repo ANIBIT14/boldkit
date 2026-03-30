@@ -13,6 +13,7 @@ import { DashboardTemplate } from '@/components/templates/DashboardTemplate'
 import { PricingTemplate } from '@/components/templates/PricingTemplate'
 import { BlogTemplate } from '@/components/templates/BlogTemplate'
 import { ProductTemplate } from '@/components/templates/ProductTemplate'
+import { DocsTemplate } from '@/components/templates/DocsTemplate'
 import { DocsLayout } from '@/layouts/DocsLayout'
 import '@/styles/globals.css'
 
@@ -144,6 +145,7 @@ function App() {
             <Route path="/templates/pricing" element={<PricingTemplate />} />
             <Route path="/templates/blog" element={<BlogTemplate />} />
             <Route path="/templates/product" element={<ProductTemplate />} />
+            <Route path="/templates/docs" element={<DocsTemplate />} />
 
             {/* Documentation routes */}
             <Route path="/docs" element={<DocsLayout />}>
