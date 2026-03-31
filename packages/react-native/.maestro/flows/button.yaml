@@ -1,0 +1,10 @@
+appId: dev.boldkit.example
+---
+- launchApp
+- tapOn: "BUTTONS"
+- assertVisible: "DEFAULT"
+- tapOn: "DEFAULT"
+- tapOn: "SECONDARY"
+- tapOn: "ACCENT"
+- tapOn: "DESTRUCTIVE"
+- assertVisible: "DISABLED"

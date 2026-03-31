@@ -1,0 +1,133 @@
+name: BoldKit React Native — Test
+
+on:
+  push:
+    branches: [feat/boldkit-react-native, main]
+    paths:
+      - 'packages/react-native/**'
+  pull_request:
+    paths:
+      - 'packages/react-native/**'
+
+jobs:
+  # ─── Unit Tests (fast, Linux) ────────────────────────────────────────────────
+  unit-tests:
+    name: Unit Tests
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: packages/react-native
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+          cache-dependency-path: packages/react-native/package-lock.json
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Type check
+        run: npm run typecheck
+
+      - name: Run tests
+        run: npm run test:coverage
+
+      - name: Upload coverage
+        uses: codecov/codecov-action@v4
+        with:
+          directory: packages/react-native/coverage
+          flags: react-native
+        continue-on-error: true
+
+  # ─── Build check ─────────────────────────────────────────────────────────────
+  build:
+    name: Build Library
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: packages/react-native
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+          cache-dependency-path: packages/react-native/package-lock.json
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build
+        run: npm run build
+
+      - name: Verify dist output
+        run: |
+          test -f dist/index.js
+          test -f dist/index.esm.js
+          test -f dist/index.d.ts
+          echo "✓ dist output verified"
+
+  # ─── E2E iOS (macOS) ─────────────────────────────────────────────────────────
+  e2e-ios:
+    name: E2E — iOS Simulator
+    runs-on: macos-15
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install library deps
+        working-directory: packages/react-native
+        run: npm ci
+
+      - name: Install example deps
+        working-directory: packages/react-native/example
+        run: npm install
+
+      - name: Install Maestro
+        run: |
+          curl -Ls "https://get.maestro.mobile.dev" | bash
+          echo "$HOME/.maestro/bin" >> $GITHUB_PATH
+
+      - name: Expo Prebuild (iOS)
+        working-directory: packages/react-native/example
+        run: npx expo prebuild --platform ios --clean
+
+      - name: Install CocoaPods
+        working-directory: packages/react-native/example/ios
+        run: pod install
+
+      - name: Boot iOS Simulator
+        run: |
+          xcrun simctl boot "iPhone 16" || true
+          xcrun simctl bootstatus "iPhone 16" -b
+
+      - name: Build & Install example app
+        working-directory: packages/react-native/example
+        run: |
+          npx expo run:ios --device "iPhone 16" --no-bundler &
+          sleep 60
+
+      - name: Start Metro bundler
+        working-directory: packages/react-native/example
+        run: npx expo start &
+
+      - name: Run Maestro flows
+        working-directory: packages/react-native
+        run: |
+          maestro test .maestro/flows/button.yaml
+          maestro test .maestro/flows/forms.yaml
+          maestro test .maestro/flows/shapes.yaml

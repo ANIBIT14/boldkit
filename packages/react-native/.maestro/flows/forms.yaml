@@ -1,0 +1,10 @@
+appId: dev.boldkit.example
+---
+- launchApp
+- tapOn: "FORMS"
+- tapOn:
+    text: "Username"
+- inputText: "boldkit"
+- assertVisible: "boldkit"
+- tapOn: "Accept terms and conditions"
+- tapOn: "Enable notifications"

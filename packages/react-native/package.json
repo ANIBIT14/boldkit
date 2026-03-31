@@ -1,0 +1,93 @@
+{
+  "name": "@boldkit/react-native",
+  "version": "0.0.1",
+  "description": "BoldKit neubrutalism UI component library for React Native",
+  "author": "BoldKit Team",
+  "license": "MIT",
+  "homepage": "https://boldkit.dev",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ANIBIT14/boldkit.git",
+    "directory": "packages/react-native"
+  },
+  "keywords": [
+    "react-native",
+    "ui",
+    "neubrutalism",
+    "boldkit",
+    "components",
+    "design-system",
+    "mobile"
+  ],
+  "main": "dist/index.js",
+  "module": "dist/index.esm.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.esm.js",
+      "require": "./dist/index.js"
+    },
+    "./theme": {
+      "types": "./dist/theme/index.d.ts",
+      "import": "./dist/theme/index.esm.js",
+      "require": "./dist/theme/index.js"
+    }
+  },
+  "files": [
+    "dist",
+    "src"
+  ],
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch",
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint src --ext .ts,.tsx",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage",
+    "example:ios": "cd example && npx expo run:ios",
+    "example:android": "cd example && npx expo run:android",
+    "example:start": "cd example && npx expo start"
+  },
+  "dependencies": {
+    "class-variance-authority": "^0.7.1"
+  },
+  "peerDependencies": {
+    "react": ">=18.0.0",
+    "react-native": ">=0.79.0",
+    "@shopify/react-native-skia": ">=1.0.0",
+    "@software-mansion/react-native-audio-api": ">=0.4.0",
+    "react-native-svg": ">=15.0.0",
+    "react-native-reanimated": ">=3.0.0",
+    "react-native-gesture-handler": ">=2.0.0",
+    "@gorhom/bottom-sheet": ">=5.0.0"
+  },
+  "peerDependenciesMeta": {
+    "@shopify/react-native-skia": {
+      "optional": true
+    },
+    "@software-mansion/react-native-audio-api": {
+      "optional": true
+    }
+  },
+  "devDependencies": {
+    "@babel/core": "^7.24.0",
+    "@babel/preset-env": "^7.24.0",
+    "@babel/preset-react": "^7.24.0",
+    "@babel/preset-typescript": "^7.24.0",
+    "@testing-library/react-native": "^13.0.0",
+    "@types/react": "^18.3.0",
+    "@types/react-test-renderer": "^18.0.0",
+    "babel-jest": "^29.7.0",
+    "jest": "^29.7.0",
+    "react": "18.3.1",
+    "react-native": "0.79.1",
+    "react-test-renderer": "18.3.1",
+    "tsup": "^8.3.0",
+    "typescript": "^5.9.0"
+  },
+  "engines": {
+    "node": ">=20.0.0"
+  }
+}

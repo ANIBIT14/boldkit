@@ -1,0 +1,10 @@
+appId: dev.boldkit.example
+---
+- launchApp
+- tapOn: "SHAPES"
+- assertVisible: "ANIMATION"
+- tapOn: "SPIN"
+- tapOn: "FAST"
+- tapOn: "OUTLINE"
+- tapOn: "FILLED"
+- tapOn: "NONE"

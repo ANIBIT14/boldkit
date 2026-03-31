@@ -1,0 +1,41 @@
+{
+  "expo": {
+    "name": "BoldKit RN Example",
+    "slug": "boldkit-rn-example",
+    "version": "0.0.1",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "automatic",
+    "newArchEnabled": true,
+    "splash": {
+      "image": "./assets/splash-icon.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#fafaf5"
+    },
+    "ios": {
+      "supportsTablet": false,
+      "bundleIdentifier": "dev.boldkit.example"
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#fafaf5"
+      },
+      "package": "dev.boldkit.example"
+    },
+    "plugins": [
+      "react-native-reanimated",
+      [
+        "expo-font",
+        {
+          "fonts": [
+            "./assets/fonts/Outfit-Regular.ttf",
+            "./assets/fonts/Outfit-Medium.ttf",
+            "./assets/fonts/Outfit-Bold.ttf",
+            "./assets/fonts/Outfit-Black.ttf"
+          ]
+        }
+      ]
+    ]
+  }
+}
