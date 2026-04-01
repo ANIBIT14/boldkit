@@ -30,7 +30,6 @@ export interface BadgeProps
 function Badge({ className, variant, ...props }: BadgeProps) {
   return (
     <div
-      role="status"
       className={cn(badgeVariants({ variant }), className)}
       {...props}
     />

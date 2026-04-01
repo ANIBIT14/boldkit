@@ -51,6 +51,28 @@ const Sparkline = React.forwardRef<HTMLDivElement, SparklineProps>(
     }, [color, trend])
 
     const strokeColor = 'hsl(var(--foreground))'
+    const lastIndex = data.length - 1
+
+    /**
+     * Custom dot renderer that only draws a circle on the final data point.
+     * Used directly on the primary series — no duplicate series needed.
+     */
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const endDotRenderer = (dotProps: any) => {
+      const { cx, cy, index } = dotProps
+      if (!showEndDot || index !== lastIndex) return null
+      return (
+        <circle
+          key="end-dot"
+          cx={cx}
+          cy={cy}
+          r={4}
+          fill={resolvedColor}
+          stroke={strokeColor}
+          strokeWidth={2}
+        />
+      )
+    }
 
     if (type === 'bar') {
       return (
@@ -100,32 +122,9 @@ const Sparkline = React.forwardRef<HTMLDivElement, SparklineProps>(
                 fill={`url(#sparkline-gradient-${trend || 'default'})`}
                 isAnimationActive={animated}
                 animationDuration={300}
-                dot={false}
+                dot={endDotRenderer}
                 activeDot={false}
               />
-              {showEndDot && (
-                <Area
-                  type="monotone"
-                  dataKey="value"
-                  stroke="none"
-                  fill="none"
-                  dot={(props) => {
-                    const { cx, cy, index } = props
-                    if (index !== data.length - 1) return null
-                    return (
-                      <circle
-                        cx={cx}
-                        cy={cy}
-                        r={4}
-                        fill={resolvedColor}
-                        stroke={strokeColor}
-                        strokeWidth={2}
-                      />
-                    )
-                  }}
-                  isAnimationActive={false}
-                />
-              )}
             </AreaChart>
           </ResponsiveContainer>
         </div>
@@ -147,34 +146,11 @@ const Sparkline = React.forwardRef<HTMLDivElement, SparklineProps>(
               dataKey="value"
               stroke={strokeColor}
               strokeWidth={strokeWidth}
-              dot={false}
+              dot={endDotRenderer}
               activeDot={false}
               isAnimationActive={animated}
               animationDuration={300}
             />
-            {showEndDot && (
-              <Line
-                type="monotone"
-                dataKey="value"
-                stroke="none"
-                fill="none"
-                dot={(props) => {
-                  const { cx, cy, index } = props
-                  if (index !== data.length - 1) return null
-                  return (
-                    <circle
-                      cx={cx}
-                      cy={cy}
-                      r={4}
-                      fill={resolvedColor}
-                      stroke={strokeColor}
-                      strokeWidth={2}
-                    />
-                  )
-                }}
-                isAnimationActive={false}
-              />
-            )}
           </LineChart>
         </ResponsiveContainer>
       </div>

@@ -1,7 +1,7 @@
 import { cva } from 'class-variance-authority'
 
 export const chartContainerVariants = cva(
-  'flex aspect-video justify-center text-xs',
+  'flex aspect-video justify-center text-xs overflow-hidden',
   {
     variants: {
       variant: {

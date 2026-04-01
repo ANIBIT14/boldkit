@@ -32,6 +32,7 @@ interface GaugeChartProps {
   value: number
   min?: number
   max?: number
+  variant?: 'semicircle' | 'full' | 'meter'
   zones?: GaugeChartZone[]
   label?: string
   valueFormatter?: (value: number) => string
@@ -50,6 +51,7 @@ const DEFAULT_ZONES: GaugeChartZone[] = [
 const props = withDefaults(defineProps<GaugeChartProps>(), {
   min: 0,
   max: 100,
+  variant: 'semicircle',
   zones: () => DEFAULT_ZONES,
   showTicks: true,
   animated: true,
@@ -60,38 +62,101 @@ const props = withDefaults(defineProps<GaugeChartProps>(), {
 const normalizedValue = computed(() => Math.max(props.min, Math.min(props.max, props.value)))
 const percentage = computed(() => ((normalizedValue.value - props.min) / (props.max - props.min)) * 100)
 
-const sizeConfig = {
-  sm: { width: 140, height: 90, radius: 45, strokeWidth: 10, fontSize: 14, labelSize: 9 },
+// Whether this variant uses a 360° full circle or a 180° semicircle sweep
+const isFull = computed(() => props.variant === 'full')
+// Whether this variant uses a filled progress bar instead of a needle
+const isMeter = computed(() => props.variant === 'meter')
+
+const sizeConfigSemi = {
+  sm: { width: 140, height: 90,  radius: 45, strokeWidth: 10, fontSize: 14, labelSize: 9  },
   md: { width: 180, height: 115, radius: 58, strokeWidth: 12, fontSize: 18, labelSize: 11 },
   lg: { width: 240, height: 150, radius: 76, strokeWidth: 14, fontSize: 22, labelSize: 13 },
 }
 
+// Full-circle variant needs equal width/height
+const sizeConfigFull = {
+  sm: { width: 140, height: 140, radius: 45, strokeWidth: 10, fontSize: 14, labelSize: 9  },
+  md: { width: 180, height: 180, radius: 58, strokeWidth: 12, fontSize: 18, labelSize: 11 },
+  lg: { width: 240, height: 240, radius: 76, strokeWidth: 14, fontSize: 22, labelSize: 13 },
+}
+
 const currentSize = computed(() => props.size || 'md')
-const config = computed(() => sizeConfig[currentSize.value])
+const config = computed(() => isFull.value ? sizeConfigFull[currentSize.value] : sizeConfigSemi[currentSize.value])
 
 const centerX = computed(() => config.value.width / 2)
-const centerY = computed(() => config.value.radius + config.value.strokeWidth + 5)
-const needleLength = computed(() => config.value.radius - 8)
-const needleAngle = computed(() => -90 + (percentage.value * 180) / 100)
+// For full circle, center is the middle of the SVG. For semi/meter, keep existing offset.
+const centerY = computed(() =>
+  isFull.value
+    ? config.value.height / 2
+    : config.value.radius + config.value.strokeWidth + 5
+)
 
+const needleLength = computed(() => config.value.radius - 8)
+
+// Needle rotation angle: -90° is top; semicircle sweeps 180°, full sweeps 360°
+const needleAngle = computed(() =>
+  isFull.value
+    ? -90 + (percentage.value * 360) / 100
+    : -90 + (percentage.value * 180) / 100
+)
+
+/**
+ * Build an SVG arc path.
+ * @param startPercent  0–100 position along the gauge sweep
+ * @param endPercent    0–100 position along the gauge sweep
+ * @param radius        arc radius
+ *
+ * For semicircle/meter the sweep spans -90° → +90° (180° total).
+ * For full the sweep spans -90° → 270° (360° total).
+ */
 function createArcPath(startPercent: number, endPercent: number, radius: number): string {
-  const startAngle = (-90 + (startPercent * 180) / 100) * (Math.PI / 180)
-  const endAngle = (-90 + (endPercent * 180) / 100) * (Math.PI / 180)
+  const sweepDeg = isFull.value ? 360 : 180
+  const startAngle = (-90 + (startPercent * sweepDeg) / 100) * (Math.PI / 180)
+  const endAngle   = (-90 + (endPercent   * sweepDeg) / 100) * (Math.PI / 180)
 
   const startX = centerX.value + radius * Math.cos(startAngle)
   const startY = centerY.value + radius * Math.sin(startAngle)
-  const endX = centerX.value + radius * Math.cos(endAngle)
-  const endY = centerY.value + radius * Math.sin(endAngle)
+  const endX   = centerX.value + radius * Math.cos(endAngle)
+  const endY   = centerY.value + radius * Math.sin(endAngle)
 
-  const largeArcFlag = endPercent - startPercent > 50 ? 1 : 0
+  // For a full 360° arc SVG requires two half-arcs to avoid degenerate path
+  if (isFull.value && Math.abs(endPercent - startPercent) >= 100) {
+    const midAngle = startAngle + Math.PI
+    const midX = centerX.value + radius * Math.cos(midAngle)
+    const midY = centerY.value + radius * Math.sin(midAngle)
+    return `M ${startX} ${startY} A ${radius} ${radius} 0 1 1 ${midX} ${midY} A ${radius} ${radius} 0 1 1 ${startX} ${startY}`
+  }
+
+  const spanPercent = endPercent - startPercent
+  const largeArcFlag = isFull.value
+    ? (spanPercent > 50 ? 1 : 0)
+    : (spanPercent > 50 ? 1 : 0)
 
   return `M ${startX} ${startY} A ${radius} ${radius} 0 ${largeArcFlag} 1 ${endX} ${endY}`
 }
 
+/**
+ * Build the filled progress arc for the meter variant.
+ * Covers 0 → percentage along the 180° semicircle sweep.
+ */
+const meterProgressPath = computed(() => {
+  if (percentage.value <= 0) return ''
+  return createArcPath(0, percentage.value, config.value.radius)
+})
+
+/**
+ * Find the zone color for the current percentage (used by meter variant).
+ */
+const currentZoneColor = computed(() => {
+  const z = props.zones.find(zone => percentage.value >= zone.from && percentage.value <= zone.to)
+  return z ? z.color : 'hsl(var(--primary))'
+})
+
 const tickPositions = [0, 25, 50, 75, 100]
 
 function getTickCoords(tick: number) {
-  const angle = (-90 + (tick * 180) / 100) * (Math.PI / 180)
+  const sweepDeg = isFull.value ? 360 : 180
+  const angle = (-90 + (tick * sweepDeg) / 100) * (Math.PI / 180)
   const innerR = config.value.radius - config.value.strokeWidth / 2 - 6
   const outerR = config.value.radius + config.value.strokeWidth / 2 + 6
   return {
@@ -163,8 +228,20 @@ function getTickCoords(tick: number) {
         />
       </template>
 
-      <!-- Needle -->
+      <!-- Meter variant: filled progress arc instead of needle -->
+      <path
+        v-if="isMeter && meterProgressPath"
+        :d="meterProgressPath"
+        fill="none"
+        :stroke="currentZoneColor"
+        :stroke-width="config.strokeWidth + 4"
+        stroke-linecap="round"
+        :style="{ transition: animated ? 'stroke-dasharray 0.5s ease-out' : 'none' }"
+      />
+
+      <!-- Needle (hidden for meter variant) -->
       <g
+        v-if="!isMeter"
         :style="{
           transform: `rotate(${needleAngle}deg)`,
           transformOrigin: `${centerX}px ${centerY}px`,
@@ -202,19 +279,21 @@ function getTickCoords(tick: number) {
         />
       </g>
 
-      <!-- Center pivot -->
-      <circle
-        :cx="centerX"
-        :cy="centerY"
-        r="6"
-        fill="hsl(var(--foreground))"
-      />
-      <circle
-        :cx="centerX"
-        :cy="centerY"
-        r="3"
-        fill="hsl(var(--background))"
-      />
+      <!-- Center pivot (hidden for meter variant) -->
+      <template v-if="!isMeter">
+        <circle
+          :cx="centerX"
+          :cy="centerY"
+          r="6"
+          fill="hsl(var(--foreground))"
+        />
+        <circle
+          :cx="centerX"
+          :cy="centerY"
+          r="3"
+          fill="hsl(var(--background))"
+        />
+      </template>
 
       <!-- Value display -->
       <text
@@ -243,27 +322,29 @@ function getTickCoords(tick: number) {
         {{ label }}
       </text>
 
-      <!-- Min/Max labels -->
-      <text
-        :x="centerX - config.radius - 8"
-        :y="centerY + 4"
-        text-anchor="end"
-        fill="hsl(var(--muted-foreground))"
-        font-weight="600"
-        :font-size="config.labelSize"
-      >
-        {{ min }}
-      </text>
-      <text
-        :x="centerX + config.radius + 8"
-        :y="centerY + 4"
-        text-anchor="start"
-        fill="hsl(var(--muted-foreground))"
-        font-weight="600"
-        :font-size="config.labelSize"
-      >
-        {{ max }}
-      </text>
+      <!-- Min/Max labels (not shown for full-circle variant) -->
+      <template v-if="!isFull">
+        <text
+          :x="centerX - config.radius - 8"
+          :y="centerY + 4"
+          text-anchor="end"
+          fill="hsl(var(--muted-foreground))"
+          font-weight="600"
+          :font-size="config.labelSize"
+        >
+          {{ min }}
+        </text>
+        <text
+          :x="centerX + config.radius + 8"
+          :y="centerY + 4"
+          text-anchor="start"
+          fill="hsl(var(--muted-foreground))"
+          font-weight="600"
+          :font-size="config.labelSize"
+        >
+          {{ max }}
+        </text>
+      </template>
     </svg>
   </div>
 </template>

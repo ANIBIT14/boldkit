@@ -88,6 +88,7 @@ function simulate(timestamp: number) {
 
   const newSprings: SpringState[] = []
   const newSquishes: { scaleX: number; scaleY: number }[] = []
+  let allSettled = true
 
   for (let i = 0; i < springs.value.length; i++) {
     const displacement = targets.value[i] - springs.value[i].position
@@ -112,17 +113,30 @@ function simulate(timestamp: number) {
       newSquishes[i] = { scaleX: 1, scaleY: 1 }
     } else {
       newSprings.push({ position: newPosition, velocity: newVelocity })
+      allSettled = false
     }
   }
 
   springs.value = newSprings
   squishes.value = newSquishes
 
-  animationId = requestAnimationFrame(simulate)
+  if (!allSettled) {
+    animationId = requestAnimationFrame(simulate)
+  } else {
+    animationId = null
+    lastTime = 0
+  }
+}
+
+function startAnimation() {
+  if (animationId === null) {
+    lastTime = 0
+    animationId = requestAnimationFrame(simulate)
+  }
 }
 
 onMounted(() => {
-  animationId = requestAnimationFrame(simulate)
+  // Do not start animation loop on mount; it starts on demand when dragging begins.
 })
 
 onUnmounted(() => {

@@ -16,6 +16,7 @@ export interface DropzoneState {
   isDisabled: boolean
   acceptedFiles: File[]
   rejectedFiles: FileRejection[]
+  reset: () => void
 }
 
 // Variants
@@ -75,11 +76,17 @@ const Dropzone = React.forwardRef<HTMLDivElement, DropzoneProps>(
     const [rejectedFiles, setRejectedFiles] = React.useState<FileRejection[]>([])
     const inputRef = React.useRef<HTMLInputElement>(null)
 
+    const reset = React.useCallback(() => {
+      setAcceptedFiles([])
+      setRejectedFiles([])
+    }, [])
+
     const state: DropzoneState = {
       isDragging,
       isDisabled: disabled,
       acceptedFiles,
       rejectedFiles,
+      reset,
     }
 
     const stateVariant = disabled ? 'disabled' : isDragging ? 'dragging' : 'idle'
@@ -143,8 +150,8 @@ const Dropzone = React.forwardRef<HTMLDivElement, DropzoneProps>(
         }
       })
 
-      setAcceptedFiles((prev) => [...prev, ...accepted])
-      setRejectedFiles((prev) => [...prev, ...rejected])
+      setAcceptedFiles(accepted)
+      setRejectedFiles(rejected)
 
       if (accepted.length > 0) {
         onFilesAccepted(accepted)

@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { ref, computed, watch, onMounted, onUnmounted, nextTick, provide, inject, type Ref, type InjectionKey } from 'vue'
-import { Teleport } from 'vue'
 import { X } from 'lucide-vue-next'
 import { cn } from '@/lib/utils'
 import Button from './Button.vue'

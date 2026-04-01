@@ -93,6 +93,7 @@ watch(emblaApi, (api) => {
 })
 
 onUnmounted(() => {
+  emblaApi.value?.off('reInit', onSelect)
   emblaApi.value?.off('select', onSelect)
 })
 

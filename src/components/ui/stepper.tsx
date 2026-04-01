@@ -89,7 +89,7 @@ const Stepper = React.forwardRef<HTMLDivElement, StepperProps>(
           ref={ref}
           className={cn(
             'flex',
-            orientation === 'horizontal' ? 'flex-col' : 'flex-row',
+            orientation === 'horizontal' ? 'flex-row' : 'flex-col',
             className
           )}
           {...props}

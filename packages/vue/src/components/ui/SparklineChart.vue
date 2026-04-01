@@ -105,8 +105,8 @@ const option = computed(() => {
             x2: 0,
             y2: 1,
             colorStops: [
-              { offset: 0, color: resolvedColor.value.replace(')', ' / 0.6)').replace('hsl', 'hsla') },
-              { offset: 1, color: resolvedColor.value.replace(')', ' / 0.1)').replace('hsl', 'hsla') },
+              { offset: 0, color: `color-mix(in srgb, ${resolvedColor.value} 60%, transparent)` },
+              { offset: 1, color: `color-mix(in srgb, ${resolvedColor.value} 10%, transparent)` },
             ],
           },
         },
