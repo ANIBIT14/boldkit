@@ -71,6 +71,7 @@ const Slider = React.forwardRef<HTMLDivElement, SliderProps>(
     const [targets, setTargets] = React.useState<number[]>(() =>
       actualValue.map((v) => ((v - min) / (max - min)) * 100)
     )
+    const targetsRef = React.useRef<number[]>(targets)
 
     const [activeThumb, setActiveThumb] = React.useState<number | null>(null)
     const [squishes, setSquishes] = React.useState<{ scaleX: number; scaleY: number }[]>(() =>
@@ -87,6 +88,7 @@ const Slider = React.forwardRef<HTMLDivElement, SliderProps>(
     React.useEffect(() => {
       const newTargets = actualValue.map((v) => ((v - min) / (max - min)) * 100)
       setTargets(newTargets)
+      targetsRef.current = newTargets
 
       // Ensure springs array matches value array length
       if (springs.length !== actualValue.length) {
@@ -122,7 +124,7 @@ const Slider = React.forwardRef<HTMLDivElement, SliderProps>(
           const newSquishes: { scaleX: number; scaleY: number }[] = []
 
           for (let i = 0; i < prev.length; i++) {
-            const displacement = targets[i] - prev[i].position
+            const displacement = targetsRef.current[i] - prev[i].position
             const springForce = stiffness * displacement
             const dampingForce = damping * prev[i].velocity
             const acceleration = (springForce - dampingForce) / mass
@@ -157,7 +159,7 @@ const Slider = React.forwardRef<HTMLDivElement, SliderProps>(
       }
 
       animationRef.current = requestAnimationFrame(simulate)
-    }, [targets, stiffness, damping, mass])
+    }, [stiffness, damping, mass])
 
     // Cleanup rAF on unmount
     React.useEffect(() => {

@@ -120,7 +120,7 @@ function simulate(timestamp: number) {
   springs.value = newSprings
   squishes.value = newSquishes
 
-  if (!allSettled) {
+  if (!allSettled || activeThumb.value !== null) {
     animationId = requestAnimationFrame(simulate)
   } else {
     animationId = null
@@ -218,6 +218,7 @@ function handleTrackPointerDown(e: PointerEvent) {
   const newValue = getValueFromPosition(e.clientX, e.clientY)
 
   activeThumb.value = nearestThumbIndex
+  startAnimation()
   updateValue(nearestThumbIndex, newValue)
 
   springs.value[nearestThumbIndex].velocity += (e.movementX || 0) * 10
@@ -245,6 +246,7 @@ function handleThumbPointerDown(index: number, e: PointerEvent) {
   e.preventDefault()
   e.stopPropagation()
   activeThumb.value = index
+  startAnimation()
 
   const handlePointerMove = (e: PointerEvent) => {
     const newValue = getValueFromPosition(e.clientX, e.clientY)
