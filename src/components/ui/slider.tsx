@@ -144,7 +144,7 @@ const Slider = React.forwardRef<HTMLDivElement, SliderProps>(
 
             // Stop animation when settled
             if (Math.abs(displacement) < 0.01 && Math.abs(newVelocity) < 0.01) {
-              newSprings.push({ position: targets[i], velocity: 0 })
+              newSprings.push({ position: targetsRef.current[i], velocity: 0 })
               newSquishes[i] = { scaleX: 1, scaleY: 1 }
             } else {
               newSprings.push({ position: newPosition, velocity: newVelocity })
