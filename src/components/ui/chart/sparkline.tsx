@@ -117,7 +117,7 @@ const Sparkline = React.forwardRef<HTMLDivElement, SparklineProps>(
               <Area
                 type="monotone"
                 dataKey="value"
-                stroke={strokeColor}
+                stroke={resolvedColor}
                 strokeWidth={strokeWidth}
                 fill={`url(#sparkline-gradient-${trend || 'default'})`}
                 isAnimationActive={animated}
@@ -144,7 +144,7 @@ const Sparkline = React.forwardRef<HTMLDivElement, SparklineProps>(
             <Line
               type="monotone"
               dataKey="value"
-              stroke={strokeColor}
+              stroke={resolvedColor}
               strokeWidth={strokeWidth}
               dot={endDotRenderer}
               activeDot={false}

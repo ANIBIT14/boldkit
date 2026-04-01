@@ -2,16 +2,19 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "empty-state",
   "type": "registry:ui",
-  "description": "Empty state component with presets for common scenarios like no results, empty inbox, errors, and more",
+  "description": "Empty state component with icon, title, description, and optional actions",
   "dependencies": [
     "class-variance-authority",
     "lucide-react"
   ],
+  "registryDependencies": [
+    "utils"
+  ],
   "files": [
     {
-      "path": "ui/empty-state.tsx",
+      "path": "registry/default/ui/empty-state.tsx",
       "type": "registry:ui",
-      "target": ""
+      "target": "components/ui/empty-state.tsx"
     }
   ]
 }

@@ -117,7 +117,7 @@ const RadarChartComponent = React.forwardRef<HTMLDivElement, RadarChartProps>(
           {dataKeys.map((key, index) => (
             <Radar
               key={key}
-              name={config[key]?.label?.toString() || key}
+              name={typeof config[key]?.label === 'string' ? config[key].label : key}
               dataKey={key}
               {...getRadarProps(index, key)}
               isAnimationActive={animated}

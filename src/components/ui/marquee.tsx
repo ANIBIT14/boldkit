@@ -44,7 +44,6 @@ const Marquee = React.forwardRef<HTMLDivElement, MarqueeProps>(
         className={cn(
           'flex overflow-hidden',
           bordered && 'border-3 border-foreground bg-background',
-          pauseOnHover && '[&:hover_.marquee-content]:pause',
           className
         )}
         {...props}

@@ -184,7 +184,7 @@ onUnmounted(() => {
         :class="
           cn(
             'w-full justify-start text-left font-normal',
-            !selectedRange && 'text-muted-foreground',
+            !selectedRange?.from && 'text-muted-foreground',
             props.class
           )
         "

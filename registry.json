@@ -92,7 +92,10 @@
       "name": "utils",
       "type": "registry:lib",
       "description": "Utility functions for className merging",
-      "dependencies": ["clsx", "tailwind-merge"],
+      "dependencies": [
+        "clsx",
+        "tailwind-merge"
+      ],
       "files": [
         {
           "path": "registry/default/lib/utils.ts",
@@ -105,8 +108,13 @@
       "name": "accordion",
       "type": "registry:ui",
       "description": "A vertically stacked set of interactive headings with neubrutalism styling",
-      "dependencies": ["@radix-ui/react-accordion", "lucide-react"],
-      "registryDependencies": ["utils"],
+      "dependencies": [
+        "@radix-ui/react-accordion",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
       "files": [
         {
           "path": "registry/default/ui/accordion.tsx",
@@ -119,8 +127,13 @@
       "name": "alert",
       "type": "registry:ui",
       "description": "Displays a callout for user attention with bold neubrutalism borders",
-      "dependencies": ["class-variance-authority", "lucide-react"],
-      "registryDependencies": ["utils"],
+      "dependencies": [
+        "class-variance-authority",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
       "files": [
         {
           "path": "registry/default/ui/alert.tsx",
@@ -133,8 +146,12 @@
       "name": "aspect-ratio",
       "type": "registry:ui",
       "description": "Displays content within a desired ratio",
-      "dependencies": ["@radix-ui/react-aspect-ratio"],
-      "registryDependencies": ["utils"],
+      "dependencies": [
+        "@radix-ui/react-aspect-ratio"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
       "files": [
         {
           "path": "registry/default/ui/aspect-ratio.tsx",
@@ -147,8 +164,12 @@
       "name": "avatar",
       "type": "registry:ui",
       "description": "An image element with a fallback for representing the user",
-      "dependencies": ["@radix-ui/react-avatar"],
-      "registryDependencies": ["utils"],
+      "dependencies": [
+        "@radix-ui/react-avatar"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
       "files": [
         {
           "path": "registry/default/ui/avatar.tsx",
@@ -161,8 +182,12 @@
       "name": "badge",
       "type": "registry:ui",
       "description": "Displays a badge or a component that looks like a badge with neubrutalism styling",
-      "dependencies": ["class-variance-authority"],
-      "registryDependencies": ["utils"],
+      "dependencies": [
+        "class-variance-authority"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
       "files": [
         {
           "path": "registry/default/ui/badge.tsx",
@@ -175,8 +200,13 @@
       "name": "breadcrumb",
       "type": "registry:ui",
       "description": "Displays the path to the current resource using a hierarchy of links",
-      "dependencies": ["@radix-ui/react-slot", "lucide-react"],
-      "registryDependencies": ["utils"],
+      "dependencies": [
+        "@radix-ui/react-slot",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
       "files": [
         {
           "path": "registry/default/ui/breadcrumb.tsx",
@@ -189,8 +219,13 @@
       "name": "button",
       "type": "registry:ui",
       "description": "Displays a button with neubrutalism styling and press-down animation",
-      "dependencies": ["@radix-ui/react-slot", "class-variance-authority"],
-      "registryDependencies": ["utils"],
+      "dependencies": [
+        "@radix-ui/react-slot",
+        "class-variance-authority"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
       "files": [
         {
           "path": "registry/default/ui/button.tsx",
@@ -204,7 +239,9 @@
       "type": "registry:ui",
       "description": "Displays a card with header, content, and footer with thick borders and shadows",
       "dependencies": [],
-      "registryDependencies": ["utils"],
+      "registryDependencies": [
+        "utils"
+      ],
       "files": [
         {
           "path": "registry/default/ui/card.tsx",
@@ -217,8 +254,13 @@
       "name": "checkbox",
       "type": "registry:ui",
       "description": "A control that allows the user to toggle between checked and not checked",
-      "dependencies": ["@radix-ui/react-checkbox", "lucide-react"],
-      "registryDependencies": ["utils"],
+      "dependencies": [
+        "@radix-ui/react-checkbox",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
       "files": [
         {
           "path": "registry/default/ui/checkbox.tsx",
@@ -231,8 +273,12 @@
       "name": "collapsible",
       "type": "registry:ui",
       "description": "An interactive component which expands/collapses a panel",
-      "dependencies": ["@radix-ui/react-collapsible"],
-      "registryDependencies": ["utils"],
+      "dependencies": [
+        "@radix-ui/react-collapsible"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
       "files": [
         {
           "path": "registry/default/ui/collapsible.tsx",
@@ -245,8 +291,14 @@
       "name": "command",
       "type": "registry:ui",
       "description": "Fast, composable, command menu for React with neubrutalism styling",
-      "dependencies": ["cmdk", "lucide-react"],
-      "registryDependencies": ["utils", "dialog"],
+      "dependencies": [
+        "cmdk",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "utils",
+        "dialog"
+      ],
       "files": [
         {
           "path": "registry/default/ui/command.tsx",
@@ -259,8 +311,13 @@
       "name": "dialog",
       "type": "registry:ui",
       "description": "A window overlaid on the primary window with neubrutalism borders and shadows",
-      "dependencies": ["@radix-ui/react-dialog", "lucide-react"],
-      "registryDependencies": ["utils"],
+      "dependencies": [
+        "@radix-ui/react-dialog",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
       "files": [
         {
           "path": "registry/default/ui/dialog.tsx",
@@ -273,8 +330,13 @@
       "name": "dropdown-menu",
       "type": "registry:ui",
       "description": "Displays a menu of actions/options with neubrutalism styling",
-      "dependencies": ["@radix-ui/react-dropdown-menu", "lucide-react"],
-      "registryDependencies": ["utils"],
+      "dependencies": [
+        "@radix-ui/react-dropdown-menu",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
       "files": [
         {
           "path": "registry/default/ui/dropdown-menu.tsx",
@@ -288,7 +350,9 @@
       "type": "registry:ui",
       "description": "Displays a form input field with neubrutalism styling",
       "dependencies": [],
-      "registryDependencies": ["utils"],
+      "registryDependencies": [
+        "utils"
+      ],
       "files": [
         {
           "path": "registry/default/ui/input.tsx",
@@ -301,8 +365,13 @@
       "name": "label",
       "type": "registry:ui",
       "description": "Renders an accessible label for form controls",
-      "dependencies": ["@radix-ui/react-label", "class-variance-authority"],
-      "registryDependencies": ["utils"],
+      "dependencies": [
+        "@radix-ui/react-label",
+        "class-variance-authority"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
       "files": [
         {
           "path": "registry/default/ui/label.tsx",
@@ -315,8 +384,12 @@
       "name": "popover",
       "type": "registry:ui",
       "description": "Displays rich content in a portal with neubrutalism styling",
-      "dependencies": ["@radix-ui/react-popover"],
-      "registryDependencies": ["utils"],
+      "dependencies": [
+        "@radix-ui/react-popover"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
       "files": [
         {
           "path": "registry/default/ui/popover.tsx",
@@ -329,8 +402,12 @@
       "name": "progress",
       "type": "registry:ui",
       "description": "Displays an indicator showing the completion progress of a task",
-      "dependencies": ["@radix-ui/react-progress"],
-      "registryDependencies": ["utils"],
+      "dependencies": [
+        "@radix-ui/react-progress"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
       "files": [
         {
           "path": "registry/default/ui/progress.tsx",
@@ -343,8 +420,13 @@
       "name": "radio-group",
       "type": "registry:ui",
       "description": "A set of checkable buttons where only one can be checked at a time",
-      "dependencies": ["@radix-ui/react-radio-group", "lucide-react"],
-      "registryDependencies": ["utils"],
+      "dependencies": [
+        "@radix-ui/react-radio-group",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
       "files": [
         {
           "path": "registry/default/ui/radio-group.tsx",
@@ -357,8 +439,12 @@
       "name": "scroll-area",
       "type": "registry:ui",
       "description": "Augments native scroll functionality for custom styling",
-      "dependencies": ["@radix-ui/react-scroll-area"],
-      "registryDependencies": ["utils"],
+      "dependencies": [
+        "@radix-ui/react-scroll-area"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
       "files": [
         {
           "path": "registry/default/ui/scroll-area.tsx",
@@ -371,8 +457,13 @@
       "name": "select",
       "type": "registry:ui",
       "description": "Displays a list of options with neubrutalism styling",
-      "dependencies": ["@radix-ui/react-select", "lucide-react"],
-      "registryDependencies": ["utils"],
+      "dependencies": [
+        "@radix-ui/react-select",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
       "files": [
         {
           "path": "registry/default/ui/select.tsx",
@@ -385,8 +476,12 @@
       "name": "separator",
       "type": "registry:ui",
       "description": "Visually separates content with a thick border",
-      "dependencies": ["@radix-ui/react-separator"],
-      "registryDependencies": ["utils"],
+      "dependencies": [
+        "@radix-ui/react-separator"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
       "files": [
         {
           "path": "registry/default/ui/separator.tsx",
@@ -399,8 +494,14 @@
       "name": "sheet",
       "type": "registry:ui",
       "description": "Extends Dialog to display content that complements the main page",
-      "dependencies": ["@radix-ui/react-dialog", "class-variance-authority", "lucide-react"],
-      "registryDependencies": ["utils"],
+      "dependencies": [
+        "@radix-ui/react-dialog",
+        "class-variance-authority",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
       "files": [
         {
           "path": "registry/default/ui/sheet.tsx",
@@ -414,7 +515,9 @@
       "type": "registry:ui",
       "description": "Used to show a placeholder while content is loading",
       "dependencies": [],
-      "registryDependencies": ["utils"],
+      "registryDependencies": [
+        "utils"
+      ],
       "files": [
         {
           "path": "registry/default/ui/skeleton.tsx",
@@ -428,7 +531,9 @@
       "type": "registry:ui",
       "description": "A jelly slider with spring physics and bouncy animations",
       "dependencies": [],
-      "registryDependencies": ["utils"],
+      "registryDependencies": [
+        "utils"
+      ],
       "files": [
         {
           "path": "registry/default/ui/slider.tsx",
@@ -441,8 +546,12 @@
       "name": "sonner",
       "type": "registry:ui",
       "description": "An opinionated toast component with neubrutalism styling",
-      "dependencies": ["sonner"],
-      "registryDependencies": ["utils"],
+      "dependencies": [
+        "sonner"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
       "files": [
         {
           "path": "registry/default/ui/sonner.tsx",
@@ -455,8 +564,12 @@
       "name": "switch",
       "type": "registry:ui",
       "description": "A control that allows the user to toggle between on and off",
-      "dependencies": ["@radix-ui/react-switch"],
-      "registryDependencies": ["utils"],
+      "dependencies": [
+        "@radix-ui/react-switch"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
       "files": [
         {
           "path": "registry/default/ui/switch.tsx",
@@ -470,7 +583,9 @@
       "type": "registry:ui",
       "description": "A responsive table component with neubrutalism styling",
       "dependencies": [],
-      "registryDependencies": ["utils"],
+      "registryDependencies": [
+        "utils"
+      ],
       "files": [
         {
           "path": "registry/default/ui/table.tsx",
@@ -483,8 +598,12 @@
       "name": "tabs",
       "type": "registry:ui",
       "description": "A tabbed interface component with neubrutalism styling",
-      "dependencies": ["@radix-ui/react-tabs"],
-      "registryDependencies": ["utils"],
+      "dependencies": [
+        "@radix-ui/react-tabs"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
       "files": [
         {
           "path": "registry/default/ui/tabs.tsx",
@@ -498,7 +617,9 @@
       "type": "registry:ui",
       "description": "Displays a form textarea with neubrutalism styling",
       "dependencies": [],
-      "registryDependencies": ["utils"],
+      "registryDependencies": [
+        "utils"
+      ],
       "files": [
         {
           "path": "registry/default/ui/textarea.tsx",
@@ -511,8 +632,13 @@
       "name": "toggle",
       "type": "registry:ui",
       "description": "A two-state button that can be either on or off",
-      "dependencies": ["@radix-ui/react-toggle", "class-variance-authority"],
-      "registryDependencies": ["utils"],
+      "dependencies": [
+        "@radix-ui/react-toggle",
+        "class-variance-authority"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
       "files": [
         {
           "path": "registry/default/ui/toggle.tsx",
@@ -525,8 +651,13 @@
       "name": "toggle-group",
       "type": "registry:ui",
       "description": "A group of toggle buttons where only one can be pressed at a time",
-      "dependencies": ["@radix-ui/react-toggle-group"],
-      "registryDependencies": ["utils", "toggle"],
+      "dependencies": [
+        "@radix-ui/react-toggle-group"
+      ],
+      "registryDependencies": [
+        "utils",
+        "toggle"
+      ],
       "files": [
         {
           "path": "registry/default/ui/toggle-group.tsx",
@@ -539,8 +670,12 @@
       "name": "tooltip",
       "type": "registry:ui",
       "description": "A popup that displays information related to an element",
-      "dependencies": ["@radix-ui/react-tooltip"],
-      "registryDependencies": ["utils"],
+      "dependencies": [
+        "@radix-ui/react-tooltip"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
       "files": [
         {
           "path": "registry/default/ui/tooltip.tsx",
@@ -553,8 +688,13 @@
       "name": "alert-dialog",
       "type": "registry:ui",
       "description": "A modal dialog for important confirmations with neubrutalism styling",
-      "dependencies": ["@radix-ui/react-alert-dialog"],
-      "registryDependencies": ["utils", "button"],
+      "dependencies": [
+        "@radix-ui/react-alert-dialog"
+      ],
+      "registryDependencies": [
+        "utils",
+        "button"
+      ],
       "files": [
         {
           "path": "registry/default/ui/alert-dialog.tsx",
@@ -567,8 +707,14 @@
       "name": "calendar",
       "type": "registry:ui",
       "description": "A date picker calendar with neubrutalism styling",
-      "dependencies": ["react-day-picker", "lucide-react"],
-      "registryDependencies": ["utils", "button"],
+      "dependencies": [
+        "react-day-picker",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "utils",
+        "button"
+      ],
       "files": [
         {
           "path": "registry/default/ui/calendar.tsx",
@@ -581,8 +727,12 @@
       "name": "drawer",
       "type": "registry:ui",
       "description": "A drawer component that slides in from the edge of the screen",
-      "dependencies": ["vaul"],
-      "registryDependencies": ["utils"],
+      "dependencies": [
+        "vaul"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
       "files": [
         {
           "path": "registry/default/ui/drawer.tsx",
@@ -595,8 +745,12 @@
       "name": "hover-card",
       "type": "registry:ui",
       "description": "A card that appears on hover with additional information",
-      "dependencies": ["@radix-ui/react-hover-card"],
-      "registryDependencies": ["utils"],
+      "dependencies": [
+        "@radix-ui/react-hover-card"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
       "files": [
         {
           "path": "registry/default/ui/hover-card.tsx",
@@ -609,8 +763,13 @@
       "name": "input-otp",
       "type": "registry:ui",
       "description": "One-time password input with neubrutalism styling",
-      "dependencies": ["input-otp", "lucide-react"],
-      "registryDependencies": ["utils"],
+      "dependencies": [
+        "input-otp",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
       "files": [
         {
           "path": "registry/default/ui/input-otp.tsx",
@@ -623,8 +782,13 @@
       "name": "pagination",
       "type": "registry:ui",
       "description": "Pagination controls for navigating through pages",
-      "dependencies": ["lucide-react"],
-      "registryDependencies": ["utils", "button"],
+      "dependencies": [
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "utils",
+        "button"
+      ],
       "files": [
         {
           "path": "registry/default/ui/pagination.tsx",
@@ -637,8 +801,12 @@
       "name": "chart",
       "type": "registry:ui",
       "description": "Beautiful charts with neubrutalism styling built on Recharts",
-      "dependencies": ["recharts"],
-      "registryDependencies": ["utils"],
+      "dependencies": [
+        "recharts"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
       "files": [
         {
           "path": "registry/default/ui/chart.tsx",
@@ -652,7 +820,9 @@
       "type": "registry:ui",
       "description": "Auto-scrolling text ticker with neubrutalism styling - a common brutalist design element",
       "dependencies": [],
-      "registryDependencies": ["utils"],
+      "registryDependencies": [
+        "utils"
+      ],
       "files": [
         {
           "path": "registry/default/ui/marquee.tsx",
@@ -665,8 +835,12 @@
       "name": "sticker",
       "type": "registry:ui",
       "description": "Rotated labels and stamps with tape effect and double borders - neubrutalist decorative elements",
-      "dependencies": ["class-variance-authority"],
-      "registryDependencies": ["utils"],
+      "dependencies": [
+        "class-variance-authority"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
       "files": [
         {
           "path": "registry/default/ui/sticker.tsx",
@@ -679,8 +853,12 @@
       "name": "layered-card",
       "type": "registry:ui",
       "description": "Card component with stacked layers effect showing offset depth - neubrutalist depth illusion",
-      "dependencies": ["class-variance-authority"],
-      "registryDependencies": ["utils"],
+      "dependencies": [
+        "class-variance-authority"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
       "files": [
         {
           "path": "registry/default/ui/layered-card.tsx",
@@ -694,7 +872,9 @@
       "type": "registry:ui",
       "description": "45 neubrutalist SVG shapes organized by category for badges, decorations, and visual accents",
       "dependencies": [],
-      "registryDependencies": ["utils"],
+      "registryDependencies": [
+        "utils"
+      ],
       "files": [
         {
           "path": "registry/default/ui/shapes.tsx",
@@ -719,8 +899,12 @@
       "name": "spinner",
       "type": "registry:ui",
       "description": "Loading spinner with multiple animation variants - dots, bars, blocks, and brutal shadow spin",
-      "dependencies": ["class-variance-authority"],
-      "registryDependencies": ["utils"],
+      "dependencies": [
+        "class-variance-authority"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
       "files": [
         {
           "path": "registry/default/ui/spinner.tsx",
@@ -733,8 +917,12 @@
       "name": "kbd",
       "type": "registry:ui",
       "description": "Keyboard key indicator for displaying shortcuts and hotkeys with neubrutalism styling",
-      "dependencies": ["class-variance-authority"],
-      "registryDependencies": ["utils"],
+      "dependencies": [
+        "class-variance-authority"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
       "files": [
         {
           "path": "registry/default/ui/kbd.tsx",
@@ -747,8 +935,15 @@
       "name": "stat-card",
       "type": "registry:ui",
       "description": "Statistics card with trend indicators, icons, and optional progress bars",
-      "dependencies": ["class-variance-authority", "lucide-react"],
-      "registryDependencies": ["utils", "card", "progress"],
+      "dependencies": [
+        "class-variance-authority",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "utils",
+        "card",
+        "progress"
+      ],
       "files": [
         {
           "path": "registry/default/ui/stat-card.tsx",
@@ -761,8 +956,13 @@
       "name": "stepper",
       "type": "registry:ui",
       "description": "Multi-step form wizard with progress indicators, compound components pattern",
-      "dependencies": ["class-variance-authority", "lucide-react"],
-      "registryDependencies": ["utils"],
+      "dependencies": [
+        "class-variance-authority",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
       "files": [
         {
           "path": "registry/default/ui/stepper.tsx",
@@ -775,8 +975,15 @@
       "name": "dropzone",
       "type": "registry:ui",
       "description": "Drag-and-drop file upload with validation, progress tracking, and file list",
-      "dependencies": ["class-variance-authority", "lucide-react"],
-      "registryDependencies": ["utils", "progress", "spinner"],
+      "dependencies": [
+        "class-variance-authority",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "utils",
+        "progress",
+        "spinner"
+      ],
       "files": [
         {
           "path": "registry/default/ui/dropzone.tsx",
@@ -789,8 +996,12 @@
       "name": "sparkline",
       "type": "registry:ui",
       "description": "Tiny inline trend charts for tables and stat cards - line, area, and bar variants",
-      "dependencies": ["recharts"],
-      "registryDependencies": ["utils"],
+      "dependencies": [
+        "recharts"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
       "files": [
         {
           "path": "registry/default/ui/sparkline.tsx",
@@ -803,8 +1014,13 @@
       "name": "donut-chart",
       "type": "registry:ui",
       "description": "Pie chart with center hole for KPI display, supports center content slot",
-      "dependencies": ["recharts"],
-      "registryDependencies": ["utils", "chart"],
+      "dependencies": [
+        "recharts"
+      ],
+      "registryDependencies": [
+        "utils",
+        "chart"
+      ],
       "files": [
         {
           "path": "registry/default/ui/donut-chart.tsx",
@@ -817,8 +1033,13 @@
       "name": "radial-bar-chart",
       "type": "registry:ui",
       "description": "Circular progress bars with nested rings for multiple metrics",
-      "dependencies": ["recharts"],
-      "registryDependencies": ["utils", "chart"],
+      "dependencies": [
+        "recharts"
+      ],
+      "registryDependencies": [
+        "utils",
+        "chart"
+      ],
       "files": [
         {
           "path": "registry/default/ui/radial-bar-chart.tsx",
@@ -831,8 +1052,13 @@
       "name": "radar-chart",
       "type": "registry:ui",
       "description": "Multi-variable comparison chart for skills, metrics, and feature comparisons",
-      "dependencies": ["recharts"],
-      "registryDependencies": ["utils", "chart"],
+      "dependencies": [
+        "recharts"
+      ],
+      "registryDependencies": [
+        "utils",
+        "chart"
+      ],
       "files": [
         {
           "path": "registry/default/ui/radar-chart.tsx",
@@ -845,8 +1071,12 @@
       "name": "gauge-chart",
       "type": "registry:ui",
       "description": "Speedometer-style gauge with color zones and animated needle - custom SVG implementation",
-      "dependencies": ["class-variance-authority"],
-      "registryDependencies": ["utils"],
+      "dependencies": [
+        "class-variance-authority"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
       "files": [
         {
           "path": "registry/default/ui/gauge-chart.tsx",
@@ -859,8 +1089,12 @@
       "name": "funnel-chart",
       "type": "registry:ui",
       "description": "Funnel chart for conversion flows and pipeline stages with neubrutalism styling",
-      "dependencies": ["recharts"],
-      "registryDependencies": ["utils"],
+      "dependencies": [
+        "recharts"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
       "files": [
         {
           "path": "registry/default/ui/funnel-chart.tsx",
@@ -873,8 +1107,12 @@
       "name": "treemap-chart",
       "type": "registry:ui",
       "description": "Treemap for hierarchical data visualization with proportional rectangles",
-      "dependencies": ["recharts"],
-      "registryDependencies": ["utils"],
+      "dependencies": [
+        "recharts"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
       "files": [
         {
           "path": "registry/default/ui/treemap-chart.tsx",
@@ -888,7 +1126,9 @@
       "type": "registry:ui",
       "description": "Heatmap grid for correlation and intensity data - custom CSS Grid implementation",
       "dependencies": [],
-      "registryDependencies": ["utils"],
+      "registryDependencies": [
+        "utils"
+      ],
       "files": [
         {
           "path": "registry/default/ui/heatmap-chart.tsx",
@@ -902,7 +1142,9 @@
       "type": "registry:ui",
       "description": "Sankey flow diagram for showing proportional flows between nodes - custom SVG implementation",
       "dependencies": [],
-      "registryDependencies": ["utils"],
+      "registryDependencies": [
+        "utils"
+      ],
       "files": [
         {
           "path": "registry/default/ui/sankey-chart.tsx",
@@ -915,8 +1157,13 @@
       "name": "rating",
       "type": "registry:ui",
       "description": "Star rating component with half-values, multiple icons, and keyboard navigation",
-      "dependencies": ["class-variance-authority", "lucide-react"],
-      "registryDependencies": ["utils"],
+      "dependencies": [
+        "class-variance-authority",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
       "files": [
         {
           "path": "registry/default/ui/rating.tsx",
@@ -929,8 +1176,12 @@
       "name": "tag-input",
       "type": "registry:ui",
       "description": "Multi-tag input with suggestions, validation, and keyboard support",
-      "dependencies": ["lucide-react"],
-      "registryDependencies": ["utils"],
+      "dependencies": [
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
       "files": [
         {
           "path": "registry/default/ui/tag-input.tsx",
@@ -943,8 +1194,15 @@
       "name": "time-picker",
       "type": "registry:ui",
       "description": "Popover-based time picker with 12h/24h format and scrollable columns",
-      "dependencies": ["lucide-react"],
-      "registryDependencies": ["utils", "button", "popover", "scroll-area"],
+      "dependencies": [
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "utils",
+        "button",
+        "popover",
+        "scroll-area"
+      ],
       "files": [
         {
           "path": "registry/default/ui/time-picker.tsx",
@@ -957,8 +1215,17 @@
       "name": "date-range-picker",
       "type": "registry:ui",
       "description": "Date range picker with presets, dual calendars, and customizable options",
-      "dependencies": ["date-fns", "react-day-picker", "lucide-react"],
-      "registryDependencies": ["utils", "button", "calendar", "popover"],
+      "dependencies": [
+        "date-fns",
+        "react-day-picker",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "utils",
+        "button",
+        "calendar",
+        "popover"
+      ],
       "files": [
         {
           "path": "registry/default/ui/date-range-picker.tsx",
@@ -971,8 +1238,19 @@
       "name": "data-table",
       "type": "registry:ui",
       "description": "Powerful data table with sorting, filtering, pagination, and row selection",
-      "dependencies": ["@tanstack/react-table", "lucide-react"],
-      "registryDependencies": ["utils", "button", "checkbox", "dropdown-menu", "input", "select", "table"],
+      "dependencies": [
+        "@tanstack/react-table",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "utils",
+        "button",
+        "checkbox",
+        "dropdown-menu",
+        "input",
+        "select",
+        "table"
+      ],
       "files": [
         {
           "path": "registry/default/ui/data-table.tsx",
@@ -985,8 +1263,14 @@
       "name": "carousel",
       "type": "registry:ui",
       "description": "Carousel component with navigation, dots, and touch support built on Embla",
-      "dependencies": ["embla-carousel-react", "lucide-react"],
-      "registryDependencies": ["utils", "button"],
+      "dependencies": [
+        "embla-carousel-react",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "utils",
+        "button"
+      ],
       "files": [
         {
           "path": "registry/default/ui/carousel.tsx",
@@ -999,8 +1283,12 @@
       "name": "timeline",
       "type": "registry:ui",
       "description": "Composable timeline for activity feeds, order tracking, and version history",
-      "dependencies": ["class-variance-authority"],
-      "registryDependencies": ["utils"],
+      "dependencies": [
+        "class-variance-authority"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
       "files": [
         {
           "path": "registry/default/ui/timeline.tsx",
@@ -1013,8 +1301,15 @@
       "name": "tree-view",
       "type": "registry:ui",
       "description": "Hierarchical tree view with expand/collapse, selection, and checkboxes",
-      "dependencies": ["@radix-ui/react-collapsible", "lucide-react"],
-      "registryDependencies": ["utils", "checkbox", "collapsible"],
+      "dependencies": [
+        "@radix-ui/react-collapsible",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "utils",
+        "checkbox",
+        "collapsible"
+      ],
       "files": [
         {
           "path": "registry/default/ui/tree-view.tsx",
@@ -1027,8 +1322,16 @@
       "name": "sidebar",
       "type": "registry:ui",
       "description": "Collapsible sidebar with mobile drawer, tooltips, and keyboard shortcut",
-      "dependencies": ["class-variance-authority", "lucide-react"],
-      "registryDependencies": ["utils", "button", "sheet", "tooltip"],
+      "dependencies": [
+        "class-variance-authority",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "utils",
+        "button",
+        "sheet",
+        "tooltip"
+      ],
       "files": [
         {
           "path": "registry/default/ui/sidebar.tsx",
@@ -1041,13 +1344,37 @@
       "name": "tour",
       "type": "registry:ui",
       "description": "Step-by-step product tour with spotlight highlighting and progress indicators",
-      "dependencies": ["lucide-react"],
-      "registryDependencies": ["utils", "button"],
+      "dependencies": [
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "utils",
+        "button"
+      ],
       "files": [
         {
           "path": "registry/default/ui/tour.tsx",
           "type": "registry:ui",
           "target": "components/ui/tour.tsx"
+        }
+      ]
+    },
+    {
+      "name": "empty-state",
+      "type": "registry:ui",
+      "description": "Empty state component with icon, title, description, and optional actions",
+      "dependencies": [
+        "class-variance-authority",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "registry/default/ui/empty-state.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/empty-state.tsx"
         }
       ]
     }

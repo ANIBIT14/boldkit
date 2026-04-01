@@ -86,7 +86,7 @@ const GaugeChart = React.forwardRef<HTMLDivElement, GaugeChartProps>(
     const arcConfig = VARIANT_ARC_CONFIG[resolvedVariant]
 
     const normalizedValue = Math.max(min, Math.min(max, value))
-    const percentage = ((normalizedValue - min) / (max - min)) * 100
+    const percentage = max === min ? 50 : ((normalizedValue - min) / (max - min)) * 100
 
     // SVG dimensions — full variant needs a taller canvas to show the bottom arc
     const sizeConfig = {

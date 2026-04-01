@@ -54,7 +54,7 @@ const RadialBarChartComponent = React.forwardRef<HTMLDivElement, RadialBarChartP
     ref
   ) => {
     // Calculate max value for the scale
-    const calculatedMax = maxValue || Math.max(...data.map((d) => d.value))
+    const calculatedMax = maxValue || (data.length > 0 ? Math.max(...data.map((d) => d.value)) : 1)
 
     // Assign a chart color to each item that does not supply its own fill
     const chartData = React.useMemo(() => {

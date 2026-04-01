@@ -9,7 +9,6 @@
   ],
   "registryDependencies": [
     "utils",
-    "utils",
     "chart-utils"
   ],
   "files": [

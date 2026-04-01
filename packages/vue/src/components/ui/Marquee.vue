@@ -41,7 +41,6 @@ const animationDirection = computed(() =>
       cn(
         'flex overflow-hidden',
         bordered && 'border-3 border-foreground bg-background',
-        pauseOnHover && '[&:hover_.marquee-content]:pause',
         props.class
       )
     "

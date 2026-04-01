@@ -72,10 +72,10 @@ const componentMeta = {
 
   // Charts
   chart: { deps: ['vue-echarts', 'echarts', 'class-variance-authority'], desc: 'Chart components with neubrutalism styling', files: ['ChartContainer', 'DonutChart', 'GaugeChart', 'RadarChart', 'RadialBarChart', 'SparklineChart'], extraFiles: ['chart-utils.ts', 'chart-variants.ts'] },
-  'funnel-chart': { deps: ['vue-echarts', 'echarts'], registryDeps: ['utils', 'chart-utils'], desc: 'Funnel chart for conversion flows and pipeline stages', files: ['FunnelChart'] },
-  'treemap-chart': { deps: ['vue-echarts', 'echarts'], registryDeps: ['utils', 'chart-utils'], desc: 'Treemap for hierarchical data visualization with proportional rectangles', files: ['TreemapChart'] },
-  'heatmap-chart': { deps: ['vue-echarts', 'echarts'], registryDeps: ['utils', 'chart-utils'], desc: 'Heatmap grid for correlation and intensity data', files: ['HeatmapChart'] },
-  'sankey-chart': { deps: ['vue-echarts', 'echarts'], registryDeps: ['utils', 'chart-utils'], desc: 'Sankey flow diagram for proportional flows between nodes', files: ['SankeyChart'] },
+  'funnel-chart': { deps: ['vue-echarts', 'echarts'], registryDeps: ['chart-utils'], desc: 'Funnel chart for conversion flows and pipeline stages', files: ['FunnelChart'] },
+  'treemap-chart': { deps: ['vue-echarts', 'echarts'], registryDeps: ['chart-utils'], desc: 'Treemap for hierarchical data visualization with proportional rectangles', files: ['TreemapChart'] },
+  'heatmap-chart': { deps: ['vue-echarts', 'echarts'], registryDeps: ['chart-utils'], desc: 'Heatmap grid for correlation and intensity data', files: ['HeatmapChart'] },
+  'sankey-chart': { deps: ['vue-echarts', 'echarts'], registryDeps: ['chart-utils'], desc: 'Sankey flow diagram for proportional flows between nodes', files: ['SankeyChart'] },
 
   // Shapes (all 35)
   shapes: { deps: [], desc: 'SVG shape components for decorative elements', isShapes: true },

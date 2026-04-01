@@ -70,6 +70,7 @@ const HeatmapChart = React.forwardRef<HTMLDivElement, HeatmapChartProps>(
     }, [data])
 
     const { min, max } = React.useMemo(() => {
+      if (data.length === 0) return { min: 0, max: 1 }
       const vals = data.map(d => d.value)
       return { min: Math.min(...vals), max: Math.max(...vals) }
     }, [data])
