@@ -56,19 +56,13 @@ const RadialBarChartComponent = React.forwardRef<HTMLDivElement, RadialBarChartP
     // Calculate max value for the scale
     const calculatedMax = maxValue || Math.max(...data.map((d) => d.value))
 
-    // Transform data for nested variant (each item gets its own ring)
+    // Assign a chart color to each item that does not supply its own fill
     const chartData = React.useMemo(() => {
-      if (variant === 'nested') {
-        return data.map((item, index) => ({
-          ...item,
-          fill: item.fill || `hsl(var(--chart-${(index % 5) + 1}))`,
-        }))
-      }
       return data.map((item, index) => ({
         ...item,
         fill: item.fill || `hsl(var(--chart-${(index % 5) + 1}))`,
       }))
-    }, [data, variant])
+    }, [data])
 
     return (
       <ChartContainer

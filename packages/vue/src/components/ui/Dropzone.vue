@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, computed } from 'vue'
+import { ref, computed, provide } from 'vue'
 import { cva, type VariantProps } from 'class-variance-authority'
 import { cn } from '@/lib/utils'
 import { Upload } from 'lucide-vue-next'
@@ -142,8 +142,8 @@ function processFiles(fileList: FileList | null) {
     }
   })
 
-  acceptedFiles.value = [...acceptedFiles.value, ...accepted]
-  rejectedFiles.value = [...rejectedFiles.value, ...rejected]
+  acceptedFiles.value = accepted
+  rejectedFiles.value = rejected
 
   if (accepted.length > 0) {
     emit('filesAccepted', accepted)
@@ -197,6 +197,18 @@ const acceptString = computed(() => {
     .flatMap(([mimeType, extensions]) => [mimeType, ...extensions])
     .join(',')
 })
+
+function reset() {
+  acceptedFiles.value = []
+  rejectedFiles.value = []
+  if (inputRef.value) {
+    inputRef.value.value = ''
+  }
+}
+
+export const DROPZONE_INJECTION_KEY = Symbol('dropzone')
+
+provide(DROPZONE_INJECTION_KEY, { reset })
 </script>
 
 <template>

@@ -11,7 +11,7 @@ export interface HeatmapChartProps extends React.HTMLAttributes<HTMLDivElement> 
   data: HeatmapCellData[]
   rows: string[]
   cols: string[]
-  /** CSS color at 0 intensity (default: muted) */
+  /** CSS color at 0 intensity (default: transparent primary) */
   colorLow?: string
   /** CSS color at max intensity (default: primary) */
   colorHigh?: string
@@ -25,12 +25,34 @@ function interpolateOpacity(value: number, min: number, max: number): number {
   return (value - min) / (max - min)
 }
 
+/**
+ * Compute cell background color from colorLow → colorHigh using CSS color-mix(),
+ * which works with any valid CSS color string including hsl(var(--*)) tokens.
+ * Falls back to primary-opacity when custom colors are not provided.
+ */
+function getCellColor(
+  intensity: number,
+  colorLow: string | undefined,
+  colorHigh: string | undefined
+): string {
+  if (colorLow && colorHigh) {
+    // color-mix interpolates in srgb space: at t=0 we want colorLow, at t=1 we want colorHigh.
+    // color-mix(in srgb, colorHigh <t*100>%, colorLow) gives us colorHigh at t=1 and colorLow at t=0.
+    const pct = Math.round(Math.max(0, Math.min(1, intensity)) * 100)
+    return `color-mix(in srgb, ${colorHigh} ${pct}%, ${colorLow})`
+  }
+  // Default: vary opacity of primary from 0.08 (low) to 1 (high)
+  return `hsl(var(--primary) / ${Math.max(0.08, intensity)})`
+}
+
 const HeatmapChart = React.forwardRef<HTMLDivElement, HeatmapChartProps>(
   (
     {
       data,
       rows,
       cols,
+      colorLow,
+      colorHigh,
       showLabels = true,
       showTooltip = true,
       cellSize = 40,
@@ -108,7 +130,7 @@ const HeatmapChart = React.forwardRef<HTMLDivElement, HeatmapChartProps>(
                     key={col}
                     className="border border-foreground/30 cursor-default transition-all duration-100 hover:border-foreground hover:border-2 hover:z-10"
                     style={{
-                      backgroundColor: `hsl(var(--primary) / ${Math.max(0.08, intensity)})`,
+                      backgroundColor: getCellColor(intensity, colorLow, colorHigh),
                     }}
                     onMouseEnter={(e) => {
                       if (showTooltip) {

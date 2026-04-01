@@ -135,7 +135,7 @@ const LayeredCardHeader = React.forwardRef<
 LayeredCardHeader.displayName = 'LayeredCardHeader'
 
 const LayeredCardTitle = React.forwardRef<
-  HTMLParagraphElement,
+  HTMLHeadingElement,
   React.HTMLAttributes<HTMLHeadingElement>
 >(({ className, ...props }, ref) => (
   <h3

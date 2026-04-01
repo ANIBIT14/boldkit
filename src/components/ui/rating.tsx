@@ -133,11 +133,7 @@ const Rating = React.forwardRef<HTMLDivElement, RatingProps>(
     return (
       <div
         ref={ref}
-        role="slider"
-        aria-valuemin={0}
-        aria-valuemax={max}
-        aria-valuenow={currentValue}
-        aria-valuetext={`${currentValue} out of ${max} ${icon === 'star' ? 'stars' : icon === 'heart' ? 'hearts' : 'circles'}`}
+        role="radiogroup"
         aria-label="Rating"
         tabIndex={readOnly || disabled ? -1 : 0}
         onKeyDown={handleKeyDown}
@@ -159,6 +155,9 @@ const Rating = React.forwardRef<HTMLDivElement, RatingProps>(
             <button
               key={index}
               type="button"
+              role="radio"
+              aria-checked={index + 1 === Math.ceil(currentValue)}
+              aria-label={`${index + 1} ${icon === 'star' ? 'star' : icon === 'heart' ? 'heart' : 'circle'}`}
               tabIndex={-1}
               disabled={disabled || readOnly}
               onClick={(e) => {

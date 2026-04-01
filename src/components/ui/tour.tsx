@@ -269,7 +269,7 @@ function TourPopover({
               Previous
             </Button>
           )}
-          <Button size="sm" onClick={isLast ? close : nextStep}>
+          <Button size="sm" onClick={nextStep}>
             {isLast ? 'Finish' : 'Next'}
           </Button>
         </div>
@@ -373,10 +373,7 @@ const Tour = React.forwardRef<HTMLDivElement, TourProps>(
 
     const close = React.useCallback(() => {
       setOpen(false)
-      if (currentStep === steps.length - 1) {
-        onComplete?.()
-      }
-    }, [setOpen, currentStep, steps.length, onComplete])
+    }, [setOpen])
 
     const skip = React.useCallback(() => {
       setOpen(false)

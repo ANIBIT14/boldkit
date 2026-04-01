@@ -42,22 +42,11 @@ const Timeline = React.forwardRef<HTMLDivElement, TimelineProps>(
 Timeline.displayName = 'Timeline'
 
 // Timeline Item
-const timelineItemVariants = cva('relative flex', {
-  variants: {
-    status: {
-      completed: '',
-      current: '',
-      upcoming: '',
-    },
-  },
-  defaultVariants: {
-    status: 'upcoming',
-  },
-})
+const timelineItemVariants = cva('relative flex')
 
-export interface TimelineItemProps
-  extends React.HTMLAttributes<HTMLDivElement>,
-    VariantProps<typeof timelineItemVariants> {}
+export interface TimelineItemProps extends React.HTMLAttributes<HTMLDivElement> {
+  status?: 'completed' | 'current' | 'upcoming'
+}
 
 const TimelineItem = React.forwardRef<HTMLDivElement, TimelineItemProps>(
   ({ status, className, children, ...props }, ref) => {
@@ -68,7 +57,7 @@ const TimelineItem = React.forwardRef<HTMLDivElement, TimelineItemProps>(
         ref={ref}
         data-status={status}
         className={cn(
-          timelineItemVariants({ status }),
+          timelineItemVariants(),
           orientation === 'vertical' ? 'flex-row gap-4' : 'flex-col gap-4 items-center',
           className
         )}

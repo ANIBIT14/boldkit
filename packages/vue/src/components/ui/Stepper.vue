@@ -7,6 +7,7 @@ export interface StepperContext {
   setActiveStep: (step: number) => void
   totalSteps: Readonly<ReturnType<typeof ref<number>>>
   orientation: 'horizontal' | 'vertical'
+  setTotalSteps: (n: number) => void
 }
 
 export const STEPPER_INJECTION_KEY = Symbol('stepper')
@@ -58,7 +59,7 @@ provide(STEPPER_INJECTION_KEY, {
   <div
     :class="cn(
       'flex',
-      orientation === 'horizontal' ? 'flex-col' : 'flex-row',
+      orientation === 'horizontal' ? 'flex-row' : 'flex-col',
       props.class
     )"
   >

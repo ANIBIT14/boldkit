@@ -154,12 +154,8 @@ const getClipPath = (isHalfFilled: boolean) => {
 
 <template>
   <div
-    role="slider"
-    :aria-valuemin="0"
-    :aria-valuemax="max"
-    :aria-valuenow="currentValue"
-    :aria-valuetext="`${currentValue} out of ${max} ${icon === 'star' ? 'stars' : icon === 'heart' ? 'hearts' : 'circles'}`"
-    aria-label="Rating"
+    role="radiogroup"
+    :aria-label="`Rating: ${currentValue} out of ${max} ${icon === 'star' ? 'stars' : icon === 'heart' ? 'hearts' : 'circles'}`"
     :tabindex="readOnly || disabled ? -1 : 0"
     :class="cn(
       ratingVariants({ size }),
@@ -174,7 +170,10 @@ const getClipPath = (isHalfFilled: boolean) => {
       v-for="index in max"
       :key="index - 1"
       type="button"
-      :tabindex="-1"
+      role="radio"
+      :aria-checked="currentValue >= index"
+      :aria-label="`${index} ${icon === 'star' ? 'star' : icon === 'heart' ? 'heart' : 'circle'}${index !== 1 ? 's' : ''}`"
+      :tabindex="(!readOnly && !disabled && currentValue === index) ? 0 : -1"
       :disabled="disabled || readOnly"
       :class="cn(
         'relative transition-transform duration-150 focus:outline-none',

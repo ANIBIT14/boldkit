@@ -9,7 +9,7 @@ export interface TagInputProps {
   suggestions?: string[]
   maxTags?: number
   allowDuplicates?: boolean
-  delimiter?: string
+  delimiter?: string | RegExp
   validateTag?: (tag: string) => boolean | string
   placeholder?: string
   disabled?: boolean
@@ -20,7 +20,7 @@ const props = withDefaults(defineProps<TagInputProps>(), {
   defaultValue: () => [],
   suggestions: () => [],
   allowDuplicates: false,
-  delimiter: ',',
+  delimiter: ',' as string | RegExp,
   placeholder: 'Add tag...',
   disabled: false,
 })
@@ -119,7 +119,7 @@ function handleInputChange(e: Event) {
 
   // Check for delimiter
   if (props.delimiter) {
-    const parts = value.split(props.delimiter)
+    const parts = value.split(props.delimiter instanceof RegExp ? props.delimiter : new RegExp(props.delimiter))
 
     if (parts.length > 1) {
       const newTags = parts.slice(0, -1).filter((part) => part.trim())

@@ -45,6 +45,8 @@ const Slider = React.forwardRef<HTMLDivElement, SliderProps>(
     const trackRef = React.useRef<HTMLDivElement>(null)
     const animationRef = React.useRef<number | null>(null)
     const lastTimeRef = React.useRef<number>(0)
+    const isDraggingRef = React.useRef<boolean>(false)
+    const currentValueRef = React.useRef<number[]>(defaultValue)
 
     // Track active drag handlers for cleanup on unmount
     const dragHandlersRef = React.useRef<{
@@ -76,6 +78,11 @@ const Slider = React.forwardRef<HTMLDivElement, SliderProps>(
     )
     const [hoveringThumb, setHoveringThumb] = React.useState<number | null>(null)
 
+    // Keep currentValueRef in sync for stale-closure-free commit
+    React.useEffect(() => {
+      currentValueRef.current = actualValue
+    }, [actualValue])
+
     // Update targets when value changes externally
     React.useEffect(() => {
       const newTargets = actualValue.map((v) => ((v - min) / (max - min)) * 100)
@@ -91,9 +98,18 @@ const Slider = React.forwardRef<HTMLDivElement, SliderProps>(
       }
     }, [actualValue, min, max, springs.length])
 
-    // Spring physics simulation
-    React.useEffect(() => {
+    // Spring physics simulation — only runs while dragging
+    const startSpringLoop = React.useCallback(() => {
+      if (animationRef.current) return // already running
+
+      lastTimeRef.current = 0
+
       const simulate = (timestamp: number) => {
+        if (!isDraggingRef.current) {
+          animationRef.current = null
+          return
+        }
+
         if (!lastTimeRef.current) {
           lastTimeRef.current = timestamp
         }
@@ -141,13 +157,16 @@ const Slider = React.forwardRef<HTMLDivElement, SliderProps>(
       }
 
       animationRef.current = requestAnimationFrame(simulate)
+    }, [targets, stiffness, damping, mass])
 
+    // Cleanup rAF on unmount
+    React.useEffect(() => {
       return () => {
         if (animationRef.current) {
           cancelAnimationFrame(animationRef.current)
         }
       }
-    }, [targets, stiffness, damping, mass])
+    }, [])
 
     // Cleanup drag handlers on unmount
     React.useEffect(() => {
@@ -239,6 +258,8 @@ const Slider = React.forwardRef<HTMLDivElement, SliderProps>(
       const newValue = getValueFromPosition(e.clientX, e.clientY)
 
       setActiveThumb(nearestThumbIndex)
+      isDraggingRef.current = true
+      startSpringLoop()
       updateValue(nearestThumbIndex, newValue)
 
       // Add velocity boost for jelly effect
@@ -268,7 +289,8 @@ const Slider = React.forwardRef<HTMLDivElement, SliderProps>(
 
       const handlePointerUp = () => {
         setActiveThumb(null)
-        onValueCommit?.(actualValue)
+        isDraggingRef.current = false
+        onValueCommit?.(currentValueRef.current)
         document.removeEventListener('pointermove', handlePointerMove)
         document.removeEventListener('pointerup', handlePointerUp)
         dragHandlersRef.current = { onMove: null, onUp: null }
@@ -287,6 +309,8 @@ const Slider = React.forwardRef<HTMLDivElement, SliderProps>(
       e.preventDefault()
       e.stopPropagation()
       setActiveThumb(index)
+      isDraggingRef.current = true
+      startSpringLoop()
 
       const handlePointerMove = (e: PointerEvent) => {
         const newValue = getValueFromPosition(e.clientX, e.clientY)
@@ -305,7 +329,8 @@ const Slider = React.forwardRef<HTMLDivElement, SliderProps>(
 
       const handlePointerUp = () => {
         setActiveThumb(null)
-        onValueCommit?.(actualValue)
+        isDraggingRef.current = false
+        onValueCommit?.(currentValueRef.current)
         document.removeEventListener('pointermove', handlePointerMove)
         document.removeEventListener('pointerup', handlePointerUp)
         dragHandlersRef.current = { onMove: null, onUp: null }
