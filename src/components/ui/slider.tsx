@@ -388,6 +388,9 @@ const Slider = React.forwardRef<HTMLDivElement, SliderProps>(
         }
         return newSprings
       })
+      isDraggingRef.current = true
+      startSpringLoop()
+      setTimeout(() => { isDraggingRef.current = false }, 300)
     }
 
     // Calculate range fill position

@@ -299,6 +299,7 @@ function handleKeyDown(index: number, e: KeyboardEvent) {
   e.preventDefault()
   updateValue(index, newValue)
   springs.value[index].velocity += (newValue > actualValue.value[index] ? 1 : -1) * 80
+  startAnimation()
 }
 
 const rangeFillStyle = computed(() => {
