@@ -137,7 +137,7 @@ export function SelectDoc() {
     <>
       <ComponentDoc
         name="Select"
-        description="Displays a list of options for the user to pick from with bold neubrutalism styling."
+        description="The BoldKit Select is a neubrutalism dropdown built on Radix UI Select, with a custom thick-bordered trigger and a hard-shadow content panel. Full keyboard navigation is supported — open with Space or Enter, navigate with arrow keys, and select with Enter. Use SelectGroup and SelectLabel to organize options, and wire it to a Label for accessible form fields."
         dependencies={['@radix-ui/react-select']}
         vueDependencies={['reka-ui']}
         sourceCode={sourceCode}

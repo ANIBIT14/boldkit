@@ -196,7 +196,7 @@ export function DialogDoc() {
     <>
       <ComponentDoc
         name="Dialog"
-        description="A modal dialog that interrupts the user with important content with bold neubrutalism styling."
+        description="The BoldKit Dialog is a neubrutalism modal overlay built on Radix UI Dialog, with a managed focus trap that keeps keyboard navigation inside the open panel. It supports Escape key dismissal and click-outside closing out of the box. Use it for confirmations, form collection, or any content that needs to interrupt the current flow with full accessibility compliance."
         dependencies={['@radix-ui/react-dialog']}
         vueDependencies={['reka-ui']}
         sourceCode={sourceCode}

@@ -158,7 +158,7 @@ export function ButtonDoc() {
     <>
       <ComponentDoc
         name="Button"
-        description="Displays a button or a component that looks like a button with neubrutalism styling."
+        description="The BoldKit Button is a neubrutalism-styled interactive element with 7 variants (default, secondary, accent, destructive, outline, ghost, link) and 5 sizes. Built on native button semantics with full keyboard accessibility, it features thick 3px borders and hard offset shadows that translate on hover. Available for both React and Vue 3 via the shadcn CLI."
         dependencies={['@radix-ui/react-slot', 'class-variance-authority']}
         vueDependencies={['reka-ui', 'class-variance-authority']}
         sourceCode={sourceCode}

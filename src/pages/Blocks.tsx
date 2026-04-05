@@ -760,6 +760,21 @@ export function Blocks() {
               </Button>
             </div>
           </div>
+          {/* Explore More */}
+          <div className="mt-8 md:mt-12 border-t-3 border-foreground pt-8 md:pt-10">
+            <h2 className="text-sm font-black uppercase tracking-widest mb-4 text-center">Explore More</h2>
+            <div className="flex flex-col sm:flex-row justify-center gap-3 flex-wrap">
+              <Link to="/components">
+                <Button variant="outline" className="w-full sm:w-auto touch-manipulation">Explore all UI components</Button>
+              </Link>
+              <Link to="/templates">
+                <Button variant="outline" className="w-full sm:w-auto touch-manipulation">Browse full-page templates</Button>
+              </Link>
+              <Link to="/charts">
+                <Button variant="outline" className="w-full sm:w-auto touch-manipulation">Charts and data visualization</Button>
+              </Link>
+            </div>
+          </div>
         </div>
       </Layout>
     </>

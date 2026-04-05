@@ -1,49 +1,115 @@
-# BoldKit - Neubrutalism UI Component Library for React & Vue 3
+# BoldKit — Neubrutalism UI Component Library for React, Vue 3 & Nuxt
 
-> BoldKit is a free, open-source component library featuring neubrutalism design aesthetics. Built on shadcn/ui with Radix UI (React) and Reka UI (Vue) primitives and Tailwind CSS v4.
+> BoldKit is a free, open-source component library built on the neubrutalism (also spelled neobrutalism) design aesthetic. Components are copied into your project via the shadcn CLI — not imported from an npm package. Built on Radix UI (React) and Reka UI (Vue) primitives with Tailwind CSS v4.
 
 ## Quick Facts
 
-- **Components:** 50+ UI components
+- **Version:** 3.0.4
+- **Components:** 55+ UI components
+- **Charts:** 14 chart types
+- **Shapes:** 54 SVG decorative shapes
 - **Blocks:** 15 section blocks (10 marketing + 5 application)
-- **Templates:** 6 full-page templates
-- **Charts:** 10 chart types (Bar, Line, Area, Pie, Donut, Radar, Radial, Gauge, Sparkline)
-- **Shapes:** 42 SVG decorative shapes
-- **License:** MIT (free for commercial use)
-- **Frameworks:** React 19 & Vue 3
-- **Styling:** Tailwind CSS v4
+- **Templates:** 7 full-page templates
+- **Frameworks:** React 19, Vue 3, Nuxt
+- **Styling:** Tailwind CSS v4 with CSS variables
 - **TypeScript:** Full type support
-- **Accessibility:** Built on Radix UI (React) & Reka UI (Vue) primitives
+- **Accessibility:** WCAG 2.1 AA — built on Radix UI (React) & Reka UI (Vue) primitives
+- **License:** MIT (free for personal and commercial use)
+
+---
+
+## What Makes BoldKit Unique
+
+BoldKit is a **neubrutalism** UI library. Every component is styled with:
+
+- **3px solid borders** (`border-3 border-foreground`) — no hairline borders
+- **4px hard offset shadows** with zero blur (`box-shadow: 4px 4px 0px hsl(var(--shadow-color))`) — flat, offset depth
+- **Zero border-radius** (`--radius: 0rem`) — sharp corners everywhere
+- **Bold typography** — 700+ font weight, uppercase labels, wide letter-spacing
+- **Hover = press-down** — elements translate(4px, 4px) and lose their shadow on hover, mimicking physical button press
+
+Components are installed via the **shadcn CLI** (code is copied directly into your project), so you own the source and can customize freely. There is no npm package to import.
+
+---
+
+## Links
+
+- **Website:** https://boldkit.dev
+- **Documentation:** https://boldkit.dev/docs
+- **Installation guide:** https://boldkit.dev/docs/installation
+- **Components:** https://boldkit.dev/components
+- **Charts:** https://boldkit.dev/charts
+- **Shapes:** https://boldkit.dev/shapes
+- **Shape Builder:** https://boldkit.dev/shapes/builder
+- **Blocks:** https://boldkit.dev/blocks
+- **Templates:** https://boldkit.dev/templates
+- **Theme Builder:** https://boldkit.dev/themes
+- **GitHub:** https://github.com/ANIBIT14/boldkit
+- **Registry index:** https://boldkit.dev/registry.json
+- **Sitemap:** https://boldkit.dev/sitemap.xml
+
+---
 
 ## Installation
 
 ### React (shadcn CLI)
 
 ```bash
-# Install any component
-npx shadcn@latest add https://boldkit.dev/r/button.json
+# Install a component
+npx shadcn@latest add https://boldkit.dev/r/{component}.json
 
-# Install shapes (42 SVG shapes)
-npx shadcn@latest add https://boldkit.dev/r/shapes.json
-
-# Install theme
+# Install the theme (required first)
 npx shadcn@latest add https://boldkit.dev/r/theme.json
+
+# Install all shapes
+npx shadcn@latest add https://boldkit.dev/r/shapes.json
 ```
 
-### Vue 3 (shadcn-vue CLI)
+### Vue 3 / Nuxt (shadcn-vue CLI)
 
 ```bash
-# Install any component
-npx shadcn-vue@latest add https://boldkit.dev/r/vue/button.json
+# Install a component
+npx shadcn-vue@latest add https://boldkit.dev/r/vue/{component}.json
 
-# Install shapes
-npx shadcn-vue@latest add https://boldkit.dev/r/vue/shapes.json
-
-# Install theme
+# Install the theme
 npx shadcn-vue@latest add https://boldkit.dev/r/vue/theme.json
+
+# Install all shapes
+npx shadcn-vue@latest add https://boldkit.dev/r/vue/shapes.json
 ```
 
-### All Available Components
+### End-to-End Usage Example (React)
+
+```bash
+# 1. Initialize shadcn in your project (if not already done)
+npx shadcn@latest init
+
+# 2. Install the BoldKit theme
+npx shadcn@latest add https://boldkit.dev/r/theme.json
+
+# 3. Install the Button component
+npx shadcn@latest add https://boldkit.dev/r/button.json
+```
+
+```tsx
+// 4. Import and use
+import { Button } from '@/components/ui/button'
+
+export default function Page() {
+  return (
+    <div>
+      <Button variant="default">Get Started</Button>
+      <Button variant="accent">Try Free</Button>
+    </div>
+  )
+}
+```
+
+---
+
+## All Install Commands — React
+
+### Core UI Components
 
 ```bash
 npx shadcn@latest add https://boldkit.dev/r/accordion.json
@@ -56,16 +122,21 @@ npx shadcn@latest add https://boldkit.dev/r/breadcrumb.json
 npx shadcn@latest add https://boldkit.dev/r/button.json
 npx shadcn@latest add https://boldkit.dev/r/calendar.json
 npx shadcn@latest add https://boldkit.dev/r/card.json
-npx shadcn@latest add https://boldkit.dev/r/chart.json
+npx shadcn@latest add https://boldkit.dev/r/carousel.json
 npx shadcn@latest add https://boldkit.dev/r/checkbox.json
 npx shadcn@latest add https://boldkit.dev/r/collapsible.json
 npx shadcn@latest add https://boldkit.dev/r/command.json
+npx shadcn@latest add https://boldkit.dev/r/data-table.json
+npx shadcn@latest add https://boldkit.dev/r/date-range-picker.json
 npx shadcn@latest add https://boldkit.dev/r/dialog.json
 npx shadcn@latest add https://boldkit.dev/r/drawer.json
 npx shadcn@latest add https://boldkit.dev/r/dropdown-menu.json
+npx shadcn@latest add https://boldkit.dev/r/dropzone.json
+npx shadcn@latest add https://boldkit.dev/r/empty-state.json
 npx shadcn@latest add https://boldkit.dev/r/hover-card.json
 npx shadcn@latest add https://boldkit.dev/r/input.json
 npx shadcn@latest add https://boldkit.dev/r/input-otp.json
+npx shadcn@latest add https://boldkit.dev/r/kbd.json
 npx shadcn@latest add https://boldkit.dev/r/label.json
 npx shadcn@latest add https://boldkit.dev/r/layered-card.json
 npx shadcn@latest add https://boldkit.dev/r/marquee.json
@@ -73,77 +144,176 @@ npx shadcn@latest add https://boldkit.dev/r/pagination.json
 npx shadcn@latest add https://boldkit.dev/r/popover.json
 npx shadcn@latest add https://boldkit.dev/r/progress.json
 npx shadcn@latest add https://boldkit.dev/r/radio-group.json
+npx shadcn@latest add https://boldkit.dev/r/rating.json
 npx shadcn@latest add https://boldkit.dev/r/scroll-area.json
 npx shadcn@latest add https://boldkit.dev/r/select.json
 npx shadcn@latest add https://boldkit.dev/r/separator.json
-npx shadcn@latest add https://boldkit.dev/r/shapes.json
 npx shadcn@latest add https://boldkit.dev/r/sheet.json
+npx shadcn@latest add https://boldkit.dev/r/sidebar.json
 npx shadcn@latest add https://boldkit.dev/r/skeleton.json
 npx shadcn@latest add https://boldkit.dev/r/slider.json
 npx shadcn@latest add https://boldkit.dev/r/sonner.json
+npx shadcn@latest add https://boldkit.dev/r/spinner.json
+npx shadcn@latest add https://boldkit.dev/r/stat-card.json
+npx shadcn@latest add https://boldkit.dev/r/stepper.json
 npx shadcn@latest add https://boldkit.dev/r/sticker.json
 npx shadcn@latest add https://boldkit.dev/r/switch.json
 npx shadcn@latest add https://boldkit.dev/r/table.json
 npx shadcn@latest add https://boldkit.dev/r/tabs.json
+npx shadcn@latest add https://boldkit.dev/r/tag-input.json
 npx shadcn@latest add https://boldkit.dev/r/textarea.json
+npx shadcn@latest add https://boldkit.dev/r/time-picker.json
+npx shadcn@latest add https://boldkit.dev/r/timeline.json
 npx shadcn@latest add https://boldkit.dev/r/toggle.json
 npx shadcn@latest add https://boldkit.dev/r/toggle-group.json
 npx shadcn@latest add https://boldkit.dev/r/tooltip.json
+npx shadcn@latest add https://boldkit.dev/r/tour.json
+npx shadcn@latest add https://boldkit.dev/r/tree-view.json
+```
 
-# NEW v2.5.0 Components
-npx shadcn@latest add https://boldkit.dev/r/spinner.json
-npx shadcn@latest add https://boldkit.dev/r/kbd.json
-npx shadcn@latest add https://boldkit.dev/r/stepper.json
-npx shadcn@latest add https://boldkit.dev/r/dropzone.json
-npx shadcn@latest add https://boldkit.dev/r/stat-card.json
+### Shapes & Decorative
 
-# NEW v2.5.0 Charts
+```bash
+npx shadcn@latest add https://boldkit.dev/r/shapes.json
+```
+
+### Charts
+
+```bash
+npx shadcn@latest add https://boldkit.dev/r/chart.json
 npx shadcn@latest add https://boldkit.dev/r/sparkline.json
 npx shadcn@latest add https://boldkit.dev/r/donut-chart.json
 npx shadcn@latest add https://boldkit.dev/r/radar-chart.json
 npx shadcn@latest add https://boldkit.dev/r/radial-bar-chart.json
 npx shadcn@latest add https://boldkit.dev/r/gauge-chart.json
-
-# NEW v2.6.0 Components
-npx shadcn@latest add https://boldkit.dev/r/empty-state.json
+npx shadcn@latest add https://boldkit.dev/r/funnel-chart.json
+npx shadcn@latest add https://boldkit.dev/r/treemap-chart.json
+npx shadcn@latest add https://boldkit.dev/r/heatmap-chart.json
+npx shadcn@latest add https://boldkit.dev/r/sankey-chart.json
 ```
 
-## Documentation URLs
+### Math Curve Components (NEW v3.0.x)
 
-- Homepage: https://boldkit.dev
-- Documentation: https://boldkit.dev/docs
-- Installation: https://boldkit.dev/docs/installation
-- Components: https://boldkit.dev/components
-- Blocks: https://boldkit.dev/blocks
-- Templates: https://boldkit.dev/templates
-- Shapes: https://boldkit.dev/shapes
-- Charts: https://boldkit.dev/charts
-- Theme Builder: https://boldkit.dev/themes
-- GitHub: https://github.com/ANIBIT14/boldkit
-- Registry: https://boldkit.dev/registry.json
+```bash
+# Shared math engine (required by all three math curve components)
+npx shadcn@latest add https://boldkit.dev/r/math-curves.json
+
+# Animated SVG loader using parametric math curves
+npx shadcn@latest add https://boldkit.dev/r/math-curve-loader.json
+
+# Progress bar rendered as an animated mathematical curve
+npx shadcn@latest add https://boldkit.dev/r/math-curve-progress.json
+
+# Full-bleed animated curve background
+npx shadcn@latest add https://boldkit.dev/r/math-curve-background.json
+```
+
+---
+
+## All Install Commands — Vue 3 / Nuxt
+
+Replace `https://boldkit.dev/r/` with `https://boldkit.dev/r/vue/` for all component URLs above, and use `npx shadcn-vue@latest add` instead of `npx shadcn@latest add`.
+
+```bash
+# Examples
+npx shadcn-vue@latest add https://boldkit.dev/r/vue/button.json
+npx shadcn-vue@latest add https://boldkit.dev/r/vue/card.json
+npx shadcn-vue@latest add https://boldkit.dev/r/vue/shapes.json
+npx shadcn-vue@latest add https://boldkit.dev/r/vue/math-curve-loader.json
+```
+
+---
+
+## Design Tokens
+
+### CSS Variables (Neubrutalism Theme)
+
+```css
+:root {
+  /* Colors (HSL format) */
+  --primary: 0 84% 71%;           /* Coral red */
+  --secondary: 174 62% 56%;       /* Teal */
+  --accent: 49 100% 71%;          /* Yellow */
+  --destructive: 0 84% 60%;       /* Red */
+  --success: 152 69% 69%;         /* Green */
+  --warning: 49 100% 60%;         /* Amber */
+  --info: 212 100% 73%;           /* Blue */
+  --muted: 240 5% 96%;            /* Light gray */
+  --foreground: 240 10% 4%;       /* Near-black */
+  --background: 0 0% 100%;        /* White */
+
+  /* Neubrutalism-specific */
+  --shadow-color: 240 10% 10%;    /* Hard shadow color */
+  --border: 240 10% 10%;          /* Border color */
+  --radius: 0rem;                 /* Zero border-radius = sharp corners everywhere */
+}
+```
+
+### Neubrutalism CSS Utilities
+
+```css
+/* Thick 3px borders */
+.border-3 { border-width: 3px; }
+
+/* Hard offset shadow (no blur) */
+.bk-shadow { box-shadow: 4px 4px 0px hsl(var(--shadow-color)); }
+
+/* Press-down hover effect */
+.bk-hover:hover {
+  transform: translate(4px, 4px);
+  box-shadow: none;
+}
+```
+
+---
+
+## Component Categories
+
+### Layout & Containers
+Accordion, Card, Collapsible, Dialog, Drawer, LayeredCard, ScrollArea, Sheet, Sidebar, StatCard, Stepper, Tabs
+
+### Form Controls
+Button, Calendar, Checkbox, DateRangePicker, Dropzone, Input, InputOTP, Label, RadioGroup, Rating, Select, Slider, Switch, TagInput, Textarea, TimePicker, Toggle, ToggleGroup
+
+### Feedback & Status
+Alert, AlertDialog, Badge, EmptyState, Progress, Skeleton, Sonner (Toast), Spinner, Tour
+
+### Navigation
+Breadcrumb, Carousel, Command (Command Palette), DropdownMenu, HoverCard, Pagination, Popover, TreeView
+
+### Data Display
+Avatar, DataTable, Kbd, Table, Timeline, Tooltip
+
+### Charts (14 Types)
+Area Chart, Bar Chart, Line Chart, Pie Chart, Donut Chart, Radar Chart, Radial Bar Chart, Gauge Chart, Sparkline, Funnel Chart, Treemap Chart, Heatmap Chart, Sankey Chart, Horizontal Bar Chart
+
+### Math Curve Components (NEW v3.0.x)
+MathCurveLoader, MathCurveProgress, MathCurveBackground
+
+### Decorative (Neubrutalism Special)
+Sticker, Marquee, 54 SVG Shapes
+
+---
 
 ## Code Examples
 
-### Button Component
+### Button
 
 ```tsx
 import { Button } from '@/components/ui/button'
 
 // Variants: default, secondary, accent, destructive, outline, ghost, link
-<Button variant="default">Primary Button</Button>
+<Button variant="default">Primary</Button>
 <Button variant="secondary">Secondary</Button>
 <Button variant="accent">Accent</Button>
-<Button variant="destructive">Destructive</Button>
 <Button variant="outline">Outline</Button>
-<Button variant="ghost">Ghost</Button>
 
 // Sizes: default, sm, lg, xl, icon
-<Button size="sm">Small</Button>
 <Button size="lg">Large</Button>
 <Button size="icon"><Icon /></Button>
 ```
 
-### Card Component
+### Card
 
 ```tsx
 import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from '@/components/ui/card'
@@ -151,10 +321,10 @@ import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter }
 <Card>
   <CardHeader>
     <CardTitle>Card Title</CardTitle>
-    <CardDescription>Card description text</CardDescription>
+    <CardDescription>Description text</CardDescription>
   </CardHeader>
   <CardContent>
-    <p>Card content goes here</p>
+    <p>Content goes here</p>
   </CardContent>
   <CardFooter>
     <Button>Action</Button>
@@ -162,7 +332,7 @@ import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter }
 </Card>
 ```
 
-### Input Component
+### Input
 
 ```tsx
 import { Input } from '@/components/ui/input'
@@ -170,11 +340,11 @@ import { Label } from '@/components/ui/label'
 
 <div className="space-y-2">
   <Label htmlFor="email">Email</Label>
-  <Input id="email" type="email" placeholder="Enter email" />
+  <Input id="email" type="email" placeholder="Enter your email" />
 </div>
 ```
 
-### Dialog Component
+### Dialog
 
 ```tsx
 import { Dialog, DialogTrigger, DialogContent, DialogHeader, DialogTitle, DialogDescription } from '@/components/ui/dialog'
@@ -188,40 +358,27 @@ import { Dialog, DialogTrigger, DialogContent, DialogHeader, DialogTitle, Dialog
       <DialogTitle>Dialog Title</DialogTitle>
       <DialogDescription>Dialog description</DialogDescription>
     </DialogHeader>
-    <p>Dialog content</p>
+    <p>Dialog content here</p>
   </DialogContent>
 </Dialog>
 ```
 
-### Shapes Component
+### Shapes
 
 ```tsx
-import { BurstShape, HeartShape, LightningShape, Star5Shape } from '@/components/ui/shapes'
+import {
+  BurstShape, HeartShape, LightningShape, Star5Shape, BlobShape,
+  SunShape, GearShape, SealShape, HexagonShape, CloudShape
+} from '@/components/ui/shapes'
 
-// Basic usage
+// Basic usage — all shapes accept size, className, filled, strokeWidth
 <BurstShape size={100} />
-
-// Custom color (uses Tailwind text color)
 <HeartShape size={80} className="text-destructive" />
-
-// Outline only (not filled)
 <LightningShape size={60} filled={false} />
-
-// Custom stroke width
 <Star5Shape size={100} strokeWidth={5} />
-
-// All 42 shapes available:
-// BurstShape, BlobShape, ArrowBadge, ZigzagBanner, ScribbleCircle,
-// TicketShape, SplatShape, SpeechBubble, DiamondBadge, HexagonShape,
-// CrossShape, LightningShape, HeartShape, Star4Shape, ShieldShape,
-// RibbonShape, WaveShape, OctagonShape, CloudShape, TagShape,
-// Star5Shape, Star6Shape, PentagonShape, TrapezoidShape, ParallelogramShape,
-// CursorShape, BookmarkShape, FlagShape, PillShape, EyeShape, TriangleShape,
-// SunShape, CrescentShape, RainbowShape, PlanetShape, UmbrellaShape, AppleShape,
-// PriceTagShape, CouponShape, ScribbleUnderline, PaperTearShape, ExplosionShape
 ```
 
-### Layered Card (Stacked Paper Effect)
+### Layered Card (stacked paper depth effect)
 
 ```tsx
 import { LayeredCard, LayeredCardHeader, LayeredCardTitle, LayeredCardContent } from '@/components/ui/layered-card'
@@ -230,153 +387,103 @@ import { LayeredCard, LayeredCardHeader, LayeredCardTitle, LayeredCardContent } 
   <LayeredCardHeader>
     <LayeredCardTitle>Stacked Card</LayeredCardTitle>
   </LayeredCardHeader>
-  <LayeredCardContent>
-    <p>Creates a stacked paper depth effect</p>
-  </LayeredCardContent>
+  <LayeredCardContent>Creates a stacked paper depth effect</LayeredCardContent>
 </LayeredCard>
 
-// Props:
 // layers: "single" | "double" | "triple"
 // offset: "sm" | "default" | "lg"
 // layerColor: "default" | "primary" | "secondary" | "accent" | "muted"
 ```
 
-### Marquee (Scrolling Ticker)
+### Marquee (scrolling ticker)
 
 ```tsx
 import { Marquee } from '@/components/ui/marquee'
 
-<Marquee speed="normal" pauseOnHover>
-  <span>Scrolling text content</span>
+<Marquee speed="normal" pauseOnHover direction="left">
+  <span>Scrolling content</span>
   <span>More content</span>
 </Marquee>
 
-// Props:
 // speed: "slow" | "normal" | "fast"
 // direction: "left" | "right"
-// pauseOnHover: boolean
 ```
 
-### Sticker Component
+### Sticker
 
 ```tsx
 import { Sticker } from '@/components/ui/sticker'
 
-<Sticker variant="default" rotation="left">
-  New Feature!
-</Sticker>
+<Sticker variant="accent" rotation="left">New!</Sticker>
 
-// Props:
 // variant: "default" | "accent" | "destructive" | "success"
 // rotation: "left" | "right" | "none"
 ```
 
-### Chart Component
-
-```tsx
-import { ChartContainer, ChartTooltip, ChartTooltipContent, CHART_PALETTES, getChartColor } from '@/components/ui/chart'
-import { Bar, BarChart, XAxis, YAxis } from 'recharts'
-
-// Container variants: default, elevated, flat, filled, minimal, accent, primary
-<ChartContainer config={chartConfig} variant="elevated">
-  <BarChart data={data}>
-    <Bar dataKey="value" fill={getChartColor('vibrant', 0)} />
-  </BarChart>
-</ChartContainer>
-
-// Color palettes: bold, vibrant, pastel, monochrome
-// Use getChartColor(palette, index) for consistent colors
-const color = getChartColor('vibrant', 0) // 'hsl(0 84% 60%)'
-
-// Available palettes:
-// CHART_PALETTES.bold - Uses CSS variables (primary, secondary, accent, etc.)
-// CHART_PALETTES.vibrant - Bright coral, teal, yellow, purple, green, blue
-// CHART_PALETTES.pastel - Lighter versions of vibrant colors
-// CHART_PALETTES.monochrome - Foreground color with opacity variations
-```
-
-### Spinner Component (NEW v2.5.0)
+### Spinner
 
 ```tsx
 import { Spinner } from '@/components/ui/spinner'
 
-// Variants: default, dots, bars, blocks, brutal
-<Spinner variant="default" />
+// variants: default, dots, bars, blocks, brutal
 <Spinner variant="dots" />
-<Spinner variant="bars" />
-<Spinner variant="blocks" />
-<Spinner variant="brutal" />
+<Spinner variant="brutal" size="lg" />
 
-// Sizes: xs, sm, md, lg, xl
-<Spinner size="xs" />
-<Spinner size="lg" />
+// sizes: xs, sm, md, lg, xl
 ```
 
-### Kbd Component (NEW v2.5.0)
+### Kbd (keyboard key)
 
 ```tsx
 import { Kbd, KbdCombo } from '@/components/ui/kbd'
 
-// Single key
 <Kbd>⌘</Kbd>
-<Kbd>Shift</Kbd>
-
-// Key combination
 <KbdCombo keys={['⌘', 'K']} />
 <KbdCombo keys={['Ctrl', 'Shift', 'P']} />
 
-// Variants: default, outline, ghost
-// Sizes: sm, md, lg
-<Kbd variant="outline" size="lg">Enter</Kbd>
+// variant: "default" | "outline" | "ghost"
+// size: "sm" | "md" | "lg"
 ```
 
-### Stepper Component (NEW v2.5.0)
+### Stepper (wizard)
 
 ```tsx
 import { Stepper, StepperList, StepperItem, StepperTrigger, StepperContent, StepperSeparator } from '@/components/ui/stepper'
 
 <Stepper defaultValue={1}>
   <StepperList>
-    <StepperItem value={1}>
-      <StepperTrigger>Step 1</StepperTrigger>
-    </StepperItem>
+    <StepperItem value={1}><StepperTrigger>Details</StepperTrigger></StepperItem>
     <StepperSeparator />
-    <StepperItem value={2}>
-      <StepperTrigger>Step 2</StepperTrigger>
-    </StepperItem>
+    <StepperItem value={2}><StepperTrigger>Payment</StepperTrigger></StepperItem>
+    <StepperSeparator />
+    <StepperItem value={3}><StepperTrigger>Confirm</StepperTrigger></StepperItem>
   </StepperList>
   <StepperContent value={1}>Step 1 content</StepperContent>
   <StepperContent value={2}>Step 2 content</StepperContent>
+  <StepperContent value={3}>Step 3 content</StepperContent>
 </Stepper>
 
-// Orientation: horizontal, vertical
-// Sizes: sm, md, lg
+// orientation: "horizontal" | "vertical"
 ```
 
-### Dropzone Component (NEW v2.5.0)
+### Dropzone (file upload)
 
 ```tsx
 import { Dropzone, FileList } from '@/components/ui/dropzone'
 
 <Dropzone
   onFilesAccepted={(files) => console.log(files)}
-  onFilesRejected={(rejections) => console.log(rejections)}
   accept={{ 'image/*': ['.png', '.jpg', '.jpeg'] }}
-  maxSize={5 * 1024 * 1024} // 5MB
+  maxSize={5 * 1024 * 1024}
   maxFiles={5}
->
-  {/* Custom content or use default */}
-</Dropzone>
-
-// Variants: default, compact, minimal
-// With file list:
-<FileList
-  files={uploadedFiles}
-  onRemove={(file) => handleRemove(file)}
 />
+
+<FileList files={uploadedFiles} onRemove={(file) => handleRemove(file)} />
+
+// variant: "default" | "compact" | "minimal"
 ```
 
-### StatCard Component (NEW v2.5.0)
+### StatCard
 
 ```tsx
 import { StatCard } from '@/components/ui/stat-card'
@@ -390,13 +497,287 @@ import { StatCard } from '@/components/ui/stat-card'
   color="success"
 />
 
-// Props:
 // trend: "up" | "down"
 // color: "primary" | "secondary" | "accent" | "success" | "warning" | "info" | "destructive"
 // variant: "default" | "compact" | "large"
 ```
 
-### Gauge Chart (NEW v2.5.0)
+### Rating
+
+```tsx
+import { Rating } from '@/components/ui/rating'
+
+<Rating value={4} max={5} onChange={(val) => setRating(val)} />
+<Rating value={3.5} readOnly size="lg" />
+```
+
+### TagInput (multi-value tag input)
+
+```tsx
+import { TagInput } from '@/components/ui/tag-input'
+
+<TagInput
+  value={tags}
+  onChange={setTags}
+  placeholder="Add tag..."
+  maxTags={10}
+/>
+```
+
+### TimePicker
+
+```tsx
+import { TimePicker } from '@/components/ui/time-picker'
+
+<TimePicker value={time} onChange={setTime} />
+<TimePicker format="12h" />
+```
+
+### DateRangePicker
+
+```tsx
+import { DateRangePicker } from '@/components/ui/date-range-picker'
+
+<DateRangePicker
+  value={dateRange}
+  onChange={setDateRange}
+  placeholder="Select date range"
+/>
+```
+
+### DataTable (sorting, filtering, pagination)
+
+```tsx
+import { DataTable } from '@/components/ui/data-table'
+
+<DataTable
+  columns={columns}
+  data={data}
+  searchKey="name"
+  pageSize={10}
+/>
+```
+
+### EmptyState
+
+```tsx
+import {
+  EmptyState, EmptyStateIcon, EmptyStateTitle,
+  EmptyStateDescription, EmptyStateActions, EmptyStatePreset
+} from '@/components/ui/empty-state'
+import { Inbox, Plus } from 'lucide-react'
+
+// Composable API
+<EmptyState>
+  <EmptyStateIcon><Inbox className="h-10 w-10" /></EmptyStateIcon>
+  <EmptyStateTitle>No messages</EmptyStateTitle>
+  <EmptyStateDescription>Your inbox is empty</EmptyStateDescription>
+  <EmptyStateActions>
+    <Button><Plus className="mr-2 h-4 w-4" />Compose</Button>
+  </EmptyStateActions>
+</EmptyState>
+
+// Preset API
+<EmptyStatePreset preset="no-results" action={<Button>Clear search</Button>} />
+
+// Available presets: 'no-results', 'no-data', 'empty-inbox', 'empty-folder',
+// 'no-users', 'empty-cart', 'no-notifications', 'no-images'
+// variant: "default" | "filled" | "card"
+```
+
+### Sidebar
+
+```tsx
+import { Sidebar, SidebarHeader, SidebarContent, SidebarFooter, SidebarNav, SidebarNavItem } from '@/components/ui/sidebar'
+
+<Sidebar>
+  <SidebarHeader>My App</SidebarHeader>
+  <SidebarContent>
+    <SidebarNav>
+      <SidebarNavItem href="/dashboard" icon={<Home />}>Dashboard</SidebarNavItem>
+      <SidebarNavItem href="/settings" icon={<Settings />}>Settings</SidebarNavItem>
+    </SidebarNav>
+  </SidebarContent>
+  <SidebarFooter>Footer content</SidebarFooter>
+</Sidebar>
+```
+
+### Timeline
+
+```tsx
+import { Timeline, TimelineItem, TimelineConnector, TimelineContent, TimelineHeader } from '@/components/ui/timeline'
+
+<Timeline>
+  <TimelineItem>
+    <TimelineHeader>January 2024</TimelineHeader>
+    <TimelineContent>Project launched</TimelineContent>
+    <TimelineConnector />
+  </TimelineItem>
+  <TimelineItem>
+    <TimelineHeader>March 2024</TimelineHeader>
+    <TimelineContent>First major release</TimelineContent>
+  </TimelineItem>
+</Timeline>
+```
+
+### TreeView
+
+```tsx
+import { TreeView } from '@/components/ui/tree-view'
+
+const treeData = [
+  {
+    id: '1', name: 'src', children: [
+      { id: '2', name: 'components', children: [] },
+      { id: '3', name: 'utils', children: [] },
+    ]
+  }
+]
+
+<TreeView data={treeData} />
+```
+
+### Carousel
+
+```tsx
+import { Carousel, CarouselContent, CarouselItem, CarouselPrevious, CarouselNext } from '@/components/ui/carousel'
+
+<Carousel>
+  <CarouselContent>
+    <CarouselItem>Slide 1</CarouselItem>
+    <CarouselItem>Slide 2</CarouselItem>
+    <CarouselItem>Slide 3</CarouselItem>
+  </CarouselContent>
+  <CarouselPrevious />
+  <CarouselNext />
+</Carousel>
+```
+
+### Tour (product tours)
+
+```tsx
+import { Tour, TourStep } from '@/components/ui/tour'
+
+<Tour>
+  <TourStep
+    target="#upload-button"
+    title="Upload Files"
+    description="Click here to upload your files."
+    step={1}
+    totalSteps={3}
+  />
+</Tour>
+```
+
+---
+
+## Math Curve Components (NEW v3.0.x)
+
+These three components share a common parametric math engine (`math-curves.ts`) that renders animated SVG curves based on real mathematical formulas.
+
+### MathCurveLoader
+
+An animated SVG loading spinner powered by parametric math curves. 8 curve variants, each drawing a different mathematical shape in a continuous loop.
+
+```tsx
+import { MathCurveLoader } from '@/components/ui/math-curve-loader'
+
+// curve variants: 'rose' | 'lissajous' | 'butterfly' | 'hypotrochoid' |
+//                 'cardioid' | 'lemniscate' | 'fourier' | 'rose3'
+<MathCurveLoader curve="lissajous" />
+<MathCurveLoader curve="butterfly" size="lg" speed="slow" />
+<MathCurveLoader curve="rose" size="xl" color="hsl(var(--primary))" />
+
+// size: "xs" | "sm" | "md" | "lg" | "xl"
+// speed: "slow" | "normal" | "fast"
+```
+
+### MathCurveProgress
+
+A progress bar rendered as an animated mathematical curve that draws itself from 0% to 100%.
+
+```tsx
+import { MathCurveProgress } from '@/components/ui/math-curve-progress'
+
+// curve variants: 'spiral' | 'heart' | 'lissajous' | 'cardioid' | 'rose'
+<MathCurveProgress value={75} curve="spiral" />
+<MathCurveProgress value={60} curve="heart" color="hsl(var(--destructive))" />
+<MathCurveProgress value={90} curve="cardioid" size="lg" />
+
+// value: 0–100
+// size: "sm" | "md" | "lg"
+```
+
+### MathCurveBackground
+
+A full-bleed animated background featuring flowing parametric curves. Ideal for hero sections, landing pages, and decorative panels.
+
+```tsx
+import { MathCurveBackground } from '@/components/ui/math-curve-background'
+
+// curve variants: 'rose' | 'lissajous' | 'fourier' | 'spiral'
+<MathCurveBackground curve="lissajous" opacity={0.15}>
+  <div className="relative z-10">
+    <h1>Your content here</h1>
+  </div>
+</MathCurveBackground>
+
+<MathCurveBackground curve="rose" color="hsl(var(--primary))" speed="slow" />
+```
+
+### Math Curve Engine Details
+
+The underlying math engine (`@/lib/math-curves`) computes all curves in `[0, 100]` SVG coordinate space, centered at `(50, 50)`. Curves include:
+
+| Curve | Formula | Use |
+|---|---|---|
+| `rose` | r = a·cos(5θ) — 5-petal rose | Loader, Progress, Background |
+| `rose3` | r = a·cos(3θ) — 3-petal rose | Loader |
+| `lissajous` | x = A·sin(3t + π/2), y = B·sin(4t) | Loader, Progress, Background |
+| `butterfly` | r = e^cos(t) − 2·cos(4t) − sin⁵(t/12) | Loader |
+| `hypotrochoid` | Spirograph: R=5, r=3 | Loader |
+| `cardioid` | r = a(1 + cos θ) | Loader, Progress |
+| `lemniscate` | r² = a²·cos(2θ) | Loader |
+| `fourier` | Fourier series approximation | Loader, Background |
+| `spiral` | Archimedean spiral | Progress |
+| `heart` | Parametric heart curve | Progress |
+
+---
+
+## Charts (14 Types)
+
+```tsx
+import { ChartContainer, ChartTooltip, ChartTooltipContent, CHART_PALETTES, getChartColor } from '@/components/ui/chart'
+import { Bar, BarChart, XAxis, YAxis } from 'recharts'
+
+// Container variants: default, elevated, flat, filled, minimal, accent, primary
+<ChartContainer config={chartConfig} variant="elevated">
+  <BarChart data={data}>
+    <Bar dataKey="value" fill={getChartColor('vibrant', 0)} />
+  </BarChart>
+</ChartContainer>
+
+// Color palettes: bold, vibrant, pastel, monochrome
+// getChartColor(palette, index) → 'hsl(0 84% 60%)'
+```
+
+**All chart types:**
+1. **Area Chart** — time-series with filled area
+2. **Bar Chart** — vertical bars (uses Recharts)
+3. **Horizontal Bar Chart** — horizontal bars
+4. **Line Chart** — line trends
+5. **Pie Chart** — segmented circle
+6. **Donut Chart** — pie with center slot for custom content
+7. **Radar Chart** — multi-variable spider chart
+8. **Radial Bar Chart** — circular progress bars (stacked/nested)
+9. **Gauge Chart** — speedometer-style with zones and animated needle
+10. **Sparkline** — inline mini chart (line, area, or bar) for tables and stat cards
+11. **Funnel Chart** — conversion funnel visualization
+12. **Treemap Chart** — hierarchical rectangle area chart
+13. **Heatmap Chart** — grid-based intensity map
+14. **Sankey Chart** — flow/relationship diagram
+
+### Gauge Chart
 
 ```tsx
 import { GaugeChart } from '@/components/ui/chart'
@@ -412,12 +793,10 @@ import { GaugeChart } from '@/components/ui/chart'
     { from: 66, to: 100, color: 'hsl(var(--success))', label: 'High' },
   ]}
 />
-
-// Sizes: sm, md, lg
-// Shows animated needle, zones, and value display
+// size: "sm" | "md" | "lg"
 ```
 
-### Sparkline (NEW v2.5.0)
+### Sparkline
 
 ```tsx
 import { Sparkline } from '@/components/ui/chart'
@@ -429,261 +808,174 @@ import { Sparkline } from '@/components/ui/chart'
   height={32}
   showEndDot
 />
-
-// Types: line, area, bar
-// Great for inline trend visualization in tables or stat cards
+// type: "line" | "area" | "bar"
 ```
 
-### Donut Chart (NEW v2.5.0)
+### Donut Chart
 
 ```tsx
 import { DonutChart, DonutChartCenter } from '@/components/ui/chart'
 
-<DonutChart
-  data={chartData}
-  config={chartConfig}
-  innerRadius="60%"
-  outerRadius="80%"
->
+<DonutChart data={data} config={config} innerRadius="60%" outerRadius="80%">
   <DonutChartCenter>
     <div className="text-2xl font-bold">$12.5K</div>
     <div className="text-sm text-muted-foreground">Total</div>
   </DonutChartCenter>
 </DonutChart>
-
-// Variants: default, separated (with gaps between segments)
+// variant: "default" | "separated"
 ```
 
-### Radar Chart (NEW v2.5.0)
+---
+
+## SVG Shapes (54 Total)
+
+All shapes are React/Vue components. They accept `size`, `className`, `filled`, and `strokeWidth` props.
 
 ```tsx
-import { RadarChart } from '@/components/ui/chart'
-
-<RadarChart
-  data={skillsData}
-  dataKeys={['current', 'target']}
-  config={chartConfig}
-  showLegend
-/>
-
-// Great for multi-variable comparison (skills, metrics, etc.)
+import { BurstShape } from '@/components/ui/shapes'
+<BurstShape size={100} className="text-primary" />
+<BurstShape size={80} filled={false} strokeWidth={3} />
 ```
 
-### Radial Bar Chart (NEW v2.5.0)
+**All 54 shapes:**
 
-```tsx
-import { RadialBarChart } from '@/components/ui/chart'
+### Geometric
+`TriangleShape`, `PentagonShape`, `HexagonShape`, `OctagonShape`, `CrossShape`, `TrapezoidShape`, `ParallelogramShape`, `WavyRectangleShape`
 
-<RadialBarChart
-  data={progressData}
-  config={chartConfig}
-  showLabel
-  showBackground
-/>
+### Stars & Bursts
+`Star4Shape`, `Star5Shape`, `Star6Shape`, `StarShape`, `BurstShape`, `ExplosionShape`, `SplatShape`
 
-// Variants: default, stacked, nested
-// Shows circular progress bars
-```
+### Nature & Organic
+`BlobShape`, `WaveShape`, `CloudShape`, `HeartShape`, `AppleShape`, `OrganicShape`
 
-### Empty State Component (NEW v2.6.0)
+### Symbols & Icons
+`LightningShape`, `RibbonShape`, `ShieldShape`, `SunShape`, `CrescentShape`, `RainbowShape`, `PlanetShape`, `UmbrellaShape`, `EyeShape`, `CursorShape`, `GearShape`, `CelestialShape`
 
-```tsx
-import {
-  EmptyState,
-  EmptyStateIcon,
-  EmptyStateTitle,
-  EmptyStateDescription,
-  EmptyStateActions,
-  EmptyStatePreset,
-} from '@/components/ui/empty-state'
-import { Inbox, Plus } from 'lucide-react'
+### Tags & Badges
+`TagShape`, `PriceTagShape`, `TicketShape`, `CouponShape`, `BookmarkShape`, `FlagShape`, `PillShape`, `SealShape`, `BadgeShape`
 
-// Composable API
-<EmptyState>
-  <EmptyStateIcon>
-    <Inbox className="h-10 w-10" />
-  </EmptyStateIcon>
-  <EmptyStateTitle>No messages</EmptyStateTitle>
-  <EmptyStateDescription>Your inbox is empty</EmptyStateDescription>
-  <EmptyStateActions>
-    <Button><Plus className="mr-2 h-4 w-4" />Compose</Button>
-  </EmptyStateActions>
-</EmptyState>
+### Decorative
+`PaperTearShape`, `ScribbleUnderline` (via DecorativeShape variants), `GeometricShape`, `DecorativeShape`, `CommunicationShape`, `MechanicalShape`
 
-// Preset API for common scenarios
-<EmptyStatePreset
-  preset="no-results"
-  action={<Button>Clear search</Button>}
-/>
+### Interactive — Shape Builder
 
-// Available presets:
-// 'no-results', 'no-data', 'empty-inbox', 'empty-folder',
-// 'no-users', 'empty-cart', 'no-notifications', 'no-images'
+Visit **https://boldkit.dev/shapes/builder** to interactively customize any shape's size, fill, stroke, color, and rotation, then copy the ready-to-use component code.
 
-// Variants: default, filled, card
-// Sizes: sm, md, lg
-// Icon colors: default, primary, secondary, accent, muted
-```
+---
 
-## Design Tokens (CSS Variables)
+## Section Blocks (15 Total)
 
-### Colors (HSL Format)
+Blocks are pre-built page sections that snap together to build full pages. All blocks follow neubrutalism aesthetics and are fully responsive.
 
-```css
-/* Light Theme */
---primary: 0 84% 71%;           /* Coral */
---secondary: 174 62% 56%;       /* Teal */
---accent: 49 100% 71%;          /* Yellow */
---destructive: 0 84% 60%;       /* Red */
---success: 152 69% 69%;         /* Green */
---warning: 49 100% 60%;         /* Orange */
---info: 212 100% 73%;           /* Blue */
+### Marketing Blocks (10)
 
-/* Neubrutalism Specific */
---shadow-color: 240 10% 10%;    /* Shadow color */
---border: 240 10% 10%;          /* Border color */
-```
+| Block | Variants |
+|---|---|
+| **Hero Section** | Centered, Split, WithStats, Minimal, WithVideo |
+| **Feature Grid** | WithIcons, WithImages, Alternating, Bento |
+| **Testimonials** | Grid, Single, Masonry, WithAvatars |
+| **Logo Cloud** | Grid, Marquee, Cards, WithStats |
+| **CTA Section** | Simple, WithBackground, Newsletter, Split, Banner |
+| **Stats Section** | Grid, Cards, Split, Inline, WithIcons |
+| **Team Section** | Grid, List, LargePhotos, Compact |
+| **FAQ Section** | Accordion, TwoColumns, WithCategories, WithContact, SimpleList |
+| **Footer Section** | MultiColumn, WithNewsletter, Simple, Minimal, WithCTA |
+| **Contact Section** | Split, Centered, WithCards, WithMap |
 
-### Neubrutalism CSS Utilities
+### Application Blocks (5)
 
-```css
-/* Thick borders */
-.border-3 { border-width: 3px; }
+| Block | Variants |
+|---|---|
+| **Auth Forms** | Login, SignUp, ForgotPassword, OTPVerification, SplitLayout |
+| **Settings Page** | Profile, Notifications, Security, Appearance, DangerZone, FullPage |
+| **Onboarding Flow** | Wizard, Welcome, ProfileSetup, WorkspaceSetup, GoalSelection, Completion |
+| **Error Pages** | NotFound (404), ServerError (500), Maintenance, Offline, Forbidden (403), ComingSoon, Generic |
+| **Invoice** | Full, Receipt, Summary, List |
 
-/* Hard shadow (no blur) */
-.bk-shadow { box-shadow: 4px 4px 0px hsl(var(--shadow-color)); }
+### Blocks URLs
+- Hero Section: https://boldkit.dev/blocks/hero-section
+- Feature Grid: https://boldkit.dev/blocks/feature-grid
+- Testimonials: https://boldkit.dev/blocks/testimonials
+- Logo Cloud: https://boldkit.dev/blocks/logo-cloud
+- CTA Section: https://boldkit.dev/blocks/cta-section
+- Stats Section: https://boldkit.dev/blocks/stats-section
+- Team Section: https://boldkit.dev/blocks/team-section
+- FAQ Section: https://boldkit.dev/blocks/faq-section
+- Footer Section: https://boldkit.dev/blocks/footer-section
+- Contact Section: https://boldkit.dev/blocks/contact-section
+- Auth Forms: https://boldkit.dev/blocks/auth-forms
+- Settings Page: https://boldkit.dev/blocks/settings-page
+- Onboarding Flow: https://boldkit.dev/blocks/onboarding-flow
+- Error Pages: https://boldkit.dev/blocks/error-pages
+- Invoice: https://boldkit.dev/blocks/invoice
 
-/* Press-down hover effect */
-.bk-hover:hover {
-  transform: translate(4px, 4px);
-  box-shadow: none;
-}
-```
+---
 
-## Component Categories
+## Full-Page Templates (7)
 
-### Layout & Containers
-- Card, Layered Card, StatCard (NEW), Dialog, Drawer, Sheet, Accordion, Collapsible, Tabs, Stepper (NEW), Scroll Area
+Ready-to-use page templates built from BoldKit components and blocks.
 
-### Form Controls
-- Button, Input, Textarea, Checkbox, Radio Group, Select, Switch, Slider, Input OTP, Label, Dropzone (NEW)
+1. **Landing Page** — SaaS landing with hero, features, pricing, testimonials, footer
+2. **Portfolio** — Personal portfolio with hero, services, projects, contact
+3. **Dashboard** — Admin panel with sidebar, stat cards, charts, and data table
+4. **Pricing** — 3-tier pricing with comparison table and FAQ accordion
+5. **Blog** — Magazine-style blog with featured articles and newsletter signup
+6. **Product** — E-commerce product page with gallery, reviews, related items
+7. **Documentation** — Docs site layout with sidebar navigation and content area
 
-### Feedback & Status
-- Alert, Alert Dialog, Badge, Progress, Skeleton, Spinner (NEW), Sonner (Toast)
+### Template URLs
+- https://boldkit.dev/templates/landing-page
+- https://boldkit.dev/templates/portfolio
+- https://boldkit.dev/templates/dashboard
+- https://boldkit.dev/templates/pricing
+- https://boldkit.dev/templates/blog
+- https://boldkit.dev/templates/product
+- https://boldkit.dev/templates/documentation
 
-### Navigation
-- Breadcrumb, Dropdown Menu, Pagination, Command (Command Palette)
-
-### Data Display
-- Avatar, Table, Hover Card, Tooltip, Calendar, Kbd (NEW)
-
-### Charts (10 Types)
-- Area Chart, Bar Chart, Line Chart, Pie Chart
-- Donut Chart (NEW), Radar Chart (NEW), Radial Bar Chart (NEW), Gauge Chart (NEW), Sparkline (NEW)
-
-### Decorative (Neubrutalism Special)
-- Sticker, Stamp, StickyNote, Marquee, 42 SVG Shapes
+---
 
 ## Tech Stack
 
 ### React
 - React 19
-- Radix UI Primitives (accessibility)
-- Recharts (data visualization)
+- Radix UI primitives (accessibility, keyboard navigation, ARIA)
+- Recharts (data visualization for standard charts)
+- Class Variance Authority (CVA) for type-safe variants
+- Tailwind CSS v4
 
-### Vue 3
+### Vue 3 / Nuxt
 - Vue 3 with Composition API
-- Reka UI Primitives (Radix port for Vue)
-- vue-echarts (data visualization)
+- Reka UI primitives (Radix UI port for Vue)
+- vue-echarts (data visualization — ECharts backend)
+- Class Variance Authority (CVA)
+- Tailwind CSS v4
 
 ### Shared
-- TypeScript
-- Tailwind CSS v4
-- Class Variance Authority (variants)
-- Vite (build tool)
+- TypeScript (strict mode)
+- Tailwind CSS v4 with CSS custom properties
+- shadcn CLI compatible registry format
+
+---
 
 ## Registry API
 
-Component JSON files are available at:
-- Index: `https://boldkit.dev/registry.json`
-- Components: `https://boldkit.dev/r/{component-name}.json`
+All component JSON files follow the shadcn registry format and are available at:
 
-Example: `https://boldkit.dev/r/button.json`
+- **Registry index:** `https://boldkit.dev/registry.json`
+- **React components:** `https://boldkit.dev/r/{component-name}.json`
+- **Vue components:** `https://boldkit.dev/r/vue/{component-name}.json`
 
-## Section Blocks (NEW v2.6.0)
-
-### Marketing Blocks (10)
-- Hero Section: Centered, Split, WithStats, Minimal, WithVideo
-- Feature Grid: WithIcons, WithImages, Alternating, Bento
-- Testimonials: Grid, Single, Masonry, WithAvatars
-- Logo Cloud: Grid, Marquee, Cards, WithStats
-- CTA Section: Simple, WithBackground, Newsletter, Split, Banner
-- Stats Section: Grid, Cards, Split, Inline, WithIcons
-- Team Section: Grid, List, LargePhotos, Compact
-- FAQ Section: Accordion, TwoColumns, WithCategories, WithContact, SimpleList
-- Footer Section: MultiColumn, WithNewsletter, Simple, Minimal, WithCTA
-- Contact Section: Split, Centered, WithCards, WithMap
-
-### Application Blocks (5)
-- Auth Forms: Login, SignUp, ForgotPassword, OTPVerification, SplitLayout
-- Settings Page: Profile, Notifications, Security, Appearance, DangerZone, FullPage
-- Onboarding Flow: Wizard, Welcome, ProfileSetup, WorkspaceSetup, GoalSelection, Completion
-- Error Pages: NotFound (404), ServerError (500), Maintenance, Offline, Forbidden (403), ComingSoon, Generic
-- Invoice: Full, Receipt, Summary, List
-
-### Blocks Usage
-
-```tsx
-// Marketing Block
-import { HeroSection } from '@/components/blocks/marketing'
-
-<HeroSection.Centered
-  title="Welcome"
-  description="Your description here"
-  primaryAction={{ label: 'Get Started', href: '/signup' }}
-/>
-
-// Application Block
-import { AuthForms } from '@/components/blocks/application'
-
-<AuthForms.Login
-  onSubmit={(data) => console.log(data)}
-  socialProviders={['google', 'github']}
-/>
-```
-
-## Full-Page Templates (6)
-
-1. **Landing Page** - SaaS landing with hero, features, pricing, testimonials
-2. **Portfolio** - Personal portfolio with hero, services, projects, contact
-3. **Dashboard** - Admin panel with sidebar, stats, charts, data tables
-4. **Pricing** - 3-tier pricing with comparison table and FAQ
-5. **Blog** - Magazine-style blog with featured articles and newsletter
-6. **Product** - E-commerce product page with gallery, reviews, related items
-
-### Template URLs
-- Landing: https://boldkit.dev/templates/landing-page
-- Portfolio: https://boldkit.dev/templates/portfolio
-- Dashboard: https://boldkit.dev/templates/dashboard
-- Pricing: https://boldkit.dev/templates/pricing
-- Blog: https://boldkit.dev/templates/blog
-- Product: https://boldkit.dev/templates/product
-
-## Sitemap for Crawlers
-
-- Full Sitemap: `https://boldkit.dev/sitemap.xml`
-- Main Pages: `https://boldkit.dev/`, `https://boldkit.dev/docs`, `https://boldkit.dev/components`, `https://boldkit.dev/blocks`
-- Templates: `https://boldkit.dev/templates`, `https://boldkit.dev/templates/landing-page`, `https://boldkit.dev/templates/portfolio`, `https://boldkit.dev/templates/dashboard`, `https://boldkit.dev/templates/pricing`, `https://boldkit.dev/templates/blog`, `https://boldkit.dev/templates/product`
-- Marketing Blocks: `https://boldkit.dev/blocks/hero-section`, `https://boldkit.dev/blocks/feature-grid`, `https://boldkit.dev/blocks/testimonials`, `https://boldkit.dev/blocks/logo-cloud`, `https://boldkit.dev/blocks/cta-section`, `https://boldkit.dev/blocks/stats-section`, `https://boldkit.dev/blocks/team-section`, `https://boldkit.dev/blocks/faq-section`, `https://boldkit.dev/blocks/footer-section`, `https://boldkit.dev/blocks/contact-section`
-- Application Blocks: `https://boldkit.dev/blocks/auth-forms`, `https://boldkit.dev/blocks/settings-page`, `https://boldkit.dev/blocks/onboarding-flow`, `https://boldkit.dev/blocks/error-pages`, `https://boldkit.dev/blocks/invoice`
+---
 
 ## Contact
 
-- Author: Aniruddha Agarwal
-- Email: aniruddha@boldkit.dev
-- GitHub: https://github.com/ANIBIT14/boldkit
-- LinkedIn: https://www.linkedin.com/in/aniruddhaagarwal/
+- **Author:** Aniruddha Agarwal
+- **Email:** aniruddha@boldkit.dev
+- **GitHub:** https://github.com/ANIBIT14/boldkit
+- **LinkedIn:** https://www.linkedin.com/in/aniruddhaagarwal/
+
+---
 
 ## License
 
-MIT License - Free for personal and commercial use.
+MIT License — Free for personal and commercial use.

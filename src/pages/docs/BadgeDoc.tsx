@@ -96,7 +96,7 @@ export function BadgeDoc() {
     <>
       <ComponentDoc
         name="Badge"
-        description="Displays a badge or a component that looks like a badge with bold neubrutalism styling."
+        description="The BoldKit Badge is a compact neubrutalism label element with 5 variants (default, secondary, accent, destructive, outline) for communicating status, category, or count at a glance. It features bold uppercase typography, a 2px border, and a small hard shadow for visual pop. Use it as a status indicator, content tag, or numeric counter alongside other UI elements."
         dependencies={['class-variance-authority']}
         sourceCode={sourceCode}
         usageCode={usageCode}

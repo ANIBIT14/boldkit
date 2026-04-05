@@ -103,7 +103,7 @@ export function SliderDoc() {
     <>
       <ComponentDoc
         name="Slider"
-        description="A draggable slider with spring physics and jelly-like interactions. Features bouncy animations, squish effects, and neubrutalism styling."
+        description="The BoldKit Slider is a neubrutalism range input with spring-physics jelly animations, supporting both single-thumb and dual-thumb (range) modes. It is fully keyboard accessible via arrow keys and works in controlled and uncontrolled usage patterns. Tune the feel with stiffness, damping, and mass props for custom bounce and inertia."
         dependencies={[]}
         vueDependencies={[]}
         sourceCode={sourceCode}

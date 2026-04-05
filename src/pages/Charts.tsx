@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { Link } from 'react-router-dom'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card'
@@ -3025,6 +3026,24 @@ const option = ref({
 
         </Tabs>
       </main>
+
+      {/* Explore More */}
+      <section className="border-t-3 border-foreground py-8 md:py-10 bg-primary/10">
+        <div className="container mx-auto px-4">
+          <h2 className="text-sm font-black uppercase tracking-widest mb-4 text-center">Explore More</h2>
+          <div className="flex flex-col sm:flex-row justify-center gap-3 flex-wrap">
+            <Link to="/templates/dashboard">
+              <Button variant="outline" className="w-full sm:w-auto">See charts used in templates</Button>
+            </Link>
+            <Link to="/components">
+              <Button variant="outline" className="w-full sm:w-auto">Browse all components</Button>
+            </Link>
+            <Link to="/blocks">
+              <Button variant="outline" className="w-full sm:w-auto">View section blocks with data</Button>
+            </Link>
+          </div>
+        </div>
+      </section>
 
     </Layout>
     </>

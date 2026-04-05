@@ -72,7 +72,7 @@ export function InputDoc() {
     <>
       <ComponentDoc
         name="Input"
-        description="A text input field with neubrutalism styling featuring bold borders and hard shadows."
+        description="The BoldKit Input is a neubrutalism-styled text field with a thick 3px border and a hard shadow that snaps to a focus ring on interaction. It supports accessible label association via htmlFor and works in both controlled and uncontrolled modes. Drop it into any form alongside the Label component for a fully accessible, visually bold input experience."
         dependencies={[]}
         sourceCode={sourceCode}
         usageCode={usageCode}

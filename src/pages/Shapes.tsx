@@ -598,6 +598,24 @@ import {
         </div>
       </section>
 
+      {/* Explore More */}
+      <section className="border-t-3 border-foreground py-8 md:py-10 bg-primary/10">
+        <div className="container mx-auto px-3 md:px-4">
+          <h2 className="text-sm font-black uppercase tracking-widest mb-4 text-center">Explore More</h2>
+          <div className="flex flex-col sm:flex-row justify-center gap-3 flex-wrap">
+            <Link to="/components">
+              <Button variant="outline" className="w-full sm:w-auto">Browse components that use shapes</Button>
+            </Link>
+            <Link to="/shapes/builder">
+              <Button variant="outline" className="w-full sm:w-auto">Build custom shapes with the Shape Builder</Button>
+            </Link>
+            <Link to="/templates">
+              <Button variant="outline" className="w-full sm:w-auto">Use shapes in templates</Button>
+            </Link>
+          </div>
+        </div>
+      </section>
+
       </Layout>
     </>
   )

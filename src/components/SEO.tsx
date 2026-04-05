@@ -25,8 +25,8 @@ interface SEOProps {
 
 const defaultMeta = {
   title: 'BoldKit - Neubrutalism UI Components for React & Vue 3',
-  description: 'Free neubrutalism component library for React and Vue 3 with 50+ UI components, 15 section blocks, 6 templates, 10 chart types, and 42 SVG shapes. Built on shadcn/ui with thick borders, hard shadows, and bold colors.',
-  keywords: 'neubrutalism, neubrutalism ui, React components, Vue 3 components, shadcn, shadcn-vue, Tailwind CSS, TypeScript, UI library, charts, data visualization, section blocks, marketing blocks, application blocks',
+  description: 'Free neubrutalism component library for React and Vue 3 with 55+ UI components, 15 section blocks, 6 templates, 10 chart types, and 54 SVG shapes. Built on shadcn/ui with thick borders, hard shadows, and bold colors.',
+  keywords: 'neubrutalism, neubrutalism ui, neobrutalism, neobrutalism ui, neobrutalism components, neobrutalism react, neobrutalism vue, free react ui library, open source react components, React components, Vue 3 components, shadcn, shadcn-vue, Tailwind CSS, TypeScript, UI library, charts, data visualization, section blocks, marketing blocks, application blocks',
   ogImage: 'https://ik.imagekit.io/fincalfy/304a4c07-8de1-41af-813e-e7556234b973.png',
   twitterCreator: '@boldkitdev',
   siteName: 'BoldKit',
@@ -173,8 +173,8 @@ export function SEO({
 export const pageSEO = {
   home: {
     title: undefined, // Uses default
-    description: 'Free neubrutalism component library for React and Vue 3 with 50+ UI components, 10 chart types, and 42 SVG shapes. Built on shadcn/ui with thick borders, hard shadows, and bold colors. Install via CLI.',
-    keywords: 'neubrutalism, neubrutalism ui, neubrutalism components, brutalist design, React UI library, Vue 3 components, shadcn components, shadcn-vue, Tailwind CSS, TypeScript, charts, spinners, steppers',
+    description: 'Free neubrutalism component library for React and Vue 3 with 55+ UI components, 10 chart types, and 54 SVG shapes. Built on shadcn/ui with thick borders, hard shadows, and bold colors. Install via CLI.',
+    keywords: 'neubrutalism, neubrutalism ui, neubrutalism components, neobrutalism, neobrutalism ui, neobrutalism vue, neobrutalism react, brutalist design, React UI library, Vue 3 components, shadcn components, shadcn-vue, Tailwind CSS, TypeScript, charts, spinners, steppers',
     canonical: 'https://boldkit.dev/',
     breadcrumbs: [{ name: 'Home' }],
   },
@@ -201,8 +201,8 @@ export const pageSEO = {
   },
   components: {
     title: 'Components',
-    description: 'Browse 50+ neubrutalism components for React and Vue 3. Buttons, cards, inputs, dialogs, spinners, math curve loaders, steppers, dropzones and more with thick borders and hard shadows.',
-    keywords: 'React components, Vue 3 components, UI components, neubrutalism buttons, neubrutalism cards, form components, spinner, stepper, dropzone, stat card, kbd, math curve loader, math curve progress, math curve background, parametric curve animation',
+    description: 'Browse 55+ neubrutalism components for React and Vue 3. Buttons, cards, inputs, dialogs, spinners, math curve loader, math curve progress, math curve background, steppers, dropzones and more with thick borders and hard shadows.',
+    keywords: 'React components, Vue 3 components, UI components, neubrutalism buttons, neubrutalism cards, form components, spinner, stepper, dropzone, stat card, kbd, math curve loader, math curve progress, math curve background, parametric curve animation, rating, tag input, timeline, tree view, tour, carousel, date range picker, time picker',
     canonical: 'https://boldkit.dev/components',
     breadcrumbs: [
       { name: 'Home', url: 'https://boldkit.dev/' },
@@ -210,8 +210,8 @@ export const pageSEO = {
     ],
   },
   shapes: {
-    title: '42 Neubrutalism SVG Shapes',
-    description: 'Collection of 42 unique neubrutalism SVG shapes for React and Vue 3. Bursts, hearts, stars, badges, celestial, and decorative shapes with thick borders.',
+    title: '54 Neubrutalism SVG Shapes',
+    description: 'Collection of 54 unique neubrutalism SVG shapes for React and Vue 3. Bursts, hearts, stars, badges, celestial, and decorative shapes with thick borders.',
     keywords: 'SVG shapes, neubrutalism shapes, React SVG components, Vue 3 SVG components, decorative shapes, badges, stickers',
     canonical: 'https://boldkit.dev/shapes',
     breadcrumbs: [
