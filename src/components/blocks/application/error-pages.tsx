@@ -240,7 +240,7 @@ export function MaintenancePage({
             <h3 className="font-bold uppercase text-sm">What we're working on:</h3>
             <ul className="space-y-2">
               {features.map((feature, index) => (
-                <li key={index} className="flex items-start gap-2 text-sm">
+                <li key={`feature-${index}`} className="flex items-start gap-2 text-sm">
                   <div className="w-5 h-5 flex items-center justify-center bg-primary text-primary-foreground border-2 border-foreground shrink-0 mt-0.5">
                     ✓
                   </div>
@@ -450,7 +450,7 @@ export function ComingSoonPage({
               { value: timeRemaining.minutes, label: 'Minutes' },
             ].map((item) => (
               <div
-                key={item.label}
+                key={`action-${item.label}`}
                 className="border-3 border-foreground p-4 bg-card shadow-[4px_4px_0px_hsl(var(--shadow-color))] w-24"
               >
                 <div className="text-3xl font-black">{item.value}</div>

@@ -204,7 +204,7 @@ const TagInput = React.forwardRef<HTMLInputElement, TagInputProps>(
           {/* Tags */}
           {tags.map((tag, index) => (
             <span
-              key={`${tag}-${index}`}
+              key={`tag-${index}`}
               className={cn(
                 'inline-flex items-center gap-1 px-2 py-0.5 text-xs font-bold uppercase tracking-wide',
                 'border-2 border-foreground bg-primary text-primary-foreground',

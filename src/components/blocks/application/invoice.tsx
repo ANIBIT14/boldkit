@@ -163,7 +163,7 @@ export function Invoice({
               </thead>
               <tbody>
                 {data.items.map((item, index) => (
-                  <tr key={index} className="border-b border-foreground/20">
+                  <tr key={`invoice-item-${index}`} className="border-b border-foreground/20">
                     <td className="py-4">{item.description}</td>
                     <td className="py-4 text-center">{item.quantity}</td>
                     <td className="py-4 text-right font-mono">${item.unitPrice.toFixed(2)}</td>
@@ -336,7 +336,7 @@ export function Receipt({
           {/* Items */}
           <div className="space-y-2">
             {data.items.map((item, index) => (
-              <div key={index} className="flex justify-between text-sm">
+              <div key={`summary-row-${index}`} className="flex justify-between text-sm">
                 <span>
                   {item.quantity && item.quantity > 1 && `${item.quantity}x `}
                   {item.name}

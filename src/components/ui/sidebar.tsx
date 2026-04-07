@@ -138,7 +138,7 @@ const SidebarProvider = React.forwardRef<HTMLDivElement, SidebarProviderProps>(
               '--sidebar-width': SIDEBAR_WIDTH,
               '--sidebar-width-collapsed': SIDEBAR_WIDTH_COLLAPSED,
               ...style,
-            } as React.CSSProperties
+            } as React.CSSProperties & Record<string, string>
           }
           className={cn(
             'group/sidebar-wrapper flex min-h-screen w-full',
@@ -190,7 +190,7 @@ const Sidebar = React.forwardRef<HTMLDivElement, SidebarProps>(
           <SheetContent
             side={side === 'left' ? 'left' : 'right'}
             className="w-[var(--sidebar-width-mobile)] p-0"
-            style={{ '--sidebar-width-mobile': SIDEBAR_WIDTH_MOBILE } as React.CSSProperties}
+            style={{ '--sidebar-width-mobile': SIDEBAR_WIDTH_MOBILE } as React.CSSProperties & Record<string, string>}
           >
             <div className="flex h-full flex-col">{children}</div>
           </SheetContent>

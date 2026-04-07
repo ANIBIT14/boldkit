@@ -25,7 +25,7 @@ interface SEOProps {
 
 const defaultMeta = {
   title: 'BoldKit - Neubrutalism UI Components for React & Vue 3',
-  description: 'Free neubrutalism component library for React and Vue 3 with 55+ UI components, 15 section blocks, 6 templates, 10 chart types, and 54 SVG shapes. Built on shadcn/ui with thick borders, hard shadows, and bold colors.',
+  description: 'Free neubrutalism component library for React and Vue 3 with 55+ UI components, 15 section blocks, 7 templates, 14 chart types, and 54 SVG shapes. Built on shadcn/ui with thick borders, hard shadows, and bold colors.',
   keywords: 'neubrutalism, neubrutalism ui, neobrutalism, neobrutalism ui, neobrutalism components, neobrutalism react, neobrutalism vue, free react ui library, open source react components, React components, Vue 3 components, shadcn, shadcn-vue, Tailwind CSS, TypeScript, UI library, charts, data visualization, section blocks, marketing blocks, application blocks',
   ogImage: 'https://ik.imagekit.io/fincalfy/304a4c07-8de1-41af-813e-e7556234b973.png',
   twitterCreator: '@boldkitdev',
