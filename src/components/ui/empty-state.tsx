@@ -379,7 +379,7 @@ const EmptyStatePreset = React.forwardRef<HTMLDivElement, EmptyStatePresetProps>
   ) => {
     const config = presetConfig[preset]
     const finalIconColor = iconColor ?? config.iconColor ?? 'default'
-    const iconSizeMap: Record<string, string> = { compact: 'sm', sm: 'sm', lg: 'lg', md: 'md' }
+    const iconSizeMap: Record<string, 'xs' | 'sm' | 'md' | 'lg' | 'xl'> = { compact: 'sm', sm: 'sm', lg: 'lg', md: 'md', xl: 'xl', xs: 'xs' }
 
     return (
       <EmptyState
