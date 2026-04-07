@@ -15,6 +15,7 @@ import {
   BarChart3,
   Palette,
   LayoutTemplate,
+  LayoutGrid,
   ArrowUpRight,
 } from 'lucide-react'
 import { useState, useEffect } from 'react'
@@ -23,12 +24,13 @@ import { cn } from '@/lib/utils'
 const DISPLAY: React.CSSProperties = { fontFamily: "'Bebas Neue', sans-serif" }
 
 const navItems = [
-  { label: 'Docs', href: '/docs', icon: BookOpen },
+  { label: 'Docs',       href: '/docs',       icon: BookOpen },
   { label: 'Components', href: '/components', icon: Layers },
-  { label: 'Shapes', href: '/shapes', icon: Shapes },
-  { label: 'Charts', href: '/charts', icon: BarChart3 },
-  { label: 'Themes', href: '/themes', icon: Palette },
-  { label: 'Templates', href: '/templates', icon: LayoutTemplate },
+  { label: 'Blocks',     href: '/blocks',     icon: LayoutGrid },
+  { label: 'Shapes',     href: '/shapes',     icon: Shapes },
+  { label: 'Charts',     href: '/charts',     icon: BarChart3 },
+  { label: 'Themes',     href: '/themes',     icon: Palette },
+  { label: 'Templates',  href: '/templates',  icon: LayoutTemplate },
 ]
 
 export function Header() {
@@ -96,7 +98,7 @@ export function Header() {
               variant="secondary"
               className="text-[9px] px-1 py-0 h-4 hidden sm:inline-flex"
             >
-              Beta
+              v3.0
             </Badge>
           </Link>
 

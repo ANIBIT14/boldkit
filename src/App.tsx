@@ -1,5 +1,6 @@
 import { lazy, Suspense } from 'react'
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
+import { ScrollToTop } from '@/components/ScrollToTop'
 import { ThemeProvider } from '@/hooks/use-theme'
 import { FrameworkProvider } from '@/hooks/use-framework'
 import { TooltipProvider } from '@/components/ui/tooltip'
@@ -137,6 +138,7 @@ function App() {
         <FrameworkProvider>
           <TooltipProvider>
             <BrowserRouter>
+          <ScrollToTop />
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/themes" element={<ThemeBuilder />} />

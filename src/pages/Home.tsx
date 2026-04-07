@@ -21,6 +21,7 @@ import { useState } from 'react'
 import { SEO, pageSEO } from '@/components/SEO'
 import { useFramework, ReactIcon, VueIcon } from '@/hooks/use-framework'
 import { useScrollReveal } from '@/hooks/use-scroll-reveal'
+import { useCountUp } from '@/hooks/use-count-up'
 import {
   GearShape, Star5Shape, BlobShape, LightningShape, BurstShape, HexagonShape,
 } from '@/components/ui/shapes'
@@ -34,16 +35,24 @@ const MARQUEE_ITEMS = [
   'Open Source', 'Free', 'Neubrutalism',
 ]
 
+const MARQUEE_SEP_COLORS = ['text-primary', 'text-secondary', 'text-accent', 'text-success', 'text-info']
+const WHATS_NEW_DOT_COLORS = ['bg-primary', 'bg-info', 'bg-secondary', 'bg-accent', 'bg-success', 'bg-warning', 'bg-primary', 'bg-info', 'bg-secondary', 'bg-accent']
+
 export function Home() {
   const [copied, setCopied] = useState(false)
   const { framework, setFramework } = useFramework()
 
-  const statsReveal       = useScrollReveal()
+  const componentsCount = useCountUp({ end: 50, duration: 1200 })
+  const chartsCount     = useCountUp({ end: 10, duration: 900 })
+  const shapesCount     = useCountUp({ end: 45, duration: 1100 })
+  const blocksCount     = useCountUp({ end: 15, duration: 800 })
+
   const showcaseReveal    = useScrollReveal()
   const featuresReveal    = useScrollReveal()
   const shapeBuilderReveal = useScrollReveal()
   const blocksReveal      = useScrollReveal()
   const ctaReveal         = useScrollReveal()
+  const whatsNewReveal    = useScrollReveal()
 
   const commands: Record<string, string> = {
     react: 'npx shadcn@latest add https://boldkit.dev/r/button.json',
@@ -167,7 +176,7 @@ export function Home() {
                 <div className="absolute top-0 left-0 z-30 animate-stagger-fade-in" style={{ animationDelay: '300ms' }}>
                   <div
                     className="w-64 border-3 border-foreground bg-background p-4 bk-shadow-lg"
-                    style={{ transform: 'rotate(-2.5deg)' }}
+                    style={{ animation: 'card-float-1 3.2s ease-in-out infinite', animationDelay: '0s' }}
                   >
                     <div className="mb-3 border-b-2 border-foreground pb-1.5 text-[10px] font-black uppercase tracking-widest" style={MONO}>Buttons</div>
                     <div className="flex flex-wrap gap-2">
@@ -183,7 +192,7 @@ export function Home() {
                 <div className="absolute top-8 right-0 z-20 animate-stagger-fade-in" style={{ animationDelay: '400ms' }}>
                   <div
                     className="w-56 border-3 border-foreground bg-background p-4 bk-shadow"
-                    style={{ transform: 'rotate(2deg)' }}
+                    style={{ animation: 'card-float-2 2.8s ease-in-out infinite', animationDelay: '0.4s' }}
                   >
                     <div className="mb-3 border-b-2 border-foreground pb-1.5 text-[10px] font-black uppercase tracking-widest" style={MONO}>Badges</div>
                     <div className="flex flex-wrap gap-1.5">
@@ -201,7 +210,7 @@ export function Home() {
                 <div className="absolute top-[170px] left-4 z-40 animate-stagger-fade-in" style={{ animationDelay: '500ms' }}>
                   <div
                     className="w-72 border-3 border-foreground bg-background p-4 bk-shadow-lg"
-                    style={{ transform: 'rotate(-1deg)' }}
+                    style={{ animation: 'card-float-3 3.6s ease-in-out infinite', animationDelay: '0.8s' }}
                   >
                     <div className="mb-3 border-b-2 border-foreground pb-1.5 text-[10px] font-black uppercase tracking-widest" style={MONO}>Stat Cards</div>
                     <div className="grid grid-cols-2 gap-3">
@@ -229,7 +238,7 @@ export function Home() {
                 <div className="absolute bottom-0 right-0 z-30 animate-stagger-fade-in" style={{ animationDelay: '600ms' }}>
                   <div
                     className="w-52 border-3 border-foreground bg-accent p-4 bk-shadow"
-                    style={{ transform: 'rotate(2.5deg)' }}
+                    style={{ animation: 'card-float-4 3s ease-in-out infinite', animationDelay: '0.2s' }}
                   >
                     <div className="mb-3 border-b-2 border-foreground pb-1.5 text-[10px] font-black uppercase tracking-widest" style={MONO}>Spinners</div>
                     <div className="flex items-center gap-4">
@@ -245,7 +254,7 @@ export function Home() {
                 <div className="absolute bottom-12 left-0 z-20 animate-stagger-fade-in" style={{ animationDelay: '700ms' }}>
                   <div
                     className="w-48 border-3 border-foreground bg-primary p-4 bk-shadow"
-                    style={{ transform: 'rotate(-3deg)' }}
+                    style={{ animation: 'card-float-5 2.6s ease-in-out infinite', animationDelay: '0.6s' }}
                   >
                     <div className="mb-3 border-b-2 border-foreground pb-1.5 text-[10px] font-black uppercase tracking-widest" style={MONO}>Stickers</div>
                     <div className="flex items-center gap-3">
@@ -333,37 +342,71 @@ export function Home() {
 
         {/* ── MARQUEE STRIP ──────────────────────────────────────────── */}
         <section className="overflow-hidden border-b-3 border-foreground bg-foreground py-3 text-background">
-          <div className="animate-bk-marquee gap-0">
-            {[...MARQUEE_ITEMS, ...MARQUEE_ITEMS].map((item, i) => (
-              <span key={i} className="flex items-center">
-                <span
-                  className="px-6 text-sm font-black uppercase tracking-widest"
-                  style={MONO}
-                >
-                  {item}
-                </span>
-                <span className="text-primary text-lg font-black">✦</span>
-              </span>
-            ))}
+          {/* Gradient fade on left and right edges */}
+          <div className="relative marquee-fade-edges">
+            <div className="animate-bk-marquee gap-0">
+              {[...MARQUEE_ITEMS, ...MARQUEE_ITEMS].map((item, i) => {
+                const sepColor = MARQUEE_SEP_COLORS[i % MARQUEE_SEP_COLORS.length]
+                return (
+                  <span key={i} className="flex items-center">
+                    <span
+                      className="px-6 text-sm font-black uppercase tracking-widest"
+                      style={MONO}
+                    >
+                      {item}
+                    </span>
+                    <span className={`${sepColor} text-lg font-black`}>✦</span>
+                  </span>
+                )
+              })}
+            </div>
           </div>
         </section>
 
         {/* ── STATS BAR ─────────────────────────────────────────────── */}
-        <section
-          ref={statsReveal.ref}
-          className={`border-b-3 border-foreground transition-all duration-700 ease-out ${statsReveal.inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`}
-        >
+        <section className="border-b-3 border-foreground">
           <div className="grid grid-cols-2 md:grid-cols-4">
             {[
-              // Colors are intentional: primary=flagship, info=data/charts, accent=decorative/shapes, secondary=structural/blocks
-              // borders: [mobile-right, mobile-bottom, desktop-right]
-              { number: '50+', label: 'Components', bg: 'bg-primary',   icon: <Package className="h-5 w-5" />,   borders: 'border-r-3 border-b-3 md:border-b-0 border-foreground' },
-              { number: '10',  label: 'Chart Types', bg: 'bg-info',     icon: <BarChart3 className="h-5 w-5" />, borders: 'border-b-3 md:border-b-0 md:border-r-3 border-foreground' },
-              { number: '45',  label: 'SVG Shapes',  bg: 'bg-accent',   icon: <Sparkles className="h-5 w-5" />,  borders: 'border-r-3 md:border-r-3 border-foreground' },
-              { number: '15',  label: 'Blocks',      bg: 'bg-secondary', icon: <LayoutGrid className="h-5 w-5" />, borders: '' },
+              {
+                count: componentsCount.count,
+                suffix: '+',
+                ref: componentsCount.ref,
+                label: 'Components',
+                bg: 'bg-primary',
+                icon: <Package className="h-5 w-5" />,
+                borders: 'border-r-3 border-b-3 md:border-b-0 border-foreground',
+              },
+              {
+                count: chartsCount.count,
+                suffix: '',
+                ref: chartsCount.ref,
+                label: 'Chart Types',
+                bg: 'bg-info',
+                icon: <BarChart3 className="h-5 w-5" />,
+                borders: 'border-b-3 md:border-b-0 md:border-r-3 border-foreground',
+              },
+              {
+                count: shapesCount.count,
+                suffix: '',
+                ref: shapesCount.ref,
+                label: 'SVG Shapes',
+                bg: 'bg-accent',
+                icon: <Sparkles className="h-5 w-5" />,
+                borders: 'border-r-3 md:border-r-3 border-foreground',
+              },
+              {
+                count: blocksCount.count,
+                suffix: '',
+                ref: blocksCount.ref,
+                label: 'Blocks',
+                bg: 'bg-secondary',
+                icon: <LayoutGrid className="h-5 w-5" />,
+                borders: '',
+              },
             ].map((stat) => (
               <div
                 key={stat.label}
+                ref={stat.ref}
                 className={`${stat.bg} ${stat.borders} p-6 md:p-10 flex flex-col gap-1`}
               >
                 <div className="mb-1 flex items-center gap-2">
@@ -374,17 +417,64 @@ export function Home() {
                   className="font-black leading-none"
                   style={{ ...DISPLAY, fontSize: 'clamp(40px, 7vw, 96px)' }}
                 >
-                  {stat.number}
+                  {stat.count}{stat.suffix}
                 </div>
               </div>
             ))}
           </div>
         </section>
 
+        {/* ── WHAT'S NEW ────────────────────────────────────────────── */}
+        <section
+          ref={whatsNewReveal.ref}
+          className={`border-b-3 border-foreground py-10 md:py-14 transition-all duration-700 ease-out ${whatsNewReveal.inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`}
+        >
+          <div className="container mx-auto px-4">
+            <div className="mb-6 flex items-center justify-between">
+              <div className="flex items-center gap-3">
+                <div className="h-[3px] w-6 bg-primary" />
+                <span className="text-[11px] font-black uppercase tracking-[0.18em] text-muted-foreground" style={MONO}>Recently Added</span>
+              </div>
+              <Link to="/components" className="text-[11px] font-bold uppercase tracking-wide text-muted-foreground hover:text-foreground transition-colors flex items-center gap-1" style={MONO}>
+                View All <ArrowRight className="h-3 w-3" />
+              </Link>
+            </div>
+
+            <div className="flex gap-3 overflow-x-auto pb-2 -mx-4 px-4 scrollbar-none snap-x snap-mandatory">
+              {[
+                { label: 'Carousel',         href: '/components/carousel' },
+                { label: 'Data Table',       href: '/components/data-table' },
+                { label: 'Sidebar',          href: '/components/sidebar' },
+                { label: 'Timeline',         href: '/components/timeline' },
+                { label: 'Tree View',        href: '/components/tree-view' },
+                { label: 'Tour',             href: '/components/tour' },
+                { label: 'Tag Input',        href: '/components/tag-input' },
+                { label: 'Rating',           href: '/components/rating' },
+                { label: 'MC Loader',        href: '/components/math-curve-loader' },
+                { label: 'Date Range Picker', href: '/components/date-range-picker' },
+              ].map((item, i) => {
+                return (
+                  <Link
+                    key={item.href}
+                    to={item.href}
+                    className="snap-start shrink-0 group"
+                  >
+                    <div className="flex items-center gap-2 border-3 border-foreground bg-background px-3 py-2 bk-shadow hover:-translate-x-[2px] hover:-translate-y-[2px] hover:shadow-[6px_6px_0px_hsl(var(--foreground))] transition-all duration-150">
+                      <div className={`h-2 w-2 shrink-0 ${WHATS_NEW_DOT_COLORS[i]}`} />
+                      <span className="text-xs font-bold whitespace-nowrap">{item.label}</span>
+                      <Badge variant="secondary" className="text-[8px] px-1 py-0 h-3.5 shrink-0">New</Badge>
+                    </div>
+                  </Link>
+                )
+              })}
+            </div>
+          </div>
+        </section>
+
         {/* ── COMPONENT SHOWCASE ────────────────────────────────────── */}
         <section
           ref={showcaseReveal.ref}
-          className={`border-b-3 border-foreground py-14 md:py-20 transition-all duration-700 ease-out ${showcaseReveal.inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`}
+          className={`border-b-3 border-foreground py-14 md:py-20 overflow-x-hidden transition-all duration-700 ease-out ${showcaseReveal.inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`}
         >
           <div className="container mx-auto px-4">
 
@@ -513,7 +603,7 @@ export function Home() {
                 <CardHeader className="border-b-3 border-foreground bg-secondary">
                   <CardTitle style={MONO}>Layered Cards</CardTitle>
                 </CardHeader>
-                <CardContent className="pb-10 pr-10 pt-6">
+                <CardContent className="pb-6 pr-6 sm:pb-10 sm:pr-10 pt-6">
                   <div className="flex gap-6 items-start">
                     <LayeredCard layerColor="primary" className="flex-1">
                       <LayeredCardHeader><LayeredCardTitle className="text-sm">Stacked</LayeredCardTitle></LayeredCardHeader>
@@ -938,12 +1028,15 @@ export function Home() {
         </section>
 
         {/* ── MATH CURVES SECTION ───────────────────────────────────── */}
-        <section className="relative overflow-hidden border-b-3 border-foreground bg-foreground py-14 md:py-20">
-          {/* Grid pattern overlay */}
-          <div className="absolute inset-0 opacity-5" style={{
-            backgroundImage: 'linear-gradient(hsl(var(--primary)) 1px, transparent 1px), linear-gradient(90deg, hsl(var(--primary)) 1px, transparent 1px)',
-            backgroundSize: '32px 32px'
-          }} />
+        <section className="relative overflow-hidden border-b-3 border-foreground py-14 md:py-20" style={{ background: '#0a0f1a' }}>
+          {/* Teal dot-grid overlay — visually distinct from the primary grid in Shape Builder */}
+          <div
+            className="absolute inset-0 pointer-events-none opacity-[0.07]"
+            style={{
+              backgroundImage: 'radial-gradient(circle, hsl(var(--secondary)) 1px, transparent 1px)',
+              backgroundSize: '24px 24px',
+            }}
+          />
 
           <div className="container relative mx-auto px-4">
             {/* Header */}
@@ -954,13 +1047,13 @@ export function Home() {
                   <span className="text-[11px] font-black uppercase tracking-[0.2em] text-primary" style={MONO}>New Component</span>
                 </div>
                 <h2
-                  className="leading-none text-background"
+                  className="leading-none text-white"
                   style={{ ...DISPLAY, fontSize: 'clamp(32px, 5.5vw, 76px)' }}
                 >
                   <span className="block">MATH CURVE</span>
                   <span className="block text-primary">LOADERS</span>
                 </h2>
-                <p className="mt-3 max-w-md text-sm text-background/60" style={MONO}>
+                <p className="mt-3 max-w-md text-sm text-white/60" style={MONO}>
                   Parametric curve animations — rose, lissajous, butterfly, hypotrochoid & more. A loader, progress indicator, and background component.
                 </p>
               </div>
@@ -971,13 +1064,13 @@ export function Home() {
                   { label: 'Background', sub: '4 curves', to: '/components/math-curve-background', color: 'bg-accent' },
                 ].map(({ label, sub, to, color }) => (
                   <Link key={to} to={to}>
-                    <div className="group flex items-center gap-3 border-2 border-background/20 px-4 py-2.5 hover:border-background/60 hover:bg-background/8 transition-all duration-150">
+                    <div className="group flex items-center gap-3 border-2 border-white/20 px-4 py-2.5 hover:border-white/60 hover:bg-white/5 transition-all duration-150">
                       <div className={`h-2 w-2 shrink-0 ${color}`} />
                       <div className="flex-1 min-w-0">
-                        <div className="text-xs font-black uppercase tracking-wider text-background leading-none">{label}</div>
-                        <div className="text-[10px] text-background/40 mt-0.5" style={MONO}>{sub}</div>
+                        <div className="text-xs font-black uppercase tracking-wider text-white leading-none">{label}</div>
+                        <div className="text-[10px] text-white/40 mt-0.5" style={MONO}>{sub}</div>
                       </div>
-                      <ArrowRight className="h-3.5 w-3.5 text-background/30 group-hover:text-background/80 transition-colors" />
+                      <ArrowRight className="h-3.5 w-3.5 text-white/30 group-hover:text-white/80 transition-colors" />
                     </div>
                   </Link>
                 ))}
@@ -985,21 +1078,21 @@ export function Home() {
             </div>
 
             {/* Curve grid — 8 animated loaders */}
-            <div className="grid grid-cols-4 gap-0 sm:grid-cols-8 border-3 border-background/20 max-w-3xl">
+            <div className="grid grid-cols-4 gap-0 sm:grid-cols-8 border-3 border-white/20 max-w-3xl">
               {(['rose', 'lissajous', 'butterfly', 'hypotrochoid', 'cardioid', 'lemniscate', 'fourier', 'rose3'] as const).map((curve, i) => (
                 <div
                   key={curve}
-                  className="flex flex-col items-center justify-center gap-3 border border-background/10 py-6 px-2 hover:bg-background/5 transition-colors"
+                  className="flex flex-col items-center justify-center gap-3 border border-white/10 py-6 px-2 hover:bg-white/5 transition-colors"
                 >
                   <MathCurveLoader
                     curve={curve}
                     size="lg"
                     speed="normal"
-                    className="text-background"
+                    className="text-white"
                     headColor={i % 3 === 0 ? 'hsl(var(--primary))' : i % 3 === 1 ? 'hsl(var(--secondary))' : 'hsl(var(--accent))'}
                   />
                   <span
-                    className="text-[9px] font-black uppercase tracking-widest text-background/40"
+                    className="text-[9px] font-black uppercase tracking-widest text-white/40"
                     style={MONO}
                   >
                     {curve}
@@ -1016,7 +1109,7 @@ export function Home() {
                 { label: 'Background', to: '/components/math-curve-background', color: 'bg-accent' },
               ].map(({ label, to, color }) => (
                 <Link key={to} to={to} className="flex-1">
-                  <div className="flex items-center justify-center gap-2 border-2 border-background/20 py-2 text-xs font-black uppercase text-background hover:border-background/50 transition-colors">
+                  <div className="flex items-center justify-center gap-2 border-2 border-white/20 py-2 text-xs font-black uppercase text-white hover:border-white/50 transition-colors">
                     <div className={`h-1.5 w-1.5 ${color}`} />
                     {label}
                   </div>
@@ -1029,7 +1122,7 @@ export function Home() {
               {['Rose', 'Lissajous', 'Butterfly', 'Hypotrochoid', 'Cardioid', 'Lemniscate', 'Fourier', 'Spiral', 'Heart'].map(name => (
                 <span
                   key={name}
-                  className="border border-background/20 px-3 py-1 text-[11px] font-bold uppercase tracking-wide text-background/50"
+                  className="border border-white/20 px-3 py-1 text-[11px] font-bold uppercase tracking-wide text-white/50"
                   style={MONO}
                 >
                   {name}
@@ -1071,30 +1164,57 @@ export function Home() {
           <span className="absolute bottom-10 right-1/4 text-secondary text-2xl opacity-25 hidden lg:block select-none pointer-events-none">✦</span>
           <span className="absolute top-1/2 left-12 text-accent text-xl opacity-20 hidden lg:block select-none pointer-events-none">✦</span>
 
-          <div className="container relative mx-auto px-4 text-center">
-            <div
-              className="mb-6 select-none leading-none text-background"
-              style={{ ...DISPLAY, fontSize: 'clamp(40px, 8vw, 120px)', lineHeight: 0.92 }}
-            >
-              BUILD SOMETHING<br />
-              <span className="text-primary">BOLD.</span>
-            </div>
-            <p className="mx-auto mb-10 max-w-sm text-sm text-background/60" style={MONO}>
-              Free, open-source, and ready for production. Start building in seconds.
-            </p>
-            <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
-              <Link to="/docs/installation" className="w-full sm:w-auto">
-                <Button size="lg" className="w-full sm:w-auto">Get Started</Button>
-              </Link>
-              <a href="https://github.com/ANIBIT14/boldkit" target="_blank" rel="noopener noreferrer" className="w-full sm:w-auto">
-                <Button
-                  size="lg"
-                  variant="outline"
-                  className="w-full sm:w-auto gap-2 bg-transparent border-background text-background hover:bg-background/10"
+          <div className="container relative mx-auto px-4">
+            <div className="grid lg:grid-cols-[1fr_auto] gap-10 lg:gap-16 items-center">
+
+              {/* Left: Headline */}
+              <div>
+                <div
+                  className="mb-4 select-none leading-none text-background"
+                  style={{ ...DISPLAY, fontSize: 'clamp(40px, 8vw, 120px)', lineHeight: 0.92 }}
                 >
-                  <Github className="h-4 w-4" /> Star on GitHub
-                </Button>
-              </a>
+                  BUILD SOMETHING<br />
+                  <span className="text-primary">BOLD.</span>
+                </div>
+                <p className="max-w-sm text-sm text-background/60" style={MONO}>
+                  Free, open-source, and ready for production. Start building in seconds with React, Vue 3, or Nuxt.
+                </p>
+              </div>
+
+              {/* Right: Action panel */}
+              <div className="flex flex-col gap-3 lg:min-w-[260px]">
+                {/* Stats summary */}
+                <div className="grid grid-cols-2 gap-2">
+                  {[
+                    { value: '50+', label: 'Components' },
+                    { value: '10',  label: 'Chart Types' },
+                    { value: '15',  label: 'Blocks' },
+                    { value: 'MIT', label: 'License' },
+                  ].map((s) => (
+                    <div key={s.label} className="border-2 border-background/20 p-2.5 text-center">
+                      <div className="text-lg font-black text-background leading-none" style={DISPLAY}>{s.value}</div>
+                      <div className="text-[9px] font-bold uppercase tracking-wider text-background/40 mt-0.5" style={MONO}>{s.label}</div>
+                    </div>
+                  ))}
+                </div>
+
+                {/* CTAs */}
+                <Link to="/docs/installation">
+                  <Button size="lg" className="w-full">
+                    Get Started <ArrowRight className="h-4 w-4 ml-1" />
+                  </Button>
+                </Link>
+                <a href="https://github.com/ANIBIT14/boldkit" target="_blank" rel="noopener noreferrer">
+                  <Button
+                    size="lg"
+                    variant="outline"
+                    className="w-full gap-2 bg-transparent border-background text-background hover:bg-background/10"
+                  >
+                    <Github className="h-4 w-4" /> Star on GitHub
+                  </Button>
+                </a>
+              </div>
+
             </div>
           </div>
         </section>

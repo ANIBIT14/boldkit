@@ -762,6 +762,28 @@ body {
   51%, 100% { opacity: 0; }
 }
 
+/* Card float variants - preserve each card's base rotation while floating */
+@keyframes card-float-1 {
+  0%, 100% { transform: rotate(-2.5deg) translateY(0px); }
+  50%       { transform: rotate(-2.5deg) translateY(-8px); }
+}
+@keyframes card-float-2 {
+  0%, 100% { transform: rotate(2deg) translateY(0px); }
+  50%       { transform: rotate(2deg) translateY(-6px); }
+}
+@keyframes card-float-3 {
+  0%, 100% { transform: rotate(-1deg) translateY(0px); }
+  50%       { transform: rotate(-1deg) translateY(-10px); }
+}
+@keyframes card-float-4 {
+  0%, 100% { transform: rotate(2.5deg) translateY(0px); }
+  50%       { transform: rotate(2.5deg) translateY(-7px); }
+}
+@keyframes card-float-5 {
+  0%, 100% { transform: rotate(-3deg) translateY(0px); }
+  50%       { transform: rotate(-3deg) translateY(-5px); }
+}
+
 /* Animation Classes */
 .animate-accordion-down {
   animation: accordion-down 200ms ease-out;
@@ -821,6 +843,12 @@ body {
 
 .animate-marquee-reverse {
   animation: marquee-reverse 20s linear infinite;
+}
+
+/* Marquee fade edges */
+.marquee-fade-edges {
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, black 6%, black 94%, transparent 100%);
+  mask-image: linear-gradient(to right, transparent 0%, black 6%, black 94%, transparent 100%);
 }
 
 .animate-stagger-fade-in {
