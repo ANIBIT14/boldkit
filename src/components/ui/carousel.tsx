@@ -290,6 +290,7 @@ const CarouselDots = React.forwardRef<
               : 'bg-muted hover:bg-muted/80'
           )}
           aria-label={`Go to slide ${index + 1} of ${scrollSnaps.length}`}
+          aria-current={index === selectedIndex ? 'page' : undefined}
         />
       ))}
     </div>

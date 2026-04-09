@@ -156,7 +156,7 @@ const Rating = React.forwardRef<HTMLDivElement, RatingProps>(
               key={`star-${index}`}
               type="button"
               role="radio"
-              aria-checked={index + 1 === Math.ceil(currentValue)}
+              aria-checked={index < currentValue}
               aria-label={`${index + 1} ${icon === 'star' ? 'star' : icon === 'heart' ? 'heart' : 'circle'}`}
               tabIndex={-1}
               disabled={disabled || readOnly}

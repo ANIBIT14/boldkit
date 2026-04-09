@@ -171,9 +171,9 @@ const getClipPath = (isHalfFilled: boolean) => {
       :key="index - 1"
       type="button"
       role="radio"
-      :aria-checked="currentValue >= index"
+      :aria-checked="index - 1 < currentValue"
       :aria-label="`${index} ${icon === 'star' ? 'star' : icon === 'heart' ? 'heart' : 'circle'}${index !== 1 ? 's' : ''}`"
-      :tabindex="(!readOnly && !disabled && currentValue === index) ? 0 : -1"
+      :tabindex="-1"
       :disabled="disabled || readOnly"
       :class="cn(
         'relative transition-transform duration-150 focus:outline-none',
