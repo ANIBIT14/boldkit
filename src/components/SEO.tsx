@@ -1,4 +1,5 @@
 import { useEffect } from 'react'
+import { useLocation } from 'react-router-dom'
 import {
   COUNTS,
   DEFAULT_OG_IMAGE,
@@ -51,6 +52,8 @@ export function SEO({
   faq,
   structuredData,
 }: SEOProps) {
+  const { pathname } = useLocation()
+
   useEffect(() => {
     const fullTitle = title ? `${title} | BoldKit` : defaultMeta.title
     document.title = fullTitle
@@ -85,7 +88,7 @@ export function SEO({
     updateMeta('og:site_name', defaultMeta.siteName, true)
     updateMeta('og:locale', 'en_US', true)
 
-    const pageUrl = canonical || `${SITE_URL}${window.location.pathname}`
+    const pageUrl = canonical || `${SITE_URL}${pathname}`
     updateMeta('og:url', pageUrl, true)
 
     let link = document.querySelector('link[rel="canonical"]') as HTMLLinkElement
@@ -110,15 +113,15 @@ export function SEO({
     const updateJsonLd = (id: string, schema: object) => {
       const existingScript = document.querySelector(`script[data-schema="${id}"]`)
       if (existingScript) existingScript.remove()
-      const script = document.createElement('script')
-      script.type = 'application/ld+json'
-      script.setAttribute('data-schema', id)
       try {
+        const script = document.createElement('script')
+        script.type = 'application/ld+json'
+        script.setAttribute('data-schema', id)
         script.textContent = JSON.stringify(schema)
+        document.head.appendChild(script)
       } catch {
         // skip invalid structured data
       }
-      document.head.appendChild(script)
     }
 
     if (breadcrumbs && breadcrumbs.length > 0) {
@@ -149,7 +152,7 @@ export function SEO({
     if (structuredData) {
       updateJsonLd('custom', structuredData)
     }
-  }, [title, description, keywords, canonical, ogImage, ogType, noIndex, breadcrumbs, faq, structuredData])
+  }, [title, description, keywords, canonical, ogImage, ogType, noIndex, breadcrumbs, faq, structuredData, pathname])
 
   return null
 }
@@ -157,10 +160,10 @@ export function SEO({
 // Preset SEO configurations for common pages
 export const pageSEO = {
   home: {
-    title: undefined as string | undefined,
+    title: undefined,
     description: defaultMeta.description,
     canonical: `${SITE_URL}/`,
-    breadcrumbs: [{ name: 'Home' }] as BreadcrumbItem[],
+    breadcrumbs: [{ name: 'Home' }],
   },
   docs: {
     title: 'Documentation',
@@ -169,7 +172,7 @@ export const pageSEO = {
     breadcrumbs: [
       { name: 'Home', url: `${SITE_URL}/` },
       { name: 'Documentation' },
-    ] as BreadcrumbItem[],
+    ],
   },
   installation: {
     title: 'Installation',
@@ -179,7 +182,7 @@ export const pageSEO = {
       { name: 'Home', url: `${SITE_URL}/` },
       { name: 'Documentation', url: `${SITE_URL}/docs` },
       { name: 'Installation' },
-    ] as BreadcrumbItem[],
+    ],
   },
   shapes: {
     title: `${COUNTS.shapes} Neubrutalism SVG Shapes`,
@@ -188,7 +191,7 @@ export const pageSEO = {
     breadcrumbs: [
       { name: 'Home', url: `${SITE_URL}/` },
       { name: 'Shapes' },
-    ] as BreadcrumbItem[],
+    ],
   },
   charts: {
     title: `Charts — ${COUNTS.charts} Neubrutalism Chart Types`,
@@ -197,7 +200,7 @@ export const pageSEO = {
     breadcrumbs: [
       { name: 'Home', url: `${SITE_URL}/` },
       { name: 'Charts' },
-    ] as BreadcrumbItem[],
+    ],
   },
   themes: {
     title: 'Theme Builder',
@@ -206,7 +209,7 @@ export const pageSEO = {
     breadcrumbs: [
       { name: 'Home', url: `${SITE_URL}/` },
       { name: 'Theme Builder' },
-    ] as BreadcrumbItem[],
+    ],
   },
   templates: {
     title: 'Free Page Templates',
@@ -215,7 +218,7 @@ export const pageSEO = {
     breadcrumbs: [
       { name: 'Home', url: `${SITE_URL}/` },
       { name: 'Templates' },
-    ] as BreadcrumbItem[],
+    ],
   },
   blocks: {
     title: `Section Blocks — ${COUNTS.blocks} Marketing & Application Blocks`,
@@ -224,7 +227,7 @@ export const pageSEO = {
     breadcrumbs: [
       { name: 'Home', url: `${SITE_URL}/` },
       { name: 'Blocks' },
-    ] as BreadcrumbItem[],
+    ],
   },
 }
 
@@ -239,7 +242,7 @@ export function getComponentSEO(componentSlug: string, componentTitle?: string) 
       { name: 'Home', url: `${SITE_URL}/` },
       { name: 'Components', url: `${SITE_URL}/components` },
       { name: componentTitle ?? componentSlug },
-    ] as BreadcrumbItem[],
+    ],
   }
 }
 
@@ -254,7 +257,7 @@ export function getBlockSEO(blockSlug: string, blockTitle?: string) {
       { name: 'Home', url: `${SITE_URL}/` },
       { name: 'Blocks', url: `${SITE_URL}/blocks` },
       { name: blockTitle ?? blockSlug },
-    ] as BreadcrumbItem[],
+    ],
   }
 }
 
@@ -269,7 +272,7 @@ export function getTemplateSEO(templateSlug: string, templateTitle?: string) {
       { name: 'Home', url: `${SITE_URL}/` },
       { name: 'Templates', url: `${SITE_URL}/templates` },
       { name: templateTitle ?? templateSlug },
-    ] as BreadcrumbItem[],
+    ],
   }
 }
 
