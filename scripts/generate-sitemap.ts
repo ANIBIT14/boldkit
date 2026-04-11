@@ -2,7 +2,7 @@
 // Pre-build script: generates public/sitemap.xml from routes-meta.
 // Run before `vite build` so the fresh sitemap gets included in dist/.
 
-import { writeFileSync } from 'node:fs'
+import { writeFileSync, mkdirSync } from 'node:fs'
 import { join, dirname } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { getAllRoutes } from '../src/config/routes-meta.js'
@@ -10,7 +10,7 @@ import { getAllRoutes } from '../src/config/routes-meta.js'
 const __dirname = dirname(fileURLToPath(import.meta.url))
 const PUBLIC = join(__dirname, '..', 'public')
 
-function generateSitemap(): string {
+function generateSitemap(): { xml: string; count: number } {
   const routes = getAllRoutes()
   const urlEntries = routes
     .map(
@@ -23,15 +23,15 @@ function generateSitemap(): string {
     )
     .join('\n')
 
-  return `<?xml version="1.0" encoding="UTF-8"?>
+  const xml = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 ${urlEntries}
 </urlset>
 `
+  return { xml, count: routes.length }
 }
 
-const sitemap = generateSitemap()
-writeFileSync(join(PUBLIC, 'sitemap.xml'), sitemap)
-
-const count = getAllRoutes().length
+mkdirSync(PUBLIC, { recursive: true })
+const { xml, count } = generateSitemap()
+writeFileSync(join(PUBLIC, 'sitemap.xml'), xml)
 console.log(`✓ Sitemap generated: ${count} URLs written to public/sitemap.xml`)
