@@ -7,6 +7,7 @@ import { ArrowRight, Copy, Check, LayoutGrid, Settings } from 'lucide-react'
 import { useState } from 'react'
 import { useFramework, FrameworkToggle, ReactIcon, VueIcon } from '@/hooks/use-framework'
 import { SEO, pageSEO } from '@/components/SEO'
+import { COUNTS } from '@/config/routes-meta'
 
 function CopyButton({ text }: { text: string }) {
   const [copied, setCopied] = useState(false)
@@ -58,7 +59,7 @@ export function Introduction() {
         <ul className="space-y-2 list-none pl-0">
           <li className="flex items-start gap-2">
             <span className="text-primary font-bold">◼</span>
-            <span><strong>50+ Components</strong> - All shadcn/ui components with neubrutalism styling</span>
+            <span><strong>{COUNTS.components}+ Components</strong> - All shadcn/ui components with neubrutalism styling</span>
           </li>
           <li className="flex items-start gap-2">
             <span className="text-primary font-bold">◼</span>

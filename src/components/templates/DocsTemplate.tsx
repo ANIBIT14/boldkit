@@ -9,6 +9,7 @@ import {
   BookOpen, Zap, Layers, Code2, Terminal, Info,
 } from 'lucide-react'
 import { cn } from '@/lib/utils'
+import { COUNTS } from '@/config/routes-meta'
 
 // ============================================
 // DOCS SITE TEMPLATE - NEUBRUTALISM STYLE
@@ -322,7 +323,7 @@ export function DocsTemplate() {
               {/* Feature grid — compact horizontal list */}
               <div className="grid grid-cols-2 gap-3">
                 {[
-                  { icon: <Layers className="h-4 w-4" />, title: '50+ Components', desc: 'Accordion to Toggle', color: 'bg-primary text-primary-foreground' },
+                  { icon: <Layers className="h-4 w-4" />, title: `${COUNTS.components}+ Components`, desc: 'Accordion to Toggle', color: 'bg-primary text-primary-foreground' },
                   { icon: <Zap className="h-4 w-4" />, title: '10 Chart Types', desc: 'Area, Bar, Sankey…', color: 'bg-secondary text-secondary-foreground' },
                   { icon: <Code2 className="h-4 w-4" />, title: 'shadcn CLI', desc: 'Install individually', color: 'bg-accent text-accent-foreground' },
                   { icon: <BookOpen className="h-4 w-4" />, title: '14 Themes', desc: 'Cyberpunk to Pastel', color: 'bg-success text-success-foreground' },
