@@ -219,27 +219,39 @@ export function getTemplateMeta(slug: string): RouteMeta {
   }
 }
 
+// Type for sitemap routes
+export type SitemapRoute = {
+  path: string
+  meta: RouteMeta
+  priority: number
+  changefreq: string
+  lastmod: string
+}
+
 // Full route list used by generate-html and generate-sitemap scripts
-export function getAllRoutes(): Array<{ path: string; meta: RouteMeta; priority: number; changefreq: string; lastmod: string }> {
-  const routes = []
+export function getAllRoutes(): SitemapRoute[] {
+  const routes: SitemapRoute[] = []
+  const LAST_MODIFIED = '2026-04-11'
 
   // Static pages
-  const staticPriorities: Record<string, { priority: number; changefreq: string; lastmod: string }> = {
-    '/': { priority: 1.0, changefreq: 'weekly', lastmod: '2026-04-11' },
-    '/docs': { priority: 0.9, changefreq: 'weekly', lastmod: '2026-04-11' },
-    '/docs/installation': { priority: 0.9, changefreq: 'monthly', lastmod: '2026-04-11' },
-    '/docs/theming': { priority: 0.7, changefreq: 'monthly', lastmod: '2026-04-11' },
-    '/components': { priority: 0.9, changefreq: 'monthly', lastmod: '2026-04-11' },
-    '/shapes': { priority: 0.9, changefreq: 'monthly', lastmod: '2026-04-11' },
-    '/shapes/builder': { priority: 0.8, changefreq: 'monthly', lastmod: '2026-04-11' },
-    '/charts': { priority: 0.9, changefreq: 'monthly', lastmod: '2026-04-11' },
-    '/themes': { priority: 0.8, changefreq: 'monthly', lastmod: '2026-04-11' },
-    '/templates': { priority: 0.9, changefreq: 'monthly', lastmod: '2026-04-11' },
-    '/blocks': { priority: 0.9, changefreq: 'monthly', lastmod: '2026-04-11' },
+  const staticPriorities: Record<string, { priority: number; changefreq: string }> = {
+    '/': { priority: 1.0, changefreq: 'weekly' },
+    '/docs': { priority: 0.9, changefreq: 'weekly' },
+    '/docs/installation': { priority: 0.9, changefreq: 'monthly' },
+    '/docs/theming': { priority: 0.7, changefreq: 'monthly' },
+    '/components': { priority: 0.9, changefreq: 'monthly' },
+    '/shapes': { priority: 0.9, changefreq: 'monthly' },
+    '/shapes/builder': { priority: 0.8, changefreq: 'monthly' },
+    '/charts': { priority: 0.9, changefreq: 'monthly' },
+    '/themes': { priority: 0.8, changefreq: 'monthly' },
+    '/templates': { priority: 0.9, changefreq: 'monthly' },
+    '/blocks': { priority: 0.9, changefreq: 'monthly' },
   }
 
   for (const [path, seo] of Object.entries(staticPriorities)) {
-    routes.push({ path, meta: PAGE_META[path]!, ...seo })
+    const meta = PAGE_META[path]
+    if (!meta) throw new Error(`Missing PAGE_META for path: ${path}`)
+    routes.push({ path, meta, ...seo, lastmod: LAST_MODIFIED })
   }
 
   // Component pages
@@ -249,7 +261,7 @@ export function getAllRoutes(): Array<{ path: string; meta: RouteMeta; priority:
       meta: getComponentMeta(slug),
       priority: 0.8,
       changefreq: 'monthly',
-      lastmod: '2026-04-11',
+      lastmod: LAST_MODIFIED,
     })
   }
 
@@ -260,7 +272,7 @@ export function getAllRoutes(): Array<{ path: string; meta: RouteMeta; priority:
       meta: getBlockMeta(slug),
       priority: 0.8,
       changefreq: 'monthly',
-      lastmod: '2026-04-11',
+      lastmod: LAST_MODIFIED,
     })
   }
 
@@ -271,7 +283,7 @@ export function getAllRoutes(): Array<{ path: string; meta: RouteMeta; priority:
       meta: getTemplateMeta(slug),
       priority: 0.8,
       changefreq: 'monthly',
-      lastmod: '2026-04-11',
+      lastmod: LAST_MODIFIED,
     })
   }
 
