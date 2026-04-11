@@ -22,6 +22,7 @@ import { SEO, pageSEO } from '@/components/SEO'
 import { useFramework, ReactIcon, VueIcon } from '@/hooks/use-framework'
 import { useScrollReveal } from '@/hooks/use-scroll-reveal'
 import { useCountUp } from '@/hooks/use-count-up'
+import { COUNTS } from '@/config/routes-meta'
 import {
   GearShape, Star5Shape, BlobShape, LightningShape, BurstShape, HexagonShape,
 } from '@/components/ui/shapes'
@@ -30,8 +31,8 @@ const DISPLAY: React.CSSProperties = { fontFamily: "'Bebas Neue', sans-serif" }
 const MONO: React.CSSProperties    = { fontFamily: "'DM Mono', monospace" }
 
 const MARQUEE_ITEMS = [
-  '50+ Components', 'React', 'Vue 3', 'Nuxt', '10 Charts',
-  '45 Shapes', '15 Blocks', 'TypeScript', 'Accessible',
+  `${COUNTS.components}+ Components`, 'React', 'Vue 3', 'Nuxt', `${COUNTS.charts} Charts`,
+  `${COUNTS.shapes} Shapes`, `${COUNTS.blocks} Blocks`, 'TypeScript', 'Accessible',
   'Open Source', 'Free', 'Neubrutalism',
 ]
 
@@ -42,10 +43,10 @@ export function Home() {
   const [copied, setCopied] = useState(false)
   const { framework, setFramework } = useFramework()
 
-  const componentsCount = useCountUp({ end: 50, duration: 1200 })
-  const chartsCount     = useCountUp({ end: 10, duration: 900 })
-  const shapesCount     = useCountUp({ end: 45, duration: 1100 })
-  const blocksCount     = useCountUp({ end: 15, duration: 800 })
+  const componentsCount = useCountUp({ end: COUNTS.components, duration: 1200 })
+  const chartsCount     = useCountUp({ end: COUNTS.charts, duration: 900 })
+  const shapesCount     = useCountUp({ end: COUNTS.shapes, duration: 1100 })
+  const blocksCount     = useCountUp({ end: COUNTS.blocks, duration: 800 })
 
   const showcaseReveal    = useScrollReveal()
   const featuresReveal    = useScrollReveal()
