@@ -7,14 +7,20 @@ import { TooltipProvider } from '@/components/ui/tooltip'
 import { Toaster } from '@/components/ui/sonner'
 import { ErrorBoundary } from '@/components/ErrorBoundary'
 import { Skeleton } from '@/components/ui/skeleton'
-import { Home, ThemeBuilder, Charts, Shapes, Templates, Blocks, ShapeBuilder } from '@/pages'
-import { LandingPageTemplate } from '@/components/templates/LandingPageTemplate'
-import { PortfolioTemplate } from '@/components/templates/PortfolioTemplate'
-import { DashboardTemplate } from '@/components/templates/DashboardTemplate'
-import { PricingTemplate } from '@/components/templates/PricingTemplate'
-import { BlogTemplate } from '@/components/templates/BlogTemplate'
-import { ProductTemplate } from '@/components/templates/ProductTemplate'
-import { DocsTemplate } from '@/components/templates/DocsTemplate'
+const Home = lazy(() => import('@/pages/Home').then(m => ({ default: m.Home })))
+const ThemeBuilder = lazy(() => import('@/pages/ThemeBuilder').then(m => ({ default: m.ThemeBuilder })))
+const Charts = lazy(() => import('@/pages/Charts').then(m => ({ default: m.Charts })))
+const Shapes = lazy(() => import('@/pages/Shapes').then(m => ({ default: m.Shapes })))
+const Templates = lazy(() => import('@/pages/Templates').then(m => ({ default: m.Templates })))
+const Blocks = lazy(() => import('@/pages/Blocks').then(m => ({ default: m.Blocks })))
+const ShapeBuilder = lazy(() => import('@/pages/ShapeBuilder').then(m => ({ default: m.ShapeBuilder })))
+const LandingPageTemplate = lazy(() => import('@/components/templates/LandingPageTemplate').then(m => ({ default: m.LandingPageTemplate })))
+const PortfolioTemplate = lazy(() => import('@/components/templates/PortfolioTemplate').then(m => ({ default: m.PortfolioTemplate })))
+const DashboardTemplate = lazy(() => import('@/components/templates/DashboardTemplate').then(m => ({ default: m.DashboardTemplate })))
+const PricingTemplate = lazy(() => import('@/components/templates/PricingTemplate').then(m => ({ default: m.PricingTemplate })))
+const BlogTemplate = lazy(() => import('@/components/templates/BlogTemplate').then(m => ({ default: m.BlogTemplate })))
+const ProductTemplate = lazy(() => import('@/components/templates/ProductTemplate').then(m => ({ default: m.ProductTemplate })))
+const DocsTemplate = lazy(() => import('@/components/templates/DocsTemplate').then(m => ({ default: m.DocsTemplate })))
 import { DocsLayout } from '@/layouts/DocsLayout'
 import '@/styles/globals.css'
 
@@ -140,20 +146,19 @@ function App() {
             <BrowserRouter>
           <ScrollToTop />
           <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/themes" element={<ThemeBuilder />} />
-            <Route path="/charts" element={<Charts />} />
-            <Route path="/shapes" element={<Shapes />} />
-            <Route path="/shapes/builder" element={<ShapeBuilder />} />
-            <Route path="/templates" element={<Templates />} />
-            <Route path="/blocks" element={<Blocks />} />
-            <Route path="/templates/landing-page" element={<LandingPageTemplate />} />
-            <Route path="/templates/portfolio" element={<PortfolioTemplate />} />
-            <Route path="/templates/dashboard" element={<DashboardTemplate />} />
-            <Route path="/templates/pricing" element={<PricingTemplate />} />
-            <Route path="/templates/blog" element={<BlogTemplate />} />
-            <Route path="/templates/product" element={<ProductTemplate />} />
-            <Route path="/templates/docs" element={<DocsTemplate />} />
+            <Route path="/" element={<Suspense fallback={<PageLoader />}><Home /></Suspense>} />
+            <Route path="/themes" element={<Suspense fallback={<PageLoader />}><ThemeBuilder /></Suspense>} />
+            <Route path="/charts" element={<Suspense fallback={<PageLoader />}><Charts /></Suspense>} />
+            <Route path="/shapes" element={<Suspense fallback={<PageLoader />}><Shapes /></Suspense>} />
+            <Route path="/shapes/builder" element={<Suspense fallback={<PageLoader />}><ShapeBuilder /></Suspense>} />
+            <Route path="/templates" element={<Suspense fallback={<PageLoader />}><Templates /></Suspense>} />
+            <Route path="/templates/landing-page" element={<Suspense fallback={<PageLoader />}><LandingPageTemplate /></Suspense>} />
+            <Route path="/templates/portfolio" element={<Suspense fallback={<PageLoader />}><PortfolioTemplate /></Suspense>} />
+            <Route path="/templates/dashboard" element={<Suspense fallback={<PageLoader />}><DashboardTemplate /></Suspense>} />
+            <Route path="/templates/pricing" element={<Suspense fallback={<PageLoader />}><PricingTemplate /></Suspense>} />
+            <Route path="/templates/blog" element={<Suspense fallback={<PageLoader />}><BlogTemplate /></Suspense>} />
+            <Route path="/templates/product" element={<Suspense fallback={<PageLoader />}><ProductTemplate /></Suspense>} />
+            <Route path="/templates/docs" element={<Suspense fallback={<PageLoader />}><DocsTemplate /></Suspense>} />
 
             {/* Documentation routes */}
             <Route path="/docs" element={<DocsLayout />}>
@@ -239,23 +244,26 @@ function App() {
               <Route path="*" element={<Navigate to="/components/button" replace />} />
             </Route>
 
-            {/* Block documentation routes */}
-            <Route path="/blocks" element={<DocsLayout />}>
-              <Route path="hero-section" element={<Suspense fallback={<PageLoader />}><HeroSectionDoc /></Suspense>} />
-              <Route path="feature-grid" element={<Suspense fallback={<PageLoader />}><FeatureGridDoc /></Suspense>} />
-              <Route path="testimonials" element={<Suspense fallback={<PageLoader />}><TestimonialsDoc /></Suspense>} />
-              <Route path="logo-cloud" element={<Suspense fallback={<PageLoader />}><LogoCloudDoc /></Suspense>} />
-              <Route path="cta-section" element={<Suspense fallback={<PageLoader />}><CTASectionDoc /></Suspense>} />
-              <Route path="stats-section" element={<Suspense fallback={<PageLoader />}><StatsSectionDoc /></Suspense>} />
-              <Route path="team-section" element={<Suspense fallback={<PageLoader />}><TeamSectionDoc /></Suspense>} />
-              <Route path="faq-section" element={<Suspense fallback={<PageLoader />}><FAQSectionDoc /></Suspense>} />
-              <Route path="footer-section" element={<Suspense fallback={<PageLoader />}><FooterSectionDoc /></Suspense>} />
-              <Route path="contact-section" element={<Suspense fallback={<PageLoader />}><ContactSectionDoc /></Suspense>} />
-              <Route path="auth-forms" element={<Suspense fallback={<PageLoader />}><AuthFormsDoc /></Suspense>} />
-              <Route path="error-pages" element={<Suspense fallback={<PageLoader />}><ErrorPagesDoc /></Suspense>} />
-              <Route path="settings-page" element={<Suspense fallback={<PageLoader />}><SettingsPageDoc /></Suspense>} />
-              <Route path="onboarding-flow" element={<Suspense fallback={<PageLoader />}><OnboardingFlowDoc /></Suspense>} />
-              <Route path="invoice" element={<Suspense fallback={<PageLoader />}><InvoiceDoc /></Suspense>} />
+            {/* Blocks overview + documentation routes */}
+            <Route path="/blocks">
+              <Route index element={<Suspense fallback={<PageLoader />}><Blocks /></Suspense>} />
+              <Route element={<DocsLayout />}>
+                <Route path="hero-section" element={<Suspense fallback={<PageLoader />}><HeroSectionDoc /></Suspense>} />
+                <Route path="feature-grid" element={<Suspense fallback={<PageLoader />}><FeatureGridDoc /></Suspense>} />
+                <Route path="testimonials" element={<Suspense fallback={<PageLoader />}><TestimonialsDoc /></Suspense>} />
+                <Route path="logo-cloud" element={<Suspense fallback={<PageLoader />}><LogoCloudDoc /></Suspense>} />
+                <Route path="cta-section" element={<Suspense fallback={<PageLoader />}><CTASectionDoc /></Suspense>} />
+                <Route path="stats-section" element={<Suspense fallback={<PageLoader />}><StatsSectionDoc /></Suspense>} />
+                <Route path="team-section" element={<Suspense fallback={<PageLoader />}><TeamSectionDoc /></Suspense>} />
+                <Route path="faq-section" element={<Suspense fallback={<PageLoader />}><FAQSectionDoc /></Suspense>} />
+                <Route path="footer-section" element={<Suspense fallback={<PageLoader />}><FooterSectionDoc /></Suspense>} />
+                <Route path="contact-section" element={<Suspense fallback={<PageLoader />}><ContactSectionDoc /></Suspense>} />
+                <Route path="auth-forms" element={<Suspense fallback={<PageLoader />}><AuthFormsDoc /></Suspense>} />
+                <Route path="error-pages" element={<Suspense fallback={<PageLoader />}><ErrorPagesDoc /></Suspense>} />
+                <Route path="settings-page" element={<Suspense fallback={<PageLoader />}><SettingsPageDoc /></Suspense>} />
+                <Route path="onboarding-flow" element={<Suspense fallback={<PageLoader />}><OnboardingFlowDoc /></Suspense>} />
+                <Route path="invoice" element={<Suspense fallback={<PageLoader />}><InvoiceDoc /></Suspense>} />
+              </Route>
             </Route>
           </Routes>
             </BrowserRouter>
