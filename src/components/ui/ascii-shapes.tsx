@@ -9,12 +9,13 @@ export type AsciiSize = 'sm' | 'md' | 'lg' | 'hero'
 export type AsciiCharset = 'blocks' | 'braille' | 'classic' | 'line' | 'dots'
 export type AsciiSpeed = 'slow' | 'normal' | 'fast'
 
-export interface AsciiShapeProps extends React.HTMLAttributes<HTMLDivElement> {
+export interface AsciiShapeProps extends React.HTMLAttributes<HTMLPreElement> {
   size?: AsciiSize
   charset?: AsciiCharset
   color?: string
   speed?: AsciiSpeed
   animated?: boolean
+  className?: string
 }
 
 // ============================================================================
@@ -231,7 +232,7 @@ function drawGrid(grid: string[][], cols: number, rows: number, t: number, chars
 type DrawFn = (grid: string[][], cols: number, rows: number, t: number, chars: string[], extra?: ColState[]) => void
 
 function makeAsciiComponent(drawFn: DrawFn, defaultCharset: AsciiCharset = 'classic') {
-  return React.forwardRef<HTMLDivElement, AsciiShapeProps>(
+  return React.forwardRef<HTMLPreElement, AsciiShapeProps>(
     (
       {
         size = 'md',
@@ -281,21 +282,18 @@ function makeAsciiComponent(drawFn: DrawFn, defaultCharset: AsciiCharset = 'clas
       }, [size, charset, speed, animated, cols, rows, chars, speedMul])
 
       return (
-        <div
+        <pre
           ref={ref}
           className={cn(
             'inline-block border-3 border-foreground shadow-[4px_4px_0px_hsl(var(--shadow-color))] bg-background overflow-hidden',
+            'font-mono text-xs leading-none tracking-tight select-none p-1',
             className
           )}
+          style={{ color: color || 'currentColor' }}
           {...props}
         >
-          <pre
-            className="font-mono text-xs leading-none tracking-tight select-none p-1"
-            style={{ color: color || 'currentColor' }}
-          >
-            {lines.join('\n')}
-          </pre>
-        </div>
+          {lines.join('\n')}
+        </pre>
       )
     }
   )

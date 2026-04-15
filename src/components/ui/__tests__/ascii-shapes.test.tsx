@@ -26,20 +26,20 @@ COMPONENTS.forEach(({ name, Component }) => {
   describe(name, () => {
     it('renders a pre element', () => {
       render(<Component data-testid="ascii" animated={false} />)
-      const wrapper = screen.getByTestId('ascii')
-      expect(wrapper.querySelector('pre')).not.toBeNull()
+      const pre = screen.getByTestId('ascii')
+      expect(pre.tagName.toLowerCase()).toBe('pre')
     })
 
     it('renders correct number of lines for sm size', () => {
       render(<Component data-testid="ascii" size="sm" animated={false} />)
-      const pre = screen.getByTestId('ascii').querySelector('pre')!
+      const pre = screen.getByTestId('ascii')
       const lines = pre.textContent?.split('\n') ?? []
       expect(lines.length).toBeGreaterThanOrEqual(12)
     })
 
     it('renders correct number of lines for md size', () => {
       render(<Component data-testid="ascii" size="md" animated={false} />)
-      const pre = screen.getByTestId('ascii').querySelector('pre')!
+      const pre = screen.getByTestId('ascii')
       const lines = pre.textContent?.split('\n') ?? []
       expect(lines.length).toBeGreaterThanOrEqual(24)
     })
