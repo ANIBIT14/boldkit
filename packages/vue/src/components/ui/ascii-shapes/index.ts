@@ -5,6 +5,7 @@ export { default as AsciiVortex }  from './AsciiVortex.vue'
 export { default as AsciiPulse }   from './AsciiPulse.vue'
 export { default as AsciiMatrix }  from './AsciiMatrix.vue'
 export { default as AsciiGrid }    from './AsciiGrid.vue'
+export { default as AsciiTorus }   from './AsciiTorus.vue'
 
 export type { AsciiSize, AsciiCharset, AsciiSpeed } from './constants'
 export { MULTICOLOR_PALETTE } from './constants'

@@ -234,6 +234,49 @@ function drawGrid(grid: string[][], cols: number, rows: number, t: number, chars
   }
 }
 
+function drawTorus(grid: string[][], cols: number, rows: number, t: number, chars: string[]): void {
+  const A = t * 0.0012, B = t * 0.0007
+  const cosA = Math.cos(A), sinA = Math.sin(A)
+  const cosB = Math.cos(B), sinB = Math.sin(B)
+  const R1 = 1.0, R2 = 2.2, K2 = 5.0
+  const cx = cols / 2, cy = rows / 2
+  const aspect = 0.5
+  const screenScale = Math.min(cols * aspect, rows) * 0.85
+  const K1 = screenScale * K2 / (K2 + R1 + R2)
+  const zbuf: number[][] = Array.from({ length: rows }, () => Array(cols).fill(-Infinity))
+  for (let theta = 0; theta < 2 * Math.PI; theta += 0.05) {
+    const cosT = Math.cos(theta), sinT = Math.sin(theta)
+    for (let phi = 0; phi < 2 * Math.PI; phi += 0.02) {
+      const cosP = Math.cos(phi), sinP = Math.sin(phi)
+      const ox = (R2 + R1 * cosT) * cosP
+      const oy = (R2 + R1 * cosT) * sinP
+      const oz = R1 * sinT
+      const oy1 =  oy * cosA - oz * sinA
+      const oz1 =  oy * sinA + oz * cosA
+      const ox2 =  ox * cosB - oy1 * sinB
+      const oy2 =  ox * sinB + oy1 * cosB
+      const oz2 =  oz1
+      const zDist = K2 - oz2
+      if (zDist <= 0) continue
+      const ooz = 1.0 / zDist
+      const xp = Math.round(cx + K1 * ox2 * ooz)
+      const yp = Math.round(cy - K1 * oy2 * ooz * aspect)
+      if (xp < 0 || xp >= cols || yp < 0 || yp >= rows) continue
+      const nx = cosT * cosP, ny = cosT * sinP, nz = sinT
+      const ny1 =  ny * cosA - nz * sinA
+      const nz1 =  ny * sinA + nz * cosA
+      const nx2 =  nx * cosB - ny1 * sinB
+      const ny2 =  nx * sinB + ny1 * cosB
+      const nz2 =  nz1
+      const L = nx2 * 0.57 + ny2 * 0.57 + nz2 * (-0.57)
+      if (L > 0 && ooz > zbuf[yp][xp]) {
+        zbuf[yp][xp] = ooz
+        grid[yp][xp] = chars[Math.min(Math.floor(L * (chars.length - 1)), chars.length - 1)]
+      }
+    }
+  }
+}
+
 // ============================================================================
 // Component factory
 // ============================================================================
@@ -343,3 +386,6 @@ AsciiMatrix.displayName = 'AsciiMatrix'
 
 export const AsciiGrid = makeAsciiComponent(drawGrid, 'line')
 AsciiGrid.displayName = 'AsciiGrid'
+
+export const AsciiTorus = makeAsciiComponent(drawTorus, 'blocks')
+AsciiTorus.displayName = 'AsciiTorus'
