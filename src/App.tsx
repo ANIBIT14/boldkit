@@ -72,6 +72,9 @@ const ToggleDoc = lazy(() => import('@/pages/docs/ToggleDoc').then(m => ({ defau
 const ToggleGroupDoc = lazy(() => import('@/pages/docs/ToggleGroupDoc').then(m => ({ default: m.ToggleGroupDoc })))
 const TooltipDoc = lazy(() => import('@/pages/docs/TooltipDoc').then(m => ({ default: m.TooltipDoc })))
 
+// ASCII Shapes documentation page
+const AsciiShapesDoc = lazy(() => import('@/pages/docs/AsciiShapesDoc').then(m => ({ default: m.AsciiShapesDoc })))
+
 // Math Curve component documentation pages
 const MathCurveLoaderDoc = lazy(() => import('@/pages/docs/MathCurveLoaderDoc').then(m => ({ default: m.MathCurveLoaderDoc })))
 const MathCurveProgressDoc = lazy(() => import('@/pages/docs/MathCurveProgressDoc').then(m => ({ default: m.MathCurveProgressDoc })))
@@ -214,6 +217,8 @@ function App() {
               <Route path="toggle" element={<Suspense fallback={<PageLoader />}><ToggleDoc /></Suspense>} />
               <Route path="toggle-group" element={<Suspense fallback={<PageLoader />}><ToggleGroupDoc /></Suspense>} />
               <Route path="tooltip" element={<Suspense fallback={<PageLoader />}><TooltipDoc /></Suspense>} />
+              {/* ASCII Shapes */}
+              <Route path="ascii-shapes" element={<Suspense fallback={<PageLoader />}><AsciiShapesDoc /></Suspense>} />
               {/* Math Curve Components */}
               <Route path="math-curve-loader" element={<Suspense fallback={<PageLoader />}><MathCurveLoaderDoc /></Suspense>} />
               <Route path="math-curve-progress" element={<Suspense fallback={<PageLoader />}><MathCurveProgressDoc /></Suspense>} />

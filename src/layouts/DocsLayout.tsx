@@ -59,6 +59,7 @@ const components = [
   { name: 'Kbd', href: '/components/kbd' },
   { name: 'Label', href: '/components/label' },
   { name: 'Layered Card', href: '/components/layered-card' },
+  { name: 'ASCII Shapes', href: '/components/ascii-shapes', isNew: true },
   { name: 'MC Background', href: '/components/math-curve-background', isNew: true },
   { name: 'MC Loader', href: '/components/math-curve-loader', isNew: true },
   { name: 'MC Progress', href: '/components/math-curve-progress', isNew: true },

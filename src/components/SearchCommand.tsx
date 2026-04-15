@@ -23,6 +23,7 @@ import {
 } from 'lucide-react'
 
 const components = [
+  { name: 'ASCII Shapes', path: '/components/ascii-shapes' },
   { name: 'Accordion', path: '/components/accordion' },
   { name: 'Alert', path: '/components/alert' },
   { name: 'Alert Dialog', path: '/components/alert-dialog' },
