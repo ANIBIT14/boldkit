@@ -34,14 +34,14 @@ COMPONENTS.forEach(({ name, Component }) => {
       render(<Component data-testid="ascii" size="sm" animated={false} />)
       const pre = screen.getByTestId('ascii')
       const lines = pre.textContent?.split('\n') ?? []
-      expect(lines.length).toBeGreaterThanOrEqual(12)
+      expect(lines.length).toBe(12)
     })
 
     it('renders correct number of lines for md size', () => {
       render(<Component data-testid="ascii" size="md" animated={false} />)
       const pre = screen.getByTestId('ascii')
       const lines = pre.textContent?.split('\n') ?? []
-      expect(lines.length).toBeGreaterThanOrEqual(24)
+      expect(lines.length).toBe(24)
     })
 
     it('accepts all charset options without throwing', () => {
@@ -54,6 +54,21 @@ COMPONENTS.forEach(({ name, Component }) => {
     it('accepts custom className', () => {
       render(<Component data-testid="ascii" className="my-custom" animated={false} />)
       expect(screen.getByTestId('ascii')).toHaveClass('my-custom')
+    })
+
+    it('cancels animation frame on unmount', () => {
+      const cancelSpy = vi.fn()
+      vi.stubGlobal('cancelAnimationFrame', cancelSpy)
+      const { unmount } = render(<Component animated={true} />)
+      unmount()
+      expect(cancelSpy).toHaveBeenCalled()
+    })
+
+    it('does not call requestAnimationFrame when animated=false', () => {
+      const rafSpy = vi.fn().mockReturnValue(1)
+      vi.stubGlobal('requestAnimationFrame', rafSpy)
+      render(<Component animated={false} />)
+      expect(rafSpy).not.toHaveBeenCalled()
     })
   })
 })

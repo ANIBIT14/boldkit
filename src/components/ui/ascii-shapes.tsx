@@ -279,7 +279,8 @@ function makeAsciiComponent(drawFn: DrawFn, defaultCharset: AsciiCharset = 'clas
 
         rafId = requestAnimationFrame(frame)
         return () => cancelAnimationFrame(rafId)
-      }, [size, charset, speed, animated, cols, rows, chars, speedMul])
+      // eslint-disable-next-line react-hooks/exhaustive-deps -- drawFn is stable (module-level, never changes per component)
+      }, [size, charset, speed, animated])
 
       return (
         <pre
@@ -303,29 +304,19 @@ function makeAsciiComponent(drawFn: DrawFn, defaultCharset: AsciiCharset = 'clas
 // Named exports — 7 ASCII shape components
 // ============================================================================
 
-export const AsciiSpiral = makeAsciiComponent(
-  (g, cols, rows, t, chars) => drawSpiral(g, cols, rows, t, chars), 'classic'
-)
+export const AsciiSpiral = makeAsciiComponent(drawSpiral, 'classic')
 AsciiSpiral.displayName = 'AsciiSpiral'
 
-export const AsciiRose = makeAsciiComponent(
-  (g, cols, rows, t, chars) => drawRose(g, cols, rows, t, chars), 'braille'
-)
+export const AsciiRose = makeAsciiComponent(drawRose, 'braille')
 AsciiRose.displayName = 'AsciiRose'
 
-export const AsciiWave = makeAsciiComponent(
-  (g, cols, rows, t, chars) => drawWave(g, cols, rows, t, chars), 'classic'
-)
+export const AsciiWave = makeAsciiComponent(drawWave, 'classic')
 AsciiWave.displayName = 'AsciiWave'
 
-export const AsciiVortex = makeAsciiComponent(
-  (g, cols, rows, t, chars) => drawVortex(g, cols, rows, t, chars), 'blocks'
-)
+export const AsciiVortex = makeAsciiComponent(drawVortex, 'blocks')
 AsciiVortex.displayName = 'AsciiVortex'
 
-export const AsciiPulse = makeAsciiComponent(
-  (g, cols, rows, t, chars) => drawPulse(g, cols, rows, t, chars), 'dots'
-)
+export const AsciiPulse = makeAsciiComponent(drawPulse, 'dots')
 AsciiPulse.displayName = 'AsciiPulse'
 
 export const AsciiMatrix = makeAsciiComponent(
@@ -333,7 +324,5 @@ export const AsciiMatrix = makeAsciiComponent(
 )
 AsciiMatrix.displayName = 'AsciiMatrix'
 
-export const AsciiGrid = makeAsciiComponent(
-  (g, cols, rows, t, chars) => drawGrid(g, cols, rows, t, chars), 'line'
-)
+export const AsciiGrid = makeAsciiComponent(drawGrid, 'line')
 AsciiGrid.displayName = 'AsciiGrid'
