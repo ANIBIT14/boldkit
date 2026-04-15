@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "ascii-shapes",
+  "description": "7 animated ASCII art components (Spiral, Rose, Wave, Vortex, Pulse, Matrix, Grid) with 5 character sets, 4 sizes, and SSR-safe static mode",
+  "dependencies": [],
+  "registryDependencies": [
+    "utils"
+  ],
+  "files": [
+    {
+      "path": "registry/default/ui/ascii-shapes.tsx",
+      "type": "registry:ui",
+      "target": "components/ui/ascii-shapes.tsx"
+    }
+  ],
+  "type": "registry:ui"
+}
