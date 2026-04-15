@@ -184,6 +184,15 @@ export const pageSEO = {
       { name: 'Installation' },
     ],
   },
+  asciiShapes: {
+    title: 'ASCII Shape Animations',
+    description: 'Animated ASCII art components for React and Vue 3. 7 animations with 5 character sets and 4 sizes — SSR-safe.',
+    canonical: `${SITE_URL}/ascii-shapes`,
+    breadcrumbs: [
+      { name: 'Home', url: `${SITE_URL}/` },
+      { name: 'ASCII Shapes' },
+    ],
+  },
   shapes: {
     title: `${COUNTS.shapes} Neubrutalism SVG Shapes`,
     description: `Collection of ${COUNTS.shapes} unique neubrutalism SVG shapes for React and Vue 3. Bursts, hearts, stars, badges, celestial, and decorative shapes with thick borders.`,

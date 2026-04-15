@@ -66,6 +66,11 @@ export const PAGE_META: Record<string, RouteMeta> = {
     description: 'Interactively customize BoldKit SVG shapes. Adjust size, color, border, and shadow for any of the 54 neubrutalism shapes.',
     canonical: `${SITE_URL}/shapes/builder`,
   },
+  '/ascii-shapes': {
+    title: 'ASCII Shape Animations | BoldKit',
+    description: 'Animated ASCII art components for React and Vue 3. 7 animations including spiral, rose, wave, vortex, pulse, matrix, and grid — with 5 character sets and 4 sizes.',
+    canonical: `${SITE_URL}/ascii-shapes`,
+  },
   '/charts': {
     title: `${COUNTS.charts} Neubrutalism Chart Types | BoldKit`,
     description: `Neubrutalism styled charts for React and Vue 3. ${COUNTS.charts} chart types including bar, line, area, pie, donut, radar, radial bar, gauge, sparkline, funnel, treemap, heatmap, and sankey charts.`,
@@ -242,6 +247,7 @@ export function getAllRoutes(): SitemapRoute[] {
     '/components': { priority: 0.9, changefreq: 'monthly' },
     '/shapes': { priority: 0.9, changefreq: 'monthly' },
     '/shapes/builder': { priority: 0.8, changefreq: 'monthly' },
+    '/ascii-shapes': { priority: 0.8, changefreq: 'monthly' },
     '/charts': { priority: 0.9, changefreq: 'monthly' },
     '/themes': { priority: 0.8, changefreq: 'monthly' },
     '/templates': { priority: 0.9, changefreq: 'monthly' },

@@ -14,6 +14,7 @@ const Shapes = lazy(() => import('@/pages/Shapes').then(m => ({ default: m.Shape
 const Templates = lazy(() => import('@/pages/Templates').then(m => ({ default: m.Templates })))
 const Blocks = lazy(() => import('@/pages/Blocks').then(m => ({ default: m.Blocks })))
 const ShapeBuilder = lazy(() => import('@/pages/ShapeBuilder').then(m => ({ default: m.ShapeBuilder })))
+const AsciiShapes = lazy(() => import('@/pages/AsciiShapes').then(m => ({ default: m.AsciiShapes })))
 const LandingPageTemplate = lazy(() => import('@/components/templates/LandingPageTemplate').then(m => ({ default: m.LandingPageTemplate })))
 const PortfolioTemplate = lazy(() => import('@/components/templates/PortfolioTemplate').then(m => ({ default: m.PortfolioTemplate })))
 const DashboardTemplate = lazy(() => import('@/components/templates/DashboardTemplate').then(m => ({ default: m.DashboardTemplate })))
@@ -151,6 +152,7 @@ function App() {
             <Route path="/charts" element={<Suspense fallback={<PageLoader />}><Charts /></Suspense>} />
             <Route path="/shapes" element={<Suspense fallback={<PageLoader />}><Shapes /></Suspense>} />
             <Route path="/shapes/builder" element={<Suspense fallback={<PageLoader />}><ShapeBuilder /></Suspense>} />
+            <Route path="/ascii-shapes" element={<Suspense fallback={<PageLoader />}><AsciiShapes /></Suspense>} />
             <Route path="/templates" element={<Suspense fallback={<PageLoader />}><Templates /></Suspense>} />
             <Route path="/templates/landing-page" element={<Suspense fallback={<PageLoader />}><LandingPageTemplate /></Suspense>} />
             <Route path="/templates/portfolio" element={<Suspense fallback={<PageLoader />}><PortfolioTemplate /></Suspense>} />
