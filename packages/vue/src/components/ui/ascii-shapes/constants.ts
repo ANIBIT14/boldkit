@@ -21,6 +21,15 @@ export const SPEED_MAP: Record<AsciiSpeed, number> = {
   slow: 0.4, normal: 1.0, fast: 2.2,
 }
 
+export const MULTICOLOR_PALETTE = [
+  'hsl(var(--primary))',
+  'hsl(var(--secondary))',
+  'hsl(var(--accent))',
+  'hsl(var(--warning))',
+  'hsl(var(--info))',
+  'hsl(var(--success))',
+]
+
 export function makeGrid(cols: number, rows: number): string[][] {
   return Array.from({ length: rows }, () => Array(cols).fill(' '))
 }

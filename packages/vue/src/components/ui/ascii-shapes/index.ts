@@ -7,3 +7,4 @@ export { default as AsciiMatrix }  from './AsciiMatrix.vue'
 export { default as AsciiGrid }    from './AsciiGrid.vue'
 
 export type { AsciiSize, AsciiCharset, AsciiSpeed } from './constants'
+export { MULTICOLOR_PALETTE } from './constants'

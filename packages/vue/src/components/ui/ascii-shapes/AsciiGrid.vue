@@ -2,7 +2,7 @@
 import { shallowRef, onMounted, onUnmounted, watch } from 'vue'
 import { cn } from '@/lib/utils'
 import {
-  SIZE_MAP, CHARSETS, SPEED_MAP, makeGrid, gridToLines,
+  SIZE_MAP, CHARSETS, SPEED_MAP, makeGrid, gridToLines, MULTICOLOR_PALETTE,
   type AsciiSize, type AsciiCharset, type AsciiSpeed,
 } from './constants'
 
@@ -13,9 +13,10 @@ interface Props {
   color?: string
   speed?: AsciiSpeed
   animated?: boolean
+  multicolor?: boolean
 }
 const props = withDefaults(defineProps<Props>(), {
-  size: 'md', charset: 'line', speed: 'normal', animated: true,
+  size: 'md', charset: 'line', speed: 'normal', animated: true, multicolor: false,
 })
 
 let rafId = 0
@@ -70,6 +71,6 @@ watch(() => [props.size, props.charset, props.speed, props.animated], () => star
 <template>
   <pre
     :class="cn('inline-block border-3 border-foreground shadow-[4px_4px_0px_hsl(var(--shadow-color))] bg-background overflow-hidden font-mono text-xs leading-none tracking-tight select-none p-1', props.class)"
-    :style="{ color: color || 'currentColor' }"
-  >{{ lines.join('\n') }}</pre>
+    :style="props.multicolor ? undefined : { color: props.color || 'currentColor' }"
+  ><template v-if="props.multicolor"><template v-for="(line, i) in lines" :key="i"><span :style="{ color: MULTICOLOR_PALETTE[i % MULTICOLOR_PALETTE.length] }">{{ line }}</span><template v-if="i < lines.length - 1">&#10;</template></template></template><template v-else>{{ lines.join('\n') }}</template></pre>
 </template>
