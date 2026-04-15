@@ -1,7 +1,8 @@
 import { useState } from 'react'
 import {
   AsciiSpiral, AsciiRose, AsciiWave,
-  AsciiVortex, AsciiPulse, AsciiMatrix, AsciiGrid, AsciiTorus,
+  AsciiVortex, AsciiPulse, AsciiMatrix, AsciiGrid,
+  AsciiTorus, AsciiSphere, AsciiCube, AsciiHelix,
   type AsciiCharset, type AsciiSize,
 } from '@/components/ui/ascii-shapes'
 import { Layout } from '@/components/layout'
@@ -20,6 +21,9 @@ const SHAPES = [
   { name: 'AsciiMatrix',  Component: AsciiMatrix,  desc: 'Characters raining downward per column' },
   { name: 'AsciiGrid',    Component: AsciiGrid,    desc: 'Grid intersections pulsing with traveling waves' },
   { name: 'AsciiTorus',   Component: AsciiTorus,   desc: '3D rotating torus via perspective projection + z-buffering' },
+  { name: 'AsciiSphere',  Component: AsciiSphere,  desc: 'Rotating globe with lat/lon grid texture and Lambertian shading' },
+  { name: 'AsciiCube',    Component: AsciiCube,    desc: 'Solid shaded cube rotating on two axes with face-based z-buffering' },
+  { name: 'AsciiHelix',   Component: AsciiHelix,   desc: 'DNA double helix with two parametric strands and connecting rungs' },
 ]
 
 const CHARSETS: AsciiCharset[] = ['blocks', 'braille', 'classic', 'line', 'dots']
@@ -53,7 +57,7 @@ export function AsciiShapes() {
           <div className="relative z-10 flex flex-col items-center gap-6 py-16 md:py-20 px-4">
             {/* Badges */}
             <div className="flex flex-wrap justify-center gap-2">
-              <Badge variant="accent">8 Shapes</Badge>
+              <Badge variant="accent">11 Shapes</Badge>
               <Badge variant="secondary">5 Character Sets</Badge>
               <Badge variant="info">React &amp; Vue 3</Badge>
             </div>
@@ -77,7 +81,7 @@ export function AsciiShapes() {
 
             {/* Subtitle */}
             <p className="text-sm text-white/50 text-center" style={MONO}>
-              8 animations · 5 character sets · 4 sizes · React &amp; Vue 3
+              11 animations · 5 character sets · 4 sizes · React &amp; Vue 3
             </p>
           </div>
         </section>
@@ -156,6 +160,33 @@ export function AsciiShapes() {
           </div>
         </section>
 
+        {/* ── SHAPE GRID ────────────────────────────────────────────── */}
+        <section className="p-4 md:p-8 border-b-3 border-foreground">
+          <h2 className="text-2xl font-black uppercase mb-1">All Shapes</h2>
+          <p className="text-xs text-muted-foreground mb-6" style={MONO}>Use controls above to change charset, size, color, and multicolor</p>
+          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+            {SHAPES.map(({ name, Component, desc }) => (
+              <div key={name} className="border-3 border-foreground shadow-[4px_4px_0px_hsl(var(--shadow-color))]">
+                <div className="border-b-3 border-foreground p-3 bg-muted/30">
+                  <span className="text-sm font-bold" style={MONO}>{name}</span>
+                </div>
+                <div className="p-4 flex justify-center">
+                  <Component
+                    size={size}
+                    charset={charset}
+                    speed="normal"
+                    color={activeColor}
+                    multicolor={multicolor}
+                  />
+                </div>
+                <div className="border-t-3 border-foreground p-3">
+                  <p className="text-xs text-muted-foreground" style={MONO}>{desc}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+
         {/* ── COLOR SHOWCASE ────────────────────────────────────────── */}
         <section className="p-4 md:p-8 border-b-3 border-foreground bg-muted/20">
           <h2 className="text-2xl font-black uppercase mb-1">Color Modes</h2>
@@ -182,8 +213,10 @@ export function AsciiShapes() {
                 { C: AsciiSpiral,  label: 'Spiral',  cs: 'classic' as AsciiCharset },
                 { C: AsciiRose,    label: 'Rose',    cs: 'braille' as AsciiCharset },
                 { C: AsciiVortex,  label: 'Vortex',  cs: 'blocks'  as AsciiCharset },
-                { C: AsciiMatrix,  label: 'Matrix',  cs: 'classic' as AsciiCharset },
                 { C: AsciiTorus,   label: 'Torus',   cs: 'blocks'  as AsciiCharset },
+                { C: AsciiSphere,  label: 'Sphere',  cs: 'classic' as AsciiCharset },
+                { C: AsciiCube,    label: 'Cube',    cs: 'blocks'  as AsciiCharset },
+                { C: AsciiHelix,   label: 'Helix',   cs: 'braille' as AsciiCharset },
               ]).map(({ C, label, cs }) => (
                 <div key={label} className="flex flex-col items-center gap-2">
                   <C size="sm" charset={cs} animated={false} multicolor />
@@ -191,33 +224,6 @@ export function AsciiShapes() {
                 </div>
               ))}
             </div>
-          </div>
-        </section>
-
-        {/* ── SHAPE GRID ────────────────────────────────────────────── */}
-        <section className="p-4 md:p-8 border-b-3 border-foreground">
-          <h2 className="text-2xl font-black uppercase mb-1">All Shapes</h2>
-          <p className="text-xs text-muted-foreground mb-6" style={MONO}>Use controls above to change charset, size, color, and multicolor</p>
-          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
-            {SHAPES.map(({ name, Component, desc }) => (
-              <div key={name} className="border-3 border-foreground shadow-[4px_4px_0px_hsl(var(--shadow-color))]">
-                <div className="border-b-3 border-foreground p-3 bg-muted/30">
-                  <span className="text-sm font-bold" style={MONO}>{name}</span>
-                </div>
-                <div className="p-4 flex justify-center">
-                  <Component
-                    size={size}
-                    charset={charset}
-                    speed="normal"
-                    color={activeColor}
-                    multicolor={multicolor}
-                  />
-                </div>
-                <div className="border-t-3 border-foreground p-3">
-                  <p className="text-xs text-muted-foreground" style={MONO}>{desc}</p>
-                </div>
-              </div>
-            ))}
           </div>
         </section>
 
@@ -272,7 +278,8 @@ npx shadcn-vue@latest add "https://boldkit.dev/r/vue/ascii-shapes.json"`}</pre>
             </div>
             <pre className="border-3 border-foreground bg-foreground text-background p-4 overflow-x-auto shadow-[4px_4px_0px_hsl(var(--shadow-color))] text-xs leading-relaxed" style={MONO}>{`import {
   AsciiSpiral, AsciiRose, AsciiWave, AsciiVortex,
-  AsciiPulse, AsciiMatrix, AsciiGrid, AsciiTorus,
+  AsciiPulse, AsciiMatrix, AsciiGrid,
+  AsciiTorus, AsciiSphere, AsciiCube, AsciiHelix,
 } from '@/components/ui/ascii-shapes'
 
 // Basic
@@ -299,7 +306,7 @@ npx shadcn-vue@latest add "https://boldkit.dev/r/vue/ascii-shapes.json"`}</pre>
             </div>
             <pre className="border-3 border-foreground bg-foreground text-background p-4 overflow-x-auto shadow-[4px_4px_0px_hsl(var(--shadow-color))] text-xs leading-relaxed" style={MONO}>{`<script setup lang="ts">
 import {
-  AsciiSpiral, AsciiTorus,
+  AsciiSpiral, AsciiTorus, AsciiSphere, AsciiCube, AsciiHelix,
 } from '@/components/ui/ascii-shapes'
 </script>
 
