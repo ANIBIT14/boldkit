@@ -35,7 +35,7 @@ const animClass = computed(() => {
     :class="cn('text-info', animClass, props.class)"
   >
     <path
-      d="M50 5 L92 50 L50 95 L8 50 Z"
+      d="M50 28 L88 50 L50 72 L12 50 Z"
       :fill="filled ? (color || 'currentColor') : 'none'"
       stroke="hsl(var(--foreground))"
       :stroke-width="strokeWidth"

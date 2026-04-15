@@ -40,11 +40,14 @@ const animClass = computed(() => {
       stroke="hsl(var(--foreground))"
       :stroke-width="strokeWidth"
     />
+    <!-- Inner detail line showing the twist crossing -->
     <path
-      d="M38 28 Q50 22 62 28 Q50 34 38 28 Z"
-      fill="hsl(var(--background))"
-      stroke="hsl(var(--foreground))"
-      :stroke-width="strokeWidth"
+      d="M30 30 Q50 42 70 30"
+      :stroke="color || 'currentColor'"
+      stroke-width="1.5"
+      stroke-opacity="0.7"
+      stroke-linecap="round"
+      fill="none"
     />
   </svg>
 </template>
