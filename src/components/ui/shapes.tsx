@@ -1112,6 +1112,216 @@ export const WavyRectangleShape = React.forwardRef<SVGSVGElement, ShapeProps>(
 WavyRectangleShape.displayName = 'WavyRectangleShape'
 
 // ============================================================================
+// GEOMETRIC ADDITIONS — Regular polygons and ellipse
+// ============================================================================
+
+export const RhombusShape = React.forwardRef<SVGSVGElement, ShapeProps>(
+  ({ size = 100, strokeWidth = 3, filled = true, color, animation = 'none', speed = 'normal', className, ...props }, ref) => (
+    <svg ref={ref} width={size} height={size} viewBox="0 0 100 100"
+      className={cn('text-info', getAnimClass(animation, speed), className)} {...props}>
+      <path d="M50 5 L92 50 L50 95 L8 50 Z"
+        fill={filled ? (color || 'currentColor') : 'none'}
+        stroke="hsl(var(--foreground))" strokeWidth={strokeWidth} />
+    </svg>
+  )
+)
+RhombusShape.displayName = 'RhombusShape'
+
+export const EllipseShape = React.forwardRef<SVGSVGElement, ShapeProps>(
+  ({ size = 100, strokeWidth = 3, filled = true, color, animation = 'none', speed = 'normal', className, ...props }, ref) => (
+    <svg ref={ref} width={size} height={size * 0.7} viewBox="0 0 100 70"
+      className={cn('text-primary', getAnimClass(animation, speed), className)} {...props}>
+      <ellipse cx="50" cy="35" rx="46" ry="28"
+        fill={filled ? (color || 'currentColor') : 'none'}
+        stroke="hsl(var(--foreground))" strokeWidth={strokeWidth} />
+      <line x1="4" y1="35" x2="96" y2="35" stroke="hsl(var(--foreground))" strokeWidth={strokeWidth - 1} strokeDasharray="4,4" />
+      <line x1="50" y1="7" x2="50" y2="63" stroke="hsl(var(--foreground))" strokeWidth={strokeWidth - 1} strokeDasharray="4,4" />
+    </svg>
+  )
+)
+EllipseShape.displayName = 'EllipseShape'
+
+export const HeptagonShape = React.forwardRef<SVGSVGElement, ShapeProps>(
+  ({ size = 100, strokeWidth = 3, filled = true, color, animation = 'none', speed = 'normal', className, ...props }, ref) => (
+    <svg ref={ref} width={size} height={size} viewBox="0 0 100 100"
+      className={cn('text-secondary', getAnimClass(animation, speed), className)} {...props}>
+      {/* 7 vertices: k=0..6, angle = k*2π/7 - π/2 */}
+      <path d="M50 5 L85 22 L94 60 L69 91 L31 91 L6 60 L15 22 Z"
+        fill={filled ? (color || 'currentColor') : 'none'}
+        stroke="hsl(var(--foreground))" strokeWidth={strokeWidth} />
+    </svg>
+  )
+)
+HeptagonShape.displayName = 'HeptagonShape'
+
+export const DecagonShape = React.forwardRef<SVGSVGElement, ShapeProps>(
+  ({ size = 100, strokeWidth = 3, filled = true, color, animation = 'none', speed = 'normal', className, ...props }, ref) => (
+    <svg ref={ref} width={size} height={size} viewBox="0 0 100 100"
+      className={cn('text-accent', getAnimClass(animation, speed), className)} {...props}>
+      {/* 10 vertices: k=0..9, angle = k*π/5 - π/2 */}
+      <path d="M50 5 L77 14 L93 36 L93 64 L77 86 L50 95 L24 86 L7 64 L7 36 L24 14 Z"
+        fill={filled ? (color || 'currentColor') : 'none'}
+        stroke="hsl(var(--foreground))" strokeWidth={strokeWidth} />
+    </svg>
+  )
+)
+DecagonShape.displayName = 'DecagonShape'
+
+// ============================================================================
+// MATHEMATICAL SHAPES — Fractals, impossible figures, topological forms
+// ============================================================================
+
+/** Koch Snowflake iteration-2 path helper (runs once at module level, pure math) */
+function buildKochPath(): string {
+  let pts = [{ x: 50, y: 8 }, { x: 91, y: 73 }, { x: 9, y: 73 }]
+  const cos60 = 0.5, sin60 = Math.sqrt(3) / 2
+  for (let iter = 0; iter < 2; iter++) {
+    const next: { x: number; y: number }[] = []
+    for (let j = 0; j < pts.length; j++) {
+      const a = pts[j], b = pts[(j + 1) % pts.length]
+      const dx = (b.x - a.x) / 3, dy = (b.y - a.y) / 3
+      const p1 = { x: a.x + dx, y: a.y + dy }
+      const p2 = { x: a.x + 2 * dx, y: a.y + 2 * dy }
+      const peak = { x: p1.x + dx * cos60 + dy * sin60, y: p1.y - dx * sin60 + dy * cos60 }
+      next.push(a, p1, peak, p2)
+    }
+    pts = next
+  }
+  return pts.map((p, i) => `${i === 0 ? 'M' : 'L'}${p.x.toFixed(1)} ${p.y.toFixed(1)}`).join(' ') + ' Z'
+}
+const KOCH_PATH = buildKochPath()
+
+export const KochSnowflakeShape = React.forwardRef<SVGSVGElement, ShapeProps>(
+  ({ size = 100, strokeWidth = 3, filled = true, color, animation = 'none', speed = 'normal', className, ...props }, ref) => (
+    <svg ref={ref} width={size} height={size} viewBox="0 0 100 100"
+      className={cn('text-info', getAnimClass(animation, speed), className)} {...props}>
+      <path d={KOCH_PATH}
+        fill={filled ? (color || 'currentColor') : 'none'}
+        stroke="hsl(var(--foreground))" strokeWidth={strokeWidth} strokeLinejoin="round" />
+    </svg>
+  )
+)
+KochSnowflakeShape.displayName = 'KochSnowflakeShape'
+
+export const PenroseTriangleShape = React.forwardRef<SVGSVGElement, ShapeProps>(
+  ({ size = 100, strokeWidth = 3, filled = true, color, animation = 'none', speed = 'normal', className, ...props }, ref) => (
+    <svg ref={ref} width={size} height={size} viewBox="0 0 100 100"
+      className={cn('text-warning', getAnimClass(animation, speed), className)} {...props}>
+      {/* Top beam */}
+      <path d="M50 8 L62 8 L38 50 L26 50 Z"
+        fill={filled ? (color || 'currentColor') : 'none'}
+        stroke="hsl(var(--foreground))" strokeWidth={strokeWidth} strokeLinejoin="round" />
+      {/* Bottom-right beam */}
+      <path d="M62 8 L88 52 L76 52 L50 8 Z"
+        fill={filled ? (color || 'currentColor') : 'none'}
+        stroke="hsl(var(--foreground))" strokeWidth={strokeWidth} strokeLinejoin="round" />
+      {/* Bottom beam */}
+      <path d="M26 50 L38 50 L76 52 L88 52 L82 62 L20 62 Z"
+        fill={filled ? (color || 'currentColor') : 'none'}
+        stroke="hsl(var(--foreground))" strokeWidth={strokeWidth} strokeLinejoin="round" />
+    </svg>
+  )
+)
+PenroseTriangleShape.displayName = 'PenroseTriangleShape'
+
+/** Trefoil knot projection: x = sin(t)+2sin(2t), y = cos(t)-2cos(2t) */
+function buildTrefoilPath(): string {
+  const n = 120, scale = 14
+  let d = ''
+  for (let i = 0; i <= n; i++) {
+    const t = (i / n) * 2 * Math.PI
+    const x = 50 + scale * (Math.sin(t) + 2 * Math.sin(2 * t))
+    const y = 50 + scale * (Math.cos(t) - 2 * Math.cos(2 * t))
+    d += `${i === 0 ? 'M' : 'L'}${x.toFixed(2)} ${y.toFixed(2)} `
+  }
+  return d + 'Z'
+}
+const TREFOIL_PATH = buildTrefoilPath()
+
+export const TrefoilShape = React.forwardRef<SVGSVGElement, ShapeProps>(
+  ({ size = 100, strokeWidth = 3, filled = true, color, animation = 'none', speed = 'normal', className, ...props }, ref) => (
+    <svg ref={ref} width={size} height={size} viewBox="0 0 100 100"
+      className={cn('text-primary', getAnimClass(animation, speed), className)} {...props}>
+      <path d={TREFOIL_PATH}
+        fill={filled ? (color || 'currentColor') : 'none'}
+        stroke="hsl(var(--foreground))" strokeWidth={strokeWidth} strokeLinejoin="round" />
+    </svg>
+  )
+)
+TrefoilShape.displayName = 'TrefoilShape'
+
+/** Fibonacci spiral: 8 quarter-circle arcs with φ-scaled radii */
+function buildFibonacciPath(): string {
+  const scale = 1.9
+  const arcs: { cx: number; cy: number; r: number; startAngle: number }[] = [
+    { cx: 51, cy: 51, r: 1, startAngle: Math.PI },
+    { cx: 51, cy: 50, r: 1, startAngle: Math.PI / 2 },
+    { cx: 50, cy: 50, r: 2, startAngle: 0 },
+    { cx: 50, cy: 52, r: 3, startAngle: -Math.PI / 2 },
+    { cx: 53, cy: 52, r: 5, startAngle: Math.PI },
+    { cx: 53, cy: 47, r: 8, startAngle: Math.PI / 2 },
+    { cx: 45, cy: 47, r: 13, startAngle: 0 },
+    { cx: 45, cy: 60, r: 21, startAngle: -Math.PI / 2 },
+  ]
+  let d = ''
+  arcs.forEach(({ cx, cy, r, startAngle }, i) => {
+    const endAngle = startAngle - Math.PI / 2
+    const sx = cx + r * scale * Math.cos(startAngle)
+    const sy = cy + r * scale * Math.sin(startAngle)
+    const ex = cx + r * scale * Math.cos(endAngle)
+    const ey = cy + r * scale * Math.sin(endAngle)
+    const R = r * scale
+    if (i === 0) d += `M${sx.toFixed(1)} ${sy.toFixed(1)} `
+    d += `A${R.toFixed(1)} ${R.toFixed(1)} 0 0 0 ${ex.toFixed(1)} ${ey.toFixed(1)} `
+  })
+  return d
+}
+const FIBONACCI_PATH = buildFibonacciPath()
+
+export const FibonacciSpiralShape = React.forwardRef<SVGSVGElement, ShapeProps>(
+  ({ size = 100, strokeWidth = 3, filled = false, color, animation = 'none', speed = 'normal', className, ...props }, ref) => (
+    <svg ref={ref} width={size} height={size} viewBox="0 0 100 100"
+      className={cn('text-accent', getAnimClass(animation, speed), className)} {...props}>
+      <path d={FIBONACCI_PATH}
+        fill="none"
+        stroke={filled ? (color || 'currentColor') : 'hsl(var(--foreground))'}
+        strokeWidth={strokeWidth} strokeLinecap="round" />
+    </svg>
+  )
+)
+FibonacciSpiralShape.displayName = 'FibonacciSpiralShape'
+
+export const MobiusStripShape = React.forwardRef<SVGSVGElement, ShapeProps>(
+  ({ size = 100, strokeWidth = 3, filled = true, color, animation = 'none', speed = 'normal', className, ...props }, ref) => (
+    <svg ref={ref} width={size} height={size * 0.6} viewBox="0 0 100 60"
+      className={cn('text-secondary', getAnimClass(animation, speed), className)} {...props}>
+      <path d="M5 15 Q15 5 30 10 Q50 18 70 8 Q85 3 95 15 Q100 25 95 35 Q85 47 70 42 Q50 35 30 45 Q15 52 5 42 Q0 35 5 25 Q5 20 5 15 Z"
+        fill={filled ? (color || 'currentColor') : 'none'}
+        stroke="hsl(var(--foreground))" strokeWidth={strokeWidth} strokeLinejoin="round" />
+      <path d="M38 28 Q50 22 62 28 Q50 34 38 28 Z"
+        fill="hsl(var(--background))" stroke="hsl(var(--foreground))" strokeWidth={strokeWidth} />
+    </svg>
+  )
+)
+MobiusStripShape.displayName = 'MobiusStripShape'
+
+export const TorusShape = React.forwardRef<SVGSVGElement, ShapeProps>(
+  ({ size = 100, strokeWidth = 3, filled = true, color, animation = 'none', speed = 'normal', className, ...props }, ref) => (
+    <svg ref={ref} width={size} height={size} viewBox="0 0 100 100"
+      className={cn('text-primary', getAnimClass(animation, speed), className)} {...props}>
+      <ellipse cx="50" cy="50" rx="45" ry="20"
+        fill={filled ? (color || 'currentColor') : 'none'}
+        stroke="hsl(var(--foreground))" strokeWidth={strokeWidth} />
+      <ellipse cx="50" cy="50" rx="20" ry="9"
+        fill="hsl(var(--background))" stroke="hsl(var(--foreground))" strokeWidth={strokeWidth} />
+      <ellipse cx="50" cy="55" rx="45" ry="20"
+        fill="none" stroke="hsl(var(--foreground))" strokeWidth={strokeWidth - 1} strokeDasharray="4,4" />
+    </svg>
+  )
+)
+TorusShape.displayName = 'TorusShape'
+
+// ============================================================================
 // SHAPE CATEGORIES - Grouped exports for easy access
 // ============================================================================
 
@@ -1124,6 +1334,19 @@ export const GeometricShapes = {
   CrossShape,
   TrapezoidShape,
   ParallelogramShape,
+  RhombusShape,
+  EllipseShape,
+  HeptagonShape,
+  DecagonShape,
+}
+
+export const MathematicalShapes = {
+  KochSnowflakeShape,
+  PenroseTriangleShape,
+  TrefoilShape,
+  FibonacciSpiralShape,
+  MobiusStripShape,
+  TorusShape,
 }
 
 export const StarShapes = {
@@ -1246,4 +1469,16 @@ export const shapes = {
   PaperTearShape,
   // Mechanical
   GearShape,
+  // Geometric additions
+  RhombusShape,
+  EllipseShape,
+  HeptagonShape,
+  DecagonShape,
+  // Mathematical
+  KochSnowflakeShape,
+  PenroseTriangleShape,
+  TrefoilShape,
+  FibonacciSpiralShape,
+  MobiusStripShape,
+  TorusShape,
 }
