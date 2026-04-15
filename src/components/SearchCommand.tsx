@@ -19,6 +19,7 @@ import {
   Shapes,
   BarChart3,
   LayoutGrid,
+  Terminal,
 } from 'lucide-react'
 
 const components = [
@@ -105,6 +106,7 @@ const pages = [
   { name: 'Charts', path: '/charts', icon: BarChart3 },
   { name: 'Theme Builder', path: '/themes', icon: Palette },
   { name: 'Templates', path: '/templates', icon: Layout },
+  { name: 'ASCII Shapes', path: '/ascii-shapes', icon: Terminal },
 ]
 
 export function SearchCommand() {

@@ -5,7 +5,7 @@
 export const COUNTS = {
   components: 55,
   charts: 14,
-  shapes: 54,
+  shapes: 64,
   blocks: 15,
   templates: 7,
 } as const
@@ -63,7 +63,7 @@ export const PAGE_META: Record<string, RouteMeta> = {
   },
   '/shapes/builder': {
     title: 'Shape Builder | BoldKit',
-    description: 'Interactively customize BoldKit SVG shapes. Adjust size, color, border, and shadow for any of the 54 neubrutalism shapes.',
+    description: `Interactively customize BoldKit SVG shapes. Adjust size, color, border, and shadow for any of the ${COUNTS.shapes} neubrutalism shapes.`,
     canonical: `${SITE_URL}/shapes/builder`,
   },
   '/ascii-shapes': {
@@ -236,7 +236,7 @@ export type SitemapRoute = {
 // Full route list used by generate-html and generate-sitemap scripts
 export function getAllRoutes(): SitemapRoute[] {
   const routes: SitemapRoute[] = []
-  const LAST_MODIFIED = '2026-04-11'
+  const LAST_MODIFIED = '2026-04-15'
 
   // Static pages
   const staticPriorities: Record<string, { priority: number; changefreq: string }> = {
