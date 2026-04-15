@@ -1146,7 +1146,7 @@ export const HeptagonShape = React.forwardRef<SVGSVGElement, ShapeProps>(
     <svg ref={ref} width={size} height={size} viewBox="0 0 100 100"
       className={cn('text-secondary', getAnimClass(animation, speed), className)} {...props}>
       {/* 7 vertices: k=0..6, angle = k*2π/7 - π/2 */}
-      <path d="M50 5 L85 22 L94 60 L69 91 L31 91 L6 60 L15 22 Z"
+      <path d="M50 5 L85 22 L94 60 L70 91 L30 91 L6 60 L15 22 Z"
         fill={filled ? (color || 'currentColor') : 'none'}
         stroke="hsl(var(--foreground))" strokeWidth={strokeWidth} />
     </svg>
@@ -1159,7 +1159,7 @@ export const DecagonShape = React.forwardRef<SVGSVGElement, ShapeProps>(
     <svg ref={ref} width={size} height={size} viewBox="0 0 100 100"
       className={cn('text-accent', getAnimClass(animation, speed), className)} {...props}>
       {/* 10 vertices: k=0..9, angle = k*π/5 - π/2 */}
-      <path d="M50 5 L77 14 L93 36 L93 64 L77 86 L50 95 L24 86 L7 64 L7 36 L24 14 Z"
+      <path d="M50 5 L76 14 L93 36 L93 64 L76 86 L50 95 L24 86 L7 64 L7 36 L24 14 Z"
         fill={filled ? (color || 'currentColor') : 'none'}
         stroke="hsl(var(--foreground))" strokeWidth={strokeWidth} />
     </svg>
@@ -1284,7 +1284,7 @@ export const FibonacciSpiralShape = React.forwardRef<SVGSVGElement, ShapeProps>(
       className={cn('text-accent', getAnimClass(animation, speed), className)} {...props}>
       <path d={FIBONACCI_PATH}
         fill="none"
-        stroke={filled ? (color || 'currentColor') : 'hsl(var(--foreground))'}
+        stroke={color || 'currentColor'}
         strokeWidth={strokeWidth} strokeLinecap="round" />
     </svg>
   )
