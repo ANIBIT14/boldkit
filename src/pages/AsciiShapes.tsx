@@ -24,6 +24,8 @@ const SIZES: AsciiSize[] = ['sm', 'md', 'lg']
 export function AsciiShapes() {
   const [charset, setCharset] = useState<AsciiCharset>('classic')
   const [size, setSize] = useState<AsciiSize>('md')
+  const [color, setColor] = useState<string>('')
+  const [multicolor, setMulticolor] = useState<boolean>(false)
 
   return (
     <>
@@ -31,7 +33,9 @@ export function AsciiShapes() {
       <Layout>
         {/* Hero — full-width vortex */}
         <section className="w-full border-b-3 border-foreground overflow-hidden">
-          <AsciiVortex size="hero" charset="blocks" speed="normal" className="w-full border-0 shadow-none" />
+          <div className="flex justify-center">
+            <AsciiVortex size="hero" charset="blocks" speed="normal" className="w-full border-0 shadow-none" />
+          </div>
           <div className="p-6 md:p-8 border-t-3 border-foreground bg-accent/10">
             <div className="flex flex-wrap gap-2 mb-3">
               <Badge variant="accent">7 Animations</Badge>
@@ -81,6 +85,35 @@ export function AsciiShapes() {
               ))}
             </div>
           </div>
+          <div>
+            <p className="text-xs font-bold uppercase tracking-wider mb-2">Color</p>
+            <div className="flex items-center gap-2">
+              <input
+                type="color"
+                value={color || '#000000'}
+                onChange={(e) => setColor(e.target.value)}
+                className="border-2 border-foreground h-8 w-12 cursor-pointer p-0.5"
+              />
+              <button
+                onClick={() => setColor('')}
+                className="px-3 py-1 font-mono text-sm border-3 border-foreground shadow-[2px_2px_0px_hsl(var(--shadow-color))] hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-none transition-all bg-background text-foreground"
+              >
+                Reset
+              </button>
+            </div>
+          </div>
+          <div>
+            <p className="text-xs font-bold uppercase tracking-wider mb-2">Multicolor</p>
+            <button
+              onClick={() => setMulticolor((v) => !v)}
+              aria-pressed={multicolor}
+              className={`px-3 py-1 font-mono text-sm border-3 border-foreground shadow-[2px_2px_0px_hsl(var(--shadow-color))] hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-none transition-all ${
+                multicolor ? 'bg-foreground text-background' : 'bg-background text-foreground'
+              }`}
+            >
+              {multicolor ? 'ON' : 'OFF'}
+            </button>
+          </div>
         </section>
 
         {/* Shape grid */}
@@ -91,7 +124,13 @@ export function AsciiShapes() {
                 <span className="font-mono text-sm font-bold">{name}</span>
               </div>
               <div className="p-4 flex justify-center">
-                <Component size={size} charset={charset} speed="normal" />
+                <Component
+                  size={size}
+                  charset={charset}
+                  speed="normal"
+                  color={multicolor ? undefined : color || undefined}
+                  multicolor={multicolor}
+                />
               </div>
               <div className="border-t-3 border-foreground p-3">
                 <p className="text-xs text-muted-foreground font-mono">{desc}</p>
@@ -106,7 +145,13 @@ export function AsciiShapes() {
           <div className="flex flex-wrap gap-6 items-end">
             {(['sm', 'md', 'lg'] as AsciiSize[]).map((s) => (
               <div key={s} className="flex flex-col items-center gap-2">
-                <AsciiSpiral size={s} charset={charset} animated={false} />
+                <AsciiSpiral
+                  size={s}
+                  charset={charset}
+                  animated={false}
+                  color={multicolor ? undefined : color || undefined}
+                  multicolor={multicolor}
+                />
                 <span className="font-mono text-xs font-bold uppercase">{s}</span>
               </div>
             ))}
@@ -119,7 +164,13 @@ export function AsciiShapes() {
           <div className="flex flex-wrap gap-6 items-start">
             {CHARSETS.map((c) => (
               <div key={c} className="flex flex-col items-center gap-2">
-                <AsciiRose size="sm" charset={c} animated={false} />
+                <AsciiRose
+                  size="sm"
+                  charset={c}
+                  animated={false}
+                  color={multicolor ? undefined : color || undefined}
+                  multicolor={multicolor}
+                />
                 <span className="font-mono text-xs font-bold uppercase">{c}</span>
               </div>
             ))}
