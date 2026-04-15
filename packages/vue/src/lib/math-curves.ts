@@ -229,17 +229,17 @@ const CURVE_DEFS: Record<string, CurveDefinition> = {
     },
   },
 
-  // Nephroid (2-cusped epicycloid, R=1 r=1): x=2cos-cos2t, y=2sin-sin2t
+  // Nephroid (2-cusped epicycloid, R=2 r=1): x=3cos(t)-cos(3t), y=3sin(t)-sin(3t)
   nephroid: {
     tMin: 0,
     tMax: 2 * Math.PI,
     pulseDurationMs: 5200,
     defaultSegments: 300,
     compute: (t, ds) => {
-      const scale = 11 + ds * 2
+      const scale = 9 + ds * 2
       return {
-        x: 50 + scale * (2 * Math.cos(t) - Math.cos(2 * t)),
-        y: 50 + scale * (2 * Math.sin(t) - Math.sin(2 * t)),
+        x: 50 + scale * (3 * Math.cos(t) - Math.cos(3 * t)),
+        y: 50 + scale * (3 * Math.sin(t) - Math.sin(3 * t)),
       }
     },
   },
