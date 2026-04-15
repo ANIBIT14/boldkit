@@ -252,18 +252,26 @@ export function MathCurveProgressDoc() {
 
       <ExampleSection
         title="Curve Variants"
-        description="Five mathematical curve shapes for unique progress visualizations."
+        description="Nine mathematical curve shapes for unique progress visualizations."
         code={`<MathCurveProgress value={65} curve="spiral" size="md" />
 <MathCurveProgress value={65} curve="heart" size="md" />
 <MathCurveProgress value={65} curve="lissajous" size="md" />
 <MathCurveProgress value={65} curve="cardioid" size="md" />
-<MathCurveProgress value={65} curve="rose" size="md" />`}
+<MathCurveProgress value={65} curve="rose" size="md" />
+<MathCurveProgress value={65} curve="astroid" size="md" />
+<MathCurveProgress value={65} curve="superellipse" size="md" />
+<MathCurveProgress value={65} curve="deltoid" size="md" />
+<MathCurveProgress value={65} curve="nephroid" size="md" />`}
         vueCode={`<template>
   <MathCurveProgress :value="65" curve="spiral" size="md" />
   <MathCurveProgress :value="65" curve="heart" size="md" />
   <MathCurveProgress :value="65" curve="lissajous" size="md" />
   <MathCurveProgress :value="65" curve="cardioid" size="md" />
   <MathCurveProgress :value="65" curve="rose" size="md" />
+  <MathCurveProgress :value="65" curve="astroid" size="md" />
+  <MathCurveProgress :value="65" curve="superellipse" size="md" />
+  <MathCurveProgress :value="65" curve="deltoid" size="md" />
+  <MathCurveProgress :value="65" curve="nephroid" size="md" />
 </template>`}
       >
         <div className="flex flex-wrap items-center gap-8">
@@ -286,6 +294,22 @@ export function MathCurveProgressDoc() {
           <div className="flex flex-col items-center gap-2">
             <MathCurveProgress value={65} curve="rose" size="md" />
             <span className="text-xs font-bold uppercase">Rose</span>
+          </div>
+          <div className="flex flex-col items-center gap-2">
+            <MathCurveProgress value={65} curve="astroid" size="lg" />
+            <span className="text-xs font-bold uppercase">Astroid</span>
+          </div>
+          <div className="flex flex-col items-center gap-2">
+            <MathCurveProgress value={65} curve="superellipse" size="lg" />
+            <span className="text-xs font-bold uppercase">Superellipse</span>
+          </div>
+          <div className="flex flex-col items-center gap-2">
+            <MathCurveProgress value={65} curve="deltoid" size="lg" />
+            <span className="text-xs font-bold uppercase">Deltoid</span>
+          </div>
+          <div className="flex flex-col items-center gap-2">
+            <MathCurveProgress value={65} curve="nephroid" size="lg" />
+            <span className="text-xs font-bold uppercase">Nephroid</span>
           </div>
         </div>
       </ExampleSection>

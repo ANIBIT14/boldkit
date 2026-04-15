@@ -254,7 +254,7 @@ export function MathCurveLoaderDoc() {
     <>
       <ComponentDoc
         name="MathCurveLoader"
-        description="Mathematical parametric curve loaders with neubrutalism aesthetics. 8 curve variants including rose, lissajous, butterfly, and more."
+        description="Mathematical parametric curve loaders with neubrutalism aesthetics. 15 curve variants including rose, lissajous, butterfly, and more."
         dependencies={['class-variance-authority']}
         vueDependencies={['reka-ui', 'class-variance-authority']}
         registryName="math-curve-loader"
@@ -272,12 +272,19 @@ export function MathCurveLoaderDoc() {
           <MathCurveLoader curve="lemniscate" size="xl" />
           <MathCurveLoader curve="fourier" size="xl" />
           <MathCurveLoader curve="rose3" size="xl" />
+          <MathCurveLoader curve="astroid" size="xl" />
+          <MathCurveLoader curve="deltoid" size="xl" />
+          <MathCurveLoader curve="nephroid" size="xl" />
+          <MathCurveLoader curve="epicycloid" size="xl" />
+          <MathCurveLoader curve="superellipse" size="xl" />
+          <MathCurveLoader curve="triskelion" size="xl" />
+          <MathCurveLoader curve="involute" size="xl" />
         </div>
       </ComponentDoc>
 
       <ExampleSection
         title="Curve Variants"
-        description="8 parametric curves — each tracing a unique mathematical path."
+        description="15 parametric curves — each tracing a unique mathematical path."
         code={`<MathCurveLoader curve="rose" />
 <MathCurveLoader curve="lissajous" />
 <MathCurveLoader curve="butterfly" />
@@ -285,7 +292,14 @@ export function MathCurveLoaderDoc() {
 <MathCurveLoader curve="cardioid" />
 <MathCurveLoader curve="lemniscate" />
 <MathCurveLoader curve="fourier" />
-<MathCurveLoader curve="rose3" />`}
+<MathCurveLoader curve="rose3" />
+<MathCurveLoader curve="astroid" />
+<MathCurveLoader curve="deltoid" />
+<MathCurveLoader curve="nephroid" />
+<MathCurveLoader curve="epicycloid" />
+<MathCurveLoader curve="superellipse" />
+<MathCurveLoader curve="triskelion" />
+<MathCurveLoader curve="involute" />`}
         vueCode={`<template>
   <MathCurveLoader curve="rose" />
   <MathCurveLoader curve="lissajous" />
@@ -295,6 +309,13 @@ export function MathCurveLoaderDoc() {
   <MathCurveLoader curve="lemniscate" />
   <MathCurveLoader curve="fourier" />
   <MathCurveLoader curve="rose3" />
+  <MathCurveLoader curve="astroid" />
+  <MathCurveLoader curve="deltoid" />
+  <MathCurveLoader curve="nephroid" />
+  <MathCurveLoader curve="epicycloid" />
+  <MathCurveLoader curve="superellipse" />
+  <MathCurveLoader curve="triskelion" />
+  <MathCurveLoader curve="involute" />
 </template>`}
       >
         <div className="flex flex-wrap items-center gap-8">
@@ -308,6 +329,13 @@ export function MathCurveLoaderDoc() {
               'lemniscate',
               'fourier',
               'rose3',
+              'astroid',
+              'deltoid',
+              'nephroid',
+              'epicycloid',
+              'superellipse',
+              'triskelion',
+              'involute',
             ] as const
           ).map((curve) => (
             <div key={curve} className="flex flex-col items-center gap-2">

@@ -277,20 +277,26 @@ export function MathCurveBackgroundDoc() {
 
       <ExampleSection
         title="Curve Variants"
-        description="Four mathematical curves, each with a distinct visual character for different aesthetic contexts."
+        description="Seven mathematical curves, each with a distinct visual character for different aesthetic contexts."
         code={`<MathCurveBackground curve="rose" opacity={0.2}>Rose</MathCurveBackground>
 <MathCurveBackground curve="lissajous" opacity={0.2}>Lissajous</MathCurveBackground>
 <MathCurveBackground curve="fourier" opacity={0.2}>Fourier</MathCurveBackground>
-<MathCurveBackground curve="spiral" opacity={0.2}>Spiral</MathCurveBackground>`}
+<MathCurveBackground curve="spiral" opacity={0.2}>Spiral</MathCurveBackground>
+<MathCurveBackground curve="triskelion" opacity={0.2}>Triskelion</MathCurveBackground>
+<MathCurveBackground curve="involute" opacity={0.2}>Involute</MathCurveBackground>
+<MathCurveBackground curve="epicycloid" opacity={0.2}>Epicycloid</MathCurveBackground>`}
         vueCode={`<template>
   <MathCurveBackground curve="rose" :opacity="0.2">Rose</MathCurveBackground>
   <MathCurveBackground curve="lissajous" :opacity="0.2">Lissajous</MathCurveBackground>
   <MathCurveBackground curve="fourier" :opacity="0.2">Fourier</MathCurveBackground>
   <MathCurveBackground curve="spiral" :opacity="0.2">Spiral</MathCurveBackground>
+  <MathCurveBackground curve="triskelion" :opacity="0.2">Triskelion</MathCurveBackground>
+  <MathCurveBackground curve="involute" :opacity="0.2">Involute</MathCurveBackground>
+  <MathCurveBackground curve="epicycloid" :opacity="0.2">Epicycloid</MathCurveBackground>
 </template>`}
       >
         <div className="grid grid-cols-2 gap-4 sm:grid-cols-4">
-          {(['rose', 'lissajous', 'fourier', 'spiral'] as const).map((curve) => (
+          {(['rose', 'lissajous', 'fourier', 'spiral', 'triskelion', 'involute', 'epicycloid'] as const).map((curve) => (
             <MathCurveBackground
               key={curve}
               curve={curve}
