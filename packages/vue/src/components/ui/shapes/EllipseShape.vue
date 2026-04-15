@@ -50,7 +50,7 @@ const animClass = computed(() => {
       y2="35"
       stroke="hsl(var(--foreground))"
       stroke-dasharray="4,4"
-      :stroke-width="strokeWidth - 1"
+      :stroke-width="Math.max(1, strokeWidth - 1)"
     />
     <line
       x1="50"
@@ -59,7 +59,7 @@ const animClass = computed(() => {
       y2="63"
       stroke="hsl(var(--foreground))"
       stroke-dasharray="4,4"
-      :stroke-width="strokeWidth - 1"
+      :stroke-width="Math.max(1, strokeWidth - 1)"
     />
   </svg>
 </template>

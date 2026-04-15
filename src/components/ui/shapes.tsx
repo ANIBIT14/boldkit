@@ -1134,8 +1134,8 @@ export const EllipseShape = React.forwardRef<SVGSVGElement, ShapeProps>(
       <ellipse cx="50" cy="35" rx="46" ry="28"
         fill={filled ? (color || 'currentColor') : 'none'}
         stroke="hsl(var(--foreground))" strokeWidth={strokeWidth} />
-      <line x1="4" y1="35" x2="96" y2="35" stroke="hsl(var(--foreground))" strokeWidth={strokeWidth - 1} strokeDasharray="4,4" />
-      <line x1="50" y1="7" x2="50" y2="63" stroke="hsl(var(--foreground))" strokeWidth={strokeWidth - 1} strokeDasharray="4,4" />
+      <line x1="4" y1="35" x2="96" y2="35" stroke="hsl(var(--foreground))" strokeWidth={Math.max(1, strokeWidth - 1)} strokeDasharray="4,4" />
+      <line x1="50" y1="7" x2="50" y2="63" stroke="hsl(var(--foreground))" strokeWidth={Math.max(1, strokeWidth - 1)} strokeDasharray="4,4" />
     </svg>
   )
 )
@@ -1315,7 +1315,7 @@ export const TorusShape = React.forwardRef<SVGSVGElement, ShapeProps>(
       <ellipse cx="50" cy="50" rx="20" ry="9"
         fill="hsl(var(--background))" stroke="hsl(var(--foreground))" strokeWidth={strokeWidth} />
       <ellipse cx="50" cy="55" rx="45" ry="20"
-        fill="none" stroke="hsl(var(--foreground))" strokeWidth={strokeWidth - 1} strokeDasharray="4,4" />
+        fill="none" stroke="hsl(var(--foreground))" strokeWidth={Math.max(1, strokeWidth - 1)} strokeDasharray="4,4" />
     </svg>
   )
 )

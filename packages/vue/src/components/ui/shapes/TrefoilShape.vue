@@ -33,7 +33,7 @@ const trefoilPath = computed(() => {
     const t = (i / N) * 2 * Math.PI
     const px = Math.sin(t) + 2 * Math.sin(2 * t)
     const py = Math.cos(t) - 2 * Math.cos(2 * t)
-    pts.push({ x: 50 + px * 14, y: 50 - py * 13 })
+    pts.push({ x: 50 + px * 14, y: 50 + py * 14 })
   }
   // pts[0] and pts[N] are the same point (closed)
   let d = `M ${pts[0].x.toFixed(1)} ${pts[0].y.toFixed(1)}`
