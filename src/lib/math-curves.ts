@@ -14,7 +14,7 @@ export type LoaderCurveKey =
 
 export type ProgressCurveKey =
   | 'spiral' | 'heart' | 'lissajous' | 'cardioid' | 'rose'
-  | 'astroid' | 'superellipse' | 'deltoid'
+  | 'astroid' | 'superellipse' | 'deltoid' | 'nephroid'
 
 export type BackgroundCurveKey =
   | 'rose' | 'lissajous' | 'fourier' | 'spiral'

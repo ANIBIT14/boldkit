@@ -15,7 +15,6 @@ export interface AsciiShapeProps extends React.HTMLAttributes<HTMLPreElement> {
   color?: string
   speed?: AsciiSpeed
   animated?: boolean
-  className?: string
 }
 
 // ============================================================================

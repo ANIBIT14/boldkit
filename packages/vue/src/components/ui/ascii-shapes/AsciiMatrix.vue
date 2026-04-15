@@ -69,8 +69,8 @@ watch(() => [props.size, props.charset, props.speed, props.animated], () => star
 </script>
 
 <template>
-  <div :class="cn('inline-block border-3 border-foreground shadow-[4px_4px_0px_hsl(var(--shadow-color))] bg-background overflow-hidden', props.class)">
-    <pre class="font-mono text-xs leading-none tracking-tight select-none p-1"
-      :style="{ color: color || 'currentColor' }">{{ lines.join('\n') }}</pre>
-  </div>
+  <pre
+    :class="cn('inline-block border-3 border-foreground shadow-[4px_4px_0px_hsl(var(--shadow-color))] bg-background overflow-hidden font-mono text-xs leading-none tracking-tight select-none p-1', props.class)"
+    :style="{ color: color || 'currentColor' }"
+  >{{ lines.join('\n') }}</pre>
 </template>
