@@ -15,6 +15,7 @@ export interface AsciiShapeProps extends React.HTMLAttributes<HTMLPreElement> {
   color?: string
   speed?: AsciiSpeed
   animated?: boolean
+  multicolor?: boolean
 }
 
 // ============================================================================
@@ -41,6 +42,15 @@ const SPEED_MAP: Record<AsciiSpeed, number> = {
   normal: 1.0,
   fast:   2.2,
 }
+
+const MULTICOLOR_PALETTE = [
+  'hsl(var(--primary))',
+  'hsl(var(--secondary))',
+  'hsl(var(--accent))',
+  'hsl(var(--warning))',
+  'hsl(var(--info))',
+  'hsl(var(--success))',
+]
 
 // ============================================================================
 // Grid engine
@@ -239,6 +249,7 @@ function makeAsciiComponent(drawFn: DrawFn, defaultCharset: AsciiCharset = 'clas
         color,
         speed = 'normal',
         animated = true,
+        multicolor = false,
         className,
         ...props
       },
@@ -289,10 +300,17 @@ function makeAsciiComponent(drawFn: DrawFn, defaultCharset: AsciiCharset = 'clas
             'font-mono text-xs leading-none tracking-tight select-none p-1',
             className
           )}
-          style={{ color: color || 'currentColor' }}
+          style={multicolor ? undefined : { color: color || 'currentColor' }}
           {...props}
         >
-          {lines.join('\n')}
+          {multicolor
+            ? lines.map((line, i) => (
+                <React.Fragment key={i}>
+                  <span style={{ color: MULTICOLOR_PALETTE[i % MULTICOLOR_PALETTE.length] }}>{line}</span>
+                  {i < lines.length - 1 && '\n'}
+                </React.Fragment>
+              ))
+            : lines.join('\n')}
         </pre>
       )
     }
