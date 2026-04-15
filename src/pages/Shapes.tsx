@@ -63,6 +63,18 @@ import {
   PaperTearShape,
   // Mechanical
   GearShape,
+  // Geometric additions
+  HeptagonShape,
+  DecagonShape,
+  RhombusShape,
+  EllipseShape,
+  TrefoilShape,
+  // Mathematical
+  FibonacciSpiralShape,
+  PenroseTriangleShape,
+  KochSnowflakeShape,
+  MobiusStripShape,
+  TorusShape,
 } from '@/components/ui/shapes'
 
 // Shape categories for organized display
@@ -80,6 +92,11 @@ const shapeCategories = [
       { name: 'Cross', component: CrossShape, code: '<CrossShape size={100} />', vueCode: '<CrossShape :size="100" />' },
       { name: 'Trapezoid', component: TrapezoidShape, code: '<TrapezoidShape size={100} />', vueCode: '<TrapezoidShape :size="100" />' },
       { name: 'Parallelogram', component: ParallelogramShape, code: '<ParallelogramShape size={100} />', vueCode: '<ParallelogramShape :size="100" />' },
+      { name: 'Heptagon', component: HeptagonShape, code: '<HeptagonShape size={100} />', vueCode: '<HeptagonShape :size="100" />', isNew: true },
+      { name: 'Decagon', component: DecagonShape, code: '<DecagonShape size={100} />', vueCode: '<DecagonShape :size="100" />', isNew: true },
+      { name: 'Rhombus', component: RhombusShape, code: '<RhombusShape size={100} />', vueCode: '<RhombusShape :size="100" />', isNew: true },
+      { name: 'Ellipse', component: EllipseShape, code: '<EllipseShape size={100} />', vueCode: '<EllipseShape :size="100" />', isNew: true },
+      { name: 'Trefoil', component: TrefoilShape, code: '<TrefoilShape size={100} />', vueCode: '<TrefoilShape :size="100" />', isNew: true },
     ]
   },
   {
@@ -166,6 +183,18 @@ const shapeCategories = [
     color: 'bg-muted',
     shapes: [
       { name: 'Gear', component: GearShape, code: '<GearShape size={100} />', vueCode: '<GearShape :size="100" />', isNew: true },
+    ]
+  },
+  {
+    name: 'Mathematical',
+    description: 'Fractals, topology, and mathematical constructs',
+    color: 'bg-primary/10',
+    shapes: [
+      { name: 'Fibonacci Spiral', component: FibonacciSpiralShape, code: '<FibonacciSpiralShape size={100} />', vueCode: '<FibonacciSpiralShape :size="100" />', isNew: true },
+      { name: 'Penrose Triangle', component: PenroseTriangleShape, code: '<PenroseTriangleShape size={100} />', vueCode: '<PenroseTriangleShape :size="100" />', isNew: true },
+      { name: 'Koch Snowflake', component: KochSnowflakeShape, code: '<KochSnowflakeShape size={100} />', vueCode: '<KochSnowflakeShape :size="100" />', isNew: true },
+      { name: 'Möbius Strip', component: MobiusStripShape, code: '<MobiusStripShape size={100} />', vueCode: '<MobiusStripShape :size="100" />', isNew: true },
+      { name: 'Torus', component: TorusShape, code: '<TorusShape size={100} />', vueCode: '<TorusShape :size="100" />', isNew: true },
     ]
   },
 ]

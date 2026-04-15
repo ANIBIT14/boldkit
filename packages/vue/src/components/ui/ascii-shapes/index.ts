@@ -9,6 +9,7 @@ export { default as AsciiTorus }   from './AsciiTorus.vue'
 export { default as AsciiSphere }  from './AsciiSphere.vue'
 export { default as AsciiCube }    from './AsciiCube.vue'
 export { default as AsciiHelix }   from './AsciiHelix.vue'
+export { default as AsciiDonut }   from './AsciiDonut.vue'
 
 export type { AsciiSize, AsciiCharset, AsciiSpeed } from './constants'
 export { MULTICOLOR_PALETTE } from './constants'

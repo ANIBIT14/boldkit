@@ -16,7 +16,8 @@ A neubrutalism component library for React and Vue 3, built on shadcn/ui.
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.0-3178C6?logo=typescript)](https://typescriptlang.org)
 [![Components](https://img.shields.io/badge/Components-55+-FF6B6B)](https://boldkit.dev/components)
 [![Charts](https://img.shields.io/badge/Charts-10-9B59B6)](https://boldkit.dev/charts)
-[![Shapes](https://img.shields.io/badge/SVG_Shapes-54-FFD93D)](https://boldkit.dev/shapes)
+[![Shapes](https://img.shields.io/badge/SVG_Shapes-64-FFD93D)](https://boldkit.dev/shapes)
+[![ASCII_Shapes](https://img.shields.io/badge/ASCII_Shapes-12-00D4AA)](https://boldkit.dev/ascii-shapes)
 
 [Website](https://boldkit.dev) · [Documentation](https://boldkit.dev/docs) · [Components](https://boldkit.dev/components) · [Charts](https://boldkit.dev/charts) · [Shapes](https://boldkit.dev/shapes)
 
@@ -30,7 +31,7 @@ A neubrutalism component library for React and Vue 3, built on shadcn/ui.
 
 ![BoldKit Components](assets/preview.png)
 
-*55+ beautifully crafted neubrutalism components, 10 chart types, and 54 SVG shapes for React and Vue 3*
+*55+ beautifully crafted neubrutalism components, 10 chart types, 64 SVG shapes, and 12 animated ASCII shapes for React and Vue 3*
 
 </div>
 
@@ -56,8 +57,9 @@ Neubrutalism (or neo-brutalism) is a bold design aesthetic characterized by:
 |---------|-------------|
 | **55+ Components** | Buttons, Cards, Dialogs, Forms, Spinners, Steppers, and more |
 | **10 Chart Types** | Bar, Line, Area, Pie, Donut, Radar, Radial, Gauge, Sparkline |
-| **54 SVG Shapes** | Decorative shapes with interactive Shape Builder |
-| **Math Curve Components** | Animated loaders, progress bars, and backgrounds powered by mathematical curves |
+| **64 SVG Shapes** | Decorative shapes (geometric, organic, mathematical, mechanical) with interactive Shape Builder |
+| **12 ASCII Shapes** | Animated 3D ASCII art — Torus, Donut, Sphere, Cube, Helix, Spiral, and more |
+| **Math Curve Components** | Animated loaders, progress bars, and backgrounds powered by 15 mathematical curves |
 | **React & Vue 3** | Full support for both frameworks |
 | **Nuxt Ready** | SSR-compatible with shadcn-nuxt module |
 | **shadcn CLI** | Install via `shadcn` (React) or `shadcn-vue` (Vue/Nuxt) |
@@ -320,14 +322,15 @@ import { Badge } from '@/components/ui/badge'
 
 - Sticker (rotated labels)
 - Marquee (scrolling ticker)
-- 54 SVG Shapes (Burst, Blob, Lightning, Heart, Star, Sun, Planet, and more)
+- **64 SVG Shapes** (Geometric, Organic, Celestial, Mathematical, Mechanical, and more) ✨ EXPANDED
+- **12 ASCII Shapes** (Torus, Donut, Sphere, Cube, Helix, Spiral, Rose, Wave, Vortex…) ✨ NEW
 - **Shape Builder** (interactive tool to customize shapes, export SVG/JSX) ✨ NEW
 
 </details>
 
 ## Math Curve Components
 
-Math Curve components render animated mathematical curves (Lissajous, rose curves, spirals, and more) as interactive UI elements — no external animation library required.
+15 animated mathematical curves (Lissajous, Hypotrochoid, Epitrochoid, Rose, Spirograph, and more) rendered as interactive UI elements — no external animation library required.
 
 ### MathCurveLoader
 
@@ -360,7 +363,7 @@ import { MathCurveBackground } from '@/components/ui/math-curve-background'
 
 ## Shapes
 
-54 decorative SVG shapes for unique neubrutalism layouts:
+64 decorative SVG shapes across 8 categories for unique neubrutalism layouts:
 
 ### React
 
@@ -395,6 +398,73 @@ import { BurstShape, HeartShape, LightningShape } from '@/components/ui/shapes'
 ### Shape Builder
 
 The interactive [Shape Builder](https://boldkit.dev/shapes/builder) lets you customize any shape's size, color, stroke width, and fill, then export it as SVG or copy it as JSX/Vue template code ready to paste into your project.
+
+## ASCII Shapes
+
+12 animated 3D ASCII art components rendered with perspective projection and z-buffering — no canvas, no WebGL, just text characters:
+
+| Shape | Description |
+|-------|-------------|
+| `AsciiTorus` | 3D rotating torus (donut) with z-buffering and Lambertian shading |
+| `AsciiDonut` | Classic donut.c doughnut — X-axis tilt + Z-axis spin, fatter tube |
+| `AsciiSphere` | Rotating globe with lat/lon grid texture and Lambertian shading |
+| `AsciiCube` | Solid shaded cube rotating on two axes with back-face culling |
+| `AsciiHelix` | DNA double helix with two strands and connecting rungs |
+| `AsciiSpiral` | Archimedean spiral arms rotating continuously |
+| `AsciiRose` | Rose curve r=cos(5θ) blooming and phase-shifting |
+| `AsciiWave` | Multi-frequency sine interference pattern |
+| `AsciiVortex` | Rotating density field collapsing toward center |
+| `AsciiPulse` | Concentric rings expanding outward and fading |
+| `AsciiMatrix` | Characters raining downward per column |
+| `AsciiGrid` | Grid intersections pulsing with traveling waves |
+
+### React
+
+```tsx
+import { AsciiTorus, AsciiDonut, AsciiSphere } from '@/components/ui/ascii-shapes'
+
+// Basic usage
+<AsciiTorus />
+
+// With options
+<AsciiDonut
+  size="md"          // 'sm' | 'md' | 'lg' | 'hero'
+  charset="classic"  // 'blocks' | 'braille' | 'classic' | 'line' | 'dots'
+  speed="normal"     // 'slow' | 'normal' | 'fast'
+  color="#e74c3c"    // any CSS color string
+  animated={true}    // false = static snapshot, SSR-safe
+/>
+
+// Multicolor — cycles primary/secondary/accent/warning/info/success per row
+<AsciiSphere size="lg" charset="classic" multicolor />
+```
+
+### Vue 3 / Nuxt
+
+```vue
+<script setup lang="ts">
+import { AsciiTorus, AsciiDonut } from '@/components/ui/ascii-shapes'
+</script>
+
+<template>
+  <AsciiDonut size="md" charset="classic" />
+
+  <!-- In Nuxt, wrap animated variants in <ClientOnly> -->
+  <ClientOnly>
+    <AsciiTorus size="lg" multicolor />
+  </ClientOnly>
+</template>
+```
+
+### Install
+
+```bash
+# React
+npx shadcn@latest add "https://boldkit.dev/r/ascii-shapes.json"
+
+# Vue 3 / Nuxt
+npx shadcn-vue@latest add "https://boldkit.dev/r/vue/ascii-shapes.json"
+```
 
 ## Theming
 

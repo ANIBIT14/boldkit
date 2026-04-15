@@ -2,7 +2,7 @@ import { useState } from 'react'
 import {
   AsciiSpiral, AsciiRose, AsciiWave,
   AsciiVortex, AsciiPulse, AsciiMatrix, AsciiGrid,
-  AsciiTorus, AsciiSphere, AsciiCube, AsciiHelix,
+  AsciiTorus, AsciiSphere, AsciiCube, AsciiHelix, AsciiDonut,
   type AsciiCharset, type AsciiSize,
 } from '@/components/ui/ascii-shapes'
 import { Layout } from '@/components/layout'
@@ -24,6 +24,7 @@ const SHAPES = [
   { name: 'AsciiSphere',  Component: AsciiSphere,  desc: 'Rotating globe with lat/lon grid texture and Lambertian shading' },
   { name: 'AsciiCube',    Component: AsciiCube,    desc: 'Solid shaded cube rotating on two axes with face-based z-buffering' },
   { name: 'AsciiHelix',   Component: AsciiHelix,   desc: 'DNA double helix with two parametric strands and connecting rungs' },
+  { name: 'AsciiDonut',   Component: AsciiDonut,   desc: 'Classic donut.c doughnut — X-axis tilt + Z-axis spin, fatter tube than AsciiTorus' },
 ]
 
 const CHARSETS: AsciiCharset[] = ['blocks', 'braille', 'classic', 'line', 'dots']
@@ -57,7 +58,7 @@ export function AsciiShapes() {
           <div className="relative z-10 flex flex-col items-center gap-6 py-16 md:py-20 px-4">
             {/* Badges */}
             <div className="flex flex-wrap justify-center gap-2">
-              <Badge variant="accent">11 Shapes</Badge>
+              <Badge variant="accent">12 Shapes</Badge>
               <Badge variant="secondary">5 Character Sets</Badge>
               <Badge variant="info">React &amp; Vue 3</Badge>
             </div>
@@ -81,7 +82,7 @@ export function AsciiShapes() {
 
             {/* Subtitle */}
             <p className="text-sm text-white/50 text-center" style={MONO}>
-              11 animations · 5 character sets · 4 sizes · React &amp; Vue 3
+              12 animations · 5 character sets · 4 sizes · React &amp; Vue 3
             </p>
           </div>
         </section>
@@ -217,6 +218,7 @@ export function AsciiShapes() {
                 { C: AsciiSphere,  label: 'Sphere',  cs: 'classic' as AsciiCharset },
                 { C: AsciiCube,    label: 'Cube',    cs: 'blocks'  as AsciiCharset },
                 { C: AsciiHelix,   label: 'Helix',   cs: 'braille' as AsciiCharset },
+                { C: AsciiDonut,   label: 'Donut',   cs: 'classic' as AsciiCharset },
               ]).map(({ C, label, cs }) => (
                 <div key={label} className="flex flex-col items-center gap-2">
                   <C size="sm" charset={cs} animated={false} multicolor />
@@ -279,7 +281,7 @@ npx shadcn-vue@latest add "https://boldkit.dev/r/vue/ascii-shapes.json"`}</pre>
             <pre className="border-3 border-foreground bg-foreground text-background p-4 overflow-x-auto shadow-[4px_4px_0px_hsl(var(--shadow-color))] text-xs leading-relaxed" style={MONO}>{`import {
   AsciiSpiral, AsciiRose, AsciiWave, AsciiVortex,
   AsciiPulse, AsciiMatrix, AsciiGrid,
-  AsciiTorus, AsciiSphere, AsciiCube, AsciiHelix,
+  AsciiTorus, AsciiSphere, AsciiCube, AsciiHelix, AsciiDonut,
 } from '@/components/ui/ascii-shapes'
 
 // Basic
@@ -306,7 +308,7 @@ npx shadcn-vue@latest add "https://boldkit.dev/r/vue/ascii-shapes.json"`}</pre>
             </div>
             <pre className="border-3 border-foreground bg-foreground text-background p-4 overflow-x-auto shadow-[4px_4px_0px_hsl(var(--shadow-color))] text-xs leading-relaxed" style={MONO}>{`<script setup lang="ts">
 import {
-  AsciiSpiral, AsciiTorus, AsciiSphere, AsciiCube, AsciiHelix,
+  AsciiSpiral, AsciiTorus, AsciiSphere, AsciiCube, AsciiHelix, AsciiDonut,
 } from '@/components/ui/ascii-shapes'
 </script>
 
