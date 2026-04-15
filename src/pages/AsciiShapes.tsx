@@ -40,7 +40,7 @@ export function AsciiShapes() {
             </div>
             <h1 className="text-4xl md:text-5xl font-black uppercase tracking-tight">ASCII Shapes</h1>
             <p className="text-base md:text-lg font-mono mt-2 text-muted-foreground">
-              Animated ASCII art components · 4 sizes · SSR-safe
+              7 animations · 5 character sets · 4 sizes · React &amp; Vue 3
             </p>
           </div>
         </section>
@@ -54,6 +54,7 @@ export function AsciiShapes() {
                 <button
                   key={c}
                   onClick={() => setCharset(c)}
+                  aria-pressed={charset === c}
                   className={`px-3 py-1 font-mono text-sm border-3 border-foreground shadow-[2px_2px_0px_hsl(var(--shadow-color))] hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-none transition-all ${
                     charset === c ? 'bg-foreground text-background' : 'bg-background text-foreground'
                   }`}
@@ -70,6 +71,7 @@ export function AsciiShapes() {
                 <button
                   key={s}
                   onClick={() => setSize(s)}
+                  aria-pressed={size === s}
                   className={`px-3 py-1 font-mono text-sm border-3 border-foreground shadow-[2px_2px_0px_hsl(var(--shadow-color))] hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-none transition-all ${
                     size === s ? 'bg-foreground text-background' : 'bg-background text-foreground'
                   }`}
@@ -88,7 +90,7 @@ export function AsciiShapes() {
               <div className="border-b-3 border-foreground p-3 flex items-center">
                 <span className="font-mono text-sm font-bold">{name}</span>
               </div>
-              <div className="p-4 flex justify-center overflow-auto">
+              <div className="p-4 flex justify-center">
                 <Component size={size} charset={charset} speed="normal" />
               </div>
               <div className="border-t-3 border-foreground p-3">
@@ -104,7 +106,7 @@ export function AsciiShapes() {
           <div className="flex flex-wrap gap-6 items-end">
             {(['sm', 'md', 'lg'] as AsciiSize[]).map((s) => (
               <div key={s} className="flex flex-col items-center gap-2">
-                <AsciiSpiral size={s} charset={charset} />
+                <AsciiSpiral size={s} charset={charset} animated={false} />
                 <span className="font-mono text-xs font-bold uppercase">{s}</span>
               </div>
             ))}
@@ -117,7 +119,7 @@ export function AsciiShapes() {
           <div className="flex flex-wrap gap-6 items-start">
             {CHARSETS.map((c) => (
               <div key={c} className="flex flex-col items-center gap-2">
-                <AsciiRose size="sm" charset={c} />
+                <AsciiRose size="sm" charset={c} animated={false} />
                 <span className="font-mono text-xs font-bold uppercase">{c}</span>
               </div>
             ))}
