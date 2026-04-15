@@ -26,6 +26,9 @@ import { COUNTS } from '@/config/routes-meta'
 import {
   GearShape, Star5Shape, BlobShape, LightningShape, BurstShape, HexagonShape,
 } from '@/components/ui/shapes'
+import {
+  AsciiSpiral, AsciiVortex, AsciiMatrix, AsciiGrid,
+} from '@/components/ui/ascii-shapes'
 
 const DISPLAY: React.CSSProperties = { fontFamily: "'Bebas Neue', sans-serif" }
 const MONO: React.CSSProperties    = { fontFamily: "'DM Mono', monospace" }
@@ -443,6 +446,7 @@ export function Home() {
 
             <div className="flex gap-3 overflow-x-auto pb-2 -mx-4 px-4 scrollbar-none snap-x snap-mandatory">
               {[
+                { label: 'ASCII Shapes',     href: '/ascii-shapes' },
                 { label: 'Carousel',         href: '/components/carousel' },
                 { label: 'Data Table',       href: '/components/data-table' },
                 { label: 'Sidebar',          href: '/components/sidebar' },
@@ -486,7 +490,7 @@ export function Home() {
                   className="leading-none"
                   style={{ ...DISPLAY, fontSize: 'clamp(32px, 5.5vw, 76px)' }}
                 >
-                  50+ COMPONENTS
+                  {COUNTS.components}+ COMPONENTS
                 </h2>
               </div>
               <Link to="/components" className="hidden md:block">
@@ -1055,14 +1059,14 @@ export function Home() {
                   <span className="block text-primary">LOADERS</span>
                 </h2>
                 <p className="mt-3 max-w-md text-sm text-white/60" style={MONO}>
-                  Parametric curve animations — rose, lissajous, butterfly, hypotrochoid & more. A loader, progress indicator, and background component.
+                  Parametric curve animations — 15 shapes including rose, lissajous, butterfly, astroid, triskelion & more. A loader, progress indicator, and background component.
                 </p>
               </div>
               <div className="hidden sm:flex flex-col gap-2">
                 {[
-                  { label: 'Loader', sub: '8 curves', to: '/components/math-curve-loader', color: 'bg-primary' },
-                  { label: 'Progress', sub: '5 curves', to: '/components/math-curve-progress', color: 'bg-secondary' },
-                  { label: 'Background', sub: '4 curves', to: '/components/math-curve-background', color: 'bg-accent' },
+                  { label: 'Loader', sub: '15 curves', to: '/components/math-curve-loader', color: 'bg-primary' },
+                  { label: 'Progress', sub: '9 curves', to: '/components/math-curve-progress', color: 'bg-secondary' },
+                  { label: 'Background', sub: '7 curves', to: '/components/math-curve-background', color: 'bg-accent' },
                 ].map(({ label, sub, to, color }) => (
                   <Link key={to} to={to}>
                     <div className="group flex items-center gap-3 border-2 border-white/20 px-4 py-2.5 hover:border-white/60 hover:bg-white/5 transition-all duration-150">
@@ -1078,9 +1082,9 @@ export function Home() {
               </div>
             </div>
 
-            {/* Curve grid — 8 animated loaders */}
-            <div className="grid grid-cols-4 gap-0 sm:grid-cols-8 border-3 border-white/20 max-w-3xl">
-              {(['rose', 'lissajous', 'butterfly', 'hypotrochoid', 'cardioid', 'lemniscate', 'fourier', 'rose3'] as const).map((curve, i) => (
+            {/* Curve grid — 15 animated loaders */}
+            <div className="grid grid-cols-3 gap-0 sm:grid-cols-5 border-3 border-white/20 w-full max-w-4xl">
+              {(['rose', 'lissajous', 'butterfly', 'hypotrochoid', 'cardioid', 'lemniscate', 'fourier', 'rose3', 'astroid', 'deltoid', 'nephroid', 'epicycloid', 'superellipse', 'triskelion', 'involute'] as const).map((curve, i) => (
                 <div
                   key={curve}
                   className="flex flex-col items-center justify-center gap-3 border border-white/10 py-6 px-2 hover:bg-white/5 transition-colors"
@@ -1120,7 +1124,7 @@ export function Home() {
 
             {/* Bottom pill badges */}
             <div className="mt-8 flex flex-wrap gap-2">
-              {['Rose', 'Lissajous', 'Butterfly', 'Hypotrochoid', 'Cardioid', 'Lemniscate', 'Fourier', 'Spiral', 'Heart'].map(name => (
+              {['Rose', 'Lissajous', 'Butterfly', 'Hypotrochoid', 'Cardioid', 'Lemniscate', 'Fourier', 'Spiral', 'Heart', 'Astroid', 'Deltoid', 'Nephroid', 'Epicycloid', 'Superellipse', 'Triskelion', 'Involute'].map(name => (
                 <span
                   key={name}
                   className="border border-white/20 px-3 py-1 text-[11px] font-bold uppercase tracking-wide text-white/50"
@@ -1129,6 +1133,77 @@ export function Home() {
                   {name}
                 </span>
               ))}
+            </div>
+          </div>
+        </section>
+
+        {/* ── ASCII SHAPES SECTION ─────────────────────────────────── */}
+        <section
+          className="relative overflow-hidden border-b-3 border-foreground bg-foreground py-14 md:py-20"
+        >
+          <div className="grid-pattern absolute inset-0 opacity-5" />
+          <div className="container relative mx-auto px-4">
+            <div className="flex flex-col gap-8 lg:flex-row lg:items-center lg:gap-16">
+
+              {/* Left: text */}
+              <div className="flex-1 space-y-4">
+                <Badge variant="secondary" className="gap-1.5">
+                  <Sparkles className="h-3.5 w-3.5" /> New
+                </Badge>
+                <h2
+                  className="leading-none text-background"
+                  style={{ ...DISPLAY, fontSize: 'clamp(32px, 5.5vw, 72px)' }}
+                >
+                  ASCII<br />
+                  <span className="text-primary">ANIMATIONS</span>
+                </h2>
+                <p className="mt-3 max-w-md text-sm text-white/60" style={MONO}>
+                  7 animated ASCII art components — spiral, rose, wave, vortex, pulse, matrix & grid. 5 character sets, 4 sizes. React & Vue 3.
+                </p>
+                <div className="flex flex-col gap-2 pt-2">
+                  {[
+                    { label: 'Shapes', sub: '7 animations', to: '/ascii-shapes', color: 'bg-primary' },
+                    { label: 'Charsets', sub: '5 styles', to: '/ascii-shapes', color: 'bg-secondary' },
+                    { label: 'Sizes', sub: 'sm → hero', to: '/ascii-shapes', color: 'bg-accent' },
+                  ].map(({ label, sub, to, color }) => (
+                    <Link key={label} to={to}>
+                      <div className="group flex items-center gap-3 border-2 border-white/20 px-4 py-2.5 hover:border-white/60 hover:bg-white/5 transition-all duration-150">
+                        <div className={`h-2 w-2 shrink-0 ${color}`} />
+                        <div className="flex-1 min-w-0">
+                          <div className="text-xs font-black uppercase tracking-wider text-white leading-none">{label}</div>
+                          <div className="text-[10px] text-white/40 mt-0.5" style={MONO}>{sub}</div>
+                        </div>
+                        <ArrowRight className="h-3.5 w-3.5 text-white/30 group-hover:text-white/80 transition-colors" />
+                      </div>
+                    </Link>
+                  ))}
+                </div>
+              </div>
+
+              {/* Right: 4 live ASCII shapes */}
+              <div className="flex flex-wrap gap-4 justify-center lg:justify-end">
+                {([
+                  { C: AsciiSpiral,  charset: 'classic', label: 'SPIRAL',  color: 'hsl(var(--primary))' },
+                  { C: AsciiVortex,  charset: 'blocks',  label: 'VORTEX',  color: 'hsl(var(--secondary))' },
+                  { C: AsciiMatrix,  charset: 'classic', label: 'MATRIX',  color: 'hsl(var(--accent))' },
+                  { C: AsciiGrid,    charset: 'line',    label: 'GRID',    color: 'hsl(var(--warning))' },
+                ] as const).map(({ C, charset, label, color }) => (
+                  <Link key={label} to="/ascii-shapes">
+                    <div className="group flex flex-col items-center gap-2 hover:opacity-90 transition-opacity">
+                      <C size="sm" charset={charset} color={color} speed="normal" className="border-white/20 shadow-none" />
+                      <span className="text-[9px] font-black uppercase tracking-widest text-white/40" style={MONO}>{label}</span>
+                    </div>
+                  </Link>
+                ))}
+              </div>
+            </div>
+
+            <div className="mt-8 flex gap-3">
+              <Link to="/ascii-shapes">
+                <Button variant="secondary" className="gap-2">
+                  Explore ASCII Shapes <ArrowRight className="h-4 w-4" />
+                </Button>
+              </Link>
             </div>
           </div>
         </section>
