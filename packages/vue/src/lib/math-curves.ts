@@ -7,18 +7,18 @@
  */
 
 export type LoaderCurveKey =
-  | 'rose'
-  | 'lissajous'
-  | 'butterfly'
-  | 'hypotrochoid'
-  | 'cardioid'
-  | 'lemniscate'
-  | 'fourier'
-  | 'rose3'
+  | 'rose' | 'lissajous' | 'butterfly' | 'hypotrochoid'
+  | 'cardioid' | 'lemniscate' | 'fourier' | 'rose3'
+  | 'astroid' | 'deltoid' | 'nephroid' | 'epicycloid'
+  | 'superellipse' | 'triskelion' | 'involute'
 
-export type ProgressCurveKey = 'spiral' | 'heart' | 'lissajous' | 'cardioid' | 'rose'
+export type ProgressCurveKey =
+  | 'spiral' | 'heart' | 'lissajous' | 'cardioid' | 'rose'
+  | 'astroid' | 'superellipse' | 'deltoid'
 
-export type BackgroundCurveKey = 'rose' | 'lissajous' | 'fourier' | 'spiral'
+export type BackgroundCurveKey =
+  | 'rose' | 'lissajous' | 'fourier' | 'spiral'
+  | 'triskelion' | 'involute' | 'epicycloid'
 
 export type CurveKey = LoaderCurveKey | ProgressCurveKey | BackgroundCurveKey
 
@@ -196,6 +196,119 @@ const CURVE_DEFS: Record<string, CurveDefinition> = {
           2 * Math.cos(3 * t) -
           Math.cos(4 * t))
       return { x: 50 + x, y: 50 + y }
+    },
+  },
+
+  // Astroid (4-cusped hypocycloid): x = a·cos³t, y = a·sin³t
+  astroid: {
+    tMin: 0,
+    tMax: 2 * Math.PI,
+    pulseDurationMs: 4000,
+    defaultSegments: 300,
+    compute: (t, ds) => {
+      const a = 38 + ds * 4
+      return {
+        x: 50 + a * Math.pow(Math.cos(t), 3),
+        y: 50 + a * Math.pow(Math.sin(t), 3),
+      }
+    },
+  },
+
+  // Deltoid (3-cusped hypocycloid, R=3 r=1): x=(2cos+cos2t), y=(2sin-sin2t)
+  deltoid: {
+    tMin: 0,
+    tMax: 2 * Math.PI,
+    pulseDurationMs: 4800,
+    defaultSegments: 240,
+    compute: (t, ds) => {
+      const scale = 11 + ds * 2
+      return {
+        x: 50 + scale * (2 * Math.cos(t) + Math.cos(2 * t)),
+        y: 50 + scale * (2 * Math.sin(t) - Math.sin(2 * t)),
+      }
+    },
+  },
+
+  // Nephroid (2-cusped epicycloid, R=1 r=1): x=2cos-cos2t, y=2sin-sin2t
+  nephroid: {
+    tMin: 0,
+    tMax: 2 * Math.PI,
+    pulseDurationMs: 5200,
+    defaultSegments: 300,
+    compute: (t, ds) => {
+      const scale = 11 + ds * 2
+      return {
+        x: 50 + scale * (2 * Math.cos(t) - Math.cos(2 * t)),
+        y: 50 + scale * (2 * Math.sin(t) - Math.sin(2 * t)),
+      }
+    },
+  },
+
+  // Epicycloid (5-cusped, R=5 r=1): x=6cos-cos6t, y=6sin-sin6t
+  epicycloid: {
+    tMin: 0,
+    tMax: 2 * Math.PI,
+    pulseDurationMs: 5000,
+    defaultSegments: 300,
+    compute: (t, ds) => {
+      const scale = 5 + ds * 0.5
+      return {
+        x: 50 + scale * (6 * Math.cos(t) - Math.cos(6 * t)),
+        y: 50 + scale * (6 * Math.sin(t) - Math.sin(6 * t)),
+      }
+    },
+  },
+
+  // Superellipse (Lamé curve): |x/a|^n + |y/a|^n = 1, n oscillates 2→4
+  superellipse: {
+    tMin: 0,
+    tMax: 2 * Math.PI,
+    pulseDurationMs: 6000,
+    defaultSegments: 360,
+    compute: (t, ds) => {
+      const a = 36
+      const n = 2 + ds * 2
+      const exp = 2 / n
+      const cosT = Math.cos(t)
+      const sinT = Math.sin(t)
+      return {
+        x: 50 + a * Math.sign(cosT) * Math.pow(Math.abs(cosT), exp),
+        y: 50 + a * Math.sign(sinT) * Math.pow(Math.abs(sinT), exp),
+      }
+    },
+  },
+
+  // Triskelion: 3 Archimedean spiral arms, 120° apart
+  triskelion: {
+    tMin: 0,
+    tMax: 6 * Math.PI,
+    pulseDurationMs: 5500,
+    defaultSegments: 360,
+    compute: (t, ds) => {
+      const b = 32 + ds * 8
+      const arm = Math.floor(t / (2 * Math.PI))
+      const theta = t - arm * 2 * Math.PI
+      const offset = (arm * 2 * Math.PI) / 3
+      const r = b * (theta / (2 * Math.PI))
+      return {
+        x: 50 + r * Math.cos(theta + offset),
+        y: 50 + r * Math.sin(theta + offset),
+      }
+    },
+  },
+
+  // Involute of circle: x = a(cos t + t·sin t), y = a(sin t - t·cos t)
+  involute: {
+    tMin: 0,
+    tMax: 4 * Math.PI,
+    pulseDurationMs: 5800,
+    defaultSegments: 300,
+    compute: (t, ds) => {
+      const a = 2.5 + ds * 0.5
+      return {
+        x: 50 + a * (Math.cos(t) + t * Math.sin(t)),
+        y: 50 + a * (Math.sin(t) - t * Math.cos(t)),
+      }
     },
   },
 }
