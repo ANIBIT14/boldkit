@@ -3,7 +3,7 @@ import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
-import { ArrowRight, Copy, Check, LayoutGrid, Settings } from 'lucide-react'
+import { ArrowRight, Copy, Check, LayoutGrid, Settings, Terminal, TrendingUp } from 'lucide-react'
 import { useState } from 'react'
 import { useFramework, FrameworkToggle, ReactIcon, VueIcon } from '@/hooks/use-framework'
 import { SEO, pageSEO } from '@/components/SEO'
@@ -71,7 +71,15 @@ export function Introduction() {
           </li>
           <li className="flex items-start gap-2">
             <span className="text-primary font-bold">◼</span>
-            <span><strong>42 Decorative Shapes</strong> - SVG shapes for visual impact</span>
+            <span><strong>64 SVG Shapes</strong> - Geometric, organic, celestial, mathematical, and mechanical shapes with interactive Shape Builder</span>
+          </li>
+          <li className="flex items-start gap-2">
+            <span className="text-primary font-bold">◼</span>
+            <span><strong>12 ASCII Shapes</strong> - Animated 3D ASCII art (Torus, Donut, Sphere, Cube, Helix) and generative animations (Spiral, Matrix, Wave…) with multicolor support</span>
+          </li>
+          <li className="flex items-start gap-2">
+            <span className="text-primary font-bold">◼</span>
+            <span><strong>Math Curve Components</strong> - 15 mathematical curves as animated loaders, progress bars, and backgrounds — no animation library required</span>
           </li>
           <li className="flex items-start gap-2">
             <span className="text-primary font-bold">◼</span>
@@ -157,6 +165,121 @@ export function Introduction() {
                 <Button size="sm" variant="outline" className="gap-1">
                   View Blocks <ArrowRight className="h-3 w-3" />
                 </Button>
+              </Link>
+            </CardContent>
+          </Card>
+        </div>
+
+        <h3 className="text-xl font-bold uppercase tracking-wide mt-8 flex items-center gap-2">
+          ASCII Shapes
+          <Badge variant="accent" className="text-[10px]">New</Badge>
+        </h3>
+        <p>
+          12 animated ASCII art components rendered with perspective projection, z-buffering, and Lambertian shading — no canvas, no WebGL, just text characters. Works in React, Vue 3, and Nuxt.
+        </p>
+
+        <div className="not-prose grid sm:grid-cols-2 gap-4 my-6">
+          <Card>
+            <CardHeader className="border-b-3 border-foreground bg-foreground py-3">
+              <CardTitle className="text-sm flex items-center gap-2 text-background">
+                <Terminal className="h-4 w-4" /> 3D Shapes
+              </CardTitle>
+            </CardHeader>
+            <CardContent className="pt-4">
+              <p className="text-sm text-muted-foreground mb-3">
+                Torus, Donut, Sphere, Cube, Helix — real 3D perspective projection with z-buffering and Lambertian shading.
+              </p>
+              <Link to="/components/ascii-shapes">
+                <Button size="sm" variant="outline" className="gap-1">
+                  ASCII Shapes Docs <ArrowRight className="h-3 w-3" />
+                </Button>
+              </Link>
+            </CardContent>
+          </Card>
+          <Card>
+            <CardHeader className="border-b-3 border-foreground bg-accent py-3">
+              <CardTitle className="text-sm flex items-center gap-2">
+                <Terminal className="h-4 w-4" /> Generative Animations
+              </CardTitle>
+            </CardHeader>
+            <CardContent className="pt-4">
+              <p className="text-sm text-muted-foreground mb-3">
+                Spiral, Rose, Wave, Vortex, Pulse, Matrix, Grid — 2D parametric animations with 5 character sets, multicolor, and SSR-safe static mode.
+              </p>
+              <Link to="/ascii-shapes">
+                <Button size="sm" variant="outline" className="gap-1">
+                  See All Shapes <ArrowRight className="h-3 w-3" />
+                </Button>
+              </Link>
+            </CardContent>
+          </Card>
+        </div>
+
+        <div className="not-prose my-4 border-3 border-foreground bg-muted p-4 bk-shadow">
+          <p className="text-sm font-bold uppercase tracking-wide mb-3">Install ASCII Shapes</p>
+          {framework === 'react' ? (
+            <div className="flex items-center gap-2 border-3 border-foreground bg-background px-4 py-3">
+              <code className="flex-1 font-mono text-sm">npx shadcn@latest add https://boldkit.dev/r/ascii-shapes.json</code>
+              <CopyButton text="npx shadcn@latest add https://boldkit.dev/r/ascii-shapes.json" />
+            </div>
+          ) : (
+            <>
+              <div className="flex items-center gap-2 border-3 border-foreground bg-background px-4 py-3 mb-2">
+                <code className="flex-1 font-mono text-sm">npx shadcn-vue@latest add https://boldkit.dev/r/vue/ascii-shapes.json</code>
+                <CopyButton text="npx shadcn-vue@latest add https://boldkit.dev/r/vue/ascii-shapes.json" />
+              </div>
+              <p className="text-xs text-muted-foreground mt-2">
+                <strong>Nuxt:</strong> Wrap animated shapes in <code className="bg-background border px-1">&lt;ClientOnly&gt;</code>. Use <code className="bg-background border px-1">:animated="false"</code> for SSR-safe static rendering without any wrapper.
+              </p>
+            </>
+          )}
+        </div>
+
+        <h3 className="text-xl font-bold uppercase tracking-wide mt-8 flex items-center gap-2">
+          Math Curve Components
+          <Badge variant="secondary" className="text-[10px]">New</Badge>
+        </h3>
+        <p>
+          15 mathematical curves (Lissajous, Hypotrochoid, Epitrochoid, Rose, Spirograph, and more) rendered as animated SVG UI elements — loaders, progress bars, and full-bleed backgrounds.
+        </p>
+
+        <div className="not-prose grid sm:grid-cols-3 gap-4 my-6">
+          <Card>
+            <CardHeader className="border-b-3 border-foreground bg-info py-3">
+              <CardTitle className="text-sm flex items-center gap-2">
+                <TrendingUp className="h-4 w-4" /> MC Loader
+              </CardTitle>
+            </CardHeader>
+            <CardContent className="pt-4">
+              <p className="text-sm text-muted-foreground mb-3">Animated loading spinner driven by any of the 15 curves.</p>
+              <Link to="/components/math-curve-loader">
+                <Button size="sm" variant="outline" className="gap-1">Docs <ArrowRight className="h-3 w-3" /></Button>
+              </Link>
+            </CardContent>
+          </Card>
+          <Card>
+            <CardHeader className="border-b-3 border-foreground bg-warning py-3">
+              <CardTitle className="text-sm flex items-center gap-2">
+                <TrendingUp className="h-4 w-4" /> MC Progress
+              </CardTitle>
+            </CardHeader>
+            <CardContent className="pt-4">
+              <p className="text-sm text-muted-foreground mb-3">Progress bar rendered as an animated mathematical curve.</p>
+              <Link to="/components/math-curve-progress">
+                <Button size="sm" variant="outline" className="gap-1">Docs <ArrowRight className="h-3 w-3" /></Button>
+              </Link>
+            </CardContent>
+          </Card>
+          <Card>
+            <CardHeader className="border-b-3 border-foreground bg-success py-3">
+              <CardTitle className="text-sm flex items-center gap-2">
+                <TrendingUp className="h-4 w-4" /> MC Background
+              </CardTitle>
+            </CardHeader>
+            <CardContent className="pt-4">
+              <p className="text-sm text-muted-foreground mb-3">Full-bleed animated curve background for sections and heroes.</p>
+              <Link to="/components/math-curve-background">
+                <Button size="sm" variant="outline" className="gap-1">Docs <ArrowRight className="h-3 w-3" /></Button>
               </Link>
             </CardContent>
           </Card>
