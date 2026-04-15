@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, onMounted, onUnmounted, watch } from 'vue'
+import { shallowRef, onMounted, onUnmounted, watch } from 'vue'
 import { cn } from '@/lib/utils'
 import {
   SIZE_MAP, CHARSETS, SPEED_MAP, makeGrid, gridToLines,
@@ -18,8 +18,9 @@ const props = withDefaults(defineProps<Props>(), {
   size: 'md', charset: 'line', speed: 'normal', animated: true,
 })
 
-const lines = ref<string[]>([])
 let rafId = 0
+let isMounted = false
+const lines = shallowRef<string[]>(buildFrame(0))
 
 function drawGrid(grid: string[][], cols: number, rows: number, t: number, chars: string[]) {
   const cellW = 6, cellH = 3
@@ -49,6 +50,7 @@ function buildFrame(t: number): string[] {
 }
 
 function start() {
+  if (!isMounted) return
   cancelAnimationFrame(rafId)
   if (!props.animated) { lines.value = buildFrame(0); return }
   const startTime = performance.now()
@@ -60,8 +62,8 @@ function start() {
   rafId = requestAnimationFrame(loop)
 }
 
-onMounted(() => start())
-onUnmounted(() => cancelAnimationFrame(rafId))
+onMounted(() => { isMounted = true; start() })
+onUnmounted(() => { isMounted = false; cancelAnimationFrame(rafId) })
 watch(() => [props.size, props.charset, props.speed, props.animated], () => start())
 </script>
 

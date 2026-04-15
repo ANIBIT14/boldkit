@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, onMounted, onUnmounted, watch } from 'vue'
+import { shallowRef, onMounted, onUnmounted, watch } from 'vue'
 import { cn } from '@/lib/utils'
 import {
   SIZE_MAP, CHARSETS, SPEED_MAP, makeGrid, gridToLines,
@@ -19,9 +19,10 @@ const props = withDefaults(defineProps<Props>(), {
   size: 'md', charset: 'classic', speed: 'normal', animated: true,
 })
 
-const lines = ref<string[]>([])
 let rafId = 0
-let matrixState: ColState[] = []
+let isMounted = false
+let matrixState: ColState[] = makeMatrixState(SIZE_MAP[props.size].cols)
+const lines = shallowRef<string[]>(buildFrame(0))
 
 function drawMatrix(grid: string[][], cols: number, rows: number, t: number, chars: string[], state: ColState[]) {
   for (let c = 0; c < cols; c++) {
@@ -49,6 +50,7 @@ function buildFrame(t: number): string[] {
 }
 
 function start() {
+  if (!isMounted) return
   cancelAnimationFrame(rafId)
   matrixState = makeMatrixState(SIZE_MAP[props.size].cols)
   if (!props.animated) { lines.value = buildFrame(0); return }
@@ -61,8 +63,8 @@ function start() {
   rafId = requestAnimationFrame(loop)
 }
 
-onMounted(() => start())
-onUnmounted(() => cancelAnimationFrame(rafId))
+onMounted(() => { isMounted = true; start() })
+onUnmounted(() => { isMounted = false; cancelAnimationFrame(rafId) })
 watch(() => [props.size, props.charset, props.speed, props.animated], () => start())
 </script>
 
