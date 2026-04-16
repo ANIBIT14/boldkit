@@ -405,7 +405,7 @@ import { BurstShape, HeartShape, LightningShape } from '@/components/ui/shapes'
 
 <div align="center">
 
-![SVG Shapes](assets/shapes.png)
+![SVG Shapes](https://ik.imagekit.io/fincalfy/boldkit-shapes.png)
 
 </div>
 
