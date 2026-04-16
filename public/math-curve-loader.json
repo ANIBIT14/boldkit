@@ -1,7 +1,6 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "math-curve-loader",
-  "type": "registry:ui",
   "description": "Animated mathematical curve loader with neubrutalism aesthetics — 8 curve variants including rose, lissajous, butterfly, and more",
   "dependencies": [
     "class-variance-authority"
@@ -16,5 +15,6 @@
       "type": "registry:ui",
       "target": "components/ui/math-curve-loader.tsx"
     }
-  ]
+  ],
+  "type": "registry:ui"
 }

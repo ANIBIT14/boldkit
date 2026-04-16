@@ -1,7 +1,6 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "sidebar",
-  "type": "registry:ui",
   "description": "Collapsible sidebar with mobile drawer, tooltips, and keyboard shortcut",
   "dependencies": [
     "class-variance-authority",
@@ -19,5 +18,6 @@
       "type": "registry:ui",
       "target": "components/ui/sidebar.tsx"
     }
-  ]
+  ],
+  "type": "registry:ui"
 }

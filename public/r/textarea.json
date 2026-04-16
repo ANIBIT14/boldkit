@@ -1,7 +1,6 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "textarea",
-  "type": "registry:ui",
   "description": "Displays a form textarea with neubrutalism styling",
   "dependencies": [],
   "registryDependencies": [
@@ -14,5 +13,6 @@
       "type": "registry:ui",
       "target": "components/ui/textarea.tsx"
     }
-  ]
+  ],
+  "type": "registry:ui"
 }

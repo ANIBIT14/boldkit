@@ -1,7 +1,6 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "button",
-  "type": "registry:ui",
   "description": "Displays a button with neubrutalism styling and press-down animation",
   "dependencies": [
     "@radix-ui/react-slot",
@@ -16,5 +15,6 @@
       "type": "registry:ui",
       "target": "components/ui/button.tsx"
     }
-  ]
+  ],
+  "type": "registry:ui"
 }

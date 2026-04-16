@@ -1,7 +1,6 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "chart",
-  "type": "registry:ui",
   "description": "Beautiful charts with neubrutalism styling built on Recharts",
   "dependencies": [
     "recharts"
@@ -16,5 +15,6 @@
       "type": "registry:ui",
       "target": "components/ui/chart.tsx"
     }
-  ]
+  ],
+  "type": "registry:ui"
 }

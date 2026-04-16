@@ -1,7 +1,6 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "badge",
-  "type": "registry:ui",
   "description": "Displays a badge or a component that looks like a badge with neubrutalism styling",
   "dependencies": [
     "class-variance-authority"
@@ -16,5 +15,6 @@
       "type": "registry:ui",
       "target": "components/ui/badge.tsx"
     }
-  ]
+  ],
+  "type": "registry:ui"
 }

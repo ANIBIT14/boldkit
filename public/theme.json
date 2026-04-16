@@ -1,7 +1,6 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "theme",
-  "type": "registry:theme",
   "description": "BoldKit neubrutalism theme with bold colors and CSS variables",
   "files": [],
   "cssVars": {
@@ -80,5 +79,6 @@
       "clash-3": "165 80% 50%",
       "clash-4": "45 95% 60%"
     }
-  }
+  },
+  "type": "registry:theme"
 }

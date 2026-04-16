@@ -1,7 +1,6 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "drawer",
-  "type": "registry:ui",
   "description": "A drawer component that slides in from the edge of the screen",
   "dependencies": [
     "vaul"
@@ -15,5 +14,6 @@
       "type": "registry:ui",
       "target": "components/ui/drawer.tsx"
     }
-  ]
+  ],
+  "type": "registry:ui"
 }

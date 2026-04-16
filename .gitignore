@@ -41,11 +41,14 @@ Thumbs.db
 coverage
 .angular/
 
-# Claude AI
+# Claude AI / tool config
 CLAUDE.md
+.mcp.json
+.superpowers/
 
 # Internal docs / design specs
 docs/superpowers/
+docs/superpowers/specs
 
 # GitHub Actions workflows (require workflow OAuth scope to push)
 .github/workflows/test-rn.yml

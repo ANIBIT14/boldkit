@@ -1,7 +1,6 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "label",
-  "type": "registry:ui",
   "description": "Renders an accessible label for form controls",
   "dependencies": [
     "@radix-ui/react-label",
@@ -17,5 +16,6 @@
       "type": "registry:ui",
       "target": "components/ui/label.tsx"
     }
-  ]
+  ],
+  "type": "registry:ui"
 }

@@ -1,7 +1,6 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "calendar",
-  "type": "registry:ui",
   "description": "A date picker calendar with neubrutalism styling",
   "dependencies": [
     "react-day-picker",
@@ -17,5 +16,6 @@
       "type": "registry:ui",
       "target": "components/ui/calendar.tsx"
     }
-  ]
+  ],
+  "type": "registry:ui"
 }

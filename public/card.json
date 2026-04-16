@@ -1,7 +1,6 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "card",
-  "type": "registry:ui",
   "description": "Displays a card with header, content, and footer with thick borders and shadows",
   "dependencies": [],
   "registryDependencies": [
@@ -13,5 +12,6 @@
       "type": "registry:ui",
       "target": "components/ui/card.tsx"
     }
-  ]
+  ],
+  "type": "registry:ui"
 }

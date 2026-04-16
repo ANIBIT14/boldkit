@@ -1,7 +1,6 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "toggle-group",
-  "type": "registry:ui",
   "description": "A group of toggle buttons where only one can be pressed at a time",
   "dependencies": [
     "@radix-ui/react-toggle-group"
@@ -16,5 +15,6 @@
       "type": "registry:ui",
       "target": "components/ui/toggle-group.tsx"
     }
-  ]
+  ],
+  "type": "registry:ui"
 }

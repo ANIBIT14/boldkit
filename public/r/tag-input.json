@@ -1,7 +1,6 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "tag-input",
-  "type": "registry:ui",
   "description": "Multi-tag input with suggestions, validation, and keyboard support",
   "dependencies": [
     "lucide-react"
@@ -16,5 +15,6 @@
       "type": "registry:ui",
       "target": "components/ui/tag-input.tsx"
     }
-  ]
+  ],
+  "type": "registry:ui"
 }

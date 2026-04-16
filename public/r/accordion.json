@@ -1,7 +1,6 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "accordion",
-  "type": "registry:ui",
   "description": "A vertically stacked set of interactive headings with neubrutalism styling",
   "dependencies": [
     "@radix-ui/react-accordion",
@@ -17,5 +16,6 @@
       "type": "registry:ui",
       "target": "components/ui/accordion.tsx"
     }
-  ]
+  ],
+  "type": "registry:ui"
 }

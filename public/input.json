@@ -1,7 +1,6 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "input",
-  "type": "registry:ui",
   "description": "Displays a form input field with neubrutalism styling",
   "dependencies": [],
   "registryDependencies": [
@@ -13,5 +12,6 @@
       "type": "registry:ui",
       "target": "components/ui/input.tsx"
     }
-  ]
+  ],
+  "type": "registry:ui"
 }
