@@ -1139,9 +1139,10 @@ export function Home() {
 
         {/* ── ASCII SHAPES SECTION ─────────────────────────────────── */}
         <section
-          className="relative overflow-hidden border-b-3 border-foreground bg-foreground py-14 md:py-20"
+          className="relative overflow-hidden border-b-3 border-foreground py-14 md:py-20"
+          style={{ background: '#0d0d0d' }}
         >
-          <div className="grid-pattern absolute inset-0 opacity-5" />
+          <div className="absolute inset-0 [background-image:repeating-linear-gradient(0deg,transparent,transparent_39px,rgba(255,255,255,0.03)_39px,rgba(255,255,255,0.03)_40px),repeating-linear-gradient(90deg,transparent,transparent_39px,rgba(255,255,255,0.03)_39px,rgba(255,255,255,0.03)_40px)]" />
           <div className="container relative mx-auto px-4">
             <div className="flex flex-col gap-8 lg:flex-row lg:items-center lg:gap-16">
 
@@ -1151,7 +1152,7 @@ export function Home() {
                   <Sparkles className="h-3.5 w-3.5" /> New
                 </Badge>
                 <h2
-                  className="leading-none text-background"
+                  className="leading-none text-white"
                   style={{ ...DISPLAY, fontSize: 'clamp(32px, 5.5vw, 72px)' }}
                 >
                   ASCII<br />
@@ -1190,7 +1191,7 @@ export function Home() {
                 ] as const).map(({ C, charset, label, color }) => (
                   <Link key={label} to="/ascii-shapes">
                     <div className="group flex flex-col items-center gap-2 hover:opacity-90 transition-opacity">
-                      <C size="sm" charset={charset} color={color} speed="normal" className="border-white/20 shadow-none" />
+                      <C size="sm" charset={charset} color={color} speed="normal" className="border-white/20 shadow-none !bg-transparent" />
                       <span className="text-[9px] font-black uppercase tracking-widest text-white/40" style={MONO}>{label}</span>
                     </div>
                   </Link>

@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import {
   AsciiSpiral, AsciiRose, AsciiWave,
   AsciiVortex, AsciiPulse, AsciiMatrix, AsciiGrid,
@@ -24,7 +24,7 @@ const SHAPES = [
   { name: 'AsciiSphere',  Component: AsciiSphere,  desc: 'Rotating globe with lat/lon grid texture and Lambertian shading' },
   { name: 'AsciiCube',    Component: AsciiCube,    desc: 'Solid shaded cube rotating on two axes with face-based z-buffering' },
   { name: 'AsciiHelix',   Component: AsciiHelix,   desc: 'DNA double helix with two parametric strands and connecting rungs' },
-  { name: 'AsciiDonut',   Component: AsciiDonut,   desc: 'Classic donut.c doughnut — X-axis tilt + Z-axis spin, fatter tube than AsciiTorus' },
+  { name: 'AsciiDonut',   Component: AsciiDonut,   desc: 'Classic donut.c doughnut — faithful a1k0n algorithm, hole always visible' },
 ]
 
 const CHARSETS: AsciiCharset[] = ['blocks', 'braille', 'classic', 'line', 'dots']
@@ -39,11 +39,30 @@ const THEME_COLORS = [
   { color: 'hsl(var(--success))',   label: 'Success'   },
 ]
 
+/** Pick an ASCII size that fits the viewport — re-evaluated on resize */
+function useHeroSize(): AsciiSize {
+  const [heroSize, setHeroSize] = useState<AsciiSize>('md')
+  useEffect(() => {
+    const update = () => {
+      const w = window.innerWidth
+      if (w >= 1280)      setHeroSize('hero')
+      else if (w >= 768)  setHeroSize('lg')
+      else if (w >= 480)  setHeroSize('md')
+      else                setHeroSize('sm')
+    }
+    update()
+    window.addEventListener('resize', update)
+    return () => window.removeEventListener('resize', update)
+  }, [])
+  return heroSize
+}
+
 export function AsciiShapes() {
   const [charset, setCharset] = useState<AsciiCharset>('classic')
-  const [size, setSize]       = useState<AsciiSize>('md')
+  const [size, setSize]       = useState<AsciiSize>('sm')
   const [color, setColor]     = useState<string>('')
   const [multicolor, setMulticolor] = useState<boolean>(false)
+  const heroSize = useHeroSize()
 
   const activeColor = multicolor ? undefined : (color || undefined)
 
@@ -52,14 +71,14 @@ export function AsciiShapes() {
       <SEO {...pageSEO.asciiShapes} />
       <Layout>
 
-        {/* ── HERO — always-dark, 3D torus centrepiece ──────────────── */}
+        {/* ── HERO — always-dark, responsive torus ──────────────────── */}
         <section
           className="relative w-full border-b-3 border-foreground overflow-hidden"
           style={{ background: '#0d0d0d' }}
         >
           {/* Subtle grid overlay */}
           <div className="absolute inset-0 [background-image:repeating-linear-gradient(0deg,transparent,transparent_39px,rgba(255,255,255,0.03)_39px,rgba(255,255,255,0.03)_40px),repeating-linear-gradient(90deg,transparent,transparent_39px,rgba(255,255,255,0.03)_39px,rgba(255,255,255,0.03)_40px)]" />
-          <div className="relative z-10 flex flex-col items-center gap-6 py-16 md:py-20 px-4">
+          <div className="relative z-10 flex flex-col items-center gap-5 py-10 md:py-16 lg:py-20 px-4">
             {/* Badges */}
             <div className="flex flex-wrap justify-center gap-2">
               <Badge variant="accent">12 Shapes</Badge>
@@ -70,112 +89,121 @@ export function AsciiShapes() {
             {/* Title */}
             <h1
               className="text-center font-black uppercase leading-none text-white"
-              style={{ ...DISPLAY, fontSize: 'clamp(48px, 8vw, 100px)' }}
+              style={{ ...DISPLAY, fontSize: 'clamp(40px, 8vw, 100px)' }}
             >
               ASCII<br /><span className="text-primary">Shapes</span>
             </h1>
 
-            {/* 3D Torus — hero size centrepiece */}
-            <AsciiTorus
-              size="hero"
-              charset="blocks"
-              multicolor
-              speed="normal"
-              className="border-white/20 !bg-transparent shadow-none max-w-full overflow-x-auto"
-            />
+            {/* Torus — size adapts to viewport */}
+            <div className="w-full flex justify-center overflow-hidden">
+              <AsciiTorus
+                size={heroSize}
+                charset="blocks"
+                multicolor
+                speed="normal"
+                className="border-white/20 !bg-transparent shadow-none shrink-0"
+              />
+            </div>
 
             {/* Subtitle */}
-            <p className="text-sm text-white/50 text-center" style={MONO}>
+            <p className="text-xs sm:text-sm text-white/50 text-center" style={MONO}>
               12 animations · 5 character sets · 4 sizes · React &amp; Vue 3
             </p>
           </div>
         </section>
 
         {/* ── CONTROLS ──────────────────────────────────────────────── */}
-        <section className="p-4 md:p-8 border-b-3 border-foreground flex flex-wrap gap-6 bg-background">
-          <div>
-            <p className="text-xs font-bold uppercase tracking-wider mb-2" style={MONO}>Charset</p>
-            <div className="flex flex-wrap gap-2">
-              {CHARSETS.map((c) => (
+        <section className="p-4 md:p-8 border-b-3 border-foreground bg-background">
+          <div className="flex flex-wrap gap-x-6 gap-y-4">
+            {/* Charset */}
+            <div className="min-w-0">
+              <p className="text-xs font-bold uppercase tracking-wider mb-2" style={MONO}>Charset</p>
+              <div className="flex flex-wrap gap-2">
+                {CHARSETS.map((c) => (
+                  <button
+                    key={c}
+                    onClick={() => setCharset(c)}
+                    aria-pressed={charset === c}
+                    className={`px-2.5 py-1 text-xs sm:text-sm border-3 border-foreground shadow-[2px_2px_0px_hsl(var(--shadow-color))] hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-none transition-all ${
+                      charset === c ? 'bg-foreground text-background' : 'bg-background text-foreground'
+                    }`}
+                    style={MONO}
+                  >
+                    {c}
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            {/* Size */}
+            <div>
+              <p className="text-xs font-bold uppercase tracking-wider mb-2" style={MONO}>Size</p>
+              <div className="flex gap-2">
+                {SIZES.map((s) => (
+                  <button
+                    key={s}
+                    onClick={() => setSize(s)}
+                    aria-pressed={size === s}
+                    className={`px-2.5 py-1 text-xs sm:text-sm border-3 border-foreground shadow-[2px_2px_0px_hsl(var(--shadow-color))] hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-none transition-all ${
+                      size === s ? 'bg-foreground text-background' : 'bg-background text-foreground'
+                    }`}
+                    style={MONO}
+                  >
+                    {s}
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            {/* Color */}
+            <div>
+              <p className="text-xs font-bold uppercase tracking-wider mb-2" style={MONO}>Color</p>
+              <div className="flex items-center gap-2">
+                <input
+                  type="color"
+                  value={color || '#000000'}
+                  onChange={(e) => { setMulticolor(false); setColor(e.target.value) }}
+                  className="border-2 border-foreground h-8 w-10 cursor-pointer p-0.5"
+                />
                 <button
-                  key={c}
-                  onClick={() => setCharset(c)}
-                  aria-pressed={charset === c}
-                  className={`px-3 py-1 text-sm border-3 border-foreground shadow-[2px_2px_0px_hsl(var(--shadow-color))] hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-none transition-all ${
-                    charset === c ? 'bg-foreground text-background' : 'bg-background text-foreground'
-                  }`}
+                  onClick={() => setColor('')}
+                  className="px-2.5 py-1 text-xs sm:text-sm border-3 border-foreground shadow-[2px_2px_0px_hsl(var(--shadow-color))] hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-none transition-all bg-background text-foreground"
                   style={MONO}
                 >
-                  {c}
+                  Reset
                 </button>
-              ))}
+              </div>
             </div>
-          </div>
 
-          <div>
-            <p className="text-xs font-bold uppercase tracking-wider mb-2" style={MONO}>Size</p>
-            <div className="flex gap-2">
-              {SIZES.map((s) => (
-                <button
-                  key={s}
-                  onClick={() => setSize(s)}
-                  aria-pressed={size === s}
-                  className={`px-3 py-1 text-sm border-3 border-foreground shadow-[2px_2px_0px_hsl(var(--shadow-color))] hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-none transition-all ${
-                    size === s ? 'bg-foreground text-background' : 'bg-background text-foreground'
-                  }`}
-                  style={MONO}
-                >
-                  {s}
-                </button>
-              ))}
-            </div>
-          </div>
-
-          <div>
-            <p className="text-xs font-bold uppercase tracking-wider mb-2" style={MONO}>Color</p>
-            <div className="flex items-center gap-2">
-              <input
-                type="color"
-                value={color || '#000000'}
-                onChange={(e) => { setMulticolor(false); setColor(e.target.value) }}
-                className="border-2 border-foreground h-8 w-12 cursor-pointer p-0.5"
-              />
+            {/* Multicolor */}
+            <div>
+              <p className="text-xs font-bold uppercase tracking-wider mb-2" style={MONO}>Multicolor</p>
               <button
-                onClick={() => setColor('')}
-                className="px-3 py-1 text-sm border-3 border-foreground shadow-[2px_2px_0px_hsl(var(--shadow-color))] hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-none transition-all bg-background text-foreground"
+                onClick={() => { setMulticolor((v) => !v); if (!multicolor) setColor('') }}
+                aria-pressed={multicolor}
+                className={`px-2.5 py-1 text-xs sm:text-sm border-3 border-foreground shadow-[2px_2px_0px_hsl(var(--shadow-color))] hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-none transition-all ${
+                  multicolor ? 'bg-foreground text-background' : 'bg-background text-foreground'
+                }`}
                 style={MONO}
               >
-                Reset
+                {multicolor ? 'ON' : 'OFF'}
               </button>
             </div>
-          </div>
-
-          <div>
-            <p className="text-xs font-bold uppercase tracking-wider mb-2" style={MONO}>Multicolor</p>
-            <button
-              onClick={() => { setMulticolor((v) => !v); if (!multicolor) setColor('') }}
-              aria-pressed={multicolor}
-              className={`px-3 py-1 text-sm border-3 border-foreground shadow-[2px_2px_0px_hsl(var(--shadow-color))] hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-none transition-all ${
-                multicolor ? 'bg-foreground text-background' : 'bg-background text-foreground'
-              }`}
-              style={MONO}
-            >
-              {multicolor ? 'ON' : 'OFF'}
-            </button>
           </div>
         </section>
 
         {/* ── SHAPE GRID ────────────────────────────────────────────── */}
         <section className="p-4 md:p-8 border-b-3 border-foreground">
-          <h2 className="text-2xl font-black uppercase mb-1">All Shapes</h2>
+          <h2 className="text-xl sm:text-2xl font-black uppercase mb-1">All Shapes</h2>
           <p className="text-xs text-muted-foreground mb-6" style={MONO}>Use controls above to change charset, size, color, and multicolor</p>
-          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4 md:gap-6">
             {SHAPES.map(({ name, Component, desc }) => (
-              <div key={name} className="border-3 border-foreground shadow-[4px_4px_0px_hsl(var(--shadow-color))]">
-                <div className="border-b-3 border-foreground p-3 bg-muted/30">
-                  <span className="text-sm font-bold" style={MONO}>{name}</span>
+              <div key={name} className="border-3 border-foreground shadow-[4px_4px_0px_hsl(var(--shadow-color))] min-w-0">
+                <div className="border-b-3 border-foreground p-2.5 bg-muted/30">
+                  <span className="text-xs sm:text-sm font-bold" style={MONO}>{name}</span>
                 </div>
-                <div className="p-4 flex justify-center">
+                {/* overflow-x-auto so large sizes scroll inside the card rather than breaking layout */}
+                <div className="p-3 sm:p-4 flex justify-center overflow-x-auto">
                   <Component
                     size={size}
                     charset={charset}
@@ -184,7 +212,7 @@ export function AsciiShapes() {
                     multicolor={multicolor}
                   />
                 </div>
-                <div className="border-t-3 border-foreground p-3">
+                <div className="border-t-3 border-foreground p-2.5">
                   <p className="text-xs text-muted-foreground" style={MONO}>{desc}</p>
                 </div>
               </div>
@@ -194,13 +222,13 @@ export function AsciiShapes() {
 
         {/* ── COLOR SHOWCASE ────────────────────────────────────────── */}
         <section className="p-4 md:p-8 border-b-3 border-foreground bg-muted/20">
-          <h2 className="text-2xl font-black uppercase mb-1">Color Modes</h2>
-          <p className="text-xs text-muted-foreground mb-8" style={MONO}>Solid theme colors and multicolor row-cycling palette</p>
+          <h2 className="text-xl sm:text-2xl font-black uppercase mb-1">Color Modes</h2>
+          <p className="text-xs text-muted-foreground mb-6 sm:mb-8" style={MONO}>Solid theme colors and multicolor row-cycling palette</p>
 
           {/* Solid colors */}
-          <div className="mb-10">
-            <p className="text-xs font-bold uppercase tracking-wider mb-4" style={MONO}>Solid Color — AsciiSpiral</p>
-            <div className="flex flex-wrap gap-5 items-end">
+          <div className="mb-8 sm:mb-10">
+            <p className="text-xs font-bold uppercase tracking-wider mb-3 sm:mb-4" style={MONO}>Solid Color — AsciiSpiral</p>
+            <div className="flex flex-wrap gap-3 sm:gap-5 items-end">
               {THEME_COLORS.map(({ color: c, label }) => (
                 <div key={label} className="flex flex-col items-center gap-2">
                   <AsciiSpiral size="sm" charset="classic" animated={false} color={c} />
@@ -212,8 +240,8 @@ export function AsciiShapes() {
 
           {/* Multicolor */}
           <div>
-            <p className="text-xs font-bold uppercase tracking-wider mb-4" style={MONO}>Multicolor — theme palette cycling per row</p>
-            <div className="flex flex-wrap gap-6 items-end">
+            <p className="text-xs font-bold uppercase tracking-wider mb-3 sm:mb-4" style={MONO}>Multicolor — theme palette cycling per row</p>
+            <div className="flex flex-wrap gap-3 sm:gap-6 items-end">
               {([
                 { C: AsciiSpiral,  label: 'Spiral',  cs: 'classic' as AsciiCharset },
                 { C: AsciiRose,    label: 'Rose',    cs: 'braille' as AsciiCharset },
@@ -235,23 +263,26 @@ export function AsciiShapes() {
 
         {/* ── SIZE COMPARISON ───────────────────────────────────────── */}
         <section className="p-4 md:p-8 border-b-3 border-foreground">
-          <h2 className="text-2xl font-black uppercase mb-1">Size Comparison</h2>
-          <p className="text-xs text-muted-foreground mb-6" style={MONO}>AsciiTorus at sm / md / lg</p>
-          <div className="flex flex-wrap gap-8 items-end">
-            {(['sm', 'md', 'lg'] as AsciiSize[]).map((s) => (
-              <div key={s} className="flex flex-col items-center gap-2">
-                <AsciiTorus size={s} charset="blocks" animated={false} color={activeColor} multicolor={multicolor} />
-                <span className="text-xs font-bold uppercase" style={MONO}>{s}</span>
-              </div>
-            ))}
+          <h2 className="text-xl sm:text-2xl font-black uppercase mb-1">Size Comparison</h2>
+          <p className="text-xs text-muted-foreground mb-6" style={MONO}>AsciiTorus at sm / md / lg — scroll horizontally if needed</p>
+          {/* Horizontally scrollable so lg size never breaks layout on mobile */}
+          <div className="overflow-x-auto pb-2">
+            <div className="flex gap-6 sm:gap-8 items-end w-max">
+              {(['sm', 'md', 'lg'] as AsciiSize[]).map((s) => (
+                <div key={s} className="flex flex-col items-center gap-2">
+                  <AsciiTorus size={s} charset="blocks" animated={false} color={activeColor} multicolor={multicolor} />
+                  <span className="text-xs font-bold uppercase" style={MONO}>{s}</span>
+                </div>
+              ))}
+            </div>
           </div>
         </section>
 
         {/* ── CHARSET COMPARISON ────────────────────────────────────── */}
         <section className="p-4 md:p-8 border-b-3 border-foreground">
-          <h2 className="text-2xl font-black uppercase mb-1">Charset Comparison</h2>
+          <h2 className="text-xl sm:text-2xl font-black uppercase mb-1">Charset Comparison</h2>
           <p className="text-xs text-muted-foreground mb-6" style={MONO}>AsciiRose across all 5 character sets</p>
-          <div className="flex flex-wrap gap-6 items-start">
+          <div className="flex flex-wrap gap-4 sm:gap-6 items-start">
             {CHARSETS.map((c) => (
               <div key={c} className="flex flex-col items-center gap-2">
                 <AsciiRose size="sm" charset={c} animated={false} color={activeColor} multicolor={multicolor} />
@@ -263,13 +294,13 @@ export function AsciiShapes() {
 
         {/* ── CODE USAGE ────────────────────────────────────────────── */}
         <section className="p-4 md:p-8">
-          <h2 className="text-2xl font-black uppercase mb-1">Usage</h2>
-          <p className="text-xs text-muted-foreground mb-8" style={MONO}>Install via shadcn CLI, then import and use in React or Vue 3 / Nuxt</p>
+          <h2 className="text-xl sm:text-2xl font-black uppercase mb-1">Usage</h2>
+          <p className="text-xs text-muted-foreground mb-6 sm:mb-8" style={MONO}>Install via shadcn CLI, then import and use in React or Vue 3 / Nuxt</p>
 
           {/* Install */}
-          <div className="mb-8">
+          <div className="mb-6 sm:mb-8">
             <p className="text-xs font-bold uppercase tracking-wider mb-3" style={MONO}>Install</p>
-            <pre className="border-3 border-foreground bg-foreground text-background p-4 overflow-x-auto shadow-[4px_4px_0px_hsl(var(--shadow-color))] text-xs" style={MONO}>{`# React
+            <pre className="border-3 border-foreground bg-foreground text-background p-3 sm:p-4 overflow-x-auto shadow-[4px_4px_0px_hsl(var(--shadow-color))] text-xs" style={MONO}>{`# React
 npx shadcn@latest add "https://boldkit.dev/r/ascii-shapes.json"
 
 # Vue 3 / Nuxt
@@ -277,12 +308,12 @@ npx shadcn-vue@latest add "https://boldkit.dev/r/vue/ascii-shapes.json"`}</pre>
           </div>
 
           {/* React */}
-          <div className="mb-8">
+          <div className="mb-6 sm:mb-8">
             <div className="flex items-center gap-2 mb-3">
-              <div className="h-2.5 w-2.5 bg-primary border border-foreground" />
+              <div className="h-2.5 w-2.5 bg-primary border border-foreground shrink-0" />
               <p className="text-xs font-bold uppercase tracking-wider" style={MONO}>React</p>
             </div>
-            <pre className="border-3 border-foreground bg-foreground text-background p-4 overflow-x-auto shadow-[4px_4px_0px_hsl(var(--shadow-color))] text-xs leading-relaxed" style={MONO}>{`import {
+            <pre className="border-3 border-foreground bg-foreground text-background p-3 sm:p-4 overflow-x-auto shadow-[4px_4px_0px_hsl(var(--shadow-color))] text-xs leading-relaxed" style={MONO}>{`import {
   AsciiSpiral, AsciiRose, AsciiWave, AsciiVortex,
   AsciiPulse, AsciiMatrix, AsciiGrid,
   AsciiTorus, AsciiSphere, AsciiCube, AsciiHelix, AsciiDonut,
@@ -305,12 +336,12 @@ npx shadcn-vue@latest add "https://boldkit.dev/r/vue/ascii-shapes.json"`}</pre>
           </div>
 
           {/* Vue */}
-          <div className="mb-8">
+          <div className="mb-6 sm:mb-8">
             <div className="flex items-center gap-2 mb-3">
-              <div className="h-2.5 w-2.5 bg-secondary border border-foreground" />
+              <div className="h-2.5 w-2.5 bg-secondary border border-foreground shrink-0" />
               <p className="text-xs font-bold uppercase tracking-wider" style={MONO}>Vue 3 / Nuxt</p>
             </div>
-            <pre className="border-3 border-foreground bg-foreground text-background p-4 overflow-x-auto shadow-[4px_4px_0px_hsl(var(--shadow-color))] text-xs leading-relaxed" style={MONO}>{`<script setup lang="ts">
+            <pre className="border-3 border-foreground bg-foreground text-background p-3 sm:p-4 overflow-x-auto shadow-[4px_4px_0px_hsl(var(--shadow-color))] text-xs leading-relaxed" style={MONO}>{`<script setup lang="ts">
 import {
   AsciiSpiral, AsciiTorus, AsciiSphere, AsciiCube, AsciiHelix, AsciiDonut,
 } from '@/components/ui/ascii-shapes'
@@ -346,10 +377,10 @@ import {
               <table className="w-full text-xs" style={MONO}>
                 <thead>
                   <tr className="border-b-3 border-foreground bg-foreground text-background">
-                    <th className="p-3 text-left font-bold">Prop</th>
-                    <th className="p-3 text-left font-bold">Type</th>
-                    <th className="p-3 text-left font-bold">Default</th>
-                    <th className="p-3 text-left font-bold">Description</th>
+                    <th className="p-2 sm:p-3 text-left font-bold whitespace-nowrap">Prop</th>
+                    <th className="p-2 sm:p-3 text-left font-bold whitespace-nowrap">Type</th>
+                    <th className="p-2 sm:p-3 text-left font-bold whitespace-nowrap">Default</th>
+                    <th className="p-2 sm:p-3 text-left font-bold">Description</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -358,14 +389,14 @@ import {
                     { prop: 'charset',    type: "'blocks'|'braille'|'classic'|'line'|'dots'", def: 'varies',   desc: 'Character set for rendering' },
                     { prop: 'speed',      type: "'slow'|'normal'|'fast'",                      def: "'normal'", desc: 'Animation speed multiplier (0.4× / 1× / 2.2×)' },
                     { prop: 'color',      type: 'string',                                      def: 'inherit',  desc: 'CSS color. Ignored when multicolor=true' },
-                    { prop: 'multicolor', type: 'boolean',                                     def: 'false',    desc: 'Cycle theme palette colors (primary→secondary→accent…) per row' },
+                    { prop: 'multicolor', type: 'boolean',                                     def: 'false',    desc: 'Cycle theme palette colors per row' },
                     { prop: 'animated',   type: 'boolean',                                     def: 'true',     desc: 'false = static first frame, no RAF — fully SSR-safe' },
                   ].map(({ prop, type, def, desc }, i) => (
                     <tr key={prop} className={i % 2 === 0 ? 'bg-background' : 'bg-muted/30'}>
-                      <td className="p-3 font-bold text-primary">{prop}</td>
-                      <td className="p-3 text-muted-foreground">{type}</td>
-                      <td className="p-3">{def}</td>
-                      <td className="p-3 text-muted-foreground">{desc}</td>
+                      <td className="p-2 sm:p-3 font-bold text-primary whitespace-nowrap">{prop}</td>
+                      <td className="p-2 sm:p-3 text-muted-foreground whitespace-nowrap">{type}</td>
+                      <td className="p-2 sm:p-3 whitespace-nowrap">{def}</td>
+                      <td className="p-2 sm:p-3 text-muted-foreground">{desc}</td>
                     </tr>
                   ))}
                 </tbody>
