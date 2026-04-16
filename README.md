@@ -346,6 +346,12 @@ import { Badge } from '@/components/ui/badge'
 
 15 animated mathematical curves (Lissajous, Hypotrochoid, Epitrochoid, Rose, Spirograph, and more) rendered as interactive UI elements — no external animation library required.
 
+<div align="center">
+
+![Math Curve Components](https://ik.imagekit.io/fincalfy/math-cuve-loaders.gif?updatedAt=1776307874014)
+
+</div>
+
 ### MathCurveLoader
 
 ```tsx
@@ -416,6 +422,12 @@ The interactive [Shape Builder](https://boldkit.dev/shapes/builder) lets you cus
 ## ASCII Shapes
 
 12 animated 3D ASCII art components rendered with perspective projection and z-buffering — no canvas, no WebGL, just text characters:
+
+<div align="center">
+
+![ASCII Shapes](https://ik.imagekit.io/fincalfy/ascii-shapes.gif?updatedAt=1776307873899)
+
+</div>
 
 | Shape | Description |
 |-------|-------------|
