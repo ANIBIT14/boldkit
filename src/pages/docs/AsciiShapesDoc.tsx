@@ -1,4 +1,3 @@
-import { useState } from 'react'
 import {
   AsciiTorus, AsciiDonut, AsciiSphere, AsciiCube, AsciiHelix,
   AsciiSpiral, AsciiRose, AsciiWave, AsciiVortex, AsciiPulse, AsciiMatrix, AsciiGrid,
@@ -301,8 +300,6 @@ const CHARSETS_LIST: AsciiCharset[] = ['blocks', 'braille', 'classic', 'line', '
 const SIZES_LIST: AsciiSize[]       = ['sm', 'md', 'lg']
 
 export function AsciiShapesDoc() {
-  const [previewMulticolor, setPreviewMulticolor] = useState(false)
-
   return (
     <>
       <ComponentDoc

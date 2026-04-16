@@ -98,7 +98,7 @@ export function Header() {
               variant="secondary"
               className="text-[9px] px-1 py-0 h-4 hidden sm:inline-flex"
             >
-              v3.0
+              v3.1
             </Badge>
           </Link>
 
@@ -143,6 +143,7 @@ export function Header() {
               className="h-8 w-8 flex items-center justify-center border-3 border-foreground bg-background hover:bg-foreground hover:text-background transition-colors duration-150 shrink-0"
               onClick={() => setTheme(resolvedTheme === 'light' ? 'dark' : 'light')}
               aria-label={resolvedTheme === 'light' ? 'Switch to dark mode' : 'Switch to light mode'}
+              title={resolvedTheme === 'light' ? 'Switch to dark mode' : 'Switch to light mode'}
             >
               {resolvedTheme === 'light'
                 ? <Moon className="h-3.5 w-3.5" />
