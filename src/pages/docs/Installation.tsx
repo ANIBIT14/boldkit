@@ -55,11 +55,17 @@ const allComponents = [
   { name: 'collapsible', description: 'Expandable sections' },
   { name: 'command', description: 'Command palette' },
   { name: 'dialog', description: 'Modal dialogs' },
+  { name: 'carousel', description: 'Image and content slider' },
+  { name: 'data-table', description: 'Advanced data tables with sorting and filtering' },
+  { name: 'date-range-picker', description: 'Date range selection' },
   { name: 'drawer', description: 'Slide-out panels' },
   { name: 'dropdown-menu', description: 'Context menus' },
+  { name: 'dropzone', description: 'File drag-and-drop upload' },
+  { name: 'empty-state', description: 'Empty content placeholders' },
   { name: 'hover-card', description: 'Hover-triggered cards' },
   { name: 'input', description: 'Text input fields' },
   { name: 'input-otp', description: 'One-time password input' },
+  { name: 'kbd', description: 'Keyboard shortcut keys' },
   { name: 'label', description: 'Form labels' },
   { name: 'layered-card', description: 'Stacked paper effect' },
   { name: 'marquee', description: 'Scrolling text ticker' },
@@ -67,22 +73,32 @@ const allComponents = [
   { name: 'popover', description: 'Floating content' },
   { name: 'progress', description: 'Progress indicators' },
   { name: 'radio-group', description: 'Single-select options' },
+  { name: 'rating', description: 'Star rating input' },
   { name: 'scroll-area', description: 'Custom scrollbars' },
   { name: 'select', description: 'Dropdown selection' },
   { name: 'separator', description: 'Visual dividers' },
-  { name: 'shapes', description: '42 SVG shapes' },
+  { name: 'shapes', description: `${64} SVG shapes` },
   { name: 'sheet', description: 'Side panels' },
+  { name: 'sidebar', description: 'Navigation sidebar' },
   { name: 'skeleton', description: 'Loading placeholders' },
   { name: 'slider', description: 'Range selection' },
   { name: 'sonner', description: 'Toast notifications' },
+  { name: 'spinner', description: 'Loading spinners' },
+  { name: 'stat-card', description: 'Metric stat cards' },
+  { name: 'stepper', description: 'Multi-step wizard' },
   { name: 'sticker', description: 'Decorative labels' },
   { name: 'switch', description: 'Toggle switches' },
   { name: 'table', description: 'Data tables' },
   { name: 'tabs', description: 'Tabbed interfaces' },
+  { name: 'tag-input', description: 'Multi-value tag input' },
   { name: 'textarea', description: 'Multi-line text input' },
+  { name: 'time-picker', description: 'Time selection input' },
+  { name: 'timeline', description: 'Activity feeds and history' },
   { name: 'toggle', description: 'Toggle buttons' },
   { name: 'toggle-group', description: 'Toggle button groups' },
   { name: 'tooltip', description: 'Hover information' },
+  { name: 'tour', description: 'Step-by-step product tours' },
+  { name: 'tree-view', description: 'Nested tree navigation' },
 ]
 
 function ComponentRow({ name, description, framework }: { name: string; description: string; framework: 'react' | 'vue' }) {
@@ -436,7 +452,7 @@ export function cn(...inputs: ClassValue[]) {
               <div className="flex items-center justify-between">
                 <span className="font-bold uppercase text-sm flex items-center gap-2">
                   {framework === 'vue' ? <VueIcon /> : <ReactIcon />}
-                  46 Components Available
+                  {allComponents.length} Components Available
                 </span>
                 <Badge variant={framework === 'vue' ? 'success' : 'secondary'}>
                   {framework === 'vue' ? 'shadcn-vue CLI' : 'shadcn CLI'}

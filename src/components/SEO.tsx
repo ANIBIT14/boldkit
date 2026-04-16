@@ -92,15 +92,13 @@ export function SEO({
     updateMeta('og:url', pageUrl, true)
 
     let link = document.querySelector('link[rel="canonical"]') as HTMLLinkElement
-    if (canonical) {
-      if (link) {
-        link.href = canonical
-      } else {
-        link = document.createElement('link')
-        link.rel = 'canonical'
-        link.href = canonical
-        document.head.appendChild(link)
-      }
+    if (link) {
+      link.href = pageUrl
+    } else {
+      link = document.createElement('link')
+      link.rel = 'canonical'
+      link.href = pageUrl
+      document.head.appendChild(link)
     }
 
     updateMeta('twitter:card', 'summary_large_image')

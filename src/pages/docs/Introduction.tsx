@@ -30,7 +30,7 @@ export function Introduction() {
 
   return (
     <div className="space-y-8">
-      <SEO {...pageSEO.docs} />
+      <SEO {...pageSEO.docs} title="Introduction" />
       <div>
         <Badge variant="accent" className="mb-4">Documentation</Badge>
         <h1 className="text-3xl font-black uppercase tracking-tight md:text-4xl">
@@ -67,7 +67,7 @@ export function Introduction() {
           </li>
           <li className="flex items-start gap-2">
             <span className="text-primary font-bold">◼</span>
-            <span><strong>6 Page Templates</strong> - Landing, dashboard, portfolio, pricing, blog, product</span>
+            <span><strong>{COUNTS.templates} Page Templates</strong> - Landing, dashboard, portfolio, pricing, blog, product, docs</span>
           </li>
           <li className="flex items-start gap-2">
             <span className="text-primary font-bold">◼</span>
@@ -83,7 +83,7 @@ export function Introduction() {
           </li>
           <li className="flex items-start gap-2">
             <span className="text-primary font-bold">◼</span>
-            <span><strong>10 Chart Types</strong> - Bar, line, area, pie, donut, radar, gauge, sparkline</span>
+            <span><strong>{COUNTS.charts} Chart Types</strong> - Bar, line, area, pie, donut, radar, radial bar, gauge, sparkline, and more</span>
           </li>
           <li className="flex items-start gap-2">
             <span className="text-primary font-bold">◼</span>

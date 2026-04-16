@@ -30,7 +30,16 @@ export function ThemeProvider({
     return defaultTheme
   })
 
-  const [resolvedTheme, setResolvedTheme] = React.useState<'light' | 'dark'>('light')
+  const [resolvedTheme, setResolvedTheme] = React.useState<'light' | 'dark'>(() => {
+    if (typeof window === 'undefined') return 'light'
+    const stored = localStorage.getItem(storageKey) as Theme
+    const resolved = stored || defaultTheme
+    if (resolved === 'dark') return 'dark'
+    if (resolved === 'system') {
+      return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
+    }
+    return 'light'
+  })
 
   React.useEffect(() => {
     const root = window.document.documentElement

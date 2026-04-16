@@ -197,9 +197,7 @@ function Sidebar({ className, onLinkClick }: { className?: string; onLinkClick?:
                 >
                   <span>{block.name}</span>
                   {block.isNew && (
-                    <span className="ml-auto px-1.5 py-0.5 text-[9px] font-bold uppercase tracking-wide bg-primary text-primary-foreground border border-foreground">
-                      New
-                    </span>
+                    <Badge className="ml-1 shrink-0 h-4 px-1.5 text-[9px]">New</Badge>
                   )}
                 </Button>
               </Link>
@@ -222,9 +220,7 @@ function Sidebar({ className, onLinkClick }: { className?: string; onLinkClick?:
                 >
                   <span>{block.name}</span>
                   {block.isNew && (
-                    <span className="ml-auto px-1.5 py-0.5 text-[9px] font-bold uppercase tracking-wide bg-primary text-primary-foreground border border-foreground">
-                      New
-                    </span>
+                    <Badge className="ml-1 shrink-0 h-4 px-1.5 text-[9px]">New</Badge>
                   )}
                 </Button>
               </Link>
@@ -260,7 +256,7 @@ export function DocsLayout() {
                 Navigation
               </Button>
             </SheetTrigger>
-            <SheetContent side="left" className="w-[280px] p-0 pt-14">
+            <SheetContent side="left" className="w-[280px] p-0 pt-[63px]">
               <ScrollArea className="h-full">
                 <Sidebar className="px-2" onLinkClick={handleLinkClick} />
               </ScrollArea>
@@ -273,7 +269,7 @@ export function DocsLayout() {
       </div>
 
       <div className="container flex-1 items-start md:grid md:grid-cols-[220px_minmax(0,1fr)] md:gap-6 lg:grid-cols-[240px_minmax(0,1fr)] lg:gap-10 xl:grid-cols-[240px_minmax(0,1fr)_200px] px-3 md:px-4">
-        <aside className="fixed top-14 z-30 hidden h-[calc(100vh-3.5rem)] w-full shrink-0 md:sticky md:block border-r-3 border-foreground">
+        <aside className="fixed top-[63px] z-30 hidden h-[calc(100vh-63px)] w-full shrink-0 md:sticky md:block border-r-3 border-foreground">
           <ScrollArea className="h-full py-6 pr-4">
             <Sidebar />
           </ScrollArea>

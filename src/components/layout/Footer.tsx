@@ -93,7 +93,7 @@ export function Footer() {
                   loading="lazy"
                 />
                 <span className="text-xl leading-none" style={DISPLAY}>BoldKit</span>
-                <Badge variant="secondary" className="text-[9px] px-1.5 py-0">Beta</Badge>
+                <Badge variant="secondary" className="text-[9px] px-1 py-0 h-4">v3.1</Badge>
               </Link>
               <p className="text-sm text-muted-foreground leading-relaxed max-w-[220px]">
                 Neubrutalism UI components for React and Vue 3. Open source, MIT licensed.

@@ -105,7 +105,7 @@ export function Header() {
           {/* Desktop Navigation */}
           <nav className="hidden lg:flex items-center" aria-label="Main navigation">
             {navItems.map((item) => {
-              const isActive = location.pathname.startsWith(item.href)
+              const isActive = item.href === '/' ? location.pathname === '/' : location.pathname.startsWith(item.href)
               return (
                 <Link
                   key={item.href}
@@ -191,7 +191,7 @@ export function Header() {
               <nav className="flex flex-col gap-1">
                 {navItems.map((item) => {
                   const Icon = item.icon
-                  const isActive = location.pathname.startsWith(item.href)
+                  const isActive = item.href === '/' ? location.pathname === '/' : location.pathname.startsWith(item.href)
                   return (
                     <Link
                       key={item.href}
