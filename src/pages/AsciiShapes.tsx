@@ -52,9 +52,13 @@ export function AsciiShapes() {
       <SEO {...pageSEO.asciiShapes} />
       <Layout>
 
-        {/* ── HERO — dark, 3D torus centrepiece ─────────────────────── */}
-        <section className="relative w-full border-b-3 border-foreground overflow-hidden bg-foreground">
-          <div className="absolute inset-0 [background-image:repeating-linear-gradient(0deg,transparent,transparent_39px,hsl(var(--background)/0.04)_39px,hsl(var(--background)/0.04)_40px),repeating-linear-gradient(90deg,transparent,transparent_39px,hsl(var(--background)/0.04)_39px,hsl(var(--background)/0.04)_40px)]" />
+        {/* ── HERO — always-dark, 3D torus centrepiece ──────────────── */}
+        <section
+          className="relative w-full border-b-3 border-foreground overflow-hidden"
+          style={{ background: '#0d0d0d' }}
+        >
+          {/* Subtle grid overlay */}
+          <div className="absolute inset-0 [background-image:repeating-linear-gradient(0deg,transparent,transparent_39px,rgba(255,255,255,0.03)_39px,rgba(255,255,255,0.03)_40px),repeating-linear-gradient(90deg,transparent,transparent_39px,rgba(255,255,255,0.03)_39px,rgba(255,255,255,0.03)_40px)]" />
           <div className="relative z-10 flex flex-col items-center gap-6 py-16 md:py-20 px-4">
             {/* Badges */}
             <div className="flex flex-wrap justify-center gap-2">
@@ -65,19 +69,19 @@ export function AsciiShapes() {
 
             {/* Title */}
             <h1
-              className="text-center font-black uppercase leading-none text-background"
+              className="text-center font-black uppercase leading-none text-white"
               style={{ ...DISPLAY, fontSize: 'clamp(48px, 8vw, 100px)' }}
             >
               ASCII<br /><span className="text-primary">Shapes</span>
             </h1>
 
-            {/* 3D Torus — the centrepiece */}
+            {/* 3D Torus — hero size centrepiece */}
             <AsciiTorus
-              size="lg"
+              size="hero"
               charset="blocks"
               multicolor
               speed="normal"
-              className="border-white/20 !bg-transparent shadow-none"
+              className="border-white/20 !bg-transparent shadow-none max-w-full overflow-x-auto"
             />
 
             {/* Subtitle */}
