@@ -8,6 +8,7 @@
 
 A neubrutalism component library for React and Vue 3, built on shadcn/ui.
 
+[![Version](https://img.shields.io/badge/version-3.1.0-black)](https://github.com/ANIBIT14/boldkit/releases/tag/v3.1.0)
 [![MIT License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 [![React](https://img.shields.io/badge/React-19-61DAFB?logo=react)](https://react.dev)
 [![Vue](https://img.shields.io/badge/Vue-3-4FC08D?logo=vuedotjs)](https://vuejs.org)

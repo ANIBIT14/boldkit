@@ -446,17 +446,17 @@ export function Home() {
 
             <div className="flex gap-3 overflow-x-auto pb-2 -mx-4 px-4 scrollbar-none snap-x snap-mandatory">
               {[
-                { label: 'ASCII Shapes',     href: '/ascii-shapes' },
-                { label: 'Carousel',         href: '/components/carousel' },
-                { label: 'Data Table',       href: '/components/data-table' },
-                { label: 'Sidebar',          href: '/components/sidebar' },
-                { label: 'Timeline',         href: '/components/timeline' },
-                { label: 'Tree View',        href: '/components/tree-view' },
-                { label: 'Tour',             href: '/components/tour' },
-                { label: 'Tag Input',        href: '/components/tag-input' },
-                { label: 'Rating',           href: '/components/rating' },
-                { label: 'MC Loader',        href: '/components/math-curve-loader' },
-                { label: 'Date Range Picker', href: '/components/date-range-picker' },
+                { label: 'ASCII Shapes',      href: '/ascii-shapes' },
+                { label: 'ASCII Donut',       href: '/components/ascii-shapes' },
+                { label: 'ASCII Sphere',      href: '/components/ascii-shapes' },
+                { label: 'ASCII Cube',        href: '/components/ascii-shapes' },
+                { label: 'ASCII Helix',       href: '/components/ascii-shapes' },
+                { label: '15 Math Curves',    href: '/components/math-curve-loader' },
+                { label: '64 SVG Shapes',     href: '/shapes' },
+                { label: 'Carousel',          href: '/components/carousel' },
+                { label: 'Data Table',        href: '/components/data-table' },
+                { label: 'Sidebar',           href: '/components/sidebar' },
+                { label: 'Timeline',          href: '/components/timeline' },
               ].map((item, i) => {
                 return (
                   <Link
@@ -796,7 +796,7 @@ export function Home() {
               <div>
                 <div className="flex items-center gap-2 mb-5">
                   <div className="h-[3px] w-8 bg-primary" />
-                  <span className="text-[11px] font-black uppercase tracking-[0.2em] text-primary" style={MONO}>v3.0 Tool</span>
+                  <span className="text-[11px] font-black uppercase tracking-[0.2em] text-primary" style={MONO}>v3.1 Tool</span>
                 </div>
                 <h2
                   className="leading-none text-background mb-5"
