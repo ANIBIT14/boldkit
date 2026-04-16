@@ -26,13 +26,26 @@ A neubrutalism component library for React and Vue 3, built on shadcn/ui.
 
 ---
 
+## What's New in v3.1.0
+
+### ✨ ASCII Shapes — 12 animated ASCII art components
+A complete ASCII animation engine — no canvas, no WebGL. Five 3D shapes rendered with perspective projection, z-buffering, and Lambertian shading (`AsciiTorus`, `AsciiDonut`, `AsciiSphere`, `AsciiCube`, `AsciiHelix`) plus seven generative 2D animations (`AsciiSpiral`, `AsciiRose`, `AsciiWave`, `AsciiVortex`, `AsciiPulse`, `AsciiMatrix`, `AsciiGrid`). Shared prop API with `size`, `charset`, `color`, `speed`, `multicolor`, and `animated`. Full React + Vue 3 + Nuxt support.
+
+### 📐 Math Curves — 7 new curves (15 total)
+`MathCurveLoader`, `MathCurveProgress`, and `MathCurveBackground` now support 15 curves: astroid, deltoid, nephroid, epicycloid, superellipse, triskelion, and involute added to the original 8.
+
+### 🔷 SVG Shapes — 10 new shapes (64 total)
+Five geometric additions (Heptagon, Decagon, Rhombus, Ellipse, Trefoil) and a new Mathematical category (FibonacciSpiral, PenroseTriangle, KochSnowflake, MobiusStrip, Torus).
+
+---
+
 ## Preview
 
 <div align="center">
 
 ![BoldKit Components](assets/preview.png)
 
-*55+ beautifully crafted neubrutalism components, 10 chart types, 64 SVG shapes, and 12 animated ASCII shapes for React and Vue 3*
+*55+ beautifully crafted neubrutalism components, 10 chart types, 64 SVG shapes, 12 animated ASCII shapes, and 15 math curve animations for React and Vue 3*
 
 </div>
 
@@ -407,7 +420,7 @@ The interactive [Shape Builder](https://boldkit.dev/shapes/builder) lets you cus
 | Shape | Description |
 |-------|-------------|
 | `AsciiTorus` | 3D rotating torus (donut) with z-buffering and Lambertian shading |
-| `AsciiDonut` | Classic donut.c doughnut — X-axis tilt + Z-axis spin, fatter tube |
+| `AsciiDonut` | Classic donut.c doughnut — faithful a1k0n algorithm, hole always visible |
 | `AsciiSphere` | Rotating globe with lat/lon grid texture and Lambertian shading |
 | `AsciiCube` | Solid shaded cube rotating on two axes with back-face culling |
 | `AsciiHelix` | DNA double helix with two strands and connecting rungs |
