@@ -904,43 +904,64 @@ function makeAsciiComponent(drawFn: DrawFn, defaultCharset: AsciiCharset = 'clas
       const { cols, rows } = SIZE_MAP[size]
       const chars = CHARSETS[charset]
       const speedMul = SPEED_MAP[speed]
-      const matrixState = React.useRef<ColState[]>(makeMatrixState(cols))
+      const matrixStateRef = React.useRef<ColState[]>(makeMatrixState(cols))
+      const preRef = React.useRef<HTMLPreElement | null>(null)
+      const spanRefs = React.useRef<(HTMLSpanElement | null)[]>([])
 
-      const [lines, setLines] = React.useState<string[]>(() => {
+      // Compute first frame for initial paint only — never triggers re-renders
+      const initialLines = React.useMemo(() => {
+        matrixStateRef.current = makeMatrixState(cols)
         const g = makeGrid(cols, rows)
-        drawFn(g, cols, rows, 0, chars, matrixState.current)
+        drawFn(g, cols, rows, 0, chars, matrixStateRef.current)
         return gridToLines(g)
-      })
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+      }, [cols, rows, chars])
 
       React.useEffect(() => {
-        matrixState.current = makeMatrixState(cols)
+        const pre = preRef.current
+        if (!pre) return
+
+        function writeLines(lines: string[]) {
+          if (multicolor) {
+            spanRefs.current.forEach((span, i) => {
+              if (span) span.textContent = lines[i] ?? ''
+            })
+          } else {
+            // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+            pre!.textContent = lines.join('\n')
+          }
+        }
 
         if (!animated) {
-          const g = makeGrid(cols, rows)
-          drawFn(g, cols, rows, 0, chars, matrixState.current)
-          setLines(gridToLines(g))
+          writeLines(initialLines)
           return
         }
 
         const startTime = performance.now()
-        let rafId = 0
+        let rafId: number
 
         function frame(now: number) {
           const t = (now - startTime) * speedMul
           const g = makeGrid(cols, rows)
-          drawFn(g, cols, rows, t, chars, matrixState.current)
-          setLines(gridToLines(g))
+          drawFn(g, cols, rows, t, chars, matrixStateRef.current)
+          writeLines(gridToLines(g))
           rafId = requestAnimationFrame(frame)
         }
 
         rafId = requestAnimationFrame(frame)
         return () => cancelAnimationFrame(rafId)
-      // eslint-disable-next-line react-hooks/exhaustive-deps -- drawFn is stable (module-level, never changes per component)
-      }, [size, charset, speed, animated])
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+      }, [size, charset, speed, animated, multicolor])
+
+      function combineRef(el: HTMLPreElement | null) {
+        preRef.current = el
+        if (typeof ref === 'function') ref(el)
+        else if (ref) (ref as React.MutableRefObject<HTMLPreElement | null>).current = el
+      }
 
       return (
         <pre
-          ref={ref}
+          ref={combineRef}
           className={cn(
             'inline-block border-3 border-foreground shadow-[4px_4px_0px_hsl(var(--shadow-color))] bg-background overflow-hidden',
             'font-mono text-xs leading-none tracking-tight select-none p-1',
@@ -950,13 +971,16 @@ function makeAsciiComponent(drawFn: DrawFn, defaultCharset: AsciiCharset = 'clas
           {...props}
         >
           {multicolor
-            ? lines.map((line, i) => (
+            ? initialLines.map((line, i) => (
                 <React.Fragment key={i}>
-                  <span style={{ color: MULTICOLOR_PALETTE[i % MULTICOLOR_PALETTE.length] }}>{line}</span>
-                  {i < lines.length - 1 && '\n'}
+                  <span
+                    ref={el => { spanRefs.current[i] = el }}
+                    style={{ color: MULTICOLOR_PALETTE[i % MULTICOLOR_PALETTE.length] }}
+                  >{line}</span>
+                  {i < initialLines.length - 1 && '\n'}
                 </React.Fragment>
               ))
-            : lines.join('\n')}
+            : initialLines.join('\n')}
         </pre>
       )
     }
