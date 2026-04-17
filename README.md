@@ -18,7 +18,7 @@ A neubrutalism component library for React and Vue 3, built on shadcn/ui.
 [![Components](https://img.shields.io/badge/Components-55+-FF6B6B)](https://boldkit.dev/components)
 [![Charts](https://img.shields.io/badge/Charts-10-9B59B6)](https://boldkit.dev/charts)
 [![Shapes](https://img.shields.io/badge/SVG_Shapes-64-FFD93D)](https://boldkit.dev/shapes)
-[![ASCII_Shapes](https://img.shields.io/badge/ASCII_Shapes-12-00D4AA)](https://boldkit.dev/ascii-shapes)
+[![ASCII_Shapes](https://img.shields.io/badge/ASCII_Shapes-17-00D4AA)](https://boldkit.dev/ascii-shapes)
 
 [Website](https://boldkit.dev) · [Documentation](https://boldkit.dev/docs) · [Components](https://boldkit.dev/components) · [Charts](https://boldkit.dev/charts) · [Shapes](https://boldkit.dev/shapes)
 
@@ -28,8 +28,8 @@ A neubrutalism component library for React and Vue 3, built on shadcn/ui.
 
 ## What's New in v3.1.0
 
-### ✨ ASCII Shapes — 12 animated ASCII art components
-A complete ASCII animation engine — no canvas, no WebGL. Five 3D shapes rendered with perspective projection, z-buffering, and Lambertian shading (`AsciiTorus`, `AsciiDonut`, `AsciiSphere`, `AsciiCube`, `AsciiHelix`) plus seven generative 2D animations (`AsciiSpiral`, `AsciiRose`, `AsciiWave`, `AsciiVortex`, `AsciiPulse`, `AsciiMatrix`, `AsciiGrid`). Shared prop API with `size`, `charset`, `color`, `speed`, `multicolor`, and `animated`. Full React + Vue 3 + Nuxt support.
+### ✨ ASCII Shapes — 17 animated ASCII art components
+A complete ASCII animation engine — no canvas, no WebGL. Ten 3D shapes rendered with perspective projection, z-buffering, and Lambertian shading (`AsciiTorus`, `AsciiDonut`, `AsciiSphere`, `AsciiCube`, `AsciiHelix`, `AsciiTrefoilKnot`, `AsciiGeodesicDome`, `AsciiSaturn`, `AsciiHyperboloid`, `AsciiDNA`) plus seven generative 2D animations (`AsciiSpiral`, `AsciiRose`, `AsciiWave`, `AsciiVortex`, `AsciiPulse`, `AsciiMatrix`, `AsciiGrid`). Shared prop API with `size`, `charset`, `color`, `speed`, `multicolor`, and `animated`. Full React + Vue 3 + Nuxt support.
 
 ### 📐 Math Curves — 7 new curves (15 total)
 `MathCurveLoader`, `MathCurveProgress`, and `MathCurveBackground` now support 15 curves: astroid, deltoid, nephroid, epicycloid, superellipse, triskelion, and involute added to the original 8.
@@ -45,7 +45,7 @@ Five geometric additions (Heptagon, Decagon, Rhombus, Ellipse, Trefoil) and a ne
 
 ![BoldKit Components](assets/preview.png)
 
-*55+ beautifully crafted neubrutalism components, 10 chart types, 64 SVG shapes, 12 animated ASCII shapes, and 15 math curve animations for React and Vue 3*
+*55+ beautifully crafted neubrutalism components, 10 chart types, 64 SVG shapes, 17 animated ASCII shapes, and 15 math curve animations for React and Vue 3*
 
 </div>
 
@@ -72,7 +72,7 @@ Neubrutalism (or neo-brutalism) is a bold design aesthetic characterized by:
 | **55+ Components** | Buttons, Cards, Dialogs, Forms, Spinners, Steppers, and more |
 | **10 Chart Types** | Bar, Line, Area, Pie, Donut, Radar, Radial, Gauge, Sparkline |
 | **64 SVG Shapes** | Decorative shapes (geometric, organic, mathematical, mechanical) with interactive Shape Builder |
-| **12 ASCII Shapes** | Animated 3D ASCII art — Torus, Donut, Sphere, Cube, Helix, Spiral, and more |
+| **17 ASCII Shapes** | Animated 3D ASCII art — Torus, Donut, Sphere, Cube, Helix, Trefoil Knot, Saturn, DNA, and more |
 | **Math Curve Components** | Animated loaders, progress bars, and backgrounds powered by 15 mathematical curves |
 | **React & Vue 3** | Full support for both frameworks |
 | **Nuxt Ready** | SSR-compatible with shadcn-nuxt module |
@@ -337,7 +337,7 @@ import { Badge } from '@/components/ui/badge'
 - Sticker (rotated labels)
 - Marquee (scrolling ticker)
 - **64 SVG Shapes** (Geometric, Organic, Celestial, Mathematical, Mechanical, and more) ✨ EXPANDED
-- **12 ASCII Shapes** (Torus, Donut, Sphere, Cube, Helix, Spiral, Rose, Wave, Vortex…) ✨ NEW
+- **17 ASCII Shapes** (Torus, Donut, Sphere, Cube, Helix, Trefoil Knot, Geodesic Dome, Saturn, Hyperboloid, DNA, Spiral, Rose, Wave, Vortex…) ✨ NEW
 - **Shape Builder** (interactive tool to customize shapes, export SVG/JSX) ✨ NEW
 
 </details>
@@ -421,7 +421,7 @@ The interactive [Shape Builder](https://boldkit.dev/shapes/builder) lets you cus
 
 ## ASCII Shapes
 
-12 animated 3D ASCII art components rendered with perspective projection and z-buffering — no canvas, no WebGL, just text characters:
+17 animated ASCII art components rendered with perspective projection, z-buffering, and Lambertian shading — no canvas, no WebGL, just text characters:
 
 <div align="center">
 
@@ -431,11 +431,16 @@ The interactive [Shape Builder](https://boldkit.dev/shapes/builder) lets you cus
 
 | Shape | Description |
 |-------|-------------|
-| `AsciiTorus` | 3D rotating torus (donut) with z-buffering and Lambertian shading |
+| `AsciiTorus` | 3D rotating torus with z-buffering and Lambertian shading |
 | `AsciiDonut` | Classic donut.c doughnut — faithful a1k0n algorithm, hole always visible |
 | `AsciiSphere` | Rotating globe with lat/lon grid texture and Lambertian shading |
 | `AsciiCube` | Solid shaded cube rotating on two axes with back-face culling |
-| `AsciiHelix` | DNA double helix with two strands and connecting rungs |
+| `AsciiHelix` | Double helix with two strands and connecting rungs |
+| `AsciiTrefoilKnot` | Trefoil knot tube with Frenet frames, z-buffer, and Lambertian shading |
+| `AsciiGeodesicDome` | Frequency-3 icosahedron wireframe projected onto a sphere |
+| `AsciiSaturn` | Planet with tilted solid ring system and Cassini division gap |
+| `AsciiHyperboloid` | Two families of straight-line rulings on a ruled surface tower |
+| `AsciiDNA` | B-form DNA double helix: 150° strand offset, 4 turns, tube backbone + rungs |
 | `AsciiSpiral` | Archimedean spiral arms rotating continuously |
 | `AsciiRose` | Rose curve r=cos(5θ) blooming and phase-shifting |
 | `AsciiWave` | Multi-frequency sine interference pattern |
