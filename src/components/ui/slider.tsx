@@ -60,6 +60,7 @@ const Slider = React.forwardRef<HTMLDivElement, SliderProps>(
     React.useEffect(() => {
       if (wasControlled.current !== isControlled) {
         console.warn('[Slider] Component is changing from ' + (wasControlled.current ? 'controlled' : 'uncontrolled') + ' to ' + (isControlled ? 'controlled' : 'uncontrolled') + '. This is not supported.')
+        wasControlled.current = isControlled
       }
     }, [isControlled])
     const [uncontrolledValue, setUncontrolledValue] = React.useState(defaultValue)

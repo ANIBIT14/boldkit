@@ -9,12 +9,12 @@ const props = defineProps<{
 }>()
 
 const emit = defineEmits<{
-  'update:modelValue': [value: string]
+  'update:modelValue': [value: string | number]
 }>()
 
 const modelValue = computed({
   get: () => props.modelValue,
-  set: (value) => emit('update:modelValue', String(value)),
+  set: (value) => emit('update:modelValue', value),
 })
 </script>
 

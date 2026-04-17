@@ -262,6 +262,15 @@ interface PresetConfig {
   iconColor?: VariantProps<typeof iconContainerVariants>['iconColor']
 }
 
+const presetIconSizeMap: Record<string, 'xs' | 'sm' | 'md' | 'lg' | 'xl'> = {
+  compact: 'sm',
+  sm: 'sm',
+  md: 'md',
+  lg: 'lg',
+  xl: 'xl',
+  xs: 'xs',
+}
+
 const presetConfig: Record<EmptyStatePresetType, PresetConfig> = {
   'no-results': {
     icon: <Search />,
@@ -379,7 +388,6 @@ const EmptyStatePreset = React.forwardRef<HTMLDivElement, EmptyStatePresetProps>
   ) => {
     const config = presetConfig[preset]
     const finalIconColor = iconColor ?? config.iconColor ?? 'default'
-    const iconSizeMap: Record<string, 'xs' | 'sm' | 'md' | 'lg' | 'xl'> = { compact: 'sm', sm: 'sm', lg: 'lg', md: 'md', xl: 'xl', xs: 'xs' }
 
     return (
       <EmptyState
@@ -394,7 +402,7 @@ const EmptyStatePreset = React.forwardRef<HTMLDivElement, EmptyStatePresetProps>
         {illustration ? (
           <EmptyStateIllustration>{illustration}</EmptyStateIllustration>
         ) : (
-          <EmptyStateIcon iconColor={finalIconColor} size={iconSize ?? iconSizeMap[size ?? 'md'] ?? 'md'}>
+          <EmptyStateIcon iconColor={finalIconColor} size={iconSize ?? presetIconSizeMap[size ?? 'md'] ?? 'md'}>
             {customIcon ?? config.icon}
           </EmptyStateIcon>
         )}

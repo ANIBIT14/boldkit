@@ -47,7 +47,7 @@ const setTotalSteps = (count: number) => {
 }
 
 provide(STEPPER_INJECTION_KEY, {
-  activeStep: readonly(computed(() => currentActiveStep.value)),
+  activeStep: readonly(currentActiveStep),
   setActiveStep,
   totalSteps: readonly(totalSteps),
   orientation: props.orientation,
