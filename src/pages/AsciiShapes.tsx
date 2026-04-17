@@ -3,6 +3,7 @@ import {
   AsciiSpiral, AsciiRose, AsciiWave,
   AsciiVortex, AsciiPulse, AsciiMatrix, AsciiGrid,
   AsciiTorus, AsciiSphere, AsciiCube, AsciiHelix, AsciiDonut,
+  AsciiTrefoilKnot, AsciiGeodesicDome, AsciiSaturn, AsciiHyperboloid, AsciiDNA,
   type AsciiCharset, type AsciiSize,
 } from '@/components/ui/ascii-shapes'
 import { Layout } from '@/components/layout'
@@ -13,18 +14,23 @@ const DISPLAY: React.CSSProperties = { fontFamily: "'Bebas Neue', sans-serif" }
 const MONO: React.CSSProperties    = { fontFamily: "'DM Mono', monospace" }
 
 const SHAPES = [
-  { name: 'AsciiSpiral',  Component: AsciiSpiral,  desc: 'Archimedean spiral arms rotating continuously' },
-  { name: 'AsciiRose',    Component: AsciiRose,    desc: 'Rose curve r=cos(5θ) blooming and phase-shifting' },
-  { name: 'AsciiWave',    Component: AsciiWave,    desc: 'Multi-frequency sine interference scrolling left→right' },
-  { name: 'AsciiVortex',  Component: AsciiVortex,  desc: 'Rotating density field collapsing toward center' },
-  { name: 'AsciiPulse',   Component: AsciiPulse,   desc: 'Concentric rings expanding outward and fading' },
-  { name: 'AsciiMatrix',  Component: AsciiMatrix,  desc: 'Characters raining downward per column' },
-  { name: 'AsciiGrid',    Component: AsciiGrid,    desc: 'Grid intersections pulsing with traveling waves' },
-  { name: 'AsciiTorus',   Component: AsciiTorus,   desc: '3D rotating torus via perspective projection + z-buffering' },
-  { name: 'AsciiSphere',  Component: AsciiSphere,  desc: 'Rotating globe with lat/lon grid texture and Lambertian shading' },
-  { name: 'AsciiCube',    Component: AsciiCube,    desc: 'Solid shaded cube rotating on two axes with face-based z-buffering' },
-  { name: 'AsciiHelix',   Component: AsciiHelix,   desc: 'DNA double helix with two parametric strands and connecting rungs' },
-  { name: 'AsciiDonut',   Component: AsciiDonut,   desc: 'Classic donut.c doughnut — faithful a1k0n algorithm, hole always visible' },
+  { name: 'AsciiSpiral',       Component: AsciiSpiral,       desc: 'Archimedean spiral arms rotating continuously' },
+  { name: 'AsciiRose',         Component: AsciiRose,         desc: 'Rose curve r=cos(5θ) blooming and phase-shifting' },
+  { name: 'AsciiWave',         Component: AsciiWave,         desc: 'Multi-frequency sine interference scrolling left→right' },
+  { name: 'AsciiVortex',       Component: AsciiVortex,       desc: 'Rotating density field collapsing toward center' },
+  { name: 'AsciiPulse',        Component: AsciiPulse,        desc: 'Concentric rings expanding outward and fading' },
+  { name: 'AsciiMatrix',       Component: AsciiMatrix,       desc: 'Characters raining downward per column' },
+  { name: 'AsciiGrid',         Component: AsciiGrid,         desc: 'Grid intersections pulsing with traveling waves' },
+  { name: 'AsciiTorus',        Component: AsciiTorus,        desc: '3D rotating torus via perspective projection + z-buffering' },
+  { name: 'AsciiSphere',       Component: AsciiSphere,       desc: 'Rotating globe with lat/lon grid texture and Lambertian shading' },
+  { name: 'AsciiCube',         Component: AsciiCube,         desc: 'Solid shaded cube rotating on two axes with face-based z-buffering' },
+  { name: 'AsciiHelix',        Component: AsciiHelix,        desc: 'Single-strand helix with two parametric strands and connecting rungs' },
+  { name: 'AsciiDonut',        Component: AsciiDonut,        desc: 'Classic donut.c doughnut — faithful a1k0n algorithm, hole always visible' },
+  { name: 'AsciiTrefoilKnot',  Component: AsciiTrefoilKnot,  desc: 'Trefoil knot rendered as a tube with Frenet frames, z-buffer, and Lambertian shading' },
+  { name: 'AsciiGeodesicDome', Component: AsciiGeodesicDome, desc: 'Frequency-3 icosahedron wireframe projected onto a sphere, depth-sorted' },
+  { name: 'AsciiSaturn',       Component: AsciiSaturn,       desc: 'Planet with tilted Cassini-division ring system, z-buffered depth ordering' },
+  { name: 'AsciiHyperboloid',  Component: AsciiHyperboloid,  desc: 'Two families of straight-line rulings on x²+z²−y²=1 — a ruled surface tower' },
+  { name: 'AsciiDNA',          Component: AsciiDNA,          desc: 'B-form DNA double helix: 150° strand offset, 4 turns, fat tube backbone + rungs' },
 ]
 
 const CHARSETS: AsciiCharset[] = ['blocks', 'braille', 'classic', 'line', 'dots']
@@ -81,7 +87,7 @@ export function AsciiShapes() {
           <div className="relative z-10 flex flex-col items-center gap-5 py-10 md:py-16 lg:py-20 px-4">
             {/* Badges */}
             <div className="flex flex-wrap justify-center gap-2">
-              <Badge variant="accent">12 Shapes</Badge>
+              <Badge variant="accent">17 Shapes</Badge>
               <Badge variant="secondary">5 Character Sets</Badge>
               <Badge variant="info">React &amp; Vue 3</Badge>
             </div>
@@ -107,7 +113,7 @@ export function AsciiShapes() {
 
             {/* Subtitle */}
             <p className="text-xs sm:text-sm text-white/50 text-center" style={MONO}>
-              12 animations · 5 character sets · 4 sizes · React &amp; Vue 3
+              17 animations · 5 character sets · 4 sizes · React &amp; Vue 3
             </p>
           </div>
         </section>
@@ -249,8 +255,13 @@ export function AsciiShapes() {
                 { C: AsciiTorus,   label: 'Torus',   cs: 'blocks'  as AsciiCharset },
                 { C: AsciiSphere,  label: 'Sphere',  cs: 'classic' as AsciiCharset },
                 { C: AsciiCube,    label: 'Cube',    cs: 'blocks'  as AsciiCharset },
-                { C: AsciiHelix,   label: 'Helix',   cs: 'braille' as AsciiCharset },
-                { C: AsciiDonut,   label: 'Donut',   cs: 'classic' as AsciiCharset },
+                { C: AsciiHelix,        label: 'Helix',        cs: 'braille' as AsciiCharset },
+                { C: AsciiDonut,        label: 'Donut',        cs: 'classic' as AsciiCharset },
+                { C: AsciiTrefoilKnot,  label: 'Trefoil',      cs: 'blocks'  as AsciiCharset },
+                { C: AsciiGeodesicDome, label: 'Geodesic',     cs: 'classic' as AsciiCharset },
+                { C: AsciiSaturn,       label: 'Saturn',       cs: 'blocks'  as AsciiCharset },
+                { C: AsciiHyperboloid,  label: 'Hyperboloid',  cs: 'classic' as AsciiCharset },
+                { C: AsciiDNA,          label: 'DNA',          cs: 'braille' as AsciiCharset },
               ]).map(({ C, label, cs }) => (
                 <div key={label} className="flex flex-col items-center gap-2">
                   <C size="sm" charset={cs} animated={false} multicolor />

@@ -26,7 +26,7 @@ const lines = shallowRef<string[]>(buildFrame(0))
 function drawPulse(grid: string[][], cols: number, rows: number, t: number, chars: string[]) {
   const cx = cols / 2, cy = rows / 2
   const aspect = 2.0
-  const speed = t * 0.05
+  const speed = t * 0.02
   const ringSpacing = Math.min(cx * aspect, cy) * 0.35
   const maxR = Math.sqrt((cx * aspect) ** 2 + cy ** 2)
   for (let r = 0; r < rows; r++) {

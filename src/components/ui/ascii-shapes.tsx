@@ -167,7 +167,7 @@ function drawVortex(grid: string[][], cols: number, rows: number, t: number, cha
 function drawPulse(grid: string[][], cols: number, rows: number, t: number, chars: string[]): void {
   const cx = cols / 2, cy = rows / 2
   const aspect = 2.0
-  const speed = t * 0.05
+  const speed = t * 0.02
   const ringSpacing = Math.min(cx * aspect, cy) * 0.35
   const maxR = Math.sqrt((cx * aspect) ** 2 + cy ** 2)
 
@@ -461,6 +461,425 @@ function drawHelix(grid: string[][], cols: number, rows: number, t: number, char
   }
 }
 
+function drawTrefoilKnot(grid: string[][], cols: number, rows: number, t: number, chars: string[]): void {
+  const A = t * 0.0008, B = t * 0.0005
+  const cosA = Math.cos(A), sinA = Math.sin(A)
+  const cosB = Math.cos(B), sinB = Math.sin(B)
+  const cx = cols / 2, cy = rows / 2
+  const aspect = 0.5
+  const K2 = 5.0
+  const screenScale = Math.min(cols * aspect, rows) * 0.85
+  const K1 = screenScale * K2 / (K2 + 3.5)
+  const zbuf: number[][] = Array.from({ length: rows }, () => Array(cols).fill(-Infinity))
+  const tubeR = 0.28
+  const steps = 400
+  const tubeSteps = 20
+  const lx = 0.577, ly = 0.577, lz = -0.577
+  const EPS = 0.02
+
+  function knotPt(th: number): [number, number, number] {
+    return [
+      (2 + Math.cos(3 * th)) * Math.cos(2 * th),
+      (2 + Math.cos(3 * th)) * Math.sin(2 * th),
+      Math.sin(3 * th) * 2,
+    ]
+  }
+
+  function rotYX(px: number, py: number, pz: number): [number, number, number] {
+    const rx1 = px * cosA + pz * sinA
+    const ry1 = py
+    const rz1 = -px * sinA + pz * cosA
+    return [rx1, ry1 * cosB - rz1 * sinB, ry1 * sinB + rz1 * cosB]
+  }
+
+  for (let i = 0; i < steps; i++) {
+    const th = (i / steps) * 2 * Math.PI
+    const [px, py, pz] = knotPt(th)
+    const [px2, py2, pz2] = knotPt(th + EPS)
+
+    let tx = px2 - px, ty = py2 - py, tz = pz2 - pz
+    const tlen = Math.sqrt(tx * tx + ty * ty + tz * tz)
+    tx /= tlen; ty /= tlen; tz /= tlen
+
+    let upx = 0, upy = 0, upz = 1
+    let dot = tx * upx + ty * upy + tz * upz
+    let nx = upx - dot * tx, ny = upy - dot * ty, nz = upz - dot * tz
+    let nlen = Math.sqrt(nx * nx + ny * ny + nz * nz)
+    if (nlen < 0.001) {
+      upx = 0; upy = 1; upz = 0
+      dot = tx * upx + ty * upy + tz * upz
+      nx = upx - dot * tx; ny = upy - dot * ty; nz = upz - dot * tz
+      nlen = Math.sqrt(nx * nx + ny * ny + nz * nz)
+    }
+    nx /= nlen; ny /= nlen; nz /= nlen
+    const bx = ty * nz - tz * ny, by = tz * nx - tx * nz, bz = tx * ny - ty * nx
+
+    for (let j = 0; j < tubeSteps; j++) {
+      const u = (j / tubeSteps) * 2 * Math.PI
+      const cu = Math.cos(u), su = Math.sin(u)
+      const qx = px + tubeR * (cu * nx + su * bx)
+      const qy = py + tubeR * (cu * ny + su * by)
+      const qz = pz + tubeR * (cu * nz + su * bz)
+
+      const [rx, ry, rz] = rotYX(qx, qy, qz)
+      const zDist = K2 - rz
+      if (zDist <= 0) continue
+      const ooz = 1 / zDist
+      const xp = Math.round(cx + K1 * rx * ooz)
+      const yp = Math.round(cy - K1 * ry * ooz * aspect)
+      if (xp < 0 || xp >= cols || yp < 0 || yp >= rows) continue
+
+      const snx = cu * nx + su * bx, sny = cu * ny + su * by, snz = cu * nz + su * bz
+      const [rnx, rny, rnz] = rotYX(snx, sny, snz)
+      const L = Math.max(0, rnx * lx + rny * ly + rnz * lz)
+
+      if (ooz > zbuf[yp][xp]) {
+        zbuf[yp][xp] = ooz
+        const intensity = 0.15 + L * 0.85
+        grid[yp][xp] = chars[Math.min(Math.floor(intensity * (chars.length - 1)), chars.length - 1)]
+      }
+    }
+  }
+}
+
+function drawGeodesicDome(grid: string[][], cols: number, rows: number, t: number, chars: string[]): void {
+  const A = t * 0.0004, B = t * 0.00025
+  const cosA = Math.cos(A), sinA = Math.sin(A)
+  const cosB = Math.cos(B), sinB = Math.sin(B)
+  const cx = cols / 2, cy = rows / 2
+  const aspect = 0.5
+  const K2 = 5.0
+  const screenScale = Math.min(cols * aspect, rows) * 0.85
+  const K1 = screenScale * K2 / (K2 + 1.05)
+  const zbuf: number[][] = Array.from({ length: rows }, () => Array(cols).fill(-Infinity))
+  const lx = 0.577, ly = 0.577, lz = -0.577
+
+  function norm3(v: [number, number, number]): [number, number, number] {
+    const len = Math.sqrt(v[0] * v[0] + v[1] * v[1] + v[2] * v[2])
+    return [v[0] / len, v[1] / len, v[2] / len]
+  }
+
+  function rotYX(px: number, py: number, pz: number): [number, number, number] {
+    const rx1 = px * cosA + pz * sinA
+    const ry1 = py
+    const rz1 = -px * sinA + pz * cosA
+    return [rx1, ry1 * cosB - rz1 * sinB, ry1 * sinB + rz1 * cosB]
+  }
+
+  const phi = (1 + Math.sqrt(5)) / 2
+  const rawV: [number, number, number][] = [
+    [0, 1, phi], [0, -1, phi], [0, 1, -phi], [0, -1, -phi],
+    [1, phi, 0], [-1, phi, 0], [1, -phi, 0], [-1, -phi, 0],
+    [phi, 0, 1], [-phi, 0, 1], [phi, 0, -1], [-phi, 0, -1],
+  ]
+  const faces: [number, number, number][] = [
+    [0,1,8],[0,8,4],[0,4,5],[0,5,9],[0,9,1],
+    [1,6,8],[8,10,4],[4,2,5],[5,11,9],[9,7,1],
+    [6,10,8],[10,2,4],[2,11,5],[11,7,9],[7,6,1],
+    [3,6,7],[3,10,6],[3,2,10],[3,11,2],[3,7,11],
+  ]
+
+  const freq = 3
+
+  function plotEdge(v1: [number, number, number], v2: [number, number, number]) {
+    if (v1[1] < -0.3 && v2[1] < -0.3) return
+    for (let s = 0; s <= 28; s++) {
+      const f = s / 28
+      const px = v1[0] + f * (v2[0] - v1[0])
+      const py = v1[1] + f * (v2[1] - v1[1])
+      const pz = v1[2] + f * (v2[2] - v1[2])
+      const [rx, ry, rz] = rotYX(px, py, pz)
+      const zDist = K2 - rz
+      if (zDist <= 0) continue
+      const ooz = 1 / zDist
+      const xp = Math.round(cx + K1 * rx * ooz)
+      const yp = Math.round(cy - K1 * ry * ooz * aspect)
+      if (xp < 0 || xp >= cols || yp < 0 || yp >= rows) continue
+      const [rnx, rny, rnz] = rotYX(px, py, pz)
+      const L = Math.max(0.25, rnx * lx + rny * ly + rnz * lz)
+      if (ooz > zbuf[yp][xp]) {
+        zbuf[yp][xp] = ooz
+        grid[yp][xp] = chars[Math.min(Math.floor(L * (chars.length - 1)), chars.length - 1)]
+      }
+    }
+  }
+
+  for (const [ai, bi, ci] of faces) {
+    const va = norm3(rawV[ai]), vb = norm3(rawV[bi]), vc = norm3(rawV[ci])
+    const pts: [number, number, number][][] = []
+    for (let i = 0; i <= freq; i++) {
+      pts[i] = []
+      for (let j = 0; j <= freq - i; j++) {
+        const k = freq - i - j
+        pts[i][j] = norm3([(i * va[0] + j * vb[0] + k * vc[0]) / freq,
+                            (i * va[1] + j * vb[1] + k * vc[1]) / freq,
+                            (i * va[2] + j * vb[2] + k * vc[2]) / freq])
+      }
+    }
+    for (let i = 0; i <= freq; i++) {
+      for (let j = 0; j <= freq - i; j++) {
+        if (j + 1 <= freq - i) plotEdge(pts[i][j], pts[i][j + 1])
+        if (i + 1 <= freq && j <= freq - (i + 1)) plotEdge(pts[i][j], pts[i + 1][j])
+        if (i + 1 <= freq && j >= 1) plotEdge(pts[i][j], pts[i + 1][j - 1])
+      }
+    }
+  }
+}
+
+function drawSaturn(grid: string[][], cols: number, rows: number, t: number, chars: string[]): void {
+  const A = t * 0.0007, B = t * 0.0004
+  const cosA = Math.cos(A), sinA = Math.sin(A)
+  const cosB = Math.cos(B), sinB = Math.sin(B)
+  const cx = cols / 2, cy = rows / 2
+  const aspect = 0.5
+  const K2 = 5.0
+  const screenScale = Math.min(cols * aspect, rows) * 0.85
+  const K1 = screenScale * K2 / (K2 + 2.5)
+  const zbuf: number[][] = Array.from({ length: rows }, () => Array(cols).fill(-Infinity))
+  const lx = 0.577, ly = 0.577, lz = -0.577
+  const TILT = 0.47
+  const sinTilt = Math.sin(TILT), cosTilt = Math.cos(TILT)
+
+  function rotYX(px: number, py: number, pz: number): [number, number, number] {
+    const rx1 = px * cosA + pz * sinA
+    const ry1 = py
+    const rz1 = -px * sinA + pz * cosA
+    return [rx1, ry1 * cosB - rz1 * sinB, ry1 * sinB + rz1 * cosB]
+  }
+
+  function plotPoint(px: number, py: number, pz: number, nx: number, ny: number, nz: number) {
+    const [rx, ry, rz] = rotYX(px, py, pz)
+    const zDist = K2 - rz
+    if (zDist <= 0) return
+    const ooz = 1 / zDist
+    const xp = Math.round(cx + K1 * rx * ooz)
+    const yp = Math.round(cy - K1 * ry * ooz * aspect)
+    if (xp < 0 || xp >= cols || yp < 0 || yp >= rows) return
+    const [rnx, rny, rnz] = rotYX(nx, ny, nz)
+    const L = Math.max(0, rnx * lx + rny * ly + rnz * lz)
+    if (L > 0 && ooz > zbuf[yp][xp]) {
+      zbuf[yp][xp] = ooz
+      grid[yp][xp] = chars[Math.min(Math.floor(L * (chars.length - 1)), chars.length - 1)]
+    }
+  }
+
+  // Planet sphere — tighter sampling for denser coverage
+  for (let theta = 0; theta < 2 * Math.PI; theta += 0.04) {
+    const cosT = Math.cos(theta), sinT = Math.sin(theta)
+    for (let phi = 0; phi < 2 * Math.PI; phi += 0.02) {
+      const cosP = Math.cos(phi), sinP = Math.sin(phi)
+      const px = cosT * cosP, py = cosT * sinP, pz = sinT
+      plotPoint(px, py, pz, px, py, pz)
+    }
+  }
+
+  // Rings — solid swept disk sampled at many radii (not just sparse bands)
+  const R_inner = 1.35, R_outer = 2.45
+  const ringSamples = 40
+  for (let ri = 0; ri <= ringSamples; ri++) {
+    const rFrac = ri / ringSamples
+    // Cassini division gap
+    if (rFrac > 0.42 && rFrac < 0.58) continue
+    const r = R_inner + (R_outer - R_inner) * rFrac
+    // Brightness: bright B ring (inner), dark C ring hint, Cassini gap, bright A ring (outer)
+    const ringBrightness = rFrac < 0.42
+      ? 0.35 + rFrac * 1.1   // B ring — bright, brighter toward gap
+      : 0.25 + (1 - rFrac) * 0.9  // A ring — bright at inner edge, fades outward
+
+    for (let theta = 0; theta < 2 * Math.PI; theta += 0.01) {
+      const cosT = Math.cos(theta), sinT = Math.sin(theta)
+      const px = r * cosT
+      const py = -r * sinT * sinTilt
+      const pz =  r * sinT * cosTilt
+      const [rx, ry, rz] = rotYX(px, py, pz)
+      const zDist = K2 - rz
+      if (zDist <= 0) continue
+      const ooz = 1 / zDist
+      const xp = Math.round(cx + K1 * rx * ooz)
+      const yp = Math.round(cy - K1 * ry * ooz * aspect)
+      if (xp < 0 || xp >= cols || yp < 0 || yp >= rows) continue
+      if (ooz > zbuf[yp][xp]) {
+        zbuf[yp][xp] = ooz
+        grid[yp][xp] = chars[Math.min(Math.floor(ringBrightness * (chars.length - 1)), chars.length - 1)]
+      }
+    }
+  }
+}
+
+function drawHyperboloid(grid: string[][], cols: number, rows: number, t: number, chars: string[]): void {
+  const A = t * 0.0006, B = t * 0.0003
+  const cosA = Math.cos(A), sinA = Math.sin(A)
+  const cosB = Math.cos(B), sinB = Math.sin(B)
+  const cx = cols / 2, cy = rows / 2
+  const aspect = 0.5
+  const H = 1.7
+  const K2 = 6.0
+  const maxExtent = Math.sqrt(1 + H * H) + 0.1
+  const screenScale = Math.min(cols * aspect, rows) * 0.85
+  const K1 = screenScale * K2 / (K2 + maxExtent)
+  const zbuf: number[][] = Array.from({ length: rows }, () => Array(cols).fill(-Infinity))
+  const lx = 0.577, ly = 0.577, lz = -0.577
+  const nRulings = 32
+  const nPoints = 60
+
+  function rotYX(px: number, py: number, pz: number): [number, number, number] {
+    const rx1 = px * cosA + pz * sinA
+    const ry1 = py
+    const rz1 = -px * sinA + pz * cosA
+    return [rx1, ry1 * cosB - rz1 * sinB, ry1 * sinB + rz1 * cosB]
+  }
+
+  function plotRulingPoint(px: number, py: number, pz: number) {
+    const [rx, ry, rz] = rotYX(px, py, pz)
+    const zDist = K2 - rz
+    if (zDist <= 0) return
+    const ooz = 1 / zDist
+    const xp = Math.round(cx + K1 * rx * ooz)
+    const yp = Math.round(cy - K1 * ry * ooz * aspect)
+    if (xp < 0 || xp >= cols || yp < 0 || yp >= rows) return
+    // Outward normal of hyperboloid x²+z²-y²=1 at (x,y,z) is (x,-y,z)/|(x,-y,z)|
+    const nm = Math.sqrt(px * px + py * py + pz * pz)
+    const [rnx, rny, rnz] = rotYX(px / nm, -py / nm, pz / nm)
+    const L = Math.max(0.12, rnx * lx + rny * ly + rnz * lz)
+    if (ooz > zbuf[yp][xp]) {
+      zbuf[yp][xp] = ooz
+      grid[yp][xp] = chars[Math.min(Math.floor(L * (chars.length - 1)), chars.length - 1)]
+    }
+  }
+
+  // Two families of straight-line rulings on x²+z²-y²=1
+  // Family A: P(s,v) = (cos(s)+v·sin(s), v, sin(s)-v·cos(s))
+  // Family B: P(s,v) = (cos(s)-v·sin(s), v, sin(s)+v·cos(s))
+  for (let k = 0; k < nRulings; k++) {
+    const s = (k / nRulings) * 2 * Math.PI
+    const cosS = Math.cos(s), sinS = Math.sin(s)
+    for (let family = 0; family < 2; family++) {
+      const dir = family === 0 ? 1 : -1
+      for (let j = 0; j <= nPoints; j++) {
+        const v = -H + (2 * H * j) / nPoints
+        plotRulingPoint(cosS + v * dir * sinS, v, sinS - v * dir * cosS)
+      }
+    }
+  }
+
+  // Horizontal rings at multiple levels for structural definition
+  for (let j = 0; j <= 80; j++) {
+    const theta = (j / 80) * 2 * Math.PI
+    for (const vy of [-H, -H * 0.75, -H * 0.5, -H * 0.25, 0, H * 0.25, H * 0.5, H * 0.75, H]) {
+      const r = Math.sqrt(1 + vy * vy)
+      plotRulingPoint(r * Math.cos(theta), vy, r * Math.sin(theta))
+    }
+  }
+}
+
+function drawDNA(grid: string[][], cols: number, rows: number, t: number, chars: string[]): void {
+  const A = t * 0.0005
+  const cosA = Math.cos(A), sinA = Math.sin(A)
+  const cx = cols / 2, cy = rows / 2
+  const aspect = 0.5
+  const K2 = 6.0
+  const scale = Math.min(cols * aspect, rows) * 0.52
+  const K1 = scale
+  const zbuf: number[][] = Array.from({ length: rows }, () => Array(cols).fill(-Infinity))
+  const lx = 0.707, lz = -0.707
+  const helixR = 1.0
+  const helixH = 4.2
+  const turns = 4.0
+  const tubeR = 0.22
+  const bpPerTurn = 10
+  const totalSteps = Math.round(turns * bpPerTurn * 6)
+  // B-DNA: strands are ~150° apart (minor groove ~120°, major groove ~240°)
+  const strandOffset = (150 / 180) * Math.PI
+
+  function rotY(px: number, py: number, pz: number): [number, number, number] {
+    return [px * cosA + pz * sinA, py, -px * sinA + pz * cosA]
+  }
+
+  function plotTubeSection(px: number, py: number, pz: number,
+    tx: number, ty: number, tz: number, r: number, baseBrightness: number) {
+    let upx = 0, upy = 0, upz = 1
+    let dot = tx * upx + ty * upy + tz * upz
+    let nx = upx - dot * tx, ny = upy - dot * ty, nz = upz - dot * tz
+    let nlen = Math.sqrt(nx * nx + ny * ny + nz * nz)
+    if (nlen < 0.001) {
+      upx = 0; upy = 1; upz = 0
+      dot = tx * upx + ty * upy + tz * upz
+      nx = upx - dot * tx; ny = upy - dot * ty; nz = upz - dot * tz
+      nlen = Math.sqrt(nx * nx + ny * ny + nz * nz)
+    }
+    nx /= nlen; ny /= nlen; nz /= nlen
+    const bx = ty * nz - tz * ny, by = tz * nx - tx * nz, bz = tx * ny - ty * nx
+
+    for (let j = 0; j < 16; j++) {
+      const u = (j / 16) * 2 * Math.PI
+      const cu = Math.cos(u), su = Math.sin(u)
+      const qx = px + r * (cu * nx + su * bx)
+      const qy = py + r * (cu * ny + su * by)
+      const qz = pz + r * (cu * nz + su * bz)
+      const [rx, ry, rz] = rotY(qx, qy, qz)
+      const zDist = K2 - rz
+      if (zDist <= 0) continue
+      const ooz = 1 / zDist
+      const xp = Math.round(cx + K1 * rx * ooz)
+      const yp = Math.round(cy - K1 * ry * ooz * aspect)
+      if (xp < 0 || xp >= cols || yp < 0 || yp >= rows) continue
+      const snx = cu * nx + su * bx, snz = cu * nz + su * bz
+      const [rnx,, rnz] = rotY(snx, 0, snz)
+      const L = Math.max(0, rnx * lx + rnz * lz)
+      if (ooz > zbuf[yp][xp]) {
+        zbuf[yp][xp] = ooz
+        const intensity = Math.max(0.12, Math.min(1, baseBrightness * (0.3 + L * 0.7)))
+        grid[yp][xp] = chars[Math.min(Math.floor(intensity * (chars.length - 1)), chars.length - 1)]
+      }
+    }
+  }
+
+  const stepsPerBP = 6
+  const totalAngle = turns * 2 * Math.PI
+
+  for (let i = 0; i < totalSteps; i++) {
+    const f = i / totalSteps
+    const y = -helixH + f * helixH * 2
+    const angle = f * totalAngle
+    const da = totalAngle / totalSteps
+
+    // Tangent direction (same for both strands)
+    const txRaw = -helixR * Math.sin(angle) * da
+    const tyRaw = (helixH * 2) / totalSteps
+    const tzRaw = helixR * Math.cos(angle) * da
+    const tlen = Math.sqrt(txRaw * txRaw + tyRaw * tyRaw + tzRaw * tzRaw)
+    const tx = txRaw / tlen, ty = tyRaw / tlen, tz = tzRaw / tlen
+
+    // Strand 1
+    const x1 = helixR * Math.cos(angle), z1 = helixR * Math.sin(angle)
+    plotTubeSection(x1, y, z1, tx, ty, tz, tubeR, 1.0)
+
+    // Strand 2 (B-DNA: 150° offset)
+    const x2 = helixR * Math.cos(angle + strandOffset), z2 = helixR * Math.sin(angle + strandOffset)
+    plotTubeSection(x2, y, z2, tx, ty, tz, tubeR, 0.72)
+
+    // Base-pair rungs every stepsPerBP
+    if (i % stepsPerBP === 0) {
+      for (let s = 0; s <= 10; s++) {
+        const sf = s / 10
+        const rx = x1 + sf * (x2 - x1)
+        const rz = z1 + sf * (z2 - z1)
+        const [vrx, vry, vrz] = rotY(rx, y, rz)
+        const zDist = K2 - vrz
+        if (zDist <= 0) continue
+        const ooz = 1 / zDist
+        const xp = Math.round(cx + K1 * vrx * ooz)
+        const yp = Math.round(cy - K1 * vry * ooz * aspect)
+        if (xp < 0 || xp >= cols || yp < 0 || yp >= rows) continue
+        if (ooz > zbuf[yp][xp]) {
+          zbuf[yp][xp] = ooz
+          grid[yp][xp] = chars[Math.min(Math.floor(0.42 * (chars.length - 1)), chars.length - 1)]
+        }
+      }
+    }
+  }
+}
+
 // ============================================================================
 // Component factory
 // ============================================================================
@@ -585,3 +1004,18 @@ AsciiHelix.displayName = 'AsciiHelix'
 
 export const AsciiDonut = makeAsciiComponent(drawDonut, 'classic')
 AsciiDonut.displayName = 'AsciiDonut'
+
+export const AsciiTrefoilKnot = makeAsciiComponent(drawTrefoilKnot, 'blocks')
+AsciiTrefoilKnot.displayName = 'AsciiTrefoilKnot'
+
+export const AsciiGeodesicDome = makeAsciiComponent(drawGeodesicDome, 'classic')
+AsciiGeodesicDome.displayName = 'AsciiGeodesicDome'
+
+export const AsciiSaturn = makeAsciiComponent(drawSaturn, 'blocks')
+AsciiSaturn.displayName = 'AsciiSaturn'
+
+export const AsciiHyperboloid = makeAsciiComponent(drawHyperboloid, 'classic')
+AsciiHyperboloid.displayName = 'AsciiHyperboloid'
+
+export const AsciiDNA = makeAsciiComponent(drawDNA, 'braille')
+AsciiDNA.displayName = 'AsciiDNA'
