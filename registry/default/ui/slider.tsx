@@ -49,6 +49,10 @@ const Slider = React.forwardRef<HTMLDivElement, SliderProps>(
     const isControlled = controlledValue !== undefined
     const [uncontrolledValue, setUncontrolledValue] = React.useState(defaultValue)
     const actualValue = isControlled ? controlledValue : uncontrolledValue
+    const actualValueRef = React.useRef(actualValue)
+    React.useEffect(() => {
+      actualValueRef.current = actualValue
+    })
 
     const isRange = actualValue.length > 1
 
@@ -249,7 +253,7 @@ const Slider = React.forwardRef<HTMLDivElement, SliderProps>(
 
       const handlePointerUp = () => {
         setActiveThumb(null)
-        onValueCommit?.(actualValue)
+        onValueCommit?.(actualValueRef.current)
         document.removeEventListener('pointermove', handlePointerMove)
         document.removeEventListener('pointerup', handlePointerUp)
       }
@@ -282,7 +286,7 @@ const Slider = React.forwardRef<HTMLDivElement, SliderProps>(
 
       const handlePointerUp = () => {
         setActiveThumb(null)
-        onValueCommit?.(actualValue)
+        onValueCommit?.(actualValueRef.current)
         document.removeEventListener('pointermove', handlePointerMove)
         document.removeEventListener('pointerup', handlePointerUp)
       }

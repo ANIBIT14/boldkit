@@ -51,7 +51,7 @@ const RadialBarChartComponent = React.forwardRef<HTMLDivElement, RadialBarChartP
     ref
   ) => {
     // Calculate max value for the scale
-    const calculatedMax = maxValue || Math.max(...data.map((d) => d.value))
+    const calculatedMax = maxValue || (data.length > 0 ? Math.max(...data.map((d) => d.value)) : 1)
 
     // Transform data for nested variant (each item gets its own ring)
     const chartData = React.useMemo(() => {

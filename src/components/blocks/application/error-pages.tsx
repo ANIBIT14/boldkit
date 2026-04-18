@@ -387,6 +387,18 @@ export function ForbiddenPage({
 // ============================================================================
 // ERROR PAGE VARIANT 6: Coming Soon
 // ============================================================================
+
+function getCountdown(launchDate?: Date) {
+  if (!launchDate) return null
+  const total = launchDate.getTime() - Date.now()
+  if (total <= 0) return null
+  return {
+    days: Math.floor(total / (1000 * 60 * 60 * 24)),
+    hours: Math.floor((total / (1000 * 60 * 60)) % 24),
+    minutes: Math.floor((total / (1000 * 60)) % 60),
+  }
+}
+
 export interface ComingSoonPageProps {
   title?: string
   description?: string
@@ -411,17 +423,15 @@ export function ComingSoonPage({
     setSubmitted(true)
   }
 
-  const getTimeRemaining = () => {
-    if (!launchDate) return null
-    const total = launchDate.getTime() - Date.now()
-    if (total <= 0) return null
-    const days = Math.floor(total / (1000 * 60 * 60 * 24))
-    const hours = Math.floor((total / (1000 * 60 * 60)) % 24)
-    const minutes = Math.floor((total / (1000 * 60)) % 60)
-    return { days, hours, minutes }
-  }
+  const [timeRemaining, setTimeRemaining] = React.useState(() => getCountdown(launchDate))
 
-  const timeRemaining = getTimeRemaining()
+  React.useEffect(() => {
+    if (!launchDate) return
+    const interval = setInterval(() => {
+      setTimeRemaining(getCountdown(launchDate))
+    }, 1000)
+    return () => clearInterval(interval)
+  }, [launchDate])
 
   return (
     <div

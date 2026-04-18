@@ -6,18 +6,18 @@ const featureColors = [
   'bg-primary/10',
   'bg-secondary/10',
   'bg-accent/10',
-  'bg-success/10',
-  'bg-warning/10',
-  'bg-info/10',
+  'bg-green-500/10',
+  'bg-yellow-500/10',
+  'bg-blue-500/10',
 ]
 
 const iconColors = [
   'bg-primary',
   'bg-secondary',
   'bg-accent',
-  'bg-success',
-  'bg-warning',
-  'bg-info',
+  'bg-green-500',
+  'bg-yellow-500',
+  'bg-blue-500',
 ]
 
 // ============================================================================

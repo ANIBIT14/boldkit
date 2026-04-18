@@ -51,15 +51,27 @@ export function HeroCentered({
         {(primaryAction || secondaryAction) && (
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             {primaryAction && (
-              <Button size="lg" onClick={primaryAction.onClick}>
-                {primaryAction.label}
-                <ArrowRight className="ml-2 h-4 w-4" />
-              </Button>
+              primaryAction.href ? (
+                <Button size="lg" asChild>
+                  <a href={primaryAction.href}>{primaryAction.label}<ArrowRight className="ml-2 h-4 w-4" /></a>
+                </Button>
+              ) : (
+                <Button size="lg" onClick={primaryAction.onClick}>
+                  {primaryAction.label}
+                  <ArrowRight className="ml-2 h-4 w-4" />
+                </Button>
+              )
             )}
             {secondaryAction && (
-              <Button size="lg" variant="outline" onClick={secondaryAction.onClick}>
-                {secondaryAction.label}
-              </Button>
+              secondaryAction.href ? (
+                <Button size="lg" variant="outline" asChild>
+                  <a href={secondaryAction.href}>{secondaryAction.label}</a>
+                </Button>
+              ) : (
+                <Button size="lg" variant="outline" onClick={secondaryAction.onClick}>
+                  {secondaryAction.label}
+                </Button>
+              )
             )}
           </div>
         )}
@@ -117,16 +129,28 @@ export function HeroSplit({
           {(primaryAction || secondaryAction) && (
             <div className="flex flex-col sm:flex-row gap-4">
               {primaryAction && (
-                <Button size="lg" onClick={primaryAction.onClick}>
-                  {primaryAction.label}
-                  <ArrowRight className="ml-2 h-4 w-4" />
-                </Button>
+                primaryAction.href ? (
+                  <Button size="lg" asChild>
+                    <a href={primaryAction.href}>{primaryAction.label}<ArrowRight className="ml-2 h-4 w-4" /></a>
+                  </Button>
+                ) : (
+                  <Button size="lg" onClick={primaryAction.onClick}>
+                    {primaryAction.label}
+                    <ArrowRight className="ml-2 h-4 w-4" />
+                  </Button>
+                )
               )}
               {secondaryAction && (
-                <Button size="lg" variant="outline" onClick={secondaryAction.onClick}>
-                  <Play className="mr-2 h-4 w-4" />
-                  {secondaryAction.label}
-                </Button>
+                secondaryAction.href ? (
+                  <Button size="lg" variant="outline" asChild>
+                    <a href={secondaryAction.href}><Play className="mr-2 h-4 w-4" />{secondaryAction.label}</a>
+                  </Button>
+                ) : (
+                  <Button size="lg" variant="outline" onClick={secondaryAction.onClick}>
+                    <Play className="mr-2 h-4 w-4" />
+                    {secondaryAction.label}
+                  </Button>
+                )
               )}
             </div>
           )}
@@ -187,10 +211,16 @@ export function HeroWithStats({
           </p>
 
           {primaryAction && (
-            <Button size="lg" onClick={primaryAction.onClick}>
-              {primaryAction.label}
-              <Zap className="ml-2 h-4 w-4" />
-            </Button>
+            primaryAction.href ? (
+              <Button size="lg" asChild>
+                <a href={primaryAction.href}>{primaryAction.label}<Zap className="ml-2 h-4 w-4" /></a>
+              </Button>
+            ) : (
+              <Button size="lg" onClick={primaryAction.onClick}>
+                {primaryAction.label}
+                <Zap className="ml-2 h-4 w-4" />
+              </Button>
+            )
           )}
         </div>
 
@@ -241,10 +271,16 @@ export function HeroMinimal({
           </p>
 
           {primaryAction && (
-            <Button size="lg" className="shrink-0" onClick={primaryAction.onClick}>
-              {primaryAction.label}
-              <ArrowRight className="ml-2 h-4 w-4" />
-            </Button>
+            primaryAction.href ? (
+              <Button size="lg" className="shrink-0" asChild>
+                <a href={primaryAction.href}>{primaryAction.label}<ArrowRight className="ml-2 h-4 w-4" /></a>
+              </Button>
+            ) : (
+              <Button size="lg" className="shrink-0" onClick={primaryAction.onClick}>
+                {primaryAction.label}
+                <ArrowRight className="ml-2 h-4 w-4" />
+              </Button>
+            )
           )}
         </div>
 
@@ -303,10 +339,16 @@ export function HeroWithVideo({
           </p>
 
           {primaryAction && (
-            <Button size="lg" onClick={primaryAction.onClick}>
-              {primaryAction.label}
-              <ArrowRight className="ml-2 h-4 w-4" />
-            </Button>
+            primaryAction.href ? (
+              <Button size="lg" asChild>
+                <a href={primaryAction.href}>{primaryAction.label}<ArrowRight className="ml-2 h-4 w-4" /></a>
+              </Button>
+            ) : (
+              <Button size="lg" onClick={primaryAction.onClick}>
+                {primaryAction.label}
+                <ArrowRight className="ml-2 h-4 w-4" />
+              </Button>
+            )
           )}
         </div>
 

@@ -101,7 +101,7 @@ const RadarChartComponent = React.forwardRef<HTMLDivElement, RadarChartProps>(
           />
           <PolarRadiusAxis
             angle={90}
-            domain={[0, 'auto']}
+            domain={[0, 'dataMax']}
             tick={{
               fill: 'hsl(var(--muted-foreground))',
               fontSize: 10,

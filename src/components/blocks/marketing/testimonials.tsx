@@ -233,7 +233,10 @@ export function TestimonialsWithAvatars({
   className,
 }: TestimonialsWithAvatarsProps) {
   const [activeIndex, setActiveIndex] = React.useState(0)
-  const activeTestimonial = testimonials[activeIndex]
+
+  if (!testimonials.length) return null
+
+  const activeTestimonial = testimonials[activeIndex] ?? testimonials[0]
 
   return (
     <section className={cn('py-16 px-4 md:px-8 lg:px-16 bg-muted/30', className)}>

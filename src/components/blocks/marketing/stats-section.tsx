@@ -69,7 +69,7 @@ export function StatsCards({
     'bg-primary/10',
     'bg-secondary/10',
     'bg-accent/10',
-    'bg-success/10',
+    'bg-green-500/10',
   ]
 
   return (
@@ -106,7 +106,7 @@ export function StatsCards({
               {stat.trend && (
                 <div className="flex items-center gap-1 mt-2">
                   {stat.trend === 'up' && (
-                    <TrendingUp className="h-4 w-4 text-success" />
+                    <TrendingUp className="h-4 w-4 text-green-600" />
                   )}
                   {stat.trend === 'down' && (
                     <TrendingDown className="h-4 w-4 text-destructive" />
@@ -118,7 +118,7 @@ export function StatsCards({
                     <span
                       className={cn(
                         'text-xs font-bold',
-                        stat.trend === 'up' && 'text-success',
+                        stat.trend === 'up' && 'text-green-600',
                         stat.trend === 'down' && 'text-destructive',
                         stat.trend === 'neutral' && 'text-muted-foreground'
                       )}
@@ -242,7 +242,7 @@ export function StatsWithIcons({
     'bg-primary',
     'bg-secondary',
     'bg-accent',
-    'bg-success',
+    'bg-green-500',
   ]
 
   return (

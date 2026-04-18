@@ -255,7 +255,7 @@ function drawTorus(grid: string[][], cols: number, rows: number, t: number, char
       const oz1 =  oy * sinA + oz * cosA
       const ox2 =  ox * cosB - oy1 * sinB
       const oy2 =  ox * sinB + oy1 * cosB
-      const oz2 =  oz1
+      const oz2 = -ox * sinB + oz1 * cosB
       const zDist = K2 - oz2
       if (zDist <= 0) continue
       const ooz = 1.0 / zDist
@@ -507,6 +507,7 @@ function makeAsciiComponent(drawFn: DrawFn, defaultCharset: AsciiCharset = 'clas
       return (
         <pre
           ref={ref}
+          aria-hidden="true"
           className={cn(
             'inline-block border-3 border-foreground shadow-[4px_4px_0px_hsl(var(--shadow-color))] bg-background overflow-hidden',
             'font-mono text-xs leading-none tracking-tight select-none p-1',
@@ -530,7 +531,7 @@ function makeAsciiComponent(drawFn: DrawFn, defaultCharset: AsciiCharset = 'clas
 }
 
 // ============================================================================
-// Named exports — 7 ASCII shape components
+// Named exports — 12 ASCII shape components
 // ============================================================================
 
 export const AsciiSpiral = makeAsciiComponent(drawSpiral, 'classic')

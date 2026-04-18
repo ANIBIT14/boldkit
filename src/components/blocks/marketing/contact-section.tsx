@@ -413,26 +413,38 @@ export function ContactWithMap({
             )}
 
             <form onSubmit={handleSubmit} className="space-y-4">
-              <Input
-                value={formData.name}
-                onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                placeholder="Your name"
-                required
-              />
-              <Input
-                type="email"
-                value={formData.email}
-                onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                placeholder="Your email"
-                required
-              />
-              <Textarea
-                value={formData.message}
-                onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                placeholder="Your message"
-                rows={4}
-                required
-              />
+              <div className="space-y-2">
+                <Label htmlFor="map-name" className="font-bold uppercase text-sm">Name</Label>
+                <Input
+                  id="map-name"
+                  value={formData.name}
+                  onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                  placeholder="Your name"
+                  required
+                />
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="map-email" className="font-bold uppercase text-sm">Email</Label>
+                <Input
+                  id="map-email"
+                  type="email"
+                  value={formData.email}
+                  onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                  placeholder="Your email"
+                  required
+                />
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="map-message" className="font-bold uppercase text-sm">Message</Label>
+                <Textarea
+                  id="map-message"
+                  value={formData.message}
+                  onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                  placeholder="Your message"
+                  rows={4}
+                  required
+                />
+              </div>
               <Button type="submit" className="w-full">
                 Send Message
                 <Send className="ml-2 h-4 w-4" />

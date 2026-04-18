@@ -69,7 +69,7 @@ const GaugeChart = React.forwardRef<HTMLDivElement, GaugeChartProps>(
     ref
   ) => {
     const normalizedValue = Math.max(min, Math.min(max, value))
-    const percentage = ((normalizedValue - min) / (max - min)) * 100
+    const percentage = max === min ? 50 : ((normalizedValue - min) / (max - min)) * 100
 
     // SVG dimensions based on size - properly calculated to fit content
     const sizeConfig = {
@@ -128,9 +128,9 @@ const GaugeChart = React.forwardRef<HTMLDivElement, GaugeChartProps>(
           />
 
           {/* Zone arcs */}
-          {zones.map((zone, index) => (
+          {zones.map((zone) => (
             <path
-              key={index}
+              key={`${zone.from}-${zone.to}`}
               d={createArcPath(zone.from, zone.to, config.radius)}
               fill="none"
               stroke={zone.color}

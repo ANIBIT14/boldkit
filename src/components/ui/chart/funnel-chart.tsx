@@ -13,6 +13,7 @@ export interface FunnelChartProps extends React.HTMLAttributes<HTMLDivElement> {
   showLabels?: boolean
   showTooltip?: boolean
   animated?: boolean
+  height?: number
 }
 
 const NEUBRUTALISM_COLORS = [
@@ -31,6 +32,7 @@ const FunnelChart = React.forwardRef<HTMLDivElement, FunnelChartProps>(
       showLabels = true,
       showTooltip = true,
       animated = true,
+      height = 300,
       className,
       ...props
     },
@@ -45,7 +47,7 @@ const FunnelChart = React.forwardRef<HTMLDivElement, FunnelChartProps>(
       <div
         ref={ref}
         className={cn('w-full', className)}
-        style={{ height: 300 }}
+        style={{ height }}
         {...props}
       >
         <ResponsiveContainer width="100%" height="100%">

@@ -36,14 +36,26 @@ export function CTASimple({
         )}
 
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
-          <Button size="lg" onClick={primaryAction.onClick}>
-            {primaryAction.label}
-            <ArrowRight className="ml-2 h-4 w-4" />
-          </Button>
-          {secondaryAction && (
-            <Button size="lg" variant="outline" onClick={secondaryAction.onClick}>
-              {secondaryAction.label}
+          {primaryAction.href ? (
+            <Button size="lg" asChild>
+              <a href={primaryAction.href}>{primaryAction.label}<ArrowRight className="ml-2 h-4 w-4" /></a>
             </Button>
+          ) : (
+            <Button size="lg" onClick={primaryAction.onClick}>
+              {primaryAction.label}
+              <ArrowRight className="ml-2 h-4 w-4" />
+            </Button>
+          )}
+          {secondaryAction && (
+            secondaryAction.href ? (
+              <Button size="lg" variant="outline" asChild>
+                <a href={secondaryAction.href}>{secondaryAction.label}</a>
+              </Button>
+            ) : (
+              <Button size="lg" variant="outline" onClick={secondaryAction.onClick}>
+                {secondaryAction.label}
+              </Button>
+            )
           )}
         </div>
       </div>
@@ -97,15 +109,26 @@ export function CTAWithBackground({
             </p>
           )}
 
-          <Button
-            size="lg"
-            variant={backgroundColor === 'muted' ? 'default' : 'outline'}
-            className={backgroundColor !== 'muted' ? 'bg-background text-foreground hover:bg-background/90' : ''}
-            onClick={primaryAction.onClick}
-          >
-            {primaryAction.label}
-            <Zap className="ml-2 h-4 w-4" />
-          </Button>
+          {primaryAction.href ? (
+            <Button
+              size="lg"
+              variant={backgroundColor === 'muted' ? 'default' : 'outline'}
+              className={backgroundColor !== 'muted' ? 'bg-background text-foreground hover:bg-background/90' : ''}
+              asChild
+            >
+              <a href={primaryAction.href}>{primaryAction.label}<Zap className="ml-2 h-4 w-4" /></a>
+            </Button>
+          ) : (
+            <Button
+              size="lg"
+              variant={backgroundColor === 'muted' ? 'default' : 'outline'}
+              className={backgroundColor !== 'muted' ? 'bg-background text-foreground hover:bg-background/90' : ''}
+              onClick={primaryAction.onClick}
+            >
+              {primaryAction.label}
+              <Zap className="ml-2 h-4 w-4" />
+            </Button>
+          )}
         </div>
       </div>
     </section>
@@ -223,14 +246,26 @@ export function CTASplit({
             )}
 
             <div className="flex flex-col sm:flex-row gap-3">
-              <Button size="lg" onClick={primaryAction.onClick}>
-                {primaryAction.label}
-                <ArrowRight className="ml-2 h-4 w-4" />
-              </Button>
-              {secondaryAction && (
-                <Button size="lg" variant="outline" onClick={secondaryAction.onClick}>
-                  {secondaryAction.label}
+              {primaryAction.href ? (
+                <Button size="lg" asChild>
+                  <a href={primaryAction.href}>{primaryAction.label}<ArrowRight className="ml-2 h-4 w-4" /></a>
                 </Button>
+              ) : (
+                <Button size="lg" onClick={primaryAction.onClick}>
+                  {primaryAction.label}
+                  <ArrowRight className="ml-2 h-4 w-4" />
+                </Button>
+              )}
+              {secondaryAction && (
+                secondaryAction.href ? (
+                  <Button size="lg" variant="outline" asChild>
+                    <a href={secondaryAction.href}>{secondaryAction.label}</a>
+                  </Button>
+                ) : (
+                  <Button size="lg" variant="outline" onClick={secondaryAction.onClick}>
+                    {secondaryAction.label}
+                  </Button>
+                )
               )}
             </div>
           </div>
@@ -274,7 +309,7 @@ export function CTABanner({
     primary: 'bg-primary text-primary-foreground',
     secondary: 'bg-secondary text-secondary-foreground',
     accent: 'bg-accent text-accent-foreground',
-    warning: 'bg-warning text-warning-foreground',
+    warning: 'bg-yellow-500 text-foreground',
   }
 
   if (!isVisible) return null
@@ -282,7 +317,7 @@ export function CTABanner({
   return (
     <div
       className={cn(
-        'py-3 px-4 border-b-3 border-foreground',
+        'relative py-3 px-4 border-b-3 border-foreground',
         variantStyles[variant],
         className
       )}
@@ -291,17 +326,24 @@ export function CTABanner({
         <p className="font-bold text-sm">
           {text}
         </p>
-        <Button
-          size="sm"
-          variant="outline"
-          className="bg-background text-foreground hover:bg-background/90 shrink-0"
-          onClick={action.onClick}
-        >
-          {action.label}
-          <ArrowRight className="ml-1 h-3 w-3" />
-        </Button>
+        {action.href ? (
+          <Button size="sm" variant="outline" className="bg-background text-foreground hover:bg-background/90 shrink-0" asChild>
+            <a href={action.href}>{action.label}<ArrowRight className="ml-1 h-3 w-3" /></a>
+          </Button>
+        ) : (
+          <Button
+            size="sm"
+            variant="outline"
+            className="bg-background text-foreground hover:bg-background/90 shrink-0"
+            onClick={action.onClick}
+          >
+            {action.label}
+            <ArrowRight className="ml-1 h-3 w-3" />
+          </Button>
+        )}
         {dismissible && (
           <button
+            aria-label="Dismiss"
             onClick={() => {
               setIsVisible(false)
               onDismiss?.()

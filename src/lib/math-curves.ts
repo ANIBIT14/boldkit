@@ -34,6 +34,11 @@ interface CurveDefinition {
   defaultSegments: number
   /** Core parametric function — returns {x, y} in [0,100] space */
   compute: (t: number, detailScale: number) => Point
+  /**
+   * Progress fractions (0–1 exclusive) where the curve is discontinuous.
+   * buildPath will insert M (moveto) instead of L at these points.
+   */
+  discontinuities?: number[]
 }
 
 const CURVE_DEFS: Record<string, CurveDefinition> = {
@@ -111,7 +116,8 @@ const CURVE_DEFS: Record<string, CurveDefinition> = {
     },
   },
 
-  // Cardioid: r = a(1 - cos t), shifted to center
+  // Cardioid: r = a(1 - cos t), centered in the 100×100 viewBox
+  // Span on x: [50 - a, 50 + a], span on y: [50 - a, 50 + a] → fits with a ≤ 22
   cardioid: {
     tMin: 0,
     tMax: 2 * Math.PI,
@@ -120,8 +126,8 @@ const CURVE_DEFS: Record<string, CurveDefinition> = {
     compute: (t, ds) => {
       const a = 18 + ds * 4
       const r = a * (1 - Math.cos(t))
-      // Shift right by a so the cusp is at (50 - a, 50) and tip at (50 + a, 50)
-      return { x: 50 - a + r * Math.cos(t), y: 50 + r * Math.sin(t) }
+      // Offset by +a so cusp is at (50 + a, 50) and loop extends left to (50 - a, 50)
+      return { x: 50 + a + r * Math.cos(t), y: 50 + r * Math.sin(t) }
     },
   },
 
@@ -284,6 +290,9 @@ const CURVE_DEFS: Record<string, CurveDefinition> = {
     tMax: 6 * Math.PI,
     pulseDurationMs: 5500,
     defaultSegments: 360,
+    // Arms are discontinuous: each arm starts at center and ends at outer tip.
+    // Insert M moves at 1/3 and 2/3 so arms aren't connected by straight lines.
+    discontinuities: [1 / 3, 2 / 3],
     compute: (t, ds) => {
       const b = 32 + ds * 8
       const arm = Math.floor(t / (2 * Math.PI))
@@ -365,17 +374,22 @@ export function buildPath(curve: string, detailScale = 1.0, segments?: number): 
   const def = CURVE_DEFS[curve]
   if (!def) return ''
   const n = segments ?? def.defaultSegments
+  const discontinuities = def.discontinuities ?? []
   let d = ''
   for (let i = 0; i <= n; i++) {
     const progress = i / n
     const { x, y } = getPoint(curve, progress, detailScale)
-    if (i === 0) {
-      d = `M ${x.toFixed(2)} ${y.toFixed(2)}`
+    // Use M (moveto) at the start or at declared discontinuity points
+    const isDiscontinuous = discontinuities.some(
+      (dp) => Math.abs(progress - dp) < 0.5 / n
+    )
+    if (i === 0 || isDiscontinuous) {
+      d += ` M ${x.toFixed(2)} ${y.toFixed(2)}`
     } else {
       d += ` L ${x.toFixed(2)} ${y.toFixed(2)}`
     }
   }
-  return d
+  return d.trim()
 }
 
 /**

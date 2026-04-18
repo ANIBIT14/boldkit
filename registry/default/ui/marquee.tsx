@@ -44,7 +44,7 @@ const Marquee = React.forwardRef<HTMLDivElement, MarqueeProps>(
         className={cn(
           'flex overflow-hidden',
           bordered && 'border-3 border-foreground bg-background',
-          pauseOnHover && '[&:hover_.marquee-content]:pause',
+          pauseOnHover && 'group',
           className
         )}
         {...props}
@@ -53,7 +53,7 @@ const Marquee = React.forwardRef<HTMLDivElement, MarqueeProps>(
           className={cn(
             'marquee-content flex shrink-0 items-center gap-8 py-3',
             animationClass,
-            pauseOnHover && 'hover:[animation-play-state:paused]'
+            pauseOnHover && 'group-hover:[animation-play-state:paused]'
           )}
           style={{
             animationDirection: direction === 'right' ? 'reverse' : 'normal',
@@ -67,7 +67,7 @@ const Marquee = React.forwardRef<HTMLDivElement, MarqueeProps>(
           className={cn(
             'marquee-content flex shrink-0 items-center gap-8 py-3',
             animationClass,
-            pauseOnHover && 'hover:[animation-play-state:paused]'
+            pauseOnHover && 'group-hover:[animation-play-state:paused]'
           )}
           style={{
             animationDirection: direction === 'right' ? 'reverse' : 'normal',

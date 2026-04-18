@@ -5,6 +5,56 @@ Format follows [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ---
 
+## [3.1.1] — 2026-04-18
+
+### 🐛 Bug Fixes
+
+**Core UI Components**
+- `skeleton.tsx` — Added missing `React` import (was using `React.HTMLAttributes` without import)
+- `sonner.tsx` — Fixed `useTheme` import to use `next-themes` instead of non-existent `@/hooks/use-theme`
+- `stepper.tsx` — Fixed inverted orientation: `horizontal` now renders `flex-row`, `vertical` renders `flex-col`
+- `carousel.tsx` — Added `api.off('reInit', onSelect)` cleanup to prevent memory leak
+- `marquee.tsx` — Replaced non-existent Tailwind pause class with `group`/`group-hover:[animation-play-state:paused]`
+- `tree-view.tsx` — Renamed internal `TreeNode` function to `TreeNodeItem` to fix collision with exported `TreeNode` interface
+- `alert.tsx` — Fixed `AlertTitle` forwardRef type from `HTMLParagraphElement` → `HTMLHeadingElement`
+- `layered-card.tsx` — Fixed `LayeredCardTitle` forwardRef type from `HTMLParagraphElement` → `HTMLHeadingElement`
+- `badge.tsx` — Changed rendered element from `<div>` to `<span>` with correct `HTMLSpanElement` prop type
+- `slider.tsx` — Fixed stale closure in `onValueCommit` using a ref synced via `useEffect`
+
+**Charts**
+- `chart.tsx` — Added `overflow-hidden` to chart container CVA base class
+- `radar-chart.tsx` — Fixed label rendering to handle non-string label values; fixed domain `'auto'` → `'dataMax'`
+- `gauge-chart.tsx` — Added division-by-zero guard when `min === max`; fixed arc segment keys to use value range instead of index
+- `sparkline.tsx` — Fixed stroke color: was using unresolved CSS variable instead of resolved color value
+- `heatmap-chart.tsx` — Added empty data guard; implemented proper `colorLow`/`colorHigh` interpolation via `color-mix`
+- `radial-bar-chart.tsx` — Added empty array guard for `Math.max(...data.map(...))` spread
+- `funnel-chart.tsx` — Added missing `height` prop (default 300) to interface and component
+
+**Shapes & Math Curves**
+- `shapes.tsx` — Fixed minimum strokeWidth to prevent negative values with `Math.max(1, strokeWidth - N)`
+- `ascii-shapes.tsx` — Fixed 3D rotation matrix bug (`oz2` was copying `oz1` instead of applying `cosB` rotation); added `aria-hidden="true"` to `<pre>` elements
+- `math-curve-background.tsx` — Removed non-functional stroke opacity attributes from track path
+- `math-curve-progress.tsx` — Added `label` prop for accessibility; added CSS transition on indicator position
+- `math-curves.ts` — Fixed cardioid x-offset overflow (was `50 - a`, now `50 + a` so shape stays within viewBox); added `discontinuities` support to `CurveDefinition`; fixed triskelion rendering with proper path breaks at discontinuity points
+
+**Marketing Blocks**
+- `hero-section.tsx` — Added `href` support to all primary/secondary action buttons (5 variants)
+- `cta-section.tsx` — Fixed `bg-warning` (undefined CSS class) → `bg-yellow-500`; added `href` support to action buttons
+- `contact-section.tsx` — Added missing `id` attributes and `<Label>` elements to `ContactWithMap` form fields
+
+**Application Blocks**
+- `auth-forms.tsx` — Added terms checkbox validation in `SignUpForm`; fixed OTP double-submit with `hasSubmitted` ref
+- `error-pages.tsx` — Fixed countdown timer: extracted helper function; replaced broken state pattern with `useState` + `setInterval`
+- `settings-page.tsx` — Fixed controlled form: added `useEffect` for prop sync; used nullish coalescing for optional string fields
+
+**Vue Components**
+- `data-table.json` — Fixed `DropdownMenuTrigger` missing `as-child` attribute
+- `tabs.json` — Fixed `update:modelValue` emit type from `string | number` → `string`
+- `timeline.json` — Fixed template to use `props.orientation` instead of bare `orientation`
+- `tour.json` — Fixed `ref<HTMLDivElement>()` → `ref<HTMLDivElement | undefined>()` to avoid strict-mode error
+
+---
+
 ## [3.1.0] — 2026-04-16
 
 ### ✨ ASCII Shapes — 12 animated ASCII art components
@@ -138,6 +188,7 @@ See git tags for earlier release history.
 
 ---
 
+[3.1.1]: https://github.com/ANIBIT14/boldkit/releases/tag/v3.1.1
 [3.1.0]: https://github.com/ANIBIT14/boldkit/releases/tag/v3.1.0
 [3.0.4]: https://github.com/ANIBIT14/boldkit/releases/tag/v3.0.4
 [3.0.3]: https://github.com/ANIBIT14/boldkit/releases/tag/v3.0.3

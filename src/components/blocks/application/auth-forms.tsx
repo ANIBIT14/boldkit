@@ -209,9 +209,15 @@ export function SignUpForm({
     terms: false,
   })
   const [showPassword, setShowPassword] = React.useState(false)
+  const [termsError, setTermsError] = React.useState('')
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
+    if (!formData.terms) {
+      setTermsError('You must accept the terms to continue')
+      return
+    }
+    setTermsError('')
     onSubmit?.(formData)
   }
 
@@ -289,25 +295,30 @@ export function SignUpForm({
               <p className="text-xs text-muted-foreground">Must be at least 8 characters</p>
             </div>
 
-            <div className="flex items-start space-x-2">
-              <Checkbox
-                id="terms"
-                checked={formData.terms}
-                onCheckedChange={(checked) =>
-                  setFormData({ ...formData, terms: checked as boolean })
-                }
-                required
-              />
-              <Label htmlFor="terms" className="text-sm leading-tight cursor-pointer">
-                I agree to the{' '}
-                <a href={termsUrl} className="font-bold text-primary hover:underline">
-                  Terms of Service
-                </a>{' '}
-                and{' '}
-                <a href={privacyUrl} className="font-bold text-primary hover:underline">
-                  Privacy Policy
-                </a>
-              </Label>
+            <div className="space-y-1">
+              <div className="flex items-start space-x-2">
+                <Checkbox
+                  id="terms"
+                  checked={formData.terms}
+                  onCheckedChange={(checked) => {
+                    setFormData({ ...formData, terms: checked as boolean })
+                    if (checked) setTermsError('')
+                  }}
+                />
+                <Label htmlFor="terms" className="text-sm leading-tight cursor-pointer">
+                  I agree to the{' '}
+                  <a href={termsUrl} className="font-bold text-primary hover:underline">
+                    Terms of Service
+                  </a>{' '}
+                  and{' '}
+                  <a href={privacyUrl} className="font-bold text-primary hover:underline">
+                    Privacy Policy
+                  </a>
+                </Label>
+              </div>
+              {termsError && (
+                <p className="text-xs text-destructive font-medium">{termsError}</p>
+              )}
             </div>
 
             <Button type="submit" className="w-full" size="lg">
@@ -507,6 +518,7 @@ export function OTPVerificationForm({
 }: OTPVerificationFormProps) {
   const [otp, setOtp] = React.useState<string[]>(new Array(length).fill(''))
   const inputRefs = React.useRef<HTMLInputElement[]>([])
+  const hasSubmitted = React.useRef(false)
 
   const handleChange = (index: number, value: string) => {
     if (!/^\d*$/.test(value)) return
@@ -514,13 +526,17 @@ export function OTPVerificationForm({
     const newOtp = [...otp]
     newOtp[index] = value.slice(-1)
     setOtp(newOtp)
+    hasSubmitted.current = false
 
     if (value && index < length - 1) {
       inputRefs.current[index + 1]?.focus()
     }
 
     if (newOtp.every((digit) => digit !== '') && newOtp.join('').length === length) {
-      onSubmit?.(newOtp.join(''))
+      if (!hasSubmitted.current) {
+        hasSubmitted.current = true
+        onSubmit?.(newOtp.join(''))
+      }
     }
   }
 
@@ -580,7 +596,12 @@ export function OTPVerificationForm({
           <Button
             className="w-full"
             size="lg"
-            onClick={() => onSubmit?.(otp.join(''))}
+            onClick={() => {
+              if (!hasSubmitted.current) {
+                hasSubmitted.current = true
+                onSubmit?.(otp.join(''))
+              }
+            }}
             disabled={otp.some((digit) => digit === '')}
           >
             Verify

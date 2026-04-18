@@ -98,7 +98,7 @@ const RadarChartComponent = React.forwardRef<HTMLDivElement, RadarChartProps>(
           />
           <PolarRadiusAxis
             angle={90}
-            domain={[0, 'auto']}
+            domain={[0, 'dataMax']}
             tick={{
               fill: 'hsl(var(--muted-foreground))',
               fontSize: 10,
@@ -114,7 +114,7 @@ const RadarChartComponent = React.forwardRef<HTMLDivElement, RadarChartProps>(
           {dataKeys.map((key, index) => (
             <Radar
               key={key}
-              name={config[key]?.label?.toString() || key}
+              name={typeof config[key]?.label === 'string' ? config[key].label : key}
               dataKey={key}
               {...getRadarProps(index, key)}
               isAnimationActive={animated}

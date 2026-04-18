@@ -141,6 +141,8 @@ export function FAQWithCategories({
 }: FAQWithCategoriesProps) {
   const [activeCategory, setActiveCategory] = React.useState(0)
 
+  if (!categories.length) return null
+
   return (
     <section className={cn('py-16 px-4 md:px-8 lg:px-16', className)}>
       <div className="max-w-4xl mx-auto">
@@ -162,7 +164,7 @@ export function FAQWithCategories({
           ))}
         </div>
 
-        <Accordion type="single" collapsible className="space-y-4">
+        <Accordion type="single" collapsible className="space-y-4" key={activeCategory}>
           {categories[activeCategory].items.map((item, index) => (
             <AccordionItem
               key={index}

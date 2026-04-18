@@ -31,6 +31,8 @@ const HeatmapChart = React.forwardRef<HTMLDivElement, HeatmapChartProps>(
       data,
       rows,
       cols,
+      colorLow,
+      colorHigh,
       showLabels = true,
       showTooltip = true,
       cellSize = 40,
@@ -49,6 +51,7 @@ const HeatmapChart = React.forwardRef<HTMLDivElement, HeatmapChartProps>(
 
     const { min, max } = React.useMemo(() => {
       const vals = data.map(d => d.value)
+      if (vals.length === 0) return { min: 0, max: 1 }
       return { min: Math.min(...vals), max: Math.max(...vals) }
     }, [data])
 
@@ -108,7 +111,9 @@ const HeatmapChart = React.forwardRef<HTMLDivElement, HeatmapChartProps>(
                     key={col}
                     className="border border-foreground/30 cursor-default transition-all duration-100 hover:border-foreground hover:border-2 hover:z-10"
                     style={{
-                      backgroundColor: `hsl(var(--primary) / ${Math.max(0.08, intensity)})`,
+                      backgroundColor: colorLow && colorHigh
+                        ? `color-mix(in srgb, ${colorHigh} ${Math.round(Math.max(0.08, intensity) * 100)}%, ${colorLow})`
+                        : `hsl(var(--primary) / ${Math.max(0.08, intensity)})`,
                     }}
                     onMouseEnter={(e) => {
                       if (showTooltip) {

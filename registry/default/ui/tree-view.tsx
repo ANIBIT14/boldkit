@@ -151,7 +151,7 @@ const TreeView = React.forwardRef<HTMLDivElement, TreeViewProps>(
           {...props}
         >
           {data.map((node) => (
-            <TreeNode key={node.id} node={node} level={0} />
+            <TreeNodeItem key={node.id} node={node} level={0} />
           ))}
         </div>
       </TreeViewContext.Provider>
@@ -166,7 +166,7 @@ interface TreeNodeProps {
   level: number
 }
 
-function TreeNode({ node, level }: TreeNodeProps) {
+function TreeNodeItem({ node, level }: TreeNodeProps) {
   const {
     expandedIds,
     toggleExpanded,
@@ -290,7 +290,7 @@ function TreeNode({ node, level }: TreeNodeProps) {
       <CollapsibleContent>
         <div role="group">
           {node.children!.map((child) => (
-            <TreeNode key={child.id} node={child} level={level + 1} />
+            <TreeNodeItem key={child.id} node={child} level={level + 1} />
           ))}
         </div>
       </CollapsibleContent>

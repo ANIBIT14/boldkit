@@ -56,6 +56,10 @@ export function ProfileSettings({
   const [formData, setFormData] = React.useState(user)
   const fileInputRef = React.useRef<HTMLInputElement>(null)
 
+  React.useEffect(() => {
+    setFormData(user)
+  }, [user])
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
     onSave?.(formData)
@@ -148,7 +152,7 @@ export function ProfileSettings({
             </Label>
             <Textarea
               id="bio"
-              value={formData.bio}
+              value={formData.bio ?? ''}
               onChange={(e) => setFormData({ ...formData, bio: e.target.value })}
               placeholder="Tell us about yourself..."
               rows={3}
@@ -162,7 +166,7 @@ export function ProfileSettings({
               </Label>
               <Input
                 id="company"
-                value={formData.company}
+                value={formData.company ?? ''}
                 onChange={(e) => setFormData({ ...formData, company: e.target.value })}
                 placeholder="Acme Inc."
               />
@@ -173,7 +177,7 @@ export function ProfileSettings({
               </Label>
               <Input
                 id="location"
-                value={formData.location}
+                value={formData.location ?? ''}
                 onChange={(e) => setFormData({ ...formData, location: e.target.value })}
                 placeholder="San Francisco, CA"
               />
@@ -186,7 +190,7 @@ export function ProfileSettings({
             </Label>
             <Input
               id="website"
-              value={formData.website}
+              value={formData.website ?? ''}
               onChange={(e) => setFormData({ ...formData, website: e.target.value })}
               placeholder="https://yourwebsite.com"
             />
@@ -388,7 +392,7 @@ export function SecuritySettings({
           </div>
           <Switch
             checked={twoFactorEnabled}
-            onCheckedChange={onToggleTwoFactor}
+            onCheckedChange={(v) => onToggleTwoFactor?.(v)}
           />
         </div>
 

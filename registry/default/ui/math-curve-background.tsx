@@ -114,7 +114,6 @@ const MathCurveBackground = React.forwardRef<HTMLDivElement, MathCurveBackground
             overflow: 'visible',
             pointerEvents: 'none',
           }}
-          className="group-hover:[--track-opacity:0.3]"
         >
           <path
             ref={pathRef}
@@ -122,10 +121,8 @@ const MathCurveBackground = React.forwardRef<HTMLDivElement, MathCurveBackground
             fill="none"
             stroke={resolvedTrackStroke}
             strokeWidth={strokeWidth}
-            strokeOpacity={0.15}
             strokeLinecap="square"
             strokeLinejoin="miter"
-            className="transition-[stroke-opacity] duration-200"
           />
           <rect
             ref={rectRef}

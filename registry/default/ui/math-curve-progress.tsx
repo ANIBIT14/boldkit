@@ -30,6 +30,7 @@ export interface MathCurveProgressProps
   trackColor?: string
   fillColor?: string
   strokeWidth?: number
+  label?: string
 }
 
 const MathCurveProgress = React.forwardRef<SVGSVGElement, MathCurveProgressProps>(
@@ -43,6 +44,7 @@ const MathCurveProgress = React.forwardRef<SVGSVGElement, MathCurveProgressProps
       trackColor,
       fillColor,
       strokeWidth = 4,
+      label = 'Progress',
       ...props
     },
     ref
@@ -64,6 +66,7 @@ const MathCurveProgress = React.forwardRef<SVGSVGElement, MathCurveProgressProps
         viewBox="0 0 100 100"
         xmlns="http://www.w3.org/2000/svg"
         role="progressbar"
+        aria-label={label}
         aria-valuenow={clampedValue}
         aria-valuemin={0}
         aria-valuemax={100}
@@ -90,7 +93,7 @@ const MathCurveProgress = React.forwardRef<SVGSVGElement, MathCurveProgressProps
           stroke="currentColor"
           strokeWidth={1.5}
           transform={`rotate(${headAngle} ${headPoint.x} ${headPoint.y})`}
-          style={{ transition: 'all 300ms ease' }}
+          style={{ transition: 'x 300ms ease, y 300ms ease' }}
         />
         {/* Optional numeric label */}
         {showValue && (
