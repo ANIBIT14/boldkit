@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
+import type { Component } from 'vue'
 import { cn } from '@/lib/utils'
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card'
 import Button from '@/components/ui/Button.vue'
@@ -18,7 +19,7 @@ interface Goal {
   id: string
   label: string
   description?: string
-  icon?: typeof Target
+  icon?: Component
 }
 
 interface OnboardingFlowProps {
@@ -55,7 +56,7 @@ const email = ref('')
 const workspaceName = ref('')
 const selectedGoals = ref<string[]>([])
 
-const progress = ((props.currentStep - 1) / (props.totalSteps - 1)) * 100
+const progress = computed(() => ((props.currentStep - 1) / (props.totalSteps - 1)) * 100)
 
 const toggleGoal = (goalId: string) => {
   if (selectedGoals.value.includes(goalId)) {
