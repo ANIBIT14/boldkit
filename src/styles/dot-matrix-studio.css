@@ -1,0 +1,66 @@
+@font-face {
+  font-family: 'NDot47';
+  src: url('/fonts/ndot-47-inspired-by-nothing.otf.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}
+
+.studio-root {
+  --studio-bg: #080808;
+  --studio-panel: #111111;
+  --studio-border: #E8FF00;
+  --studio-dot-filled: #E8FF00;
+  --studio-dot-empty: #1C1C1C;
+  --studio-dot-empty-border: #2A2A2A;
+  --studio-text: #E8FF00;
+  --studio-text-muted: #555555;
+  --studio-shadow: 4px 4px 0px #E8FF00;
+  --studio-font: 'Share Tech Mono', monospace;
+
+  font-family: var(--studio-font);
+  background: var(--studio-bg);
+  color: var(--studio-text);
+  height: 100dvh;
+  overflow: hidden;
+}
+
+/* Ghost dot background */
+.studio-ghost-grid {
+  background-image: radial-gradient(circle, #1a1a1a 1px, transparent 1px);
+  background-size: 20px 20px;
+}
+
+/* Scanline overlay */
+.studio-scanlines::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 3px,
+    rgba(0, 0, 0, 0.08) 3px,
+    rgba(0, 0, 0, 0.08) 4px
+  );
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Panel style */
+.studio-panel {
+  background: var(--studio-panel);
+  border: 3px solid var(--studio-border);
+  box-shadow: var(--studio-shadow);
+}
+
+/* Active tool button */
+.studio-tool-active {
+  background: var(--studio-border) !important;
+  color: #000000 !important;
+}
+
+/* Phosphor glow for filled dots */
+.studio-dot-glow {
+  filter: drop-shadow(0 0 3px var(--studio-dot-filled));
+}
