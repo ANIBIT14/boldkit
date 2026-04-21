@@ -9,6 +9,7 @@ function cloneGrid(grid: DotGrid): DotGrid {
   return grid.map(row => [...row])
 }
 
+/** 2 frames: your art ↔ blank */
 export function applyBlink(sourceGrid: DotGrid, rows: number, cols: number): Frame[] {
   return [
     { ...createFrame(rows, cols), grid: cloneGrid(sourceGrid) },
@@ -16,6 +17,7 @@ export function applyBlink(sourceGrid: DotGrid, rows: number, cols: number): Fra
   ]
 }
 
+/** Reveals your art column by column, left to right */
 export function applyTypewriter(sourceGrid: DotGrid, rows: number, cols: number): Frame[] {
   return Array.from({ length: cols }, (_, c) => {
     const grid = emptyGrid(rows, cols)
@@ -28,19 +30,20 @@ export function applyTypewriter(sourceGrid: DotGrid, rows: number, cols: number)
   })
 }
 
-export function applyScanLine(rows: number, cols: number, bandHeight = 2): Frame[] {
+/** Sweeps top-to-bottom revealing your art one row band at a time */
+export function applyScanLine(sourceGrid: DotGrid, rows: number, cols: number, bandHeight = 2): Frame[] {
   return Array.from({ length: rows }, (_, r) => {
     const grid = emptyGrid(rows, cols)
-    for (let band = 0; band < bandHeight; band++) {
-      const row = r + band
-      if (row < rows) {
-        for (let col = 0; col < cols; col++) grid[row][col] = true
+    for (let row = 0; row <= r + bandHeight - 1 && row < rows; row++) {
+      for (let col = 0; col < cols; col++) {
+        grid[row][col] = sourceGrid[row][col]
       }
     }
     return { ...createFrame(rows, cols), grid }
   })
 }
 
+/** Scrolls your art across cols frames, wrapping around */
 export function applyMarquee(sourceGrid: DotGrid, rows: number, cols: number): Frame[] {
   return Array.from({ length: cols }, (_, shift) => {
     const grid = emptyGrid(rows, cols)
@@ -54,24 +57,26 @@ export function applyMarquee(sourceGrid: DotGrid, rows: number, cols: number): F
   })
 }
 
-export function applyRipple(rows: number, cols: number, numFrames = 10): Frame[] {
+/** Reveals your art from center outward in concentric rings */
+export function applyRipple(sourceGrid: DotGrid, rows: number, cols: number, numFrames = 10): Frame[] {
   const cx = (cols - 1) / 2
   const cy = (rows - 1) / 2
   const maxDist = Math.sqrt(cx * cx + cy * cy)
 
   return Array.from({ length: numFrames }, (_, i) => {
-    const threshold = (i / numFrames) * maxDist
+    const threshold = ((i + 1) / numFrames) * maxDist
     const grid = emptyGrid(rows, cols)
     for (let row = 0; row < rows; row++) {
       for (let col = 0; col < cols; col++) {
         const dist = Math.sqrt((col - cx) ** 2 + (row - cy) ** 2)
-        grid[row][col] = dist <= threshold
+        if (dist <= threshold) grid[row][col] = sourceGrid[row][col]
       }
     }
     return { ...createFrame(rows, cols), grid }
   })
 }
 
+/** N frames of your art with deterministic random pixel noise */
 export function applyGlitch(sourceGrid: DotGrid, rows: number, cols: number, numFrames = 6, intensity = 0.05): Frame[] {
   return Array.from({ length: numFrames }, (_, i) => {
     const grid = cloneGrid(sourceGrid)

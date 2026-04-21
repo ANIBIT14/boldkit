@@ -40,10 +40,10 @@ describe('applyTypewriter', () => {
 
 describe('applyScanLine', () => {
   it('returns rows frames', () => {
-    expect(applyScanLine(ROWS, COLS).length).toBe(ROWS)
+    expect(applyScanLine(filledGrid(ROWS, COLS), ROWS, COLS).length).toBe(ROWS)
   })
   it('frame 0 has dots only in first band', () => {
-    const frames = applyScanLine(ROWS, COLS, 1)
+    const frames = applyScanLine(filledGrid(ROWS, COLS), ROWS, COLS, 1)
     expect(frames[0].grid[0][0]).toBe(true)
     expect(frames[0].grid[1][0]).toBe(false)
   })
@@ -57,10 +57,10 @@ describe('applyMarquee', () => {
 
 describe('applyRipple', () => {
   it('returns numFrames frames', () => {
-    expect(applyRipple(ROWS, COLS, 5)).toHaveLength(5)
+    expect(applyRipple(filledGrid(ROWS, COLS), ROWS, COLS, 5)).toHaveLength(5)
   })
   it('last frame has center dot lit', () => {
-    const frames = applyRipple(ROWS, COLS, 10)
+    const frames = applyRipple(filledGrid(ROWS, COLS), ROWS, COLS, 10)
     const last = frames[frames.length - 1]
     expect(last.grid[Math.floor(ROWS / 2)][Math.floor(COLS / 2)]).toBe(true)
   })

@@ -8,7 +8,13 @@ import { CanvasSettings } from '@/components/DotMatrixStudio/CanvasSettings'
 import { AnimationPanel } from '@/components/DotMatrixStudio/AnimationPanel'
 import { ExportModal } from '@/components/DotMatrixStudio/ExportModal'
 import { GuidedTour, shouldShowTour } from '@/components/DotMatrixStudio/GuidedTour'
+import { ConfirmDialog, NoticeDialog } from '@/components/DotMatrixStudio/ConfirmDialog'
 import '@/styles/dot-matrix-studio.css'
+
+type PendingConfirm =
+  | { type: 'gridChange'; rows: number; cols: number }
+  | { type: 'reset' }
+  | null
 
 export function DotMatrixStudio() {
   const { state, dispatch, activeFrame } = useStudioState()
@@ -17,29 +23,39 @@ export function DotMatrixStudio() {
   const [showMobilePanel, setShowMobilePanel] = useState<'tools' | 'animate' | null>(null)
   const [textInput, setTextInput] = useState('')
   const [showTour, setShowTour] = useState(shouldShowTour)
+  const [pendingConfirm, setPendingConfirm] = useState<PendingConfirm>(null)
+  const [errorMsg, setErrorMsg] = useState<string | null>(null)
   const fileInputRef = useRef<HTMLInputElement>(null)
 
-  // Displayed grid: during playback show playFrameIndex, else active frame
   const displayGrid = state.isPlaying
     ? (state.frames[state.playFrameIndex]?.grid ?? activeFrame.grid)
     : activeFrame.grid
 
-  // Grid size change with confirmation if non-empty
+  // Grid size change — show dialog if canvas has content
   const requestGridChange = useCallback((rows: number, cols: number) => {
     const hasContent = state.frames.some(f => f.grid.some(r => r.some(Boolean)))
     if (hasContent) {
-      if (!window.confirm('Changing grid size will clear all frames. Continue?')) return
+      setPendingConfirm({ type: 'gridChange', rows, cols })
+    } else {
+      dispatch({ type: 'CHANGE_GRID_SIZE', rows, cols })
     }
-    dispatch({ type: 'CHANGE_GRID_SIZE', rows, cols })
   }, [state.frames, dispatch])
 
-  // Reset everything
+  // Reset — always show dialog
   const handleReset = useCallback(() => {
-    if (!window.confirm('Reset everything? This clears all frames and settings.')) return
-    dispatch({ type: 'RESET' })
-  }, [dispatch])
+    setPendingConfirm({ type: 'reset' })
+  }, [])
 
-  // Text tool submit
+  const handleConfirm = useCallback(() => {
+    if (!pendingConfirm) return
+    if (pendingConfirm.type === 'gridChange') {
+      dispatch({ type: 'CHANGE_GRID_SIZE', rows: pendingConfirm.rows, cols: pendingConfirm.cols })
+    } else if (pendingConfirm.type === 'reset') {
+      dispatch({ type: 'RESET' })
+    }
+    setPendingConfirm(null)
+  }, [pendingConfirm, dispatch])
+
   const applyText = useCallback(() => {
     if (!textInput.trim()) return
     const grid = textToGrid(textInput)
@@ -47,7 +63,6 @@ export function DotMatrixStudio() {
     setTextInput('')
   }, [textInput, textToGrid, dispatch])
 
-  // JSON re-import from file input
   const handleImportFile = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0]
     if (!file) return
@@ -58,14 +73,13 @@ export function DotMatrixStudio() {
         if (!data.frames || !data.rows || !data.cols) throw new Error('Invalid file')
         dispatch({ type: 'IMPORT', frames: data.frames, rows: data.rows, cols: data.cols, dotColor: data.dotColor ?? '#D71921', bgTransparent: data.bgTransparent ?? false })
       } catch {
-        alert('Invalid .boldkit.json file')
+        setErrorMsg('This file is not a valid .boldkit.json — make sure you exported it from Dot Matrix Studio.')
       }
     }
     reader.readAsText(file)
     e.target.value = ''
   }, [dispatch])
 
-  // Drag-drop JSON import
   const handleDrop = useCallback((e: React.DragEvent) => {
     e.preventDefault()
     const file = e.dataTransfer.files[0]
@@ -76,13 +90,21 @@ export function DotMatrixStudio() {
         const data = JSON.parse(ev.target?.result as string)
         if (!data.frames || !data.rows || !data.cols) throw new Error()
         dispatch({ type: 'IMPORT', frames: data.frames, rows: data.rows, cols: data.cols, dotColor: data.dotColor ?? '#D71921', bgTransparent: data.bgTransparent ?? false })
-      } catch { alert('Invalid .boldkit.json file') }
+      } catch {
+        setErrorMsg('This file is not a valid .boldkit.json — make sure you exported it from Dot Matrix Studio.')
+      }
     }
     reader.readAsText(file)
   }, [dispatch])
 
   const isEmpty = !state.frames.some(f => f.grid.some(r => r.some(Boolean)))
   const sFont = { fontFamily: 'var(--studio-font)' }
+
+  const confirmTitle = pendingConfirm?.type === 'reset' ? 'Reset everything?' : 'Change grid size?'
+  const confirmDesc = pendingConfirm?.type === 'reset'
+    ? 'This will clear all frames and settings and start fresh. This cannot be undone.'
+    : 'Changing the grid size will clear all frames. Your current artwork will be lost.'
+  const confirmLabel = pendingConfirm?.type === 'reset' ? 'Reset' : 'Change size'
 
   return (
     <div className="studio-root studio-ghost-grid" style={{ display: 'flex', flexDirection: 'column', height: '100dvh', overflow: 'hidden' }}>
@@ -93,48 +115,44 @@ export function DotMatrixStudio() {
         style={{ background: 'var(--studio-panel)', borderBottom: '3px solid var(--studio-border)', ...sFont }}
       >
         <div className="flex items-center gap-4">
-          <Link to="/" className="text-xs hover:opacity-70 transition-opacity" style={{ color: 'var(--studio-text-muted)', ...sFont }}>
+          <Link to="/" className="text-xs hover:opacity-70 transition-opacity" style={{ color: '#888888', ...sFont }}>
             ← BoldKit
           </Link>
-          <span className="text-xs tracking-[0.3em] uppercase" style={{ color: 'var(--studio-text)', ...sFont }}>
+          <span className="text-xs tracking-[0.3em] uppercase font-bold" style={{ color: 'var(--studio-text)', ...sFont }}>
             Dot Matrix Studio
           </span>
         </div>
         <div className="flex items-center gap-2">
-          {/* Help / tour */}
           <button
             onClick={() => setShowTour(true)}
-            className="px-2 py-1 text-base hover:opacity-80 transition-opacity"
             title="Show guided tour"
             aria-label="Show guided tour"
-            style={{ border: '1px solid #333', background: 'transparent', color: 'var(--studio-text-muted)', ...sFont }}
+            className="w-7 h-7 flex items-center justify-center text-xs hover:opacity-80 transition-opacity"
+            style={{ border: '1px solid #444', background: 'transparent', color: '#888888', ...sFont }}
           >
             ?
           </button>
-
-          {/* Reset */}
           <button
             onClick={handleReset}
-            className="px-2 py-1 text-base hover:opacity-80 transition-opacity"
             title="Reset everything"
             aria-label="Reset everything"
-            style={{ border: '1px solid #333', background: 'transparent', color: 'var(--studio-text-muted)', ...sFont }}
+            className="w-7 h-7 flex items-center justify-center text-sm hover:opacity-80 transition-opacity"
+            style={{ border: '1px solid #444', background: 'transparent', color: '#888888', ...sFont }}
           >
-            ⌫
+            ↺
           </button>
-
           <input ref={fileInputRef} type="file" accept=".json" onChange={handleImportFile} className="hidden" aria-label="Import file" />
           <button
             onClick={() => fileInputRef.current?.click()}
             className="px-3 py-1 text-xs hover:opacity-80 transition-opacity"
-            style={{ border: '1px solid var(--studio-border)', background: 'transparent', color: 'var(--studio-text)', ...sFont }}
+            style={{ border: '1px solid var(--studio-border)', background: 'transparent', color: '#cccccc', ...sFont }}
           >
             Import
           </button>
           <button
             onClick={() => setShowExport(true)}
-            className="px-3 py-1 text-xs"
-            style={{ border: '3px solid var(--studio-border)', background: 'var(--studio-border)', color: '#000', fontWeight: 700, ...sFont }}
+            className="px-3 py-1 text-xs font-bold"
+            style={{ border: '3px solid var(--studio-border)', background: 'var(--studio-border)', color: '#000000', ...sFont }}
           >
             Export
           </button>
@@ -147,20 +165,20 @@ export function DotMatrixStudio() {
           className="flex items-center gap-2 px-4 py-2 shrink-0"
           style={{ background: '#0d0d0d', borderBottom: '1px solid var(--studio-border)', ...sFont }}
         >
-          <span className="text-[9px] uppercase tracking-widest" style={{ color: 'var(--studio-text-muted)' }}>Text →</span>
+          <span className="text-[9px] uppercase tracking-widest" style={{ color: '#777777' }}>Text →</span>
           <input
             autoFocus
             value={textInput}
             onChange={e => setTextInput(e.target.value)}
             onKeyDown={e => { if (e.key === 'Enter') applyText() }}
             placeholder="Type and press Enter…"
-            className="flex-1 bg-transparent text-sm px-1 py-0.5 focus:outline-none"
-            style={{ borderBottom: '1px solid var(--studio-border)', color: 'var(--studio-text)', fontFamily: 'NDot47, var(--studio-font)', letterSpacing: '0.05em' }}
+            className="flex-1 bg-transparent text-sm px-1 py-0.5 focus:outline-none placeholder:text-[#444]"
+            style={{ borderBottom: '1px solid var(--studio-border)', color: '#ffffff', fontFamily: 'NDot47, var(--studio-font)', letterSpacing: '0.05em' }}
           />
           <button
             onClick={applyText}
-            className="px-3 py-1 text-xs"
-            style={{ border: '1px solid var(--studio-border)', color: 'var(--studio-text)', background: 'transparent', ...sFont }}
+            className="px-3 py-1 text-xs hover:opacity-80 transition-opacity"
+            style={{ border: '1px solid var(--studio-border)', color: '#cccccc', background: 'transparent', ...sFont }}
           >
             Apply
           </button>
@@ -185,18 +203,16 @@ export function DotMatrixStudio() {
           onDragOver={e => e.preventDefault()}
           onDrop={handleDrop}
         >
-          {/* Drop zone hint when empty */}
           {isEmpty && (
             <div
               className="absolute inset-4 flex items-center justify-center pointer-events-none z-10"
-              style={{ border: '2px dashed var(--studio-text-muted)' }}
+              style={{ border: '2px dashed #333' }}
             >
-              <p className="text-[10px] uppercase tracking-widest text-center" style={{ color: 'var(--studio-text-muted)', ...sFont }}>
+              <p className="text-[10px] uppercase tracking-widest text-center" style={{ color: '#555555', ...sFont }}>
                 Drop .boldkit.json to import<br/>or start drawing
               </p>
             </div>
           )}
-
           <div
             style={{
               width: '100%',
@@ -225,7 +241,7 @@ export function DotMatrixStudio() {
         </aside>
       </div>
 
-      {/* TABLET PANEL — 768px–1023px */}
+      {/* TABLET PANEL */}
       <div
         className="hidden md:flex lg:hidden flex-col shrink-0 h-48 overflow-hidden"
         style={{ background: 'var(--studio-panel)', borderTop: '3px solid var(--studio-border)' }}
@@ -239,7 +255,7 @@ export function DotMatrixStudio() {
               style={{
                 borderRight: '1px solid var(--studio-border)',
                 background: showMobilePanel === tab ? 'var(--studio-border)' : 'transparent',
-                color: showMobilePanel === tab ? '#000' : 'var(--studio-text)',
+                color: showMobilePanel === tab ? '#000000' : '#aaaaaa',
                 ...sFont,
               }}
             >
@@ -262,20 +278,35 @@ export function DotMatrixStudio() {
         </div>
       </div>
 
-      {/* MOBILE floating toolbar — <768px */}
+      {/* MOBILE floating toolbar */}
       <div className="md:hidden fixed bottom-4 left-1/2 -translate-x-1/2 z-40">
         <Toolbar state={state} dispatch={dispatch} mobile />
       </div>
 
       {/* Export modal */}
-      {showExport && (
-        <ExportModal state={state} onClose={() => setShowExport(false)} />
-      )}
+      {showExport && <ExportModal state={state} onClose={() => setShowExport(false)} />}
 
       {/* Guided tour */}
-      {showTour && (
-        <GuidedTour onDone={() => setShowTour(false)} />
-      )}
+      {showTour && <GuidedTour onDone={() => setShowTour(false)} />}
+
+      {/* Confirmation dialog */}
+      <ConfirmDialog
+        open={!!pendingConfirm}
+        title={confirmTitle}
+        description={confirmDesc}
+        confirmLabel={confirmLabel}
+        onConfirm={handleConfirm}
+        onCancel={() => setPendingConfirm(null)}
+        destructive
+      />
+
+      {/* Error / notice dialog */}
+      <NoticeDialog
+        open={!!errorMsg}
+        title="Invalid file"
+        description={errorMsg ?? ''}
+        onClose={() => setErrorMsg(null)}
+      />
     </div>
   )
 }
