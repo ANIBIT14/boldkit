@@ -52,3 +52,6 @@ docs/superpowers/specs
 
 # GitHub Actions workflows (require workflow OAuth scope to push)
 .github/workflows/test-rn.yml
+
+# Git worktrees
+.worktrees/
