@@ -1,3 +1,4 @@
+import { Eraser } from 'lucide-react'
 import type { Tool, ShapeType, StudioState } from './types'
 import type { StudioAction } from './hooks/useStudioState'
 import { cn } from '@/lib/utils'
@@ -8,13 +9,18 @@ const SHAPES: { id: ShapeType; label: string; icon: string }[] = [
   { id: 'circle', label: 'Circle', icon: '○' },
 ]
 
-const TOOLS: { id: Tool; label: string; key: string; icon: string; hint: string }[] = [
+const TOOLS: { id: Tool; label: string; key: string; icon: string | null; hint: string }[] = [
   { id: 'pencil', label: 'Pencil', key: 'P', icon: '✏', hint: 'Draw dots' },
-  { id: 'eraser', label: 'Eraser', key: 'E', icon: '⌫', hint: 'Erase dots' },
+  { id: 'eraser', label: 'Eraser', key: 'E', icon: null, hint: 'Erase dots' },
   { id: 'text', label: 'Text', key: 'T', icon: 'T', hint: 'Type with NDot font' },
   { id: 'shapes', label: 'Shapes', key: 'S', icon: '□', hint: 'Line / Rect / Circle' },
   { id: 'select', label: 'Select', key: 'V', icon: '⊹', hint: 'Select region' },
 ]
+
+function ToolIcon({ id, icon }: { id: Tool; icon: string | null }) {
+  if (id === 'eraser') return <Eraser size={18} />
+  return <span className="text-lg leading-none">{icon}</span>
+}
 
 interface ToolbarProps {
   state: StudioState
@@ -41,7 +47,7 @@ export function Toolbar({ state, dispatch, mobile }: ToolbarProps) {
             )}
             style={sFont}
           >
-            {tool.icon}
+            <ToolIcon id={tool.id} icon={tool.icon} />
           </button>
         ))}
       </div>
@@ -63,7 +69,7 @@ export function Toolbar({ state, dispatch, mobile }: ToolbarProps) {
           )}
           style={sFont}
         >
-          <span className="text-lg w-6 text-center leading-none">{tool.icon}</span>
+          <span className="w-6 flex items-center justify-center"><ToolIcon id={tool.id} icon={tool.icon} /></span>
           <span className="text-xs">{tool.label}</span>
           <span className="ml-auto text-[var(--studio-text-muted)] text-[9px]">{tool.key}</span>
         </button>
