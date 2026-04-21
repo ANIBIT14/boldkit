@@ -15,7 +15,7 @@
   --studio-dot-empty-border: #2A2A2A;
   --studio-text: #E8FF00;
   --studio-text-muted: #555555;
-  --studio-shadow: 4px 4px 0px #E8FF00;
+  --studio-shadow: 4px 4px 0px var(--studio-border);
   --studio-font: 'Share Tech Mono', monospace;
 
   font-family: var(--studio-font);
