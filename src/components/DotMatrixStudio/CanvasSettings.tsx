@@ -19,7 +19,7 @@ export function CanvasSettings({ state, dispatch, onGridChangeRequest }: CanvasS
 
   return (
     <div className="flex flex-col gap-3 p-3 border-t" style={{ borderColor: 'var(--studio-border)' }}>
-      <p className="text-[9px] tracking-widest uppercase" style={{ color: 'var(--studio-text-muted)', ...sFont }}>Grid Size</p>
+      <p className="text-xs tracking-widest uppercase" style={{ color: 'var(--studio-text-muted)', ...sFont }}>Grid Size</p>
 
       <div className="flex flex-col gap-1">
         {GRID_PRESETS.map(preset => {
@@ -77,7 +77,7 @@ export function CanvasSettings({ state, dispatch, onGridChangeRequest }: CanvasS
       </div>
 
       <div className="flex flex-col gap-1.5">
-        <p className="text-[9px] tracking-widest uppercase" style={{ color: 'var(--studio-text-muted)', ...sFont }}>Dot Color</p>
+        <p className="text-xs tracking-widest uppercase" style={{ color: 'var(--studio-text-muted)', ...sFont }}>Dot Color</p>
         <div className="flex gap-2 items-center">
           <input
             type="color"

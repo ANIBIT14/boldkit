@@ -217,7 +217,7 @@ export function DotMatrixStudio() {
             style={{
               width: '100%',
               height: '100%',
-              maxWidth: '100%',
+              maxWidth: `min(${Math.round(state.cols * 20)}px, 100%)`,
               maxHeight: '100%',
               aspectRatio: `${state.cols} / ${state.rows}`,
               position: 'relative',

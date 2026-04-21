@@ -2,7 +2,6 @@ import { useEffect, useRef, useState } from 'react'
 import type { StudioState, Frame } from './types'
 import type { StudioAction } from './hooks/useStudioState'
 import { applyBlink, applyTypewriter, applyScanLine, applyMarquee, applyRipple, applyGlitch } from './lib/presets'
-import { tweenFrames } from './lib/tween'
 import { cn } from '@/lib/utils'
 
 interface AnimationPanelProps {
@@ -19,202 +18,191 @@ interface PresetOption {
 }
 
 const PRESET_OPTIONS: PresetOption[] = [
-  { id: 'blink',      label: 'Blink',       icon: '◉', desc: '2 frames: art ↔ blank' },
-  { id: 'typewriter', label: 'Typewriter',   icon: '▶', desc: 'Reveal left to right' },
+  { id: 'blink',      label: 'Blink',       icon: '◉', desc: 'Art ↔ blank, 2 frames' },
+  { id: 'typewriter', label: 'Typewriter',   icon: '▶', desc: 'Reveal col by col' },
   { id: 'scanline',   label: 'Scan Line',    icon: '▬', desc: 'Sweep row by row' },
-  { id: 'marquee',    label: 'Marquee',      icon: '↔', desc: 'Scroll & wrap around' },
-  { id: 'ripple',     label: 'Ripple',       icon: '◎', desc: 'Reveal from center out' },
-  { id: 'glitch',     label: 'Glitch',       icon: '▓', desc: 'Random noise frames' },
+  { id: 'marquee',    label: 'Marquee',      icon: '↔', desc: 'Scroll & wrap' },
+  { id: 'ripple',     label: 'Ripple',       icon: '◎', desc: 'Reveal from center' },
+  { id: 'glitch',     label: 'Glitch',       icon: '▓', desc: 'Random noise' },
 ]
 
 export function AnimationPanel({ state, dispatch, activeGrid }: AnimationPanelProps) {
   const { frames, activeFrameId, isPlaying, fps, loopMode } = state
   const [selectedPreset, setSelectedPreset] = useState<string | null>(null)
-  const [tweenTarget, setTweenTarget] = useState<string | null>(null)
-  const [tweenN, setTweenN] = useState(5)
-  const playIntervalRef = useRef<ReturnType<typeof setInterval> | null>(null)
-  const playCountRef = useRef(0)
+
+  // ── Playback ───────────────────────────────────────────────────────────
+  // Use refs so the interval tick always sees the latest values without
+  // needing to restart the interval on every frames/fps change.
+  const framesRef = useRef(frames)
+  const fpsRef = useRef(fps)
+  const loopModeRef = useRef(loopMode)
+  const isPlayingRef = useRef(isPlaying)
+  framesRef.current = frames
+  fpsRef.current = fps
+  loopModeRef.current = loopMode
+  isPlayingRef.current = isPlaying
+
+  const tickIdxRef = useRef(0)
+  const loopCountRef = useRef(0)
+  const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null)
+
+  const stopInterval = () => {
+    if (intervalRef.current) { clearInterval(intervalRef.current); intervalRef.current = null }
+  }
 
   useEffect(() => {
-    if (!isPlaying) {
-      if (playIntervalRef.current) clearInterval(playIntervalRef.current)
-      return
-    }
-    playCountRef.current = 0
-    let idx = 0
-    const totalFrames = frames.length
+    if (!isPlaying) { stopInterval(); return }
+
+    tickIdxRef.current = 0
+    loopCountRef.current = 0
 
     const tick = () => {
-      dispatch({ type: 'SET_PLAY_FRAME', index: idx })
-      idx = (idx + 1) % totalFrames
+      const currentFrames = framesRef.current
+      if (!currentFrames.length) return
 
-      if (idx === 0) {
-        playCountRef.current++
-        if (loopMode === 'once' && playCountRef.current >= 1) {
+      const idx = tickIdxRef.current
+      dispatch({ type: 'SET_PLAY_FRAME', index: idx })
+      const nextIdx = (idx + 1) % currentFrames.length
+      tickIdxRef.current = nextIdx
+
+      // Loop counting
+      if (nextIdx === 0) {
+        loopCountRef.current++
+        const mode = loopModeRef.current
+        if (mode === 'once' && loopCountRef.current >= 1) {
           dispatch({ type: 'SET_PLAYING', playing: false })
-          return
-        }
-        if (loopMode === '3x' && playCountRef.current >= 3) {
+          stopInterval()
+        } else if (mode === '3x' && loopCountRef.current >= 3) {
           dispatch({ type: 'SET_PLAYING', playing: false })
-          return
+          stopInterval()
         }
       }
     }
 
-    playIntervalRef.current = setInterval(tick, 1000 / fps)
-    return () => { if (playIntervalRef.current) clearInterval(playIntervalRef.current) }
-  }, [isPlaying, fps, frames.length, loopMode, dispatch])
+    // Start immediately then repeat
+    tick()
+    intervalRef.current = setInterval(tick, 1000 / fps)
+    return stopInterval
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isPlaying, fps, dispatch])
 
-  const applyPreset = (presetId: string) => {
+  // ── Presets ────────────────────────────────────────────────────────────
+  const buildPresetFrames = (presetId: string): Frame[] => {
     const { rows, cols } = state
-    let newFrames: Frame[] = []
     switch (presetId) {
-      case 'blink':      newFrames = applyBlink(activeGrid, rows, cols); break
-      case 'typewriter': newFrames = applyTypewriter(activeGrid, rows, cols); break
-      case 'scanline':   newFrames = applyScanLine(activeGrid, rows, cols); break
-      case 'marquee':    newFrames = applyMarquee(activeGrid, rows, cols); break
-      case 'ripple':     newFrames = applyRipple(activeGrid, rows, cols); break
-      case 'glitch':     newFrames = applyGlitch(activeGrid, rows, cols); break
+      case 'blink':      return applyBlink(activeGrid, rows, cols)
+      case 'typewriter': return applyTypewriter(activeGrid, rows, cols)
+      case 'scanline':   return applyScanLine(activeGrid, rows, cols)
+      case 'marquee':    return applyMarquee(activeGrid, rows, cols)
+      case 'ripple':     return applyRipple(activeGrid, rows, cols)
+      case 'glitch':     return applyGlitch(activeGrid, rows, cols)
+      default: return []
     }
-    if (newFrames.length) dispatch({ type: 'ADD_FRAMES', frames: newFrames, afterId: activeFrameId })
   }
 
   const handleApplyPreset = () => {
     if (!selectedPreset) return
-    applyPreset(selectedPreset)
+    const newFrames = buildPresetFrames(selectedPreset)
+    if (newFrames.length) dispatch({ type: 'SET_ALL_FRAMES', frames: newFrames })
     setSelectedPreset(null)
-  }
-
-  const applyTween = () => {
-    if (!tweenTarget) return
-    const frameA = frames.find(f => f.id === activeFrameId)
-    const frameB = frames.find(f => f.id === tweenTarget)
-    if (!frameA || !frameB) return
-    const generated = tweenFrames(frameA, frameB, tweenN, state.rows, state.cols)
-    dispatch({ type: 'ADD_FRAMES', frames: generated, afterId: activeFrameId })
-    setTweenTarget(null)
   }
 
   const sFont = { fontFamily: 'var(--studio-font)' }
 
   return (
-    <div className="flex flex-col h-full overflow-hidden">
+    <div className="flex flex-col h-full overflow-hidden" style={sFont}>
 
-      {/* ── Frame timeline ─────────────────────────────────────── */}
-      <div className="flex-1 overflow-y-auto p-2 flex flex-col gap-1 min-h-0">
-        <p className="text-[9px] tracking-widest uppercase mb-1 px-1"
-          style={{ color: 'var(--studio-text-muted)', ...sFont }}>
-          Frames
-        </p>
-
-        {frames.map((frame, idx) => (
-          <div
-            key={frame.id}
-            onClick={() => dispatch({ type: 'SET_ACTIVE_FRAME', frameId: frame.id })}
-            className={cn(
-              'flex items-center gap-2 px-2 py-1 cursor-pointer border transition-colors',
-              frame.id === activeFrameId
-                ? 'border-[var(--studio-border)] bg-[var(--studio-tint)]'
-                : 'border-[#2a2a2a] hover:border-[var(--studio-border)]'
-            )}
-          >
-            {/* Mini SVG thumbnail */}
-            <svg
-              viewBox={`0 0 ${state.cols} ${state.rows}`}
-              className="w-12 h-6 shrink-0"
-              style={{ background: '#080808' }}
-            >
-              {frame.grid.map((row, r) =>
-                row.map((filled, c) =>
-                  filled ? (
-                    <circle key={`${r}-${c}`} cx={c + 0.5} cy={r + 0.5} r={0.4} fill={state.dotColor} />
-                  ) : null
-                )
-              )}
-            </svg>
-
-            <div className="flex flex-col flex-1 min-w-0">
-              <span className="text-[9px]" style={{ color: 'var(--studio-text-muted)', ...sFont }}>
-                {idx + 1}
-              </span>
-              <input
-                type="number"
-                value={frame.duration}
-                min={16}
-                onClick={e => e.stopPropagation()}
-                onChange={e => dispatch({ type: 'SET_FRAME_DURATION', frameId: frame.id, duration: Number(e.target.value) })}
-                className="w-full text-[9px] bg-transparent border-b focus:outline-none"
-                style={{
-                  borderColor: '#2a2a2a',
-                  color: '#cccccc',
-                  ...sFont,
-                }}
-                aria-label={`Frame ${idx + 1} duration`}
-              />
-            </div>
-
+      {/* ── Frame strip ─────────────────────────────────────────── */}
+      <div className="p-2 border-b shrink-0" style={{ borderColor: 'var(--studio-border)' }}>
+        <div className="flex items-center justify-between mb-1.5">
+          <span className="text-[10px] uppercase tracking-widest" style={{ color: '#777777' }}>Frames</span>
+          <div className="flex gap-1">
             <button
-              onClick={e => { e.stopPropagation(); dispatch({ type: 'DELETE_FRAME', frameId: frame.id }) }}
-              className="text-xs hover:opacity-80 transition-opacity"
-              style={{ color: 'var(--studio-text-muted)' }}
-              aria-label={`Delete frame ${idx + 1}`}
-            >
-              ×
-            </button>
+              onClick={() => dispatch({ type: 'ADD_FRAME' })}
+              className="px-2 py-0.5 text-[10px] border hover:bg-[var(--studio-tint)] transition-colors"
+              style={{ borderColor: 'var(--studio-border)', color: '#cccccc' }}
+              aria-label="Add blank frame"
+            >+ Blank</button>
+            <button
+              onClick={() => dispatch({ type: 'ADD_FRAME', duplicate: true })}
+              className="px-2 py-0.5 text-[10px] border hover:bg-[var(--studio-tint)] transition-colors"
+              style={{ borderColor: 'var(--studio-border)', color: '#cccccc' }}
+              aria-label="Duplicate frame"
+            >+ Dupe</button>
           </div>
-        ))}
+        </div>
 
-        <div className="flex gap-1 mt-1">
-          <button
-            onClick={() => dispatch({ type: 'ADD_FRAME' })}
-            className="flex-1 py-1.5 text-xs border bg-transparent hover:bg-[var(--studio-tint)] transition-colors"
-            style={{ borderColor: 'var(--studio-border)', color: '#cccccc', ...sFont }}
-            aria-label="Add blank frame"
-          >
-            + Blank
-          </button>
-          <button
-            onClick={() => dispatch({ type: 'ADD_FRAME', duplicate: true })}
-            className="flex-1 py-1.5 text-xs border bg-transparent hover:bg-[var(--studio-tint)] transition-colors"
-            style={{ borderColor: 'var(--studio-border)', color: '#cccccc', ...sFont }}
-            aria-label="Duplicate frame"
-          >
-            + Dupe
-          </button>
+        {/* Scrollable horizontal frame thumbnails */}
+        <div className="flex gap-1.5 overflow-x-auto pb-1" style={{ scrollbarWidth: 'thin', scrollbarColor: '#333 transparent' }}>
+          {frames.map((frame, idx) => (
+            <div
+              key={frame.id}
+              onClick={() => dispatch({ type: 'SET_ACTIVE_FRAME', frameId: frame.id })}
+              className="relative shrink-0 cursor-pointer group"
+              style={{
+                border: frame.id === activeFrameId ? '2px solid var(--studio-border)' : '2px solid #333',
+                transition: 'border-color 150ms',
+              }}
+            >
+              <svg
+                viewBox={`0 0 ${state.cols} ${state.rows}`}
+                style={{ width: 48, height: 32, display: 'block', background: '#080808' }}
+              >
+                {frame.grid.map((row, r) =>
+                  row.map((filled, c) =>
+                    filled ? <circle key={`${r}-${c}`} cx={c + 0.5} cy={r + 0.5} r={0.4} fill={state.dotColor} /> : null
+                  )
+                )}
+              </svg>
+              {/* Frame number */}
+              <div
+                className="absolute bottom-0 left-0 px-0.5 text-[8px] leading-none"
+                style={{ background: 'rgba(0,0,0,0.7)', color: '#888' }}
+              >
+                {idx + 1}
+              </div>
+              {/* Delete button — appears on hover */}
+              {frames.length > 1 && (
+                <button
+                  onClick={e => { e.stopPropagation(); dispatch({ type: 'DELETE_FRAME', frameId: frame.id }) }}
+                  className="absolute -top-1.5 -right-1.5 w-4 h-4 rounded-full items-center justify-center text-[9px] opacity-0 group-hover:opacity-100 transition-opacity hidden group-hover:flex"
+                  style={{ background: 'var(--studio-border)', color: '#000', lineHeight: 1 }}
+                  aria-label={`Delete frame ${idx + 1}`}
+                >
+                  ×
+                </button>
+              )}
+            </div>
+          ))}
         </div>
       </div>
 
-      {/* ── Presets ────────────────────────────────────────────── */}
-      <div className="p-2 border-t shrink-0" style={{ borderColor: 'var(--studio-border)' }}>
-        <p className="text-[9px] tracking-widest uppercase mb-2"
-          style={{ color: 'var(--studio-text-muted)', ...sFont }}>
-          Presets — applied to your art
+      {/* ── Presets ─────────────────────────────────────────────── */}
+      <div className="p-2 border-b shrink-0" style={{ borderColor: 'var(--studio-border)' }}>
+        <p className="text-[10px] uppercase tracking-widest mb-2" style={{ color: '#777777' }}>
+          Animate — replaces all frames
         </p>
 
-        <div className="flex flex-col gap-1">
+        <div className="grid grid-cols-2 gap-1 mb-2">
           {PRESET_OPTIONS.map(p => {
             const active = selectedPreset === p.id
             return (
               <button
                 key={p.id}
                 onClick={() => setSelectedPreset(active ? null : p.id)}
-                className="flex items-center gap-2 px-2 py-1.5 text-left border transition-colors"
+                className="flex flex-col items-start px-2 py-1.5 text-left border transition-colors"
                 style={{
                   borderColor: active ? 'var(--studio-border)' : '#333',
                   background: active ? 'var(--studio-tint)' : 'transparent',
-                  color: active ? 'var(--studio-text)' : '#aaaaaa',
-                  ...sFont,
                 }}
                 aria-pressed={active}
               >
-                <span className="text-sm w-5 text-center shrink-0">{p.icon}</span>
-                <div className="flex-1 min-w-0">
-                  <div className="text-[10px] font-bold tracking-wide">{p.label}</div>
-                  <div className="text-[8px]" style={{ color: active ? '#cccccc' : '#555555' }}>{p.desc}</div>
+                <div className="flex items-center gap-1.5 w-full">
+                  <span className="text-sm" style={{ color: active ? 'var(--studio-text)' : '#888' }}>{p.icon}</span>
+                  <span className="text-xs font-bold flex-1" style={{ color: active ? '#ffffff' : '#cccccc' }}>{p.label}</span>
+                  {active && <span className="text-xs" style={{ color: 'var(--studio-border)' }}>✓</span>}
                 </div>
-                {active && (
-                  <span className="text-xs shrink-0" style={{ color: 'var(--studio-border)' }}>✓</span>
-                )}
+                <div className="text-[9px] mt-0.5 pl-5" style={{ color: active ? '#aaaaaa' : '#555555' }}>{p.desc}</div>
               </button>
             )
           })}
@@ -223,117 +211,74 @@ export function AnimationPanel({ state, dispatch, activeGrid }: AnimationPanelPr
         {selectedPreset ? (
           <button
             onClick={handleApplyPreset}
-            className="w-full mt-2 py-1.5 text-xs font-bold tracking-wide border-3 studio-tool-active transition-opacity hover:opacity-90"
-            style={{ ...sFont }}
+            className="w-full py-2 text-xs font-bold tracking-wide border-3 studio-tool-active"
           >
             Apply {PRESET_OPTIONS.find(p => p.id === selectedPreset)?.label}
           </button>
         ) : (
-          <p className="text-[8px] mt-2 text-center" style={{ color: '#444444', ...sFont }}>
+          <div className="text-[9px] text-center py-1" style={{ color: '#444444' }}>
             Select a preset above, then apply
-          </p>
+          </div>
         )}
       </div>
 
-      {/* ── Tween ──────────────────────────────────────────────── */}
-      <div className="p-2 border-t shrink-0" style={{ borderColor: 'var(--studio-border)' }}>
-        <p className="text-[9px] tracking-widest uppercase mb-2"
-          style={{ color: 'var(--studio-text-muted)', ...sFont }}>
-          Tween
-        </p>
-        <select
-          value={tweenTarget ?? ''}
-          onChange={e => setTweenTarget(e.target.value || null)}
-          className="w-full mb-1 text-xs px-1 py-1 focus:outline-none"
-          style={{
-            background: '#1a1a1a',
-            border: '1px solid #333',
-            color: '#cccccc',
-            ...sFont,
-          }}
-          aria-label="Tween target frame"
-        >
-          <option value="">— target frame —</option>
-          {frames.filter(f => f.id !== activeFrameId).map((f) => (
-            <option key={f.id} value={f.id} style={{ background: '#1a1a1a' }}>
-              Frame {frames.indexOf(f) + 1}
-            </option>
-          ))}
-        </select>
-        <div className="flex gap-1 items-center">
-          <input
-            type="number"
-            value={tweenN}
-            min={1} max={30}
-            onChange={e => setTweenN(Number(e.target.value))}
-            className="w-12 text-xs px-1 py-1 text-center focus:outline-none"
-            style={{ background: '#1a1a1a', border: '1px solid #333', color: '#cccccc', ...sFont }}
-            aria-label="Number of tween frames"
-          />
-          <span className="text-[10px]" style={{ color: '#777777', ...sFont }}>frames</span>
-          <button
-            onClick={applyTween}
-            disabled={!tweenTarget}
-            className="ml-auto px-2 py-1 text-[10px] border bg-transparent disabled:opacity-30 hover:bg-[var(--studio-tint)] transition-colors"
-            style={{ borderColor: 'var(--studio-border)', color: '#cccccc', ...sFont }}
-          >
-            Apply
-          </button>
-        </div>
-      </div>
+      {/* ── Playback ─────────────────────────────────────────────── */}
+      <div className="p-2 flex-1">
+        <p className="text-[10px] uppercase tracking-widest mb-2" style={{ color: '#777777' }}>Playback</p>
 
-      {/* ── Playback ───────────────────────────────────────────── */}
-      <div className="p-2 border-t shrink-0" style={{ borderColor: 'var(--studio-border)' }}>
-        <div className="flex gap-1 mb-2">
+        {/* Play / Stop */}
+        <div className="flex gap-1.5 mb-3">
           <button
             onClick={() => dispatch({ type: 'SET_PLAYING', playing: !isPlaying })}
-            className="flex-1 py-1.5 text-xs border-3 studio-tool-active flex items-center justify-center gap-1"
-            style={sFont}
+            className={cn(
+              'flex-1 py-2 text-sm font-bold border-3 flex items-center justify-center gap-2 transition-colors',
+              isPlaying ? 'studio-tool-active' : 'bg-transparent border-[var(--studio-border)] text-[var(--studio-text)] hover:bg-[var(--studio-tint)]'
+            )}
             aria-label={isPlaying ? 'Pause' : 'Play'}
           >
             <span className="text-base">{isPlaying ? '⏸' : '▶'}</span>
             <span>{isPlaying ? 'Pause' : 'Play'}</span>
           </button>
           <button
-            onClick={() => { dispatch({ type: 'SET_PLAYING', playing: false }); dispatch({ type: 'SET_PLAY_FRAME', index: 0 }) }}
-            className="px-3 py-1.5 text-base border bg-transparent hover:bg-[var(--studio-tint)] transition-colors"
+            onClick={() => {
+              dispatch({ type: 'SET_PLAYING', playing: false })
+              dispatch({ type: 'SET_PLAY_FRAME', index: 0 })
+            }}
+            className="px-3 py-2 text-base border hover:bg-[var(--studio-tint)] transition-colors"
             style={{ borderColor: 'var(--studio-border)', color: '#cccccc' }}
             aria-label="Stop"
-          >
-            <span className="text-base">⏹</span>
-          </button>
+          >⏹</button>
         </div>
 
-        <div className="flex items-center gap-2 mb-2">
-          <span className="text-[9px] w-6 shrink-0" style={{ color: '#777777', ...sFont }}>FPS</span>
+        {/* Frame count info */}
+        <div className="text-[10px] mb-3 text-center" style={{ color: '#666666' }}>
+          {frames.length} frame{frames.length !== 1 ? 's' : ''}
+          {isPlaying ? ` · frame ${state.playFrameIndex + 1}` : ''}
+        </div>
+
+        {/* FPS */}
+        <div className="flex items-center gap-2 mb-3">
+          <span className="text-xs w-8 shrink-0" style={{ color: '#aaaaaa' }}>FPS</span>
           <input
-            type="range"
-            min={1} max={60}
-            value={fps}
+            type="range" min={1} max={60} value={fps}
             onChange={e => dispatch({ type: 'SET_FPS', fps: Number(e.target.value) })}
             className="flex-1"
             style={{ accentColor: 'var(--studio-border)' }}
             aria-label="Frames per second"
           />
-          <span className="text-[10px] w-6 text-right" style={{ color: '#cccccc', ...sFont }}>{fps}</span>
+          <span className="text-xs w-6 text-right" style={{ color: '#ffffff' }}>{fps}</span>
         </div>
 
+        {/* Loop mode */}
         <div className="flex gap-1">
           {(['infinite', 'once', '3x'] as const).map(mode => (
             <button
               key={mode}
               onClick={() => dispatch({ type: 'SET_LOOP_MODE', mode })}
-              className={cn(
-                'flex-1 py-1 text-[9px] border transition-colors',
-                loopMode === mode ? 'studio-tool-active' : 'bg-transparent hover:bg-[var(--studio-tint)]'
-              )}
-              style={{
-                borderColor: 'var(--studio-border)',
-                color: loopMode === mode ? '#000' : '#aaaaaa',
-                ...sFont,
-              }}
+              className={cn('flex-1 py-1.5 text-xs border transition-colors', loopMode === mode ? 'studio-tool-active' : 'bg-transparent hover:bg-[var(--studio-tint)]')}
+              style={{ borderColor: 'var(--studio-border)', color: loopMode === mode ? '#000' : '#aaaaaa' }}
             >
-              {mode}
+              {mode === 'infinite' ? '∞' : mode}
             </button>
           ))}
         </div>

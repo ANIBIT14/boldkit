@@ -56,7 +56,7 @@ export function Toolbar({ state, dispatch, mobile }: ToolbarProps) {
 
   return (
     <div className="flex flex-col gap-1.5 p-3">
-      <p className="text-[9px] tracking-widest text-[var(--studio-text-muted)] uppercase mb-1">Tools</p>
+      <p className="text-xs tracking-widest text-[var(--studio-text-muted)] uppercase mb-1">Tools</p>
       {TOOLS.map(tool => (
         <button
           key={tool.id}
@@ -77,7 +77,7 @@ export function Toolbar({ state, dispatch, mobile }: ToolbarProps) {
 
       {activeTool === 'shapes' && (
         <div className="mt-2 border-t border-[var(--studio-border)] pt-2 flex flex-col gap-1">
-          <p className="text-[9px] tracking-widest text-[var(--studio-text-muted)] uppercase mb-1">
+          <p className="text-xs tracking-widest text-[var(--studio-text-muted)] uppercase mb-1">
             Shape — drag on canvas
           </p>
           {SHAPES.map(shape => (
@@ -94,7 +94,7 @@ export function Toolbar({ state, dispatch, mobile }: ToolbarProps) {
               {shape.label}
             </button>
           ))}
-          <p className="text-[8px] text-[var(--studio-text-muted)] mt-1 px-1 leading-relaxed" style={sFont}>
+          <p className="text-[10px] text-[var(--studio-text-muted)] mt-1 px-1 leading-relaxed" style={sFont}>
             Click and drag on the canvas to draw
           </p>
         </div>

@@ -77,6 +77,7 @@ function getInitialState(): StudioState {
 export type StudioAction =
   | { type: 'SET_DOT'; row: number; col: number; value: boolean }
   | { type: 'SET_DOTS'; dots: { row: number; col: number; value: boolean }[] }
+  | { type: 'SET_ALL_FRAMES'; frames: Frame[] }
   | { type: 'APPLY_GRID'; grid: DotGrid }
   | { type: 'SET_TOOL'; tool: Tool }
   | { type: 'SET_ACTIVE_SHAPE'; shape: ShapeType }
@@ -216,6 +217,12 @@ function reducer(state: StudioState, action: StudioAction): StudioState {
 
     case 'SET_SELECTION':
       return { ...state, selection: action.selection }
+
+    case 'SET_ALL_FRAMES': {
+      if (!action.frames.length) return state
+      const undo = pushUndo(state)
+      return { ...state, ...undo, frames: action.frames, activeFrameId: action.frames[0].id, isPlaying: false, playFrameIndex: 0 }
+    }
 
     case 'ADD_FRAMES': {
       const undo = pushUndo(state)
