@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest'
 import { renderHook, act } from '@testing-library/react'
-import { useStudioState, createEmptyGrid, createFrame } from '../hooks/useStudioState'
+import { useStudioState, createEmptyGrid } from '../hooks/useStudioState'
 
 describe('useStudioState', () => {
   it('initialises with one 16×32 frame', () => {

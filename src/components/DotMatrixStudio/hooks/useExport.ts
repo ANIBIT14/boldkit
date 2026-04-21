@@ -51,7 +51,9 @@ function downloadBlob(blob: Blob, filename: string) {
   const a = document.createElement('a')
   a.href = url
   a.download = filename
+  document.body.appendChild(a)
   a.click()
+  document.body.removeChild(a)
   URL.revokeObjectURL(url)
 }
 
@@ -190,13 +192,13 @@ export async function exportGIF(
     const palette = quantize(rgb, 256)
     const indexed = applyPalette(rgb, palette)
 
-    const loopCount = config.loopMode === 'infinite' ? 0 : config.loopMode === 'once' ? 1 : 3
+    const loopCount = config.loopMode === 'infinite' ? 0 : config.loopMode === 'once' ? -1 : 2
     gif.writeFrame(indexed, width, height, { palette, delay: frame.duration, repeat: loopCount })
   }
 
   gif.finish()
-  const bytes = gif.bytesView()
-  const blob = new Blob([bytes], { type: 'image/gif' })
+  const bytes = gif.bytes()
+  const blob = new Blob([bytes.buffer as ArrayBuffer], { type: 'image/gif' })
   downloadBlob(blob, 'animation.gif')
 }
 

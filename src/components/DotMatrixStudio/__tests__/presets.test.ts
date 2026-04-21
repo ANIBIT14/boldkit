@@ -1,5 +1,4 @@
 import { describe, it, expect } from 'vitest'
-import { createEmptyGrid } from '../hooks/useStudioState'
 import { applyBlink, applyTypewriter, applyScanLine, applyMarquee, applyRipple, applyGlitch } from '../lib/presets'
 
 const ROWS = 4

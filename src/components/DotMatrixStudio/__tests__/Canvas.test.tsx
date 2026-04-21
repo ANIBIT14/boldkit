@@ -1,5 +1,5 @@
 import { describe, it, expect, vi } from 'vitest'
-import { render, screen } from '@/test/test-utils'
+import { render } from '@/test/test-utils'
 import { Canvas } from '../Canvas'
 import { createFrame } from '../hooks/useStudioState'
 import type { StudioState } from '../types'

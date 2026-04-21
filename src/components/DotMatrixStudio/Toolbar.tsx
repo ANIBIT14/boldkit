@@ -2,18 +2,18 @@ import type { Tool, ShapeType, StudioState } from './types'
 import type { StudioAction } from './hooks/useStudioState'
 import { cn } from '@/lib/utils'
 
+const SHAPES: { id: ShapeType; label: string }[] = [
+  { id: 'line', label: 'Line' },
+  { id: 'rect', label: 'Rectangle' },
+  { id: 'circle', label: 'Circle' },
+]
+
 const TOOLS: { id: Tool; label: string; key: string; icon: string }[] = [
   { id: 'pencil', label: 'Pencil', key: 'P', icon: '✏' },
   { id: 'eraser', label: 'Eraser', key: 'E', icon: '⌫' },
   { id: 'text', label: 'Text', key: 'T', icon: 'T' },
-  { id: 'shapes', label: 'Shapes', key: 'S', icon: '◻' },
+  { id: 'shapes', label: 'Shapes', key: 'S', icon: '□' },
   { id: 'select', label: 'Select', key: 'V', icon: '⊹' },
-]
-
-const SHAPES: { id: ShapeType; label: string }[] = [
-  { id: 'line', label: 'Line' },
-  { id: 'rect', label: 'Rect' },
-  { id: 'circle', label: 'Circle' },
 ]
 
 interface ToolbarProps {

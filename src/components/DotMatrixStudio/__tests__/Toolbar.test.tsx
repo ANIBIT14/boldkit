@@ -44,7 +44,7 @@ describe('Toolbar', () => {
   it('shows shape sub-toolbar when shapes tool is active', () => {
     render(<Toolbar state={makeState({ activeTool: 'shapes' })} dispatch={vi.fn()} />)
     expect(screen.getByText('Line')).toBeInTheDocument()
-    expect(screen.getByText('Rect')).toBeInTheDocument()
+    expect(screen.getByText('Rectangle')).toBeInTheDocument()
     expect(screen.getByText('Circle')).toBeInTheDocument()
   })
 
