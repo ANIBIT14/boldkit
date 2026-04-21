@@ -169,10 +169,10 @@ function getTickCoords(tick: number) {
 </script>
 
 <template>
-  <div :class="cn(gaugeChartVariants({ size }), props.class)">
+  <div :class="cn(gaugeChartVariants({ size }), props.class)" :style="{ maxWidth: `${config.width}px` }">
     <svg
-      :width="config.width"
-      :height="config.height"
+      width="100%"
+      height="auto"
       :viewBox="`0 0 ${config.width} ${config.height}`"
     >
       <!-- Background track -->

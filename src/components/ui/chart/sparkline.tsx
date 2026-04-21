@@ -39,6 +39,9 @@ const Sparkline = React.forwardRef<HTMLDivElement, SparklineProps>(
     },
     ref
   ) => {
+    // Unique ID per instance prevents gradient collision when multiple sparklines render on the same page
+    const uid = React.useId().replace(/:/g, '')
+
     // Convert data array to format recharts expects
     const chartData = data.map((value, index) => ({ value, index }))
 
@@ -109,7 +112,7 @@ const Sparkline = React.forwardRef<HTMLDivElement, SparklineProps>(
           <ResponsiveContainer width="100%" height="100%">
             <AreaChart data={chartData} margin={{ top: 0, right: 0, bottom: 0, left: 0 }}>
               <defs>
-                <linearGradient id={`sparkline-gradient-${trend || 'default'}`} x1="0" y1="0" x2="0" y2="1">
+                <linearGradient id={`sparkline-gradient-${uid}`} x1="0" y1="0" x2="0" y2="1">
                   <stop offset="0%" stopColor={resolvedColor} stopOpacity={0.6} />
                   <stop offset="100%" stopColor={resolvedColor} stopOpacity={0.1} />
                 </linearGradient>
@@ -119,7 +122,7 @@ const Sparkline = React.forwardRef<HTMLDivElement, SparklineProps>(
                 dataKey="value"
                 stroke={resolvedColor}
                 strokeWidth={strokeWidth}
-                fill={`url(#sparkline-gradient-${trend || 'default'})`}
+                fill={`url(#sparkline-gradient-${uid})`}
                 isAnimationActive={animated}
                 animationDuration={300}
                 dot={endDotRenderer}

@@ -127,6 +127,8 @@ const GaugeChart = React.forwardRef<HTMLDivElement, GaugeChartProps>(
         ? config.height / 2
         : config.radius + config.strokeWidth + 5
 
+    const isMeter = resolvedVariant === 'meter'
+
     const needleLength = config.radius - 8
 
     // Convert a percentage (0–100) along the arc to an SVG angle in radians
@@ -156,6 +158,12 @@ const GaugeChart = React.forwardRef<HTMLDivElement, GaugeChartProps>(
     // The needle points upward (the line is drawn rightward then rotated)
     const needleAngle = arcConfig.arcStartDeg + (percentage * arcConfig.sweepDeg) / 100
 
+    // Meter variant: filled progress arc + zone color (no needle)
+    const meterProgressPath = isMeter ? createArcPath(0, percentage, config.radius) : ''
+    const currentZoneColor =
+      zones.find((z) => percentage >= z.from && percentage <= z.to)?.color ||
+      'hsl(var(--primary))'
+
     // Tick marks: semicircle/full use 5 ticks at 0/25/50/75/100 %
     // meter variant gets denser ticks at every 10%
     const tickPercentages =
@@ -167,11 +175,12 @@ const GaugeChart = React.forwardRef<HTMLDivElement, GaugeChartProps>(
       <div
         ref={ref}
         className={cn(gaugeChartVariants({ size, variant }), className)}
+        style={{ maxWidth: config.width }}
         {...props}
       >
         <svg
-          width={config.width}
-          height={config.height}
+          width="100%"
+          height="auto"
           viewBox={`0 0 ${config.width} ${config.height}`}
         >
           {/* Background track */}
@@ -238,58 +247,76 @@ const GaugeChart = React.forwardRef<HTMLDivElement, GaugeChartProps>(
               )
             })}
 
-          {/* Needle */}
-          <g
-            style={{
-              transform: `rotate(${needleAngle}deg)`,
-              transformOrigin: `${centerX}px ${centerY}px`,
-              transition: animated ? 'transform 0.5s ease-out' : 'none',
-            }}
-          >
-            {/* Needle shadow */}
-            <line
-              x1={centerX + 2}
-              y1={centerY + 2}
-              x2={centerX + needleLength + 2}
-              y2={centerY + 2}
-              stroke="hsl(var(--shadow-color))"
-              strokeWidth="3"
+          {/* Meter variant: filled progress arc (replaces needle) */}
+          {isMeter && meterProgressPath && (
+            <path
+              d={meterProgressPath}
+              fill="none"
+              stroke={currentZoneColor}
+              strokeWidth={config.strokeWidth + 4}
               strokeLinecap="round"
+              style={{ transition: animated ? 'stroke-dasharray 0.5s ease-out' : 'none' }}
             />
-            {/* Needle body */}
-            <line
-              x1={centerX}
-              y1={centerY}
-              x2={centerX + needleLength}
-              y2={centerY}
-              stroke="hsl(var(--foreground))"
-              strokeWidth="3"
-              strokeLinecap="round"
-            />
-            {/* Needle tip */}
-            <circle
-              cx={centerX + needleLength}
-              cy={centerY}
-              r="3"
-              fill="hsl(var(--primary))"
-              stroke="hsl(var(--foreground))"
-              strokeWidth="1.5"
-            />
-          </g>
+          )}
 
-          {/* Center pivot */}
-          <circle
-            cx={centerX}
-            cy={centerY}
-            r="6"
-            fill="hsl(var(--foreground))"
-          />
-          <circle
-            cx={centerX}
-            cy={centerY}
-            r="3"
-            fill="hsl(var(--background))"
-          />
+          {/* Needle (hidden for meter variant) */}
+          {!isMeter && (
+            <g
+              style={{
+                transform: `rotate(${needleAngle}deg)`,
+                transformOrigin: `${centerX}px ${centerY}px`,
+                transition: animated ? 'transform 0.5s ease-out' : 'none',
+              }}
+            >
+              {/* Needle shadow */}
+              <line
+                x1={centerX + 2}
+                y1={centerY + 2}
+                x2={centerX + needleLength + 2}
+                y2={centerY + 2}
+                stroke="hsl(var(--shadow-color))"
+                strokeWidth="3"
+                strokeLinecap="round"
+              />
+              {/* Needle body */}
+              <line
+                x1={centerX}
+                y1={centerY}
+                x2={centerX + needleLength}
+                y2={centerY}
+                stroke="hsl(var(--foreground))"
+                strokeWidth="3"
+                strokeLinecap="round"
+              />
+              {/* Needle tip */}
+              <circle
+                cx={centerX + needleLength}
+                cy={centerY}
+                r="3"
+                fill="hsl(var(--primary))"
+                stroke="hsl(var(--foreground))"
+                strokeWidth="1.5"
+              />
+            </g>
+          )}
+
+          {/* Center pivot (hidden for meter variant) */}
+          {!isMeter && (
+            <>
+              <circle
+                cx={centerX}
+                cy={centerY}
+                r="6"
+                fill="hsl(var(--foreground))"
+              />
+              <circle
+                cx={centerX}
+                cy={centerY}
+                r="3"
+                fill="hsl(var(--background))"
+              />
+            </>
+          )}
 
           {/* Value display */}
           <text

@@ -26,9 +26,9 @@ const props = withDefaults(defineProps<Props>(), {
 })
 
 const option = computed(() => {
-  const vals = props.data.map(d => d.value)
+  const vals = props.data.length > 0 ? props.data.map(d => d.value) : [0]
   const minVal = Math.min(...vals)
-  const maxVal = Math.max(...vals)
+  const maxVal = Math.max(...vals) || 1 // prevent min === max when all values are 0
 
   const seriesData = props.data.map(d => [
     props.cols.indexOf(d.col),

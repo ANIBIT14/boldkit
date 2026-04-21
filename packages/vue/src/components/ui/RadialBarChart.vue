@@ -48,10 +48,13 @@ const maxVal = computed(() => props.maxValue || (props.data.length > 0 ? Math.ma
 // Create stacked rings for radial bar effect
 const seriesData = computed(() => {
   const numItems = props.data.length
-  const radiusStep = (90 - 30) / numItems // Percentage range divided by items
+  // Parse innerRadius/outerRadius props (accept "30%" or 30)
+  const innerPct = typeof props.innerRadius === 'string' ? parseInt(props.innerRadius) : (props.innerRadius ?? 30)
+  const outerPct = typeof props.outerRadius === 'string' ? parseInt(props.outerRadius) : (props.outerRadius ?? 90)
+  const radiusStep = numItems > 0 ? (outerPct - innerPct) / numItems : 0
 
   return props.data.map((item, index) => {
-    const innerR = 30 + (index * radiusStep)
+    const innerR = innerPct + (index * radiusStep)
     const outerR = innerR + radiusStep - 2 // Small gap between rings
 
     return {
