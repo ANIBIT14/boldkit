@@ -65,7 +65,7 @@ function useHeroSize(): AsciiSize {
 
 export function AsciiShapes() {
   const [charset, setCharset] = useState<AsciiCharset>('classic')
-  const [size, setSize]       = useState<AsciiSize>('sm')
+  const [size, setSize]       = useState<AsciiSize>('md')
   const [color, setColor]     = useState<string>('')
   const [multicolor, setMulticolor] = useState<boolean>(false)
   const heroSize = useHeroSize()
