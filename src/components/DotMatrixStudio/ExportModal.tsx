@@ -16,7 +16,6 @@ export function ExportModal({ state, onClose }: ExportModalProps) {
   const [scale, setScale] = useState<1 | 2 | 4 | 8>(2)
   const [loopMode, setLoopMode] = useState<LoopMode>('infinite')
   const [svgAnimated, setSvgAnimated] = useState(true)
-  const [svgEmbedFont, setSvgEmbedFont] = useState(false)
   const [pngSpritesheet, setPngSpritesheet] = useState(false)
   const [bgTransparent, setBgTransparent] = useState(state.bgTransparent)
   const [exporting, setExporting] = useState(false)
@@ -28,7 +27,7 @@ export function ExportModal({ state, onClose }: ExportModalProps) {
   const handleExport = async () => {
     setExporting(true)
     try {
-      await runExport({ format, scale, bgTransparent, loopMode, svgAnimated, svgEmbedFont, pngSpritesheet })
+      await runExport({ format, scale, bgTransparent, loopMode, svgAnimated, svgEmbedFont: false, pngSpritesheet })
       onClose()
     } catch (err) {
       console.error('Export failed:', err)
@@ -125,10 +124,6 @@ export function ExportModal({ state, onClose }: ExportModalProps) {
               <label className="flex items-center gap-2 cursor-pointer text-xs text-[var(--studio-text)]" style={sFont}>
                 <input type="checkbox" checked={svgAnimated} onChange={e => setSvgAnimated(e.target.checked)} />
                 Animated SVG (multi-frame)
-              </label>
-              <label className="flex items-center gap-2 cursor-pointer text-xs text-[var(--studio-text)]" style={sFont}>
-                <input type="checkbox" checked={svgEmbedFont} onChange={e => setSvgEmbedFont(e.target.checked)} />
-                Embed NDot font
               </label>
             </div>
           )}

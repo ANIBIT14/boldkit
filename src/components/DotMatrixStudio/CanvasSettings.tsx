@@ -27,7 +27,7 @@ export function CanvasSettings({ state, dispatch, onGridChangeRequest }: CanvasS
             className={`px-2 py-1 text-xs border border-[var(--studio-border)] transition-colors text-left ${
               currentPreset?.name === preset.name
                 ? 'studio-tool-active'
-                : 'bg-transparent text-[var(--studio-text)] hover:bg-[#1a1a1a]'
+                : 'bg-transparent text-[var(--studio-text)] hover:bg-[var(--studio-tint)]'
             }`}
             style={{ fontFamily: 'var(--studio-font)' }}
           >
@@ -62,7 +62,7 @@ export function CanvasSettings({ state, dispatch, onGridChangeRequest }: CanvasS
             const c = parseInt(customCols)
             if (r >= 2 && r <= 64 && c >= 2 && c <= 128) onGridChangeRequest(r, c)
           }}
-          className="px-2 py-1 text-xs bg-transparent border border-[var(--studio-border)] text-[var(--studio-text)] hover:bg-[#1a1a1a]"
+          className="px-2 py-1 text-xs bg-transparent border border-[var(--studio-border)] text-[var(--studio-text)] hover:bg-[var(--studio-tint)]"
           style={{ fontFamily: 'var(--studio-font)' }}
         >
           Set

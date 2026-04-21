@@ -1,4 +1,4 @@
-import { useReducer, useCallback } from 'react'
+import { useReducer, useCallback, useEffect } from 'react'
 import type { StudioState, Frame, Tool, ShapeType, LoopMode, SelectionBox, DotGrid } from '../types'
 
 // ── helpers ────────────────────────────────────────────────────────────────
@@ -24,14 +24,14 @@ function pushUndo(state: StudioState): Pick<StudioState, 'undoStack' | 'redoStac
 const INITIAL_ROWS = 16
 const INITIAL_COLS = 32
 
-function getInitialState(): StudioState {
+function getDefaultState(): StudioState {
   const firstFrame = createFrame(INITIAL_ROWS, INITIAL_COLS)
   return {
     frames: [firstFrame],
     activeFrameId: firstFrame.id,
     rows: INITIAL_ROWS,
     cols: INITIAL_COLS,
-    dotColor: '#E8FF00',
+    dotColor: '#D71921',
     bgTransparent: false,
     activeTool: 'pencil',
     activeShape: 'rect',
@@ -45,10 +45,38 @@ function getInitialState(): StudioState {
   }
 }
 
+const STORAGE_KEY = 'studio-state-v2'
+
+function getInitialState(): StudioState {
+  try {
+    const saved = localStorage.getItem(STORAGE_KEY)
+    if (saved) {
+      const p = JSON.parse(saved)
+      if (p.frames?.length && p.rows && p.cols) {
+        return {
+          ...getDefaultState(),
+          frames: p.frames,
+          activeFrameId: p.frames.find((f: Frame) => f.id === p.activeFrameId)
+            ? p.activeFrameId
+            : p.frames[0].id,
+          rows: p.rows,
+          cols: p.cols,
+          dotColor: p.dotColor ?? '#D71921',
+          bgTransparent: p.bgTransparent ?? false,
+          fps: p.fps ?? 12,
+          loopMode: p.loopMode ?? 'infinite',
+        }
+      }
+    }
+  } catch { /* storage unavailable */ }
+  return getDefaultState()
+}
+
 // ── actions ────────────────────────────────────────────────────────────────
 
 export type StudioAction =
   | { type: 'SET_DOT'; row: number; col: number; value: boolean }
+  | { type: 'SET_DOTS'; dots: { row: number; col: number; value: boolean }[] }
   | { type: 'APPLY_GRID'; grid: DotGrid }
   | { type: 'SET_TOOL'; tool: Tool }
   | { type: 'SET_ACTIVE_SHAPE'; shape: ShapeType }
@@ -67,6 +95,7 @@ export type StudioAction =
   | { type: 'SET_SELECTION'; selection: SelectionBox | null }
   | { type: 'ADD_FRAMES'; frames: Frame[]; afterId?: string }
   | { type: 'IMPORT'; frames: Frame[]; rows: number; cols: number; dotColor: string; bgTransparent: boolean }
+  | { type: 'RESET' }
   | { type: 'UNDO' }
   | { type: 'REDO' }
 
@@ -83,6 +112,19 @@ function reducer(state: StudioState, action: StudioAction): StudioState {
       if (action.row < 0 || action.row >= state.rows) return state
       if (action.col < 0 || action.col >= state.cols) return state
       frame.grid[action.row][action.col] = action.value
+      return { ...state, ...undo, frames }
+    }
+
+    case 'SET_DOTS': {
+      const undo = pushUndo(state)
+      const frames = cloneFrames(state.frames)
+      const frame = frames.find(f => f.id === state.activeFrameId)
+      if (!frame) return state
+      for (const { row, col, value } of action.dots) {
+        if (row >= 0 && row < state.rows && col >= 0 && col < state.cols) {
+          frame.grid[row][col] = value
+        }
+      }
       return { ...state, ...undo, frames }
     }
 
@@ -188,7 +230,7 @@ function reducer(state: StudioState, action: StudioAction): StudioState {
 
     case 'IMPORT': {
       return {
-        ...getInitialState(),
+        ...getDefaultState(),
         frames: action.frames,
         activeFrameId: action.frames[0]?.id ?? '',
         rows: action.rows,
@@ -197,6 +239,10 @@ function reducer(state: StudioState, action: StudioAction): StudioState {
         bgTransparent: action.bgTransparent,
       }
     }
+
+    case 'RESET':
+      try { localStorage.removeItem(STORAGE_KEY) } catch { /* ok */ }
+      return getDefaultState()
 
     case 'UNDO': {
       if (state.undoStack.length === 0) return state
@@ -231,6 +277,23 @@ export function useStudioState() {
   const [state, dispatch] = useReducer(reducer, undefined, getInitialState)
 
   const activeFrame = state.frames.find(f => f.id === state.activeFrameId) ?? state.frames[0]
+
+  // Persist to localStorage whenever meaningful state changes (not during playback)
+  useEffect(() => {
+    if (state.isPlaying) return
+    try {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify({
+        frames: state.frames,
+        activeFrameId: state.activeFrameId,
+        rows: state.rows,
+        cols: state.cols,
+        dotColor: state.dotColor,
+        bgTransparent: state.bgTransparent,
+        fps: state.fps,
+        loopMode: state.loopMode,
+      }))
+    } catch { /* quota exceeded */ }
+  }, [state.frames, state.activeFrameId, state.rows, state.cols, state.dotColor, state.bgTransparent, state.fps, state.loopMode, state.isPlaying])
 
   const setDot = useCallback((row: number, col: number, value: boolean) =>
     dispatch({ type: 'SET_DOT', row, col, value }), [])

@@ -1,8 +1,9 @@
-import { describe, it, expect } from 'vitest'
+import { describe, it, expect, beforeEach } from 'vitest'
 import { renderHook, act } from '@testing-library/react'
 import { useStudioState, createEmptyGrid } from '../hooks/useStudioState'
 
 describe('useStudioState', () => {
+  beforeEach(() => { localStorage.clear() })
   it('initialises with one 16×32 frame', () => {
     const { result } = renderHook(() => useStudioState())
     expect(result.current.state.frames).toHaveLength(1)

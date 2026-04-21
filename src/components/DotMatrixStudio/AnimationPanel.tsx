@@ -95,7 +95,7 @@ export function AnimationPanel({ state, dispatch, activeGrid }: AnimationPanelPr
             className={cn(
               'flex items-center gap-2 px-2 py-1 cursor-pointer border transition-colors',
               frame.id === activeFrameId
-                ? 'border-[var(--studio-border)] bg-[#1a1a00]'
+                ? 'border-[var(--studio-border)] bg-[var(--studio-tint)]'
                 : 'border-[#2a2a2a] hover:border-[var(--studio-border)]'
             )}
           >
@@ -146,7 +146,7 @@ export function AnimationPanel({ state, dispatch, activeGrid }: AnimationPanelPr
         <div className="flex gap-1 mt-1">
           <button
             onClick={() => dispatch({ type: 'ADD_FRAME' })}
-            className="flex-1 py-1 text-xs border border-[var(--studio-border)] bg-transparent text-[var(--studio-text)] hover:bg-[#1a1a00]"
+            className="flex-1 py-1 text-xs border border-[var(--studio-border)] bg-transparent text-[var(--studio-text)] hover:bg-[var(--studio-tint)]"
             style={sFont}
             aria-label="Add blank frame"
           >
@@ -154,7 +154,7 @@ export function AnimationPanel({ state, dispatch, activeGrid }: AnimationPanelPr
           </button>
           <button
             onClick={() => dispatch({ type: 'ADD_FRAME', duplicate: true })}
-            className="flex-1 py-1 text-xs border border-[var(--studio-border)] bg-transparent text-[var(--studio-text)] hover:bg-[#1a1a00]"
+            className="flex-1 py-1 text-xs border border-[var(--studio-border)] bg-transparent text-[var(--studio-text)] hover:bg-[var(--studio-tint)]"
             style={sFont}
             aria-label="Duplicate frame"
           >
@@ -171,7 +171,7 @@ export function AnimationPanel({ state, dispatch, activeGrid }: AnimationPanelPr
             <button
               key={p.id}
               onClick={() => applyPreset(p.id)}
-              className="py-1 text-[10px] border border-[var(--studio-border)] bg-transparent text-[var(--studio-text)] hover:bg-[#1a1a00]"
+              className="py-1 text-[10px] border border-[var(--studio-border)] bg-transparent text-[var(--studio-text)] hover:bg-[var(--studio-tint)]"
               style={sFont}
             >
               {p.label}
@@ -209,7 +209,7 @@ export function AnimationPanel({ state, dispatch, activeGrid }: AnimationPanelPr
           <button
             onClick={applyTween}
             disabled={!tweenTarget}
-            className="ml-auto px-2 py-1 text-[10px] border border-[var(--studio-border)] bg-transparent text-[var(--studio-text)] disabled:opacity-30 hover:bg-[#1a1a00]"
+            className="ml-auto px-2 py-1 text-[10px] border border-[var(--studio-border)] bg-transparent text-[var(--studio-text)] disabled:opacity-30 hover:bg-[var(--studio-tint)]"
             style={sFont}
           >
             Apply
@@ -226,7 +226,7 @@ export function AnimationPanel({ state, dispatch, activeGrid }: AnimationPanelPr
             style={sFont}
             aria-label={isPlaying ? 'Pause' : 'Play'}
           >
-            {isPlaying ? '⏸' : '▶'}
+            <span className="text-base">{isPlaying ? '⏸' : '▶'}</span>
           </button>
           <button
             onClick={() => { dispatch({ type: 'SET_PLAYING', playing: false }); dispatch({ type: 'SET_PLAY_FRAME', index: 0 }) }}
@@ -234,7 +234,7 @@ export function AnimationPanel({ state, dispatch, activeGrid }: AnimationPanelPr
             style={sFont}
             aria-label="Stop"
           >
-            ⏹
+            <span className="text-base">⏹</span>
           </button>
         </div>
 

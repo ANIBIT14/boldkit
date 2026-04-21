@@ -9,13 +9,14 @@
 .studio-root {
   --studio-bg: #080808;
   --studio-panel: #111111;
-  --studio-border: #E8FF00;
-  --studio-dot-filled: #E8FF00;
+  --studio-border: #D71921;
+  --studio-dot-filled: #D71921;
   --studio-dot-empty: #1C1C1C;
   --studio-dot-empty-border: #2A2A2A;
-  --studio-text: #E8FF00;
+  --studio-text: #D71921;
   --studio-text-muted: #555555;
   --studio-shadow: 4px 4px 0px var(--studio-border);
+  --studio-tint: rgba(215, 25, 33, 0.14);
   --studio-font: 'Share Tech Mono', monospace;
 
   font-family: var(--studio-font);
@@ -63,4 +64,15 @@
 /* Phosphor glow for filled dots */
 .studio-dot-glow {
   filter: drop-shadow(0 0 3px var(--studio-dot-filled));
+}
+
+/* Tour overlay */
+.studio-tour-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.75);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }

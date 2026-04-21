@@ -1,5 +1,5 @@
-import { useRef, useCallback, useEffect } from 'react'
-import type { StudioState } from './types'
+import { useRef, useCallback, useEffect, useState } from 'react'
+import type { StudioState, ShapeType } from './types'
 import type { StudioAction } from './hooks/useStudioState'
 
 interface CanvasProps {
@@ -9,33 +9,127 @@ interface CanvasProps {
   isPreviewMode?: boolean
 }
 
+// ── coordinate helper ──────────────────────────────────────────────────────
+// Uses SVG's own coordinate transform so letterboxing from preserveAspectRatio
+// never causes an offset — the click lands exactly on the right dot.
+
+function svgCoords(
+  e: { clientX: number; clientY: number },
+  svgEl: SVGSVGElement
+): { svgX: number; svgY: number } {
+  const pt = svgEl.createSVGPoint()
+  pt.x = e.clientX
+  pt.y = e.clientY
+  const ctm = svgEl.getScreenCTM()
+  if (!ctm) {
+    // Fallback: bounding rect
+    const rect = svgEl.getBoundingClientRect()
+    return { svgX: e.clientX - rect.left, svgY: e.clientY - rect.top }
+  }
+  const transformed = pt.matrixTransform(ctm.inverse())
+  return { svgX: transformed.x, svgY: transformed.y }
+}
+
 function getGridCoords(
   e: { clientX: number; clientY: number },
   svgEl: SVGSVGElement,
   rows: number,
   cols: number
 ): { row: number; col: number } {
-  const rect = svgEl.getBoundingClientRect()
-  const col = Math.floor(((e.clientX - rect.left) / rect.width) * cols)
-  const row = Math.floor(((e.clientY - rect.top) / rect.height) * rows)
-  return { row, col }
+  const { svgX, svgY } = svgCoords(e, svgEl)
+  return {
+    col: Math.floor(svgX),
+    row: Math.floor(svgY),
+  }
 }
+
+// ── shape helpers ──────────────────────────────────────────────────────────
+
+function linePoints(r0: number, c0: number, r1: number, c1: number): [number, number][] {
+  const pts: [number, number][] = []
+  const dC = Math.abs(c1 - c0)
+  const dR = -Math.abs(r1 - r0)
+  const sC = c0 < c1 ? 1 : -1
+  const sR = r0 < r1 ? 1 : -1
+  let err = dC + dR
+  let r = r0, c = c0
+  while (true) {
+    pts.push([r, c])
+    if (r === r1 && c === c1) break
+    const e2 = 2 * err
+    if (e2 >= dR) { err += dR; c += sC }
+    if (e2 <= dC) { err += dC; r += sR }
+  }
+  return pts
+}
+
+function rectPoints(r0: number, c0: number, r1: number, c1: number): [number, number][] {
+  const minR = Math.min(r0, r1), maxR = Math.max(r0, r1)
+  const minC = Math.min(c0, c1), maxC = Math.max(c0, c1)
+  const pts: [number, number][] = []
+  for (let c = minC; c <= maxC; c++) {
+    pts.push([minR, c])
+    if (minR !== maxR) pts.push([maxR, c])
+  }
+  for (let r = minR + 1; r < maxR; r++) {
+    pts.push([r, minC])
+    if (minC !== maxC) pts.push([r, maxC])
+  }
+  return pts
+}
+
+function circlePoints(r0: number, c0: number, r1: number, c1: number): [number, number][] {
+  const centerR = (r0 + r1) / 2
+  const centerC = (c0 + c1) / 2
+  const radiusR = Math.abs(r1 - r0) / 2
+  const radiusC = Math.abs(c1 - c0) / 2
+  const steps = Math.max(radiusR, radiusC) * 4 * Math.PI + 8
+  const seen = new Set<string>()
+  const pts: [number, number][] = []
+  for (let i = 0; i < steps; i++) {
+    const angle = (2 * Math.PI * i) / steps
+    const r = Math.round(centerR + radiusR * Math.sin(angle))
+    const c = Math.round(centerC + radiusC * Math.cos(angle))
+    const key = `${r},${c}`
+    if (!seen.has(key)) { seen.add(key); pts.push([r, c]) }
+  }
+  return pts
+}
+
+function getShapePoints(
+  r0: number, c0: number, r1: number, c1: number, shape: ShapeType
+): [number, number][] {
+  switch (shape) {
+    case 'line': return linePoints(r0, c0, r1, c1)
+    case 'rect': return rectPoints(r0, c0, r1, c1)
+    case 'circle': return circlePoints(r0, c0, r1, c1)
+  }
+}
+
+// ── component ──────────────────────────────────────────────────────────────
 
 export function Canvas({ state, dispatch, activeGrid, isPreviewMode }: CanvasProps) {
   const svgRef = useRef<SVGSVGElement>(null)
   const isDragging = useRef(false)
   const dragMode = useRef<boolean | null>(null)
+  const shapeStartRef = useRef<{ row: number; col: number } | null>(null)
+  const shapePreviewRef = useRef<[number, number][]>([])
+  const [shapePreviewTick, setShapePreviewTick] = useState(0)
 
-  const { rows, cols, dotColor, activeTool } = state
+  const { rows, cols, dotColor, activeTool, activeShape } = state
+
+  // Triggers a re-render when shape preview changes
+  const updateShapePreview = useCallback((pts: [number, number][]) => {
+    shapePreviewRef.current = pts
+    setShapePreviewTick(t => t + 1)
+  }, [])
 
   const applyDraw = useCallback((clientX: number, clientY: number) => {
     if (!svgRef.current) return
     const { row, col } = getGridCoords({ clientX, clientY }, svgRef.current, rows, cols)
     if (row < 0 || row >= rows || col < 0 || col >= cols) return
-
     if (activeTool === 'pencil') {
-      const value = dragMode.current ?? true
-      dispatch({ type: 'SET_DOT', row, col, value })
+      dispatch({ type: 'SET_DOT', row, col, value: dragMode.current ?? true })
     } else if (activeTool === 'eraser') {
       dispatch({ type: 'SET_DOT', row, col, value: false })
     }
@@ -59,25 +153,49 @@ export function Canvas({ state, dispatch, activeGrid, isPreviewMode }: CanvasPro
       dispatch({ type: 'SET_DOT', row, col, value: false })
     } else if (activeTool === 'select') {
       dispatch({ type: 'SET_SELECTION', selection: { startRow: row, startCol: col, endRow: row, endCol: col } })
+    } else if (activeTool === 'shapes') {
+      shapeStartRef.current = { row, col }
+      const pts = getShapePoints(row, col, row, col, activeShape)
+      updateShapePreview(pts)
     }
-  }, [activeTool, activeGrid, rows, cols, dispatch, isPreviewMode])
+  }, [activeTool, activeShape, activeGrid, rows, cols, dispatch, isPreviewMode, updateShapePreview])
 
   const handlePointerMove = useCallback((e: React.PointerEvent<SVGSVGElement>) => {
     if (!isDragging.current || isPreviewMode) return
+    if (!svgRef.current) return
+    const { row, col } = getGridCoords(e, svgRef.current, rows, cols)
+    const clampedRow = Math.max(0, Math.min(rows - 1, row))
+    const clampedCol = Math.max(0, Math.min(cols - 1, col))
+
     if (activeTool === 'pencil' || activeTool === 'eraser') {
       applyDraw(e.clientX, e.clientY)
     } else if (activeTool === 'select' && svgRef.current) {
-      const { row, col } = getGridCoords(e, svgRef.current, rows, cols)
       if (state.selection) {
-        dispatch({ type: 'SET_SELECTION', selection: { ...state.selection, endRow: row, endCol: col } })
+        dispatch({ type: 'SET_SELECTION', selection: { ...state.selection, endRow: clampedRow, endCol: clampedCol } })
       }
+    } else if (activeTool === 'shapes' && shapeStartRef.current) {
+      const { row: r0, col: c0 } = shapeStartRef.current
+      const pts = getShapePoints(r0, c0, clampedRow, clampedCol, activeShape)
+      updateShapePreview(pts)
     }
-  }, [activeTool, applyDraw, rows, cols, state.selection, dispatch, isPreviewMode])
+  }, [activeTool, activeShape, applyDraw, rows, cols, state.selection, dispatch, isPreviewMode, updateShapePreview])
 
   const handlePointerUp = useCallback(() => {
     isDragging.current = false
     dragMode.current = null
-  }, [])
+
+    if (activeTool === 'shapes' && shapeStartRef.current) {
+      const pts = shapePreviewRef.current
+      if (pts.length > 0) {
+        dispatch({
+          type: 'SET_DOTS',
+          dots: pts.map(([r, c]) => ({ row: r, col: c, value: true })),
+        })
+      }
+      shapeStartRef.current = null
+      updateShapePreview([])
+    }
+  }, [activeTool, dispatch, updateShapePreview])
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
@@ -113,7 +231,13 @@ export function Canvas({ state, dispatch, activeGrid, isPreviewMode }: CanvasPro
   const cursor = activeTool === 'pencil' ? 'crosshair'
     : activeTool === 'eraser' ? 'cell'
     : activeTool === 'select' ? 'default'
+    : activeTool === 'shapes' ? 'crosshair'
     : 'crosshair'
+
+  // Merge activeGrid + shape preview into a Set for fast lookup
+  const previewSet = new Set(
+    shapePreviewRef.current.map(([r, c]) => `${r},${c}`)
+  )
 
   return (
     <div className="relative w-full h-full studio-scanlines">
@@ -135,19 +259,24 @@ export function Canvas({ state, dispatch, activeGrid, isPreviewMode }: CanvasPro
           </filter>
         </defs>
 
-        {activeGrid.map((row, r) =>
-          row.map((filled, c) => (
-            <circle
-              key={`${r}-${c}`}
-              cx={c + 0.5}
-              cy={r + 0.5}
-              r={0.38}
-              fill={filled ? dotColor : '#1C1C1C'}
-              stroke={filled ? undefined : '#2A2A2A'}
-              strokeWidth={filled ? 0 : 0.03}
-              filter={filled ? 'url(#glow)' : undefined}
-            />
-          ))
+        {activeGrid.map((rowArr, r) =>
+          rowArr.map((filled, c) => {
+            const isPreviewed = previewSet.has(`${r},${c}`)
+            const isLit = filled || isPreviewed
+            return (
+              <circle
+                key={`${r}-${c}`}
+                cx={c + 0.5}
+                cy={r + 0.5}
+                r={0.38}
+                fill={isLit ? dotColor : '#1C1C1C'}
+                stroke={isLit ? undefined : '#2A2A2A'}
+                strokeWidth={isLit ? 0 : 0.03}
+                opacity={isPreviewed && !filled ? 0.55 : 1}
+                filter={filled ? 'url(#glow)' : undefined}
+              />
+            )
+          })
         )}
 
         {selRect && (
@@ -156,13 +285,15 @@ export function Canvas({ state, dispatch, activeGrid, isPreviewMode }: CanvasPro
             y={selRect.y}
             width={selRect.w}
             height={selRect.h}
-            fill="rgba(232,255,0,0.08)"
-            stroke="#E8FF00"
+            fill="rgba(215,25,33,0.08)"
+            stroke="#D71921"
             strokeWidth={0.06}
             strokeDasharray="0.2 0.1"
           />
         )}
       </svg>
+      {/* suppress unused var warning — shapePreviewTick is read to force re-render */}
+      <span style={{ display: 'none' }}>{shapePreviewTick}</span>
     </div>
   )
 }

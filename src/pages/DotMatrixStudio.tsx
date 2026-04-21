@@ -7,6 +7,7 @@ import { Toolbar } from '@/components/DotMatrixStudio/Toolbar'
 import { CanvasSettings } from '@/components/DotMatrixStudio/CanvasSettings'
 import { AnimationPanel } from '@/components/DotMatrixStudio/AnimationPanel'
 import { ExportModal } from '@/components/DotMatrixStudio/ExportModal'
+import { GuidedTour, shouldShowTour } from '@/components/DotMatrixStudio/GuidedTour'
 import '@/styles/dot-matrix-studio.css'
 
 export function DotMatrixStudio() {
@@ -15,6 +16,7 @@ export function DotMatrixStudio() {
   const [showExport, setShowExport] = useState(false)
   const [showMobilePanel, setShowMobilePanel] = useState<'tools' | 'animate' | null>(null)
   const [textInput, setTextInput] = useState('')
+  const [showTour, setShowTour] = useState(shouldShowTour)
   const fileInputRef = useRef<HTMLInputElement>(null)
 
   // Displayed grid: during playback show playFrameIndex, else active frame
@@ -30,6 +32,12 @@ export function DotMatrixStudio() {
     }
     dispatch({ type: 'CHANGE_GRID_SIZE', rows, cols })
   }, [state.frames, dispatch])
+
+  // Reset everything
+  const handleReset = useCallback(() => {
+    if (!window.confirm('Reset everything? This clears all frames and settings.')) return
+    dispatch({ type: 'RESET' })
+  }, [dispatch])
 
   // Text tool submit
   const applyText = useCallback(() => {
@@ -48,7 +56,7 @@ export function DotMatrixStudio() {
       try {
         const data = JSON.parse(ev.target?.result as string)
         if (!data.frames || !data.rows || !data.cols) throw new Error('Invalid file')
-        dispatch({ type: 'IMPORT', frames: data.frames, rows: data.rows, cols: data.cols, dotColor: data.dotColor ?? '#E8FF00', bgTransparent: data.bgTransparent ?? false })
+        dispatch({ type: 'IMPORT', frames: data.frames, rows: data.rows, cols: data.cols, dotColor: data.dotColor ?? '#D71921', bgTransparent: data.bgTransparent ?? false })
       } catch {
         alert('Invalid .boldkit.json file')
       }
@@ -67,7 +75,7 @@ export function DotMatrixStudio() {
       try {
         const data = JSON.parse(ev.target?.result as string)
         if (!data.frames || !data.rows || !data.cols) throw new Error()
-        dispatch({ type: 'IMPORT', frames: data.frames, rows: data.rows, cols: data.cols, dotColor: data.dotColor ?? '#E8FF00', bgTransparent: data.bgTransparent ?? false })
+        dispatch({ type: 'IMPORT', frames: data.frames, rows: data.rows, cols: data.cols, dotColor: data.dotColor ?? '#D71921', bgTransparent: data.bgTransparent ?? false })
       } catch { alert('Invalid .boldkit.json file') }
     }
     reader.readAsText(file)
@@ -85,7 +93,7 @@ export function DotMatrixStudio() {
         style={{ background: 'var(--studio-panel)', borderBottom: '3px solid var(--studio-border)', ...sFont }}
       >
         <div className="flex items-center gap-4">
-          <Link to="/" className="text-xs hover:opacity-70" style={{ color: 'var(--studio-text-muted)', ...sFont }}>
+          <Link to="/" className="text-xs hover:opacity-70 transition-opacity" style={{ color: 'var(--studio-text-muted)', ...sFont }}>
             ← BoldKit
           </Link>
           <span className="text-xs tracking-[0.3em] uppercase" style={{ color: 'var(--studio-text)', ...sFont }}>
@@ -93,10 +101,32 @@ export function DotMatrixStudio() {
           </span>
         </div>
         <div className="flex items-center gap-2">
+          {/* Help / tour */}
+          <button
+            onClick={() => setShowTour(true)}
+            className="px-2 py-1 text-base hover:opacity-80 transition-opacity"
+            title="Show guided tour"
+            aria-label="Show guided tour"
+            style={{ border: '1px solid #333', background: 'transparent', color: 'var(--studio-text-muted)', ...sFont }}
+          >
+            ?
+          </button>
+
+          {/* Reset */}
+          <button
+            onClick={handleReset}
+            className="px-2 py-1 text-base hover:opacity-80 transition-opacity"
+            title="Reset everything"
+            aria-label="Reset everything"
+            style={{ border: '1px solid #333', background: 'transparent', color: 'var(--studio-text-muted)', ...sFont }}
+          >
+            ⌫
+          </button>
+
           <input ref={fileInputRef} type="file" accept=".json" onChange={handleImportFile} className="hidden" aria-label="Import file" />
           <button
             onClick={() => fileInputRef.current?.click()}
-            className="px-3 py-1 text-xs hover:opacity-80"
+            className="px-3 py-1 text-xs hover:opacity-80 transition-opacity"
             style={{ border: '1px solid var(--studio-border)', background: 'transparent', color: 'var(--studio-text)', ...sFont }}
           >
             Import
@@ -142,7 +172,7 @@ export function DotMatrixStudio() {
 
         {/* LEFT PANEL — desktop only (≥1024px) */}
         <aside
-          className="hidden lg:flex flex-col w-44 shrink-0 overflow-y-auto"
+          className="hidden lg:flex flex-col w-52 shrink-0 overflow-y-auto"
           style={{ background: 'var(--studio-panel)', borderRight: '3px solid var(--studio-border)' }}
         >
           <Toolbar state={state} dispatch={dispatch} />
@@ -168,8 +198,9 @@ export function DotMatrixStudio() {
           )}
 
           <div
-            className="w-full h-full"
             style={{
+              width: '100%',
+              height: '100%',
               maxWidth: '100%',
               maxHeight: '100%',
               aspectRatio: `${state.cols} / ${state.rows}`,
@@ -187,7 +218,7 @@ export function DotMatrixStudio() {
 
         {/* RIGHT PANEL — desktop only (≥1024px) */}
         <aside
-          className="hidden lg:flex flex-col w-52 shrink-0 overflow-hidden"
+          className="hidden lg:flex flex-col w-56 shrink-0 overflow-hidden"
           style={{ background: 'var(--studio-panel)', borderLeft: '3px solid var(--studio-border)' }}
         >
           <AnimationPanel state={state} dispatch={dispatch} activeGrid={activeFrame.grid} />
@@ -239,6 +270,11 @@ export function DotMatrixStudio() {
       {/* Export modal */}
       {showExport && (
         <ExportModal state={state} onClose={() => setShowExport(false)} />
+      )}
+
+      {/* Guided tour */}
+      {showTour && (
+        <GuidedTour onDone={() => setShowTour(false)} />
       )}
     </div>
   )
