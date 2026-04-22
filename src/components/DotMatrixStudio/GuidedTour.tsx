@@ -27,17 +27,27 @@ const STEPS: Step[] = [
   {
     icon: '▶',
     title: 'Animation (Right Panel)',
-    body: 'Add frames with + Blank or + Dupe. Click a frame to edit it. Set per-frame duration in ms.\n\nPresets auto-generate animation sequences (Blink, Typewriter, Scan Line, etc.).\n\nTween interpolates between two frames — select a target frame and N intermediate steps.',
+    body: 'Add frames with + Blank or + Dupe. Click a frame to edit it.\n\nPresets auto-generate animation sequences from your current art (Blink, Typewriter, Scan Line, etc.).\n\nUse the FPS slider and loop mode to control playback.',
   },
   {
     icon: '⬇',
     title: 'Export & Reset',
-    body: 'Click Export (top right) to download as GIF, PNG, SVG, or JSON.\n\nImport a .boldkit.json to restore a previous session.\n\nReset (trash icon in the header) clears everything and starts fresh.',
+    body: 'Click Export (top right) to download as GIF, PNG, SVG, or JSON.\n\nImport a .boldkit.json to restore a previous session.\n\nReset (↺ in the header) clears everything and starts fresh.',
   },
 ]
 
 interface GuidedTourProps {
   onDone: () => void
+}
+
+const C = {
+  border:  '#5b4fcf',
+  text:    '#2d2463',
+  muted:   '#9b94d4',
+  subtle:  '#c4bef5',
+  faint:   '#dddaf7',
+  panel:   '#ffffff',
+  shadow:  '4px 4px 0px rgba(91,79,207,0.3)',
 }
 
 export function GuidedTour({ onDone }: GuidedTourProps) {
@@ -56,9 +66,9 @@ export function GuidedTour({ onDone }: GuidedTourProps) {
       <div
         onClick={e => e.stopPropagation()}
         style={{
-          background: 'var(--studio-panel)',
-          border: '3px solid var(--studio-border)',
-          boxShadow: 'var(--studio-shadow)',
+          background: C.panel,
+          border: `3px solid ${C.border}`,
+          boxShadow: C.shadow,
           width: 'min(480px, 90vw)',
           padding: '32px',
           position: 'relative',
@@ -75,42 +85,30 @@ export function GuidedTour({ onDone }: GuidedTourProps) {
               style={{
                 width: i === step ? '24px' : '8px',
                 height: '8px',
-                background: i === step ? 'var(--studio-border)' : '#333',
+                background: i === step ? C.border : C.faint,
                 border: 'none',
                 cursor: 'pointer',
                 transition: 'width 200ms, background 200ms',
               }}
             />
           ))}
-          <span
-            className="ml-auto text-[10px]"
-            style={{ color: 'var(--studio-text-muted)', ...sFont }}
-          >
+          <span className="ml-auto text-[10px]" style={{ color: C.muted, ...sFont }}>
             {step + 1} / {STEPS.length}
           </span>
         </div>
 
         {/* Icon */}
-        <div
-          className="text-5xl mb-4"
-          style={{ color: 'var(--studio-border)', lineHeight: 1 }}
-        >
+        <div className="text-5xl mb-4" style={{ color: C.border, lineHeight: 1 }}>
           {current.icon}
         </div>
 
         {/* Title */}
-        <h2
-          className="text-sm font-bold uppercase tracking-widest mb-3"
-          style={{ color: 'var(--studio-text)', ...sFont }}
-        >
+        <h2 className="text-sm font-bold uppercase tracking-widest mb-3" style={{ color: C.text, ...sFont }}>
           {current.title}
         </h2>
 
         {/* Body */}
-        <p
-          className="text-xs leading-relaxed whitespace-pre-line"
-          style={{ color: '#aaa', ...sFont }}
-        >
+        <p className="text-xs leading-relaxed whitespace-pre-line" style={{ color: C.muted, ...sFont }}>
           {current.body}
         </p>
 
@@ -120,13 +118,7 @@ export function GuidedTour({ onDone }: GuidedTourProps) {
             <button
               onClick={() => setStep(s => s - 1)}
               className="px-4 py-2 text-xs"
-              style={{
-                border: '1px solid var(--studio-border)',
-                background: 'transparent',
-                color: 'var(--studio-text)',
-                cursor: 'pointer',
-                ...sFont,
-              }}
+              style={{ border: `1px solid ${C.border}`, background: 'transparent', color: C.text, cursor: 'pointer', ...sFont }}
             >
               ← Back
             </button>
@@ -134,27 +126,14 @@ export function GuidedTour({ onDone }: GuidedTourProps) {
           <button
             onClick={handleDone}
             className="px-4 py-2 text-xs"
-            style={{
-              border: '1px solid #333',
-              background: 'transparent',
-              color: 'var(--studio-text-muted)',
-              cursor: 'pointer',
-              marginRight: 'auto',
-              ...sFont,
-            }}
+            style={{ border: `1px solid ${C.subtle}`, background: 'transparent', color: C.muted, cursor: 'pointer', marginRight: 'auto', ...sFont }}
           >
             Skip tour
           </button>
           <button
             onClick={isLast ? handleDone : () => setStep(s => s + 1)}
             className="px-6 py-2 text-xs font-bold"
-            style={{
-              border: '3px solid var(--studio-border)',
-              background: 'var(--studio-border)',
-              color: '#000',
-              cursor: 'pointer',
-              ...sFont,
-            }}
+            style={{ border: `3px solid ${C.border}`, background: C.border, color: '#ffffff', cursor: 'pointer', ...sFont }}
           >
             {isLast ? 'Start creating →' : 'Next →'}
           </button>

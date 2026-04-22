@@ -16,6 +16,15 @@ type PendingConfirm =
   | { type: 'reset' }
   | null
 
+const C = {
+  border:  '#5b4fcf',
+  text:    '#2d2463',
+  muted:   '#9b94d4',
+  subtle:  '#c4bef5',
+  faint:   '#dddaf7',
+  panel:   '#ffffff',
+}
+
 export function DotMatrixStudio() {
   const { state, dispatch, activeFrame } = useStudioState()
   const { textToGrid } = useTextTool(state.rows, state.cols)
@@ -31,7 +40,6 @@ export function DotMatrixStudio() {
     ? (state.frames[state.playFrameIndex]?.grid ?? activeFrame.grid)
     : activeFrame.grid
 
-  // Grid size change — show dialog if canvas has content
   const requestGridChange = useCallback((rows: number, cols: number) => {
     const hasContent = state.frames.some(f => f.grid.some(r => r.some(Boolean)))
     if (hasContent) {
@@ -41,7 +49,6 @@ export function DotMatrixStudio() {
     }
   }, [state.frames, dispatch])
 
-  // Reset — always show dialog
   const handleReset = useCallback(() => {
     setPendingConfirm({ type: 'reset' })
   }, [])
@@ -71,7 +78,7 @@ export function DotMatrixStudio() {
       try {
         const data = JSON.parse(ev.target?.result as string)
         if (!data.frames || !data.rows || !data.cols) throw new Error('Invalid file')
-        dispatch({ type: 'IMPORT', frames: data.frames, rows: data.rows, cols: data.cols, dotColor: data.dotColor ?? '#D71921', bgTransparent: data.bgTransparent ?? false })
+        dispatch({ type: 'IMPORT', frames: data.frames, rows: data.rows, cols: data.cols, dotColor: data.dotColor ?? '#5b4fcf', bgTransparent: data.bgTransparent ?? false })
       } catch {
         setErrorMsg('This file is not a valid .boldkit.json — make sure you exported it from Dot Matrix Studio.')
       }
@@ -89,7 +96,7 @@ export function DotMatrixStudio() {
       try {
         const data = JSON.parse(ev.target?.result as string)
         if (!data.frames || !data.rows || !data.cols) throw new Error()
-        dispatch({ type: 'IMPORT', frames: data.frames, rows: data.rows, cols: data.cols, dotColor: data.dotColor ?? '#D71921', bgTransparent: data.bgTransparent ?? false })
+        dispatch({ type: 'IMPORT', frames: data.frames, rows: data.rows, cols: data.cols, dotColor: data.dotColor ?? '#5b4fcf', bgTransparent: data.bgTransparent ?? false })
       } catch {
         setErrorMsg('This file is not a valid .boldkit.json — make sure you exported it from Dot Matrix Studio.')
       }
@@ -112,18 +119,18 @@ export function DotMatrixStudio() {
       {/* Top bar */}
       <header
         className="flex items-center justify-between px-4 py-2 shrink-0"
-        style={{ background: 'var(--studio-panel)', borderBottom: '3px solid var(--studio-border)', ...sFont }}
+        style={{ background: C.panel, borderBottom: `3px solid ${C.border}`, ...sFont }}
       >
         <div className="flex items-center gap-4">
-          <Link to="/" className="text-xs hover:opacity-70 transition-opacity" style={{ color: '#888888', ...sFont }}>
+          <Link to="/" className="text-xs hover:opacity-70 transition-opacity" style={{ color: C.muted, ...sFont }}>
             ← BoldKit
           </Link>
-          <span className="text-xs tracking-[0.3em] uppercase font-bold" style={{ color: 'var(--studio-text)', ...sFont }}>
+          <span className="text-xs tracking-[0.3em] uppercase font-bold" style={{ color: C.text, ...sFont }}>
             Dot Matrix Studio
           </span>
           <span
             className="px-1.5 py-0.5 text-[9px] font-bold uppercase tracking-widest"
-            style={{ background: 'var(--studio-border)', color: '#000000', ...sFont }}
+            style={{ background: C.border, color: '#ffffff', ...sFont }}
           >
             Beta
           </span>
@@ -134,7 +141,7 @@ export function DotMatrixStudio() {
             title="Show guided tour"
             aria-label="Show guided tour"
             className="w-7 h-7 flex items-center justify-center text-xs hover:opacity-80 transition-opacity"
-            style={{ border: '1px solid #444', background: 'transparent', color: '#888888', ...sFont }}
+            style={{ border: `1px solid ${C.subtle}`, background: 'transparent', color: C.muted, ...sFont }}
           >
             ?
           </button>
@@ -143,7 +150,7 @@ export function DotMatrixStudio() {
             title="Reset everything"
             aria-label="Reset everything"
             className="w-7 h-7 flex items-center justify-center text-sm hover:opacity-80 transition-opacity"
-            style={{ border: '1px solid #444', background: 'transparent', color: '#888888', ...sFont }}
+            style={{ border: `1px solid ${C.subtle}`, background: 'transparent', color: C.muted, ...sFont }}
           >
             ↺
           </button>
@@ -151,14 +158,14 @@ export function DotMatrixStudio() {
           <button
             onClick={() => fileInputRef.current?.click()}
             className="px-3 py-1 text-xs hover:opacity-80 transition-opacity"
-            style={{ border: '1px solid var(--studio-border)', background: 'transparent', color: '#cccccc', ...sFont }}
+            style={{ border: `1px solid ${C.border}`, background: 'transparent', color: C.text, ...sFont }}
           >
             Import
           </button>
           <button
             onClick={() => setShowExport(true)}
             className="px-3 py-1 text-xs font-bold"
-            style={{ border: '3px solid var(--studio-border)', background: 'var(--studio-border)', color: '#000000', ...sFont }}
+            style={{ border: `3px solid ${C.border}`, background: C.border, color: '#ffffff', ...sFont }}
           >
             Export
           </button>
@@ -169,22 +176,22 @@ export function DotMatrixStudio() {
       {state.activeTool === 'text' && (
         <div
           className="flex items-center gap-2 px-4 py-2 shrink-0"
-          style={{ background: '#0d0d0d', borderBottom: '1px solid var(--studio-border)', ...sFont }}
+          style={{ background: C.panel, borderBottom: `1px solid ${C.border}`, ...sFont }}
         >
-          <span className="text-[9px] uppercase tracking-widest" style={{ color: '#777777' }}>Text →</span>
+          <span className="text-[9px] uppercase tracking-widest" style={{ color: C.muted }}>Text →</span>
           <input
             autoFocus
             value={textInput}
             onChange={e => setTextInput(e.target.value)}
             onKeyDown={e => { if (e.key === 'Enter') applyText() }}
             placeholder="Type and press Enter…"
-            className="flex-1 bg-transparent text-sm px-1 py-0.5 focus:outline-none placeholder:text-[#444]"
-            style={{ borderBottom: '1px solid var(--studio-border)', color: '#ffffff', fontFamily: 'NDot47, var(--studio-font)', letterSpacing: '0.05em' }}
+            className="flex-1 bg-transparent text-sm px-1 py-0.5 focus:outline-none placeholder:text-[#9b94d4]"
+            style={{ borderBottom: `1px solid ${C.border}`, color: C.text, fontFamily: 'NDot47, var(--studio-font)', letterSpacing: '0.05em' }}
           />
           <button
             onClick={applyText}
             className="px-3 py-1 text-xs hover:opacity-80 transition-opacity"
-            style={{ border: '1px solid var(--studio-border)', color: '#cccccc', background: 'transparent', ...sFont }}
+            style={{ border: `1px solid ${C.border}`, color: C.text, background: 'transparent', ...sFont }}
           >
             Apply
           </button>
@@ -197,7 +204,7 @@ export function DotMatrixStudio() {
         {/* LEFT PANEL — desktop only (≥1024px) */}
         <aside
           className="hidden lg:flex flex-col w-52 shrink-0 overflow-y-auto"
-          style={{ background: 'var(--studio-panel)', borderRight: '3px solid var(--studio-border)' }}
+          style={{ background: C.panel, borderRight: `3px solid ${C.border}` }}
         >
           <Toolbar state={state} dispatch={dispatch} />
           <CanvasSettings state={state} dispatch={dispatch} onGridChangeRequest={requestGridChange} />
@@ -212,9 +219,9 @@ export function DotMatrixStudio() {
           {isEmpty && (
             <div
               className="absolute inset-4 flex items-center justify-center pointer-events-none z-10"
-              style={{ border: '2px dashed #333' }}
+              style={{ border: `2px dashed ${C.subtle}` }}
             >
-              <p className="text-[10px] uppercase tracking-widest text-center" style={{ color: '#555555', ...sFont }}>
+              <p className="text-[10px] uppercase tracking-widest text-center" style={{ color: C.muted, ...sFont }}>
                 Drop .boldkit.json to import<br/>or start drawing
               </p>
             </div>
@@ -241,7 +248,7 @@ export function DotMatrixStudio() {
         {/* RIGHT PANEL — desktop only (≥1024px) */}
         <aside
           className="hidden lg:flex flex-col w-56 shrink-0 overflow-hidden"
-          style={{ background: 'var(--studio-panel)', borderLeft: '3px solid var(--studio-border)' }}
+          style={{ background: C.panel, borderLeft: `3px solid ${C.border}` }}
         >
           <AnimationPanel state={state} dispatch={dispatch} activeGrid={activeFrame.grid} />
         </aside>
@@ -250,18 +257,18 @@ export function DotMatrixStudio() {
       {/* TABLET PANEL */}
       <div
         className="hidden md:flex lg:hidden flex-col shrink-0 h-48 overflow-hidden"
-        style={{ background: 'var(--studio-panel)', borderTop: '3px solid var(--studio-border)' }}
+        style={{ background: C.panel, borderTop: `3px solid ${C.border}` }}
       >
-        <div style={{ display: 'flex', borderBottom: '1px solid var(--studio-border)' }}>
+        <div style={{ display: 'flex', borderBottom: `1px solid ${C.border}` }}>
           {(['tools', 'animate'] as const).map(tab => (
             <button
               key={tab}
               onClick={() => setShowMobilePanel(showMobilePanel === tab ? null : tab)}
               className="flex-1 py-2 text-[10px] uppercase tracking-widest"
               style={{
-                borderRight: '1px solid var(--studio-border)',
-                background: showMobilePanel === tab ? 'var(--studio-border)' : 'transparent',
-                color: showMobilePanel === tab ? '#000000' : '#aaaaaa',
+                borderRight: `1px solid ${C.border}`,
+                background: showMobilePanel === tab ? C.border : 'transparent',
+                color: showMobilePanel === tab ? '#ffffff' : C.muted,
                 ...sFont,
               }}
             >

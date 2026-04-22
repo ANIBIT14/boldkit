@@ -71,7 +71,7 @@ export function Toolbar({ state, dispatch, mobile }: ToolbarProps) {
         >
           <span className="w-6 flex items-center justify-center"><ToolIcon id={tool.id} icon={tool.icon} /></span>
           <span className="text-xs">{tool.label}</span>
-          <span className="ml-auto text-[9px]" style={{ color: '#666666' }}>{tool.key}</span>
+          <span className="ml-auto text-[9px]" style={{ color: '#9b94d4' }}>{tool.key}</span>
         </button>
       ))}
 

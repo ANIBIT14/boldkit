@@ -25,13 +25,23 @@ const PRESET_OPTIONS: PresetOption[] = [
   { id: 'ripple',     label: 'Ripple',       icon: '◎', desc: 'Reveal from center' },
 ]
 
+// Theme constants (light)
+const C = {
+  border:    '#5b4fcf',
+  text:      '#2d2463',
+  muted:     '#9b94d4',
+  subtle:    '#c4bef5',
+  faint:     '#dddaf7',
+  thumb_bg:  '#f0eefc',
+  input_bg:  '#f4f2ff',
+  tint:      'rgba(91,79,207,0.08)',
+}
+
 export function AnimationPanel({ state, dispatch, activeGrid }: AnimationPanelProps) {
   const { frames, activeFrameId, isPlaying, fps, loopMode } = state
   const [selectedPreset, setSelectedPreset] = useState<string | null>(null)
 
   // ── Playback ───────────────────────────────────────────────────────────
-  // Use refs so the interval tick always sees the latest values without
-  // needing to restart the interval on every frames/fps change.
   const framesRef = useRef(frames)
   const fpsRef = useRef(fps)
   const loopModeRef = useRef(loopMode)
@@ -64,7 +74,6 @@ export function AnimationPanel({ state, dispatch, activeGrid }: AnimationPanelPr
       const nextIdx = (idx + 1) % currentFrames.length
       tickIdxRef.current = nextIdx
 
-      // Loop counting
       if (nextIdx === 0) {
         loopCountRef.current++
         const mode = loopModeRef.current
@@ -78,7 +87,6 @@ export function AnimationPanel({ state, dispatch, activeGrid }: AnimationPanelPr
       }
     }
 
-    // Start immediately then repeat
     tick()
     intervalRef.current = setInterval(tick, 1000 / fps)
     return stopInterval
@@ -111,40 +119,40 @@ export function AnimationPanel({ state, dispatch, activeGrid }: AnimationPanelPr
     <div className="flex flex-col h-full overflow-hidden" style={sFont}>
 
       {/* ── Frame strip ─────────────────────────────────────────── */}
-      <div className="p-2 border-b shrink-0" style={{ borderColor: 'var(--studio-border)' }}>
+      <div className="p-2 border-b shrink-0" style={{ borderColor: C.border }}>
         <div className="flex items-center justify-between mb-1.5">
-          <span className="text-[10px] uppercase tracking-widest" style={{ color: '#777777' }}>Frames</span>
+          <span className="text-[10px] uppercase tracking-widest" style={{ color: C.muted }}>Frames</span>
           <div className="flex gap-1">
             <button
               onClick={() => dispatch({ type: 'ADD_FRAME' })}
               className="px-2 py-0.5 text-[10px] border hover:bg-[var(--studio-tint)] transition-colors"
-              style={{ borderColor: 'var(--studio-border)', color: '#cccccc' }}
+              style={{ borderColor: C.border, color: C.text }}
               aria-label="Add blank frame"
             >+ Blank</button>
             <button
               onClick={() => dispatch({ type: 'ADD_FRAME', duplicate: true })}
               className="px-2 py-0.5 text-[10px] border hover:bg-[var(--studio-tint)] transition-colors"
-              style={{ borderColor: 'var(--studio-border)', color: '#cccccc' }}
+              style={{ borderColor: C.border, color: C.text }}
               aria-label="Duplicate frame"
             >+ Dupe</button>
           </div>
         </div>
 
         {/* Scrollable horizontal frame thumbnails */}
-        <div className="flex gap-1.5 overflow-x-auto pb-1" style={{ scrollbarWidth: 'thin', scrollbarColor: '#333 transparent' }}>
+        <div className="flex gap-1.5 overflow-x-auto pb-1" style={{ scrollbarWidth: 'thin', scrollbarColor: `${C.subtle} transparent` }}>
           {frames.map((frame, idx) => (
             <div
               key={frame.id}
               onClick={() => dispatch({ type: 'SET_ACTIVE_FRAME', frameId: frame.id })}
               className="relative shrink-0 cursor-pointer group"
               style={{
-                border: frame.id === activeFrameId ? '2px solid var(--studio-border)' : '2px solid #333',
+                border: frame.id === activeFrameId ? `2px solid ${C.border}` : `2px solid ${C.faint}`,
                 transition: 'border-color 150ms',
               }}
             >
               <svg
                 viewBox={`0 0 ${state.cols} ${state.rows}`}
-                style={{ width: 48, height: 32, display: 'block', background: '#080808' }}
+                style={{ width: 48, height: 32, display: 'block', background: C.thumb_bg }}
               >
                 {frame.grid.map((row, r) =>
                   row.map((filled, c) =>
@@ -155,7 +163,7 @@ export function AnimationPanel({ state, dispatch, activeGrid }: AnimationPanelPr
               {/* Frame number */}
               <div
                 className="absolute bottom-0 left-0 px-0.5 text-[8px] leading-none"
-                style={{ background: 'rgba(0,0,0,0.7)', color: '#888' }}
+                style={{ background: 'rgba(255,255,255,0.85)', color: C.border }}
               >
                 {idx + 1}
               </div>
@@ -164,7 +172,7 @@ export function AnimationPanel({ state, dispatch, activeGrid }: AnimationPanelPr
                 <button
                   onClick={e => { e.stopPropagation(); dispatch({ type: 'DELETE_FRAME', frameId: frame.id }) }}
                   className="absolute -top-1.5 -right-1.5 w-4 h-4 rounded-full items-center justify-center text-[9px] opacity-0 group-hover:opacity-100 transition-opacity hidden group-hover:flex"
-                  style={{ background: 'var(--studio-border)', color: '#000', lineHeight: 1 }}
+                  style={{ background: C.border, color: '#ffffff', lineHeight: 1 }}
                   aria-label={`Delete frame ${idx + 1}`}
                 >
                   ×
@@ -176,8 +184,8 @@ export function AnimationPanel({ state, dispatch, activeGrid }: AnimationPanelPr
       </div>
 
       {/* ── Presets ─────────────────────────────────────────────── */}
-      <div className="p-2 border-b shrink-0" style={{ borderColor: 'var(--studio-border)' }}>
-        <p className="text-[10px] uppercase tracking-widest mb-2" style={{ color: '#777777' }}>
+      <div className="p-2 border-b shrink-0" style={{ borderColor: C.border }}>
+        <p className="text-[10px] uppercase tracking-widest mb-2" style={{ color: C.muted }}>
           Animate — replaces all frames
         </p>
 
@@ -190,17 +198,17 @@ export function AnimationPanel({ state, dispatch, activeGrid }: AnimationPanelPr
                 onClick={() => setSelectedPreset(active ? null : p.id)}
                 className="flex flex-col items-start px-2 py-1.5 text-left border transition-colors"
                 style={{
-                  borderColor: active ? 'var(--studio-border)' : '#333',
-                  background: active ? 'var(--studio-tint)' : 'transparent',
+                  borderColor: active ? C.border : C.faint,
+                  background: active ? C.tint : 'transparent',
                 }}
                 aria-pressed={active}
               >
                 <div className="flex items-center gap-1.5 w-full">
-                  <span className="text-sm" style={{ color: active ? 'var(--studio-text)' : '#888' }}>{p.icon}</span>
-                  <span className="text-xs font-bold flex-1" style={{ color: active ? '#ffffff' : '#cccccc' }}>{p.label}</span>
-                  {active && <span className="text-xs" style={{ color: 'var(--studio-border)' }}>✓</span>}
+                  <span className="text-sm" style={{ color: active ? C.border : C.muted }}>{p.icon}</span>
+                  <span className="text-xs font-bold flex-1" style={{ color: active ? C.text : C.muted }}>{p.label}</span>
+                  {active && <span className="text-xs" style={{ color: C.border }}>✓</span>}
                 </div>
-                <div className="text-[9px] mt-0.5 pl-5" style={{ color: active ? '#aaaaaa' : '#555555' }}>{p.desc}</div>
+                <div className="text-[9px] mt-0.5 pl-5" style={{ color: active ? C.muted : C.subtle }}>{p.desc}</div>
               </button>
             )
           })}
@@ -214,7 +222,7 @@ export function AnimationPanel({ state, dispatch, activeGrid }: AnimationPanelPr
             Apply {PRESET_OPTIONS.find(p => p.id === selectedPreset)?.label}
           </button>
         ) : (
-          <div className="text-[9px] text-center py-1" style={{ color: '#444444' }}>
+          <div className="text-[9px] text-center py-1" style={{ color: C.subtle }}>
             Select a preset above, then apply
           </div>
         )}
@@ -222,7 +230,7 @@ export function AnimationPanel({ state, dispatch, activeGrid }: AnimationPanelPr
 
       {/* ── Playback ─────────────────────────────────────────────── */}
       <div className="p-2 flex-1">
-        <p className="text-[10px] uppercase tracking-widest mb-2" style={{ color: '#777777' }}>Playback</p>
+        <p className="text-[10px] uppercase tracking-widest mb-2" style={{ color: C.muted }}>Playback</p>
 
         {/* Play / Stop */}
         <div className="flex gap-1.5 mb-3">
@@ -243,28 +251,28 @@ export function AnimationPanel({ state, dispatch, activeGrid }: AnimationPanelPr
               dispatch({ type: 'SET_PLAY_FRAME', index: 0 })
             }}
             className="px-3 py-2 text-base border hover:bg-[var(--studio-tint)] transition-colors"
-            style={{ borderColor: 'var(--studio-border)', color: '#cccccc' }}
+            style={{ borderColor: C.border, color: C.text }}
             aria-label="Stop"
           >⏹</button>
         </div>
 
         {/* Frame count info */}
-        <div className="text-[10px] mb-3 text-center" style={{ color: '#666666' }}>
+        <div className="text-[10px] mb-3 text-center" style={{ color: C.muted }}>
           {frames.length} frame{frames.length !== 1 ? 's' : ''}
           {isPlaying ? ` · frame ${state.playFrameIndex + 1}` : ''}
         </div>
 
         {/* FPS */}
         <div className="flex items-center gap-2 mb-3">
-          <span className="text-xs w-8 shrink-0" style={{ color: '#aaaaaa' }}>FPS</span>
+          <span className="text-xs w-8 shrink-0" style={{ color: C.muted }}>FPS</span>
           <input
             type="range" min={1} max={60} value={fps}
             onChange={e => dispatch({ type: 'SET_FPS', fps: Number(e.target.value) })}
             className="flex-1"
-            style={{ accentColor: 'var(--studio-border)' }}
+            style={{ accentColor: C.border }}
             aria-label="Frames per second"
           />
-          <span className="text-xs w-6 text-right" style={{ color: '#ffffff' }}>{fps}</span>
+          <span className="text-xs w-6 text-right" style={{ color: C.text }}>{fps}</span>
         </div>
 
         {/* Loop mode */}
@@ -274,7 +282,7 @@ export function AnimationPanel({ state, dispatch, activeGrid }: AnimationPanelPr
               key={mode}
               onClick={() => dispatch({ type: 'SET_LOOP_MODE', mode })}
               className={cn('flex-1 py-1.5 text-xs border transition-colors', loopMode === mode ? 'studio-tool-active' : 'bg-transparent hover:bg-[var(--studio-tint)]')}
-              style={{ borderColor: 'var(--studio-border)', color: loopMode === mode ? '#000' : '#aaaaaa' }}
+              style={{ borderColor: C.border, color: loopMode === mode ? '#ffffff' : C.muted }}
             >
               {mode === 'infinite' ? '∞' : mode}
             </button>

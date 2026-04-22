@@ -10,6 +10,14 @@ interface CanvasSettingsProps {
 }
 
 const sFont = { fontFamily: 'var(--studio-font)' }
+const C = {
+  border:   '#5b4fcf',
+  text:     '#2d2463',
+  muted:    '#9b94d4',
+  subtle:   '#c4bef5',
+  faint:    '#dddaf7',
+  input_bg: '#f4f2ff',
+}
 
 export function CanvasSettings({ state, dispatch, onGridChangeRequest }: CanvasSettingsProps) {
   const [customRows, setCustomRows] = useState(String(state.rows))
@@ -18,8 +26,8 @@ export function CanvasSettings({ state, dispatch, onGridChangeRequest }: CanvasS
   const currentPreset = GRID_PRESETS.find(p => p.rows === state.rows && p.cols === state.cols)
 
   return (
-    <div className="flex flex-col gap-3 p-3 border-t" style={{ borderColor: 'var(--studio-border)' }}>
-      <p className="text-xs tracking-widest uppercase" style={{ color: 'var(--studio-text-muted)', ...sFont }}>Grid Size</p>
+    <div className="flex flex-col gap-3 p-3 border-t" style={{ borderColor: C.border }}>
+      <p className="text-xs tracking-widest uppercase" style={{ color: C.muted, ...sFont }}>Grid Size</p>
 
       <div className="flex flex-col gap-1">
         {GRID_PRESETS.map(preset => {
@@ -30,14 +38,14 @@ export function CanvasSettings({ state, dispatch, onGridChangeRequest }: CanvasS
               onClick={() => onGridChangeRequest(preset.rows, preset.cols)}
               className="px-2 py-1 text-xs border transition-colors text-left"
               style={{
-                borderColor: active ? 'var(--studio-border)' : '#333',
-                background: active ? 'var(--studio-border)' : 'transparent',
-                color: active ? '#000000' : '#cccccc',
+                borderColor: active ? C.border : C.faint,
+                background: active ? C.border : 'transparent',
+                color: active ? '#ffffff' : C.text,
                 ...sFont,
               }}
             >
               {preset.name}{' '}
-              <span style={{ color: active ? '#333' : '#666666' }}>{preset.cols}×{preset.rows}</span>
+              <span style={{ color: active ? 'rgba(255,255,255,0.6)' : C.muted }}>{preset.cols}×{preset.rows}</span>
             </button>
           )
         })}
@@ -50,17 +58,17 @@ export function CanvasSettings({ state, dispatch, onGridChangeRequest }: CanvasS
           value={customCols}
           onChange={e => setCustomCols(e.target.value)}
           className="w-12 px-1 py-1 text-xs text-center focus:outline-none"
-          style={{ background: '#1a1a1a', border: '1px solid #444', color: '#cccccc', ...sFont }}
+          style={{ background: C.input_bg, border: `1px solid ${C.subtle}`, color: C.text, ...sFont }}
           aria-label="Custom columns"
         />
-        <span className="text-xs" style={{ color: '#777777' }}>×</span>
+        <span className="text-xs" style={{ color: C.muted }}>×</span>
         <input
           type="number"
           min={2} max={64}
           value={customRows}
           onChange={e => setCustomRows(e.target.value)}
           className="w-12 px-1 py-1 text-xs text-center focus:outline-none"
-          style={{ background: '#1a1a1a', border: '1px solid #444', color: '#cccccc', ...sFont }}
+          style={{ background: C.input_bg, border: `1px solid ${C.subtle}`, color: C.text, ...sFont }}
           aria-label="Custom rows"
         />
         <button
@@ -70,24 +78,24 @@ export function CanvasSettings({ state, dispatch, onGridChangeRequest }: CanvasS
             if (r >= 2 && r <= 64 && c >= 2 && c <= 128) onGridChangeRequest(r, c)
           }}
           className="px-2 py-1 text-xs bg-transparent hover:bg-[var(--studio-tint)] transition-colors"
-          style={{ border: '1px solid var(--studio-border)', color: '#cccccc', ...sFont }}
+          style={{ border: `1px solid ${C.border}`, color: C.text, ...sFont }}
         >
           Set
         </button>
       </div>
 
       <div className="flex flex-col gap-1.5">
-        <p className="text-xs tracking-widest uppercase" style={{ color: 'var(--studio-text-muted)', ...sFont }}>Dot Color</p>
+        <p className="text-xs tracking-widest uppercase" style={{ color: C.muted, ...sFont }}>Dot Color</p>
         <div className="flex gap-2 items-center">
           <input
             type="color"
             value={state.dotColor}
             onChange={e => dispatch({ type: 'SET_DOT_COLOR', color: e.target.value })}
             className="w-8 h-8 border-3 cursor-pointer bg-transparent"
-            style={{ borderColor: 'var(--studio-border)' }}
+            style={{ borderColor: C.border }}
             aria-label="Dot color picker"
           />
-          <span className="text-xs" style={{ color: '#cccccc', ...sFont }}>
+          <span className="text-xs" style={{ color: C.text, ...sFont }}>
             {state.dotColor.toUpperCase()}
           </span>
         </div>
@@ -99,9 +107,9 @@ export function CanvasSettings({ state, dispatch, onGridChangeRequest }: CanvasS
           checked={state.bgTransparent}
           onChange={e => dispatch({ type: 'SET_BG_TRANSPARENT', transparent: e.target.checked })}
           className="border-3"
-          style={{ accentColor: 'var(--studio-border)' }}
+          style={{ accentColor: C.border }}
         />
-        <span className="text-xs" style={{ color: '#cccccc', ...sFont }}>
+        <span className="text-xs" style={{ color: C.text, ...sFont }}>
           Transparent BG
         </span>
       </label>

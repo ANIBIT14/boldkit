@@ -21,6 +21,12 @@ interface ConfirmDialogProps {
 
 const sFont = { fontFamily: 'var(--studio-font)' }
 
+const PANEL   = '#ffffff'
+const BORDER  = '#5b4fcf'
+const TEXT    = '#2d2463'
+const MUTED   = '#9b94d4'
+const TINT    = 'rgba(91,79,207,0.08)'
+
 export function ConfirmDialog({
   open,
   title,
@@ -28,24 +34,23 @@ export function ConfirmDialog({
   confirmLabel = 'Confirm',
   onConfirm,
   onCancel,
-  destructive = false,
 }: ConfirmDialogProps) {
   return (
     <AlertDialog open={open}>
       <AlertDialogContent
         style={{
-          background: 'var(--studio-panel)',
-          borderColor: 'var(--studio-border)',
-          boxShadow: 'var(--studio-shadow)',
-          color: '#ffffff',
+          background: PANEL,
+          border: `3px solid ${BORDER}`,
+          boxShadow: `4px 4px 0px rgba(91,79,207,0.3)`,
+          color: TEXT,
           maxWidth: '420px',
         }}
       >
         <AlertDialogHeader>
-          <AlertDialogTitle style={{ color: '#ffffff', ...sFont, fontSize: '13px', letterSpacing: '0.05em', textTransform: 'uppercase' }}>
+          <AlertDialogTitle style={{ color: TEXT, ...sFont, fontSize: '13px', letterSpacing: '0.05em', textTransform: 'uppercase' }}>
             {title}
           </AlertDialogTitle>
-          <AlertDialogDescription style={{ color: '#aaaaaa', ...sFont, fontSize: '11px', lineHeight: 1.6 }}>
+          <AlertDialogDescription style={{ color: MUTED, ...sFont, fontSize: '12px', lineHeight: 1.7 }}>
             {description}
           </AlertDialogDescription>
         </AlertDialogHeader>
@@ -54,10 +59,10 @@ export function ConfirmDialog({
             onClick={onCancel}
             style={{
               background: 'transparent',
-              border: '1px solid #444',
-              color: '#aaaaaa',
+              border: `1px solid ${BORDER}`,
+              color: TEXT,
               ...sFont,
-              fontSize: '11px',
+              fontSize: '12px',
             }}
           >
             Cancel
@@ -65,12 +70,12 @@ export function ConfirmDialog({
           <AlertDialogAction
             onClick={onConfirm}
             style={{
-              background: destructive ? 'var(--studio-border)' : 'var(--studio-border)',
-              border: '3px solid var(--studio-border)',
-              color: '#000000',
+              background: BORDER,
+              border: `3px solid ${BORDER}`,
+              color: '#ffffff',
               fontWeight: 700,
               ...sFont,
-              fontSize: '11px',
+              fontSize: '12px',
             }}
           >
             {confirmLabel}
@@ -94,18 +99,18 @@ export function NoticeDialog({ open, title, description, onClose }: NoticeDialog
     <AlertDialog open={open}>
       <AlertDialogContent
         style={{
-          background: 'var(--studio-panel)',
-          borderColor: 'var(--studio-border)',
-          boxShadow: 'var(--studio-shadow)',
-          color: '#ffffff',
+          background: PANEL,
+          border: `3px solid ${BORDER}`,
+          boxShadow: `4px 4px 0px rgba(91,79,207,0.3)`,
+          color: TEXT,
           maxWidth: '380px',
         }}
       >
         <AlertDialogHeader>
-          <AlertDialogTitle style={{ color: '#ffffff', ...sFont, fontSize: '13px', letterSpacing: '0.05em', textTransform: 'uppercase' }}>
+          <AlertDialogTitle style={{ color: TEXT, ...sFont, fontSize: '13px', letterSpacing: '0.05em', textTransform: 'uppercase' }}>
             {title}
           </AlertDialogTitle>
-          <AlertDialogDescription style={{ color: '#aaaaaa', ...sFont, fontSize: '11px', lineHeight: 1.6 }}>
+          <AlertDialogDescription style={{ color: MUTED, ...sFont, fontSize: '12px', lineHeight: 1.7 }}>
             {description}
           </AlertDialogDescription>
         </AlertDialogHeader>
@@ -113,12 +118,12 @@ export function NoticeDialog({ open, title, description, onClose }: NoticeDialog
           <AlertDialogAction
             onClick={onClose}
             style={{
-              background: 'var(--studio-border)',
-              border: '3px solid var(--studio-border)',
-              color: '#000000',
+              background: BORDER,
+              border: `3px solid ${BORDER}`,
+              color: '#ffffff',
               fontWeight: 700,
               ...sFont,
-              fontSize: '11px',
+              fontSize: '12px',
             }}
           >
             OK
@@ -128,3 +133,6 @@ export function NoticeDialog({ open, title, description, onClose }: NoticeDialog
     </AlertDialog>
   )
 }
+
+/** Shared tint helper exported for inline use */
+export { TINT as STUDIO_TINT }

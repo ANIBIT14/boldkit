@@ -63,7 +63,7 @@ export function ExportModal({ state, onClose }: ExportModalProps) {
                   onClick={() => setFormat(f)}
                   className={cn(
                     'flex-1 py-2 text-xs border border-[var(--studio-border)] uppercase',
-                    format === f ? 'studio-tool-active' : 'bg-transparent text-[var(--studio-text)] hover:bg-[#1a1a00]'
+                    format === f ? 'studio-tool-active' : 'bg-transparent text-[var(--studio-text)] hover:bg-[var(--studio-tint)]'
                   )}
                   style={sFont}
                   aria-label={`Export as ${f.toUpperCase()}`}

@@ -269,8 +269,8 @@ export function Canvas({ state, dispatch, activeGrid, isPreviewMode }: CanvasPro
                 cx={c + 0.5}
                 cy={r + 0.5}
                 r={0.38}
-                fill={isLit ? dotColor : '#1C1C1C'}
-                stroke={isLit ? undefined : '#2A2A2A'}
+                fill={isLit ? dotColor : 'var(--studio-dot-empty)'}
+                stroke={isLit ? undefined : 'var(--studio-dot-empty-border)'}
                 strokeWidth={isLit ? 0 : 0.03}
                 opacity={isPreviewed && !filled ? 0.55 : 1}
                 filter={filled ? 'url(#glow)' : undefined}
@@ -285,8 +285,8 @@ export function Canvas({ state, dispatch, activeGrid, isPreviewMode }: CanvasPro
             y={selRect.y}
             width={selRect.w}
             height={selRect.h}
-            fill="rgba(215,25,33,0.08)"
-            stroke="#D71921"
+            fill="rgba(91,79,207,0.1)"
+            stroke="#5b4fcf"
             strokeWidth={0.06}
             strokeDasharray="0.2 0.1"
           />

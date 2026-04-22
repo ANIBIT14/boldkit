@@ -7,16 +7,16 @@
 }
 
 .studio-root {
-  --studio-bg: #080808;
-  --studio-panel: #111111;
-  --studio-border: #D71921;
-  --studio-dot-filled: #D71921;
-  --studio-dot-empty: #1C1C1C;
-  --studio-dot-empty-border: #2A2A2A;
-  --studio-text: #D71921;
-  --studio-text-muted: #555555;
-  --studio-shadow: 4px 4px 0px var(--studio-border);
-  --studio-tint: rgba(215, 25, 33, 0.14);
+  --studio-bg: #f4f2ff;
+  --studio-panel: #ffffff;
+  --studio-border: #5b4fcf;
+  --studio-dot-filled: #5b4fcf;
+  --studio-dot-empty: #e8e4fb;
+  --studio-dot-empty-border: #c4bef5;
+  --studio-text: #2d2463;
+  --studio-text-muted: #9b94d4;
+  --studio-shadow: 4px 4px 0px rgba(91, 79, 207, 0.3);
+  --studio-tint: rgba(91, 79, 207, 0.08);
   --studio-font: 'Share Tech Mono', monospace;
 
   font-family: var(--studio-font);
@@ -28,7 +28,7 @@
 
 /* Ghost dot background */
 .studio-ghost-grid {
-  background-image: radial-gradient(circle, #1a1a1a 1px, transparent 1px);
+  background-image: radial-gradient(circle, #ccc8ef 1px, transparent 1px);
   background-size: 20px 20px;
 }
 
@@ -41,8 +41,8 @@
     0deg,
     transparent,
     transparent 3px,
-    rgba(0, 0, 0, 0.08) 3px,
-    rgba(0, 0, 0, 0.08) 4px
+    rgba(0, 0, 0, 0.04) 3px,
+    rgba(0, 0, 0, 0.04) 4px
   );
   pointer-events: none;
   z-index: 1;
@@ -58,7 +58,7 @@
 /* Active tool button */
 .studio-tool-active {
   background: var(--studio-border) !important;
-  color: #000000 !important;
+  color: #ffffff !important;
 }
 
 /* Phosphor glow for filled dots */
@@ -70,7 +70,7 @@
 .studio-tour-backdrop {
   position: fixed;
   inset: 0;
-  background: rgba(0, 0, 0, 0.75);
+  background: rgba(45, 36, 99, 0.6);
   z-index: 1000;
   display: flex;
   align-items: center;
