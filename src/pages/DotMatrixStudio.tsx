@@ -121,6 +121,12 @@ export function DotMatrixStudio() {
           <span className="text-xs tracking-[0.3em] uppercase font-bold" style={{ color: 'var(--studio-text)', ...sFont }}>
             Dot Matrix Studio
           </span>
+          <span
+            className="px-1.5 py-0.5 text-[9px] font-bold uppercase tracking-widest"
+            style={{ background: 'var(--studio-border)', color: '#000000', ...sFont }}
+          >
+            Beta
+          </span>
         </div>
         <div className="flex items-center gap-2">
           <button
