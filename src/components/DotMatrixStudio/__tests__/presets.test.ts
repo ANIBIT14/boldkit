@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest'
-import { applyBlink, applyTypewriter, applyScanLine, applyMarquee, applyRipple, applyGlitch } from '../lib/presets'
+import { applyBlink, applyTypewriter, applyScanLine, applyMarquee, applyRipple } from '../lib/presets'
 
 const ROWS = 4
 const COLS = 4
@@ -63,17 +63,5 @@ describe('applyRipple', () => {
     const frames = applyRipple(filledGrid(ROWS, COLS), ROWS, COLS, 10)
     const last = frames[frames.length - 1]
     expect(last.grid[Math.floor(ROWS / 2)][Math.floor(COLS / 2)]).toBe(true)
-  })
-})
-
-describe('applyGlitch', () => {
-  it('returns numFrames frames', () => {
-    expect(applyGlitch(filledGrid(ROWS, COLS), ROWS, COLS, 4)).toHaveLength(4)
-  })
-  it('produces deterministic output for same inputs', () => {
-    const source = filledGrid(ROWS, COLS)
-    const a = applyGlitch(source, ROWS, COLS, 3)
-    const b = applyGlitch(source, ROWS, COLS, 3)
-    expect(a[0].grid).toEqual(b[0].grid)
   })
 })

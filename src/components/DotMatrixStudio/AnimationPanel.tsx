@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import type { StudioState, Frame } from './types'
 import type { StudioAction } from './hooks/useStudioState'
-import { applyBlink, applyTypewriter, applyScanLine, applyMarquee, applyRipple, applyGlitch } from './lib/presets'
+import { applyBlink, applyTypewriter, applyScanLine, applyMarquee, applyRipple } from './lib/presets'
 import { cn } from '@/lib/utils'
 
 interface AnimationPanelProps {
@@ -23,7 +23,6 @@ const PRESET_OPTIONS: PresetOption[] = [
   { id: 'scanline',   label: 'Scan Line',    icon: '▬', desc: 'Sweep row by row' },
   { id: 'marquee',    label: 'Marquee',      icon: '↔', desc: 'Scroll & wrap' },
   { id: 'ripple',     label: 'Ripple',       icon: '◎', desc: 'Reveal from center' },
-  { id: 'glitch',     label: 'Glitch',       icon: '▓', desc: 'Random noise' },
 ]
 
 export function AnimationPanel({ state, dispatch, activeGrid }: AnimationPanelProps) {
@@ -95,7 +94,6 @@ export function AnimationPanel({ state, dispatch, activeGrid }: AnimationPanelPr
       case 'scanline':   return applyScanLine(activeGrid, rows, cols)
       case 'marquee':    return applyMarquee(activeGrid, rows, cols)
       case 'ripple':     return applyRipple(activeGrid, rows, cols)
-      case 'glitch':     return applyGlitch(activeGrid, rows, cols)
       default: return []
     }
   }

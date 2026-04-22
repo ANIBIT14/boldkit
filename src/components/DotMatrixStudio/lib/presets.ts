@@ -76,16 +76,3 @@ export function applyRipple(sourceGrid: DotGrid, rows: number, cols: number, num
   })
 }
 
-/** N frames of your art with deterministic random pixel noise */
-export function applyGlitch(sourceGrid: DotGrid, rows: number, cols: number, numFrames = 6, intensity = 0.05): Frame[] {
-  return Array.from({ length: numFrames }, (_, i) => {
-    const grid = cloneGrid(sourceGrid)
-    for (let row = 0; row < rows; row++) {
-      for (let col = 0; col < cols; col++) {
-        const seed = (row * cols + col + i * 997) % 1000
-        if (seed / 1000 < intensity) grid[row][col] = !grid[row][col]
-      }
-    }
-    return { ...createFrame(rows, cols), grid }
-  })
-}
