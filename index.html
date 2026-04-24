@@ -139,6 +139,18 @@
     }
     </script>
 
+    <!-- Theme initialization: apply class before React loads to prevent FOUC -->
+    <script>
+      (function() {
+        try {
+          var stored = localStorage.getItem('boldkit-theme');
+          var theme = stored === 'dark' || stored === 'light' ? stored :
+            (stored === 'system' || !stored) && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+          document.documentElement.classList.add(theme);
+        } catch(e) {}
+      })();
+    </script>
+
     <!-- Google Fonts: Bebas Neue + DM Mono + Outfit -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
