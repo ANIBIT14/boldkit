@@ -20,6 +20,31 @@ type PendingConfirm =
 const TOOLS_SIDEBAR_W = 240
 const ANIM_SIDEBAR_W  = 300
 
+function SidebarHeader({ label, onClose }: { label: string; onClose: () => void }) {
+  const sFont = { fontFamily: 'var(--studio-font)' }
+  return (
+    <div className="flex items-center justify-between px-3 py-2 shrink-0" style={{ background: C.border, ...sFont }}>
+      <div className="flex items-center gap-2">
+        <span className="text-[9px] tracking-[0.3em] uppercase font-bold" style={{ color: 'rgba(255,255,255,0.55)' }}>
+          Studio
+        </span>
+        <span className="text-[9px]" style={{ color: 'rgba(255,255,255,0.35)' }}>/</span>
+        <span className="text-[10px] tracking-[0.2em] uppercase font-bold" style={{ color: '#ffffff' }}>
+          {label}
+        </span>
+      </div>
+      <button
+        onClick={onClose}
+        className="w-7 h-7 flex items-center justify-center text-base font-bold hover:opacity-70 transition-opacity"
+        style={{ border: '2px solid rgba(255,255,255,0.35)', color: '#ffffff' }}
+        aria-label={`Close ${label} panel`}
+      >
+        ×
+      </button>
+    </div>
+  )
+}
+
 export function DotMatrixStudio() {
   const { state, dispatch, activeFrame } = useStudioState()
   const { textToGrid } = useTextTool(state.rows, state.cols)
@@ -111,29 +136,6 @@ export function DotMatrixStudio() {
     ? 'This will clear all frames and settings and start fresh. This cannot be undone.'
     : 'Changing the grid size will clear all frames. Your current artwork will be lost.'
   const confirmLabel = pendingConfirm?.type === 'reset' ? 'Reset' : 'Change size'
-
-  // Shared sidebar header strip (used by both sliding panels)
-  const SidebarHeader = ({ label, onClose }: { label: string; onClose: () => void }) => (
-    <div className="flex items-center justify-between px-3 py-2 shrink-0" style={{ background: C.border, ...sFont }}>
-      <div className="flex items-center gap-2">
-        <span className="text-[9px] tracking-[0.3em] uppercase font-bold" style={{ color: 'rgba(255,255,255,0.55)' }}>
-          Studio
-        </span>
-        <span className="text-[9px]" style={{ color: 'rgba(255,255,255,0.35)' }}>/</span>
-        <span className="text-[10px] tracking-[0.2em] uppercase font-bold" style={{ color: '#ffffff' }}>
-          {label}
-        </span>
-      </div>
-      <button
-        onClick={onClose}
-        className="w-7 h-7 flex items-center justify-center text-base font-bold hover:opacity-70 transition-opacity"
-        style={{ border: '2px solid rgba(255,255,255,0.35)', color: '#ffffff' }}
-        aria-label={`Close ${label} panel`}
-      >
-        ×
-      </button>
-    </div>
-  )
 
   return (
     <div className="studio-root studio-ghost-grid" style={{ display: 'flex', flexDirection: 'column', height: '100dvh', overflow: 'hidden' }}>
