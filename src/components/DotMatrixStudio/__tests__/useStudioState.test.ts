@@ -110,6 +110,8 @@ describe('createEmptyGrid', () => {
 })
 
 describe('selection actions', () => {
+  beforeEach(() => { localStorage.clear() })
+
   function makeState() {
     return renderHook(() => useStudioState())
   }
@@ -162,7 +164,7 @@ describe('selection actions', () => {
     expect(result.current.activeFrame.grid[1][0]).toBe(false)
   })
 
-  it('FILL/CLEAR/INVERT_SELECTION do nothing when selection is null', () => {
+  it('FILL_SELECTION does nothing when selection is null', () => {
     const { result } = makeState()
     const before = result.current.activeFrame.grid[0][0]
     act(() => { result.current.dispatch({ type: 'FILL_SELECTION' }) })
