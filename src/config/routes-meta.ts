@@ -96,6 +96,11 @@ export const PAGE_META: Record<string, RouteMeta> = {
     description: 'Free in-browser dot matrix animation editor. Draw pixel art, build frame-by-frame animations with 8 presets, and export to WebM video, PNG, SVG, or JSON. No installs required.',
     canonical: `${SITE_URL}/studio`,
   },
+  '/canvas-effects': {
+    title: 'Canvas Effects — 10 Animated Canvas Components | BoldKit',
+    description: 'Free animated canvas components for React, Vue 3, and Nuxt 3. 10 zero-dependency effects including Aurora, Flow Field, Plasma, Metaballs, Matrix Rain, Particle Web, Dot Blob, Dot Wave, Mouse Ripple, and Lissajous Grid. Fully typed with customisable props.',
+    canonical: `${SITE_URL}/canvas-effects`,
+  },
 }
 
 // Component slug -> display title map
@@ -258,6 +263,7 @@ export function getAllRoutes(): SitemapRoute[] {
     '/templates': { priority: 0.9, changefreq: 'monthly' },
     '/blocks': { priority: 0.9, changefreq: 'monthly' },
     '/studio': { priority: 0.9, changefreq: 'monthly' },
+    '/canvas-effects': { priority: 0.9, changefreq: 'monthly' },
   }
 
   for (const [path, seo] of Object.entries(staticPriorities)) {
