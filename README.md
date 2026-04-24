@@ -46,19 +46,6 @@ Export animations as **WebM video**, **PNG sprite sheets**, **SVG frames**, or *
 
 ---
 
-## What's New in v3.1.0
-
-### ✨ ASCII Shapes — 17 animated ASCII art components
-A complete ASCII animation engine — no canvas, no WebGL. Ten 3D shapes rendered with perspective projection, z-buffering, and Lambertian shading (`AsciiTorus`, `AsciiDonut`, `AsciiSphere`, `AsciiCube`, `AsciiHelix`, `AsciiTrefoilKnot`, `AsciiGeodesicDome`, `AsciiSaturn`, `AsciiHyperboloid`, `AsciiDNA`) plus seven generative 2D animations (`AsciiSpiral`, `AsciiRose`, `AsciiWave`, `AsciiVortex`, `AsciiPulse`, `AsciiMatrix`, `AsciiGrid`). Shared prop API with `size`, `charset`, `color`, `speed`, `multicolor`, and `animated`. Full React + Vue 3 + Nuxt support.
-
-### 📐 Math Curves — 7 new curves (15 total)
-`MathCurveLoader`, `MathCurveProgress`, and `MathCurveBackground` now support 15 curves: astroid, deltoid, nephroid, epicycloid, superellipse, triskelion, and involute added to the original 8.
-
-### 🔷 SVG Shapes — 10 new shapes (64 total)
-Five geometric additions (Heptagon, Decagon, Rhombus, Ellipse, Trefoil) and a new Mathematical category (FibonacciSpiral, PenroseTriangle, KochSnowflake, MobiusStrip, Torus).
-
----
-
 ## Preview
 
 <div align="center">
