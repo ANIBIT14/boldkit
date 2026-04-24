@@ -30,6 +30,9 @@ import {
 import {
   AsciiSpiral, AsciiVortex, AsciiMatrix, AsciiGrid,
 } from '@/components/ui/ascii-shapes'
+import {
+  Aurora, FlowField, Plasma, Metaballs,
+} from '@/components/CanvasEffects/react'
 
 const DISPLAY: React.CSSProperties = { fontFamily: "'Bebas Neue', sans-serif" }
 const MONO: React.CSSProperties    = { fontFamily: "'DM Mono', monospace" }
@@ -633,7 +636,7 @@ export function Home() {
               ].map((item, i) => {
                 return (
                   <Link
-                    key={item.href}
+                    key={item.label}
                     to={item.href}
                     className="snap-start shrink-0 group"
                   >
@@ -969,7 +972,7 @@ export function Home() {
               <div>
                 <div className="flex items-center gap-2 mb-5">
                   <div className="h-[3px] w-8 bg-primary" />
-                  <span className="text-[11px] font-black uppercase tracking-[0.2em] text-primary" style={MONO}>v3.1 Tool</span>
+                  <span className="text-[11px] font-black uppercase tracking-[0.2em] text-primary" style={MONO}>v3.2 Tool</span>
                 </div>
                 <h2
                   className="leading-none text-background mb-5"
@@ -1376,6 +1379,92 @@ export function Home() {
               <Link to="/ascii-shapes">
                 <Button variant="secondary" className="gap-2">
                   Explore ASCII Shapes <ArrowRight className="h-4 w-4" />
+                </Button>
+              </Link>
+            </div>
+          </div>
+        </section>
+
+        {/* ── CANVAS EFFECTS SECTION ───────────────────────────────── */}
+        <section
+          className="relative overflow-hidden border-b-3 border-foreground py-14 md:py-20"
+          style={{ background: '#040404' }}
+        >
+          {/* Live Aurora canvas as full-bleed background */}
+          <div className="absolute inset-0 pointer-events-none">
+            <Aurora
+              colors={['#003d2e', '#004d5c', '#1a0035', '#002d4a']}
+              starCount={60}
+              speed={0.4}
+            />
+          </div>
+          <div className="absolute inset-0 bg-black/70 pointer-events-none" />
+
+          <div className="container relative mx-auto px-4">
+            <div className="flex flex-col gap-8 lg:flex-row lg:items-center lg:gap-16">
+
+              {/* Left: text */}
+              <div className="flex-1 space-y-4">
+                <Badge variant="accent" className="gap-1.5">
+                  <Sparkles className="h-3.5 w-3.5" /> New in v3.2
+                </Badge>
+                <h2
+                  className="leading-none text-white"
+                  style={{ ...DISPLAY, fontSize: 'clamp(32px, 5.5vw, 72px)' }}
+                >
+                  CANVAS<br />
+                  <span className="text-accent">EFFECTS</span>
+                </h2>
+                <p className="mt-3 max-w-md text-sm text-white/60" style={MONO}>
+                  10 animated canvas components — zero dependencies. Aurora, Flow Field, Plasma, Metaballs, Matrix Rain and more. React, Vue 3 & Nuxt 3.
+                </p>
+                <div className="flex flex-col gap-2 pt-2">
+                  {[
+                    { label: 'Effects', sub: '10 components', color: 'bg-accent' },
+                    { label: 'Deps', sub: 'zero — self-contained', color: 'bg-secondary' },
+                    { label: 'Frameworks', sub: 'React · Vue 3 · Nuxt', color: 'bg-primary' },
+                  ].map(({ label, sub, color }) => (
+                    <Link key={label} to="/canvas-effects">
+                      <div className="group flex items-center gap-3 border-2 border-white/20 px-4 py-2.5 hover:border-white/60 hover:bg-white/5 transition-all duration-150">
+                        <div className={`h-2 w-2 shrink-0 ${color}`} />
+                        <div className="flex-1 min-w-0">
+                          <div className="text-xs font-black uppercase tracking-wider text-white leading-none">{label}</div>
+                          <div className="text-[10px] text-white/40 mt-0.5" style={MONO}>{sub}</div>
+                        </div>
+                        <ArrowRight className="h-3.5 w-3.5 text-white/30 group-hover:text-white/80 transition-colors" />
+                      </div>
+                    </Link>
+                  ))}
+                </div>
+              </div>
+
+              {/* Right: 4 live canvas previews */}
+              <div className="flex flex-wrap gap-4 justify-center lg:justify-end">
+                {([
+                  { node: <FlowField count={120} hueStart={170} hueRange={120} speed={1} decay={0.028} />, label: 'FLOW FIELD',  accent: '#22d3ee' },
+                  { node: <Plasma palette={['#0a1450','#1e64c8','#00d2dc','#5affa6','#ffc832','#ff4b82']} speed={1} />, label: 'PLASMA',     accent: '#fb923c' },
+                  { node: <Metaballs colors={['#ff5050','#3cb9ff','#ffc32d','#aa4bff']} blobRadius={55} speed={1} />, label: 'METABALLS',  accent: '#f472b6' },
+                  { node: <Aurora colors={['#00ffaa','#00beff','#78ff64','#be50ff']} starCount={80} speed={1} />, label: 'AURORA',     accent: '#00ffaa' },
+                ] as const).map(({ node, label, accent }) => (
+                  <Link key={label} to="/canvas-effects">
+                    <div className="group flex flex-col items-center gap-2 hover:opacity-90 transition-opacity">
+                      <div
+                        className="overflow-hidden border-2 border-white/15 group-hover:border-white/40 transition-colors"
+                        style={{ width: 140, height: 100, background: '#070707' }}
+                      >
+                        {node}
+                      </div>
+                      <span className="text-[9px] font-black uppercase tracking-widest" style={{ ...MONO, color: accent }}>{label}</span>
+                    </div>
+                  </Link>
+                ))}
+              </div>
+            </div>
+
+            <div className="mt-8 flex gap-3">
+              <Link to="/canvas-effects">
+                <Button variant="accent" className="gap-2">
+                  Explore Canvas Effects <ArrowRight className="h-4 w-4" />
                 </Button>
               </Link>
             </div>

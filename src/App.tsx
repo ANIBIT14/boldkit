@@ -16,6 +16,7 @@ const Blocks = lazy(() => import('@/pages/Blocks').then(m => ({ default: m.Block
 const ShapeBuilder = lazy(() => import('@/pages/ShapeBuilder').then(m => ({ default: m.ShapeBuilder })))
 const AsciiShapes = lazy(() => import('@/pages/AsciiShapes').then(m => ({ default: m.AsciiShapes })))
 const DotMatrixStudio = lazy(() => import('@/pages/DotMatrixStudio').then(m => ({ default: m.DotMatrixStudio })))
+const CanvasEffects = lazy(() => import('@/pages/CanvasEffects').then(m => ({ default: m.CanvasEffects })))
 const LandingPageTemplate = lazy(() => import('@/components/templates/LandingPageTemplate').then(m => ({ default: m.LandingPageTemplate })))
 const PortfolioTemplate = lazy(() => import('@/components/templates/PortfolioTemplate').then(m => ({ default: m.PortfolioTemplate })))
 const DashboardTemplate = lazy(() => import('@/components/templates/DashboardTemplate').then(m => ({ default: m.DashboardTemplate })))
@@ -158,6 +159,7 @@ function App() {
             <Route path="/shapes/builder" element={<Suspense fallback={<PageLoader />}><ShapeBuilder /></Suspense>} />
             <Route path="/ascii-shapes" element={<Suspense fallback={<PageLoader />}><AsciiShapes /></Suspense>} />
             <Route path="/studio" element={<Suspense fallback={<PageLoader />}><DotMatrixStudio /></Suspense>} />
+            <Route path="/canvas-effects" element={<Suspense fallback={<PageLoader />}><CanvasEffects /></Suspense>} />
             <Route path="/templates" element={<Suspense fallback={<PageLoader />}><Templates /></Suspense>} />
             <Route path="/templates/landing-page" element={<Suspense fallback={<PageLoader />}><LandingPageTemplate /></Suspense>} />
             <Route path="/templates/portfolio" element={<Suspense fallback={<PageLoader />}><PortfolioTemplate /></Suspense>} />

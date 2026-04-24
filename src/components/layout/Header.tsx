@@ -17,6 +17,7 @@ import {
   LayoutTemplate,
   LayoutGrid,
   ArrowUpRight,
+  Sparkles,
 } from 'lucide-react'
 import { useState, useEffect } from 'react'
 import { cn } from '@/lib/utils'
@@ -24,13 +25,14 @@ import { cn } from '@/lib/utils'
 const DISPLAY: React.CSSProperties = { fontFamily: "'Bebas Neue', sans-serif" }
 
 const navItems = [
-  { label: 'Docs',       href: '/docs',       icon: BookOpen },
-  { label: 'Components', href: '/components', icon: Layers },
-  { label: 'Blocks',     href: '/blocks',     icon: LayoutGrid },
-  { label: 'Shapes',     href: '/shapes',     icon: Shapes },
-  { label: 'Charts',     href: '/charts',     icon: BarChart3 },
-  { label: 'Themes',     href: '/themes',     icon: Palette },
-  { label: 'Templates',  href: '/templates',  icon: LayoutTemplate },
+  { label: 'Docs',       href: '/docs',           icon: BookOpen },
+  { label: 'Components', href: '/components',     icon: Layers },
+  { label: 'Blocks',     href: '/blocks',         icon: LayoutGrid },
+  { label: 'Shapes',     href: '/shapes',         icon: Shapes },
+  { label: 'Charts',     href: '/charts',         icon: BarChart3 },
+  { label: 'Canvas',     href: '/canvas-effects', icon: Sparkles },
+  { label: 'Themes',     href: '/themes',         icon: Palette },
+  { label: 'Templates',  href: '/templates',      icon: LayoutTemplate },
 ]
 
 export function Header() {
@@ -98,7 +100,7 @@ export function Header() {
               variant="secondary"
               className="text-[9px] px-1 py-0 h-4 hidden sm:inline-flex"
             >
-              v3.1
+              v3.2
             </Badge>
           </Link>
 

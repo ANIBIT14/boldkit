@@ -73,6 +73,18 @@
     <priority>0.9</priority>
   </url>
   <url>
+    <loc>https://boldkit.dev/studio</loc>
+    <lastmod>2026-04-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://boldkit.dev/canvas-effects</loc>
+    <lastmod>2026-04-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
     <loc>https://boldkit.dev/components/accordion</loc>
     <lastmod>2026-04-15</lastmod>
     <changefreq>monthly</changefreq>
