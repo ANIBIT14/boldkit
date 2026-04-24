@@ -1,0 +1,78 @@
+@font-face {
+  font-family: 'NDot47';
+  src: url('/fonts/ndot-47-inspired-by-nothing.otf.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}
+
+.studio-root {
+  --studio-bg: #f4f2ff;
+  --studio-panel: #ffffff;
+  --studio-border: #5b4fcf;
+  --studio-dot-filled: #5b4fcf;
+  --studio-dot-empty: #e8e4fb;
+  --studio-dot-empty-border: #c4bef5;
+  --studio-text: #2d2463;
+  --studio-text-muted: #9b94d4;
+  --studio-shadow: 4px 4px 0px rgba(91, 79, 207, 0.3);
+  --studio-tint: rgba(91, 79, 207, 0.08);
+  --studio-font: 'Share Tech Mono', monospace;
+
+  font-family: var(--studio-font);
+  background: var(--studio-bg);
+  color: var(--studio-text);
+  height: 100dvh;
+  overflow: hidden;
+}
+
+/* Ghost dot background */
+.studio-ghost-grid {
+  background-image: radial-gradient(circle, #ccc8ef 1px, transparent 1px);
+  background-size: 20px 20px;
+}
+
+/* Scanline overlay */
+.studio-scanlines::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 3px,
+    rgba(0, 0, 0, 0.04) 3px,
+    rgba(0, 0, 0, 0.04) 4px
+  );
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Panel style */
+.studio-panel {
+  background: var(--studio-panel);
+  border: 3px solid var(--studio-border);
+  box-shadow: var(--studio-shadow);
+}
+
+/* Active tool button */
+.studio-tool-active {
+  background: var(--studio-border) !important;
+  color: #ffffff !important;
+}
+
+/* Phosphor glow for filled dots */
+.studio-dot-glow {
+  filter: drop-shadow(0 0 3px var(--studio-dot-filled));
+}
+
+/* Tour overlay */
+.studio-tour-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(45, 36, 99, 0.6);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

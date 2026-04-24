@@ -14,6 +14,8 @@ const exploreLinks = [
   { label: 'Themes', href: '/themes' },
   { label: 'Templates', href: '/templates' },
   { label: 'Blocks', href: '/blocks' },
+  { label: 'Dot Matrix Studio', href: '/studio' },
+  { label: 'FavGrab', href: 'https://favgrab.boldkit.dev', external: true },
 ]
 
 const resourceLinks = [
@@ -150,15 +152,28 @@ export function Footer() {
                 Explore
               </h4>
               <nav className="flex flex-col gap-2" aria-label="Explore links">
-                {exploreLinks.map((link) => (
-                  <Link
-                    key={link.href}
-                    to={link.href}
-                    className="text-sm text-muted-foreground hover:text-foreground hover:translate-x-1 transition-all duration-100 w-fit"
-                  >
-                    {link.label}
-                  </Link>
-                ))}
+                {exploreLinks.map((link) =>
+                  'external' in link && link.external ? (
+                    <a
+                      key={link.href}
+                      href={link.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1 text-sm text-muted-foreground hover:text-foreground hover:translate-x-1 transition-all duration-100 w-fit"
+                    >
+                      {link.label}
+                      <ArrowUpRight className="h-3 w-3 opacity-50" />
+                    </a>
+                  ) : (
+                    <Link
+                      key={link.href}
+                      to={link.href}
+                      className="text-sm text-muted-foreground hover:text-foreground hover:translate-x-1 transition-all duration-100 w-fit"
+                    >
+                      {link.label}
+                    </Link>
+                  )
+                )}
               </nav>
             </div>
 

@@ -91,6 +91,11 @@ export const PAGE_META: Record<string, RouteMeta> = {
     description: `Free neubrutalism section blocks for React and Vue 3. 10 marketing blocks (hero, features, testimonials, CTA, stats, team, FAQ, footer, contact, logo cloud) and 5 application blocks (auth forms, settings, onboarding, error pages, invoice).`,
     canonical: `${SITE_URL}/blocks`,
   },
+  '/studio': {
+    title: 'Dot Matrix Studio — Pixel Art & Animation Editor | BoldKit',
+    description: 'Free in-browser dot matrix animation editor. Draw pixel art, build frame-by-frame animations with 8 presets, and export to WebM video, PNG, SVG, or JSON. No installs required.',
+    canonical: `${SITE_URL}/studio`,
+  },
 }
 
 // Component slug -> display title map
@@ -252,6 +257,7 @@ export function getAllRoutes(): SitemapRoute[] {
     '/themes': { priority: 0.8, changefreq: 'monthly' },
     '/templates': { priority: 0.9, changefreq: 'monthly' },
     '/blocks': { priority: 0.9, changefreq: 'monthly' },
+    '/studio': { priority: 0.9, changefreq: 'monthly' },
   }
 
   for (const [path, seo] of Object.entries(staticPriorities)) {

@@ -236,6 +236,16 @@ export const pageSEO = {
       { name: 'Blocks' },
     ],
   },
+  studio: {
+    title: 'Dot Matrix Studio — Pixel Art & Animation Editor',
+    description: 'Free in-browser dot matrix animation editor. Draw pixel art, build frame-by-frame animations with 8 presets, and export to WebM video, PNG, SVG, or JSON. No installs required.',
+    canonical: `${SITE_URL}/studio`,
+    keywords: 'dot matrix, pixel art editor, animation editor, frame animation, WebM export, pixel art tool, neubrutalism',
+    breadcrumbs: [
+      { name: 'Home', url: `${SITE_URL}/` },
+      { name: 'Dot Matrix Studio' },
+    ],
+  },
 }
 
 // Component-specific SEO generator

@@ -1,0 +1,116 @@
+import { useState, useEffect } from 'react'
+import type { StudioState } from './types'
+import type { StudioAction } from './hooks/useStudioState'
+import { GRID_PRESETS } from './types'
+import { C } from './lib/studioTheme'
+
+interface CanvasSettingsProps {
+  state: StudioState
+  dispatch: React.Dispatch<StudioAction>
+  onGridChangeRequest: (rows: number, cols: number) => void
+}
+
+const sFont = { fontFamily: 'var(--studio-font)' }
+
+export function CanvasSettings({ state, dispatch, onGridChangeRequest }: CanvasSettingsProps) {
+  const [customRows, setCustomRows] = useState(String(state.rows))
+  const [customCols, setCustomCols] = useState(String(state.cols))
+
+  useEffect(() => {
+    setCustomRows(String(state.rows))
+    setCustomCols(String(state.cols))
+  }, [state.rows, state.cols])
+
+  const currentPreset = GRID_PRESETS.find(p => p.rows === state.rows && p.cols === state.cols)
+
+  return (
+    <div className="flex flex-col gap-3 p-3 border-t" style={{ borderColor: C.border }}>
+      <p className="text-xs tracking-widest uppercase" style={{ color: C.muted, ...sFont }}>Grid Size</p>
+
+      <div className="flex flex-col gap-1">
+        {GRID_PRESETS.map(preset => {
+          const active = currentPreset?.name === preset.name
+          return (
+            <button
+              key={preset.name}
+              onClick={() => onGridChangeRequest(preset.rows, preset.cols)}
+              className="px-2 py-1 text-xs border transition-colors text-left"
+              style={{
+                borderColor: active ? C.border : C.faint,
+                background: active ? C.border : 'transparent',
+                color: active ? '#ffffff' : C.text,
+                ...sFont,
+              }}
+            >
+              {preset.name}{' '}
+              <span style={{ color: active ? 'rgba(255,255,255,0.6)' : C.muted }}>{preset.cols}×{preset.rows}</span>
+            </button>
+          )
+        })}
+      </div>
+
+      <div className="flex gap-1 items-center">
+        <input
+          type="number"
+          min={2} max={128}
+          value={customCols}
+          onChange={e => setCustomCols(e.target.value)}
+          className="w-12 px-1 py-1 text-xs text-center focus:outline-none"
+          style={{ background: C.input_bg, border: `1px solid ${C.subtle}`, color: C.text, ...sFont }}
+          aria-label="Custom columns"
+        />
+        <span className="text-xs" style={{ color: C.muted }}>×</span>
+        <input
+          type="number"
+          min={2} max={64}
+          value={customRows}
+          onChange={e => setCustomRows(e.target.value)}
+          className="w-12 px-1 py-1 text-xs text-center focus:outline-none"
+          style={{ background: C.input_bg, border: `1px solid ${C.subtle}`, color: C.text, ...sFont }}
+          aria-label="Custom rows"
+        />
+        <button
+          onClick={() => {
+            const r = parseInt(customRows)
+            const c = parseInt(customCols)
+            if (r >= 2 && r <= 64 && c >= 2 && c <= 128) onGridChangeRequest(r, c)
+          }}
+          className="px-2 py-1 text-xs bg-transparent hover:bg-[var(--studio-tint)] transition-colors"
+          style={{ border: `1px solid ${C.border}`, color: C.text, ...sFont }}
+        >
+          Set
+        </button>
+      </div>
+
+      <div className="flex flex-col gap-1.5">
+        <p className="text-xs tracking-widest uppercase" style={{ color: C.muted, ...sFont }}>Dot Color</p>
+        <div className="flex gap-2 items-center">
+          <input
+            type="color"
+            value={state.dotColor}
+            onChange={e => dispatch({ type: 'SET_DOT_COLOR', color: e.target.value })}
+            className="w-8 h-8 border-3 cursor-pointer bg-transparent"
+            style={{ borderColor: C.border }}
+            aria-label="Dot color picker"
+          />
+          <span className="text-xs" style={{ color: C.text, ...sFont }}>
+            {state.dotColor.toUpperCase()}
+          </span>
+        </div>
+      </div>
+
+      <label className="flex items-center gap-2 cursor-pointer">
+        <input
+          type="checkbox"
+          checked={state.bgTransparent}
+          onChange={e => dispatch({ type: 'SET_BG_TRANSPARENT', transparent: e.target.checked })}
+          className="border-3"
+          style={{ accentColor: C.border }}
+        />
+        <span className="text-xs" style={{ color: C.text, ...sFont }}>
+          Transparent BG
+        </span>
+      </label>
+    </div>
+  )
+}

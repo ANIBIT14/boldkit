@@ -12,7 +12,7 @@
   "files": [
     {
       "path": "registry/default/ui/Tabs.vue",
-      "content": "<script setup lang=\"ts\">\nimport { TabsRoot, type TabsRootProps } from 'reka-ui'\nimport { cn } from '@/lib/utils'\n\ninterface Props extends TabsRootProps {\n  class?: string\n}\n\nconst props = defineProps<Props>()\nconst emit = defineEmits<{\n  'update:modelValue': [value: string]\n}>()\n</script>\n\n<template>\n  <TabsRoot\n    v-bind=\"props\"\n    :class=\"cn('w-full', props.class)\"\n    @update:model-value=\"emit('update:modelValue', $event)\"\n  >\n    <slot />\n  </TabsRoot>\n</template>\n",
+      "content": "<script setup lang=\"ts\">\nimport { TabsRoot, type TabsRootProps } from 'reka-ui'\nimport { cn } from '@/lib/utils'\n\ninterface Props extends TabsRootProps {\n  class?: string\n}\n\nconst props = defineProps<Props>()\nconst emit = defineEmits<{\n  'update:modelValue': [value: string | number]\n}>()\n</script>\n\n<template>\n  <TabsRoot\n    v-bind=\"props\"\n    :class=\"cn('w-full', props.class)\"\n    @update:model-value=\"emit('update:modelValue', $event)\"\n  >\n    <slot />\n  </TabsRoot>\n</template>\n",
       "type": "registry:ui",
       "target": "components/ui/Tabs.vue"
     },

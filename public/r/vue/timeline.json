@@ -12,7 +12,7 @@
   "files": [
     {
       "path": "registry/default/ui/Timeline.vue",
-      "content": "<script setup lang=\"ts\">\nimport { provide } from 'vue'\nimport { cn } from '@/lib/utils'\n\nexport interface TimelineContext {\n  orientation: 'vertical' | 'horizontal'\n}\n\nexport const TIMELINE_INJECTION_KEY = Symbol('timeline')\n\ninterface TimelineProps {\n  orientation?: 'vertical' | 'horizontal'\n  class?: string\n}\n\nconst props = withDefaults(defineProps<TimelineProps>(), {\n  orientation: 'vertical',\n})\n\nprovide(TIMELINE_INJECTION_KEY, {\n  orientation: props.orientation,\n})\n</script>\n\n<template>\n  <div\n    :class=\"cn(\n      'relative',\n      props.orientation === 'vertical' ? 'flex flex-col' : 'flex flex-row',\n      props.class\n    )\"\n  >\n    <slot />\n  </div>\n</template>\n",
+      "content": "<script setup lang=\"ts\">\nimport { provide } from 'vue'\nimport { cn } from '@/lib/utils'\n\nexport interface TimelineContext {\n  orientation: 'vertical' | 'horizontal'\n}\n\nexport const TIMELINE_INJECTION_KEY = Symbol('timeline')\n\ninterface TimelineProps {\n  orientation?: 'vertical' | 'horizontal'\n  class?: string\n}\n\nconst props = withDefaults(defineProps<TimelineProps>(), {\n  orientation: 'vertical',\n})\n\nprovide(TIMELINE_INJECTION_KEY, {\n  orientation: props.orientation,\n})\n</script>\n\n<template>\n  <div\n    :class=\"cn(\n      'relative',\n      orientation === 'vertical' ? 'flex flex-col' : 'flex flex-row',\n      props.class\n    )\"\n  >\n    <slot />\n  </div>\n</template>\n",
       "type": "registry:ui",
       "target": "components/ui/Timeline.vue"
     },
