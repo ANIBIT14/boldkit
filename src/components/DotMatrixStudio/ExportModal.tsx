@@ -39,6 +39,7 @@ export function ExportModal({ state, onClose }: ExportModalProps) {
 
   const handleExport = async () => {
     setExporting(true)
+    setExportError(null)
     try {
       const trimmed = filename.trim() || defaultFilename()
       await runExport({ format, scale, bgTransparent, loopMode, svgAnimated, svgEmbedFont: false, pngSpritesheet }, trimmed)

@@ -191,7 +191,7 @@ export async function exportWebM(
   const chunks: Blob[] = []
   recorder.ondataavailable = e => { if (e.data.size > 0) chunks.push(e.data) }
 
-  const playCount = config.loopMode === 'once' ? 1 : config.loopMode === '3x' ? 3 : 3
+  const playCount = config.loopMode === 'once' ? 1 : config.loopMode === '3x' ? 3 : 10
 
   function drawFrame(frame: Frame) {
     if (!bgTransparent) {
