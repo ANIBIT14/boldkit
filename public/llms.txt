@@ -4,13 +4,14 @@
 
 ## Quick Facts
 
-- **Version:** 3.0.4
+- **Version:** 3.1.2
 - **Components:** 55+ UI components
 - **Charts:** 14 chart types
-- **Shapes:** 54 SVG decorative shapes
+- **Shapes:** 64 SVG decorative shapes
 - **Blocks:** 15 section blocks (10 marketing + 5 application)
 - **Templates:** 7 full-page templates
 - **Frameworks:** React 19, Vue 3, Nuxt
+- **Tools:** Dot Matrix Studio (pixel art & animation editor), Shape Builder, Theme Builder
 - **Styling:** Tailwind CSS v4 with CSS variables
 - **TypeScript:** Full type support
 - **Accessibility:** WCAG 2.1 AA — built on Radix UI (React) & Reka UI (Vue) primitives
@@ -44,9 +45,32 @@ Components are installed via the **shadcn CLI** (code is copied directly into yo
 - **Blocks:** https://boldkit.dev/blocks
 - **Templates:** https://boldkit.dev/templates
 - **Theme Builder:** https://boldkit.dev/themes
+- **Dot Matrix Studio:** https://boldkit.dev/studio
 - **GitHub:** https://github.com/ANIBIT14/boldkit
 - **Registry index:** https://boldkit.dev/registry.json
 - **Sitemap:** https://boldkit.dev/sitemap.xml
+
+---
+
+## Dot Matrix Studio
+
+BoldKit includes a free in-browser **Dot Matrix Studio** at https://boldkit.dev/studio — a pixel art and frame animation editor. No install required.
+
+**Features:**
+- 16×32 dot grid canvas (resizable)
+- Tools: pencil, eraser, shapes (line/rect/circle), text, select
+- Frame-by-frame animation with undo/redo (50-step stack)
+- 8 animation presets: Blink, Typewriter, Scan Line, Marquee, Ripple, Bounce, Slide, Fade
+- Selection actions: Fill, Clear, Invert selected region
+- Export: WebM video, PNG (single frame or spritesheet), animated SVG, JSON (.boldkit.json)
+- Import: drag-and-drop or file picker for .boldkit.json files
+- Sample animations available at /studio/ripple.boldkit.json, /studio/wave.boldkit.json, /studio/rain.boldkit.json, /studio/bounce.boldkit.json
+
+**Export formats:**
+- `webm` — animated video (VP9/VP8), loop modes: once / 3x / infinite (10 loops)
+- `png` — single active frame, or full spritesheet of all frames
+- `svg` — static single frame or animated multi-frame SVG with CSS keyframes
+- `json` — .boldkit.json format preserving all frames, colors, and metadata (re-importable)
 
 ---
 
