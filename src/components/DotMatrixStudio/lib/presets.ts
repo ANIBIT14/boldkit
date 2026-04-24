@@ -164,6 +164,55 @@ export function applySlide(
 }
 
 /**
+ * Art undulates vertically — each column shifts up/down by a sine wave that
+ * advances each frame, creating a fluid wave animation of the drawn content.
+ */
+export function applyWave(
+  sourceGrid: DotGrid, rows: number, cols: number,
+  numFrames = 16,
+  amplitude = 2
+): Frame[] {
+  return Array.from({ length: numFrames }, (_, f) => {
+    const grid = emptyGrid(rows, cols)
+    for (let col = 0; col < cols; col++) {
+      const offset = Math.round(
+        Math.sin((col / cols) * Math.PI * 4 + (f / numFrames) * Math.PI * 2) * amplitude
+      )
+      for (let row = 0; row < rows; row++) {
+        const srcRow = ((row - offset) % rows + rows) % rows
+        if (sourceGrid[srcRow]?.[col]) grid[row][col] = true
+      }
+    }
+    return { ...createFrame(rows, cols), grid }
+  })
+}
+
+/**
+ * Matrix-style rain: drops fall from top to bottom in every column with
+ * staggered start positions, each with a short trailing tail.
+ */
+export function applyRain(
+  _sourceGrid: DotGrid, rows: number, cols: number,
+  numFrames = 20
+): Frame[] {
+  const TAIL = 4
+  // Give each column a unique phase offset so drops don't all start at row 0
+  const stagger = Array.from({ length: cols }, (_, c) => (c * 7 + c % 3) % (rows + TAIL))
+
+  return Array.from({ length: numFrames }, (_, f) => {
+    const grid = emptyGrid(rows, cols)
+    for (let col = 0; col < cols; col++) {
+      const head = (stagger[col] + f * 2) % (rows + TAIL)
+      for (let t = 0; t < TAIL; t++) {
+        const r = head - t
+        if (r >= 0 && r < rows) grid[r][col] = true
+      }
+    }
+    return { ...createFrame(rows, cols), grid }
+  })
+}
+
+/**
  * Dots dissolve in or out using a dithered reveal order.
  * Dots appear at scattered positions (checkerboard interleave) for a dissolve look.
  */

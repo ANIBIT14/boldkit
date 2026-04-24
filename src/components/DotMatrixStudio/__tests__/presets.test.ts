@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest'
-import { applyBlink, applyTypewriter, applyScanLine, applyMarquee, applyRipple } from '../lib/presets'
+import { applyBlink, applyTypewriter, applyScanLine, applyMarquee, applyRipple, applyWave, applyRain } from '../lib/presets'
 
 const ROWS = 4
 const COLS = 4
@@ -63,5 +63,72 @@ describe('applyRipple', () => {
     const frames = applyRipple(filledGrid(ROWS, COLS), ROWS, COLS, 10)
     const last = frames[frames.length - 1]
     expect(last.grid[Math.floor(ROWS / 2)][Math.floor(COLS / 2)]).toBe(true)
+  })
+})
+
+describe('applyWave', () => {
+  it('returns numFrames frames', () => {
+    expect(applyWave(filledGrid(ROWS, COLS), ROWS, COLS, 8)).toHaveLength(8)
+  })
+
+  it('every frame has correct grid dimensions', () => {
+    const frames = applyWave(filledGrid(ROWS, COLS), ROWS, COLS, 4)
+    for (const frame of frames) {
+      expect(frame.grid).toHaveLength(ROWS)
+      expect(frame.grid[0]).toHaveLength(COLS)
+    }
+  })
+
+  it('source dots are preserved — filled source produces lit dots across all frames', () => {
+    const source = filledGrid(ROWS, COLS)
+    const frames = applyWave(source, ROWS, COLS, 8)
+    // With a fully filled source every frame must have at least one lit dot per column
+    for (const frame of frames) {
+      for (let c = 0; c < COLS; c++) {
+        const colHasDot = frame.grid.some(row => row[c])
+        expect(colHasDot).toBe(true)
+      }
+    }
+  })
+
+  it('empty source produces all-empty frames', () => {
+    const empty = Array.from({ length: ROWS }, () => Array<boolean>(COLS).fill(false))
+    const frames = applyWave(empty, ROWS, COLS, 4)
+    for (const frame of frames) {
+      expect(frame.grid.every(row => row.every(v => !v))).toBe(true)
+    }
+  })
+})
+
+describe('applyRain', () => {
+  it('returns numFrames frames', () => {
+    expect(applyRain(filledGrid(ROWS, COLS), ROWS, COLS, 10)).toHaveLength(10)
+  })
+
+  it('every frame has correct grid dimensions', () => {
+    const frames = applyRain(filledGrid(ROWS, COLS), ROWS, COLS, 5)
+    for (const frame of frames) {
+      expect(frame.grid).toHaveLength(ROWS)
+      expect(frame.grid[0]).toHaveLength(COLS)
+    }
+  })
+
+  it('dots only appear within grid bounds', () => {
+    const frames = applyRain(filledGrid(ROWS, COLS), ROWS, COLS, 20)
+    for (const frame of frames) {
+      for (let r = 0; r < ROWS; r++) {
+        for (let c = 0; c < COLS; c++) {
+          expect(typeof frame.grid[r][c]).toBe('boolean')
+        }
+      }
+    }
+  })
+
+  it('produces different frames as drops advance', () => {
+    const frames = applyRain(filledGrid(ROWS, COLS), ROWS, COLS, 10)
+    // Not all frames should be identical — drops move
+    const first = JSON.stringify(frames[0].grid)
+    const hasVariation = frames.some(f => JSON.stringify(f.grid) !== first)
+    expect(hasVariation).toBe(true)
   })
 })

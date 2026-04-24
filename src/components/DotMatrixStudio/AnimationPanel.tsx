@@ -3,7 +3,7 @@ import type { StudioState, Frame } from './types'
 import type { StudioAction } from './hooks/useStudioState'
 import {
   applyBlink, applyTypewriter, applyScanLine, applyMarquee, applyRipple,
-  applyBounce, applySlide, applyFade,
+  applyBounce, applySlide, applyFade, applyWave, applyRain,
 } from './lib/presets'
 import { C } from './lib/studioTheme'
 import { cn } from '@/lib/utils'
@@ -42,6 +42,8 @@ const PRESET_OPTIONS: PresetOption[] = [
     ] },
   { id: 'fade',       label: 'Fade',         icon: '⬡', desc: 'Dither dissolve',
     directions: [{ value: 'in', label: 'In' }, { value: 'out', label: 'Out' }] },
+  { id: 'wave',       label: 'Wave',         icon: '∿', desc: 'Undulate vertically' },
+  { id: 'rain',       label: 'Rain',         icon: '↓', desc: 'Matrix rain drops' },
 ]
 
 export function AnimationPanel({ state, dispatch, activeGrid }: AnimationPanelProps) {
@@ -70,6 +72,8 @@ export function AnimationPanel({ state, dispatch, activeGrid }: AnimationPanelPr
       case 'bounce':     return applyBounce(activeGrid, rows, cols)
       case 'slide':      return applySlide(activeGrid, rows, cols, direction as 'left' | 'right' | 'up' | 'down')
       case 'fade':       return applyFade(activeGrid, rows, cols, direction as 'in' | 'out')
+      case 'wave':       return applyWave(activeGrid, rows, cols)
+      case 'rain':       return applyRain(activeGrid, rows, cols)
       default: return []
     }
   }
