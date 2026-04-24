@@ -32,9 +32,7 @@ function svgCoords(
 
 function getGridCoords(
   e: { clientX: number; clientY: number },
-  svgEl: SVGSVGElement,
-  rows: number,
-  cols: number
+  svgEl: SVGSVGElement
 ): { row: number; col: number } {
   const { svgX, svgY } = svgCoords(e, svgEl)
   return {
@@ -126,7 +124,7 @@ export function Canvas({ state, dispatch, activeGrid, isPreviewMode }: CanvasPro
 
   const applyDraw = useCallback((clientX: number, clientY: number) => {
     if (!svgRef.current) return
-    const { row, col } = getGridCoords({ clientX, clientY }, svgRef.current, rows, cols)
+    const { row, col } = getGridCoords({ clientX, clientY }, svgRef.current)
     if (row < 0 || row >= rows || col < 0 || col >= cols) return
     if (activeTool === 'pencil') {
       dispatch({ type: 'SET_DOT', row, col, value: dragMode.current ?? true })
@@ -142,7 +140,7 @@ export function Canvas({ state, dispatch, activeGrid, isPreviewMode }: CanvasPro
     isDragging.current = true
 
     if (!svgRef.current) return
-    const { row, col } = getGridCoords(e, svgRef.current, rows, cols)
+    const { row, col } = getGridCoords(e, svgRef.current)
 
     if (activeTool === 'pencil') {
       const filled = activeGrid[row]?.[col] ?? false
@@ -163,7 +161,7 @@ export function Canvas({ state, dispatch, activeGrid, isPreviewMode }: CanvasPro
   const handlePointerMove = useCallback((e: React.PointerEvent<SVGSVGElement>) => {
     if (!isDragging.current || isPreviewMode) return
     if (!svgRef.current) return
-    const { row, col } = getGridCoords(e, svgRef.current, rows, cols)
+    const { row, col } = getGridCoords(e, svgRef.current)
     const clampedRow = Math.max(0, Math.min(rows - 1, row))
     const clampedCol = Math.max(0, Math.min(cols - 1, col))
 

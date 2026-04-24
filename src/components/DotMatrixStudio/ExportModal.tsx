@@ -3,21 +3,32 @@ import type { ExportConfig, LoopMode, StudioState } from './types'
 import { useExport } from './hooks/useExport'
 import { cn } from '@/lib/utils'
 
+function defaultFilename() {
+  const now = new Date()
+  const yy = String(now.getFullYear()).slice(2)
+  const mm = String(now.getMonth() + 1).padStart(2, '0')
+  const dd = String(now.getDate()).padStart(2, '0')
+  const hh = String(now.getHours()).padStart(2, '0')
+  const mi = String(now.getMinutes()).padStart(2, '0')
+  return `dot-matrix-${yy}${mm}${dd}-${hh}${mi}`
+}
+
 interface ExportModalProps {
   state: StudioState
   onClose: () => void
 }
 
-const FORMATS = ['gif', 'png', 'svg', 'json'] as const
+const FORMATS = ['webm', 'png', 'svg', 'json'] as const
 const SCALES = [1, 2, 4, 8] as const
 
 export function ExportModal({ state, onClose }: ExportModalProps) {
-  const [format, setFormat] = useState<ExportConfig['format']>('gif')
+  const [format, setFormat] = useState<ExportConfig['format']>('webm')
   const [scale, setScale] = useState<1 | 2 | 4 | 8>(2)
   const [loopMode, setLoopMode] = useState<LoopMode>('infinite')
   const [svgAnimated, setSvgAnimated] = useState(true)
   const [pngSpritesheet, setPngSpritesheet] = useState(false)
   const [bgTransparent, setBgTransparent] = useState(state.bgTransparent)
+  const [filename, setFilename] = useState(defaultFilename)
   const [exporting, setExporting] = useState(false)
 
   const { runExport } = useExport(state)
@@ -27,7 +38,8 @@ export function ExportModal({ state, onClose }: ExportModalProps) {
   const handleExport = async () => {
     setExporting(true)
     try {
-      await runExport({ format, scale, bgTransparent, loopMode, svgAnimated, svgEmbedFont: false, pngSpritesheet })
+      const trimmed = filename.trim() || defaultFilename()
+      await runExport({ format, scale, bgTransparent, loopMode, svgAnimated, svgEmbedFont: false, pngSpritesheet }, trimmed)
       onClose()
     } catch (err) {
       console.error('Export failed:', err)
@@ -66,9 +78,9 @@ export function ExportModal({ state, onClose }: ExportModalProps) {
                     format === f ? 'studio-tool-active' : 'bg-transparent text-[var(--studio-text)] hover:bg-[var(--studio-tint)]'
                   )}
                   style={sFont}
-                  aria-label={`Export as ${f.toUpperCase()}`}
+                  aria-label={`Export as ${f === 'webm' ? 'Video (WebM)' : f.toUpperCase()}`}
                 >
-                  {f}
+                  {f === 'webm' ? 'Video' : f}
                 </button>
               ))}
             </div>
@@ -103,7 +115,7 @@ export function ExportModal({ state, onClose }: ExportModalProps) {
             <span className="text-xs text-[var(--studio-text)]">Transparent background</span>
           </label>
 
-          {format === 'gif' && (
+          {format === 'webm' && (
             <div>
               <p className="text-[9px] tracking-widest text-[var(--studio-text-muted)] uppercase mb-2">Loop</p>
               <div className="flex gap-1">
@@ -135,6 +147,24 @@ export function ExportModal({ state, onClose }: ExportModalProps) {
             </label>
           )}
 
+          <div>
+            <p className="text-[9px] tracking-widest text-[var(--studio-text-muted)] uppercase mb-2">Filename</p>
+            <div className="flex items-center border border-[var(--studio-border)] bg-transparent">
+              <input
+                type="text"
+                value={filename}
+                onChange={e => setFilename(e.target.value)}
+                spellCheck={false}
+                className="flex-1 px-2 py-1.5 text-xs bg-transparent text-[var(--studio-text)] outline-none min-w-0"
+                style={sFont}
+                aria-label="Export filename"
+              />
+              <span className="px-2 text-[10px] text-[var(--studio-text-muted)] border-l border-[var(--studio-border)] shrink-0" style={sFont}>
+                .{format === 'webm' ? 'webm' : format === 'json' ? 'boldkit.json' : format}
+              </span>
+            </div>
+          </div>
+
           <button
             onClick={handleExport}
             disabled={exporting}
@@ -142,7 +172,7 @@ export function ExportModal({ state, onClose }: ExportModalProps) {
             style={sFont}
             aria-label="Download export"
           >
-            {exporting ? 'Exporting...' : `Download ${format.toUpperCase()}`}
+            {exporting ? 'Exporting...' : `Download ${format === 'webm' ? 'Video (WebM)' : format.toUpperCase()}`}
           </button>
         </div>
       </div>

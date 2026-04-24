@@ -33,7 +33,7 @@ const STEPS: Step[] = [
   {
     icon: '⬇',
     title: 'Export & Reset',
-    body: 'Click Export (top right) to download as GIF, PNG, SVG, or JSON.\n\nImport a .boldkit.json to restore a previous session.\n\nReset (↺ in the header) clears everything and starts fresh.',
+    body: 'Click Export (top right) to download as Video (WebM), PNG, SVG, or JSON.\n\nImport a .boldkit.json to restore a previous session.\n\nReset (↺ in the header) clears everything and starts fresh.',
   },
 ]
 

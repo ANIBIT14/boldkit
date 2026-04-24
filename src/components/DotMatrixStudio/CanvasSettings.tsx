@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import type { StudioState } from './types'
 import type { StudioAction } from './hooks/useStudioState'
 import { GRID_PRESETS } from './types'
@@ -15,6 +15,11 @@ const sFont = { fontFamily: 'var(--studio-font)' }
 export function CanvasSettings({ state, dispatch, onGridChangeRequest }: CanvasSettingsProps) {
   const [customRows, setCustomRows] = useState(String(state.rows))
   const [customCols, setCustomCols] = useState(String(state.cols))
+
+  useEffect(() => {
+    setCustomRows(String(state.rows))
+    setCustomCols(String(state.cols))
+  }, [state.rows, state.cols])
 
   const currentPreset = GRID_PRESETS.find(p => p.rows === state.rows && p.cols === state.cols)
 

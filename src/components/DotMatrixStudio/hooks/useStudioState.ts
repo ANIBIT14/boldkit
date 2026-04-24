@@ -221,7 +221,14 @@ function reducer(state: StudioState, action: StudioAction): StudioState {
     case 'SET_ALL_FRAMES': {
       if (!action.frames.length) return state
       const undo = pushUndo(state)
-      return { ...state, ...undo, frames: action.frames, activeFrameId: action.frames[0].id, isPlaying: false, playFrameIndex: 0 }
+      // After applying a preset, activate the frame with the most filled dots.
+      // Reveal presets (Typewriter, ScanLine, Ripple) have their full art in the last frame;
+      // Frame 0 is nearly empty and would look like the user's art was erased.
+      const richest = action.frames.reduce((best, f) => {
+        const count = f.grid.flat().filter(Boolean).length
+        return count > best.grid.flat().filter(Boolean).length ? f : best
+      }, action.frames[0])
+      return { ...state, ...undo, frames: action.frames, activeFrameId: richest.id, isPlaying: false, playFrameIndex: 0 }
     }
 
     case 'ADD_FRAMES': {

@@ -51,7 +51,7 @@ export interface StudioState {
 
 // Export config passed to useExport
 export interface ExportConfig {
-  format: 'gif' | 'png' | 'svg' | 'json'
+  format: 'webm' | 'png' | 'svg' | 'json'
   scale: 1 | 2 | 4 | 8
   bgTransparent: boolean
   loopMode: LoopMode
