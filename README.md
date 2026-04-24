@@ -8,7 +8,7 @@
 
 A neubrutalism component library for React and Vue 3, built on shadcn/ui.
 
-[![Version](https://img.shields.io/badge/version-3.2.0-black)](https://github.com/ANIBIT14/boldkit/releases/tag/v3.2.0)
+[![Version](https://img.shields.io/badge/version-3.2.1-black)](https://github.com/ANIBIT14/boldkit/releases/tag/v3.2.1)
 [![MIT License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 [![React](https://img.shields.io/badge/React-19-61DAFB?logo=react)](https://react.dev)
 [![Vue](https://img.shields.io/badge/Vue-3-4FC08D?logo=vuedotjs)](https://vuejs.org)
@@ -23,6 +23,49 @@ A neubrutalism component library for React and Vue 3, built on shadcn/ui.
 [Website](https://boldkit.dev) · [Documentation](https://boldkit.dev/docs) · [Components](https://boldkit.dev/components) · [Charts](https://boldkit.dev/charts) · [Shapes](https://boldkit.dev/shapes)
 
 </div>
+
+---
+
+## What's New in v3.2.1
+
+### 🎨 Canvas Effects — 10 Animated Canvas Components
+10 self-contained animated canvas components at `/canvas-effects`, requiring zero external dependencies. Drop any component into a sized parent and it fills it 100% — `ResizeObserver` handles reflow automatically.
+
+**All 10 effects:**
+- **Dot Blob** — Gaussian envelope × crossing waves drive halftone pixel sizes
+- **Aurora** — Curtains of light ripple across a star-filled sky
+- **Dot Wave** — Dual crossing sine waves modulate dot size and opacity
+- **Matrix Rain** — Columns of glowing heads and fading square character trails
+- **Particle Web** — Floating particles connected by proximity-faded lines
+- **Mouse Ripple** — Cursor interaction sends sine ripples through a dot grid
+- **Flow Field** — Particles follow a smooth value-noise angle field
+- **Metaballs** — Colored blobs merge via r²/d² scalar field threshold
+- **Lissajous Grid** — 4×3 table of parametric curves with phase drift
+- **Plasma Waves** — 4 drifting wave sources create shifting color interference
+
+**Usage:**
+```tsx
+// React
+import { Aurora } from '@/components/CanvasEffects/react'
+
+<div style={{ height: '400px' }}>
+  <Aurora colors={['#00ffaa', '#00beff', '#78ff64']} starCount={160} speed={1} />
+</div>
+```
+
+```vue
+<!-- Vue 3 / Nuxt 3 -->
+<script setup>
+import { Aurora } from '@/components/CanvasEffects/vue'
+</script>
+<template>
+  <div style="height: 400px">
+    <Aurora :colors="['#00ffaa', '#00beff', '#78ff64']" :star-count="160" :speed="1" />
+  </div>
+</template>
+```
+
+All effects run in `onMounted` / `useEffect` — SSR-safe in Nuxt 3 by default.
 
 ---
 
@@ -52,7 +95,7 @@ Export animations as **WebM video**, **PNG sprite sheets**, **SVG frames**, or *
 
 ![BoldKit Components](assets/preview.png)
 
-*55+ beautifully crafted neubrutalism components, 10 chart types, 64 SVG shapes, 17 animated ASCII shapes, and 15 math curve animations for React and Vue 3*
+*55+ beautifully crafted neubrutalism components, 10 chart types, 64 SVG shapes, 17 animated ASCII shapes, 10 canvas effects, and 15 math curve animations for React and Vue 3*
 
 </div>
 
@@ -81,6 +124,7 @@ Neubrutalism (or neo-brutalism) is a bold design aesthetic characterized by:
 | **64 SVG Shapes** | Decorative shapes (geometric, organic, mathematical, mechanical) with interactive Shape Builder |
 | **17 ASCII Shapes** | Animated 3D ASCII art — Torus, Donut, Sphere, Cube, Helix, Trefoil Knot, Saturn, DNA, and more |
 | **Dot Matrix Studio** | In-browser pixel art & animation editor with 10 presets, WebM/PNG/SVG/JSON export |
+| **10 Canvas Effects** | Animated canvas components — Aurora, Flow Field, Plasma, Metaballs, Matrix Rain and more. Zero deps. |
 | **Math Curve Components** | Animated loaders, progress bars, and backgrounds powered by 15 mathematical curves |
 | **React & Vue 3** | Full support for both frameworks |
 | **Nuxt Ready** | SSR-compatible with shadcn-nuxt module |

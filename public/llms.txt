@@ -4,13 +4,14 @@
 
 ## Quick Facts
 
-- **Version:** 3.1.2
+- **Version:** 3.2.0
 - **Components:** 55+ UI components
 - **Charts:** 14 chart types
 - **Shapes:** 64 SVG decorative shapes
 - **Blocks:** 15 section blocks (10 marketing + 5 application)
 - **Templates:** 7 full-page templates
 - **Frameworks:** React 19, Vue 3, Nuxt
+- **Canvas Effects:** 10 zero-dependency animated canvas components
 - **Tools:** Dot Matrix Studio (pixel art & animation editor), Shape Builder, Theme Builder
 - **Styling:** Tailwind CSS v4 with CSS variables
 - **TypeScript:** Full type support
@@ -46,6 +47,7 @@ Components are installed via the **shadcn CLI** (code is copied directly into yo
 - **Templates:** https://boldkit.dev/templates
 - **Theme Builder:** https://boldkit.dev/themes
 - **Dot Matrix Studio:** https://boldkit.dev/studio
+- **Canvas Effects:** https://boldkit.dev/canvas-effects
 - **GitHub:** https://github.com/ANIBIT14/boldkit
 - **Registry index:** https://boldkit.dev/registry.json
 - **Sitemap:** https://boldkit.dev/sitemap.xml
@@ -71,6 +73,54 @@ BoldKit includes a free in-browser **Dot Matrix Studio** at https://boldkit.dev/
 - `png` — single active frame, or full spritesheet of all frames
 - `svg` — static single frame or animated multi-frame SVG with CSS keyframes
 - `json` — .boldkit.json format preserving all frames, colors, and metadata (re-importable)
+
+---
+
+## Canvas Effects
+
+BoldKit includes 10 animated canvas components at https://boldkit.dev/canvas-effects — zero external dependencies, fully typed, compatible with React, Vue 3, and Nuxt 3.
+
+**All 10 effects:**
+- **Dot Blob** — Gaussian envelope × crossing waves drive halftone pixel sizes
+- **Aurora** — Curtains of light ripple across a star-filled sky (with configurable colors + star count)
+- **Dot Wave** — Dual crossing sine waves modulate dot size and opacity
+- **Matrix Rain** — Columns of glowing heads and fading square trails
+- **Particle Web** — Particles connected by proximity-faded lines
+- **Mouse Ripple** — Cursor interaction sends sine ripples through a dot grid
+- **Flow Field** — Particles follow a smooth value-noise angle field
+- **Metaballs** — Colored blobs merge via r²/d² scalar field threshold
+- **Lissajous Grid** — Parametric curve table with phase drift
+- **Plasma Waves** — Shifting color interference from 4 drifting wave sources
+
+**Technical details:**
+- Each effect is one self-contained file — no npm package, copied into your project
+- All effects use `requestAnimationFrame` with `ResizeObserver` for responsive canvas
+- React: live prop ref pattern (prop changes take effect instantly without restarting animation)
+- Vue 3 / Nuxt 3: reactive props read directly in RAF callback — SSR-safe via `onMounted`
+- Props: every effect exposes `speed` plus effect-specific props (color, count, palette, etc.)
+
+**React usage:**
+```tsx
+import { Aurora } from '@/components/CanvasEffects/react'
+
+// Wrap in any sized container — canvas fills 100%
+<div style={{ height: '400px' }}>
+  <Aurora colors={['#00ffaa', '#00beff', '#78ff64']} starCount={160} speed={1} />
+</div>
+```
+
+**Vue 3 / Nuxt 3 usage:**
+```vue
+<script setup>
+import { Aurora } from '@/components/CanvasEffects/vue'
+</script>
+
+<template>
+  <div style="height: 400px">
+    <Aurora :colors="['#00ffaa', '#00beff', '#78ff64']" :star-count="160" :speed="1" />
+  </div>
+</template>
+```
 
 ---
 
