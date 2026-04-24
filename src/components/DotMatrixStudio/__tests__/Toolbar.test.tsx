@@ -14,6 +14,8 @@ function makeState(overrides?: Partial<StudioState>): StudioState {
     isPlaying: false, playFrameIndex: 0, fps: 12,
     loopMode: 'infinite', selection: null,
     undoStack: [], redoStack: [],
+    liveEffect: null,
+    liveEffectTick: 0,
     ...overrides,
   }
 }

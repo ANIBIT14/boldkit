@@ -22,6 +22,8 @@ function makeState(overrides?: Partial<StudioState>): StudioState {
     selection: null,
     undoStack: [],
     redoStack: [],
+    liveEffect: null,
+    liveEffectTick: 0,
     ...overrides,
   }
 }
