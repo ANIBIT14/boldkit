@@ -174,7 +174,7 @@ export function Rating({
     onHoverChange?.(null)
   }
 
-  const handleStarMouseMove = (e: React.MouseEvent<HTMLButtonElement>, starIndex: number) => {
+  const handleStarMouseMove = (_e: React.MouseEvent<HTMLButtonElement>, starIndex: number) => {
     if (!interactive) return
     onHoverChange?.(starIndex)
   }

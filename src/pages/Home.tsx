@@ -15,9 +15,9 @@ import { Layout } from '@/components/layout'
 import {
   Copy, Check, ArrowRight, Zap, Palette, Code2, Smartphone,
   Github, Layers, TrendingUp, DollarSign, LayoutGrid, Sparkles,
-  Settings, LogIn, FileX, Package, BarChart3, Wand2,
+  Settings, LogIn, FileX, Package, BarChart3, Wand2, Cpu,
 } from 'lucide-react'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { SEO, pageSEO } from '@/components/SEO'
 import { useFramework, ReactIcon, VueIcon } from '@/hooks/use-framework'
 import { useScrollReveal } from '@/hooks/use-scroll-reveal'
@@ -33,10 +33,54 @@ import {
 const DISPLAY: React.CSSProperties = { fontFamily: "'Bebas Neue', sans-serif" }
 const MONO: React.CSSProperties    = { fontFamily: "'DM Mono', monospace" }
 
+// ── Dot Matrix Studio animated preview ────────────────────────────────────
+const DM_ROWS = 8
+const DM_COLS = 20
+
+type DMAnim = (r: number, c: number, t: number) => boolean
+const DM_ANIMS: DMAnim[] = [
+  // Ripple from center
+  (r, c, t) => {
+    const cx = DM_COLS / 2 - 0.5, cy = DM_ROWS / 2 - 0.5
+    const dist = Math.sqrt((c - cx) ** 2 + (r - cy) ** 2)
+    return Math.sin(dist * 1.2 - t * 0.35) > 0.15
+  },
+  // Horizontal sine wave
+  (r, c, t) => {
+    const wave = Math.sin(c * 0.5 - t * 0.4) * 2.5 + 4
+    return Math.abs(r - wave) < 1.5
+  },
+  // Diagonal sweep
+  (r, c, t) => ((r + c * 1.5 + t * 0.5) % 10) < 3.5,
+]
+
+function DotMatrixPreview() {
+  const [tick, setTick] = useState(0)
+  useEffect(() => {
+    const id = setInterval(() => setTick(t => t + 1), 80)
+    return () => clearInterval(id)
+  }, [])
+  const animIdx = Math.floor(tick / 40) % DM_ANIMS.length
+  const anim = DM_ANIMS[animIdx]
+  return (
+    <svg viewBox={`0 0 ${DM_COLS} ${DM_ROWS}`} className="w-full h-full" aria-hidden="true">
+      {Array.from({ length: DM_ROWS }, (_, r) =>
+        Array.from({ length: DM_COLS }, (_, c) => (
+          <circle
+            key={`${r},${c}`}
+            cx={c + 0.5} cy={r + 0.5} r={0.38}
+            fill={anim(r, c, tick) ? '#5b4fcf' : '#1e1e2e'}
+          />
+        ))
+      )}
+    </svg>
+  )
+}
+
 const MARQUEE_ITEMS = [
   `${COUNTS.components}+ Components`, 'React', 'Vue 3', 'Nuxt', `${COUNTS.charts} Charts`,
   `${COUNTS.shapes} Shapes`, `${COUNTS.blocks} Blocks`, 'TypeScript', 'Accessible',
-  'Open Source', 'Free', 'Neubrutalism',
+  'Open Source', 'Free', 'Neubrutalism', 'Dot Matrix Studio',
 ]
 
 const MARQUEE_SEP_COLORS = ['text-primary', 'text-secondary', 'text-accent', 'text-success', 'text-info']
@@ -57,6 +101,7 @@ export function Home() {
   const blocksReveal      = useScrollReveal()
   const ctaReveal         = useScrollReveal()
   const whatsNewReveal    = useScrollReveal()
+  const studioReveal      = useScrollReveal()
 
   const commands: Record<string, string> = {
     react: 'npx shadcn@latest add https://boldkit.dev/r/button.json',
@@ -428,6 +473,118 @@ export function Home() {
           </div>
         </section>
 
+        {/* ── DOT MATRIX STUDIO ─────────────────────────────────────── */}
+        <section
+          ref={studioReveal.ref}
+          className={`relative overflow-hidden border-b-3 border-foreground bg-foreground transition-all duration-700 ease-out ${studioReveal.inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`}
+        >
+          <div
+            className="absolute inset-0 pointer-events-none opacity-[0.04]"
+            style={{ backgroundImage: 'radial-gradient(circle, hsl(var(--background)) 1px, transparent 1px)', backgroundSize: '16px 16px' }}
+          />
+          <div className="container relative mx-auto px-4 py-14 md:py-20">
+            <div className="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
+
+              {/* Left: Copy */}
+              <div>
+                <div className="flex items-center gap-2 mb-5">
+                  <div className="h-[3px] w-8 bg-primary" />
+                  <span className="text-[11px] font-black uppercase tracking-[0.2em] text-primary" style={MONO}>v3.2 Tool</span>
+                </div>
+                <h2
+                  className="leading-none text-background mb-5"
+                  style={{ ...DISPLAY, fontSize: 'clamp(40px, 7vw, 96px)', lineHeight: 0.9 }}
+                >
+                  DOT MATRIX<br />
+                  <span className="text-primary">STUDIO</span>
+                </h2>
+                <p className="text-background/60 text-base leading-relaxed mb-8 max-w-sm border-l-2 border-primary/40 pl-4" style={MONO}>
+                  Draw pixel art, build frame-by-frame animations, and export to WebM, PNG, SVG, or JSON — right in your browser. No installs required.
+                </p>
+
+                <div className="flex flex-wrap gap-2 mb-8">
+                  {['8 Animation Presets', 'Frame-by-Frame', 'Export WebM / PNG / SVG', 'Undo / Redo', 'Select & Fill'].map(f => (
+                    <span key={f} className="border-2 border-background/20 text-background/70 text-[11px] font-bold uppercase tracking-wide px-3 py-1" style={MONO}>
+                      {f}
+                    </span>
+                  ))}
+                </div>
+
+                <div className="mb-8 space-y-2">
+                  <p className="text-[10px] font-bold uppercase tracking-widest text-background/40" style={MONO}>Download Sample Animations</p>
+                  <div className="flex flex-wrap gap-2">
+                    {[
+                      { name: 'Ripple', file: 'ripple' },
+                      { name: 'Wave',   file: 'wave'   },
+                      { name: 'Rain',   file: 'rain'   },
+                      { name: 'Bounce', file: 'bounce' },
+                    ].map(({ name, file }) => (
+                      <a
+                        key={file}
+                        href={`/studio/${file}.boldkit.json`}
+                        download
+                        className="border-2 border-background/25 text-background/50 hover:border-primary hover:text-primary text-[10px] font-bold uppercase tracking-wide px-2.5 py-1 transition-colors"
+                        style={MONO}
+                      >
+                        ↓ {name}
+                      </a>
+                    ))}
+                  </div>
+                </div>
+
+                <Link to="/studio">
+                  <Button size="lg" variant="accent" className="gap-2 group">
+                    <Cpu className="h-4 w-4" />
+                    Open Studio
+                    <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+                  </Button>
+                </Link>
+              </div>
+
+              {/* Right: Animated preview */}
+              <div>
+                <div className="relative">
+                  <div className="absolute -top-3 left-4 z-10 bg-primary px-2 py-0.5">
+                    <span className="text-[9px] font-black uppercase tracking-widest text-primary-foreground" style={MONO}>Live Preview</span>
+                  </div>
+                  <div className="border-3 border-background/20 bg-[#080808] p-4" style={{ boxShadow: '4px 4px 0px #5b4fcf' }}>
+                    <div className="relative overflow-hidden" style={{ aspectRatio: `${DM_COLS}/${DM_ROWS}` }}>
+                      <div
+                        className="absolute inset-0 pointer-events-none z-10 opacity-[0.04]"
+                        style={{ backgroundImage: 'repeating-linear-gradient(0deg, transparent, transparent 1px, rgba(0,0,0,1) 1px, rgba(0,0,0,1) 2px)', backgroundSize: '100% 2px' }}
+                      />
+                      <DotMatrixPreview />
+                    </div>
+                    <div className="mt-3 flex items-center justify-between border-t border-background/10 pt-3">
+                      <span className="text-[9px] font-mono text-background/30" style={MONO}>16 × 32 · 12 fps</span>
+                      <div className="flex gap-1.5">
+                        {['WebM', 'PNG', 'SVG', 'JSON'].map(f => (
+                          <span key={f} className="text-[8px] font-bold uppercase border border-background/20 px-1.5 py-0.5 text-background/30" style={MONO}>{f}</span>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="mt-4 grid grid-cols-4 gap-2">
+                  {([
+                    { label: 'Ripple', color: 'bg-primary' },
+                    { label: 'Wave',   color: 'bg-success' },
+                    { label: 'Rain',   color: 'bg-info' },
+                    { label: 'Bounce', color: 'bg-secondary' },
+                  ] as const).map(({ label, color }) => (
+                    <div key={label} className="border-2 border-background/15 bg-background/5 flex flex-col items-center justify-center py-3 gap-1.5">
+                      <div className={`h-3 w-3 ${color}`} />
+                      <span className="text-[8px] font-bold uppercase text-background/40" style={MONO}>{label}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </section>
+
         {/* ── WHAT'S NEW ────────────────────────────────────────────── */}
         <section
           ref={whatsNewReveal.ref}
@@ -446,6 +603,7 @@ export function Home() {
 
             <div className="flex gap-3 overflow-x-auto pb-2 -mx-4 px-4 scrollbar-none snap-x snap-mandatory">
               {[
+                { label: 'Dot Matrix Studio', href: '/studio' },
                 { label: 'ASCII Shapes',      href: '/ascii-shapes' },
                 { label: 'ASCII Donut',       href: '/components/ascii-shapes' },
                 { label: 'ASCII Sphere',      href: '/components/ascii-shapes' },

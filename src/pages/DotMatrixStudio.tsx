@@ -10,6 +10,7 @@ import { ExportModal } from '@/components/DotMatrixStudio/ExportModal'
 import { GuidedTour, shouldShowTour } from '@/components/DotMatrixStudio/GuidedTour'
 import { ConfirmDialog, NoticeDialog } from '@/components/DotMatrixStudio/ConfirmDialog'
 import { C } from '@/components/DotMatrixStudio/lib/studioTheme'
+import { SEO, pageSEO } from '@/components/SEO'
 import '@/styles/dot-matrix-studio.css'
 
 type PendingConfirm =
@@ -138,6 +139,8 @@ export function DotMatrixStudio() {
   const confirmLabel = pendingConfirm?.type === 'reset' ? 'Reset' : 'Change size'
 
   return (
+    <>
+    <SEO {...pageSEO.studio} />
     <div className="studio-root studio-ghost-grid" style={{ display: 'flex', flexDirection: 'column', height: '100dvh', overflow: 'hidden' }}>
 
       {/* ── Top bar ──────────────────────────────────────────────── */}
@@ -398,5 +401,6 @@ export function DotMatrixStudio() {
         onClose={() => setErrorMsg(null)}
       />
     </div>
+    </>
   )
 }
