@@ -8,7 +8,7 @@
 
 A neubrutalism component library for React and Vue 3, built on shadcn/ui.
 
-[![Version](https://img.shields.io/badge/version-3.1.1-black)](https://github.com/ANIBIT14/boldkit/releases/tag/v3.1.1)
+[![Version](https://img.shields.io/badge/version-3.2.0-black)](https://github.com/ANIBIT14/boldkit/releases/tag/v3.2.0)
 [![MIT License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 [![React](https://img.shields.io/badge/React-19-61DAFB?logo=react)](https://react.dev)
 [![Vue](https://img.shields.io/badge/Vue-3-4FC08D?logo=vuedotjs)](https://vuejs.org)
@@ -23,6 +23,26 @@ A neubrutalism component library for React and Vue 3, built on shadcn/ui.
 [Website](https://boldkit.dev) · [Documentation](https://boldkit.dev/docs) · [Components](https://boldkit.dev/components) · [Charts](https://boldkit.dev/charts) · [Shapes](https://boldkit.dev/shapes)
 
 </div>
+
+---
+
+## What's New in v3.2.0
+
+### 🎨 Dot Matrix Studio — In-browser pixel art & animation editor
+A fully-featured dot matrix animation studio at `/studio`. Draw pixel art on a 16×32 grid with freehand, line, rectangle, fill, and selection tools. Build frame-by-frame animations with 10 built-in presets:
+
+- **Blink** — your art alternates with a blank frame
+- **Typewriter** — columns reveal left-to-right or right-to-left
+- **Scan Line** — rows sweep top-to-bottom or bottom-to-top
+- **Marquee** — art scrolls and wraps horizontally
+- **Ripple** — expands or contracts from the center outward
+- **Bounce** — ping-pong marquee with auto-reverse
+- **Slide** — art slides in from any edge
+- **Wave** — columns undulate vertically via a sine wave
+- **Rain** — Matrix-style drops fall in staggered columns
+- **Fade** — dithered dissolve in or out
+
+Export animations as **WebM video**, **PNG sprite sheets**, **SVG frames**, or **JSON** (re-importable). Selection actions (Fill / Clear / Invert) available in select mode. Undo/redo with full history, customizable dot color, FPS control, and loop modes (once / 3× / infinite).
 
 ---
 
@@ -73,6 +93,7 @@ Neubrutalism (or neo-brutalism) is a bold design aesthetic characterized by:
 | **10 Chart Types** | Bar, Line, Area, Pie, Donut, Radar, Radial, Gauge, Sparkline |
 | **64 SVG Shapes** | Decorative shapes (geometric, organic, mathematical, mechanical) with interactive Shape Builder |
 | **17 ASCII Shapes** | Animated 3D ASCII art — Torus, Donut, Sphere, Cube, Helix, Trefoil Knot, Saturn, DNA, and more |
+| **Dot Matrix Studio** | In-browser pixel art & animation editor with 10 presets, WebM/PNG/SVG/JSON export |
 | **Math Curve Components** | Animated loaders, progress bars, and backgrounds powered by 15 mathematical curves |
 | **React & Vue 3** | Full support for both frameworks |
 | **Nuxt Ready** | SSR-compatible with shadcn-nuxt module |
