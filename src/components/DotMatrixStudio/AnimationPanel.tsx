@@ -3,8 +3,11 @@ import type { StudioState, Frame } from './types'
 import type { StudioAction } from './hooks/useStudioState'
 import {
   applyBlink, applyTypewriter, applyScanLine, applyMarquee, applyRipple,
-  applyBounce, applySlide, applyFade, applyWave, applyRain,
+  applyBounce, applySlide, applyFade,
 } from './lib/presets'
+
+const LIVE_EFFECT_PRESETS = new Set(['rain', 'wave'])
+const LIVE_EFFECT_CYCLE: Record<string, number> = { rain: 20, wave: 16 }
 import { C } from './lib/studioTheme'
 import { cn } from '@/lib/utils'
 
@@ -24,7 +27,7 @@ interface PresetOption {
   directions?: Direction[]
 }
 
-const PRESET_OPTIONS: PresetOption[] = [
+const ANIMATION_PRESETS: PresetOption[] = [
   { id: 'blink',      label: 'Blink',       icon: '◉', desc: 'Art ↔ blank' },
   { id: 'typewriter', label: 'Typewriter',   icon: '▶', desc: 'Reveal col by col',
     directions: [{ value: 'ltr', label: '→' }, { value: 'rtl', label: '←' }] },
@@ -42,9 +45,14 @@ const PRESET_OPTIONS: PresetOption[] = [
     ] },
   { id: 'fade',       label: 'Fade',         icon: '⬡', desc: 'Dither dissolve',
     directions: [{ value: 'in', label: 'In' }, { value: 'out', label: 'Out' }] },
-  { id: 'wave',       label: 'Wave',         icon: '∿', desc: 'Undulate vertically' },
-  { id: 'rain',       label: 'Rain',         icon: '↓', desc: 'Matrix rain drops' },
 ]
+
+const EFFECT_PRESETS: PresetOption[] = [
+  { id: 'wave', label: 'Wave', icon: '∿', desc: 'Undulate vertically' },
+  { id: 'rain', label: 'Rain', icon: '↓', desc: 'Matrix rain drops' },
+]
+
+const ALL_PRESETS = [...ANIMATION_PRESETS, ...EFFECT_PRESETS]
 
 export function AnimationPanel({ state, dispatch, activeGrid }: AnimationPanelProps) {
   const { frames, activeFrameId, isPlaying, fps, loopMode } = state
@@ -53,12 +61,12 @@ export function AnimationPanel({ state, dispatch, activeGrid }: AnimationPanelPr
   const [selectedPreset, setSelectedPreset] = useState<string | null>(null)
   const [directionMap, setDirectionMap] = useState<Record<string, string>>({})
 
-  const selectedPresetOpt = PRESET_OPTIONS.find(p => p.id === selectedPreset) ?? null
+  const selectedPresetOpt = ALL_PRESETS.find(p => p.id === selectedPreset) ?? null
 
   // Returns the stored direction for a preset, or its first option's default
   const getDirection = (presetId: string): string => {
     if (directionMap[presetId]) return directionMap[presetId]
-    return PRESET_OPTIONS.find(p => p.id === presetId)?.directions?.[0]?.value ?? ''
+    return ALL_PRESETS.find(p => p.id === presetId)?.directions?.[0]?.value ?? ''
   }
 
   const buildFrames = (presetId: string, direction: string): Frame[] => {
@@ -72,21 +80,32 @@ export function AnimationPanel({ state, dispatch, activeGrid }: AnimationPanelPr
       case 'bounce':     return applyBounce(activeGrid, rows, cols)
       case 'slide':      return applySlide(activeGrid, rows, cols, direction as 'left' | 'right' | 'up' | 'down')
       case 'fade':       return applyFade(activeGrid, rows, cols, direction as 'in' | 'out')
-      case 'wave':       return applyWave(activeGrid, rows, cols)
-      case 'rain':       return applyRain(activeGrid, rows, cols)
       default: return []
     }
   }
 
   const applyNow = (presetId: string, direction: string) => {
-    const newFrames = buildFrames(presetId, direction)
-    if (newFrames.length) dispatch({ type: 'SET_ALL_FRAMES', frames: newFrames })
+    if (LIVE_EFFECT_PRESETS.has(presetId)) {
+      // Non-destructive: play effect over existing frames without replacing them
+      if (state.liveEffect) dispatch({ type: 'SET_LIVE_EFFECT', effect: null })
+      dispatch({ type: 'SET_LIVE_EFFECT', effect: presetId })
+      dispatch({ type: 'SET_PLAYING', playing: true })
+    } else {
+      // Frame-based preset: clear any live effect first, then replace frames
+      if (state.liveEffect) dispatch({ type: 'SET_LIVE_EFFECT', effect: null })
+      const newFrames = buildFrames(presetId, direction)
+      if (newFrames.length) dispatch({ type: 'SET_ALL_FRAMES', frames: newFrames })
+    }
   }
 
   const handleSelectPreset = (presetId: string) => {
     if (selectedPreset === presetId) {
-      // Click active preset again → deselect (UI indicator only, frames stay)
+      // Click active preset again → deselect
       setSelectedPreset(null)
+      if (LIVE_EFFECT_PRESETS.has(presetId)) {
+        dispatch({ type: 'SET_LIVE_EFFECT', effect: null })
+        dispatch({ type: 'SET_PLAYING', playing: false })
+      }
     } else {
       const dir = getDirection(presetId)
       setSelectedPreset(presetId)
@@ -105,10 +124,12 @@ export function AnimationPanel({ state, dispatch, activeGrid }: AnimationPanelPr
   const fpsRef = useRef(fps)
   const loopModeRef = useRef(loopMode)
   const isPlayingRef = useRef(isPlaying)
+  const liveEffectRef = useRef(state.liveEffect)
   framesRef.current = frames
   fpsRef.current = fps
   loopModeRef.current = loopMode
   isPlayingRef.current = isPlaying
+  liveEffectRef.current = state.liveEffect
 
   const tickIdxRef = useRef(0)
   const loopCountRef = useRef(0)
@@ -125,6 +146,25 @@ export function AnimationPanel({ state, dispatch, activeGrid }: AnimationPanelPr
     loopCountRef.current = 0
 
     const tick = () => {
+      const effect = liveEffectRef.current
+      if (effect) {
+        // Live overlay: advance effect tick, don't touch frame index
+        const cycleLen = LIVE_EFFECT_CYCLE[effect] ?? 20
+        const nextTick = (tickIdxRef.current + 1) % cycleLen
+        tickIdxRef.current = nextTick
+        dispatch({ type: 'SET_LIVE_EFFECT_TICK', tick: nextTick })
+        if (nextTick === 0) {
+          loopCountRef.current++
+          const mode = loopModeRef.current
+          if (mode === 'once' && loopCountRef.current >= 1) {
+            dispatch({ type: 'SET_PLAYING', playing: false }); stopInterval()
+          } else if (mode === '3x' && loopCountRef.current >= 3) {
+            dispatch({ type: 'SET_PLAYING', playing: false }); stopInterval()
+          }
+        }
+        return
+      }
+      // Frame-based playback
       const currentFrames = framesRef.current
       if (!currentFrames.length) return
       const idx = tickIdxRef.current
@@ -216,7 +256,7 @@ export function AnimationPanel({ state, dispatch, activeGrid }: AnimationPanelPr
         {/* Header + active-preset badge */}
         <div className="flex items-center justify-between mb-1.5">
           <p className="text-[10px] uppercase tracking-widest" style={{ color: C.muted }}>Animation</p>
-          {selectedPreset ? (
+          {selectedPreset && !LIVE_EFFECT_PRESETS.has(selectedPreset) ? (
             <span
               className="text-[8px] font-bold uppercase tracking-widest px-1.5 py-0.5"
               style={{ background: C.border, color: '#fff' }}
@@ -235,21 +275,27 @@ export function AnimationPanel({ state, dispatch, activeGrid }: AnimationPanelPr
 
         {/* None button */}
         <button
-          onClick={() => setSelectedPreset(null)}
+          onClick={() => {
+            setSelectedPreset(null)
+            if (state.liveEffect) {
+              dispatch({ type: 'SET_LIVE_EFFECT', effect: null })
+              dispatch({ type: 'SET_PLAYING', playing: false })
+            }
+          }}
           className="w-full py-1 mb-1.5 text-[10px] border text-center transition-colors hover:bg-[var(--studio-tint)]"
           style={{
-            borderColor: !selectedPreset ? C.border : C.faint,
-            background: !selectedPreset ? C.tint : 'transparent',
-            color: !selectedPreset ? C.text : C.subtle,
+            borderColor: (!selectedPreset || LIVE_EFFECT_PRESETS.has(selectedPreset ?? '')) ? C.border : C.faint,
+            background: (!selectedPreset || LIVE_EFFECT_PRESETS.has(selectedPreset ?? '')) ? C.tint : 'transparent',
+            color: (!selectedPreset || LIVE_EFFECT_PRESETS.has(selectedPreset ?? '')) ? C.text : C.subtle,
           }}
-          aria-pressed={!selectedPreset}
+          aria-pressed={!selectedPreset || LIVE_EFFECT_PRESETS.has(selectedPreset ?? '')}
         >
           ○ None
         </button>
 
-        {/* Preset grid — click to apply immediately */}
+        {/* Animation preset grid */}
         <div className="grid grid-cols-2 gap-1 mb-1.5">
-          {PRESET_OPTIONS.map(p => {
+          {ANIMATION_PRESETS.map(p => {
             const active = selectedPreset === p.id
             return (
               <button
@@ -273,8 +319,8 @@ export function AnimationPanel({ state, dispatch, activeGrid }: AnimationPanelPr
           })}
         </div>
 
-        {/* Direction sub-options — only shown when selected preset has directions */}
-        {selectedPresetOpt?.directions && (
+        {/* Direction sub-options — only shown for the selected animation preset */}
+        {selectedPresetOpt?.directions && !LIVE_EFFECT_PRESETS.has(selectedPreset ?? '') && (
           <div className="flex items-center gap-1">
             <span className="text-[9px] shrink-0" style={{ color: C.muted }}>Dir</span>
             <div className="flex gap-1 flex-1">
@@ -302,6 +348,50 @@ export function AnimationPanel({ state, dispatch, activeGrid }: AnimationPanelPr
         )}
 
         <p className="text-[8px] mt-1.5" style={{ color: C.subtle }}>Replaces all frames · use undo to revert</p>
+      </div>
+
+      {/* ── Live Effects ─────────────────────────────────────────── */}
+      <div className="p-2 border-b shrink-0" style={{ borderColor: C.border }}>
+        <div className="flex items-center justify-between mb-1.5">
+          <p className="text-[10px] uppercase tracking-widest" style={{ color: C.muted }}>Effects</p>
+          {selectedPreset && LIVE_EFFECT_PRESETS.has(selectedPreset) ? (
+            <span
+              className="text-[8px] font-bold uppercase tracking-widest px-1.5 py-0.5"
+              style={{ background: C.border, color: '#fff' }}
+            >
+              {selectedPresetOpt?.label}
+            </span>
+          ) : (
+            <span className="text-[8px] uppercase tracking-widest" style={{ color: C.subtle }}>none</span>
+          )}
+        </div>
+
+        <div className="grid grid-cols-2 gap-1 mb-1.5">
+          {EFFECT_PRESETS.map(p => {
+            const active = selectedPreset === p.id
+            return (
+              <button
+                key={p.id}
+                onClick={() => handleSelectPreset(p.id)}
+                className="flex flex-col items-start px-2 py-1.5 text-left border transition-colors"
+                style={{
+                  borderColor: active ? C.border : C.faint,
+                  background: active ? C.tint : 'transparent',
+                }}
+                aria-pressed={active}
+              >
+                <div className="flex items-center gap-1.5 w-full">
+                  <span className="text-sm" style={{ color: active ? C.border : C.muted }}>{p.icon}</span>
+                  <span className="text-xs font-bold flex-1" style={{ color: active ? C.text : C.muted }}>{p.label}</span>
+                  {active && <span className="text-xs" style={{ color: C.border }}>✓</span>}
+                </div>
+                <div className="text-[9px] mt-0.5 pl-5" style={{ color: active ? C.muted : C.subtle }}>{p.desc}</div>
+              </button>
+            )
+          })}
+        </div>
+
+        <p className="text-[8px]" style={{ color: C.subtle }}>Live overlay · original frames preserved</p>
       </div>
 
       {/* ── Playback ─────────────────────────────────────────────── */}

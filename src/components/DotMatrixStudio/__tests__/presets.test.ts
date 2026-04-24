@@ -125,10 +125,22 @@ describe('applyRain', () => {
   })
 
   it('produces different frames as drops advance', () => {
-    const frames = applyRain(filledGrid(ROWS, COLS), ROWS, COLS, 10)
+    // Use empty source so rain drops are the only lit cells and variation is detectable
+    const empty = Array.from({ length: ROWS }, () => Array<boolean>(COLS).fill(false))
+    const frames = applyRain(empty, ROWS, COLS, 10)
     // Not all frames should be identical — drops move
     const first = JSON.stringify(frames[0].grid)
     const hasVariation = frames.some(f => JSON.stringify(f.grid) !== first)
     expect(hasVariation).toBe(true)
+  })
+
+  it('source pattern is preserved in every frame', () => {
+    const source = Array.from({ length: ROWS }, (_, r) =>
+      Array.from({ length: COLS }, (_, c) => r === 0 && c === 0)
+    )
+    const frames = applyRain(source, ROWS, COLS, 10)
+    for (const frame of frames) {
+      expect(frame.grid[0][0]).toBe(true)
+    }
   })
 })

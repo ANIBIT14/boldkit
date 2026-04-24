@@ -9,6 +9,7 @@ import { AnimationPanel } from '@/components/DotMatrixStudio/AnimationPanel'
 import { ExportModal } from '@/components/DotMatrixStudio/ExportModal'
 import { GuidedTour, shouldShowTour } from '@/components/DotMatrixStudio/GuidedTour'
 import { ConfirmDialog, NoticeDialog } from '@/components/DotMatrixStudio/ConfirmDialog'
+import { getRainFrame, getWaveFrame } from '@/components/DotMatrixStudio/lib/presets'
 import { C } from '@/components/DotMatrixStudio/lib/studioTheme'
 import { SEO, pageSEO } from '@/components/SEO'
 import '@/styles/dot-matrix-studio.css'
@@ -61,9 +62,19 @@ export function DotMatrixStudio() {
   const closeAllPanels = () => { setToolsSidebarOpen(false); setAnimSidebarOpen(false) }
   const anyPanelOpen = toolsSidebarOpen || animSidebarOpen
 
-  const displayGrid = state.isPlaying
-    ? (state.frames[state.playFrameIndex]?.grid ?? activeFrame.grid)
-    : activeFrame.grid
+  // Live effects (Rain, Wave) composite on top of the active frame without
+  // touching the frames array. Frame-based presets use normal playFrameIndex.
+  let displayGrid: boolean[][]
+  if (state.liveEffect === 'rain') {
+    const rainFrame = getRainFrame(state.rows, state.cols, state.liveEffectTick)
+    displayGrid = activeFrame.grid.map((row, r) => row.map((v, c) => v || rainFrame[r][c]))
+  } else if (state.liveEffect === 'wave') {
+    displayGrid = getWaveFrame(activeFrame.grid, state.rows, state.cols, state.liveEffectTick)
+  } else {
+    displayGrid = state.isPlaying
+      ? (state.frames[state.playFrameIndex]?.grid ?? activeFrame.grid)
+      : activeFrame.grid
+  }
 
   const requestGridChange = useCallback((rows: number, cols: number) => {
     const hasContent = state.frames.some(f => f.grid.some(r => r.some(Boolean)))

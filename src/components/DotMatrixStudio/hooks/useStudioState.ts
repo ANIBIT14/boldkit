@@ -42,6 +42,8 @@ function getDefaultState(): StudioState {
     selection: null,
     undoStack: [],
     redoStack: [],
+    liveEffect: null,
+    liveEffectTick: 0,
   }
 }
 
@@ -102,6 +104,8 @@ export type StudioAction =
   | { type: 'RESET' }
   | { type: 'UNDO' }
   | { type: 'REDO' }
+  | { type: 'SET_LIVE_EFFECT'; effect: string | null }
+  | { type: 'SET_LIVE_EFFECT_TICK'; tick: number }
 
 // ── reducer ────────────────────────────────────────────────────────────────
 
@@ -333,6 +337,12 @@ function reducer(state: StudioState, action: StudioAction): StudioState {
         : snapshot[0].id
       return { ...state, frames: snapshot, undoStack, redoStack, activeFrameId }
     }
+
+    case 'SET_LIVE_EFFECT':
+      return { ...state, liveEffect: action.effect, liveEffectTick: 0 }
+
+    case 'SET_LIVE_EFFECT_TICK':
+      return { ...state, liveEffectTick: action.tick }
 
     default:
       return state

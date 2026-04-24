@@ -1,6 +1,43 @@
 import { createEmptyGrid, createFrame } from '../hooks/useStudioState'
 import type { Frame, DotGrid } from '../types'
 
+// ── Live-effect single-frame generators ────────────────────────────────────
+// These composite on top of the user's drawn frame without touching the frames
+// array. Used by AnimationPanel when Rain/Wave is selected as a live overlay.
+
+/** Pure rain frame for a given tick — overlaid on the caller's base grid. */
+export function getRainFrame(rows: number, cols: number, tick: number): DotGrid {
+  const TAIL = 4
+  const stagger = Array.from({ length: cols }, (_, c) => (c * 7 + c % 3) % (rows + TAIL))
+  const grid = createEmptyGrid(rows, cols)
+  for (let col = 0; col < cols; col++) {
+    const head = (stagger[col] + tick * 2) % (rows + TAIL)
+    for (let t = 0; t < TAIL; t++) {
+      const r = head - t
+      if (r >= 0 && r < rows) grid[r][col] = true
+    }
+  }
+  return grid
+}
+
+/** Wave-composited frame for a given tick — preserves source dots and adds wave shift on top. */
+export function getWaveFrame(
+  sourceGrid: DotGrid, rows: number, cols: number,
+  tick: number, numFrames = 16, amplitude = 2
+): DotGrid {
+  const grid = sourceGrid.map(row => [...row])
+  for (let col = 0; col < cols; col++) {
+    const offset = Math.round(
+      Math.sin((col / cols) * Math.PI * 4 + (tick / numFrames) * Math.PI * 2) * amplitude
+    )
+    for (let row = 0; row < rows; row++) {
+      const srcRow = ((row - offset) % rows + rows) % rows
+      if (sourceGrid[srcRow]?.[col]) grid[row][col] = true
+    }
+  }
+  return grid
+}
+
 function emptyGrid(rows: number, cols: number): DotGrid {
   return createEmptyGrid(rows, cols)
 }
@@ -173,7 +210,7 @@ export function applyWave(
   amplitude = 2
 ): Frame[] {
   return Array.from({ length: numFrames }, (_, f) => {
-    const grid = emptyGrid(rows, cols)
+    const grid = cloneGrid(sourceGrid)
     for (let col = 0; col < cols; col++) {
       const offset = Math.round(
         Math.sin((col / cols) * Math.PI * 4 + (f / numFrames) * Math.PI * 2) * amplitude
@@ -192,7 +229,7 @@ export function applyWave(
  * staggered start positions, each with a short trailing tail.
  */
 export function applyRain(
-  _sourceGrid: DotGrid, rows: number, cols: number,
+  sourceGrid: DotGrid, rows: number, cols: number,
   numFrames = 20
 ): Frame[] {
   const TAIL = 4
@@ -200,7 +237,7 @@ export function applyRain(
   const stagger = Array.from({ length: cols }, (_, c) => (c * 7 + c % 3) % (rows + TAIL))
 
   return Array.from({ length: numFrames }, (_, f) => {
-    const grid = emptyGrid(rows, cols)
+    const grid = cloneGrid(sourceGrid)
     for (let col = 0; col < cols; col++) {
       const head = (stagger[col] + f * 2) % (rows + TAIL)
       for (let t = 0; t < TAIL; t++) {

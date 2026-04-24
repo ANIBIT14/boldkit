@@ -47,6 +47,8 @@ export interface StudioState {
   selection: SelectionBox | null
   undoStack: Frame[][]
   redoStack: Frame[][]
+  liveEffect: string | null   // 'rain' | 'wave' — non-destructive overlay (does not touch frames array)
+  liveEffectTick: number      // current tick within the live effect cycle
 }
 
 // Export config passed to useExport
