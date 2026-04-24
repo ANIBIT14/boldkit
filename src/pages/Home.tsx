@@ -16,6 +16,7 @@ import {
   Copy, Check, ArrowRight, Zap, Palette, Code2, Smartphone,
   Github, Layers, TrendingUp, DollarSign, LayoutGrid, Sparkles,
   Settings, LogIn, FileX, Package, BarChart3, Wand2, Cpu,
+  Waves, Activity, CloudRain, BarChart2,
 } from 'lucide-react'
 import { useState, useEffect } from 'react'
 import { SEO, pageSEO } from '@/components/SEO'
@@ -568,13 +569,13 @@ export function Home() {
 
                 <div className="mt-4 grid grid-cols-4 gap-2">
                   {([
-                    { label: 'Ripple', color: 'bg-primary' },
-                    { label: 'Wave',   color: 'bg-success' },
-                    { label: 'Rain',   color: 'bg-info' },
-                    { label: 'Bounce', color: 'bg-secondary' },
-                  ] as const).map(({ label, color }) => (
+                    { label: 'Ripple', Icon: Waves,      color: 'text-primary'   },
+                    { label: 'Wave',   Icon: Activity,   color: 'text-success'   },
+                    { label: 'Rain',   Icon: CloudRain,  color: 'text-info'      },
+                    { label: 'Bounce', Icon: BarChart2,  color: 'text-secondary' },
+                  ] as const).map(({ label, Icon, color }) => (
                     <div key={label} className="border-2 border-background/15 bg-background/5 flex flex-col items-center justify-center py-3 gap-1.5">
-                      <div className={`h-3 w-3 ${color}`} />
+                      <Icon className={`h-4 w-4 ${color}`} strokeWidth={2.5} />
                       <span className="text-[8px] font-bold uppercase text-background/40" style={MONO}>{label}</span>
                     </div>
                   ))}
