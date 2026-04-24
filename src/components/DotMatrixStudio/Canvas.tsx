@@ -115,6 +115,8 @@ export function Canvas({ state, dispatch, activeGrid, isPreviewMode }: CanvasPro
   const shapePreviewRef = useRef<[number, number][]>([])
   const [shapePreviewTick, setShapePreviewTick] = useState(0)
 
+  const [hoveredAction, setHoveredAction] = useState<string | null>(null)
+
   const { rows, cols, dotColor, activeTool, activeShape } = state
 
   // Triggers a re-render when shape preview changes
@@ -233,6 +235,12 @@ export function Canvas({ state, dispatch, activeGrid, isPreviewMode }: CanvasPro
     : activeTool === 'shapes' ? 'crosshair'
     : 'crosshair'
 
+  const SELECTION_ACTIONS = {
+    Fill: 'FILL_SELECTION',
+    Clear: 'CLEAR_SELECTION',
+    Invert: 'INVERT_SELECTION',
+  } as const satisfies Record<string, StudioAction['type']>
+
   // Merge activeGrid + shape preview into a Set for fast lookup
   const previewSet = new Set(
     shapePreviewRef.current.map(([r, c]) => `${r},${c}`)
@@ -297,19 +305,20 @@ export function Canvas({ state, dispatch, activeGrid, isPreviewMode }: CanvasPro
         <div
           className="absolute bottom-2 left-1/2 -translate-x-1/2 flex flex-row gap-2 z-10"
         >
-          {(['Fill', 'Clear', 'Invert'] as const).map((label) => (
+          {(['Fill', 'Clear', 'Invert'] satisfies (keyof typeof SELECTION_ACTIONS)[]).map((label) => (
             <button
               key={label}
-              onClick={() => dispatch({ type: `${label.toUpperCase()}_SELECTION` as 'FILL_SELECTION' | 'CLEAR_SELECTION' | 'INVERT_SELECTION' })}
+              aria-label={`${label} selection`}
+              onClick={() => dispatch({ type: SELECTION_ACTIONS[label] })}
               className="px-3 py-1 text-xs tracking-widest uppercase"
               style={{
                 border: `2px solid ${C.border}`,
                 color: C.text,
-                background: C.panel,
+                background: hoveredAction === label ? C.tint : C.panel,
                 fontFamily: 'var(--studio-font)',
               }}
-              onMouseEnter={(e) => { (e.currentTarget as HTMLButtonElement).style.background = C.tint }}
-              onMouseLeave={(e) => { (e.currentTarget as HTMLButtonElement).style.background = C.panel }}
+              onMouseEnter={() => setHoveredAction(label)}
+              onMouseLeave={() => setHoveredAction(null)}
             >
               {label}
             </button>
