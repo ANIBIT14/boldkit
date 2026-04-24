@@ -1,4 +1,4 @@
-import { useCallback } from 'react'
+import { useCallback, useRef } from 'react'
 import type { StudioState, ExportConfig, Frame } from '../types'
 
 // ── helpers ────────────────────────────────────────────────────────────────
@@ -61,7 +61,8 @@ function downloadBlob(blob: Blob, filename: string) {
 
 export async function exportPNG(
   state: StudioState,
-  config: ExportConfig
+  config: ExportConfig,
+  filename: string
 ): Promise<void> {
   const { frames, rows, cols, dotColor } = state
   const bgColor = '#080808'
@@ -80,11 +81,11 @@ export async function exportPNG(
       const fc = renderFrameToCanvas(frame, rows, cols, dotColor, bgColor, config.bgTransparent, config.scale)
       ctx.drawImage(fc, i * frameWidth, 0)
     })
-    canvas.toBlob(blob => blob && downloadBlob(blob, 'dot-matrix-spritesheet.png'), 'image/png')
+    canvas.toBlob(blob => blob && downloadBlob(blob, `${filename}-spritesheet.png`), 'image/png')
   } else {
     const activeFrame = frames.find(f => f.id === state.activeFrameId) ?? frames[0]
     const canvas = renderFrameToCanvas(activeFrame, rows, cols, dotColor, bgColor, config.bgTransparent, config.scale)
-    canvas.toBlob(blob => blob && downloadBlob(blob, 'dot-matrix.png'), 'image/png')
+    canvas.toBlob(blob => blob && downloadBlob(blob, `${filename}.png`), 'image/png')
   }
 }
 
@@ -151,7 +152,7 @@ export function exportSVGString(
     bgRect + circles.join('') + `</svg>`
 }
 
-export function exportJSON(state: StudioState): void {
+export function exportJSON(state: StudioState, filename: string): void {
   const payload = {
     frames: state.frames,
     rows: state.rows,
@@ -160,14 +161,14 @@ export function exportJSON(state: StudioState): void {
     bgTransparent: state.bgTransparent,
   }
   const blob = new Blob([JSON.stringify(payload, null, 2)], { type: 'application/json' })
-  downloadBlob(blob, 'dot-matrix.boldkit.json')
+  downloadBlob(blob, `${filename}.boldkit.json`)
 }
 
-export async function exportGIF(
+export async function exportWebM(
   state: StudioState,
-  config: ExportConfig
+  config: ExportConfig,
+  filename: string
 ): Promise<void> {
-  const { GIFEncoder, quantize, applyPalette } = await import('gifenc')
   const { rows, cols, dotColor, bgTransparent } = state
   const bgColor = '#080808'
 
@@ -177,50 +178,97 @@ export async function exportGIF(
   const width = cols * cellSize
   const height = rows * cellSize
 
-  const gif = GIFEncoder()
+  const canvas = document.createElement('canvas')
+  canvas.width = width
+  canvas.height = height
+  const ctx = canvas.getContext('2d')!
 
-  for (const frame of state.frames) {
-    const canvas = renderFrameToCanvas(frame, rows, cols, dotColor, bgColor, bgTransparent, config.scale)
-    const ctx = canvas.getContext('2d')!
-    const { data } = ctx.getImageData(0, 0, width, height)
+  const mimeType = ['video/webm;codecs=vp9', 'video/webm;codecs=vp8', 'video/webm']
+    .find(t => MediaRecorder.isTypeSupported(t)) ?? 'video/webm'
 
-    const rgb = new Uint8Array(width * height * 3)
-    for (let i = 0, j = 0; i < data.length; i += 4, j += 3) {
-      rgb[j] = data[i]; rgb[j + 1] = data[i + 1]; rgb[j + 2] = data[i + 2]
+  const stream = canvas.captureStream()
+  const recorder = new MediaRecorder(stream, { mimeType, videoBitsPerSecond: 4_000_000 })
+  const chunks: Blob[] = []
+  recorder.ondataavailable = e => { if (e.data.size > 0) chunks.push(e.data) }
+
+  const playCount = config.loopMode === 'once' ? 1 : config.loopMode === '3x' ? 3 : 3
+
+  function drawFrame(frame: Frame) {
+    if (!bgTransparent) {
+      ctx.fillStyle = bgColor
+      ctx.fillRect(0, 0, width, height)
+    } else {
+      ctx.clearRect(0, 0, width, height)
     }
-
-    const palette = quantize(rgb, 256)
-    const indexed = applyPalette(rgb, palette)
-
-    const loopCount = config.loopMode === 'infinite' ? 0 : config.loopMode === 'once' ? -1 : 2
-    gif.writeFrame(indexed, width, height, { palette, delay: frame.duration, repeat: loopCount })
+    for (let row = 0; row < rows; row++) {
+      for (let col = 0; col < cols; col++) {
+        const filled = frame.grid[row]?.[col] ?? false
+        if (bgTransparent && !filled) continue
+        ctx.beginPath()
+        ctx.arc(
+          col * cellSize + cellSize / 2,
+          row * cellSize + cellSize / 2,
+          dotSize / 2,
+          0,
+          Math.PI * 2
+        )
+        ctx.fillStyle = filled ? dotColor : '#1C1C1C'
+        ctx.fill()
+      }
+    }
   }
 
-  gif.finish()
-  const bytes = gif.bytes()
-  const blob = new Blob([bytes.buffer as ArrayBuffer], { type: 'image/gif' })
-  downloadBlob(blob, 'animation.gif')
+  return new Promise<void>(resolve => {
+    recorder.onstop = () => {
+      const blob = new Blob(chunks, { type: mimeType })
+      downloadBlob(blob, `${filename}.webm`)
+      resolve()
+    }
+
+    recorder.start()
+
+    const allFrames: Frame[] = []
+    for (let i = 0; i < playCount; i++) {
+      allFrames.push(...state.frames)
+    }
+
+    let idx = 0
+    function advance() {
+      if (idx >= allFrames.length) {
+        recorder.stop()
+        return
+      }
+      const frame = allFrames[idx++]
+      drawFrame(frame)
+      setTimeout(advance, frame.duration)
+    }
+    advance()
+  })
 }
 
 // ── hook ───────────────────────────────────────────────────────────────────
 
 export function useExport(state: StudioState) {
-  const runExport = useCallback(async (config: ExportConfig) => {
+  const stateRef = useRef(state)
+  stateRef.current = state
+
+  const runExport = useCallback(async (config: ExportConfig, filename: string) => {
+    const s = stateRef.current
     switch (config.format) {
-      case 'png': return exportPNG(state, config)
+      case 'png': return exportPNG(s, config, filename)
       case 'svg': {
-        const svgStr = exportSVGString(state, config)
+        const svgStr = exportSVGString(s, config)
         const blob = new Blob([svgStr], { type: 'image/svg+xml' })
         const url = URL.createObjectURL(blob)
         const a = document.createElement('a')
-        a.href = url; a.download = 'dot-matrix.svg'; a.click()
+        a.href = url; a.download = `${filename}.svg`; a.click()
         URL.revokeObjectURL(url)
         break
       }
-      case 'json': return exportJSON(state)
-      case 'gif': return exportGIF(state, config)
+      case 'json': return exportJSON(s, filename)
+      case 'webm': return exportWebM(s, config, filename)
     }
-  }, [state])
+  }, [])
 
   return { runExport }
 }
