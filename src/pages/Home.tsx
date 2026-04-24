@@ -132,9 +132,6 @@ export function Home() {
           <span className="text-xs font-bold text-primary-foreground" style={MONO}>
             FavGrab — Extract &amp; download favicons from any website
           </span>
-          <span className="hidden sm:inline text-[10px] text-primary-foreground/60 border border-primary-foreground/30 px-1.5 py-0.5" style={MONO}>
-            favgrab.boldkit.dev ↗
-          </span>
         </a>
 
         {/* ── HERO ──────────────────────────────────────────────────── */}
