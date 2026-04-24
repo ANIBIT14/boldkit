@@ -94,6 +94,9 @@ export type StudioAction =
   | { type: 'SET_FPS'; fps: number }
   | { type: 'SET_LOOP_MODE'; mode: LoopMode }
   | { type: 'SET_SELECTION'; selection: SelectionBox | null }
+  | { type: 'FILL_SELECTION' }
+  | { type: 'CLEAR_SELECTION' }
+  | { type: 'INVERT_SELECTION' }
   | { type: 'ADD_FRAMES'; frames: Frame[]; afterId?: string }
   | { type: 'IMPORT'; frames: Frame[]; rows: number; cols: number; dotColor: string; bgTransparent: boolean }
   | { type: 'RESET' }
@@ -101,6 +104,18 @@ export type StudioAction =
   | { type: 'REDO' }
 
 // ── reducer ────────────────────────────────────────────────────────────────
+
+function selectionCells(sel: SelectionBox): [number, number][] {
+  const minR = Math.min(sel.startRow, sel.endRow)
+  const maxR = Math.max(sel.startRow, sel.endRow)
+  const minC = Math.min(sel.startCol, sel.endCol)
+  const maxC = Math.max(sel.startCol, sel.endCol)
+  const pts: [number, number][] = []
+  for (let r = minR; r <= maxR; r++)
+    for (let c = minC; c <= maxC; c++)
+      pts.push([r, c])
+  return pts
+}
 
 function reducer(state: StudioState, action: StudioAction): StudioState {
   switch (action.type) {
@@ -217,6 +232,45 @@ function reducer(state: StudioState, action: StudioAction): StudioState {
 
     case 'SET_SELECTION':
       return { ...state, selection: action.selection }
+
+    case 'FILL_SELECTION': {
+      if (!state.selection) return state
+      const undo = pushUndo(state)
+      const frames = cloneFrames(state.frames)
+      const frame = frames.find(f => f.id === state.activeFrameId)
+      if (!frame) return state
+      for (const [r, c] of selectionCells(state.selection)) {
+        if (r >= 0 && r < state.rows && c >= 0 && c < state.cols)
+          frame.grid[r][c] = true
+      }
+      return { ...state, ...undo, frames }
+    }
+
+    case 'CLEAR_SELECTION': {
+      if (!state.selection) return state
+      const undo = pushUndo(state)
+      const frames = cloneFrames(state.frames)
+      const frame = frames.find(f => f.id === state.activeFrameId)
+      if (!frame) return state
+      for (const [r, c] of selectionCells(state.selection)) {
+        if (r >= 0 && r < state.rows && c >= 0 && c < state.cols)
+          frame.grid[r][c] = false
+      }
+      return { ...state, ...undo, frames }
+    }
+
+    case 'INVERT_SELECTION': {
+      if (!state.selection) return state
+      const undo = pushUndo(state)
+      const frames = cloneFrames(state.frames)
+      const frame = frames.find(f => f.id === state.activeFrameId)
+      if (!frame) return state
+      for (const [r, c] of selectionCells(state.selection)) {
+        if (r >= 0 && r < state.rows && c >= 0 && c < state.cols)
+          frame.grid[r][c] = !frame.grid[r][c]
+      }
+      return { ...state, ...undo, frames }
+    }
 
     case 'SET_ALL_FRAMES': {
       if (!action.frames.length) return state

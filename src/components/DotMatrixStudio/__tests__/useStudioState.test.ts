@@ -108,3 +108,91 @@ describe('createEmptyGrid', () => {
     expect(grid.every(row => row.every(v => v === false))).toBe(true)
   })
 })
+
+describe('selection actions', () => {
+  function makeState() {
+    return renderHook(() => useStudioState())
+  }
+
+  it('FILL_SELECTION sets all dots in the box to true', () => {
+    const { result } = makeState()
+    act(() => {
+      result.current.dispatch({
+        type: 'SET_SELECTION',
+        selection: { startRow: 0, startCol: 0, endRow: 2, endCol: 2 },
+      })
+    })
+    act(() => { result.current.dispatch({ type: 'FILL_SELECTION' }) })
+    expect(result.current.activeFrame.grid[0][0]).toBe(true)
+    expect(result.current.activeFrame.grid[2][2]).toBe(true)
+    expect(result.current.activeFrame.grid[3][3]).toBe(false)
+  })
+
+  it('CLEAR_SELECTION sets all dots in the box to false', () => {
+    const { result } = makeState()
+    // Fill the whole frame first
+    act(() => { result.current.applyGrid(Array.from({ length: 16 }, () => Array(32).fill(true))) })
+    act(() => {
+      result.current.dispatch({
+        type: 'SET_SELECTION',
+        selection: { startRow: 0, startCol: 0, endRow: 1, endCol: 1 },
+      })
+    })
+    act(() => { result.current.dispatch({ type: 'CLEAR_SELECTION' }) })
+    expect(result.current.activeFrame.grid[0][0]).toBe(false)
+    expect(result.current.activeFrame.grid[1][1]).toBe(false)
+    // Outside box stays filled
+    expect(result.current.activeFrame.grid[2][2]).toBe(true)
+  })
+
+  it('INVERT_SELECTION flips dots in the box', () => {
+    const { result } = makeState()
+    // Set dot (0,0) to true, leave (0,1) false
+    act(() => { result.current.setDot(0, 0, true) })
+    act(() => {
+      result.current.dispatch({
+        type: 'SET_SELECTION',
+        selection: { startRow: 0, startCol: 0, endRow: 0, endCol: 1 },
+      })
+    })
+    act(() => { result.current.dispatch({ type: 'INVERT_SELECTION' }) })
+    expect(result.current.activeFrame.grid[0][0]).toBe(false) // was true, now false
+    expect(result.current.activeFrame.grid[0][1]).toBe(true)  // was false, now true
+    // Outside box is unchanged
+    expect(result.current.activeFrame.grid[1][0]).toBe(false)
+  })
+
+  it('FILL/CLEAR/INVERT_SELECTION do nothing when selection is null', () => {
+    const { result } = makeState()
+    const before = result.current.activeFrame.grid[0][0]
+    act(() => { result.current.dispatch({ type: 'FILL_SELECTION' }) })
+    expect(result.current.activeFrame.grid[0][0]).toBe(before)
+  })
+
+  it('FILL_SELECTION handles inverted selection (startRow > endRow)', () => {
+    const { result } = makeState()
+    act(() => {
+      result.current.dispatch({
+        type: 'SET_SELECTION',
+        selection: { startRow: 3, startCol: 3, endRow: 1, endCol: 1 },
+      })
+    })
+    act(() => { result.current.dispatch({ type: 'FILL_SELECTION' }) })
+    expect(result.current.activeFrame.grid[1][1]).toBe(true)
+    expect(result.current.activeFrame.grid[3][3]).toBe(true)
+  })
+
+  it('selection actions push undo snapshots', () => {
+    const { result } = makeState()
+    act(() => {
+      result.current.dispatch({
+        type: 'SET_SELECTION',
+        selection: { startRow: 0, startCol: 0, endRow: 0, endCol: 0 },
+      })
+    })
+    act(() => { result.current.dispatch({ type: 'FILL_SELECTION' }) })
+    expect(result.current.activeFrame.grid[0][0]).toBe(true)
+    act(() => { result.current.dispatch({ type: 'UNDO' }) })
+    expect(result.current.activeFrame.grid[0][0]).toBe(false)
+  })
+})
