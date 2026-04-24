@@ -120,6 +120,23 @@ export function Home() {
       <SEO {...pageSEO.home} />
       <Layout>
 
+        {/* ── FAVGRAB ANNOUNCEMENT BAR ──────────────────────────────── */}
+        <a
+          href="https://favgrab.boldkit.dev"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="group flex items-center justify-center gap-3 border-b-3 border-foreground bg-primary px-4 py-2 hover:bg-primary/90 transition-colors"
+        >
+          <span className="text-[10px] font-black uppercase tracking-[0.2em] text-primary-foreground/70" style={MONO}>New Tool</span>
+          <span className="h-3 w-[2px] bg-primary-foreground/30" />
+          <span className="text-xs font-bold text-primary-foreground" style={MONO}>
+            FavGrab — Extract &amp; download favicons from any website
+          </span>
+          <span className="hidden sm:inline text-[10px] text-primary-foreground/60 border border-primary-foreground/30 px-1.5 py-0.5" style={MONO}>
+            favgrab.boldkit.dev ↗
+          </span>
+        </a>
+
         {/* ── HERO ──────────────────────────────────────────────────── */}
         <section className="relative overflow-hidden border-b-3 border-foreground">
           <div className="grid-pattern absolute inset-0 opacity-25" />
