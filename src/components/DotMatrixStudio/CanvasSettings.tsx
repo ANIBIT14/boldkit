@@ -2,6 +2,7 @@ import { useState } from 'react'
 import type { StudioState } from './types'
 import type { StudioAction } from './hooks/useStudioState'
 import { GRID_PRESETS } from './types'
+import { C } from './lib/studioTheme'
 
 interface CanvasSettingsProps {
   state: StudioState
@@ -10,14 +11,6 @@ interface CanvasSettingsProps {
 }
 
 const sFont = { fontFamily: 'var(--studio-font)' }
-const C = {
-  border:   '#5b4fcf',
-  text:     '#2d2463',
-  muted:    '#9b94d4',
-  subtle:   '#c4bef5',
-  faint:    '#dddaf7',
-  input_bg: '#f4f2ff',
-}
 
 export function CanvasSettings({ state, dispatch, onGridChangeRequest }: CanvasSettingsProps) {
   const [customRows, setCustomRows] = useState(String(state.rows))

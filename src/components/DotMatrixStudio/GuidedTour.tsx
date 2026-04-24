@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { C } from './lib/studioTheme'
 
 const TOUR_KEY = 'studio-tour-done-v1'
 
@@ -38,16 +39,6 @@ const STEPS: Step[] = [
 
 interface GuidedTourProps {
   onDone: () => void
-}
-
-const C = {
-  border:  '#5b4fcf',
-  text:    '#2d2463',
-  muted:   '#9b94d4',
-  subtle:  '#c4bef5',
-  faint:   '#dddaf7',
-  panel:   '#ffffff',
-  shadow:  '4px 4px 0px rgba(91,79,207,0.3)',
 }
 
 export function GuidedTour({ onDone }: GuidedTourProps) {
