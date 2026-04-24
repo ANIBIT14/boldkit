@@ -1,6 +1,7 @@
 import { useRef, useCallback, useEffect, useState } from 'react'
 import type { StudioState, ShapeType } from './types'
 import type { StudioAction } from './hooks/useStudioState'
+import { C } from './lib/studioTheme'
 
 interface CanvasProps {
   state: StudioState
@@ -292,6 +293,29 @@ export function Canvas({ state, dispatch, activeGrid, isPreviewMode }: CanvasPro
       </svg>
       {/* suppress unused var warning — shapePreviewTick is read to force re-render */}
       <span style={{ display: 'none' }}>{shapePreviewTick}</span>
+      {activeTool === 'select' && state.selection && !isPreviewMode && (
+        <div
+          className="absolute bottom-2 left-1/2 -translate-x-1/2 flex flex-row gap-2 z-10"
+        >
+          {(['Fill', 'Clear', 'Invert'] as const).map((label) => (
+            <button
+              key={label}
+              onClick={() => dispatch({ type: `${label.toUpperCase()}_SELECTION` as 'FILL_SELECTION' | 'CLEAR_SELECTION' | 'INVERT_SELECTION' })}
+              className="px-3 py-1 text-xs tracking-widest uppercase"
+              style={{
+                border: `2px solid ${C.border}`,
+                color: C.text,
+                background: C.panel,
+                fontFamily: 'var(--studio-font)',
+              }}
+              onMouseEnter={(e) => { (e.currentTarget as HTMLButtonElement).style.background = C.tint }}
+              onMouseLeave={(e) => { (e.currentTarget as HTMLButtonElement).style.background = C.panel }}
+            >
+              {label}
+            </button>
+          ))}
+        </div>
+      )}
     </div>
   )
 }
