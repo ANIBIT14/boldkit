@@ -2,6 +2,7 @@ import { useState } from 'react'
 import type { ExportConfig, LoopMode, StudioState } from './types'
 import { useExport } from './hooks/useExport'
 import { cn } from '@/lib/utils'
+import { C } from './lib/studioTheme'
 
 function defaultFilename() {
   const now = new Date()
@@ -30,6 +31,7 @@ export function ExportModal({ state, onClose }: ExportModalProps) {
   const [bgTransparent, setBgTransparent] = useState(state.bgTransparent)
   const [filename, setFilename] = useState(defaultFilename)
   const [exporting, setExporting] = useState(false)
+  const [exportError, setExportError] = useState<string | null>(null)
 
   const { runExport } = useExport(state)
 
@@ -42,7 +44,7 @@ export function ExportModal({ state, onClose }: ExportModalProps) {
       await runExport({ format, scale, bgTransparent, loopMode, svgAnimated, svgEmbedFont: false, pngSpritesheet }, trimmed)
       onClose()
     } catch (err) {
-      console.error('Export failed:', err)
+      setExportError(err instanceof Error ? err.message : 'Export failed. Please try again.')
     } finally {
       setExporting(false)
     }
@@ -72,7 +74,7 @@ export function ExportModal({ state, onClose }: ExportModalProps) {
               {FORMATS.map(f => (
                 <button
                   key={f}
-                  onClick={() => setFormat(f)}
+                  onClick={() => { setFormat(f); setExportError(null) }}
                   className={cn(
                     'flex-1 py-2 text-xs border border-[var(--studio-border)] uppercase',
                     format === f ? 'studio-tool-active' : 'bg-transparent text-[var(--studio-text)] hover:bg-[var(--studio-tint)]'
@@ -164,6 +166,15 @@ export function ExportModal({ state, onClose }: ExportModalProps) {
               </span>
             </div>
           </div>
+
+          {exportError && (
+            <div
+              className="text-xs px-3 py-2 border"
+              style={{ borderColor: C.border, color: C.text, background: C.tint, ...sFont }}
+            >
+              ⚠ {exportError}
+            </div>
+          )}
 
           <button
             onClick={handleExport}
