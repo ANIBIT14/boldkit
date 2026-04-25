@@ -1,0 +1,15 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "plasma",
+  "description": "Circular wave interference — four drifting wave sources create shifting color interference",
+  "dependencies": [],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "registry/default/ui/canvas-effects/Plasma.tsx",
+      "type": "registry:ui",
+      "target": "components/ui/canvas-effects/Plasma.tsx"
+    }
+  ],
+  "type": "registry:ui"
+}

@@ -1,0 +1,15 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "dot-wave",
+  "description": "Sine-field dot grid — dual crossing sine waves modulate dot size and opacity",
+  "dependencies": [],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "registry/default/ui/canvas-effects/DotWave.tsx",
+      "type": "registry:ui",
+      "target": "components/ui/canvas-effects/DotWave.tsx"
+    }
+  ],
+  "type": "registry:ui"
+}

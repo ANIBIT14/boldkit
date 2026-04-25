@@ -1,0 +1,15 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "flow-field",
+  "description": "Noise-driven particle trails — particles follow a smooth value-noise angle field",
+  "dependencies": [],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "registry/default/ui/canvas-effects/FlowField.tsx",
+      "type": "registry:ui",
+      "target": "components/ui/canvas-effects/FlowField.tsx"
+    }
+  ],
+  "type": "registry:ui"
+}

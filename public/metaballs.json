@@ -1,0 +1,15 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "metaballs",
+  "description": "Organic blob merging — colored blobs merge via r²/d² scalar field threshold",
+  "dependencies": [],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "registry/default/ui/canvas-effects/Metaballs.tsx",
+      "type": "registry:ui",
+      "target": "components/ui/canvas-effects/Metaballs.tsx"
+    }
+  ],
+  "type": "registry:ui"
+}

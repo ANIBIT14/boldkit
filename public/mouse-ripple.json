@@ -1,0 +1,15 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "mouse-ripple",
+  "description": "Interactive dot-grid ripple — mouse movement sends sine ripples through the dot grid",
+  "dependencies": [],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "registry/default/ui/canvas-effects/MouseRipple.tsx",
+      "type": "registry:ui",
+      "target": "components/ui/canvas-effects/MouseRipple.tsx"
+    }
+  ],
+  "type": "registry:ui"
+}

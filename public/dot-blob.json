@@ -1,0 +1,15 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "dot-blob",
+  "description": "Halftone wave field — Gaussian envelope drives halftone dot sizes with traveling wave",
+  "dependencies": [],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "registry/default/ui/canvas-effects/DotBlob.tsx",
+      "type": "registry:ui",
+      "target": "components/ui/canvas-effects/DotBlob.tsx"
+    }
+  ],
+  "type": "registry:ui"
+}

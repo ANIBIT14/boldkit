@@ -50,7 +50,10 @@ export function Plasma({
     if (!el) return
     const ctx = el.getContext('2d')!
     let raf: number
-    const resize = () => { el.width = el.offsetWidth; el.height = el.offsetHeight }
+    const resize = () => {
+      if (el.offsetWidth > 0)  el.width  = el.offsetWidth
+      if (el.offsetHeight > 0) el.height = el.offsetHeight
+    }
     resize()
 
     type Src = { x: number; y: number; vx: number; vy: number; freq: number; spd: number }
@@ -68,6 +71,7 @@ export function Plasma({
 
     const draw = () => {
       const W = el.width, H = el.height
+      if (!W || !H) { raf = requestAnimationFrame(draw); return }
       const spd = speedRef.current
       const pal = paletteRef.current.map(hexToRgb)
 

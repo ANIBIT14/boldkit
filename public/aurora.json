@@ -1,0 +1,15 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "aurora",
+  "description": "Northern lights curtain simulation — five layered sine-wave bands drift across a star-filled sky",
+  "dependencies": [],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "registry/default/ui/canvas-effects/Aurora.tsx",
+      "type": "registry:ui",
+      "target": "components/ui/canvas-effects/Aurora.tsx"
+    }
+  ],
+  "type": "registry:ui"
+}

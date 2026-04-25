@@ -20,6 +20,9 @@ import {
   BarChart3,
   LayoutGrid,
   Terminal,
+  Cpu,
+  Sparkles,
+  Waves,
 } from 'lucide-react'
 
 const components = [
@@ -113,12 +116,27 @@ const pages = [
   { name: 'Installation', path: '/docs/installation', icon: FileText },
   { name: 'Components', path: '/components', icon: Layers },
   { name: 'Blocks', path: '/blocks', icon: LayoutGrid },
+  { name: 'Charts', path: '/charts', icon: BarChart3 },
   { name: 'Shapes', path: '/shapes', icon: Shapes },
   { name: 'Shape Builder', path: '/shapes/builder', icon: Shapes },
   { name: 'ASCII Shapes Gallery', path: '/ascii-shapes', icon: Terminal },
-  { name: 'Charts', path: '/charts', icon: BarChart3 },
+  { name: 'Canvas Effects', path: '/canvas-effects', icon: Waves },
+  { name: 'Dot Matrix Studio', path: '/studio', icon: Cpu },
   { name: 'Theme Builder', path: '/themes', icon: Palette },
   { name: 'Templates', path: '/templates', icon: Layout },
+]
+
+const canvasEffects = [
+  { name: 'Aurora', path: '/canvas-effects' },
+  { name: 'Flow Field', path: '/canvas-effects' },
+  { name: 'Plasma', path: '/canvas-effects' },
+  { name: 'Metaballs', path: '/canvas-effects' },
+  { name: 'Matrix Rain', path: '/canvas-effects' },
+  { name: 'Particle Web', path: '/canvas-effects' },
+  { name: 'Dot Wave', path: '/canvas-effects' },
+  { name: 'Dot Blob', path: '/canvas-effects' },
+  { name: 'Mouse Ripple', path: '/canvas-effects' },
+  { name: 'Lissajous Grid', path: '/canvas-effects' },
 ]
 
 export function SearchCommand() {
@@ -181,6 +199,19 @@ export function SearchCommand() {
               >
                 <Box className="h-4 w-4 text-muted-foreground" />
                 <span>{component.name}</span>
+              </CommandItem>
+            ))}
+          </CommandGroup>
+          <CommandSeparator />
+          <CommandGroup heading="Canvas Effects">
+            {canvasEffects.map((effect) => (
+              <CommandItem
+                key={effect.name}
+                value={effect.name}
+                onSelect={() => runCommand(() => navigate(effect.path))}
+              >
+                <Sparkles className="h-4 w-4 text-muted-foreground" />
+                <span>{effect.name}</span>
               </CommandItem>
             ))}
           </CommandGroup>

@@ -1,0 +1,15 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "particle-web",
+  "description": "Proximity particle graph — particles connected by proximity-faded lines",
+  "dependencies": [],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "registry/default/ui/canvas-effects/ParticleWeb.tsx",
+      "type": "registry:ui",
+      "target": "components/ui/canvas-effects/ParticleWeb.tsx"
+    }
+  ],
+  "type": "registry:ui"
+}

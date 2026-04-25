@@ -1,0 +1,15 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "matrix-rain",
+  "description": "Falling column simulation — glowing heads and fading square trails",
+  "dependencies": [],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "registry/default/ui/canvas-effects/MatrixRain.tsx",
+      "type": "registry:ui",
+      "target": "components/ui/canvas-effects/MatrixRain.tsx"
+    }
+  ],
+  "type": "registry:ui"
+}
