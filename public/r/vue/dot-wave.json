@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "dot-wave",
+  "description": "Sine-field dot grid — dual crossing sine waves modulate dot size and opacity",
+  "dependencies": [],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "registry/default/ui/canvas-effects/DotWave.vue",
+      "content": "<script setup lang=\"ts\">\n/**\n * DotWave — Sine-field dot grid\n * Compatible with Vue 3 and Nuxt 3.\n *\n * @example\n * <DotWave color=\"#ef4444\" :gap=\"22\" :speed=\"1\" />\n */\nimport { ref, onMounted, onUnmounted } from 'vue'\n\nconst props = withDefaults(defineProps<{\n  color?: string\n  gap?: number\n  speed?: number\n}>(), { color: '#ef4444', gap: 22, speed: 1 })\n\nconst canvasRef = ref<HTMLCanvasElement | null>(null)\nlet raf = 0\nlet ro: ResizeObserver | null = null\n\nonMounted(() => {\n  const el = canvasRef.value\n  if (!el) return\n  const ctx = el.getContext('2d')!\n  const resize = () => { el.width = el.offsetWidth; el.height = el.offsetHeight }\n  resize()\n\n  let t = 0\n  const draw = () => {\n    const GAP = props.gap, W = el.width, H = el.height\n    ctx.clearRect(0, 0, W, H)\n    const cols = Math.ceil(W / GAP) + 1, rows = Math.ceil(H / GAP) + 1\n    for (let r = 0; r < rows; r++) {\n      for (let c = 0; c < cols; c++) {\n        const v = (Math.sin(c * 0.45 + r * 0.3 - t * 1.2) +\n                   Math.sin(c * 0.2 - r * 0.4 + t * 0.8) + 2) / 4\n        const size = 2 + v * 8\n        ctx.globalAlpha = 0.15 + v * 0.85\n        ctx.fillStyle = props.color\n        ctx.fillRect(c * GAP + GAP / 2 - size / 2, r * GAP + GAP / 2 - size / 2, size, size)\n      }\n    }\n    ctx.globalAlpha = 1\n    t += 0.035 * props.speed\n    raf = requestAnimationFrame(draw)\n  }\n\n  draw()\n  ro = new ResizeObserver(resize)\n  ro.observe(el)\n})\n\nonUnmounted(() => { cancelAnimationFrame(raf); ro?.disconnect() })\n</script>\n\n<template>\n  <canvas ref=\"canvasRef\" style=\"display:block;width:100%;height:100%\" />\n</template>\n",
+      "type": "registry:ui",
+      "target": "components/ui/canvas-effects/DotWave.vue"
+    }
+  ],
+  "type": "registry:ui"
+}

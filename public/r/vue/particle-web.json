@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "particle-web",
+  "description": "Proximity particle graph — particles connected by proximity-faded lines",
+  "dependencies": [],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "registry/default/ui/canvas-effects/ParticleWeb.vue",
+      "content": "<script setup lang=\"ts\">\n/**\n * ParticleWeb — Proximity particle graph\n * Compatible with Vue 3 and Nuxt 3.\n *\n * @example\n * <ParticleWeb :count=\"60\" particle-color=\"#818cf8\" line-color=\"#6366f1\" :max-distance=\"110\" :speed=\"1\" />\n */\nimport { ref, onMounted, onUnmounted } from 'vue'\n\nconst props = withDefaults(defineProps<{\n  count?: number\n  particleColor?: string\n  lineColor?: string\n  maxDistance?: number\n  speed?: number\n}>(), { count: 60, particleColor: '#818cf8', lineColor: '#6366f1', maxDistance: 110, speed: 1 })\n\nconst canvasRef = ref<HTMLCanvasElement | null>(null)\nlet raf = 0\nlet ro: ResizeObserver | null = null\n\nonMounted(() => {\n  const el = canvasRef.value\n  if (!el) return\n  const ctx = el.getContext('2d')!\n\n  type P = { x: number; y: number; vx: number; vy: number }\n  let pts: P[] = []\n  const init = () => {\n    pts = Array.from({ length: props.count }, () => ({\n      x: Math.random() * el.width, y: Math.random() * el.height,\n      vx: (Math.random() - 0.5) * 0.9, vy: (Math.random() - 0.5) * 0.9,\n    }))\n  }\n\n  const resize = () => { el.width = el.offsetWidth; el.height = el.offsetHeight; init() }\n  resize()\n\n  const draw = () => {\n    const W = el.width, H = el.height, MD = props.maxDistance\n    ctx.clearRect(0, 0, W, H)\n    pts.forEach(p => {\n      p.x += p.vx * props.speed; p.y += p.vy * props.speed\n      if (p.x < 0 || p.x > W) p.vx *= -1\n      if (p.y < 0 || p.y > H) p.vy *= -1\n    })\n    for (let i = 0; i < pts.length; i++) {\n      for (let j = i + 1; j < pts.length; j++) {\n        const dx = pts[i].x - pts[j].x, dy = pts[i].y - pts[j].y\n        const d = Math.sqrt(dx * dx + dy * dy)\n        if (d < MD) {\n          const a = 1 - d / MD\n          ctx.globalAlpha = a * 0.55; ctx.strokeStyle = props.lineColor; ctx.lineWidth = a * 1.5\n          ctx.beginPath(); ctx.moveTo(pts[i].x, pts[i].y); ctx.lineTo(pts[j].x, pts[j].y); ctx.stroke()\n        }\n      }\n    }\n    ctx.globalAlpha = 1\n    pts.forEach(p => { ctx.fillStyle = props.particleColor; ctx.fillRect(p.x - 3, p.y - 3, 6, 6) })\n    raf = requestAnimationFrame(draw)\n  }\n\n  draw()\n  ro = new ResizeObserver(resize)\n  ro.observe(el)\n})\n\nonUnmounted(() => { cancelAnimationFrame(raf); ro?.disconnect() })\n</script>\n\n<template>\n  <canvas ref=\"canvasRef\" style=\"display:block;width:100%;height:100%\" />\n</template>\n",
+      "type": "registry:ui",
+      "target": "components/ui/canvas-effects/ParticleWeb.vue"
+    }
+  ],
+  "type": "registry:ui"
+}

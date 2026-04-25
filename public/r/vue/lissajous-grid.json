@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "lissajous-grid",
+  "description": "Parametric curve table — grid of Lissajous figures morphing via phase drift",
+  "dependencies": [],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "registry/default/ui/canvas-effects/LissajousGrid.vue",
+      "content": "<script setup lang=\"ts\">\n/**\n * LissajousGrid — Parametric curve table\n * Compatible with Vue 3 and Nuxt 3.\n *\n * @example\n * <LissajousGrid :cols=\"4\" :rows=\"3\" :speed=\"1\" :hue-start=\"30\" :opacity=\"0.72\" />\n */\nimport { ref, onMounted, onUnmounted } from 'vue'\n\nconst props = withDefaults(defineProps<{\n  cols?: number\n  rows?: number\n  speed?: number\n  hueStart?: number\n  opacity?: number\n}>(), { cols: 4, rows: 3, speed: 1, hueStart: 30, opacity: 0.72 })\n\nconst canvasRef = ref<HTMLCanvasElement | null>(null)\nlet raf = 0\nlet ro: ResizeObserver | null = null\n\nonMounted(() => {\n  const el = canvasRef.value\n  if (!el) return\n  const ctx = el.getContext('2d')!\n  const resize = () => { el.width = el.offsetWidth; el.height = el.offsetHeight }\n  resize()\n\n  const STEPS = 700\n  let phase = 0\n\n  const draw = () => {\n    const W = el.width, H = el.height\n    const C = props.cols, R = props.rows\n    ctx.clearRect(0, 0, W, H)\n    const cw = W / C, ch = H / R\n\n    for (let row = 0; row < R; row++) {\n      for (let col = 0; col < C; col++) {\n        const fx = col + 1, fy = row + 1\n        const cx = (col + 0.5) * cw, cy = (row + 0.5) * ch\n        const rx = cw / 2 - 10, ry = ch / 2 - 10\n        const period = Math.PI * 2 * fx * fy\n        ctx.beginPath()\n        for (let i = 0; i <= STEPS; i++) {\n          const t = (i / STEPS) * period\n          const x = cx + rx * Math.sin(fx * t + phase)\n          const y = cy + ry * Math.sin(fy * t)\n          i === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y)\n        }\n        const hue = props.hueStart + ((col * R + row) / (C * R)) * 280\n        ctx.strokeStyle = `hsla(${hue % 360}, 85%, 62%, ${props.opacity})`\n        ctx.lineWidth = 1.1; ctx.stroke()\n        ctx.strokeStyle = 'rgba(255,255,255,0.04)'\n        ctx.lineWidth = 0.5\n        ctx.strokeRect(col * cw + 0.5, row * ch + 0.5, cw - 1, ch - 1)\n      }\n    }\n    phase += 0.007 * props.speed\n    raf = requestAnimationFrame(draw)\n  }\n\n  draw()\n  ro = new ResizeObserver(resize)\n  ro.observe(el)\n})\n\nonUnmounted(() => { cancelAnimationFrame(raf); ro?.disconnect() })\n</script>\n\n<template>\n  <canvas ref=\"canvasRef\" style=\"display:block;width:100%;height:100%\" />\n</template>\n",
+      "type": "registry:ui",
+      "target": "components/ui/canvas-effects/LissajousGrid.vue"
+    }
+  ],
+  "type": "registry:ui"
+}

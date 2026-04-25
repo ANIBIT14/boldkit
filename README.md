@@ -43,10 +43,39 @@ A neubrutalism component library for React and Vue 3, built on shadcn/ui.
 - **Lissajous Grid** — 4×3 table of parametric curves with phase drift
 - **Plasma Waves** — 4 drifting wave sources create shifting color interference
 
-**Usage:**
+**Install via CLI:**
+```bash
+# React
+npx shadcn@latest add "https://boldkit.dev/r/aurora.json"
+npx shadcn@latest add "https://boldkit.dev/r/dot-blob.json"
+npx shadcn@latest add "https://boldkit.dev/r/dot-wave.json"
+npx shadcn@latest add "https://boldkit.dev/r/flow-field.json"
+npx shadcn@latest add "https://boldkit.dev/r/lissajous-grid.json"
+npx shadcn@latest add "https://boldkit.dev/r/matrix-rain.json"
+npx shadcn@latest add "https://boldkit.dev/r/metaballs.json"
+npx shadcn@latest add "https://boldkit.dev/r/mouse-ripple.json"
+npx shadcn@latest add "https://boldkit.dev/r/particle-web.json"
+npx shadcn@latest add "https://boldkit.dev/r/plasma.json"
+
+# Vue 3 / Nuxt 3
+npx shadcn-vue@latest add "https://boldkit.dev/r/vue/aurora.json"
+npx shadcn-vue@latest add "https://boldkit.dev/r/vue/dot-blob.json"
+npx shadcn-vue@latest add "https://boldkit.dev/r/vue/dot-wave.json"
+npx shadcn-vue@latest add "https://boldkit.dev/r/vue/flow-field.json"
+npx shadcn-vue@latest add "https://boldkit.dev/r/vue/lissajous-grid.json"
+npx shadcn-vue@latest add "https://boldkit.dev/r/vue/matrix-rain.json"
+npx shadcn-vue@latest add "https://boldkit.dev/r/vue/metaballs.json"
+npx shadcn-vue@latest add "https://boldkit.dev/r/vue/mouse-ripple.json"
+npx shadcn-vue@latest add "https://boldkit.dev/r/vue/particle-web.json"
+npx shadcn-vue@latest add "https://boldkit.dev/r/vue/plasma.json"
+```
+
+Each component installs to `components/ui/canvas-effects/` with zero external dependencies.
+
+**Usage after install:**
 ```tsx
-// React
-import { Aurora } from '@/components/CanvasEffects/react'
+// React — components install to components/ui/canvas-effects/
+import { Aurora } from '@/components/ui/canvas-effects/Aurora'
 
 <div style={{ height: '400px' }}>
   <Aurora colors={['#00ffaa', '#00beff', '#78ff64']} starCount={160} speed={1} />
@@ -54,9 +83,9 @@ import { Aurora } from '@/components/CanvasEffects/react'
 ```
 
 ```vue
-<!-- Vue 3 / Nuxt 3 -->
+<!-- Vue 3 / Nuxt 3 — components install to components/ui/canvas-effects/ -->
 <script setup>
-import { Aurora } from '@/components/CanvasEffects/vue'
+import Aurora from '@/components/ui/canvas-effects/Aurora.vue'
 </script>
 <template>
   <div style="height: 400px">
@@ -65,7 +94,7 @@ import { Aurora } from '@/components/CanvasEffects/vue'
 </template>
 ```
 
-All effects run in `onMounted` / `useEffect` — SSR-safe in Nuxt 3 by default.
+All effects run in `onMounted` / `useEffect` — SSR-safe in Nuxt 3 by default. Wrap in `<ClientOnly>` if you encounter hydration warnings.
 
 ---
 

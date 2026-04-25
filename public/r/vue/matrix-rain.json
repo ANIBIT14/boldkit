@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "matrix-rain",
+  "description": "Falling column simulation — glowing heads and fading square trails",
+  "dependencies": [],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "registry/default/ui/canvas-effects/MatrixRain.vue",
+      "content": "<script setup lang=\"ts\">\n/**\n * MatrixRain — Falling column simulation\n * Compatible with Vue 3 and Nuxt 3.\n *\n * @example\n * <MatrixRain head-color=\"#ffffff\" :trail-hue=\"120\" :gap=\"16\" :speed=\"1\" :tail-length=\"10\" />\n */\nimport { ref, onMounted, onUnmounted } from 'vue'\n\nconst props = withDefaults(defineProps<{\n  headColor?: string\n  trailHue?: number\n  gap?: number\n  speed?: number\n  tailLength?: number\n}>(), { headColor: '#ffffff', trailHue: 120, gap: 16, speed: 1, tailLength: 10 })\n\nconst canvasRef = ref<HTMLCanvasElement | null>(null)\nlet raf = 0\nlet ro: ResizeObserver | null = null\n\nonMounted(() => {\n  const el = canvasRef.value\n  if (!el) return\n  const ctx = el.getContext('2d')!\n\n  let cols: number[] = []\n  const resize = () => {\n    el.width = el.offsetWidth; el.height = el.offsetHeight\n    cols = Array.from({ length: Math.ceil(el.width / props.gap) }, () =>\n      -Math.floor(Math.random() * (el.height / props.gap + props.tailLength))\n    )\n  }\n  resize()\n\n  const draw = () => {\n    const GAP = props.gap, TAIL = props.tailLength, W = el.width, H = el.height\n    ctx.fillStyle = 'rgba(0,0,0,0.18)'; ctx.fillRect(0, 0, W, H)\n    const rows = Math.ceil(H / GAP), size = GAP - 3\n    const needed = Math.ceil(W / GAP)\n    while (cols.length < needed) cols.push(-Math.floor(Math.random() * 12))\n    if (cols.length > needed) cols.length = needed\n\n    cols.forEach((head, c) => {\n      for (let i = 0; i < TAIL; i++) {\n        const row = Math.floor(head) - i\n        if (row < 0 || row > rows) continue\n        const bright = 1 - i / TAIL\n        ctx.globalAlpha = bright\n        ctx.fillStyle = i === 0\n          ? props.headColor\n          : `hsl(${props.trailHue} 100% ${28 + bright * 28}%)`\n        ctx.fillRect(c * GAP + 1, row * GAP + 1, size, size)\n      }\n      cols[c] = head >= rows + TAIL ? -Math.floor(Math.random() * 12) : head + 0.28 * props.speed\n    })\n    ctx.globalAlpha = 1\n    raf = requestAnimationFrame(draw)\n  }\n\n  draw()\n  ro = new ResizeObserver(resize)\n  ro.observe(el)\n})\n\nonUnmounted(() => { cancelAnimationFrame(raf); ro?.disconnect() })\n</script>\n\n<template>\n  <canvas ref=\"canvasRef\" style=\"display:block;width:100%;height:100%\" />\n</template>\n",
+      "type": "registry:ui",
+      "target": "components/ui/canvas-effects/MatrixRain.vue"
+    }
+  ],
+  "type": "registry:ui"
+}

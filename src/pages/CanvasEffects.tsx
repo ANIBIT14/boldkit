@@ -191,9 +191,13 @@ function EffectCard({ effect, featured = false, framework }: {
 export function CanvasEffects() {
   const { framework } = useFramework()
 
+  const installLine = framework === 'react'
+    ? 'npx shadcn@latest add "https://boldkit.dev/r/aurora.json"'
+    : 'npx shadcn-vue@latest add "https://boldkit.dev/r/vue/aurora.json"'
+
   const importLine = framework === 'react'
-    ? "import { DotBlob, Aurora } from '@/components/CanvasEffects/react'"
-    : "import { DotBlob, Aurora } from '@/components/CanvasEffects/vue'"
+    ? "import { Aurora } from '@/components/ui/canvas-effects/Aurora'"
+    : "import Aurora from '@/components/ui/canvas-effects/Aurora.vue'"
 
   return (
     <Layout>
@@ -265,10 +269,23 @@ export function CanvasEffects() {
               <FrameworkToggle />
             </div>
 
-            {/* Import strip — dark glass */}
-            <div className="flex items-center gap-2 border border-white/25 bg-black/50 backdrop-blur-sm px-3 md:px-4 py-2.5 w-full max-w-xl mx-auto">
+            {/* Install strip — primary CLI command */}
+            <div className="flex items-center gap-2 border border-white/25 bg-black/50 backdrop-blur-sm px-3 md:px-4 py-2.5 w-full max-w-xl mx-auto mb-2">
+              <span className="text-[9px] font-black uppercase tracking-[0.15em] text-white/40 shrink-0" style={MONO}>$</span>
               <code
                 className="text-[11px] sm:text-xs text-white/70 truncate flex-1 min-w-0"
+                style={MONO}
+                title={installLine}
+              >
+                {installLine}
+              </code>
+              <CopyInstall framework={framework} />
+            </div>
+
+            {/* Import strip — post-install import path */}
+            <div className="flex items-center gap-2 border border-white/15 bg-black/30 backdrop-blur-sm px-3 md:px-4 py-2.5 w-full max-w-xl mx-auto">
+              <code
+                className="text-[11px] sm:text-xs text-white/45 truncate flex-1 min-w-0"
                 style={MONO}
                 title={importLine}
               >
@@ -315,8 +332,8 @@ export function CanvasEffects() {
         <div className="mt-10 md:mt-14 grid sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-5">
           <UsageNote
             step="01"
-            title="Copy the component"
-            body="Each effect is one self-contained file. Place it anywhere in your project — no external canvas libraries needed."
+            title="Install via CLI"
+            body='Run npx shadcn@latest add "https://boldkit.dev/r/{component}.json" (Vue: /r/vue/{component}.json). Or copy the file directly — each effect is self-contained with zero external dependencies.'
             accent="#c9ba4c"
           />
           <UsageNote
@@ -356,15 +373,37 @@ export function CanvasEffects() {
 }
 
 // ─── Helpers ──────────────────────────────────────────────────────────────────
-function CopyImport({ framework }: { framework: string }) {
+function CopyInstall({ framework }: { framework: string }) {
   const [copied, setCopied] = useState(false)
   const text = framework === 'react'
-    ? "import { DotBlob, Aurora, FlowField } from '@/components/CanvasEffects/react'"
-    : "import { DotBlob, Aurora, FlowField } from '@/components/CanvasEffects/vue'"
+    ? 'npx shadcn@latest add "https://boldkit.dev/r/aurora.json"'
+    : 'npx shadcn-vue@latest add "https://boldkit.dev/r/vue/aurora.json"'
 
   return (
     <button
       className="h-8 w-8 p-0 flex items-center justify-center border border-white/25 bg-white/8 text-white/65 hover:bg-white/15 hover:text-white/90 hover:border-white/50 transition-colors shrink-0"
+      aria-label="Copy install command"
+      onClick={() => {
+        navigator.clipboard.writeText(text)
+        setCopied(true)
+        toast.success('Install command copied!')
+        setTimeout(() => setCopied(false), 2000)
+      }}
+    >
+      {copied ? <Check className="h-3 w-3" /> : <Copy className="h-3 w-3" />}
+    </button>
+  )
+}
+
+function CopyImport({ framework }: { framework: string }) {
+  const [copied, setCopied] = useState(false)
+  const text = framework === 'react'
+    ? "import { Aurora } from '@/components/ui/canvas-effects/Aurora'"
+    : "import Aurora from '@/components/ui/canvas-effects/Aurora.vue'"
+
+  return (
+    <button
+      className="h-8 w-8 p-0 flex items-center justify-center border border-white/15 bg-white/5 text-white/45 hover:bg-white/10 hover:text-white/70 hover:border-white/35 transition-colors shrink-0"
       aria-label="Copy import statement"
       onClick={() => {
         navigator.clipboard.writeText(text)
