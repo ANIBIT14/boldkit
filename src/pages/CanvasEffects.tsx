@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { Layout } from '@/components/layout'
 import { SEO, pageSEO } from '@/components/SEO'
-import { Copy, Check, Code2 } from 'lucide-react'
+import { Copy, Check, Code2, Terminal } from 'lucide-react'
 import { toast } from 'sonner'
 import { useFramework, FrameworkToggle } from '@/hooks/use-framework'
 import {
@@ -109,14 +109,26 @@ function EffectCard({ effect, featured = false, framework }: {
   featured?: boolean
   framework: string
 }) {
-  const [copied, setCopied] = useState(false)
+  const [copied, setCopied]         = useState(false)
+  const [copiedInstall, setCopiedInstall] = useState(false)
   const code = framework === 'react' ? effect.reactCode : effect.vueCode
+
+  const installCmd = framework === 'react'
+    ? `npx shadcn@latest add "https://boldkit.dev/r/${effect.id}.json"`
+    : `npx shadcn-vue@latest add "https://boldkit.dev/r/vue/${effect.id}.json"`
 
   const copy = () => {
     navigator.clipboard.writeText(code)
     setCopied(true)
     toast.success('Copied to clipboard')
     setTimeout(() => setCopied(false), 2000)
+  }
+
+  const copyInstall = () => {
+    navigator.clipboard.writeText(installCmd)
+    setCopiedInstall(true)
+    toast.success('Install command copied!')
+    setTimeout(() => setCopiedInstall(false), 2000)
   }
 
   const canvasClass = featured
@@ -182,6 +194,27 @@ function EffectCard({ effect, featured = false, framework }: {
         >
           {code}
         </code>
+      </div>
+
+      {/* Install footer — shadcn CLI command */}
+      <div className="flex items-center gap-2 px-3 py-2 border-t border-foreground/15 bg-background shrink-0 overflow-hidden">
+        <Terminal size={10} className="shrink-0 text-muted-foreground/60" aria-hidden />
+        <code
+          className="text-[9px] sm:text-[10px] text-muted-foreground/60 truncate flex-1 min-w-0 leading-tight"
+          style={MONO}
+          title={installCmd}
+        >
+          {installCmd}
+        </code>
+        <button
+          onClick={copyInstall}
+          className="shrink-0 flex items-center justify-center gap-1 h-6 px-1.5 border border-foreground/20 bg-muted text-muted-foreground text-[9px] font-bold uppercase tracking-wide transition-all hover:border-foreground/50 hover:text-foreground active:scale-95"
+          title="Copy install command"
+          aria-label={`Copy install command for ${effect.name}`}
+        >
+          {copiedInstall ? <Check size={9} /> : <Copy size={9} />}
+          <span className="hidden sm:inline">{copiedInstall ? 'Done' : 'Install'}</span>
+        </button>
       </div>
     </div>
   )
