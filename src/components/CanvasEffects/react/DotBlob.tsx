@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, type CSSProperties } from 'react'
 
 export interface DotBlobProps {
   /** Dot fill color */
@@ -12,7 +12,7 @@ export interface DotBlobProps {
   /** Field values below this threshold leave blank space (0–1) */
   threshold?: number
   className?: string
-  style?: React.CSSProperties
+  style?: CSSProperties
 }
 
 /**
@@ -52,9 +52,13 @@ export function DotBlob({
     const el = ref.current
     if (!el) return
     const ctx = el.getContext('2d')!
-    let raf: number
+    let raf = 0
 
-    const resize = () => { el.width = el.offsetWidth; el.height = el.offsetHeight }
+    const resize = () => {
+      const dpr = window.devicePixelRatio || 1
+      el.width = el.offsetWidth * dpr
+      el.height = el.offsetHeight * dpr
+    }
     resize()
 
     const gauss = (px: number, py: number, cx: number, cy: number, rx: number, ry: number) => {

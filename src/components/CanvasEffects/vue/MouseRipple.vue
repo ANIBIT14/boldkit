@@ -18,6 +18,7 @@ const props = withDefaults(defineProps<{
 const canvasRef = ref<HTMLCanvasElement | null>(null)
 let raf = 0
 let ro: ResizeObserver | null = null
+let cleanupMouse: (() => void) | null = null
 
 onMounted(() => {
   const el = canvasRef.value
@@ -25,7 +26,7 @@ onMounted(() => {
   const ctx = el.getContext('2d')!
   const mouse = { x: -999, y: -999 }
 
-  const resize = () => { el.width = el.offsetWidth; el.height = el.offsetHeight }
+  const resize = () => { const dpr = window.devicePixelRatio || 1; el.width = el.offsetWidth * dpr; el.height = el.offsetHeight * dpr }
   resize()
 
   const onMove = (e: MouseEvent) => {
@@ -33,6 +34,7 @@ onMounted(() => {
     mouse.x = e.clientX - r.left; mouse.y = e.clientY - r.top
   }
   el.addEventListener('mousemove', onMove)
+  cleanupMouse = () => el.removeEventListener('mousemove', onMove)
 
   let t = 0
   const draw = () => {
@@ -45,7 +47,7 @@ onMounted(() => {
         const dx = cx - mouse.x, dy = cy - mouse.y
         const dist = Math.sqrt(dx * dx + dy * dy)
         const ripple = Math.max(0, 1 - dist / RAD) * Math.sin(dist * 0.14 - t * 3.2)
-        const size = 3 + ripple * 9
+        const size = Math.max(0, 3 + ripple * 9)
         ctx.globalAlpha = Math.max(0.1, Math.min(1, 0.25 + Math.abs(ripple) * 0.75))
         ctx.fillStyle = props.color
         ctx.fillRect(cx - size / 2, cy - size / 2, size, size)
@@ -59,15 +61,10 @@ onMounted(() => {
   draw()
   ro = new ResizeObserver(resize)
   ro.observe(el)
-
-  // store cleanup for onUnmounted
-  ;(el as unknown as { _cleanup: () => void })._cleanup = () => el.removeEventListener('mousemove', onMove)
 })
 
 onUnmounted(() => {
-  cancelAnimationFrame(raf); ro?.disconnect()
-  const el = canvasRef.value
-  if (el) (el as unknown as { _cleanup?: () => void })._cleanup?.()
+  cancelAnimationFrame(raf); ro?.disconnect(); cleanupMouse?.()
 })
 </script>
 

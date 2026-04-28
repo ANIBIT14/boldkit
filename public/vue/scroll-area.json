@@ -1,0 +1,24 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "scroll-area",
+  "type": "registry:ui",
+  "description": "Augments native scroll functionality",
+  "dependencies": [
+    "reka-ui"
+  ],
+  "registryDependencies": [
+    "utils"
+  ],
+  "files": [
+    {
+      "path": "registry/default/ui/ScrollArea.vue",
+      "type": "registry:ui",
+      "target": "components/ui/ScrollArea.vue"
+    },
+    {
+      "path": "registry/default/ui/ScrollBar.vue",
+      "type": "registry:ui",
+      "target": "components/ui/ScrollBar.vue"
+    }
+  ]
+}

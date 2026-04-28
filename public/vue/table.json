@@ -1,0 +1,52 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "table",
+  "type": "registry:ui",
+  "description": "A responsive table component",
+  "dependencies": [],
+  "registryDependencies": [
+    "utils"
+  ],
+  "files": [
+    {
+      "path": "registry/default/ui/Table.vue",
+      "type": "registry:ui",
+      "target": "components/ui/Table.vue"
+    },
+    {
+      "path": "registry/default/ui/TableHeader.vue",
+      "type": "registry:ui",
+      "target": "components/ui/TableHeader.vue"
+    },
+    {
+      "path": "registry/default/ui/TableBody.vue",
+      "type": "registry:ui",
+      "target": "components/ui/TableBody.vue"
+    },
+    {
+      "path": "registry/default/ui/TableFooter.vue",
+      "type": "registry:ui",
+      "target": "components/ui/TableFooter.vue"
+    },
+    {
+      "path": "registry/default/ui/TableHead.vue",
+      "type": "registry:ui",
+      "target": "components/ui/TableHead.vue"
+    },
+    {
+      "path": "registry/default/ui/TableRow.vue",
+      "type": "registry:ui",
+      "target": "components/ui/TableRow.vue"
+    },
+    {
+      "path": "registry/default/ui/TableCell.vue",
+      "type": "registry:ui",
+      "target": "components/ui/TableCell.vue"
+    },
+    {
+      "path": "registry/default/ui/TableCaption.vue",
+      "type": "registry:ui",
+      "target": "components/ui/TableCaption.vue"
+    }
+  ]
+}

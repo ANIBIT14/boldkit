@@ -1,0 +1,35 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "input-otp",
+  "type": "registry:ui",
+  "description": "Accessible one-time password input",
+  "dependencies": [
+    "reka-ui",
+    "lucide-vue-next"
+  ],
+  "registryDependencies": [
+    "utils"
+  ],
+  "files": [
+    {
+      "path": "registry/default/ui/InputOTP.vue",
+      "type": "registry:ui",
+      "target": "components/ui/InputOTP.vue"
+    },
+    {
+      "path": "registry/default/ui/InputOTPGroup.vue",
+      "type": "registry:ui",
+      "target": "components/ui/InputOTPGroup.vue"
+    },
+    {
+      "path": "registry/default/ui/InputOTPSlot.vue",
+      "type": "registry:ui",
+      "target": "components/ui/InputOTPSlot.vue"
+    },
+    {
+      "path": "registry/default/ui/InputOTPSeparator.vue",
+      "type": "registry:ui",
+      "target": "components/ui/InputOTPSeparator.vue"
+    }
+  ]
+}

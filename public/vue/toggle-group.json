@@ -1,0 +1,25 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "toggle-group",
+  "type": "registry:ui",
+  "description": "A set of two-state buttons",
+  "dependencies": [
+    "reka-ui",
+    "class-variance-authority"
+  ],
+  "registryDependencies": [
+    "utils"
+  ],
+  "files": [
+    {
+      "path": "registry/default/ui/ToggleGroup.vue",
+      "type": "registry:ui",
+      "target": "components/ui/ToggleGroup.vue"
+    },
+    {
+      "path": "registry/default/ui/ToggleGroupItem.vue",
+      "type": "registry:ui",
+      "target": "components/ui/ToggleGroupItem.vue"
+    }
+  ]
+}

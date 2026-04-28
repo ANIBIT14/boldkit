@@ -1,0 +1,34 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "sticker",
+  "type": "registry:ui",
+  "description": "Decorative sticker and stamp components",
+  "dependencies": [
+    "class-variance-authority"
+  ],
+  "registryDependencies": [
+    "utils"
+  ],
+  "files": [
+    {
+      "path": "registry/default/ui/Sticker.vue",
+      "type": "registry:ui",
+      "target": "components/ui/Sticker.vue"
+    },
+    {
+      "path": "registry/default/ui/sticker-variants.ts",
+      "type": "registry:ui",
+      "target": "components/ui/sticker-variants.ts"
+    },
+    {
+      "path": "registry/default/ui/Stamp.vue",
+      "type": "registry:ui",
+      "target": "components/ui/Stamp.vue"
+    },
+    {
+      "path": "registry/default/ui/StickyNote.vue",
+      "type": "registry:ui",
+      "target": "components/ui/StickyNote.vue"
+    }
+  ]
+}

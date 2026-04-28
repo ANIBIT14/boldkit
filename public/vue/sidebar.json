@@ -1,0 +1,73 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "sidebar",
+  "type": "registry:ui",
+  "description": "Collapsible sidebar with mobile drawer, tooltips, and keyboard shortcut",
+  "dependencies": [
+    "class-variance-authority",
+    "lucide-vue-next"
+  ],
+  "registryDependencies": [
+    "utils",
+    "button",
+    "sheet",
+    "tooltip"
+  ],
+  "files": [
+    {
+      "path": "registry/default/ui/Sidebar.vue",
+      "type": "registry:ui",
+      "target": "components/ui/Sidebar.vue"
+    },
+    {
+      "path": "registry/default/ui/SidebarContent.vue",
+      "type": "registry:ui",
+      "target": "components/ui/SidebarContent.vue"
+    },
+    {
+      "path": "registry/default/ui/SidebarFooter.vue",
+      "type": "registry:ui",
+      "target": "components/ui/SidebarFooter.vue"
+    },
+    {
+      "path": "registry/default/ui/SidebarGroup.vue",
+      "type": "registry:ui",
+      "target": "components/ui/SidebarGroup.vue"
+    },
+    {
+      "path": "registry/default/ui/SidebarGroupLabel.vue",
+      "type": "registry:ui",
+      "target": "components/ui/SidebarGroupLabel.vue"
+    },
+    {
+      "path": "registry/default/ui/SidebarHeader.vue",
+      "type": "registry:ui",
+      "target": "components/ui/SidebarHeader.vue"
+    },
+    {
+      "path": "registry/default/ui/SidebarInset.vue",
+      "type": "registry:ui",
+      "target": "components/ui/SidebarInset.vue"
+    },
+    {
+      "path": "registry/default/ui/SidebarItem.vue",
+      "type": "registry:ui",
+      "target": "components/ui/SidebarItem.vue"
+    },
+    {
+      "path": "registry/default/ui/SidebarProvider.vue",
+      "type": "registry:ui",
+      "target": "components/ui/SidebarProvider.vue"
+    },
+    {
+      "path": "registry/default/ui/SidebarSeparator.vue",
+      "type": "registry:ui",
+      "target": "components/ui/SidebarSeparator.vue"
+    },
+    {
+      "path": "registry/default/ui/SidebarToggle.vue",
+      "type": "registry:ui",
+      "target": "components/ui/SidebarToggle.vue"
+    }
+  ]
+}

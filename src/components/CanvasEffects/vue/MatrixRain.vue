@@ -27,7 +27,8 @@ onMounted(() => {
 
   let cols: number[] = []
   const resize = () => {
-    el.width = el.offsetWidth; el.height = el.offsetHeight
+    const dpr = window.devicePixelRatio || 1
+    el.width = el.offsetWidth * dpr; el.height = el.offsetHeight * dpr
     cols = Array.from({ length: Math.ceil(el.width / props.gap) }, () =>
       -Math.floor(Math.random() * (el.height / props.gap + props.tailLength))
     )
@@ -68,5 +69,5 @@ onUnmounted(() => { cancelAnimationFrame(raf); ro?.disconnect() })
 </script>
 
 <template>
-  <canvas ref="canvasRef" style="display:block;width:100%;height:100%" />
+  <canvas ref="canvasRef" style="display:block;width:100%;height:100%;background:#000" />
 </template>

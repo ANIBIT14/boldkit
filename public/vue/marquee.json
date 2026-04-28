@@ -1,0 +1,27 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "marquee",
+  "type": "registry:ui",
+  "description": "A scrolling marquee component",
+  "dependencies": [],
+  "registryDependencies": [
+    "utils"
+  ],
+  "files": [
+    {
+      "path": "registry/default/ui/Marquee.vue",
+      "type": "registry:ui",
+      "target": "components/ui/Marquee.vue"
+    },
+    {
+      "path": "registry/default/ui/MarqueeItem.vue",
+      "type": "registry:ui",
+      "target": "components/ui/MarqueeItem.vue"
+    },
+    {
+      "path": "registry/default/ui/MarqueeSeparator.vue",
+      "type": "registry:ui",
+      "target": "components/ui/MarqueeSeparator.vue"
+    }
+  ]
+}

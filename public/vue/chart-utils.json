@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "chart-utils",
+  "type": "registry:ui",
+  "description": "Shared utilities, palettes, and theme configuration for neubrutalism-styled charts",
+  "dependencies": [
+    "class-variance-authority"
+  ],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "registry/default/ui/chart-utils.ts",
+      "type": "registry:ui",
+      "target": "components/ui/chart-utils.ts"
+    },
+    {
+      "path": "registry/default/ui/chart-variants.ts",
+      "type": "registry:ui",
+      "target": "components/ui/chart-variants.ts"
+    }
+  ]
+}

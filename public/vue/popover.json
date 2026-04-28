@@ -1,0 +1,29 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "popover",
+  "type": "registry:ui",
+  "description": "Displays rich content in a portal",
+  "dependencies": [
+    "reka-ui"
+  ],
+  "registryDependencies": [
+    "utils"
+  ],
+  "files": [
+    {
+      "path": "registry/default/ui/Popover.vue",
+      "type": "registry:ui",
+      "target": "components/ui/Popover.vue"
+    },
+    {
+      "path": "registry/default/ui/PopoverTrigger.vue",
+      "type": "registry:ui",
+      "target": "components/ui/PopoverTrigger.vue"
+    },
+    {
+      "path": "registry/default/ui/PopoverContent.vue",
+      "type": "registry:ui",
+      "target": "components/ui/PopoverContent.vue"
+    }
+  ]
+}

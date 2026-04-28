@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, type CSSProperties } from 'react'
 
 export interface ParticleWebProps {
   /** Number of floating particles */
@@ -12,7 +12,7 @@ export interface ParticleWebProps {
   /** Particle movement speed multiplier */
   speed?: number
   className?: string
-  style?: React.CSSProperties
+  style?: CSSProperties
 }
 
 /**
@@ -50,7 +50,7 @@ export function ParticleWeb({
     const el = ref.current
     if (!el) return
     const ctx = el.getContext('2d')!
-    let raf: number
+    let raf = 0
 
     type P = { x: number; y: number; vx: number; vy: number }
     let pts: P[] = []
@@ -63,7 +63,13 @@ export function ParticleWeb({
       }))
     }
 
-    const resize = () => { el.width = el.offsetWidth; el.height = el.offsetHeight; init() }
+    const resize = () => {
+      if (!el.offsetWidth || !el.offsetHeight) return
+      const dpr = window.devicePixelRatio || 1
+      el.width = el.offsetWidth * dpr
+      el.height = el.offsetHeight * dpr
+      init()
+    }
     resize()
 
     const draw = () => {

@@ -51,7 +51,7 @@ onMounted(() => {
   const off = document.createElement('canvas')
   const offCtx = off.getContext('2d')!
 
-  const resize = () => { el.width = el.offsetWidth; el.height = el.offsetHeight; init() }
+  const resize = () => { if (!el.offsetWidth || !el.offsetHeight) return; const dpr = window.devicePixelRatio || 1; el.width = el.offsetWidth * dpr; el.height = el.offsetHeight * dpr; init() }
   resize()
 
   let t = 0

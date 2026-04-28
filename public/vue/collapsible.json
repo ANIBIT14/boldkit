@@ -1,0 +1,29 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "collapsible",
+  "type": "registry:ui",
+  "description": "An interactive component that expands/collapses",
+  "dependencies": [
+    "reka-ui"
+  ],
+  "registryDependencies": [
+    "utils"
+  ],
+  "files": [
+    {
+      "path": "registry/default/ui/Collapsible.vue",
+      "type": "registry:ui",
+      "target": "components/ui/Collapsible.vue"
+    },
+    {
+      "path": "registry/default/ui/CollapsibleTrigger.vue",
+      "type": "registry:ui",
+      "target": "components/ui/CollapsibleTrigger.vue"
+    },
+    {
+      "path": "registry/default/ui/CollapsibleContent.vue",
+      "type": "registry:ui",
+      "target": "components/ui/CollapsibleContent.vue"
+    }
+  ]
+}

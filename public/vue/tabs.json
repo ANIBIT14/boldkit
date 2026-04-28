@@ -1,0 +1,34 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "tabs",
+  "type": "registry:ui",
+  "description": "A set of layered sections of content",
+  "dependencies": [
+    "reka-ui"
+  ],
+  "registryDependencies": [
+    "utils"
+  ],
+  "files": [
+    {
+      "path": "registry/default/ui/Tabs.vue",
+      "type": "registry:ui",
+      "target": "components/ui/Tabs.vue"
+    },
+    {
+      "path": "registry/default/ui/TabsList.vue",
+      "type": "registry:ui",
+      "target": "components/ui/TabsList.vue"
+    },
+    {
+      "path": "registry/default/ui/TabsTrigger.vue",
+      "type": "registry:ui",
+      "target": "components/ui/TabsTrigger.vue"
+    },
+    {
+      "path": "registry/default/ui/TabsContent.vue",
+      "type": "registry:ui",
+      "target": "components/ui/TabsContent.vue"
+    }
+  ]
+}

@@ -37,8 +37,8 @@ const EFFECTS: EffectDef[] = [
   {
     id: 'aurora', name: 'Aurora', category: 'Atmosphere', accent: '#00ffaa',
     desc: 'Curtains of light ripple across a star-filled sky',
-    reactCode: `<Aurora colors={['#00ffaa','#00beff','#78ff64','#be50ff']} starCount={160} speed={1} />`,
-    vueCode:   `<Aurora :colors="['#00ffaa','#00beff','#78ff64','#be50ff']" :star-count="160" :speed="1" />`,
+    reactCode: `<Aurora colors={['#00ffaa','#00beff','#78ff64','#be50ff','#00dceb']} starCount={160} speed={1} />`,
+    vueCode:   `<Aurora :colors="['#00ffaa','#00beff','#78ff64','#be50ff','#00dceb']" :star-count="160" :speed="1" />`,
     node: <Aurora colors={['#00ffaa', '#00beff', '#78ff64', '#be50ff', '#00dceb']} starCount={160} speed={1} />,
     featured: true,
   },
@@ -137,6 +137,7 @@ function EffectCard({ effect, featured = false, framework }: {
 
   return (
     <div
+      id={effect.id}
       className="group flex flex-col border-3 border-foreground shadow-[4px_4px_0px_hsl(var(--shadow-color))] transition-all duration-150 hover:translate-x-[-2px] hover:translate-y-[-2px] hover:shadow-[6px_6px_0px_hsl(var(--shadow-color))] overflow-hidden"
       style={{ borderLeftColor: effect.accent }}
     >
@@ -312,7 +313,7 @@ export function CanvasEffects() {
               >
                 {installLine}
               </code>
-              <CopyInstall framework={framework} />
+              <CopyInstall text={installLine} />
             </div>
 
             {/* Import strip — post-install import path */}
@@ -324,7 +325,7 @@ export function CanvasEffects() {
               >
                 {importLine}
               </code>
-              <CopyImport framework={framework} />
+              <CopyImport text={importLine} />
             </div>
 
           </div>
@@ -345,7 +346,7 @@ export function CanvasEffects() {
         <div className="flex items-center gap-4 my-5 sm:my-7">
           <div className="flex-1 h-px bg-foreground/10" />
           <div className="flex items-center gap-2.5 border-3 border-foreground px-3 py-1.5 bg-card shadow-[3px_3px_0px_hsl(var(--shadow-color))]">
-            <span className="text-lg font-black leading-none" style={DISPLAY}>08</span>
+            <span className="text-lg font-black leading-none" style={DISPLAY}>{String(GRID.length).padStart(2, '0')}</span>
             <div className="w-px h-4 bg-foreground/20" />
             <span className="text-[9px] font-black uppercase tracking-[0.25em] text-muted-foreground" style={MONO}>
               More Effects
@@ -406,11 +407,8 @@ export function CanvasEffects() {
 }
 
 // ─── Helpers ──────────────────────────────────────────────────────────────────
-function CopyInstall({ framework }: { framework: string }) {
+function CopyInstall({ text }: { text: string }) {
   const [copied, setCopied] = useState(false)
-  const text = framework === 'react'
-    ? 'npx shadcn@latest add "https://boldkit.dev/r/aurora.json"'
-    : 'npx shadcn-vue@latest add "https://boldkit.dev/r/vue/aurora.json"'
 
   return (
     <button
@@ -428,11 +426,8 @@ function CopyInstall({ framework }: { framework: string }) {
   )
 }
 
-function CopyImport({ framework }: { framework: string }) {
+function CopyImport({ text }: { text: string }) {
   const [copied, setCopied] = useState(false)
-  const text = framework === 'react'
-    ? "import { Aurora } from '@/components/ui/canvas-effects/Aurora'"
-    : "import Aurora from '@/components/ui/canvas-effects/Aurora.vue'"
 
   return (
     <button

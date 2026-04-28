@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "kbd",
+  "type": "registry:ui",
+  "description": "Keyboard shortcut display component",
+  "dependencies": [],
+  "registryDependencies": [
+    "utils"
+  ],
+  "files": [
+    {
+      "path": "registry/default/ui/Kbd.vue",
+      "type": "registry:ui",
+      "target": "components/ui/Kbd.vue"
+    },
+    {
+      "path": "registry/default/ui/KbdCombo.vue",
+      "type": "registry:ui",
+      "target": "components/ui/KbdCombo.vue"
+    }
+  ]
+}

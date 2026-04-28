@@ -1,0 +1,29 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "avatar",
+  "type": "registry:ui",
+  "description": "An image element with fallback",
+  "dependencies": [
+    "reka-ui"
+  ],
+  "registryDependencies": [
+    "utils"
+  ],
+  "files": [
+    {
+      "path": "registry/default/ui/Avatar.vue",
+      "type": "registry:ui",
+      "target": "components/ui/Avatar.vue"
+    },
+    {
+      "path": "registry/default/ui/AvatarImage.vue",
+      "type": "registry:ui",
+      "target": "components/ui/AvatarImage.vue"
+    },
+    {
+      "path": "registry/default/ui/AvatarFallback.vue",
+      "type": "registry:ui",
+      "target": "components/ui/AvatarFallback.vue"
+    }
+  ]
+}

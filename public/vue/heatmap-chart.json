@@ -1,0 +1,21 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "heatmap-chart",
+  "type": "registry:ui",
+  "description": "Heatmap grid for correlation and intensity data",
+  "dependencies": [
+    "vue-echarts",
+    "echarts"
+  ],
+  "registryDependencies": [
+    "utils",
+    "chart-utils"
+  ],
+  "files": [
+    {
+      "path": "registry/default/ui/HeatmapChart.vue",
+      "type": "registry:ui",
+      "target": "components/ui/HeatmapChart.vue"
+    }
+  ]
+}

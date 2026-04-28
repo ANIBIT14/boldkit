@@ -1,0 +1,13 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "styles",
+  "type": "registry:style",
+  "description": "BoldKit neubrutalism CSS variables and utilities",
+  "files": [
+    {
+      "path": "registry/default/styles/globals.css",
+      "type": "registry:style",
+      "target": "styles/globals.css"
+    }
+  ]
+}

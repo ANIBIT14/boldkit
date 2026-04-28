@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, type CSSProperties } from 'react'
 
 export interface DotWaveProps {
   /** Dot fill color */
@@ -8,7 +8,7 @@ export interface DotWaveProps {
   /** Animation speed multiplier */
   speed?: number
   className?: string
-  style?: React.CSSProperties
+  style?: CSSProperties
 }
 
 /**
@@ -40,8 +40,12 @@ export function DotWave({
     const el = ref.current
     if (!el) return
     const ctx = el.getContext('2d')!
-    let raf: number
-    const resize = () => { el.width = el.offsetWidth; el.height = el.offsetHeight }
+    let raf = 0
+    const resize = () => {
+      const dpr = window.devicePixelRatio || 1
+      el.width = el.offsetWidth * dpr
+      el.height = el.offsetHeight * dpr
+    }
     resize()
 
     let t = 0

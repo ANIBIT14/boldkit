@@ -1,0 +1,56 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "chart",
+  "type": "registry:ui",
+  "description": "Chart components with neubrutalism styling",
+  "dependencies": [
+    "vue-echarts",
+    "echarts",
+    "class-variance-authority"
+  ],
+  "registryDependencies": [
+    "utils"
+  ],
+  "files": [
+    {
+      "path": "registry/default/ui/ChartContainer.vue",
+      "type": "registry:ui",
+      "target": "components/ui/ChartContainer.vue"
+    },
+    {
+      "path": "registry/default/ui/DonutChart.vue",
+      "type": "registry:ui",
+      "target": "components/ui/DonutChart.vue"
+    },
+    {
+      "path": "registry/default/ui/GaugeChart.vue",
+      "type": "registry:ui",
+      "target": "components/ui/GaugeChart.vue"
+    },
+    {
+      "path": "registry/default/ui/RadarChart.vue",
+      "type": "registry:ui",
+      "target": "components/ui/RadarChart.vue"
+    },
+    {
+      "path": "registry/default/ui/RadialBarChart.vue",
+      "type": "registry:ui",
+      "target": "components/ui/RadialBarChart.vue"
+    },
+    {
+      "path": "registry/default/ui/SparklineChart.vue",
+      "type": "registry:ui",
+      "target": "components/ui/SparklineChart.vue"
+    },
+    {
+      "path": "registry/default/ui/chart-utils.ts",
+      "type": "registry:ui",
+      "target": "components/ui/chart-utils.ts"
+    },
+    {
+      "path": "registry/default/ui/chart-variants.ts",
+      "type": "registry:ui",
+      "target": "components/ui/chart-variants.ts"
+    }
+  ]
+}

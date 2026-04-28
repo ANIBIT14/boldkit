@@ -1,0 +1,25 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "toggle",
+  "type": "registry:ui",
+  "description": "A two-state button",
+  "dependencies": [
+    "reka-ui",
+    "class-variance-authority"
+  ],
+  "registryDependencies": [
+    "utils"
+  ],
+  "files": [
+    {
+      "path": "registry/default/ui/Toggle.vue",
+      "type": "registry:ui",
+      "target": "components/ui/Toggle.vue"
+    },
+    {
+      "path": "registry/default/ui/toggle-variants.ts",
+      "type": "registry:ui",
+      "target": "components/ui/toggle-variants.ts"
+    }
+  ]
+}

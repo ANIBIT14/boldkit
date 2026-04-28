@@ -1,0 +1,34 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "accordion",
+  "type": "registry:ui",
+  "description": "A vertically stacked set of interactive headings",
+  "dependencies": [
+    "reka-ui"
+  ],
+  "registryDependencies": [
+    "utils"
+  ],
+  "files": [
+    {
+      "path": "registry/default/ui/Accordion.vue",
+      "type": "registry:ui",
+      "target": "components/ui/Accordion.vue"
+    },
+    {
+      "path": "registry/default/ui/AccordionItem.vue",
+      "type": "registry:ui",
+      "target": "components/ui/AccordionItem.vue"
+    },
+    {
+      "path": "registry/default/ui/AccordionTrigger.vue",
+      "type": "registry:ui",
+      "target": "components/ui/AccordionTrigger.vue"
+    },
+    {
+      "path": "registry/default/ui/AccordionContent.vue",
+      "type": "registry:ui",
+      "target": "components/ui/AccordionContent.vue"
+    }
+  ]
+}

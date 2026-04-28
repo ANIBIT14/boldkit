@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "time-picker",
+  "type": "registry:ui",
+  "description": "Popover-based time picker with 12h/24h format and scrollable columns",
+  "dependencies": [
+    "lucide-vue-next"
+  ],
+  "registryDependencies": [
+    "utils",
+    "button",
+    "popover",
+    "scroll-area"
+  ],
+  "files": [
+    {
+      "path": "registry/default/ui/TimePicker.vue",
+      "type": "registry:ui",
+      "target": "components/ui/TimePicker.vue"
+    }
+  ]
+}

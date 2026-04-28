@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, type CSSProperties } from 'react'
 
 export interface MouseRippleProps {
   /** Dot fill color */
@@ -10,7 +10,7 @@ export interface MouseRippleProps {
   /** Ripple wave speed multiplier */
   speed?: number
   className?: string
-  style?: React.CSSProperties
+  style?: CSSProperties
 }
 
 /**
@@ -46,8 +46,12 @@ export function MouseRipple({
     const el = ref.current
     if (!el) return
     const ctx = el.getContext('2d')!
-    let raf: number
-    const resize = () => { el.width = el.offsetWidth; el.height = el.offsetHeight }
+    let raf = 0
+    const resize = () => {
+      const dpr = window.devicePixelRatio || 1
+      el.width = el.offsetWidth * dpr
+      el.height = el.offsetHeight * dpr
+    }
     resize()
 
     const onMove = (e: MouseEvent) => {
@@ -71,7 +75,7 @@ export function MouseRipple({
           const dx = cx - mx, dy = cy - my
           const dist = Math.sqrt(dx * dx + dy * dy)
           const ripple = Math.max(0, 1 - dist / RAD) * Math.sin(dist * 0.14 - t * 3.2)
-          const size = 3 + ripple * 9
+          const size = Math.max(0, 3 + ripple * 9)
           ctx.globalAlpha = Math.max(0.1, Math.min(1, 0.25 + Math.abs(ripple) * 0.75))
           ctx.fillStyle = colorRef.current
           ctx.fillRect(cx - size / 2, cy - size / 2, size, size)

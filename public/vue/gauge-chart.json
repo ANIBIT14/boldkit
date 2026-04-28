@@ -1,0 +1,19 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "gauge-chart",
+  "type": "registry:ui",
+  "description": "A gauge/speedometer chart component with customizable zones and neubrutalism styling",
+  "dependencies": [
+    "class-variance-authority"
+  ],
+  "registryDependencies": [
+    "utils"
+  ],
+  "files": [
+    {
+      "path": "registry/default/ui/GaugeChart.vue",
+      "type": "registry:ui",
+      "target": "components/ui/GaugeChart.vue"
+    }
+  ]
+}

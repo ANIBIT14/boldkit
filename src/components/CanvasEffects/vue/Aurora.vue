@@ -58,7 +58,7 @@ onMounted(() => {
     }))
   }
 
-  const resize = () => { el.width = el.offsetWidth; el.height = el.offsetHeight; initStars() }
+  const resize = () => { const dpr = window.devicePixelRatio || 1; el.width = el.offsetWidth * dpr; el.height = el.offsetHeight * dpr; initStars() }
   resize()
 
   let t = 0

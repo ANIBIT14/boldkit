@@ -1,0 +1,56 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "sheet",
+  "type": "registry:ui",
+  "description": "A side panel that slides in",
+  "dependencies": [
+    "reka-ui",
+    "lucide-vue-next",
+    "class-variance-authority"
+  ],
+  "registryDependencies": [
+    "utils"
+  ],
+  "files": [
+    {
+      "path": "registry/default/ui/Sheet.vue",
+      "type": "registry:ui",
+      "target": "components/ui/Sheet.vue"
+    },
+    {
+      "path": "registry/default/ui/SheetTrigger.vue",
+      "type": "registry:ui",
+      "target": "components/ui/SheetTrigger.vue"
+    },
+    {
+      "path": "registry/default/ui/SheetContent.vue",
+      "type": "registry:ui",
+      "target": "components/ui/SheetContent.vue"
+    },
+    {
+      "path": "registry/default/ui/SheetHeader.vue",
+      "type": "registry:ui",
+      "target": "components/ui/SheetHeader.vue"
+    },
+    {
+      "path": "registry/default/ui/SheetFooter.vue",
+      "type": "registry:ui",
+      "target": "components/ui/SheetFooter.vue"
+    },
+    {
+      "path": "registry/default/ui/SheetTitle.vue",
+      "type": "registry:ui",
+      "target": "components/ui/SheetTitle.vue"
+    },
+    {
+      "path": "registry/default/ui/SheetDescription.vue",
+      "type": "registry:ui",
+      "target": "components/ui/SheetDescription.vue"
+    },
+    {
+      "path": "registry/default/ui/SheetClose.vue",
+      "type": "registry:ui",
+      "target": "components/ui/SheetClose.vue"
+    }
+  ]
+}

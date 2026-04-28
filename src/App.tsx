@@ -174,7 +174,7 @@ function App() {
               <Route index element={<Suspense fallback={<PageLoader />}><Introduction /></Suspense>} />
               <Route path="installation" element={<Suspense fallback={<PageLoader />}><Installation /></Suspense>} />
               <Route path="theming" element={<Suspense fallback={<PageLoader />}><ThemeBuilder embedded /></Suspense>} />
-              <Route path="*" element={<Suspense fallback={<PageLoader />}><Introduction /></Suspense>} />
+              <Route path="*" element={<Navigate to="/docs" replace />} />
             </Route>
 
             {/* Component documentation routes */}
@@ -277,8 +277,8 @@ function App() {
               </Route>
             </Route>
           </Routes>
+          <Toaster />
             </BrowserRouter>
-            <Toaster />
           </TooltipProvider>
         </FrameworkProvider>
       </ThemeProvider>

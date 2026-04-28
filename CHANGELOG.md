@@ -5,6 +5,47 @@ Format follows [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ---
 
+## [3.2.2] — 2026-04-28
+
+### 🐛 Bug Fixes
+
+**Canvas Effects — React & Vue (all 10 components)**
+- Added `devicePixelRatio` scaling to all `resize()` functions — canvas effects are now sharp on Retina/HiDPI displays instead of blurry
+- Initialized `let raf = 0` (was uninitialized `let raf: number`) across all React canvas components
+- Added zero-size canvas guard to `Metaballs`, `ParticleWeb`, and `FlowField` (React + Vue) — particles no longer initialize at `(0,0)` when canvas is hidden or in a lazy container
+- Fixed `React.CSSProperties` used without `React` namespace import in all 10 React canvas files — now uses `import type { CSSProperties }`
+- `MatrixRain` (React + Vue) — added `background: #000` to canvas element so trail fade works on any parent background
+- `MouseRipple` (React + Vue) — clamped `size = Math.max(0, 3 + ripple * 9)` to prevent negative values in `fillRect`
+- `MouseRipple.vue` — replaced `_cleanup` monkey-patch on DOM node with a proper closure variable; eliminates potential `mousemove` listener leak on unmount
+- `Plasma.vue` — added `palette.length < 2` guard in `colorAt()` to prevent `TypeError` crash with single-color palettes
+- `Plasma.vue` — added zero-size dimension guard to `resize()` (matching React version)
+- `Aurora.tsx` — reset `ctx.shadowColor = 'transparent'` after aurora bands loop to prevent shadow bleed on subsequent draw calls
+- Fixed stale registry content in `public/r/plasma.json` and `public/r/vue/plasma.json` — now in sync with current source including DPR scaling and zero-size guards
+
+**Website & UI**
+- `Home.tsx` — fixed broken `<Link to="/theme-builder">` (route doesn't exist); corrected to `/themes`
+- `Home.tsx` — wrapped `navigator.clipboard.writeText()` in try/catch to handle non-HTTPS / unsupported browsers
+- `Home.tsx` — fixed `React.CSSProperties` without `React` import
+- `Home.tsx` — `DotMatrixPreview` interval now skips updates when tab is hidden
+- `Home.tsx` — copy button `setTimeout` stored in ref and cleared on re-click to avoid stale state updates
+- `Header.tsx` — mobile menu (`role="dialog"`) now closes on `Escape` key press
+- `Header.tsx` — added keyboard focus trap to mobile menu (ARIA dialog pattern)
+- `Header.tsx` — fixed `React.CSSProperties` without `React` import
+- `App.tsx` — unknown `/docs/*` paths now redirect to `/docs` instead of silently rendering Introduction
+- `App.tsx` — moved `<Toaster />` inside `<BrowserRouter>` for correct provider nesting
+- `Footer.tsx` — fixed stat card right-border logic at 2-column mobile breakpoint (was creating dangling border on 3rd item)
+- `CanvasEffects.tsx` — hero install/import copy buttons now use the actual `installLine`/`importLine` values instead of hardcoded Aurora strings
+- `CanvasEffects.tsx` — "08 More Effects" divider count is now dynamic (`GRID.length`)
+- `CanvasEffects.tsx` — Aurora `reactCode`/`vueCode` now includes all 5 colors (was missing `#00dceb`)
+- `CanvasEffects.tsx` — each effect card now has `id={effect.id}` for hash-based deep linking
+- `SearchCommand.tsx` — canvas effects now navigate to hash anchors (e.g. `/canvas-effects#aurora`) instead of all linking to the same `/canvas-effects` URL
+- `SearchCommand.tsx` — `<kbd>` shortcut hint now has `aria-hidden="true"` to prevent screen reader double-announcement
+
+**Build**
+- `scripts/build-registry.js` — now processes `public/r/vue/` subdirectory and outputs stripped registry files to `public/vue/` (was silently skipping all Vue registry files)
+
+---
+
 ## [3.1.1] — 2026-04-18
 
 ### 🐛 Bug Fixes

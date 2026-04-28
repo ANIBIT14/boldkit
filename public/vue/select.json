@@ -1,0 +1,55 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "select",
+  "type": "registry:ui",
+  "description": "Displays a list of options for the user to pick from",
+  "dependencies": [
+    "reka-ui",
+    "lucide-vue-next"
+  ],
+  "registryDependencies": [
+    "utils"
+  ],
+  "files": [
+    {
+      "path": "registry/default/ui/Select.vue",
+      "type": "registry:ui",
+      "target": "components/ui/Select.vue"
+    },
+    {
+      "path": "registry/default/ui/SelectTrigger.vue",
+      "type": "registry:ui",
+      "target": "components/ui/SelectTrigger.vue"
+    },
+    {
+      "path": "registry/default/ui/SelectValue.vue",
+      "type": "registry:ui",
+      "target": "components/ui/SelectValue.vue"
+    },
+    {
+      "path": "registry/default/ui/SelectContent.vue",
+      "type": "registry:ui",
+      "target": "components/ui/SelectContent.vue"
+    },
+    {
+      "path": "registry/default/ui/SelectItem.vue",
+      "type": "registry:ui",
+      "target": "components/ui/SelectItem.vue"
+    },
+    {
+      "path": "registry/default/ui/SelectGroup.vue",
+      "type": "registry:ui",
+      "target": "components/ui/SelectGroup.vue"
+    },
+    {
+      "path": "registry/default/ui/SelectLabel.vue",
+      "type": "registry:ui",
+      "target": "components/ui/SelectLabel.vue"
+    },
+    {
+      "path": "registry/default/ui/SelectSeparator.vue",
+      "type": "registry:ui",
+      "target": "components/ui/SelectSeparator.vue"
+    }
+  ]
+}

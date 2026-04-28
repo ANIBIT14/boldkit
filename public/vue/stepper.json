@@ -1,0 +1,44 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "stepper",
+  "type": "registry:ui",
+  "description": "Multi-step wizard/stepper component",
+  "dependencies": [
+    "class-variance-authority"
+  ],
+  "registryDependencies": [
+    "utils"
+  ],
+  "files": [
+    {
+      "path": "registry/default/ui/Stepper.vue",
+      "type": "registry:ui",
+      "target": "components/ui/Stepper.vue"
+    },
+    {
+      "path": "registry/default/ui/StepperContent.vue",
+      "type": "registry:ui",
+      "target": "components/ui/StepperContent.vue"
+    },
+    {
+      "path": "registry/default/ui/StepperItem.vue",
+      "type": "registry:ui",
+      "target": "components/ui/StepperItem.vue"
+    },
+    {
+      "path": "registry/default/ui/StepperList.vue",
+      "type": "registry:ui",
+      "target": "components/ui/StepperList.vue"
+    },
+    {
+      "path": "registry/default/ui/StepperSeparator.vue",
+      "type": "registry:ui",
+      "target": "components/ui/StepperSeparator.vue"
+    },
+    {
+      "path": "registry/default/ui/StepperTrigger.vue",
+      "type": "registry:ui",
+      "target": "components/ui/StepperTrigger.vue"
+    }
+  ]
+}

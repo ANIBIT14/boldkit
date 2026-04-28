@@ -1,0 +1,54 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "drawer",
+  "type": "registry:ui",
+  "description": "A drawer component for Vue",
+  "dependencies": [
+    "vaul-vue"
+  ],
+  "registryDependencies": [
+    "utils"
+  ],
+  "files": [
+    {
+      "path": "registry/default/ui/Drawer.vue",
+      "type": "registry:ui",
+      "target": "components/ui/Drawer.vue"
+    },
+    {
+      "path": "registry/default/ui/DrawerTrigger.vue",
+      "type": "registry:ui",
+      "target": "components/ui/DrawerTrigger.vue"
+    },
+    {
+      "path": "registry/default/ui/DrawerContent.vue",
+      "type": "registry:ui",
+      "target": "components/ui/DrawerContent.vue"
+    },
+    {
+      "path": "registry/default/ui/DrawerHeader.vue",
+      "type": "registry:ui",
+      "target": "components/ui/DrawerHeader.vue"
+    },
+    {
+      "path": "registry/default/ui/DrawerFooter.vue",
+      "type": "registry:ui",
+      "target": "components/ui/DrawerFooter.vue"
+    },
+    {
+      "path": "registry/default/ui/DrawerTitle.vue",
+      "type": "registry:ui",
+      "target": "components/ui/DrawerTitle.vue"
+    },
+    {
+      "path": "registry/default/ui/DrawerDescription.vue",
+      "type": "registry:ui",
+      "target": "components/ui/DrawerDescription.vue"
+    },
+    {
+      "path": "registry/default/ui/DrawerClose.vue",
+      "type": "registry:ui",
+      "target": "components/ui/DrawerClose.vue"
+    }
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "date-range-picker",
+  "type": "registry:ui",
+  "description": "Date range picker with presets, dual calendars, and customizable options",
+  "dependencies": [
+    "date-fns",
+    "lucide-vue-next"
+  ],
+  "registryDependencies": [
+    "utils",
+    "button",
+    "calendar",
+    "popover"
+  ],
+  "files": [
+    {
+      "path": "registry/default/ui/DateRangePicker.vue",
+      "type": "registry:ui",
+      "target": "components/ui/DateRangePicker.vue"
+    }
+  ]
+}

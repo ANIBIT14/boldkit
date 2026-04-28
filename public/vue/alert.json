@@ -1,0 +1,29 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "alert",
+  "type": "registry:ui",
+  "description": "Displays a callout for user attention",
+  "dependencies": [
+    "class-variance-authority"
+  ],
+  "registryDependencies": [
+    "utils"
+  ],
+  "files": [
+    {
+      "path": "registry/default/ui/Alert.vue",
+      "type": "registry:ui",
+      "target": "components/ui/Alert.vue"
+    },
+    {
+      "path": "registry/default/ui/AlertTitle.vue",
+      "type": "registry:ui",
+      "target": "components/ui/AlertTitle.vue"
+    },
+    {
+      "path": "registry/default/ui/AlertDescription.vue",
+      "type": "registry:ui",
+      "target": "components/ui/AlertDescription.vue"
+    }
+  ]
+}

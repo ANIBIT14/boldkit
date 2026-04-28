@@ -1,0 +1,55 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "dialog",
+  "type": "registry:ui",
+  "description": "A modal dialog with overlay",
+  "dependencies": [
+    "reka-ui",
+    "lucide-vue-next"
+  ],
+  "registryDependencies": [
+    "utils"
+  ],
+  "files": [
+    {
+      "path": "registry/default/ui/Dialog.vue",
+      "type": "registry:ui",
+      "target": "components/ui/Dialog.vue"
+    },
+    {
+      "path": "registry/default/ui/DialogTrigger.vue",
+      "type": "registry:ui",
+      "target": "components/ui/DialogTrigger.vue"
+    },
+    {
+      "path": "registry/default/ui/DialogContent.vue",
+      "type": "registry:ui",
+      "target": "components/ui/DialogContent.vue"
+    },
+    {
+      "path": "registry/default/ui/DialogHeader.vue",
+      "type": "registry:ui",
+      "target": "components/ui/DialogHeader.vue"
+    },
+    {
+      "path": "registry/default/ui/DialogFooter.vue",
+      "type": "registry:ui",
+      "target": "components/ui/DialogFooter.vue"
+    },
+    {
+      "path": "registry/default/ui/DialogTitle.vue",
+      "type": "registry:ui",
+      "target": "components/ui/DialogTitle.vue"
+    },
+    {
+      "path": "registry/default/ui/DialogDescription.vue",
+      "type": "registry:ui",
+      "target": "components/ui/DialogDescription.vue"
+    },
+    {
+      "path": "registry/default/ui/DialogClose.vue",
+      "type": "registry:ui",
+      "target": "components/ui/DialogClose.vue"
+    }
+  ]
+}

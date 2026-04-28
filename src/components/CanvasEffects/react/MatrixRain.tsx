@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, type CSSProperties } from 'react'
 
 export interface MatrixRainProps {
   /** Color of the bright head square */
@@ -12,7 +12,7 @@ export interface MatrixRainProps {
   /** Number of squares in each column's tail */
   tailLength?: number
   className?: string
-  style?: React.CSSProperties
+  style?: CSSProperties
 }
 
 /**
@@ -50,11 +50,13 @@ export function MatrixRain({
     const el = ref.current
     if (!el) return
     const ctx = el.getContext('2d')!
-    let raf: number
+    let raf = 0
 
     let cols: number[] = []
     const resize = () => {
-      el.width = el.offsetWidth; el.height = el.offsetHeight
+      const dpr = window.devicePixelRatio || 1
+      el.width = el.offsetWidth * dpr
+      el.height = el.offsetHeight * dpr
       const TAIL = tailRef.current
       cols = Array.from({ length: Math.ceil(el.width / gapRef.current) }, () =>
         -Math.floor(Math.random() * (el.height / gapRef.current + TAIL))
@@ -102,7 +104,7 @@ export function MatrixRain({
     <canvas
       ref={ref}
       className={className}
-      style={{ display: 'block', width: '100%', height: '100%', ...style }}
+      style={{ display: 'block', width: '100%', height: '100%', background: '#000', ...style }}
     />
   )
 }

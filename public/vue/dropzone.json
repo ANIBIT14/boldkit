@@ -1,0 +1,24 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "dropzone",
+  "type": "registry:ui",
+  "description": "Drag-and-drop file upload with preview and validation",
+  "dependencies": [
+    "lucide-vue-next"
+  ],
+  "registryDependencies": [
+    "utils"
+  ],
+  "files": [
+    {
+      "path": "registry/default/ui/Dropzone.vue",
+      "type": "registry:ui",
+      "target": "components/ui/Dropzone.vue"
+    },
+    {
+      "path": "registry/default/ui/FileList.vue",
+      "type": "registry:ui",
+      "target": "components/ui/FileList.vue"
+    }
+  ]
+}

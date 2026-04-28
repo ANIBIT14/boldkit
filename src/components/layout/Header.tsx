@@ -19,10 +19,10 @@ import {
   ArrowUpRight,
   Sparkles,
 } from 'lucide-react'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, type CSSProperties } from 'react'
 import { cn } from '@/lib/utils'
 
-const DISPLAY: React.CSSProperties = { fontFamily: "'Bebas Neue', sans-serif" }
+const DISPLAY: CSSProperties = { fontFamily: "'Bebas Neue', sans-serif" }
 
 const navItems = [
   { label: 'Docs',       href: '/docs',           icon: BookOpen },
@@ -53,6 +53,34 @@ export function Header() {
       document.body.style.overflow = ''
     }
     return () => { document.body.style.overflow = '' }
+  }, [mobileMenuOpen])
+
+  // Escape key to close + focus trap
+  useEffect(() => {
+    if (!mobileMenuOpen) return
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        setMobileMenuOpen(false)
+        return
+      }
+      if (e.key === 'Tab') {
+        const dialog = document.getElementById('mobile-menu')
+        if (!dialog) return
+        const focusable = dialog.querySelectorAll<HTMLElement>(
+          'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])'
+        )
+        if (!focusable.length) return
+        const first = focusable[0]
+        const last = focusable[focusable.length - 1]
+        if (e.shiftKey) {
+          if (document.activeElement === first) { e.preventDefault(); last.focus() }
+        } else {
+          if (document.activeElement === last) { e.preventDefault(); first.focus() }
+        }
+      }
+    }
+    document.addEventListener('keydown', onKeyDown)
+    return () => document.removeEventListener('keydown', onKeyDown)
   }, [mobileMenuOpen])
 
   return (

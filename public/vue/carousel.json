@@ -1,0 +1,46 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "carousel",
+  "type": "registry:ui",
+  "description": "Carousel component with navigation, dots, and touch support built on Embla",
+  "dependencies": [
+    "embla-carousel-vue",
+    "lucide-vue-next"
+  ],
+  "registryDependencies": [
+    "utils",
+    "button"
+  ],
+  "files": [
+    {
+      "path": "registry/default/ui/Carousel.vue",
+      "type": "registry:ui",
+      "target": "components/ui/Carousel.vue"
+    },
+    {
+      "path": "registry/default/ui/CarouselContent.vue",
+      "type": "registry:ui",
+      "target": "components/ui/CarouselContent.vue"
+    },
+    {
+      "path": "registry/default/ui/CarouselItem.vue",
+      "type": "registry:ui",
+      "target": "components/ui/CarouselItem.vue"
+    },
+    {
+      "path": "registry/default/ui/CarouselPrevious.vue",
+      "type": "registry:ui",
+      "target": "components/ui/CarouselPrevious.vue"
+    },
+    {
+      "path": "registry/default/ui/CarouselNext.vue",
+      "type": "registry:ui",
+      "target": "components/ui/CarouselNext.vue"
+    },
+    {
+      "path": "registry/default/ui/CarouselDots.vue",
+      "type": "registry:ui",
+      "target": "components/ui/CarouselDots.vue"
+    }
+  ]
+}

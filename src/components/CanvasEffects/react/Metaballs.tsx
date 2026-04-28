@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, type CSSProperties } from 'react'
 
 function hexToRgb(hex: string): [number, number, number] {
   const n = parseInt(hex.replace('#', ''), 16)
@@ -13,7 +13,7 @@ export interface MetaballsProps {
   /** Movement speed multiplier */
   speed?: number
   className?: string
-  style?: React.CSSProperties
+  style?: CSSProperties
 }
 
 const DEFAULT_COLORS = ['#ff5050', '#3cb9ff', '#ffc32d', '#aa4bff', '#37ff96']
@@ -48,7 +48,7 @@ export function Metaballs({
     const el = ref.current
     if (!el) return
     const ctx = el.getContext('2d')!
-    let raf: number
+    let raf = 0
 
     const SCALE = 3
     type Ball = { x: number; y: number; vx: number; vy: number; r: number; rgb: [number, number, number] }
@@ -66,7 +66,13 @@ export function Metaballs({
       }))
     }
 
-    const resize = () => { el.width = el.offsetWidth; el.height = el.offsetHeight; init() }
+    const resize = () => {
+      if (!el.offsetWidth || !el.offsetHeight) return
+      const dpr = window.devicePixelRatio || 1
+      el.width = el.offsetWidth * dpr
+      el.height = el.offsetHeight * dpr
+      init()
+    }
     resize()
 
     const off    = document.createElement('canvas')

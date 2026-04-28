@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "skeleton",
+  "type": "registry:ui",
+  "description": "Displays a loading placeholder",
+  "dependencies": [],
+  "registryDependencies": [
+    "utils"
+  ],
+  "files": [
+    {
+      "path": "registry/default/ui/Skeleton.vue",
+      "type": "registry:ui",
+      "target": "components/ui/Skeleton.vue"
+    }
+  ]
+}

@@ -1,0 +1,50 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "breadcrumb",
+  "type": "registry:ui",
+  "description": "Displays the path to the current resource",
+  "dependencies": [
+    "reka-ui",
+    "lucide-vue-next"
+  ],
+  "registryDependencies": [
+    "utils"
+  ],
+  "files": [
+    {
+      "path": "registry/default/ui/Breadcrumb.vue",
+      "type": "registry:ui",
+      "target": "components/ui/Breadcrumb.vue"
+    },
+    {
+      "path": "registry/default/ui/BreadcrumbList.vue",
+      "type": "registry:ui",
+      "target": "components/ui/BreadcrumbList.vue"
+    },
+    {
+      "path": "registry/default/ui/BreadcrumbItem.vue",
+      "type": "registry:ui",
+      "target": "components/ui/BreadcrumbItem.vue"
+    },
+    {
+      "path": "registry/default/ui/BreadcrumbLink.vue",
+      "type": "registry:ui",
+      "target": "components/ui/BreadcrumbLink.vue"
+    },
+    {
+      "path": "registry/default/ui/BreadcrumbPage.vue",
+      "type": "registry:ui",
+      "target": "components/ui/BreadcrumbPage.vue"
+    },
+    {
+      "path": "registry/default/ui/BreadcrumbSeparator.vue",
+      "type": "registry:ui",
+      "target": "components/ui/BreadcrumbSeparator.vue"
+    },
+    {
+      "path": "registry/default/ui/BreadcrumbEllipsis.vue",
+      "type": "registry:ui",
+      "target": "components/ui/BreadcrumbEllipsis.vue"
+    }
+  ]
+}

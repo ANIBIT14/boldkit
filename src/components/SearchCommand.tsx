@@ -127,16 +127,16 @@ const pages = [
 ]
 
 const canvasEffects = [
-  { name: 'Aurora', path: '/canvas-effects' },
-  { name: 'Flow Field', path: '/canvas-effects' },
-  { name: 'Plasma', path: '/canvas-effects' },
-  { name: 'Metaballs', path: '/canvas-effects' },
-  { name: 'Matrix Rain', path: '/canvas-effects' },
-  { name: 'Particle Web', path: '/canvas-effects' },
-  { name: 'Dot Wave', path: '/canvas-effects' },
-  { name: 'Dot Blob', path: '/canvas-effects' },
-  { name: 'Mouse Ripple', path: '/canvas-effects' },
-  { name: 'Lissajous Grid', path: '/canvas-effects' },
+  { name: 'Aurora', path: '/canvas-effects#aurora' },
+  { name: 'Flow Field', path: '/canvas-effects#flow-field' },
+  { name: 'Plasma', path: '/canvas-effects#plasma' },
+  { name: 'Metaballs', path: '/canvas-effects#metaballs' },
+  { name: 'Matrix Rain', path: '/canvas-effects#matrix-rain' },
+  { name: 'Particle Web', path: '/canvas-effects#particle-web' },
+  { name: 'Dot Wave', path: '/canvas-effects#dot-wave' },
+  { name: 'Dot Blob', path: '/canvas-effects#dot-blob' },
+  { name: 'Mouse Ripple', path: '/canvas-effects#mouse-ripple' },
+  { name: 'Lissajous Grid', path: '/canvas-effects#lissajous-grid' },
 ]
 
 export function SearchCommand() {
@@ -169,7 +169,7 @@ export function SearchCommand() {
       >
         <Search className="h-3.5 w-3.5 shrink-0" />
         <span className="hidden md:inline text-xs text-muted-foreground">Search...</span>
-        <kbd className="hidden sm:inline-flex h-5 items-center gap-0.5 border-2 border-foreground/30 bg-muted px-1.5 font-mono text-[10px] font-bold ml-1">
+        <kbd aria-hidden="true" className="hidden sm:inline-flex h-5 items-center gap-0.5 border-2 border-foreground/30 bg-muted px-1.5 font-mono text-[10px] font-bold ml-1">
           <span className="text-xs">⌘</span>K
         </kbd>
       </button>

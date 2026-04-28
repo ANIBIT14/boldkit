@@ -1,0 +1,25 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "button",
+  "type": "registry:ui",
+  "description": "Displays a button with neubrutalism styling and press-down animation",
+  "dependencies": [
+    "reka-ui",
+    "class-variance-authority"
+  ],
+  "registryDependencies": [
+    "utils"
+  ],
+  "files": [
+    {
+      "path": "registry/default/ui/Button.vue",
+      "type": "registry:ui",
+      "target": "components/ui/Button.vue"
+    },
+    {
+      "path": "registry/default/ui/button-variants.ts",
+      "type": "registry:ui",
+      "target": "components/ui/button-variants.ts"
+    }
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "treemap-chart",
+  "type": "registry:ui",
+  "description": "Treemap for hierarchical data visualization with proportional rectangles",
+  "dependencies": [
+    "vue-echarts",
+    "echarts"
+  ],
+  "registryDependencies": [
+    "utils",
+    "chart-utils"
+  ],
+  "files": [
+    {
+      "path": "registry/default/ui/TreemapChart.vue",
+      "type": "registry:ui",
+      "target": "components/ui/TreemapChart.vue"
+    }
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "sonner",
+  "type": "registry:ui",
+  "description": "An opinionated toast component",
+  "dependencies": [
+    "vue-sonner"
+  ],
+  "registryDependencies": [
+    "utils"
+  ],
+  "files": [
+    {
+      "path": "registry/default/ui/Sonner.vue",
+      "type": "registry:ui",
+      "target": "components/ui/Sonner.vue"
+    }
+  ]
+}

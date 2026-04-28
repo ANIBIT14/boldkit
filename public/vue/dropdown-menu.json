@@ -1,0 +1,60 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "dropdown-menu",
+  "type": "registry:ui",
+  "description": "Displays a menu to the user",
+  "dependencies": [
+    "reka-ui",
+    "lucide-vue-next"
+  ],
+  "registryDependencies": [
+    "utils"
+  ],
+  "files": [
+    {
+      "path": "registry/default/ui/DropdownMenu.vue",
+      "type": "registry:ui",
+      "target": "components/ui/DropdownMenu.vue"
+    },
+    {
+      "path": "registry/default/ui/DropdownMenuTrigger.vue",
+      "type": "registry:ui",
+      "target": "components/ui/DropdownMenuTrigger.vue"
+    },
+    {
+      "path": "registry/default/ui/DropdownMenuContent.vue",
+      "type": "registry:ui",
+      "target": "components/ui/DropdownMenuContent.vue"
+    },
+    {
+      "path": "registry/default/ui/DropdownMenuItem.vue",
+      "type": "registry:ui",
+      "target": "components/ui/DropdownMenuItem.vue"
+    },
+    {
+      "path": "registry/default/ui/DropdownMenuCheckboxItem.vue",
+      "type": "registry:ui",
+      "target": "components/ui/DropdownMenuCheckboxItem.vue"
+    },
+    {
+      "path": "registry/default/ui/DropdownMenuRadioItem.vue",
+      "type": "registry:ui",
+      "target": "components/ui/DropdownMenuRadioItem.vue"
+    },
+    {
+      "path": "registry/default/ui/DropdownMenuLabel.vue",
+      "type": "registry:ui",
+      "target": "components/ui/DropdownMenuLabel.vue"
+    },
+    {
+      "path": "registry/default/ui/DropdownMenuSeparator.vue",
+      "type": "registry:ui",
+      "target": "components/ui/DropdownMenuSeparator.vue"
+    },
+    {
+      "path": "registry/default/ui/DropdownMenuRadioGroup.vue",
+      "type": "registry:ui",
+      "target": "components/ui/DropdownMenuRadioGroup.vue"
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "radio-group",
+  "type": "registry:ui",
+  "description": "A set of radio buttons",
+  "dependencies": [
+    "reka-ui"
+  ],
+  "registryDependencies": [
+    "utils"
+  ],
+  "files": [
+    {
+      "path": "registry/default/ui/RadioGroup.vue",
+      "type": "registry:ui",
+      "target": "components/ui/RadioGroup.vue"
+    },
+    {
+      "path": "registry/default/ui/RadioGroupItem.vue",
+      "type": "registry:ui",
+      "target": "components/ui/RadioGroupItem.vue"
+    }
+  ]
+}

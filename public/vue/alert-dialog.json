@@ -1,0 +1,59 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "alert-dialog",
+  "type": "registry:ui",
+  "description": "A modal dialog that interrupts the user",
+  "dependencies": [
+    "reka-ui"
+  ],
+  "registryDependencies": [
+    "utils"
+  ],
+  "files": [
+    {
+      "path": "registry/default/ui/AlertDialog.vue",
+      "type": "registry:ui",
+      "target": "components/ui/AlertDialog.vue"
+    },
+    {
+      "path": "registry/default/ui/AlertDialogTrigger.vue",
+      "type": "registry:ui",
+      "target": "components/ui/AlertDialogTrigger.vue"
+    },
+    {
+      "path": "registry/default/ui/AlertDialogContent.vue",
+      "type": "registry:ui",
+      "target": "components/ui/AlertDialogContent.vue"
+    },
+    {
+      "path": "registry/default/ui/AlertDialogHeader.vue",
+      "type": "registry:ui",
+      "target": "components/ui/AlertDialogHeader.vue"
+    },
+    {
+      "path": "registry/default/ui/AlertDialogFooter.vue",
+      "type": "registry:ui",
+      "target": "components/ui/AlertDialogFooter.vue"
+    },
+    {
+      "path": "registry/default/ui/AlertDialogTitle.vue",
+      "type": "registry:ui",
+      "target": "components/ui/AlertDialogTitle.vue"
+    },
+    {
+      "path": "registry/default/ui/AlertDialogDescription.vue",
+      "type": "registry:ui",
+      "target": "components/ui/AlertDialogDescription.vue"
+    },
+    {
+      "path": "registry/default/ui/AlertDialogAction.vue",
+      "type": "registry:ui",
+      "target": "components/ui/AlertDialogAction.vue"
+    },
+    {
+      "path": "registry/default/ui/AlertDialogCancel.vue",
+      "type": "registry:ui",
+      "target": "components/ui/AlertDialogCancel.vue"
+    }
+  ]
+}

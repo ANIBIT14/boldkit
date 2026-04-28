@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "tree-view",
+  "type": "registry:ui",
+  "description": "Hierarchical tree view with expand/collapse, selection, and checkboxes",
+  "dependencies": [
+    "reka-ui",
+    "lucide-vue-next"
+  ],
+  "registryDependencies": [
+    "utils",
+    "checkbox",
+    "collapsible"
+  ],
+  "files": [
+    {
+      "path": "registry/default/ui/TreeView.vue",
+      "type": "registry:ui",
+      "target": "components/ui/TreeView.vue"
+    }
+  ]
+}

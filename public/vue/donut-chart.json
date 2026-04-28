@@ -1,0 +1,32 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "donut-chart",
+  "type": "registry:ui",
+  "description": "A donut/pie chart component with neubrutalism styling and center content slot",
+  "dependencies": [
+    "vue-echarts",
+    "echarts",
+    "class-variance-authority"
+  ],
+  "registryDependencies": [
+    "utils",
+    "chart-utils"
+  ],
+  "files": [
+    {
+      "path": "registry/default/ui/DonutChart.vue",
+      "type": "registry:ui",
+      "target": "components/ui/DonutChart.vue"
+    },
+    {
+      "path": "registry/default/ui/chart-utils.ts",
+      "type": "registry:ui",
+      "target": "components/ui/chart-utils.ts"
+    },
+    {
+      "path": "registry/default/ui/chart-variants.ts",
+      "type": "registry:ui",
+      "target": "components/ui/chart-variants.ts"
+    }
+  ]
+}

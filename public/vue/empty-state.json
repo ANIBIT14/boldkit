@@ -1,0 +1,50 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "empty-state",
+  "type": "registry:ui",
+  "description": "Empty state placeholders with 14 presets, horizontal/vertical layouts, animations, and illustration support",
+  "dependencies": [
+    "lucide-vue-next",
+    "class-variance-authority"
+  ],
+  "registryDependencies": [
+    "utils"
+  ],
+  "files": [
+    {
+      "path": "registry/default/ui/EmptyState.vue",
+      "type": "registry:ui",
+      "target": "components/ui/EmptyState.vue"
+    },
+    {
+      "path": "registry/default/ui/EmptyStateActions.vue",
+      "type": "registry:ui",
+      "target": "components/ui/EmptyStateActions.vue"
+    },
+    {
+      "path": "registry/default/ui/EmptyStateDescription.vue",
+      "type": "registry:ui",
+      "target": "components/ui/EmptyStateDescription.vue"
+    },
+    {
+      "path": "registry/default/ui/EmptyStateIcon.vue",
+      "type": "registry:ui",
+      "target": "components/ui/EmptyStateIcon.vue"
+    },
+    {
+      "path": "registry/default/ui/EmptyStateIllustration.vue",
+      "type": "registry:ui",
+      "target": "components/ui/EmptyStateIllustration.vue"
+    },
+    {
+      "path": "registry/default/ui/EmptyStatePreset.vue",
+      "type": "registry:ui",
+      "target": "components/ui/EmptyStatePreset.vue"
+    },
+    {
+      "path": "registry/default/ui/EmptyStateTitle.vue",
+      "type": "registry:ui",
+      "target": "components/ui/EmptyStateTitle.vue"
+    }
+  ]
+}

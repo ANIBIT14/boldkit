@@ -1,0 +1,30 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "pagination",
+  "type": "registry:ui",
+  "description": "Navigation for paged content",
+  "dependencies": [
+    "reka-ui",
+    "lucide-vue-next"
+  ],
+  "registryDependencies": [
+    "utils"
+  ],
+  "files": [
+    {
+      "path": "registry/default/ui/Pagination.vue",
+      "type": "registry:ui",
+      "target": "components/ui/Pagination.vue"
+    },
+    {
+      "path": "registry/default/ui/PaginationEllipsis.vue",
+      "type": "registry:ui",
+      "target": "components/ui/PaginationEllipsis.vue"
+    },
+    {
+      "path": "registry/default/ui/PaginationNext.vue",
+      "type": "registry:ui",
+      "target": "components/ui/PaginationNext.vue"
+    }
+  ]
+}

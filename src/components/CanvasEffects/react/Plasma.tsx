@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, type CSSProperties } from 'react'
 
 function hexToRgb(hex: string): [number, number, number] {
   const n = parseInt(hex.replace('#', ''), 16)
@@ -14,7 +14,7 @@ export interface PlasmaProps {
   /** Animation speed multiplier */
   speed?: number
   className?: string
-  style?: React.CSSProperties
+  style?: CSSProperties
 }
 
 const DEFAULT_PALETTE = [
@@ -49,10 +49,11 @@ export function Plasma({
     const el = ref.current
     if (!el) return
     const ctx = el.getContext('2d')!
-    let raf: number
+    let raf = 0
     const resize = () => {
-      if (el.offsetWidth > 0)  el.width  = el.offsetWidth
-      if (el.offsetHeight > 0) el.height = el.offsetHeight
+      const dpr = window.devicePixelRatio || 1
+      if (el.offsetWidth > 0)  el.width  = el.offsetWidth  * dpr
+      if (el.offsetHeight > 0) el.height = el.offsetHeight * dpr
     }
     resize()
 

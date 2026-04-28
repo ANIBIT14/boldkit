@@ -1,0 +1,32 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "radar-chart",
+  "type": "registry:ui",
+  "description": "A radar/spider chart component with neubrutalism styling for multi-dimensional data visualization",
+  "dependencies": [
+    "vue-echarts",
+    "echarts",
+    "class-variance-authority"
+  ],
+  "registryDependencies": [
+    "utils",
+    "chart-utils"
+  ],
+  "files": [
+    {
+      "path": "registry/default/ui/RadarChart.vue",
+      "type": "registry:ui",
+      "target": "components/ui/RadarChart.vue"
+    },
+    {
+      "path": "registry/default/ui/chart-utils.ts",
+      "type": "registry:ui",
+      "target": "components/ui/chart-utils.ts"
+    },
+    {
+      "path": "registry/default/ui/chart-variants.ts",
+      "type": "registry:ui",
+      "target": "components/ui/chart-variants.ts"
+    }
+  ]
+}

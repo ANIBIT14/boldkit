@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, type CSSProperties } from 'react'
 
 function hexToRgb(hex: string): [number, number, number] {
   const n = parseInt(hex.replace('#', ''), 16)
@@ -13,7 +13,7 @@ export interface AuroraProps {
   /** Animation speed multiplier */
   speed?: number
   className?: string
-  style?: React.CSSProperties
+  style?: CSSProperties
 }
 
 const DEFAULT_COLORS = ['#00ffaa', '#00beff', '#78ff64', '#be50ff', '#00dceb']
@@ -55,9 +55,13 @@ export function Aurora({
     const el = ref.current
     if (!el) return
     const ctx = el.getContext('2d')!
-    let raf: number
+    let raf = 0
 
-    const resize = () => { el.width = el.offsetWidth; el.height = el.offsetHeight }
+    const resize = () => {
+      const dpr = window.devicePixelRatio || 1
+      el.width = el.offsetWidth * dpr
+      el.height = el.offsetHeight * dpr
+    }
     resize()
 
     type Star = { x: number; y: number; r: number; p: number; s: number }
@@ -126,6 +130,7 @@ export function Aurora({
         ctx.globalAlpha = 0.65; ctx.stroke(); ctx.shadowBlur = 0
       })
 
+      ctx.shadowColor = 'transparent'
       ctx.globalAlpha = 1
       t += 0.007 * spd
       raf = requestAnimationFrame(draw)

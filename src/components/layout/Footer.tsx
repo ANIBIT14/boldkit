@@ -2,6 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { Badge } from '@/components/ui/badge'
 import { Github, Mail, ArrowUpRight, Package, BarChart3, LayoutGrid, Shield } from 'lucide-react'
+import { cn } from '@/lib/utils'
 
 const DISPLAY: React.CSSProperties = { fontFamily: "'Bebas Neue', sans-serif" }
 const MONO: React.CSSProperties = { fontFamily: "'DM Mono', monospace" }
@@ -62,7 +63,13 @@ export function Footer() {
               return (
                 <div
                   key={item.label}
-                  className={`p-5 bg-white/5 hover:bg-white/8 transition-colors ${i < 3 ? 'border-r-3 border-white/20' : ''}`}
+                  className={cn(
+                    'p-5 bg-white/5 hover:bg-white/8 transition-colors border-white/20',
+                    // Mobile (2-col): right border on col 0 only (not col 1, 3)
+                    i % 2 === 0 ? 'border-r-3' : '',
+                    // sm+ (4-col): right border on all but last
+                    i < 3 ? 'sm:border-r-3' : 'sm:border-r-0',
+                  )}
                 >
                   <Icon className="h-4 w-4 mb-3" style={{ color: item.accent }} />
                   <div

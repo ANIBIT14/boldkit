@@ -1,0 +1,42 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "card",
+  "type": "registry:ui",
+  "description": "Displays a card with header, content, and footer",
+  "dependencies": [],
+  "registryDependencies": [
+    "utils"
+  ],
+  "files": [
+    {
+      "path": "registry/default/ui/Card.vue",
+      "type": "registry:ui",
+      "target": "components/ui/Card.vue"
+    },
+    {
+      "path": "registry/default/ui/CardHeader.vue",
+      "type": "registry:ui",
+      "target": "components/ui/CardHeader.vue"
+    },
+    {
+      "path": "registry/default/ui/CardTitle.vue",
+      "type": "registry:ui",
+      "target": "components/ui/CardTitle.vue"
+    },
+    {
+      "path": "registry/default/ui/CardDescription.vue",
+      "type": "registry:ui",
+      "target": "components/ui/CardDescription.vue"
+    },
+    {
+      "path": "registry/default/ui/CardContent.vue",
+      "type": "registry:ui",
+      "target": "components/ui/CardContent.vue"
+    },
+    {
+      "path": "registry/default/ui/CardFooter.vue",
+      "type": "registry:ui",
+      "target": "components/ui/CardFooter.vue"
+    }
+  ]
+}

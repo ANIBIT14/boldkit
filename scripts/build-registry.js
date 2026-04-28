@@ -8,26 +8,32 @@ const __dirname = path.dirname(__filename);
 const publicDir = path.join(__dirname, '..', 'public');
 const rDir = path.join(publicDir, 'r');
 
-// Read all JSON files from public/r/
-const files = fs.readdirSync(rDir).filter(f => f.endsWith('.json'));
+function stripContent(srcDir, destDir) {
+  if (!fs.existsSync(destDir)) fs.mkdirSync(destDir, { recursive: true });
+  const files = fs.readdirSync(srcDir).filter(f => f.endsWith('.json'));
+  files.forEach(file => {
+    const filePath = path.join(srcDir, file);
+    const content = JSON.parse(fs.readFileSync(filePath, 'utf-8'));
+    if (content.files && Array.isArray(content.files)) {
+      content.files = content.files.map(f => {
+        const { content, ...rest } = f;
+        return rest;
+      });
+    }
+    const destPath = path.join(destDir, file);
+    fs.writeFileSync(destPath, JSON.stringify(content, null, 2));
+    console.log(`Processed: ${path.relative(publicDir, destPath)}`);
+  });
+}
 
-files.forEach(file => {
-  const filePath = path.join(rDir, file);
-  const content = JSON.parse(fs.readFileSync(filePath, 'utf-8'));
+// Process React registry files: public/r/*.json → public/*.json
+stripContent(rDir, publicDir);
 
-  // Remove content property from files array
-  if (content.files && Array.isArray(content.files)) {
-    content.files = content.files.map(f => {
-      const { content, ...rest } = f;
-      return rest;
-    });
-  }
-
-  // Write to public root (flat structure)
-  const destPath = path.join(publicDir, file);
-  fs.writeFileSync(destPath, JSON.stringify(content, null, 2));
-  console.log(`Processed: ${file}`);
-});
+// Process Vue registry files: public/r/vue/*.json → public/vue/*.json
+const vueRDir = path.join(rDir, 'vue');
+if (fs.existsSync(vueRDir)) {
+  stripContent(vueRDir, path.join(publicDir, 'vue'));
+}
 
 // Copy registry.json to public root
 const registryPath = path.join(__dirname, '..', 'registry.json');

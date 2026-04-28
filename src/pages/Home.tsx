@@ -21,7 +21,7 @@ import {
   Github, Layers, TrendingUp, DollarSign, LayoutGrid, Sparkles,
   Settings, LogIn, FileX, Package, BarChart3, Wand2, Cpu,
 } from 'lucide-react'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef, type CSSProperties } from 'react'
 import { SEO, pageSEO } from '@/components/SEO'
 import { useFramework, ReactIcon, VueIcon } from '@/hooks/use-framework'
 import { useScrollReveal } from '@/hooks/use-scroll-reveal'
@@ -37,8 +37,8 @@ import {
   Aurora, FlowField, Plasma, Metaballs, MatrixRain, ParticleWeb,
 } from '@/components/CanvasEffects/react'
 
-const DISPLAY: React.CSSProperties = { fontFamily: "'Bebas Neue', sans-serif" }
-const MONO: React.CSSProperties    = { fontFamily: "'DM Mono', monospace" }
+const DISPLAY: CSSProperties = { fontFamily: "'Bebas Neue', sans-serif" }
+const MONO: CSSProperties    = { fontFamily: "'DM Mono', monospace" }
 
 // ── Dot Matrix Studio animated preview ────────────────────────────────────
 const DM_ROWS = 8
@@ -59,7 +59,9 @@ const DM_ANIMS: DMAnim[] = [
 function DotMatrixPreview() {
   const [tick, setTick] = useState(0)
   useEffect(() => {
-    const id = setInterval(() => setTick(t => t + 1), 80)
+    const id = setInterval(() => {
+      if (!document.hidden) setTick(t => t + 1)
+    }, 80)
     return () => clearInterval(id)
   }, [])
   const animIdx = Math.floor(tick / 40) % DM_ANIMS.length
@@ -99,6 +101,7 @@ const DONUT_CONFIG = {
 
 export function Home() {
   const [copied, setCopied] = useState(false)
+  const copiedTimer = useRef<ReturnType<typeof setTimeout> | null>(null)
   const { framework, setFramework } = useFramework()
 
   const componentsCount = useCountUp({ end: COUNTS.components, duration: 1200 })
@@ -117,10 +120,15 @@ export function Home() {
     vue:   'npx shadcn-vue@latest add https://boldkit.dev/r/vue/button.json',
   }
 
-  const copyCommand = () => {
-    navigator.clipboard.writeText(commands[framework])
-    setCopied(true)
-    setTimeout(() => setCopied(false), 2000)
+  const copyCommand = async () => {
+    try {
+      await navigator.clipboard.writeText(commands[framework])
+      setCopied(true)
+      if (copiedTimer.current) clearTimeout(copiedTimer.current)
+      copiedTimer.current = setTimeout(() => setCopied(false), 2000)
+    } catch {
+      // clipboard unavailable (non-HTTPS or unsupported browser)
+    }
   }
 
   return (
@@ -961,7 +969,7 @@ export function Home() {
                   ))}
                 </div>
                 <div className="mt-auto">
-                  <Link to="/theme-builder">
+                  <Link to="/themes">
                     <Button variant="secondary" className="gap-2 group">
                       <Palette className="h-4 w-4" />
                       Open Theme Builder <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />

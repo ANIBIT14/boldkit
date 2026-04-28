@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, type CSSProperties } from 'react'
 
 export interface LissajousGridProps {
   /** Number of columns (x-frequency range 1..cols) */
@@ -12,7 +12,7 @@ export interface LissajousGridProps {
   /** Line opacity (0–1) */
   opacity?: number
   className?: string
-  style?: React.CSSProperties
+  style?: CSSProperties
 }
 
 /**
@@ -51,8 +51,12 @@ export function LissajousGrid({
     const el = ref.current
     if (!el) return
     const ctx = el.getContext('2d')!
-    let raf: number
-    const resize = () => { el.width = el.offsetWidth; el.height = el.offsetHeight }
+    let raf = 0
+    const resize = () => {
+      const dpr = window.devicePixelRatio || 1
+      el.width = el.offsetWidth * dpr
+      el.height = el.offsetHeight * dpr
+    }
     resize()
 
     const STEPS = 700

@@ -1,0 +1,29 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "hover-card",
+  "type": "registry:ui",
+  "description": "For sighted users to preview content",
+  "dependencies": [
+    "reka-ui"
+  ],
+  "registryDependencies": [
+    "utils"
+  ],
+  "files": [
+    {
+      "path": "registry/default/ui/HoverCard.vue",
+      "type": "registry:ui",
+      "target": "components/ui/HoverCard.vue"
+    },
+    {
+      "path": "registry/default/ui/HoverCardTrigger.vue",
+      "type": "registry:ui",
+      "target": "components/ui/HoverCardTrigger.vue"
+    },
+    {
+      "path": "registry/default/ui/HoverCardContent.vue",
+      "type": "registry:ui",
+      "target": "components/ui/HoverCardContent.vue"
+    }
+  ]
+}

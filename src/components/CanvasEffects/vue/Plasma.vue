@@ -29,7 +29,12 @@ onMounted(() => {
   const el = canvasRef.value
   if (!el) return
   const ctx = el.getContext('2d')!
-  const resize = () => { el.width = el.offsetWidth; el.height = el.offsetHeight }
+  const resize = () => {
+    if (!el.offsetWidth || !el.offsetHeight) return
+    const dpr = window.devicePixelRatio || 1
+    el.width = el.offsetWidth * dpr
+    el.height = el.offsetHeight * dpr
+  }
   resize()
 
   type Src = { x: number; y: number; vx: number; vy: number; freq: number; spd: number }
@@ -50,6 +55,7 @@ onMounted(() => {
     const pal = props.palette.map(hexToRgb)
 
     const colorAt = (n: number): [number, number, number] => {
+      if (pal.length < 2) return pal[0] ?? [0, 0, 0]
       const s = pal.length - 1
       const i = Math.min(s - 1, Math.floor(n * s))
       const f = n * s - i

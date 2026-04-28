@@ -1,0 +1,26 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "data-table",
+  "type": "registry:ui",
+  "description": "Powerful data table with sorting, filtering, pagination, and row selection",
+  "dependencies": [
+    "@tanstack/vue-table",
+    "lucide-vue-next"
+  ],
+  "registryDependencies": [
+    "utils",
+    "button",
+    "checkbox",
+    "dropdown-menu",
+    "input",
+    "select",
+    "table"
+  ],
+  "files": [
+    {
+      "path": "registry/default/ui/DataTable.vue",
+      "type": "registry:ui",
+      "target": "components/ui/DataTable.vue"
+    }
+  ]
+}

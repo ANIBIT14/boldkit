@@ -1,0 +1,60 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "command",
+  "type": "registry:ui",
+  "description": "Fast, composable command menu",
+  "dependencies": [
+    "reka-ui",
+    "lucide-vue-next"
+  ],
+  "registryDependencies": [
+    "utils"
+  ],
+  "files": [
+    {
+      "path": "registry/default/ui/Command.vue",
+      "type": "registry:ui",
+      "target": "components/ui/Command.vue"
+    },
+    {
+      "path": "registry/default/ui/CommandDialog.vue",
+      "type": "registry:ui",
+      "target": "components/ui/CommandDialog.vue"
+    },
+    {
+      "path": "registry/default/ui/CommandInput.vue",
+      "type": "registry:ui",
+      "target": "components/ui/CommandInput.vue"
+    },
+    {
+      "path": "registry/default/ui/CommandList.vue",
+      "type": "registry:ui",
+      "target": "components/ui/CommandList.vue"
+    },
+    {
+      "path": "registry/default/ui/CommandEmpty.vue",
+      "type": "registry:ui",
+      "target": "components/ui/CommandEmpty.vue"
+    },
+    {
+      "path": "registry/default/ui/CommandGroup.vue",
+      "type": "registry:ui",
+      "target": "components/ui/CommandGroup.vue"
+    },
+    {
+      "path": "registry/default/ui/CommandItem.vue",
+      "type": "registry:ui",
+      "target": "components/ui/CommandItem.vue"
+    },
+    {
+      "path": "registry/default/ui/CommandSeparator.vue",
+      "type": "registry:ui",
+      "target": "components/ui/CommandSeparator.vue"
+    },
+    {
+      "path": "registry/default/ui/CommandShortcut.vue",
+      "type": "registry:ui",
+      "target": "components/ui/CommandShortcut.vue"
+    }
+  ]
+}

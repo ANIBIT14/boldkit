@@ -38,7 +38,7 @@ onMounted(() => {
   if (!el) return
   const ctx = el.getContext('2d')!
 
-  const resize = () => { el.width = el.offsetWidth; el.height = el.offsetHeight }
+  const resize = () => { const dpr = window.devicePixelRatio || 1; el.width = el.offsetWidth * dpr; el.height = el.offsetHeight * dpr }
   resize()
 
   const gauss = (px: number, py: number, cx: number, cy: number, rx: number, ry: number) => {

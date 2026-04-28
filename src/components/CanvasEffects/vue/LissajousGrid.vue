@@ -24,7 +24,7 @@ onMounted(() => {
   const el = canvasRef.value
   if (!el) return
   const ctx = el.getContext('2d')!
-  const resize = () => { el.width = el.offsetWidth; el.height = el.offsetHeight }
+  const resize = () => { const dpr = window.devicePixelRatio || 1; el.width = el.offsetWidth * dpr; el.height = el.offsetHeight * dpr }
   resize()
 
   const STEPS = 700

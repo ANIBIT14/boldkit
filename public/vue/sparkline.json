@@ -1,0 +1,21 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "sparkline",
+  "type": "registry:ui",
+  "description": "A compact sparkline chart component for inline data visualization with line, area, and bar variants",
+  "dependencies": [
+    "vue-echarts",
+    "echarts",
+    "class-variance-authority"
+  ],
+  "registryDependencies": [
+    "utils"
+  ],
+  "files": [
+    {
+      "path": "registry/default/ui/SparklineChart.vue",
+      "type": "registry:ui",
+      "target": "components/ui/SparklineChart.vue"
+    }
+  ]
+}
