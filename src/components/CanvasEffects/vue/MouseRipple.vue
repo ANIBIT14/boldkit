@@ -31,14 +31,16 @@ onMounted(() => {
 
   const onMove = (e: MouseEvent) => {
     const r = el.getBoundingClientRect()
-    mouse.x = e.clientX - r.left; mouse.y = e.clientY - r.top
+    const dpr = window.devicePixelRatio || 1
+    mouse.x = (e.clientX - r.left) * dpr; mouse.y = (e.clientY - r.top) * dpr
   }
   el.addEventListener('mousemove', onMove)
   cleanupMouse = () => el.removeEventListener('mousemove', onMove)
 
   let t = 0
   const draw = () => {
-    const GAP = props.gap, W = el.width, H = el.height, RAD = props.rippleRadius
+    const dpr = window.devicePixelRatio || 1
+    const GAP = props.gap * dpr, W = el.width, H = el.height, RAD = props.rippleRadius * dpr
     ctx.clearRect(0, 0, W, H)
     const cols = Math.ceil(W / GAP) + 1, rows = Math.ceil(H / GAP) + 1
     for (let r = 0; r < rows; r++) {

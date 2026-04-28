@@ -56,18 +56,20 @@ export function MouseRipple({
 
     const onMove = (e: MouseEvent) => {
       const r = el.getBoundingClientRect()
-      mouse.current = { x: e.clientX - r.left, y: e.clientY - r.top }
+      const dpr = window.devicePixelRatio || 1
+      mouse.current = { x: (e.clientX - r.left) * dpr, y: (e.clientY - r.top) * dpr }
     }
     el.addEventListener('mousemove', onMove)
 
     let t = 0
     const draw = () => {
-      const GAP = gapRef.current
+      const dpr = window.devicePixelRatio || 1
+      const GAP = gapRef.current * dpr
       const W = el.width, H = el.height
       ctx.clearRect(0, 0, W, H)
       const cols = Math.ceil(W / GAP) + 1, rows = Math.ceil(H / GAP) + 1
       const { x: mx, y: my } = mouse.current
-      const RAD = radiusRef.current
+      const RAD = radiusRef.current * dpr
 
       for (let r = 0; r < rows; r++) {
         for (let c = 0; c < cols; c++) {
