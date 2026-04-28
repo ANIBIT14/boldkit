@@ -26,21 +26,24 @@ onMounted(() => {
   const ctx = el.getContext('2d')!
   const mouse = { x: -999, y: -999 }
 
-  const resize = () => { const dpr = window.devicePixelRatio || 1; el.width = el.offsetWidth * dpr; el.height = el.offsetHeight * dpr }
+  const resize = () => {
+    const dpr = window.devicePixelRatio || 1
+    el.width = el.offsetWidth * dpr
+    el.height = el.offsetHeight * dpr
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0)
+  }
   resize()
 
   const onMove = (e: MouseEvent) => {
     const r = el.getBoundingClientRect()
-    const dpr = window.devicePixelRatio || 1
-    mouse.x = (e.clientX - r.left) * dpr; mouse.y = (e.clientY - r.top) * dpr
+    mouse.x = e.clientX - r.left; mouse.y = e.clientY - r.top
   }
   el.addEventListener('mousemove', onMove)
   cleanupMouse = () => el.removeEventListener('mousemove', onMove)
 
   let t = 0
   const draw = () => {
-    const dpr = window.devicePixelRatio || 1
-    const GAP = props.gap * dpr, W = el.width, H = el.height, RAD = props.rippleRadius * dpr
+    const GAP = props.gap, W = el.offsetWidth, H = el.offsetHeight, RAD = props.rippleRadius
     ctx.clearRect(0, 0, W, H)
     const cols = Math.ceil(W / GAP) + 1, rows = Math.ceil(H / GAP) + 1
     for (let r = 0; r < rows; r++) {
