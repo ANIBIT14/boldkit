@@ -15,6 +15,8 @@ export interface SliderProps extends Omit<React.HTMLAttributes<HTMLDivElement>, 
   stiffness?: number
   damping?: number
   mass?: number
+  'aria-label'?: string | string[]
+  'aria-valuetext'?: string | ((value: number, index: number) => string)
 }
 
 interface SpringState {
@@ -38,6 +40,8 @@ const Slider = React.forwardRef<HTMLDivElement, SliderProps>(
       damping = 28,
       mass = 1,
       className,
+      'aria-label': ariaLabelProp,
+      'aria-valuetext': ariaValuetextProp,
       ...props
     },
     ref
@@ -420,6 +424,16 @@ const Slider = React.forwardRef<HTMLDivElement, SliderProps>(
             aria-valuemin={min}
             aria-valuemax={max}
             aria-valuenow={actualValue[index]}
+            aria-label={
+              Array.isArray(ariaLabelProp)
+                ? ariaLabelProp[index]
+                : ariaLabelProp
+            }
+            aria-valuetext={
+              typeof ariaValuetextProp === 'function'
+                ? ariaValuetextProp(actualValue[index], index)
+                : undefined
+            }
             aria-disabled={disabled}
             aria-orientation={orientation}
             onKeyDown={handleKeyDown(index)}
