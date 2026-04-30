@@ -8,8 +8,6 @@ defineProps<{
 
 <template>
   <span
-    role="link"
-    aria-disabled="true"
     aria-current="page"
     :class="cn('font-bold text-foreground', $props.class)"
   >
