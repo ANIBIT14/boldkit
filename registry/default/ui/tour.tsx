@@ -203,6 +203,9 @@ function TourPopover({
   return (
     <div
       ref={popoverRef}
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby={`tour-title-${currentStep}`}
       className={cn(
         'fixed z-[9999] w-80 border-3 border-foreground bg-popover p-4',
         'shadow-[8px_8px_0px_hsl(var(--shadow-color))]',
@@ -227,7 +230,7 @@ function TourPopover({
 
       {/* Content */}
       <div className="space-y-3">
-        <h3 className="text-base font-bold uppercase tracking-wide">
+        <h3 id={`tour-title-${currentStep}`} className="text-base font-bold uppercase tracking-wide">
           {step.title}
         </h3>
         <p className="text-sm text-muted-foreground">{step.description}</p>
@@ -349,6 +352,20 @@ const Tour = React.forwardRef<HTMLDivElement, TourProps>(
         setCurrentStep(0)
       }
     }, [open])
+
+    // Close on Escape key
+    React.useEffect(() => {
+      if (!open) return
+
+      const handleKeyDown = (e: KeyboardEvent) => {
+        if (e.key === 'Escape') {
+          close()
+        }
+      }
+
+      document.addEventListener('keydown', handleKeyDown)
+      return () => document.removeEventListener('keydown', handleKeyDown)
+    }, [open, close])
 
     const nextStep = React.useCallback(() => {
       if (currentStep < steps.length - 1) {
