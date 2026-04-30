@@ -204,6 +204,28 @@ function TreeNodeItem({ node, level }: TreeNodeProps) {
           toggleExpanded(node.id)
         }
         break
+      case 'ArrowDown': {
+        e.preventDefault()
+        const allItems = Array.from(
+          document.querySelectorAll<HTMLElement>('[role="treeitem"]')
+        )
+        const currentIndex = allItems.findIndex((el) => el === e.currentTarget)
+        if (currentIndex < allItems.length - 1) {
+          allItems[currentIndex + 1].focus()
+        }
+        break
+      }
+      case 'ArrowUp': {
+        e.preventDefault()
+        const allItems = Array.from(
+          document.querySelectorAll<HTMLElement>('[role="treeitem"]')
+        )
+        const currentIndex = allItems.findIndex((el) => el === e.currentTarget)
+        if (currentIndex > 0) {
+          allItems[currentIndex - 1].focus()
+        }
+        break
+      }
     }
   }
 
@@ -238,7 +260,7 @@ function TreeNodeItem({ node, level }: TreeNodeProps) {
             toggleExpanded(node.id)
           }}
           className="p-0.5 hover:bg-muted-foreground/20 transition-colors"
-          aria-label={isExpanded ? 'Collapse' : 'Expand'}
+          aria-label={isExpanded ? `Collapse ${node.label}` : `Expand ${node.label}`}
         >
           <ChevronRight
             className={cn(
