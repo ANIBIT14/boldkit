@@ -37,7 +37,7 @@
     },
     {
       "path": "registry/default/ui/BreadcrumbPage.vue",
-      "content": "<script setup lang=\"ts\">\nimport { cn } from '@/lib/utils'\n\ndefineProps<{\n  class?: string\n}>()\n</script>\n\n<template>\n  <span\n    role=\"link\"\n    aria-disabled=\"true\"\n    aria-current=\"page\"\n    :class=\"cn('font-bold text-foreground', $props.class)\"\n  >\n    <slot />\n  </span>\n</template>\n",
+      "content": "<script setup lang=\"ts\">\nimport { cn } from '@/lib/utils'\n\ndefineProps<{\n  class?: string\n}>()\n</script>\n\n<template>\n  <span\n    aria-current=\"page\"\n    :class=\"cn('font-bold text-foreground', $props.class)\"\n  >\n    <slot />\n  </span>\n</template>\n",
       "type": "registry:ui",
       "target": "components/ui/BreadcrumbPage.vue"
     },

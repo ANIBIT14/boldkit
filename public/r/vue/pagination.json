@@ -19,7 +19,7 @@
     },
     {
       "path": "registry/default/ui/PaginationEllipsis.vue",
-      "content": "<script setup lang=\"ts\">\nimport { MoreHorizontal } from 'lucide-vue-next'\nimport { cn } from '@/lib/utils'\n\ndefineProps<{\n  class?: string\n}>()\n</script>\n\n<template>\n  <span\n    aria-hidden=\"true\"\n    :class=\"cn('flex h-9 w-9 items-center justify-center', $props.class)\"\n  >\n    <MoreHorizontal class=\"h-4 w-4 stroke-[3]\" />\n    <span class=\"sr-only\">More pages</span>\n  </span>\n</template>\n",
+      "content": "<script setup lang=\"ts\">\nimport { MoreHorizontal } from 'lucide-vue-next'\nimport { cn } from '@/lib/utils'\n\ndefineProps<{\n  class?: string\n}>()\n</script>\n\n<template>\n  <span\n    role=\"img\"\n    aria-label=\"More pages\"\n    :class=\"cn('flex h-9 w-9 items-center justify-center', $props.class)\"\n  >\n    <MoreHorizontal aria-hidden=\"true\" class=\"h-4 w-4 stroke-[3]\" />\n  </span>\n</template>\n",
       "type": "registry:ui",
       "target": "components/ui/PaginationEllipsis.vue"
     },

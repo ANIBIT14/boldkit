@@ -19,7 +19,7 @@
     },
     {
       "path": "registry/default/ui/InputOTPGroup.vue",
-      "content": "<script setup lang=\"ts\">\nimport { cn } from '@/lib/utils'\n\ndefineProps<{\n  class?: string\n}>()\n</script>\n\n<template>\n  <div :class=\"cn('flex items-center', $props.class)\">\n    <slot />\n  </div>\n</template>\n",
+      "content": "<script setup lang=\"ts\">\nimport { cn } from '@/lib/utils'\n\ndefineProps<{\n  class?: string\n}>()\n</script>\n\n<template>\n  <div role=\"group\" :class=\"cn('flex items-center', $props.class)\">\n    <slot />\n  </div>\n</template>\n",
       "type": "registry:ui",
       "target": "components/ui/InputOTPGroup.vue"
     },
@@ -31,7 +31,7 @@
     },
     {
       "path": "registry/default/ui/InputOTPSeparator.vue",
-      "content": "<script setup lang=\"ts\">\nimport { Dot } from 'lucide-vue-next'\n</script>\n\n<template>\n  <div role=\"separator\">\n    <slot>\n      <Dot class=\"h-4 w-4\" />\n    </slot>\n  </div>\n</template>\n",
+      "content": "<script setup lang=\"ts\">\nimport { Dot } from 'lucide-vue-next'\n</script>\n\n<template>\n  <div role=\"presentation\" aria-hidden=\"true\">\n    <slot>\n      <Dot class=\"h-4 w-4\" />\n    </slot>\n  </div>\n</template>\n",
       "type": "registry:ui",
       "target": "components/ui/InputOTPSeparator.vue"
     }
