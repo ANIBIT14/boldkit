@@ -51,6 +51,7 @@ const Rating = React.forwardRef<HTMLDivElement, RatingProps>(
       onChange,
       onHoverChange,
       className,
+      'aria-label': ariaLabel = 'Rating',
       ...props
     },
     ref
@@ -137,7 +138,8 @@ const Rating = React.forwardRef<HTMLDivElement, RatingProps>(
         aria-valuemin={0}
         aria-valuemax={max}
         aria-valuenow={currentValue}
-        aria-label="Rating"
+        aria-label={ariaLabel}
+        aria-readonly={readOnly}
         tabIndex={readOnly || disabled ? -1 : 0}
         onKeyDown={handleKeyDown}
         onMouseLeave={handleMouseLeave}
