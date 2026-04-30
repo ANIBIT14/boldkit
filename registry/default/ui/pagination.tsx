@@ -95,6 +95,7 @@ const PaginationEllipsis = ({
   ...props
 }: React.ComponentProps<'span'>) => (
   <span
+    role="img"
     aria-label="More pages"
     className={cn('flex h-9 w-9 items-center justify-center', className)}
     {...props}

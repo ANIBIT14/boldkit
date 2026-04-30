@@ -9,6 +9,7 @@ defineProps<{
 
 <template>
   <span
+    role="img"
     aria-label="More pages"
     :class="cn('flex h-9 w-9 items-center justify-center', $props.class)"
   >
