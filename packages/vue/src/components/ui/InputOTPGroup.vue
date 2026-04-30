@@ -7,7 +7,7 @@ defineProps<{
 </script>
 
 <template>
-  <div :class="cn('flex items-center', $props.class)">
+  <div role="group" :class="cn('flex items-center', $props.class)">
     <slot />
   </div>
 </template>

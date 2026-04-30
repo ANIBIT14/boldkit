@@ -3,7 +3,7 @@ import { Dot } from 'lucide-vue-next'
 </script>
 
 <template>
-  <div role="separator">
+  <div role="presentation" aria-hidden="true">
     <slot>
       <Dot class="h-4 w-4" />
     </slot>
