@@ -33,7 +33,7 @@ export interface SpinnerProps
     VariantProps<typeof spinnerVariants> {}
 
 const Spinner = React.forwardRef<HTMLDivElement, SpinnerProps>(
-  ({ className, size, variant, ...props }, ref) => {
+  ({ className, size, variant, role = 'status', 'aria-label': ariaLabel = 'Loading', ...props }, ref) => {
     const sizeClasses = {
       xs: { element: 'h-3 w-3', dot: 'h-1 w-1', bar: 'w-0.5 h-2', block: 'h-1 w-1', ring: 'h-3 w-3' },
       sm: { element: 'h-4 w-4', dot: 'h-1 w-1', bar: 'w-0.5 h-2.5', block: 'h-1.5 w-1.5', ring: 'h-4 w-4' },
@@ -49,6 +49,8 @@ const Spinner = React.forwardRef<HTMLDivElement, SpinnerProps>(
       return (
         <div
           ref={ref}
+          role={role}
+          aria-label={ariaLabel}
           className={cn(spinnerVariants({ size, variant }), 'gap-1', className)}
           {...props}
         >
@@ -63,6 +65,8 @@ const Spinner = React.forwardRef<HTMLDivElement, SpinnerProps>(
       return (
         <div
           ref={ref}
+          role={role}
+          aria-label={ariaLabel}
           className={cn(spinnerVariants({ size, variant }), 'gap-0.5', className)}
           {...props}
         >
@@ -77,6 +81,8 @@ const Spinner = React.forwardRef<HTMLDivElement, SpinnerProps>(
       return (
         <div
           ref={ref}
+          role={role}
+          aria-label={ariaLabel}
           className={cn(spinnerVariants({ size, variant }), 'relative', className)}
           {...props}
         >
@@ -94,6 +100,8 @@ const Spinner = React.forwardRef<HTMLDivElement, SpinnerProps>(
       return (
         <div
           ref={ref}
+          role={role}
+          aria-label={ariaLabel}
           className={cn(spinnerVariants({ size, variant }), className)}
           {...props}
         >
@@ -109,10 +117,13 @@ const Spinner = React.forwardRef<HTMLDivElement, SpinnerProps>(
     return (
       <div
         ref={ref}
+        role={role}
+        aria-label={ariaLabel}
         className={cn(spinnerVariants({ size, variant }), className)}
         {...props}
       >
         <svg
+          aria-hidden="true"
           className={cn(sizes.ring, 'animate-spin')}
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
