@@ -353,20 +353,6 @@ const Tour = React.forwardRef<HTMLDivElement, TourProps>(
       }
     }, [open])
 
-    // Close on Escape key
-    React.useEffect(() => {
-      if (!open) return
-
-      const handleKeyDown = (e: KeyboardEvent) => {
-        if (e.key === 'Escape') {
-          close()
-        }
-      }
-
-      document.addEventListener('keydown', handleKeyDown)
-      return () => document.removeEventListener('keydown', handleKeyDown)
-    }, [open, close])
-
     const nextStep = React.useCallback(() => {
       if (currentStep < steps.length - 1) {
         setCurrentStep((prev) => prev + 1)
@@ -399,6 +385,20 @@ const Tour = React.forwardRef<HTMLDivElement, TourProps>(
       setOpen(false)
       onSkip?.()
     }, [setOpen, onSkip])
+
+    // Close on Escape key
+    React.useEffect(() => {
+      if (!open) return
+
+      const handleKeyDown = (e: KeyboardEvent) => {
+        if (e.key === 'Escape') {
+          close()
+        }
+      }
+
+      document.addEventListener('keydown', handleKeyDown)
+      return () => document.removeEventListener('keydown', handleKeyDown)
+    }, [open, close])
 
     const contextValue = React.useMemo<TourContextValue>(
       () => ({
