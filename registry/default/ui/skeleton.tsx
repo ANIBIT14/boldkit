@@ -7,6 +7,7 @@ function Skeleton({
 }: React.HTMLAttributes<HTMLDivElement>) {
   return (
     <div
+      aria-hidden="true"
       className={cn('animate-pulse bg-muted border-2 border-foreground/20', className)}
       {...props}
     />
