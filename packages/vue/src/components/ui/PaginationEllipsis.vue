@@ -9,10 +9,9 @@ defineProps<{
 
 <template>
   <span
-    aria-hidden="true"
+    aria-label="More pages"
     :class="cn('flex h-9 w-9 items-center justify-center', $props.class)"
   >
-    <MoreHorizontal class="h-4 w-4 stroke-[3]" />
-    <span class="sr-only">More pages</span>
+    <MoreHorizontal aria-hidden="true" class="h-4 w-4 stroke-[3]" />
   </span>
 </template>
