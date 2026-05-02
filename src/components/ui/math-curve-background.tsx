@@ -123,7 +123,6 @@ const MathCurveBackground = React.forwardRef<HTMLDivElement, MathCurveBackground
               fill="none"
               stroke={resolvedTrackStroke}
               strokeWidth={strokeWidth}
-              strokeOpacity={0.15}
               strokeLinecap="square"
               strokeLinejoin="miter"
               className="transition-[stroke-opacity] duration-200"

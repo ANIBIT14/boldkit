@@ -109,7 +109,6 @@ function computeLayout(
     nodeValue.set(n.id, Math.max(inVal, outVal, 1))
   })
 
-  const totalVal = Math.max(...Array.from(nodeValue.values()))
   const innerHeight = height - padding.top - padding.bottom
 
   // Compute node heights and y positions per column
@@ -144,8 +143,6 @@ function computeLayout(
     sourceOffsets.set(id, n.y)
     targetOffsets.set(id, n.y)
   })
-
-  void totalVal
 
   const computedLinks: ComputedLink[] = links.map(link => {
     const src = computedNodes.get(link.source)

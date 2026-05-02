@@ -2,7 +2,7 @@ import * as React from 'react'
 import { Card, CardContent } from '@/components/ui/card'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import { cn } from '@/lib/utils'
-import { Twitter, Linkedin, Github, Mail } from 'lucide-react'
+import { XIcon, Linkedin, Github, Mail } from 'lucide-react'
 
 export interface TeamMember {
   name: string
@@ -94,7 +94,7 @@ export function TeamGrid({
                 {member.social && (
                   <div className="flex justify-center gap-2">
                     {member.social.twitter && (
-                      <SocialLink href={member.social.twitter} icon={<Twitter className="h-4 w-4" />} />
+                      <SocialLink href={member.social.twitter} icon={<XIcon className="h-4 w-4" />} />
                     )}
                     {member.social.linkedin && (
                       <SocialLink href={member.social.linkedin} icon={<Linkedin className="h-4 w-4" />} />
@@ -160,7 +160,7 @@ export function TeamList({
               {member.social && (
                 <div className="flex gap-2">
                   {member.social.twitter && (
-                    <SocialLink href={member.social.twitter} icon={<Twitter className="h-4 w-4" />} />
+                    <SocialLink href={member.social.twitter} icon={<XIcon className="h-4 w-4" />} />
                   )}
                   {member.social.linkedin && (
                     <SocialLink href={member.social.linkedin} icon={<Linkedin className="h-4 w-4" />} />
@@ -228,16 +228,16 @@ export function TeamLargePhotos({
                 )}
 
                 {member.social && (
-                  <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-foreground/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity">
+                  <div aria-hidden="true" className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-foreground/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity">
                     <div className="flex justify-center gap-2">
                       {member.social.twitter && (
-                        <SocialLink href={member.social.twitter} icon={<Twitter className="h-4 w-4" />} light />
+                        <SocialLink href={member.social.twitter} icon={<XIcon className="h-4 w-4" />} light tabIndex={-1} />
                       )}
                       {member.social.linkedin && (
-                        <SocialLink href={member.social.linkedin} icon={<Linkedin className="h-4 w-4" />} light />
+                        <SocialLink href={member.social.linkedin} icon={<Linkedin className="h-4 w-4" />} light tabIndex={-1} />
                       )}
                       {member.social.github && (
-                        <SocialLink href={member.social.github} icon={<Github className="h-4 w-4" />} light />
+                        <SocialLink href={member.social.github} icon={<Github className="h-4 w-4" />} light tabIndex={-1} />
                       )}
                     </div>
                   </div>
@@ -317,16 +317,19 @@ function SocialLink({
   href,
   icon,
   light = false,
+  tabIndex,
 }: {
   href: string
   icon: React.ReactNode
   light?: boolean
+  tabIndex?: number
 }) {
   return (
     <a
       href={href}
       target="_blank"
       rel="noopener noreferrer"
+      tabIndex={tabIndex}
       className={cn(
         'w-8 h-8 flex items-center justify-center border-2 border-foreground transition-all hover:translate-x-[-2px] hover:translate-y-[-2px] hover:shadow-[2px_2px_0px_hsl(var(--shadow-color))]',
         light ? 'bg-background text-foreground' : 'bg-muted hover:bg-primary hover:text-primary-foreground'

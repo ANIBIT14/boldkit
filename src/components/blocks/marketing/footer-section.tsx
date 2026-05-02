@@ -83,7 +83,7 @@ export function FooterMultiColumn({
           ))}
         </div>
 
-        <Separator className="bg-foreground h-[2px]" />
+        <Separator className="bg-foreground h-[3px]" />
 
         <div className="pt-8 text-center text-sm text-muted-foreground">
           {copyright}
@@ -172,7 +172,7 @@ export function FooterWithNewsletter({
           </div>
         </div>
 
-        <Separator className="bg-foreground h-[2px]" />
+        <Separator className="bg-foreground h-[3px]" />
 
         <div className="pt-8 text-center text-sm text-muted-foreground">
           {copyright}
@@ -358,7 +358,7 @@ export function FooterWithCTA({
             ))}
           </div>
 
-          <Separator className="bg-foreground h-[2px]" />
+          <Separator className="bg-foreground h-[3px]" />
 
           <div className="pt-6 text-center text-xs text-muted-foreground">
             {copyright}

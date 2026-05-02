@@ -130,6 +130,7 @@ StepperList.displayName = 'StepperList'
 // Stepper Item (wrapper for a single step)
 interface StepperItemContextValue {
   index: number
+  triggerId: string
 }
 
 const StepperItemContext = React.createContext<StepperItemContextValue | null>(null)
@@ -150,8 +151,10 @@ const StepperItem = React.forwardRef<HTMLDivElement, StepperItemProps>(
   ({ index, className, children, ...props }, ref) => {
     const { orientation } = useStepperContext()
 
+    const triggerId = `stepper-trigger-${index}`
+
     return (
-      <StepperItemContext.Provider value={{ index }}>
+      <StepperItemContext.Provider value={{ index, triggerId }}>
         <div
           ref={ref}
           className={cn(
@@ -179,7 +182,7 @@ export interface StepperTriggerProps
 const StepperTrigger = React.forwardRef<HTMLButtonElement, StepperTriggerProps>(
   ({ size, showStepNumber = true, className, children, ...props }, ref) => {
     const { activeStep, setActiveStep } = useStepperContext()
-    const { index } = useStepperItemContext()
+    const { index, triggerId } = useStepperItemContext()
 
     const state: 'completed' | 'active' | 'upcoming' =
       index < activeStep ? 'completed' : index === activeStep ? 'active' : 'upcoming'
@@ -187,6 +190,7 @@ const StepperTrigger = React.forwardRef<HTMLButtonElement, StepperTriggerProps>(
     return (
       <button
         ref={ref}
+        id={triggerId}
         type="button"
         role="tab"
         aria-selected={state === 'active'}
@@ -255,6 +259,7 @@ const StepperContent = React.forwardRef<HTMLDivElement, StepperContentProps>(
       <div
         ref={ref}
         role="tabpanel"
+        aria-labelledby={`stepper-trigger-${index}`}
         className={cn(
           'mt-4 animate-[slide-in-from-bottom_200ms_ease-out]',
           className

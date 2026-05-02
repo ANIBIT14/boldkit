@@ -845,6 +845,14 @@ body {
   animation: marquee-reverse 20s linear infinite;
 }
 
+.animate-marquee-slow-reverse {
+  animation: marquee-reverse 40s linear infinite;
+}
+
+.animate-marquee-fast-reverse {
+  animation: marquee-reverse 10s linear infinite;
+}
+
 /* Marquee fade edges */
 .marquee-fade-edges {
   -webkit-mask-image: linear-gradient(to right, transparent 0%, black 6%, black 94%, transparent 100%);

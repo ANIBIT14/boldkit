@@ -92,8 +92,12 @@ const MathCurveProgress = React.forwardRef<SVGSVGElement, MathCurveProgressProps
             fill={resolvedFillColor}
             stroke="currentColor"
             strokeWidth={1.5}
-            transform={`rotate(${headAngle} ${headPoint.x} ${headPoint.y})`}
-            style={{ transition: 'transform 300ms ease' }}
+            style={{
+              transformBox: 'fill-box',
+              transformOrigin: 'center',
+              transform: `rotate(${headAngle}deg)`,
+              transition: 'transform 300ms ease',
+            }}
           />
           {/* Optional numeric label */}
           {showValue && (

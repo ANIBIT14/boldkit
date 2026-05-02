@@ -95,12 +95,15 @@ const DonutChart = React.forwardRef<HTMLDivElement, DonutChartProps>(
               <Label
                 content={({ viewBox }) => {
                   if (viewBox && 'cx' in viewBox && 'cy' in viewBox) {
+                    const ir = typeof innerRadius === 'number' ? innerRadius : 60
+                    const fwHalf = Math.max(40, ir * 0.85)
+                    const fhHalf = Math.max(25, ir * 0.55)
                     return (
                       <foreignObject
-                        x={(viewBox.cx || 0) - 50}
-                        y={(viewBox.cy || 0) - 30}
-                        width={100}
-                        height={60}
+                        x={(viewBox.cx || 0) - fwHalf}
+                        y={(viewBox.cy || 0) - fhHalf}
+                        width={fwHalf * 2}
+                        height={fhHalf * 2}
                       >
                         <div className="flex h-full w-full items-center justify-center">
                           {centerContent}

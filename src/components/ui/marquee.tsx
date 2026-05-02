@@ -22,6 +22,12 @@ const speedClasses = {
   fast: 'animate-marquee-fast',
 }
 
+const reverseSpeedClasses = {
+  slow: 'animate-marquee-slow-reverse',
+  normal: 'animate-marquee-reverse',
+  fast: 'animate-marquee-fast-reverse',
+}
+
 const Marquee = React.forwardRef<HTMLDivElement, MarqueeProps>(
   (
     {
@@ -36,7 +42,7 @@ const Marquee = React.forwardRef<HTMLDivElement, MarqueeProps>(
     },
     ref
   ) => {
-    const animationClass = direction === 'right' ? 'animate-marquee-reverse' : speedClasses[speed]
+    const animationClass = direction === 'right' ? reverseSpeedClasses[speed] : speedClasses[speed]
 
     return (
       <div
@@ -54,9 +60,6 @@ const Marquee = React.forwardRef<HTMLDivElement, MarqueeProps>(
             animationClass,
             pauseOnHover && 'hover:[animation-play-state:paused]'
           )}
-          style={{
-            animationDirection: direction === 'right' ? 'reverse' : 'normal',
-          }}
         >
           {Array.from({ length: repeat }).map((_, i) => (
             <React.Fragment key={i}>{children}</React.Fragment>
@@ -68,9 +71,6 @@ const Marquee = React.forwardRef<HTMLDivElement, MarqueeProps>(
             animationClass,
             pauseOnHover && 'hover:[animation-play-state:paused]'
           )}
-          style={{
-            animationDirection: direction === 'right' ? 'reverse' : 'normal',
-          }}
           aria-hidden="true"
         >
           {Array.from({ length: repeat }).map((_, i) => (

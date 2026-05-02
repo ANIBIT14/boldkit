@@ -121,7 +121,10 @@ const TreemapChart = React.forwardRef<HTMLDivElement, TreemapChartProps>(
                   fontFamily: "'DM Mono', monospace",
                   fontSize: 12,
                 }}
-                formatter={(value: number | undefined, name: string | undefined) => [`${(value ?? 0).toLocaleString()}`, name ?? '']}
+                formatter={(value, name) => [
+                  typeof value === 'number' ? value.toLocaleString() : String(value ?? ''),
+                  String(name ?? ''),
+                ]}
               />
             )}
           </RechartsTreemap>

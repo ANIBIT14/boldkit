@@ -101,6 +101,7 @@ const RadialBarChartComponent = React.forwardRef<HTMLDivElement, RadialBarChartP
             cornerRadius={0}
             isAnimationActive={animated}
             animationDuration={400}
+            stackId={variant === 'stacked' ? 'stack' : undefined}
             label={
               showLabel
                 ? {

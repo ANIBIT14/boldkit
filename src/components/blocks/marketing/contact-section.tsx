@@ -367,7 +367,7 @@ export function ContactWithMap({
 
         <div className="grid lg:grid-cols-2 gap-8">
           {/* Map/Image placeholder */}
-          <div className="border-3 border-foreground shadow-[6px_6px_0px_hsl(var(--shadow-color))] overflow-hidden h-[400px] lg:h-auto">
+          <div className="border-3 border-foreground shadow-[6px_6px_0px_hsl(var(--shadow-color))] overflow-hidden h-[400px] lg:h-full lg:min-h-[400px]">
             {mapPlaceholder || (
               <div className="w-full h-full bg-muted flex items-center justify-center">
                 <MapPin className="h-16 w-16 text-muted-foreground" />
