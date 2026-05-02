@@ -61,7 +61,7 @@
     },
     {
       "path": "registry/default/ui/DropdownMenuRadioGroup.vue",
-      "content": "<script setup lang=\"ts\">\nimport { DropdownMenuRadioGroup as DropdownMenuRadioGroupPrimitive } from 'reka-ui'\n\ndefineProps<{\n  modelValue?: string\n}>()\n\nconst emit = defineEmits<{\n  'update:modelValue': [value: string | null]\n}>()\n</script>\n\n<template>\n  <DropdownMenuRadioGroupPrimitive :model-value=\"modelValue\" @update:model-value=\"(val) => emit('update:modelValue', val as string | null)\">\n    <slot />\n  </DropdownMenuRadioGroupPrimitive>\n</template>\n",
+      "content": "<script setup lang=\"ts\">\nimport { DropdownMenuRadioGroup as DropdownMenuRadioGroupPrimitive } from 'reka-ui'\n\ndefineProps<{\n  modelValue?: string | null\n}>()\n\nconst emit = defineEmits<{\n  'update:modelValue': [value: string | null]\n}>()\n</script>\n\n<template>\n  <DropdownMenuRadioGroupPrimitive :model-value=\"modelValue\" @update:model-value=\"(val) => emit('update:modelValue', val as string | null)\">\n    <slot />\n  </DropdownMenuRadioGroupPrimitive>\n</template>\n",
       "type": "registry:ui",
       "target": "components/ui/DropdownMenuRadioGroup.vue"
     }

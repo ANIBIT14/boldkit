@@ -5,6 +5,49 @@ Format follows [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ---
 
+## [3.2.3] — 2026-05-02
+
+### 🐛 Bug Fixes
+
+**React Core UI**
+- `badge.tsx` — Renders as inline `<span>` instead of block `<div>` (fixes layout in inline contexts)
+- `input-otp.tsx` — Added bounds check on `slots[index]` in `InputOTPSlot` — no longer crashes when index is out of range or used outside `OTPInput` context
+- `stepper.tsx` — `StepperContent` now has `aria-labelledby` pointing to its corresponding `StepperTrigger` (ARIA tab panel pattern)
+- `stepper.tsx` — `StepperTrigger` gets a stable `id` for the labelledby association
+- `tree-view.tsx` — Renamed internal `TreeNode` function component to `TreeNodeItem` to eliminate confusion with the exported `TreeNode` interface
+
+**Charts**
+- `chart/legend.tsx` — React keys in `ChartLegendContent` now use `dataKey ?? value ?? index` — prevents duplicate key warnings when two series share a label
+- `chart/donut-chart.tsx` — `foreignObject` center label now sizes proportionally to `innerRadius` instead of hardcoded `100×60`
+- `chart/radial-bar-chart.tsx` — `stacked` variant is now functional — uses `stackId="stack"` on `<RadialBar>` so bars stack angularly in the same track
+- `chart/sankey-chart.tsx` — Removed unused `totalVal` variable and `void totalVal` suppressor (dead code)
+- `chart/treemap-chart.tsx` — Fixed `Tooltip` `formatter` type annotation to match Recharts' actual `ValueType`
+- `math-curve-background.tsx` — Removed `strokeOpacity={0.15}` from the inner `<path>` — was multiplying with the SVG-level `opacity` prop making curves nearly invisible (0.15 × 0.15 = 0.022)
+- `math-curve-progress.tsx` — Progress head rotation now uses CSS `style.transform` + `transformBox: fill-box` instead of SVG `transform` attribute — CSS transitions now actually animate
+
+**Shapes**
+- `shapes.tsx` — Clamped inner `strokeWidth` to `Math.max(1, strokeWidth - 2)` — no more zero/negative stroke values
+- `shapes.tsx` — Added `aria-hidden="true"` to all 55 SVG shape components (decorative SVGs no longer announced by screen readers)
+- `ascii-shapes.tsx` — Fixed `drawTorus` B-rotation z-component: `oz2` was incorrectly set to `oz1`, skipping the B-axis rotation and producing a flat torus
+- `ascii-shapes.tsx` — Added `aria-hidden="true"` to ASCII art `<pre>` elements
+
+**Blocks**
+- `marquee.tsx` — `speed` prop now respected when `direction="right"` (added `animate-marquee-slow-reverse` and `animate-marquee-fast-reverse` CSS classes)
+- `team-section.tsx` — Replaced deprecated `Twitter` icon with `XIcon` from lucide-react
+- `team-section.tsx` — Hidden social link overlay now has `aria-hidden="true"` and links have `tabIndex={-1}` — keyboard users no longer tab through invisible links
+- `footer-section.tsx` — `<Separator>` components standardised to `h-[3px]` (was `h-[2px]`, inconsistent with neubrutalism 3px border standard)
+- `contact-section.tsx` — Map container no longer collapses to zero height at `lg` breakpoint (`lg:h-auto` → `lg:h-full lg:min-h-[400px]`)
+
+**Vue (@boldkit/vue v3.1.3)**
+- `Tabs.vue` — `update:modelValue` emit narrowed from `string | number` to `string`
+- `Select.vue` — Removed `bigint` and `Record<string, unknown>` from `update:modelValue` emit (narrowed to `string | number | null`)
+- `DropdownMenuRadioGroup.vue` — Aligned prop (`modelValue?: string | null`) with emit (`string | null`)
+- `Tour.vue` — `popoverRef` explicitly typed as `Ref<HTMLDivElement | undefined>`; `totalSteps` in provided context is now a reactive `ComputedRef<number>` instead of a plain number
+- `Slider.vue` — Fixed `if (animationId)` falsy check in `onUnmounted` — now uses strict `!== null` so RAF ID `0` is correctly cancelled
+- `Dropzone.vue` — `maxFiles` prop is now enforced in `processFiles` — excess files are rejected with `code: 'too-many-files'` instead of silently accepted
+
+---
+
 ## [3.2.2] — 2026-04-28
 
 ### 🐛 Bug Fixes

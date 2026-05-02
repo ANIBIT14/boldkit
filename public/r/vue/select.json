@@ -13,7 +13,7 @@
   "files": [
     {
       "path": "registry/default/ui/Select.vue",
-      "content": "<script setup lang=\"ts\">\nimport { SelectRoot, type SelectRootProps } from 'reka-ui'\n\nconst props = defineProps<SelectRootProps>()\nconst emit = defineEmits<{\n  'update:modelValue': [value: string | number | bigint | Record<string, unknown> | null]\n  'update:open': [value: boolean]\n}>()\n</script>\n\n<template>\n  <SelectRoot\n    v-bind=\"props\"\n    @update:model-value=\"emit('update:modelValue', $event)\"\n    @update:open=\"emit('update:open', $event)\"\n  >\n    <slot />\n  </SelectRoot>\n</template>\n",
+      "content": "<script setup lang=\"ts\">\nimport { SelectRoot, type SelectRootProps } from 'reka-ui'\n\nconst props = defineProps<SelectRootProps>()\nconst emit = defineEmits<{\n  'update:modelValue': [value: string | number | null]\n  'update:open': [value: boolean]\n}>()\n</script>\n\n<template>\n  <SelectRoot\n    v-bind=\"props\"\n    @update:model-value=\"emit('update:modelValue', $event as string | number | null)\"\n    @update:open=\"emit('update:open', $event)\"\n  >\n    <slot />\n  </SelectRoot>\n</template>\n",
       "type": "registry:ui",
       "target": "components/ui/Select.vue"
     },
