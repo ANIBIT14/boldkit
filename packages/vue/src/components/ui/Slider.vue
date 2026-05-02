@@ -142,7 +142,7 @@ onMounted(() => {
 })
 
 onUnmounted(() => {
-  if (animationId) cancelAnimationFrame(animationId)
+  if (animationId !== null && animationId !== undefined) cancelAnimationFrame(animationId)
   if (activeMoveHandler) document.removeEventListener('pointermove', activeMoveHandler)
   if (activeUpHandler) document.removeEventListener('pointerup', activeUpHandler)
 })

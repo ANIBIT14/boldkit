@@ -8,7 +8,7 @@ interface Props extends TabsRootProps {
 
 const props = defineProps<Props>()
 const emit = defineEmits<{
-  'update:modelValue': [value: string | number]
+  'update:modelValue': [value: string]
 }>()
 </script>
 
@@ -16,7 +16,7 @@ const emit = defineEmits<{
   <TabsRoot
     v-bind="props"
     :class="cn('w-full', props.class)"
-    @update:model-value="emit('update:modelValue', $event)"
+    @update:model-value="emit('update:modelValue', $event as string)"
   >
     <slot />
   </TabsRoot>

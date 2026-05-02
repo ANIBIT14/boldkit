@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, computed, watch, onMounted, onUnmounted, nextTick, provide, inject, type Ref, type InjectionKey } from 'vue'
+import { ref, computed, watch, onMounted, onUnmounted, nextTick, provide, type Ref, type InjectionKey, type ComputedRef } from 'vue'
 import { X } from 'lucide-vue-next'
 import { cn } from '@/lib/utils'
 import Button from './Button.vue'
@@ -21,7 +21,7 @@ export interface TourProps {
 
 interface TourContextValue {
   currentStep: Ref<number>
-  totalSteps: number
+  totalSteps: ComputedRef<number>
   nextStep: () => void
   prevStep: () => void
   goToStep: (index: number) => void
@@ -45,7 +45,7 @@ const emit = defineEmits<{
 
 const currentStep = ref(0)
 const targetRect = ref<DOMRect | null>(null)
-const popoverRef = ref<HTMLDivElement>()
+const popoverRef = ref<HTMLDivElement | undefined>()
 const popoverPosition = ref({ top: 0, left: 0 })
 
 const isOpen = computed(() => props.open)
@@ -296,7 +296,7 @@ onUnmounted(() => {
 // Provide context for potential child components
 provide(TOUR_INJECTION_KEY, {
   currentStep,
-  totalSteps: props.steps.length,
+  totalSteps,
   nextStep,
   prevStep,
   goToStep,

@@ -129,11 +129,20 @@ function validateFile(file: File): FileRejection | null {
 function processFiles(fileList: FileList | null) {
   if (!fileList || props.disabled) return
 
-  const files = Array.from(fileList).slice(0, props.maxFiles)
+  const allFiles = Array.from(fileList)
+  const maxFiles = props.maxFiles ?? Infinity
+  const remaining = maxFiles - acceptedFiles.value.length
   const accepted: File[] = []
   const rejected: FileRejection[] = []
 
-  files.forEach((file) => {
+  allFiles.forEach((file, index) => {
+    if (index >= remaining) {
+      rejected.push({
+        file,
+        errors: [{ code: 'too-many-files', message: 'Too many files' }],
+      })
+      return
+    }
     const rejection = validateFile(file)
     if (rejection) {
       rejected.push(rejection)
@@ -142,7 +151,7 @@ function processFiles(fileList: FileList | null) {
     }
   })
 
-  acceptedFiles.value = accepted
+  acceptedFiles.value = [...acceptedFiles.value, ...accepted]
   rejectedFiles.value = rejected
 
   if (accepted.length > 0) {

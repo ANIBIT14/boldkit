@@ -2,7 +2,7 @@
 import { DropdownMenuRadioGroup as DropdownMenuRadioGroupPrimitive } from 'reka-ui'
 
 defineProps<{
-  modelValue?: string
+  modelValue?: string | null
 }>()
 
 const emit = defineEmits<{
