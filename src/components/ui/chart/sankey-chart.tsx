@@ -90,6 +90,16 @@ function computeLayout(
     }
   }
 
+  // Warn about nodes dropped due to cycles (nodes not reachable from any source)
+  if (process.env.NODE_ENV !== 'production') {
+    const droppedNodes = nodes.filter(n => !depth.has(n.id))
+    if (droppedNodes.length > 0) {
+      console.warn(
+        `[SankeyChart] ${droppedNodes.length} node(s) were dropped because they are part of a cycle or unreachable from source nodes: ${droppedNodes.map(n => n.id).join(', ')}`
+      )
+    }
+  }
+
   const maxDepth = Math.max(...Array.from(depth.values()))
   const colWidth = maxDepth === 0 ? 0 : (width - padding.left - padding.right - nodeWidth) / maxDepth
 

@@ -39,7 +39,8 @@ interface CustomContentProps {
 
 function CustomTreemapContent(props: CustomContentProps) {
   const { x = 0, y = 0, width = 0, height = 0, name, value, depth = 0, index = 0 } = props
-  const fill = NEUBRUTALISM_COLORS[index % NEUBRUTALISM_COLORS.length]
+  const colorIndex = (depth * 7 + index) % NEUBRUTALISM_COLORS.length
+  const fill = NEUBRUTALISM_COLORS[colorIndex]
   const isSmall = width < 60 || height < 40
 
   if (depth === 0) return null

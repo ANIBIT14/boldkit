@@ -86,7 +86,7 @@ const GaugeChart = React.forwardRef<HTMLDivElement, GaugeChartProps>(
     const arcConfig = VARIANT_ARC_CONFIG[resolvedVariant]
 
     const normalizedValue = Math.max(min, Math.min(max, value))
-    const percentage = max === min ? 50 : ((normalizedValue - min) / (max - min)) * 100
+    const percentage = max === min ? 0 : ((normalizedValue - min) / (max - min)) * 100
 
     // SVG dimensions — full variant needs a taller canvas to show the bottom arc
     const sizeConfig = {
@@ -266,18 +266,9 @@ const GaugeChart = React.forwardRef<HTMLDivElement, GaugeChartProps>(
                 transform: `rotate(${needleAngle}deg)`,
                 transformOrigin: `${centerX}px ${centerY}px`,
                 transition: animated ? 'transform 0.5s ease-out' : 'none',
+                filter: 'drop-shadow(0 2px 2px rgba(0,0,0,0.3))',
               }}
             >
-              {/* Needle shadow */}
-              <line
-                x1={centerX + 2}
-                y1={centerY + 2}
-                x2={centerX + needleLength + 2}
-                y2={centerY + 2}
-                stroke="hsl(var(--shadow-color))"
-                strokeWidth="3"
-                strokeLinecap="round"
-              />
               {/* Needle body */}
               <line
                 x1={centerX}
