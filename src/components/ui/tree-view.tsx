@@ -218,7 +218,7 @@ function TreeNodeItem({ node, level }: TreeNodeProps) {
       aria-disabled={node.disabled}
       tabIndex={node.disabled ? -1 : 0}
       onKeyDown={handleKeyDown}
-      onClick={(e) => {
+      onClick={() => {
         if (node.disabled) return
         if (hasChildren) {
           toggleExpanded(node.id)

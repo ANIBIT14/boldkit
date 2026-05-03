@@ -91,7 +91,7 @@ function computeLayout(
   }
 
   // Warn about nodes dropped due to cycles (nodes not reachable from any source)
-  if (process.env.NODE_ENV !== 'production') {
+  if (import.meta.env.DEV) {
     const droppedNodes = nodes.filter(n => !depth.has(n.id))
     if (droppedNodes.length > 0) {
       console.warn(
