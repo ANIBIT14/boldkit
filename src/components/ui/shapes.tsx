@@ -399,7 +399,7 @@ export const CloudShape = React.forwardRef<SVGSVGElement, ShapeProps>(
       {...props}
     >
       <path
-        d="M25 60 Q5 60 5 45 Q5 30 20 30 Q20 15 40 15 Q55 10 65 20 Q75 10 90 25 Q100 35 90 50 Q95 65 75 65 Z"
+        d="M25 60 Q5 60 5 45 Q5 30 20 30 Q20 15 40 15 Q55 10 65 20 Q75 10 90 25 Q100 35 90 50 Q95 65 75 65 L25 65 Z"
         fill={filled ? (color || 'currentColor') : 'none'}
         stroke="hsl(var(--foreground))"
         strokeWidth={strokeWidth}
@@ -564,7 +564,7 @@ export const PriceTagShape = React.forwardRef<SVGSVGElement, ShapeProps>(
         strokeWidth={strokeWidth}
       />
       <circle cx="22" cy="30" r="8" fill="none" stroke="hsl(var(--foreground))" strokeWidth={strokeWidth} />
-      <line x1="5" y1="30" x2="14" y2="30" stroke="hsl(var(--foreground))" strokeWidth={strokeWidth} />
+      <line x1="10" y1="30" x2="14" y2="30" stroke="hsl(var(--foreground))" strokeWidth={strokeWidth} />
     </svg>
   )
 )
@@ -1115,20 +1115,22 @@ export const GearShape = React.forwardRef<SVGSVGElement, ShapeProps>(
       aria-hidden="true"
       {...props}
     >
-      <path
-        d="M42 8 L58 8 L60 18 L68 14 L76 22 L72 30 L82 34 L82 48 L72 50 L76 58 L68 66 L60 62 L58 72 L42 72 L40 62 L32 66 L24 58 L28 50 L18 48 L18 34 L28 30 L24 22 L32 14 L40 18 Z"
-        fill={filled ? (color || 'currentColor') : 'none'}
-        stroke="hsl(var(--foreground))"
-        strokeWidth={strokeWidth}
-      />
-      <circle
-        cx="50"
-        cy="40"
-        r="12"
-        fill="hsl(var(--background))"
-        stroke="hsl(var(--foreground))"
-        strokeWidth={strokeWidth}
-      />
+      <g transform="translate(0, 10)">
+        <path
+          d="M42 8 L58 8 L60 18 L68 14 L76 22 L72 30 L82 34 L82 48 L72 50 L76 58 L68 66 L60 62 L58 72 L42 72 L40 62 L32 66 L24 58 L28 50 L18 48 L18 34 L28 30 L24 22 L32 14 L40 18 Z"
+          fill={filled ? (color || 'currentColor') : 'none'}
+          stroke="hsl(var(--foreground))"
+          strokeWidth={strokeWidth}
+        />
+        <circle
+          cx="50"
+          cy="40"
+          r="12"
+          fill="hsl(var(--background))"
+          stroke="hsl(var(--foreground))"
+          strokeWidth={strokeWidth}
+        />
+      </g>
     </svg>
   )
 )
