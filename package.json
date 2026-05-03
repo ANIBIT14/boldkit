@@ -1,4 +1,5 @@
 {
+  "workspaces": ["packages/vue"],
   "name": "boldkit",
   "version": "3.2.3",
   "description": "A neubrutalism React component library built on shadcn/ui - Bold, raw, beautiful.",
