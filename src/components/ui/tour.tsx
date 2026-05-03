@@ -394,24 +394,26 @@ const Tour = React.forwardRef<HTMLDivElement, TourProps>(
       [currentStep, steps.length, nextStep, prevStep, goToStep, close, skip]
     )
 
-    if (!open || !currentStepData) return null
-
-    return createPortal(
-      <TourContext.Provider value={contextValue}>
-        <div ref={ref}>
-          <TourOverlay
-            targetRect={targetRect}
-            spotlightPadding={currentStepData.spotlightPadding ?? 8}
-          />
-          <TourPopover
-            step={currentStepData}
-            targetRect={targetRect}
-            showSkipButton={showSkipButton}
-            showProgress={showProgress}
-          />
-        </div>
-      </TourContext.Provider>,
-      document.body
+    return (
+      <>
+        {/* Stable ref anchor — always mounted so ref is never null */}
+        <div ref={ref} style={{ display: 'none' }} />
+        {open && currentStepData && createPortal(
+          <TourContext.Provider value={contextValue}>
+            <TourOverlay
+              targetRect={targetRect}
+              spotlightPadding={currentStepData.spotlightPadding ?? 8}
+            />
+            <TourPopover
+              step={currentStepData}
+              targetRect={targetRect}
+              showSkipButton={showSkipButton}
+              showProgress={showProgress}
+            />
+          </TourContext.Provider>,
+          document.body
+        )}
+      </>
     )
   }
 )

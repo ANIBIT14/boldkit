@@ -231,18 +231,21 @@ const spotlightRect = computed(() => {
   }
 })
 
-// Overlay background style
-const overlayStyle = computed(() => {
-  if (!spotlightRect.value) {
-    return { background: 'rgba(0,0,0,0.7)' }
-  }
+// Spotlight element style — uses box-shadow with huge spread to create uniform
+// dark overlay around the transparent spotlight area, avoiding corner opacity
+// artifacts from stacked linear-gradients.
+const spotlightStyle = computed(() => {
+  if (!spotlightRect.value) return null
   const rect = spotlightRect.value
   return {
-    background: `
-      linear-gradient(to right, rgba(0,0,0,0.7) ${rect.left}px, transparent ${rect.left}px, transparent ${rect.left + rect.width}px, rgba(0,0,0,0.7) ${rect.left + rect.width}px),
-      linear-gradient(to bottom, rgba(0,0,0,0.7) ${rect.top}px, transparent ${rect.top}px, transparent ${rect.top + rect.height}px, rgba(0,0,0,0.7) ${rect.top + rect.height}px)
-    `,
-    backgroundBlendMode: 'multiply',
+    position: 'fixed' as const,
+    top: `${rect.top}px`,
+    left: `${rect.left}px`,
+    width: `${rect.width}px`,
+    height: `${rect.height}px`,
+    boxShadow: '0 0 0 9999px rgba(0,0,0,0.7)',
+    pointerEvents: 'none' as const,
+    zIndex: 9998,
   }
 })
 
@@ -318,10 +321,16 @@ defineExpose({
 <template>
   <Teleport to="body">
     <div v-if="isOpen && currentStepData">
-      <!-- Overlay -->
+      <!-- Full dark overlay (no spotlight) -->
       <div
+        v-if="!spotlightStyle"
         class="fixed inset-0 z-[9998]"
-        :style="overlayStyle"
+        style="background: rgba(0,0,0,0.7)"
+      />
+      <!-- Spotlight: transparent element with box-shadow spread as overlay -->
+      <div
+        v-else
+        :style="spotlightStyle"
       />
 
       <!-- Popover -->

@@ -557,7 +557,8 @@ export function OTPVerificationForm({
     })
     setOtp(newOtp)
 
-    if (newOtp.every((digit) => digit !== '')) {
+    if (newOtp.every((digit) => digit !== '') && !hasSubmitted.current) {
+      hasSubmitted.current = true
       onSubmit?.(newOtp.join(''))
     }
   }
