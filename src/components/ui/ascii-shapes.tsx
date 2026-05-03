@@ -989,7 +989,7 @@ function makeAsciiComponent(drawFn: DrawFn, defaultCharset: AsciiCharset = 'clas
 }
 
 // ============================================================================
-// Named exports — 7 ASCII shape components
+// Named exports — 17 ASCII shape components
 // ============================================================================
 
 export const AsciiSpiral = makeAsciiComponent(drawSpiral, 'classic')
