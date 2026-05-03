@@ -40,10 +40,20 @@ export function FooterMultiColumn({
   copyright = `© ${new Date().getFullYear()} Your Company. All rights reserved.`,
   className,
 }: FooterMultiColumnProps) {
+  const totalCols = columns.length + 1 // +1 for brand column (counts as 2 on lg)
+  const lgCols = Math.min(totalCols + 1, 6) // brand takes 2 slots on lg
+  const lgColsClass = {
+    2: 'lg:grid-cols-2',
+    3: 'lg:grid-cols-3',
+    4: 'lg:grid-cols-4',
+    5: 'lg:grid-cols-5',
+    6: 'lg:grid-cols-6',
+  }[lgCols] ?? 'lg:grid-cols-6'
+
   return (
     <footer className={cn('py-16 px-4 md:px-8 lg:px-16 border-t-3 border-foreground', className)}>
       <div className="max-w-7xl mx-auto">
-        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-8 mb-12">
+        <div className={cn('grid grid-cols-2 md:grid-cols-4 gap-8 mb-12', lgColsClass)}>
           {/* Brand column */}
           <div className="col-span-2 space-y-4">
             {logo && <div className="font-black text-2xl uppercase">{logo}</div>}

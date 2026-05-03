@@ -229,7 +229,7 @@ export function FeatureGridAlternating({
                 <div
                   className={cn(
                     'absolute -bottom-4 w-16 h-16 border-3 border-foreground',
-                    isReversed ? '-left-4' : '-right-4',
+                    isReversed ? '-right-4' : '-left-4',
                     featureColors[index % 6]
                   )}
                 />
@@ -295,7 +295,7 @@ export function FeatureBentoGrid({
               <Card
                 key={index}
                 className={cn(
-                  'group hover:translate-x-[-4px] hover:translate-y-[-4px] hover:shadow-[8px_8px_0px_hsl(var(--shadow-color))] transition-all flex flex-col',
+                  'group hover:translate-x-[-4px] hover:translate-y-[-4px] hover:shadow-[8px_8px_0px_hsl(var(--shadow-color))] transition-all flex flex-col overflow-hidden',
                   featureColors[index % 6],
                   spanClass
                 )}

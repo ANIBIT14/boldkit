@@ -53,7 +53,7 @@ export function LogoCloudGrid({
 
         <div className={cn('grid gap-8 items-center', gridCols[columns])}>
           {logos.map((logo, index) => (
-            <LogoItem key={index} logo={logo} />
+            <LogoCloudItem key={index} logo={logo} />
           ))}
         </div>
       </div>
@@ -150,22 +150,30 @@ export function LogoCloudCards({
         )}
 
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-          {logos.map((logo, index) => (
-            <div
-              key={index}
-              className="border-3 border-foreground bg-card p-6 flex items-center justify-center h-24 hover:shadow-[4px_4px_0px_hsl(var(--shadow-color))] hover:translate-x-[-2px] hover:translate-y-[-2px] transition-all cursor-pointer"
-            >
-              {typeof logo.logo === 'string' ? (
-                <img
-                  src={logo.logo}
-                  alt={logo.name}
-                  className="h-10 w-auto object-contain"
-                />
-              ) : (
-                logo.logo
-              )}
-            </div>
-          ))}
+          {logos.map((logo, index) => {
+            const inner = (
+              <div
+                className="border-3 border-foreground bg-card p-6 flex items-center justify-center h-24 hover:shadow-[4px_4px_0px_hsl(var(--shadow-color))] hover:translate-x-[-2px] hover:translate-y-[-2px] transition-all cursor-pointer"
+              >
+                {typeof logo.logo === 'string' ? (
+                  <img
+                    src={logo.logo}
+                    alt={logo.name}
+                    className="h-10 w-auto object-contain"
+                  />
+                ) : (
+                  logo.logo
+                )}
+              </div>
+            )
+            return logo.url ? (
+              <a key={index} href={logo.url} target="_blank" rel="noopener noreferrer">
+                {inner}
+              </a>
+            ) : (
+              <React.Fragment key={index}>{inner}</React.Fragment>
+            )
+          })}
         </div>
       </div>
     </section>
@@ -215,22 +223,30 @@ export function LogoCloudWithStats({
           </div>
 
           <div className="grid grid-cols-3 gap-6">
-            {logos.slice(0, 9).map((logo, index) => (
-              <div
-                key={index}
-                className="flex items-center justify-center h-16 opacity-70 hover:opacity-100 transition-opacity"
-              >
-                {typeof logo.logo === 'string' ? (
-                  <img
-                    src={logo.logo}
-                    alt={logo.name}
-                    className="h-8 w-auto object-contain grayscale hover:grayscale-0 transition-all"
-                  />
-                ) : (
-                  logo.logo
-                )}
-              </div>
-            ))}
+            {logos.slice(0, 9).map((logo, index) => {
+              const inner = (
+                <div
+                  className="flex items-center justify-center h-16 opacity-70 hover:opacity-100 transition-opacity"
+                >
+                  {typeof logo.logo === 'string' ? (
+                    <img
+                      src={logo.logo}
+                      alt={logo.name}
+                      className="h-8 w-auto object-contain grayscale hover:grayscale-0 transition-all"
+                    />
+                  ) : (
+                    logo.logo
+                  )}
+                </div>
+              )
+              return logo.url ? (
+                <a key={index} href={logo.url} target="_blank" rel="noopener noreferrer" className="cursor-pointer">
+                  {inner}
+                </a>
+              ) : (
+                <React.Fragment key={index}>{inner}</React.Fragment>
+              )
+            })}
           </div>
         </div>
       </div>
@@ -241,7 +257,7 @@ export function LogoCloudWithStats({
 // ============================================================================
 // Helper Component
 // ============================================================================
-function LogoItem({ logo }: { logo: LogoItem }) {
+function LogoCloudItem({ logo }: { logo: LogoItem }) {
   const content = (
     <div className="flex items-center justify-center h-12 opacity-60 hover:opacity-100 transition-opacity grayscale hover:grayscale-0">
       {typeof logo.logo === 'string' ? (
