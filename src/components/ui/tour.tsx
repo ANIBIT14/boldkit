@@ -326,7 +326,8 @@ const Tour = React.forwardRef<HTMLDivElement, TourProps>(
             behavior: 'smooth',
             block: 'center',
           })
-        } else if (currentStepData.placement === 'center') {
+        } else {
+          // Target not found — fall back to center placement
           setTargetRect(null)
         }
       }

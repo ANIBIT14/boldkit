@@ -277,11 +277,13 @@ export function ProfileSetup({
     interests: [] as string[],
   })
   const [avatarPreview, setAvatarPreview] = React.useState<string | null>(null)
+  const [avatarFile, setAvatarFile] = React.useState<File | undefined>(undefined)
   const fileInputRef = React.useRef<HTMLInputElement>(null)
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0]
     if (file) {
+      setAvatarFile(file)
       const reader = new FileReader()
       reader.onloadend = () => {
         setAvatarPreview(reader.result as string)
@@ -303,7 +305,7 @@ export function ProfileSetup({
     e.preventDefault()
     onSubmit?.({
       ...formData,
-      avatar: fileInputRef.current?.files?.[0],
+      avatar: avatarFile,
     })
   }
 

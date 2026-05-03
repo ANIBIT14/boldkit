@@ -47,11 +47,11 @@ interface DataTableContextValue<TData> {
 const DataTableContext = React.createContext<DataTableContextValue<unknown> | null>(null)
 
 function useDataTable<TData>() {
-  const context = React.useContext(DataTableContext) as DataTableContextValue<TData> | null
+  const context = React.useContext(DataTableContext)
   if (!context) {
     throw new Error('DataTable components must be used within a <DataTable />')
   }
-  return context
+  return context as DataTableContextValue<TData>
 }
 
 // Column Header with sorting

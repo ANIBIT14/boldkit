@@ -131,7 +131,8 @@ const Slider = React.forwardRef<HTMLDivElement, SliderProps>(
           const newSprings: SpringState[] = []
           const newSquishes: { scaleX: number; scaleY: number }[] = []
 
-          for (let i = 0; i < prev.length; i++) {
+          const len = Math.min(prev.length, targetsRef.current.length)
+          for (let i = 0; i < len; i++) {
             const displacement = targetsRef.current[i] - prev[i].position
             const springForce = stiffness * displacement
             const dampingForce = damping * prev[i].velocity
@@ -508,8 +509,8 @@ const Slider = React.forwardRef<HTMLDivElement, SliderProps>(
                     left: '50%',
                     transform: `
                       translateX(-50%)
-                      scaleX(${squishes[index]?.scaleY ?? 1})
-                      scaleY(${squishes[index]?.scaleX ?? 1})
+                      scaleX(${squishes[index]?.scaleX ?? 1})
+                      scaleY(${squishes[index]?.scaleY ?? 1})
                       rotate(${((squishes[index]?.scaleX ?? 1) - 1) * 8}deg)
                     `,
                   }

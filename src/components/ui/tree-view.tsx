@@ -218,8 +218,11 @@ function TreeNodeItem({ node, level }: TreeNodeProps) {
       aria-disabled={node.disabled}
       tabIndex={node.disabled ? -1 : 0}
       onKeyDown={handleKeyDown}
-      onClick={() => {
+      onClick={(e) => {
         if (node.disabled) return
+        if (hasChildren) {
+          toggleExpanded(node.id)
+        }
         if (selectionMode !== 'none') {
           toggleSelected(node.id)
         }
@@ -238,7 +241,9 @@ function TreeNodeItem({ node, level }: TreeNodeProps) {
           type="button"
           onClick={(e) => {
             e.stopPropagation()
-            toggleExpanded(node.id)
+            if (!node.disabled) {
+              toggleExpanded(node.id)
+            }
           }}
           className="p-0.5 hover:bg-muted-foreground/20 transition-colors"
           aria-label={isExpanded ? 'Collapse' : 'Expand'}
@@ -286,7 +291,7 @@ function TreeNodeItem({ node, level }: TreeNodeProps) {
   }
 
   return (
-    <Collapsible open={isExpanded} onOpenChange={() => toggleExpanded(node.id)}>
+    <Collapsible open={isExpanded}>
       <CollapsibleTrigger asChild className="w-full">
         {content}
       </CollapsibleTrigger>

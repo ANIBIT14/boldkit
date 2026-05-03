@@ -109,9 +109,7 @@ const TagInput = React.forwardRef<HTMLInputElement, TagInputProps>(
 
       // Check for delimiter
       if (delimiter) {
-        const parts = typeof delimiter === 'string'
-          ? value.split(delimiter)
-          : value.split(delimiter)
+        const parts = value.split(delimiter)
 
         if (parts.length > 1) {
           const newTags = parts.slice(0, -1).filter((part) => part.trim())

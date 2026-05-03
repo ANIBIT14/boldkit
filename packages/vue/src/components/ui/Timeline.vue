@@ -26,7 +26,7 @@ provide(TIMELINE_INJECTION_KEY, {
   <div
     :class="cn(
       'relative',
-      orientation === 'vertical' ? 'flex flex-col' : 'flex flex-row',
+      props.orientation === 'vertical' ? 'flex flex-col' : 'flex flex-row',
       props.class
     )"
   >

@@ -45,8 +45,10 @@ const pixelSize = computed(() => sizeMap[props.size ?? 'md'])
 
 let rafId = 0
 let startTime = 0
+let isMounted = false
 
 function startLoop() {
+  if (!isMounted) return
   cancelAnimationFrame(rafId)
   startTime = performance.now()
 
@@ -83,10 +85,12 @@ function startLoop() {
 }
 
 onMounted(() => {
+  isMounted = true
   startLoop()
 })
 
 onUnmounted(() => {
+  isMounted = false
   cancelAnimationFrame(rafId)
 })
 

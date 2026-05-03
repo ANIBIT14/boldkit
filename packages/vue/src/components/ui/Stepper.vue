@@ -59,7 +59,7 @@ provide(STEPPER_INJECTION_KEY, {
   <div
     :class="cn(
       'flex',
-      orientation === 'horizontal' ? 'flex-row' : 'flex-col',
+      props.orientation === 'horizontal' ? 'flex-row' : 'flex-col',
       props.class
     )"
   >

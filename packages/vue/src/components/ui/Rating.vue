@@ -83,8 +83,9 @@ const handleClick = (index: number, isHalf: boolean) => {
 const handleMouseMove = (e: MouseEvent, index: number) => {
   if (props.readOnly || props.disabled) return
 
-  const target = e.currentTarget as HTMLButtonElement
-  const rect = target.getBoundingClientRect()
+  const button = (e.target as Element)?.closest('button') as HTMLButtonElement | null
+  if (!button) return
+  const rect = button.getBoundingClientRect()
   const isHalf = e.clientX - rect.left < rect.width / 2
 
   const newHoverValue = isHalf && props.precision === 0.5 ? index + 0.5 : index + 1
@@ -133,8 +134,9 @@ const handleKeyDown = (e: KeyboardEvent) => {
 }
 
 const handleIconClick = (e: MouseEvent, index: number) => {
-  const target = e.currentTarget as HTMLButtonElement
-  const rect = target.getBoundingClientRect()
+  const button = (e.target as Element)?.closest('button') as HTMLButtonElement | null
+  if (!button) return
+  const rect = button.getBoundingClientRect()
   const isHalf = e.clientX - rect.left < rect.width / 2
   handleClick(index, isHalf)
 }

@@ -68,6 +68,28 @@ export function Invoice({
   onSendEmail,
   className,
 }: InvoiceProps) {
+  const computedSubtotal = data.items.reduce(
+    (sum, item) => sum + (item.total ?? item.quantity * item.unitPrice),
+    0
+  )
+  const computedTotal =
+    computedSubtotal +
+    (data.tax?.amount ?? 0) -
+    (data.discount?.amount ?? 0)
+
+  if (process.env.NODE_ENV !== 'production') {
+    if (Math.abs(computedSubtotal - data.subtotal) > 0.01) {
+      console.warn(
+        `[Invoice] subtotal mismatch: passed ${data.subtotal.toFixed(2)}, computed ${computedSubtotal.toFixed(2)}`
+      )
+    }
+    if (Math.abs(computedTotal - data.total) > 0.01) {
+      console.warn(
+        `[Invoice] total mismatch: passed ${data.total.toFixed(2)}, computed ${computedTotal.toFixed(2)}`
+      )
+    }
+  }
+
   const statusConfig = {
     paid: { bg: 'bg-success', text: 'text-success-foreground', icon: Check },
     pending: { bg: 'bg-warning', text: 'text-warning-foreground', icon: Clock },

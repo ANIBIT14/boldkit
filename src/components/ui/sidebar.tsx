@@ -310,8 +310,7 @@ const SidebarGroupLabel = React.forwardRef<
   HTMLDivElement,
   React.HTMLAttributes<HTMLDivElement>
 >(({ className, ...props }, ref) => {
-  const context = React.useContext(SidebarContext)
-  const state = context?.state ?? 'expanded'
+  const { state } = useSidebar()
 
   return (
     <div
@@ -353,8 +352,8 @@ interface SidebarItemProps
 
 const SidebarItem = React.forwardRef<HTMLButtonElement, SidebarItemProps>(
   ({ variant, icon, tooltip, className, children, ...props }, ref) => {
-    const context = React.useContext(SidebarContext)
-    const isCollapsed = context?.state === 'collapsed'
+    const { state } = useSidebar()
+    const isCollapsed = state === 'collapsed'
 
     const button = (
       <button
