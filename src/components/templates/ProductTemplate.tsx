@@ -484,8 +484,8 @@ export function ProductTemplate() {
               <div>
                 <h3 className="font-bold uppercase mb-4">Key Features</h3>
                 <ul className="space-y-2">
-                  {product.features.map((feature, i) => (
-                    <li key={i} className="flex items-center gap-2">
+                  {product.features.map((feature) => (
+                    <li key={feature} className="flex items-center gap-2">
                       <div className="w-5 h-5 bg-success border-2 border-foreground flex items-center justify-center">
                         <Check className="h-3 w-3 text-success-foreground" />
                       </div>

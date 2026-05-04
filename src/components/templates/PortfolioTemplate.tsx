@@ -220,9 +220,9 @@ function ServicesSection() {
         </div>
 
         <div className="grid md:grid-cols-3 gap-6">
-          {services.map((service, index) => (
+          {services.map((service) => (
             <Card
-              key={index}
+              key={service.title}
               className="group hover:translate-x-[-4px] hover:translate-y-[-4px] hover:shadow-[8px_8px_0px_hsl(var(--shadow-color))] transition-all"
             >
               <CardHeader className={service.color}>
@@ -265,9 +265,9 @@ function ExperienceSection() {
           </div>
 
           <div className="space-y-6">
-            {experience.map((exp, index) => (
+            {experience.map((exp) => (
               <div
-                key={index}
+                key={exp.company}
                 className="relative pl-8 before:absolute before:left-0 before:top-0 before:bottom-0 before:w-1 before:bg-foreground"
               >
                 <div
@@ -313,7 +313,7 @@ function ProjectsSection() {
 
         <div className="space-y-8">
           {projects.map((project, index) => (
-            <Card key={index} className="overflow-hidden">
+            <Card key={project.title} className="overflow-hidden">
               <div className={`grid lg:grid-cols-2 ${index % 2 === 1 ? 'lg:flex-row-reverse' : ''}`}>
                 {/* Image */}
                 <div
@@ -367,9 +367,9 @@ function TestimonialsSection() {
         </div>
 
         <div className="grid md:grid-cols-3 gap-6">
-          {testimonials.map((testimonial, index) => (
+          {testimonials.map((testimonial) => (
             <Card
-              key={index}
+              key={testimonial.author}
               className={`relative overflow-hidden ${testimonial.color}/10`}
             >
               <HeartShape

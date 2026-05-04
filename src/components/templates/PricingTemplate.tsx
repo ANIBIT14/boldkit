@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useRef } from 'react'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
@@ -77,8 +77,8 @@ function PricingTier({ name, price, yearlyPrice, description, features, popular,
 
       <CardContent className="pt-6">
         <ul className="space-y-3 mb-6">
-          {features.map((feature, i) => (
-            <li key={i} className="flex items-center gap-2">
+          {features.map((feature) => (
+            <li key={feature.name} className="flex items-center gap-2">
               {feature.included ? (
                 <div className="w-5 h-5 bg-success border-2 border-foreground flex items-center justify-center">
                   <Check className="h-3 w-3 text-success-foreground" />
@@ -211,15 +211,17 @@ export function PricingTemplate() {
   const [isYearly, setIsYearly] = useState(false)
   const { resolvedTheme, setTheme } = useTheme()
   const [isThemeAnimating, setIsThemeAnimating] = useState(false)
+  const isTogglingRef = useRef(false)
 
   const handleThemeToggle = () => {
+    if (isTogglingRef.current) return
+    isTogglingRef.current = true
     setIsThemeAnimating(true)
+    setTheme(resolvedTheme === 'dark' ? 'light' : 'dark')
     setTimeout(() => {
-      setTheme(resolvedTheme === 'dark' ? 'light' : 'dark')
-      setTimeout(() => {
-        setIsThemeAnimating(false)
-      }, 200)
-    }, 200)
+      setIsThemeAnimating(false)
+      isTogglingRef.current = false
+    }, 400)
   }
 
   return (
@@ -411,7 +413,7 @@ export function PricingTemplate() {
 
           <div className="max-w-3xl mx-auto grid md:grid-cols-2 gap-4">
             {faqs.map((faq, i) => (
-              <Accordion key={i} type="single" collapsible>
+              <Accordion key={faq.question} type="single" collapsible>
                 <AccordionItem value={`faq-${i}`} className="border-3 border-foreground bg-background">
                   <AccordionTrigger className="px-4 font-bold text-left">
                     {faq.question}

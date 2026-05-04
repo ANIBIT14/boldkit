@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { ref } from 'vue'
 import { Check, ArrowRight, Zap, Shield, Sparkles, Users } from 'lucide-vue-next'
 import {
   Button,
@@ -100,6 +101,12 @@ const features: FeatureCardProps[] = [
 ]
 
 const companies = ['Company A', 'Company B', 'Company C', 'Company D', 'Company E']
+
+const ctaEmail = ref('')
+
+function handleCtaSubmit() {
+  console.log('CTA form submitted:', ctaEmail.value)
+}
 </script>
 
 <template>
@@ -292,10 +299,10 @@ const companies = ['Company A', 'Company B', 'Company C', 'Company D', 'Company 
         <p class="text-xl text-primary-foreground/80 mb-8 max-w-2xl mx-auto">
           Join thousands of teams already using our platform. Start free, no credit card required.
         </p>
-        <div class="flex flex-col sm:flex-row items-center justify-center gap-4 max-w-md mx-auto">
-          <Input placeholder="Enter your email" class="bg-background" />
-          <Button variant="secondary" size="lg" class="whitespace-nowrap">Start Free Trial</Button>
-        </div>
+        <form @submit.prevent="handleCtaSubmit" class="flex flex-col sm:flex-row items-center justify-center gap-4 max-w-md mx-auto">
+          <Input v-model="ctaEmail" placeholder="Enter your email" type="email" class="bg-background" />
+          <Button type="submit" variant="secondary" size="lg" class="whitespace-nowrap">Start Free Trial</Button>
+        </form>
       </div>
     </section>
 

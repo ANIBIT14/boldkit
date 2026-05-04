@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useRef } from 'react'
 import type { ReactNode } from 'react'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
@@ -142,15 +142,17 @@ const navItems = [
 export function DashboardTemplate() {
   const { resolvedTheme, setTheme } = useTheme()
   const [isThemeAnimating, setIsThemeAnimating] = useState(false)
+  const isTogglingRef = useRef(false)
 
   const handleThemeToggle = () => {
+    if (isTogglingRef.current) return
+    isTogglingRef.current = true
     setIsThemeAnimating(true)
+    setTheme(resolvedTheme === 'dark' ? 'light' : 'dark')
     setTimeout(() => {
-      setTheme(resolvedTheme === 'dark' ? 'light' : 'dark')
-      setTimeout(() => {
-        setIsThemeAnimating(false)
-      }, 200)
-    }, 200)
+      setIsThemeAnimating(false)
+      isTogglingRef.current = false
+    }, 400)
   }
 
   return (

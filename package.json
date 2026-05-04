@@ -1,7 +1,7 @@
 {
   "workspaces": ["packages/vue"],
   "name": "boldkit",
-  "version": "3.2.3",
+  "version": "3.2.4",
   "description": "A neubrutalism UI component library for React and Vue 3 - Bold, raw, beautiful.",
   "author": "BoldKit Team",
   "license": "MIT",

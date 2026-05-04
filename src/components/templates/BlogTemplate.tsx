@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useRef } from 'react'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
@@ -231,15 +231,17 @@ const recentArticles = [
 export function BlogTemplate() {
   const { resolvedTheme, setTheme } = useTheme()
   const [isThemeAnimating, setIsThemeAnimating] = useState(false)
+  const isTogglingRef = useRef(false)
 
   const handleThemeToggle = () => {
+    if (isTogglingRef.current) return
+    isTogglingRef.current = true
     setIsThemeAnimating(true)
+    setTheme(resolvedTheme === 'dark' ? 'light' : 'dark')
     setTimeout(() => {
-      setTheme(resolvedTheme === 'dark' ? 'light' : 'dark')
-      setTimeout(() => {
-        setIsThemeAnimating(false)
-      }, 200)
-    }, 200)
+      setIsThemeAnimating(false)
+      isTogglingRef.current = false
+    }, 400)
   }
 
   return (
@@ -358,8 +360,8 @@ export function BlogTemplate() {
               </div>
 
               <div className="grid sm:grid-cols-2 gap-6">
-                {articles.map((article, i) => (
-                  <ArticleCard key={i} {...article} />
+                {articles.map((article) => (
+                  <ArticleCard key={article.title} {...article} />
                 ))}
               </div>
 
@@ -403,7 +405,7 @@ export function BlogTemplate() {
                 <div className="space-y-3">
                   {trendingArticles.map((article, i) => (
                     <a
-                      key={i}
+                      key={article.title}
                       href="#"
                       className="flex items-start gap-3 group"
                     >
@@ -425,9 +427,9 @@ export function BlogTemplate() {
               <div className="border-3 border-foreground p-4">
                 <h3 className="font-bold uppercase text-sm mb-4">Recent Posts</h3>
                 <div className="space-y-3">
-                  {recentArticles.map((article, i) => (
+                  {recentArticles.map((article) => (
                     <a
-                      key={i}
+                      key={article.title}
                       href="#"
                       className="block group"
                     >

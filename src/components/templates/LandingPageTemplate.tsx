@@ -69,8 +69,8 @@ function PricingCard({ title, price, period, description, features, popular, but
       </CardHeader>
       <CardContent className="pt-6">
         <ul className="space-y-3 mb-6">
-          {features.map((feature, i) => (
-            <li key={i} className="flex items-center gap-2">
+          {features.map((feature) => (
+            <li key={feature} className="flex items-center gap-2">
               <Check className="h-5 w-5 text-success" />
               <span>{feature}</span>
             </li>

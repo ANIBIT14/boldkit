@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
 import {
   Search, ChevronRight, ChevronDown, Menu, X, Moon, Sun,
   Copy, Check, ExternalLink, Github, ArrowLeft, ArrowRight,
@@ -87,11 +87,23 @@ const searchVal = ref('')
 const copiedCode = ref<string | null>(null)
 const openSections = ref<Record<string, boolean>>({ 'Getting Started': true, 'Core Concepts': true })
 
+let copyTimeout: ReturnType<typeof setTimeout> | null = null
+
 function copyCode(code: string) {
   navigator.clipboard.writeText(code)
   copiedCode.value = code
-  setTimeout(() => { copiedCode.value = null }, 2000)
+  if (copyTimeout) clearTimeout(copyTimeout)
+  copyTimeout = setTimeout(() => { copiedCode.value = null }, 2000)
 }
+
+const filteredSections = computed(() => {
+  const query = searchVal.value.trim().toLowerCase()
+  if (!query) return NAV_SECTIONS
+  return NAV_SECTIONS.map(section => ({
+    ...section,
+    items: section.items.filter(item => item.label.toLowerCase().includes(query)),
+  })).filter(section => section.items.length > 0)
+})
 
 function toggleSection(title: string) {
   openSections.value[title] = !openSections.value[title]
@@ -114,7 +126,7 @@ function isSectionOpen(title: string) {
       <button
         class="lg:hidden p-1.5 border-2 border-foreground hover:bg-foreground hover:text-background transition-all"
         @click="sidebarOpen = !sidebarOpen"
-        aria-label="Toggle menu"
+        :aria-label="sidebarOpen ? 'Close menu' : 'Open menu'"
       >
         <X v-if="sidebarOpen" class="h-4 w-4" />
         <Menu v-else class="h-4 w-4" />
@@ -168,6 +180,7 @@ function isSectionOpen(title: string) {
           Components <ArrowRight class="h-3 w-3" />
         </Button>
       </div>
+      <span aria-live="polite" class="sr-only">{{ copiedCode ? 'Code copied to clipboard' : '' }}</span>
     </header>
 
     <!-- Body -->
@@ -194,9 +207,10 @@ function isSectionOpen(title: string) {
 
           <!-- Nav sections -->
           <div class="space-y-0.5">
-            <div v-for="section in NAV_SECTIONS" :key="section.title" class="mb-1">
+            <div v-for="section in filteredSections" :key="section.title" class="mb-1">
               <button
                 class="flex items-center justify-between w-full px-2 py-1.5 text-[10px] font-black uppercase tracking-[0.12em] text-foreground/50 hover:text-foreground/80 transition-colors"
+                :aria-expanded="isSectionOpen(section.title).toString()"
                 @click="toggleSection(section.title)"
               >
                 {{ section.title }}
@@ -397,6 +411,7 @@ import { Button } from '@/components/ui'
                 <thead>
                   <tr class="bg-foreground text-background">
                     <th v-for="h in ['Prop', 'Type', 'Default', 'Description']" :key="h"
+                      scope="col"
                       class="text-left px-4 py-2.5 font-black text-[10px] uppercase tracking-[0.12em] whitespace-nowrap">
                       {{ h }}
                     </th>

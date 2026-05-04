@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { ref } from 'vue'
 import {
   ArrowRight,
   Mail,
@@ -150,6 +151,20 @@ interface Testimonial {
   author: string
   role: string
   color: string
+}
+
+const formName = ref('')
+const formEmail = ref('')
+const formSubject = ref('')
+const formMessage = ref('')
+
+function handleContactSubmit() {
+  console.log('Contact form submitted:', {
+    name: formName.value,
+    email: formEmail.value,
+    subject: formSubject.value,
+    message: formMessage.value,
+  })
 }
 
 const testimonials: Testimonial[] = [
@@ -434,16 +449,18 @@ const testimonials: Testimonial[] = [
               <CardDescription>Fill out the form below and I'll get back to you within 24 hours.</CardDescription>
             </CardHeader>
             <CardContent class="space-y-4">
-              <div class="grid sm:grid-cols-2 gap-4">
-                <Input placeholder="Your Name" />
-                <Input placeholder="Your Email" type="email" />
-              </div>
-              <Input placeholder="Subject" />
-              <Textarea placeholder="Tell me about your project..." class="min-h-[120px]" />
-              <Button class="w-full gap-2">
-                Send Message
-                <ArrowRight class="h-4 w-4" />
-              </Button>
+              <form @submit.prevent="handleContactSubmit" class="space-y-4">
+                <div class="grid sm:grid-cols-2 gap-4">
+                  <Input v-model="formName" placeholder="Your Name" />
+                  <Input v-model="formEmail" placeholder="Your Email" type="email" />
+                </div>
+                <Input v-model="formSubject" placeholder="Subject" />
+                <Textarea v-model="formMessage" placeholder="Tell me about your project..." class="min-h-[120px]" />
+                <Button type="submit" class="w-full gap-2">
+                  Send Message
+                  <ArrowRight class="h-4 w-4" />
+                </Button>
+              </form>
             </CardContent>
           </Card>
         </div>
@@ -466,6 +483,7 @@ const testimonials: Testimonial[] = [
               :href="portfolioData.social.github"
               target="_blank"
               rel="noopener noreferrer"
+              aria-label="GitHub"
               class="text-background/70 hover:text-background transition-colors"
             >
               GitHub
@@ -474,6 +492,7 @@ const testimonials: Testimonial[] = [
               :href="portfolioData.social.linkedin"
               target="_blank"
               rel="noopener noreferrer"
+              aria-label="LinkedIn"
               class="text-background/70 hover:text-background transition-colors"
             >
               LinkedIn
@@ -482,6 +501,7 @@ const testimonials: Testimonial[] = [
               :href="portfolioData.social.twitter"
               target="_blank"
               rel="noopener noreferrer"
+              aria-label="Twitter"
               class="text-background/70 hover:text-background transition-colors"
             >
               Twitter
