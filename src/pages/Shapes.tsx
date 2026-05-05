@@ -7,7 +7,7 @@ import { Layout } from '@/components/layout'
 import { Copy, Check, Terminal, Wand2, ArrowRight } from 'lucide-react'
 import { toast } from 'sonner'
 import { SEO, pageSEO } from '@/components/SEO'
-import { useFramework, FrameworkToggle, ReactIcon, VueIcon } from '@/hooks/use-framework'
+import { useFramework, FrameworkToggle } from '@/hooks/use-framework'
 import {
   TriangleShape, DiamondBadge, PentagonShape, HexagonShape, OctagonShape,
   CrossShape, TrapezoidShape, ParallelogramShape,
