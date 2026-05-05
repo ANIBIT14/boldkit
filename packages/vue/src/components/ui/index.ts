@@ -174,6 +174,10 @@ export { default as CommandItem } from './CommandItem.vue'
 export { default as CommandSeparator } from './CommandSeparator.vue'
 export { default as CommandShortcut } from './CommandShortcut.vue'
 
+// Combobox (Popover + Command composition)
+export { default as ComboboxTrigger } from './ComboboxTrigger.vue'
+export { default as ComboboxMultiTrigger } from './ComboboxMultiTrigger.vue'
+
 // Carousel
 export { default as Carousel } from './Carousel.vue'
 export { default as CarouselContent } from './CarouselContent.vue'

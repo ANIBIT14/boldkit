@@ -40,6 +40,7 @@ const components = [
   { name: 'Carousel', path: '/components/carousel' },
   { name: 'Checkbox', path: '/components/checkbox' },
   { name: 'Collapsible', path: '/components/collapsible' },
+  { name: 'Combobox', path: '/components/combobox' },
   { name: 'Command', path: '/components/command' },
   { name: 'Data Table', path: '/components/data-table' },
   { name: 'Date Range Picker', path: '/components/date-range-picker' },

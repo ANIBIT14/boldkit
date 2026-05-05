@@ -1,0 +1,29 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "combobox",
+  "type": "registry:ui",
+  "description": "Searchable dropdown built by composing Popover and Command with neubrutalism styling. Includes single-select (ComboboxTrigger) and multi-select with removable chips (ComboboxMultiTrigger).",
+  "dependencies": [
+    "reka-ui",
+    "lucide-vue-next"
+  ],
+  "registryDependencies": [
+    "utils",
+    "popover",
+    "command"
+  ],
+  "files": [
+    {
+      "path": "registry/default/ui/ComboboxTrigger.vue",
+      "content": "<script setup lang=\"ts\">\nimport { PopoverTrigger as PopoverTriggerPrimitive } from 'reka-ui'\nimport { ChevronsUpDown } from 'lucide-vue-next'\nimport { cn } from '@/lib/utils'\n\nconst props = withDefaults(\n  defineProps<{\n    class?: string\n    placeholder?: string\n    value?: string\n    open?: boolean\n  }>(),\n  {\n    placeholder: 'Select...',\n  }\n)\n</script>\n\n<template>\n  <PopoverTriggerPrimitive as-child>\n    <button\n      role=\"combobox\"\n      :aria-expanded=\"props.open\"\n      :class=\"\n        cn(\n          'flex h-11 w-full items-center justify-between border-3 border-input bg-background px-4 py-2 text-sm font-medium shadow-[4px_4px_0px_hsl(var(--shadow-color))] focus:outline-none focus:translate-x-[4px] focus:translate-y-[4px] focus:shadow-none disabled:cursor-not-allowed disabled:opacity-50 transition-all duration-200',\n          props.class\n        )\n      \"\n    >\n      <span :class=\"cn('truncate', !props.value && 'text-muted-foreground')\">\n        {{ props.value || props.placeholder }}\n      </span>\n      <ChevronsUpDown class=\"ml-2 h-4 w-4 shrink-0 opacity-50\" :stroke-width=\"2.5\" />\n    </button>\n  </PopoverTriggerPrimitive>\n</template>\n",
+      "type": "registry:ui",
+      "target": "components/ui/ComboboxTrigger.vue"
+    },
+    {
+      "path": "registry/default/ui/ComboboxMultiTrigger.vue",
+      "content": "<script setup lang=\"ts\">\nimport { PopoverTrigger as PopoverTriggerPrimitive } from 'reka-ui'\nimport { ChevronsUpDown, X } from 'lucide-vue-next'\nimport { cn } from '@/lib/utils'\n\n/**\n * Multi-select trigger. Each entry in `values` has a `value` (identifier)\n * and a `label` (display text). The `remove` emit receives the `value`\n * of the chip that was dismissed, so you can remove it from state directly.\n */\nconst props = withDefaults(\n  defineProps<{\n    class?: string\n    placeholder?: string\n    values?: { value: string; label: string }[]\n    open?: boolean\n  }>(),\n  {\n    placeholder: 'Select...',\n    values: () => [],\n  }\n)\n\nconst emit = defineEmits<{\n  remove: [value: string]\n}>()\n</script>\n\n<template>\n  <PopoverTriggerPrimitive as-child>\n    <button\n      role=\"combobox\"\n      :aria-expanded=\"props.open\"\n      :class=\"\n        cn(\n          'flex min-h-11 w-full flex-wrap items-center gap-1.5 border-3 border-input bg-background px-3 py-2 text-sm font-medium shadow-[4px_4px_0px_hsl(var(--shadow-color))] focus:outline-none focus:translate-x-[4px] focus:translate-y-[4px] focus:shadow-none disabled:cursor-not-allowed disabled:opacity-50 transition-all duration-200',\n          props.class\n        )\n      \"\n    >\n      <span class=\"flex flex-1 flex-wrap items-center gap-1\">\n        <template v-if=\"props.values && props.values.length > 0\">\n          <span\n            v-for=\"item in props.values\"\n            :key=\"item.value\"\n            class=\"flex items-center gap-1 border-2 border-foreground bg-accent px-1.5 py-0.5 text-xs font-bold\"\n          >\n            {{ item.label }}\n            <X\n              class=\"h-3 w-3 cursor-pointer hover:opacity-70\"\n              :stroke-width=\"3\"\n              @click.stop=\"emit('remove', item.value)\"\n            />\n          </span>\n        </template>\n        <span v-else class=\"text-muted-foreground\">{{ props.placeholder }}</span>\n      </span>\n      <ChevronsUpDown class=\"ml-auto h-4 w-4 shrink-0 opacity-50\" :stroke-width=\"2.5\" />\n    </button>\n  </PopoverTriggerPrimitive>\n</template>\n",
+      "type": "registry:ui",
+      "target": "components/ui/ComboboxMultiTrigger.vue"
+    }
+  ]
+}

@@ -5,6 +5,27 @@ Format follows [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ---
 
+## [3.3.0] — 2026-05-05
+
+### ✨ New Components
+
+**Combobox (React + Vue)**
+- New `Combobox` component built by composing `Popover` and `Command` — searchable, filterable dropdown with neubrutalism styling
+- `ComboboxTrigger` — single-select trigger with thick border, hard shadow, and press-down focus effect
+- `ComboboxMultiTrigger` — multi-select trigger with removable tag chips; `values` prop accepts `{ value, label }[]` and `onRemove` (React) / `@remove` (Vue) returns the item's `value` directly (no reverse-lookup needed)
+- `ComboboxContent` — popover wrapper with `align="start"` default so the dropdown left-aligns with the trigger
+- Re-exports all `Command*` sub-components as `Combobox*` aliases (`ComboboxInput`, `ComboboxList`, `ComboboxEmpty`, `ComboboxGroup`, `ComboboxItem`, `ComboboxSeparator`)
+- Installable via shadcn CLI: `npx shadcn@latest add "https://boldkit.dev/r/combobox.json"` (React) / `npx shadcn-vue@latest add "https://boldkit.dev/r/vue/combobox.json"` (Vue)
+- Full documentation page at `/components/combobox` with 5 examples: Basic, Multi Select, With Groups, With Label, Disabled
+- Added to sidebar navigation, Cmd+K search, and sitemap
+
+### 🐛 Bug Fixes
+
+**Vue Templates**
+- `DocsTemplate.vue` — Added `aria-live="polite"` region so screen readers announce "Copied to clipboard" when copy button is clicked
+
+---
+
 ## [3.2.3] — 2026-05-02
 
 ### 🐛 Bug Fixes

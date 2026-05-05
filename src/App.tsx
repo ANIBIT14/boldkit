@@ -44,6 +44,7 @@ const CalendarDoc = lazy(() => import('@/pages/docs/CalendarDoc').then(m => ({ d
 const CardDoc = lazy(() => import('@/pages/docs/CardDoc').then(m => ({ default: m.CardDoc })))
 const CheckboxDoc = lazy(() => import('@/pages/docs/CheckboxDoc').then(m => ({ default: m.CheckboxDoc })))
 const CollapsibleDoc = lazy(() => import('@/pages/docs/CollapsibleDoc').then(m => ({ default: m.CollapsibleDoc })))
+const ComboboxDoc = lazy(() => import('@/pages/docs/ComboboxDoc').then(m => ({ default: m.ComboboxDoc })))
 const CommandDoc = lazy(() => import('@/pages/docs/CommandDoc').then(m => ({ default: m.CommandDoc })))
 const DialogDoc = lazy(() => import('@/pages/docs/DialogDoc').then(m => ({ default: m.DialogDoc })))
 const DrawerDoc = lazy(() => import('@/pages/docs/DrawerDoc').then(m => ({ default: m.DrawerDoc })))
@@ -192,6 +193,7 @@ function App() {
               <Route path="card" element={<Suspense fallback={<PageLoader />}><CardDoc /></Suspense>} />
               <Route path="checkbox" element={<Suspense fallback={<PageLoader />}><CheckboxDoc /></Suspense>} />
               <Route path="collapsible" element={<Suspense fallback={<PageLoader />}><CollapsibleDoc /></Suspense>} />
+              <Route path="combobox" element={<Suspense fallback={<PageLoader />}><ComboboxDoc /></Suspense>} />
               <Route path="command" element={<Suspense fallback={<PageLoader />}><CommandDoc /></Suspense>} />
               <Route path="dialog" element={<Suspense fallback={<PageLoader />}><DialogDoc /></Suspense>} />
               <Route path="drawer" element={<Suspense fallback={<PageLoader />}><DrawerDoc /></Suspense>} />

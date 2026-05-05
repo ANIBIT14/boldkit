@@ -3,7 +3,7 @@
 // No React imports — safe for both browser and Node.js build scripts.
 
 export const COUNTS = {
-  components: 55,
+  components: 56,
   charts: 14,
   shapes: 64,
   blocks: 15,
@@ -118,6 +118,7 @@ export const COMPONENT_TITLES: Record<string, string> = {
   carousel: 'Carousel',
   checkbox: 'Checkbox',
   collapsible: 'Collapsible',
+  combobox: 'Combobox',
   command: 'Command',
   'data-table': 'Data Table',
   'date-range-picker': 'Date Range Picker',

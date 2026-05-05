@@ -45,6 +45,7 @@ const components = [
   { name: 'Carousel', href: '/components/carousel', isNew: true },
   { name: 'Checkbox', href: '/components/checkbox' },
   { name: 'Collapsible', href: '/components/collapsible' },
+  { name: 'Combobox', href: '/components/combobox', isNew: true },
   { name: 'Command', href: '/components/command' },
   { name: 'Data Table', href: '/components/data-table', isNew: true },
   { name: 'Date Range Picker', href: '/components/date-range-picker', isNew: true },

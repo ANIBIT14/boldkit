@@ -117,6 +117,9 @@ function isSectionOpen(title: string) {
 <template>
   <div :class="['min-h-screen bg-background text-foreground', dark && 'dark']">
 
+    <!-- Accessible live region for copy notifications -->
+    <span aria-live="polite" class="sr-only">{{ copiedCode ? 'Copied to clipboard' : '' }}</span>
+
     <!-- Primary accent eyebrow -->
     <div class="h-[3px] bg-primary w-full" />
 
