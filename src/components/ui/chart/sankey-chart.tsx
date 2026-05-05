@@ -206,7 +206,10 @@ const SankeyChart = React.forwardRef<HTMLDivElement, SankeyChartProps>(
     const [width, setWidth] = React.useState(600)
     const [tooltip, setTooltip] = React.useState<{ x: number; y: number; label: string; value: number } | null>(null)
 
-    React.useEffect(() => {
+    // useLayoutEffect fires before paint, preventing the initial layout flash
+    // that would occur with useEffect + the 600px placeholder width.
+    // SankeyChart is client-only (ResizeObserver), so useLayoutEffect is safe here.
+    React.useLayoutEffect(() => {
       if (!containerRef.current) return
       const ro = new ResizeObserver(entries => {
         setWidth(entries[0].contentRect.width)

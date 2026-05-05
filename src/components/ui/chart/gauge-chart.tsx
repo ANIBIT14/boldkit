@@ -58,7 +58,7 @@ const DEFAULT_ZONES: GaugeChartZone[] = [
  */
 const VARIANT_ARC_CONFIG = {
   semicircle: { arcStartDeg: -90, sweepDeg: 180 },
-  full:       { arcStartDeg: -210, sweepDeg: 300 }, // 300° sweep, gap at bottom
+  full:       { arcStartDeg: -90, sweepDeg: 360 }, // full 360° sweep
   meter:      { arcStartDeg: -90, sweepDeg: 180 },
 } as const
 
@@ -144,6 +144,15 @@ const GaugeChart = React.forwardRef<HTMLDivElement, GaugeChartProps>(
 
       const startX = centerX + radius * Math.cos(startAngle)
       const startY = centerY + radius * Math.sin(startAngle)
+
+      // A full 360° arc is degenerate in SVG (start === end point); split into two half-arcs
+      if (resolvedVariant === 'full' && Math.abs(endPercent - startPercent) >= 100) {
+        const midAngle = startAngle + Math.PI
+        const midX = centerX + radius * Math.cos(midAngle)
+        const midY = centerY + radius * Math.sin(midAngle)
+        return `M ${startX} ${startY} A ${radius} ${radius} 0 1 1 ${midX} ${midY} A ${radius} ${radius} 0 1 1 ${startX} ${startY}`
+      }
+
       const endX = centerX + radius * Math.cos(endAngle)
       const endY = centerY + radius * Math.sin(endAngle)
 
@@ -158,8 +167,6 @@ const GaugeChart = React.forwardRef<HTMLDivElement, GaugeChartProps>(
     // The needle points upward (the line is drawn rightward then rotated)
     const needleAngle = arcConfig.arcStartDeg + (percentage * arcConfig.sweepDeg) / 100
 
-    // Meter variant: filled progress arc + zone color (no needle)
-    const meterProgressPath = isMeter ? createArcPath(0, percentage, config.radius) : ''
     const currentZoneColor =
       zones.find((z) => percentage >= z.from && percentage <= z.to)?.color ||
       'hsl(var(--primary))'
@@ -247,14 +254,16 @@ const GaugeChart = React.forwardRef<HTMLDivElement, GaugeChartProps>(
               )
             })}
 
-          {/* Meter variant: filled progress arc (replaces needle) */}
-          {isMeter && meterProgressPath && (
+          {/* Meter variant: filled progress arc using stroke-dasharray animation */}
+          {isMeter && (
             <path
-              d={meterProgressPath}
+              d={createArcPath(0, 100, config.radius)}
               fill="none"
               stroke={currentZoneColor}
               strokeWidth={config.strokeWidth + 4}
               strokeLinecap="round"
+              pathLength={100}
+              strokeDasharray={`${percentage} 100`}
               style={{ transition: animated ? 'stroke-dasharray 0.5s ease-out' : 'none' }}
             />
           )}

@@ -95,7 +95,8 @@ const DonutChart = React.forwardRef<HTMLDivElement, DonutChartProps>(
               <Label
                 content={({ viewBox }) => {
                   if (viewBox && 'cx' in viewBox && 'cy' in viewBox) {
-                    const ir = typeof innerRadius === 'number' ? innerRadius : 60
+                    const pieView = viewBox as { cx: number; cy: number; innerRadius?: number; outerRadius?: number }
+                    const ir = pieView.innerRadius ?? (typeof innerRadius === 'number' ? innerRadius : 60)
                     const fwHalf = Math.max(40, ir * 0.85)
                     const fhHalf = Math.max(25, ir * 0.55)
                     return (

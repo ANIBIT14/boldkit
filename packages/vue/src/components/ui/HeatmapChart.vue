@@ -30,11 +30,13 @@ const option = computed(() => {
   const minVal = Math.min(...vals)
   const maxVal = Math.max(...vals) || 1 // prevent min === max when all values are 0
 
-  const seriesData = props.data.map(d => [
-    props.cols.indexOf(d.col),
-    props.rows.indexOf(d.row),
-    d.value,
-  ])
+  const seriesData = props.data
+    .filter(d => props.cols.includes(d.col) && props.rows.includes(d.row))
+    .map(d => [
+      props.cols.indexOf(d.col),
+      props.rows.indexOf(d.row),
+      d.value,
+    ])
 
   return {
     tooltip: props.showTooltip ? {

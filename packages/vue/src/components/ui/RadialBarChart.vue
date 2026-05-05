@@ -66,10 +66,14 @@ const seriesData = computed(() => {
         borderColor: 'hsl(var(--foreground))',
         borderWidth: 3,
       },
-      label: props.showLabel && index === numItems - 1 ? {
+      label: props.showLabel ? {
         show: true,
-        position: 'center',
-        formatter: () => '',
+        position: 'inside',
+        fontWeight: 'bold',
+        fontSize: 11,
+        color: 'hsl(var(--foreground))',
+        formatter: (params: { name: string; value: number }) =>
+          params.name !== 'background' ? String(params.value) : '',
       } : { show: false },
       data: [
         {

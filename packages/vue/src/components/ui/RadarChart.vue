@@ -36,14 +36,21 @@ const props = withDefaults(defineProps<RadarChartProps>(), {
 })
 
 const indicators = computed(() => {
+  if (props.data.length === 0 || props.dataKeys.length === 0) {
+    return props.data.map(d => ({ name: d.subject, max: 100 }))
+  }
+
   const maxValues: Record<string, number> = {}
   props.dataKeys.forEach(key => {
-    maxValues[key] = Math.max(...props.data.map(d => (d[key] as number) || 0))
+    const values = props.data.map(d => (d[key] as number) || 0)
+    maxValues[key] = Math.max(...values)
   })
+
+  const globalMax = Math.max(...props.dataKeys.map(key => maxValues[key]), 0) * 1.2
 
   return props.data.map(d => ({
     name: d.subject,
-    max: Math.max(...props.dataKeys.map(key => maxValues[key])) * 1.2,
+    max: Math.max(globalMax, 1),
   }))
 })
 

@@ -81,14 +81,13 @@ const RadialBarChartComponent = React.forwardRef<HTMLDivElement, RadialBarChartP
           endAngle={endAngle}
           barSize={variant === 'nested' ? 15 : 20}
         >
-          {showBackground && (
-            <PolarAngleAxis
-              type="number"
-              domain={[0, calculatedMax]}
-              angleAxisId={0}
-              tick={false}
-            />
-          )}
+          <PolarAngleAxis
+            type="number"
+            domain={[0, calculatedMax]}
+            angleAxisId={0}
+            tick={false}
+            axisLine={false}
+          />
           {showTooltip && (
             <ChartTooltip
               cursor={false}

@@ -136,15 +136,6 @@ function createArcPath(startPercent: number, endPercent: number, radius: number)
 }
 
 /**
- * Build the filled progress arc for the meter variant.
- * Covers 0 → percentage along the 180° semicircle sweep.
- */
-const meterProgressPath = computed(() => {
-  if (percentage.value <= 0) return ''
-  return createArcPath(0, percentage.value, config.value.radius)
-})
-
-/**
  * Find the zone color for the current percentage (used by meter variant).
  */
 const currentZoneColor = computed(() => {
@@ -228,14 +219,16 @@ function getTickCoords(tick: number) {
         />
       </template>
 
-      <!-- Meter variant: filled progress arc instead of needle -->
+      <!-- Meter variant: filled progress arc using stroke-dasharray animation -->
       <path
-        v-if="isMeter && meterProgressPath"
-        :d="meterProgressPath"
+        v-if="isMeter"
+        :d="createArcPath(0, 100, config.radius)"
         fill="none"
         :stroke="currentZoneColor"
         :stroke-width="config.strokeWidth + 4"
         stroke-linecap="round"
+        pathLength="100"
+        :stroke-dasharray="`${percentage} 100`"
         :style="{ transition: animated ? 'stroke-dasharray 0.5s ease-out' : 'none' }"
       />
 

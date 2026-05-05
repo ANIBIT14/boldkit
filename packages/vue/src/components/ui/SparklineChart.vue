@@ -42,6 +42,12 @@ const resolvedColor = computed(() => {
 const strokeColor = 'hsl(var(--foreground))'
 
 const option = computed(() => {
+  const dataMin = props.data.length > 0 ? Math.min(...props.data) : 0
+  const dataMax = props.data.length > 0 ? Math.max(...props.data) : 1
+  const range = dataMax - dataMin
+  // Use 10% of the range as padding; fall back to abs(value)*0.1 for flat data, or 1 for zero
+  const axisPadding = range === 0 ? (Math.abs(dataMax) * 0.1 || 1) : range * 0.1
+
   const baseOption = {
     animation: props.animated,
     animationDuration: 300,
@@ -59,8 +65,8 @@ const option = computed(() => {
     yAxis: {
       type: 'value',
       show: false,
-      min: props.data.length > 0 ? Math.min(...props.data) * 0.9 : 0,
-      max: props.data.length > 0 ? Math.max(...props.data) * 1.1 : 1,
+      min: dataMin - axisPadding,
+      max: dataMax + axisPadding,
     },
   }
 
@@ -98,17 +104,8 @@ const option = computed(() => {
           borderWidth: 2,
         },
         areaStyle: {
-          color: {
-            type: 'linear',
-            x: 0,
-            y: 0,
-            x2: 0,
-            y2: 1,
-            colorStops: [
-              { offset: 0, color: `color-mix(in srgb, ${resolvedColor.value} 60%, transparent)` },
-              { offset: 1, color: `color-mix(in srgb, ${resolvedColor.value} 10%, transparent)` },
-            ],
-          },
+          color: resolvedColor.value,
+          opacity: 0.35,
         },
       }],
     }

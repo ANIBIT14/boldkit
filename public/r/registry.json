@@ -870,7 +870,7 @@
     {
       "name": "shapes",
       "type": "registry:ui",
-      "description": "45 neubrutalist SVG shapes organized by category for badges, decorations, and visual accents",
+      "description": "55 neubrutalist SVG shapes organized by category for badges, decorations, and visual accents",
       "dependencies": [],
       "registryDependencies": [
         "utils"

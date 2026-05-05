@@ -96,29 +96,35 @@ const HeatmapChart = React.forwardRef<HTMLDivElement, HeatmapChartProps>(
           <div />
 
           {/* Column headers */}
-          {showLabels && cols.map(col => (
-            <div
-              key={col}
-              className="flex items-end justify-center pb-1"
-              style={{ fontSize: 10, fontFamily: "'DM Mono', monospace", fontWeight: 700 }}
-            >
-              <span style={{ transform: 'rotate(-45deg)', transformOrigin: 'bottom center', whiteSpace: 'nowrap' }}>
-                {col}
-              </span>
-            </div>
-          ))}
+          {cols.map(col =>
+            showLabels ? (
+              <div
+                key={col}
+                className="flex items-end justify-center pb-1"
+                style={{ fontSize: 10, fontFamily: "'DM Mono', monospace", fontWeight: 700 }}
+              >
+                <span style={{ transform: 'rotate(-45deg)', transformOrigin: 'bottom center', whiteSpace: 'nowrap' }}>
+                  {col}
+                </span>
+              </div>
+            ) : (
+              <div key={col} />
+            )
+          )}
 
           {/* Rows */}
           {rows.map(row => (
             <React.Fragment key={row}>
               {/* Row label */}
-              {showLabels && (
+              {showLabels ? (
                 <div
                   className="flex items-center pr-2 text-right"
                   style={{ fontSize: 10, fontFamily: "'DM Mono', monospace", fontWeight: 700, justifyContent: 'flex-end' }}
                 >
                   {row}
                 </div>
+              ) : (
+                <div />
               )}
 
               {/* Cells */}
