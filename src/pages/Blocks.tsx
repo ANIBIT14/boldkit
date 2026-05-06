@@ -822,7 +822,7 @@ export function Blocks() {
               { value: String(totalVariants) + '+', label: 'Variants', bg: 'bg-secondary' },
               { value: '2', label: 'Frameworks', bg: 'bg-accent' },
               { value: 'Free', label: 'Forever', bg: 'bg-success' },
-            ].map((s, i) => (
+            ].map((s) => (
               <div
                 key={s.label}
                 className={`${s.bg} flex-shrink-0 flex items-center gap-2 px-4 py-2.5 border-r-3 border-foreground last:border-r-0`}
