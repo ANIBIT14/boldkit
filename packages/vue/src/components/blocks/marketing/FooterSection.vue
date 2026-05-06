@@ -76,8 +76,8 @@ const handleSubscribe = () => {
           </p>
           <div v-if="socials" class="flex gap-3 mt-6">
             <a
-              v-for="(social, index) in socials"
-              :key="index"
+              v-for="social in socials"
+              :key="`social-${social.label}`"
               :href="social.href"
               :aria-label="social.label"
               class="w-10 h-10 flex items-center justify-center border-3 border-foreground hover:bg-primary hover:text-primary-foreground transition-colors"
@@ -89,11 +89,11 @@ const handleSubscribe = () => {
 
         <div
           v-for="(column, index) in columns"
-          :key="index"
+          :key="`col-${index}`"
         >
           <h3 class="font-bold uppercase text-sm mb-4">{{ column.title }}</h3>
           <ul class="space-y-3">
-            <li v-for="(link, linkIndex) in column.links" :key="linkIndex">
+            <li v-for="link in column.links" :key="`link-${link.label}`">
               <a
                 :href="link.href"
                 class="text-muted-foreground hover:text-foreground transition-colors font-medium"
@@ -163,11 +163,11 @@ const handleSubscribe = () => {
 
           <div
             v-for="(column, index) in columns"
-            :key="index"
+            :key="`col-${index}`"
           >
             <h3 class="font-bold uppercase text-sm mb-4">{{ column.title }}</h3>
             <ul class="space-y-2">
-              <li v-for="(link, linkIndex) in column.links" :key="linkIndex">
+              <li v-for="link in column.links" :key="`link-${link.label}`">
                 <a
                   :href="link.href"
                   class="text-muted-foreground hover:text-foreground transition-colors"
@@ -185,8 +185,8 @@ const handleSubscribe = () => {
           <p>{{ copyright || `© ${new Date().getFullYear()} ${companyName}. All rights reserved.` }}</p>
           <div v-if="socials" class="flex gap-4">
             <a
-              v-for="(social, index) in socials"
-              :key="index"
+              v-for="social in socials"
+              :key="`social-${social.label}`"
               :href="social.href"
               :aria-label="social.label"
               class="hover:text-foreground transition-colors"
@@ -214,8 +214,8 @@ const handleSubscribe = () => {
 
         <nav v-if="columns && columns[0]" class="flex flex-wrap gap-6">
           <a
-            v-for="(link, index) in columns[0].links"
-            :key="index"
+            v-for="link in columns[0].links"
+            :key="`link-${link.label}`"
             :href="link.href"
             class="text-muted-foreground hover:text-foreground transition-colors font-medium"
           >
@@ -225,8 +225,8 @@ const handleSubscribe = () => {
 
         <div v-if="socials" class="flex gap-4">
           <a
-            v-for="(social, index) in socials"
-            :key="index"
+            v-for="social in socials"
+            :key="`social-${social.label}`"
             :href="social.href"
             :aria-label="social.label"
             class="text-muted-foreground hover:text-foreground transition-colors"
@@ -255,8 +255,8 @@ const handleSubscribe = () => {
       </p>
       <div v-if="socials" class="flex gap-4">
         <a
-          v-for="(social, index) in socials"
-          :key="index"
+          v-for="social in socials"
+          :key="`social-${social.label}`"
           :href="social.href"
           :aria-label="social.label"
           class="text-muted-foreground hover:text-foreground transition-colors"
@@ -299,8 +299,8 @@ const handleSubscribe = () => {
         </p>
         <div v-if="socials" class="flex gap-4">
           <a
-            v-for="(social, index) in socials"
-            :key="index"
+            v-for="social in socials"
+            :key="`social-${social.label}`"
             :href="social.href"
             :aria-label="social.label"
             class="text-muted-foreground hover:text-foreground transition-colors"

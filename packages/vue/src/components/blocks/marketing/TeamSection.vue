@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { cn } from '@/lib/utils'
-import { Card, CardContent } from '@/components/ui/card'
+import { Card, CardContent } from '@/components/ui'
 import Avatar from '@/components/ui/Avatar.vue'
 import AvatarImage from '@/components/ui/AvatarImage.vue'
 import AvatarFallback from '@/components/ui/AvatarFallback.vue'
@@ -73,7 +73,7 @@ const teamColors = [
       <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
         <Card
           v-for="(member, index) in members"
-          :key="index"
+          :key="`team-${member.name}`"
           class="group text-center hover:translate-x-[-4px] hover:translate-y-[-4px] hover:shadow-[8px_8px_0px_hsl(var(--shadow-color))] transition-all"
         >
           <CardContent class="pt-6">
@@ -114,7 +114,7 @@ const teamColors = [
       <div class="space-y-4">
         <Card
           v-for="(member, index) in members"
-          :key="index"
+          :key="`team-${member.name}`"
           class="hover:translate-x-[-4px] hover:translate-y-[-4px] hover:shadow-[8px_8px_0px_hsl(var(--shadow-color))] transition-all"
         >
           <CardContent class="pt-6">
@@ -158,7 +158,7 @@ const teamColors = [
       <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
         <div
           v-for="(member, index) in members"
-          :key="index"
+          :key="`team-${member.name}`"
           class="group"
         >
           <div class="border-3 border-foreground shadow-[6px_6px_0px_hsl(var(--shadow-color))] overflow-hidden mb-4 aspect-[4/5] group-hover:shadow-[8px_8px_0px_hsl(var(--shadow-color))] group-hover:translate-x-[-2px] group-hover:translate-y-[-2px] transition-all">
@@ -198,7 +198,7 @@ const teamColors = [
       <div class="flex flex-wrap gap-4 justify-center">
         <div
           v-for="(member, index) in members"
-          :key="index"
+          :key="`team-${member.name}`"
           class="flex items-center gap-3 border-3 border-foreground px-4 py-2 shadow-[3px_3px_0px_hsl(var(--shadow-color))] hover:shadow-none hover:translate-x-[3px] hover:translate-y-[3px] transition-all bg-card"
         >
           <Avatar class="h-10 w-10 border-2 border-foreground">

@@ -67,9 +67,9 @@ export function TeamGrid({
         )}
 
         <div className={cn('grid gap-6', gridCols[columns])}>
-          {members.map((member, index) => (
+          {members.map((member) => (
             <Card
-              key={index}
+              key={`team-${member.name}`}
               className="group hover:translate-x-[-4px] hover:translate-y-[-4px] hover:shadow-[8px_8px_0px_hsl(var(--shadow-color))] transition-all"
             >
               <CardContent className="p-6 text-center space-y-4">
@@ -140,9 +140,9 @@ export function TeamList({
         )}
 
         <div className="space-y-4">
-          {members.map((member, index) => (
+          {members.map((member) => (
             <div
-              key={index}
+              key={`team-${member.name}`}
               className="flex items-center gap-4 p-4 border-3 border-foreground bg-card shadow-[4px_4px_0px_hsl(var(--shadow-color))] hover:translate-x-[-4px] hover:translate-y-[-4px] hover:shadow-[8px_8px_0px_hsl(var(--shadow-color))] transition-all"
             >
               <Avatar className="h-16 w-16 border-2 border-foreground">
@@ -210,8 +210,8 @@ export function TeamLargePhotos({
         )}
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {members.map((member, index) => (
-            <div key={index} className="group">
+          {members.map((member) => (
+            <div key={`team-${member.name}`} className="group">
               <div className="relative border-3 border-foreground shadow-[6px_6px_0px_hsl(var(--shadow-color))] overflow-hidden mb-4 group-hover:shadow-[8px_8px_0px_hsl(var(--shadow-color))] group-hover:translate-x-[-2px] group-hover:translate-y-[-2px] transition-all">
                 {member.avatar ? (
                   <img
@@ -292,8 +292,8 @@ export function TeamCompact({
         )}
 
         <div className="flex flex-wrap justify-center gap-6">
-          {members.map((member, index) => (
-            <div key={index} className="text-center">
+          {members.map((member) => (
+            <div key={`team-${member.name}`} className="text-center">
               <Avatar className="h-20 w-20 mx-auto mb-2 border-3 border-foreground shadow-[3px_3px_0px_hsl(var(--shadow-color))]">
                 <AvatarImage src={member.avatar} />
                 <AvatarFallback className="font-bold text-lg">

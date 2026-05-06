@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { cn } from '@/lib/utils'
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui'
 import Accordion from '@/components/ui/Accordion.vue'
 import AccordionItem from '@/components/ui/AccordionItem.vue'
 import AccordionTrigger from '@/components/ui/AccordionTrigger.vue'
@@ -59,7 +59,7 @@ const categories = [...new Set(props.faqs.map((faq) => faq.category).filter(Bool
       <Accordion type="single" collapsible class="space-y-4">
         <AccordionItem
           v-for="(faq, index) in faqs"
-          :key="index"
+          :key="faq.question"
           :value="`item-${index}`"
           class="border-3 border-foreground shadow-[4px_4px_0px_hsl(var(--shadow-color))] bg-card"
         >
@@ -91,8 +91,8 @@ const categories = [...new Set(props.faqs.map((faq) => faq.category).filter(Bool
 
       <div class="grid md:grid-cols-2 gap-8">
         <div
-          v-for="(faq, index) in faqs"
-          :key="index"
+          v-for="faq in faqs"
+          :key="faq.question"
           class="space-y-2"
         >
           <h3 class="font-bold uppercase">{{ faq.question }}</h3>
@@ -119,16 +119,16 @@ const categories = [...new Set(props.faqs.map((faq) => faq.category).filter(Bool
 
       <div class="grid lg:grid-cols-3 gap-8">
         <Card
-          v-for="(category, catIndex) in categories"
-          :key="catIndex"
+          v-for="category in categories"
+          :key="category"
         >
           <CardHeader>
             <CardTitle class="uppercase">{{ category }}</CardTitle>
           </CardHeader>
           <CardContent class="space-y-6">
             <div
-              v-for="(faq, faqIndex) in faqs.filter((f) => f.category === category)"
-              :key="faqIndex"
+              v-for="faq in faqs.filter((f) => f.category === category)"
+              :key="faq.question"
               class="space-y-2"
             >
               <h4 class="font-bold">{{ faq.question }}</h4>
@@ -160,7 +160,7 @@ const categories = [...new Set(props.faqs.map((faq) => faq.category).filter(Bool
           <Accordion type="single" collapsible class="space-y-4">
             <AccordionItem
               v-for="(faq, index) in faqs"
-              :key="index"
+              :key="faq.question"
               :value="`item-${index}`"
               class="border-3 border-foreground shadow-[4px_4px_0px_hsl(var(--shadow-color))] bg-card"
             >
@@ -217,8 +217,8 @@ const categories = [...new Set(props.faqs.map((faq) => faq.category).filter(Bool
 
       <div class="space-y-8">
         <div
-          v-for="(faq, index) in faqs"
-          :key="index"
+          v-for="faq in faqs"
+          :key="faq.question"
           class="border-b-3 border-foreground pb-8 last:border-0"
         >
           <h3 class="font-black uppercase text-lg mb-3">{{ faq.question }}</h3>

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { cn } from '@/lib/utils'
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui'
 import type { Component } from 'vue'
 
 type FeatureGridVariant = 'withIcons' | 'withImages' | 'alternating' | 'bento'
@@ -75,7 +75,7 @@ const gridCols: Record<number, string> = {
       <div :class="cn('grid gap-6', gridCols[columns])">
         <Card
           v-for="(feature, index) in features"
-          :key="index"
+          :key="feature.title"
           :class="cn(
             'group hover:translate-x-[-4px] hover:translate-y-[-4px] hover:shadow-[8px_8px_0px_hsl(var(--shadow-color))] transition-all',
             featureColors[index % 6]
@@ -118,7 +118,7 @@ const gridCols: Record<number, string> = {
       </div>
 
       <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-        <div v-for="(feature, index) in features" :key="index" class="group">
+        <div v-for="feature in features" :key="feature.title" class="group">
           <div class="border-3 border-foreground overflow-hidden shadow-[6px_6px_0px_hsl(var(--shadow-color))] group-hover:shadow-[8px_8px_0px_hsl(var(--shadow-color))] group-hover:translate-x-[-2px] group-hover:translate-y-[-2px] transition-all mb-4">
             <img
               v-if="feature.image"
@@ -142,7 +142,7 @@ const gridCols: Record<number, string> = {
     <div class="max-w-6xl mx-auto space-y-16">
       <div
         v-for="(feature, index) in features"
-        :key="index"
+        :key="feature.title"
         :class="cn(
           'grid md:grid-cols-2 gap-8 md:gap-12 items-center',
           index % 2 === 1 && 'md:[&>*:first-child]:order-2'
@@ -204,7 +204,7 @@ const gridCols: Record<number, string> = {
       <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4 auto-rows-[200px]">
         <Card
           v-for="(feature, index) in features"
-          :key="index"
+          :key="feature.title"
           :class="cn(
             'group hover:translate-x-[-4px] hover:translate-y-[-4px] hover:shadow-[8px_8px_0px_hsl(var(--shadow-color))] transition-all flex flex-col',
             featureColors[index % 6],

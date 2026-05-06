@@ -199,9 +199,9 @@ export function WelcomeScreen({
 
           {features && features.length > 0 && (
             <div className="grid md:grid-cols-3 gap-4 text-left">
-              {features.map((feature, index) => (
+              {features.map((feature) => (
                 <div
-                  key={index}
+                  key={feature.title}
                   className="border-3 border-foreground p-4 bg-muted/30 space-y-2"
                 >
                   <div className="w-10 h-10 flex items-center justify-center border-2 border-foreground bg-card">
@@ -670,9 +670,9 @@ export function CompletionScreen({
 
         {features && features.length > 0 && (
           <div className="space-y-3 text-left">
-            {features.map((feature, index) => (
+            {features.map((feature) => (
               <div
-                key={index}
+                key={feature.title}
                 className="flex items-start gap-3 border-2 border-foreground p-3 bg-muted/30"
               >
                 <div className="w-6 h-6 flex items-center justify-center bg-success text-success-foreground border-2 border-foreground shrink-0">

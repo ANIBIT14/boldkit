@@ -52,8 +52,8 @@ export function LogoCloudGrid({
         )}
 
         <div className={cn('grid gap-8 items-center', gridCols[columns])}>
-          {logos.map((logo, index) => (
-            <LogoCloudItem key={index} logo={logo} />
+          {logos.map((logo) => (
+            <LogoCloudItem key={`logo-${logo.name}`} logo={logo} />
           ))}
         </div>
       </div>
@@ -93,9 +93,9 @@ export function LogoCloudMarquee({
           direction={direction}
           speed={speed}
         >
-          {logos.map((logo, index) => (
+          {logos.map((logo) => (
             <div
-              key={index}
+              key={`logo-marquee-${logo.name}`}
               className="mx-8 flex items-center justify-center h-12 opacity-70 hover:opacity-100 transition-opacity grayscale hover:grayscale-0"
             >
               {typeof logo.logo === 'string' ? (
@@ -150,7 +150,7 @@ export function LogoCloudCards({
         )}
 
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-          {logos.map((logo, index) => {
+          {logos.map((logo) => {
             const inner = (
               <div
                 className="border-3 border-foreground bg-card p-6 flex items-center justify-center h-24 hover:shadow-[4px_4px_0px_hsl(var(--shadow-color))] hover:translate-x-[-2px] hover:translate-y-[-2px] transition-all cursor-pointer"
@@ -167,11 +167,11 @@ export function LogoCloudCards({
               </div>
             )
             return logo.url ? (
-              <a key={index} href={logo.url} target="_blank" rel="noopener noreferrer">
+              <a key={`logo-${logo.name}`} href={logo.url} target="_blank" rel="noopener noreferrer">
                 {inner}
               </a>
             ) : (
-              <React.Fragment key={index}>{inner}</React.Fragment>
+              <React.Fragment key={`logo-${logo.name}`}>{inner}</React.Fragment>
             )
           })}
         </div>
@@ -208,9 +208,9 @@ export function LogoCloudWithStats({
             )}
 
             <div className="grid grid-cols-2 gap-4">
-              {stats.map((stat, index) => (
+              {stats.map((stat) => (
                 <div
-                  key={index}
+                  key={`stat-${stat.label}`}
                   className="border-3 border-foreground p-4 shadow-[4px_4px_0px_hsl(var(--shadow-color))]"
                 >
                   <div className="text-3xl font-black">{stat.value}</div>
@@ -223,7 +223,7 @@ export function LogoCloudWithStats({
           </div>
 
           <div className="grid grid-cols-3 gap-6">
-            {logos.slice(0, 9).map((logo, index) => {
+            {logos.slice(0, 9).map((logo) => {
               const inner = (
                 <div
                   className="flex items-center justify-center h-16 opacity-70 hover:opacity-100 transition-opacity"
@@ -240,11 +240,11 @@ export function LogoCloudWithStats({
                 </div>
               )
               return logo.url ? (
-                <a key={index} href={logo.url} target="_blank" rel="noopener noreferrer" className="cursor-pointer">
+                <a key={`logo-${logo.name}`} href={logo.url} target="_blank" rel="noopener noreferrer" className="cursor-pointer">
                   {inner}
                 </a>
               ) : (
-                <React.Fragment key={index}>{inner}</React.Fragment>
+                <React.Fragment key={`logo-${logo.name}`}>{inner}</React.Fragment>
               )
             })}
           </div>

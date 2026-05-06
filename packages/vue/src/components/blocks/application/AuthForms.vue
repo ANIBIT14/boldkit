@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import { cn } from '@/lib/utils'
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card'
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui'
 import Button from '@/components/ui/Button.vue'
 import Input from '@/components/ui/Input.vue'
 import Label from '@/components/ui/Label.vue'
@@ -54,6 +54,18 @@ const handleOtpKeydown = (index: number, event: KeyboardEvent) => {
   }
 }
 
+const handleOtpPaste = (event: ClipboardEvent) => {
+  event.preventDefault()
+  const pasted = event.clipboardData?.getData('text') ?? ''
+  const digits = pasted.replace(/\D/g, '').slice(0, 6)
+  if (!digits) return
+  const newOtp = [...otpValues.value]
+  digits.split('').forEach((char, i) => { if (i < 6) newOtp[i] = char })
+  otpValues.value = newOtp
+  const focusIndex = Math.min(digits.length, 5)
+  inputRefs.value[focusIndex]?.focus()
+}
+
 const handleSubmit = () => {
   if (props.variant === 'login') {
     emit('submit', { email: email.value, password: password.value, rememberMe: String(rememberMe.value) })
@@ -101,6 +113,7 @@ const handleSubmit = () => {
               />
               <button
                 type="button"
+                :aria-label="showPassword ? 'Hide password' : 'Show password'"
                 class="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground"
                 @click="showPassword = !showPassword"
               >
@@ -253,14 +266,17 @@ const handleSubmit = () => {
           <div class="flex justify-center gap-3">
             <input
               v-for="(_, index) in otpValues"
-              :key="index"
+              :key="`otp-digit-${index}`"
               :ref="(el) => { if (el) inputRefs[index] = el as HTMLInputElement }"
               v-model="otpValues[index]"
               type="text"
+              inputmode="numeric"
               maxlength="1"
+              :aria-label="`Digit ${index + 1} of 6`"
               class="w-12 h-14 text-center text-2xl font-black border-3 border-foreground shadow-[3px_3px_0px_hsl(var(--shadow-color))] focus:outline-none focus:ring-2 focus:ring-primary"
               @input="(e) => handleOtpInput(index, e)"
               @keydown="(e) => handleOtpKeydown(index, e)"
+              @paste="handleOtpPaste"
             />
           </div>
           <Button type="submit" class="w-full">Verify</Button>

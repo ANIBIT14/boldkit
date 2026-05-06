@@ -225,9 +225,9 @@ export function HeroWithStats({
         </div>
 
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-          {stats.map((stat, index) => (
+          {stats.map((stat) => (
             <div
-              key={index}
+              key={`stat-${stat.label}`}
               className="border-3 border-foreground bg-card p-6 text-center shadow-[4px_4px_0px_hsl(var(--shadow-color))]"
             >
               <div className="text-3xl md:text-4xl font-black">{stat.value}</div>

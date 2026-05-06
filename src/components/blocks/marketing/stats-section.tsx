@@ -33,8 +33,8 @@ export function StatsGrid({
   return (
     <section className={cn('py-16 px-4 md:px-8 lg:px-16', className)}>
       <div className={cn('max-w-6xl mx-auto grid gap-6', gridCols[columns])}>
-        {stats.map((stat, index) => (
-          <div key={index} className="text-center space-y-2">
+        {stats.map((stat) => (
+          <div key={`stat-${stat.label}`} className="text-center space-y-2">
             <div className="text-4xl md:text-5xl font-black">{stat.value}</div>
             <div className="text-sm text-muted-foreground font-bold uppercase tracking-wide">
               {stat.label}
@@ -93,7 +93,7 @@ export function StatsCards({
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
           {stats.map((stat, index) => (
             <div
-              key={index}
+              key={`stat-${stat.label}`}
               className={cn(
                 'border-3 border-foreground p-6 shadow-[4px_4px_0px_hsl(var(--shadow-color))] hover:translate-x-[-4px] hover:translate-y-[-4px] hover:shadow-[8px_8px_0px_hsl(var(--shadow-color))] transition-all',
                 cardColors[index % 4]
@@ -172,9 +172,9 @@ export function StatsSplit({
         </div>
 
         <div className="grid grid-cols-2 gap-4">
-          {stats.map((stat, index) => (
+          {stats.map((stat) => (
             <div
-              key={index}
+              key={`stat-${stat.label}`}
               className="border-3 border-foreground bg-card p-6 shadow-[4px_4px_0px_hsl(var(--shadow-color))]"
             >
               <div className="text-3xl font-black">{stat.value}</div>
@@ -209,8 +209,8 @@ export function StatsInline({
       )}
     >
       <div className="max-w-6xl mx-auto flex flex-wrap justify-center gap-8 md:gap-16">
-        {stats.map((stat, index) => (
-          <div key={index} className="text-center">
+        {stats.map((stat) => (
+          <div key={`stat-${stat.label}`} className="text-center">
             <span className="text-3xl md:text-4xl font-black">{stat.value}</span>
             <span className="text-sm text-muted-foreground font-bold uppercase tracking-wide ml-2">
               {stat.label}
@@ -249,7 +249,7 @@ export function StatsWithIcons({
     <section className={cn('py-16 px-4 md:px-8 lg:px-16', className)}>
       <div className="max-w-6xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-6">
         {stats.map((stat, index) => (
-          <div key={index} className="text-center space-y-4">
+          <div key={`stat-${stat.label}`} className="text-center space-y-4">
             <div
               className={cn(
                 'w-16 h-16 mx-auto flex items-center justify-center border-3 border-foreground shadow-[4px_4px_0px_hsl(var(--shadow-color))]',

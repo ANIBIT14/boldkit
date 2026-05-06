@@ -64,8 +64,8 @@ export function FooterMultiColumn({
             )}
             {socialLinks && (
               <div className="flex gap-2">
-                {socialLinks.map((link, index) => (
-                  <SocialIcon key={index} platform={link.platform} href={link.href} />
+                {socialLinks.map((link) => (
+                  <SocialIcon key={`social-${link.platform}`} platform={link.platform} href={link.href} />
                 ))}
               </div>
             )}
@@ -73,13 +73,13 @@ export function FooterMultiColumn({
 
           {/* Link columns */}
           {columns.map((column, index) => (
-            <div key={index} className="space-y-4">
+            <div key={`col-${index}`} className="space-y-4">
               <h4 className="font-black uppercase text-sm tracking-wide">
                 {column.title}
               </h4>
               <ul className="space-y-2">
-                {column.links.map((link, linkIndex) => (
-                  <li key={linkIndex}>
+                {column.links.map((link) => (
+                  <li key={`link-${link.label}`}>
                     <a
                       href={link.href}
                       className="text-muted-foreground hover:text-foreground font-medium transition-colors"
@@ -161,13 +161,13 @@ export function FooterWithNewsletter({
           {/* Links section */}
           <div className="grid grid-cols-2 md:grid-cols-3 gap-8">
             {columns.map((column, index) => (
-              <div key={index} className="space-y-4">
+              <div key={`col-${index}`} className="space-y-4">
                 <h4 className="font-black uppercase text-sm tracking-wide">
                   {column.title}
                 </h4>
                 <ul className="space-y-2">
-                  {column.links.map((link, linkIndex) => (
-                    <li key={linkIndex}>
+                  {column.links.map((link) => (
+                    <li key={`link-${link.label}`}>
                       <a
                         href={link.href}
                         className="text-muted-foreground hover:text-foreground font-medium transition-colors"
@@ -217,9 +217,9 @@ export function FooterSimple({
 
         {links && (
           <nav className="flex flex-wrap justify-center gap-6">
-            {links.map((link, index) => (
+            {links.map((link) => (
               <a
-                key={index}
+                key={`link-${link.label}`}
                 href={link.href}
                 className="text-muted-foreground hover:text-foreground font-bold uppercase text-sm transition-colors"
               >
@@ -231,8 +231,8 @@ export function FooterSimple({
 
         {socialLinks && (
           <div className="flex justify-center gap-2">
-            {socialLinks.map((link, index) => (
-              <SocialIcon key={index} platform={link.platform} href={link.href} />
+            {socialLinks.map((link) => (
+              <SocialIcon key={`social-${link.platform}`} platform={link.platform} href={link.href} />
             ))}
           </div>
         )}
@@ -269,9 +269,9 @@ export function FooterMinimal({
 
         {links && (
           <nav className="flex flex-wrap gap-4">
-            {links.map((link, index) => (
+            {links.map((link) => (
               <a
-                key={index}
+                key={`link-${link.label}`}
                 href={link.href}
                 className="text-sm text-muted-foreground hover:text-foreground font-medium transition-colors"
               >
@@ -340,21 +340,21 @@ export function FooterWithCTA({
               )}
               {socialLinks && (
                 <div className="flex gap-2">
-                  {socialLinks.map((link, index) => (
-                    <SocialIcon key={index} platform={link.platform} href={link.href} size="sm" />
+                  {socialLinks.map((link) => (
+                    <SocialIcon key={`social-${link.platform}`} platform={link.platform} href={link.href} size="sm" />
                   ))}
                 </div>
               )}
             </div>
 
             {columns.map((column, index) => (
-              <div key={index} className="space-y-3">
+              <div key={`col-${index}`} className="space-y-3">
                 <h4 className="font-black uppercase text-xs tracking-wide">
                   {column.title}
                 </h4>
                 <ul className="space-y-2">
-                  {column.links.map((link, linkIndex) => (
-                    <li key={linkIndex}>
+                  {column.links.map((link) => (
+                    <li key={`link-${link.label}`}>
                       <a
                         href={link.href}
                         className="text-sm text-muted-foreground hover:text-foreground transition-colors"

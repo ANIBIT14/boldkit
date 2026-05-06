@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { cn } from '@/lib/utils'
-import { Card, CardContent } from '@/components/ui/card'
+import { Card, CardContent } from '@/components/ui'
 import type { Component } from 'vue'
 
 type StatsVariant = 'grid' | 'cards' | 'split' | 'inline' | 'withIcons'
@@ -55,8 +55,8 @@ const statColors = [
 
       <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
         <div
-          v-for="(stat, index) in stats"
-          :key="index"
+          v-for="stat in stats"
+          :key="`stat-${stat.label}`"
           class="text-center p-6 border-3 border-foreground shadow-[4px_4px_0px_hsl(var(--shadow-color))] bg-card"
         >
           <div class="text-4xl md:text-5xl font-black">{{ stat.value }}</div>
@@ -89,7 +89,7 @@ const statColors = [
       <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
         <Card
           v-for="(stat, index) in stats"
-          :key="index"
+          :key="`stat-${stat.label}`"
           class="group hover:translate-x-[-4px] hover:translate-y-[-4px] hover:shadow-[8px_8px_0px_hsl(var(--shadow-color))] transition-all"
         >
           <CardContent class="pt-6">
@@ -127,7 +127,7 @@ const statColors = [
         <div class="grid grid-cols-2 gap-4">
           <div
             v-for="(stat, index) in stats"
-            :key="index"
+            :key="`stat-${stat.label}`"
             :class="cn(
               'p-6 border-3 border-foreground shadow-[4px_4px_0px_hsl(var(--shadow-color))]',
               index % 2 === 0 ? 'bg-primary text-primary-foreground' : 'bg-card'
@@ -151,8 +151,8 @@ const statColors = [
     <div class="max-w-7xl mx-auto">
       <div class="flex flex-wrap justify-center md:justify-between items-center gap-8">
         <div
-          v-for="(stat, index) in stats"
-          :key="index"
+          v-for="stat in stats"
+          :key="`stat-${stat.label}`"
           class="text-center px-6"
         >
           <div class="text-3xl font-black">{{ stat.value }}</div>
@@ -182,7 +182,7 @@ const statColors = [
       <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
         <div
           v-for="(stat, index) in stats"
-          :key="index"
+          :key="`stat-${stat.label}`"
           class="flex items-start gap-4 p-6 border-3 border-foreground shadow-[4px_4px_0px_hsl(var(--shadow-color))] bg-card"
         >
           <div

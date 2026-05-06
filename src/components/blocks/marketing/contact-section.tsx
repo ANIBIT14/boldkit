@@ -304,7 +304,7 @@ export function ContactWithCards({
         <div className="grid md:grid-cols-3 gap-6">
           {contactMethods.map((method, index) => (
             <Card
-              key={index}
+              key={method.title}
               className={cn(
                 'hover:translate-x-[-4px] hover:translate-y-[-4px] hover:shadow-[8px_8px_0px_hsl(var(--shadow-color))] transition-all',
                 cardColors[index % 3]

@@ -2,7 +2,7 @@
 import { ref, computed } from 'vue'
 import type { Component } from 'vue'
 import { cn } from '@/lib/utils'
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card'
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui'
 import Button from '@/components/ui/Button.vue'
 import Input from '@/components/ui/Input.vue'
 import Label from '@/components/ui/Label.vue'
@@ -55,6 +55,10 @@ const name = ref('')
 const email = ref('')
 const workspaceName = ref('')
 const selectedGoals = ref<string[]>([])
+const avatarPreview = ref<string | null>(null)
+const fileInputRef = ref<HTMLInputElement | null>(null)
+const memberEmail = ref('')
+const members = ref<string[]>([])
 
 const progress = computed(() => ((props.currentStep - 1) / (props.totalSteps - 1)) * 100)
 
@@ -64,6 +68,29 @@ const toggleGoal = (goalId: string) => {
   } else {
     selectedGoals.value = [...selectedGoals.value, goalId]
   }
+}
+
+const handleAvatarChange = (event: Event) => {
+  const file = (event.target as HTMLInputElement).files?.[0]
+  if (!file) return
+  const reader = new FileReader()
+  reader.onerror = () => console.error('Failed to read file')
+  reader.onloadend = () => {
+    if (typeof reader.result === 'string') avatarPreview.value = reader.result
+  }
+  reader.readAsDataURL(file)
+}
+
+const addMember = () => {
+  const trimmed = memberEmail.value.trim()
+  if (trimmed && !members.value.includes(trimmed)) {
+    members.value = [...members.value, trimmed]
+    memberEmail.value = ''
+  }
+}
+
+const removeMember = (email: string) => {
+  members.value = members.value.filter((m) => m !== email)
 }
 </script>
 
@@ -150,12 +177,25 @@ const toggleGoal = (goalId: string) => {
         <div class="flex justify-center">
           <div class="relative">
             <Avatar class="h-24 w-24 border-3 border-foreground shadow-[4px_4px_0px_hsl(var(--shadow-color))]">
-              <AvatarImage v-if="userAvatar" :src="userAvatar" alt="Profile" />
+              <AvatarImage v-if="avatarPreview || userAvatar" :src="avatarPreview || userAvatar" alt="Profile" />
               <AvatarFallback class="bg-primary text-primary-foreground text-2xl font-black">
                 {{ name ? name[0].toUpperCase() : 'U' }}
               </AvatarFallback>
             </Avatar>
-            <Button size="icon" class="absolute -bottom-2 -right-2 h-10 w-10 rounded-full">
+            <input
+              ref="fileInputRef"
+              type="file"
+              accept="image/*"
+              class="sr-only"
+              aria-label="Upload profile photo"
+              @change="handleAvatarChange"
+            />
+            <Button
+              size="icon"
+              class="absolute -bottom-2 -right-2 h-10 w-10 rounded-full"
+              aria-label="Upload profile photo"
+              @click="fileInputRef?.click()"
+            >
               <Upload class="h-4 w-4" />
             </Button>
           </div>
@@ -195,6 +235,35 @@ const toggleGoal = (goalId: string) => {
         <div class="space-y-2">
           <Label for="workspace-name">Workspace Name</Label>
           <Input id="workspace-name" v-model="workspaceName" placeholder="My Awesome Team" />
+        </div>
+        <div class="space-y-2">
+          <Label for="invite-email">Invite Team Members</Label>
+          <div class="flex gap-2">
+            <Input
+              id="invite-email"
+              v-model="memberEmail"
+              type="email"
+              placeholder="colleague@example.com"
+              class="flex-1"
+              @keydown.enter.prevent="addMember"
+            />
+            <Button type="button" variant="outline" @click="addMember">Add</Button>
+          </div>
+        </div>
+        <div v-if="members.length" class="flex flex-wrap gap-2">
+          <div
+            v-for="member in members"
+            :key="member"
+            class="flex items-center gap-1 border-2 border-foreground bg-muted px-2 py-1 text-sm font-medium"
+          >
+            <span>{{ member }}</span>
+            <button
+              type="button"
+              class="ml-1 text-muted-foreground hover:text-foreground"
+              :aria-label="`Remove ${member}`"
+              @click="removeMember(member)"
+            >×</button>
+          </div>
         </div>
       </CardContent>
       <CardFooter class="flex justify-between">

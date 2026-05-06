@@ -1,6 +1,7 @@
 <script setup lang="ts">
+import { ref, computed } from 'vue'
 import { cn } from '@/lib/utils'
-import { Card, CardContent } from '@/components/ui/card'
+import { Card, CardContent } from '@/components/ui'
 import Avatar from '@/components/ui/Avatar.vue'
 import AvatarImage from '@/components/ui/AvatarImage.vue'
 import AvatarFallback from '@/components/ui/AvatarFallback.vue'
@@ -29,6 +30,9 @@ const props = withDefaults(defineProps<TestimonialsProps>(), {
   variant: 'grid',
 })
 
+const activeIndex = ref(0)
+const activeTestimonial = computed(() => props.testimonials[activeIndex.value] ?? props.testimonials[0])
+
 const getInitials = (name: string) => {
   return name
     .split(' ')
@@ -56,8 +60,8 @@ const getInitials = (name: string) => {
 
       <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
         <Card
-          v-for="(testimonial, index) in testimonials"
-          :key="index"
+          v-for="testimonial in testimonials"
+          :key="testimonial.author"
           class="group hover:translate-x-[-4px] hover:translate-y-[-4px] hover:shadow-[8px_8px_0px_hsl(var(--shadow-color))] transition-all"
         >
           <CardContent class="pt-6">
@@ -127,8 +131,8 @@ const getInitials = (name: string) => {
 
       <div class="columns-1 md:columns-2 lg:columns-3 gap-6 space-y-6">
         <Card
-          v-for="(testimonial, index) in testimonials"
-          :key="index"
+          v-for="testimonial in testimonials"
+          :key="testimonial.author"
           class="break-inside-avoid group hover:translate-x-[-4px] hover:translate-y-[-4px] hover:shadow-[8px_8px_0px_hsl(var(--shadow-color))] transition-all"
         >
           <CardContent class="pt-6">
@@ -154,10 +158,10 @@ const getInitials = (name: string) => {
   <!-- WithAvatars Variant -->
   <section
     v-else-if="variant === 'withAvatars'"
-    :class="cn('py-16 px-4 md:px-8 lg:px-16 bg-primary/5', props.class)"
+    :class="cn('py-16 px-4 md:px-8 lg:px-16 bg-muted/30', props.class)"
   >
-    <div class="max-w-6xl mx-auto">
-      <div v-if="title || subtitle" class="text-center mb-12 space-y-4">
+    <div v-if="testimonials.length" class="max-w-4xl mx-auto text-center space-y-8">
+      <div v-if="title || subtitle" class="space-y-4">
         <p v-if="subtitle" class="text-sm font-bold uppercase tracking-widest text-primary">
           {{ subtitle }}
         </p>
@@ -166,43 +170,39 @@ const getInitials = (name: string) => {
         </h2>
       </div>
 
-      <div class="flex justify-center mb-8">
-        <div class="flex -space-x-4">
-          <Avatar
-            v-for="(testimonial, index) in testimonials.slice(0, 5)"
-            :key="index"
-            class="h-14 w-14 border-3 border-background shadow-[2px_2px_0px_hsl(var(--shadow-color))]"
-          >
-            <AvatarImage v-if="testimonial.avatar" :src="testimonial.avatar" :alt="testimonial.author" />
-            <AvatarFallback class="bg-primary text-primary-foreground font-bold">
-              {{ getInitials(testimonial.author) }}
-            </AvatarFallback>
-          </Avatar>
+      <!-- Active quote display -->
+      <div class="border-3 border-foreground bg-card p-8 shadow-[6px_6px_0px_hsl(var(--shadow-color))]">
+        <Quote class="h-10 w-10 text-primary mx-auto mb-6" />
+        <blockquote class="text-xl md:text-2xl font-medium leading-relaxed mb-6">
+          "{{ activeTestimonial.quote }}"
+        </blockquote>
+        <div>
+          <p class="font-black uppercase">{{ activeTestimonial.author }}</p>
+          <p class="text-sm text-muted-foreground">
+            {{ activeTestimonial.role }}{{ activeTestimonial.company ? ` at ${activeTestimonial.company}` : '' }}
+          </p>
         </div>
       </div>
 
-      <div class="grid md:grid-cols-2 gap-6">
-        <Card
+      <!-- Clickable avatar navigation -->
+      <div class="flex justify-center gap-2">
+        <button
           v-for="(testimonial, index) in testimonials"
-          :key="index"
-          class="border-primary/30 hover:border-primary transition-colors"
+          :key="`avatar-${testimonial.author}`"
+          :aria-label="`View testimonial from ${testimonial.author}`"
+          :aria-pressed="index === activeIndex"
+          class="transition-all"
+          :class="index === activeIndex ? 'scale-110' : 'opacity-50 hover:opacity-100'"
+          @click="activeIndex = index"
         >
-          <CardContent class="pt-6">
-            <div class="flex items-start gap-4">
-              <Avatar class="h-12 w-12 border-2 border-foreground shrink-0">
-                <AvatarImage v-if="testimonial.avatar" :src="testimonial.avatar" :alt="testimonial.author" />
-                <AvatarFallback class="bg-primary text-primary-foreground font-bold">
-                  {{ getInitials(testimonial.author) }}
-                </AvatarFallback>
-              </Avatar>
-              <div>
-                <p class="font-medium mb-2">{{ testimonial.quote }}</p>
-                <p class="font-bold text-sm">{{ testimonial.author }}</p>
-                <p v-if="testimonial.role" class="text-xs text-muted-foreground">{{ testimonial.role }}</p>
-              </div>
-            </div>
-          </CardContent>
-        </Card>
+          <Avatar
+            class="h-12 w-12 border-3 border-foreground"
+            :class="index === activeIndex ? 'shadow-[3px_3px_0px_hsl(var(--shadow-color))]' : ''"
+          >
+            <AvatarImage v-if="testimonial.avatar" :src="testimonial.avatar" :alt="testimonial.author" />
+            <AvatarFallback class="font-bold">{{ getInitials(testimonial.author) }}</AvatarFallback>
+          </Avatar>
+        </button>
       </div>
     </div>
   </section>

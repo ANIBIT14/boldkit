@@ -1,6 +1,8 @@
 <script setup lang="ts">
+import { ref, onMounted, onUnmounted } from 'vue'
 import { cn } from '@/lib/utils'
 import Button from '@/components/ui/Button.vue'
+import Input from '@/components/ui/Input.vue'
 import { Home, ArrowLeft, RefreshCw, WifiOff, ShieldX, Clock, AlertTriangle } from 'lucide-vue-next'
 
 type ErrorPageVariant = 'notFound' | 'serverError' | 'maintenance' | 'offline' | 'forbidden' | 'comingSoon' | 'generic'
@@ -10,6 +12,7 @@ interface ErrorPagesProps {
   title?: string
   description?: string
   homeHref?: string
+  launchDate?: Date | string
   class?: string
 }
 
@@ -22,7 +25,42 @@ const emit = defineEmits<{
   (e: 'goBack'): void
   (e: 'goHome'): void
   (e: 'retry'): void
+  (e: 'notify', email: string): void
 }>()
+
+const notifyEmail = ref('')
+const submitted = ref(false)
+const timeRemaining = ref<{ days: number; hours: number; minutes: number; seconds: number } | null>(null)
+let countdownInterval: ReturnType<typeof setInterval> | null = null
+
+function getCountdown(target: Date | string) {
+  const diff = new Date(target).getTime() - Date.now()
+  if (diff <= 0) return null
+  return {
+    days: Math.floor(diff / (1000 * 60 * 60 * 24)),
+    hours: Math.floor((diff / (1000 * 60 * 60)) % 24),
+    minutes: Math.floor((diff / (1000 * 60)) % 60),
+    seconds: Math.floor((diff / 1000) % 60),
+  }
+}
+
+onMounted(() => {
+  if (props.launchDate) {
+    timeRemaining.value = getCountdown(props.launchDate)
+    countdownInterval = setInterval(() => {
+      timeRemaining.value = getCountdown(props.launchDate!)
+    }, 1000)
+  }
+})
+
+onUnmounted(() => {
+  if (countdownInterval) clearInterval(countdownInterval)
+})
+
+function handleNotify() {
+  emit('notify', notifyEmail.value)
+  submitted.value = true
+}
 
 const defaultContent: Record<ErrorPageVariant, { title: string; description: string }> = {
   notFound: {
@@ -197,7 +235,7 @@ const content = {
     v-else-if="variant === 'comingSoon'"
     :class="cn('min-h-screen flex flex-col items-center justify-center p-4 bg-primary/5', props.class)"
   >
-    <div class="text-center space-y-8">
+    <div class="text-center space-y-8 max-w-lg w-full">
       <div class="space-y-2">
         <div class="inline-block border-3 border-foreground bg-primary px-4 py-2 shadow-[4px_4px_0px_hsl(var(--shadow-color))] mb-4">
           <span class="font-black uppercase text-primary-foreground">Launching Soon</span>
@@ -207,15 +245,47 @@ const content = {
           {{ content.description }}
         </p>
       </div>
-      <div class="flex flex-col sm:flex-row gap-4 justify-center">
-        <Button size="lg" @click="emit('goHome')">
-          Notify Me
-        </Button>
-        <Button size="lg" variant="outline" @click="emit('goBack')">
-          <ArrowLeft class="mr-2 h-4 w-4" />
-          Go Back
-        </Button>
+
+      <!-- Countdown timer -->
+      <div v-if="timeRemaining" class="flex justify-center gap-4">
+        <div
+          v-for="unit in [
+            { value: timeRemaining.days, label: 'Days' },
+            { value: timeRemaining.hours, label: 'Hours' },
+            { value: timeRemaining.minutes, label: 'Mins' },
+            { value: timeRemaining.seconds, label: 'Secs' },
+          ]"
+          :key="unit.label"
+          class="border-3 border-foreground bg-card shadow-[4px_4px_0px_hsl(var(--shadow-color))] px-4 py-3 min-w-[70px]"
+        >
+          <div class="text-3xl font-black tabular-nums">{{ String(unit.value).padStart(2, '0') }}</div>
+          <div class="text-xs font-bold uppercase tracking-wide text-muted-foreground">{{ unit.label }}</div>
+        </div>
       </div>
+
+      <!-- Email capture -->
+      <div v-if="!submitted" class="space-y-3">
+        <p class="text-sm font-bold uppercase tracking-wide">Get notified when we launch</p>
+        <form class="flex gap-2 max-w-sm mx-auto" @submit.prevent="handleNotify">
+          <Input
+            v-model="notifyEmail"
+            type="email"
+            placeholder="your@email.com"
+            required
+            class="flex-1"
+          />
+          <Button type="submit">Notify Me</Button>
+        </form>
+      </div>
+      <div v-else class="border-3 border-foreground bg-card p-4 shadow-[4px_4px_0px_hsl(var(--shadow-color))] max-w-sm mx-auto">
+        <p class="font-black uppercase">You're on the list!</p>
+        <p class="text-sm text-muted-foreground mt-1">We'll let you know the moment we launch.</p>
+      </div>
+
+      <Button size="lg" variant="outline" @click="emit('goBack')">
+        <ArrowLeft class="mr-2 h-4 w-4" />
+        Go Back
+      </Button>
     </div>
   </div>
 

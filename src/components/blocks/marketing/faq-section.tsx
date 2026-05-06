@@ -58,7 +58,7 @@ export function FAQAccordion({
         <Accordion type="single" collapsible className="space-y-4">
           {items.map((item, index) => (
             <AccordionItem
-              key={index}
+              key={item.question}
               value={`item-${index}`}
               className="border-3 border-foreground bg-card shadow-[4px_4px_0px_hsl(var(--shadow-color))] data-[state=open]:shadow-[6px_6px_0px_hsl(var(--shadow-color))] data-[state=open]:translate-x-[-2px] data-[state=open]:translate-y-[-2px] transition-all"
             >
@@ -106,12 +106,12 @@ export function FAQTwoColumns({
         <div className="grid md:grid-cols-2 gap-8">
           <div className="space-y-6">
             {leftColumn.map((item, index) => (
-              <FAQCard key={index} item={item} index={index} />
+              <FAQCard key={item.question} item={item} index={index} />
             ))}
           </div>
           <div className="space-y-6">
             {rightColumn.map((item, index) => (
-              <FAQCard key={index} item={item} index={midpoint + index} />
+              <FAQCard key={item.question} item={item} index={midpoint + index} />
             ))}
           </div>
         </div>
@@ -155,7 +155,7 @@ export function FAQWithCategories({
         <div className="flex flex-wrap justify-center gap-2 mb-8">
           {categories.map((category, index) => (
             <Button
-              key={index}
+              key={category.name}
               variant={activeCategory === index ? 'default' : 'outline'}
               onClick={() => setActiveCategory(index)}
             >
@@ -167,7 +167,7 @@ export function FAQWithCategories({
         <Accordion type="single" collapsible className="space-y-4" key={activeCategory}>
           {categories[activeCategory].items.map((item, index) => (
             <AccordionItem
-              key={index}
+              key={item.question}
               value={`item-${index}`}
               className="border-3 border-foreground bg-card shadow-[4px_4px_0px_hsl(var(--shadow-color))]"
             >
@@ -217,7 +217,7 @@ export function FAQWithContact({
         <Accordion type="single" collapsible className="space-y-4 mb-12">
           {items.map((item, index) => (
             <AccordionItem
-              key={index}
+              key={item.question}
               value={`item-${index}`}
               className="border-3 border-foreground bg-card shadow-[4px_4px_0px_hsl(var(--shadow-color))]"
             >
@@ -273,8 +273,8 @@ export function FAQSimpleList({
         )}
 
         <div className="space-y-8">
-          {items.map((item, index) => (
-            <div key={index} className="space-y-2">
+          {items.map((item) => (
+            <div key={item.question} className="space-y-2">
               <h3 className="font-bold text-lg">{item.question}</h3>
               <p className="text-muted-foreground">{item.answer}</p>
             </div>

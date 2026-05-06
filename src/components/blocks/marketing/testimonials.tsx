@@ -55,9 +55,9 @@ export function TestimonialsGrid({
         )}
 
         <div className={cn('grid gap-6', gridCols[columns])}>
-          {testimonials.map((testimonial, index) => (
+          {testimonials.map((testimonial) => (
             <Card
-              key={index}
+              key={`testimonial-${testimonial.author}`}
               className="bg-card hover:translate-x-[-4px] hover:translate-y-[-4px] hover:shadow-[8px_8px_0px_hsl(var(--shadow-color))] transition-all"
             >
               <CardContent className="p-6 space-y-4">
@@ -181,9 +181,9 @@ export function TestimonialsMasonry({
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           {columns.map((column, colIndex) => (
             <div key={colIndex} className="space-y-6">
-              {column.map((testimonial, index) => (
+              {column.map((testimonial) => (
                 <Card
-                  key={index}
+                  key={`testimonial-${testimonial.author}`}
                   className="hover:translate-x-[-4px] hover:translate-y-[-4px] hover:shadow-[8px_8px_0px_hsl(var(--shadow-color))] transition-all"
                 >
                   <CardContent className="p-6 space-y-4">
@@ -275,7 +275,9 @@ export function TestimonialsWithAvatars({
         <div className="flex justify-center gap-2">
           {testimonials.map((testimonial, index) => (
             <button
-              key={index}
+              key={`avatar-${testimonial.author}`}
+              aria-label={`View testimonial from ${testimonial.author}`}
+              aria-pressed={index === activeIndex}
               onClick={() => setActiveIndex(index)}
               className={cn(
                 'transition-all',

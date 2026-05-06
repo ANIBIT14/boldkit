@@ -78,7 +78,7 @@ export function FeatureGridWithIcons({
         <div className={cn('grid gap-6', gridCols[columns])}>
           {features.map((feature, index) => (
             <Card
-              key={index}
+              key={feature.title}
               className={cn(
                 'group hover:translate-x-[-4px] hover:translate-y-[-4px] hover:shadow-[8px_8px_0px_hsl(var(--shadow-color))] transition-all',
                 featureColors[index % 6]
@@ -150,7 +150,7 @@ export function FeatureGridWithImages({
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {features.map((feature, index) => (
-            <div key={index} className="group">
+            <div key={feature.title} className="group">
               <div className="border-3 border-foreground overflow-hidden shadow-[6px_6px_0px_hsl(var(--shadow-color))] group-hover:shadow-[8px_8px_0px_hsl(var(--shadow-color))] group-hover:translate-x-[-2px] group-hover:translate-y-[-2px] transition-all mb-4">
                 <img
                   src={feature.image}
@@ -195,7 +195,7 @@ export function FeatureGridAlternating({
 
           return (
             <div
-              key={index}
+              key={feature.title}
               className={cn(
                 'grid md:grid-cols-2 gap-8 md:gap-12 items-center',
                 isReversed && 'md:[&>*:first-child]:order-2'
@@ -293,7 +293,7 @@ export function FeatureBentoGrid({
 
             return (
               <Card
-                key={index}
+                key={feature.title}
                 className={cn(
                   'group hover:translate-x-[-4px] hover:translate-y-[-4px] hover:shadow-[8px_8px_0px_hsl(var(--shadow-color))] transition-all flex flex-col overflow-hidden',
                   featureColors[index % 6],

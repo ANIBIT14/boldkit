@@ -90,6 +90,7 @@ export function LoginForm({
                 />
                 <button
                   type="button"
+                  aria-label={showPassword ? 'Hide password' : 'Show password'}
                   onClick={() => setShowPassword(!showPassword)}
                   className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground"
                 >
@@ -286,6 +287,7 @@ export function SignUpForm({
                 />
                 <button
                   type="button"
+                  aria-label={showPassword ? 'Hide password' : 'Show password'}
                   onClick={() => setShowPassword(!showPassword)}
                   className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground"
                 >
@@ -526,17 +528,18 @@ export function OTPVerificationForm({
     const newOtp = [...otp]
     newOtp[index] = value.slice(-1)
     setOtp(newOtp)
+
+    // Reset guard so user can re-submit after editing a filled OTP
     hasSubmitted.current = false
 
     if (value && index < length - 1) {
       inputRefs.current[index + 1]?.focus()
     }
 
+    // Use local newOtp (not stale hasSubmitted.current) to check auto-submit
     if (newOtp.every((digit) => digit !== '') && newOtp.join('').length === length) {
-      if (!hasSubmitted.current) {
-        hasSubmitted.current = true
-        onSubmit?.(newOtp.join(''))
-      }
+      hasSubmitted.current = true
+      onSubmit?.(newOtp.join(''))
     }
   }
 
@@ -585,6 +588,7 @@ export function OTPVerificationForm({
                 type="text"
                 inputMode="numeric"
                 maxLength={1}
+                aria-label={`Digit ${index + 1} of ${length}`}
                 value={digit}
                 onChange={(e) => handleChange(index, e.target.value)}
                 onKeyDown={(e) => handleKeyDown(index, e)}

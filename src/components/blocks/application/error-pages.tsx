@@ -541,9 +541,9 @@ export function GenericErrorPage({
 
         {actions && actions.length > 0 && (
           <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
-            {actions.map((action, index) => (
+            {actions.map((action) => (
               <Button
-                key={index}
+                key={action.label}
                 variant={action.variant || 'default'}
                 onClick={action.onClick}
                 asChild={!!action.href}

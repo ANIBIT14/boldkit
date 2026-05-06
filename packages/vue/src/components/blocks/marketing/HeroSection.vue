@@ -153,8 +153,8 @@ const emit = defineEmits<{
 
       <div v-if="stats" class="grid grid-cols-2 md:grid-cols-4 gap-4">
         <div
-          v-for="(stat, index) in stats"
-          :key="index"
+          v-for="stat in stats"
+          :key="`stat-${stat.label}`"
           class="border-3 border-foreground bg-card p-6 text-center shadow-[4px_4px_0px_hsl(var(--shadow-color))]"
         >
           <div class="text-3xl md:text-4xl font-black">{{ stat.value }}</div>

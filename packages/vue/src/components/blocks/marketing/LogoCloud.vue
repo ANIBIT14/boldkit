@@ -60,7 +60,7 @@ const gridCols: Record<number, string> = {
       </div>
 
       <div :class="cn('grid gap-8 items-center', gridCols[columns])">
-        <template v-for="(logo, index) in logos" :key="index">
+        <template v-for="logo in logos" :key="`logo-${logo.name}`">
           <a
             v-if="logo.url"
             :href="logo.url"
@@ -105,8 +105,8 @@ const gridCols: Record<number, string> = {
 
       <Marquee class="py-4" :direction="direction" :speed="speed">
         <div
-          v-for="(logo, index) in logos"
-          :key="index"
+          v-for="logo in logos"
+          :key="`logo-marquee-${logo.name}`"
           class="mx-8 flex items-center justify-center h-12 opacity-70 hover:opacity-100 transition-opacity grayscale hover:grayscale-0"
         >
           <img
@@ -138,8 +138,8 @@ const gridCols: Record<number, string> = {
 
       <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
         <div
-          v-for="(logo, index) in logos"
-          :key="index"
+          v-for="logo in logos"
+          :key="`logo-${logo.name}`"
           class="border-3 border-foreground bg-card p-6 flex items-center justify-center h-24 hover:shadow-[4px_4px_0px_hsl(var(--shadow-color))] hover:translate-x-[-2px] hover:translate-y-[-2px] transition-all cursor-pointer"
         >
           <img
@@ -168,8 +168,8 @@ const gridCols: Record<number, string> = {
 
           <div v-if="stats" class="grid grid-cols-2 gap-4">
             <div
-              v-for="(stat, index) in stats"
-              :key="index"
+              v-for="stat in stats"
+              :key="`stat-${stat.label}`"
               class="border-3 border-foreground p-4 shadow-[4px_4px_0px_hsl(var(--shadow-color))]"
             >
               <div class="text-3xl font-black">{{ stat.value }}</div>
@@ -182,8 +182,8 @@ const gridCols: Record<number, string> = {
 
         <div class="grid grid-cols-3 gap-6">
           <div
-            v-for="(logo, index) in logos.slice(0, 9)"
-            :key="index"
+            v-for="logo in logos.slice(0, 9)"
+            :key="`logo-${logo.name}`"
             class="flex items-center justify-center h-16 opacity-70 hover:opacity-100 transition-opacity"
           >
             <img

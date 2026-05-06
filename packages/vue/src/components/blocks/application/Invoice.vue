@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 import { cn } from '@/lib/utils'
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui'
 import Button from '@/components/ui/Button.vue'
 import Separator from '@/components/ui/Separator.vue'
 import Badge from '@/components/ui/Badge.vue'
@@ -126,7 +126,7 @@ const statusConfig = {
               </tr>
             </thead>
             <tbody>
-              <tr v-for="(item, index) in invoice.items" :key="index" class="border-b border-foreground/20">
+              <tr v-for="item in invoice.items" :key="item.description" class="border-b border-foreground/20">
                 <td class="p-4">{{ item.description }}</td>
                 <td class="p-4 text-right">{{ item.quantity }}</td>
                 <td class="p-4 text-right">{{ formatCurrency(item.unitPrice) }}</td>
@@ -196,7 +196,7 @@ const statusConfig = {
             <span class="font-bold">{{ invoice.date }}</span>
           </div>
           <Separator class="bg-foreground/20 my-3" />
-          <div v-for="(item, index) in invoice.items" :key="index" class="flex justify-between mb-1">
+          <div v-for="item in invoice.items" :key="item.description" class="flex justify-between mb-1">
             <span>{{ item.description }}</span>
             <span class="font-bold">{{ formatCurrency(item.total) }}</span>
           </div>
