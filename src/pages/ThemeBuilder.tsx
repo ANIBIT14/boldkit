@@ -64,10 +64,23 @@ function formatHsl(h: number, s: number, l: number): string {
   return `${Math.round(h)} ${Math.round(s)}% ${Math.round(l)}%`
 }
 
-// Determine if a color is light or dark based on luminance
+// WCAG relative luminance — accounts for perceptual differences by hue
+function getRelativeLuminance(h: number, s: number, l: number): number {
+  s /= 100; l /= 100
+  const a = s * Math.min(l, 1 - l)
+  const f = (n: number) => {
+    const k = (n + h / 30) % 12
+    const c = l - a * Math.max(Math.min(k - 3, 9 - k, 1), -1)
+    return c <= 0.04045 ? c / 12.92 : Math.pow((c + 0.055) / 1.055, 2.4)
+  }
+  return 0.2126 * f(0) + 0.7152 * f(8) + 0.0722 * f(4)
+}
+
+// Determine if a color is light or dark using WCAG luminance threshold
+// threshold 0.179 = crossover where black and white text have equal contrast ratio
 function isLightColor(hslString: string): boolean {
-  const { l } = parseHsl(hslString)
-  return l > 55
+  const { h, s, l } = parseHsl(hslString)
+  return getRelativeLuminance(h, s, l) > 0.179
 }
 
 // Get appropriate foreground color for a background
@@ -197,11 +210,17 @@ export function ThemeBuilder({ embedded = false }: ThemeBuilderProps) {
     localStorage.setItem(THEME_STORAGE_KEY, JSON.stringify(colors))
   }, [colors])
 
-  // Apply colors to CSS variables
+  // Apply colors to CSS variables — including auto-computed foregrounds for live preview
   useEffect(() => {
+    const lightFg = '0 0% 100%'
+    const darkFg = '240 10% 10%'
+
     document.documentElement.style.setProperty('--primary', colors.primary)
+    document.documentElement.style.setProperty('--primary-foreground', getContrastForeground(colors.primary, lightFg, darkFg))
     document.documentElement.style.setProperty('--secondary', colors.secondary)
+    document.documentElement.style.setProperty('--secondary-foreground', getContrastForeground(colors.secondary, lightFg, darkFg))
     document.documentElement.style.setProperty('--accent', colors.accent)
+    document.documentElement.style.setProperty('--accent-foreground', getContrastForeground(colors.accent, lightFg, darkFg))
     document.documentElement.style.setProperty('--shadow-offset', `${colors.shadowOffset}px`)
     document.documentElement.style.setProperty('--border-width', `${colors.borderWidth}px`)
   }, [colors])
@@ -357,7 +376,7 @@ export function ThemeBuilder({ embedded = false }: ThemeBuilderProps) {
           {/* Preview */}
           <div className="space-y-4 md:space-y-6">
             <Card className="overflow-hidden">
-              <CardHeader className="bg-primary border-b-3 border-foreground py-3 md:py-4">
+              <CardHeader className="bg-primary text-primary-foreground border-b-3 border-foreground py-3 md:py-4">
                 <CardTitle className="text-lg md:text-xl">Live Preview</CardTitle>
               </CardHeader>
               <CardContent className="pt-4 md:pt-6 px-3 md:px-6 space-y-4 md:space-y-6">
@@ -435,7 +454,7 @@ export function ThemeBuilder({ embedded = false }: ThemeBuilderProps) {
 
             {/* Generated CSS */}
             <Card className="overflow-hidden">
-              <CardHeader className="bg-accent border-b-3 border-foreground">
+              <CardHeader className="bg-accent text-accent-foreground border-b-3 border-foreground">
                 <CardTitle className="text-lg md:text-xl">Generated CSS</CardTitle>
               </CardHeader>
               <CardContent className="pt-4 md:pt-6 px-3 md:px-6">
@@ -456,7 +475,7 @@ export function ThemeBuilder({ embedded = false }: ThemeBuilderProps) {
           <div className="space-y-4 md:space-y-6">
             {/* Presets */}
             <Card>
-              <CardHeader className="bg-accent py-3 md:py-4">
+              <CardHeader className="bg-accent text-accent-foreground py-3 md:py-4">
                 <CardTitle className="text-lg md:text-xl">Presets</CardTitle>
               </CardHeader>
               <CardContent className="pt-4 md:pt-6 px-3 md:px-6">
@@ -486,7 +505,7 @@ export function ThemeBuilder({ embedded = false }: ThemeBuilderProps) {
 
             {/* Colors */}
             <Card>
-              <CardHeader className="bg-secondary py-3 md:py-4">
+              <CardHeader className="bg-secondary text-secondary-foreground py-3 md:py-4">
                 <CardTitle className="text-lg md:text-xl">Colors</CardTitle>
               </CardHeader>
               <CardContent className="pt-4 md:pt-6 px-3 md:px-6">
@@ -571,7 +590,7 @@ export function ThemeBuilder({ embedded = false }: ThemeBuilderProps) {
 
             {/* Effects */}
             <Card>
-              <CardHeader className="bg-primary py-3 md:py-4">
+              <CardHeader className="bg-primary text-primary-foreground py-3 md:py-4">
                 <CardTitle className="text-lg md:text-xl">Effects</CardTitle>
               </CardHeader>
               <CardContent className="pt-4 md:pt-6 px-3 md:px-6 space-y-4 md:space-y-6">
