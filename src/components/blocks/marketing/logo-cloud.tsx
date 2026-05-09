@@ -196,6 +196,9 @@ export function LogoCloudWithStats({
   stats,
   className,
 }: LogoCloudWithStatsProps) {
+  if (import.meta.env.DEV && logos.length > 9) {
+    console.warn(`[LogoCloud] WithStats variant only shows first 9 logos. ${logos.length} logos provided.`)
+  }
   return (
     <section className={cn('py-16 px-4 md:px-8 lg:px-16', className)}>
       <div className="max-w-6xl mx-auto">
@@ -223,7 +226,6 @@ export function LogoCloudWithStats({
           </div>
 
           <div className="grid grid-cols-3 gap-6">
-            {process.env.NODE_ENV !== 'production' && logos.length > 9 && console.warn(`[LogoCloud] WithStats variant only shows first 9 logos. ${logos.length} logos provided.`)}
             {logos.slice(0, 9).map((logo) => {
               const inner = (
                 <div
