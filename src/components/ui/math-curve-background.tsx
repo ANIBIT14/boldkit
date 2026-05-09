@@ -86,7 +86,7 @@ const MathCurveBackground = React.forwardRef<HTMLDivElement, MathCurveBackground
       return () => {
         cancelAnimationFrame(rafRef.current)
       }
-    }, [curve, speed, durationMs])
+    }, [curve, speed, durationMs, strokeWidth])
 
     const resolvedTrackStroke = trackColor ?? 'currentColor'
     const resolvedHeadFill = headColor ?? 'hsl(var(--primary))'

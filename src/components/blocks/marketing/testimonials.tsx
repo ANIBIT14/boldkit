@@ -187,6 +187,21 @@ export function TestimonialsMasonry({
                   className="hover:translate-x-[-4px] hover:translate-y-[-4px] hover:shadow-[8px_8px_0px_hsl(var(--shadow-color))] transition-all"
                 >
                   <CardContent className="p-6 space-y-4">
+                    {testimonial.rating && (
+                      <div className="flex gap-1">
+                        {Array.from({ length: 5 }).map((_, i) => (
+                          <Star
+                            key={i}
+                            className={cn(
+                              'h-4 w-4',
+                              i < testimonial.rating!
+                                ? 'fill-warning text-warning'
+                                : 'text-muted-foreground'
+                            )}
+                          />
+                        ))}
+                      </div>
+                    )}
                     <p className="font-medium leading-relaxed">
                       "{testimonial.quote}"
                     </p>

@@ -515,7 +515,11 @@ export function AppearanceSettings({
               <button
                 key={color.value}
                 type="button"
-                onClick={() => onAccentColorChange?.(color.value)}
+                onClick={() => {
+                  if (accentColors.some(ac => ac.value === color.value)) {
+                    onAccentColorChange?.(color.value)
+                  }
+                }}
                 className={cn(
                   'w-10 h-10 border-3 border-foreground transition-all',
                   accentColor === color.value &&

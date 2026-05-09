@@ -163,8 +163,8 @@ function computeLayout(
     const tgtTotal = (inLinks.get(link.target) || []).reduce((s, l) => s + l.value, 0)
     const thickness = Math.max(2, (link.value / Math.max(srcTotal, tgtTotal)) * src.height)
 
-    const sY = sourceOffsets.get(link.source)!
-    const tY = targetOffsets.get(link.target)!
+    const sY = sourceOffsets.get(link.source) ?? 0
+    const tY = targetOffsets.get(link.target) ?? 0
     sourceOffsets.set(link.source, sY + thickness)
     targetOffsets.set(link.target, tY + thickness)
 
@@ -209,14 +209,21 @@ const SankeyChart = React.forwardRef<HTMLDivElement, SankeyChartProps>(
     // useLayoutEffect fires before paint, preventing the initial layout flash
     // that would occur with useEffect + the 600px placeholder width.
     // SankeyChart is client-only (ResizeObserver), so useLayoutEffect is safe here.
+    const mountedRef = React.useRef(true)
     React.useLayoutEffect(() => {
+      mountedRef.current = true
       if (!containerRef.current) return
       const ro = new ResizeObserver(entries => {
-        setWidth(entries[0].contentRect.width)
+        if (mountedRef.current) {
+          setWidth(entries[0].contentRect.width)
+        }
       })
       ro.observe(containerRef.current)
       setWidth(containerRef.current.offsetWidth)
-      return () => ro.disconnect()
+      return () => {
+        mountedRef.current = false
+        ro.disconnect()
+      }
     }, [])
 
     const { computedNodes, computedLinks } = React.useMemo(

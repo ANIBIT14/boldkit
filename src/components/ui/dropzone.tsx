@@ -143,11 +143,11 @@ const Dropzone = React.forwardRef<HTMLDivElement, DropzoneProps>(
       const accepted: File[] = []
       const rejected: FileRejection[] = []
 
-      allFiles.forEach((file, fileIndex) => {
+      allFiles.forEach((file) => {
         const rejection = validateFile(file)
         if (rejection) {
           rejected.push(rejection)
-        } else if (fileIndex >= maxFiles) {
+        } else if (accepted.length >= maxFiles) {
           rejected.push({
             file,
             errors: [{ code: 'too-many-files', message: `Too many files. Maximum is ${maxFiles}.` }],

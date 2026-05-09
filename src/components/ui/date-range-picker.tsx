@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { format, subDays, startOfMonth, endOfMonth, subMonths } from 'date-fns'
+import { format, subDays, startOfMonth, endOfMonth, subMonths, isSameDay } from 'date-fns'
 import { CalendarIcon } from 'lucide-react'
 import type { DateRange } from 'react-day-picker'
 import { cn } from '@/lib/utils'
@@ -101,8 +101,8 @@ const DateRangePicker = React.forwardRef<HTMLButtonElement, DateRangePickerProps
       if (!preset.value.from || !preset.value.to) return false
 
       return (
-        format(selectedRange.from, 'yyyy-MM-dd') === format(preset.value.from, 'yyyy-MM-dd') &&
-        format(selectedRange.to, 'yyyy-MM-dd') === format(preset.value.to, 'yyyy-MM-dd')
+        isSameDay(selectedRange.from, preset.value.from) &&
+        isSameDay(selectedRange.to, preset.value.to)
       )
     }
 

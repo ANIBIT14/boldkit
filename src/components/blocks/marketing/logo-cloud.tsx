@@ -223,6 +223,7 @@ export function LogoCloudWithStats({
           </div>
 
           <div className="grid grid-cols-3 gap-6">
+            {process.env.NODE_ENV !== 'production' && logos.length > 9 && console.warn(`[LogoCloud] WithStats variant only shows first 9 logos. ${logos.length} logos provided.`)}
             {logos.slice(0, 9).map((logo) => {
               const inner = (
                 <div

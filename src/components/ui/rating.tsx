@@ -219,13 +219,17 @@ export function Rating({
     >
       {Array.from({ length: max }, (_, i) => {
         const starIndex = i + 1
+        const isSelected = starIndex === Math.ceil(currentValue)
+        const isFocusable = interactive && (currentValue === 0 ? starIndex === 1 : isSelected)
         return (
           <button
             key={starIndex}
             type="button"
-            tabIndex={-1}
+            tabIndex={isFocusable ? 0 : -1}
             disabled={disabled}
+            role="radio"
             aria-label={`${starIndex} ${iconLabel[icon]}`}
+            aria-checked={starIndex <= currentValue}
             onClick={() => handleStarClick(starIndex)}
             onMouseMove={(e) => handleStarMouseMove(e, starIndex)}
             className={cn(

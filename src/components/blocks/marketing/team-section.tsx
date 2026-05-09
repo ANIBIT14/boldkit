@@ -4,6 +4,13 @@ import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import { cn } from '@/lib/utils'
 import { XIcon, Linkedin, Github, Mail } from 'lucide-react'
 
+function getInitials(name: string) {
+  const parts = name.trim().split(/\s+/).filter(Boolean)
+  if (parts.length === 0) return '?'
+  if (parts.length === 1) return (parts[0][0] ?? '?').toUpperCase()
+  return ((parts[0][0] ?? '') + (parts[parts.length - 1][0] ?? '')).toUpperCase()
+}
+
 export interface TeamMember {
   name: string
   role: string
@@ -76,7 +83,7 @@ export function TeamGrid({
                 <Avatar className="h-24 w-24 mx-auto border-3 border-foreground shadow-[4px_4px_0px_hsl(var(--shadow-color))]">
                   <AvatarImage src={member.avatar} />
                   <AvatarFallback className="font-bold text-2xl">
-                    {member.name.split(' ').map(n => n[0]).join('')}
+                    {getInitials(member.name)}
                   </AvatarFallback>
                 </Avatar>
 
@@ -148,7 +155,7 @@ export function TeamList({
               <Avatar className="h-16 w-16 border-2 border-foreground">
                 <AvatarImage src={member.avatar} />
                 <AvatarFallback className="font-bold">
-                  {member.name.split(' ').map(n => n[0]).join('')}
+                  {getInitials(member.name)}
                 </AvatarFallback>
               </Avatar>
 
@@ -222,7 +229,7 @@ export function TeamLargePhotos({
                 ) : (
                   <div className="w-full h-80 bg-muted flex items-center justify-center">
                     <span className="text-6xl font-black text-muted-foreground">
-                      {member.name.split(' ').map(n => n[0]).join('')}
+                      {getInitials(member.name)}
                     </span>
                   </div>
                 )}
@@ -297,7 +304,7 @@ export function TeamCompact({
               <Avatar className="h-20 w-20 mx-auto mb-2 border-3 border-foreground shadow-[3px_3px_0px_hsl(var(--shadow-color))]">
                 <AvatarImage src={member.avatar} />
                 <AvatarFallback className="font-bold text-lg">
-                  {member.name.split(' ').map(n => n[0]).join('')}
+                  {getInitials(member.name)}
                 </AvatarFallback>
               </Avatar>
               <p className="font-bold text-sm">{member.name}</p>

@@ -157,7 +157,12 @@ const HeatmapChart = React.forwardRef<HTMLDivElement, HeatmapChartProps>(
         {showTooltip && tooltip && (
           <div
             className="fixed z-50 pointer-events-none border-3 border-foreground bg-background px-3 py-2 text-xs font-mono shadow-[4px_4px_0px_hsl(var(--foreground))]"
-            style={{ left: tooltip.x, top: tooltip.y - 64, transform: 'translateX(-50%)', maxWidth: 200 }}
+            style={{
+              left: Math.min(Math.max(tooltip.x, 100), window.innerWidth - 100),
+              top: tooltip.y - 64 < 0 ? tooltip.y + 10 : tooltip.y - 64,
+              transform: 'translateX(-50%)',
+              maxWidth: 200,
+            }}
           >
             <p className="font-black">{tooltip.row} × {tooltip.col}</p>
             <p className="text-muted-foreground">{tooltip.value}</p>

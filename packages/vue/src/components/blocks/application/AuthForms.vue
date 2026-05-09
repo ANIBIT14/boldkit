@@ -64,6 +64,9 @@ const handleOtpPaste = (event: ClipboardEvent) => {
   otpValues.value = newOtp
   const focusIndex = Math.min(digits.length, 5)
   inputRefs.value[focusIndex]?.focus()
+  if (digits.length === 6) {
+    handleSubmit()
+  }
 }
 
 const handleSubmit = () => {

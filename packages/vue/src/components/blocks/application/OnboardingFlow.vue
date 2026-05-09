@@ -56,8 +56,10 @@ const email = ref('')
 const workspaceName = ref('')
 const selectedGoals = ref<string[]>([])
 const avatarPreview = ref<string | null>(null)
+const avatarError = ref('')
 const fileInputRef = ref<HTMLInputElement | null>(null)
 const memberEmail = ref('')
+const memberEmailError = ref('')
 const members = ref<string[]>([])
 
 const progress = computed(() => ((props.currentStep - 1) / (props.totalSteps - 1)) * 100)
@@ -73,6 +75,15 @@ const toggleGoal = (goalId: string) => {
 const handleAvatarChange = (event: Event) => {
   const file = (event.target as HTMLInputElement).files?.[0]
   if (!file) return
+  avatarError.value = ''
+  if (!file.type.startsWith('image/')) {
+    avatarError.value = 'Please select an image file.'
+    return
+  }
+  if (file.size > 5 * 1024 * 1024) {
+    avatarError.value = 'Image must be smaller than 5MB.'
+    return
+  }
   const reader = new FileReader()
   reader.onerror = () => console.error('Failed to read file')
   reader.onloadend = () => {
@@ -83,10 +94,19 @@ const handleAvatarChange = (event: Event) => {
 
 const addMember = () => {
   const trimmed = memberEmail.value.trim()
-  if (trimmed && !members.value.includes(trimmed)) {
-    members.value = [...members.value, trimmed]
-    memberEmail.value = ''
+  memberEmailError.value = ''
+  if (!trimmed) return
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+  if (!emailRegex.test(trimmed)) {
+    memberEmailError.value = 'Please enter a valid email address.'
+    return
   }
+  if (members.value.includes(trimmed)) {
+    memberEmailError.value = 'This email has already been added.'
+    return
+  }
+  members.value = [...members.value, trimmed]
+  memberEmail.value = ''
 }
 
 const removeMember = (email: string) => {
@@ -200,6 +220,7 @@ const removeMember = (email: string) => {
             </Button>
           </div>
         </div>
+        <p v-if="avatarError" class="text-sm text-destructive font-medium text-center">{{ avatarError }}</p>
 
         <div class="space-y-4">
           <div class="space-y-2">
@@ -249,6 +270,7 @@ const removeMember = (email: string) => {
             />
             <Button type="button" variant="outline" @click="addMember">Add</Button>
           </div>
+          <p v-if="memberEmailError" class="text-sm text-destructive font-medium">{{ memberEmailError }}</p>
         </div>
         <div v-if="members.length" class="flex flex-wrap gap-2">
           <div

@@ -113,7 +113,7 @@ function DataTableToolbar<TData>({
             <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
             <Input
               placeholder={filterPlaceholder}
-              value={(column.getFilterValue() as string) ?? ''}
+              value={String(column.getFilterValue() ?? '')}
               onChange={(event) => column.setFilterValue(event.target.value)}
               className="h-9 w-[150px] pl-9 lg:w-[250px]"
             />

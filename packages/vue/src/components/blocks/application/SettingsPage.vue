@@ -42,6 +42,7 @@ const props = withDefaults(defineProps<SettingsPageProps>(), {
 const emit = defineEmits<{
   (e: 'save', data: Record<string, unknown>): void
   (e: 'deleteAccount'): void
+  (e: 'themeChange', theme: 'light' | 'dark' | 'system'): void
 }>()
 
 const profileName = ref(props.user?.name || '')
@@ -224,7 +225,7 @@ const getInitials = (name: string) => {
                 'border-3 border-foreground p-4 text-center transition-all',
                 theme === 'light' ? 'bg-primary text-primary-foreground shadow-[4px_4px_0px_hsl(var(--shadow-color))]' : 'hover:bg-muted'
               )"
-              @click="theme = 'light'"
+              @click="theme = 'light'; emit('themeChange', 'light')"
             >
               <div class="font-bold">Light</div>
             </button>
@@ -233,7 +234,7 @@ const getInitials = (name: string) => {
                 'border-3 border-foreground p-4 text-center transition-all',
                 theme === 'dark' ? 'bg-primary text-primary-foreground shadow-[4px_4px_0px_hsl(var(--shadow-color))]' : 'hover:bg-muted'
               )"
-              @click="theme = 'dark'"
+              @click="theme = 'dark'; emit('themeChange', 'dark')"
             >
               <div class="font-bold">Dark</div>
             </button>
@@ -242,7 +243,7 @@ const getInitials = (name: string) => {
                 'border-3 border-foreground p-4 text-center transition-all',
                 theme === 'system' ? 'bg-primary text-primary-foreground shadow-[4px_4px_0px_hsl(var(--shadow-color))]' : 'hover:bg-muted'
               )"
-              @click="theme = 'system'"
+              @click="theme = 'system'; emit('themeChange', 'system')"
             >
               <div class="font-bold">System</div>
             </button>

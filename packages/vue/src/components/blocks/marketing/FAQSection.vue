@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { ref, computed } from 'vue'
 import { cn } from '@/lib/utils'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui'
 import Accordion from '@/components/ui/Accordion.vue'
@@ -34,7 +35,9 @@ const emit = defineEmits<{
   (e: 'contact'): void
 }>()
 
-const categories = [...new Set(props.faqs.map((faq) => faq.category).filter(Boolean))]
+const categories = [...new Set(props.faqs.map((faq) => faq.category).filter(Boolean))] as string[]
+const activeCategory = ref(categories[0] ?? '')
+const filteredFaqs = computed(() => props.faqs.filter((f) => f.category === activeCategory.value))
 </script>
 
 <template>
@@ -117,26 +120,37 @@ const categories = [...new Set(props.faqs.map((faq) => faq.category).filter(Bool
         </h2>
       </div>
 
-      <div class="grid lg:grid-cols-3 gap-8">
-        <Card
+      <div class="flex flex-wrap gap-2 mb-8">
+        <button
           v-for="category in categories"
           :key="category"
+          :class="cn(
+            'border-3 border-foreground px-4 py-2 font-bold uppercase text-sm transition-all',
+            activeCategory === category
+              ? 'bg-primary text-primary-foreground shadow-[4px_4px_0px_hsl(var(--shadow-color))]'
+              : 'bg-card hover:bg-muted'
+          )"
+          @click="activeCategory = category"
         >
-          <CardHeader>
-            <CardTitle class="uppercase">{{ category }}</CardTitle>
-          </CardHeader>
-          <CardContent class="space-y-6">
-            <div
-              v-for="faq in faqs.filter((f) => f.category === category)"
-              :key="faq.question"
-              class="space-y-2"
-            >
-              <h4 class="font-bold">{{ faq.question }}</h4>
-              <p class="text-sm text-muted-foreground">{{ faq.answer }}</p>
-            </div>
-          </CardContent>
-        </Card>
+          {{ category }}
+        </button>
       </div>
+
+      <Card>
+        <CardHeader>
+          <CardTitle class="uppercase">{{ activeCategory }}</CardTitle>
+        </CardHeader>
+        <CardContent class="space-y-6">
+          <div
+            v-for="faq in filteredFaqs"
+            :key="faq.question"
+            class="space-y-2"
+          >
+            <h4 class="font-bold">{{ faq.question }}</h4>
+            <p class="text-sm text-muted-foreground">{{ faq.answer }}</p>
+          </div>
+        </CardContent>
+      </Card>
     </div>
   </section>
 

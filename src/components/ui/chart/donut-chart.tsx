@@ -101,8 +101,8 @@ const DonutChart = React.forwardRef<HTMLDivElement, DonutChartProps>(
                     const fhHalf = Math.max(25, ir * 0.55)
                     return (
                       <foreignObject
-                        x={(viewBox.cx || 0) - fwHalf}
-                        y={(viewBox.cy || 0) - fhHalf}
+                        x={(pieView.cx || 0) - fwHalf}
+                        y={(pieView.cy || 0) - fhHalf}
                         width={fwHalf * 2}
                         height={fhHalf * 2}
                       >

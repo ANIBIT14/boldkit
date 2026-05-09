@@ -21,7 +21,7 @@ export interface ContactSplitProps {
   title?: string
   description?: string
   contactInfo?: ContactInfo
-  onSubmit?: (data: { name: string; email: string; message: string }) => void
+  onSubmit?: (data: { name: string; email: string; subject: string; message: string }) => void
   className?: string
 }
 
@@ -35,13 +35,14 @@ export function ContactSplit({
   const [formData, setFormData] = React.useState({
     name: '',
     email: '',
+    subject: '',
     message: '',
   })
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
     onSubmit?.(formData)
-    setFormData({ name: '', email: '', message: '' })
+    setFormData({ name: '', email: '', subject: '', message: '' })
   }
 
   return (
@@ -121,6 +122,19 @@ export function ContactSplit({
                   value={formData.email}
                   onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                   placeholder="your@email.com"
+                  required
+                />
+              </div>
+
+              <div className="space-y-2">
+                <Label htmlFor="subject" className="font-bold uppercase text-sm">
+                  Subject
+                </Label>
+                <Input
+                  id="subject"
+                  value={formData.subject}
+                  onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
+                  placeholder="What's this about?"
                   required
                 />
               </div>

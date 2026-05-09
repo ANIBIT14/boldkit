@@ -73,7 +73,11 @@ const SidebarProvider = React.forwardRef<HTMLDivElement, SidebarProviderProps>(
         onOpenChange?.(value)
 
         // Save to cookie
-        document.cookie = `${SIDEBAR_COOKIE_NAME}=${value}; path=/; max-age=${SIDEBAR_COOKIE_MAX_AGE}`
+        try {
+          document.cookie = `${SIDEBAR_COOKIE_NAME}=${value}; path=/; max-age=${SIDEBAR_COOKIE_MAX_AGE}`
+        } catch {
+          // Silent fail — cookie storage unavailable (private browsing, etc.)
+        }
       },
       [isControlled, onOpenChange]
     )

@@ -29,11 +29,17 @@ const emit = defineEmits<{
 const email = ref('')
 const bannerVisible = ref(true)
 
+const emailError = ref('')
+
 const handleSubscribe = () => {
-  if (email.value) {
-    emit('subscribe', email.value)
-    email.value = ''
+  emailError.value = ''
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+  if (!email.value || !emailRegex.test(email.value)) {
+    emailError.value = 'Please enter a valid email address.'
+    return
   }
+  emit('subscribe', email.value)
+  email.value = ''
 }
 </script>
 
@@ -109,7 +115,7 @@ const handleSubscribe = () => {
               {{ description }}
             </p>
           </div>
-          <div class="flex gap-3">
+          <form class="flex gap-3" @submit.prevent="handleSubscribe">
             <div class="relative flex-1">
               <Mail class="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
               <Input
@@ -117,12 +123,14 @@ const handleSubscribe = () => {
                 type="email"
                 placeholder="Enter your email"
                 class="pl-10"
+                required
               />
             </div>
-            <Button @click="handleSubscribe">
+            <Button type="submit">
               Subscribe
             </Button>
-          </div>
+          </form>
+          <p v-if="emailError" class="text-sm text-destructive font-medium mt-1">{{ emailError }}</p>
         </div>
       </div>
     </div>

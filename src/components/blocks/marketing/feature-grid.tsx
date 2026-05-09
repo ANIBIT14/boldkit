@@ -310,7 +310,7 @@ export function FeatureBentoGrid({
                     {feature.icon}
                   </div>
                   <CardTitle className="uppercase text-lg">{feature.title}</CardTitle>
-                  <CardDescription className="text-base">
+                  <CardDescription className="text-base line-clamp-3">
                     {feature.description}
                   </CardDescription>
                 </CardHeader>

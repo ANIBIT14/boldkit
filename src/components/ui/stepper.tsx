@@ -79,9 +79,16 @@ const Stepper = React.forwardRef<HTMLDivElement, StepperProps>(
     )
 
     // Count total steps from children
-    const totalSteps = React.Children.toArray(children).filter(
-      (child) => React.isValidElement(child) && child.type === StepperItem
-    ).length
+    const totalSteps = React.Children.toArray(children).filter((child) => {
+      if (!React.isValidElement(child)) return false
+      const childType = child.type as React.ElementType
+      const displayName = (childType as any).displayName || (childType as any).name || ''
+      return (
+        childType === StepperItem ||
+        displayName === 'StepperItem' ||
+        (childType as any).type === StepperItem
+      )
+    }).length
 
     return (
       <StepperContext.Provider value={{ activeStep, setActiveStep, totalSteps, orientation }}>

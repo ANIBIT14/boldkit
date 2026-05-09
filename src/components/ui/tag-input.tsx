@@ -41,7 +41,12 @@ const TagInput = React.forwardRef<HTMLInputElement, TagInputProps>(
     const inputRef = React.useRef<HTMLInputElement>(null)
     const containerRef = React.useRef<HTMLDivElement>(null)
 
-    React.useImperativeHandle(ref, () => inputRef.current!)
+    React.useImperativeHandle(ref, () => ({
+      focus: () => inputRef.current?.focus(),
+      blur: () => inputRef.current?.blur(),
+      get value() { return inputRef.current?.value ?? '' },
+      set value(v: string) { if (inputRef.current) inputRef.current.value = v },
+    }) as unknown as HTMLInputElement)
 
     const isControlled = controlledValue !== undefined
     const tags = isControlled ? controlledValue : uncontrolledTags

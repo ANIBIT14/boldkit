@@ -278,9 +278,9 @@ const CarouselDots = React.forwardRef<
       className={cn('flex items-center justify-center gap-2 mt-4', className)}
       {...props}
     >
-      {scrollSnaps.map((_, index) => (
+      {scrollSnaps.map((snap, index) => (
         <button
-          key={`snap-${index}`}
+          key={snap}
           type="button"
           onClick={() => scrollTo(index)}
           className={cn(

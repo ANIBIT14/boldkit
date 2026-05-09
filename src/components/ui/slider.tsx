@@ -59,7 +59,9 @@ const Slider = React.forwardRef<HTMLDivElement, SliderProps>(
     const wasControlled = React.useRef(isControlled)
     React.useEffect(() => {
       if (wasControlled.current !== isControlled) {
-        console.warn('[Slider] Component is changing from ' + (wasControlled.current ? 'controlled' : 'uncontrolled') + ' to ' + (isControlled ? 'controlled' : 'uncontrolled') + '. This is not supported.')
+        if (process.env.NODE_ENV !== 'production') {
+          console.warn('[Slider] Component is changing from ' + (wasControlled.current ? 'controlled' : 'uncontrolled') + ' to ' + (isControlled ? 'controlled' : 'uncontrolled') + '. This is not supported.')
+        }
         wasControlled.current = isControlled
       }
     }, [isControlled])

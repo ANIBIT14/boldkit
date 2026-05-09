@@ -85,10 +85,13 @@ export function OnboardingWizard({
       )}
 
       {/* Step Indicators */}
-      <div className="flex items-center justify-center gap-2 mb-8">
+      <div className="flex items-center justify-center gap-2 mb-8" role="list" aria-label="Progress steps">
         {steps.map((step, index) => (
           <React.Fragment key={step.id}>
             <div
+              role="listitem"
+              aria-label={`Step ${index + 1} of ${steps.length}: ${step.title}`}
+              aria-current={index === currentStep ? 'step' : undefined}
               className={cn(
                 'w-10 h-10 flex items-center justify-center border-3 border-foreground font-bold transition-all',
                 index < currentStep
@@ -278,18 +281,27 @@ export function ProfileSetup({
   })
   const [avatarPreview, setAvatarPreview] = React.useState<string | null>(null)
   const [avatarFile, setAvatarFile] = React.useState<File | undefined>(undefined)
+  const [avatarError, setAvatarError] = React.useState<string | null>(null)
   const fileInputRef = React.useRef<HTMLInputElement>(null)
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0]
-    if (file) {
-      setAvatarFile(file)
-      const reader = new FileReader()
-      reader.onloadend = () => {
-        setAvatarPreview(reader.result as string)
-      }
-      reader.readAsDataURL(file)
+    if (!file) return
+    setAvatarError(null)
+    if (!file.type.startsWith('image/')) {
+      setAvatarError('Please select an image file.')
+      return
     }
+    if (file.size > 5 * 1024 * 1024) {
+      setAvatarError('Image must be smaller than 5MB.')
+      return
+    }
+    setAvatarFile(file)
+    const reader = new FileReader()
+    reader.onloadend = () => {
+      setAvatarPreview(reader.result as string)
+    }
+    reader.readAsDataURL(file)
   }
 
   const toggleInterest = (interest: string) => {
@@ -323,7 +335,7 @@ export function ProfileSetup({
       <CardContent>
         <form onSubmit={handleSubmit} className="space-y-6">
           {/* Avatar Upload */}
-          <div className="flex justify-center">
+          <div className="flex flex-col items-center gap-2">
             <button
               type="button"
               onClick={() => fileInputRef.current?.click()}
@@ -346,6 +358,9 @@ export function ProfileSetup({
                 className="hidden"
               />
             </button>
+            {avatarError && (
+              <p className="text-sm text-destructive font-medium">{avatarError}</p>
+            )}
           </div>
 
           {/* Name */}

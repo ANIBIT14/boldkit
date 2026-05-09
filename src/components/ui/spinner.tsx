@@ -42,7 +42,7 @@ const Spinner = React.forwardRef<HTMLDivElement, SpinnerProps>(
       xl: { element: 'h-12 w-12', dot: 'h-3 w-3', bar: 'w-1.5 h-8', block: 'h-4 w-4', ring: 'h-12 w-12' },
     }
 
-    const currentSize = size || 'md'
+    const currentSize = size ?? 'md'
     const sizes = sizeClasses[currentSize]
 
     if (variant === 'dots') {
