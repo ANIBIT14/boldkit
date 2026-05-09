@@ -1,11 +1,8 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "combobox",
-  "type": "registry:ui",
-  "description": "Searchable dropdown built by composing Popover and Command with neubrutalism styling. Includes single-select (ComboboxTrigger) and multi-select with removable chips (ComboboxMultiTrigger).",
+  "description": "Searchable dropdown built by composing Popover and Command with neubrutalism styling",
   "dependencies": [
-    "@radix-ui/react-popover",
-    "cmdk",
     "lucide-react"
   ],
   "registryDependencies": [
@@ -20,5 +17,6 @@
       "type": "registry:ui",
       "target": "components/ui/combobox.tsx"
     }
-  ]
+  ],
+  "type": "registry:ui"
 }

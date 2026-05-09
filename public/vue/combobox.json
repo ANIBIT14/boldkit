@@ -1,0 +1,27 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "combobox",
+  "type": "registry:ui",
+  "description": "Searchable dropdown built by composing Popover and Command with neubrutalism styling. Includes single-select (ComboboxTrigger) and multi-select with removable chips (ComboboxMultiTrigger).",
+  "dependencies": [
+    "reka-ui",
+    "lucide-vue-next"
+  ],
+  "registryDependencies": [
+    "utils",
+    "popover",
+    "command"
+  ],
+  "files": [
+    {
+      "path": "registry/default/ui/ComboboxTrigger.vue",
+      "type": "registry:ui",
+      "target": "components/ui/ComboboxTrigger.vue"
+    },
+    {
+      "path": "registry/default/ui/ComboboxMultiTrigger.vue",
+      "type": "registry:ui",
+      "target": "components/ui/ComboboxMultiTrigger.vue"
+    }
+  ]
+}

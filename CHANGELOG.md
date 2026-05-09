@@ -5,6 +5,48 @@ Format follows [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ---
 
+## [3.3.2] — 2026-05-09
+
+### 🐛 Bug Fixes
+
+**React UI Components**
+- `carousel.tsx` — Use snap position as key in `CarouselDots` instead of array index
+- `chart/sankey-chart.tsx` — Replace non-null `!` assertions on Map lookups with `?? 0` safe fallbacks; guard `ResizeObserver` callback with `mountedRef` to prevent state updates after unmount
+- `chart/tooltip.tsx` — Guard `toLocaleString()` with `Number.isFinite` before calling on `item.value`
+- `chart/donut-chart.tsx` — Consistently use `pieView.cx/cy` inside the typed cast block
+- `chart/heatmap-chart.tsx` — Clamp tooltip position to viewport bounds to prevent off-screen rendering
+- `data-table.tsx` — Use `String()` instead of unsafe `as string` cast on filter value
+- `math-curve-background.tsx` — Add `strokeWidth` to `useEffect` dependency array
+- `date-range-picker.tsx` — Replace string-format date comparison with `isSameDay` from date-fns
+- `input-otp.tsx` — Add optional chaining `slots?.[index]` to guard against undefined slots
+- `rating.tsx` — Fix star `tabIndex` so the selected star is keyboard-focusable; add `role="radio"` and `aria-checked`
+- `dropzone.tsx` — Fix off-by-one: check `accepted.length >= maxFiles` instead of loop index
+- `tag-input.tsx` — Replace non-null assertion in `useImperativeHandle` with safe `focus`/`blur` pattern
+- `sidebar.tsx` — Wrap `document.cookie` write in try/catch for private browsing environments
+- `stepper.tsx` — Support `React.memo`-wrapped `StepperItem` via `displayName` check
+- `tour.tsx` — Emit `console.warn` in dev when a tour step's target element is not found in the DOM
+- `progress.tsx` — Clamp value to 0–100 range before computing `translateX` transform
+- `pagination.tsx` — Move `sr-only` "More pages" text outside `aria-hidden` span
+- `slider.tsx` — Guard `console.warn` behind `NODE_ENV !== 'production'`
+
+**Vue Blocks**
+- `AuthForms.vue` — Auto-submit OTP form after paste fills all 6 digits
+- `OnboardingFlow.vue` — Add file type/size validation on avatar upload; add email regex + duplicate check before adding team members
+- `SettingsPage.vue` — Emit `themeChange` event when a theme is selected
+- `CTASection.vue` — Wrap newsletter inputs in `<form @submit.prevent>`; add email validation
+- `FAQSection.vue` — Add reactive `activeCategory` ref + `filteredFaqs` computed for the categories variant
+
+**React Blocks**
+- `onboarding-flow.tsx` — Add file type/size validation on avatar upload; add `aria-label`/`aria-current` on step indicator dots
+- `contact-section.tsx` — Add `subject` field to `ContactSplit` variant
+- `testimonials.tsx` — Add star rating display to `TestimonialsMasonry` variant
+- `settings-page.tsx` — Validate accent color is in `accentColors` array before firing callback
+- `feature-grid.tsx` — Add `line-clamp-3` to Bento `CardDescription` to prevent overflow on narrow screens
+- `team-section.tsx` — Rewrite `getInitials()` with proper edge case handling (single-word names, empty strings)
+- `logo-cloud.tsx` — Warn in dev when `LogoCloudWithStats` silently drops logos beyond index 9
+
+---
+
 ## [3.3.0] — 2026-05-05
 
 ### ✨ New Components
