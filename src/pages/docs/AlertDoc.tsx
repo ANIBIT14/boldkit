@@ -62,7 +62,7 @@ const AlertAction = React.forwardRef<HTMLButtonElement, AlertActionProps>(
       className={cn(
         'mt-3 inline-flex items-center gap-1.5 max-w-full min-w-0',
         'rounded-none border border-current',
-        'px-3 py-1 text-xs font-bold uppercase tracking-wide',
+        'px-4 py-1 text-xs font-bold uppercase tracking-wide',
         'opacity-80 transition-all duration-150',
         'hover:opacity-100 hover:bg-current/10',
         'active:scale-95',

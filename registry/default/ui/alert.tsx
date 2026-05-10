@@ -74,7 +74,7 @@ const AlertAction = React.forwardRef<HTMLButtonElement, AlertActionProps>(
         // shape — no rounded corners, thin border inheriting text color
         'rounded-none border border-current',
         // typography
-        'px-3 py-1 text-xs font-bold uppercase tracking-wide',
+        'px-4 py-1 text-xs font-bold uppercase tracking-wide',
         // default state
         'opacity-80 transition-all duration-150',
         // hover
