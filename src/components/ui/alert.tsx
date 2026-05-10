@@ -3,7 +3,7 @@ import { cva, type VariantProps } from 'class-variance-authority'
 import { cn } from '@/lib/utils'
 
 const alertVariants = cva(
-  'relative w-full border-3 border-foreground p-4 shadow-[4px_4px_0px_hsl(var(--shadow-color))] transition-all duration-200 [&>svg~*]:pl-8 [&>svg+div]:translate-y-[-3px] [&>svg]:absolute [&>svg]:left-4 [&>svg]:top-4 [&>svg]:text-foreground',
+  'relative w-full border-3 border-foreground p-4 shadow-[4px_4px_0px_hsl(var(--shadow-color))] animate-in fade-in-0 slide-in-from-top-2 duration-300 transition-all [&>svg~*]:pl-8 [&>svg+div]:translate-y-[-3px] [&>svg]:absolute [&>svg]:left-4 [&>svg]:top-4 [&>svg]:text-foreground',
   {
     variants: {
       variant: {
@@ -57,4 +57,49 @@ const AlertDescription = React.forwardRef<
 ))
 AlertDescription.displayName = 'AlertDescription'
 
-export { Alert, AlertTitle, AlertDescription }
+export interface AlertActionProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+  /** Shows an inline spinner and disables the button automatically */
+  loading?: boolean
+}
+
+const AlertAction = React.forwardRef<HTMLButtonElement, AlertActionProps>(
+  ({ className, loading, disabled, children, ...props }, ref) => (
+    <button
+      ref={ref}
+      data-alert-action=""
+      disabled={disabled || loading}
+      className={cn(
+        // layout
+        'mt-3 inline-flex items-center gap-1.5 max-w-full overflow-hidden',
+        // shape — no rounded corners, thin border inheriting text color
+        'rounded-none border border-current',
+        // typography
+        'px-3 py-1 text-xs font-bold uppercase tracking-wide',
+        // default state
+        'opacity-80 transition-all duration-150',
+        // hover
+        'hover:opacity-100 hover:bg-current/10',
+        // active
+        'active:scale-95',
+        // focus
+        'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-current focus-visible:ring-offset-1',
+        // disabled (covers both disabled and loading)
+        'disabled:opacity-40 disabled:cursor-not-allowed disabled:pointer-events-none',
+        className
+      )}
+      {...props}
+    >
+      {loading && (
+        <span
+          role="status"
+          aria-hidden="true"
+          className="h-3 w-3 shrink-0 animate-spin rounded-full border-2 border-current border-t-transparent"
+        />
+      )}
+      <span className="truncate">{children}</span>
+    </button>
+  )
+)
+AlertAction.displayName = 'AlertAction'
+
+export { Alert, AlertTitle, AlertDescription, AlertAction }

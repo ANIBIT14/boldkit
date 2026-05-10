@@ -1,4 +1,5 @@
 import { describe, it, expect, vi } from 'vitest'
+import { within } from '@testing-library/react'
 import { render, screen } from '@/test/test-utils'
 import { Alert, AlertTitle, AlertDescription, AlertAction } from '../alert'
 import { Terminal } from 'lucide-react'
@@ -84,7 +85,7 @@ describe('AlertAction', () => {
 
     it('shows spinner when loading', () => {
       render(<Alert><AlertAction loading>Saving</AlertAction></Alert>)
-      expect(screen.getByRole('button').querySelector('[aria-hidden="true"]')).toBeInTheDocument()
+      expect(within(screen.getByRole('button')).getByRole('status', { hidden: true })).toBeInTheDocument()
     })
 
     it('applies disabled styles', () => {
@@ -147,8 +148,7 @@ describe('AlertAction', () => {
 
     it('spinner has aria-hidden when loading', () => {
       render(<Alert><AlertAction loading>Saving</AlertAction></Alert>)
-      const spinner = screen.getByRole('button').querySelector('[aria-hidden="true"]')
-      expect(spinner).toBeInTheDocument()
+      expect(within(screen.getByRole('button')).getByRole('status', { hidden: true })).toHaveAttribute('aria-hidden', 'true')
     })
   })
 })
