@@ -70,7 +70,7 @@ const AlertAction = React.forwardRef<HTMLButtonElement, AlertActionProps>(
       disabled={disabled || loading}
       className={cn(
         // layout
-        'mt-3 inline-flex items-center gap-1.5 max-w-full overflow-hidden',
+        'mt-3 inline-flex items-center gap-1.5 max-w-full min-w-0',
         // shape — no rounded corners, thin border inheriting text color
         'rounded-none border border-current',
         // typography
@@ -91,7 +91,7 @@ const AlertAction = React.forwardRef<HTMLButtonElement, AlertActionProps>(
     >
       {loading && (
         <span
-          role="status"
+          data-testid="alert-action-spinner"
           aria-hidden="true"
           className="h-3 w-3 shrink-0 animate-spin rounded-full border-2 border-current border-t-transparent"
         />
