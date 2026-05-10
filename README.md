@@ -26,95 +26,48 @@ A neubrutalism component library for React and Vue 3, built on shadcn/ui.
 
 ---
 
-## What's New in v3.2.1
+## What's New in v3.3.0
 
-### 🎨 Canvas Effects — 10 Animated Canvas Components
-10 self-contained animated canvas components at `/canvas-effects`, requiring zero external dependencies. Drop any component into a sized parent and it fills it 100% — `ResizeObserver` handles reflow automatically.
+### 🧱 15 Full-Page Blocks — Production-ready page sections for React & Vue 3
 
-**All 10 effects:**
-- **Dot Blob** — Gaussian envelope × crossing waves drive halftone pixel sizes
-- **Aurora** — Curtains of light ripple across a star-filled sky
-- **Dot Wave** — Dual crossing sine waves modulate dot size and opacity
-- **Matrix Rain** — Columns of glowing heads and fading square character trails
-- **Particle Web** — Floating particles connected by proximity-faded lines
-- **Mouse Ripple** — Cursor interaction sends sine ripples through a dot grid
-- **Flow Field** — Particles follow a smooth value-noise angle field
-- **Metaballs** — Colored blobs merge via r²/d² scalar field threshold
-- **Lissajous Grid** — 4×3 table of parametric curves with phase drift
-- **Plasma Waves** — 4 drifting wave sources create shifting color interference
+**10 Marketing Blocks:**
+- **Hero Section** — Bold headline, subtext, CTA button, and optional image/shapes
+- **Feature Grid** — 3- and 4-column grids with icons and descriptions
+- **Testimonials** — Cards, carousel, and single-quote layouts with avatars
+- **Logo Cloud** — Client/partner logo strip with optional marquee scroll
+- **CTA Section** — Newsletter signup, trial signup, and contact variants
+- **Stats Section** — Big number KPIs with labels and neubrutalism accents
+- **Team Section** — Member cards with role, bio, and social links
+- **FAQ Section** — Accordion-based Q&A with expand/collapse animation
+- **Footer Section** — Multi-column layout with newsletter and social links
+- **Contact Section** — Contact form with info cards and map placeholder
 
-**Install via CLI:**
-```bash
-# React
-npx shadcn@latest add "https://boldkit.dev/r/aurora.json"
-npx shadcn@latest add "https://boldkit.dev/r/dot-blob.json"
-npx shadcn@latest add "https://boldkit.dev/r/dot-wave.json"
-npx shadcn@latest add "https://boldkit.dev/r/flow-field.json"
-npx shadcn@latest add "https://boldkit.dev/r/lissajous-grid.json"
-npx shadcn@latest add "https://boldkit.dev/r/matrix-rain.json"
-npx shadcn@latest add "https://boldkit.dev/r/metaballs.json"
-npx shadcn@latest add "https://boldkit.dev/r/mouse-ripple.json"
-npx shadcn@latest add "https://boldkit.dev/r/particle-web.json"
-npx shadcn@latest add "https://boldkit.dev/r/plasma.json"
+**5 Application Blocks:**
+- **Auth Forms** — Login, Signup, Forgot Password, OTP verification
+- **Error Pages** — 404, 500, and maintenance pages in neubrutalism style
+- **Settings Page** — Tabbed settings with Profile, Notifications, and Billing panels
+- **Onboarding Flow** — Multi-step setup wizard with progress tracking
+- **Invoice** — Printable invoice / receipt layout with line items and totals
 
-# Vue 3 / Nuxt 3
-npx shadcn-vue@latest add "https://boldkit.dev/r/vue/aurora.json"
-npx shadcn-vue@latest add "https://boldkit.dev/r/vue/dot-blob.json"
-npx shadcn-vue@latest add "https://boldkit.dev/r/vue/dot-wave.json"
-npx shadcn-vue@latest add "https://boldkit.dev/r/vue/flow-field.json"
-npx shadcn-vue@latest add "https://boldkit.dev/r/vue/lissajous-grid.json"
-npx shadcn-vue@latest add "https://boldkit.dev/r/vue/matrix-rain.json"
-npx shadcn-vue@latest add "https://boldkit.dev/r/vue/metaballs.json"
-npx shadcn-vue@latest add "https://boldkit.dev/r/vue/mouse-ripple.json"
-npx shadcn-vue@latest add "https://boldkit.dev/r/vue/particle-web.json"
-npx shadcn-vue@latest add "https://boldkit.dev/r/vue/plasma.json"
-```
-
-Each component installs to `components/ui/canvas-effects/` with zero external dependencies.
-
-**Usage after install:**
-```tsx
-// React — components install to components/ui/canvas-effects/
-import { Aurora } from '@/components/ui/canvas-effects/Aurora'
-
-<div style={{ height: '400px' }}>
-  <Aurora colors={['#00ffaa', '#00beff', '#78ff64']} starCount={160} speed={1} />
-</div>
-```
-
-```vue
-<!-- Vue 3 / Nuxt 3 — components install to components/ui/canvas-effects/ -->
-<script setup>
-import Aurora from '@/components/ui/canvas-effects/Aurora.vue'
-</script>
-<template>
-  <div style="height: 400px">
-    <Aurora :colors="['#00ffaa', '#00beff', '#78ff64']" :star-count="160" :speed="1" />
-  </div>
-</template>
-```
-
-All effects run in `onMounted` / `useEffect` — SSR-safe in Nuxt 3 by default. Wrap in `<ClientOnly>` if you encounter hydration warnings.
+All blocks are installable via the shadcn CLI for both React and Vue 3/Nuxt.
 
 ---
 
-## What's New in v3.2.0
+### 🧩 11 New UI Components
 
-### 🎨 Dot Matrix Studio — In-browser pixel art & animation editor
-A fully-featured dot matrix animation studio at `/studio`. Draw pixel art on a 16×32 grid with freehand, line, rectangle, fill, and selection tools. Build frame-by-frame animations with 10 built-in presets:
-
-- **Blink** — your art alternates with a blank frame
-- **Typewriter** — columns reveal left-to-right or right-to-left
-- **Scan Line** — rows sweep top-to-bottom or bottom-to-top
-- **Marquee** — art scrolls and wraps horizontally
-- **Ripple** — expands or contracts from the center outward
-- **Bounce** — ping-pong marquee with auto-reverse
-- **Slide** — art slides in from any edge
-- **Wave** — columns undulate vertically via a sine wave
-- **Rain** — Matrix-style drops fall in staggered columns
-- **Fade** — dithered dissolve in or out
-
-Export animations as **WebM video**, **PNG sprite sheets**, **SVG frames**, or **JSON** (re-importable). Selection actions (Fill / Clear / Invert) available in select mode. Undo/redo with full history, customizable dot color, FPS control, and loop modes (once / 3× / infinite).
+| Component | Description |
+|-----------|-------------|
+| **Carousel** | Image and content slider with prev/next navigation |
+| **Combobox** | Searchable select with keyboard navigation |
+| **Data Table** | Sortable, filterable table with column visibility and row selection |
+| **Date Range Picker** | Calendar-based date range selection |
+| **Rating** | Star rating input with half-star support |
+| **Sidebar** | Collapsible navigation sidebar with section groups |
+| **Tag Input** | Multi-value input with removable tag chips |
+| **Time Picker** | Hour/minute/second time selection with AM/PM toggle |
+| **Timeline** | Vertical activity feed and process flow component |
+| **Tour** | Step-by-step product tour with highlight and popover |
+| **Tree View** | Nested expandable tree for file explorers and hierarchies |
 
 ---
 
