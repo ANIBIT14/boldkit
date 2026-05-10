@@ -3,7 +3,7 @@ import { cva, type VariantProps } from 'class-variance-authority'
 import { cn } from '@/lib/utils'
 
 const alertVariants = cva(
-  'relative w-full border-3 border-foreground p-4 shadow-[4px_4px_0px_hsl(var(--shadow-color))] animate-in fade-in-0 slide-in-from-top-2 duration-300 transition-all [&>svg~*]:pl-8 [&>svg+div]:translate-y-[-3px] [&>svg]:absolute [&>svg]:left-4 [&>svg]:top-4 [&>svg]:text-foreground',
+  'relative w-full border-3 border-foreground p-4 shadow-[4px_4px_0px_hsl(var(--shadow-color))] animate-in fade-in-0 slide-in-from-top-2 duration-300 transition-all [&>svg~*]:pl-8 [&>svg~button]:pl-0 [&>svg~button]:ml-8 [&>svg+div]:translate-y-[-3px] [&>svg]:absolute [&>svg]:left-4 [&>svg]:top-4 [&>svg]:text-foreground',
   {
     variants: {
       variant: {
@@ -96,7 +96,7 @@ const AlertAction = React.forwardRef<HTMLButtonElement, AlertActionProps>(
           className="h-3 w-3 shrink-0 animate-spin rounded-full border-2 border-current border-t-transparent"
         />
       )}
-      <span className="truncate">{children}</span>
+      <span className="inline-flex items-center gap-1.5 whitespace-nowrap overflow-hidden">{children}</span>
     </button>
   )
 )

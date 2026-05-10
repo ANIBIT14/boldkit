@@ -41,7 +41,7 @@ defineOptions({ inheritAttrs: true })
       aria-hidden="true"
       class="h-3 w-3 shrink-0 animate-spin rounded-full border-2 border-current border-t-transparent"
     />
-    <span class="truncate">
+    <span class="inline-flex items-center gap-1.5 whitespace-nowrap overflow-hidden">
       <slot />
     </span>
   </button>
