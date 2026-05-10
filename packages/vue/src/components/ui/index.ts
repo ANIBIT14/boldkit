@@ -125,6 +125,7 @@ export { default as TableCaption } from './TableCaption.vue'
 export { default as Alert } from './Alert.vue'
 export { default as AlertTitle } from './AlertTitle.vue'
 export { default as AlertDescription } from './AlertDescription.vue'
+export { default as AlertAction } from './AlertAction.vue'
 
 // Specialized Components
 export { default as Pagination } from './Pagination.vue'
