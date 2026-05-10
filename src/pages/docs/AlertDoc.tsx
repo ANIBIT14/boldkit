@@ -379,7 +379,7 @@ export function AlertDoc() {
   <AlertDescription>
     You're using 95% of your storage. Upgrade to keep your files.
   </AlertDescription>
-  <AlertAction onClick={() => alert('upgrade')}>Upgrade Plan</AlertAction>
+  <AlertAction onClick={() => console.log('upgrade')}>Upgrade Plan</AlertAction>
 </Alert>
 
 <Alert variant="destructive">
@@ -388,7 +388,7 @@ export function AlertDoc() {
   <AlertDescription>
     This will permanently delete your account and all data.
   </AlertDescription>
-  <AlertAction onClick={() => alert('delete')}>
+  <AlertAction onClick={() => console.log('delete')}>
     <Trash2 className="h-3 w-3" />
     Delete Forever
   </AlertAction>
@@ -451,7 +451,7 @@ export function AlertDoc() {
             <AlertDescription>
               You're using 95% of your storage. Upgrade to keep your files.
             </AlertDescription>
-            <AlertAction onClick={() => alert('upgrade')}>Upgrade Plan</AlertAction>
+            <AlertAction onClick={() => console.log('upgrade')}>Upgrade Plan</AlertAction>
           </Alert>
 
           <Alert variant="destructive">
@@ -460,7 +460,7 @@ export function AlertDoc() {
             <AlertDescription>
               This will permanently delete your account and all data.
             </AlertDescription>
-            <AlertAction onClick={() => alert('delete')}>
+            <AlertAction onClick={() => console.log('delete')}>
               <Trash2 className="h-3 w-3" />
               Delete Forever
             </AlertAction>
