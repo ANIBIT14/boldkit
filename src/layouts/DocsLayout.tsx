@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useRef, useEffect } from 'react'
 import { Link, Outlet, useLocation } from 'react-router-dom'
 import { cn } from '@/lib/utils'
 import { Button } from '@/components/ui/button'
@@ -234,8 +234,25 @@ function Sidebar({ className, onLinkClick }: { className?: string; onLinkClick?:
   )
 }
 
+const SIDEBAR_SCROLL_KEY = 'bk-sidebar-scroll'
+
 export function DocsLayout() {
   const [sidebarOpen, setSidebarOpen] = useState(false)
+  const sidebarRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    const root = sidebarRef.current
+    if (!root) return
+    const viewport = root.querySelector('[data-radix-scroll-area-viewport]') as HTMLElement | null
+    if (!viewport) return
+
+    const saved = sessionStorage.getItem(SIDEBAR_SCROLL_KEY)
+    if (saved) viewport.scrollTop = parseInt(saved, 10)
+
+    const onScroll = () => sessionStorage.setItem(SIDEBAR_SCROLL_KEY, String(viewport.scrollTop))
+    viewport.addEventListener('scroll', onScroll, { passive: true })
+    return () => viewport.removeEventListener('scroll', onScroll)
+  }, [])
 
   const handleLinkClick = () => {
     // Small delay to prevent flicker during navigation
@@ -271,7 +288,7 @@ export function DocsLayout() {
 
       <div className="container flex-1 items-start md:grid md:grid-cols-[220px_minmax(0,1fr)] md:gap-6 lg:grid-cols-[240px_minmax(0,1fr)] lg:gap-10 xl:grid-cols-[240px_minmax(0,1fr)_200px] px-3 md:px-4">
         <aside className="fixed top-[63px] z-30 hidden h-[calc(100vh-63px)] w-full shrink-0 md:sticky md:block border-r-3 border-foreground">
-          <ScrollArea className="h-full py-6 pr-4">
+          <ScrollArea ref={sidebarRef} className="h-full py-6 pr-4">
             <Sidebar />
           </ScrollArea>
         </aside>
