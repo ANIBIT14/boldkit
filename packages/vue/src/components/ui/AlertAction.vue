@@ -26,11 +26,12 @@ defineOptions({ inheritAttrs: true })
         'mt-3 inline-flex items-center gap-1.5 max-w-full min-w-0',
         'rounded-none border border-current',
         'px-4 py-1 text-xs font-bold uppercase tracking-wide',
-        'opacity-80 transition-all duration-150',
+        'transition-all duration-150',
         'hover:opacity-100 hover:bg-current/10',
         'active:scale-95',
         'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-current focus-visible:ring-offset-1',
-        'disabled:opacity-40 disabled:cursor-not-allowed disabled:pointer-events-none',
+        'disabled:cursor-not-allowed disabled:pointer-events-none',
+        props.loading ? 'opacity-80' : props.disabled ? 'opacity-40' : 'opacity-80',
         props.class
       )
     "

@@ -75,16 +75,18 @@ const AlertAction = React.forwardRef<HTMLButtonElement, AlertActionProps>(
         'rounded-none border border-current',
         // typography
         'px-4 py-1 text-xs font-bold uppercase tracking-wide',
-        // default state
-        'opacity-80 transition-all duration-150',
+        // transitions
+        'transition-all duration-150',
         // hover
         'hover:opacity-100 hover:bg-current/10',
         // active
         'active:scale-95',
         // focus
         'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-current focus-visible:ring-offset-1',
-        // disabled (covers both disabled and loading)
-        'disabled:opacity-40 disabled:cursor-not-allowed disabled:pointer-events-none',
+        // cursor + pointer-events when non-interactive
+        'disabled:cursor-not-allowed disabled:pointer-events-none',
+        // opacity: loading stays visible, truly-disabled fades out, default is 80%
+        loading ? 'opacity-80' : disabled ? 'opacity-40' : 'opacity-80',
         className
       )}
       {...props}

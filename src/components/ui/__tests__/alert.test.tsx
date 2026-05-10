@@ -89,7 +89,7 @@ describe('AlertAction', () => {
 
     it('applies disabled styles', () => {
       render(<Alert><AlertAction disabled>Act</AlertAction></Alert>)
-      expect(screen.getByRole('button')).toHaveClass('disabled:opacity-40')
+      expect(screen.getByRole('button')).toHaveClass('opacity-40')
     })
   })
 
