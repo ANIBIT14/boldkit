@@ -7,7 +7,7 @@ import { cva, type VariantProps } from 'class-variance-authority'
 import { cn } from '@/lib/utils'
 
 const alertVariants = cva(
-  'relative w-full border-3 border-foreground p-4 bk-shadow animate-in fade-in-0 slide-in-from-top-2 duration-300 transition-all [&>svg~*]:pl-8 [&>svg~button]:pl-0 [&>svg~button]:ml-8 [&>svg+div]:translate-y-[-3px] [&>svg]:absolute [&>svg]:left-4 [&>svg]:top-4 [&>svg]:text-foreground',
+  'relative w-full border-3 border-foreground p-4 bk-shadow animate-in fade-in-0 slide-in-from-top-2 duration-300 transition-all [&>svg~*:not([data-alert-action])]:pl-8 [&>svg~[data-alert-action]]:ml-8 [&>svg+div]:translate-y-[-3px] [&>svg]:absolute [&>svg]:left-4 [&>svg]:top-4 [&>svg]:text-foreground',
   {
     variants: {
       variant: {
@@ -111,7 +111,7 @@ import { cva, type VariantProps } from 'class-variance-authority'
 import { cn } from '@/lib/utils'
 
 const alertVariants = cva(
-  'relative w-full border-3 border-foreground p-4 bk-shadow animate-in fade-in-0 slide-in-from-top-2 duration-300 transition-all [&>svg~*]:pl-8 [&>svg~button]:pl-0 [&>svg~button]:ml-8 [&>svg+div]:translate-y-[-3px] [&>svg]:absolute [&>svg]:left-4 [&>svg]:top-4 [&>svg]:text-foreground',
+  'relative w-full border-3 border-foreground p-4 bk-shadow animate-in fade-in-0 slide-in-from-top-2 duration-300 transition-all [&>svg~*:not([data-alert-action])]:pl-8 [&>svg~[data-alert-action]]:ml-8 [&>svg+div]:translate-y-[-3px] [&>svg]:absolute [&>svg]:left-4 [&>svg]:top-4 [&>svg]:text-foreground',
   {
     variants: {
       variant: {
@@ -400,7 +400,7 @@ export function AlertDoc() {
   <Info className="h-4 w-4" />
   <AlertTitle>Update Available</AlertTitle>
   <AlertDescription>Version 4.2.0 is ready to install.</AlertDescription>
-  <AlertAction loading>Installing…</AlertAction>
+  <AlertAction onClick={() => console.log('install')}>Install Now</AlertAction>
 </Alert>
 
 <Alert variant="default">
@@ -435,7 +435,7 @@ export function AlertDoc() {
     <Info class="h-4 w-4" />
     <AlertTitle>Update Available</AlertTitle>
     <AlertDescription>Version 4.2.0 is ready to install.</AlertDescription>
-    <AlertAction :loading="true">Installing…</AlertAction>
+    <AlertAction @click="install">Install Now</AlertAction>
   </Alert>
 
   <Alert variant="default">
@@ -472,7 +472,7 @@ export function AlertDoc() {
             <Info className="h-4 w-4" />
             <AlertTitle>Update Available</AlertTitle>
             <AlertDescription>Version 4.2.0 is ready to install.</AlertDescription>
-            <AlertAction loading>Installing…</AlertAction>
+            <AlertAction onClick={() => console.log('install')}>Install Now</AlertAction>
           </Alert>
 
           <Alert variant="default">
