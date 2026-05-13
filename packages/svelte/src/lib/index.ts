@@ -1,68 +1,173 @@
-export { default as Button } from './components/ui/button.svelte'
-export { default as Badge } from './components/ui/badge.svelte'
+// Accordion
+export { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from './components/ui/accordion/index.js'
 
-export { default as Card } from './components/ui/card.svelte'
-export { default as CardHeader } from './components/ui/card-header.svelte'
-export { default as CardTitle } from './components/ui/card-title.svelte'
-export { default as CardDescription } from './components/ui/card-description.svelte'
-export { default as CardContent } from './components/ui/card-content.svelte'
-export { default as CardFooter } from './components/ui/card-footer.svelte'
+// Alert
+export { Alert, AlertTitle, AlertDescription, AlertAction, alertVariants, type AlertVariant } from './components/ui/alert/index.js'
 
-export { default as Input } from './components/ui/input.svelte'
-export { default as Label } from './components/ui/label.svelte'
-export { default as Textarea } from './components/ui/textarea.svelte'
-export { default as Separator } from './components/ui/separator.svelte'
-export { default as Skeleton } from './components/ui/skeleton.svelte'
+// Alert Dialog
+export { AlertDialog, AlertDialogTrigger, AlertDialogContent, AlertDialogHeader, AlertDialogFooter, AlertDialogTitle, AlertDialogDescription, AlertDialogAction, AlertDialogCancel } from './components/ui/alert-dialog/index.js'
 
-export { default as Alert } from './components/ui/alert.svelte'
-export { default as AlertTitle } from './components/ui/alert-title.svelte'
-export { default as AlertDescription } from './components/ui/alert-description.svelte'
-export { default as AlertAction } from './components/ui/alert-action.svelte'
+// Aspect Ratio
+export { AspectRatio } from './components/ui/aspect-ratio/index.js'
 
-export { default as Avatar } from './components/ui/avatar.svelte'
-export { default as AvatarImage } from './components/ui/avatar-image.svelte'
-export { default as AvatarFallback } from './components/ui/avatar-fallback.svelte'
+// Avatar
+export { Avatar, AvatarImage, AvatarFallback } from './components/ui/avatar/index.js'
 
-export { default as Checkbox } from './components/ui/checkbox.svelte'
-export { default as Switch } from './components/ui/switch.svelte'
-export { default as Progress } from './components/ui/progress.svelte'
-export { default as Toggle } from './components/ui/toggle.svelte'
-export { toggleVariants } from './components/ui/toggle-variants.js'
+// Badge
+export { Badge, badgeVariants, type BadgeVariant } from './components/ui/badge/index.js'
 
-export { default as Accordion } from './components/ui/accordion.svelte'
-export { default as AccordionItem } from './components/ui/accordion-item.svelte'
-export { default as AccordionTrigger } from './components/ui/accordion-trigger.svelte'
-export { default as AccordionContent } from './components/ui/accordion-content.svelte'
+// Breadcrumb
+export { Breadcrumb, BreadcrumbList, BreadcrumbItem, BreadcrumbLink, BreadcrumbPage, BreadcrumbSeparator, BreadcrumbEllipsis } from './components/ui/breadcrumb/index.js'
 
-export { default as Tabs } from './components/ui/tabs.svelte'
-export { default as TabsList } from './components/ui/tabs-list.svelte'
-export { default as TabsTrigger } from './components/ui/tabs-trigger.svelte'
-export { default as TabsContent } from './components/ui/tabs-content.svelte'
+// Button
+export { Button, buttonVariants, type ButtonVariant, type ButtonSize, type ButtonProps } from './components/ui/button/index.js'
 
-export { default as Dialog } from './components/ui/dialog.svelte'
-export { default as DialogTrigger } from './components/ui/dialog-trigger.svelte'
-export { default as DialogContent } from './components/ui/dialog-content.svelte'
-export { default as DialogHeader } from './components/ui/dialog-header.svelte'
-export { default as DialogFooter } from './components/ui/dialog-footer.svelte'
-export { default as DialogTitle } from './components/ui/dialog-title.svelte'
-export { default as DialogDescription } from './components/ui/dialog-description.svelte'
-export { default as DialogClose } from './components/ui/dialog-close.svelte'
+// Button Group
+export { ButtonGroup } from './components/ui/button-group/index.js'
 
-export { default as Select } from './components/ui/select.svelte'
-export { default as SelectTrigger } from './components/ui/select-trigger.svelte'
-export { default as SelectValue } from './components/ui/select-value.svelte'
-export { default as SelectContent } from './components/ui/select-content.svelte'
-export { default as SelectItem } from './components/ui/select-item.svelte'
-export { default as SelectGroup } from './components/ui/select-group.svelte'
-export { default as SelectLabel } from './components/ui/select-label.svelte'
-export { default as SelectSeparator } from './components/ui/select-separator.svelte'
+// Calendar
+export { Calendar } from './components/ui/calendar/index.js'
 
-export { default as DropdownMenu } from './components/ui/dropdown-menu.svelte'
-export { default as DropdownMenuTrigger } from './components/ui/dropdown-menu-trigger.svelte'
-export { default as DropdownMenuContent } from './components/ui/dropdown-menu-content.svelte'
-export { default as DropdownMenuItem } from './components/ui/dropdown-menu-item.svelte'
-export { default as DropdownMenuLabel } from './components/ui/dropdown-menu-label.svelte'
-export { default as DropdownMenuSeparator } from './components/ui/dropdown-menu-separator.svelte'
-export { default as DropdownMenuShortcut } from './components/ui/dropdown-menu-shortcut.svelte'
+// Card
+export { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from './components/ui/card/index.js'
 
+// Carousel
+export { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from './components/ui/carousel/index.js'
+
+// Checkbox
+export { Checkbox } from './components/ui/checkbox/index.js'
+
+// Collapsible
+export { Collapsible, CollapsibleTrigger, CollapsibleContent } from './components/ui/collapsible/index.js'
+
+// Command
+export { Command, CommandDialog, CommandInput, CommandList, CommandEmpty, CommandGroup, CommandItem, CommandSeparator, CommandShortcut } from './components/ui/command/index.js'
+
+// Context Menu
+export { ContextMenu, ContextMenuTrigger, ContextMenuContent, ContextMenuItem, ContextMenuSeparator, ContextMenuLabel, ContextMenuShortcut, ContextMenuCheckboxItem, ContextMenuRadioGroup, ContextMenuRadioItem, ContextMenuSub, ContextMenuSubTrigger, ContextMenuSubContent } from './components/ui/context-menu/index.js'
+
+// Dialog
+export { Dialog, DialogTrigger, DialogPortal, DialogClose, DialogOverlay, DialogContent, DialogHeader, DialogFooter, DialogTitle, DialogDescription } from './components/ui/dialog/index.js'
+
+// Drawer
+export { Drawer, DrawerTrigger, DrawerPortal, DrawerClose, DrawerOverlay, DrawerContent, DrawerHeader, DrawerFooter, DrawerTitle, DrawerDescription } from './components/ui/drawer/index.js'
+
+// Dropdown Menu
+export { DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuItem, DropdownMenuSeparator, DropdownMenuLabel, DropdownMenuShortcut, DropdownMenuCheckboxItem, DropdownMenuRadioGroup, DropdownMenuRadioItem, DropdownMenuSub, DropdownMenuSubTrigger, DropdownMenuSubContent } from './components/ui/dropdown-menu/index.js'
+
+// Empty (shadcn-svelte)
+export { Empty, EmptyHeader, EmptyMedia, EmptyTitle, EmptyDescription, EmptyContent } from './components/ui/empty/index.js'
+
+// Empty State (BoldKit)
+export { EmptyState, EmptyStateIcon, EmptyStateTitle, EmptyStateDescription, emptyStateVariants } from './components/ui/empty-state/index.js'
+
+// Field
+export { Field } from './components/ui/field/index.js'
+
+// Form
+export { FormField, FormControl, FormLabel, FormDescription, FormFieldErrors, FormFieldset, FormLegend, FormElementField, FormButton } from './components/ui/form/index.js'
+
+// Hover Card
+export { HoverCard, HoverCardTrigger, HoverCardContent } from './components/ui/hover-card/index.js'
+
+// Input
+export { Input } from './components/ui/input/index.js'
+
+// Input Group
+export { InputGroup } from './components/ui/input-group/index.js'
+
+// Input OTP
+export { InputOTP, InputOTPGroup, InputOTPSlot, InputOTPSeparator } from './components/ui/input-otp/index.js'
+
+// Kbd
+export { Kbd, KbdGroup } from './components/ui/kbd/index.js'
+
+// Label
+export { Label } from './components/ui/label/index.js'
+
+// Layered Card (BoldKit)
+export { LayeredCard, LayeredCardHeader, LayeredCardTitle, LayeredCardDescription, LayeredCardContent, LayeredCardFooter, layeredCardVariants } from './components/ui/layered-card/index.js'
+
+// Marquee (BoldKit)
+export { Marquee, MarqueeItem, MarqueeSeparator } from './components/ui/marquee/index.js'
+
+// Menubar
+export { Menubar, MenubarMenu, MenubarTrigger, MenubarContent, MenubarItem, MenubarSeparator, MenubarLabel, MenubarShortcut, MenubarGroup, MenubarSub, MenubarSubTrigger, MenubarSubContent, MenubarCheckboxItem, MenubarRadioGroup, MenubarRadioItem } from './components/ui/menubar/index.js'
+
+// Native Select
+export { NativeSelect } from './components/ui/native-select/index.js'
+
+// Navigation Menu
+export { NavigationMenuRoot as NavigationMenu, NavigationMenuList, NavigationMenuItem, NavigationMenuContent, NavigationMenuTrigger, NavigationMenuLink, NavigationMenuIndicator, NavigationMenuViewport } from './components/ui/navigation-menu/index.js'
+
+// Pagination
+export { Pagination, PaginationContent, PaginationItem, PaginationLink, PaginationPrevious, PaginationNext, PaginationEllipsis } from './components/ui/pagination/index.js'
+
+// Popover
+export { Popover, PopoverTrigger, PopoverContent } from './components/ui/popover/index.js'
+
+// Progress
+export { Progress } from './components/ui/progress/index.js'
+
+// Radio Group
+export { RadioGroup, RadioGroupItem } from './components/ui/radio-group/index.js'
+
+// Range Calendar
+export { RangeCalendar } from './components/ui/range-calendar/index.js'
+
+// Resizable
+export { ResizablePaneGroup, ResizablePane, ResizableHandle } from './components/ui/resizable/index.js'
+
+// Scroll Area
+export { ScrollArea, ScrollAreaScrollbar } from './components/ui/scroll-area/index.js'
+
+// Select
+export { Select, SelectTrigger, SelectContent, SelectItem, SelectLabel, SelectSeparator, SelectGroup } from './components/ui/select/index.js'
+
+// Separator
+export { Separator } from './components/ui/separator/index.js'
+
+// Sheet
+export { Sheet, SheetTrigger, SheetPortal, SheetClose, SheetOverlay, SheetContent, SheetHeader, SheetFooter, SheetTitle, SheetDescription } from './components/ui/sheet/index.js'
+
+// Skeleton
+export { Skeleton } from './components/ui/skeleton/index.js'
+
+// Slider
+export { Slider } from './components/ui/slider/index.js'
+
+// Sonner
+export { Toaster } from './components/ui/sonner/index.js'
+
+// Spinner
+export { Spinner } from './components/ui/spinner/index.js'
+
+// Sticker (BoldKit)
+export { Sticker, stickerVariants } from './components/ui/sticker/index.js'
+
+// Switch
+export { Switch } from './components/ui/switch/index.js'
+
+// Table
+export { Table, TableHeader, TableBody, TableFooter, TableRow, TableHead, TableCell, TableCaption } from './components/ui/table/index.js'
+
+// Tabs
+export { Tabs, TabsList, TabsTrigger, TabsContent } from './components/ui/tabs/index.js'
+
+// Textarea
+export { Textarea } from './components/ui/textarea/index.js'
+
+// Timeline (BoldKit)
+export { Timeline, TimelineItem, TimelineDot, TimelineConnector, TimelineContent, TimelineHeader, TimelineTime, TimelineTitle, TimelineDescription, TimelineCard } from './components/ui/timeline/index.js'
+
+// Toggle
+export { Toggle, toggleVariants, type ToggleVariant } from './components/ui/toggle/index.js'
+
+// Toggle Group
+export { ToggleGroup, ToggleGroupItem } from './components/ui/toggle-group/index.js'
+
+// Tooltip
+export { Tooltip, TooltipTrigger, TooltipContent, TooltipProvider } from './components/ui/tooltip/index.js'
+
+// Utilities
 export { cn } from './utils.js'
