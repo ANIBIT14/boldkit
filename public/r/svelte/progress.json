@@ -1,0 +1,20 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "progress",
+  "type": "registry:ui",
+  "description": "Displays an indicator showing completion progress",
+  "dependencies": [
+    "bits-ui"
+  ],
+  "registryDependencies": [
+    "utils"
+  ],
+  "files": [
+    {
+      "path": "registry/default/ui/progress.svelte",
+      "content": "<script lang=\"ts\">\n  import { Progress } from 'bits-ui'\n  import { cn } from '$lib/utils.js'\n\n  interface Props extends Progress.RootProps {\n    class?: string\n  }\n\n  let { class: className, value = 0, ...restProps }: Props = $props()\n</script>\n\n<Progress.Root\n  {value}\n  class={cn(\n    'relative h-5 w-full overflow-hidden border-3 border-foreground bg-muted shadow-[4px_4px_0px_hsl(var(--shadow-color))]',\n    className\n  )}\n  {...restProps}\n>\n  <Progress.Indicator\n    class=\"h-full w-full flex-1 bg-primary transition-all duration-500 ease-out\"\n    style={`transform: translateX(-${100 - ((value as number) || 0)}%)`}\n  />\n</Progress.Root>\n",
+      "type": "registry:ui",
+      "target": "lib/components/ui/progress.svelte"
+    }
+  ]
+}

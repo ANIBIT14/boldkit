@@ -1,5 +1,5 @@
 {
-  "workspaces": ["packages/vue"],
+  "workspaces": ["packages/vue", "packages/svelte"],
   "name": "boldkit",
   "version": "3.3.2",
   "description": "A neubrutalism UI component library for React and Vue 3 - Bold, raw, beautiful.",
@@ -32,8 +32,9 @@
     "lint:fix": "eslint . --fix",
     "format": "prettier --write \"src/**/*.{ts,tsx,css}\"",
     "typecheck": "tsc --noEmit",
-    "registry:build": "shadcn build && node scripts/build-registry.js && npm run registry:build:vue",
+    "registry:build": "shadcn build && node scripts/build-registry.js && npm run registry:build:vue && npm run registry:build:svelte",
     "registry:build:vue": "cd packages/vue && node scripts/build-registry.js",
+    "registry:build:svelte": "cd packages/svelte && node scripts/build-registry.js",
     "test": "vitest",
     "test:run": "vitest run",
     "test:ui": "vitest --ui",

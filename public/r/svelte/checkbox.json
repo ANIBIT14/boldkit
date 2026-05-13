@@ -1,0 +1,21 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "checkbox",
+  "type": "registry:ui",
+  "description": "A checkbox input control",
+  "dependencies": [
+    "bits-ui",
+    "lucide-svelte"
+  ],
+  "registryDependencies": [
+    "utils"
+  ],
+  "files": [
+    {
+      "path": "registry/default/ui/checkbox.svelte",
+      "content": "<script lang=\"ts\">\n  import { Checkbox } from 'bits-ui'\n  import { Check } from 'lucide-svelte'\n  import { cn } from '$lib/utils.js'\n\n  interface Props extends Checkbox.RootProps {\n    class?: string\n  }\n\n  let { class: className, ...restProps }: Props = $props()\n</script>\n\n<Checkbox.Root\n  class={cn(\n    'peer h-5 w-5 shrink-0 border-3 border-foreground bg-background shadow-[4px_4px_0px_hsl(var(--shadow-color))] transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground hover:translate-x-[4px] hover:translate-y-[4px] hover:shadow-none active:translate-x-[4px] active:translate-y-[4px] active:shadow-none',\n    className\n  )}\n  {...restProps}\n>\n  <Checkbox.Indicator class=\"flex items-center justify-center text-current\">\n    <Check class=\"h-4 w-4 stroke-[3]\" />\n  </Checkbox.Indicator>\n</Checkbox.Root>\n",
+      "type": "registry:ui",
+      "target": "lib/components/ui/checkbox.svelte"
+    }
+  ]
+}

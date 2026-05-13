@@ -1,0 +1,48 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "card",
+  "type": "registry:ui",
+  "description": "Displays a card with header, content, and footer",
+  "dependencies": [],
+  "registryDependencies": [
+    "utils"
+  ],
+  "files": [
+    {
+      "path": "registry/default/ui/card.svelte",
+      "content": "<script lang=\"ts\">\n  import type { Snippet } from 'svelte'\n  import type { HTMLAttributes } from 'svelte/elements'\n  import { cn } from '$lib/utils.js'\n\n  interface Props extends HTMLAttributes<HTMLDivElement> {\n    class?: string\n    interactive?: boolean\n    children?: Snippet\n  }\n\n  let { class: className, interactive = false, children, ...restProps }: Props = $props()\n</script>\n\n<div\n  class={cn(\n    'bg-card text-card-foreground border-3 border-foreground shadow-[4px_4px_0px_hsl(var(--shadow-color))] transition-all duration-200',\n    interactive &&\n      'cursor-pointer hover:translate-x-[4px] hover:translate-y-[4px] hover:shadow-none active:translate-x-[4px] active:translate-y-[4px] active:shadow-none',\n    className\n  )}\n  {...restProps}\n>\n  {@render children?.()}\n</div>\n",
+      "type": "registry:ui",
+      "target": "lib/components/ui/card.svelte"
+    },
+    {
+      "path": "registry/default/ui/card-header.svelte",
+      "content": "<script lang=\"ts\">\n  import type { Snippet } from 'svelte'\n  import type { HTMLAttributes } from 'svelte/elements'\n  import { cn } from '$lib/utils.js'\n\n  interface Props extends HTMLAttributes<HTMLDivElement> {\n    class?: string\n    children?: Snippet\n  }\n\n  let { class: className, children, ...restProps }: Props = $props()\n</script>\n\n<div class={cn('flex flex-col space-y-1.5 p-6 border-b-3 border-foreground', className)} {...restProps}>\n  {@render children?.()}\n</div>\n",
+      "type": "registry:ui",
+      "target": "lib/components/ui/card-header.svelte"
+    },
+    {
+      "path": "registry/default/ui/card-title.svelte",
+      "content": "<script lang=\"ts\">\n  import type { Snippet } from 'svelte'\n  import type { HTMLAttributes } from 'svelte/elements'\n  import { cn } from '$lib/utils.js'\n\n  interface Props extends HTMLAttributes<HTMLDivElement> {\n    class?: string\n    children?: Snippet\n  }\n\n  let { class: className, children, ...restProps }: Props = $props()\n</script>\n\n<div class={cn('text-xl font-bold uppercase tracking-wide leading-none', className)} {...restProps}>\n  {@render children?.()}\n</div>\n",
+      "type": "registry:ui",
+      "target": "lib/components/ui/card-title.svelte"
+    },
+    {
+      "path": "registry/default/ui/card-description.svelte",
+      "content": "<script lang=\"ts\">\n  import type { Snippet } from 'svelte'\n  import type { HTMLAttributes } from 'svelte/elements'\n  import { cn } from '$lib/utils.js'\n\n  interface Props extends HTMLAttributes<HTMLDivElement> {\n    class?: string\n    children?: Snippet\n  }\n\n  let { class: className, children, ...restProps }: Props = $props()\n</script>\n\n<div class={cn('text-sm text-muted-foreground', className)} {...restProps}>\n  {@render children?.()}\n</div>\n",
+      "type": "registry:ui",
+      "target": "lib/components/ui/card-description.svelte"
+    },
+    {
+      "path": "registry/default/ui/card-content.svelte",
+      "content": "<script lang=\"ts\">\n  import type { Snippet } from 'svelte'\n  import type { HTMLAttributes } from 'svelte/elements'\n  import { cn } from '$lib/utils.js'\n\n  interface Props extends HTMLAttributes<HTMLDivElement> {\n    class?: string\n    children?: Snippet\n  }\n\n  let { class: className, children, ...restProps }: Props = $props()\n</script>\n\n<div class={cn('p-6', className)} {...restProps}>\n  {@render children?.()}\n</div>\n",
+      "type": "registry:ui",
+      "target": "lib/components/ui/card-content.svelte"
+    },
+    {
+      "path": "registry/default/ui/card-footer.svelte",
+      "content": "<script lang=\"ts\">\n  import type { Snippet } from 'svelte'\n  import type { HTMLAttributes } from 'svelte/elements'\n  import { cn } from '$lib/utils.js'\n\n  interface Props extends HTMLAttributes<HTMLDivElement> {\n    class?: string\n    children?: Snippet\n  }\n\n  let { class: className, children, ...restProps }: Props = $props()\n</script>\n\n<div class={cn('flex items-center p-6 border-t-3 border-foreground bg-muted/50', className)} {...restProps}>\n  {@render children?.()}\n</div>\n",
+      "type": "registry:ui",
+      "target": "lib/components/ui/card-footer.svelte"
+    }
+  ]
+}

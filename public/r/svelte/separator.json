@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "separator",
+  "type": "registry:ui",
+  "description": "Visually separates content",
+  "dependencies": [],
+  "registryDependencies": [
+    "utils"
+  ],
+  "files": [
+    {
+      "path": "registry/default/ui/separator.svelte",
+      "content": "<script lang=\"ts\">\n  import type { HTMLAttributes } from 'svelte/elements'\n  import { cn } from '$lib/utils.js'\n\n  interface Props extends HTMLAttributes<HTMLDivElement> {\n    class?: string\n    orientation?: 'horizontal' | 'vertical'\n    decorative?: boolean\n  }\n\n  let {\n    class: className,\n    orientation = 'horizontal',\n    decorative = true,\n    ...restProps\n  }: Props = $props()\n</script>\n\n<div\n  role={decorative ? 'none' : 'separator'}\n  aria-orientation={decorative ? undefined : orientation}\n  class={cn(\n    'shrink-0 bg-foreground',\n    orientation === 'horizontal' ? 'h-[3px] w-full' : 'h-full w-[3px]',\n    className\n  )}\n  {...restProps}\n></div>\n",
+      "type": "registry:ui",
+      "target": "lib/components/ui/separator.svelte"
+    }
+  ]
+}

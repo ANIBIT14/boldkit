@@ -1,0 +1,56 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "dropdown-menu",
+  "type": "registry:ui",
+  "description": "Displays a menu to the user",
+  "dependencies": [
+    "bits-ui"
+  ],
+  "registryDependencies": [
+    "utils"
+  ],
+  "files": [
+    {
+      "path": "registry/default/ui/dropdown-menu.svelte",
+      "content": "<script lang=\"ts\">\n  import { DropdownMenu } from 'bits-ui'\n  import type { Snippet } from 'svelte'\n\n  interface Props extends DropdownMenu.RootProps {\n    children?: Snippet\n  }\n\n  let { children, ...restProps }: Props = $props()\n</script>\n\n<DropdownMenu.Root {...restProps}>\n  {@render children?.()}\n</DropdownMenu.Root>\n",
+      "type": "registry:ui",
+      "target": "lib/components/ui/dropdown-menu.svelte"
+    },
+    {
+      "path": "registry/default/ui/dropdown-menu-trigger.svelte",
+      "content": "<script lang=\"ts\">\n  import { DropdownMenu } from 'bits-ui'\n  import type { Snippet } from 'svelte'\n\n  interface Props extends DropdownMenu.TriggerProps {\n    children?: Snippet\n  }\n\n  let { children, ...restProps }: Props = $props()\n</script>\n\n<DropdownMenu.Trigger {...restProps}>\n  {@render children?.()}\n</DropdownMenu.Trigger>\n",
+      "type": "registry:ui",
+      "target": "lib/components/ui/dropdown-menu-trigger.svelte"
+    },
+    {
+      "path": "registry/default/ui/dropdown-menu-content.svelte",
+      "content": "<script lang=\"ts\">\n  import { DropdownMenu } from 'bits-ui'\n  import type { Snippet } from 'svelte'\n  import { cn } from '$lib/utils.js'\n\n  interface Props extends DropdownMenu.ContentProps {\n    class?: string\n    sideOffset?: number\n    children?: Snippet\n  }\n\n  let { class: className, sideOffset = 4, children, ...restProps }: Props = $props()\n</script>\n\n<DropdownMenu.Portal>\n  <DropdownMenu.Content\n    {sideOffset}\n    class={cn(\n      'z-50 min-w-[8rem] overflow-hidden border-3 border-foreground bg-popover p-1 text-popover-foreground shadow-[4px_4px_0px_hsl(var(--shadow-color))]',\n      className\n    )}\n    {...restProps}\n  >\n    {@render children?.()}\n  </DropdownMenu.Content>\n</DropdownMenu.Portal>\n",
+      "type": "registry:ui",
+      "target": "lib/components/ui/dropdown-menu-content.svelte"
+    },
+    {
+      "path": "registry/default/ui/dropdown-menu-item.svelte",
+      "content": "<script lang=\"ts\">\n  import { DropdownMenu } from 'bits-ui'\n  import type { Snippet } from 'svelte'\n  import { cn } from '$lib/utils.js'\n\n  interface Props extends DropdownMenu.ItemProps {\n    class?: string\n    inset?: boolean\n    children?: Snippet\n  }\n\n  let { class: className, inset = false, children, ...restProps }: Props = $props()\n</script>\n\n<DropdownMenu.Item\n  class={cn(\n    'relative flex cursor-default select-none items-center px-2 py-1.5 text-sm outline-none transition-all duration-150 focus:bg-accent focus:text-accent-foreground focus:translate-x-1 data-[disabled]:pointer-events-none data-[disabled]:opacity-50',\n    inset && 'pl-8',\n    className\n  )}\n  {...restProps}\n>\n  {@render children?.()}\n</DropdownMenu.Item>\n",
+      "type": "registry:ui",
+      "target": "lib/components/ui/dropdown-menu-item.svelte"
+    },
+    {
+      "path": "registry/default/ui/dropdown-menu-label.svelte",
+      "content": "<script lang=\"ts\">\n  import { DropdownMenu } from 'bits-ui'\n  import type { Snippet } from 'svelte'\n  import { cn } from '$lib/utils.js'\n\n  interface Props extends DropdownMenu.GroupHeadingProps {\n    class?: string\n    inset?: boolean\n    children?: Snippet\n  }\n\n  let { class: className, inset = false, children, ...restProps }: Props = $props()\n</script>\n\n<DropdownMenu.GroupHeading\n  class={cn(\n    'px-2 py-1.5 text-sm font-bold uppercase tracking-wide',\n    inset && 'pl-8',\n    className\n  )}\n  {...restProps}\n>\n  {@render children?.()}\n</DropdownMenu.GroupHeading>\n",
+      "type": "registry:ui",
+      "target": "lib/components/ui/dropdown-menu-label.svelte"
+    },
+    {
+      "path": "registry/default/ui/dropdown-menu-separator.svelte",
+      "content": "<script lang=\"ts\">\n  import { DropdownMenu } from 'bits-ui'\n  import { cn } from '$lib/utils.js'\n\n  interface Props extends DropdownMenu.SeparatorProps {\n    class?: string\n  }\n\n  let { class: className, ...restProps }: Props = $props()\n</script>\n\n<DropdownMenu.Separator class={cn('-mx-1 my-1 h-px bg-foreground', className)} {...restProps} />\n",
+      "type": "registry:ui",
+      "target": "lib/components/ui/dropdown-menu-separator.svelte"
+    },
+    {
+      "path": "registry/default/ui/dropdown-menu-shortcut.svelte",
+      "content": "<script lang=\"ts\">\n  import type { Snippet } from 'svelte'\n  import type { HTMLAttributes } from 'svelte/elements'\n  import { cn } from '$lib/utils.js'\n\n  interface Props extends HTMLAttributes<HTMLSpanElement> {\n    class?: string\n    children?: Snippet\n  }\n\n  let { class: className, children, ...restProps }: Props = $props()\n</script>\n\n<span class={cn('ml-auto text-xs tracking-widest opacity-60', className)} {...restProps}>\n  {@render children?.()}\n</span>\n",
+      "type": "registry:ui",
+      "target": "lib/components/ui/dropdown-menu-shortcut.svelte"
+    }
+  ]
+}

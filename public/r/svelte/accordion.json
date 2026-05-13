@@ -1,0 +1,39 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "accordion",
+  "type": "registry:ui",
+  "description": "A vertically stacked set of interactive headings",
+  "dependencies": [
+    "bits-ui",
+    "lucide-svelte"
+  ],
+  "registryDependencies": [
+    "utils"
+  ],
+  "files": [
+    {
+      "path": "registry/default/ui/accordion.svelte",
+      "content": "<script lang=\"ts\">\n  import { Accordion } from 'bits-ui'\n  import type { Snippet } from 'svelte'\n  import { cn } from '$lib/utils.js'\n\n  interface Props extends Accordion.RootProps {\n    class?: string\n    children?: Snippet\n  }\n\n  let { class: className, children, ...restProps }: Props = $props()\n</script>\n\n<Accordion.Root class={cn('w-full', className)} {...restProps}>\n  {@render children?.()}\n</Accordion.Root>\n",
+      "type": "registry:ui",
+      "target": "lib/components/ui/accordion.svelte"
+    },
+    {
+      "path": "registry/default/ui/accordion-item.svelte",
+      "content": "<script lang=\"ts\">\n  import { Accordion } from 'bits-ui'\n  import type { Snippet } from 'svelte'\n  import { cn } from '$lib/utils.js'\n\n  interface Props extends Accordion.ItemProps {\n    class?: string\n    children?: Snippet\n  }\n\n  let { class: className, children, ...restProps }: Props = $props()\n</script>\n\n<Accordion.Item\n  class={cn(\n    'border-3 border-foreground border-b-0 last:border-b-3 shadow-[4px_4px_0px_hsl(var(--shadow-color))]',\n    className\n  )}\n  {...restProps}\n>\n  {@render children?.()}\n</Accordion.Item>\n",
+      "type": "registry:ui",
+      "target": "lib/components/ui/accordion-item.svelte"
+    },
+    {
+      "path": "registry/default/ui/accordion-trigger.svelte",
+      "content": "<script lang=\"ts\">\n  import { Accordion } from 'bits-ui'\n  import { ChevronDown } from 'lucide-svelte'\n  import type { Snippet } from 'svelte'\n  import { cn } from '$lib/utils.js'\n\n  interface Props extends Accordion.TriggerProps {\n    class?: string\n    children?: Snippet\n  }\n\n  let { class: className, children, ...restProps }: Props = $props()\n</script>\n\n<Accordion.Header class=\"flex\">\n  <Accordion.Trigger\n    class={cn(\n      'flex flex-1 items-center justify-between bg-background py-4 px-4 font-bold uppercase tracking-wide transition-all duration-200 hover:bg-muted [&[data-state=open]]:bg-accent [&[data-state=open]>svg]:rotate-180',\n      className\n    )}\n    {...restProps}\n  >\n    {@render children?.()}\n    <ChevronDown class=\"h-5 w-5 shrink-0 stroke-[3] transition-transform duration-200\" />\n  </Accordion.Trigger>\n</Accordion.Header>\n",
+      "type": "registry:ui",
+      "target": "lib/components/ui/accordion-trigger.svelte"
+    },
+    {
+      "path": "registry/default/ui/accordion-content.svelte",
+      "content": "<script lang=\"ts\">\n  import { Accordion } from 'bits-ui'\n  import type { Snippet } from 'svelte'\n  import { cn } from '$lib/utils.js'\n\n  interface Props extends Accordion.ContentProps {\n    class?: string\n    children?: Snippet\n  }\n\n  let { class: className, children, ...restProps }: Props = $props()\n</script>\n\n<Accordion.Content\n  class=\"overflow-hidden text-sm transition-all data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down border-t-3 border-foreground\"\n  {...restProps}\n>\n  <div class={cn('p-4', className)}>\n    {@render children?.()}\n  </div>\n</Accordion.Content>\n",
+      "type": "registry:ui",
+      "target": "lib/components/ui/accordion-content.svelte"
+    }
+  ]
+}
