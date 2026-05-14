@@ -2,48 +2,9 @@ import { useState } from 'react'
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group'
 import { Label } from '@/components/ui/label'
 import { ComponentDoc, ExampleSection } from '@/components/docs/ComponentDoc'
+import sourceCode from '@/components/ui/radio-group.tsx?raw'
+import vueSourceCode from '@vue-ui/RadioGroup.vue?raw'
 
-const sourceCode = `import * as React from 'react'
-import * as RadioGroupPrimitive from '@radix-ui/react-radio-group'
-import { Circle } from 'lucide-react'
-import { cn } from '@/lib/utils'
-
-const RadioGroup = React.forwardRef<
-  React.ElementRef<typeof RadioGroupPrimitive.Root>,
-  React.ComponentPropsWithoutRef<typeof RadioGroupPrimitive.Root>
->(({ className, ...props }, ref) => {
-  return (
-    <RadioGroupPrimitive.Root
-      className={cn('grid gap-2', className)}
-      {...props}
-      ref={ref}
-    />
-  )
-})
-RadioGroup.displayName = RadioGroupPrimitive.Root.displayName
-
-const RadioGroupItem = React.forwardRef<
-  React.ElementRef<typeof RadioGroupPrimitive.Item>,
-  React.ComponentPropsWithoutRef<typeof RadioGroupPrimitive.Item>
->(({ className, ...props }, ref) => {
-  return (
-    <RadioGroupPrimitive.Item
-      ref={ref}
-      className={cn(
-        'aspect-square h-5 w-5 border-3 border-foreground bg-background bk-shadow-sm transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50',
-        className
-      )}
-      {...props}
-    >
-      <RadioGroupPrimitive.Indicator className="flex items-center justify-center">
-        <Circle className="h-2.5 w-2.5 fill-primary stroke-none" />
-      </RadioGroupPrimitive.Indicator>
-    </RadioGroupPrimitive.Item>
-  )
-})
-RadioGroupItem.displayName = RadioGroupPrimitive.Item.displayName
-
-export { RadioGroup, RadioGroupItem }`
 
 const usageCode = `import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group'
 import { Label } from '@/components/ui/label'
@@ -63,17 +24,6 @@ export default function Example() {
   )
 }`
 
-const vueSourceCode = `<script setup lang="ts">
-import { RadioGroupRoot, RadioGroupItem, RadioGroupIndicator } from 'reka-ui'
-import { Circle } from 'lucide-vue-next'
-import { cn } from '@/lib/utils'
-</script>
-
-<template>
-  <RadioGroupRoot :class="cn('grid gap-2', props.class)" v-bind="$attrs">
-    <slot />
-  </RadioGroupRoot>
-</template>`
 
 const vueUsageCode = `<script setup lang="ts">
 import { ref } from 'vue'

@@ -1,28 +1,9 @@
 import { Textarea } from '@/components/ui/textarea'
 import { Label } from '@/components/ui/label'
 import { ComponentDoc, ExampleSection } from '@/components/docs/ComponentDoc'
+import sourceCode from '@/components/ui/textarea.tsx?raw'
+import vueSourceCode from '@vue-ui/Textarea.vue?raw'
 
-const sourceCode = `import * as React from 'react'
-import { cn } from '@/lib/utils'
-
-const Textarea = React.forwardRef<
-  HTMLTextAreaElement,
-  React.ComponentProps<'textarea'>
->(({ className, ...props }, ref) => {
-  return (
-    <textarea
-      className={cn(
-        'flex min-h-[100px] w-full border-3 border-input bg-background px-4 py-3 text-base transition-all placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-0 focus-visible:translate-x-[-2px] focus-visible:translate-y-[-2px] focus-visible:shadow-[6px_6px_0px_hsl(var(--shadow-color))] disabled:cursor-not-allowed disabled:opacity-50 bk-shadow md:text-sm',
-        className
-      )}
-      ref={ref}
-      {...props}
-    />
-  )
-})
-Textarea.displayName = 'Textarea'
-
-export { Textarea }`
 
 const usageCode = `import { Textarea } from '@/components/ui/textarea'
 
@@ -30,27 +11,6 @@ export default function Example() {
   return <Textarea placeholder="Type your message here." />
 }`
 
-const vueSourceCode = `<script setup lang="ts">
-import { computed } from 'vue'
-import { cn } from '@/lib/utils'
-
-const props = defineProps<{
-  class?: string
-  modelValue?: string
-}>()
-
-const emit = defineEmits<{
-  'update:modelValue': [value: string]
-}>()
-</script>
-
-<template>
-  <textarea
-    :class="cn('flex min-h-[100px] w-full border-3 border-input bg-background px-4 py-3 text-base transition-all placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-0 focus-visible:translate-x-[-2px] focus-visible:translate-y-[-2px] focus-visible:shadow-[6px_6px_0px_hsl(var(--shadow-color))] disabled:cursor-not-allowed disabled:opacity-50 shadow-[4px_4px_0px_hsl(var(--shadow-color))] md:text-sm', props.class)"
-    :value="modelValue"
-    @input="emit('update:modelValue', ($event.target as HTMLTextAreaElement).value)"
-  />
-</template>`
 
 const vueUsageCode = `<script setup lang="ts">
 import { Textarea } from '@/components/ui'

@@ -1,47 +1,9 @@
 import { useState } from 'react'
 import { Rating } from '@/components/ui/rating'
 import { ComponentDoc, ExampleSection } from '@/components/docs/ComponentDoc'
+import sourceCode from '@/components/ui/rating.tsx?raw'
+import vueSourceCode from '@vue-ui/Rating.vue?raw'
 
-const sourceCode = `import * as React from 'react'
-import { cva, type VariantProps } from 'class-variance-authority'
-import { cn } from '@/lib/utils'
-import { Star, Heart, Circle } from 'lucide-react'
-
-const ratingVariants = cva('flex items-center gap-0.5', {
-  variants: {
-    size: {
-      sm: '[&_svg]:h-4 [&_svg]:w-4',
-      md: '[&_svg]:h-5 [&_svg]:w-5',
-      lg: '[&_svg]:h-6 [&_svg]:w-6',
-      xl: '[&_svg]:h-8 [&_svg]:w-8',
-    },
-  },
-  defaultVariants: {
-    size: 'md',
-  },
-})
-
-export interface RatingProps
-  extends Omit<React.HTMLAttributes<HTMLDivElement>, 'onChange'>,
-    VariantProps<typeof ratingVariants> {
-  value?: number
-  defaultValue?: number
-  max?: number
-  precision?: 0.5 | 1
-  icon?: 'star' | 'heart' | 'circle'
-  readOnly?: boolean
-  disabled?: boolean
-  onChange?: (value: number) => void
-  onHoverChange?: (value: number | null) => void
-}
-
-const Rating = React.forwardRef<HTMLDivElement, RatingProps>(
-  ({ value, defaultValue, max = 5, precision = 1, icon = 'star', size, readOnly, disabled, onChange, onHoverChange, className, ...props }, ref) => {
-    // Implementation...
-  }
-)
-
-export { Rating, ratingVariants }`
 
 const usageCode = `import { Rating } from '@/components/ui/rating'
 
@@ -49,53 +11,6 @@ export default function Example() {
   return <Rating defaultValue={3} />
 }`
 
-const vueSourceCode = `<script setup lang="ts">
-import { ref, computed } from 'vue'
-import { cva, type VariantProps } from 'class-variance-authority'
-import { Star, Heart, Circle } from 'lucide-vue-next'
-import { cn } from '@/lib/utils'
-
-const ratingVariants = cva('flex items-center gap-0.5', {
-  variants: {
-    size: {
-      sm: '[&_svg]:h-4 [&_svg]:w-4',
-      md: '[&_svg]:h-5 [&_svg]:w-5',
-      lg: '[&_svg]:h-6 [&_svg]:w-6',
-      xl: '[&_svg]:h-8 [&_svg]:w-8',
-    },
-  },
-  defaultVariants: { size: 'md' },
-})
-
-interface Props {
-  modelValue?: number
-  defaultValue?: number
-  max?: number
-  precision?: 0.5 | 1
-  icon?: 'star' | 'heart' | 'circle'
-  size?: 'sm' | 'md' | 'lg' | 'xl'
-  readOnly?: boolean
-  disabled?: boolean
-}
-
-const props = withDefaults(defineProps<Props>(), {
-  max: 5, precision: 1, icon: 'star', readOnly: false, disabled: false,
-})
-
-const emit = defineEmits<{
-  'update:modelValue': [value: number]
-  'hoverChange': [value: number | null]
-}>()
-
-const iconComponents = { star: Star, heart: Heart, circle: Circle }
-const IconComponent = computed(() => iconComponents[props.icon])
-</script>
-
-<template>
-  <div role="slider" :aria-valuemin="0" :aria-valuemax="max" :class="cn(ratingVariants({ size }))">
-    <!-- Rating implementation -->
-  </div>
-</template>`
 
 const vueUsageCode = `<script setup lang="ts">
 import { ref } from 'vue'

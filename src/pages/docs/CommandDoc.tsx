@@ -13,71 +13,9 @@ import {
 import { Button } from '@/components/ui/button'
 import { ComponentDoc, ExampleSection } from '@/components/docs/ComponentDoc'
 import { Calculator, Calendar, CreditCard, Settings, Smile, User } from 'lucide-react'
+import sourceCode from '@/components/ui/command.tsx?raw'
+import vueSourceCode from '@vue-ui/Command.vue?raw'
 
-const sourceCode = `import * as React from 'react'
-import { type DialogProps } from '@radix-ui/react-dialog'
-import { Command as CommandPrimitive } from 'cmdk'
-import { Search } from 'lucide-react'
-import { cn } from '@/lib/utils'
-import { Dialog, DialogContent } from '@/components/ui/dialog'
-
-const Command = React.forwardRef<
-  React.ElementRef<typeof CommandPrimitive>,
-  React.ComponentPropsWithoutRef<typeof CommandPrimitive>
->(({ className, ...props }, ref) => (
-  <CommandPrimitive
-    ref={ref}
-    className={cn(
-      'flex h-full w-full flex-col overflow-hidden bg-popover text-popover-foreground',
-      className
-    )}
-    {...props}
-  />
-))
-Command.displayName = CommandPrimitive.displayName
-
-const CommandDialog = ({ children, ...props }: DialogProps) => {
-  return (
-    <Dialog {...props}>
-      <DialogContent className="overflow-hidden p-0">
-        <Command className="[&_[cmdk-group-heading]]:px-2 [&_[cmdk-group-heading]]:font-bold [&_[cmdk-group-heading]]:uppercase [&_[cmdk-group-heading]]:tracking-wide [&_[cmdk-group-heading]]:text-muted-foreground [&_[cmdk-group]:not([hidden])_~[cmdk-group]]:pt-0 [&_[cmdk-group]]:px-2 [&_[cmdk-input-wrapper]_svg]:h-5 [&_[cmdk-input-wrapper]_svg]:w-5 [&_[cmdk-input]]:h-12 [&_[cmdk-item]]:px-2 [&_[cmdk-item]]:py-3 [&_[cmdk-item]_svg]:h-5 [&_[cmdk-item]_svg]:w-5">
-          {children}
-        </Command>
-      </DialogContent>
-    </Dialog>
-  )
-}
-
-const CommandInput = React.forwardRef<
-  React.ElementRef<typeof CommandPrimitive.Input>,
-  React.ComponentPropsWithoutRef<typeof CommandPrimitive.Input>
->(({ className, ...props }, ref) => (
-  <div className="flex items-center border-b-3 border-foreground px-3" cmdk-input-wrapper="">
-    <Search className="mr-2 h-4 w-4 shrink-0 opacity-50 stroke-[3]" />
-    <CommandPrimitive.Input
-      ref={ref}
-      className={cn(
-        'flex h-11 w-full bg-transparent py-3 text-sm outline-none placeholder:text-muted-foreground disabled:cursor-not-allowed disabled:opacity-50',
-        className
-      )}
-      {...props}
-    />
-  </div>
-))
-
-// ... rest of the component code
-
-export {
-  Command,
-  CommandDialog,
-  CommandInput,
-  CommandList,
-  CommandEmpty,
-  CommandGroup,
-  CommandItem,
-  CommandShortcut,
-  CommandSeparator,
-}`
 
 const usageCode = `import {
   Command,
@@ -104,69 +42,6 @@ export default function Example() {
   )
 }`
 
-const vueSourceCode = `<script setup lang="ts">
-import { ComboboxRoot, ComboboxInput, ComboboxContent, ComboboxEmpty, ComboboxGroup, ComboboxItem, ComboboxSeparator } from 'reka-ui'
-import { Search } from 'lucide-vue-next'
-import { cn } from '@/lib/utils'
-
-defineProps<{
-  class?: string
-}>()
-</script>
-
-<!-- Command -->
-<template>
-  <ComboboxRoot :class="cn('flex h-full w-full flex-col overflow-hidden bg-popover text-popover-foreground', props.class)">
-    <slot />
-  </ComboboxRoot>
-</template>
-
-<!-- CommandInput -->
-<template>
-  <div class="flex items-center border-b-3 border-foreground px-3">
-    <Search class="mr-2 h-4 w-4 shrink-0 opacity-50 stroke-[3]" />
-    <ComboboxInput
-      :class="cn(
-        'flex h-11 w-full bg-transparent py-3 text-sm outline-none placeholder:text-muted-foreground disabled:cursor-not-allowed disabled:opacity-50',
-        props.class
-      )"
-      v-bind="$attrs"
-    />
-  </div>
-</template>
-
-<!-- CommandList -->
-<template>
-  <ComboboxContent class="max-h-[300px] overflow-y-auto overflow-x-hidden">
-    <slot />
-  </ComboboxContent>
-</template>
-
-<!-- CommandEmpty -->
-<template>
-  <ComboboxEmpty class="py-6 text-center text-sm">
-    <slot />
-  </ComboboxEmpty>
-</template>
-
-<!-- CommandGroup -->
-<template>
-  <ComboboxGroup class="overflow-hidden p-1 text-foreground [&_[cmdk-group-heading]]:px-2 [&_[cmdk-group-heading]]:py-1.5 [&_[cmdk-group-heading]]:text-xs [&_[cmdk-group-heading]]:font-bold [&_[cmdk-group-heading]]:uppercase [&_[cmdk-group-heading]]:tracking-wide [&_[cmdk-group-heading]]:text-muted-foreground">
-    <slot />
-  </ComboboxGroup>
-</template>
-
-<!-- CommandItem -->
-<template>
-  <ComboboxItem
-    :class="cn(
-      'relative flex cursor-default gap-2 select-none items-center px-2 py-1.5 text-sm outline-none data-[highlighted]:bg-accent data-[highlighted]:text-accent-foreground data-[disabled]:pointer-events-none data-[disabled]:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0',
-      props.class
-    )"
-  >
-    <slot />
-  </ComboboxItem>
-</template>`
 
 const vueUsageCode = `<script setup lang="ts">
 import {

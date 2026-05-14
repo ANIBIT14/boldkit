@@ -3,37 +3,9 @@ import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { ComponentDoc, ExampleSection } from '@/components/docs/ComponentDoc'
+import sourceCode from '@/components/ui/popover.tsx?raw'
+import vueSourceCode from '@vue-ui/Popover.vue?raw'
 
-const sourceCode = `import * as React from 'react'
-import * as PopoverPrimitive from '@radix-ui/react-popover'
-import { cn } from '@/lib/utils'
-
-const Popover = PopoverPrimitive.Root
-
-const PopoverTrigger = PopoverPrimitive.Trigger
-
-const PopoverAnchor = PopoverPrimitive.Anchor
-
-const PopoverContent = React.forwardRef<
-  React.ElementRef<typeof PopoverPrimitive.Content>,
-  React.ComponentPropsWithoutRef<typeof PopoverPrimitive.Content>
->(({ className, align = 'center', sideOffset = 4, ...props }, ref) => (
-  <PopoverPrimitive.Portal>
-    <PopoverPrimitive.Content
-      ref={ref}
-      align={align}
-      sideOffset={sideOffset}
-      className={cn(
-        'z-50 w-72 border-3 border-foreground bg-popover p-4 text-popover-foreground bk-shadow outline-none data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2',
-        className
-      )}
-      {...props}
-    />
-  </PopoverPrimitive.Portal>
-))
-PopoverContent.displayName = PopoverPrimitive.Content.displayName
-
-export { Popover, PopoverTrigger, PopoverContent, PopoverAnchor }`
 
 const usageCode = `import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover'
 import { Button } from '@/components/ui/button'
@@ -51,16 +23,6 @@ export default function Example() {
   )
 }`
 
-const vueSourceCode = `<script setup lang="ts">
-import { PopoverRoot, PopoverContent, PopoverTrigger } from 'reka-ui'
-import { cn } from '@/lib/utils'
-</script>
-
-<template>
-  <PopoverRoot v-bind="$attrs">
-    <slot />
-  </PopoverRoot>
-</template>`
 
 const vueUsageCode = `<script setup lang="ts">
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui'

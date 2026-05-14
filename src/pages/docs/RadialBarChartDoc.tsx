@@ -1,63 +1,10 @@
 import { RadialBarChart } from '@/components/ui/chart'
 import { ComponentDoc, ExampleSection } from '@/components/docs/ComponentDoc'
 import type { ChartConfig } from '@/components/ui/chart'
+import sourceCode from '@/components/ui/chart/radial-bar-chart.tsx?raw'
+import vueSourceCode from '@vue-ui/RadialBarChart.vue?raw'
 
-const sourceCode = `import * as React from 'react'
-import { cn } from '@/lib/utils'
-import { RadialBarChart as RechartsRadialBarChart, RadialBar, PolarAngleAxis } from 'recharts'
-import { ChartContainer, ChartTooltip, ChartTooltipContent, ChartLegend, ChartLegendContent } from './index'
-import type { ChartConfig } from './types'
 
-export interface RadialBarChartProps extends React.HTMLAttributes<HTMLDivElement> {
-  data: Array<{ name: string; value: number; fill?: string }>
-  config: ChartConfig
-  variant?: 'default' | 'stacked' | 'nested'
-  innerRadius?: string | number
-  outerRadius?: string | number
-  showLabel?: boolean
-  showBackground?: boolean
-  showLegend?: boolean
-  showTooltip?: boolean
-  startAngle?: number
-  endAngle?: number
-  animated?: boolean
-  maxValue?: number
-}
-
-export { RadialBarChart }`
-
-const vueSourceCode = `<script setup lang="ts">
-import { computed } from 'vue'
-import VChart from 'vue-echarts'
-import { use } from 'echarts/core'
-import { CanvasRenderer } from 'echarts/renderers'
-import { PieChart } from 'echarts/charts'
-import { PolarComponent } from 'echarts/components'
-
-use([CanvasRenderer, PieChart, PolarComponent])
-
-interface Props {
-  data: Array<{ name: string; value: number; fill?: string }>
-  innerRadius?: string
-  outerRadius?: string
-  showLabel?: boolean
-  showBackground?: boolean
-  maxValue?: number
-}
-
-const props = withDefaults(defineProps<Props>(), {
-  innerRadius: '30%',
-  outerRadius: '100%',
-  showLabel: true,
-  showBackground: true,
-})
-</script>
-
-<template>
-  <div class="border-3 border-foreground bg-background p-4 shadow-[4px_4px_0px_hsl(var(--shadow-color))]">
-    <VChart :option="option" class="h-[300px] w-full" autoresize />
-  </div>
-</template>`
 
 const usageCode = `import { RadialBarChart } from '@/components/ui/chart'
 

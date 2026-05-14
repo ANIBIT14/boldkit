@@ -3,6 +3,8 @@ import type { ColumnDef } from '@tanstack/react-table'
 import { DataTable, DataTableColumnHeader } from '@/components/ui/data-table'
 import { Badge } from '@/components/ui/badge'
 import { ComponentDoc, ExampleSection } from '@/components/docs/ComponentDoc'
+import sourceCode from '@/components/ui/data-table.tsx?raw'
+import vueSourceCode from '@vue-ui/DataTable.vue?raw'
 
 // Sample data
 interface User {
@@ -55,38 +57,6 @@ const columns: ColumnDef<User>[] = [
   },
 ]
 
-const sourceCode = `import {
-  ColumnDef,
-  flexRender,
-  getCoreRowModel,
-  getFilteredRowModel,
-  getPaginationRowModel,
-  getSortedRowModel,
-  useReactTable,
-} from '@tanstack/react-table'
-
-export interface DataTableProps<TData, TValue> {
-  columns: ColumnDef<TData, TValue>[]
-  data: TData[]
-  enableSorting?: boolean
-  enableFiltering?: boolean
-  enableColumnVisibility?: boolean
-  enableRowSelection?: boolean
-  enablePagination?: boolean
-  pageSize?: number
-  pageSizeOptions?: number[]
-  filterColumn?: string
-  filterPlaceholder?: string
-  emptyMessage?: string
-  isLoading?: boolean
-  onRowSelectionChange?: (selectedRows: TData[]) => void
-}
-
-function DataTable<TData, TValue>({ columns, data, ... }: DataTableProps<TData, TValue>) {
-  // Implementation using @tanstack/react-table
-}
-
-export { DataTable, DataTableColumnHeader, DataTableToolbar, DataTablePagination }`
 
 const usageCode = `import { DataTable, DataTableColumnHeader } from '@/components/ui/data-table'
 
@@ -102,56 +72,6 @@ export default function Example() {
   return <DataTable columns={columns} data={data} />
 }`
 
-const vueSourceCode = `<script setup lang="ts">
-import { ref, computed } from 'vue'
-import { FlexRender, getCoreRowModel, useVueTable } from '@tanstack/vue-table'
-import type { ColumnDef, SortingState, ColumnFiltersState } from '@tanstack/vue-table'
-import { cn } from '@/lib/utils'
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table'
-
-interface Props<TData> {
-  columns: ColumnDef<TData>[]
-  data: TData[]
-  enableSorting?: boolean
-  enableFiltering?: boolean
-  enablePagination?: boolean
-  filterColumn?: string
-  filterPlaceholder?: string
-}
-
-const props = defineProps<Props<any>>()
-
-const sorting = ref<SortingState>([])
-const columnFilters = ref<ColumnFiltersState>([])
-
-const table = useVueTable({
-  data: props.data,
-  columns: props.columns,
-  getCoreRowModel: getCoreRowModel(),
-  // ... additional features
-})
-</script>
-
-<template>
-  <div class="space-y-4">
-    <Table>
-      <TableHeader>
-        <TableRow v-for="headerGroup in table.getHeaderGroups()" :key="headerGroup.id">
-          <TableHead v-for="header in headerGroup.headers" :key="header.id">
-            <FlexRender :render="header.column.columnDef.header" :props="header.getContext()" />
-          </TableHead>
-        </TableRow>
-      </TableHeader>
-      <TableBody>
-        <TableRow v-for="row in table.getRowModel().rows" :key="row.id">
-          <TableCell v-for="cell in row.getVisibleCells()" :key="cell.id">
-            <FlexRender :render="cell.column.columnDef.cell" :props="cell.getContext()" />
-          </TableCell>
-        </TableRow>
-      </TableBody>
-    </Table>
-  </div>
-</template>`
 
 const vueUsageCode = `<script setup lang="ts">
 import { DataTable } from '@/components/ui/data-table'

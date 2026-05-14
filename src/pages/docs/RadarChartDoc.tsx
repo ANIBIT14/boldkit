@@ -1,59 +1,10 @@
 import { RadarChart } from '@/components/ui/chart'
 import { ComponentDoc, ExampleSection } from '@/components/docs/ComponentDoc'
 import type { ChartConfig } from '@/components/ui/chart'
+import sourceCode from '@/components/ui/chart/radar-chart.tsx?raw'
+import vueSourceCode from '@vue-ui/RadarChart.vue?raw'
 
-const sourceCode = `import * as React from 'react'
-import { cn } from '@/lib/utils'
-import { Radar, RadarChart as RechartsRadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis } from 'recharts'
-import { ChartContainer, ChartTooltip, ChartTooltipContent, ChartLegend, ChartLegendContent } from './index'
-import type { ChartConfig } from './types'
 
-export interface RadarChartProps extends React.HTMLAttributes<HTMLDivElement> {
-  data: Array<{ subject: string; [key: string]: number | string }>
-  dataKeys: string[]
-  config: ChartConfig
-  variant?: 'default' | 'filled' | 'outlined'
-  showLegend?: boolean
-  showGrid?: boolean
-  showTooltip?: boolean
-  fillOpacity?: number
-  animated?: boolean
-}
-
-export { RadarChart }`
-
-const vueSourceCode = `<script setup lang="ts">
-import { computed } from 'vue'
-import VChart from 'vue-echarts'
-import { use } from 'echarts/core'
-import { CanvasRenderer } from 'echarts/renderers'
-import { RadarChart } from 'echarts/charts'
-import { TooltipComponent, LegendComponent } from 'echarts/components'
-
-use([CanvasRenderer, RadarChart, TooltipComponent, LegendComponent])
-
-interface Props {
-  data: Array<{ subject: string; [key: string]: number | string }>
-  dataKeys: string[]
-  variant?: 'default' | 'filled' | 'outlined'
-  showLegend?: boolean
-  showGrid?: boolean
-  fillOpacity?: number
-}
-
-const props = withDefaults(defineProps<Props>(), {
-  variant: 'default',
-  showLegend: true,
-  showGrid: true,
-  fillOpacity: 0.6,
-})
-</script>
-
-<template>
-  <div class="border-3 border-foreground bg-background p-4 shadow-[4px_4px_0px_hsl(var(--shadow-color))]">
-    <VChart :option="option" class="h-[300px] w-full" autoresize />
-  </div>
-</template>`
 
 const usageCode = `import { RadarChart } from '@/components/ui/chart'
 

@@ -9,82 +9,10 @@ import {
   StepperActions,
 } from '@/components/ui/stepper'
 import { ComponentDoc, ExampleSection } from '@/components/docs/ComponentDoc'
+import sourceCode from '@/components/ui/stepper.tsx?raw'
+import vueSourceCode from '@vue-ui/Stepper.vue?raw'
 
-const sourceCode = `import * as React from 'react'
-import { cva, type VariantProps } from 'class-variance-authority'
-import { cn } from '@/lib/utils'
-import { Check } from 'lucide-react'
 
-// Context
-interface StepperContextValue {
-  activeStep: number
-  setActiveStep: (step: number) => void
-  totalSteps: number
-  orientation: 'horizontal' | 'vertical'
-}
-
-const StepperContext = React.createContext<StepperContextValue | null>(null)
-
-// Step variants
-const stepVariants = cva(
-  'flex items-center justify-center border-3 border-foreground font-bold transition-all duration-200',
-  {
-    variants: {
-      state: {
-        completed: 'bg-success text-success-foreground shadow-[4px_4px_0px_hsl(var(--shadow-color))]',
-        active: 'bg-primary text-primary-foreground shadow-[4px_4px_0px_hsl(var(--shadow-color))] scale-110',
-        upcoming: 'bg-muted text-muted-foreground',
-      },
-      size: {
-        sm: 'h-8 w-8 text-sm',
-        md: 'h-10 w-10',
-        lg: 'h-12 w-12 text-lg',
-      },
-    },
-    defaultVariants: { state: 'upcoming', size: 'md' },
-  }
-)
-
-// Components: Stepper, StepperList, StepperItem, StepperTrigger, StepperSeparator, StepperContent, StepperActions
-export {
-  Stepper,
-  StepperList,
-  StepperItem,
-  StepperTrigger,
-  StepperSeparator,
-  StepperContent,
-  StepperActions,
-  stepVariants,
-}`
-
-const vueSourceCode = `<script setup lang="ts">
-import { provide, inject, ref, computed } from 'vue'
-import { cva, type VariantProps } from 'class-variance-authority'
-import { cn } from '@/lib/utils'
-import { Check } from 'lucide-vue-next'
-
-// Context using provide/inject
-const StepperKey = Symbol('stepper')
-
-const stepVariants = cva(
-  'flex items-center justify-center border-3 border-foreground font-bold transition-all duration-200',
-  {
-    variants: {
-      state: {
-        completed: 'bg-success text-success-foreground shadow-[4px_4px_0px_hsl(var(--shadow-color))]',
-        active: 'bg-primary text-primary-foreground shadow-[4px_4px_0px_hsl(var(--shadow-color))] scale-110',
-        upcoming: 'bg-muted text-muted-foreground',
-      },
-      size: {
-        sm: 'h-8 w-8 text-sm',
-        md: 'h-10 w-10',
-        lg: 'h-12 w-12 text-lg',
-      },
-    },
-    defaultVariants: { state: 'upcoming', size: 'md' },
-  }
-)
-</script>`
 
 const usageCode = `import {
   Stepper,

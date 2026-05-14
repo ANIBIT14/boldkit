@@ -2,32 +2,9 @@ import { useState, useEffect } from 'react'
 import { Progress } from '@/components/ui/progress'
 import { ComponentDoc, ExampleSection } from '@/components/docs/ComponentDoc'
 import { Button } from '@/components/ui/button'
+import sourceCode from '@/components/ui/progress.tsx?raw'
+import vueSourceCode from '@vue-ui/Progress.vue?raw'
 
-const sourceCode = `import * as React from 'react'
-import * as ProgressPrimitive from '@radix-ui/react-progress'
-import { cn } from '@/lib/utils'
-
-const Progress = React.forwardRef<
-  React.ElementRef<typeof ProgressPrimitive.Root>,
-  React.ComponentPropsWithoutRef<typeof ProgressPrimitive.Root>
->(({ className, value, ...props }, ref) => (
-  <ProgressPrimitive.Root
-    ref={ref}
-    className={cn(
-      'relative h-5 w-full overflow-hidden border-3 border-foreground bg-muted bk-shadow-sm',
-      className
-    )}
-    {...props}
-  >
-    <ProgressPrimitive.Indicator
-      className="h-full w-full flex-1 bg-primary transition-all"
-      style={{ transform: \`translateX(-\${100 - (value || 0)}%)\` }}
-    />
-  </ProgressPrimitive.Root>
-))
-Progress.displayName = ProgressPrimitive.Root.displayName
-
-export { Progress }`
 
 const usageCode = `import { Progress } from '@/components/ui/progress'
 
@@ -35,33 +12,6 @@ export default function Example() {
   return <Progress value={60} />
 }`
 
-const vueSourceCode = `<script setup lang="ts">
-import {
-  ProgressIndicator,
-  ProgressRoot,
-  type ProgressRootProps,
-} from 'reka-ui'
-import { cn } from '@/lib/utils'
-
-const props = defineProps<ProgressRootProps & { class?: string }>()
-</script>
-
-<template>
-  <ProgressRoot
-    v-bind="props"
-    :class="
-      cn(
-        'relative h-5 w-full overflow-hidden border-3 border-foreground bg-muted bk-shadow-sm',
-        props.class
-      )
-    "
-  >
-    <ProgressIndicator
-      class="h-full w-full flex-1 bg-primary transition-all"
-      :style="{ transform: \`translateX(-\${100 - (props.modelValue || 0)}%)\` }"
-    />
-  </ProgressRoot>
-</template>`
 
 const vueUsageCode = `<script setup lang="ts">
 import { ref } from 'vue'

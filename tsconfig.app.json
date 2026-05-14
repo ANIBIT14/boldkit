@@ -19,7 +19,8 @@
     /* Path aliases */
     "baseUrl": ".",
     "paths": {
-      "@/*": ["./src/*"]
+      "@/*": ["./src/*"],
+      "@vue-ui/*": ["./packages/vue/src/components/ui/*"]
     },
 
     /* Linting */

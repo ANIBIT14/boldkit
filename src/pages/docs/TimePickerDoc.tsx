@@ -1,33 +1,9 @@
 import { useState } from 'react'
 import { TimePicker } from '@/components/ui/time-picker'
 import { ComponentDoc, ExampleSection } from '@/components/docs/ComponentDoc'
+import sourceCode from '@/components/ui/time-picker.tsx?raw'
+import vueSourceCode from '@vue-ui/TimePicker.vue?raw'
 
-const sourceCode = `import * as React from 'react'
-import { Clock } from 'lucide-react'
-import { Button } from '@/components/ui/button'
-import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover'
-import { ScrollArea } from '@/components/ui/scroll-area'
-
-export interface TimePickerProps {
-  value?: Date
-  defaultValue?: Date
-  onChange?: (date: Date | undefined) => void
-  format?: '12h' | '24h'
-  minuteStep?: 1 | 5 | 10 | 15 | 30
-  showSeconds?: boolean
-  minTime?: Date
-  maxTime?: Date
-  disabled?: boolean
-  placeholder?: string
-}
-
-const TimePicker = React.forwardRef<HTMLButtonElement, TimePickerProps>(
-  ({ value, defaultValue, onChange, format, minuteStep, showSeconds, minTime, maxTime, disabled, placeholder }, ref) => {
-    // Implementation...
-  }
-)
-
-export { TimePicker }`
 
 const usageCode = `import { TimePicker } from '@/components/ui/time-picker'
 
@@ -35,54 +11,6 @@ export default function Example() {
   return <TimePicker />
 }`
 
-const vueSourceCode = `<script setup lang="ts">
-import { ref, computed } from 'vue'
-import { Clock } from 'lucide-vue-next'
-import { cn } from '@/lib/utils'
-import Button from './Button.vue'
-import { Popover, PopoverTrigger, PopoverContent } from './popover'
-import { ScrollArea } from './scroll-area'
-
-interface Props {
-  modelValue?: Date
-  defaultValue?: Date
-  format?: '12h' | '24h'
-  minuteStep?: 1 | 5 | 10 | 15 | 30
-  showSeconds?: boolean
-  minTime?: Date
-  maxTime?: Date
-  disabled?: boolean
-  placeholder?: string
-}
-
-const props = withDefaults(defineProps<Props>(), {
-  format: '12h', minuteStep: 1, showSeconds: false, placeholder: 'Select time',
-})
-const emit = defineEmits<{ 'update:modelValue': [value: Date | undefined] }>()
-
-const open = ref(false)
-const hours = computed(() => props.format === '12h' ? 12 : 24)
-const hoursArray = computed(() => Array.from({ length: hours.value }, (_, i) => props.format === '12h' ? i + 1 : i))
-const minutesArray = computed(() => Array.from({ length: 60 / props.minuteStep }, (_, i) => i * props.minuteStep))
-</script>
-
-<template>
-  <Popover v-model:open="open">
-    <PopoverTrigger>
-      <Button variant="outline" :disabled="disabled">
-        <Clock class="mr-2 h-4 w-4" />
-        {{ modelValue ? formatTime(modelValue) : placeholder }}
-      </Button>
-    </PopoverTrigger>
-    <PopoverContent class="w-auto p-0">
-      <div class="flex">
-        <ScrollArea v-for="col in columns" :key="col" class="h-[200px]">
-          <!-- Time selection columns -->
-        </ScrollArea>
-      </div>
-    </PopoverContent>
-  </Popover>
-</template>`
 
 const vueUsageCode = `<script setup lang="ts">
 import { ref } from 'vue'

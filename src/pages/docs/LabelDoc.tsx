@@ -2,30 +2,9 @@ import { Label } from '@/components/ui/label'
 import { Input } from '@/components/ui/input'
 import { Checkbox } from '@/components/ui/checkbox'
 import { ComponentDoc, ExampleSection } from '@/components/docs/ComponentDoc'
+import sourceCode from '@/components/ui/label.tsx?raw'
+import vueSourceCode from '@vue-ui/Label.vue?raw'
 
-const sourceCode = `import * as React from 'react'
-import * as LabelPrimitive from '@radix-ui/react-label'
-import { cva, type VariantProps } from 'class-variance-authority'
-import { cn } from '@/lib/utils'
-
-const labelVariants = cva(
-  'text-sm font-bold uppercase tracking-wide leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70'
-)
-
-const Label = React.forwardRef<
-  React.ElementRef<typeof LabelPrimitive.Root>,
-  React.ComponentPropsWithoutRef<typeof LabelPrimitive.Root> &
-    VariantProps<typeof labelVariants>
->(({ className, ...props }, ref) => (
-  <LabelPrimitive.Root
-    ref={ref}
-    className={cn(labelVariants(), className)}
-    {...props}
-  />
-))
-Label.displayName = LabelPrimitive.Root.displayName
-
-export { Label }`
 
 const usageCode = `import { Label } from '@/components/ui/label'
 import { Input } from '@/components/ui/input'
@@ -39,22 +18,6 @@ export default function Example() {
   )
 }`
 
-const vueSourceCode = `<script setup lang="ts">
-import { Label as LabelPrimitive } from 'reka-ui'
-import { cn } from '@/lib/utils'
-
-defineProps<{
-  class?: string
-}>()
-</script>
-
-<template>
-  <LabelPrimitive
-    :class="cn('text-sm font-bold uppercase tracking-wide leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70', props.class)"
-  >
-    <slot />
-  </LabelPrimitive>
-</template>`
 
 const vueUsageCode = `<script setup lang="ts">
 import { Label } from '@/components/ui'

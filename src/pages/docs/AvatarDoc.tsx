@@ -1,53 +1,8 @@
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import { ComponentDoc, ExampleSection } from '@/components/docs/ComponentDoc'
+import sourceCode from '@/components/ui/avatar.tsx?raw'
+import vueSourceCode from '@vue-ui/Avatar.vue?raw'
 
-const sourceCode = `import * as React from 'react'
-import * as AvatarPrimitive from '@radix-ui/react-avatar'
-import { cn } from '@/lib/utils'
-
-const Avatar = React.forwardRef<
-  React.ElementRef<typeof AvatarPrimitive.Root>,
-  React.ComponentPropsWithoutRef<typeof AvatarPrimitive.Root>
->(({ className, ...props }, ref) => (
-  <AvatarPrimitive.Root
-    ref={ref}
-    className={cn(
-      'relative flex h-10 w-10 shrink-0 overflow-hidden border-3 border-foreground bk-shadow-sm',
-      className
-    )}
-    {...props}
-  />
-))
-Avatar.displayName = AvatarPrimitive.Root.displayName
-
-const AvatarImage = React.forwardRef<
-  React.ElementRef<typeof AvatarPrimitive.Image>,
-  React.ComponentPropsWithoutRef<typeof AvatarPrimitive.Image>
->(({ className, ...props }, ref) => (
-  <AvatarPrimitive.Image
-    ref={ref}
-    className={cn('aspect-square h-full w-full object-cover', className)}
-    {...props}
-  />
-))
-AvatarImage.displayName = AvatarPrimitive.Image.displayName
-
-const AvatarFallback = React.forwardRef<
-  React.ElementRef<typeof AvatarPrimitive.Fallback>,
-  React.ComponentPropsWithoutRef<typeof AvatarPrimitive.Fallback>
->(({ className, ...props }, ref) => (
-  <AvatarPrimitive.Fallback
-    ref={ref}
-    className={cn(
-      'flex h-full w-full items-center justify-center bg-primary text-primary-foreground font-bold uppercase',
-      className
-    )}
-    {...props}
-  />
-))
-AvatarFallback.displayName = AvatarPrimitive.Fallback.displayName
-
-export { Avatar, AvatarImage, AvatarFallback }`
 
 const usageCode = `import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 
@@ -60,16 +15,6 @@ export default function Example() {
   )
 }`
 
-const vueSourceCode = `<script setup lang="ts">
-import { AvatarRoot, AvatarImage, AvatarFallback } from 'reka-ui'
-import { cn } from '@/lib/utils'
-</script>
-
-<template>
-  <AvatarRoot :class="cn('relative flex h-10 w-10 shrink-0 overflow-hidden border-3 border-foreground shadow-[2px_2px_0px_hsl(var(--shadow-color))]', props.class)">
-    <slot />
-  </AvatarRoot>
-</template>`
 
 const vueUsageCode = `<script setup lang="ts">
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui'

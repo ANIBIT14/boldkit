@@ -5,68 +5,9 @@ import {
   InputOTPSeparator,
 } from '@/components/ui/input-otp'
 import { ComponentDoc, ExampleSection } from '@/components/docs/ComponentDoc'
+import sourceCode from '@/components/ui/input-otp.tsx?raw'
+import vueSourceCode from '@vue-ui/InputOtp.vue?raw'
 
-const sourceCode = `import * as React from 'react'
-import { OTPInput, OTPInputContext } from 'input-otp'
-import { Minus } from 'lucide-react'
-import { cn } from '@/lib/utils'
-
-const InputOTP = React.forwardRef<
-  React.ElementRef<typeof OTPInput>,
-  React.ComponentPropsWithoutRef<typeof OTPInput>
->(({ className, containerClassName, ...props }, ref) => (
-  <OTPInput
-    ref={ref}
-    containerClassName={cn('flex items-center gap-2 has-[:disabled]:opacity-50', containerClassName)}
-    className={cn('disabled:cursor-not-allowed', className)}
-    {...props}
-  />
-))
-
-const InputOTPGroup = React.forwardRef<
-  React.ElementRef<'div'>,
-  React.ComponentPropsWithoutRef<'div'>
->(({ className, ...props }, ref) => (
-  <div ref={ref} className={cn('flex items-center', className)} {...props} />
-))
-
-const InputOTPSlot = React.forwardRef<
-  React.ElementRef<'div'>,
-  React.ComponentPropsWithoutRef<'div'> & { index: number }
->(({ index, className, ...props }, ref) => {
-  const inputOTPContext = React.useContext(OTPInputContext)
-  const { char, hasFakeCaret, isActive } = inputOTPContext.slots[index]
-
-  return (
-    <div
-      ref={ref}
-      className={cn(
-        'relative flex h-12 w-12 items-center justify-center border-3 border-foreground bg-background text-lg font-bold uppercase transition-all shadow-[4px_4px_0px_hsl(var(--shadow-color))]',
-        isActive && 'z-10 ring-2 ring-ring ring-offset-2',
-        className
-      )}
-      {...props}
-    >
-      {char}
-      {hasFakeCaret && (
-        <div className="pointer-events-none absolute inset-0 flex items-center justify-center">
-          <div className="h-6 w-px animate-caret-blink bg-foreground duration-1000" />
-        </div>
-      )}
-    </div>
-  )
-})
-
-const InputOTPSeparator = React.forwardRef<
-  React.ElementRef<'div'>,
-  React.ComponentPropsWithoutRef<'div'>
->(({ ...props }, ref) => (
-  <div ref={ref} role="separator" {...props}>
-    <Minus className="stroke-[3]" />
-  </div>
-))
-
-export { InputOTP, InputOTPGroup, InputOTPSlot, InputOTPSeparator }`
 
 const usageCode = `import {
   InputOTP,
@@ -89,55 +30,6 @@ export default function Example() {
   )
 }`
 
-const vueSourceCode = `<script setup lang="ts">
-import { PinInputRoot, PinInputInput } from 'reka-ui'
-import { Minus } from 'lucide-vue-next'
-import { cn } from '@/lib/utils'
-
-defineProps<{
-  class?: string
-  maxLength?: number
-}>()
-
-const modelValue = defineModel<string[]>()
-</script>
-
-<!-- InputOTP -->
-<template>
-  <PinInputRoot
-    v-model="modelValue"
-    :class="cn('flex items-center gap-2 has-[:disabled]:opacity-50', props.class)"
-    v-bind="$attrs"
-  >
-    <slot />
-  </PinInputRoot>
-</template>
-
-<!-- InputOTPGroup -->
-<template>
-  <div :class="cn('flex items-center', props.class)">
-    <slot />
-  </div>
-</template>
-
-<!-- InputOTPSlot -->
-<template>
-  <PinInputInput
-    :index="index"
-    :class="cn(
-      'relative flex h-12 w-12 items-center justify-center border-3 border-foreground bg-background text-lg font-bold uppercase transition-all shadow-[4px_4px_0px_hsl(var(--shadow-color))]',
-      'focus:z-10 focus:ring-2 focus:ring-ring focus:ring-offset-2',
-      props.class
-    )"
-  />
-</template>
-
-<!-- InputOTPSeparator -->
-<template>
-  <div role="separator">
-    <Minus class="stroke-[3]" />
-  </div>
-</template>`
 
 const vueUsageCode = `<script setup lang="ts">
 import { ref } from 'vue'

@@ -12,26 +12,9 @@ import {
   TimelineCard,
 } from '@/components/ui/timeline'
 import { ComponentDoc, ExampleSection } from '@/components/docs/ComponentDoc'
+import sourceCode from '@/components/ui/timeline.tsx?raw'
+import vueSourceCode from '@vue-ui/Timeline.vue?raw'
 
-const sourceCode = `import * as React from 'react'
-import { cva, type VariantProps } from 'class-variance-authority'
-import { cn } from '@/lib/utils'
-
-interface TimelineProps extends React.HTMLAttributes<HTMLDivElement> {
-  orientation?: 'vertical' | 'horizontal'
-}
-
-interface TimelineItemProps extends React.HTMLAttributes<HTMLDivElement> {
-  status?: 'completed' | 'current' | 'upcoming'
-}
-
-// Sub-components: Timeline, TimelineItem, TimelineDot, TimelineConnector,
-// TimelineContent, TimelineHeader, TimelineTitle, TimelineDescription, TimelineTime, TimelineCard
-
-export {
-  Timeline, TimelineItem, TimelineDot, TimelineConnector,
-  TimelineContent, TimelineHeader, TimelineTitle, TimelineDescription, TimelineTime, TimelineCard
-}`
 
 const usageCode = `import {
   Timeline, TimelineItem, TimelineDot, TimelineConnector,
@@ -54,32 +37,6 @@ export default function Example() {
   )
 }`
 
-const vueSourceCode = `<script setup lang="ts">
-import { provide, inject, computed } from 'vue'
-import { cva, type VariantProps } from 'class-variance-authority'
-import { cn } from '@/lib/utils'
-
-// Timeline Context
-const TimelineContext = Symbol('timeline')
-
-interface TimelineProps {
-  orientation?: 'vertical' | 'horizontal'
-  class?: string
-}
-
-const props = withDefaults(defineProps<TimelineProps>(), { orientation: 'vertical' })
-
-provide(TimelineContext, { orientation: props.orientation })
-</script>
-
-<template>
-  <div :class="cn('relative flex', orientation === 'vertical' ? 'flex-col' : 'flex-row', props.class)">
-    <slot />
-  </div>
-</template>
-
-<!-- Sub-components: TimelineItem, TimelineDot, TimelineConnector, TimelineContent,
-     TimelineHeader, TimelineTitle, TimelineDescription, TimelineTime, TimelineCard -->`
 
 const vueUsageCode = `<script setup lang="ts">
 import { Timeline, TimelineItem, TimelineDot, TimelineConnector, TimelineContent, TimelineTitle, TimelineDescription } from '@/components/ui/timeline'

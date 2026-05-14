@@ -1,73 +1,10 @@
 import { DonutChart, DonutChartCenter } from '@/components/ui/chart'
 import { ComponentDoc, ExampleSection } from '@/components/docs/ComponentDoc'
 import type { ChartConfig } from '@/components/ui/chart'
+import sourceCode from '@/components/ui/chart/donut-chart.tsx?raw'
+import vueSourceCode from '@vue-ui/DonutChart.vue?raw'
 
-const sourceCode = `import * as React from 'react'
-import { cn } from '@/lib/utils'
-import { Pie, PieChart, Cell, Label } from 'recharts'
-import { ChartContainer, ChartTooltip, ChartTooltipContent } from './index'
-import type { ChartConfig } from './types'
 
-export interface DonutChartProps extends React.HTMLAttributes<HTMLDivElement> {
-  data: Array<{ name: string; value: number; fill?: string }>
-  config: ChartConfig
-  innerRadius?: string | number
-  outerRadius?: string | number
-  centerContent?: React.ReactNode
-  showLabels?: 'none' | 'inside' | 'outside'
-  variant?: 'default' | 'separated'
-  showTooltip?: boolean
-  animated?: boolean
-}
-
-export { DonutChart, DonutChartCenter }`
-
-const vueSourceCode = `<script setup lang="ts">
-import { computed } from 'vue'
-import VChart from 'vue-echarts'
-import { use } from 'echarts/core'
-import { CanvasRenderer } from 'echarts/renderers'
-import { PieChart } from 'echarts/charts'
-import { TooltipComponent, LegendComponent } from 'echarts/components'
-
-use([CanvasRenderer, PieChart, TooltipComponent, LegendComponent])
-
-interface Props {
-  data: Array<{ name: string; value: number; fill?: string }>
-  innerRadius?: string
-  outerRadius?: string
-  showLabels?: 'none' | 'inside' | 'outside'
-  variant?: 'default' | 'separated'
-}
-
-const props = withDefaults(defineProps<Props>(), {
-  innerRadius: '60%',
-  outerRadius: '80%',
-  showLabels: 'none',
-  variant: 'default',
-})
-
-const option = computed(() => ({
-  tooltip: { trigger: 'item' },
-  series: [{
-    type: 'pie',
-    radius: [props.innerRadius, props.outerRadius],
-    data: props.data,
-    itemStyle: {
-      borderColor: 'hsl(var(--foreground))',
-      borderWidth: 3,
-    },
-    label: { show: props.showLabels !== 'none' },
-  }]
-}))
-</script>
-
-<template>
-  <div class="border-3 border-foreground bg-background p-4 shadow-[4px_4px_0px_hsl(var(--shadow-color))]">
-    <VChart :option="option" class="h-[300px] w-full" autoresize />
-    <slot name="center" />
-  </div>
-</template>`
 
 const usageCode = `import { DonutChart, DonutChartCenter } from '@/components/ui/chart'
 

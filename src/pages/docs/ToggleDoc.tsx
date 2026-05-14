@@ -1,48 +1,9 @@
 import { Toggle } from '@/components/ui/toggle'
 import { Bold, Italic, Underline } from 'lucide-react'
 import { ComponentDoc, ExampleSection } from '@/components/docs/ComponentDoc'
+import sourceCode from '@/components/ui/toggle.tsx?raw'
+import vueSourceCode from '@vue-ui/Toggle.vue?raw'
 
-const sourceCode = `import * as React from 'react'
-import * as TogglePrimitive from '@radix-ui/react-toggle'
-import { cva, type VariantProps } from 'class-variance-authority'
-import { cn } from '@/lib/utils'
-
-const toggleVariants = cva(
-  'inline-flex items-center justify-center text-sm font-bold uppercase tracking-wide transition-all hover:bg-muted hover:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 data-[state=on]:bg-primary data-[state=on]:text-primary-foreground border-3 border-foreground bk-shadow-sm [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 gap-2',
-  {
-    variants: {
-      variant: {
-        default: 'bg-transparent',
-        outline: 'bg-background',
-      },
-      size: {
-        default: 'h-10 px-3 min-w-10',
-        sm: 'h-9 px-2.5 min-w-9',
-        lg: 'h-11 px-5 min-w-11',
-      },
-    },
-    defaultVariants: {
-      variant: 'default',
-      size: 'default',
-    },
-  }
-)
-
-const Toggle = React.forwardRef<
-  React.ElementRef<typeof TogglePrimitive.Root>,
-  React.ComponentPropsWithoutRef<typeof TogglePrimitive.Root> &
-    VariantProps<typeof toggleVariants>
->(({ className, variant, size, ...props }, ref) => (
-  <TogglePrimitive.Root
-    ref={ref}
-    className={cn(toggleVariants({ variant, size, className }))}
-    {...props}
-  />
-))
-
-Toggle.displayName = TogglePrimitive.Root.displayName
-
-export { Toggle, toggleVariants }`
 
 const usageCode = `import { Toggle } from '@/components/ui/toggle'
 import { Bold } from 'lucide-react'
@@ -55,38 +16,6 @@ export default function Example() {
   )
 }`
 
-const vueSourceCode = `<script setup lang="ts">
-import { Toggle as TogglePrimitive } from 'reka-ui'
-import { cva, type VariantProps } from 'class-variance-authority'
-import { cn } from '@/lib/utils'
-
-const toggleVariants = cva(
-  'inline-flex items-center justify-center text-sm font-bold uppercase tracking-wide transition-all hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 data-[state=on]:bg-primary data-[state=on]:text-primary-foreground border-3 border-foreground shadow-[2px_2px_0px_hsl(var(--shadow-color))]',
-  {
-    variants: {
-      variant: {
-        default: 'bg-transparent',
-        outline: 'bg-background',
-      },
-      size: {
-        default: 'h-10 px-3 min-w-10',
-        sm: 'h-9 px-2.5 min-w-9',
-        lg: 'h-11 px-5 min-w-11',
-      },
-    },
-    defaultVariants: {
-      variant: 'default',
-      size: 'default',
-    },
-  }
-)
-</script>
-
-<template>
-  <TogglePrimitive :class="cn(toggleVariants({ variant, size }), props.class)">
-    <slot />
-  </TogglePrimitive>
-</template>`
 
 const vueUsageCode = `<script setup lang="ts">
 import { Toggle } from '@/components/ui'

@@ -1,21 +1,8 @@
 import { Skeleton } from '@/components/ui/skeleton'
 import { ComponentDoc, ExampleSection } from '@/components/docs/ComponentDoc'
+import sourceCode from '@/components/ui/skeleton.tsx?raw'
+import vueSourceCode from '@vue-ui/Skeleton.vue?raw'
 
-const sourceCode = `import { cn } from '@/lib/utils'
-
-function Skeleton({
-  className,
-  ...props
-}: React.HTMLAttributes<HTMLDivElement>) {
-  return (
-    <div
-      className={cn('animate-pulse bg-muted border-2 border-foreground/20', className)}
-      {...props}
-    />
-  )
-}
-
-export { Skeleton }`
 
 const usageCode = `import { Skeleton } from '@/components/ui/skeleton'
 
@@ -31,17 +18,6 @@ export default function Example() {
   )
 }`
 
-const vueSourceCode = `<script setup lang="ts">
-import { cn } from '@/lib/utils'
-
-defineProps<{
-  class?: string
-}>()
-</script>
-
-<template>
-  <div :class="cn('animate-pulse bg-muted border-2 border-foreground/20', props.class)" />
-</template>`
 
 const vueUsageCode = `<script setup lang="ts">
 import { Skeleton } from '@/components/ui'

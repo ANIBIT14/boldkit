@@ -3,38 +3,9 @@ import { Tour, type TourStep } from '@/components/ui/tour'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { ComponentDoc, ExampleSection } from '@/components/docs/ComponentDoc'
+import sourceCode from '@/components/ui/tour.tsx?raw'
+import vueSourceCode from '@vue-ui/Tour.vue?raw'
 
-const sourceCode = `import * as React from 'react'
-import { createPortal } from 'react-dom'
-import { X } from 'lucide-react'
-import { Button } from '@/components/ui/button'
-
-export interface TourStep {
-  target: string | HTMLElement | React.RefObject<HTMLElement>
-  title: string
-  description: string
-  placement?: 'top' | 'right' | 'bottom' | 'left' | 'center'
-  spotlightPadding?: number
-  content?: React.ReactNode
-}
-
-export interface TourProps {
-  steps: TourStep[]
-  open?: boolean
-  onOpenChange?: (open: boolean) => void
-  onComplete?: () => void
-  onSkip?: () => void
-  showSkipButton?: boolean
-  showProgress?: boolean
-}
-
-const Tour = React.forwardRef<HTMLDivElement, TourProps>(
-  ({ steps, open, onOpenChange, onComplete, onSkip, showSkipButton, showProgress }, ref) => {
-    // Implementation with portal, spotlight overlay, and popover
-  }
-)
-
-export { Tour, useTour }`
 
 const usageCode = `import { Tour, type TourStep } from '@/components/ui/tour'
 
@@ -62,58 +33,6 @@ export default function Example() {
   )
 }`
 
-const vueSourceCode = `<script setup lang="ts">
-import { ref, computed, watch, onMounted, onUnmounted, nextTick, provide } from 'vue'
-import { Teleport } from 'vue'
-import { X } from 'lucide-vue-next'
-import { cn } from '@/lib/utils'
-import Button from './Button.vue'
-
-interface TourStep {
-  target: string | HTMLElement
-  title: string
-  description: string
-  placement?: 'top' | 'right' | 'bottom' | 'left' | 'center'
-  spotlightPadding?: number
-}
-
-interface Props {
-  steps: TourStep[]
-  open?: boolean
-  showSkipButton?: boolean
-  showProgress?: boolean
-}
-
-const props = withDefaults(defineProps<Props>(), { open: false, showSkipButton: true, showProgress: true })
-const emit = defineEmits<{ 'update:open': [value: boolean]; complete: []; skip: [] }>()
-
-const currentStep = ref(0)
-const targetRect = ref<DOMRect | null>(null)
-
-// SSR-safe element queries
-function getTargetElement(target: string | HTMLElement) {
-  if (typeof document === 'undefined') return null
-  return typeof target === 'string' ? document.querySelector(target) : target
-}
-</script>
-
-<template>
-  <Teleport to="body">
-    <div v-if="open && steps[currentStep]">
-      <!-- Overlay with spotlight -->
-      <div class="fixed inset-0 z-[9998]" :style="overlayStyle" />
-      <!-- Popover -->
-      <div class="fixed z-[9999] w-80 border-3 border-foreground bg-popover p-4 shadow-[8px_8px_0px_hsl(var(--shadow-color))]">
-        <h3>{{ steps[currentStep].title }}</h3>
-        <p>{{ steps[currentStep].description }}</p>
-        <div class="flex justify-between mt-4">
-          <Button v-if="showSkipButton" variant="ghost" @click="emit('skip')">Skip</Button>
-          <Button @click="nextStep">{{ isLast ? 'Finish' : 'Next' }}</Button>
-        </div>
-      </div>
-    </div>
-  </Teleport>
-</template>`
 
 const vueUsageCode = `<script setup lang="ts">
 import { ref } from 'vue'

@@ -2,89 +2,10 @@ import { useState } from 'react'
 import { Checkbox } from '@/components/ui/checkbox'
 import { Label } from '@/components/ui/label'
 import { ComponentDoc, ExampleSection } from '@/components/docs/ComponentDoc'
+import sourceCode from '@/components/ui/checkbox.tsx?raw'
+import vueSourceCode from '@vue-ui/Checkbox.vue?raw'
 
-const sourceCode = `import * as React from 'react'
-import * as CheckboxPrimitive from '@radix-ui/react-checkbox'
-import { Check } from 'lucide-react'
-import { cn } from '@/lib/utils'
 
-const Checkbox = React.forwardRef<
-  React.ElementRef<typeof CheckboxPrimitive.Root>,
-  React.ComponentPropsWithoutRef<typeof CheckboxPrimitive.Root>
->(({ className, ...props }, ref) => (
-  <CheckboxPrimitive.Root
-    ref={ref}
-    className={cn(
-      'peer h-5 w-5 shrink-0 border-3 border-foreground bg-background bk-shadow-sm transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground',
-      className
-    )}
-    {...props}
-  >
-    <CheckboxPrimitive.Indicator
-      className={cn('flex items-center justify-center text-current')}
-    >
-      <Check className="h-4 w-4 stroke-[3]" />
-    </CheckboxPrimitive.Indicator>
-  </CheckboxPrimitive.Root>
-))
-Checkbox.displayName = CheckboxPrimitive.Root.displayName
-
-export { Checkbox }`
-
-const vueSourceCode = `<script setup lang="ts">
-import { computed } from 'vue'
-import { CheckboxRoot, CheckboxIndicator } from 'reka-ui'
-import { Check } from 'lucide-vue-next'
-import { cn } from '@/lib/utils'
-
-const props = withDefaults(
-  defineProps<{
-    checked?: boolean
-    defaultChecked?: boolean
-    disabled?: boolean
-    required?: boolean
-    name?: string
-    value?: string
-    id?: string
-    class?: string
-  }>(),
-  {
-    checked: undefined,
-    defaultChecked: false,
-    disabled: false,
-    required: false,
-  }
-)
-
-const emit = defineEmits<{
-  'update:checked': [value: boolean]
-}>()
-
-const modelValue = computed({
-  get: () => props.checked,
-  set: (value) => emit('update:checked', value as boolean),
-})
-</script>
-
-<template>
-  <CheckboxRoot
-    v-model:checked="modelValue"
-    :default-checked="defaultChecked"
-    :disabled="disabled"
-    :required="required"
-    :name="name"
-    :value="value"
-    :id="id"
-    :class="cn(
-      'peer h-5 w-5 shrink-0 border-3 border-foreground bg-background bk-shadow-sm transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground',
-      props.class
-    )"
-  >
-    <CheckboxIndicator class="flex items-center justify-center text-current">
-      <Check class="h-4 w-4 stroke-[3]" />
-    </CheckboxIndicator>
-  </CheckboxRoot>
-</template>`
 
 const vueUsageCode = `<script setup lang="ts">
 import { ref } from 'vue'

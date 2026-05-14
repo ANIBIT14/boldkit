@@ -1,34 +1,8 @@
 import { Separator } from '@/components/ui/separator'
 import { ComponentDoc, ExampleSection } from '@/components/docs/ComponentDoc'
+import sourceCode from '@/components/ui/separator.tsx?raw'
+import vueSourceCode from '@vue-ui/Separator.vue?raw'
 
-const sourceCode = `import * as React from 'react'
-import * as SeparatorPrimitive from '@radix-ui/react-separator'
-import { cn } from '@/lib/utils'
-
-const Separator = React.forwardRef<
-  React.ElementRef<typeof SeparatorPrimitive.Root>,
-  React.ComponentPropsWithoutRef<typeof SeparatorPrimitive.Root>
->(
-  (
-    { className, orientation = 'horizontal', decorative = true, ...props },
-    ref
-  ) => (
-    <SeparatorPrimitive.Root
-      ref={ref}
-      decorative={decorative}
-      orientation={orientation}
-      className={cn(
-        'shrink-0 bg-foreground',
-        orientation === 'horizontal' ? 'h-[3px] w-full' : 'h-full w-[3px]',
-        className
-      )}
-      {...props}
-    />
-  )
-)
-Separator.displayName = SeparatorPrimitive.Root.displayName
-
-export { Separator }`
 
 const usageCode = `import { Separator } from '@/components/ui/separator'
 
@@ -47,28 +21,6 @@ export default function Example() {
   )
 }`
 
-const vueSourceCode = `<script setup lang="ts">
-import { Separator as SeparatorPrimitive } from 'reka-ui'
-import { cn } from '@/lib/utils'
-
-const props = withDefaults(defineProps<{
-  class?: string
-  orientation?: 'horizontal' | 'vertical'
-}>(), {
-  orientation: 'horizontal',
-})
-</script>
-
-<template>
-  <SeparatorPrimitive
-    :class="cn(
-      'shrink-0 bg-foreground',
-      orientation === 'horizontal' ? 'h-[3px] w-full' : 'h-full w-[3px]',
-      props.class
-    )"
-    :orientation="orientation"
-  />
-</template>`
 
 const vueUsageCode = `<script setup lang="ts">
 import { Separator } from '@/components/ui'

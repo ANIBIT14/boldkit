@@ -8,6 +8,7 @@ export default defineConfig({
   resolve: {
     alias: {
       '@': path.resolve(__dirname, './src'),
+      '@vue-ui': path.resolve(__dirname, './packages/vue/src/components/ui'),
     },
   },
 })

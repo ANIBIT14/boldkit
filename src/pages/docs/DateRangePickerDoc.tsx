@@ -2,36 +2,9 @@ import { useState } from 'react'
 import { subDays } from 'date-fns'
 import { DateRangePicker, type DateRange } from '@/components/ui/date-range-picker'
 import { ComponentDoc, ExampleSection } from '@/components/docs/ComponentDoc'
+import sourceCode from '@/components/ui/date-range-picker.tsx?raw'
+import vueSourceCode from '@vue-ui/DateRangePicker.vue?raw'
 
-const sourceCode = `import * as React from 'react'
-import { format, subDays, startOfMonth, endOfMonth, subMonths } from 'date-fns'
-import { CalendarIcon } from 'lucide-react'
-import type { DateRange } from 'react-day-picker'
-import { Button } from '@/components/ui/button'
-import { Calendar } from '@/components/ui/calendar'
-import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover'
-
-export interface DateRangePickerProps {
-  value?: DateRange
-  defaultValue?: DateRange
-  onChange?: (range: DateRange | undefined) => void
-  numberOfMonths?: 1 | 2
-  presets?: Array<{ label: string; value: DateRange }>
-  showPresets?: boolean
-  minDate?: Date
-  maxDate?: Date
-  disabled?: boolean
-  placeholder?: string
-  align?: 'start' | 'center' | 'end'
-}
-
-const DateRangePicker = React.forwardRef<HTMLButtonElement, DateRangePickerProps>(
-  ({ value, defaultValue, onChange, numberOfMonths, presets, showPresets, minDate, maxDate, disabled, placeholder, align }, ref) => {
-    // Implementation...
-  }
-)
-
-export { DateRangePicker }`
 
 const usageCode = `import { DateRangePicker } from '@/components/ui/date-range-picker'
 
@@ -39,49 +12,6 @@ export default function Example() {
   return <DateRangePicker />
 }`
 
-const vueSourceCode = `<script setup lang="ts">
-import { computed, ref, onMounted, onUnmounted } from 'vue'
-import { format, subDays, startOfMonth, endOfMonth, subMonths } from 'date-fns'
-import { RangeCalendarRoot } from 'reka-ui'
-import { Calendar as CalendarIcon } from 'lucide-vue-next'
-import { cn } from '@/lib/utils'
-import { Button } from '@/components/ui/button'
-import { Popover, PopoverTrigger, PopoverContent } from '@/components/ui/popover'
-
-interface DateRange { from?: Date; to?: Date }
-interface Props {
-  modelValue?: DateRange
-  numberOfMonths?: 1 | 2
-  showPresets?: boolean
-  minDate?: Date
-  maxDate?: Date
-  disabled?: boolean
-  placeholder?: string
-}
-
-const props = withDefaults(defineProps<Props>(), {
-  numberOfMonths: 2, showPresets: true, placeholder: 'Pick a date range',
-})
-const emit = defineEmits<{ 'update:modelValue': [value: DateRange | undefined] }>()
-
-const open = ref(false)
-const isMobile = ref(false)
-const effectiveMonths = computed(() => isMobile.value ? 1 : props.numberOfMonths)
-</script>
-
-<template>
-  <Popover v-model:open="open">
-    <PopoverTrigger>
-      <Button variant="outline" :disabled="disabled">
-        <CalendarIcon class="mr-2 h-4 w-4" />
-        {{ modelValue ? formatDateRange(modelValue) : placeholder }}
-      </Button>
-    </PopoverTrigger>
-    <PopoverContent>
-      <RangeCalendarRoot :number-of-months="effectiveMonths" />
-    </PopoverContent>
-  </Popover>
-</template>`
 
 const vueUsageCode = `<script setup lang="ts">
 import { ref } from 'vue'

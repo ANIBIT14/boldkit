@@ -7,16 +7,9 @@ import {
 import { Button } from '@/components/ui/button'
 import { ComponentDoc, ExampleSection } from '@/components/docs/ComponentDoc'
 import { ChevronsUpDown } from 'lucide-react'
+import sourceCode from '@/components/ui/collapsible.tsx?raw'
+import vueSourceCode from '@vue-ui/Collapsible.vue?raw'
 
-const sourceCode = `import * as CollapsiblePrimitive from '@radix-ui/react-collapsible'
-
-const Collapsible = CollapsiblePrimitive.Root
-
-const CollapsibleTrigger = CollapsiblePrimitive.CollapsibleTrigger
-
-const CollapsibleContent = CollapsiblePrimitive.CollapsibleContent
-
-export { Collapsible, CollapsibleTrigger, CollapsibleContent }`
 
 const usageCode = `import {
   Collapsible,
@@ -43,15 +36,6 @@ export default function Example() {
   )
 }`
 
-const vueSourceCode = `<script setup lang="ts">
-import { CollapsibleRoot, CollapsibleContent, CollapsibleTrigger } from 'reka-ui'
-</script>
-
-<template>
-  <CollapsibleRoot v-bind="$attrs">
-    <slot />
-  </CollapsibleRoot>
-</template>`
 
 const vueUsageCode = `<script setup lang="ts">
 import {

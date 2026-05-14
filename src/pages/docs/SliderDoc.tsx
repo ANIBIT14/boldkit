@@ -1,35 +1,9 @@
 import { useState } from 'react'
 import { Slider } from '@/components/ui/slider'
 import { ComponentDoc, ExampleSection } from '@/components/docs/ComponentDoc'
+import sourceCode from '@/components/ui/slider.tsx?raw'
+import vueSourceCode from '@vue-ui/Slider.vue?raw'
 
-const sourceCode = `import * as React from 'react'
-import { cn } from '@/lib/utils'
-
-export interface SliderProps {
-  value?: number[]
-  defaultValue?: number[]
-  min?: number
-  max?: number
-  step?: number
-  onValueChange?: (value: number[]) => void
-  onValueCommit?: (value: number[]) => void
-  disabled?: boolean
-  orientation?: 'horizontal' | 'vertical'
-  // Jelly physics settings
-  stiffness?: number  // Spring stiffness (higher = snappier)
-  damping?: number    // Damping ratio (higher = less bouncy)
-  mass?: number       // Mass of thumb (higher = more inertia)
-}
-
-const Slider = React.forwardRef<HTMLDivElement, SliderProps>(
-  ({ value, defaultValue, min, max, step, onValueChange, disabled, stiffness, damping, mass, ... }, ref) => {
-    // Spring physics implementation with jelly squish effect
-    // Supports single value and range (two thumbs)
-    // Click anywhere on track to move nearest thumb
-  }
-)
-
-export { Slider }`
 
 const usageCode = `import { Slider } from '@/components/ui/slider'
 
@@ -39,50 +13,6 @@ export default function Example() {
   )
 }`
 
-const vueSourceCode = `<script setup lang="ts">
-import { ref, computed, onMounted, onUnmounted } from 'vue'
-import { cn } from '@/lib/utils'
-
-const props = withDefaults(defineProps<{
-  modelValue?: number[]
-  defaultValue?: number[]
-  min?: number
-  max?: number
-  step?: number
-  disabled?: boolean
-  orientation?: 'horizontal' | 'vertical'
-  stiffness?: number
-  damping?: number
-  mass?: number
-}>(), {
-  defaultValue: () => [0],
-  min: 0,
-  max: 100,
-  step: 1,
-  stiffness: 400,
-  damping: 28,
-  mass: 1
-})
-
-const emit = defineEmits<{
-  'update:modelValue': [value: number[]]
-}>()
-
-// Spring physics implementation
-// Jelly squish effect on drag
-// Click on track to move nearest thumb
-</script>
-
-<template>
-  <div :class="cn('relative flex touch-none select-none items-center w-full py-2')">
-    <!-- Track with click handler -->
-    <div class="relative h-4 w-full cursor-pointer border-3 border-foreground bg-muted shadow-[4px_4px_0px_hsl(var(--shadow-color))]">
-      <div class="absolute h-full bg-primary" :style="{ width: position + '%' }" />
-    </div>
-    <!-- Thumb with jelly physics -->
-    <div class="absolute h-7 w-7 cursor-grab border-3 border-foreground bg-background shadow-[4px_4px_0px_hsl(var(--shadow-color))]" />
-  </div>
-</template>`
 
 const vueUsageCode = `<script setup lang="ts">
 import { ref } from 'vue'

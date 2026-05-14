@@ -12,64 +12,9 @@ import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { ComponentDoc, ExampleSection } from '@/components/docs/ComponentDoc'
+import sourceCode from '@/components/ui/drawer.tsx?raw'
+import vueSourceCode from '@vue-ui/Drawer.vue?raw'
 
-const sourceCode = `import * as React from 'react'
-import { Drawer as DrawerPrimitive } from 'vaul'
-import { cn } from '@/lib/utils'
-
-const Drawer = ({ shouldScaleBackground = true, ...props }: React.ComponentProps<typeof DrawerPrimitive.Root>) => (
-  <DrawerPrimitive.Root shouldScaleBackground={shouldScaleBackground} {...props} />
-)
-
-const DrawerTrigger = DrawerPrimitive.Trigger
-const DrawerPortal = DrawerPrimitive.Portal
-const DrawerClose = DrawerPrimitive.Close
-
-const DrawerOverlay = React.forwardRef<
-  React.ElementRef<typeof DrawerPrimitive.Overlay>,
-  React.ComponentPropsWithoutRef<typeof DrawerPrimitive.Overlay>
->(({ className, ...props }, ref) => (
-  <DrawerPrimitive.Overlay
-    ref={ref}
-    className={cn('fixed inset-0 z-50 bg-black/70', className)}
-    {...props}
-  />
-))
-
-const DrawerContent = React.forwardRef<
-  React.ElementRef<typeof DrawerPrimitive.Content>,
-  React.ComponentPropsWithoutRef<typeof DrawerPrimitive.Content>
->(({ className, children, ...props }, ref) => (
-  <DrawerPortal>
-    <DrawerOverlay />
-    <DrawerPrimitive.Content
-      ref={ref}
-      className={cn(
-        'fixed inset-x-0 bottom-0 z-50 mt-24 flex h-auto flex-col border-t-3 border-x-3 border-foreground bg-background shadow-[0px_-8px_0px_hsl(var(--shadow-color))]',
-        className
-      )}
-      {...props}
-    >
-      <div className="mx-auto mt-4 h-2 w-[100px] bg-foreground" />
-      {children}
-    </DrawerPrimitive.Content>
-  </DrawerPortal>
-))
-
-// ... DrawerHeader, DrawerFooter, DrawerTitle, DrawerDescription
-
-export {
-  Drawer,
-  DrawerPortal,
-  DrawerOverlay,
-  DrawerTrigger,
-  DrawerClose,
-  DrawerContent,
-  DrawerHeader,
-  DrawerFooter,
-  DrawerTitle,
-  DrawerDescription,
-}`
 
 const usageCode = `import {
   Drawer,
@@ -96,30 +41,6 @@ export default function Example() {
   )
 }`
 
-const vueSourceCode = `<script setup lang="ts">
-import { DrawerRoot, DrawerTrigger, DrawerPortal, DrawerOverlay, DrawerContent, DrawerClose, DrawerTitle, DrawerDescription } from 'vaul-vue'
-import { cn } from '@/lib/utils'
-
-defineProps<{
-  shouldScaleBackground?: boolean
-  class?: string
-}>()
-</script>
-
-<template>
-  <DrawerPortal>
-    <DrawerOverlay class="fixed inset-0 z-50 bg-black/70" />
-    <DrawerContent
-      :class="cn(
-        'fixed inset-x-0 bottom-0 z-50 mt-24 flex h-auto flex-col border-t-3 border-x-3 border-foreground bg-background shadow-[0px_-8px_0px_hsl(var(--shadow-color))]',
-        props.class
-      )"
-    >
-      <div class="mx-auto mt-4 h-2 w-[100px] bg-foreground" />
-      <slot />
-    </DrawerContent>
-  </DrawerPortal>
-</template>`
 
 const vueUsageCode = `<script setup lang="ts">
 import {

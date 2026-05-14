@@ -14,35 +14,9 @@ import {
   SidebarInset,
 } from '@/components/ui/sidebar'
 import { ComponentDoc, ExampleSection } from '@/components/docs/ComponentDoc'
+import sourceCode from '@/components/ui/sidebar.tsx?raw'
+import vueSourceCode from '@vue-ui/Sidebar.vue?raw'
 
-const sourceCode = `import * as React from 'react'
-import { cva, type VariantProps } from 'class-variance-authority'
-import { PanelLeft } from 'lucide-react'
-import { Button } from '@/components/ui/button'
-import { Sheet, SheetContent } from '@/components/ui/sheet'
-import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip'
-
-interface SidebarProviderProps extends React.HTMLAttributes<HTMLDivElement> {
-  defaultOpen?: boolean
-  open?: boolean
-  onOpenChange?: (open: boolean) => void
-}
-
-interface SidebarProps extends React.HTMLAttributes<HTMLDivElement> {
-  collapsible?: 'none' | 'icon' | 'hidden'
-  side?: 'left' | 'right'
-}
-
-interface SidebarItemProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  icon?: React.ReactNode
-  tooltip?: string
-  variant?: 'default' | 'active'
-}
-
-// Sub-components: Sidebar, SidebarProvider, SidebarHeader, SidebarContent, SidebarFooter,
-// SidebarGroup, SidebarGroupLabel, SidebarItem, SidebarSeparator, SidebarToggle, SidebarInset
-
-export { Sidebar, SidebarProvider, SidebarHeader, SidebarContent, SidebarFooter, ... }`
 
 const usageCode = `import {
   Sidebar, SidebarProvider, SidebarHeader, SidebarContent,
@@ -67,44 +41,6 @@ export default function Example() {
   )
 }`
 
-const vueSourceCode = `<script setup lang="ts">
-import { provide, ref, computed, onMounted, onUnmounted } from 'vue'
-import { cva, type VariantProps } from 'class-variance-authority'
-import { PanelLeft } from 'lucide-vue-next'
-import { cn } from '@/lib/utils'
-import { useSidebar, SIDEBAR_INJECTION_KEY } from '@/composables/useSidebar'
-import Button from './Button.vue'
-import Sheet from './Sheet.vue'
-import SheetContent from './SheetContent.vue'
-
-const sidebarVariants = cva(
-  'relative flex h-full flex-col border-r-3 border-foreground bg-background transition-all duration-300',
-  {
-    variants: {
-      collapsible: {
-        none: 'w-[var(--sidebar-width)]',
-        icon: 'w-[var(--sidebar-width)] group-data-[state=collapsed]/sidebar:w-[var(--sidebar-width-collapsed)]',
-        hidden: 'w-[var(--sidebar-width)] group-data-[state=collapsed]/sidebar:w-0',
-      },
-      side: { left: '', right: 'border-r-0 border-l-3' },
-    },
-    defaultVariants: { collapsible: 'icon', side: 'left' },
-  }
-)
-
-interface Props {
-  side?: 'left' | 'right'
-  collapsible?: 'none' | 'icon' | 'hidden'
-}
-const props = withDefaults(defineProps<Props>(), { side: 'left', collapsible: 'icon' })
-</script>
-
-<template>
-  <Sheet v-if="isMobile"><SheetContent><slot /></SheetContent></Sheet>
-  <div v-else :class="cn(sidebarVariants({ collapsible, side }))"><slot /></div>
-</template>
-
-<!-- Sub-components: SidebarProvider, SidebarHeader, SidebarContent, SidebarFooter, SidebarGroup, SidebarGroupLabel, SidebarItem, SidebarSeparator, SidebarToggle, SidebarInset -->`
 
 const vueUsageCode = `<script setup lang="ts">
 import { Sidebar, SidebarProvider, SidebarHeader, SidebarContent, SidebarItem, SidebarToggle, SidebarInset } from '@/components/ui/sidebar'

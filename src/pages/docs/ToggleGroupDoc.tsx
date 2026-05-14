@@ -1,65 +1,9 @@
 import { ToggleGroup, ToggleGroupItem } from '@/components/ui/toggle-group'
 import { AlignLeft, AlignCenter, AlignRight, Bold, Italic, Underline } from 'lucide-react'
 import { ComponentDoc, ExampleSection } from '@/components/docs/ComponentDoc'
+import sourceCode from '@/components/ui/toggle-group.tsx?raw'
+import vueSourceCode from '@vue-ui/ToggleGroup.vue?raw'
 
-const sourceCode = `import * as React from 'react'
-import * as ToggleGroupPrimitive from '@radix-ui/react-toggle-group'
-import { type VariantProps } from 'class-variance-authority'
-import { cn } from '@/lib/utils'
-import { toggleVariants } from '@/components/ui/toggle'
-
-const ToggleGroupContext = React.createContext<
-  VariantProps<typeof toggleVariants>
->({
-  size: 'default',
-  variant: 'default',
-})
-
-const ToggleGroup = React.forwardRef<
-  React.ElementRef<typeof ToggleGroupPrimitive.Root>,
-  React.ComponentPropsWithoutRef<typeof ToggleGroupPrimitive.Root> &
-    VariantProps<typeof toggleVariants>
->(({ className, variant, size, children, ...props }, ref) => (
-  <ToggleGroupPrimitive.Root
-    ref={ref}
-    className={cn('flex items-center justify-center gap-1', className)}
-    {...props}
-  >
-    <ToggleGroupContext.Provider value={{ variant, size }}>
-      {children}
-    </ToggleGroupContext.Provider>
-  </ToggleGroupPrimitive.Root>
-))
-
-ToggleGroup.displayName = ToggleGroupPrimitive.Root.displayName
-
-const ToggleGroupItem = React.forwardRef<
-  React.ElementRef<typeof ToggleGroupPrimitive.Item>,
-  React.ComponentPropsWithoutRef<typeof ToggleGroupPrimitive.Item> &
-    VariantProps<typeof toggleVariants>
->(({ className, children, variant, size, ...props }, ref) => {
-  const context = React.useContext(ToggleGroupContext)
-
-  return (
-    <ToggleGroupPrimitive.Item
-      ref={ref}
-      className={cn(
-        toggleVariants({
-          variant: context.variant || variant,
-          size: context.size || size,
-        }),
-        className
-      )}
-      {...props}
-    >
-      {children}
-    </ToggleGroupPrimitive.Item>
-  )
-})
-
-ToggleGroupItem.displayName = ToggleGroupPrimitive.Item.displayName
-
-export { ToggleGroup, ToggleGroupItem }`
 
 const usageCode = `import { ToggleGroup, ToggleGroupItem } from '@/components/ui/toggle-group'
 import { AlignLeft, AlignCenter, AlignRight } from 'lucide-react'
@@ -80,59 +24,6 @@ export default function Example() {
   )
 }`
 
-const vueSourceCode = `<script setup lang="ts">
-import { ToggleGroupRoot, ToggleGroupItem as ToggleGroupItemPrimitive } from 'reka-ui'
-import { type VariantProps } from 'class-variance-authority'
-import { cn } from '@/lib/utils'
-import { toggleVariants } from './Toggle.vue'
-import { provide, inject, type InjectionKey } from 'vue'
-
-type ToggleGroupContext = VariantProps<typeof toggleVariants>
-const toggleGroupKey: InjectionKey<ToggleGroupContext> = Symbol('toggleGroup')
-
-defineProps<{
-  class?: string
-  variant?: ToggleGroupContext['variant']
-  size?: ToggleGroupContext['size']
-}>()
-
-provide(toggleGroupKey, { variant: props.variant, size: props.size })
-</script>
-
-<!-- ToggleGroup -->
-<template>
-  <ToggleGroupRoot :class="cn('flex items-center justify-center gap-1', props.class)" v-bind="$attrs">
-    <slot />
-  </ToggleGroupRoot>
-</template>
-
-<!-- ToggleGroupItem -->
-<script setup lang="ts">
-const context = inject(toggleGroupKey, { size: 'default', variant: 'default' })
-
-defineProps<{
-  class?: string
-  value: string
-  variant?: ToggleGroupContext['variant']
-  size?: ToggleGroupContext['size']
-}>()
-</script>
-
-<template>
-  <ToggleGroupItemPrimitive
-    :value="value"
-    :class="cn(
-      toggleVariants({
-        variant: context.variant ?? variant,
-        size: context.size ?? size,
-      }),
-      props.class
-    )"
-    v-bind="$attrs"
-  >
-    <slot />
-  </ToggleGroupItemPrimitive>
-</template>`
 
 const vueUsageCode = `<script setup lang="ts">
 import { ToggleGroup, ToggleGroupItem } from '@/components/ui'

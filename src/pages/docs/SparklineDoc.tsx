@@ -1,37 +1,7 @@
 import { Sparkline } from '@/components/ui/chart'
 import { ComponentDoc, ExampleSection } from '@/components/docs/ComponentDoc'
+import sourceCode from '@/components/ui/chart/sparkline.tsx?raw'
 
-const sourceCode = `import * as React from 'react'
-import { cn } from '@/lib/utils'
-import {
-  Area,
-  AreaChart,
-  Bar,
-  BarChart,
-  Line,
-  LineChart,
-  ResponsiveContainer,
-} from 'recharts'
-
-export interface SparklineProps extends React.HTMLAttributes<HTMLDivElement> {
-  data: number[]
-  type?: 'line' | 'area' | 'bar'
-  color?: string
-  height?: number
-  width?: number | string
-  showEndDot?: boolean
-  strokeWidth?: number
-  trend?: 'up' | 'down' | 'neutral'
-  animated?: boolean
-}
-
-const Sparkline = React.forwardRef<HTMLDivElement, SparklineProps>(
-  ({ data, type = 'line', color, height = 32, width = '100%', showEndDot = false, strokeWidth = 2, trend, animated = true, className, ...props }, ref) => {
-    // Renders a minimal chart based on type
-  }
-)
-
-export { Sparkline }`
 
 const vueSourceCode = `<script setup lang="ts">
 import { computed } from 'vue'

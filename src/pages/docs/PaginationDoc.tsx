@@ -8,68 +8,9 @@ import {
   PaginationPrevious,
 } from '@/components/ui/pagination'
 import { ComponentDoc, ExampleSection } from '@/components/docs/ComponentDoc'
+import sourceCode from '@/components/ui/pagination.tsx?raw'
+import vueSourceCode from '@vue-ui/Pagination.vue?raw'
 
-const sourceCode = `import * as React from 'react'
-import { ChevronLeft, ChevronRight, MoreHorizontal } from 'lucide-react'
-import { cn } from '@/lib/utils'
-import { ButtonProps, buttonVariants } from '@/components/ui/button'
-
-const Pagination = ({ className, ...props }: React.ComponentProps<'nav'>) => (
-  <nav
-    role="navigation"
-    aria-label="pagination"
-    className={cn('mx-auto flex w-full justify-center', className)}
-    {...props}
-  />
-)
-
-const PaginationContent = React.forwardRef<
-  HTMLUListElement,
-  React.ComponentProps<'ul'>
->(({ className, ...props }, ref) => (
-  <ul ref={ref} className={cn('flex flex-row items-center gap-1', className)} {...props} />
-))
-
-const PaginationItem = React.forwardRef<
-  HTMLLIElement,
-  React.ComponentProps<'li'>
->(({ className, ...props }, ref) => (
-  <li ref={ref} className={cn('', className)} {...props} />
-))
-
-const PaginationLink = ({
-  className,
-  isActive,
-  size = 'icon',
-  ...props
-}: {
-  isActive?: boolean
-} & Pick<ButtonProps, 'size'> &
-  React.ComponentProps<'a'>) => (
-  <a
-    aria-current={isActive ? 'page' : undefined}
-    className={cn(
-      buttonVariants({
-        variant: isActive ? 'default' : 'outline',
-        size,
-      }),
-      className
-    )}
-    {...props}
-  />
-)
-
-// ... PaginationPrevious, PaginationNext, PaginationEllipsis
-
-export {
-  Pagination,
-  PaginationContent,
-  PaginationEllipsis,
-  PaginationItem,
-  PaginationLink,
-  PaginationNext,
-  PaginationPrevious,
-}`
 
 const usageCode = `import {
   Pagination,
@@ -104,75 +45,6 @@ export default function Example() {
   )
 }`
 
-const vueSourceCode = `<script setup lang="ts">
-import { ChevronLeft, ChevronRight, MoreHorizontal } from 'lucide-vue-next'
-import { cn } from '@/lib/utils'
-import { buttonVariants } from './Button.vue'
-
-defineProps<{
-  class?: string
-  isActive?: boolean
-}>()
-</script>
-
-<!-- Pagination -->
-<template>
-  <nav role="navigation" aria-label="pagination" :class="cn('mx-auto flex w-full justify-center', props.class)">
-    <slot />
-  </nav>
-</template>
-
-<!-- PaginationContent -->
-<template>
-  <ul :class="cn('flex flex-row items-center gap-1', props.class)">
-    <slot />
-  </ul>
-</template>
-
-<!-- PaginationItem -->
-<template>
-  <li :class="props.class">
-    <slot />
-  </li>
-</template>
-
-<!-- PaginationLink -->
-<template>
-  <a
-    :aria-current="isActive ? 'page' : undefined"
-    :class="cn(
-      buttonVariants({ variant: isActive ? 'default' : 'outline', size: 'icon' }),
-      props.class
-    )"
-    v-bind="$attrs"
-  >
-    <slot />
-  </a>
-</template>
-
-<!-- PaginationPrevious -->
-<template>
-  <a :class="cn(buttonVariants({ variant: 'outline', size: 'default' }), 'gap-1 pl-2.5', props.class)" v-bind="$attrs">
-    <ChevronLeft class="h-4 w-4 stroke-[3]" />
-    <span>Previous</span>
-  </a>
-</template>
-
-<!-- PaginationNext -->
-<template>
-  <a :class="cn(buttonVariants({ variant: 'outline', size: 'default' }), 'gap-1 pr-2.5', props.class)" v-bind="$attrs">
-    <span>Next</span>
-    <ChevronRight class="h-4 w-4 stroke-[3]" />
-  </a>
-</template>
-
-<!-- PaginationEllipsis -->
-<template>
-  <span :class="cn('flex h-10 w-10 items-center justify-center', props.class)">
-    <MoreHorizontal class="h-4 w-4 stroke-[3]" />
-    <span class="sr-only">More pages</span>
-  </span>
-</template>`
 
 const vueUsageCode = `<script setup lang="ts">
 import {

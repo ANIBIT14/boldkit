@@ -7,31 +7,9 @@ import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import { Button } from '@/components/ui/button'
 import { CalendarDays } from 'lucide-react'
 import { ComponentDoc, ExampleSection } from '@/components/docs/ComponentDoc'
+import sourceCode from '@/components/ui/hover-card.tsx?raw'
+import vueSourceCode from '@vue-ui/HoverCard.vue?raw'
 
-const sourceCode = `import * as React from 'react'
-import * as HoverCardPrimitive from '@radix-ui/react-hover-card'
-import { cn } from '@/lib/utils'
-
-const HoverCard = HoverCardPrimitive.Root
-const HoverCardTrigger = HoverCardPrimitive.Trigger
-
-const HoverCardContent = React.forwardRef<
-  React.ElementRef<typeof HoverCardPrimitive.Content>,
-  React.ComponentPropsWithoutRef<typeof HoverCardPrimitive.Content>
->(({ className, align = 'center', sideOffset = 4, ...props }, ref) => (
-  <HoverCardPrimitive.Content
-    ref={ref}
-    align={align}
-    sideOffset={sideOffset}
-    className={cn(
-      'z-50 w-64 border-3 border-foreground bg-background p-4 shadow-[4px_4px_0px_hsl(var(--shadow-color))] outline-none data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95',
-      className
-    )}
-    {...props}
-  />
-))
-
-export { HoverCard, HoverCardTrigger, HoverCardContent }`
 
 const usageCode = `import {
   HoverCard,
@@ -52,31 +30,6 @@ export default function Example() {
   )
 }`
 
-const vueSourceCode = `<script setup lang="ts">
-import { HoverCardRoot, HoverCardTrigger, HoverCardPortal, HoverCardContent } from 'reka-ui'
-import { cn } from '@/lib/utils'
-
-defineProps<{
-  class?: string
-  align?: 'start' | 'center' | 'end'
-  sideOffset?: number
-}>()
-</script>
-
-<template>
-  <HoverCardPortal>
-    <HoverCardContent
-      :align="align ?? 'center'"
-      :side-offset="sideOffset ?? 4"
-      :class="cn(
-        'z-50 w-64 border-3 border-foreground bg-background p-4 shadow-[4px_4px_0px_hsl(var(--shadow-color))] outline-none data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95',
-        props.class
-      )"
-    >
-      <slot />
-    </HoverCardContent>
-  </HoverCardPortal>
-</template>`
 
 const vueUsageCode = `<script setup lang="ts">
 import {

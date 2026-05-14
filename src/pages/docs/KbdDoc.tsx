@@ -1,97 +1,9 @@
 import { Kbd, KbdCombo } from '@/components/ui/kbd'
 import { ComponentDoc, ExampleSection } from '@/components/docs/ComponentDoc'
+import sourceCode from '@/components/ui/kbd.tsx?raw'
+import vueSourceCode from '@vue-ui/Kbd.vue?raw'
 
-const sourceCode = `import * as React from 'react'
-import { cva, type VariantProps } from 'class-variance-authority'
-import { cn } from '@/lib/utils'
 
-const kbdVariants = cva(
-  'inline-flex items-center justify-center font-mono font-bold uppercase border-3 border-foreground',
-  {
-    variants: {
-      variant: {
-        default: 'bg-muted shadow-[2px_2px_0px_hsl(var(--shadow-color))]',
-        outline: 'bg-background',
-        ghost: 'bg-transparent border-transparent text-muted-foreground',
-      },
-      size: {
-        sm: 'min-w-5 h-5 px-1 text-[10px]',
-        md: 'min-w-6 h-6 px-1.5 text-xs',
-        lg: 'min-w-8 h-8 px-2 text-sm',
-      },
-    },
-    defaultVariants: {
-      variant: 'default',
-      size: 'md',
-    },
-  }
-)
-
-export interface KbdProps
-  extends React.HTMLAttributes<HTMLElement>,
-    VariantProps<typeof kbdVariants> {}
-
-const Kbd = React.forwardRef<HTMLElement, KbdProps>(
-  ({ className, variant, size, ...props }, ref) => {
-    return (
-      <kbd
-        ref={ref}
-        className={cn(kbdVariants({ variant, size, className }))}
-        {...props}
-      />
-    )
-  }
-)
-Kbd.displayName = 'Kbd'
-
-export { Kbd, kbdVariants }`
-
-const vueSourceCode = `<script setup lang="ts">
-import { computed } from 'vue'
-import { cva, type VariantProps } from 'class-variance-authority'
-import { cn } from '@/lib/utils'
-
-const kbdVariants = cva(
-  'inline-flex items-center justify-center font-mono font-bold uppercase border-3 border-foreground',
-  {
-    variants: {
-      variant: {
-        default: 'bg-muted shadow-[2px_2px_0px_hsl(var(--shadow-color))]',
-        outline: 'bg-background',
-        ghost: 'bg-transparent border-transparent text-muted-foreground',
-      },
-      size: {
-        sm: 'min-w-5 h-5 px-1 text-[10px]',
-        md: 'min-w-6 h-6 px-1.5 text-xs',
-        lg: 'min-w-8 h-8 px-2 text-sm',
-      },
-    },
-    defaultVariants: {
-      variant: 'default',
-      size: 'md',
-    },
-  }
-)
-
-type KbdVariants = VariantProps<typeof kbdVariants>
-
-interface KbdProps {
-  variant?: KbdVariants['variant']
-  size?: KbdVariants['size']
-  class?: string
-}
-
-const props = withDefaults(defineProps<KbdProps>(), {
-  variant: 'default',
-  size: 'md',
-})
-</script>
-
-<template>
-  <kbd :class="cn(kbdVariants({ variant: props.variant, size: props.size }), props.class)">
-    <slot />
-  </kbd>
-</template>`
 
 const usageCode = `import { Kbd, KbdCombo } from '@/components/ui/kbd'
 

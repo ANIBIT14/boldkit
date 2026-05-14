@@ -3,30 +3,9 @@ import { Label } from '@/components/ui/label'
 import { Button } from '@/components/ui/button'
 import { ComponentDoc, ExampleSection } from '@/components/docs/ComponentDoc'
 import { Search } from 'lucide-react'
+import sourceCode from '@/components/ui/input.tsx?raw'
+import vueSourceCode from '@vue-ui/Input.vue?raw'
 
-const sourceCode = `import * as React from 'react'
-import { cn } from '@/lib/utils'
-
-export interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {}
-
-const Input = React.forwardRef<HTMLInputElement, InputProps>(
-  ({ className, type, ...props }, ref) => {
-    return (
-      <input
-        type={type}
-        className={cn(
-          'flex h-11 w-full border-3 border-foreground bg-background px-3 py-2 text-sm file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50 bk-shadow',
-          className
-        )}
-        ref={ref}
-        {...props}
-      />
-    )
-  }
-)
-Input.displayName = 'Input'
-
-export { Input }`
 
 const usageCode = `import { Input } from '@/components/ui/input'
 
@@ -34,27 +13,6 @@ export default function Example() {
   return <Input type="email" placeholder="Email" />
 }`
 
-const vueSourceCode = `<script setup lang="ts">
-import { computed } from 'vue'
-import { cn } from '@/lib/utils'
-
-const props = defineProps<{
-  class?: string
-  modelValue?: string
-}>()
-
-const emit = defineEmits<{
-  'update:modelValue': [value: string]
-}>()
-</script>
-
-<template>
-  <input
-    :class="cn('flex h-11 w-full border-3 border-foreground bg-background px-3 py-2 text-sm placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50 shadow-[4px_4px_0px_hsl(var(--shadow-color))]', props.class)"
-    :value="modelValue"
-    @input="emit('update:modelValue', ($event.target as HTMLInputElement).value)"
-  />
-</template>`
 
 const vueUsageCode = `<script setup lang="ts">
 import { ref } from 'vue'

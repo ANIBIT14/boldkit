@@ -1,52 +1,9 @@
 import { ScrollArea, ScrollBar } from '@/components/ui/scroll-area'
 import { Separator } from '@/components/ui/separator'
 import { ComponentDoc, ExampleSection } from '@/components/docs/ComponentDoc'
+import sourceCode from '@/components/ui/scroll-area.tsx?raw'
+import vueSourceCode from '@vue-ui/ScrollArea.vue?raw'
 
-const sourceCode = `import * as React from 'react'
-import * as ScrollAreaPrimitive from '@radix-ui/react-scroll-area'
-import { cn } from '@/lib/utils'
-
-const ScrollArea = React.forwardRef<
-  React.ElementRef<typeof ScrollAreaPrimitive.Root>,
-  React.ComponentPropsWithoutRef<typeof ScrollAreaPrimitive.Root>
->(({ className, children, ...props }, ref) => (
-  <ScrollAreaPrimitive.Root
-    ref={ref}
-    className={cn('relative overflow-hidden', className)}
-    {...props}
-  >
-    <ScrollAreaPrimitive.Viewport className="h-full w-full rounded-[inherit]">
-      {children}
-    </ScrollAreaPrimitive.Viewport>
-    <ScrollBar />
-    <ScrollAreaPrimitive.Corner />
-  </ScrollAreaPrimitive.Root>
-))
-ScrollArea.displayName = ScrollAreaPrimitive.Root.displayName
-
-const ScrollBar = React.forwardRef<
-  React.ElementRef<typeof ScrollAreaPrimitive.ScrollAreaScrollbar>,
-  React.ComponentPropsWithoutRef<typeof ScrollAreaPrimitive.ScrollAreaScrollbar>
->(({ className, orientation = 'vertical', ...props }, ref) => (
-  <ScrollAreaPrimitive.ScrollAreaScrollbar
-    ref={ref}
-    orientation={orientation}
-    className={cn(
-      'flex touch-none select-none transition-colors',
-      orientation === 'vertical' &&
-        'h-full w-3 border-l-3 border-l-transparent p-[1px]',
-      orientation === 'horizontal' &&
-        'h-3 flex-col border-t-3 border-t-transparent p-[1px]',
-      className
-    )}
-    {...props}
-  >
-    <ScrollAreaPrimitive.ScrollAreaThumb className="relative flex-1 bg-foreground" />
-  </ScrollAreaPrimitive.ScrollAreaScrollbar>
-))
-ScrollBar.displayName = ScrollAreaPrimitive.ScrollAreaScrollbar.displayName
-
-export { ScrollArea, ScrollBar }`
 
 const usageCode = `import { ScrollArea } from '@/components/ui/scroll-area'
 
@@ -60,35 +17,6 @@ export default function Example() {
   )
 }`
 
-const vueSourceCode = `<script setup lang="ts">
-import { ScrollAreaRoot, ScrollAreaViewport, ScrollAreaScrollbar, ScrollAreaThumb, ScrollAreaCorner } from 'reka-ui'
-import { cn } from '@/lib/utils'
-
-defineProps<{
-  class?: string
-  orientation?: 'vertical' | 'horizontal'
-}>()
-</script>
-
-<template>
-  <ScrollAreaRoot :class="cn('relative overflow-hidden', props.class)">
-    <ScrollAreaViewport class="h-full w-full rounded-[inherit]">
-      <slot />
-    </ScrollAreaViewport>
-    <ScrollAreaScrollbar
-      :orientation="orientation ?? 'vertical'"
-      :class="cn(
-        'flex touch-none select-none transition-colors',
-        orientation === 'horizontal'
-          ? 'h-3 flex-col border-t-3 border-t-transparent p-[1px]'
-          : 'h-full w-3 border-l-3 border-l-transparent p-[1px]'
-      )"
-    >
-      <ScrollAreaThumb class="relative flex-1 bg-foreground" />
-    </ScrollAreaScrollbar>
-    <ScrollAreaCorner />
-  </ScrollAreaRoot>
-</template>`
 
 const vueUsageCode = `<script setup lang="ts">
 import { ScrollArea } from '@/components/ui'
