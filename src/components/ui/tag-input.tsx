@@ -2,6 +2,13 @@ import * as React from 'react'
 import { cn } from '@/lib/utils'
 import { X } from 'lucide-react'
 
+export interface TagInputHandle {
+  focus: () => void
+  blur: () => void
+  get value(): string
+  set value(v: string)
+}
+
 export interface TagInputProps
   extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'value' | 'defaultValue' | 'onChange'> {
   value?: string[]
@@ -14,7 +21,7 @@ export interface TagInputProps
   validateTag?: (tag: string) => boolean | string
 }
 
-const TagInput = React.forwardRef<HTMLInputElement, TagInputProps>(
+const TagInput = React.forwardRef<TagInputHandle, TagInputProps>(
   (
     {
       value: controlledValue,
@@ -46,7 +53,7 @@ const TagInput = React.forwardRef<HTMLInputElement, TagInputProps>(
       blur: () => inputRef.current?.blur(),
       get value() { return inputRef.current?.value ?? '' },
       set value(v: string) { if (inputRef.current) inputRef.current.value = v },
-    }) as unknown as HTMLInputElement)
+    }))
 
     const isControlled = controlledValue !== undefined
     const tags = isControlled ? controlledValue : uncontrolledTags
