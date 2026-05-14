@@ -35,7 +35,7 @@
     "clsx": "^2.1.1",
     "echarts": "^6.0.0",
     "embla-carousel-vue": "^8.6.0",
-    "lucide-vue-next": "^0.468.0",
+    "lucide-vue-next": "^1.0.0",
     "reka-ui": "^2.1.1",
     "tailwind-merge": "^3.4.0",
     "vaul-vue": "^0.2.1",
