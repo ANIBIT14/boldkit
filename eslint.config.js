@@ -8,7 +8,7 @@ import vuePlugin from 'eslint-plugin-vue'
 import vueParser from 'vue-eslint-parser'
 
 export default defineConfig([
-  globalIgnores(['dist']),
+  globalIgnores(['dist', '.worktrees', 'registry']),
   {
     files: ['**/*.{ts,tsx}'],
     extends: [

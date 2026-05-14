@@ -1,3 +1,4 @@
+/* eslint-disable react-refresh/only-export-components */
 // Re-export all chart components from the chart directory
 // This maintains backward compatibility with existing imports
 

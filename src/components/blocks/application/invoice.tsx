@@ -1,3 +1,4 @@
+/* eslint-disable react-refresh/only-export-components */
 import * as React from 'react'
 import { Button } from '@/components/ui/button'
 import { Separator } from '@/components/ui/separator'
