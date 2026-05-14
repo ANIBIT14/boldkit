@@ -813,7 +813,7 @@ export function Blocks() {
       <Layout>
         {/* ── Hero ───────────────────────────────────────────────── */}
         <div className="relative border-b-3 border-foreground bg-muted overflow-hidden">
-          <div className="grid-pattern absolute inset-0 opacity-15" />
+          <div className="grid-pattern absolute inset-0 opacity-15 pointer-events-none" />
 
           {/* Stats bar — top strip */}
           <div className="border-b-3 border-foreground flex overflow-x-auto">
@@ -831,9 +831,7 @@ export function Blocks() {
                 <span className="text-[10px] font-bold uppercase tracking-widest hidden sm:block">{s.label}</span>
               </div>
             ))}
-            <div className="flex-1 flex items-center justify-end px-4">
-              <FrameworkToggle />
-            </div>
+            <div className="flex-1" />
           </div>
 
           {/* Main heading */}
@@ -867,8 +865,10 @@ export function Blocks() {
                 </p>
               </div>
 
-              {/* Category tabs — right side on desktop */}
-              <div className="flex gap-0 border-3 border-foreground self-start lg:self-end shadow-[4px_4px_0px_hsl(var(--shadow-color))]">
+              {/* Category tabs + framework toggle — right side on desktop */}
+              <div className="flex flex-col items-start lg:items-end gap-3 self-start lg:self-end">
+              <FrameworkToggle size="sm" />
+              <div className="flex gap-0 border-3 border-foreground shadow-[4px_4px_0px_hsl(var(--shadow-color))]">
                 <button
                   onClick={() => setActiveTab('marketing')}
                   className={`flex items-center gap-2 px-4 py-2.5 font-bold uppercase text-sm tracking-wide transition-colors touch-manipulation ${
@@ -898,6 +898,7 @@ export function Blocks() {
                     {applicationBlocks.length}
                   </span>
                 </button>
+              </div>
               </div>
             </div>
           </div>
