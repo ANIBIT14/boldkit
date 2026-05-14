@@ -19,6 +19,8 @@ export interface SankeyChartProps extends React.HTMLAttributes<HTMLDivElement> {
   height?: number
   showTooltip?: boolean
   showLabels?: boolean
+  /** Accessible label for screen readers (default: "Sankey chart") */
+  ariaLabel?: string
 }
 
 const NODE_COLORS = [
@@ -197,6 +199,7 @@ const SankeyChart = React.forwardRef<HTMLDivElement, SankeyChartProps>(
       height = 320,
       showTooltip = true,
       showLabels = true,
+      ariaLabel = 'Sankey chart',
       className,
       ...props
     },
@@ -234,6 +237,8 @@ const SankeyChart = React.forwardRef<HTMLDivElement, SankeyChartProps>(
     return (
       <div
         ref={ref}
+        role="img"
+        aria-label={ariaLabel}
         className={cn('relative w-full', className)}
         {...props}
       >

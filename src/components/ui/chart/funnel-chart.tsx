@@ -14,6 +14,8 @@ export interface FunnelChartProps extends React.HTMLAttributes<HTMLDivElement> {
   showTooltip?: boolean
   animated?: boolean
   height?: number
+  /** Accessible label for screen readers (default: "Funnel chart") */
+  ariaLabel?: string
 }
 
 const NEUBRUTALISM_COLORS = [
@@ -33,6 +35,7 @@ const FunnelChart = React.forwardRef<HTMLDivElement, FunnelChartProps>(
       showTooltip = true,
       animated = true,
       height = 300,
+      ariaLabel = 'Funnel chart',
       className,
       ...props
     },
@@ -46,6 +49,8 @@ const FunnelChart = React.forwardRef<HTMLDivElement, FunnelChartProps>(
     return (
       <div
         ref={ref}
+        role="img"
+        aria-label={ariaLabel}
         className={cn('w-full', className)}
         style={{ height }}
         {...props}

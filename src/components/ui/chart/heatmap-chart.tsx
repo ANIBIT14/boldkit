@@ -18,6 +18,8 @@ export interface HeatmapChartProps extends React.HTMLAttributes<HTMLDivElement> 
   showLabels?: boolean
   showTooltip?: boolean
   cellSize?: number
+  /** Accessible label for screen readers (default: "Heatmap chart") */
+  ariaLabel?: string
 }
 
 function interpolateOpacity(value: number, min: number, max: number): number {
@@ -56,6 +58,7 @@ const HeatmapChart = React.forwardRef<HTMLDivElement, HeatmapChartProps>(
       showLabels = true,
       showTooltip = true,
       cellSize = 40,
+      ariaLabel = 'Heatmap chart',
       className,
       ...props
     },
@@ -81,6 +84,8 @@ const HeatmapChart = React.forwardRef<HTMLDivElement, HeatmapChartProps>(
     return (
       <div
         ref={ref}
+        role="img"
+        aria-label={ariaLabel}
         className={cn('relative w-full overflow-x-auto', className)}
         {...props}
       >
@@ -135,7 +140,8 @@ const HeatmapChart = React.forwardRef<HTMLDivElement, HeatmapChartProps>(
                 return (
                   <div
                     key={col}
-                    className="border border-foreground/30 cursor-default transition-all duration-100 hover:border-foreground hover:border-2 hover:z-10"
+                    tabIndex={showTooltip ? 0 : undefined}
+                    className="border border-foreground/30 cursor-default transition-all duration-100 hover:border-foreground hover:border-2 hover:z-10 focus:border-foreground focus:border-2 focus:z-10 focus:outline-none"
                     style={{
                       backgroundColor: getCellColor(intensity, colorLow, colorHigh),
                     }}
@@ -146,6 +152,13 @@ const HeatmapChart = React.forwardRef<HTMLDivElement, HeatmapChartProps>(
                       }
                     }}
                     onMouseLeave={() => setTooltip(null)}
+                    onFocus={(e) => {
+                      if (showTooltip) {
+                        const rect = e.currentTarget.getBoundingClientRect()
+                        setTooltip({ x: rect.left + rect.width / 2, y: rect.top, row, col, value })
+                      }
+                    }}
+                    onBlur={() => setTooltip(null)}
                   />
                 )
               })}

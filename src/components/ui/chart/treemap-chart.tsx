@@ -15,6 +15,8 @@ export interface TreemapChartProps extends React.HTMLAttributes<HTMLDivElement> 
   showTooltip?: boolean
   animated?: boolean
   height?: number
+  /** Accessible label for screen readers (default: "Treemap chart") */
+  ariaLabel?: string
 }
 
 const NEUBRUTALISM_COLORS = [
@@ -91,6 +93,7 @@ const TreemapChart = React.forwardRef<HTMLDivElement, TreemapChartProps>(
       showTooltip = true,
       animated = true,
       height = 320,
+      ariaLabel = 'Treemap chart',
       className,
       ...props
     },
@@ -99,6 +102,8 @@ const TreemapChart = React.forwardRef<HTMLDivElement, TreemapChartProps>(
     return (
       <div
         ref={ref}
+        role="img"
+        aria-label={ariaLabel}
         className={cn('w-full', className)}
         style={{ height }}
         {...props}
