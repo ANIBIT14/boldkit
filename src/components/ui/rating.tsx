@@ -227,9 +227,7 @@ export function Rating({
             type="button"
             tabIndex={isFocusable ? 0 : -1}
             disabled={disabled}
-            role="radio"
             aria-label={`${starIndex} ${iconLabel[icon]}`}
-            aria-checked={starIndex <= currentValue}
             onClick={() => handleStarClick(starIndex)}
             onMouseMove={(e) => handleStarMouseMove(e, starIndex)}
             className={cn(
