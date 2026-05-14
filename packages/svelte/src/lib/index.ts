@@ -32,7 +32,10 @@ export { Calendar } from './components/ui/calendar/index.js'
 export { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from './components/ui/card/index.js'
 
 // Carousel
-export { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from './components/ui/carousel/index.js'
+export { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious, CarouselDots } from './components/ui/carousel/index.js'
+
+// Combobox (BoldKit)
+export { ComboboxTrigger, ComboboxMultiTrigger } from './components/ui/combobox/index.js'
 
 // Checkbox
 export { Checkbox } from './components/ui/checkbox/index.js'
@@ -59,7 +62,7 @@ export { DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuIte
 export { Empty, EmptyHeader, EmptyMedia, EmptyTitle, EmptyDescription, EmptyContent } from './components/ui/empty/index.js'
 
 // Empty State (BoldKit)
-export { EmptyState, EmptyStateIcon, EmptyStateTitle, EmptyStateDescription, emptyStateVariants } from './components/ui/empty-state/index.js'
+export { EmptyState, EmptyStateIcon, EmptyStateTitle, EmptyStateDescription, EmptyStateActions, EmptyStateIllustration, EmptyStatePreset, emptyStateVariants } from './components/ui/empty-state/index.js'
 
 // Field
 export { Field } from './components/ui/field/index.js'
@@ -79,8 +82,14 @@ export { InputGroup } from './components/ui/input-group/index.js'
 // Input OTP
 export { InputOTP, InputOTPGroup, InputOTPSlot, InputOTPSeparator } from './components/ui/input-otp/index.js'
 
+// File List (BoldKit)
+export { FileList } from './components/ui/file-list/index.js'
+
+// Dropzone (BoldKit)
+export { Dropzone } from './components/ui/dropzone/index.js'
+
 // Kbd
-export { Kbd, KbdGroup } from './components/ui/kbd/index.js'
+export { Kbd, KbdGroup, KbdCombo } from './components/ui/kbd/index.js'
 
 // Label
 export { Label } from './components/ui/label/index.js'
@@ -142,8 +151,23 @@ export { Toaster } from './components/ui/sonner/index.js'
 // Spinner
 export { Spinner } from './components/ui/spinner/index.js'
 
+// MathCurve (BoldKit)
+export { MathCurveBackground, MathCurveLoader, MathCurveProgress } from './components/ui/math-curve/index.js'
+
+// Rating (BoldKit)
+export { Rating } from './components/ui/rating/index.js'
+
+// Stat Card (BoldKit)
+export { StatCard } from './components/ui/stat-card/index.js'
+
+// Stepper (BoldKit)
+export { Stepper, StepperItem, StepperList, StepperTrigger, StepperContent, StepperSeparator } from './components/ui/stepper/index.js'
+
 // Sticker (BoldKit)
-export { Sticker, stickerVariants } from './components/ui/sticker/index.js'
+export { Sticker, Stamp, StickyNote, stickerVariants, stampVariants, stickyNoteVariants } from './components/ui/sticker/index.js'
+
+// Sonner (alias)
+export { Toaster as Sonner } from './components/ui/sonner/index.js'
 
 // Switch
 export { Switch } from './components/ui/switch/index.js'
@@ -153,6 +177,9 @@ export { Table, TableHeader, TableBody, TableFooter, TableRow, TableHead, TableC
 
 // Tabs
 export { Tabs, TabsList, TabsTrigger, TabsContent } from './components/ui/tabs/index.js'
+
+// Tag Input (BoldKit)
+export { TagInput } from './components/ui/tag-input/index.js'
 
 // Textarea
 export { Textarea } from './components/ui/textarea/index.js'
