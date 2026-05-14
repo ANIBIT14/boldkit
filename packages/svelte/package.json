@@ -1,0 +1,74 @@
+{
+  "name": "@boldkit/svelte",
+  "version": "1.0.0",
+  "description": "A neubrutalism Svelte 5 component library built on bits-ui - Bold, raw, beautiful.",
+  "author": "BoldKit Team",
+  "license": "MIT",
+  "homepage": "https://boldkit.dev",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ANIBIT14/boldkit.git",
+    "directory": "packages/svelte"
+  },
+  "keywords": [
+    "svelte",
+    "svelte5",
+    "components",
+    "ui",
+    "neubrutalism",
+    "brutalism",
+    "tailwindcss",
+    "bits-ui",
+    "shadcn-svelte",
+    "design-system"
+  ],
+  "type": "module",
+  "exports": {
+    ".": {
+      "svelte": "./src/lib/index.ts",
+      "types": "./src/lib/index.ts"
+    },
+    "./styles": "./src/lib/styles/globals.css"
+  },
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "check": "svelte-check --tsconfig ./tsconfig.json",
+    "build:registry": "node scripts/build-registry.js"
+  },
+  "dependencies": {
+    "bits-ui": "^2.16.3",
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
+    "lucide-svelte": "^0.518.0",
+    "svelte-sonner": "^1.1.0",
+    "tailwind-merge": "^3.4.0"
+  },
+  "peerDependencies": {
+    "svelte": ">=5.0.0"
+  },
+  "devDependencies": {
+    "@internationalized/date": "^3.12.0",
+    "@lucide/svelte": "^1.14.0",
+    "@sveltejs/vite-plugin-svelte": "^5.0.3",
+    "@tailwindcss/vite": "^4.1.18",
+    "@tanstack/table-core": "^8.21.3",
+    "embla-carousel-svelte": "^8.6.0",
+    "formsnap": "^2.0.1",
+    "layerchart": "2.0.0-next.48",
+    "mode-watcher": "^1.1.0",
+    "paneforge": "^1.0.2",
+    "svelte": "^5.34.6",
+    "svelte-check": "^4.2.1",
+    "sveltekit-superforms": "^2.30.0",
+    "tailwind-variants": "^3.2.2",
+    "tailwindcss": "^4.1.18",
+    "typescript": "~5.9.3",
+    "vaul-svelte": "^1.0.0-next.7",
+    "vite": "^7.2.4"
+  },
+  "engines": {
+    "node": ">=20.0.0"
+  }
+}

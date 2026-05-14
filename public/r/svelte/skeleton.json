@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "skeleton",
+  "type": "registry:ui",
+  "description": "Displays a loading placeholder",
+  "dependencies": [],
+  "registryDependencies": [
+    "utils"
+  ],
+  "files": [
+    {
+      "path": "registry/default/ui/skeleton.svelte",
+      "content": "<script lang=\"ts\">\n  import type { HTMLAttributes } from 'svelte/elements'\n  import { cn } from '$lib/utils.js'\n\n  interface Props extends HTMLAttributes<HTMLDivElement> {\n    class?: string\n  }\n\n  let { class: className, ...restProps }: Props = $props()\n</script>\n\n<div\n  class={cn('animate-pulse bg-muted border-2 border-foreground/20', className)}\n  {...restProps}\n></div>\n",
+      "type": "registry:ui",
+      "target": "lib/components/ui/skeleton.svelte"
+    }
+  ]
+}

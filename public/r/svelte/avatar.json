@@ -1,0 +1,32 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "avatar",
+  "type": "registry:ui",
+  "description": "An image element with fallback",
+  "dependencies": [
+    "bits-ui"
+  ],
+  "registryDependencies": [
+    "utils"
+  ],
+  "files": [
+    {
+      "path": "registry/default/ui/avatar.svelte",
+      "content": "<script lang=\"ts\">\n  import { Avatar } from 'bits-ui'\n  import type { Snippet } from 'svelte'\n  import { cn } from '$lib/utils.js'\n\n  interface Props extends Avatar.RootProps {\n    class?: string\n    children?: Snippet\n  }\n\n  let { class: className, children, ...restProps }: Props = $props()\n</script>\n\n<Avatar.Root\n  class={cn(\n    'relative flex h-10 w-10 shrink-0 overflow-hidden border-3 border-foreground shadow-[4px_4px_0px_hsl(var(--shadow-color))] transition-all duration-200 hover:translate-x-[4px] hover:translate-y-[4px] hover:shadow-none',\n    className\n  )}\n  {...restProps}\n>\n  {@render children?.()}\n</Avatar.Root>\n",
+      "type": "registry:ui",
+      "target": "lib/components/ui/avatar.svelte"
+    },
+    {
+      "path": "registry/default/ui/avatar-image.svelte",
+      "content": "<script lang=\"ts\">\n  import { Avatar } from 'bits-ui'\n  import { cn } from '$lib/utils.js'\n\n  interface Props extends Avatar.ImageProps {\n    class?: string\n  }\n\n  let { class: className, ...restProps }: Props = $props()\n</script>\n\n<Avatar.Image\n  class={cn('aspect-square h-full w-full object-cover', className)}\n  {...restProps}\n/>\n",
+      "type": "registry:ui",
+      "target": "lib/components/ui/avatar-image.svelte"
+    },
+    {
+      "path": "registry/default/ui/avatar-fallback.svelte",
+      "content": "<script lang=\"ts\">\n  import { Avatar } from 'bits-ui'\n  import type { Snippet } from 'svelte'\n  import { cn } from '$lib/utils.js'\n\n  interface Props extends Avatar.FallbackProps {\n    class?: string\n    children?: Snippet\n  }\n\n  let { class: className, children, ...restProps }: Props = $props()\n</script>\n\n<Avatar.Fallback\n  class={cn(\n    'flex h-full w-full items-center justify-center bg-primary text-primary-foreground font-bold uppercase',\n    className\n  )}\n  {...restProps}\n>\n  {@render children?.()}\n</Avatar.Fallback>\n",
+      "type": "registry:ui",
+      "target": "lib/components/ui/avatar-fallback.svelte"
+    }
+  ]
+}

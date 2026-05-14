@@ -1,0 +1,38 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "tabs",
+  "type": "registry:ui",
+  "description": "A set of layered sections of content",
+  "dependencies": [
+    "bits-ui"
+  ],
+  "registryDependencies": [
+    "utils"
+  ],
+  "files": [
+    {
+      "path": "registry/default/ui/tabs.svelte",
+      "content": "<script lang=\"ts\">\n  import { Tabs } from 'bits-ui'\n  import type { Snippet } from 'svelte'\n  import { cn } from '$lib/utils.js'\n\n  interface Props extends Tabs.RootProps {\n    class?: string\n    children?: Snippet\n  }\n\n  let { class: className, children, ...restProps }: Props = $props()\n</script>\n\n<Tabs.Root class={cn('w-full', className)} {...restProps}>\n  {@render children?.()}\n</Tabs.Root>\n",
+      "type": "registry:ui",
+      "target": "lib/components/ui/tabs.svelte"
+    },
+    {
+      "path": "registry/default/ui/tabs-list.svelte",
+      "content": "<script lang=\"ts\">\n  import { Tabs } from 'bits-ui'\n  import type { Snippet } from 'svelte'\n  import { cn } from '$lib/utils.js'\n\n  interface Props extends Tabs.ListProps {\n    class?: string\n    children?: Snippet\n  }\n\n  let { class: className, children, ...restProps }: Props = $props()\n</script>\n\n<Tabs.List\n  class={cn(\n    'inline-flex h-12 items-center justify-center border-3 border-foreground bg-background p-1 text-foreground shadow-[4px_4px_0px_hsl(var(--shadow-color))]',\n    className\n  )}\n  {...restProps}\n>\n  {@render children?.()}\n</Tabs.List>\n",
+      "type": "registry:ui",
+      "target": "lib/components/ui/tabs-list.svelte"
+    },
+    {
+      "path": "registry/default/ui/tabs-trigger.svelte",
+      "content": "<script lang=\"ts\">\n  import { Tabs } from 'bits-ui'\n  import type { Snippet } from 'svelte'\n  import { cn } from '$lib/utils.js'\n\n  interface Props extends Tabs.TriggerProps {\n    class?: string\n    children?: Snippet\n  }\n\n  let { class: className, children, ...restProps }: Props = $props()\n</script>\n\n<Tabs.Trigger\n  class={cn(\n    'inline-flex items-center justify-center whitespace-nowrap border-2 border-transparent px-4 py-1.5 gap-1.5 text-sm font-bold uppercase tracking-wide transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 data-[state=active]:bg-primary data-[state=active]:text-primary-foreground data-[state=active]:border-foreground',\n    className\n  )}\n  {...restProps}\n>\n  {@render children?.()}\n</Tabs.Trigger>\n",
+      "type": "registry:ui",
+      "target": "lib/components/ui/tabs-trigger.svelte"
+    },
+    {
+      "path": "registry/default/ui/tabs-content.svelte",
+      "content": "<script lang=\"ts\">\n  import { Tabs } from 'bits-ui'\n  import type { Snippet } from 'svelte'\n  import { cn } from '$lib/utils.js'\n\n  interface Props extends Tabs.ContentProps {\n    class?: string\n    children?: Snippet\n  }\n\n  let { class: className, children, ...restProps }: Props = $props()\n</script>\n\n<Tabs.Content\n  class={cn(\n    'mt-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2',\n    className\n  )}\n  {...restProps}\n>\n  {@render children?.()}\n</Tabs.Content>\n",
+      "type": "registry:ui",
+      "target": "lib/components/ui/tabs-content.svelte"
+    }
+  ]
+}

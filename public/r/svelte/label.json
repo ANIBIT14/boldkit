@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "label",
+  "type": "registry:ui",
+  "description": "Renders an accessible label",
+  "dependencies": [],
+  "registryDependencies": [
+    "utils"
+  ],
+  "files": [
+    {
+      "path": "registry/default/ui/label.svelte",
+      "content": "<script lang=\"ts\">\n  import type { Snippet } from 'svelte'\n  import type { HTMLLabelAttributes } from 'svelte/elements'\n  import { cn } from '$lib/utils.js'\n\n  interface Props extends HTMLLabelAttributes {\n    class?: string\n    children?: Snippet\n  }\n\n  let { class: className, children, ...restProps }: Props = $props()\n</script>\n\n<label\n  class={cn(\n    'text-sm font-bold uppercase tracking-wide leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70',\n    className\n  )}\n  {...restProps}\n>\n  {@render children?.()}\n</label>\n",
+      "type": "registry:ui",
+      "target": "lib/components/ui/label.svelte"
+    }
+  ]
+}
