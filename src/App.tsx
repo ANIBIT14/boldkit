@@ -1,4 +1,4 @@
-import { lazy, Suspense } from 'react'
+import { lazy, Suspense, useState, useEffect } from 'react'
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
 import { ScrollToTop } from '@/components/ScrollToTop'
 import { ThemeProvider } from '@/hooks/use-theme'
@@ -6,7 +6,6 @@ import { FrameworkProvider } from '@/hooks/use-framework'
 import { TooltipProvider } from '@/components/ui/tooltip'
 import { Toaster } from '@/components/ui/sonner'
 import { ErrorBoundary } from '@/components/ErrorBoundary'
-import { Skeleton } from '@/components/ui/skeleton'
 const Home = lazy(() => import('@/pages/Home').then(m => ({ default: m.Home })))
 const ThemeBuilder = lazy(() => import('@/pages/ThemeBuilder').then(m => ({ default: m.ThemeBuilder })))
 const Charts = lazy(() => import('@/pages/Charts').then(m => ({ default: m.Charts })))
@@ -28,6 +27,7 @@ import { DocsLayout } from '@/layouts/DocsLayout'
 import '@/styles/globals.css'
 
 // Lazy load doc pages for better initial load performance
+const ComponentsIndex = lazy(() => import('@/pages/docs/ComponentsIndex').then(m => ({ default: m.ComponentsIndex })))
 const Introduction = lazy(() => import('@/pages/docs/Introduction').then(m => ({ default: m.Introduction })))
 const Installation = lazy(() => import('@/pages/docs/Installation').then(m => ({ default: m.Installation })))
 
@@ -127,18 +127,35 @@ const GaugeChartDoc = lazy(() => import('@/pages/docs/GaugeChartDoc').then(m => 
 const RadarChartDoc = lazy(() => import('@/pages/docs/RadarChartDoc').then(m => ({ default: m.RadarChartDoc })))
 const RadialBarChartDoc = lazy(() => import('@/pages/docs/RadialBarChartDoc').then(m => ({ default: m.RadialBarChartDoc })))
 
-// Loading fallback for lazy loaded pages
+// PageLoader — only shown when a lazy chunk takes longer than 200 ms to fetch.
+// On warm cache (all subsequent navigations) this never renders at all.
+// Fixed + centered so it appears over the full viewport, not buried in a content area.
 function PageLoader() {
+  const [visible, setVisible] = useState(false)
+
+  useEffect(() => {
+    const id = setTimeout(() => setVisible(true), 200)
+    return () => clearTimeout(id)
+  }, [])
+
+  if (!visible) return null
+
   return (
-    <div className="space-y-8 animate-pulse">
-      <div className="space-y-4">
-        <Skeleton className="h-8 w-48" />
-        <Skeleton className="h-4 w-96" />
-      </div>
-      <Skeleton className="h-64 w-full" />
-      <div className="space-y-2">
-        <Skeleton className="h-6 w-32" />
-        <Skeleton className="h-32 w-full" />
+    <div className="fixed inset-0 z-[9998] flex items-center justify-center pointer-events-none">
+      {/* Subtle backdrop so the card reads against any background */}
+      <div className="absolute inset-0 bg-background/60" />
+
+      <div className="relative flex items-center gap-3 border-3 border-foreground bg-background px-5 py-3.5 shadow-[4px_4px_0px_hsl(var(--shadow-color))]">
+        {/* Three neubrutalism squares in the brand palette */}
+        <span className="inline-block h-2.5 w-2.5 bg-primary animate-bounce [animation-delay:0ms]" />
+        <span className="inline-block h-2.5 w-2.5 bg-secondary animate-bounce [animation-delay:150ms]" />
+        <span className="inline-block h-2.5 w-2.5 bg-accent animate-bounce [animation-delay:300ms]" />
+        <span
+          className="ml-1 text-[11px] font-black uppercase tracking-[0.15em] text-foreground"
+          style={{ fontFamily: "'DM Mono', monospace" }}
+        >
+          Loading
+        </span>
       </div>
     </div>
   )
@@ -180,7 +197,7 @@ function App() {
 
             {/* Component documentation routes */}
             <Route path="/components" element={<DocsLayout />}>
-              <Route index element={<Navigate to="/components/button" replace />} />
+              <Route index element={<Suspense fallback={<PageLoader />}><ComponentsIndex /></Suspense>} />
               <Route path="accordion" element={<Suspense fallback={<PageLoader />}><AccordionDoc /></Suspense>} />
               <Route path="alert" element={<Suspense fallback={<PageLoader />}><AlertDoc /></Suspense>} />
               <Route path="alert-dialog" element={<Suspense fallback={<PageLoader />}><AlertDialogDoc /></Suspense>} />
