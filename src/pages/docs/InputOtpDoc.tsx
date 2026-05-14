@@ -6,7 +6,7 @@ import {
 } from '@/components/ui/input-otp'
 import { ComponentDoc, ExampleSection } from '@/components/docs/ComponentDoc'
 import sourceCode from '@/components/ui/input-otp.tsx?raw'
-import vueSourceCode from '@vue-ui/InputOtp.vue?raw'
+import vueSourceCode from '@vue-ui/InputOTP.vue?raw'
 
 
 const usageCode = `import {
