@@ -30,34 +30,18 @@ export function ThemeProvider({
     return defaultTheme
   })
 
-  const [resolvedTheme, setResolvedTheme] = React.useState<'light' | 'dark'>(() => {
+  const resolvedTheme = React.useMemo<'light' | 'dark'>(() => {
     if (typeof window === 'undefined') return 'light'
-    const stored = localStorage.getItem(storageKey) as Theme
-    const resolved = stored || defaultTheme
-    if (resolved === 'dark') return 'dark'
-    if (resolved === 'system') {
-      return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
-    }
-    return 'light'
-  })
+    if (theme === 'dark') return 'dark'
+    if (theme === 'light') return 'light'
+    return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
+  }, [theme])
 
   React.useEffect(() => {
     const root = window.document.documentElement
-
     root.classList.remove('light', 'dark')
-
-    if (theme === 'system') {
-      const systemTheme = window.matchMedia('(prefers-color-scheme: dark)').matches
-        ? 'dark'
-        : 'light'
-      root.classList.add(systemTheme)
-      setResolvedTheme(systemTheme)
-      return
-    }
-
-    root.classList.add(theme)
-    setResolvedTheme(theme)
-  }, [theme])
+    root.classList.add(resolvedTheme)
+  }, [resolvedTheme])
 
   const value = React.useMemo(
     () => ({
