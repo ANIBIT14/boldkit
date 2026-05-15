@@ -1,6 +1,6 @@
 /* eslint-disable react-refresh/only-export-components */
 import * as React from 'react'
-import { cn } from '@/lib/utils'
+import { cn, safeHref } from '@/lib/utils'
 import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
 import { Separator } from '@/components/ui/separator'
@@ -66,7 +66,7 @@ export function FooterMultiColumn({
             {socialLinks && (
               <div className="flex gap-2">
                 {socialLinks.map((link) => (
-                  <SocialIcon key={`social-${link.platform}`} platform={link.platform} href={link.href} />
+                  <SocialIcon key={`social-${link.platform}`} platform={link.platform} href={safeHref(link.href)} />
                 ))}
               </div>
             )}
@@ -82,7 +82,7 @@ export function FooterMultiColumn({
                 {column.links.map((link) => (
                   <li key={`link-${link.label}`}>
                     <a
-                      href={link.href}
+                      href={safeHref(link.href)}
                       className="text-muted-foreground hover:text-foreground font-medium transition-colors"
                     >
                       {link.label}
@@ -170,7 +170,7 @@ export function FooterWithNewsletter({
                   {column.links.map((link) => (
                     <li key={`link-${link.label}`}>
                       <a
-                        href={link.href}
+                        href={safeHref(link.href)}
                         className="text-muted-foreground hover:text-foreground font-medium transition-colors"
                       >
                         {link.label}
@@ -221,7 +221,7 @@ export function FooterSimple({
             {links.map((link) => (
               <a
                 key={`link-${link.label}`}
-                href={link.href}
+                href={safeHref(link.href)}
                 className="text-muted-foreground hover:text-foreground font-bold uppercase text-sm transition-colors"
               >
                 {link.label}
@@ -233,7 +233,7 @@ export function FooterSimple({
         {socialLinks && (
           <div className="flex justify-center gap-2">
             {socialLinks.map((link) => (
-              <SocialIcon key={`social-${link.platform}`} platform={link.platform} href={link.href} />
+              <SocialIcon key={`social-${link.platform}`} platform={link.platform} href={safeHref(link.href)} />
             ))}
           </div>
         )}
@@ -273,7 +273,7 @@ export function FooterMinimal({
             {links.map((link) => (
               <a
                 key={`link-${link.label}`}
-                href={link.href}
+                href={safeHref(link.href)}
                 className="text-sm text-muted-foreground hover:text-foreground font-medium transition-colors"
               >
                 {link.label}
@@ -342,7 +342,7 @@ export function FooterWithCTA({
               {socialLinks && (
                 <div className="flex gap-2">
                   {socialLinks.map((link) => (
-                    <SocialIcon key={`social-${link.platform}`} platform={link.platform} href={link.href} size="sm" />
+                    <SocialIcon key={`social-${link.platform}`} platform={link.platform} href={safeHref(link.href)} size="sm" />
                   ))}
                 </div>
               )}
@@ -357,7 +357,7 @@ export function FooterWithCTA({
                   {column.links.map((link) => (
                     <li key={`link-${link.label}`}>
                       <a
-                        href={link.href}
+                        href={safeHref(link.href)}
                         className="text-sm text-muted-foreground hover:text-foreground transition-colors"
                       >
                         {link.label}
@@ -406,7 +406,7 @@ function SocialIcon({
 
   return (
     <a
-      href={href}
+      href={safeHref(href)}
       target="_blank"
       rel="noopener noreferrer"
       className={cn(

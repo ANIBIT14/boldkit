@@ -2,7 +2,7 @@
 import * as React from 'react'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
-import { cn } from '@/lib/utils'
+import { cn, safeHref } from '@/lib/utils'
 import { ArrowRight, Mail, Sparkles, Zap } from 'lucide-react'
 
 // ============================================================================
@@ -39,7 +39,7 @@ export function CTASimple({
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
           {primaryAction.href ? (
             <Button size="lg" asChild>
-              <a href={primaryAction.href}>{primaryAction.label}<ArrowRight className="ml-2 h-4 w-4" /></a>
+              <a href={safeHref(primaryAction.href)}>{primaryAction.label}<ArrowRight className="ml-2 h-4 w-4" /></a>
             </Button>
           ) : (
             <Button size="lg" onClick={primaryAction.onClick}>
@@ -50,7 +50,7 @@ export function CTASimple({
           {secondaryAction && (
             secondaryAction.href ? (
               <Button size="lg" variant="outline" asChild>
-                <a href={secondaryAction.href}>{secondaryAction.label}</a>
+                <a href={safeHref(secondaryAction.href)}>{secondaryAction.label}</a>
               </Button>
             ) : (
               <Button size="lg" variant="outline" onClick={secondaryAction.onClick}>
@@ -117,7 +117,7 @@ export function CTAWithBackground({
               className={backgroundColor !== 'muted' ? 'bg-background text-foreground hover:bg-background/90' : ''}
               asChild
             >
-              <a href={primaryAction.href}>{primaryAction.label}<Zap className="ml-2 h-4 w-4" /></a>
+              <a href={safeHref(primaryAction.href)}>{primaryAction.label}<Zap className="ml-2 h-4 w-4" /></a>
             </Button>
           ) : (
             <Button
@@ -249,7 +249,7 @@ export function CTASplit({
             <div className="flex flex-col sm:flex-row gap-3">
               {primaryAction.href ? (
                 <Button size="lg" asChild>
-                  <a href={primaryAction.href}>{primaryAction.label}<ArrowRight className="ml-2 h-4 w-4" /></a>
+                  <a href={safeHref(primaryAction.href)}>{primaryAction.label}<ArrowRight className="ml-2 h-4 w-4" /></a>
                 </Button>
               ) : (
                 <Button size="lg" onClick={primaryAction.onClick}>
@@ -260,7 +260,7 @@ export function CTASplit({
               {secondaryAction && (
                 secondaryAction.href ? (
                   <Button size="lg" variant="outline" asChild>
-                    <a href={secondaryAction.href}>{secondaryAction.label}</a>
+                    <a href={safeHref(secondaryAction.href)}>{secondaryAction.label}</a>
                   </Button>
                 ) : (
                   <Button size="lg" variant="outline" onClick={secondaryAction.onClick}>
@@ -329,7 +329,7 @@ export function CTABanner({
         </p>
         {action.href ? (
           <Button size="sm" variant="outline" className="bg-background text-foreground hover:bg-background/90 shrink-0" asChild>
-            <a href={action.href}>{action.label}<ArrowRight className="ml-1 h-3 w-3" /></a>
+            <a href={safeHref(action.href)}>{action.label}<ArrowRight className="ml-1 h-3 w-3" /></a>
           </Button>
         ) : (
           <Button

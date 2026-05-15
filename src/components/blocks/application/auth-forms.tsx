@@ -5,7 +5,7 @@ import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Checkbox } from '@/components/ui/checkbox'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
-import { cn } from '@/lib/utils'
+import { cn, safeHref } from '@/lib/utils'
 import { Eye, EyeOff, Mail, Lock, User, ArrowRight, Github, Chrome } from 'lucide-react'
 
 // ============================================================================
@@ -65,6 +65,7 @@ export function LoginForm({
                 <Input
                   id="email"
                   type="email"
+                  autoComplete="email"
                   placeholder="you@example.com"
                   className="pl-10"
                   value={formData.email}
@@ -83,6 +84,7 @@ export function LoginForm({
                 <Input
                   id="password"
                   type={showPassword ? 'text' : 'password'}
+                  autoComplete="current-password"
                   placeholder="Enter your password"
                   className="pl-10 pr-10"
                   value={formData.password}
@@ -244,6 +246,7 @@ export function SignUpForm({
                 <Input
                   id="name"
                   type="text"
+                  autoComplete="name"
                   placeholder="John Doe"
                   className="pl-10"
                   value={formData.name}
@@ -262,6 +265,7 @@ export function SignUpForm({
                 <Input
                   id="signup-email"
                   type="email"
+                  autoComplete="email"
                   placeholder="you@example.com"
                   className="pl-10"
                   value={formData.email}
@@ -280,6 +284,7 @@ export function SignUpForm({
                 <Input
                   id="signup-password"
                   type={showPassword ? 'text' : 'password'}
+                  autoComplete="new-password"
                   placeholder="Create a password"
                   className="pl-10 pr-10"
                   value={formData.password}
@@ -310,11 +315,11 @@ export function SignUpForm({
                 />
                 <Label htmlFor="terms" className="text-sm leading-tight cursor-pointer">
                   I agree to the{' '}
-                  <a href={termsUrl} className="font-bold text-primary hover:underline">
+                  <a href={safeHref(termsUrl)} className="font-bold text-primary hover:underline">
                     Terms of Service
                   </a>{' '}
                   and{' '}
-                  <a href={privacyUrl} className="font-bold text-primary hover:underline">
+                  <a href={safeHref(privacyUrl)} className="font-bold text-primary hover:underline">
                     Privacy Policy
                   </a>
                 </Label>

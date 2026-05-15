@@ -49,11 +49,9 @@ if (!stepperContext || !itemContext) {
 }
 
 const state = computed<'completed' | 'active' | 'upcoming'>(() => {
-  const activeStep = typeof stepperContext.activeStep === 'object' && 'value' in stepperContext.activeStep
-    ? stepperContext.activeStep.value
-    : stepperContext.activeStep
-  if (itemContext.index < activeStep) return 'completed'
-  if (itemContext.index === activeStep) return 'active'
+  const active = stepperContext.activeStep.value ?? 0
+  if (itemContext.index < active) return 'completed'
+  if (itemContext.index === active) return 'active'
   return 'upcoming'
 })
 

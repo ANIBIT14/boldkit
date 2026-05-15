@@ -20,7 +20,7 @@ const props = withDefaults(defineProps<TagInputProps>(), {
   defaultValue: () => [],
   suggestions: () => [],
   allowDuplicates: false,
-  delimiter: ',' as string | RegExp,
+  delimiter: ',',
   placeholder: 'Add tag...',
   disabled: false,
 })

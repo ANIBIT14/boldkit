@@ -2,7 +2,7 @@
 import * as React from 'react'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
-import { cn } from '@/lib/utils'
+import { cn, safeHref } from '@/lib/utils'
 import {
   Home,
   ArrowLeft,
@@ -88,14 +88,14 @@ export function NotFoundPage({
 
         <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
           <Button asChild>
-            <a href={homeHref}>
+            <a href={safeHref(homeHref)}>
               <Home className="mr-2 h-4 w-4" />
               Back to Home
             </a>
           </Button>
           {backHref && (
             <Button variant="outline" asChild>
-              <a href={backHref}>
+              <a href={safeHref(backHref)}>
                 <ArrowLeft className="mr-2 h-4 w-4" />
                 Go Back
               </a>
@@ -167,7 +167,7 @@ export function ServerErrorPage({
             </Button>
           )}
           <Button variant="outline" asChild>
-            <a href={homeHref}>
+            <a href={safeHref(homeHref)}>
               <Home className="mr-2 h-4 w-4" />
               Back to Home
             </a>
@@ -178,7 +178,7 @@ export function ServerErrorPage({
           <p className="text-sm text-muted-foreground">
             Still having issues?{' '}
             <a
-              href={`mailto:${supportEmail}`}
+              href={safeHref(`mailto:${supportEmail}`)}
               className="font-bold text-primary hover:underline"
             >
               Contact support
@@ -254,7 +254,7 @@ export function MaintenancePage({
 
         {statusPageUrl && (
           <Button variant="outline" asChild>
-            <a href={statusPageUrl} target="_blank" rel="noopener noreferrer">
+            <a href={safeHref(statusPageUrl)} target="_blank" rel="noopener noreferrer">
               Check Status Page
             </a>
           </Button>
@@ -366,14 +366,14 @@ export function ForbiddenPage({
 
         <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
           <Button asChild>
-            <a href={homeHref}>
+            <a href={safeHref(homeHref)}>
               <Home className="mr-2 h-4 w-4" />
               Back to Home
             </a>
           </Button>
           {loginHref && (
             <Button variant="outline" asChild>
-              <a href={loginHref}>
+              <a href={safeHref(loginHref)}>
                 <Lock className="mr-2 h-4 w-4" />
                 Sign In
               </a>
@@ -549,7 +549,7 @@ export function GenericErrorPage({
                 onClick={action.onClick}
                 asChild={!!action.href}
               >
-                {action.href ? <a href={action.href}>{action.label}</a> : action.label}
+                {action.href ? <a href={safeHref(action.href)}>{action.label}</a> : action.label}
               </Button>
             ))}
           </div>

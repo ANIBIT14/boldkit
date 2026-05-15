@@ -87,7 +87,6 @@ function calculatePosition(
 
   let top = 0
   let left = 0
-  let actualPlacement = placement
 
   if (placement === 'center') {
     return {
@@ -119,16 +118,12 @@ function calculatePosition(
   // Check if popover fits, flip if necessary
   if (placement === 'top' && top < 0) {
     top = targetRect.bottom + padding
-    actualPlacement = 'bottom'
   } else if (placement === 'bottom' && top + popoverRect.height > viewport.height) {
     top = targetRect.top - popoverRect.height - padding
-    actualPlacement = 'top'
   } else if (placement === 'left' && left < 0) {
     left = targetRect.right + padding
-    actualPlacement = 'right'
   } else if (placement === 'right' && left + popoverRect.width > viewport.width) {
     left = targetRect.left - popoverRect.width - padding
-    actualPlacement = 'left'
   }
 
   // Keep within viewport bounds

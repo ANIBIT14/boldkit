@@ -110,13 +110,17 @@ export function SEO({
     updateMeta('twitter:creator', defaultMeta.twitterCreator)
 
     const updateJsonLd = (id: string, schema: object) => {
-      const existingScript = document.querySelector(`script[data-schema="${id}"]`)
+      const safeId = id.replace(/[^a-zA-Z0-9_-]/g, '')
+      const existingScript = document.querySelector(`script[data-schema="${safeId}"]`)
       if (existingScript) existingScript.remove()
       try {
+        const serialized = JSON.stringify(schema)
+        // Guard against </script> injection in JSON-LD content
+        const safeContent = serialized.replace(/<\/script/gi, '<\\/script')
         const script = document.createElement('script')
         script.type = 'application/ld+json'
-        script.setAttribute('data-schema', id)
-        script.textContent = JSON.stringify(schema)
+        script.setAttribute('data-schema', safeId)
+        script.textContent = safeContent
         document.head.appendChild(script)
       } catch {
         // skip invalid structured data

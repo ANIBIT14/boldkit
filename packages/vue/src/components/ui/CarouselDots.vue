@@ -14,7 +14,7 @@ if (!context) {
   throw new Error('CarouselDots must be used within a Carousel')
 }
 
-const hasMultipleSnaps = computed(() => context.scrollSnaps.value.length > 1)
+const hasMultipleSnaps = computed(() => (context.scrollSnaps.value ?? []).length > 1)
 </script>
 
 <template>

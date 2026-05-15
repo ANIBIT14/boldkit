@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import { cn } from '@/lib/utils'
+import { cn, safeHref } from '@/lib/utils'
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui'
 import Button from '@/components/ui/Button.vue'
 import Input from '@/components/ui/Input.vue'
@@ -79,7 +79,7 @@ const handleSubmit = () => {
               </div>
               <div>
                 <p class="font-bold text-sm uppercase">Email</p>
-                <a :href="`mailto:${contactInfo.email}`" class="text-muted-foreground hover:text-foreground">
+                <a :href="safeHref(`mailto:${contactInfo.email}`)" class="text-muted-foreground hover:text-foreground">
                   {{ contactInfo.email }}
                 </a>
               </div>
@@ -91,7 +91,7 @@ const handleSubmit = () => {
               </div>
               <div>
                 <p class="font-bold text-sm uppercase">Phone</p>
-                <a :href="`tel:${contactInfo.phone}`" class="text-muted-foreground hover:text-foreground">
+                <a :href="safeHref(`tel:${contactInfo.phone}`)" class="text-muted-foreground hover:text-foreground">
                   {{ contactInfo.phone }}
                 </a>
               </div>
@@ -216,7 +216,7 @@ const handleSubmit = () => {
               <Mail class="h-7 w-7 text-primary-foreground" />
             </div>
             <h3 class="font-bold uppercase mb-2">Email Us</h3>
-            <a :href="`mailto:${contactInfo.email}`" class="text-muted-foreground hover:text-foreground">
+            <a :href="safeHref(`mailto:${contactInfo.email}`)" class="text-muted-foreground hover:text-foreground">
               {{ contactInfo.email }}
             </a>
           </CardContent>
@@ -228,7 +228,7 @@ const handleSubmit = () => {
               <Phone class="h-7 w-7 text-secondary-foreground" />
             </div>
             <h3 class="font-bold uppercase mb-2">Call Us</h3>
-            <a :href="`tel:${contactInfo.phone}`" class="text-muted-foreground hover:text-foreground">
+            <a :href="safeHref(`tel:${contactInfo.phone}`)" class="text-muted-foreground hover:text-foreground">
               {{ contactInfo.phone }}
             </a>
           </CardContent>

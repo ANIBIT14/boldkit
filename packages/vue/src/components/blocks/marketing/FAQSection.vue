@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref, computed } from 'vue'
-import { cn } from '@/lib/utils'
+import { cn, safeHref } from '@/lib/utils'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui'
 import Accordion from '@/components/ui/Accordion.vue'
 import AccordionItem from '@/components/ui/AccordionItem.vue'
@@ -202,7 +202,7 @@ const filteredFaqs = computed(() => props.faqs.filter((f) => f.category === acti
                   <MessageCircle class="h-4 w-4" />
                   Chat with us
                 </Button>
-                <Button v-if="contactEmail" variant="outline" class="w-full gap-2" as="a" :href="`mailto:${contactEmail}`">
+                <Button v-if="contactEmail" variant="outline" class="w-full gap-2" as="a" :href="safeHref(`mailto:${contactEmail}`)">
                   <Mail class="h-4 w-4" />
                   Email support
                 </Button>

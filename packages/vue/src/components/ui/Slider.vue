@@ -394,7 +394,7 @@ function getThumbStyle(index: number) {
 
     <!-- Thumbs -->
     <div
-      v-for="(spring, index) in springs"
+      v-for="(_spring, index) in springs"
       :key="index"
       role="slider"
       :tabindex="disabled ? -1 : 0"

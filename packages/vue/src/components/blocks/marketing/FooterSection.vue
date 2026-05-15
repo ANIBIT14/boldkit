@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import { cn } from '@/lib/utils'
+import { cn, safeHref } from '@/lib/utils'
 import Button from '@/components/ui/Button.vue'
 import Input from '@/components/ui/Input.vue'
 import Separator from '@/components/ui/Separator.vue'
@@ -78,7 +78,7 @@ const handleSubscribe = () => {
             <a
               v-for="social in socials"
               :key="`social-${social.label}`"
-              :href="social.href"
+              :href="safeHref(social.href)"
               :aria-label="social.label"
               class="w-10 h-10 flex items-center justify-center border-3 border-foreground hover:bg-primary hover:text-primary-foreground transition-colors"
             >
@@ -95,7 +95,7 @@ const handleSubscribe = () => {
           <ul class="space-y-3">
             <li v-for="link in column.links" :key="`link-${link.label}`">
               <a
-                :href="link.href"
+                :href="safeHref(link.href)"
                 class="text-muted-foreground hover:text-foreground transition-colors font-medium"
               >
                 {{ link.label }}
@@ -169,7 +169,7 @@ const handleSubscribe = () => {
             <ul class="space-y-2">
               <li v-for="link in column.links" :key="`link-${link.label}`">
                 <a
-                  :href="link.href"
+                  :href="safeHref(link.href)"
                   class="text-muted-foreground hover:text-foreground transition-colors"
                 >
                   {{ link.label }}
@@ -187,7 +187,7 @@ const handleSubscribe = () => {
             <a
               v-for="social in socials"
               :key="`social-${social.label}`"
-              :href="social.href"
+              :href="safeHref(social.href)"
               :aria-label="social.label"
               class="hover:text-foreground transition-colors"
             >
@@ -216,7 +216,7 @@ const handleSubscribe = () => {
           <a
             v-for="link in columns[0].links"
             :key="`link-${link.label}`"
-            :href="link.href"
+            :href="safeHref(link.href)"
             class="text-muted-foreground hover:text-foreground transition-colors font-medium"
           >
             {{ link.label }}
@@ -227,7 +227,7 @@ const handleSubscribe = () => {
           <a
             v-for="social in socials"
             :key="`social-${social.label}`"
-            :href="social.href"
+            :href="safeHref(social.href)"
             :aria-label="social.label"
             class="text-muted-foreground hover:text-foreground transition-colors"
           >
@@ -257,7 +257,7 @@ const handleSubscribe = () => {
         <a
           v-for="social in socials"
           :key="`social-${social.label}`"
-          :href="social.href"
+          :href="safeHref(social.href)"
           :aria-label="social.label"
           class="text-muted-foreground hover:text-foreground transition-colors"
         >
@@ -301,7 +301,7 @@ const handleSubscribe = () => {
           <a
             v-for="social in socials"
             :key="`social-${social.label}`"
-            :href="social.href"
+            :href="safeHref(social.href)"
             :aria-label="social.label"
             class="text-muted-foreground hover:text-foreground transition-colors"
           >

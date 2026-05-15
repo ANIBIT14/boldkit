@@ -93,7 +93,7 @@ const option = computed(() => {
         data: props.data,
         smooth: true,
         symbol: props.showEndDot ? 'circle' : 'none',
-        symbolSize: (_, params) => params.dataIndex === props.data.length - 1 ? 8 : 0,
+        symbolSize: (_: number, params: { dataIndex: number }) => params.dataIndex === props.data.length - 1 ? 8 : 0,
         lineStyle: {
           color: strokeColor,
           width: props.strokeWidth,
@@ -119,7 +119,7 @@ const option = computed(() => {
       data: props.data,
       smooth: true,
       symbol: props.showEndDot ? 'circle' : 'none',
-      symbolSize: (_, params) => params.dataIndex === props.data.length - 1 ? 8 : 0,
+      symbolSize: (_: number, params: { dataIndex: number }) => params.dataIndex === props.data.length - 1 ? 8 : 0,
       lineStyle: {
         color: strokeColor,
         width: props.strokeWidth,

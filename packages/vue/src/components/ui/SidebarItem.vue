@@ -50,7 +50,7 @@ const buttonClasses = computed(() =>
 
 <template>
   <!-- With Tooltip when collapsed -->
-  <Tooltip v-if="isCollapsed.value && tooltip">
+  <Tooltip v-if="isCollapsed && tooltip">
     <TooltipTrigger>
       <button :class="buttonClasses">
         <span v-if="slots.icon" class="shrink-0">
@@ -68,7 +68,7 @@ const buttonClasses = computed(() =>
     <span v-if="slots.icon" class="shrink-0">
       <slot name="icon" />
     </span>
-    <span v-if="!isCollapsed.value" class="truncate">
+    <span v-if="!isCollapsed" class="truncate">
       <slot />
     </span>
   </button>

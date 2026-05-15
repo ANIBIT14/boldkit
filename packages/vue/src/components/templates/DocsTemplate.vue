@@ -3,7 +3,7 @@ import { ref, computed } from 'vue'
 import {
   Search, ChevronRight, ChevronDown, Menu, X, Moon, Sun,
   Copy, Check, ExternalLink, Github, ArrowLeft, ArrowRight,
-  BookOpen, Zap, Layers, Code2, Terminal, Info,
+  BookOpen, Layers, Info,
 } from 'lucide-vue-next'
 import {
   Badge,
@@ -213,7 +213,7 @@ function isSectionOpen(title: string) {
             <div v-for="section in filteredSections" :key="section.title" class="mb-1">
               <button
                 class="flex items-center justify-between w-full px-2 py-1.5 text-[10px] font-black uppercase tracking-[0.12em] text-foreground/50 hover:text-foreground/80 transition-colors"
-                :aria-expanded="isSectionOpen(section.title).toString()"
+                :aria-expanded="isSectionOpen(section.title) ? 'true' : 'false'"
                 @click="toggleSection(section.title)"
               >
                 {{ section.title }}

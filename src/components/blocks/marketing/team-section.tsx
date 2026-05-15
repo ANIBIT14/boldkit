@@ -2,7 +2,7 @@
 import * as React from 'react'
 import { Card, CardContent } from '@/components/ui/card'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
-import { cn } from '@/lib/utils'
+import { cn, safeHref } from '@/lib/utils'
 import { XIcon, Linkedin, Github, Mail } from 'lucide-react'
 
 function getInitials(name: string) {
@@ -334,7 +334,7 @@ function SocialLink({
 }) {
   return (
     <a
-      href={href}
+      href={safeHref(href)}
       target="_blank"
       rel="noopener noreferrer"
       tabIndex={tabIndex}

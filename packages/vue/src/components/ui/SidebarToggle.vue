@@ -31,7 +31,7 @@ const isCollapsed = computed(() => state.value === 'collapsed')
     <PanelLeft
       :class="cn(
         'h-4 w-4 transition-transform duration-300',
-        isCollapsed.value && 'rotate-180'
+        isCollapsed && 'rotate-180'
       )"
     />
     <span class="sr-only">Toggle Sidebar</span>

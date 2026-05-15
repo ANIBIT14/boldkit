@@ -61,8 +61,8 @@ const handleMobileOpenChange = (value: boolean) => {
 <template>
   <!-- Mobile: Sheet drawer -->
   <Sheet
-    v-if="isMobile.value"
-    :open="openMobile.value"
+    v-if="isMobile"
+    :open="openMobile"
     @update:open="handleMobileOpenChange"
   >
     <SheetContent
@@ -79,7 +79,7 @@ const handleMobileOpenChange = (value: boolean) => {
   <!-- Desktop: Regular sidebar -->
   <div
     v-else
-    :data-state="state.value"
+    :data-state="state"
     :data-collapsible="collapsible"
     class="group/sidebar hidden md:block"
   >

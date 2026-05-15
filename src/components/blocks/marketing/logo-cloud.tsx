@@ -1,6 +1,6 @@
 /* eslint-disable react-refresh/only-export-components */
 import * as React from 'react'
-import { cn } from '@/lib/utils'
+import { cn, safeHref } from '@/lib/utils'
 import { Marquee } from '@/components/ui/marquee'
 
 export interface LogoItem {
@@ -168,7 +168,7 @@ export function LogoCloudCards({
               </div>
             )
             return logo.url ? (
-              <a key={`logo-${logo.name}`} href={logo.url} target="_blank" rel="noopener noreferrer">
+              <a key={`logo-${logo.name}`} href={safeHref(logo.url)} target="_blank" rel="noopener noreferrer">
                 {inner}
               </a>
             ) : (
@@ -244,7 +244,7 @@ export function LogoCloudWithStats({
                 </div>
               )
               return logo.url ? (
-                <a key={`logo-${logo.name}`} href={logo.url} target="_blank" rel="noopener noreferrer" className="cursor-pointer">
+                <a key={`logo-${logo.name}`} href={safeHref(logo.url)} target="_blank" rel="noopener noreferrer" className="cursor-pointer">
                   {inner}
                 </a>
               ) : (
@@ -278,7 +278,7 @@ function LogoCloudItem({ logo }: { logo: LogoItem }) {
 
   if (logo.url) {
     return (
-      <a href={logo.url} target="_blank" rel="noopener noreferrer">
+      <a href={safeHref(logo.url)} target="_blank" rel="noopener noreferrer">
         {content}
       </a>
     )

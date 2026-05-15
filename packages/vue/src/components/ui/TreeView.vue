@@ -1,5 +1,5 @@
 <script lang="ts">
-import { type Component, defineComponent, computed, h, type PropType } from 'vue'
+import { type Component, defineComponent, computed, h, type PropType, type VNode } from 'vue'
 import { ChevronRight, Folder, File } from 'lucide-vue-next'
 import Collapsible from './Collapsible.vue'
 import CollapsibleContent from './CollapsibleContent.vue'
@@ -60,7 +60,7 @@ const TreeViewNode = defineComponent({
       required: true,
     },
   },
-  setup(props) {
+  setup(props): () => VNode {
     const hasChildren = computed(
       () => props.node.children && props.node.children.length > 0
     )
@@ -198,13 +198,7 @@ const TreeViewNode = defineComponent({
   },
 })
 
-export { TreeViewNode }
-</script>
-
-<script setup lang="ts">
-import { ref, computed, watch } from 'vue'
-
-interface TreeViewProps {
+export interface TreeViewProps {
   data: TreeNode[]
   expandedIds?: string[]
   selectedIds?: string[]
@@ -215,6 +209,12 @@ interface TreeViewProps {
   defaultSelectedIds?: string[]
   class?: string
 }
+
+export { TreeViewNode }
+</script>
+
+<script setup lang="ts">
+import { ref, watch } from 'vue'
 
 const props = withDefaults(defineProps<TreeViewProps>(), {
   expandedIds: undefined,

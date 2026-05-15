@@ -116,8 +116,8 @@ const calendarModelValue = computed(() => {
   }
 })
 
-const handleSelect = (range: { start: DateValue; end: DateValue } | undefined) => {
-  const newRange: DateRange | undefined = range
+const handleSelect = (range: { start?: DateValue; end?: DateValue } | undefined) => {
+  const newRange: DateRange | undefined = range?.start && range?.end
     ? {
         from: calendarDateToDate(range.start),
         to: calendarDateToDate(range.end),

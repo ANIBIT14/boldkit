@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { cn } from '@/lib/utils'
+import { cn, safeHref } from '@/lib/utils'
 import Marquee from '@/components/ui/Marquee.vue'
 import type { Component } from 'vue'
 
@@ -63,7 +63,7 @@ const gridCols: Record<number, string> = {
         <template v-for="logo in logos" :key="`logo-${logo.name}`">
           <a
             v-if="logo.url"
-            :href="logo.url"
+            :href="safeHref(logo.url)"
             target="_blank"
             rel="noopener noreferrer"
             class="flex items-center justify-center h-12 opacity-60 hover:opacity-100 transition-opacity grayscale hover:grayscale-0"

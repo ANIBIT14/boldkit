@@ -18,10 +18,7 @@ if (!stepperContext || !itemContext) {
 }
 
 const isCompleted = computed(() => {
-  const activeStep = typeof stepperContext.activeStep === 'object' && 'value' in stepperContext.activeStep
-    ? stepperContext.activeStep.value
-    : stepperContext.activeStep
-  return itemContext.index < activeStep
+  return itemContext.index < (stepperContext.activeStep.value ?? 0)
 })
 </script>
 
