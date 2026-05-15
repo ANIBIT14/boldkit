@@ -1,7 +1,9 @@
 import { readdirSync, readFileSync, writeFileSync, existsSync } from 'fs'
-import { join, basename } from 'path'
+import { join, basename, dirname } from 'path'
+import { fileURLToPath } from 'url'
 
-const ROOT = join(import.meta.dir, '..')
+const __dirname = dirname(fileURLToPath(import.meta.url))
+const ROOT = join(__dirname, '..')
 const docsDir = join(ROOT, 'src/pages/docs')
 const uiDir = join(ROOT, 'src/components/ui')
 const chartDir = join(ROOT, 'src/components/ui/chart')
