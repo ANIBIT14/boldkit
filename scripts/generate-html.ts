@@ -87,10 +87,12 @@ function injectMeta(html: string, meta: RouteMeta): string {
   // Inject route-specific <h1> into <div id="root"> for crawlers and SEO scanners.
   // React's createRoot().render() clears these children on mount, so users never see them.
   // Visually hidden via inline sr-only-style CSS so any pre-hydration paint stays invisible.
+  // Regex matches both the fresh Vite output (`<div id="root"></div>`) and previously-injected
+  // content, so the script is idempotent across re-runs.
   const srOnly =
     'position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0'
   const seoBody = `<div id="root"><h1 style="${srOnly}">${escapeHtml(meta.h1)}</h1><p style="${srOnly}">${escapeHtml(meta.description)}</p></div>`
-  result = result.replace(/<div id="root"><\/div>/, seoBody)
+  result = result.replace(/<div id="root">[\s\S]*?<\/div>/, seoBody)
 
   // Update the <noscript> headline to be route-specific too.
   result = result.replace(

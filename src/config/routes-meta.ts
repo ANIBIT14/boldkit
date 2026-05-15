@@ -28,23 +28,21 @@ export const PAGE_META: Record<string, RouteMeta> = {
   '/': {
     title: 'BoldKit — Neubrutalism UI for React & Vue 3',
     description:
-      `Free neubrutalism component library for React and Vue 3 with ${COUNTS.components}+ UI components, ` +
-      `${COUNTS.blocks} section blocks, ${COUNTS.templates} templates, ${COUNTS.shapes} animated SVG shapes, and ` +
-      `${COUNTS.charts} chart types. Built on shadcn/ui with thick borders, hard shadows, and bold colors. Install via CLI.`,
+      `Free neubrutalism UI library for React & Vue 3. ${COUNTS.components}+ components, ${COUNTS.blocks} blocks, ${COUNTS.templates} templates, ${COUNTS.shapes} shapes, ${COUNTS.charts} charts. Install via shadcn CLI.`,
     canonical: `${SITE_URL}/`,
     h1: 'BoldKit — Neubrutalism UI Components for React & Vue 3',
   },
   '/docs': {
     title: 'Documentation | BoldKit',
     description:
-      'Learn how to install and use BoldKit neubrutalism components in your React or Vue 3 project. Comprehensive guides, API references, and examples for both frameworks.',
+      'Install and use BoldKit neubrutalism components in your React or Vue 3 project. Guides, API references, and examples for both frameworks.',
     canonical: `${SITE_URL}/docs`,
     h1: 'BoldKit Documentation',
   },
   '/docs/installation': {
     title: 'Installation | BoldKit',
     description:
-      'Install BoldKit neubrutalism components using shadcn CLI for React or shadcn-vue for Vue 3. Step-by-step installation guide for TypeScript and Tailwind CSS projects.',
+      'Install BoldKit neubrutalism components via shadcn CLI for React or shadcn-vue for Vue 3. Step-by-step setup for TypeScript and Tailwind CSS.',
     canonical: `${SITE_URL}/docs/installation`,
     h1: 'Installation Guide',
   },
@@ -58,13 +56,13 @@ export const PAGE_META: Record<string, RouteMeta> = {
   '/components': {
     title: `${COUNTS.components}+ Neubrutalism Components | BoldKit`,
     description:
-      `Browse ${COUNTS.components}+ neubrutalism components for React and Vue 3. Buttons, cards, inputs, dialogs, spinners, steppers, dropzones and more with thick borders and hard shadows.`,
+      `${COUNTS.components}+ neubrutalism components for React & Vue 3 — buttons, cards, inputs, dialogs, spinners, steppers, and more with thick borders and hard shadows.`,
     canonical: `${SITE_URL}/components`,
     h1: `${COUNTS.components}+ Neubrutalism Components for React & Vue 3`,
   },
   '/shapes': {
     title: `${COUNTS.shapes} Neubrutalism SVG Shapes | BoldKit`,
-    description: `Collection of ${COUNTS.shapes} unique neubrutalism SVG shapes for React and Vue 3. Bursts, hearts, stars, badges, celestial, and decorative shapes with thick borders.`,
+    description: `${COUNTS.shapes} neubrutalism SVG shapes for React & Vue 3 — bursts, hearts, stars, badges, celestial, and decorative shapes with thick borders.`,
     canonical: `${SITE_URL}/shapes`,
     h1: `${COUNTS.shapes} Neubrutalism SVG Shapes`,
   },
@@ -76,13 +74,13 @@ export const PAGE_META: Record<string, RouteMeta> = {
   },
   '/ascii-shapes': {
     title: 'ASCII Shape Animations | BoldKit',
-    description: 'Animated ASCII art components for React and Vue 3. 7 animations including spiral, rose, wave, vortex, pulse, matrix, and grid — with 5 character sets and 4 sizes.',
+    description: 'Animated ASCII art components for React & Vue 3 — 7 animations (spiral, rose, wave, vortex, pulse, matrix, grid) with 5 character sets.',
     canonical: `${SITE_URL}/ascii-shapes`,
     h1: 'ASCII Shape Animations',
   },
   '/charts': {
     title: `${COUNTS.charts} Neubrutalism Chart Types | BoldKit`,
-    description: `Neubrutalism styled charts for React and Vue 3. ${COUNTS.charts} chart types including bar, line, area, pie, donut, radar, radial bar, gauge, sparkline, funnel, treemap, heatmap, and sankey charts.`,
+    description: `${COUNTS.charts} neubrutalism chart types for React & Vue 3 — bar, line, area, pie, donut, radar, gauge, sparkline, funnel, treemap, heatmap, sankey.`,
     canonical: `${SITE_URL}/charts`,
     h1: `${COUNTS.charts} Neubrutalism Chart Types`,
   },
@@ -100,19 +98,19 @@ export const PAGE_META: Record<string, RouteMeta> = {
   },
   '/blocks': {
     title: `${COUNTS.blocks} Section Blocks | BoldKit`,
-    description: `Free neubrutalism section blocks for React and Vue 3. 10 marketing blocks (hero, features, testimonials, CTA, stats, team, FAQ, footer, contact, logo cloud) and 5 application blocks (auth forms, settings, onboarding, error pages, invoice).`,
+    description: `${COUNTS.blocks} free neubrutalism section blocks for React & Vue 3 — 10 marketing blocks (hero, features, testimonials, CTA, stats, FAQ, footer) and 5 application blocks.`,
     canonical: `${SITE_URL}/blocks`,
     h1: `${COUNTS.blocks} Neubrutalism Section Blocks`,
   },
   '/studio': {
     title: 'Dot Matrix Studio — Pixel Art & Animation Editor | BoldKit',
-    description: 'Free in-browser dot matrix animation editor. Draw pixel art, build frame-by-frame animations with 8 presets, and export to WebM video, PNG, SVG, or JSON. No installs required.',
+    description: 'Free in-browser dot matrix editor — draw pixel art, build frame-by-frame animations with 8 presets, export to WebM, PNG, SVG, or JSON.',
     canonical: `${SITE_URL}/studio`,
     h1: 'Dot Matrix Studio — Pixel Art & Animation Editor',
   },
   '/canvas-effects': {
     title: 'Canvas Effects — 10 Animated Canvas Components | BoldKit',
-    description: 'Free animated canvas components for React, Vue 3, and Nuxt 3. 10 zero-dependency effects including Aurora, Flow Field, Plasma, Metaballs, Matrix Rain, Particle Web, Dot Blob, Dot Wave, Mouse Ripple, and Lissajous Grid. Fully typed with customisable props.',
+    description: '10 free animated canvas components for React, Vue 3, and Nuxt — Aurora, Flow Field, Plasma, Metaballs, Matrix Rain, Particle Web, and more.',
     canonical: `${SITE_URL}/canvas-effects`,
     h1: 'Canvas Effects — 10 Animated Canvas Components',
   },
@@ -227,7 +225,7 @@ export function getComponentMeta(slug: string): RouteMeta {
   const title = COMPONENT_TITLES[slug] ?? slug
   return {
     title: `${title} — Neubrutalism Component for React & Vue 3 | BoldKit`,
-    description: `${title} component with neubrutalism styling for React and Vue 3. Thick borders, hard shadows, bold colors. Install via shadcn CLI for React or shadcn-vue for Vue.`,
+    description: `${title} — neubrutalism React & Vue 3 component with thick borders, hard shadows, bold colors. Install via shadcn or shadcn-vue.`,
     canonical: `${SITE_URL}/components/${slug}`,
     h1: `${title} — Neubrutalism Component for React & Vue 3`,
   }

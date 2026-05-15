@@ -152,6 +152,7 @@ export function DotMatrixStudio() {
   return (
     <>
     <SEO {...pageSEO.studio} />
+    <h1 className="sr-only">Dot Matrix Studio — Pixel Art &amp; Animation Editor</h1>
     <div className="studio-root studio-ghost-grid" style={{ display: 'flex', flexDirection: 'column', height: '100dvh', overflow: 'hidden' }}>
 
       {/* ── Top bar ──────────────────────────────────────────────── */}

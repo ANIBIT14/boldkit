@@ -114,7 +114,7 @@ export function Header() {
             <div className="relative">
               <img
                 src="https://ik.imagekit.io/fincalfy/304a4c07-8de1-41af-813e-e7556234b973.png"
-                alt=""
+                alt="BoldKit logo"
                 className="h-7 w-7 transition-transform group-hover:rotate-[-6deg] duration-200"
               />
             </div>

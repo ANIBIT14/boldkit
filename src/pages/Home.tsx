@@ -182,7 +182,10 @@ export function Home() {
                 </div>
 
                 {/* Giant masthead — newspaper column style */}
-                <div className="mb-0 select-none">
+                <h1
+                  className="mb-0 select-none font-normal"
+                  aria-label="BoldKit — Neubrutalism UI Components for React and Vue 3"
+                >
                   {/* "BOLD" with thick left color bar */}
                   <div className="flex items-stretch animate-stagger-fade-in stagger-2">
                     <div className="w-[6px] shrink-0 bg-primary mr-4" />
@@ -202,7 +205,7 @@ export function Home() {
                   >
                     KIT
                   </div>
-                </div>
+                </h1>
 
                 {/* Subline */}
                 <p className="mt-6 mb-7 max-w-md text-base leading-relaxed text-foreground/65 border-l-4 border-primary pl-4 animate-stagger-fade-in stagger-4" style={MONO}>

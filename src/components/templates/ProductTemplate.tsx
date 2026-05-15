@@ -311,7 +311,7 @@ export function ProductTemplate() {
                       i === selectedImage ? 'border-primary' : 'border-foreground'
                     } overflow-hidden bg-muted`}
                   >
-                    <img src={image} alt="" className="w-full h-full object-cover" />
+                    <img src={image} alt={`${product.name} thumbnail ${i + 1}`} className="w-full h-full object-cover" />
                   </button>
                 ))}
               </div>
