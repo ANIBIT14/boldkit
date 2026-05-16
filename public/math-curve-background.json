@@ -14,6 +14,11 @@
       "path": "registry/default/ui/math-curve-background.tsx",
       "type": "registry:ui",
       "target": "components/ui/math-curve-background.tsx"
+    },
+    {
+      "path": "registry/default/example/math-curve-background-demo.tsx",
+      "type": "registry:example",
+      "target": "components/example/math-curve-background-demo.tsx"
     }
   ],
   "type": "registry:ui"

@@ -11,6 +11,11 @@
       "path": "registry/default/ui/heatmap-chart.tsx",
       "type": "registry:ui",
       "target": "components/ui/chart/heatmap-chart.tsx"
+    },
+    {
+      "path": "registry/default/example/heatmap-chart-demo.tsx",
+      "type": "registry:example",
+      "target": "components/example/heatmap-chart-demo.tsx"
     }
   ],
   "type": "registry:ui"

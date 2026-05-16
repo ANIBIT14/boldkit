@@ -13,6 +13,11 @@
       "path": "registry/default/ui/switch.tsx",
       "type": "registry:ui",
       "target": "components/ui/switch.tsx"
+    },
+    {
+      "path": "registry/default/example/switch-demo.tsx",
+      "type": "registry:example",
+      "target": "components/example/switch-demo.tsx"
     }
   ],
   "type": "registry:ui"

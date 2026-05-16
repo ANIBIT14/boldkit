@@ -11,6 +11,11 @@
       "path": "registry/default/ui/sankey-chart.tsx",
       "type": "registry:ui",
       "target": "components/ui/chart/sankey-chart.tsx"
+    },
+    {
+      "path": "registry/default/example/sankey-chart-demo.tsx",
+      "type": "registry:example",
+      "target": "components/example/sankey-chart-demo.tsx"
     }
   ],
   "type": "registry:ui"

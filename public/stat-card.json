@@ -16,6 +16,11 @@
       "path": "registry/default/ui/stat-card.tsx",
       "type": "registry:ui",
       "target": "components/ui/stat-card.tsx"
+    },
+    {
+      "path": "registry/default/example/stat-card-demo.tsx",
+      "type": "registry:example",
+      "target": "components/example/stat-card-demo.tsx"
     }
   ],
   "type": "registry:ui"

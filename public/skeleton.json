@@ -11,6 +11,11 @@
       "path": "registry/default/ui/skeleton.tsx",
       "type": "registry:ui",
       "target": "components/ui/skeleton.tsx"
+    },
+    {
+      "path": "registry/default/example/skeleton-demo.tsx",
+      "type": "registry:example",
+      "target": "components/example/skeleton-demo.tsx"
     }
   ],
   "type": "registry:ui"

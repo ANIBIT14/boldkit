@@ -11,6 +11,11 @@
       "path": "registry/default/ui/card.tsx",
       "type": "registry:ui",
       "target": "components/ui/card.tsx"
+    },
+    {
+      "path": "registry/default/example/card-demo.tsx",
+      "type": "registry:example",
+      "target": "components/example/card-demo.tsx"
     }
   ],
   "type": "registry:ui"

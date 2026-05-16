@@ -15,6 +15,11 @@
       "path": "registry/default/ui/command.tsx",
       "type": "registry:ui",
       "target": "components/ui/command.tsx"
+    },
+    {
+      "path": "registry/default/example/command-demo.tsx",
+      "type": "registry:example",
+      "target": "components/example/command-demo.tsx"
     }
   ],
   "type": "registry:ui"

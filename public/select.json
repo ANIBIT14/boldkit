@@ -14,6 +14,11 @@
       "path": "registry/default/ui/select.tsx",
       "type": "registry:ui",
       "target": "components/ui/select.tsx"
+    },
+    {
+      "path": "registry/default/example/select-demo.tsx",
+      "type": "registry:example",
+      "target": "components/example/select-demo.tsx"
     }
   ],
   "type": "registry:ui"

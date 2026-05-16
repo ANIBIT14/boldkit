@@ -13,6 +13,11 @@
       "path": "registry/default/ui/aspect-ratio.tsx",
       "type": "registry:ui",
       "target": "components/ui/aspect-ratio.tsx"
+    },
+    {
+      "path": "registry/default/example/aspect-ratio-demo.tsx",
+      "type": "registry:example",
+      "target": "components/example/aspect-ratio-demo.tsx"
     }
   ],
   "type": "registry:ui"

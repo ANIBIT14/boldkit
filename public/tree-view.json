@@ -16,6 +16,11 @@
       "path": "registry/default/ui/tree-view.tsx",
       "type": "registry:ui",
       "target": "components/ui/tree-view.tsx"
+    },
+    {
+      "path": "registry/default/example/tree-view-demo.tsx",
+      "type": "registry:example",
+      "target": "components/example/tree-view-demo.tsx"
     }
   ],
   "type": "registry:ui"

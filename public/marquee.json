@@ -11,6 +11,11 @@
       "path": "registry/default/ui/marquee.tsx",
       "type": "registry:ui",
       "target": "components/ui/marquee.tsx"
+    },
+    {
+      "path": "registry/default/example/marquee-demo.tsx",
+      "type": "registry:example",
+      "target": "components/example/marquee-demo.tsx"
     }
   ],
   "type": "registry:ui"

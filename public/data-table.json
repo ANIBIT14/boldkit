@@ -20,6 +20,11 @@
       "path": "registry/default/ui/data-table.tsx",
       "type": "registry:ui",
       "target": "components/ui/data-table.tsx"
+    },
+    {
+      "path": "registry/default/example/data-table-demo.tsx",
+      "type": "registry:example",
+      "target": "components/example/data-table-demo.tsx"
     }
   ],
   "type": "registry:ui"

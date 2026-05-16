@@ -14,6 +14,11 @@
       "path": "registry/default/ui/tour.tsx",
       "type": "registry:ui",
       "target": "components/ui/tour.tsx"
+    },
+    {
+      "path": "registry/default/example/tour-demo.tsx",
+      "type": "registry:example",
+      "target": "components/example/tour-demo.tsx"
     }
   ],
   "type": "registry:ui"

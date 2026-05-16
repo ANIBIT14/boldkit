@@ -15,6 +15,11 @@
       "path": "registry/default/ui/calendar.tsx",
       "type": "registry:ui",
       "target": "components/ui/calendar.tsx"
+    },
+    {
+      "path": "registry/default/example/calendar-demo.tsx",
+      "type": "registry:example",
+      "target": "components/example/calendar-demo.tsx"
     }
   ],
   "type": "registry:ui"

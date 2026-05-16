@@ -16,6 +16,11 @@
       "path": "registry/default/ui/dropzone.tsx",
       "type": "registry:ui",
       "target": "components/ui/dropzone.tsx"
+    },
+    {
+      "path": "registry/default/example/dropzone-demo.tsx",
+      "type": "registry:example",
+      "target": "components/example/dropzone-demo.tsx"
     }
   ],
   "type": "registry:ui"

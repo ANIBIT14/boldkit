@@ -15,6 +15,11 @@
       "path": "registry/default/ui/sheet.tsx",
       "type": "registry:ui",
       "target": "components/ui/sheet.tsx"
+    },
+    {
+      "path": "registry/default/example/sheet-demo.tsx",
+      "type": "registry:example",
+      "target": "components/example/sheet-demo.tsx"
     }
   ],
   "type": "registry:ui"

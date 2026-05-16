@@ -13,6 +13,11 @@
       "path": "registry/default/ui/badge.tsx",
       "type": "registry:ui",
       "target": "components/ui/badge.tsx"
+    },
+    {
+      "path": "registry/default/example/badge-demo.tsx",
+      "type": "registry:example",
+      "target": "components/example/badge-demo.tsx"
     }
   ],
   "type": "registry:ui"

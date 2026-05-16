@@ -11,6 +11,11 @@
       "path": "registry/default/ui/shapes.tsx",
       "type": "registry:ui",
       "target": "components/ui/shapes.tsx"
+    },
+    {
+      "path": "registry/default/example/shapes-demo.tsx",
+      "type": "registry:example",
+      "target": "components/example/shapes-demo.tsx"
     }
   ],
   "type": "registry:ui"

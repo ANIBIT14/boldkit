@@ -13,6 +13,11 @@
       "path": "registry/default/ui/separator.tsx",
       "type": "registry:ui",
       "target": "components/ui/separator.tsx"
+    },
+    {
+      "path": "registry/default/example/separator-demo.tsx",
+      "type": "registry:example",
+      "target": "components/example/separator-demo.tsx"
     }
   ],
   "type": "registry:ui"

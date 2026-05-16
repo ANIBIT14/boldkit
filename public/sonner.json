@@ -13,6 +13,11 @@
       "path": "registry/default/ui/sonner.tsx",
       "type": "registry:ui",
       "target": "components/ui/sonner.tsx"
+    },
+    {
+      "path": "registry/default/example/sonner-demo.tsx",
+      "type": "registry:example",
+      "target": "components/example/sonner-demo.tsx"
     }
   ],
   "type": "registry:ui"

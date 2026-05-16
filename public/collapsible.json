@@ -13,6 +13,11 @@
       "path": "registry/default/ui/collapsible.tsx",
       "type": "registry:ui",
       "target": "components/ui/collapsible.tsx"
+    },
+    {
+      "path": "registry/default/example/collapsible-demo.tsx",
+      "type": "registry:example",
+      "target": "components/example/collapsible-demo.tsx"
     }
   ],
   "type": "registry:ui"

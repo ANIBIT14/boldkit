@@ -14,6 +14,12 @@
       "content": "import * as React from 'react'\nimport * as PopoverPrimitive from '@radix-ui/react-popover'\nimport { cn } from '@/lib/utils'\n\nconst Popover = PopoverPrimitive.Root\n\nconst PopoverTrigger = PopoverPrimitive.Trigger\n\nconst PopoverAnchor = PopoverPrimitive.Anchor\n\nconst PopoverContent = React.forwardRef<\n  React.ElementRef<typeof PopoverPrimitive.Content>,\n  React.ComponentPropsWithoutRef<typeof PopoverPrimitive.Content>\n>(({ className, align = 'center', sideOffset = 4, ...props }, ref) => (\n  <PopoverPrimitive.Portal>\n    <PopoverPrimitive.Content\n      ref={ref}\n      align={align}\n      sideOffset={sideOffset}\n      className={cn(\n        'z-50 w-72 border-3 border-foreground bg-popover p-4 text-popover-foreground shadow-[4px_4px_0px_hsl(var(--shadow-color))] outline-none',\n        className\n      )}\n      {...props}\n    />\n  </PopoverPrimitive.Portal>\n))\nPopoverContent.displayName = PopoverPrimitive.Content.displayName\n\nexport { Popover, PopoverTrigger, PopoverContent, PopoverAnchor }\n",
       "type": "registry:ui",
       "target": "components/ui/popover.tsx"
+    },
+    {
+      "path": "registry/default/example/popover-demo.tsx",
+      "content": "import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover'\nimport { Button } from '@/components/ui/button'\n\nexport default function Example() {\n  return (\n    <Popover>\n      <PopoverTrigger asChild>\n        <Button>Open Popover</Button>\n      </PopoverTrigger>\n      <PopoverContent>\n        Place content for the popover here.\n      </PopoverContent>\n    </Popover>\n  )\n}",
+      "type": "registry:example",
+      "target": "components/example/popover-demo.tsx"
     }
   ],
   "type": "registry:ui"

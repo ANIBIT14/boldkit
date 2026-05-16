@@ -13,6 +13,11 @@
       "path": "registry/default/ui/treemap-chart.tsx",
       "type": "registry:ui",
       "target": "components/ui/chart/treemap-chart.tsx"
+    },
+    {
+      "path": "registry/default/example/treemap-chart-demo.tsx",
+      "type": "registry:example",
+      "target": "components/example/treemap-chart-demo.tsx"
     }
   ],
   "type": "registry:ui"

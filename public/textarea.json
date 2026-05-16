@@ -11,6 +11,11 @@
       "path": "registry/default/ui/textarea.tsx",
       "type": "registry:ui",
       "target": "components/ui/textarea.tsx"
+    },
+    {
+      "path": "registry/default/example/textarea-demo.tsx",
+      "type": "registry:example",
+      "target": "components/example/textarea-demo.tsx"
     }
   ],
   "type": "registry:ui"

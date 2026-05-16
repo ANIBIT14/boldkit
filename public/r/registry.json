@@ -120,6 +120,11 @@
           "path": "registry/default/ui/accordion.tsx",
           "type": "registry:ui",
           "target": "components/ui/accordion.tsx"
+        },
+        {
+          "path": "registry/default/example/accordion-demo.tsx",
+          "type": "registry:example",
+          "target": "components/example/accordion-demo.tsx"
         }
       ]
     },
@@ -139,6 +144,11 @@
           "path": "registry/default/ui/alert.tsx",
           "type": "registry:ui",
           "target": "components/ui/alert.tsx"
+        },
+        {
+          "path": "registry/default/example/alert-demo.tsx",
+          "type": "registry:example",
+          "target": "components/example/alert-demo.tsx"
         }
       ]
     },
@@ -157,6 +167,11 @@
           "path": "registry/default/ui/aspect-ratio.tsx",
           "type": "registry:ui",
           "target": "components/ui/aspect-ratio.tsx"
+        },
+        {
+          "path": "registry/default/example/aspect-ratio-demo.tsx",
+          "type": "registry:example",
+          "target": "components/example/aspect-ratio-demo.tsx"
         }
       ]
     },
@@ -175,6 +190,11 @@
           "path": "registry/default/ui/avatar.tsx",
           "type": "registry:ui",
           "target": "components/ui/avatar.tsx"
+        },
+        {
+          "path": "registry/default/example/avatar-demo.tsx",
+          "type": "registry:example",
+          "target": "components/example/avatar-demo.tsx"
         }
       ]
     },
@@ -193,6 +213,11 @@
           "path": "registry/default/ui/badge.tsx",
           "type": "registry:ui",
           "target": "components/ui/badge.tsx"
+        },
+        {
+          "path": "registry/default/example/badge-demo.tsx",
+          "type": "registry:example",
+          "target": "components/example/badge-demo.tsx"
         }
       ]
     },
@@ -212,6 +237,11 @@
           "path": "registry/default/ui/breadcrumb.tsx",
           "type": "registry:ui",
           "target": "components/ui/breadcrumb.tsx"
+        },
+        {
+          "path": "registry/default/example/breadcrumb-demo.tsx",
+          "type": "registry:example",
+          "target": "components/example/breadcrumb-demo.tsx"
         }
       ]
     },
@@ -231,6 +261,11 @@
           "path": "registry/default/ui/button.tsx",
           "type": "registry:ui",
           "target": "components/ui/button.tsx"
+        },
+        {
+          "path": "registry/default/example/button-demo.tsx",
+          "type": "registry:example",
+          "target": "components/example/button-demo.tsx"
         }
       ]
     },
@@ -247,6 +282,11 @@
           "path": "registry/default/ui/card.tsx",
           "type": "registry:ui",
           "target": "components/ui/card.tsx"
+        },
+        {
+          "path": "registry/default/example/card-demo.tsx",
+          "type": "registry:example",
+          "target": "components/example/card-demo.tsx"
         }
       ]
     },
@@ -266,6 +306,11 @@
           "path": "registry/default/ui/checkbox.tsx",
           "type": "registry:ui",
           "target": "components/ui/checkbox.tsx"
+        },
+        {
+          "path": "registry/default/example/checkbox-demo.tsx",
+          "type": "registry:example",
+          "target": "components/example/checkbox-demo.tsx"
         }
       ]
     },
@@ -284,6 +329,11 @@
           "path": "registry/default/ui/collapsible.tsx",
           "type": "registry:ui",
           "target": "components/ui/collapsible.tsx"
+        },
+        {
+          "path": "registry/default/example/collapsible-demo.tsx",
+          "type": "registry:example",
+          "target": "components/example/collapsible-demo.tsx"
         }
       ]
     },
@@ -304,6 +354,11 @@
           "path": "registry/default/ui/combobox.tsx",
           "type": "registry:ui",
           "target": "components/ui/combobox.tsx"
+        },
+        {
+          "path": "registry/default/example/combobox-demo.tsx",
+          "type": "registry:example",
+          "target": "components/example/combobox-demo.tsx"
         }
       ]
     },
@@ -324,6 +379,11 @@
           "path": "registry/default/ui/command.tsx",
           "type": "registry:ui",
           "target": "components/ui/command.tsx"
+        },
+        {
+          "path": "registry/default/example/command-demo.tsx",
+          "type": "registry:example",
+          "target": "components/example/command-demo.tsx"
         }
       ]
     },
@@ -343,6 +403,11 @@
           "path": "registry/default/ui/dialog.tsx",
           "type": "registry:ui",
           "target": "components/ui/dialog.tsx"
+        },
+        {
+          "path": "registry/default/example/dialog-demo.tsx",
+          "type": "registry:example",
+          "target": "components/example/dialog-demo.tsx"
         }
       ]
     },
@@ -362,6 +427,11 @@
           "path": "registry/default/ui/dropdown-menu.tsx",
           "type": "registry:ui",
           "target": "components/ui/dropdown-menu.tsx"
+        },
+        {
+          "path": "registry/default/example/dropdown-menu-demo.tsx",
+          "type": "registry:example",
+          "target": "components/example/dropdown-menu-demo.tsx"
         }
       ]
     },
@@ -378,6 +448,11 @@
           "path": "registry/default/ui/input.tsx",
           "type": "registry:ui",
           "target": "components/ui/input.tsx"
+        },
+        {
+          "path": "registry/default/example/input-demo.tsx",
+          "type": "registry:example",
+          "target": "components/example/input-demo.tsx"
         }
       ]
     },
@@ -397,6 +472,11 @@
           "path": "registry/default/ui/label.tsx",
           "type": "registry:ui",
           "target": "components/ui/label.tsx"
+        },
+        {
+          "path": "registry/default/example/label-demo.tsx",
+          "type": "registry:example",
+          "target": "components/example/label-demo.tsx"
         }
       ]
     },
@@ -415,6 +495,11 @@
           "path": "registry/default/ui/popover.tsx",
           "type": "registry:ui",
           "target": "components/ui/popover.tsx"
+        },
+        {
+          "path": "registry/default/example/popover-demo.tsx",
+          "type": "registry:example",
+          "target": "components/example/popover-demo.tsx"
         }
       ]
     },
@@ -433,6 +518,11 @@
           "path": "registry/default/ui/progress.tsx",
           "type": "registry:ui",
           "target": "components/ui/progress.tsx"
+        },
+        {
+          "path": "registry/default/example/progress-demo.tsx",
+          "type": "registry:example",
+          "target": "components/example/progress-demo.tsx"
         }
       ]
     },
@@ -452,6 +542,11 @@
           "path": "registry/default/ui/radio-group.tsx",
           "type": "registry:ui",
           "target": "components/ui/radio-group.tsx"
+        },
+        {
+          "path": "registry/default/example/radio-group-demo.tsx",
+          "type": "registry:example",
+          "target": "components/example/radio-group-demo.tsx"
         }
       ]
     },
@@ -470,6 +565,11 @@
           "path": "registry/default/ui/scroll-area.tsx",
           "type": "registry:ui",
           "target": "components/ui/scroll-area.tsx"
+        },
+        {
+          "path": "registry/default/example/scroll-area-demo.tsx",
+          "type": "registry:example",
+          "target": "components/example/scroll-area-demo.tsx"
         }
       ]
     },
@@ -489,6 +589,11 @@
           "path": "registry/default/ui/select.tsx",
           "type": "registry:ui",
           "target": "components/ui/select.tsx"
+        },
+        {
+          "path": "registry/default/example/select-demo.tsx",
+          "type": "registry:example",
+          "target": "components/example/select-demo.tsx"
         }
       ]
     },
@@ -507,6 +612,11 @@
           "path": "registry/default/ui/separator.tsx",
           "type": "registry:ui",
           "target": "components/ui/separator.tsx"
+        },
+        {
+          "path": "registry/default/example/separator-demo.tsx",
+          "type": "registry:example",
+          "target": "components/example/separator-demo.tsx"
         }
       ]
     },
@@ -527,6 +637,11 @@
           "path": "registry/default/ui/sheet.tsx",
           "type": "registry:ui",
           "target": "components/ui/sheet.tsx"
+        },
+        {
+          "path": "registry/default/example/sheet-demo.tsx",
+          "type": "registry:example",
+          "target": "components/example/sheet-demo.tsx"
         }
       ]
     },
@@ -543,6 +658,11 @@
           "path": "registry/default/ui/skeleton.tsx",
           "type": "registry:ui",
           "target": "components/ui/skeleton.tsx"
+        },
+        {
+          "path": "registry/default/example/skeleton-demo.tsx",
+          "type": "registry:example",
+          "target": "components/example/skeleton-demo.tsx"
         }
       ]
     },
@@ -559,6 +679,11 @@
           "path": "registry/default/ui/slider.tsx",
           "type": "registry:ui",
           "target": "components/ui/slider.tsx"
+        },
+        {
+          "path": "registry/default/example/slider-demo.tsx",
+          "type": "registry:example",
+          "target": "components/example/slider-demo.tsx"
         }
       ]
     },
@@ -577,6 +702,11 @@
           "path": "registry/default/ui/sonner.tsx",
           "type": "registry:ui",
           "target": "components/ui/sonner.tsx"
+        },
+        {
+          "path": "registry/default/example/sonner-demo.tsx",
+          "type": "registry:example",
+          "target": "components/example/sonner-demo.tsx"
         }
       ]
     },
@@ -595,6 +725,11 @@
           "path": "registry/default/ui/switch.tsx",
           "type": "registry:ui",
           "target": "components/ui/switch.tsx"
+        },
+        {
+          "path": "registry/default/example/switch-demo.tsx",
+          "type": "registry:example",
+          "target": "components/example/switch-demo.tsx"
         }
       ]
     },
@@ -611,6 +746,11 @@
           "path": "registry/default/ui/table.tsx",
           "type": "registry:ui",
           "target": "components/ui/table.tsx"
+        },
+        {
+          "path": "registry/default/example/table-demo.tsx",
+          "type": "registry:example",
+          "target": "components/example/table-demo.tsx"
         }
       ]
     },
@@ -629,6 +769,11 @@
           "path": "registry/default/ui/tabs.tsx",
           "type": "registry:ui",
           "target": "components/ui/tabs.tsx"
+        },
+        {
+          "path": "registry/default/example/tabs-demo.tsx",
+          "type": "registry:example",
+          "target": "components/example/tabs-demo.tsx"
         }
       ]
     },
@@ -645,6 +790,11 @@
           "path": "registry/default/ui/textarea.tsx",
           "type": "registry:ui",
           "target": "components/ui/textarea.tsx"
+        },
+        {
+          "path": "registry/default/example/textarea-demo.tsx",
+          "type": "registry:example",
+          "target": "components/example/textarea-demo.tsx"
         }
       ]
     },
@@ -664,6 +814,11 @@
           "path": "registry/default/ui/toggle.tsx",
           "type": "registry:ui",
           "target": "components/ui/toggle.tsx"
+        },
+        {
+          "path": "registry/default/example/toggle-demo.tsx",
+          "type": "registry:example",
+          "target": "components/example/toggle-demo.tsx"
         }
       ]
     },
@@ -683,6 +838,11 @@
           "path": "registry/default/ui/toggle-group.tsx",
           "type": "registry:ui",
           "target": "components/ui/toggle-group.tsx"
+        },
+        {
+          "path": "registry/default/example/toggle-group-demo.tsx",
+          "type": "registry:example",
+          "target": "components/example/toggle-group-demo.tsx"
         }
       ]
     },
@@ -701,6 +861,11 @@
           "path": "registry/default/ui/tooltip.tsx",
           "type": "registry:ui",
           "target": "components/ui/tooltip.tsx"
+        },
+        {
+          "path": "registry/default/example/tooltip-demo.tsx",
+          "type": "registry:example",
+          "target": "components/example/tooltip-demo.tsx"
         }
       ]
     },
@@ -720,6 +885,11 @@
           "path": "registry/default/ui/alert-dialog.tsx",
           "type": "registry:ui",
           "target": "components/ui/alert-dialog.tsx"
+        },
+        {
+          "path": "registry/default/example/alert-dialog-demo.tsx",
+          "type": "registry:example",
+          "target": "components/example/alert-dialog-demo.tsx"
         }
       ]
     },
@@ -740,6 +910,11 @@
           "path": "registry/default/ui/calendar.tsx",
           "type": "registry:ui",
           "target": "components/ui/calendar.tsx"
+        },
+        {
+          "path": "registry/default/example/calendar-demo.tsx",
+          "type": "registry:example",
+          "target": "components/example/calendar-demo.tsx"
         }
       ]
     },
@@ -758,6 +933,11 @@
           "path": "registry/default/ui/drawer.tsx",
           "type": "registry:ui",
           "target": "components/ui/drawer.tsx"
+        },
+        {
+          "path": "registry/default/example/drawer-demo.tsx",
+          "type": "registry:example",
+          "target": "components/example/drawer-demo.tsx"
         }
       ]
     },
@@ -776,6 +956,11 @@
           "path": "registry/default/ui/hover-card.tsx",
           "type": "registry:ui",
           "target": "components/ui/hover-card.tsx"
+        },
+        {
+          "path": "registry/default/example/hover-card-demo.tsx",
+          "type": "registry:example",
+          "target": "components/example/hover-card-demo.tsx"
         }
       ]
     },
@@ -795,6 +980,11 @@
           "path": "registry/default/ui/input-otp.tsx",
           "type": "registry:ui",
           "target": "components/ui/input-otp.tsx"
+        },
+        {
+          "path": "registry/default/example/input-otp-demo.tsx",
+          "type": "registry:example",
+          "target": "components/example/input-otp-demo.tsx"
         }
       ]
     },
@@ -814,6 +1004,11 @@
           "path": "registry/default/ui/pagination.tsx",
           "type": "registry:ui",
           "target": "components/ui/pagination.tsx"
+        },
+        {
+          "path": "registry/default/example/pagination-demo.tsx",
+          "type": "registry:example",
+          "target": "components/example/pagination-demo.tsx"
         }
       ]
     },
@@ -832,6 +1027,11 @@
           "path": "registry/default/ui/chart.tsx",
           "type": "registry:ui",
           "target": "components/ui/chart.tsx"
+        },
+        {
+          "path": "registry/default/example/chart-demo.tsx",
+          "type": "registry:example",
+          "target": "components/example/chart-demo.tsx"
         }
       ]
     },
@@ -848,6 +1048,11 @@
           "path": "registry/default/ui/marquee.tsx",
           "type": "registry:ui",
           "target": "components/ui/marquee.tsx"
+        },
+        {
+          "path": "registry/default/example/marquee-demo.tsx",
+          "type": "registry:example",
+          "target": "components/example/marquee-demo.tsx"
         }
       ]
     },
@@ -866,6 +1071,11 @@
           "path": "registry/default/ui/sticker.tsx",
           "type": "registry:ui",
           "target": "components/ui/sticker.tsx"
+        },
+        {
+          "path": "registry/default/example/sticker-demo.tsx",
+          "type": "registry:example",
+          "target": "components/example/sticker-demo.tsx"
         }
       ]
     },
@@ -884,6 +1094,11 @@
           "path": "registry/default/ui/layered-card.tsx",
           "type": "registry:ui",
           "target": "components/ui/layered-card.tsx"
+        },
+        {
+          "path": "registry/default/example/layered-card-demo.tsx",
+          "type": "registry:example",
+          "target": "components/example/layered-card-demo.tsx"
         }
       ]
     },
@@ -900,6 +1115,11 @@
           "path": "registry/default/ui/shapes.tsx",
           "type": "registry:ui",
           "target": "components/ui/shapes.tsx"
+        },
+        {
+          "path": "registry/default/example/shapes-demo.tsx",
+          "type": "registry:example",
+          "target": "components/example/shapes-demo.tsx"
         }
       ]
     },
@@ -930,6 +1150,11 @@
           "path": "registry/default/ui/spinner.tsx",
           "type": "registry:ui",
           "target": "components/ui/spinner.tsx"
+        },
+        {
+          "path": "registry/default/example/spinner-demo.tsx",
+          "type": "registry:example",
+          "target": "components/example/spinner-demo.tsx"
         }
       ]
     },
@@ -948,6 +1173,11 @@
           "path": "registry/default/ui/kbd.tsx",
           "type": "registry:ui",
           "target": "components/ui/kbd.tsx"
+        },
+        {
+          "path": "registry/default/example/kbd-demo.tsx",
+          "type": "registry:example",
+          "target": "components/example/kbd-demo.tsx"
         }
       ]
     },
@@ -969,6 +1199,11 @@
           "path": "registry/default/ui/stat-card.tsx",
           "type": "registry:ui",
           "target": "components/ui/stat-card.tsx"
+        },
+        {
+          "path": "registry/default/example/stat-card-demo.tsx",
+          "type": "registry:example",
+          "target": "components/example/stat-card-demo.tsx"
         }
       ]
     },
@@ -988,6 +1223,11 @@
           "path": "registry/default/ui/stepper.tsx",
           "type": "registry:ui",
           "target": "components/ui/stepper.tsx"
+        },
+        {
+          "path": "registry/default/example/stepper-demo.tsx",
+          "type": "registry:example",
+          "target": "components/example/stepper-demo.tsx"
         }
       ]
     },
@@ -1009,6 +1249,11 @@
           "path": "registry/default/ui/dropzone.tsx",
           "type": "registry:ui",
           "target": "components/ui/dropzone.tsx"
+        },
+        {
+          "path": "registry/default/example/dropzone-demo.tsx",
+          "type": "registry:example",
+          "target": "components/example/dropzone-demo.tsx"
         }
       ]
     },
@@ -1027,6 +1272,11 @@
           "path": "registry/default/ui/sparkline.tsx",
           "type": "registry:ui",
           "target": "components/ui/chart/sparkline.tsx"
+        },
+        {
+          "path": "registry/default/example/sparkline-demo.tsx",
+          "type": "registry:example",
+          "target": "components/example/sparkline-demo.tsx"
         }
       ]
     },
@@ -1046,6 +1296,11 @@
           "path": "registry/default/ui/donut-chart.tsx",
           "type": "registry:ui",
           "target": "components/ui/chart/donut-chart.tsx"
+        },
+        {
+          "path": "registry/default/example/donut-chart-demo.tsx",
+          "type": "registry:example",
+          "target": "components/example/donut-chart-demo.tsx"
         }
       ]
     },
@@ -1065,6 +1320,11 @@
           "path": "registry/default/ui/radial-bar-chart.tsx",
           "type": "registry:ui",
           "target": "components/ui/chart/radial-bar-chart.tsx"
+        },
+        {
+          "path": "registry/default/example/radial-bar-chart-demo.tsx",
+          "type": "registry:example",
+          "target": "components/example/radial-bar-chart-demo.tsx"
         }
       ]
     },
@@ -1084,6 +1344,11 @@
           "path": "registry/default/ui/radar-chart.tsx",
           "type": "registry:ui",
           "target": "components/ui/chart/radar-chart.tsx"
+        },
+        {
+          "path": "registry/default/example/radar-chart-demo.tsx",
+          "type": "registry:example",
+          "target": "components/example/radar-chart-demo.tsx"
         }
       ]
     },
@@ -1102,6 +1367,11 @@
           "path": "registry/default/ui/gauge-chart.tsx",
           "type": "registry:ui",
           "target": "components/ui/chart/gauge-chart.tsx"
+        },
+        {
+          "path": "registry/default/example/gauge-chart-demo.tsx",
+          "type": "registry:example",
+          "target": "components/example/gauge-chart-demo.tsx"
         }
       ]
     },
@@ -1120,6 +1390,11 @@
           "path": "registry/default/ui/funnel-chart.tsx",
           "type": "registry:ui",
           "target": "components/ui/chart/funnel-chart.tsx"
+        },
+        {
+          "path": "registry/default/example/funnel-chart-demo.tsx",
+          "type": "registry:example",
+          "target": "components/example/funnel-chart-demo.tsx"
         }
       ]
     },
@@ -1138,6 +1413,11 @@
           "path": "registry/default/ui/treemap-chart.tsx",
           "type": "registry:ui",
           "target": "components/ui/chart/treemap-chart.tsx"
+        },
+        {
+          "path": "registry/default/example/treemap-chart-demo.tsx",
+          "type": "registry:example",
+          "target": "components/example/treemap-chart-demo.tsx"
         }
       ]
     },
@@ -1154,6 +1434,11 @@
           "path": "registry/default/ui/heatmap-chart.tsx",
           "type": "registry:ui",
           "target": "components/ui/chart/heatmap-chart.tsx"
+        },
+        {
+          "path": "registry/default/example/heatmap-chart-demo.tsx",
+          "type": "registry:example",
+          "target": "components/example/heatmap-chart-demo.tsx"
         }
       ]
     },
@@ -1170,6 +1455,11 @@
           "path": "registry/default/ui/sankey-chart.tsx",
           "type": "registry:ui",
           "target": "components/ui/chart/sankey-chart.tsx"
+        },
+        {
+          "path": "registry/default/example/sankey-chart-demo.tsx",
+          "type": "registry:example",
+          "target": "components/example/sankey-chart-demo.tsx"
         }
       ]
     },
@@ -1189,6 +1479,11 @@
           "path": "registry/default/ui/rating.tsx",
           "type": "registry:ui",
           "target": "components/ui/rating.tsx"
+        },
+        {
+          "path": "registry/default/example/rating-demo.tsx",
+          "type": "registry:example",
+          "target": "components/example/rating-demo.tsx"
         }
       ]
     },
@@ -1207,6 +1502,11 @@
           "path": "registry/default/ui/tag-input.tsx",
           "type": "registry:ui",
           "target": "components/ui/tag-input.tsx"
+        },
+        {
+          "path": "registry/default/example/tag-input-demo.tsx",
+          "type": "registry:example",
+          "target": "components/example/tag-input-demo.tsx"
         }
       ]
     },
@@ -1228,6 +1528,11 @@
           "path": "registry/default/ui/time-picker.tsx",
           "type": "registry:ui",
           "target": "components/ui/time-picker.tsx"
+        },
+        {
+          "path": "registry/default/example/time-picker-demo.tsx",
+          "type": "registry:example",
+          "target": "components/example/time-picker-demo.tsx"
         }
       ]
     },
@@ -1251,6 +1556,11 @@
           "path": "registry/default/ui/date-range-picker.tsx",
           "type": "registry:ui",
           "target": "components/ui/date-range-picker.tsx"
+        },
+        {
+          "path": "registry/default/example/date-range-picker-demo.tsx",
+          "type": "registry:example",
+          "target": "components/example/date-range-picker-demo.tsx"
         }
       ]
     },
@@ -1276,6 +1586,11 @@
           "path": "registry/default/ui/data-table.tsx",
           "type": "registry:ui",
           "target": "components/ui/data-table.tsx"
+        },
+        {
+          "path": "registry/default/example/data-table-demo.tsx",
+          "type": "registry:example",
+          "target": "components/example/data-table-demo.tsx"
         }
       ]
     },
@@ -1296,6 +1611,11 @@
           "path": "registry/default/ui/carousel.tsx",
           "type": "registry:ui",
           "target": "components/ui/carousel.tsx"
+        },
+        {
+          "path": "registry/default/example/carousel-demo.tsx",
+          "type": "registry:example",
+          "target": "components/example/carousel-demo.tsx"
         }
       ]
     },
@@ -1314,6 +1634,11 @@
           "path": "registry/default/ui/timeline.tsx",
           "type": "registry:ui",
           "target": "components/ui/timeline.tsx"
+        },
+        {
+          "path": "registry/default/example/timeline-demo.tsx",
+          "type": "registry:example",
+          "target": "components/example/timeline-demo.tsx"
         }
       ]
     },
@@ -1335,6 +1660,11 @@
           "path": "registry/default/ui/tree-view.tsx",
           "type": "registry:ui",
           "target": "components/ui/tree-view.tsx"
+        },
+        {
+          "path": "registry/default/example/tree-view-demo.tsx",
+          "type": "registry:example",
+          "target": "components/example/tree-view-demo.tsx"
         }
       ]
     },
@@ -1357,6 +1687,11 @@
           "path": "registry/default/ui/sidebar.tsx",
           "type": "registry:ui",
           "target": "components/ui/sidebar.tsx"
+        },
+        {
+          "path": "registry/default/example/sidebar-demo.tsx",
+          "type": "registry:example",
+          "target": "components/example/sidebar-demo.tsx"
         }
       ]
     },
@@ -1376,6 +1711,11 @@
           "path": "registry/default/ui/tour.tsx",
           "type": "registry:ui",
           "target": "components/ui/tour.tsx"
+        },
+        {
+          "path": "registry/default/example/tour-demo.tsx",
+          "type": "registry:example",
+          "target": "components/example/tour-demo.tsx"
         }
       ]
     },
@@ -1395,6 +1735,11 @@
           "path": "registry/default/ui/empty-state.tsx",
           "type": "registry:ui",
           "target": "components/ui/empty-state.tsx"
+        },
+        {
+          "path": "registry/default/example/empty-state-demo.tsx",
+          "type": "registry:example",
+          "target": "components/example/empty-state-demo.tsx"
         }
       ]
     },
@@ -1430,6 +1775,11 @@
           "path": "registry/default/ui/math-curve-loader.tsx",
           "type": "registry:ui",
           "target": "components/ui/math-curve-loader.tsx"
+        },
+        {
+          "path": "registry/default/example/math-curve-loader-demo.tsx",
+          "type": "registry:example",
+          "target": "components/example/math-curve-loader-demo.tsx"
         }
       ]
     },
@@ -1449,6 +1799,11 @@
           "path": "registry/default/ui/math-curve-progress.tsx",
           "type": "registry:ui",
           "target": "components/ui/math-curve-progress.tsx"
+        },
+        {
+          "path": "registry/default/example/math-curve-progress-demo.tsx",
+          "type": "registry:example",
+          "target": "components/example/math-curve-progress-demo.tsx"
         }
       ]
     },
@@ -1468,6 +1823,11 @@
           "path": "registry/default/ui/math-curve-background.tsx",
           "type": "registry:ui",
           "target": "components/ui/math-curve-background.tsx"
+        },
+        {
+          "path": "registry/default/example/math-curve-background-demo.tsx",
+          "type": "registry:example",
+          "target": "components/example/math-curve-background-demo.tsx"
         }
       ]
     },
@@ -1476,12 +1836,19 @@
       "type": "registry:ui",
       "description": "7 animated ASCII art components (Spiral, Rose, Wave, Vortex, Pulse, Matrix, Grid) with 5 character sets, 4 sizes, and SSR-safe static mode",
       "dependencies": [],
-      "registryDependencies": ["utils"],
+      "registryDependencies": [
+        "utils"
+      ],
       "files": [
         {
           "path": "registry/default/ui/ascii-shapes.tsx",
           "type": "registry:ui",
           "target": "components/ui/ascii-shapes.tsx"
+        },
+        {
+          "path": "registry/default/example/ascii-shapes-demo.tsx",
+          "type": "registry:example",
+          "target": "components/example/ascii-shapes-demo.tsx"
         }
       ]
     }

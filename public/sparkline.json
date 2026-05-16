@@ -13,6 +13,11 @@
       "path": "registry/default/ui/sparkline.tsx",
       "type": "registry:ui",
       "target": "components/ui/chart/sparkline.tsx"
+    },
+    {
+      "path": "registry/default/example/sparkline-demo.tsx",
+      "type": "registry:example",
+      "target": "components/example/sparkline-demo.tsx"
     }
   ],
   "type": "registry:ui"

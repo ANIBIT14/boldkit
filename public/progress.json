@@ -13,6 +13,11 @@
       "path": "registry/default/ui/progress.tsx",
       "type": "registry:ui",
       "target": "components/ui/progress.tsx"
+    },
+    {
+      "path": "registry/default/example/progress-demo.tsx",
+      "type": "registry:example",
+      "target": "components/example/progress-demo.tsx"
     }
   ],
   "type": "registry:ui"

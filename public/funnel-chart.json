@@ -13,6 +13,11 @@
       "path": "registry/default/ui/funnel-chart.tsx",
       "type": "registry:ui",
       "target": "components/ui/chart/funnel-chart.tsx"
+    },
+    {
+      "path": "registry/default/example/funnel-chart-demo.tsx",
+      "type": "registry:example",
+      "target": "components/example/funnel-chart-demo.tsx"
     }
   ],
   "type": "registry:ui"

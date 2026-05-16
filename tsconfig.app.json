@@ -31,5 +31,6 @@
     "noFallthroughCasesInSwitch": true,
     "noUncheckedSideEffectImports": true
   },
-  "include": ["src", "registry"]
+  "include": ["src", "registry"],
+  "exclude": ["registry/default/example"]
 }

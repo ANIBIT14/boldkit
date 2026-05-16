@@ -13,6 +13,11 @@
       "path": "registry/default/ui/tag-input.tsx",
       "type": "registry:ui",
       "target": "components/ui/tag-input.tsx"
+    },
+    {
+      "path": "registry/default/example/tag-input-demo.tsx",
+      "type": "registry:example",
+      "target": "components/example/tag-input-demo.tsx"
     }
   ],
   "type": "registry:ui"

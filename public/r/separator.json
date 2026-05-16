@@ -14,6 +14,12 @@
       "content": "import * as React from 'react'\nimport * as SeparatorPrimitive from '@radix-ui/react-separator'\nimport { cn } from '@/lib/utils'\n\nconst Separator = React.forwardRef<\n  React.ElementRef<typeof SeparatorPrimitive.Root>,\n  React.ComponentPropsWithoutRef<typeof SeparatorPrimitive.Root>\n>(\n  (\n    { className, orientation = 'horizontal', decorative = true, ...props },\n    ref\n  ) => (\n    <SeparatorPrimitive.Root\n      ref={ref}\n      decorative={decorative}\n      orientation={orientation}\n      className={cn(\n        'shrink-0 bg-foreground',\n        orientation === 'horizontal' ? 'h-[3px] w-full' : 'h-full w-[3px]',\n        className\n      )}\n      {...props}\n    />\n  )\n)\nSeparator.displayName = SeparatorPrimitive.Root.displayName\n\nexport { Separator }\n",
       "type": "registry:ui",
       "target": "components/ui/separator.tsx"
+    },
+    {
+      "path": "registry/default/example/separator-demo.tsx",
+      "content": "import { Separator } from '@/components/ui/separator'\n\nexport default function Example() {\n  return (\n    <div>\n      <div className=\"space-y-1\">\n        <h4 className=\"text-sm font-bold\">Radix Primitives</h4>\n        <p className=\"text-sm text-muted-foreground\">\n          An open-source UI component library.\n        </p>\n      </div>\n      <Separator className=\"my-4\" />\n      <div className=\"text-sm\">More content here</div>\n    </div>\n  )\n}",
+      "type": "registry:example",
+      "target": "components/example/separator-demo.tsx"
     }
   ],
   "type": "registry:ui"

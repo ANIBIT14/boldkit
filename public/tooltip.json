@@ -13,6 +13,11 @@
       "path": "registry/default/ui/tooltip.tsx",
       "type": "registry:ui",
       "target": "components/ui/tooltip.tsx"
+    },
+    {
+      "path": "registry/default/example/tooltip-demo.tsx",
+      "type": "registry:example",
+      "target": "components/example/tooltip-demo.tsx"
     }
   ],
   "type": "registry:ui"

@@ -11,6 +11,11 @@
       "path": "registry/default/ui/ascii-shapes.tsx",
       "type": "registry:ui",
       "target": "components/ui/ascii-shapes.tsx"
+    },
+    {
+      "path": "registry/default/example/ascii-shapes-demo.tsx",
+      "type": "registry:example",
+      "target": "components/example/ascii-shapes-demo.tsx"
     }
   ],
   "type": "registry:ui"

@@ -14,6 +14,12 @@
       "content": "import * as AspectRatioPrimitive from '@radix-ui/react-aspect-ratio'\n\nconst AspectRatio = AspectRatioPrimitive.Root\n\nexport { AspectRatio }\n",
       "type": "registry:ui",
       "target": "components/ui/aspect-ratio.tsx"
+    },
+    {
+      "path": "registry/default/example/aspect-ratio-demo.tsx",
+      "content": "import { AspectRatio } from '@/components/ui/aspect-ratio'\n\nexport default function Example() {\n  return (\n    <AspectRatio ratio={16 / 9}>\n      <img\n        src=\"https://images.unsplash.com/photo-1588345921523-c2dcdb7f1dcd?w=800\"\n        alt=\"Photo\"\n        className=\"h-full w-full object-cover\"\n      />\n    </AspectRatio>\n  )\n}",
+      "type": "registry:example",
+      "target": "components/example/aspect-ratio-demo.tsx"
     }
   ],
   "type": "registry:ui"

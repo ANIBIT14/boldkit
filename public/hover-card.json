@@ -13,6 +13,11 @@
       "path": "registry/default/ui/hover-card.tsx",
       "type": "registry:ui",
       "target": "components/ui/hover-card.tsx"
+    },
+    {
+      "path": "registry/default/example/hover-card-demo.tsx",
+      "type": "registry:example",
+      "target": "components/example/hover-card-demo.tsx"
     }
   ],
   "type": "registry:ui"

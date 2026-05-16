@@ -14,6 +14,11 @@
       "path": "registry/default/ui/dropdown-menu.tsx",
       "type": "registry:ui",
       "target": "components/ui/dropdown-menu.tsx"
+    },
+    {
+      "path": "registry/default/example/dropdown-menu-demo.tsx",
+      "type": "registry:example",
+      "target": "components/example/dropdown-menu-demo.tsx"
     }
   ],
   "type": "registry:ui"

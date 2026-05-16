@@ -14,6 +14,12 @@
       "content": "import * as React from 'react'\nimport * as CollapsiblePrimitive from '@radix-ui/react-collapsible'\nimport { cn } from '@/lib/utils'\n\nconst Collapsible = CollapsiblePrimitive.Root\n\nconst CollapsibleTrigger = React.forwardRef<\n  React.ElementRef<typeof CollapsiblePrimitive.CollapsibleTrigger>,\n  React.ComponentPropsWithoutRef<typeof CollapsiblePrimitive.CollapsibleTrigger>\n>(({ className, ...props }, ref) => (\n  <CollapsiblePrimitive.CollapsibleTrigger\n    ref={ref}\n    className={cn(\n      'transition-all duration-150 [&[data-state=open]>svg]:rotate-180',\n      className\n    )}\n    {...props}\n  />\n))\nCollapsibleTrigger.displayName = CollapsiblePrimitive.CollapsibleTrigger.displayName\n\nconst CollapsibleContent = React.forwardRef<\n  React.ElementRef<typeof CollapsiblePrimitive.CollapsibleContent>,\n  React.ComponentPropsWithoutRef<typeof CollapsiblePrimitive.CollapsibleContent>\n>(({ className, ...props }, ref) => (\n  <CollapsiblePrimitive.CollapsibleContent\n    ref={ref}\n    className={cn(\n      'overflow-hidden transition-all data-[state=closed]:animate-collapsible-up data-[state=open]:animate-collapsible-down',\n      className\n    )}\n    {...props}\n  />\n))\nCollapsibleContent.displayName = CollapsiblePrimitive.CollapsibleContent.displayName\n\nexport { Collapsible, CollapsibleTrigger, CollapsibleContent }\n",
       "type": "registry:ui",
       "target": "components/ui/collapsible.tsx"
+    },
+    {
+      "path": "registry/default/example/collapsible-demo.tsx",
+      "content": "import {\n  Collapsible,\n  CollapsibleContent,\n  CollapsibleTrigger,\n} from '@/components/ui/collapsible'\nimport { Button } from '@/components/ui/button'\nimport { ChevronsUpDown } from 'lucide-react'\n\nexport default function Example() {\n  return (\n    <Collapsible>\n      <CollapsibleTrigger asChild>\n        <Button variant=\"outline\">\n          Toggle <ChevronsUpDown className=\"ml-2 h-4 w-4\" />\n        </Button>\n      </CollapsibleTrigger>\n      <CollapsibleContent className=\"mt-2\">\n        <div className=\"border-3 border-foreground p-4\">\n          Collapsible content here.\n        </div>\n      </CollapsibleContent>\n    </Collapsible>\n  )\n}",
+      "type": "registry:example",
+      "target": "components/example/collapsible-demo.tsx"
     }
   ],
   "type": "registry:ui"

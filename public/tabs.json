@@ -13,6 +13,11 @@
       "path": "registry/default/ui/tabs.tsx",
       "type": "registry:ui",
       "target": "components/ui/tabs.tsx"
+    },
+    {
+      "path": "registry/default/example/tabs-demo.tsx",
+      "type": "registry:example",
+      "target": "components/example/tabs-demo.tsx"
     }
   ],
   "type": "registry:ui"

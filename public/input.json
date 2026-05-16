@@ -11,6 +11,11 @@
       "path": "registry/default/ui/input.tsx",
       "type": "registry:ui",
       "target": "components/ui/input.tsx"
+    },
+    {
+      "path": "registry/default/example/input-demo.tsx",
+      "type": "registry:example",
+      "target": "components/example/input-demo.tsx"
     }
   ],
   "type": "registry:ui"

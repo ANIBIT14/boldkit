@@ -14,6 +14,11 @@
       "path": "registry/default/ui/dialog.tsx",
       "type": "registry:ui",
       "target": "components/ui/dialog.tsx"
+    },
+    {
+      "path": "registry/default/example/dialog-demo.tsx",
+      "type": "registry:example",
+      "target": "components/example/dialog-demo.tsx"
     }
   ],
   "type": "registry:ui"

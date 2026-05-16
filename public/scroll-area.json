@@ -13,6 +13,11 @@
       "path": "registry/default/ui/scroll-area.tsx",
       "type": "registry:ui",
       "target": "components/ui/scroll-area.tsx"
+    },
+    {
+      "path": "registry/default/example/scroll-area-demo.tsx",
+      "type": "registry:example",
+      "target": "components/example/scroll-area-demo.tsx"
     }
   ],
   "type": "registry:ui"

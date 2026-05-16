@@ -13,6 +13,11 @@
       "path": "registry/default/ui/chart.tsx",
       "type": "registry:ui",
       "target": "components/ui/chart.tsx"
+    },
+    {
+      "path": "registry/default/example/chart-demo.tsx",
+      "type": "registry:example",
+      "target": "components/example/chart-demo.tsx"
     }
   ],
   "type": "registry:ui"

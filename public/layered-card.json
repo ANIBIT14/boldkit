@@ -13,6 +13,11 @@
       "path": "registry/default/ui/layered-card.tsx",
       "type": "registry:ui",
       "target": "components/ui/layered-card.tsx"
+    },
+    {
+      "path": "registry/default/example/layered-card-demo.tsx",
+      "type": "registry:example",
+      "target": "components/example/layered-card-demo.tsx"
     }
   ],
   "type": "registry:ui"

@@ -11,6 +11,11 @@
       "path": "registry/default/ui/slider.tsx",
       "type": "registry:ui",
       "target": "components/ui/slider.tsx"
+    },
+    {
+      "path": "registry/default/example/slider-demo.tsx",
+      "type": "registry:example",
+      "target": "components/example/slider-demo.tsx"
     }
   ],
   "type": "registry:ui"

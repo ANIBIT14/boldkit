@@ -13,6 +13,11 @@
       "path": "registry/default/ui/avatar.tsx",
       "type": "registry:ui",
       "target": "components/ui/avatar.tsx"
+    },
+    {
+      "path": "registry/default/example/avatar-demo.tsx",
+      "type": "registry:example",
+      "target": "components/example/avatar-demo.tsx"
     }
   ],
   "type": "registry:ui"

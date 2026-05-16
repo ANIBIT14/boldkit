@@ -17,6 +17,11 @@
       "path": "registry/default/ui/sidebar.tsx",
       "type": "registry:ui",
       "target": "components/ui/sidebar.tsx"
+    },
+    {
+      "path": "registry/default/example/sidebar-demo.tsx",
+      "type": "registry:example",
+      "target": "components/example/sidebar-demo.tsx"
     }
   ],
   "type": "registry:ui"
