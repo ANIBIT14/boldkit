@@ -1,10 +1,10 @@
-import { useState } from 'react'
+import { useState, useMemo } from 'react'
 import type { CSSProperties } from 'react'
 import { Link } from 'react-router-dom'
 import { Button } from '@/components/ui/button'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { Layout } from '@/components/layout'
-import { Copy, Check, Terminal, Wand2, ArrowRight } from 'lucide-react'
+import { Copy, Check, Terminal, Wand2, ArrowRight, Search, X } from 'lucide-react'
 import { toast } from 'sonner'
 import { SEO, pageSEO } from '@/components/SEO'
 import { useFramework, FrameworkToggle } from '@/hooks/use-framework'
@@ -237,6 +237,7 @@ function ShapeCard({
 
 export function Shapes() {
   const [copiedInstall, setCopiedInstall] = useState(false)
+  const [searchQuery, setSearchQuery] = useState('')
   const { framework } = useFramework()
 
   const cliCommand = framework === 'react'
@@ -244,6 +245,22 @@ export function Shapes() {
     : 'npx shadcn-vue@latest add https://boldkit.dev/r/vue/shapes.json'
 
   const totalShapes = shapeCategories.reduce((acc, cat) => acc + cat.shapes.length, 0)
+
+  const filteredCategories = useMemo(() => {
+    if (!searchQuery.trim()) return shapeCategories
+    const q = searchQuery.toLowerCase().trim()
+    return shapeCategories
+      .map((category) => ({
+        ...category,
+        shapes: category.shapes.filter((shape) =>
+          shape.name.toLowerCase().includes(q) ||
+          category.name.toLowerCase().includes(q)
+        ),
+      }))
+      .filter((category) => category.shapes.length > 0)
+  }, [searchQuery])
+
+  const filteredTotal = filteredCategories.reduce((acc, cat) => acc + cat.shapes.length, 0)
 
   const copyInstall = () => {
     navigator.clipboard.writeText(cliCommand)
@@ -503,21 +520,58 @@ export function Shapes() {
           <div className="grid-pattern absolute inset-0 opacity-10 pointer-events-none" />
           <div className="container relative mx-auto px-4 sm:px-6">
 
-            {/* Section title */}
+            {/* Section title + search */}
             <div className="mb-10 md:mb-14">
               <p className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground mb-1" style={MONO}>
                 {totalShapes} shapes — {shapeCategories.length} categories
               </p>
-              <h2
-                className="text-4xl md:text-6xl font-black uppercase leading-none"
-                style={DISPLAY}
-              >
-                Shape Library
-              </h2>
+              <div className="flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-6">
+                <h2
+                  className="text-4xl md:text-6xl font-black uppercase leading-none"
+                  style={DISPLAY}
+                >
+                  Shape Library
+                </h2>
+                <div className="relative w-full sm:w-72 shrink-0">
+                  <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground pointer-events-none" />
+                  <input
+                    type="text"
+                    value={searchQuery}
+                    onChange={(e) => setSearchQuery(e.target.value)}
+                    placeholder="Search shapes..."
+                    className="w-full border-3 border-foreground bg-background px-9 py-2 text-sm font-bold uppercase tracking-wide placeholder:text-muted-foreground/60 placeholder:font-normal placeholder:normal-case focus:outline-none focus:shadow-[4px_4px_0px_hsl(var(--shadow-color))] transition-shadow"
+                    style={MONO}
+                  />
+                  {searchQuery && (
+                    <button
+                      onClick={() => setSearchQuery('')}
+                      className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground transition-colors"
+                    >
+                      <X className="w-4 h-4" />
+                    </button>
+                  )}
+                </div>
+              </div>
+              {searchQuery && (
+                <p className="text-xs text-muted-foreground mt-3" style={MONO}>
+                  {filteredTotal} {filteredTotal === 1 ? 'shape' : 'shapes'} found
+                  {filteredCategories.length > 0 && ` across ${filteredCategories.length} ${filteredCategories.length === 1 ? 'category' : 'categories'}`}
+                </p>
+              )}
             </div>
 
+            {searchQuery && filteredCategories.length === 0 && (
+              <div className="border-3 border-foreground bg-muted p-8 md:p-12 text-center">
+                <Search className="w-10 h-10 mx-auto text-muted-foreground/40 mb-4" />
+                <p className="text-lg font-black uppercase" style={DISPLAY}>No shapes found</p>
+                <p className="text-sm text-muted-foreground mt-2" style={MONO}>
+                  Try a different search term like "star", "heart", or "badge"
+                </p>
+              </div>
+            )}
+
             <div className="space-y-16 md:space-y-20">
-              {shapeCategories.map((category) => (
+              {filteredCategories.map((category) => (
                 <div key={category.name}>
 
                   {/* Category header */}
