@@ -1,0 +1,15 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "topography",
+  "description": "Animated contour map \u2014 noise-driven elevation field with marching-squares isolines",
+  "dependencies": [],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "registry/default/ui/canvas-effects/Topography.tsx",
+      "type": "registry:ui",
+      "target": "components/ui/canvas-effects/Topography.tsx"
+    }
+  ],
+  "type": "registry:ui"
+}

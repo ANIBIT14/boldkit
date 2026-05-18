@@ -1,0 +1,15 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "gravity-wells",
+  "description": "Orbital particle physics — particles orbit gravitational attractors forming accretion-disk spirals",
+  "dependencies": [],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "registry/default/ui/canvas-effects/GravityWells.tsx",
+      "type": "registry:ui",
+      "target": "components/ui/canvas-effects/GravityWells.tsx"
+    }
+  ],
+  "type": "registry:ui"
+}

@@ -252,10 +252,10 @@ export const pageSEO = {
     ],
   },
   canvasEffects: {
-    title: 'Canvas Effects — 10 Animated Canvas Components',
-    description: 'Free animated canvas components for React, Vue 3, and Nuxt 3. 10 zero-dependency effects: Aurora, Flow Field, Plasma, Metaballs, Matrix Rain, Particle Web, Lissajous Grid, and more. Fully typed with customisable props.',
+    title: 'Canvas Effects — 15 Animated Canvas Components',
+    description: 'Free animated canvas components for React, Vue 3, and Nuxt 3. 15 zero-dependency effects: Aurora, Lightning, Warp Speed, Gravity Wells, Topography, Voronoi, Flow Field, Plasma, Metaballs, and more. Fully typed with customisable props.',
     canonical: `${SITE_URL}/canvas-effects`,
-    keywords: 'canvas animation, react canvas, vue canvas, animated background, aurora effect, particle web, flow field, plasma waves, metaballs, matrix rain, neubrutalism',
+    keywords: 'canvas animation, react canvas, vue canvas, animated background, aurora effect, lightning effect, warp speed, gravity wells, topography, voronoi, particle web, flow field, plasma waves, metaballs, matrix rain, neubrutalism',
     breadcrumbs: [
       { name: 'Home', url: `${SITE_URL}/` },
       { name: 'Canvas Effects' },

@@ -109,10 +109,10 @@ export const PAGE_META: Record<string, RouteMeta> = {
     h1: 'Dot Matrix Studio — Pixel Art & Animation Editor',
   },
   '/canvas-effects': {
-    title: 'Canvas Effects — 10 Animated Canvas Components | BoldKit',
-    description: '10 free animated canvas components for React, Vue 3, and Nuxt — Aurora, Flow Field, Plasma, Metaballs, Matrix Rain, Particle Web, and more.',
+    title: 'Canvas Effects — 15 Animated Canvas Components | BoldKit',
+    description: '15 free animated canvas components for React, Vue 3, and Nuxt — Aurora, Flow Field, Plasma, Metaballs, Lightning, Warp Speed, Gravity Wells, Topography, Voronoi, and more.',
     canonical: `${SITE_URL}/canvas-effects`,
-    h1: 'Canvas Effects — 10 Animated Canvas Components',
+    h1: 'Canvas Effects — 15 Animated Canvas Components',
   },
 }
 

@@ -7,6 +7,7 @@ import { useFramework, FrameworkToggle } from '@/hooks/use-framework'
 import {
   DotBlob, Aurora, DotWave, MatrixRain, ParticleWeb,
   MouseRipple, FlowField, Metaballs, LissajousGrid, Plasma,
+  WarpSpeed, GravityWells, Topography, Lightning, VoronoiPulse,
 } from '@/components/CanvasEffects/react'
 
 const DISPLAY: React.CSSProperties = { fontFamily: "'Bebas Neue', sans-serif" }
@@ -97,6 +98,43 @@ const EFFECTS: EffectDef[] = [
     reactCode: `<Plasma palette={['#0a1450','#1e64c8','#00d2dc','#5affa6','#ffc832','#ff4b82','#a01ec8']} speed={1} />`,
     vueCode:   `<Plasma :palette="['#0a1450','#1e64c8','#00d2dc','#5affa6','#ffc832','#ff4b82','#a01ec8']" :speed="1" />`,
     node: <Plasma palette={['#0a1450', '#1e64c8', '#00d2dc', '#5affa6', '#ffc832', '#ff4b82', '#a01ec8']} speed={1} />,
+  },
+  {
+    id: 'warp-speed', name: 'Warp Speed', category: 'Perspective', accent: '#60a5fa',
+    desc: 'Stars streak outward through a hyperspace tunnel with motion-blur trails',
+    reactCode: `<WarpSpeed starCount={300} speed={1} hueStart={220} trailLength={1} />`,
+    vueCode:   `<WarpSpeed :star-count="300" :speed="1" :hue-start="220" :trail-length="1" />`,
+    node: <WarpSpeed starCount={300} speed={1} hueStart={220} trailLength={1} />,
+  },
+  {
+    id: 'gravity-wells', name: 'Gravity Wells', category: 'Physics', accent: '#f87171',
+    desc: 'Particles orbit gravitational attractors forming accretion spirals',
+    reactCode: `<GravityWells wellCount={3} particleCount={180} speed={1} />`,
+    vueCode:   `<GravityWells :well-count="3" :particle-count="180" :speed="1" />`,
+    node: <GravityWells wellCount={3} particleCount={180} speed={1} />,
+    featured: true,
+  },
+  {
+    id: 'topography', name: 'Topography', category: 'Generative', accent: '#34d399',
+    desc: 'Animated contour map with noise-driven elevation and marching squares',
+    reactCode: `<Topography lineColor="#8ecae6" levels={12} speed={1} />`,
+    vueCode:   `<Topography line-color="#8ecae6" :levels="12" :speed="1" />`,
+    node: <Topography lineColor="#8ecae6" levels={12} speed={1} />,
+    featured: true,
+  },
+  {
+    id: 'lightning', name: 'Lightning', category: 'Fractal', accent: '#7df9ff',
+    desc: 'Fractal branching electric arcs with glow bloom and fade',
+    reactCode: `<Lightning color="#7df9ff" boltInterval={1.2} branches={4} speed={1} />`,
+    vueCode:   `<Lightning color="#7df9ff" :bolt-interval="1.2" :branches="4" :speed="1" />`,
+    node: <Lightning color="#7df9ff" boltInterval={1.2} branches={4} speed={1} />,
+  },
+  {
+    id: 'voronoi-pulse', name: 'Voronoi Pulse', category: 'Tessellation', accent: '#c084fc',
+    desc: 'Drifting Voronoi cells with pulsing color fills and bright edges',
+    reactCode: `<VoronoiPulse cellCount={24} colors={['#ff6b6b','#4ecdc4','#45b7d1','#f7dc6f','#bb8fce']} speed={1} />`,
+    vueCode:   `<VoronoiPulse :cell-count="24" :colors="['#ff6b6b','#4ecdc4','#45b7d1','#f7dc6f','#bb8fce']" :speed="1" />`,
+    node: <VoronoiPulse cellCount={24} colors={['#ff6b6b', '#4ecdc4', '#45b7d1', '#f7dc6f', '#bb8fce']} speed={1} />,
   },
 ]
 
@@ -281,13 +319,13 @@ export function CanvasEffects() {
             </h1>
 
             <p className="text-sm text-white/70 mb-7 max-w-xs mx-auto leading-relaxed" style={MONO}>
-              10 animated canvas components.
+              15 animated canvas components.
               <br />Zero dependencies · React · Vue 3 · Nuxt 3
             </p>
 
             {/* Tag pills */}
             <div className="flex items-center justify-center gap-1.5 sm:gap-2 mb-6 flex-wrap">
-              {['10 Effects', 'React', 'Vue 3', 'Nuxt 3', 'TypeScript', 'Zero Deps'].map(tag => (
+              {['15 Effects', 'React', 'Vue 3', 'Nuxt 3', 'TypeScript', 'Zero Deps'].map(tag => (
                 <span
                   key={tag}
                   className="text-[9px] font-black uppercase tracking-[0.18em] px-2 py-1 border border-white/25 text-white/65"

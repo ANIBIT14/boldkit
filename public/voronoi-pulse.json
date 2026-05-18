@@ -1,0 +1,15 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "voronoi-pulse",
+  "description": "Animated Voronoi tessellation \u2014 drifting seed points with pulsing cell fills and bright edges",
+  "dependencies": [],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "registry/default/ui/canvas-effects/VoronoiPulse.tsx",
+      "type": "registry:ui",
+      "target": "components/ui/canvas-effects/VoronoiPulse.tsx"
+    }
+  ],
+  "type": "registry:ui"
+}

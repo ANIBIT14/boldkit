@@ -138,6 +138,11 @@ const canvasEffects = [
   { name: 'Dot Blob', path: '/canvas-effects#dot-blob' },
   { name: 'Mouse Ripple', path: '/canvas-effects#mouse-ripple' },
   { name: 'Lissajous Grid', path: '/canvas-effects#lissajous-grid' },
+  { name: 'Warp Speed', path: '/canvas-effects#warp-speed' },
+  { name: 'Gravity Wells', path: '/canvas-effects#gravity-wells' },
+  { name: 'Topography', path: '/canvas-effects#topography' },
+  { name: 'Lightning', path: '/canvas-effects#lightning' },
+  { name: 'Voronoi Pulse', path: '/canvas-effects#voronoi-pulse' },
 ]
 
 export function SearchCommand() {
