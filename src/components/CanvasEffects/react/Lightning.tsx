@@ -79,7 +79,7 @@ export function Lightning({
     let timer = 0
 
     function spawnBolt() {
-      const W = el.width, H = el.height
+      const W = el!.width, H = el!.height
       const col = colorRef.current
       const maxBranch = branchRef.current
 
