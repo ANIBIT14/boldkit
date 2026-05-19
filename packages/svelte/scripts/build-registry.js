@@ -116,6 +116,32 @@ const componentMeta = {
   },
 }
 
+const registryAliases = {
+  aurora: { deps: [], desc: 'Animated aurora canvas background', files: ['aurora.svelte', 'canvas-effect.svelte'] },
+  'dot-blob': { deps: [], desc: 'Animated dot blob canvas effect', files: ['dot-blob.svelte', 'canvas-effect.svelte'] },
+  'dot-wave': { deps: [], desc: 'Animated dot wave canvas effect', files: ['dot-wave.svelte', 'canvas-effect.svelte'] },
+  'flow-field': { deps: [], desc: 'Animated flow field canvas effect', files: ['flow-field.svelte', 'canvas-effect.svelte'] },
+  'lissajous-grid': { deps: [], desc: 'Animated Lissajous grid canvas effect', files: ['lissajous-grid.svelte', 'canvas-effect.svelte'] },
+  'matrix-rain': { deps: [], desc: 'Animated matrix rain canvas effect', files: ['matrix-rain.svelte', 'canvas-effect.svelte'] },
+  metaballs: { deps: [], desc: 'Animated metaballs canvas effect', files: ['metaballs.svelte', 'canvas-effect.svelte'] },
+  'mouse-ripple': { deps: [], desc: 'Pointer-reactive ripple canvas effect', files: ['mouse-ripple.svelte', 'canvas-effect.svelte'] },
+  'particle-web': { deps: [], desc: 'Animated particle web canvas effect', files: ['particle-web.svelte', 'canvas-effect.svelte'] },
+  plasma: { deps: [], desc: 'Animated plasma canvas effect', files: ['plasma.svelte', 'canvas-effect.svelte'] },
+  'chart-utils': { deps: [], desc: 'Shared chart utilities', files: ['chart-utils.ts'] },
+  'donut-chart': { deps: ['layerchart'], desc: 'Donut chart components and utilities', files: ['chart-container.svelte', 'chart-tooltip.svelte', 'chart-style.svelte', 'chart-utils.ts'] },
+  'funnel-chart': { deps: ['layerchart'], desc: 'Funnel chart components and utilities', files: ['chart-container.svelte', 'chart-tooltip.svelte', 'chart-style.svelte', 'chart-utils.ts'] },
+  'gauge-chart': { deps: ['layerchart'], desc: 'Gauge chart components and utilities', files: ['chart-container.svelte', 'chart-tooltip.svelte', 'chart-style.svelte', 'chart-utils.ts'] },
+  'heatmap-chart': { deps: ['layerchart'], desc: 'Heatmap chart components and utilities', files: ['chart-container.svelte', 'chart-tooltip.svelte', 'chart-style.svelte', 'chart-utils.ts'] },
+  'radar-chart': { deps: ['layerchart'], desc: 'Radar chart components and utilities', files: ['chart-container.svelte', 'chart-tooltip.svelte', 'chart-style.svelte', 'chart-utils.ts'] },
+  'radial-bar-chart': { deps: ['layerchart'], desc: 'Radial bar chart components and utilities', files: ['chart-container.svelte', 'chart-tooltip.svelte', 'chart-style.svelte', 'chart-utils.ts'] },
+  'sankey-chart': { deps: ['layerchart'], desc: 'Sankey chart components and utilities', files: ['chart-container.svelte', 'chart-tooltip.svelte', 'chart-style.svelte', 'chart-utils.ts'] },
+  sparkline: { deps: ['layerchart'], desc: 'Sparkline chart components and utilities', files: ['chart-container.svelte', 'chart-tooltip.svelte', 'chart-style.svelte', 'chart-utils.ts'] },
+  'treemap-chart': { deps: ['layerchart'], desc: 'Treemap chart components and utilities', files: ['chart-container.svelte', 'chart-tooltip.svelte', 'chart-style.svelte', 'chart-utils.ts'] },
+  'date-range-picker': { deps: ['bits-ui', '@internationalized/date'], desc: 'Date range picker built from range calendar components', files: ['range-calendar.svelte', 'range-calendar-caption.svelte', 'range-calendar-cell.svelte', 'range-calendar-day.svelte', 'range-calendar-grid.svelte', 'range-calendar-grid-body.svelte', 'range-calendar-grid-head.svelte', 'range-calendar-grid-row.svelte', 'range-calendar-head-cell.svelte', 'range-calendar-header.svelte', 'range-calendar-heading.svelte', 'range-calendar-month.svelte', 'range-calendar-month-select.svelte', 'range-calendar-months.svelte', 'range-calendar-nav.svelte', 'range-calendar-next-button.svelte', 'range-calendar-prev-button.svelte', 'range-calendar-year-select.svelte'] },
+  shapes: { deps: [], desc: 'SVG shape components', files: ['shape.svelte', 'index.ts'] },
+  theme: { deps: [], desc: 'BoldKit theme tokens', files: ['theme.ts'] },
+}
+
 function toTitle(name) {
   return name
     .split('-')
@@ -295,6 +321,7 @@ const componentNames = []
 const discoveredComponentMeta = discoverComponentMeta()
 const allComponentMeta = {
   ...discoveredComponentMeta,
+  ...registryAliases,
   ...Object.fromEntries(
     Object.entries(componentMeta).map(([name, meta]) => [
       name,

@@ -1,0 +1,24 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "shapes",
+  "type": "registry:ui",
+  "description": "SVG shape components",
+  "dependencies": [],
+  "registryDependencies": [
+    "utils"
+  ],
+  "files": [
+    {
+      "path": "registry/default/ui/shape.svelte",
+      "content": "<script lang=\"ts\">\n\timport { cn } from '$lib/utils.js';\n\n\ttype ShapeAnimation = 'none' | 'spin' | 'pulse' | 'float' | 'wiggle' | 'bounce' | 'glitch';\n\ttype ShapeSpeed = 'slow' | 'normal' | 'fast';\n\n\ttype Props = {\n\t\tsize?: number;\n\t\tstrokeWidth?: number;\n\t\tfilled?: boolean;\n\t\tcolor?: string;\n\t\tanimation?: ShapeAnimation;\n\t\tspeed?: ShapeSpeed;\n\t\tclass?: string;\n\t};\n\n\tlet {\n\t\tsize = 100,\n\t\tstrokeWidth = 3,\n\t\tfilled = true,\n\t\tcolor,\n\t\tanimation = 'none',\n\t\tspeed = 'normal',\n\t\tclass: className,\n\t}: Props = $props();\n\n\tconst animationClass = $derived(animation === 'none' ? '' : `shape-animate-${animation}${speed !== 'normal' ? `-${speed}` : ''}`);\n</script>\n\n<svg\n\twidth={size}\n\theight={size}\n\tviewBox=\"0 0 100 100\"\n\tclass={cn('text-primary', animationClass, className)}\n\taria-hidden=\"true\"\n>\n\t<path\n\t\td=\"M50 5 L61 36 L95 36 L68 56 L79 90 L50 70 L21 90 L32 56 L5 36 L39 36 Z\"\n\t\tfill={filled ? (color ?? 'currentColor') : 'none'}\n\t\tstroke=\"hsl(var(--foreground))\"\n\t\tstroke-width={strokeWidth}\n\t/>\n</svg>\n",
+      "type": "registry:ui",
+      "target": "lib/components/ui/shapes/shape.svelte"
+    },
+    {
+      "path": "registry/default/ui/index.ts",
+      "content": "import Root from \"./accordion.svelte\";\nimport Content from \"./accordion-content.svelte\";\nimport Item from \"./accordion-item.svelte\";\nimport Trigger from \"./accordion-trigger.svelte\";\n\nexport {\n\tRoot,\n\tContent,\n\tItem,\n\tTrigger,\n\t//\n\tRoot as Accordion,\n\tContent as AccordionContent,\n\tItem as AccordionItem,\n\tTrigger as AccordionTrigger,\n};\n",
+      "type": "registry:ui",
+      "target": "lib/components/ui/accordion/index.ts"
+    }
+  ]
+}

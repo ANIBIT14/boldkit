@@ -54,6 +54,11 @@
       "registryUrl": "https://boldkit.dev/r/svelte/calendar.json"
     },
     {
+      "name": "canvas-effects",
+      "type": "registry:ui",
+      "registryUrl": "https://boldkit.dev/r/svelte/canvas-effects.json"
+    },
+    {
       "name": "card",
       "type": "registry:ui",
       "registryUrl": "https://boldkit.dev/r/svelte/card.json"
@@ -259,6 +264,11 @@
       "registryUrl": "https://boldkit.dev/r/svelte/separator.json"
     },
     {
+      "name": "shapes",
+      "type": "registry:ui",
+      "registryUrl": "https://boldkit.dev/r/svelte/shapes.json"
+    },
+    {
       "name": "sheet",
       "type": "registry:ui",
       "registryUrl": "https://boldkit.dev/r/svelte/sheet.json"
@@ -329,6 +339,16 @@
       "registryUrl": "https://boldkit.dev/r/svelte/textarea.json"
     },
     {
+      "name": "theme",
+      "type": "registry:ui",
+      "registryUrl": "https://boldkit.dev/r/svelte/theme.json"
+    },
+    {
+      "name": "time-picker",
+      "type": "registry:ui",
+      "registryUrl": "https://boldkit.dev/r/svelte/time-picker.json"
+    },
+    {
       "name": "timeline",
       "type": "registry:ui",
       "registryUrl": "https://boldkit.dev/r/svelte/timeline.json"
@@ -347,6 +367,121 @@
       "name": "tooltip",
       "type": "registry:ui",
       "registryUrl": "https://boldkit.dev/r/svelte/tooltip.json"
+    },
+    {
+      "name": "tour",
+      "type": "registry:ui",
+      "registryUrl": "https://boldkit.dev/r/svelte/tour.json"
+    },
+    {
+      "name": "tree-view",
+      "type": "registry:ui",
+      "registryUrl": "https://boldkit.dev/r/svelte/tree-view.json"
+    },
+    {
+      "name": "aurora",
+      "type": "registry:ui",
+      "registryUrl": "https://boldkit.dev/r/svelte/aurora.json"
+    },
+    {
+      "name": "dot-blob",
+      "type": "registry:ui",
+      "registryUrl": "https://boldkit.dev/r/svelte/dot-blob.json"
+    },
+    {
+      "name": "dot-wave",
+      "type": "registry:ui",
+      "registryUrl": "https://boldkit.dev/r/svelte/dot-wave.json"
+    },
+    {
+      "name": "flow-field",
+      "type": "registry:ui",
+      "registryUrl": "https://boldkit.dev/r/svelte/flow-field.json"
+    },
+    {
+      "name": "lissajous-grid",
+      "type": "registry:ui",
+      "registryUrl": "https://boldkit.dev/r/svelte/lissajous-grid.json"
+    },
+    {
+      "name": "matrix-rain",
+      "type": "registry:ui",
+      "registryUrl": "https://boldkit.dev/r/svelte/matrix-rain.json"
+    },
+    {
+      "name": "metaballs",
+      "type": "registry:ui",
+      "registryUrl": "https://boldkit.dev/r/svelte/metaballs.json"
+    },
+    {
+      "name": "mouse-ripple",
+      "type": "registry:ui",
+      "registryUrl": "https://boldkit.dev/r/svelte/mouse-ripple.json"
+    },
+    {
+      "name": "particle-web",
+      "type": "registry:ui",
+      "registryUrl": "https://boldkit.dev/r/svelte/particle-web.json"
+    },
+    {
+      "name": "plasma",
+      "type": "registry:ui",
+      "registryUrl": "https://boldkit.dev/r/svelte/plasma.json"
+    },
+    {
+      "name": "chart-utils",
+      "type": "registry:ui",
+      "registryUrl": "https://boldkit.dev/r/svelte/chart-utils.json"
+    },
+    {
+      "name": "donut-chart",
+      "type": "registry:ui",
+      "registryUrl": "https://boldkit.dev/r/svelte/donut-chart.json"
+    },
+    {
+      "name": "funnel-chart",
+      "type": "registry:ui",
+      "registryUrl": "https://boldkit.dev/r/svelte/funnel-chart.json"
+    },
+    {
+      "name": "gauge-chart",
+      "type": "registry:ui",
+      "registryUrl": "https://boldkit.dev/r/svelte/gauge-chart.json"
+    },
+    {
+      "name": "heatmap-chart",
+      "type": "registry:ui",
+      "registryUrl": "https://boldkit.dev/r/svelte/heatmap-chart.json"
+    },
+    {
+      "name": "radar-chart",
+      "type": "registry:ui",
+      "registryUrl": "https://boldkit.dev/r/svelte/radar-chart.json"
+    },
+    {
+      "name": "radial-bar-chart",
+      "type": "registry:ui",
+      "registryUrl": "https://boldkit.dev/r/svelte/radial-bar-chart.json"
+    },
+    {
+      "name": "sankey-chart",
+      "type": "registry:ui",
+      "registryUrl": "https://boldkit.dev/r/svelte/sankey-chart.json"
+    },
+    {
+      "name": "sparkline",
+      "type": "registry:ui",
+      "registryUrl": "https://boldkit.dev/r/svelte/sparkline.json"
+    },
+    {
+      "name": "treemap-chart",
+      "type": "registry:ui",
+      "registryUrl": "https://boldkit.dev/r/svelte/treemap-chart.json"
+    },
+    {
+      "name": "date-range-picker",
+      "type": "registry:ui",
+      "registryUrl": "https://boldkit.dev/r/svelte/date-range-picker.json"
     }
   ]
 }
