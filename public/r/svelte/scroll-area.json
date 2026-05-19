@@ -1,0 +1,30 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "scroll-area",
+  "type": "registry:ui",
+  "description": "Scroll Area component for BoldKit Svelte",
+  "dependencies": [],
+  "registryDependencies": [
+    "utils"
+  ],
+  "files": [
+    {
+      "path": "registry/default/ui/index.ts",
+      "content": "import Root from \"./accordion.svelte\";\nimport Content from \"./accordion-content.svelte\";\nimport Item from \"./accordion-item.svelte\";\nimport Trigger from \"./accordion-trigger.svelte\";\n\nexport {\n\tRoot,\n\tContent,\n\tItem,\n\tTrigger,\n\t//\n\tRoot as Accordion,\n\tContent as AccordionContent,\n\tItem as AccordionItem,\n\tTrigger as AccordionTrigger,\n};\n",
+      "type": "registry:ui",
+      "target": "lib/components/ui/accordion/index.ts"
+    },
+    {
+      "path": "registry/default/ui/scroll-area-scrollbar.svelte",
+      "content": "<script lang=\"ts\">\n\timport { ScrollArea as ScrollAreaPrimitive } from \"bits-ui\";\n\timport { cn, type WithoutChild } from \"$lib/utils.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\torientation = \"vertical\",\n\t\tchildren,\n\t\t...restProps\n\t}: WithoutChild<ScrollAreaPrimitive.ScrollbarProps> = $props();\n</script>\n\n<ScrollAreaPrimitive.Scrollbar\n\tbind:ref\n\tdata-slot=\"scroll-area-scrollbar\"\n\tdata-orientation={orientation}\n\t{orientation}\n\tclass={cn(\n\t\t\"flex touch-none select-none transition-colors data-[orientation=vertical]:h-full data-[orientation=vertical]:w-2.5 data-[orientation=vertical]:border-l-3 data-[orientation=vertical]:border-l-transparent data-[orientation=horizontal]:h-2.5 data-[orientation=horizontal]:flex-col data-[orientation=horizontal]:border-t-3 data-[orientation=horizontal]:border-t-transparent\",\n\t\tclassName\n\t)}\n\t{...restProps}\n>\n\t{@render children?.()}\n\t<ScrollAreaPrimitive.Thumb\n\t\tdata-slot=\"scroll-area-thumb\"\n\t\tclass=\"rounded-full bg-border relative flex-1\"\n\t/>\n</ScrollAreaPrimitive.Scrollbar>\n",
+      "type": "registry:ui",
+      "target": "lib/components/ui/scroll-area/scroll-area-scrollbar.svelte"
+    },
+    {
+      "path": "registry/default/ui/scroll-area.svelte",
+      "content": "<script lang=\"ts\">\n\timport { ScrollArea as ScrollAreaPrimitive } from \"bits-ui\";\n\timport { Scrollbar } from \"./index.js\";\n\timport { cn, type WithoutChild } from \"$lib/utils.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tviewportRef = $bindable(null),\n\t\tclass: className,\n\t\torientation = \"vertical\",\n\t\tscrollbarXClasses = \"\",\n\t\tscrollbarYClasses = \"\",\n\t\tchildren,\n\t\t...restProps\n\t}: WithoutChild<ScrollAreaPrimitive.RootProps> & {\n\t\torientation?: \"vertical\" | \"horizontal\" | \"both\" | undefined;\n\t\tscrollbarXClasses?: string | undefined;\n\t\tscrollbarYClasses?: string | undefined;\n\t\tviewportRef?: HTMLElement | null;\n\t} = $props();\n</script>\n\n<ScrollAreaPrimitive.Root\n\tbind:ref\n\tdata-slot=\"scroll-area\"\n\tclass={cn(\"relative\", className)}\n\t{...restProps}\n>\n\t<ScrollAreaPrimitive.Viewport\n\t\tbind:ref={viewportRef}\n\t\tdata-slot=\"scroll-area-viewport\"\n\t\tclass=\"cn-scroll-area-viewport focus-visible:ring-ring/50 size-full rounded-[inherit] transition-[color,box-shadow] outline-none focus-visible:ring-[3px] focus-visible:outline-1\"\n\t>\n\t\t{@render children?.()}\n\t</ScrollAreaPrimitive.Viewport>\n\t{#if orientation === \"vertical\" || orientation === \"both\"}\n\t\t<Scrollbar orientation=\"vertical\" class={scrollbarYClasses} />\n\t{/if}\n\t{#if orientation === \"horizontal\" || orientation === \"both\"}\n\t\t<Scrollbar orientation=\"horizontal\" class={scrollbarXClasses} />\n\t{/if}\n\t<ScrollAreaPrimitive.Corner />\n</ScrollAreaPrimitive.Root>\n",
+      "type": "registry:ui",
+      "target": "lib/components/ui/scroll-area/scroll-area.svelte"
+    }
+  ]
+}

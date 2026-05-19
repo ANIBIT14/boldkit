@@ -1,0 +1,24 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "file-list",
+  "type": "registry:ui",
+  "description": "File List component for BoldKit Svelte",
+  "dependencies": [],
+  "registryDependencies": [
+    "utils"
+  ],
+  "files": [
+    {
+      "path": "registry/default/ui/file-list.svelte",
+      "content": "<script lang=\"ts\">\n\timport { cn } from '$lib/utils.js';\n\timport { Progress } from '$lib/components/ui/progress/index.js';\n\timport { Spinner } from '$lib/components/ui/spinner/index.js';\n\timport XIcon from '@lucide/svelte/icons/x';\n\timport FileIcon from '@lucide/svelte/icons/file';\n\timport ImageIcon from '@lucide/svelte/icons/image';\n\timport FileTextIcon from '@lucide/svelte/icons/file-text';\n\timport FileCodeIcon from '@lucide/svelte/icons/file-code';\n\timport FileAudioIcon from '@lucide/svelte/icons/file-audio';\n\timport FileVideoIcon from '@lucide/svelte/icons/file-video';\n\n\texport type FileItem = {\n\t\tfile: File;\n\t\tprogress?: number;\n\t\terror?: string;\n\t\tuploading?: boolean;\n\t};\n\n\ttype Props = {\n\t\tfiles: FileItem[];\n\t\tclass?: string;\n\t\tonRemove?: (file: File) => void;\n\t};\n\n\tlet { files, class: className, onRemove }: Props = $props();\n\n\tfunction formatBytes(bytes: number) {\n\t\tif (bytes === 0) return '0 Bytes';\n\t\tconst k = 1024, sizes = ['Bytes', 'KB', 'MB', 'GB'];\n\t\tconst i = Math.floor(Math.log(bytes) / Math.log(k));\n\t\treturn parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];\n\t}\n\n\tfunction getFileIcon(mimeType: string) {\n\t\tif (mimeType.startsWith('image/')) return ImageIcon;\n\t\tif (mimeType.startsWith('video/')) return FileVideoIcon;\n\t\tif (mimeType.startsWith('audio/')) return FileAudioIcon;\n\t\tif (mimeType.includes('pdf') || mimeType.includes('document')) return FileTextIcon;\n\t\tif (mimeType.includes('code') || mimeType.includes('javascript') || mimeType.includes('json')) return FileCodeIcon;\n\t\treturn FileIcon;\n\t}\n</script>\n\n{#if files.length > 0}\n\t<div class={cn('space-y-2 mt-4', className)}>\n\t\t{#each files as item}\n\t\t\t{@const Icon = getFileIcon(item.file.type)}\n\t\t\t<div\n\t\t\t\tclass={cn(\n\t\t\t\t\t'flex items-center gap-3 p-3 border-3 border-foreground bg-background shadow-[3px_3px_0px_hsl(var(--shadow-color))]',\n\t\t\t\t\titem.error && 'border-destructive bg-destructive/10 shadow-[3px_3px_0px_hsl(var(--destructive))]'\n\t\t\t\t)}\n\t\t\t>\n\t\t\t\t<div class=\"flex items-center justify-center w-10 h-10 bg-muted border-3 border-foreground\">\n\t\t\t\t\t<Icon class=\"h-5 w-5\" />\n\t\t\t\t</div>\n\t\t\t\t<div class=\"flex-1 min-w-0\">\n\t\t\t\t\t<p class=\"font-bold text-sm truncate\">{item.file.name}</p>\n\t\t\t\t\t<p class=\"text-xs text-muted-foreground\">{formatBytes(item.file.size)}</p>\n\t\t\t\t\t{#if item.error}\n\t\t\t\t\t\t<p class=\"text-xs text-destructive font-bold\">{item.error}</p>\n\t\t\t\t\t{/if}\n\t\t\t\t\t{#if item.uploading && item.progress !== undefined}\n\t\t\t\t\t\t<Progress value={item.progress} class=\"h-2 mt-1\" />\n\t\t\t\t\t{/if}\n\t\t\t\t</div>\n\t\t\t\t{#if item.uploading}\n\t\t\t\t\t<Spinner class=\"size-4\" />\n\t\t\t\t{:else}\n\t\t\t\t\t<button\n\t\t\t\t\t\ttype=\"button\"\n\t\t\t\t\t\tclass=\"flex items-center justify-center w-8 h-8 border-3 border-foreground bg-background hover:bg-destructive hover:text-destructive-foreground hover:shadow-[2px_2px_0px_hsl(var(--foreground))] hover:-translate-x-0.5 hover:-translate-y-0.5 transition-all\"\n\t\t\t\t\t\tonclick={() => onRemove?.(item.file)}\n\t\t\t\t\t>\n\t\t\t\t\t\t<XIcon class=\"h-4 w-4\" />\n\t\t\t\t\t</button>\n\t\t\t\t{/if}\n\t\t\t</div>\n\t\t{/each}\n\t</div>\n{/if}\n",
+      "type": "registry:ui",
+      "target": "lib/components/ui/file-list/file-list.svelte"
+    },
+    {
+      "path": "registry/default/ui/index.ts",
+      "content": "import Root from \"./accordion.svelte\";\nimport Content from \"./accordion-content.svelte\";\nimport Item from \"./accordion-item.svelte\";\nimport Trigger from \"./accordion-trigger.svelte\";\n\nexport {\n\tRoot,\n\tContent,\n\tItem,\n\tTrigger,\n\t//\n\tRoot as Accordion,\n\tContent as AccordionContent,\n\tItem as AccordionItem,\n\tTrigger as AccordionTrigger,\n};\n",
+      "type": "registry:ui",
+      "target": "lib/components/ui/accordion/index.ts"
+    }
+  ]
+}

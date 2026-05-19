@@ -1,0 +1,36 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "marquee",
+  "type": "registry:ui",
+  "description": "Marquee component for BoldKit Svelte",
+  "dependencies": [],
+  "registryDependencies": [
+    "utils"
+  ],
+  "files": [
+    {
+      "path": "registry/default/ui/index.ts",
+      "content": "import Root from \"./accordion.svelte\";\nimport Content from \"./accordion-content.svelte\";\nimport Item from \"./accordion-item.svelte\";\nimport Trigger from \"./accordion-trigger.svelte\";\n\nexport {\n\tRoot,\n\tContent,\n\tItem,\n\tTrigger,\n\t//\n\tRoot as Accordion,\n\tContent as AccordionContent,\n\tItem as AccordionItem,\n\tTrigger as AccordionTrigger,\n};\n",
+      "type": "registry:ui",
+      "target": "lib/components/ui/accordion/index.ts"
+    },
+    {
+      "path": "registry/default/ui/marquee-item.svelte",
+      "content": "<script lang=\"ts\">\n  import type { Snippet } from 'svelte'\n  import { cn } from '$lib/utils.js'\n  type Props = { class?: string; children?: Snippet }\n  let { class: className, children }: Props = $props()\n</script>\n\n<span class={cn('inline-flex items-center gap-2 whitespace-nowrap px-4 text-lg font-bold uppercase tracking-wide', className)}>\n  {@render children?.()}\n</span>\n",
+      "type": "registry:ui",
+      "target": "lib/components/ui/marquee/marquee-item.svelte"
+    },
+    {
+      "path": "registry/default/ui/marquee-separator.svelte",
+      "content": "<script lang=\"ts\">\n  import type { Snippet } from 'svelte'\n  import { cn } from '$lib/utils.js'\n  type Props = { class?: string; children?: Snippet }\n  let { class: className, children }: Props = $props()\n</script>\n\n<span class={cn('text-2xl font-black text-muted-foreground', className)}>\n  {#if children}\n    {@render children()}\n  {:else}\n    /\n  {/if}\n</span>\n",
+      "type": "registry:ui",
+      "target": "lib/components/ui/marquee/marquee-separator.svelte"
+    },
+    {
+      "path": "registry/default/ui/marquee.svelte",
+      "content": "<script lang=\"ts\">\n  import type { Snippet } from 'svelte'\n  import { cn } from '$lib/utils.js'\n\n  type Props = {\n    class?: string\n    direction?: 'left' | 'right'\n    speed?: 'slow' | 'normal' | 'fast'\n    pauseOnHover?: boolean\n    bordered?: boolean\n    repeat?: number\n    children?: Snippet\n  }\n\n  let {\n    class: className,\n    direction = 'left',\n    speed = 'normal',\n    pauseOnHover = true,\n    bordered = true,\n    repeat = 4,\n    children,\n  }: Props = $props()\n\n  const speedClasses: Record<string, string> = {\n    slow: 'animate-marquee-slow',\n    normal: 'animate-marquee',\n    fast: 'animate-marquee-fast',\n  }\n\n  const animationClass = $derived(\n    direction === 'right' ? 'animate-marquee-reverse' : speedClasses[speed]\n  )\n  const animationDirection = $derived(direction === 'right' ? 'reverse' : 'normal')\n</script>\n\n<div\n  class={cn(\n    'flex overflow-hidden',\n    bordered && 'border-3 border-foreground bg-background',\n    className\n  )}\n>\n  {#each [0, 1] as _, groupIdx}\n    <div\n      class={cn(\n        'marquee-content flex shrink-0 items-center gap-8 py-3',\n        animationClass,\n        pauseOnHover && 'hover:[animation-play-state:paused]'\n      )}\n      style=\"animation-direction: {animationDirection}\"\n      aria-hidden={groupIdx === 1 ? 'true' : undefined}\n    >\n      {#each { length: repeat } as _}\n        {@render children?.()}\n      {/each}\n    </div>\n  {/each}\n</div>\n",
+      "type": "registry:ui",
+      "target": "lib/components/ui/marquee/marquee.svelte"
+    }
+  ]
+}

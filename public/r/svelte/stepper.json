@@ -1,0 +1,60 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "stepper",
+  "type": "registry:ui",
+  "description": "Stepper component for BoldKit Svelte",
+  "dependencies": [],
+  "registryDependencies": [
+    "utils"
+  ],
+  "files": [
+    {
+      "path": "registry/default/ui/context.ts",
+      "content": "import type { WithElementRef } from \"$lib/utils.js\";\nimport type {\n\tEmblaCarouselSvelteType,\n\tdefault as emblaCarouselSvelte,\n} from \"embla-carousel-svelte\";\nimport { getContext, hasContext, setContext } from \"svelte\";\nimport type { HTMLAttributes } from \"svelte/elements\";\n\nexport type CarouselAPI =\n\tNonNullable<NonNullable<EmblaCarouselSvelteType[\"$$_attributes\"]>[\"on:emblaInit\"]> extends (\n\t\tevt: CustomEvent<infer CarouselAPI>\n\t) => void\n\t\t? CarouselAPI\n\t\t: never;\n\ntype EmblaCarouselConfig = NonNullable<Parameters<typeof emblaCarouselSvelte>[1]>;\n\nexport type CarouselOptions = EmblaCarouselConfig[\"options\"];\nexport type CarouselPlugins = EmblaCarouselConfig[\"plugins\"];\n\n////\n\nexport type CarouselProps = {\n\topts?: CarouselOptions;\n\tplugins?: CarouselPlugins;\n\tsetApi?: (api: CarouselAPI | undefined) => void;\n\torientation?: \"horizontal\" | \"vertical\";\n} & WithElementRef<HTMLAttributes<HTMLDivElement>>;\n\nconst EMBLA_CAROUSEL_CONTEXT = Symbol(\"EMBLA_CAROUSEL_CONTEXT\");\n\nexport type EmblaContext = {\n\tapi: CarouselAPI | undefined;\n\torientation: \"horizontal\" | \"vertical\";\n\tscrollNext: () => void;\n\tscrollPrev: () => void;\n\tcanScrollNext: boolean;\n\tcanScrollPrev: boolean;\n\thandleKeyDown: (e: KeyboardEvent) => void;\n\toptions: CarouselOptions;\n\tplugins: CarouselPlugins;\n\tonInit: (e: CustomEvent<CarouselAPI>) => void;\n\tscrollTo: (index: number, jump?: boolean) => void;\n\tscrollSnaps: number[];\n\tselectedIndex: number;\n};\n\nexport function setEmblaContext(config: EmblaContext): EmblaContext {\n\tsetContext(EMBLA_CAROUSEL_CONTEXT, config);\n\treturn config;\n}\n\nexport function getEmblaContext(name = \"This component\") {\n\tif (!hasContext(EMBLA_CAROUSEL_CONTEXT)) {\n\t\tthrow new Error(`${name} must be used within a <Carousel.Root> component`);\n\t}\n\treturn getContext<ReturnType<typeof setEmblaContext>>(EMBLA_CAROUSEL_CONTEXT);\n}\n",
+      "type": "registry:ui",
+      "target": "lib/components/ui/carousel/context.ts"
+    },
+    {
+      "path": "registry/default/ui/index.ts",
+      "content": "import Root from \"./accordion.svelte\";\nimport Content from \"./accordion-content.svelte\";\nimport Item from \"./accordion-item.svelte\";\nimport Trigger from \"./accordion-trigger.svelte\";\n\nexport {\n\tRoot,\n\tContent,\n\tItem,\n\tTrigger,\n\t//\n\tRoot as Accordion,\n\tContent as AccordionContent,\n\tItem as AccordionItem,\n\tTrigger as AccordionTrigger,\n};\n",
+      "type": "registry:ui",
+      "target": "lib/components/ui/accordion/index.ts"
+    },
+    {
+      "path": "registry/default/ui/stepper-content.svelte",
+      "content": "<script lang=\"ts\">\n\timport type { Snippet } from 'svelte';\n\timport { cn } from '$lib/utils.js';\n\timport { getStepperContext } from './context.js';\n\n\ttype Props = { index: number; class?: string; children?: Snippet };\n\tlet { index, class: className, children }: Props = $props();\n\n\tconst ctx = getStepperContext();\n\tconst isActive = $derived(index === ctx.activeStep());\n</script>\n\n{#if isActive}\n\t<div role=\"tabpanel\" class={cn('mt-4', className)}>\n\t\t{@render children?.()}\n\t</div>\n{/if}\n",
+      "type": "registry:ui",
+      "target": "lib/components/ui/stepper/stepper-content.svelte"
+    },
+    {
+      "path": "registry/default/ui/stepper-item.svelte",
+      "content": "<script lang=\"ts\">\n\timport type { Snippet } from 'svelte';\n\timport { cn } from '$lib/utils.js';\n\timport { getStepperContext, setStepperItemContext } from './context.js';\n\n\ttype Props = {\n\t\tindex: number;\n\t\tclass?: string;\n\t\tchildren?: Snippet;\n\t};\n\n\tlet { index, class: className, children }: Props = $props();\n\n\tconst ctx = getStepperContext();\n\t// svelte-ignore state_referenced_locally\n\tsetStepperItemContext({ get index() { return index; } });\n</script>\n\n<div\n\tclass={cn(\n\t\t'flex items-center',\n\t\tctx.orientation === 'horizontal' ? 'flex-row' : 'flex-col',\n\t\tclassName\n\t)}\n>\n\t{@render children?.()}\n</div>\n",
+      "type": "registry:ui",
+      "target": "lib/components/ui/stepper/stepper-item.svelte"
+    },
+    {
+      "path": "registry/default/ui/stepper-list.svelte",
+      "content": "<script lang=\"ts\">\n\timport type { Snippet } from 'svelte';\n\timport { cn } from '$lib/utils.js';\n\timport { getStepperContext } from './context.js';\n\n\ttype Props = { class?: string; children?: Snippet };\n\tlet { class: className, children }: Props = $props();\n\n\tconst ctx = getStepperContext();\n</script>\n\n<div\n\trole=\"tablist\"\n\tclass={cn(\n\t\t'flex items-center',\n\t\tctx.orientation === 'horizontal' ? 'flex-row' : 'flex-col items-start',\n\t\tclassName\n\t)}\n>\n\t{@render children?.()}\n</div>\n",
+      "type": "registry:ui",
+      "target": "lib/components/ui/stepper/stepper-list.svelte"
+    },
+    {
+      "path": "registry/default/ui/stepper-separator.svelte",
+      "content": "<script lang=\"ts\">\n\timport { cn } from '$lib/utils.js';\n\timport { getStepperContext, getStepperItemContext } from './context.js';\n\n\ttype Props = { class?: string };\n\tlet { class: className }: Props = $props();\n\n\tconst stepperCtx = getStepperContext();\n\tconst itemCtx = getStepperItemContext();\n\n\tconst isCompleted = $derived(itemCtx.index < stepperCtx.activeStep());\n</script>\n\n<div\n\tclass={cn(\n\t\t'transition-all duration-200',\n\t\tstepperCtx.orientation === 'horizontal'\n\t\t\t? 'h-[3px] flex-1 min-w-8 mx-2'\n\t\t\t: 'w-[3px] min-h-8 my-2 ml-5',\n\t\tisCompleted ? 'bg-foreground' : 'bg-foreground/30 border-dashed border-2 border-foreground/30 bg-transparent',\n\t\tclassName\n\t)}\n></div>\n",
+      "type": "registry:ui",
+      "target": "lib/components/ui/stepper/stepper-separator.svelte"
+    },
+    {
+      "path": "registry/default/ui/stepper-trigger.svelte",
+      "content": "<script lang=\"ts\">\n\timport type { Snippet } from 'svelte';\n\timport { cn } from '$lib/utils.js';\n\timport CheckIcon from '@lucide/svelte/icons/check';\n\timport { getStepperContext, getStepperItemContext } from './context.js';\n\n\ttype StepState = 'completed' | 'active' | 'upcoming';\n\ttype Props = {\n\t\tsize?: 'sm' | 'md' | 'lg';\n\t\tshowStepNumber?: boolean;\n\t\tclass?: string;\n\t\tchildren?: Snippet;\n\t};\n\n\tlet { size = 'md', showStepNumber = true, class: className, children }: Props = $props();\n\n\tconst stepperCtx = getStepperContext();\n\tconst itemCtx = getStepperItemContext();\n\n\tconst state = $derived.by<StepState>(() => {\n\t\tconst active = stepperCtx.activeStep();\n\t\tif (itemCtx.index < active) return 'completed';\n\t\tif (itemCtx.index === active) return 'active';\n\t\treturn 'upcoming';\n\t});\n\n\tconst stateClasses: Record<StepState, string> = {\n\t\tcompleted: 'bg-success text-success-foreground shadow-[4px_4px_0px_hsl(var(--shadow-color))]',\n\t\tactive: 'bg-primary text-primary-foreground shadow-[4px_4px_0px_hsl(var(--shadow-color))] scale-110',\n\t\tupcoming: 'bg-muted text-muted-foreground',\n\t};\n\n\tconst sizeClasses: Record<'sm' | 'md' | 'lg', string> = {\n\t\tsm: 'h-8 w-8 text-sm',\n\t\tmd: 'h-10 w-10',\n\t\tlg: 'h-12 w-12 text-lg',\n\t};\n</script>\n\n<button\n\ttype=\"button\"\n\trole=\"tab\"\n\taria-selected={state === 'active'}\n\tclass={cn(\n\t\t'flex items-center justify-center border-3 border-foreground font-bold transition-all duration-200',\n\t\tstateClasses[state],\n\t\tsizeClasses[size],\n\t\tclassName\n\t)}\n\tonclick={() => stepperCtx.setActiveStep(itemCtx.index)}\n>\n\t{#if state === 'completed'}\n\t\t<CheckIcon class=\"h-5 w-5\" />\n\t{:else if showStepNumber}\n\t\t{itemCtx.index + 1}\n\t{:else}\n\t\t{@render children?.()}\n\t{/if}\n</button>\n",
+      "type": "registry:ui",
+      "target": "lib/components/ui/stepper/stepper-trigger.svelte"
+    },
+    {
+      "path": "registry/default/ui/stepper.svelte",
+      "content": "<script lang=\"ts\">\n\timport type { Snippet } from 'svelte';\n\timport { cn } from '$lib/utils.js';\n\timport { setStepperContext } from './context.js';\n\n\ttype Props = {\n\t\tactiveStep?: number;\n\t\torientation?: 'horizontal' | 'vertical';\n\t\tclass?: string;\n\t\tchildren?: Snippet;\n\t\tonStepChange?: (step: number) => void;\n\t};\n\n\tlet {\n\t\tactiveStep = $bindable(0),\n\t\torientation = 'horizontal',\n\t\tclass: className,\n\t\tchildren,\n\t\tonStepChange,\n\t}: Props = $props();\n\n\tlet internalStep = $state(0);\n\tconst isControlled = $derived(activeStep !== undefined);\n\tconst currentStep = $derived(isControlled ? activeStep : internalStep);\n\n\t// svelte-ignore state_referenced_locally\n\tsetStepperContext({\n\t\tactiveStep: () => currentStep,\n\t\tsetActiveStep: (step: number) => {\n\t\t\tif (!isControlled) internalStep = step;\n\t\t\tactiveStep = step;\n\t\t\tonStepChange?.(step);\n\t\t},\n\t\tget orientation() { return orientation; },\n\t});\n</script>\n\n<div class={cn('flex', orientation === 'horizontal' ? 'flex-row' : 'flex-col', className)}>\n\t{@render children?.()}\n</div>\n",
+      "type": "registry:ui",
+      "target": "lib/components/ui/stepper/stepper.svelte"
+    }
+  ]
+}

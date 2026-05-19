@@ -9,10 +9,16 @@
   ],
   "files": [
     {
-      "path": "registry/default/ui/textarea.svelte",
-      "content": "<script lang=\"ts\">\n  import type { HTMLTextareaAttributes } from 'svelte/elements'\n  import { cn } from '$lib/utils.js'\n\n  interface Props extends HTMLTextareaAttributes {\n    class?: string\n  }\n\n  let { class: className, ...restProps }: Props = $props()\n</script>\n\n<textarea\n  class={cn(\n    'flex min-h-[100px] w-full border-3 border-input bg-background px-4 py-3 text-base shadow-[4px_4px_0px_hsl(var(--shadow-color))] transition-all duration-200 placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-0 focus-visible:translate-x-[4px] focus-visible:translate-y-[4px] focus-visible:shadow-none disabled:cursor-not-allowed disabled:opacity-50 md:text-sm',\n    className\n  )}\n  {...restProps}\n></textarea>\n",
+      "path": "registry/default/ui/index.ts",
+      "content": "import Root from \"./accordion.svelte\";\nimport Content from \"./accordion-content.svelte\";\nimport Item from \"./accordion-item.svelte\";\nimport Trigger from \"./accordion-trigger.svelte\";\n\nexport {\n\tRoot,\n\tContent,\n\tItem,\n\tTrigger,\n\t//\n\tRoot as Accordion,\n\tContent as AccordionContent,\n\tItem as AccordionItem,\n\tTrigger as AccordionTrigger,\n};\n",
       "type": "registry:ui",
-      "target": "lib/components/ui/textarea.svelte"
+      "target": "lib/components/ui/accordion/index.ts"
+    },
+    {
+      "path": "registry/default/ui/textarea.svelte",
+      "content": "<script lang=\"ts\">\n\timport { cn, type WithElementRef, type WithoutChildren } from \"$lib/utils.js\";\n\timport type { HTMLTextareaAttributes } from \"svelte/elements\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tvalue = $bindable(),\n\t\tclass: className,\n\t\t\"data-slot\": dataSlot = \"textarea\",\n\t\t...restProps\n\t}: WithoutChildren<WithElementRef<HTMLTextareaAttributes>> = $props();\n</script>\n\n<textarea\n\tbind:this={ref}\n\tdata-slot={dataSlot}\n\tclass={cn(\n\t\t\"flex min-h-[120px] w-full border-3 border-input bg-background px-4 py-2 text-base shadow-[4px_4px_0px_hsl(var(--shadow-color))] transition-all duration-200 placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-0 focus-visible:translate-x-[4px] focus-visible:translate-y-[4px] focus-visible:shadow-none disabled:cursor-not-allowed disabled:opacity-50 md:text-sm resize-y\",\n\t\tclassName\n\t)}\n\tbind:value\n\t{...restProps}\n></textarea>\n",
+      "type": "registry:ui",
+      "target": "lib/components/ui/textarea/textarea.svelte"
     }
   ]
 }

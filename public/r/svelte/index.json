@@ -4,44 +4,9 @@
   "homepage": "https://boldkit.dev",
   "items": [
     {
-      "name": "button",
+      "name": "accordion",
       "type": "registry:ui",
-      "registryUrl": "https://boldkit.dev/r/svelte/button.json"
-    },
-    {
-      "name": "input",
-      "type": "registry:ui",
-      "registryUrl": "https://boldkit.dev/r/svelte/input.json"
-    },
-    {
-      "name": "label",
-      "type": "registry:ui",
-      "registryUrl": "https://boldkit.dev/r/svelte/label.json"
-    },
-    {
-      "name": "badge",
-      "type": "registry:ui",
-      "registryUrl": "https://boldkit.dev/r/svelte/badge.json"
-    },
-    {
-      "name": "separator",
-      "type": "registry:ui",
-      "registryUrl": "https://boldkit.dev/r/svelte/separator.json"
-    },
-    {
-      "name": "skeleton",
-      "type": "registry:ui",
-      "registryUrl": "https://boldkit.dev/r/svelte/skeleton.json"
-    },
-    {
-      "name": "textarea",
-      "type": "registry:ui",
-      "registryUrl": "https://boldkit.dev/r/svelte/textarea.json"
-    },
-    {
-      "name": "card",
-      "type": "registry:ui",
-      "registryUrl": "https://boldkit.dev/r/svelte/card.json"
+      "registryUrl": "https://boldkit.dev/r/svelte/accordion.json"
     },
     {
       "name": "alert",
@@ -49,9 +14,59 @@
       "registryUrl": "https://boldkit.dev/r/svelte/alert.json"
     },
     {
+      "name": "alert-dialog",
+      "type": "registry:ui",
+      "registryUrl": "https://boldkit.dev/r/svelte/alert-dialog.json"
+    },
+    {
+      "name": "aspect-ratio",
+      "type": "registry:ui",
+      "registryUrl": "https://boldkit.dev/r/svelte/aspect-ratio.json"
+    },
+    {
       "name": "avatar",
       "type": "registry:ui",
       "registryUrl": "https://boldkit.dev/r/svelte/avatar.json"
+    },
+    {
+      "name": "badge",
+      "type": "registry:ui",
+      "registryUrl": "https://boldkit.dev/r/svelte/badge.json"
+    },
+    {
+      "name": "breadcrumb",
+      "type": "registry:ui",
+      "registryUrl": "https://boldkit.dev/r/svelte/breadcrumb.json"
+    },
+    {
+      "name": "button",
+      "type": "registry:ui",
+      "registryUrl": "https://boldkit.dev/r/svelte/button.json"
+    },
+    {
+      "name": "button-group",
+      "type": "registry:ui",
+      "registryUrl": "https://boldkit.dev/r/svelte/button-group.json"
+    },
+    {
+      "name": "calendar",
+      "type": "registry:ui",
+      "registryUrl": "https://boldkit.dev/r/svelte/calendar.json"
+    },
+    {
+      "name": "card",
+      "type": "registry:ui",
+      "registryUrl": "https://boldkit.dev/r/svelte/card.json"
+    },
+    {
+      "name": "carousel",
+      "type": "registry:ui",
+      "registryUrl": "https://boldkit.dev/r/svelte/carousel.json"
+    },
+    {
+      "name": "chart",
+      "type": "registry:ui",
+      "registryUrl": "https://boldkit.dev/r/svelte/chart.json"
     },
     {
       "name": "checkbox",
@@ -59,29 +74,29 @@
       "registryUrl": "https://boldkit.dev/r/svelte/checkbox.json"
     },
     {
-      "name": "switch",
+      "name": "collapsible",
       "type": "registry:ui",
-      "registryUrl": "https://boldkit.dev/r/svelte/switch.json"
+      "registryUrl": "https://boldkit.dev/r/svelte/collapsible.json"
     },
     {
-      "name": "progress",
+      "name": "combobox",
       "type": "registry:ui",
-      "registryUrl": "https://boldkit.dev/r/svelte/progress.json"
+      "registryUrl": "https://boldkit.dev/r/svelte/combobox.json"
     },
     {
-      "name": "toggle",
+      "name": "command",
       "type": "registry:ui",
-      "registryUrl": "https://boldkit.dev/r/svelte/toggle.json"
+      "registryUrl": "https://boldkit.dev/r/svelte/command.json"
     },
     {
-      "name": "accordion",
+      "name": "context-menu",
       "type": "registry:ui",
-      "registryUrl": "https://boldkit.dev/r/svelte/accordion.json"
+      "registryUrl": "https://boldkit.dev/r/svelte/context-menu.json"
     },
     {
-      "name": "tabs",
+      "name": "data-table",
       "type": "registry:ui",
-      "registryUrl": "https://boldkit.dev/r/svelte/tabs.json"
+      "registryUrl": "https://boldkit.dev/r/svelte/data-table.json"
     },
     {
       "name": "dialog",
@@ -89,14 +104,249 @@
       "registryUrl": "https://boldkit.dev/r/svelte/dialog.json"
     },
     {
-      "name": "select",
+      "name": "drawer",
       "type": "registry:ui",
-      "registryUrl": "https://boldkit.dev/r/svelte/select.json"
+      "registryUrl": "https://boldkit.dev/r/svelte/drawer.json"
     },
     {
       "name": "dropdown-menu",
       "type": "registry:ui",
       "registryUrl": "https://boldkit.dev/r/svelte/dropdown-menu.json"
+    },
+    {
+      "name": "dropzone",
+      "type": "registry:ui",
+      "registryUrl": "https://boldkit.dev/r/svelte/dropzone.json"
+    },
+    {
+      "name": "empty",
+      "type": "registry:ui",
+      "registryUrl": "https://boldkit.dev/r/svelte/empty.json"
+    },
+    {
+      "name": "empty-state",
+      "type": "registry:ui",
+      "registryUrl": "https://boldkit.dev/r/svelte/empty-state.json"
+    },
+    {
+      "name": "field",
+      "type": "registry:ui",
+      "registryUrl": "https://boldkit.dev/r/svelte/field.json"
+    },
+    {
+      "name": "file-list",
+      "type": "registry:ui",
+      "registryUrl": "https://boldkit.dev/r/svelte/file-list.json"
+    },
+    {
+      "name": "form",
+      "type": "registry:ui",
+      "registryUrl": "https://boldkit.dev/r/svelte/form.json"
+    },
+    {
+      "name": "hover-card",
+      "type": "registry:ui",
+      "registryUrl": "https://boldkit.dev/r/svelte/hover-card.json"
+    },
+    {
+      "name": "input",
+      "type": "registry:ui",
+      "registryUrl": "https://boldkit.dev/r/svelte/input.json"
+    },
+    {
+      "name": "input-group",
+      "type": "registry:ui",
+      "registryUrl": "https://boldkit.dev/r/svelte/input-group.json"
+    },
+    {
+      "name": "input-otp",
+      "type": "registry:ui",
+      "registryUrl": "https://boldkit.dev/r/svelte/input-otp.json"
+    },
+    {
+      "name": "item",
+      "type": "registry:ui",
+      "registryUrl": "https://boldkit.dev/r/svelte/item.json"
+    },
+    {
+      "name": "kbd",
+      "type": "registry:ui",
+      "registryUrl": "https://boldkit.dev/r/svelte/kbd.json"
+    },
+    {
+      "name": "label",
+      "type": "registry:ui",
+      "registryUrl": "https://boldkit.dev/r/svelte/label.json"
+    },
+    {
+      "name": "layered-card",
+      "type": "registry:ui",
+      "registryUrl": "https://boldkit.dev/r/svelte/layered-card.json"
+    },
+    {
+      "name": "marquee",
+      "type": "registry:ui",
+      "registryUrl": "https://boldkit.dev/r/svelte/marquee.json"
+    },
+    {
+      "name": "math-curve",
+      "type": "registry:ui",
+      "registryUrl": "https://boldkit.dev/r/svelte/math-curve.json"
+    },
+    {
+      "name": "menubar",
+      "type": "registry:ui",
+      "registryUrl": "https://boldkit.dev/r/svelte/menubar.json"
+    },
+    {
+      "name": "native-select",
+      "type": "registry:ui",
+      "registryUrl": "https://boldkit.dev/r/svelte/native-select.json"
+    },
+    {
+      "name": "navigation-menu",
+      "type": "registry:ui",
+      "registryUrl": "https://boldkit.dev/r/svelte/navigation-menu.json"
+    },
+    {
+      "name": "pagination",
+      "type": "registry:ui",
+      "registryUrl": "https://boldkit.dev/r/svelte/pagination.json"
+    },
+    {
+      "name": "popover",
+      "type": "registry:ui",
+      "registryUrl": "https://boldkit.dev/r/svelte/popover.json"
+    },
+    {
+      "name": "progress",
+      "type": "registry:ui",
+      "registryUrl": "https://boldkit.dev/r/svelte/progress.json"
+    },
+    {
+      "name": "radio-group",
+      "type": "registry:ui",
+      "registryUrl": "https://boldkit.dev/r/svelte/radio-group.json"
+    },
+    {
+      "name": "range-calendar",
+      "type": "registry:ui",
+      "registryUrl": "https://boldkit.dev/r/svelte/range-calendar.json"
+    },
+    {
+      "name": "rating",
+      "type": "registry:ui",
+      "registryUrl": "https://boldkit.dev/r/svelte/rating.json"
+    },
+    {
+      "name": "resizable",
+      "type": "registry:ui",
+      "registryUrl": "https://boldkit.dev/r/svelte/resizable.json"
+    },
+    {
+      "name": "scroll-area",
+      "type": "registry:ui",
+      "registryUrl": "https://boldkit.dev/r/svelte/scroll-area.json"
+    },
+    {
+      "name": "select",
+      "type": "registry:ui",
+      "registryUrl": "https://boldkit.dev/r/svelte/select.json"
+    },
+    {
+      "name": "separator",
+      "type": "registry:ui",
+      "registryUrl": "https://boldkit.dev/r/svelte/separator.json"
+    },
+    {
+      "name": "sheet",
+      "type": "registry:ui",
+      "registryUrl": "https://boldkit.dev/r/svelte/sheet.json"
+    },
+    {
+      "name": "sidebar",
+      "type": "registry:ui",
+      "registryUrl": "https://boldkit.dev/r/svelte/sidebar.json"
+    },
+    {
+      "name": "skeleton",
+      "type": "registry:ui",
+      "registryUrl": "https://boldkit.dev/r/svelte/skeleton.json"
+    },
+    {
+      "name": "slider",
+      "type": "registry:ui",
+      "registryUrl": "https://boldkit.dev/r/svelte/slider.json"
+    },
+    {
+      "name": "sonner",
+      "type": "registry:ui",
+      "registryUrl": "https://boldkit.dev/r/svelte/sonner.json"
+    },
+    {
+      "name": "spinner",
+      "type": "registry:ui",
+      "registryUrl": "https://boldkit.dev/r/svelte/spinner.json"
+    },
+    {
+      "name": "stat-card",
+      "type": "registry:ui",
+      "registryUrl": "https://boldkit.dev/r/svelte/stat-card.json"
+    },
+    {
+      "name": "stepper",
+      "type": "registry:ui",
+      "registryUrl": "https://boldkit.dev/r/svelte/stepper.json"
+    },
+    {
+      "name": "sticker",
+      "type": "registry:ui",
+      "registryUrl": "https://boldkit.dev/r/svelte/sticker.json"
+    },
+    {
+      "name": "switch",
+      "type": "registry:ui",
+      "registryUrl": "https://boldkit.dev/r/svelte/switch.json"
+    },
+    {
+      "name": "table",
+      "type": "registry:ui",
+      "registryUrl": "https://boldkit.dev/r/svelte/table.json"
+    },
+    {
+      "name": "tabs",
+      "type": "registry:ui",
+      "registryUrl": "https://boldkit.dev/r/svelte/tabs.json"
+    },
+    {
+      "name": "tag-input",
+      "type": "registry:ui",
+      "registryUrl": "https://boldkit.dev/r/svelte/tag-input.json"
+    },
+    {
+      "name": "textarea",
+      "type": "registry:ui",
+      "registryUrl": "https://boldkit.dev/r/svelte/textarea.json"
+    },
+    {
+      "name": "timeline",
+      "type": "registry:ui",
+      "registryUrl": "https://boldkit.dev/r/svelte/timeline.json"
+    },
+    {
+      "name": "toggle",
+      "type": "registry:ui",
+      "registryUrl": "https://boldkit.dev/r/svelte/toggle.json"
+    },
+    {
+      "name": "toggle-group",
+      "type": "registry:ui",
+      "registryUrl": "https://boldkit.dev/r/svelte/toggle-group.json"
+    },
+    {
+      "name": "tooltip",
+      "type": "registry:ui",
+      "registryUrl": "https://boldkit.dev/r/svelte/tooltip.json"
     }
   ]
 }

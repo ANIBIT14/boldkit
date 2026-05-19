@@ -11,28 +11,34 @@
   ],
   "files": [
     {
-      "path": "registry/default/ui/alert.svelte",
-      "content": "<script lang=\"ts\">\n  import { cva, type VariantProps } from 'class-variance-authority'\n  import type { Snippet } from 'svelte'\n  import type { HTMLAttributes } from 'svelte/elements'\n  import { cn } from '$lib/utils.js'\n\n  const alertVariants = cva(\n    'relative w-full border-3 border-foreground p-4 shadow-[4px_4px_0px_hsl(var(--shadow-color))] animate-in fade-in-0 slide-in-from-top-2 duration-300 transition-all [&>svg~*:not([data-alert-action])]:pl-8 [&>svg~[data-alert-action]]:ml-8 [&>svg+div]:translate-y-[-3px] [&>svg]:absolute [&>svg]:left-4 [&>svg]:top-4 [&>svg]:text-foreground',\n    {\n      variants: {\n        variant: {\n          default: 'bg-background text-foreground',\n          destructive: 'bg-destructive text-destructive-foreground [&>svg]:text-destructive-foreground',\n          success: 'bg-success text-success-foreground',\n          warning: 'bg-warning text-warning-foreground',\n          info: 'bg-info text-info-foreground',\n        },\n      },\n      defaultVariants: {\n        variant: 'default',\n      },\n    }\n  )\n\n  type AlertVariants = VariantProps<typeof alertVariants>\n\n  interface Props extends HTMLAttributes<HTMLDivElement> {\n    class?: string\n    variant?: AlertVariants['variant']\n    children?: Snippet\n  }\n\n  let { class: className, variant = 'default', children, ...restProps }: Props = $props()\n</script>\n\n<div role=\"alert\" class={cn(alertVariants({ variant }), className)} {...restProps}>\n  {@render children?.()}\n</div>\n",
+      "path": "registry/default/ui/alert-action.svelte",
+      "content": "<script lang=\"ts\">\n\timport type { HTMLAttributes } from \"svelte/elements\";\n\timport { cn, type WithElementRef } from \"$lib/utils.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tchildren,\n\t\t...restProps\n\t}: WithElementRef<HTMLAttributes<HTMLDivElement>> = $props();\n</script>\n\n<div\n\tbind:this={ref}\n\tdata-slot=\"alert-action\"\n\tclass={cn(\"absolute top-2 right-2\", className)}\n\t{...restProps}\n>\n\t{@render children?.()}\n</div>\n",
       "type": "registry:ui",
-      "target": "lib/components/ui/alert.svelte"
-    },
-    {
-      "path": "registry/default/ui/alert-title.svelte",
-      "content": "<script lang=\"ts\">\n  import type { Snippet } from 'svelte'\n  import type { HTMLAttributes } from 'svelte/elements'\n  import { cn } from '$lib/utils.js'\n\n  interface Props extends HTMLAttributes<HTMLHeadingElement> {\n    class?: string\n    children?: Snippet\n  }\n\n  let { class: className, children, ...restProps }: Props = $props()\n</script>\n\n<h5 class={cn('mb-1 font-bold uppercase tracking-wide leading-none', className)} {...restProps}>\n  {@render children?.()}\n</h5>\n",
-      "type": "registry:ui",
-      "target": "lib/components/ui/alert-title.svelte"
+      "target": "lib/components/ui/alert/alert-action.svelte"
     },
     {
       "path": "registry/default/ui/alert-description.svelte",
-      "content": "<script lang=\"ts\">\n  import type { Snippet } from 'svelte'\n  import type { HTMLAttributes } from 'svelte/elements'\n  import { cn } from '$lib/utils.js'\n\n  interface Props extends HTMLAttributes<HTMLDivElement> {\n    class?: string\n    children?: Snippet\n  }\n\n  let { class: className, children, ...restProps }: Props = $props()\n</script>\n\n<div class={cn('text-sm [&_p]:leading-relaxed', className)} {...restProps}>\n  {@render children?.()}\n</div>\n",
+      "content": "<script lang=\"ts\">\n\timport type { HTMLAttributes } from \"svelte/elements\";\n\timport { cn, type WithElementRef } from \"$lib/utils.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tchildren,\n\t\t...restProps\n\t}: WithElementRef<HTMLAttributes<HTMLDivElement>> = $props();\n</script>\n\n<div\n\tbind:this={ref}\n\tdata-slot=\"alert-description\"\n\tclass={cn(\n\t\t\"text-muted-foreground text-sm text-balance md:text-pretty [&_p:not(:last-child)]:mb-4 [&_a]:hover:text-foreground [&_a]:underline [&_a]:underline-offset-3\",\n\t\tclassName\n\t)}\n\t{...restProps}\n>\n\t{@render children?.()}\n</div>\n",
       "type": "registry:ui",
-      "target": "lib/components/ui/alert-description.svelte"
+      "target": "lib/components/ui/alert/alert-description.svelte"
     },
     {
-      "path": "registry/default/ui/alert-action.svelte",
-      "content": "<script lang=\"ts\">\n  import type { Snippet } from 'svelte'\n  import type { HTMLButtonAttributes } from 'svelte/elements'\n  import { cn } from '$lib/utils.js'\n\n  interface Props extends HTMLButtonAttributes {\n    class?: string\n    loading?: boolean\n    children?: Snippet\n  }\n\n  let { class: className, loading = false, disabled = false, children, ...restProps }: Props = $props()\n</script>\n\n<button\n  data-alert-action=\"\"\n  disabled={disabled || loading}\n  class={cn(\n    'mt-3 inline-flex items-center gap-1.5 max-w-full min-w-0',\n    'rounded-none border border-current',\n    'px-4 py-1 text-xs font-bold uppercase tracking-wide',\n    'transition-all duration-150',\n    'hover:opacity-100 hover:bg-current/10',\n    'active:scale-95',\n    'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-current focus-visible:ring-offset-1',\n    'disabled:cursor-not-allowed disabled:pointer-events-none',\n    loading ? 'opacity-80' : disabled ? 'opacity-40' : 'opacity-80',\n    className\n  )}\n  {...restProps}\n>\n  {#if loading}\n    <span\n      aria-hidden=\"true\"\n      class=\"h-3 w-3 shrink-0 animate-spin rounded-full border-2 border-current border-t-transparent\"\n    ></span>\n  {/if}\n  <span class=\"inline-flex items-center gap-1.5 whitespace-nowrap overflow-hidden\">\n    {@render children?.()}\n  </span>\n</button>\n",
+      "path": "registry/default/ui/alert-title.svelte",
+      "content": "<script lang=\"ts\">\n\timport type { HTMLAttributes } from \"svelte/elements\";\n\timport { cn, type WithElementRef } from \"$lib/utils.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tchildren,\n\t\t...restProps\n\t}: WithElementRef<HTMLAttributes<HTMLDivElement>> = $props();\n</script>\n\n<div\n\tbind:this={ref}\n\tdata-slot=\"alert-title\"\n\tclass={cn(\"font-bold uppercase tracking-wide leading-none\", className)}\n\t{...restProps}\n>\n\t{@render children?.()}\n</div>\n",
       "type": "registry:ui",
-      "target": "lib/components/ui/alert-action.svelte"
+      "target": "lib/components/ui/alert/alert-title.svelte"
+    },
+    {
+      "path": "registry/default/ui/alert.svelte",
+      "content": "<script lang=\"ts\" module>\n\timport { type VariantProps, tv } from \"tailwind-variants\";\n\n\texport const alertVariants = tv({\n\t\tbase: \"relative w-full border-3 border-foreground p-4 shadow-[4px_4px_0px_hsl(var(--shadow-color))] [&>svg~*:not([data-alert-action])]:pl-8 [&>svg~[data-alert-action]]:ml-8 [&>svg+div]:translate-y-[-3px] [&>svg]:absolute [&>svg]:left-4 [&>svg]:top-4 [&>svg]:text-foreground\",\n\t\tvariants: {\n\t\t\tvariant: {\n\t\t\t\tdefault: \"bg-background text-foreground\",\n\t\t\t\tdestructive: \"bg-destructive text-destructive-foreground [&>svg]:text-destructive-foreground\",\n\t\t\t\tsuccess: \"bg-success text-success-foreground\",\n\t\t\t\twarning: \"bg-warning text-warning-foreground\",\n\t\t\t\tinfo: \"bg-info text-info-foreground\",\n\t\t\t},\n\t\t},\n\t\tdefaultVariants: {\n\t\t\tvariant: \"default\",\n\t\t},\n\t});\n\n\texport type AlertVariant = VariantProps<typeof alertVariants>[\"variant\"];\n</script>\n\n<script lang=\"ts\">\n\timport type { HTMLAttributes } from \"svelte/elements\";\n\timport { cn, type WithElementRef } from \"$lib/utils.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tvariant = \"default\",\n\t\tchildren,\n\t\t...restProps\n\t}: WithElementRef<HTMLAttributes<HTMLDivElement>> & {\n\t\tvariant?: AlertVariant;\n\t} = $props();\n</script>\n\n<div\n\tbind:this={ref}\n\tdata-slot=\"alert\"\n\trole=\"alert\"\n\tclass={cn(alertVariants({ variant }), className)}\n\t{...restProps}\n>\n\t{@render children?.()}\n</div>\n",
+      "type": "registry:ui",
+      "target": "lib/components/ui/alert/alert.svelte"
+    },
+    {
+      "path": "registry/default/ui/index.ts",
+      "content": "import Root from \"./accordion.svelte\";\nimport Content from \"./accordion-content.svelte\";\nimport Item from \"./accordion-item.svelte\";\nimport Trigger from \"./accordion-trigger.svelte\";\n\nexport {\n\tRoot,\n\tContent,\n\tItem,\n\tTrigger,\n\t//\n\tRoot as Accordion,\n\tContent as AccordionContent,\n\tItem as AccordionItem,\n\tTrigger as AccordionTrigger,\n};\n",
+      "type": "registry:ui",
+      "target": "lib/components/ui/accordion/index.ts"
     }
   ]
 }

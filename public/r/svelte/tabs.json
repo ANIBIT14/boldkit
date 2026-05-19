@@ -11,28 +11,34 @@
   ],
   "files": [
     {
-      "path": "registry/default/ui/tabs.svelte",
-      "content": "<script lang=\"ts\">\n  import { Tabs } from 'bits-ui'\n  import type { Snippet } from 'svelte'\n  import { cn } from '$lib/utils.js'\n\n  interface Props extends Tabs.RootProps {\n    class?: string\n    children?: Snippet\n  }\n\n  let { class: className, children, ...restProps }: Props = $props()\n</script>\n\n<Tabs.Root class={cn('w-full', className)} {...restProps}>\n  {@render children?.()}\n</Tabs.Root>\n",
+      "path": "registry/default/ui/index.ts",
+      "content": "import Root from \"./accordion.svelte\";\nimport Content from \"./accordion-content.svelte\";\nimport Item from \"./accordion-item.svelte\";\nimport Trigger from \"./accordion-trigger.svelte\";\n\nexport {\n\tRoot,\n\tContent,\n\tItem,\n\tTrigger,\n\t//\n\tRoot as Accordion,\n\tContent as AccordionContent,\n\tItem as AccordionItem,\n\tTrigger as AccordionTrigger,\n};\n",
       "type": "registry:ui",
-      "target": "lib/components/ui/tabs.svelte"
-    },
-    {
-      "path": "registry/default/ui/tabs-list.svelte",
-      "content": "<script lang=\"ts\">\n  import { Tabs } from 'bits-ui'\n  import type { Snippet } from 'svelte'\n  import { cn } from '$lib/utils.js'\n\n  interface Props extends Tabs.ListProps {\n    class?: string\n    children?: Snippet\n  }\n\n  let { class: className, children, ...restProps }: Props = $props()\n</script>\n\n<Tabs.List\n  class={cn(\n    'inline-flex h-12 items-center justify-center border-3 border-foreground bg-background p-1 text-foreground shadow-[4px_4px_0px_hsl(var(--shadow-color))]',\n    className\n  )}\n  {...restProps}\n>\n  {@render children?.()}\n</Tabs.List>\n",
-      "type": "registry:ui",
-      "target": "lib/components/ui/tabs-list.svelte"
-    },
-    {
-      "path": "registry/default/ui/tabs-trigger.svelte",
-      "content": "<script lang=\"ts\">\n  import { Tabs } from 'bits-ui'\n  import type { Snippet } from 'svelte'\n  import { cn } from '$lib/utils.js'\n\n  interface Props extends Tabs.TriggerProps {\n    class?: string\n    children?: Snippet\n  }\n\n  let { class: className, children, ...restProps }: Props = $props()\n</script>\n\n<Tabs.Trigger\n  class={cn(\n    'inline-flex items-center justify-center whitespace-nowrap border-2 border-transparent px-4 py-1.5 gap-1.5 text-sm font-bold uppercase tracking-wide transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 data-[state=active]:bg-primary data-[state=active]:text-primary-foreground data-[state=active]:border-foreground',\n    className\n  )}\n  {...restProps}\n>\n  {@render children?.()}\n</Tabs.Trigger>\n",
-      "type": "registry:ui",
-      "target": "lib/components/ui/tabs-trigger.svelte"
+      "target": "lib/components/ui/accordion/index.ts"
     },
     {
       "path": "registry/default/ui/tabs-content.svelte",
-      "content": "<script lang=\"ts\">\n  import { Tabs } from 'bits-ui'\n  import type { Snippet } from 'svelte'\n  import { cn } from '$lib/utils.js'\n\n  interface Props extends Tabs.ContentProps {\n    class?: string\n    children?: Snippet\n  }\n\n  let { class: className, children, ...restProps }: Props = $props()\n</script>\n\n<Tabs.Content\n  class={cn(\n    'mt-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2',\n    className\n  )}\n  {...restProps}\n>\n  {@render children?.()}\n</Tabs.Content>\n",
+      "content": "<script lang=\"ts\">\n\timport { Tabs as TabsPrimitive } from \"bits-ui\";\n\timport { cn } from \"$lib/utils.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\t...restProps\n\t}: TabsPrimitive.ContentProps = $props();\n</script>\n\n<TabsPrimitive.Content\n\tbind:ref\n\tdata-slot=\"tabs-content\"\n\tclass={cn(\"text-sm flex-1 outline-none\", className)}\n\t{...restProps}\n/>\n",
       "type": "registry:ui",
-      "target": "lib/components/ui/tabs-content.svelte"
+      "target": "lib/components/ui/tabs/tabs-content.svelte"
+    },
+    {
+      "path": "registry/default/ui/tabs-list.svelte",
+      "content": "<script lang=\"ts\">\n\timport { Tabs as TabsPrimitive } from \"bits-ui\";\n\timport { cn } from \"$lib/utils.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\t...restProps\n\t}: TabsPrimitive.ListProps = $props();\n</script>\n\n<TabsPrimitive.List\n\tbind:ref\n\tdata-slot=\"tabs-list\"\n\tclass={cn(\n\t\t\"inline-flex h-12 items-center justify-center border-3 border-foreground bg-background p-1 text-foreground shadow-[4px_4px_0px_hsl(var(--shadow-color))]\",\n\t\tclassName\n\t)}\n\t{...restProps}\n/>\n",
+      "type": "registry:ui",
+      "target": "lib/components/ui/tabs/tabs-list.svelte"
+    },
+    {
+      "path": "registry/default/ui/tabs-trigger.svelte",
+      "content": "<script lang=\"ts\">\n\timport { Tabs as TabsPrimitive } from \"bits-ui\";\n\timport { cn } from \"$lib/utils.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\t...restProps\n\t}: TabsPrimitive.TriggerProps = $props();\n</script>\n\n<TabsPrimitive.Trigger\n\tbind:ref\n\tdata-slot=\"tabs-trigger\"\n\tclass={cn(\n\t\t\"inline-flex items-center justify-center whitespace-nowrap border-2 border-transparent px-4 py-1.5 gap-1.5 text-sm font-bold uppercase tracking-wide transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 data-[state=active]:bg-primary data-[state=active]:text-primary-foreground data-[state=active]:border-foreground\",\n\t\tclassName\n\t)}\n\t{...restProps}\n/>\n",
+      "type": "registry:ui",
+      "target": "lib/components/ui/tabs/tabs-trigger.svelte"
+    },
+    {
+      "path": "registry/default/ui/tabs.svelte",
+      "content": "<script lang=\"ts\">\n\timport { Tabs as TabsPrimitive } from \"bits-ui\";\n\timport { cn } from \"$lib/utils.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tvalue = $bindable(\"\"),\n\t\tclass: className,\n\t\t...restProps\n\t}: TabsPrimitive.RootProps = $props();\n</script>\n\n<TabsPrimitive.Root\n\tbind:ref\n\tbind:value\n\tdata-slot=\"tabs\"\n\tclass={cn(\"gap-2 group/tabs flex data-[orientation=horizontal]:flex-col\", className)}\n\t{...restProps}\n/>\n",
+      "type": "registry:ui",
+      "target": "lib/components/ui/tabs/tabs.svelte"
     }
   ]
 }

@@ -116,9 +116,59 @@ const componentMeta = {
   },
 }
 
+function toTitle(name) {
+  return name
+    .split('-')
+    .map((part) => part.charAt(0).toUpperCase() + part.slice(1))
+    .join(' ')
+}
+
+function discoverComponentMeta() {
+  const discovered = {}
+
+  for (const entry of fs.readdirSync(UI_DIR, { withFileTypes: true })) {
+    if (!entry.isDirectory()) continue
+
+    const componentDir = path.join(UI_DIR, entry.name)
+    const files = fs
+      .readdirSync(componentDir)
+      .filter((file) => file.endsWith('.svelte') || file.endsWith('.ts'))
+
+    if (files.length === 0) continue
+
+    discovered[entry.name] = {
+      deps: [],
+      desc: `${toTitle(entry.name)} component for BoldKit Svelte`,
+      files,
+    }
+  }
+
+  return discovered
+}
+
 function readFile(filePath) {
   if (!fs.existsSync(filePath)) return null
   return fs.readFileSync(filePath, 'utf-8')
+}
+
+function findComponentFile(filename, ext) {
+  const directPath = path.join(UI_DIR, `${filename}${ext}`)
+  if (fs.existsSync(directPath)) return directPath
+
+  const dirname = filename.endsWith('-variants')
+    ? filename.replace(/-variants$/, '')
+    : filename
+  const nestedPath = path.join(UI_DIR, dirname, `${filename}${ext}`)
+  if (fs.existsSync(nestedPath)) return nestedPath
+
+  for (const entry of fs.readdirSync(UI_DIR, { withFileTypes: true })) {
+    if (!entry.isDirectory()) continue
+
+    const candidate = path.join(UI_DIR, entry.name, `${filename}${ext}`)
+    if (fs.existsSync(candidate)) return candidate
+  }
+
+  return directPath
 }
 
 function getComponentFiles(name, meta) {
@@ -126,15 +176,20 @@ function getComponentFiles(name, meta) {
   const registryFiles = []
 
   for (const filename of filenames) {
-    const ext = filename.endsWith('-variants') ? '.ts' : '.svelte'
-    const filePath = path.join(UI_DIR, `${filename}${ext}`)
+    const ext = filename.endsWith('.svelte') || filename.endsWith('.ts')
+      ? ''
+      : filename.endsWith('-variants')
+        ? '.ts'
+        : '.svelte'
+    const filePath = findComponentFile(filename, ext)
     const content = readFile(filePath)
     if (content) {
+      const basename = `${filename}${ext}`
       registryFiles.push({
-        path: `registry/default/ui/${filename}${ext}`,
+        path: `registry/default/ui/${basename}`,
         content,
         type: 'registry:ui',
-        target: `lib/components/ui/${filename}${ext}`,
+        target: path.relative(path.join(__dirname, '../src'), filePath),
       })
     } else {
       console.warn(`Missing file: ${filename}${ext}`)
@@ -237,7 +292,21 @@ if (utilsRegistry) {
 let count = 0
 const componentNames = []
 
-for (const [name, meta] of Object.entries(componentMeta)) {
+const discoveredComponentMeta = discoverComponentMeta()
+const allComponentMeta = {
+  ...discoveredComponentMeta,
+  ...Object.fromEntries(
+    Object.entries(componentMeta).map(([name, meta]) => [
+      name,
+      {
+        ...meta,
+        files: discoveredComponentMeta[name]?.files || meta.files,
+      },
+    ])
+  ),
+}
+
+for (const [name, meta] of Object.entries(allComponentMeta)) {
   const registry = createRegistryJson(name, meta)
   if (registry) {
     const outPath = path.join(REGISTRY_DIR, `${name}.json`)

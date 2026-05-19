@@ -72,6 +72,12 @@
 		if (rejected.length > 0) onFilesRejected?.(rejected);
 	}
 
+	function handleKeyDown(e: KeyboardEvent) {
+		if (disabled || (e.key !== 'Enter' && e.key !== ' ')) return;
+		e.preventDefault();
+		inputRef?.click();
+	}
+
 	const stateClasses = {
 		idle: 'bg-background hover:bg-muted/30 shadow-[4px_4px_0px_hsl(var(--shadow-color))] hover:shadow-[6px_6px_0px_hsl(var(--shadow-color))] hover:translate-x-[-2px] hover:translate-y-[-2px]',
 		dragging: 'border-solid border-primary bg-primary/10 scale-[1.02] shadow-[8px_8px_0px_hsl(var(--primary))]',
@@ -99,6 +105,7 @@
 	ondragover={(e) => { e.preventDefault(); e.stopPropagation(); }}
 	ondrop={(e) => { e.preventDefault(); e.stopPropagation(); isDragging = false; processFiles(e.dataTransfer?.files ?? null); }}
 	onclick={() => { if (!disabled) inputRef?.click(); }}
+	onkeydown={handleKeyDown}
 >
 	<input
 		bind:this={inputRef}

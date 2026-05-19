@@ -1276,6 +1276,7 @@ function ChartCard({
   trendValue,
   code,
   vueCode,
+  svelteCode,
   children,
 }: {
   title: string
@@ -1290,7 +1291,7 @@ function ChartCard({
   const [copied, setCopied] = useState(false)
   const { framework } = useFramework()
 
-  const currentCode = framework === 'react' ? code : framework === 'vue' ? (vueCode || code) : '<!-- Svelte chart example coming soon. -->'
+  const currentCode = framework === 'react' ? code : framework === 'vue' ? (vueCode || code) : (svelteCode || '<!-- Svelte chart example coming soon. -->')
 
   const copyCode = () => {
     navigator.clipboard.writeText(currentCode)
@@ -1332,6 +1333,11 @@ function ChartCard({
               {framework === 'vue' && !vueCode && (
                 <p className="mt-4 text-sm text-muted-foreground flex items-center gap-2">
                   <VueIcon className="h-4 w-4" /> Vue code sample coming soon. Uses vue-echarts for charting.
+                </p>
+              )}
+              {framework === 'svelte' && !svelteCode && (
+                <p className="mt-4 text-sm text-muted-foreground flex items-center gap-2">
+                  <FrameworkIcon framework="svelte" className="h-4 w-4" /> Svelte code sample coming soon.
                 </p>
               )}
             </ScrollArea>
@@ -1379,7 +1385,7 @@ export function Charts() {
             Chart Components
           </h1>
           <p className="mt-4 text-lg text-muted-foreground max-w-2xl mx-auto mb-6">
-            Beautiful charts with neubrutalism styling. Built on top of {framework === 'react' ? 'Recharts' : 'vue-echarts'} with bold borders and hard shadows.
+            Beautiful charts with neubrutalism styling. Built on top of {framework === 'react' ? 'Recharts' : framework === 'vue' ? 'vue-echarts' : 'Svelte-native chart components'} with bold borders and hard shadows.
           </p>
           <FrameworkToggle />
           {framework === 'vue' && (

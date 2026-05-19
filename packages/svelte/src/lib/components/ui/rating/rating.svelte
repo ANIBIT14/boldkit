@@ -46,11 +46,11 @@
 		circle: CircleIcon,
 	};
 
-	let internalValue = $state(defaultValue);
+	let internalValue = $state<number | undefined>(undefined);
 	let hoverValue = $state<number | null>(null);
 
 	const isControlled = $derived(value !== undefined);
-	const currentValue = $derived(isControlled ? value! : internalValue);
+	const currentValue = $derived(isControlled ? value! : (internalValue ?? defaultValue));
 	const displayValue = $derived(hoverValue ?? currentValue);
 	const IconComponent = $derived(iconComponents[icon]);
 

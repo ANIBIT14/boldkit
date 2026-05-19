@@ -166,7 +166,7 @@ function ShapeCard({
 
   const cliCommand = `npx ${frameworkCliNames[framework]}@latest add https://boldkit.dev${frameworkRegistryPaths[framework]}/shapes.json`
 
-  const currentCode = framework === 'react' ? code : vueCode
+  const currentCode = framework === 'vue' ? vueCode : code
 
   const copyCode = () => {
     navigator.clipboard.writeText(currentCode)
@@ -398,7 +398,7 @@ export function Shapes() {
                     <tbody>
                       {[
                         { prop: 'size',      type: 'number',  def: '100' },
-                        { prop: framework === 'react' ? 'strokeWidth' : 'stroke-width', type: 'number', def: '3' },
+                        { prop: framework === 'vue' ? 'stroke-width' : 'strokeWidth', type: 'number', def: '3' },
                         { prop: 'filled',    type: 'boolean', def: 'true' },
                         { prop: 'color',     type: 'string',  def: 'currentColor' },
                         { prop: 'animation', type: "'none' | 'spin' | 'pulse' | 'float' | 'wiggle' | 'bounce' | 'glitch'", def: "'none'" },

@@ -167,7 +167,7 @@ export function ShapeBuilder() {
     return `<script setup lang="ts">\nimport { ${componentName} } from '@/components/ui/shapes'\n</script>\n\n<template>\n  <${componentName}${propsStr} />\n</template>`
   }
 
-  const code = framework === 'react' ? buildReactCode() : buildVueCode()
+  const code = framework === 'vue' ? buildVueCode() : buildReactCode()
 
   const copyCode = () => {
     navigator.clipboard.writeText(code)
@@ -182,8 +182,8 @@ export function ShapeBuilder() {
     <>
       <SEO
         title="Shape Builder — Customize & Export Neubrutalism Shapes"
-        description="Interactive shape builder for BoldKit. Customize size, color, animation, fill, and stroke for all 42 neubrutalism SVG shapes. Export React or Vue code instantly."
-        keywords="shape builder, SVG shape customizer, neubrutalism shapes, animated shapes, React shape component, Vue shape component"
+        description="Interactive shape builder for BoldKit. Customize size, color, animation, fill, and stroke for all 42 neubrutalism SVG shapes. Export React, Vue, or Svelte code instantly."
+        keywords="shape builder, SVG shape customizer, neubrutalism shapes, animated shapes, React shape component, Vue shape component, Svelte shape component"
         canonical="https://boldkit.dev/shapes/builder"
         breadcrumbs={[
           { name: 'Home', url: 'https://boldkit.dev/' },

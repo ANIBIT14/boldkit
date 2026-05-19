@@ -1,0 +1,24 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "slider",
+  "type": "registry:ui",
+  "description": "Slider component for BoldKit Svelte",
+  "dependencies": [],
+  "registryDependencies": [
+    "utils"
+  ],
+  "files": [
+    {
+      "path": "registry/default/ui/index.ts",
+      "content": "import Root from \"./accordion.svelte\";\nimport Content from \"./accordion-content.svelte\";\nimport Item from \"./accordion-item.svelte\";\nimport Trigger from \"./accordion-trigger.svelte\";\n\nexport {\n\tRoot,\n\tContent,\n\tItem,\n\tTrigger,\n\t//\n\tRoot as Accordion,\n\tContent as AccordionContent,\n\tItem as AccordionItem,\n\tTrigger as AccordionTrigger,\n};\n",
+      "type": "registry:ui",
+      "target": "lib/components/ui/accordion/index.ts"
+    },
+    {
+      "path": "registry/default/ui/slider.svelte",
+      "content": "<script lang=\"ts\">\n\timport { Slider as SliderPrimitive } from \"bits-ui\";\n\timport { cn, type WithoutChildrenOrChild } from \"$lib/utils.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tvalue = $bindable(),\n\t\torientation = \"horizontal\",\n\t\tclass: className,\n\t\t...restProps\n\t}: WithoutChildrenOrChild<SliderPrimitive.RootProps> = $props();\n</script>\n\n<!--\nDiscriminated Unions + Destructing (required for bindable) do not\nget along, so we shut typescript up by casting `value` to `never`.\n-->\n<SliderPrimitive.Root\n\tbind:ref\n\tbind:value={value as never}\n\tdata-slot=\"slider\"\n\t{orientation}\n\tclass={cn(\n\t\t\"data-vertical:min-h-40 relative flex w-full touch-none items-center select-none data-disabled:opacity-50 data-vertical:h-full data-vertical:w-auto data-vertical:flex-col\",\n\t\tclassName\n\t)}\n\t{...restProps}\n>\n\t{#snippet children({ thumbItems })}\n\t\t<span\n\t\t\tdata-slot=\"slider-track\"\n\t\t\tdata-orientation={orientation}\n\t\t\tclass={cn(\n\t\t\t\t\"border-3 border-foreground bg-muted shadow-[4px_4px_0px_hsl(var(--shadow-color))] data-horizontal:h-4 data-horizontal:w-full data-vertical:h-full data-vertical:w-4 relative grow overflow-hidden\"\n\t\t\t)}\n\t\t>\n\t\t\t<SliderPrimitive.Range\n\t\t\t\tdata-slot=\"slider-range\"\n\t\t\t\tclass={cn(\n\t\t\t\t\t\"bg-primary absolute select-none data-horizontal:h-full data-vertical:w-full\"\n\t\t\t\t)}\n\t\t\t/>\n\t\t</span>\n\t\t{#each thumbItems as thumb (thumb.index)}\n\t\t\t<SliderPrimitive.Thumb\n\t\t\t\tdata-slot=\"slider-thumb\"\n\t\t\t\tindex={thumb.index}\n\t\t\t\tclass=\"relative h-7 w-7 border-3 border-foreground bg-background shadow-[4px_4px_0px_hsl(var(--shadow-color))] transition-all duration-150 hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[2px_2px_0px_hsl(var(--shadow-color))] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 block shrink-0 select-none disabled:pointer-events-none disabled:opacity-50\"\n\t\t\t/>\n\t\t{/each}\n\t{/snippet}\n</SliderPrimitive.Root>\n",
+      "type": "registry:ui",
+      "target": "lib/components/ui/slider/slider.svelte"
+    }
+  ]
+}

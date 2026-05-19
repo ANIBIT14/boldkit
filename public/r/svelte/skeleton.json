@@ -9,10 +9,16 @@
   ],
   "files": [
     {
-      "path": "registry/default/ui/skeleton.svelte",
-      "content": "<script lang=\"ts\">\n  import type { HTMLAttributes } from 'svelte/elements'\n  import { cn } from '$lib/utils.js'\n\n  interface Props extends HTMLAttributes<HTMLDivElement> {\n    class?: string\n  }\n\n  let { class: className, ...restProps }: Props = $props()\n</script>\n\n<div\n  class={cn('animate-pulse bg-muted border-2 border-foreground/20', className)}\n  {...restProps}\n></div>\n",
+      "path": "registry/default/ui/index.ts",
+      "content": "import Root from \"./accordion.svelte\";\nimport Content from \"./accordion-content.svelte\";\nimport Item from \"./accordion-item.svelte\";\nimport Trigger from \"./accordion-trigger.svelte\";\n\nexport {\n\tRoot,\n\tContent,\n\tItem,\n\tTrigger,\n\t//\n\tRoot as Accordion,\n\tContent as AccordionContent,\n\tItem as AccordionItem,\n\tTrigger as AccordionTrigger,\n};\n",
       "type": "registry:ui",
-      "target": "lib/components/ui/skeleton.svelte"
+      "target": "lib/components/ui/accordion/index.ts"
+    },
+    {
+      "path": "registry/default/ui/skeleton.svelte",
+      "content": "<script lang=\"ts\">\n\timport { cn, type WithElementRef, type WithoutChildren } from \"$lib/utils.js\";\n\timport type { HTMLAttributes } from \"svelte/elements\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\t...restProps\n\t}: WithoutChildren<WithElementRef<HTMLAttributes<HTMLDivElement>>> = $props();\n</script>\n\n<div\n\tbind:this={ref}\n\tdata-slot=\"skeleton\"\n\tclass={cn(\"animate-pulse bg-muted border-2 border-foreground/20\", className)}\n\t{...restProps}\n></div>\n",
+      "type": "registry:ui",
+      "target": "lib/components/ui/skeleton/skeleton.svelte"
     }
   ]
 }

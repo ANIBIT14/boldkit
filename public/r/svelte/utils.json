@@ -10,7 +10,7 @@
   "files": [
     {
       "path": "registry/default/lib/utils.ts",
-      "content": "import { type ClassValue, clsx } from 'clsx'\nimport { twMerge } from 'tailwind-merge'\n\nexport function cn(...inputs: ClassValue[]) {\n  return twMerge(clsx(inputs))\n}\n",
+      "content": "import { type ClassValue, clsx } from 'clsx'\nimport { twMerge } from 'tailwind-merge'\n\nexport function cn(...inputs: ClassValue[]) {\n  return twMerge(clsx(inputs))\n}\n\nexport type WithElementRef<T, E extends Element = HTMLElement> = T & {\n  ref?: E | null\n}\n\nexport type WithoutChild<T> = T extends { child?: unknown } ? Omit<T, 'child'> : T\nexport type WithoutChildren<T> = T extends { children?: unknown } ? Omit<T, 'children'> : T\nexport type WithoutChildrenOrChild<T> = WithoutChildren<WithoutChild<T>>\n",
       "type": "registry:lib",
       "target": "lib/utils.ts"
     }

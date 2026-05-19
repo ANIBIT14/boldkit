@@ -9,10 +9,16 @@
   ],
   "files": [
     {
-      "path": "registry/default/ui/input.svelte",
-      "content": "<script lang=\"ts\">\n  import type { HTMLInputAttributes } from 'svelte/elements'\n  import { cn } from '$lib/utils.js'\n\n  interface Props extends HTMLInputAttributes {\n    class?: string\n  }\n\n  let { class: className, ...restProps }: Props = $props()\n</script>\n\n<input\n  class={cn(\n    'flex h-11 w-full border-3 border-input bg-background px-4 py-2 text-base shadow-[4px_4px_0px_hsl(var(--shadow-color))] transition-all duration-200 file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-0 focus-visible:translate-x-[4px] focus-visible:translate-y-[4px] focus-visible:shadow-none disabled:cursor-not-allowed disabled:opacity-50 md:text-sm',\n    className\n  )}\n  {...restProps}\n/>\n",
+      "path": "registry/default/ui/index.ts",
+      "content": "import Root from \"./accordion.svelte\";\nimport Content from \"./accordion-content.svelte\";\nimport Item from \"./accordion-item.svelte\";\nimport Trigger from \"./accordion-trigger.svelte\";\n\nexport {\n\tRoot,\n\tContent,\n\tItem,\n\tTrigger,\n\t//\n\tRoot as Accordion,\n\tContent as AccordionContent,\n\tItem as AccordionItem,\n\tTrigger as AccordionTrigger,\n};\n",
       "type": "registry:ui",
-      "target": "lib/components/ui/input.svelte"
+      "target": "lib/components/ui/accordion/index.ts"
+    },
+    {
+      "path": "registry/default/ui/input.svelte",
+      "content": "<script lang=\"ts\">\n\timport type { HTMLInputAttributes, HTMLInputTypeAttribute } from \"svelte/elements\";\n\timport { cn, type WithElementRef } from \"$lib/utils.js\";\n\n\ttype InputType = Exclude<HTMLInputTypeAttribute, \"file\">;\n\n\ttype Props = WithElementRef<\n\t\tOmit<HTMLInputAttributes, \"type\"> &\n\t\t\t({ type: \"file\"; files?: FileList } | { type?: InputType; files?: undefined })\n\t>;\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tvalue = $bindable(),\n\t\ttype,\n\t\tfiles = $bindable(),\n\t\tclass: className,\n\t\t\"data-slot\": dataSlot = \"input\",\n\t\t...restProps\n\t}: Props = $props();\n</script>\n\n{#if type === \"file\"}\n\t<input\n\t\tbind:this={ref}\n\t\tdata-slot={dataSlot}\n\t\tclass={cn(\n\t\t\t\"flex h-11 w-full border-3 border-input bg-background px-4 py-2 text-base shadow-[4px_4px_0px_hsl(var(--shadow-color))] transition-all duration-200 file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-0 focus-visible:translate-x-[4px] focus-visible:translate-y-[4px] focus-visible:shadow-none disabled:cursor-not-allowed disabled:opacity-50\",\n\t\t\tclassName\n\t\t)}\n\t\ttype=\"file\"\n\t\tbind:files\n\t\tbind:value\n\t\t{...restProps}\n\t/>\n{:else}\n\t<input\n\t\tbind:this={ref}\n\t\tdata-slot={dataSlot}\n\t\tclass={cn(\n\t\t\t\"flex h-11 w-full border-3 border-input bg-background px-4 py-2 text-base shadow-[4px_4px_0px_hsl(var(--shadow-color))] transition-all duration-200 file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-0 focus-visible:translate-x-[4px] focus-visible:translate-y-[4px] focus-visible:shadow-none disabled:cursor-not-allowed disabled:opacity-50 md:text-sm\",\n\t\t\tclassName\n\t\t)}\n\t\t{type}\n\t\tbind:value\n\t\t{...restProps}\n\t/>\n{/if}\n",
+      "type": "registry:ui",
+      "target": "lib/components/ui/input/input.svelte"
     }
   ]
 }

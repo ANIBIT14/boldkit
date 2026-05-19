@@ -111,7 +111,7 @@ function EffectCard({ effect, featured = false, framework }: {
 }) {
   const [copied, setCopied]         = useState(false)
   const [copiedInstall, setCopiedInstall] = useState(false)
-  const code = framework === 'react' ? effect.reactCode : effect.vueCode
+  const code = framework === 'vue' ? effect.vueCode : effect.reactCode
 
   const installCmd = `npx ${frameworkCliNames[framework]}@latest add "https://boldkit.dev${frameworkRegistryPaths[framework]}/${effect.id}.json"`
 

@@ -140,10 +140,9 @@
 <svelte:document onmousedown={handleClickOutside} />
 
 <div bind:this={containerRef} class="relative">
-	<div
+	<label
 		role="group"
 		aria-label="Tag input"
-		onclick={() => inputRef?.focus()}
 		class={cn(
 			'flex flex-wrap items-center gap-2 min-h-11 w-full border-3 border-input bg-background px-3 py-2',
 			'shadow-[4px_4px_0px_hsl(var(--shadow-color))] transition-all duration-200',
@@ -174,7 +173,7 @@
 			{disabled}
 			class="flex-1 min-w-[120px] bg-transparent outline-none text-sm placeholder:text-muted-foreground disabled:cursor-not-allowed"
 		/>
-	</div>
+	</label>
 	{#if error}
 		<p role="alert" class="mt-1 text-xs font-medium text-destructive">{error}</p>
 	{/if}

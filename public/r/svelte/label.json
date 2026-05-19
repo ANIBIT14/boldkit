@@ -9,10 +9,16 @@
   ],
   "files": [
     {
-      "path": "registry/default/ui/label.svelte",
-      "content": "<script lang=\"ts\">\n  import type { Snippet } from 'svelte'\n  import type { HTMLLabelAttributes } from 'svelte/elements'\n  import { cn } from '$lib/utils.js'\n\n  interface Props extends HTMLLabelAttributes {\n    class?: string\n    children?: Snippet\n  }\n\n  let { class: className, children, ...restProps }: Props = $props()\n</script>\n\n<label\n  class={cn(\n    'text-sm font-bold uppercase tracking-wide leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70',\n    className\n  )}\n  {...restProps}\n>\n  {@render children?.()}\n</label>\n",
+      "path": "registry/default/ui/index.ts",
+      "content": "import Root from \"./accordion.svelte\";\nimport Content from \"./accordion-content.svelte\";\nimport Item from \"./accordion-item.svelte\";\nimport Trigger from \"./accordion-trigger.svelte\";\n\nexport {\n\tRoot,\n\tContent,\n\tItem,\n\tTrigger,\n\t//\n\tRoot as Accordion,\n\tContent as AccordionContent,\n\tItem as AccordionItem,\n\tTrigger as AccordionTrigger,\n};\n",
       "type": "registry:ui",
-      "target": "lib/components/ui/label.svelte"
+      "target": "lib/components/ui/accordion/index.ts"
+    },
+    {
+      "path": "registry/default/ui/label.svelte",
+      "content": "<script lang=\"ts\">\n\timport { Label as LabelPrimitive } from \"bits-ui\";\n\timport { cn } from \"$lib/utils.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\t...restProps\n\t}: LabelPrimitive.RootProps = $props();\n</script>\n\n<LabelPrimitive.Root\n\tbind:ref\n\tdata-slot=\"label\"\n\tclass={cn(\n\t\t\"text-sm font-bold uppercase tracking-wide leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 flex items-center gap-2\",\n\t\tclassName\n\t)}\n\t{...restProps}\n/>\n",
+      "type": "registry:ui",
+      "target": "lib/components/ui/label/label.svelte"
     }
   ]
 }

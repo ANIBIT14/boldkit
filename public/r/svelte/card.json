@@ -9,40 +9,52 @@
   ],
   "files": [
     {
-      "path": "registry/default/ui/card.svelte",
-      "content": "<script lang=\"ts\">\n  import type { Snippet } from 'svelte'\n  import type { HTMLAttributes } from 'svelte/elements'\n  import { cn } from '$lib/utils.js'\n\n  interface Props extends HTMLAttributes<HTMLDivElement> {\n    class?: string\n    interactive?: boolean\n    children?: Snippet\n  }\n\n  let { class: className, interactive = false, children, ...restProps }: Props = $props()\n</script>\n\n<div\n  class={cn(\n    'bg-card text-card-foreground border-3 border-foreground shadow-[4px_4px_0px_hsl(var(--shadow-color))] transition-all duration-200',\n    interactive &&\n      'cursor-pointer hover:translate-x-[4px] hover:translate-y-[4px] hover:shadow-none active:translate-x-[4px] active:translate-y-[4px] active:shadow-none',\n    className\n  )}\n  {...restProps}\n>\n  {@render children?.()}\n</div>\n",
+      "path": "registry/default/ui/card-action.svelte",
+      "content": "<script lang=\"ts\">\n\timport { cn, type WithElementRef } from \"$lib/utils.js\";\n\timport type { HTMLAttributes } from \"svelte/elements\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tchildren,\n\t\t...restProps\n\t}: WithElementRef<HTMLAttributes<HTMLDivElement>> = $props();\n</script>\n\n<div\n\tbind:this={ref}\n\tdata-slot=\"card-action\"\n\tclass={cn(\n\t\t\"cn-card-action col-start-2 row-span-2 row-start-1 self-start justify-self-end\",\n\t\tclassName\n\t)}\n\t{...restProps}\n>\n\t{@render children?.()}\n</div>\n",
       "type": "registry:ui",
-      "target": "lib/components/ui/card.svelte"
-    },
-    {
-      "path": "registry/default/ui/card-header.svelte",
-      "content": "<script lang=\"ts\">\n  import type { Snippet } from 'svelte'\n  import type { HTMLAttributes } from 'svelte/elements'\n  import { cn } from '$lib/utils.js'\n\n  interface Props extends HTMLAttributes<HTMLDivElement> {\n    class?: string\n    children?: Snippet\n  }\n\n  let { class: className, children, ...restProps }: Props = $props()\n</script>\n\n<div class={cn('flex flex-col space-y-1.5 p-6 border-b-3 border-foreground', className)} {...restProps}>\n  {@render children?.()}\n</div>\n",
-      "type": "registry:ui",
-      "target": "lib/components/ui/card-header.svelte"
-    },
-    {
-      "path": "registry/default/ui/card-title.svelte",
-      "content": "<script lang=\"ts\">\n  import type { Snippet } from 'svelte'\n  import type { HTMLAttributes } from 'svelte/elements'\n  import { cn } from '$lib/utils.js'\n\n  interface Props extends HTMLAttributes<HTMLDivElement> {\n    class?: string\n    children?: Snippet\n  }\n\n  let { class: className, children, ...restProps }: Props = $props()\n</script>\n\n<div class={cn('text-xl font-bold uppercase tracking-wide leading-none', className)} {...restProps}>\n  {@render children?.()}\n</div>\n",
-      "type": "registry:ui",
-      "target": "lib/components/ui/card-title.svelte"
-    },
-    {
-      "path": "registry/default/ui/card-description.svelte",
-      "content": "<script lang=\"ts\">\n  import type { Snippet } from 'svelte'\n  import type { HTMLAttributes } from 'svelte/elements'\n  import { cn } from '$lib/utils.js'\n\n  interface Props extends HTMLAttributes<HTMLDivElement> {\n    class?: string\n    children?: Snippet\n  }\n\n  let { class: className, children, ...restProps }: Props = $props()\n</script>\n\n<div class={cn('text-sm text-muted-foreground', className)} {...restProps}>\n  {@render children?.()}\n</div>\n",
-      "type": "registry:ui",
-      "target": "lib/components/ui/card-description.svelte"
+      "target": "lib/components/ui/card/card-action.svelte"
     },
     {
       "path": "registry/default/ui/card-content.svelte",
-      "content": "<script lang=\"ts\">\n  import type { Snippet } from 'svelte'\n  import type { HTMLAttributes } from 'svelte/elements'\n  import { cn } from '$lib/utils.js'\n\n  interface Props extends HTMLAttributes<HTMLDivElement> {\n    class?: string\n    children?: Snippet\n  }\n\n  let { class: className, children, ...restProps }: Props = $props()\n</script>\n\n<div class={cn('p-6', className)} {...restProps}>\n  {@render children?.()}\n</div>\n",
+      "content": "<script lang=\"ts\">\n\timport type { HTMLAttributes } from \"svelte/elements\";\n\timport { cn, type WithElementRef } from \"$lib/utils.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tchildren,\n\t\t...restProps\n\t}: WithElementRef<HTMLAttributes<HTMLDivElement>> = $props();\n</script>\n\n<div\n\tbind:this={ref}\n\tdata-slot=\"card-content\"\n\tclass={cn(\"p-6\", className)}\n\t{...restProps}\n>\n\t{@render children?.()}\n</div>\n",
       "type": "registry:ui",
-      "target": "lib/components/ui/card-content.svelte"
+      "target": "lib/components/ui/card/card-content.svelte"
+    },
+    {
+      "path": "registry/default/ui/card-description.svelte",
+      "content": "<script lang=\"ts\">\n\timport type { HTMLAttributes } from \"svelte/elements\";\n\timport { cn, type WithElementRef } from \"$lib/utils.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tchildren,\n\t\t...restProps\n\t}: WithElementRef<HTMLAttributes<HTMLParagraphElement>> = $props();\n</script>\n\n<p\n\tbind:this={ref}\n\tdata-slot=\"card-description\"\n\tclass={cn(\"text-muted-foreground text-sm\", className)}\n\t{...restProps}\n>\n\t{@render children?.()}\n</p>\n",
+      "type": "registry:ui",
+      "target": "lib/components/ui/card/card-description.svelte"
     },
     {
       "path": "registry/default/ui/card-footer.svelte",
-      "content": "<script lang=\"ts\">\n  import type { Snippet } from 'svelte'\n  import type { HTMLAttributes } from 'svelte/elements'\n  import { cn } from '$lib/utils.js'\n\n  interface Props extends HTMLAttributes<HTMLDivElement> {\n    class?: string\n    children?: Snippet\n  }\n\n  let { class: className, children, ...restProps }: Props = $props()\n</script>\n\n<div class={cn('flex items-center p-6 border-t-3 border-foreground bg-muted/50', className)} {...restProps}>\n  {@render children?.()}\n</div>\n",
+      "content": "<script lang=\"ts\">\n\timport { cn, type WithElementRef } from \"$lib/utils.js\";\n\timport type { HTMLAttributes } from \"svelte/elements\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tchildren,\n\t\t...restProps\n\t}: WithElementRef<HTMLAttributes<HTMLDivElement>> = $props();\n</script>\n\n<div\n\tbind:this={ref}\n\tdata-slot=\"card-footer\"\n\tclass={cn(\"flex items-center p-6 border-t-3 border-foreground\", className)}\n\t{...restProps}\n>\n\t{@render children?.()}\n</div>\n",
       "type": "registry:ui",
-      "target": "lib/components/ui/card-footer.svelte"
+      "target": "lib/components/ui/card/card-footer.svelte"
+    },
+    {
+      "path": "registry/default/ui/card-header.svelte",
+      "content": "<script lang=\"ts\">\n\timport { cn, type WithElementRef } from \"$lib/utils.js\";\n\timport type { HTMLAttributes } from \"svelte/elements\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tchildren,\n\t\t...restProps\n\t}: WithElementRef<HTMLAttributes<HTMLDivElement>> = $props();\n</script>\n\n<div\n\tbind:this={ref}\n\tdata-slot=\"card-header\"\n\tclass={cn(\n\t\t\"flex flex-col space-y-1.5 p-6 border-b-3 border-foreground\",\n\t\tclassName\n\t)}\n\t{...restProps}\n>\n\t{@render children?.()}\n</div>\n",
+      "type": "registry:ui",
+      "target": "lib/components/ui/card/card-header.svelte"
+    },
+    {
+      "path": "registry/default/ui/card-title.svelte",
+      "content": "<script lang=\"ts\">\n\timport type { HTMLAttributes } from \"svelte/elements\";\n\timport { cn, type WithElementRef } from \"$lib/utils.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tchildren,\n\t\t...restProps\n\t}: WithElementRef<HTMLAttributes<HTMLDivElement>> = $props();\n</script>\n\n<div\n\tbind:this={ref}\n\tdata-slot=\"card-title\"\n\tclass={cn(\"text-lg font-bold uppercase tracking-wide leading-none\", className)}\n\t{...restProps}\n>\n\t{@render children?.()}\n</div>\n",
+      "type": "registry:ui",
+      "target": "lib/components/ui/card/card-title.svelte"
+    },
+    {
+      "path": "registry/default/ui/card.svelte",
+      "content": "<script lang=\"ts\">\n\timport type { HTMLAttributes } from \"svelte/elements\";\n\timport { cn, type WithElementRef } from \"$lib/utils.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tinteractive = false,\n\t\tchildren,\n\t\t...restProps\n\t}: WithElementRef<HTMLAttributes<HTMLDivElement>> & { interactive?: boolean } = $props();\n</script>\n\n<div\n\tbind:this={ref}\n\tdata-slot=\"card\"\n\tclass={cn(\n\t\t\"bg-card text-card-foreground border-3 border-foreground shadow-[4px_4px_0px_hsl(var(--shadow-color))] transition-all duration-200 flex flex-col\",\n\t\tinteractive && \"cursor-pointer hover:translate-x-[4px] hover:translate-y-[4px] hover:shadow-none active:translate-x-[4px] active:translate-y-[4px] active:shadow-none\",\n\t\tclassName\n\t)}\n\t{...restProps}\n>\n\t{@render children?.()}\n</div>\n",
+      "type": "registry:ui",
+      "target": "lib/components/ui/card/card.svelte"
+    },
+    {
+      "path": "registry/default/ui/index.ts",
+      "content": "import Root from \"./accordion.svelte\";\nimport Content from \"./accordion-content.svelte\";\nimport Item from \"./accordion-item.svelte\";\nimport Trigger from \"./accordion-trigger.svelte\";\n\nexport {\n\tRoot,\n\tContent,\n\tItem,\n\tTrigger,\n\t//\n\tRoot as Accordion,\n\tContent as AccordionContent,\n\tItem as AccordionItem,\n\tTrigger as AccordionTrigger,\n};\n",
+      "type": "registry:ui",
+      "target": "lib/components/ui/accordion/index.ts"
     }
   ]
 }

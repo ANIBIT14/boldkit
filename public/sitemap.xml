@@ -163,6 +163,12 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://boldkit.dev/components/combobox</loc>
+    <lastmod>2026-04-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://boldkit.dev/components/command</loc>
     <lastmod>2026-04-15</lastmod>
     <changefreq>monthly</changefreq>

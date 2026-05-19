@@ -1,0 +1,78 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "timeline",
+  "type": "registry:ui",
+  "description": "Timeline component for BoldKit Svelte",
+  "dependencies": [],
+  "registryDependencies": [
+    "utils"
+  ],
+  "files": [
+    {
+      "path": "registry/default/ui/index.ts",
+      "content": "import Root from \"./accordion.svelte\";\nimport Content from \"./accordion-content.svelte\";\nimport Item from \"./accordion-item.svelte\";\nimport Trigger from \"./accordion-trigger.svelte\";\n\nexport {\n\tRoot,\n\tContent,\n\tItem,\n\tTrigger,\n\t//\n\tRoot as Accordion,\n\tContent as AccordionContent,\n\tItem as AccordionItem,\n\tTrigger as AccordionTrigger,\n};\n",
+      "type": "registry:ui",
+      "target": "lib/components/ui/accordion/index.ts"
+    },
+    {
+      "path": "registry/default/ui/timeline-card.svelte",
+      "content": "<script lang=\"ts\">\n  import type { Snippet } from 'svelte'\n  import { cn } from '$lib/utils.js'\n  type Props = { class?: string; children?: Snippet }\n  let { class: className, children }: Props = $props()\n</script>\n\n<div\n  class={cn(\n    'border-3 border-foreground bg-card p-3 shadow-[4px_4px_0px_hsl(var(--shadow-color))]',\n    className\n  )}\n>\n  {@render children?.()}\n</div>\n",
+      "type": "registry:ui",
+      "target": "lib/components/ui/timeline/timeline-card.svelte"
+    },
+    {
+      "path": "registry/default/ui/timeline-connector.svelte",
+      "content": "<script lang=\"ts\">\n  import { cn } from '$lib/utils.js'\n  type Props = { class?: string }\n  let { class: className }: Props = $props()\n</script>\n\n<div\n  class={cn(\n    'absolute left-2.5 top-5 bottom-0 w-[3px] -translate-x-1/2 bg-foreground',\n    className\n  )}\n></div>\n",
+      "type": "registry:ui",
+      "target": "lib/components/ui/timeline/timeline-connector.svelte"
+    },
+    {
+      "path": "registry/default/ui/timeline-content.svelte",
+      "content": "<script lang=\"ts\">\n  import type { Snippet } from 'svelte'\n  import { cn } from '$lib/utils.js'\n  type Props = { class?: string; children?: Snippet }\n  let { class: className, children }: Props = $props()\n</script>\n\n<div class={cn('flex flex-col gap-1 flex-1 min-w-0', className)}>\n  {@render children?.()}\n</div>\n",
+      "type": "registry:ui",
+      "target": "lib/components/ui/timeline/timeline-content.svelte"
+    },
+    {
+      "path": "registry/default/ui/timeline-description.svelte",
+      "content": "<script lang=\"ts\">\n  import type { Snippet } from 'svelte'\n  import { cn } from '$lib/utils.js'\n  type Props = { class?: string; children?: Snippet }\n  let { class: className, children }: Props = $props()\n</script>\n\n<p class={cn('text-sm text-muted-foreground', className)}>\n  {@render children?.()}\n</p>\n",
+      "type": "registry:ui",
+      "target": "lib/components/ui/timeline/timeline-description.svelte"
+    },
+    {
+      "path": "registry/default/ui/timeline-dot.svelte",
+      "content": "<script lang=\"ts\">\n  import type { Snippet } from 'svelte'\n  import { cn } from '$lib/utils.js'\n  type Props = { class?: string; children?: Snippet; variant?: 'default' | 'outline' | 'accent' }\n  let { class: className, children, variant = 'default' }: Props = $props()\n\n  const variants = {\n    default: 'bg-foreground border-foreground',\n    outline: 'bg-background border-foreground',\n    accent: 'bg-accent border-foreground',\n  }\n</script>\n\n<div\n  class={cn(\n    'relative z-10 flex h-5 w-5 shrink-0 items-center justify-center rounded-full border-3 mt-0.5',\n    variants[variant],\n    className\n  )}\n>\n  {@render children?.()}\n</div>\n",
+      "type": "registry:ui",
+      "target": "lib/components/ui/timeline/timeline-dot.svelte"
+    },
+    {
+      "path": "registry/default/ui/timeline-header.svelte",
+      "content": "<script lang=\"ts\">\n  import type { Snippet } from 'svelte'\n  import { cn } from '$lib/utils.js'\n  type Props = { class?: string; children?: Snippet }\n  let { class: className, children }: Props = $props()\n</script>\n\n<div class={cn('flex items-center gap-2', className)}>\n  {@render children?.()}\n</div>\n",
+      "type": "registry:ui",
+      "target": "lib/components/ui/timeline/timeline-header.svelte"
+    },
+    {
+      "path": "registry/default/ui/timeline-item.svelte",
+      "content": "<script lang=\"ts\">\n  import type { Snippet } from 'svelte'\n  import { cn } from '$lib/utils.js'\n  type Props = { class?: string; children?: Snippet }\n  let { class: className, children }: Props = $props()\n</script>\n\n<div class={cn('relative flex gap-4 pb-8 last:pb-0', className)}>\n  {@render children?.()}\n</div>\n",
+      "type": "registry:ui",
+      "target": "lib/components/ui/timeline/timeline-item.svelte"
+    },
+    {
+      "path": "registry/default/ui/timeline-time.svelte",
+      "content": "<script lang=\"ts\">\n  import type { Snippet } from 'svelte'\n  import { cn } from '$lib/utils.js'\n  type Props = { class?: string; children?: Snippet }\n  let { class: className, children }: Props = $props()\n</script>\n\n<time class={cn('text-xs font-medium text-muted-foreground uppercase tracking-wide', className)}>\n  {@render children?.()}\n</time>\n",
+      "type": "registry:ui",
+      "target": "lib/components/ui/timeline/timeline-time.svelte"
+    },
+    {
+      "path": "registry/default/ui/timeline-title.svelte",
+      "content": "<script lang=\"ts\">\n  import type { Snippet } from 'svelte'\n  import { cn } from '$lib/utils.js'\n  type Props = { class?: string; children?: Snippet }\n  let { class: className, children }: Props = $props()\n</script>\n\n<h4 class={cn('font-bold uppercase tracking-wide leading-none', className)}>\n  {@render children?.()}\n</h4>\n",
+      "type": "registry:ui",
+      "target": "lib/components/ui/timeline/timeline-title.svelte"
+    },
+    {
+      "path": "registry/default/ui/timeline.svelte",
+      "content": "<script lang=\"ts\">\n  import type { Snippet } from 'svelte'\n  import { cn } from '$lib/utils.js'\n  type Props = { class?: string; children?: Snippet }\n  let { class: className, children }: Props = $props()\n</script>\n\n<div class={cn('flex flex-col', className)}>\n  {@render children?.()}\n</div>\n",
+      "type": "registry:ui",
+      "target": "lib/components/ui/timeline/timeline.svelte"
+    }
+  ]
+}

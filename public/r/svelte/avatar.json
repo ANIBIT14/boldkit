@@ -11,22 +11,46 @@
   ],
   "files": [
     {
-      "path": "registry/default/ui/avatar.svelte",
-      "content": "<script lang=\"ts\">\n  import { Avatar } from 'bits-ui'\n  import type { Snippet } from 'svelte'\n  import { cn } from '$lib/utils.js'\n\n  interface Props extends Avatar.RootProps {\n    class?: string\n    children?: Snippet\n  }\n\n  let { class: className, children, ...restProps }: Props = $props()\n</script>\n\n<Avatar.Root\n  class={cn(\n    'relative flex h-10 w-10 shrink-0 overflow-hidden border-3 border-foreground shadow-[4px_4px_0px_hsl(var(--shadow-color))] transition-all duration-200 hover:translate-x-[4px] hover:translate-y-[4px] hover:shadow-none',\n    className\n  )}\n  {...restProps}\n>\n  {@render children?.()}\n</Avatar.Root>\n",
+      "path": "registry/default/ui/avatar-badge.svelte",
+      "content": "<script lang=\"ts\">\n\timport type { HTMLAttributes } from \"svelte/elements\";\n\timport { cn, type WithElementRef } from \"$lib/utils.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tchildren,\n\t\t...restProps\n\t}: WithElementRef<HTMLAttributes<HTMLSpanElement>> = $props();\n</script>\n\n<span\n\tbind:this={ref}\n\tdata-slot=\"avatar-badge\"\n\tclass={cn(\n\t\t\"bg-primary text-primary-foreground ring-background absolute right-0 bottom-0 z-10 inline-flex items-center justify-center rounded-full bg-blend-color ring-2 select-none\",\n\t\t\"group-data-[size=sm]/avatar:size-2 group-data-[size=sm]/avatar:[&>svg]:hidden\",\n\t\t\"group-data-[size=default]/avatar:size-2.5 group-data-[size=default]/avatar:[&>svg]:size-2\",\n\t\t\"group-data-[size=lg]/avatar:size-3 group-data-[size=lg]/avatar:[&>svg]:size-2\",\n\t\tclassName\n\t)}\n\t{...restProps}\n>\n\t{@render children?.()}\n</span>\n",
       "type": "registry:ui",
-      "target": "lib/components/ui/avatar.svelte"
-    },
-    {
-      "path": "registry/default/ui/avatar-image.svelte",
-      "content": "<script lang=\"ts\">\n  import { Avatar } from 'bits-ui'\n  import { cn } from '$lib/utils.js'\n\n  interface Props extends Avatar.ImageProps {\n    class?: string\n  }\n\n  let { class: className, ...restProps }: Props = $props()\n</script>\n\n<Avatar.Image\n  class={cn('aspect-square h-full w-full object-cover', className)}\n  {...restProps}\n/>\n",
-      "type": "registry:ui",
-      "target": "lib/components/ui/avatar-image.svelte"
+      "target": "lib/components/ui/avatar/avatar-badge.svelte"
     },
     {
       "path": "registry/default/ui/avatar-fallback.svelte",
-      "content": "<script lang=\"ts\">\n  import { Avatar } from 'bits-ui'\n  import type { Snippet } from 'svelte'\n  import { cn } from '$lib/utils.js'\n\n  interface Props extends Avatar.FallbackProps {\n    class?: string\n    children?: Snippet\n  }\n\n  let { class: className, children, ...restProps }: Props = $props()\n</script>\n\n<Avatar.Fallback\n  class={cn(\n    'flex h-full w-full items-center justify-center bg-primary text-primary-foreground font-bold uppercase',\n    className\n  )}\n  {...restProps}\n>\n  {@render children?.()}\n</Avatar.Fallback>\n",
+      "content": "<script lang=\"ts\">\n\timport { Avatar as AvatarPrimitive } from \"bits-ui\";\n\timport { cn } from \"$lib/utils.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\t...restProps\n\t}: AvatarPrimitive.FallbackProps = $props();\n</script>\n\n<AvatarPrimitive.Fallback\n\tbind:ref\n\tdata-slot=\"avatar-fallback\"\n\tclass={cn(\n\t\t\"bg-primary text-primary-foreground flex size-full items-center justify-center text-sm font-bold uppercase\",\n\t\tclassName\n\t)}\n\t{...restProps}\n/>\n",
       "type": "registry:ui",
-      "target": "lib/components/ui/avatar-fallback.svelte"
+      "target": "lib/components/ui/avatar/avatar-fallback.svelte"
+    },
+    {
+      "path": "registry/default/ui/avatar-group-count.svelte",
+      "content": "<script lang=\"ts\">\n\timport type { HTMLAttributes } from \"svelte/elements\";\n\timport { cn, type WithElementRef } from \"$lib/utils.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tchildren,\n\t\t...restProps\n\t}: WithElementRef<HTMLAttributes<HTMLDivElement>> = $props();\n</script>\n\n<div\n\tbind:this={ref}\n\tdata-slot=\"avatar-group-count\"\n\tclass={cn(\n\t\t\"bg-muted text-muted-foreground size-8 rounded-full text-sm group-has-data-[size=lg]/avatar-group:size-10 group-has-data-[size=sm]/avatar-group:size-6 [&>svg]:size-4 group-has-data-[size=lg]/avatar-group:[&>svg]:size-5 group-has-data-[size=sm]/avatar-group:[&>svg]:size-3 ring-background relative flex shrink-0 items-center justify-center ring-2\",\n\t\tclassName\n\t)}\n\t{...restProps}\n>\n\t{@render children?.()}\n</div>\n",
+      "type": "registry:ui",
+      "target": "lib/components/ui/avatar/avatar-group-count.svelte"
+    },
+    {
+      "path": "registry/default/ui/avatar-group.svelte",
+      "content": "<script lang=\"ts\">\n\timport type { HTMLAttributes } from \"svelte/elements\";\n\timport { cn, type WithElementRef } from \"$lib/utils.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tchildren,\n\t\t...restProps\n\t}: WithElementRef<HTMLAttributes<HTMLDivElement>> = $props();\n</script>\n\n<div\n\tbind:this={ref}\n\tdata-slot=\"avatar-group\"\n\tclass={cn(\n\t\t\"cn-avatar-group *:data-[slot=avatar]:ring-background group/avatar-group flex -space-x-2 *:data-[slot=avatar]:ring-2\",\n\t\tclassName\n\t)}\n\t{...restProps}\n>\n\t{@render children?.()}\n</div>\n",
+      "type": "registry:ui",
+      "target": "lib/components/ui/avatar/avatar-group.svelte"
+    },
+    {
+      "path": "registry/default/ui/avatar-image.svelte",
+      "content": "<script lang=\"ts\">\n\timport { Avatar as AvatarPrimitive } from \"bits-ui\";\n\timport { cn } from \"$lib/utils.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\t...restProps\n\t}: AvatarPrimitive.ImageProps = $props();\n</script>\n\n<AvatarPrimitive.Image\n\tbind:ref\n\tdata-slot=\"avatar-image\"\n\tclass={cn(\"rounded-full aspect-square size-full object-cover\", className)}\n\t{...restProps}\n/>\n",
+      "type": "registry:ui",
+      "target": "lib/components/ui/avatar/avatar-image.svelte"
+    },
+    {
+      "path": "registry/default/ui/avatar.svelte",
+      "content": "<script lang=\"ts\">\n\timport { Avatar as AvatarPrimitive } from \"bits-ui\";\n\timport { cn } from \"$lib/utils.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tloadingStatus = $bindable(\"loading\"),\n\t\tsize = \"default\",\n\t\tclass: className,\n\t\t...restProps\n\t}: AvatarPrimitive.RootProps & {\n\t\tsize?: \"default\" | \"sm\" | \"lg\";\n\t} = $props();\n</script>\n\n<AvatarPrimitive.Root\n\tbind:ref\n\tbind:loadingStatus\n\tdata-slot=\"avatar\"\n\tdata-size={size}\n\tclass={cn(\n\t\t\"relative flex h-11 w-11 shrink-0 select-none border-3 border-foreground shadow-[4px_4px_0px_hsl(var(--shadow-color))] transition-all duration-200 hover:translate-x-[4px] hover:translate-y-[4px] hover:shadow-none overflow-hidden\",\n\t\tclassName\n\t)}\n\t{...restProps}\n/>\n",
+      "type": "registry:ui",
+      "target": "lib/components/ui/avatar/avatar.svelte"
+    },
+    {
+      "path": "registry/default/ui/index.ts",
+      "content": "import Root from \"./accordion.svelte\";\nimport Content from \"./accordion-content.svelte\";\nimport Item from \"./accordion-item.svelte\";\nimport Trigger from \"./accordion-trigger.svelte\";\n\nexport {\n\tRoot,\n\tContent,\n\tItem,\n\tTrigger,\n\t//\n\tRoot as Accordion,\n\tContent as AccordionContent,\n\tItem as AccordionItem,\n\tTrigger as AccordionTrigger,\n};\n",
+      "type": "registry:ui",
+      "target": "lib/components/ui/accordion/index.ts"
     }
   ]
 }

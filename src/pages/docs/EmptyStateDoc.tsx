@@ -518,7 +518,7 @@ export function EmptyStateDoc() {
           </div>
 
           <CodeBlock
-            code={framework === 'react' ? reactLayoutCode : vueLayoutCode}
+            code={framework === 'react' ? reactLayoutCode : isSvelte ? svelteExamplePending : vueLayoutCode}
             language={codeLanguage}
           />
         </section>
