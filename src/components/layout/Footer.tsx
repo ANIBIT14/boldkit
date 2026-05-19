@@ -46,15 +46,16 @@ export function Footer() {
             <p className="text-base sm:text-lg text-white/70 font-medium -mt-3 sm:-mt-5 pl-1">
               A neubrutalism UI library for{' '}
               <span className="text-white font-bold">React</span>{' '}
-              and{' '}
               <span className="text-[#42b883] font-bold">Vue 3</span>
+              {' '}and{' '}
+              <span className="text-[#ff3e00] font-bold">Svelte</span>
             </p>
           </div>
 
           {/* What's included grid */}
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-0 max-w-2xl border-3 border-white/20 overflow-hidden">
             {[
-              { icon: Package,    value: '50+',  label: 'Components', desc: 'React & Vue 3',    accent: '#f87171' },
+              { icon: Package,    value: '50+',  label: 'Components', desc: 'React, Vue, Svelte', accent: '#f87171' },
               { icon: BarChart3,  value: '10',   label: 'Chart Types', desc: 'Recharts + ECharts', accent: '#4db8a8' },
               { icon: LayoutGrid, value: '15',   label: 'Blocks',     desc: 'Copy & paste',     accent: '#fcd34d' },
               { icon: Shield,     value: 'MIT',  label: 'License',    desc: 'Free forever',     accent: '#5cdb5c' },

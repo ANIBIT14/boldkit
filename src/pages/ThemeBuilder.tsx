@@ -12,7 +12,7 @@ import { Progress } from '@/components/ui/progress'
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert'
 import { Copy, Check, AlertCircle, Palette, Sun, Moon } from 'lucide-react'
 import { Layout } from '@/components/layout'
-import { ReactIcon, VueIcon } from '@/hooks/use-framework'
+import { ReactIcon, SvelteIcon, VueIcon } from '@/hooks/use-framework'
 import { SEO, pageSEO } from '@/components/SEO'
 
 // Helper functions for color conversion
@@ -356,18 +356,21 @@ export function ThemeBuilder({ embedded = false }: ThemeBuilderProps) {
             <Badge variant="accent">
               <Palette className="mr-1 h-3 w-3" /> Theme Builder
             </Badge>
-            <Badge variant="info" className="gap-1">
+            <Badge variant="secondary" className="gap-1">
               <ReactIcon className="h-3 w-3" /> React
             </Badge>
             <Badge variant="success" className="gap-1">
               <VueIcon className="h-3 w-3" /> Vue 3
+            </Badge>
+            <Badge variant="default" className="gap-1">
+              <SvelteIcon className="h-3 w-3" /> Svelte
             </Badge>
           </div>
           <h1 className="text-2xl md:text-3xl font-black uppercase tracking-tight lg:text-4xl">
             Customize Your Theme
           </h1>
           <p className="mt-2 text-sm md:text-base text-muted-foreground max-w-xl">
-            Adjust colors, shadows, and borders to match your brand. CSS variables work identically for both React and Vue.
+            Adjust colors, shadows, and borders to match your brand. CSS variables work identically for React, Vue, and Svelte.
           </p>
         </div>
       </div>

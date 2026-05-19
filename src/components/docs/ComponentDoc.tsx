@@ -1,4 +1,4 @@
-import { useState, type ReactNode } from 'react'
+import { useEffect, useState, type ReactNode } from 'react'
 import { Link } from 'react-router-dom'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
@@ -13,9 +13,84 @@ import {
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { Copy, Check, Terminal, Home } from 'lucide-react'
+import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
 import { OpenInV0Button } from './OpenInV0Button'
 import { SEO, getComponentSEO } from '@/components/SEO'
-import { useFramework, FrameworkToggle, VueIcon } from '@/hooks/use-framework'
+import { useFramework, FrameworkToggle, SvelteIcon, VueIcon, type Framework } from '@/hooks/use-framework'
+
+interface RegistryFile {
+  content?: string
+}
+
+interface RegistryItem {
+  dependencies?: string[]
+  files?: RegistryFile[]
+}
+
+const codeTheme = {
+  'code[class*="language-"]': {
+    color: 'hsl(var(--foreground))',
+    background: 'transparent',
+    textShadow: 'none',
+    fontFamily: 'ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace',
+    fontSize: '0.875rem',
+    lineHeight: '1.6',
+  },
+  'pre[class*="language-"]': {
+    color: 'hsl(var(--foreground))',
+    background: 'transparent',
+    textShadow: 'none',
+    margin: 0,
+    padding: 0,
+    overflow: 'visible',
+    fontFamily: 'ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace',
+    fontSize: '0.875rem',
+    lineHeight: '1.6',
+  },
+  comment: { color: 'hsl(var(--muted-foreground))', fontStyle: 'italic' },
+  prolog: { color: 'hsl(var(--muted-foreground))' },
+  doctype: { color: 'hsl(var(--muted-foreground))' },
+  cdata: { color: 'hsl(var(--muted-foreground))' },
+  punctuation: { color: 'hsl(var(--foreground) / 0.65)' },
+  property: { color: 'hsl(var(--info))' },
+  tag: { color: 'hsl(var(--primary))' },
+  boolean: { color: 'hsl(var(--accent))' },
+  number: { color: 'hsl(var(--accent))' },
+  constant: { color: 'hsl(var(--warning))' },
+  symbol: { color: 'hsl(var(--warning))' },
+  deleted: { color: 'hsl(var(--destructive))' },
+  selector: { color: 'hsl(var(--success))' },
+  'attr-name': { color: 'hsl(var(--info))' },
+  string: { color: 'hsl(var(--success))' },
+  char: { color: 'hsl(var(--success))' },
+  builtin: { color: 'hsl(var(--secondary))' },
+  inserted: { color: 'hsl(var(--success))' },
+  operator: { color: 'hsl(var(--foreground) / 0.7)' },
+  entity: { color: 'hsl(var(--warning))' },
+  url: { color: 'hsl(var(--info))' },
+  atrule: { color: 'hsl(var(--accent))' },
+  'attr-value': { color: 'hsl(var(--success))' },
+  keyword: { color: 'hsl(var(--secondary))', fontWeight: 700 },
+  function: { color: 'hsl(var(--primary))' },
+  'class-name': { color: 'hsl(var(--warning))' },
+  regex: { color: 'hsl(var(--accent))' },
+  important: { color: 'hsl(var(--destructive))', fontWeight: 700 },
+  variable: { color: 'hsl(var(--info))' },
+} as const
+
+const languageAliases: Record<string, string> = {
+  ts: 'typescript',
+  tsx: 'tsx',
+  js: 'javascript',
+  jsx: 'jsx',
+  vue: 'vue',
+  svelte: 'svelte',
+  bash: 'bash',
+  shell: 'bash',
+  json: 'json',
+  css: 'css',
+  html: 'markup',
+}
 
 export function CodeBlock({ code, language = 'tsx' }: { code: string; language?: string }) {
   const [copied, setCopied] = useState(false)
@@ -40,7 +115,15 @@ export function CodeBlock({ code, language = 'tsx' }: { code: string; language?:
         </Button>
       </div>
       <pre className="overflow-x-auto border-3 border-foreground bg-muted p-4 pr-24 text-sm bk-shadow">
-        <code>{code}</code>
+        <SyntaxHighlighter
+          language={languageAliases[language] || language}
+          style={codeTheme}
+          customStyle={{ margin: 0, padding: 0, background: 'transparent' }}
+          codeTagProps={{ style: { fontFamily: 'inherit' } }}
+          PreTag="div"
+        >
+          {code}
+        </SyntaxHighlighter>
       </pre>
     </div>
   )
@@ -79,6 +162,10 @@ interface ComponentDocProps {
   vueSourceCode?: string
   vueUsageCode?: string
   vueDependencies?: string[]
+  // Svelte-specific props. When omitted, docs load the generated Svelte registry item.
+  svelteSourceCode?: string
+  svelteUsageCode?: string
+  svelteDependencies?: string[]
   // Nuxt-specific
   nuxtClientOnly?: boolean
 }
@@ -95,6 +182,9 @@ export function ComponentDoc({
   vueSourceCode,
   vueUsageCode,
   vueDependencies,
+  svelteSourceCode,
+  svelteUsageCode,
+  svelteDependencies,
   nuxtClientOnly = false,
 }: ComponentDocProps) {
   // Use global framework context
@@ -102,16 +192,84 @@ export function ComponentDoc({
 
   // Convert component name to registry name (e.g., "Alert Dialog" -> "alert-dialog")
   const componentRegistryName = registryName || name.toLowerCase().replace(/\s+/g, '-')
+  const [svelteRegistryItem, setSvelteRegistryItem] = useState<RegistryItem | null>(null)
+  const [hasSvelteRegistry, setHasSvelteRegistry] = useState(false)
+
+  useEffect(() => {
+    if (framework !== 'svelte' || svelteSourceCode) {
+      return
+    }
+
+    let cancelled = false
+
+    fetch(`/r/svelte/${componentRegistryName}.json`)
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error('Svelte registry item unavailable')
+        }
+        return response.json() as Promise<RegistryItem>
+      })
+      .then((item) => {
+        if (!cancelled) {
+          setSvelteRegistryItem(item)
+          setHasSvelteRegistry(true)
+        }
+      })
+      .catch(() => {
+        if (!cancelled) {
+          setSvelteRegistryItem(null)
+          setHasSvelteRegistry(false)
+        }
+      })
+
+    return () => {
+      cancelled = true
+    }
+  }, [componentRegistryName, framework, svelteSourceCode])
 
   // Generate the correct CLI commands for each framework
   const reactCliCommand = installCommand || `npx shadcn@latest add https://boldkit.dev/r/${componentRegistryName}.json`
   const vueCliCommand = `npx shadcn-vue@latest add https://boldkit.dev/r/vue/${componentRegistryName}.json`
+  const svelteCliCommand = `npx shadcn-svelte@latest add https://boldkit.dev/r/svelte/${componentRegistryName}.json`
+  const svelteRegistrySourceCode = svelteRegistryItem?.files?.map((file) => file.content).filter(Boolean).join('\n\n') || ''
+  const defaultSvelteUsageCode = `<script lang="ts">
+  import { ${name.replace(/\s+/g, '')} } from "$lib/components/ui/${componentRegistryName}"
+</script>
 
-  const currentCliCommand = framework === 'react' ? reactCliCommand : vueCliCommand
-  const currentSourceCode = framework === 'react' ? sourceCode : (vueSourceCode || sourceCode)
-  const currentUsageCode = framework === 'react' ? usageCode : (vueUsageCode || usageCode)
-  const currentDependencies = framework === 'react' ? dependencies : (vueDependencies || dependencies)
-  const fileExtension = framework === 'react' ? 'tsx' : 'vue'
+<${name.replace(/\s+/g, '')} />`
+
+  const getFrameworkValue = <T,>(values: Record<Framework, T>) => values[framework]
+
+  const currentCliCommand = getFrameworkValue({
+    react: reactCliCommand,
+    vue: vueCliCommand,
+    svelte: svelteCliCommand,
+  })
+  const currentSourceCode = getFrameworkValue({
+    react: sourceCode,
+    vue: vueSourceCode || sourceCode,
+    svelte: svelteSourceCode || svelteRegistrySourceCode || sourceCode,
+  })
+  const currentUsageCode = getFrameworkValue({
+    react: usageCode,
+    vue: vueUsageCode || usageCode,
+    svelte: svelteUsageCode || defaultSvelteUsageCode,
+  })
+  const currentDependencies = getFrameworkValue({
+    react: dependencies,
+    vue: vueDependencies || dependencies,
+    svelte: svelteDependencies || svelteRegistryItem?.dependencies || dependencies,
+  })
+  const fileExtension = getFrameworkValue({
+    react: 'tsx',
+    vue: 'vue',
+    svelte: 'svelte',
+  })
+  const programmingLanguage = getFrameworkValue({
+    react: 'React',
+    vue: 'Vue',
+    svelte: 'Svelte',
+  })
 
   const componentSEO = {
     ...getComponentSEO(componentRegistryName, name),
@@ -123,7 +281,7 @@ export function ComponentDoc({
       articleSection: 'Components',
       dependencies: currentDependencies.join(', '),
       proficiencyLevel: 'Beginner',
-      programmingLanguage: framework === 'react' ? 'React' : 'Vue',
+      programmingLanguage,
       author: {
         '@type': 'Person',
         name: 'Aniruddha Agarwal',
@@ -136,6 +294,7 @@ export function ComponentDoc({
 
   // Check if Vue code is available
   const hasVueCode = !!vueSourceCode
+  const hasSvelteCode = !!svelteSourceCode || hasSvelteRegistry
 
   return (
     <>
@@ -186,6 +345,13 @@ export function ComponentDoc({
             </p>
           </div>
         )}
+        {framework === 'svelte' && !hasSvelteCode && (
+          <div className="mt-4 p-3 border-3 border-warning bg-warning/10">
+            <p className="text-sm font-medium flex items-center gap-2">
+              <SvelteIcon /> Svelte code sample coming soon.
+            </p>
+          </div>
+        )}
         {framework === 'vue' && nuxtClientOnly && (
           <div className="mt-4 p-3 border-3 border-warning bg-warning/10">
             <p className="text-sm font-medium">
@@ -232,6 +398,11 @@ export function ComponentDoc({
                 Using <a href="https://shadcn-vue.com" className="text-primary underline" target="_blank" rel="noopener noreferrer">shadcn-vue</a> CLI with BoldKit Vue registry.
               </p>
             )}
+            {framework === 'svelte' && (
+              <p className="text-sm text-muted-foreground">
+                Using <a href="https://www.shadcn-svelte.com" className="text-primary underline" target="_blank" rel="noopener noreferrer">shadcn-svelte</a> CLI with BoldKit Svelte registry.
+              </p>
+            )}
           </TabsContent>
 
           <TabsContent value="manual" className="space-y-4">
@@ -272,12 +443,13 @@ interface ExampleSectionProps {
   children: ReactNode
   code: string
   vueCode?: string
+  svelteCode?: string
 }
 
-export function ExampleSection({ title, description, children, code, vueCode }: ExampleSectionProps) {
+export function ExampleSection({ title, description, children, code, vueCode, svelteCode }: ExampleSectionProps) {
   const { framework } = useFramework()
-  const currentCode = framework === 'react' ? code : (vueCode || code)
-  const language = framework === 'react' ? 'tsx' : 'vue'
+  const currentCode = framework === 'react' ? code : framework === 'vue' ? (vueCode || code) : (svelteCode || '<!-- Svelte example coming soon. -->')
+  const language = framework === 'react' ? 'tsx' : framework === 'vue' ? 'vue' : 'svelte'
 
   return (
     <section className="mt-12">

@@ -7,7 +7,7 @@ import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet'
 import { ScrollArea } from '@/components/ui/scroll-area'
 import { Menu } from 'lucide-react'
 import { Header } from '@/components/layout'
-import { FrameworkToggle, useFramework } from '@/hooks/use-framework'
+import { FrameworkToggle, frameworkLabels, useFramework } from '@/hooks/use-framework'
 import { TableOfContents } from '@/components/TableOfContents'
 
 const marketingBlocks = [
@@ -100,11 +100,6 @@ const components = [
 function Sidebar({ className, onLinkClick }: { className?: string; onLinkClick?: () => void }) {
   const location = useLocation()
   const { framework } = useFramework()
-
-  const frameworkLabels: Record<string, string> = {
-    react: 'React',
-    vue: 'Vue 3'
-  }
 
   return (
     <div className={cn('pb-12', className)}>

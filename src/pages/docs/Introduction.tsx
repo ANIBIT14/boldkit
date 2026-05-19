@@ -5,7 +5,14 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { ArrowRight, Copy, Check, LayoutGrid, Settings, Terminal, TrendingUp } from 'lucide-react'
 import { useState } from 'react'
-import { useFramework, FrameworkToggle, ReactIcon, VueIcon } from '@/hooks/use-framework'
+import {
+  FrameworkIcon,
+  FrameworkToggle,
+  frameworkCliNames,
+  frameworkLabels,
+  frameworkRegistryPaths,
+  useFramework,
+} from '@/hooks/use-framework'
 import { SEO, pageSEO } from '@/components/SEO'
 import { COUNTS } from '@/config/routes-meta'
 
@@ -27,6 +34,13 @@ function CopyButton({ text }: { text: string }) {
 
 export function Introduction() {
   const { framework } = useFramework()
+  const cliName = frameworkCliNames[framework]
+  const registryPath = frameworkRegistryPaths[framework]
+  const frameworkLabel = frameworkLabels[framework]
+  const primitiveName = framework === 'react' ? 'Radix UI' : framework === 'vue' ? 'Reka UI' : 'Bits UI'
+  const singleCommand = `npx ${cliName}@latest add @boldkit/button`
+  const multipleCommand = `npx ${cliName}@latest add @boldkit/button @boldkit/card @boldkit/input`
+  const urlCommand = `npx ${cliName}@latest add https://boldkit.dev${registryPath}/button.json`
 
   return (
     <div className="space-y-8">
@@ -37,7 +51,7 @@ export function Introduction() {
           Introduction
         </h1>
         <p className="mt-4 text-lg text-foreground/70 border-l-4 border-primary pl-4">
-          BoldKit is a neubrutalism-styled component library for React, Vue, and Nuxt, built on top of shadcn/ui primitives.
+          BoldKit is a neubrutalism-styled component library for React, Vue, Svelte, and Nuxt, built on top of shadcn/ui primitives.
         </p>
       </div>
 
@@ -50,7 +64,7 @@ export function Introduction() {
       <div className="prose prose-neutral dark:prose-invert max-w-none">
         <h2 className="text-2xl font-bold uppercase tracking-wide">What is BoldKit?</h2>
         <p>
-          BoldKit brings the bold, raw aesthetic of neubrutalism to your {framework === 'vue' ? 'Vue 3' : 'React'} applications.
+          BoldKit brings the bold, raw aesthetic of neubrutalism to your {frameworkLabel} applications.
           It features high-contrast colors, thick borders, hard shadows, and a deliberately
           unpolished look that makes your UI stand out.
         </p>
@@ -87,11 +101,11 @@ export function Introduction() {
           </li>
           <li className="flex items-start gap-2">
             <span className="text-primary font-bold">◼</span>
-            <span><strong>{framework === 'vue' ? 'shadcn-vue' : 'shadcn'} CLI Compatible</strong> - Install components directly using the CLI</span>
+            <span><strong>{cliName} CLI Compatible</strong> - Install components directly using the CLI</span>
           </li>
           <li className="flex items-start gap-2">
             <span className="text-primary font-bold">◼</span>
-            <span><strong>Accessible</strong> - Built on {framework === 'vue' ? 'Reka UI' : 'Radix UI'} primitives</span>
+            <span><strong>Accessible</strong> - Built on {primitiveName} primitives</span>
           </li>
           <li className="flex items-start gap-2">
             <span className="text-primary font-bold">◼</span>
@@ -175,7 +189,7 @@ export function Introduction() {
           <Badge variant="accent" className="text-[10px]">New</Badge>
         </h3>
         <p>
-          12 animated ASCII art components rendered with perspective projection, z-buffering, and Lambertian shading — no canvas, no WebGL, just text characters. Works in React, Vue 3, and Nuxt.
+          12 animated ASCII art components rendered with perspective projection, z-buffering, and Lambertian shading — no canvas, no WebGL, just text characters. Works in React, Vue 3, Svelte, and Nuxt.
         </p>
 
         <div className="not-prose grid sm:grid-cols-2 gap-4 my-6">
@@ -217,21 +231,14 @@ export function Introduction() {
 
         <div className="not-prose my-4 border-3 border-foreground bg-muted p-4 bk-shadow">
           <p className="text-sm font-bold uppercase tracking-wide mb-3">Install ASCII Shapes</p>
-          {framework === 'react' ? (
-            <div className="flex items-center gap-2 border-3 border-foreground bg-background px-4 py-3">
-              <code className="flex-1 font-mono text-sm">npx shadcn@latest add https://boldkit.dev/r/ascii-shapes.json</code>
-              <CopyButton text="npx shadcn@latest add https://boldkit.dev/r/ascii-shapes.json" />
-            </div>
-          ) : (
-            <>
-              <div className="flex items-center gap-2 border-3 border-foreground bg-background px-4 py-3 mb-2">
-                <code className="flex-1 font-mono text-sm">npx shadcn-vue@latest add https://boldkit.dev/r/vue/ascii-shapes.json</code>
-                <CopyButton text="npx shadcn-vue@latest add https://boldkit.dev/r/vue/ascii-shapes.json" />
-              </div>
-              <p className="text-xs text-muted-foreground mt-2">
-                <strong>Nuxt:</strong> Wrap animated shapes in <code className="bg-background border px-1">&lt;ClientOnly&gt;</code>. Use <code className="bg-background border px-1">:animated="false"</code> for SSR-safe static rendering without any wrapper.
-              </p>
-            </>
+          <div className="flex items-center gap-2 border-3 border-foreground bg-background px-4 py-3">
+            <code className="flex-1 font-mono text-sm">npx {cliName}@latest add https://boldkit.dev{registryPath}/ascii-shapes.json</code>
+            <CopyButton text={`npx ${cliName}@latest add https://boldkit.dev${registryPath}/ascii-shapes.json`} />
+          </div>
+          {framework === 'vue' && (
+            <p className="text-xs text-muted-foreground mt-2">
+              <strong>Nuxt:</strong> Wrap animated shapes in <code className="bg-background border px-1">&lt;ClientOnly&gt;</code>. Use <code className="bg-background border px-1">:animated="false"</code> for SSR-safe static rendering without any wrapper.
+            </p>
           )}
         </div>
 
@@ -286,28 +293,19 @@ export function Introduction() {
         </div>
 
         <h3 className="text-xl font-bold uppercase tracking-wide mt-8 flex items-center gap-2">
-          Quick Start with {framework === 'vue' ? 'shadcn-vue' : 'shadcn'} CLI
-          {framework === 'vue' ? <VueIcon className="h-5 w-5" /> : <ReactIcon className="h-5 w-5" />}
+          Quick Start with {cliName} CLI
+          <FrameworkIcon framework={framework} className="h-5 w-5" />
         </h3>
-        <p>The fastest way to add BoldKit components is using the {framework === 'vue' ? 'shadcn-vue' : 'shadcn'} CLI:</p>
+        <p>The fastest way to add BoldKit components is using the {cliName} CLI:</p>
 
         <div className="not-prose my-4">
           <p className="text-sm text-muted-foreground mb-2">1. Add BoldKit registry to your components.json:</p>
-          {framework === 'react' ? (
-            <div className="flex items-center gap-2 border-3 border-foreground bg-muted px-4 py-3 bk-shadow">
-              <code className="flex-1 font-mono text-sm">
-                {`"registries": { "@boldkit": "https://boldkit.dev/r" }`}
-              </code>
-              <CopyButton text={`"registries": { "@boldkit": "https://boldkit.dev/r" }`} />
-            </div>
-          ) : (
-            <div className="flex items-center gap-2 border-3 border-foreground bg-muted px-4 py-3 bk-shadow">
-              <code className="flex-1 font-mono text-sm">
-                {`"registries": { "@boldkit": "https://boldkit.dev/r/vue" }`}
-              </code>
-              <CopyButton text={`"registries": { "@boldkit": "https://boldkit.dev/r/vue" }`} />
-            </div>
-          )}
+          <div className="flex items-center gap-2 border-3 border-foreground bg-muted px-4 py-3 bk-shadow">
+            <code className="flex-1 font-mono text-sm">
+              {`"registries": { "@boldkit": "https://boldkit.dev${registryPath}" }`}
+            </code>
+            <CopyButton text={`"registries": { "@boldkit": "https://boldkit.dev${registryPath}" }`} />
+          </div>
         </div>
 
         <div className="not-prose my-4">
@@ -318,49 +316,24 @@ export function Introduction() {
               <TabsTrigger value="multiple">Multiple</TabsTrigger>
               <TabsTrigger value="url">Direct URL</TabsTrigger>
             </TabsList>
-            {framework === 'react' ? (
-              <>
-                <TabsContent value="single">
-                  <div className="flex items-center gap-2 border-3 border-foreground bg-muted px-4 py-3 bk-shadow">
-                    <code className="flex-1 font-mono text-sm">npx shadcn@latest add @boldkit/button</code>
-                    <CopyButton text="npx shadcn@latest add @boldkit/button" />
-                  </div>
-                </TabsContent>
-                <TabsContent value="multiple">
-                  <div className="flex items-center gap-2 border-3 border-foreground bg-muted px-4 py-3 bk-shadow">
-                    <code className="flex-1 font-mono text-sm">npx shadcn@latest add @boldkit/button @boldkit/card @boldkit/input</code>
-                    <CopyButton text="npx shadcn@latest add @boldkit/button @boldkit/card @boldkit/input" />
-                  </div>
-                </TabsContent>
-                <TabsContent value="url">
-                  <div className="flex items-center gap-2 border-3 border-foreground bg-muted px-4 py-3 bk-shadow">
-                    <code className="flex-1 font-mono text-sm">npx shadcn@latest add https://boldkit.dev/r/button.json</code>
-                    <CopyButton text="npx shadcn@latest add https://boldkit.dev/r/button.json" />
-                  </div>
-                </TabsContent>
-              </>
-            ) : (
-              <>
-                <TabsContent value="single">
-                  <div className="flex items-center gap-2 border-3 border-foreground bg-muted px-4 py-3 bk-shadow">
-                    <code className="flex-1 font-mono text-sm">npx shadcn-vue@latest add @boldkit/button</code>
-                    <CopyButton text="npx shadcn-vue@latest add @boldkit/button" />
-                  </div>
-                </TabsContent>
-                <TabsContent value="multiple">
-                  <div className="flex items-center gap-2 border-3 border-foreground bg-muted px-4 py-3 bk-shadow">
-                    <code className="flex-1 font-mono text-sm">npx shadcn-vue@latest add @boldkit/button @boldkit/card @boldkit/input</code>
-                    <CopyButton text="npx shadcn-vue@latest add @boldkit/button @boldkit/card @boldkit/input" />
-                  </div>
-                </TabsContent>
-                <TabsContent value="url">
-                  <div className="flex items-center gap-2 border-3 border-foreground bg-muted px-4 py-3 bk-shadow">
-                    <code className="flex-1 font-mono text-sm">npx shadcn-vue@latest add https://boldkit.dev/r/vue/button.json</code>
-                    <CopyButton text="npx shadcn-vue@latest add https://boldkit.dev/r/vue/button.json" />
-                  </div>
-                </TabsContent>
-              </>
-            )}
+            <TabsContent value="single">
+              <div className="flex items-center gap-2 border-3 border-foreground bg-muted px-4 py-3 bk-shadow">
+                <code className="flex-1 font-mono text-sm">{singleCommand}</code>
+                <CopyButton text={singleCommand} />
+              </div>
+            </TabsContent>
+            <TabsContent value="multiple">
+              <div className="flex items-center gap-2 border-3 border-foreground bg-muted px-4 py-3 bk-shadow">
+                <code className="flex-1 font-mono text-sm">{multipleCommand}</code>
+                <CopyButton text={multipleCommand} />
+              </div>
+            </TabsContent>
+            <TabsContent value="url">
+              <div className="flex items-center gap-2 border-3 border-foreground bg-muted px-4 py-3 bk-shadow">
+                <code className="flex-1 font-mono text-sm">{urlCommand}</code>
+                <CopyButton text={urlCommand} />
+              </div>
+            </TabsContent>
           </Tabs>
         </div>
 

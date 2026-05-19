@@ -302,7 +302,7 @@ export function DocsTemplate() {
             <div className="mb-8 pb-8 border-b-3 border-foreground">
               <div className="flex flex-wrap items-center gap-2 mb-3">
                 <Badge variant="default" className="text-[10px]">New in v3.0</Badge>
-                <Badge variant="outline" className="text-[10px]">React & Vue 3</Badge>
+                <Badge variant="outline" className="text-[10px]">React, Vue 3 & Svelte</Badge>
               </div>
               <h1 className="text-[2.6rem] font-black uppercase tracking-tight leading-none mb-4">
                 Introduction

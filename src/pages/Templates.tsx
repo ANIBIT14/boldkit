@@ -3,7 +3,7 @@ import { Button } from '@/components/ui/button'
 import { Layout } from '@/components/layout'
 import { ExternalLink, Copy, Check, ArrowRight } from 'lucide-react'
 import { SEO, pageSEO } from '@/components/SEO'
-import { useFramework, FrameworkToggle } from '@/hooks/use-framework'
+import { FrameworkToggle, frameworkLabels, useFramework, type Framework } from '@/hooks/use-framework'
 
 // Per-template accent colors — used as left border stripe + underline
 const ACCENT_COLORS = [
@@ -531,6 +531,24 @@ import DocsTemplate from '@/components/templates/DocsTemplate.vue'
   },
 ]
 
+function getTemplateCode(template: (typeof templates)[number], framework: Framework) {
+  if (framework !== 'svelte') {
+    return template.code[framework]
+  }
+
+  const componentName = template.name
+    .split(/\s+/)
+    .map((part) => part.replace(/[^a-zA-Z0-9]/g, ''))
+    .filter(Boolean)
+    .join('')
+
+  return `<script lang="ts">
+  import ${componentName}Template from '$lib/components/templates/${componentName}Template.svelte'
+</script>
+
+<${componentName}Template />`
+}
+
 // ─── Page ──────────────────────────────────────────────────────────────────────
 
 export function Templates() {
@@ -612,7 +630,7 @@ export function Templates() {
             <div className="flex items-center gap-4 mb-6">
               <div className="h-[3px] w-16 sm:w-20 bg-[#FFE400]" />
               <span className="tmpl-hero-muted text-[10px] font-black uppercase tracking-[0.22em]">
-                7 templates — React + Vue 3
+                7 templates — React + Vue 3 + Svelte
               </span>
             </div>
 
@@ -649,6 +667,7 @@ export function Templates() {
             const accent = ACCENT_COLORS[index % ACCENT_COLORS.length]
             const isEven = index % 2 === 0
             const PreviewComp = previewComponents[template.name]
+            const templateCode = getTemplateCode(template, framework)
 
             return (
               <section
@@ -737,15 +756,15 @@ export function Templates() {
                       <div className="mb-5 sm:mb-6">
                         <div className="flex items-center justify-between mb-2 gap-2">
                           <span className="text-[10px] font-black uppercase tracking-[0.22em] text-muted-foreground min-w-0 truncate">
-                            {framework === 'react' ? 'React' : 'Vue 3'} Usage
+                            {frameworkLabels[framework]} Usage
                           </span>
-                          <CopyButton text={template.code[framework]} />
+                          <CopyButton text={templateCode} />
                         </div>
                         <pre
                           className="tmpl-code border-3 border-foreground p-3 sm:p-4 text-[11px] leading-relaxed overflow-x-auto"
                           style={{ fontFamily: "'JetBrains Mono', 'Fira Code', 'Courier New', monospace" }}
                         >
-                          <code>{template.code[framework]}</code>
+                          <code>{templateCode}</code>
                         </pre>
                       </div>
 
@@ -757,7 +776,7 @@ export function Templates() {
                           </a>
                         </Button>
                         <Button variant="outline" asChild className="gap-2">
-                          <a href={template.sourceUrl[framework]} target="_blank" rel="noopener noreferrer">
+                          <a href={template.sourceUrl[framework] || template.sourceUrl.react} target="_blank" rel="noopener noreferrer">
                             View Source <ExternalLink className="h-3.5 w-3.5" />
                           </a>
                         </Button>

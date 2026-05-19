@@ -48,8 +48,9 @@ import {
 } from 'recharts'
 import { TrendingUp, TrendingDown, Code, Copy, Check, AreaChart as AreaIcon, BarChart3, LineChart as LineIcon, PieChart as PieIcon, Circle, Target, Radar, Gauge, Sparkles, Palette, LayoutGrid } from 'lucide-react'
 import { Layout } from '@/components/layout'
-import { useFramework, FrameworkToggle, ReactIcon, VueIcon } from '@/hooks/use-framework'
+import { FrameworkIcon, FrameworkToggle, frameworkBadgeClasses, frameworkBadgeVariants, frameworkLabels, useFramework, VueIcon } from '@/hooks/use-framework'
 import { SEO, pageSEO } from '@/components/SEO'
+import { CodeBlock } from '@/components/docs/ComponentDoc'
 
 // Sample data for charts
 const areaData = [
@@ -1283,12 +1284,13 @@ function ChartCard({
   trendValue?: string
   code: string
   vueCode?: string
+  svelteCode?: string
   children: React.ReactNode
 }) {
   const [copied, setCopied] = useState(false)
   const { framework } = useFramework()
 
-  const currentCode = framework === 'react' ? code : (vueCode || code)
+  const currentCode = framework === 'react' ? code : framework === 'vue' ? (vueCode || code) : '<!-- Svelte chart example coming soon. -->'
 
   const copyCode = () => {
     navigator.clipboard.writeText(currentCode)
@@ -1313,10 +1315,10 @@ function ChartCard({
             <DialogHeader className="p-6 pb-4 pr-14">
               <DialogTitle className="flex items-center gap-2">
                 {title}
-                <Badge variant={framework === 'react' ? 'info' : 'success'} className="gap-1">
-                  {framework === 'react' ? <ReactIcon className="h-3 w-3" /> : <VueIcon className="h-3 w-3" />}
-                  {framework === 'react' ? 'React' : 'Vue'}
-                </Badge>
+                <Badge variant={frameworkBadgeVariants[framework]} className={`gap-1 ${frameworkBadgeClasses[framework]}`}>
+                    <FrameworkIcon framework={framework} className="h-3 w-3" />
+                    {frameworkLabels[framework]}
+                  </Badge>
               </DialogTitle>
               <div className="pt-2">
                 <Button variant="outline" size="sm" onClick={copyCode} className="gap-2">
@@ -1326,9 +1328,7 @@ function ChartCard({
               </div>
             </DialogHeader>
             <ScrollArea className="max-h-[60vh] px-6 pb-6">
-              <pre className="p-4 bg-muted border-3 border-foreground text-sm whitespace-pre-wrap break-words">
-                <code className="text-xs leading-relaxed block">{currentCode}</code>
-              </pre>
+              <CodeBlock code={currentCode} language={framework === 'react' ? 'tsx' : framework === 'vue' ? 'vue' : 'svelte'} />
               {framework === 'vue' && !vueCode && (
                 <p className="mt-4 text-sm text-muted-foreground flex items-center gap-2">
                   <VueIcon className="h-4 w-4" /> Vue code sample coming soon. Uses vue-echarts for charting.
@@ -1370,9 +1370,9 @@ export function Charts() {
         <div className="container relative mx-auto py-12 px-4 md:px-6 text-center">
           <div className="flex items-center justify-center gap-3 mb-4">
             <Badge variant="accent">Charts</Badge>
-            <Badge variant={framework === 'react' ? 'info' : 'success'} className="gap-1.5">
-              {framework === 'react' ? <ReactIcon className="h-4 w-4" /> : <VueIcon className="h-4 w-4" />}
-              {framework === 'react' ? 'React' : 'Vue 3'}
+            <Badge variant={frameworkBadgeVariants[framework]} className={`gap-1.5 ${frameworkBadgeClasses[framework]}`}>
+              <FrameworkIcon framework={framework} className="h-4 w-4" />
+              {frameworkLabels[framework]}
             </Badge>
           </div>
           <h1 className="text-3xl font-black uppercase tracking-tight md:text-5xl">
@@ -2638,9 +2638,9 @@ export function Charts() {
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
                   Usage Example
-                  <Badge variant={framework === 'react' ? 'info' : 'success'} className="gap-1">
-                    {framework === 'react' ? <ReactIcon className="h-3 w-3" /> : <VueIcon className="h-3 w-3" />}
-                    {framework === 'react' ? 'React' : 'Vue'}
+                  <Badge variant={frameworkBadgeVariants[framework]} className={`gap-1 ${frameworkBadgeClasses[framework]}`}>
+                    <FrameworkIcon framework={framework} className="h-3 w-3" />
+                    {frameworkLabels[framework]}
                   </Badge>
                 </CardTitle>
                 <CardDescription>How to use the chart utilities</CardDescription>
@@ -2743,9 +2743,9 @@ const option = ref({
               <CardHeader className="border-b-3 border-foreground bg-muted">
                 <CardTitle className="flex items-center gap-2 text-base">
                   <Code className="h-4 w-4" /> Code
-                  <Badge variant={framework === 'react' ? 'info' : 'success'} className="gap-1 ml-auto">
-                    {framework === 'react' ? <ReactIcon className="h-3 w-3" /> : <VueIcon className="h-3 w-3" />}
-                    {framework === 'react' ? 'React' : 'Vue'}
+                  <Badge variant={frameworkBadgeVariants[framework]} className={`gap-1 ml-auto ${frameworkBadgeClasses[framework]}`}>
+                    <FrameworkIcon framework={framework} className="h-3 w-3" />
+                    {frameworkLabels[framework]}
                   </Badge>
                 </CardTitle>
               </CardHeader>
@@ -2821,9 +2821,9 @@ const option = ref({
               <CardHeader className="border-b-3 border-foreground bg-muted">
                 <CardTitle className="flex items-center gap-2 text-base">
                   <Code className="h-4 w-4" /> Code
-                  <Badge variant={framework === 'react' ? 'info' : 'success'} className="gap-1 ml-auto">
-                    {framework === 'react' ? <ReactIcon className="h-3 w-3" /> : <VueIcon className="h-3 w-3" />}
-                    {framework === 'react' ? 'React' : 'Vue'}
+                  <Badge variant={frameworkBadgeVariants[framework]} className={`gap-1 ml-auto ${frameworkBadgeClasses[framework]}`}>
+                    <FrameworkIcon framework={framework} className="h-3 w-3" />
+                    {frameworkLabels[framework]}
                   </Badge>
                 </CardTitle>
               </CardHeader>
@@ -2891,9 +2891,9 @@ const option = ref({
               <CardHeader className="border-b-3 border-foreground bg-muted">
                 <CardTitle className="flex items-center gap-2 text-base">
                   <Code className="h-4 w-4" /> Code
-                  <Badge variant={framework === 'react' ? 'info' : 'success'} className="gap-1 ml-auto">
-                    {framework === 'react' ? <ReactIcon className="h-3 w-3" /> : <VueIcon className="h-3 w-3" />}
-                    {framework === 'react' ? 'React' : 'Vue'}
+                  <Badge variant={frameworkBadgeVariants[framework]} className={`gap-1 ml-auto ${frameworkBadgeClasses[framework]}`}>
+                    <FrameworkIcon framework={framework} className="h-3 w-3" />
+                    {frameworkLabels[framework]}
                   </Badge>
                 </CardTitle>
               </CardHeader>
@@ -2973,9 +2973,9 @@ const option = ref({
               <CardHeader className="border-b-3 border-foreground bg-muted">
                 <CardTitle className="flex items-center gap-2 text-base">
                   <Code className="h-4 w-4" /> Code
-                  <Badge variant={framework === 'react' ? 'info' : 'success'} className="gap-1 ml-auto">
-                    {framework === 'react' ? <ReactIcon className="h-3 w-3" /> : <VueIcon className="h-3 w-3" />}
-                    {framework === 'react' ? 'React' : 'Vue'}
+                  <Badge variant={frameworkBadgeVariants[framework]} className={`gap-1 ml-auto ${frameworkBadgeClasses[framework]}`}>
+                    <FrameworkIcon framework={framework} className="h-3 w-3" />
+                    {frameworkLabels[framework]}
                   </Badge>
                 </CardTitle>
               </CardHeader>

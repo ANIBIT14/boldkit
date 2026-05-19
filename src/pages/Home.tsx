@@ -23,7 +23,16 @@ import {
 } from 'lucide-react'
 import { useState, useEffect, useRef, type CSSProperties } from 'react'
 import { SEO, pageSEO } from '@/components/SEO'
-import { useFramework, ReactIcon, VueIcon } from '@/hooks/use-framework'
+import {
+  FrameworkIcon,
+  frameworkActiveClasses,
+  frameworkLabels,
+  useFramework,
+  ReactIcon,
+  SvelteIcon,
+  VueIcon,
+  type Framework,
+} from '@/hooks/use-framework'
 import { useScrollReveal } from '@/hooks/use-scroll-reveal'
 import { useCountUp } from '@/hooks/use-count-up'
 import { COUNTS } from '@/config/routes-meta'
@@ -79,7 +88,7 @@ function DotMatrixPreview() {
 }
 
 const MARQUEE_ITEMS = [
-  `${COUNTS.components}+ Components`, 'React', 'Vue 3', 'Nuxt', `${COUNTS.charts} Charts`,
+  `${COUNTS.components}+ Components`, 'React', 'Vue 3', 'Nuxt', 'Svelte', `${COUNTS.charts} Charts`,
   `${COUNTS.shapes} Shapes`, `${COUNTS.blocks} Blocks`, 'TypeScript', 'Accessible',
   'Open Source', 'Free', 'Neubrutalism', 'Dot Matrix Studio', 'Canvas Effects', 'ASCII Art',
 ]
@@ -115,9 +124,10 @@ export function Home() {
   const featuresReveal  = useScrollReveal()
   const ctaReveal       = useScrollReveal()
 
-  const commands: Record<string, string> = {
+  const commands: Record<Framework, string> = {
     react: 'npx shadcn@latest add https://boldkit.dev/r/button.json',
-    vue:   'npx shadcn-vue@latest add https://boldkit.dev/r/vue/button.json',
+    vue: 'npx shadcn-vue@latest add https://boldkit.dev/r/vue/button.json',
+    svelte: 'npx shadcn-svelte@latest add https://boldkit.dev/r/svelte/button.json',
   }
 
   const copyCommand = async () => {
@@ -164,7 +174,7 @@ export function Home() {
 
                 {/* Version badge row */}
                 <div className="mb-5 flex flex-wrap items-center gap-2 animate-stagger-fade-in stagger-1">
-                  <Badge variant="accent" className="gap-1.5">
+                  <Badge variant="secondary" className="gap-1.5">
                     <ReactIcon className="h-4 w-4" /> React
                   </Badge>
                   <Badge variant="success" className="gap-1.5">
@@ -176,6 +186,9 @@ export function Home() {
                     </svg>
                     Nuxt
                     <span className="ml-0.5 rounded-sm bg-background/25 px-1 py-px text-[9px] font-black">NEW</span>
+                  </Badge>
+                  <Badge variant="default" className="gap-1.5">
+                    <SvelteIcon className="h-4 w-4" /> Svelte
                   </Badge>
                   <span className="h-4 w-[2px] bg-foreground/20 hidden sm:block" />
                   <span className="text-[11px] font-black uppercase tracking-widest text-muted-foreground hidden sm:block" style={MONO}>v3.3.2</span>
@@ -236,22 +249,21 @@ export function Home() {
                 {/* Framework toggle + CLI */}
                 <div className="w-full space-y-2 animate-stagger-fade-in stagger-6">
                   <div className="inline-flex border-3 border-foreground bg-background">
-                    <button
-                      onClick={() => setFramework('react')}
-                      className={`flex items-center gap-1.5 px-3 py-1.5 text-sm font-bold transition-colors ${
-                        framework === 'react' ? 'bg-primary' : 'hover:bg-muted'
-                      }`}
-                    >
-                      <ReactIcon className="h-4 w-4" /> React
-                    </button>
-                    <button
-                      onClick={() => setFramework('vue')}
-                      className={`flex items-center gap-1.5 px-3 py-1.5 text-sm font-bold transition-colors border-l-3 border-foreground ${
-                        framework === 'vue' ? 'bg-success' : 'hover:bg-muted'
-                      }`}
-                    >
-                      <VueIcon className="h-4 w-4" /> Vue
-                    </button>
+                    {(['react', 'vue', 'svelte'] as const).map((item, index) => (
+                      <button
+                        key={item}
+                        onClick={() => setFramework(item)}
+                        className={`flex items-center gap-1.5 px-3 py-1.5 text-sm font-bold transition-colors ${
+                          index > 0 ? 'border-l-3 border-foreground' : ''
+                        } ${
+                          framework === item
+                            ? frameworkActiveClasses[item]
+                            : 'hover:bg-muted'
+                        }`}
+                      >
+                        <FrameworkIcon framework={item} className="h-4 w-4" /> {frameworkLabels[item]}
+                      </button>
+                    ))}
                   </div>
                   <div className="flex w-full min-w-0 items-center gap-2 border-3 border-foreground bg-muted px-4 py-2 bk-shadow">
                     <code className="min-w-0 flex-1 truncate text-xs font-mono">{commands[framework]}</code>
@@ -860,7 +872,7 @@ export function Home() {
                   SHAPE<br /><span className="text-primary">BUILDER</span>
                 </h3>
                 <p className="text-background/60 text-sm leading-relaxed mb-6 border-l-2 border-primary/40 pl-3" style={MONO}>
-                  42 shapes. 7 animations. React & Vue. Dial in every prop and copy the code.
+                  42 shapes. 7 animations. React, Vue, and Svelte. Dial in every prop and copy the code.
                 </p>
                 {/* Mini shape grid */}
                 <div className="grid grid-cols-3 gap-2 mb-6">
@@ -1072,7 +1084,7 @@ export function Home() {
                 ))}
               </div>
               <div className="mt-4 flex flex-wrap gap-1.5">
-                {['5 Charsets', '4 Sizes', 'React & Vue'].map(v => (
+                {['5 Charsets', '4 Sizes', 'React · Vue · Svelte'].map(v => (
                   <span key={v} className="text-[10px] font-bold uppercase border border-white/15 px-2 py-0.5 text-white/40" style={MONO}>{v}</span>
                 ))}
               </div>
@@ -1146,7 +1158,7 @@ export function Home() {
                     <Layers className="h-10 w-10 stroke-[3]" />
                     <div>
                       <CardTitle>Multi-Framework</CardTitle>
-                      <p className="mt-1 text-sm font-medium">React, Vue 3 & Nuxt</p>
+                      <p className="mt-1 text-sm font-medium">React, Vue 3, Svelte & Nuxt</p>
                     </div>
                   </div>
                 </CardHeader>
@@ -1155,6 +1167,7 @@ export function Home() {
                   <div className="flex gap-2">
                     <Badge variant="outline" className="gap-1"><ReactIcon className="h-3 w-3" /> React</Badge>
                     <Badge variant="outline" className="gap-1"><VueIcon className="h-3 w-3" /> Vue</Badge>
+                    <Badge variant="outline" className="gap-1"><SvelteIcon className="h-3 w-3" /> Svelte</Badge>
                     <Badge variant="outline">Nuxt</Badge>
                   </div>
                   <div className="mt-auto space-y-2 border-t-2 border-foreground pt-4">
@@ -1165,6 +1178,10 @@ export function Home() {
                     <code className="block border-2 border-foreground bg-muted p-2.5 text-[11px] font-mono leading-relaxed">
                       npx shadcn-vue@latest add<br />
                       boldkit.dev/r/vue/button.json
+                    </code>
+                    <code className="block border-2 border-foreground bg-muted p-2.5 text-[11px] font-mono leading-relaxed">
+                      npx shadcn-svelte@latest add<br />
+                      boldkit.dev/r/svelte/button.json
                     </code>
                   </div>
                 </CardContent>
@@ -1299,7 +1316,7 @@ export function Home() {
                   <span className="text-primary">BOLD.</span>
                 </div>
                 <p className="max-w-sm text-sm text-background/60" style={MONO}>
-                  Free, open-source, and ready for production. Start building in seconds with React, Vue 3, or Nuxt.
+                  Free, open-source, and ready for production. Start building in seconds with React, Vue 3, Svelte, or Nuxt.
                 </p>
               </div>
 

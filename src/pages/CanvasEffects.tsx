@@ -3,7 +3,7 @@ import { Layout } from '@/components/layout'
 import { SEO, pageSEO } from '@/components/SEO'
 import { Copy, Check, Code2, Terminal } from 'lucide-react'
 import { toast } from 'sonner'
-import { useFramework, FrameworkToggle } from '@/hooks/use-framework'
+import { FrameworkToggle, frameworkCliNames, frameworkLabels, frameworkRegistryPaths, useFramework, type Framework } from '@/hooks/use-framework'
 import {
   DotBlob, Aurora, DotWave, MatrixRain, ParticleWeb,
   MouseRipple, FlowField, Metaballs, LissajousGrid, Plasma,
@@ -107,15 +107,13 @@ const GRID     = EFFECTS.filter(e => !e.featured)
 function EffectCard({ effect, featured = false, framework }: {
   effect:    EffectDef
   featured?: boolean
-  framework: string
+  framework: Framework
 }) {
   const [copied, setCopied]         = useState(false)
   const [copiedInstall, setCopiedInstall] = useState(false)
   const code = framework === 'react' ? effect.reactCode : effect.vueCode
 
-  const installCmd = framework === 'react'
-    ? `npx shadcn@latest add "https://boldkit.dev/r/${effect.id}.json"`
-    : `npx shadcn-vue@latest add "https://boldkit.dev/r/vue/${effect.id}.json"`
+  const installCmd = `npx ${frameworkCliNames[framework]}@latest add "https://boldkit.dev${frameworkRegistryPaths[framework]}/${effect.id}.json"`
 
   const copy = () => {
     navigator.clipboard.writeText(code)
@@ -175,7 +173,7 @@ function EffectCard({ effect, featured = false, framework }: {
             <button
               onClick={copy}
               className="shrink-0 flex items-center justify-center gap-1.5 min-w-[40px] min-h-[34px] px-2 border border-white/20 bg-black/50 text-white/70 text-[10px] font-bold uppercase tracking-wide transition-all hover:border-white/55 hover:bg-black/70 hover:text-white active:scale-95 backdrop-blur-sm"
-              title={`Copy ${framework} code`}
+              title={`Copy ${frameworkLabels[framework]} code`}
               aria-label={`Copy ${effect.name} code`}
             >
               {copied ? <Check size={11} /> : <Copy size={11} />}
@@ -225,13 +223,13 @@ function EffectCard({ effect, featured = false, framework }: {
 export function CanvasEffects() {
   const { framework } = useFramework()
 
-  const installLine = framework === 'react'
-    ? 'npx shadcn@latest add "https://boldkit.dev/r/aurora.json"'
-    : 'npx shadcn-vue@latest add "https://boldkit.dev/r/vue/aurora.json"'
+  const installLine = `npx ${frameworkCliNames[framework]}@latest add "https://boldkit.dev${frameworkRegistryPaths[framework]}/aurora.json"`
 
   const importLine = framework === 'react'
     ? "import { Aurora } from '@/components/ui/canvas-effects/Aurora'"
-    : "import Aurora from '@/components/ui/canvas-effects/Aurora.vue'"
+    : framework === 'vue'
+      ? "import Aurora from '@/components/ui/canvas-effects/Aurora.vue'"
+      : "import Aurora from '$lib/components/ui/canvas-effects/aurora.svelte'"
 
   return (
     <Layout>
@@ -282,12 +280,12 @@ export function CanvasEffects() {
 
             <p className="text-sm text-white/70 mb-7 max-w-xs mx-auto leading-relaxed" style={MONO}>
               10 animated canvas components.
-              <br />Zero dependencies · React · Vue 3 · Nuxt 3
+              <br />Zero dependencies · React · Vue 3 · Svelte · Nuxt 3
             </p>
 
             {/* Tag pills */}
             <div className="flex items-center justify-center gap-1.5 sm:gap-2 mb-6 flex-wrap">
-              {['10 Effects', 'React', 'Vue 3', 'Nuxt 3', 'TypeScript', 'Zero Deps'].map(tag => (
+              {['10 Effects', 'React', 'Vue 3', 'Svelte', 'Nuxt 3', 'TypeScript', 'Zero Deps'].map(tag => (
                 <span
                   key={tag}
                   className="text-[9px] font-black uppercase tracking-[0.18em] px-2 py-1 border border-white/25 text-white/65"

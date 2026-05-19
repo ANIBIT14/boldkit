@@ -12,38 +12,10 @@ import {
 } from '@/components/ui/breadcrumb'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
-import { Copy, Check, Home, LayoutGrid, Eye, Code } from 'lucide-react'
+import { Home, LayoutGrid, Eye, Code } from 'lucide-react'
 import { SEO } from '@/components/SEO'
-import { useFramework, FrameworkToggle, ReactIcon, VueIcon } from '@/hooks/use-framework'
-
-export function CodeBlock({ code, language = 'tsx' }: { code: string; language?: string }) {
-  const [copied, setCopied] = useState(false)
-
-  const copyCode = () => {
-    navigator.clipboard.writeText(code)
-    setCopied(true)
-    setTimeout(() => setCopied(false), 2000)
-  }
-
-  return (
-    <div className="relative">
-      <div className="absolute right-2 top-2 flex items-center gap-2 z-10 bg-muted px-2 py-1 border border-foreground/20">
-        <span className="text-xs text-muted-foreground">{language}</span>
-        <Button
-          variant="ghost"
-          size="icon"
-          className="h-6 w-6"
-          onClick={copyCode}
-        >
-          {copied ? <Check className="h-3 w-3" /> : <Copy className="h-3 w-3" />}
-        </Button>
-      </div>
-      <pre className="overflow-x-auto border-3 border-foreground bg-muted p-4 pr-24 text-sm max-h-96">
-        <code>{code}</code>
-      </pre>
-    </div>
-  )
-}
+import { FrameworkIcon, FrameworkToggle, frameworkBadgeClasses, frameworkBadgeVariants, frameworkLabels, useFramework } from '@/hooks/use-framework'
+import { CodeBlock } from './ComponentDoc'
 
 interface BlockVariant {
   name: string
@@ -51,6 +23,7 @@ interface BlockVariant {
   preview: ReactNode
   reactCode: string
   vueCode: string
+  svelteCode?: string
 }
 
 interface BlockDocProps {
@@ -107,9 +80,9 @@ export function BlockDoc({
                 <LayoutGrid className="h-3.5 w-3.5" />
                 {category === 'marketing' ? 'Marketing Block' : 'Application Block'}
               </Badge>
-              <Badge variant={framework === 'react' ? 'info' : 'success'} className="gap-1.5">
-                {framework === 'react' ? <ReactIcon className="h-3.5 w-3.5" /> : <VueIcon className="h-3.5 w-3.5" />}
-                {framework === 'react' ? 'React' : 'Vue 3'}
+              <Badge variant={frameworkBadgeVariants[framework]} className={`gap-1.5 ${frameworkBadgeClasses[framework]}`}>
+                <FrameworkIcon framework={framework} className="h-3.5 w-3.5" />
+                {frameworkLabels[framework]}
               </Badge>
             </div>
             <FrameworkToggle size="sm" />
@@ -171,8 +144,14 @@ export function BlockDoc({
 
             <TabsContent value="code" className="mt-4">
               <CodeBlock
-                code={framework === 'react' ? variants[activeVariant].reactCode : variants[activeVariant].vueCode}
-                language={framework === 'react' ? 'tsx' : 'vue'}
+                code={
+                  framework === 'react'
+                    ? variants[activeVariant].reactCode
+                    : framework === 'vue'
+                      ? variants[activeVariant].vueCode
+                      : variants[activeVariant].svelteCode || '<!-- Svelte block example coming soon. -->'
+                }
+                language={framework === 'react' ? 'tsx' : framework === 'vue' ? 'vue' : 'svelte'}
               />
             </TabsContent>
           </Tabs>
@@ -217,15 +196,17 @@ export function BlockDoc({
 
 // Use the ${variants[0].name} variant
 <${name.replace(/\s+/g, '')}.${variants[0].name} {...props} />`
-                  : `<script setup lang="ts">
+                  : framework === 'vue'
+                    ? `<script setup lang="ts">
 import { ${name.replace(/\s+/g, '')} } from '@/components/blocks/${category}'
 </script>
 
 <template>
   <${name.replace(/\s+/g, '')} variant="${variants[0].name.toLowerCase()}" v-bind="props" />
 </template>`
+                    : `<!-- Svelte block import examples are coming soon. -->`
               }
-              language={framework === 'react' ? 'tsx' : 'vue'}
+              language={framework === 'react' ? 'tsx' : framework === 'vue' ? 'vue' : 'svelte'}
             />
           </div>
         </section>

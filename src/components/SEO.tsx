@@ -33,8 +33,8 @@ interface SEOProps {
 }
 
 const defaultMeta = {
-  title: 'BoldKit — Neubrutalism UI for React & Vue 3',
-  description: `Free neubrutalism component library for React and Vue 3 with ${COUNTS.components}+ UI components, ${COUNTS.blocks} section blocks, ${COUNTS.templates} templates, ${COUNTS.shapes} animated SVG shapes, and ${COUNTS.charts} chart types. Built on shadcn/ui with thick borders, hard shadows, and bold colors.`,
+  title: 'BoldKit — Neubrutalism UI for React, Vue & Svelte',
+  description: `Free neubrutalism component library for React, Vue 3, and Svelte with ${COUNTS.components}+ UI components, ${COUNTS.blocks} section blocks, ${COUNTS.templates} templates, ${COUNTS.shapes} animated SVG shapes, and ${COUNTS.charts} chart types. Built on shadcn/ui with thick borders, hard shadows, and bold colors.`,
   ogImage: DEFAULT_OG_IMAGE,
   twitterCreator: '@boldkitdev',
   siteName: 'BoldKit',
@@ -165,7 +165,7 @@ export const pageSEO = {
   },
   docs: {
     title: 'Documentation',
-    description: 'Learn how to install and use BoldKit neubrutalism components in your React or Vue 3 project. Comprehensive guides, API references, and examples for both frameworks.',
+    description: 'Learn how to install and use BoldKit neubrutalism components in your React, Vue 3, or Svelte project. Comprehensive guides, API references, and examples across supported frameworks.',
     canonical: `${SITE_URL}/docs`,
     breadcrumbs: [
       { name: 'Home', url: `${SITE_URL}/` },

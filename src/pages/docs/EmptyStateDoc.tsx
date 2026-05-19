@@ -11,13 +11,14 @@ import {
 } from '@/components/ui/empty-state'
 import { CodeBlock } from '@/components/docs/ComponentDoc'
 import { SEO, getComponentSEO } from '@/components/SEO'
-import { useFramework, ReactIcon, VueIcon } from '@/hooks/use-framework'
+import { useFramework, ReactIcon, SvelteIcon, VueIcon, frameworkBadgeClasses, frameworkBadgeVariants } from '@/hooks/use-framework'
 import { Plus, Upload, Search, Inbox, Star, RotateCcw } from 'lucide-react'
 import { useState } from 'react'
 
 // ─── Install ───────────────────────────────────────────────────────────────
 const reactInstallCode = `npx shadcn@latest add "https://boldkit.dev/r/empty-state.json"`
 const vueInstallCode   = `npx shadcn-vue@latest add "https://boldkit.dev/r/vue/empty-state.json"`
+const svelteInstallCode = `npx shadcn-svelte@latest add "https://boldkit.dev/r/svelte/empty-state.json"`
 
 // ─── Basic Usage ───────────────────────────────────────────────────────────
 const reactUsageCode = `import {
@@ -80,6 +81,34 @@ import { Button } from '@/components/ui/button'
   </EmptyState>
 </template>`
 
+const svelteUsageCode = `<script lang="ts">
+  import {
+    EmptyState,
+    EmptyStateIcon,
+    EmptyStateTitle,
+    EmptyStateDescription,
+    EmptyStateActions,
+  } from '$lib/components/ui/empty-state'
+  import { Inbox, Plus } from 'lucide-svelte'
+  import Button from '$lib/components/ui/button/button.svelte'
+</script>
+
+<EmptyState>
+  <EmptyStateIcon>
+    <Inbox class="h-10 w-10" />
+  </EmptyStateIcon>
+  <EmptyStateTitle>No messages yet</EmptyStateTitle>
+  <EmptyStateDescription>
+    Your inbox is empty. Send a message to get started.
+  </EmptyStateDescription>
+  <EmptyStateActions>
+    <Button>
+      <Plus class="mr-2 h-4 w-4" />
+      Compose
+    </Button>
+  </EmptyStateActions>
+</EmptyState>`
+
 // ─── Presets ───────────────────────────────────────────────────────────────
 const reactPresetCode = `import { EmptyStatePreset } from '@/components/ui/empty-state'
 import { Button } from '@/components/ui/button'
@@ -122,6 +151,24 @@ import { Button } from '@/components/ui/button'
     </template>
   </EmptyStatePreset>
 </template>`
+
+const sveltePresetCode = `<script lang="ts">
+  import { EmptyStatePreset } from '$lib/components/ui/empty-state'
+  import Button from '$lib/components/ui/button/button.svelte'
+</script>
+
+<!-- Available presets:
+  'no-results' | 'no-data' | 'empty-inbox' | 'empty-folder' |
+  'no-users'   | 'empty-cart' | 'no-notifications' | 'no-images' |
+  'error'      | 'offline' | 'permission-denied' | 'coming-soon' |
+  'maintenance'| 'upload' -->
+<EmptyStatePreset preset="no-results">
+  {#snippet action()}
+    <Button variant="outline" onclick={() => clearSearch()}>
+      Clear search
+    </Button>
+  {/snippet}
+</EmptyStatePreset>`
 
 // ─── Animations ────────────────────────────────────────────────────────────
 const reactAnimationCode = `// Fade in on mount
@@ -285,6 +332,17 @@ const vueActionsCode = `<EmptyStatePreset preset="no-data">
 export function EmptyStateDoc() {
   const { framework } = useFramework()
   const [animKey, setAnimKey] = useState(0)
+  const isSvelte = framework === 'svelte'
+  const codeLanguage = framework === 'react' ? 'tsx' : isSvelte ? 'svelte' : 'vue'
+  const svelteExamplePending = '<!-- Svelte example coming soon. -->'
+  const getFrameworkCode = (code: Partial<Record<typeof framework, string>>) => code[framework] || svelteExamplePending
+  const frameworkIcon = framework === 'react'
+    ? <ReactIcon className="h-3.5 w-3.5" />
+    : isSvelte
+      ? <SvelteIcon className="h-3.5 w-3.5" />
+      : <VueIcon className="h-3.5 w-3.5" />
+  const frameworkLabel = framework === 'react' ? 'React' : isSvelte ? 'Svelte' : 'Vue 3'
+  const installCode = framework === 'react' ? reactInstallCode : isSvelte ? svelteInstallCode : vueInstallCode
 
   return (
     <>
@@ -296,9 +354,9 @@ export function EmptyStateDoc() {
           <div className="flex items-center gap-3 flex-wrap">
             <h1 className="text-3xl md:text-4xl font-black uppercase tracking-tight">Empty State</h1>
             <Badge variant="secondary">UI Component</Badge>
-            <Badge variant="success" className="gap-1.5">
-              {framework === 'react' ? <ReactIcon className="h-3.5 w-3.5" /> : <VueIcon className="h-3.5 w-3.5" />}
-              {framework === 'react' ? 'React' : 'Vue 3'}
+            <Badge variant={frameworkBadgeVariants[framework]} className={`gap-1.5 ${frameworkBadgeClasses[framework]}`}>
+              {frameworkIcon}
+              {frameworkLabel}
             </Badge>
             <Badge variant="info">New</Badge>
           </div>
@@ -312,7 +370,7 @@ export function EmptyStateDoc() {
         <section id="installation" className="space-y-4 scroll-mt-20">
           <h2 className="text-2xl font-bold uppercase">Installation</h2>
           <CodeBlock
-            code={framework === 'react' ? reactInstallCode : vueInstallCode}
+            code={installCode}
             language="bash"
           />
         </section>
@@ -338,8 +396,8 @@ export function EmptyStateDoc() {
             </EmptyState>
           </Card>
           <CodeBlock
-            code={framework === 'react' ? reactUsageCode : vueUsageCode}
-            language={framework === 'react' ? 'tsx' : 'vue'}
+            code={framework === 'react' ? reactUsageCode : isSvelte ? svelteUsageCode : vueUsageCode}
+            language={codeLanguage}
           />
         </section>
 
@@ -369,8 +427,8 @@ export function EmptyStateDoc() {
           </div>
 
           <CodeBlock
-            code={framework === 'react' ? reactPresetCode : vuePresetCode}
-            language={framework === 'react' ? 'tsx' : 'vue'}
+            code={framework === 'react' ? reactPresetCode : isSvelte ? sveltePresetCode : vuePresetCode}
+            language={codeLanguage}
           />
         </section>
 
@@ -419,8 +477,8 @@ export function EmptyStateDoc() {
           </div>
 
           <CodeBlock
-            code={framework === 'react' ? reactAnimationCode : vueAnimationCode}
-            language={framework === 'react' ? 'tsx' : 'vue'}
+            code={framework === 'react' ? reactAnimationCode : isSvelte ? svelteExamplePending : vueAnimationCode}
+            language={codeLanguage}
           />
         </section>
 
@@ -461,7 +519,7 @@ export function EmptyStateDoc() {
 
           <CodeBlock
             code={framework === 'react' ? reactLayoutCode : vueLayoutCode}
-            language={framework === 'react' ? 'tsx' : 'vue'}
+            language={codeLanguage}
           />
         </section>
 
@@ -511,8 +569,8 @@ export function EmptyStateDoc() {
           </div>
 
           <CodeBlock
-            code={variantsCode[framework]}
-            language={framework === 'react' ? 'tsx' : 'vue'}
+            code={getFrameworkCode(variantsCode)}
+            language={codeLanguage}
           />
         </section>
 
@@ -560,8 +618,8 @@ export function EmptyStateDoc() {
           </div>
 
           <CodeBlock
-            code={sizesCode[framework]}
-            language={framework === 'react' ? 'tsx' : 'vue'}
+            code={getFrameworkCode(sizesCode)}
+            language={codeLanguage}
           />
         </section>
 
@@ -586,8 +644,8 @@ export function EmptyStateDoc() {
           </div>
 
           <CodeBlock
-            code={iconColorsCode[framework]}
-            language={framework === 'react' ? 'tsx' : 'vue'}
+            code={getFrameworkCode(iconColorsCode)}
+            language={codeLanguage}
           />
         </section>
 
@@ -618,8 +676,8 @@ export function EmptyStateDoc() {
           </Card>
 
           <CodeBlock
-            code={framework === 'react' ? reactActionsCode : vueActionsCode}
-            language={framework === 'react' ? 'tsx' : 'vue'}
+            code={framework === 'react' ? reactActionsCode : isSvelte ? svelteExamplePending : vueActionsCode}
+            language={codeLanguage}
           />
         </section>
 
