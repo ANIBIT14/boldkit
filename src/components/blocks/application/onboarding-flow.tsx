@@ -461,12 +461,22 @@ export function WorkspaceSetup({
   const [workspaceName, setWorkspaceName] = React.useState('')
   const [memberEmail, setMemberEmail] = React.useState('')
   const [members, setMembers] = React.useState<string[]>([])
+  const [emailError, setEmailError] = React.useState<string | null>(null)
 
   const addMember = () => {
-    if (memberEmail && !members.includes(memberEmail)) {
-      setMembers([...members, memberEmail])
-      setMemberEmail('')
+    const trimmed = memberEmail.trim()
+    if (!trimmed) return
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(trimmed)) {
+      setEmailError('Enter a valid email address')
+      return
     }
+    if (members.includes(trimmed)) {
+      setEmailError('Already invited')
+      return
+    }
+    setMembers([...members, trimmed])
+    setMemberEmail('')
+    setEmailError(null)
   }
 
   const removeMember = (email: string) => {
@@ -513,13 +523,19 @@ export function WorkspaceSetup({
                 id="invite"
                 type="email"
                 value={memberEmail}
-                onChange={(e) => setMemberEmail(e.target.value)}
+                onChange={(e) => {
+                  setMemberEmail(e.target.value)
+                  if (emailError) setEmailError(null)
+                }}
                 placeholder="colleague@email.com"
               />
               <Button type="button" variant="outline" onClick={addMember}>
                 Add
               </Button>
             </div>
+            {emailError && (
+              <p className="text-xs font-bold text-destructive">{emailError}</p>
+            )}
           </div>
 
           {members.length > 0 && (

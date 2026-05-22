@@ -197,8 +197,8 @@ export function LogoCloudWithStats({
   stats,
   className,
 }: LogoCloudWithStatsProps) {
-  if (import.meta.env.DEV && logos.length > 9) {
-    console.warn(`[LogoCloud] WithStats variant only shows first 9 logos. ${logos.length} logos provided.`)
+  if (logos.length > 9) {
+    console.warn(`[LogoCloud] WithStats variant only shows first 9 logos. ${logos.length} logos provided — pass exactly 9 to silence this warning.`)
   }
   return (
     <section className={cn('py-16 px-4 md:px-8 lg:px-16', className)}>

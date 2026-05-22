@@ -262,6 +262,12 @@ const content = {
           <div class="text-xs font-bold uppercase tracking-wide text-muted-foreground">{{ unit.label }}</div>
         </div>
       </div>
+      <div
+        v-else-if="props.launchDate"
+        class="inline-block border-3 border-foreground bg-primary px-6 py-3 shadow-[4px_4px_0px_hsl(var(--shadow-color))]"
+      >
+        <span class="font-black uppercase text-primary-foreground">We're live!</span>
+      </div>
 
       <!-- Email capture -->
       <div v-if="!submitted" class="space-y-3">
