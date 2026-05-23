@@ -231,7 +231,7 @@ export function Rating({
             onClick={() => handleStarClick(starIndex)}
             onMouseMove={(e) => handleStarMouseMove(e, starIndex)}
             className={cn(
-              'flex items-center justify-center transition-transform focus:outline-none',
+              'flex items-center justify-center transition-transform focus:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2',
               interactive && 'hover:scale-110 cursor-pointer',
               !interactive && 'cursor-default'
             )}

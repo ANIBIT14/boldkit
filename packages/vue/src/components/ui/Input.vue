@@ -2,11 +2,28 @@
 import { computed } from 'vue'
 import { cn } from '@/lib/utils'
 
-const props = defineProps<{
+interface InputProps {
   class?: string
   modelValue?: string | number
   type?: string
-}>()
+  placeholder?: string
+  disabled?: boolean
+  readonly?: boolean
+  required?: boolean
+  name?: string
+  id?: string
+  autocomplete?: string
+  autofocus?: boolean
+  maxlength?: number | string
+  minlength?: number | string
+  max?: number | string
+  min?: number | string
+  step?: number | string
+  pattern?: string
+  inputmode?: 'none' | 'text' | 'decimal' | 'numeric' | 'tel' | 'search' | 'email' | 'url'
+}
+
+const props = defineProps<InputProps>()
 
 const emit = defineEmits<{
   'update:modelValue': [value: string | number]
