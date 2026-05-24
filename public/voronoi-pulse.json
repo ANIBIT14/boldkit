@@ -1,7 +1,7 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "voronoi-pulse",
-  "description": "Animated Voronoi tessellation \u2014 drifting seed points with pulsing cell fills and bright edges",
+  "description": "Animated Voronoi tessellation — drifting seed points with pulsing cell fills and bright edges",
   "dependencies": [],
   "registryDependencies": [],
   "files": [

@@ -7,6 +7,7 @@ import { TooltipComponent, VisualMapComponent, GridComponent } from 'echarts/com
 import VChart from 'vue-echarts'
 import { cn } from '@/lib/utils'
 import { neubrutalismTheme } from './chart-utils'
+import ChartEmpty from './ChartEmpty.vue'
 import type { HeatmapCellData } from './chart-types'
 
 use([CanvasRenderer, EChartsHeatmap, TooltipComponent, VisualMapComponent, GridComponent])
@@ -18,12 +19,26 @@ interface Props {
   showTooltip?: boolean
   height?: string
   class?: string
+  emptyMessage?: string
 }
+
+const emit = defineEmits<{
+  cellClick: [cell: HeatmapCellData]
+}>()
 
 const props = withDefaults(defineProps<Props>(), {
   showTooltip: true,
   height: '320px',
 })
+
+const isEmpty = computed(() => !props.data || props.data.length === 0)
+
+const handleClick = (params: unknown) => {
+  const data = (params as { data?: unknown }).data
+  if (!Array.isArray(data) || data.length < 3) return
+  const [ci, ri, value] = data as [number, number, number]
+  emit('cellClick', { row: props.rows[ri], col: props.cols[ci], value })
+}
 
 const option = computed(() => {
   const vals = props.data.length > 0 ? props.data.map(d => d.value) : [0]
@@ -89,11 +104,14 @@ const option = computed(() => {
 
 <template>
   <div :class="cn('w-full', props.class)" :style="{ height }">
+    <ChartEmpty v-if="isEmpty" :message="emptyMessage" />
     <VChart
+      v-else
       :option="option"
       :theme="neubrutalismTheme"
       :autoresize="true"
       style="width: 100%; height: 100%"
+      @click="handleClick"
     />
   </div>
 </template>

@@ -8,6 +8,7 @@ import VChart from 'vue-echarts'
 import { cn } from '@/lib/utils'
 import { neubrutalismTheme, type ChartConfig } from './chart-utils'
 import { chartContainerVariants } from './chart-variants'
+import ChartEmpty from './ChartEmpty.vue'
 import type { VariantProps } from 'class-variance-authority'
 
 // Register ECharts components
@@ -31,6 +32,7 @@ interface DonutChartProps {
   height?: string
   variant?: ChartVariants['variant']
   class?: string
+  emptyMessage?: string
 }
 
 const props = withDefaults(defineProps<DonutChartProps>(), {
@@ -41,6 +43,8 @@ const props = withDefaults(defineProps<DonutChartProps>(), {
   height: '300px',
   variant: 'default',
 })
+
+const isEmpty = computed(() => !props.data || props.data.length === 0)
 
 const option = computed(() => ({
   tooltip: {
@@ -86,7 +90,8 @@ const option = computed(() => ({
     data-slot="chart"
     :class="cn(chartContainerVariants({ variant }), props.class)"
   >
-    <div class="relative" :style="{ height }">
+    <ChartEmpty v-if="isEmpty" :message="emptyMessage" />
+    <div v-else class="relative" :style="{ height }">
       <VChart
         :option="option"
         :theme="neubrutalismTheme"

@@ -8,6 +8,7 @@ import VChart from 'vue-echarts'
 import { cn } from '@/lib/utils'
 import { neubrutalismTheme, type ChartConfig, CHART_PALETTES } from './chart-utils'
 import { chartContainerVariants } from './chart-variants'
+import ChartEmpty from './ChartEmpty.vue'
 import type { VariantProps } from 'class-variance-authority'
 
 // Register ECharts components
@@ -25,6 +26,7 @@ interface RadarChartProps {
   height?: string
   variant?: ChartVariants['variant']
   class?: string
+  emptyMessage?: string
 }
 
 const props = withDefaults(defineProps<RadarChartProps>(), {
@@ -34,6 +36,8 @@ const props = withDefaults(defineProps<RadarChartProps>(), {
   height: '300px',
   variant: 'default',
 })
+
+const isEmpty = computed(() => !props.data || props.data.length === 0 || !props.dataKeys || props.dataKeys.length === 0)
 
 const indicators = computed(() => {
   if (props.data.length === 0 || props.dataKeys.length === 0) {
@@ -119,7 +123,9 @@ const option = computed(() => ({
     data-slot="chart"
     :class="cn(chartContainerVariants({ variant }), props.class)"
   >
+    <ChartEmpty v-if="isEmpty" :message="emptyMessage" />
     <VChart
+      v-else
       :option="option"
       :theme="neubrutalismTheme"
       :autoresize="true"

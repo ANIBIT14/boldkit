@@ -299,6 +299,7 @@ export * from './shapes'
 
 // Charts
 export { default as ChartContainer } from './ChartContainer.vue'
+export { default as ChartEmpty } from './ChartEmpty.vue'
 export { default as DonutChart } from './DonutChart.vue'
 export { default as GaugeChart } from './GaugeChart.vue'
 export { default as RadarChart } from './RadarChart.vue'

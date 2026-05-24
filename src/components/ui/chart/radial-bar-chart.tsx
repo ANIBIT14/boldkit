@@ -6,6 +6,7 @@ import {
   PolarAngleAxis,
 } from 'recharts'
 import { ChartContainer } from './container'
+import { ChartEmpty } from './empty'
 import { ChartTooltip, ChartTooltipContent } from './tooltip'
 import { ChartLegend, ChartLegendContent } from './legend'
 import type { ChartConfig } from './types'
@@ -30,6 +31,7 @@ export interface RadialBarChartProps extends React.HTMLAttributes<HTMLDivElement
   endAngle?: number
   animated?: boolean
   maxValue?: number
+  emptyState?: React.ReactNode
 }
 
 const RadialBarChartComponent = React.forwardRef<HTMLDivElement, RadialBarChartProps>(
@@ -48,11 +50,16 @@ const RadialBarChartComponent = React.forwardRef<HTMLDivElement, RadialBarChartP
       endAngle = -270,
       animated = true,
       maxValue,
+      emptyState,
       className,
       ...props
     },
     ref
   ) => {
+    if (!data || data.length === 0) {
+      return <ChartEmpty ref={ref} message={emptyState} className={className} {...props} />
+    }
+
     // Calculate max value for the scale
     const calculatedMax = maxValue || (data.length > 0 ? Math.max(...data.map((d) => d.value)) : 1)
 

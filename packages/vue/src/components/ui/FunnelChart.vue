@@ -7,6 +7,7 @@ import { TooltipComponent, LegendComponent } from 'echarts/components'
 import VChart from 'vue-echarts'
 import { cn } from '@/lib/utils'
 import { neubrutalismTheme } from './chart-utils'
+import ChartEmpty from './ChartEmpty.vue'
 
 use([CanvasRenderer, EChartsFunnel, TooltipComponent, LegendComponent])
 
@@ -23,6 +24,7 @@ interface Props {
   animated?: boolean
   height?: string
   class?: string
+  emptyMessage?: string
 }
 
 const props = withDefaults(defineProps<Props>(), {
@@ -40,6 +42,8 @@ const COLORS = [
   'hsl(var(--info))',
   'hsl(var(--warning))',
 ]
+
+const isEmpty = computed(() => !props.data || props.data.length === 0)
 
 const option = computed(() => ({
   tooltip: props.showTooltip ? {
@@ -78,7 +82,9 @@ const option = computed(() => ({
 
 <template>
   <div :class="cn('w-full', props.class)" :style="{ height }">
+    <ChartEmpty v-if="isEmpty" :message="emptyMessage" />
     <VChart
+      v-else
       :option="option"
       :theme="neubrutalismTheme"
       :autoresize="true"

@@ -8,6 +8,7 @@ import VChart from 'vue-echarts'
 import { cn } from '@/lib/utils'
 import { neubrutalismTheme, type ChartConfig, CHART_PALETTES } from './chart-utils'
 import { chartContainerVariants } from './chart-variants'
+import ChartEmpty from './ChartEmpty.vue'
 import type { VariantProps } from 'class-variance-authority'
 
 // Register ECharts components
@@ -32,6 +33,7 @@ interface RadialBarChartProps {
   height?: string
   variant?: ChartVariants['variant']
   class?: string
+  emptyMessage?: string
 }
 
 const props = withDefaults(defineProps<RadialBarChartProps>(), {
@@ -42,6 +44,8 @@ const props = withDefaults(defineProps<RadialBarChartProps>(), {
   height: '300px',
   variant: 'default',
 })
+
+const isEmpty = computed(() => !props.data || props.data.length === 0)
 
 const maxVal = computed(() => props.maxValue || (props.data.length > 0 ? Math.max(...props.data.map(d => d.value)) * 1.2 : 1))
 
@@ -114,7 +118,8 @@ const option = computed(() => ({
     data-slot="chart"
     :class="cn(chartContainerVariants({ variant }), props.class)"
   >
-    <div class="relative" :style="{ height }">
+    <ChartEmpty v-if="isEmpty" :message="emptyMessage" />
+    <div v-else class="relative" :style="{ height }">
       <VChart
         :option="option"
         :theme="neubrutalismTheme"

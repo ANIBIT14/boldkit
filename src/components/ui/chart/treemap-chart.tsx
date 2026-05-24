@@ -1,6 +1,7 @@
 import * as React from 'react'
 import { cn } from '@/lib/utils'
 import { Treemap as RechartsTreemap, ResponsiveContainer, Tooltip } from 'recharts'
+import { ChartEmpty } from './empty'
 
 export interface TreemapChartData {
   name: string
@@ -17,6 +18,7 @@ export interface TreemapChartProps extends React.HTMLAttributes<HTMLDivElement> 
   height?: number
   /** Accessible label for screen readers (default: "Treemap chart") */
   ariaLabel?: string
+  emptyState?: React.ReactNode
 }
 
 const NEUBRUTALISM_COLORS = [
@@ -94,11 +96,16 @@ const TreemapChart = React.forwardRef<HTMLDivElement, TreemapChartProps>(
       animated = true,
       height = 320,
       ariaLabel = 'Treemap chart',
+      emptyState,
       className,
       ...props
     },
     ref
   ) => {
+    if (!data || data.length === 0) {
+      return <ChartEmpty ref={ref} message={emptyState} className={className} {...props} />
+    }
+
     return (
       <div
         ref={ref}

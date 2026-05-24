@@ -2,6 +2,7 @@ import * as React from 'react'
 import { cn } from '@/lib/utils'
 import { Pie, PieChart, Cell, Label } from 'recharts'
 import { ChartContainer } from './container'
+import { ChartEmpty } from './empty'
 import { ChartTooltip, ChartTooltipContent } from './tooltip'
 import type { ChartConfig } from './types'
 
@@ -21,6 +22,7 @@ export interface DonutChartProps extends React.HTMLAttributes<HTMLDivElement> {
   variant?: 'default' | 'separated'
   showTooltip?: boolean
   animated?: boolean
+  emptyState?: React.ReactNode
 }
 
 const DonutChart = React.forwardRef<HTMLDivElement, DonutChartProps>(
@@ -35,11 +37,16 @@ const DonutChart = React.forwardRef<HTMLDivElement, DonutChartProps>(
       variant = 'default',
       showTooltip = true,
       animated = true,
+      emptyState,
       className,
       ...props
     },
     ref
   ) => {
+    if (!data || data.length === 0) {
+      return <ChartEmpty ref={ref} message={emptyState} className={className} {...props} />
+    }
+
     const paddingAngle = variant === 'separated' ? 4 : 0
 
     // Calculate total for center content (available for custom center content)

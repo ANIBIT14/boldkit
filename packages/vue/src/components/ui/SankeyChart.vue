@@ -7,6 +7,7 @@ import { TooltipComponent } from 'echarts/components'
 import VChart from 'vue-echarts'
 import { cn } from '@/lib/utils'
 import { neubrutalismTheme } from './chart-utils'
+import ChartEmpty from './ChartEmpty.vue'
 import type { SankeyNode, SankeyLink } from './chart-types'
 
 use([CanvasRenderer, EChartsSankey, TooltipComponent])
@@ -18,6 +19,7 @@ interface Props {
   showLabels?: boolean
   height?: string
   class?: string
+  emptyMessage?: string
 }
 
 const props = withDefaults(defineProps<Props>(), {
@@ -34,6 +36,8 @@ const COLORS = [
   'hsl(var(--info))',
   'hsl(var(--warning))',
 ]
+
+const isEmpty = computed(() => !props.nodes || props.nodes.length === 0 || !props.links || props.links.length === 0)
 
 const option = computed(() => ({
   tooltip: props.showTooltip ? {
@@ -84,7 +88,9 @@ const option = computed(() => ({
 
 <template>
   <div :class="cn('w-full', props.class)" :style="{ height }">
+    <ChartEmpty v-if="isEmpty" :message="emptyMessage" />
     <VChart
+      v-else
       :option="option"
       :theme="neubrutalismTheme"
       :autoresize="true"

@@ -42,6 +42,18 @@ const Sparkline = React.forwardRef<HTMLDivElement, SparklineProps>(
     // Unique ID per instance prevents gradient collision when multiple sparklines render on the same page
     const uid = React.useId().replace(/:/g, '')
 
+    if (!data || data.length === 0) {
+      return (
+        <div
+          ref={ref}
+          aria-label="No data"
+          className={cn('inline-block border-b-2 border-dashed border-foreground/30', className)}
+          style={{ width, height }}
+          {...props}
+        />
+      )
+    }
+
     // Convert data array to format recharts expects
     const chartData = data.map((value, index) => ({ value, index }))
 

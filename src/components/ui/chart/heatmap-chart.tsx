@@ -1,5 +1,6 @@
 import * as React from 'react'
 import { cn } from '@/lib/utils'
+import { ChartEmpty } from './empty'
 
 export interface HeatmapCellData {
   row: string
@@ -20,6 +21,9 @@ export interface HeatmapChartProps extends React.HTMLAttributes<HTMLDivElement> 
   cellSize?: number
   /** Accessible label for screen readers (default: "Heatmap chart") */
   ariaLabel?: string
+  /** Fires when a cell is clicked or activated via keyboard (Enter/Space). */
+  onCellClick?: (cell: HeatmapCellData) => void
+  emptyState?: React.ReactNode
 }
 
 function interpolateOpacity(value: number, min: number, max: number): number {
@@ -59,12 +63,16 @@ const HeatmapChart = React.forwardRef<HTMLDivElement, HeatmapChartProps>(
       showTooltip = true,
       cellSize = 40,
       ariaLabel = 'Heatmap chart',
+      onCellClick,
+      emptyState,
       className,
       ...props
     },
     ref
   ) => {
     const [tooltip, setTooltip] = React.useState<{ x: number; y: number; row: string; col: string; value: number } | null>(null)
+    const isInteractive = !!onCellClick
+    const cellTabIndex = showTooltip || isInteractive ? 0 : undefined
 
     const valueMap = React.useMemo(() => {
       const map = new Map<string, number>()
@@ -80,6 +88,10 @@ const HeatmapChart = React.forwardRef<HTMLDivElement, HeatmapChartProps>(
 
     const labelWidth = showLabels ? 72 : 8
     const headerHeight = showLabels ? 32 : 8
+
+    if (!data || data.length === 0) {
+      return <ChartEmpty ref={ref} message={emptyState} className={className} {...props} />
+    }
 
     return (
       <div
@@ -140,8 +152,13 @@ const HeatmapChart = React.forwardRef<HTMLDivElement, HeatmapChartProps>(
                 return (
                   <div
                     key={col}
-                    tabIndex={showTooltip ? 0 : undefined}
-                    className="border border-foreground/30 cursor-default transition-all duration-100 hover:border-foreground hover:border-2 hover:z-10 focus:border-foreground focus:border-2 focus:z-10 focus:outline-none"
+                    role={isInteractive ? 'button' : undefined}
+                    aria-label={isInteractive ? `${row}, ${col}: ${value}` : undefined}
+                    tabIndex={cellTabIndex}
+                    className={cn(
+                      'border border-foreground/30 transition-all duration-100 hover:border-foreground hover:border-2 hover:z-10 focus:border-foreground focus:border-2 focus:z-10 focus:outline-none',
+                      isInteractive ? 'cursor-pointer' : 'cursor-default'
+                    )}
                     style={{
                       backgroundColor: getCellColor(intensity, colorLow, colorHigh),
                     }}
@@ -159,6 +176,17 @@ const HeatmapChart = React.forwardRef<HTMLDivElement, HeatmapChartProps>(
                       }
                     }}
                     onBlur={() => setTooltip(null)}
+                    onClick={onCellClick ? () => onCellClick({ row, col, value }) : undefined}
+                    onKeyDown={
+                      onCellClick
+                        ? (e) => {
+                            if (e.key === 'Enter' || e.key === ' ') {
+                              e.preventDefault()
+                              onCellClick({ row, col, value })
+                            }
+                          }
+                        : undefined
+                    }
                   />
                 )
               })}

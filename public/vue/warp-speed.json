@@ -1,7 +1,7 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "warp-speed",
-  "description": "Hyperspace star tunnel \u2014 stars accelerate outward with perspective scaling and motion-blur streaks",
+  "description": "Hyperspace star tunnel — stars accelerate outward with perspective scaling and motion-blur streaks",
   "dependencies": [],
   "registryDependencies": [],
   "files": [

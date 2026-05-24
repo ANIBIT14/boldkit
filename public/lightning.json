@@ -1,7 +1,7 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "lightning",
-  "description": "Fractal electric arcs \u2014 branching lightning bolts with midpoint displacement and glow bloom",
+  "description": "Fractal electric arcs — branching lightning bolts with midpoint displacement and glow bloom",
   "dependencies": [],
   "registryDependencies": [],
   "files": [

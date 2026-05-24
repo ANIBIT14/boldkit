@@ -1,5 +1,6 @@
 import * as React from 'react'
 import { cn } from '@/lib/utils'
+import { ChartEmpty } from './empty'
 
 export interface SankeyNode {
   id: string
@@ -21,6 +22,7 @@ export interface SankeyChartProps extends React.HTMLAttributes<HTMLDivElement> {
   showLabels?: boolean
   /** Accessible label for screen readers (default: "Sankey chart") */
   ariaLabel?: string
+  emptyState?: React.ReactNode
 }
 
 const NODE_COLORS = [
@@ -200,11 +202,13 @@ const SankeyChart = React.forwardRef<HTMLDivElement, SankeyChartProps>(
       showTooltip = true,
       showLabels = true,
       ariaLabel = 'Sankey chart',
+      emptyState,
       className,
       ...props
     },
     ref
   ) => {
+    const isEmpty = !nodes || nodes.length === 0 || !links || links.length === 0
     const containerRef = React.useRef<HTMLDivElement>(null)
     const [width, setWidth] = React.useState(600)
     const [tooltip, setTooltip] = React.useState<{ x: number; y: number; label: string; value: number } | null>(null)
@@ -233,6 +237,10 @@ const SankeyChart = React.forwardRef<HTMLDivElement, SankeyChartProps>(
       () => computeLayout(nodes, links, width, height),
       [nodes, links, width, height]
     )
+
+    if (isEmpty) {
+      return <ChartEmpty ref={ref} message={emptyState} className={className} {...props} />
+    }
 
     return (
       <div

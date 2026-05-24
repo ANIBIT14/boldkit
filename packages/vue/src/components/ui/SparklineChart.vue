@@ -32,6 +32,8 @@ const props = withDefaults(defineProps<SparklineProps>(), {
   animated: true,
 })
 
+const isEmpty = computed(() => !props.data || props.data.length === 0)
+
 const resolvedColor = computed(() => {
   if (props.color) return props.color
   if (props.trend === 'up') return 'hsl(var(--success))'
@@ -139,6 +141,7 @@ const option = computed(() => {
     :class="cn('inline-block', props.class)"
     :style="{ width: typeof width === 'number' ? `${width}px` : width, height: `${height}px` }"
   >
-    <VChart :option="option" :autoresize="true" style="width: 100%; height: 100%" />
+    <div v-if="isEmpty" aria-label="No data" class="h-full w-full border-b-2 border-dashed border-foreground/30" />
+    <VChart v-else :option="option" :autoresize="true" style="width: 100%; height: 100%" />
   </div>
 </template>

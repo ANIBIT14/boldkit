@@ -1,7 +1,7 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "topography",
-  "description": "Animated contour map \u2014 noise-driven elevation field with marching-squares isolines",
+  "description": "Animated contour map — noise-driven elevation field with marching-squares isolines",
   "dependencies": [],
   "registryDependencies": [],
   "files": [

@@ -21,6 +21,10 @@ export type { ChartLegendContentProps } from './legend'
 // Utility functions
 export { getPayloadConfigFromPayload } from './utils'
 
+// Empty state
+export { ChartEmpty } from './empty'
+export type { ChartEmptyProps } from './empty'
+
 // Sparkline chart
 export { Sparkline } from './sparkline'
 export type { SparklineProps } from './sparkline'
