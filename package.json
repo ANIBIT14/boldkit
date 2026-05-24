@@ -3,7 +3,7 @@
     "packages/vue"
   ],
   "name": "boldkit",
-  "version": "3.4.0",
+  "version": "3.3.6",
   "description": "A neubrutalism UI component library for React and Vue 3 - Bold, raw, beautiful.",
   "author": "BoldKit Team",
   "license": "MIT",
