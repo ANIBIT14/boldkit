@@ -317,6 +317,36 @@
       "name": "stepper",
       "type": "registry:ui",
       "registryUrl": "https://boldkit.dev/r/vue/stepper.json"
+    },
+    {
+      "name": "combobox",
+      "type": "registry:ui",
+      "registryUrl": "https://boldkit.dev/r/vue/combobox.json"
+    },
+    {
+      "name": "donut-chart",
+      "type": "registry:ui",
+      "registryUrl": "https://boldkit.dev/r/vue/donut-chart.json"
+    },
+    {
+      "name": "gauge-chart",
+      "type": "registry:ui",
+      "registryUrl": "https://boldkit.dev/r/vue/gauge-chart.json"
+    },
+    {
+      "name": "radar-chart",
+      "type": "registry:ui",
+      "registryUrl": "https://boldkit.dev/r/vue/radar-chart.json"
+    },
+    {
+      "name": "radial-bar-chart",
+      "type": "registry:ui",
+      "registryUrl": "https://boldkit.dev/r/vue/radial-bar-chart.json"
+    },
+    {
+      "name": "sparkline",
+      "type": "registry:ui",
+      "registryUrl": "https://boldkit.dev/r/vue/sparkline.json"
     }
   ]
 }

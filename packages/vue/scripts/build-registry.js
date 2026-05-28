@@ -172,6 +172,54 @@ const componentMeta = {
     desc: 'Multi-step wizard/stepper component',
     files: ['Stepper', 'StepperContent', 'StepperItem', 'StepperList', 'StepperSeparator', 'StepperTrigger']
   },
+
+  // ──────────────────────────────────────────────────────────────────
+  // Migrated from hand-written public/r/vue/*.json (2026-05-26).
+  // Previously bypassed this script entirely, which meant they were
+  // vulnerable to manual edits that bypassed the @boldkit scoping helper.
+  // ──────────────────────────────────────────────────────────────────
+
+  // Combobox — Popover + Command composition
+  combobox: {
+    deps: ['reka-ui', 'lucide-vue-next'],
+    registryDeps: ['popover', 'command'],
+    desc: 'Searchable dropdown built by composing Popover and Command with neubrutalism styling. Includes single-select (ComboboxTrigger) and multi-select with removable chips (ComboboxMultiTrigger).',
+    files: ['ComboboxTrigger', 'ComboboxMultiTrigger'],
+  },
+
+  // Standalone charts (the parent `chart` entry above ships the chart
+  // family bundle; these are single-chart installs with their helpers)
+  'donut-chart': {
+    deps: ['vue-echarts', 'echarts', 'class-variance-authority'],
+    registryDeps: ['chart-utils'],
+    desc: 'A donut/pie chart component with neubrutalism styling and center content slot',
+    files: ['DonutChart'],
+    extraFiles: ['chart-utils.ts', 'chart-variants.ts'],
+  },
+  'gauge-chart': {
+    deps: ['class-variance-authority'],
+    desc: 'A gauge/speedometer chart component with customizable zones and neubrutalism styling',
+    files: ['GaugeChart'],
+  },
+  'radar-chart': {
+    deps: ['vue-echarts', 'echarts', 'class-variance-authority'],
+    registryDeps: ['chart-utils'],
+    desc: 'A radar/spider chart component with neubrutalism styling for multi-dimensional data visualization',
+    files: ['RadarChart'],
+    extraFiles: ['chart-utils.ts', 'chart-variants.ts'],
+  },
+  'radial-bar-chart': {
+    deps: ['vue-echarts', 'echarts', 'class-variance-authority'],
+    registryDeps: ['chart-utils'],
+    desc: 'A radial bar chart component with neubrutalism styling for progress-style data visualization',
+    files: ['RadialBarChart'],
+    extraFiles: ['chart-utils.ts', 'chart-variants.ts'],
+  },
+  sparkline: {
+    deps: ['vue-echarts', 'echarts', 'class-variance-authority'],
+    desc: 'A compact sparkline chart component for inline data visualization with line, area, and bar variants',
+    files: ['SparklineChart'],
+  },
 }
 
 const SHAPES_DIR = path.join(UI_DIR, 'shapes')
