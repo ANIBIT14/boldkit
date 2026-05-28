@@ -310,14 +310,18 @@ toggleSidebar()`}
 </template>`}
       >
         <div className="flex gap-4">
-          <div className="space-y-1 border-3 border-foreground p-2 bg-background">
-            <SidebarItem icon={<Home className="h-4 w-4" />} variant="active">
-              Active Item
-            </SidebarItem>
-            <SidebarItem icon={<Settings className="h-4 w-4" />} variant="default">
-              Default Item
-            </SidebarItem>
-          </div>
+          {/* SidebarItem calls useSidebar() so it must live inside a
+              SidebarProvider — even for this minimal active-state demo. */}
+          <SidebarProvider>
+            <div className="space-y-1 border-3 border-foreground p-2 bg-background">
+              <SidebarItem icon={<Home className="h-4 w-4" />} variant="active">
+                Active Item
+              </SidebarItem>
+              <SidebarItem icon={<Settings className="h-4 w-4" />} variant="default">
+                Default Item
+              </SidebarItem>
+            </div>
+          </SidebarProvider>
         </div>
       </ExampleSection>
 
