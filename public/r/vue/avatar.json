@@ -7,7 +7,7 @@
     "reka-ui"
   ],
   "registryDependencies": [
-    "utils"
+    "@boldkit/utils"
   ],
   "files": [
     {

@@ -6,8 +6,8 @@
     "recharts"
   ],
   "registryDependencies": [
-    "utils",
-    "chart"
+    "@boldkit/utils",
+    "@boldkit/chart"
   ],
   "files": [
     {

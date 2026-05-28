@@ -8,10 +8,10 @@
     "lucide-vue-next"
   ],
   "registryDependencies": [
-    "utils",
-    "button",
-    "calendar",
-    "popover"
+    "@boldkit/utils",
+    "@boldkit/button",
+    "@boldkit/calendar",
+    "@boldkit/popover"
   ],
   "files": [
     {

@@ -6,7 +6,7 @@
     "@radix-ui/react-switch"
   ],
   "registryDependencies": [
-    "utils"
+    "@boldkit/utils"
   ],
   "files": [
     {

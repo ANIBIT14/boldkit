@@ -113,7 +113,7 @@
         "lucide-react"
       ],
       "registryDependencies": [
-        "utils"
+        "@boldkit/utils"
       ],
       "files": [
         {
@@ -137,7 +137,7 @@
         "lucide-react"
       ],
       "registryDependencies": [
-        "utils"
+        "@boldkit/utils"
       ],
       "files": [
         {
@@ -160,7 +160,7 @@
         "@radix-ui/react-aspect-ratio"
       ],
       "registryDependencies": [
-        "utils"
+        "@boldkit/utils"
       ],
       "files": [
         {
@@ -183,7 +183,7 @@
         "@radix-ui/react-avatar"
       ],
       "registryDependencies": [
-        "utils"
+        "@boldkit/utils"
       ],
       "files": [
         {
@@ -206,7 +206,7 @@
         "class-variance-authority"
       ],
       "registryDependencies": [
-        "utils"
+        "@boldkit/utils"
       ],
       "files": [
         {
@@ -230,7 +230,7 @@
         "lucide-react"
       ],
       "registryDependencies": [
-        "utils"
+        "@boldkit/utils"
       ],
       "files": [
         {
@@ -254,7 +254,7 @@
         "class-variance-authority"
       ],
       "registryDependencies": [
-        "utils"
+        "@boldkit/utils"
       ],
       "files": [
         {
@@ -275,7 +275,7 @@
       "description": "Displays a card with header, content, and footer with thick borders and shadows",
       "dependencies": [],
       "registryDependencies": [
-        "utils"
+        "@boldkit/utils"
       ],
       "files": [
         {
@@ -299,7 +299,7 @@
         "lucide-react"
       ],
       "registryDependencies": [
-        "utils"
+        "@boldkit/utils"
       ],
       "files": [
         {
@@ -322,7 +322,7 @@
         "@radix-ui/react-collapsible"
       ],
       "registryDependencies": [
-        "utils"
+        "@boldkit/utils"
       ],
       "files": [
         {
@@ -345,9 +345,9 @@
         "lucide-react"
       ],
       "registryDependencies": [
-        "utils",
-        "popover",
-        "command"
+        "@boldkit/utils",
+        "@boldkit/popover",
+        "@boldkit/command"
       ],
       "files": [
         {
@@ -371,8 +371,8 @@
         "lucide-react"
       ],
       "registryDependencies": [
-        "utils",
-        "dialog"
+        "@boldkit/utils",
+        "@boldkit/dialog"
       ],
       "files": [
         {
@@ -396,7 +396,7 @@
         "lucide-react"
       ],
       "registryDependencies": [
-        "utils"
+        "@boldkit/utils"
       ],
       "files": [
         {
@@ -420,7 +420,7 @@
         "lucide-react"
       ],
       "registryDependencies": [
-        "utils"
+        "@boldkit/utils"
       ],
       "files": [
         {
@@ -441,7 +441,7 @@
       "description": "Displays a form input field with neubrutalism styling",
       "dependencies": [],
       "registryDependencies": [
-        "utils"
+        "@boldkit/utils"
       ],
       "files": [
         {
@@ -465,7 +465,7 @@
         "class-variance-authority"
       ],
       "registryDependencies": [
-        "utils"
+        "@boldkit/utils"
       ],
       "files": [
         {
@@ -488,7 +488,7 @@
         "@radix-ui/react-popover"
       ],
       "registryDependencies": [
-        "utils"
+        "@boldkit/utils"
       ],
       "files": [
         {
@@ -511,7 +511,7 @@
         "@radix-ui/react-progress"
       ],
       "registryDependencies": [
-        "utils"
+        "@boldkit/utils"
       ],
       "files": [
         {
@@ -535,7 +535,7 @@
         "lucide-react"
       ],
       "registryDependencies": [
-        "utils"
+        "@boldkit/utils"
       ],
       "files": [
         {
@@ -558,7 +558,7 @@
         "@radix-ui/react-scroll-area"
       ],
       "registryDependencies": [
-        "utils"
+        "@boldkit/utils"
       ],
       "files": [
         {
@@ -582,7 +582,7 @@
         "lucide-react"
       ],
       "registryDependencies": [
-        "utils"
+        "@boldkit/utils"
       ],
       "files": [
         {
@@ -605,7 +605,7 @@
         "@radix-ui/react-separator"
       ],
       "registryDependencies": [
-        "utils"
+        "@boldkit/utils"
       ],
       "files": [
         {
@@ -630,7 +630,7 @@
         "lucide-react"
       ],
       "registryDependencies": [
-        "utils"
+        "@boldkit/utils"
       ],
       "files": [
         {
@@ -651,7 +651,7 @@
       "description": "Used to show a placeholder while content is loading",
       "dependencies": [],
       "registryDependencies": [
-        "utils"
+        "@boldkit/utils"
       ],
       "files": [
         {
@@ -672,7 +672,7 @@
       "description": "A jelly slider with spring physics and bouncy animations",
       "dependencies": [],
       "registryDependencies": [
-        "utils"
+        "@boldkit/utils"
       ],
       "files": [
         {
@@ -695,7 +695,7 @@
         "sonner"
       ],
       "registryDependencies": [
-        "utils"
+        "@boldkit/utils"
       ],
       "files": [
         {
@@ -718,7 +718,7 @@
         "@radix-ui/react-switch"
       ],
       "registryDependencies": [
-        "utils"
+        "@boldkit/utils"
       ],
       "files": [
         {
@@ -739,7 +739,7 @@
       "description": "A responsive table component with neubrutalism styling",
       "dependencies": [],
       "registryDependencies": [
-        "utils"
+        "@boldkit/utils"
       ],
       "files": [
         {
@@ -762,7 +762,7 @@
         "@radix-ui/react-tabs"
       ],
       "registryDependencies": [
-        "utils"
+        "@boldkit/utils"
       ],
       "files": [
         {
@@ -783,7 +783,7 @@
       "description": "Displays a form textarea with neubrutalism styling",
       "dependencies": [],
       "registryDependencies": [
-        "utils"
+        "@boldkit/utils"
       ],
       "files": [
         {
@@ -807,7 +807,7 @@
         "class-variance-authority"
       ],
       "registryDependencies": [
-        "utils"
+        "@boldkit/utils"
       ],
       "files": [
         {
@@ -830,8 +830,8 @@
         "@radix-ui/react-toggle-group"
       ],
       "registryDependencies": [
-        "utils",
-        "toggle"
+        "@boldkit/utils",
+        "@boldkit/toggle"
       ],
       "files": [
         {
@@ -854,7 +854,7 @@
         "@radix-ui/react-tooltip"
       ],
       "registryDependencies": [
-        "utils"
+        "@boldkit/utils"
       ],
       "files": [
         {
@@ -877,8 +877,8 @@
         "@radix-ui/react-alert-dialog"
       ],
       "registryDependencies": [
-        "utils",
-        "button"
+        "@boldkit/utils",
+        "@boldkit/button"
       ],
       "files": [
         {
@@ -902,8 +902,8 @@
         "lucide-react"
       ],
       "registryDependencies": [
-        "utils",
-        "button"
+        "@boldkit/utils",
+        "@boldkit/button"
       ],
       "files": [
         {
@@ -926,7 +926,7 @@
         "vaul"
       ],
       "registryDependencies": [
-        "utils"
+        "@boldkit/utils"
       ],
       "files": [
         {
@@ -949,7 +949,7 @@
         "@radix-ui/react-hover-card"
       ],
       "registryDependencies": [
-        "utils"
+        "@boldkit/utils"
       ],
       "files": [
         {
@@ -973,7 +973,7 @@
         "lucide-react"
       ],
       "registryDependencies": [
-        "utils"
+        "@boldkit/utils"
       ],
       "files": [
         {
@@ -996,8 +996,8 @@
         "lucide-react"
       ],
       "registryDependencies": [
-        "utils",
-        "button"
+        "@boldkit/utils",
+        "@boldkit/button"
       ],
       "files": [
         {
@@ -1020,7 +1020,7 @@
         "recharts"
       ],
       "registryDependencies": [
-        "utils"
+        "@boldkit/utils"
       ],
       "files": [
         {
@@ -1041,7 +1041,7 @@
       "description": "Auto-scrolling text ticker with neubrutalism styling - a common brutalist design element",
       "dependencies": [],
       "registryDependencies": [
-        "utils"
+        "@boldkit/utils"
       ],
       "files": [
         {
@@ -1064,7 +1064,7 @@
         "class-variance-authority"
       ],
       "registryDependencies": [
-        "utils"
+        "@boldkit/utils"
       ],
       "files": [
         {
@@ -1087,7 +1087,7 @@
         "class-variance-authority"
       ],
       "registryDependencies": [
-        "utils"
+        "@boldkit/utils"
       ],
       "files": [
         {
@@ -1108,7 +1108,7 @@
       "description": "55 neubrutalist SVG shapes organized by category for badges, decorations, and visual accents",
       "dependencies": [],
       "registryDependencies": [
-        "utils"
+        "@boldkit/utils"
       ],
       "files": [
         {
@@ -1143,7 +1143,7 @@
         "class-variance-authority"
       ],
       "registryDependencies": [
-        "utils"
+        "@boldkit/utils"
       ],
       "files": [
         {
@@ -1166,7 +1166,7 @@
         "class-variance-authority"
       ],
       "registryDependencies": [
-        "utils"
+        "@boldkit/utils"
       ],
       "files": [
         {
@@ -1190,9 +1190,9 @@
         "lucide-react"
       ],
       "registryDependencies": [
-        "utils",
-        "card",
-        "progress"
+        "@boldkit/utils",
+        "@boldkit/card",
+        "@boldkit/progress"
       ],
       "files": [
         {
@@ -1216,7 +1216,7 @@
         "lucide-react"
       ],
       "registryDependencies": [
-        "utils"
+        "@boldkit/utils"
       ],
       "files": [
         {
@@ -1240,9 +1240,9 @@
         "lucide-react"
       ],
       "registryDependencies": [
-        "utils",
-        "progress",
-        "spinner"
+        "@boldkit/utils",
+        "@boldkit/progress",
+        "@boldkit/spinner"
       ],
       "files": [
         {
@@ -1265,7 +1265,7 @@
         "recharts"
       ],
       "registryDependencies": [
-        "utils"
+        "@boldkit/utils"
       ],
       "files": [
         {
@@ -1288,8 +1288,8 @@
         "recharts"
       ],
       "registryDependencies": [
-        "utils",
-        "chart"
+        "@boldkit/utils",
+        "@boldkit/chart"
       ],
       "files": [
         {
@@ -1312,8 +1312,8 @@
         "recharts"
       ],
       "registryDependencies": [
-        "utils",
-        "chart"
+        "@boldkit/utils",
+        "@boldkit/chart"
       ],
       "files": [
         {
@@ -1336,8 +1336,8 @@
         "recharts"
       ],
       "registryDependencies": [
-        "utils",
-        "chart"
+        "@boldkit/utils",
+        "@boldkit/chart"
       ],
       "files": [
         {
@@ -1360,7 +1360,7 @@
         "class-variance-authority"
       ],
       "registryDependencies": [
-        "utils"
+        "@boldkit/utils"
       ],
       "files": [
         {
@@ -1383,7 +1383,7 @@
         "recharts"
       ],
       "registryDependencies": [
-        "utils"
+        "@boldkit/utils"
       ],
       "files": [
         {
@@ -1406,7 +1406,7 @@
         "recharts"
       ],
       "registryDependencies": [
-        "utils"
+        "@boldkit/utils"
       ],
       "files": [
         {
@@ -1427,7 +1427,7 @@
       "description": "Heatmap grid for correlation and intensity data - custom CSS Grid implementation",
       "dependencies": [],
       "registryDependencies": [
-        "utils"
+        "@boldkit/utils"
       ],
       "files": [
         {
@@ -1448,7 +1448,7 @@
       "description": "Sankey flow diagram for showing proportional flows between nodes - custom SVG implementation",
       "dependencies": [],
       "registryDependencies": [
-        "utils"
+        "@boldkit/utils"
       ],
       "files": [
         {
@@ -1472,7 +1472,7 @@
         "lucide-react"
       ],
       "registryDependencies": [
-        "utils"
+        "@boldkit/utils"
       ],
       "files": [
         {
@@ -1495,7 +1495,7 @@
         "lucide-react"
       ],
       "registryDependencies": [
-        "utils"
+        "@boldkit/utils"
       ],
       "files": [
         {
@@ -1518,10 +1518,10 @@
         "lucide-react"
       ],
       "registryDependencies": [
-        "utils",
-        "button",
-        "popover",
-        "scroll-area"
+        "@boldkit/utils",
+        "@boldkit/button",
+        "@boldkit/popover",
+        "@boldkit/scroll-area"
       ],
       "files": [
         {
@@ -1546,10 +1546,10 @@
         "lucide-react"
       ],
       "registryDependencies": [
-        "utils",
-        "button",
-        "calendar",
-        "popover"
+        "@boldkit/utils",
+        "@boldkit/button",
+        "@boldkit/calendar",
+        "@boldkit/popover"
       ],
       "files": [
         {
@@ -1573,13 +1573,13 @@
         "lucide-react"
       ],
       "registryDependencies": [
-        "utils",
-        "button",
-        "checkbox",
-        "dropdown-menu",
-        "input",
-        "select",
-        "table"
+        "@boldkit/utils",
+        "@boldkit/button",
+        "@boldkit/checkbox",
+        "@boldkit/dropdown-menu",
+        "@boldkit/input",
+        "@boldkit/select",
+        "@boldkit/table"
       ],
       "files": [
         {
@@ -1603,8 +1603,8 @@
         "lucide-react"
       ],
       "registryDependencies": [
-        "utils",
-        "button"
+        "@boldkit/utils",
+        "@boldkit/button"
       ],
       "files": [
         {
@@ -1627,7 +1627,7 @@
         "class-variance-authority"
       ],
       "registryDependencies": [
-        "utils"
+        "@boldkit/utils"
       ],
       "files": [
         {
@@ -1651,9 +1651,9 @@
         "lucide-react"
       ],
       "registryDependencies": [
-        "utils",
-        "checkbox",
-        "collapsible"
+        "@boldkit/utils",
+        "@boldkit/checkbox",
+        "@boldkit/collapsible"
       ],
       "files": [
         {
@@ -1677,10 +1677,10 @@
         "lucide-react"
       ],
       "registryDependencies": [
-        "utils",
-        "button",
-        "sheet",
-        "tooltip"
+        "@boldkit/utils",
+        "@boldkit/button",
+        "@boldkit/sheet",
+        "@boldkit/tooltip"
       ],
       "files": [
         {
@@ -1703,8 +1703,8 @@
         "lucide-react"
       ],
       "registryDependencies": [
-        "utils",
-        "button"
+        "@boldkit/utils",
+        "@boldkit/button"
       ],
       "files": [
         {
@@ -1728,7 +1728,7 @@
         "lucide-react"
       ],
       "registryDependencies": [
-        "utils"
+        "@boldkit/utils"
       ],
       "files": [
         {
@@ -1749,7 +1749,7 @@
       "description": "Framework-agnostic math engine for parametric curve animations (rose, lissajous, butterfly, hypotrochoid, cardioid, lemniscate, fourier, spiral, heart)",
       "dependencies": [],
       "registryDependencies": [
-        "utils"
+        "@boldkit/utils"
       ],
       "files": [
         {
@@ -1767,8 +1767,8 @@
         "class-variance-authority"
       ],
       "registryDependencies": [
-        "utils",
-        "math-curves"
+        "@boldkit/utils",
+        "@boldkit/math-curves"
       ],
       "files": [
         {
@@ -1791,8 +1791,8 @@
         "class-variance-authority"
       ],
       "registryDependencies": [
-        "utils",
-        "math-curves"
+        "@boldkit/utils",
+        "@boldkit/math-curves"
       ],
       "files": [
         {
@@ -1815,8 +1815,8 @@
         "@radix-ui/react-slot"
       ],
       "registryDependencies": [
-        "utils",
-        "math-curves"
+        "@boldkit/utils",
+        "@boldkit/math-curves"
       ],
       "files": [
         {
@@ -1837,7 +1837,7 @@
       "description": "7 animated ASCII art components (Spiral, Rose, Wave, Vortex, Pulse, Matrix, Grid) with 5 character sets, 4 sizes, and SSR-safe static mode",
       "dependencies": [],
       "registryDependencies": [
-        "utils"
+        "@boldkit/utils"
       ],
       "files": [
         {

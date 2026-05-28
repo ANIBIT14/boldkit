@@ -4,7 +4,7 @@
   "description": "Heatmap grid for correlation and intensity data - custom CSS Grid implementation",
   "dependencies": [],
   "registryDependencies": [
-    "utils"
+    "@boldkit/utils"
   ],
   "files": [
     {

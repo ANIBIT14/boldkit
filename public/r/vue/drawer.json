@@ -7,7 +7,7 @@
     "vaul-vue"
   ],
   "registryDependencies": [
-    "utils"
+    "@boldkit/utils"
   ],
   "files": [
     {

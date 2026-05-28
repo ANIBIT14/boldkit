@@ -6,7 +6,7 @@
     "recharts"
   ],
   "registryDependencies": [
-    "utils"
+    "@boldkit/utils"
   ],
   "files": [
     {

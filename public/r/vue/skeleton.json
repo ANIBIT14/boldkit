@@ -5,7 +5,7 @@
   "description": "Displays a loading placeholder",
   "dependencies": [],
   "registryDependencies": [
-    "utils"
+    "@boldkit/utils"
   ],
   "files": [
     {

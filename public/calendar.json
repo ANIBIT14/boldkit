@@ -7,8 +7,8 @@
     "lucide-react"
   ],
   "registryDependencies": [
-    "utils",
-    "button"
+    "@boldkit/utils",
+    "@boldkit/button"
   ],
   "files": [
     {

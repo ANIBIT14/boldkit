@@ -6,7 +6,7 @@
     "@radix-ui/react-hover-card"
   ],
   "registryDependencies": [
-    "utils"
+    "@boldkit/utils"
   ],
   "files": [
     {

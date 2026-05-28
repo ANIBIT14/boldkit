@@ -7,7 +7,7 @@
     "lucide-vue-next"
   ],
   "registryDependencies": [
-    "utils"
+    "@boldkit/utils"
   ],
   "files": [
     {

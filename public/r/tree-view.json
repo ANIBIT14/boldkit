@@ -7,9 +7,9 @@
     "lucide-react"
   ],
   "registryDependencies": [
-    "utils",
-    "checkbox",
-    "collapsible"
+    "@boldkit/utils",
+    "@boldkit/checkbox",
+    "@boldkit/collapsible"
   ],
   "files": [
     {

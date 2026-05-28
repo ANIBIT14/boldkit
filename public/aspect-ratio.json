@@ -6,7 +6,7 @@
     "@radix-ui/react-aspect-ratio"
   ],
   "registryDependencies": [
-    "utils"
+    "@boldkit/utils"
   ],
   "files": [
     {

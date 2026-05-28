@@ -6,7 +6,7 @@
     "@radix-ui/react-popover"
   ],
   "registryDependencies": [
-    "utils"
+    "@boldkit/utils"
   ],
   "files": [
     {

@@ -5,7 +5,7 @@
   "description": "SVG shape components for decorative elements",
   "dependencies": [],
   "registryDependencies": [
-    "utils"
+    "@boldkit/utils"
   ],
   "files": [
     {

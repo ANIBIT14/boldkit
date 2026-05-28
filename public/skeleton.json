@@ -4,7 +4,7 @@
   "description": "Used to show a placeholder while content is loading",
   "dependencies": [],
   "registryDependencies": [
-    "utils"
+    "@boldkit/utils"
   ],
   "files": [
     {

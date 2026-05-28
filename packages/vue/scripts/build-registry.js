@@ -253,13 +253,22 @@ function createRegistryJson(name, meta) {
     return null
   }
 
+  // Scope all BoldKit-owned cross-references with the @boldkit/ namespace.
+  // Without this, shadcn CLI resolves bare names against the default registry
+  // (ui.shadcn.com) instead of BoldKit's, breaking installs. Bare names that
+  // look like a full URL are passed through unchanged for completeness.
+  const scopeBk = (d) =>
+    d.startsWith('@') || d.startsWith('http://') || d.startsWith('https://')
+      ? d
+      : `@boldkit/${d}`
+
   return {
     $schema: 'https://ui.shadcn.com/schema/registry-item.json',
     name,
     type: 'registry:ui',
     description: meta.desc,
     dependencies: meta.deps || [],
-    registryDependencies: ['utils', ...(meta.registryDeps || [])],
+    registryDependencies: ['utils', ...(meta.registryDeps || [])].map(scopeBk),
     files: registryFiles
   }
 }
@@ -298,7 +307,7 @@ function createShapesRegistry() {
     type: 'registry:ui',
     description: 'SVG shape components for decorative elements',
     dependencies: [],
-    registryDependencies: ['utils'],
+    registryDependencies: ['@boldkit/utils'],
     files: registryFiles
   }
 }

@@ -6,7 +6,7 @@
     "sonner"
   ],
   "registryDependencies": [
-    "utils"
+    "@boldkit/utils"
   ],
   "files": [
     {

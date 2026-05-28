@@ -6,7 +6,7 @@
     "@radix-ui/react-scroll-area"
   ],
   "registryDependencies": [
-    "utils"
+    "@boldkit/utils"
   ],
   "files": [
     {

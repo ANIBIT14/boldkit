@@ -7,9 +7,9 @@
     "lucide-react"
   ],
   "registryDependencies": [
-    "utils",
-    "progress",
-    "spinner"
+    "@boldkit/utils",
+    "@boldkit/progress",
+    "@boldkit/spinner"
   ],
   "files": [
     {

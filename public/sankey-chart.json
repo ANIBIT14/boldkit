@@ -4,7 +4,7 @@
   "description": "Sankey flow diagram for showing proportional flows between nodes - custom SVG implementation",
   "dependencies": [],
   "registryDependencies": [
-    "utils"
+    "@boldkit/utils"
   ],
   "files": [
     {

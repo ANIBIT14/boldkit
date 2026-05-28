@@ -6,8 +6,8 @@
     "@radix-ui/react-slot"
   ],
   "registryDependencies": [
-    "utils",
-    "math-curves"
+    "@boldkit/utils",
+    "@boldkit/math-curves"
   ],
   "files": [
     {

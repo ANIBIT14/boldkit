@@ -6,9 +6,9 @@
     "lucide-react"
   ],
   "registryDependencies": [
-    "utils",
-    "popover",
-    "command"
+    "@boldkit/utils",
+    "@boldkit/popover",
+    "@boldkit/command"
   ],
   "files": [
     {

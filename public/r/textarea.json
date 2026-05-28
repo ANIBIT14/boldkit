@@ -4,7 +4,7 @@
   "description": "Displays a form textarea with neubrutalism styling",
   "dependencies": [],
   "registryDependencies": [
-    "utils"
+    "@boldkit/utils"
   ],
   "files": [
     {

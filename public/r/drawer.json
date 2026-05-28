@@ -6,7 +6,7 @@
     "vaul"
   ],
   "registryDependencies": [
-    "utils"
+    "@boldkit/utils"
   ],
   "files": [
     {

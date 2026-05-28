@@ -7,7 +7,7 @@
     "class-variance-authority"
   ],
   "registryDependencies": [
-    "utils"
+    "@boldkit/utils"
   ],
   "files": [
     {

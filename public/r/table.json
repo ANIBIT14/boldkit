@@ -4,7 +4,7 @@
   "description": "A responsive table component with neubrutalism styling",
   "dependencies": [],
   "registryDependencies": [
-    "utils"
+    "@boldkit/utils"
   ],
   "files": [
     {

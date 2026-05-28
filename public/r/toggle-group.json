@@ -6,8 +6,8 @@
     "@radix-ui/react-toggle-group"
   ],
   "registryDependencies": [
-    "utils",
-    "toggle"
+    "@boldkit/utils",
+    "@boldkit/toggle"
   ],
   "files": [
     {

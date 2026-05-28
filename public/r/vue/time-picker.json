@@ -7,10 +7,10 @@
     "lucide-vue-next"
   ],
   "registryDependencies": [
-    "utils",
-    "button",
-    "popover",
-    "scroll-area"
+    "@boldkit/utils",
+    "@boldkit/button",
+    "@boldkit/popover",
+    "@boldkit/scroll-area"
   ],
   "files": [
     {

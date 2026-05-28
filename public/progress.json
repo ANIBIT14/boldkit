@@ -6,7 +6,7 @@
     "@radix-ui/react-progress"
   ],
   "registryDependencies": [
-    "utils"
+    "@boldkit/utils"
   ],
   "files": [
     {

@@ -7,9 +7,9 @@
     "lucide-react"
   ],
   "registryDependencies": [
-    "utils",
-    "card",
-    "progress"
+    "@boldkit/utils",
+    "@boldkit/card",
+    "@boldkit/progress"
   ],
   "files": [
     {

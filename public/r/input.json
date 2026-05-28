@@ -4,7 +4,7 @@
   "description": "Displays a form input field with neubrutalism styling",
   "dependencies": [],
   "registryDependencies": [
-    "utils"
+    "@boldkit/utils"
   ],
   "files": [
     {
