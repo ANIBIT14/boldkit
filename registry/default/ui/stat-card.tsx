@@ -1,3 +1,4 @@
+/* eslint-disable react-refresh/only-export-components */
 import * as React from 'react'
 import { cva, type VariantProps } from 'class-variance-authority'
 import { cn } from '@/lib/utils'
@@ -100,8 +101,8 @@ const StatCard = React.forwardRef<HTMLDivElement, StatCardProps>(
             )}
           </div>
 
-          {/* Progress section for large variant */}
-          {(variant === 'large' || progress) && progress && (
+          {/* Progress section */}
+          {progress && (
             <div className="mt-4 pt-4 border-t-2 border-foreground/10">
               <div className="flex items-center justify-between text-sm mb-2">
                 <span className="text-muted-foreground">

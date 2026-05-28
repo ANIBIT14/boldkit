@@ -1,4 +1,3 @@
-import * as React from 'react'
 import { useTheme } from '@/hooks/use-theme'
 import { Toaster as Sonner } from 'sonner'
 

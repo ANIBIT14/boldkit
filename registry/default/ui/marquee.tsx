@@ -22,6 +22,12 @@ const speedClasses = {
   fast: 'animate-marquee-fast',
 }
 
+const reverseSpeedClasses = {
+  slow: 'animate-marquee-slow-reverse',
+  normal: 'animate-marquee-reverse',
+  fast: 'animate-marquee-fast-reverse',
+}
+
 const Marquee = React.forwardRef<HTMLDivElement, MarqueeProps>(
   (
     {
@@ -36,7 +42,7 @@ const Marquee = React.forwardRef<HTMLDivElement, MarqueeProps>(
     },
     ref
   ) => {
-    const animationClass = direction === 'right' ? 'animate-marquee-reverse' : speedClasses[speed]
+    const animationClass = direction === 'right' ? reverseSpeedClasses[speed] : speedClasses[speed]
 
     return (
       <div
@@ -44,7 +50,6 @@ const Marquee = React.forwardRef<HTMLDivElement, MarqueeProps>(
         className={cn(
           'flex overflow-hidden',
           bordered && 'border-3 border-foreground bg-background',
-          pauseOnHover && 'group',
           className
         )}
         {...props}
@@ -53,11 +58,8 @@ const Marquee = React.forwardRef<HTMLDivElement, MarqueeProps>(
           className={cn(
             'marquee-content flex shrink-0 items-center gap-8 py-3',
             animationClass,
-            pauseOnHover && 'group-hover:[animation-play-state:paused]'
+            pauseOnHover && 'hover:[animation-play-state:paused]'
           )}
-          style={{
-            animationDirection: direction === 'right' ? 'reverse' : 'normal',
-          }}
         >
           {Array.from({ length: repeat }).map((_, i) => (
             <React.Fragment key={i}>{children}</React.Fragment>
@@ -67,11 +69,8 @@ const Marquee = React.forwardRef<HTMLDivElement, MarqueeProps>(
           className={cn(
             'marquee-content flex shrink-0 items-center gap-8 py-3',
             animationClass,
-            pauseOnHover && 'group-hover:[animation-play-state:paused]'
+            pauseOnHover && 'hover:[animation-play-state:paused]'
           )}
-          style={{
-            animationDirection: direction === 'right' ? 'reverse' : 'normal',
-          }}
           aria-hidden="true"
         >
           {Array.from({ length: repeat }).map((_, i) => (

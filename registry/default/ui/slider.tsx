@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { cn } from '@/lib/utils'
 
-export interface SliderProps extends Omit<React.HTMLAttributes<HTMLDivElement>, 'onChange' | 'defaultValue' | 'aria-label' | 'aria-valuetext'> {
+export interface SliderProps extends Omit<React.HTMLAttributes<HTMLDivElement>, 'onChange' | 'defaultValue'> {
   value?: number[]
   defaultValue?: number[]
   min?: number
@@ -15,8 +15,6 @@ export interface SliderProps extends Omit<React.HTMLAttributes<HTMLDivElement>, 
   stiffness?: number
   damping?: number
   mass?: number
-  'aria-label'?: string | string[]
-  'aria-valuetext'?: string | ((value: number, index: number) => string)
 }
 
 interface SpringState {
@@ -40,8 +38,6 @@ const Slider = React.forwardRef<HTMLDivElement, SliderProps>(
       damping = 28,
       mass = 1,
       className,
-      'aria-label': ariaLabelProp,
-      'aria-valuetext': ariaValuetextProp,
       ...props
     },
     ref
@@ -49,14 +45,28 @@ const Slider = React.forwardRef<HTMLDivElement, SliderProps>(
     const trackRef = React.useRef<HTMLDivElement>(null)
     const animationRef = React.useRef<number | null>(null)
     const lastTimeRef = React.useRef<number>(0)
+    const isDraggingRef = React.useRef<boolean>(false)
+    const keyboardDragTimeoutRef = React.useRef<ReturnType<typeof setTimeout> | null>(null)
+    const currentValueRef = React.useRef<number[]>(defaultValue)
+
+    // Track active drag handlers for cleanup on unmount
+    const dragHandlersRef = React.useRef<{
+      onMove: ((e: PointerEvent) => void) | null
+      onUp: (() => void) | null
+    }>({ onMove: null, onUp: null })
 
     const isControlled = controlledValue !== undefined
+    const wasControlled = React.useRef(isControlled)
+    React.useEffect(() => {
+      if (wasControlled.current !== isControlled) {
+        if (import.meta.env.DEV) {
+          console.warn('[Slider] Component is changing from ' + (wasControlled.current ? 'controlled' : 'uncontrolled') + ' to ' + (isControlled ? 'controlled' : 'uncontrolled') + '. This is not supported.')
+        }
+        wasControlled.current = isControlled
+      }
+    }, [isControlled])
     const [uncontrolledValue, setUncontrolledValue] = React.useState(defaultValue)
     const actualValue = isControlled ? controlledValue : uncontrolledValue
-    const actualValueRef = React.useRef(actualValue)
-    React.useEffect(() => {
-      actualValueRef.current = actualValue
-    })
 
     const isRange = actualValue.length > 1
 
@@ -71,6 +81,7 @@ const Slider = React.forwardRef<HTMLDivElement, SliderProps>(
     const [targets, setTargets] = React.useState<number[]>(() =>
       actualValue.map((v) => ((v - min) / (max - min)) * 100)
     )
+    const targetsRef = React.useRef<number[]>(targets)
 
     const [activeThumb, setActiveThumb] = React.useState<number | null>(null)
     const [squishes, setSquishes] = React.useState<{ scaleX: number; scaleY: number }[]>(() =>
@@ -78,10 +89,16 @@ const Slider = React.forwardRef<HTMLDivElement, SliderProps>(
     )
     const [hoveringThumb, setHoveringThumb] = React.useState<number | null>(null)
 
+    // Keep currentValueRef in sync for stale-closure-free commit
+    React.useEffect(() => {
+      currentValueRef.current = actualValue
+    }, [actualValue])
+
     // Update targets when value changes externally
     React.useEffect(() => {
       const newTargets = actualValue.map((v) => ((v - min) / (max - min)) * 100)
       setTargets(newTargets)
+      targetsRef.current = newTargets
 
       // Ensure springs array matches value array length
       if (springs.length !== actualValue.length) {
@@ -93,9 +110,18 @@ const Slider = React.forwardRef<HTMLDivElement, SliderProps>(
       }
     }, [actualValue, min, max, springs.length])
 
-    // Spring physics simulation
-    React.useEffect(() => {
+    // Spring physics simulation — only runs while dragging
+    const startSpringLoop = React.useCallback(() => {
+      if (animationRef.current) return // already running
+
+      lastTimeRef.current = 0
+
       const simulate = (timestamp: number) => {
+        if (!isDraggingRef.current) {
+          animationRef.current = null
+          return
+        }
+
         if (!lastTimeRef.current) {
           lastTimeRef.current = timestamp
         }
@@ -107,8 +133,9 @@ const Slider = React.forwardRef<HTMLDivElement, SliderProps>(
           const newSprings: SpringState[] = []
           const newSquishes: { scaleX: number; scaleY: number }[] = []
 
-          for (let i = 0; i < prev.length; i++) {
-            const displacement = targets[i] - prev[i].position
+          const len = Math.min(prev.length, targetsRef.current.length)
+          for (let i = 0; i < len; i++) {
+            const displacement = targetsRef.current[i] - prev[i].position
             const springForce = stiffness * displacement
             const dampingForce = damping * prev[i].velocity
             const acceleration = (springForce - dampingForce) / mass
@@ -128,7 +155,7 @@ const Slider = React.forwardRef<HTMLDivElement, SliderProps>(
 
             // Stop animation when settled
             if (Math.abs(displacement) < 0.01 && Math.abs(newVelocity) < 0.01) {
-              newSprings.push({ position: targets[i], velocity: 0 })
+              newSprings.push({ position: targetsRef.current[i], velocity: 0 })
               newSquishes[i] = { scaleX: 1, scaleY: 1 }
             } else {
               newSprings.push({ position: newPosition, velocity: newVelocity })
@@ -143,13 +170,32 @@ const Slider = React.forwardRef<HTMLDivElement, SliderProps>(
       }
 
       animationRef.current = requestAnimationFrame(simulate)
+    }, [stiffness, damping, mass])
 
+    // Cleanup rAF on unmount
+    React.useEffect(() => {
       return () => {
         if (animationRef.current) {
           cancelAnimationFrame(animationRef.current)
         }
+        if (keyboardDragTimeoutRef.current) {
+          clearTimeout(keyboardDragTimeoutRef.current)
+        }
       }
-    }, [targets, stiffness, damping, mass])
+    }, [])
+
+    // Cleanup drag handlers on unmount
+    React.useEffect(() => {
+      return () => {
+        const { onMove, onUp } = dragHandlersRef.current
+        if (onMove) {
+          document.removeEventListener('pointermove', onMove)
+        }
+        if (onUp) {
+          document.removeEventListener('pointerup', onUp)
+        }
+      }
+    }, [])
 
     const getValueFromPosition = (clientX: number, clientY: number) => {
       if (!trackRef.current) return 0
@@ -228,6 +274,8 @@ const Slider = React.forwardRef<HTMLDivElement, SliderProps>(
       const newValue = getValueFromPosition(e.clientX, e.clientY)
 
       setActiveThumb(nearestThumbIndex)
+      isDraggingRef.current = true
+      startSpringLoop()
       updateValue(nearestThumbIndex, newValue)
 
       // Add velocity boost for jelly effect
@@ -257,10 +305,15 @@ const Slider = React.forwardRef<HTMLDivElement, SliderProps>(
 
       const handlePointerUp = () => {
         setActiveThumb(null)
-        onValueCommit?.(actualValueRef.current)
+        isDraggingRef.current = false
+        onValueCommit?.(currentValueRef.current)
         document.removeEventListener('pointermove', handlePointerMove)
         document.removeEventListener('pointerup', handlePointerUp)
+        dragHandlersRef.current = { onMove: null, onUp: null }
       }
+
+      // Store handlers for cleanup
+      dragHandlersRef.current = { onMove: handlePointerMove, onUp: handlePointerUp }
 
       document.addEventListener('pointermove', handlePointerMove)
       document.addEventListener('pointerup', handlePointerUp)
@@ -272,6 +325,8 @@ const Slider = React.forwardRef<HTMLDivElement, SliderProps>(
       e.preventDefault()
       e.stopPropagation()
       setActiveThumb(index)
+      isDraggingRef.current = true
+      startSpringLoop()
 
       const handlePointerMove = (e: PointerEvent) => {
         const newValue = getValueFromPosition(e.clientX, e.clientY)
@@ -290,10 +345,15 @@ const Slider = React.forwardRef<HTMLDivElement, SliderProps>(
 
       const handlePointerUp = () => {
         setActiveThumb(null)
-        onValueCommit?.(actualValueRef.current)
+        isDraggingRef.current = false
+        onValueCommit?.(currentValueRef.current)
         document.removeEventListener('pointermove', handlePointerMove)
         document.removeEventListener('pointerup', handlePointerUp)
+        dragHandlersRef.current = { onMove: null, onUp: null }
       }
+
+      // Store handlers for cleanup
+      dragHandlersRef.current = { onMove: handlePointerMove, onUp: handlePointerUp }
 
       document.addEventListener('pointermove', handlePointerMove)
       document.addEventListener('pointerup', handlePointerUp)
@@ -342,6 +402,10 @@ const Slider = React.forwardRef<HTMLDivElement, SliderProps>(
         }
         return newSprings
       })
+      isDraggingRef.current = true
+      startSpringLoop()
+      if (keyboardDragTimeoutRef.current) clearTimeout(keyboardDragTimeoutRef.current)
+      keyboardDragTimeoutRef.current = setTimeout(() => { isDraggingRef.current = false }, 300)
     }
 
     // Calculate range fill position
@@ -418,22 +482,13 @@ const Slider = React.forwardRef<HTMLDivElement, SliderProps>(
         {/* Thumbs */}
         {springs.map((spring, index) => (
           <div
-            key={index}
+            key={`thumb-${index}`}
             role="slider"
             tabIndex={disabled ? -1 : 0}
             aria-valuemin={min}
             aria-valuemax={max}
             aria-valuenow={actualValue[index]}
-            aria-label={
-              Array.isArray(ariaLabelProp)
-                ? ariaLabelProp[index]
-                : ariaLabelProp
-            }
-            aria-valuetext={
-              typeof ariaValuetextProp === 'function'
-                ? ariaValuetextProp(actualValue[index], index)
-                : undefined
-            }
+            aria-valuetext={`${actualValue[index]} of ${max}`}
             aria-disabled={disabled}
             aria-orientation={orientation}
             onKeyDown={handleKeyDown(index)}
@@ -456,8 +511,8 @@ const Slider = React.forwardRef<HTMLDivElement, SliderProps>(
                     left: '50%',
                     transform: `
                       translateX(-50%)
-                      scaleX(${squishes[index]?.scaleY ?? 1})
-                      scaleY(${squishes[index]?.scaleX ?? 1})
+                      scaleX(${squishes[index]?.scaleX ?? 1})
+                      scaleY(${squishes[index]?.scaleY ?? 1})
                       rotate(${((squishes[index]?.scaleX ?? 1) - 1) * 8}deg)
                     `,
                   }

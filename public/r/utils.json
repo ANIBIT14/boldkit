@@ -9,7 +9,7 @@
   "files": [
     {
       "path": "registry/default/lib/utils.ts",
-      "content": "import { type ClassValue, clsx } from 'clsx'\nimport { twMerge } from 'tailwind-merge'\n\nexport function cn(...inputs: ClassValue[]) {\n  return twMerge(clsx(inputs))\n}\n",
+      "content": "import { type ClassValue, clsx } from 'clsx'\nimport { twMerge } from 'tailwind-merge'\n\nexport function cn(...inputs: ClassValue[]) {\n  return twMerge(clsx(inputs))\n}\n\nconst SAFE_URL_PROTOCOLS = new Set(['http:', 'https:', 'mailto:', 'tel:'])\n\n/** Sanitize a URL to prevent javascript: protocol injection. Returns '#' for unsafe values. */\nexport function safeHref(url: string | undefined): string {\n  if (!url) return '#'\n  if (url.startsWith('/') || url.startsWith('#')) return url\n  try {\n    const parsed = new URL(url, 'https://placeholder.invalid')\n    return SAFE_URL_PROTOCOLS.has(parsed.protocol) ? url : '#'\n  } catch {\n    return '#'\n  }\n}\n\n/** Sanitize a CSS value by stripping characters that could break out of a CSS declaration. */\nexport function sanitizeCssValue(value: string): string {\n  return value.replace(/[{}<>;\"'\\\\]/g, '')\n}\n",
       "type": "registry:lib",
       "target": "lib/utils.ts"
     }

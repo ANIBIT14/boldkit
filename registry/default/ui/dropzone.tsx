@@ -1,3 +1,4 @@
+/* eslint-disable react-refresh/only-export-components */
 import * as React from 'react'
 import { cva, type VariantProps } from 'class-variance-authority'
 import { cn } from '@/lib/utils'
@@ -16,6 +17,7 @@ export interface DropzoneState {
   isDisabled: boolean
   acceptedFiles: File[]
   rejectedFiles: FileRejection[]
+  reset: () => void
 }
 
 // Variants
@@ -71,15 +73,23 @@ const Dropzone = React.forwardRef<HTMLDivElement, DropzoneProps>(
     ref
   ) => {
     const [isDragging, setIsDragging] = React.useState(false)
+    const [isFocused, setIsFocused] = React.useState(false)
     const [acceptedFiles, setAcceptedFiles] = React.useState<File[]>([])
     const [rejectedFiles, setRejectedFiles] = React.useState<FileRejection[]>([])
     const inputRef = React.useRef<HTMLInputElement>(null)
+
+    const reset = React.useCallback(() => {
+      setAcceptedFiles([])
+      setRejectedFiles([])
+      if (inputRef.current) inputRef.current.value = ''
+    }, [])
 
     const state: DropzoneState = {
       isDragging,
       isDisabled: disabled,
       acceptedFiles,
       rejectedFiles,
+      reset,
     }
 
     const stateVariant = disabled ? 'disabled' : isDragging ? 'dragging' : 'idle'
@@ -130,21 +140,26 @@ const Dropzone = React.forwardRef<HTMLDivElement, DropzoneProps>(
     const processFiles = (fileList: FileList | null) => {
       if (!fileList || disabled) return
 
-      const files = Array.from(fileList).slice(0, maxFiles)
+      const allFiles = Array.from(fileList)
       const accepted: File[] = []
       const rejected: FileRejection[] = []
 
-      files.forEach((file) => {
+      allFiles.forEach((file) => {
         const rejection = validateFile(file)
         if (rejection) {
           rejected.push(rejection)
+        } else if (accepted.length >= maxFiles) {
+          rejected.push({
+            file,
+            errors: [{ code: 'too-many-files', message: `Too many files. Maximum is ${maxFiles}.` }],
+          })
         } else {
           accepted.push(file)
         }
       })
 
-      setAcceptedFiles((prev) => [...prev, ...accepted])
-      setRejectedFiles((prev) => [...prev, ...rejected])
+      setAcceptedFiles(accepted)
+      setRejectedFiles(rejected)
 
       if (accepted.length > 0) {
         onFilesAccepted(accepted)
@@ -187,6 +202,16 @@ const Dropzone = React.forwardRef<HTMLDivElement, DropzoneProps>(
       }
     }
 
+    const handleKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
+      if (!disabled && (e.key === 'Enter' || e.key === ' ')) {
+        e.preventDefault()
+        inputRef.current?.click()
+      }
+    }
+
+    const handleFocus = () => setIsFocused(true)
+    const handleBlur = () => setIsFocused(false)
+
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
       processFiles(e.target.files)
       e.target.value = ''
@@ -202,15 +227,23 @@ const Dropzone = React.forwardRef<HTMLDivElement, DropzoneProps>(
     return (
       <div
         ref={ref}
-        className={cn(dropzoneVariants({ state: stateVariant, variant }), className)}
+        className={cn(
+          dropzoneVariants({ state: stateVariant, variant }),
+          isFocused && !disabled && 'outline outline-2 outline-offset-2 outline-primary',
+          className
+        )}
         onDragEnter={handleDragEnter}
         onDragLeave={handleDragLeave}
         onDragOver={handleDragOver}
         onDrop={handleDrop}
         onClick={handleClick}
+        onKeyDown={handleKeyDown}
+        onFocus={handleFocus}
+        onBlur={handleBlur}
         role="button"
         tabIndex={disabled ? -1 : 0}
         aria-disabled={disabled}
+        aria-label="File upload area"
         {...props}
       >
         <input

@@ -1,3 +1,4 @@
+/* eslint-disable react-refresh/only-export-components */
 import * as React from 'react'
 import { ChevronRight, Folder, File } from 'lucide-react'
 import { cn } from '@/lib/utils'
@@ -78,13 +79,16 @@ const TreeView = React.forwardRef<HTMLDivElement, TreeViewProps>(
     const isExpandedControlled = controlledExpandedIds !== undefined
     const isSelectedControlled = controlledSelectedIds !== undefined
 
-    const expandedIds = isExpandedControlled
-      ? new Set(controlledExpandedIds)
-      : uncontrolledExpandedIds
+    // Memoize Set objects to prevent useCallback dependencies from changing on every render
+    const expandedIds = React.useMemo(
+      () => (isExpandedControlled ? new Set(controlledExpandedIds) : uncontrolledExpandedIds),
+      [isExpandedControlled, controlledExpandedIds, uncontrolledExpandedIds]
+    )
 
-    const selectedIds = isSelectedControlled
-      ? new Set(controlledSelectedIds)
-      : uncontrolledSelectedIds
+    const selectedIds = React.useMemo(
+      () => (isSelectedControlled ? new Set(controlledSelectedIds) : uncontrolledSelectedIds),
+      [isSelectedControlled, controlledSelectedIds, uncontrolledSelectedIds]
+    )
 
     const toggleExpanded = React.useCallback(
       (id: string) => {
@@ -204,28 +208,6 @@ function TreeNodeItem({ node, level }: TreeNodeProps) {
           toggleExpanded(node.id)
         }
         break
-      case 'ArrowDown': {
-        e.preventDefault()
-        const allItems = Array.from(
-          document.querySelectorAll<HTMLElement>('[role="treeitem"]')
-        )
-        const currentIndex = allItems.findIndex((el) => el === e.currentTarget)
-        if (currentIndex < allItems.length - 1) {
-          allItems[currentIndex + 1].focus()
-        }
-        break
-      }
-      case 'ArrowUp': {
-        e.preventDefault()
-        const allItems = Array.from(
-          document.querySelectorAll<HTMLElement>('[role="treeitem"]')
-        )
-        const currentIndex = allItems.findIndex((el) => el === e.currentTarget)
-        if (currentIndex > 0) {
-          allItems[currentIndex - 1].focus()
-        }
-        break
-      }
     }
   }
 
@@ -239,6 +221,9 @@ function TreeNodeItem({ node, level }: TreeNodeProps) {
       onKeyDown={handleKeyDown}
       onClick={() => {
         if (node.disabled) return
+        if (hasChildren) {
+          toggleExpanded(node.id)
+        }
         if (selectionMode !== 'none') {
           toggleSelected(node.id)
         }
@@ -257,10 +242,12 @@ function TreeNodeItem({ node, level }: TreeNodeProps) {
           type="button"
           onClick={(e) => {
             e.stopPropagation()
-            toggleExpanded(node.id)
+            if (!node.disabled) {
+              toggleExpanded(node.id)
+            }
           }}
           className="p-0.5 hover:bg-muted-foreground/20 transition-colors"
-          aria-label={isExpanded ? `Collapse ${node.label}` : `Expand ${node.label}`}
+          aria-label={isExpanded ? 'Collapse' : 'Expand'}
         >
           <ChevronRight
             className={cn(
@@ -305,13 +292,13 @@ function TreeNodeItem({ node, level }: TreeNodeProps) {
   }
 
   return (
-    <Collapsible open={isExpanded} onOpenChange={() => toggleExpanded(node.id)}>
+    <Collapsible open={isExpanded}>
       <CollapsibleTrigger asChild className="w-full">
         {content}
       </CollapsibleTrigger>
       <CollapsibleContent>
         <div role="group">
-          {node.children!.map((child) => (
+          {(node.children ?? []).map((child) => (
             <TreeNodeItem key={child.id} node={child} level={level + 1} />
           ))}
         </div>

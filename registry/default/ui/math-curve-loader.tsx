@@ -1,6 +1,8 @@
+/* eslint-disable react-refresh/only-export-components */
 import * as React from 'react'
 import { cva, type VariantProps } from 'class-variance-authority'
 import { cn } from '@/lib/utils'
+import { ErrorBoundary } from '@/components/ErrorBoundary'
 import {
   buildPath,
   getPoint,
@@ -108,43 +110,45 @@ const MathCurveLoader = React.forwardRef<SVGSVGElement, MathCurveLoaderProps>(
     const resolvedHeadFill = headColor ?? 'hsl(var(--primary))'
 
     return (
-      <svg
-        ref={ref}
-        viewBox="0 0 100 100"
-        xmlns="http://www.w3.org/2000/svg"
-        role="status"
-        aria-label={ariaLabel}
-        className={cn(
-          mathCurveLoaderVariants({ size }),
-          'group',
-          className
-        )}
-        {...props}
-      >
-        {/* Track layer */}
-        <path
-          ref={pathRef}
-          d={trackPath}
-          fill="none"
-          stroke={resolvedTrackStroke}
-          strokeWidth={strokeWidth}
-          strokeOpacity={0.2}
-          strokeLinecap="square"
-          strokeLinejoin="miter"
-          className="group-hover:[stroke-opacity:0.4] transition-[stroke-opacity] duration-200"
-        />
-        {/* Head square */}
-        <rect
-          ref={rectRef}
-          width={headSize}
-          height={headSize}
-          x={50 - headSize / 2}
-          y={50 - headSize / 2}
-          fill={resolvedHeadFill}
-          stroke="currentColor"
-          strokeWidth={1.5}
-        />
-      </svg>
+      <ErrorBoundary>
+        <svg
+          ref={ref}
+          viewBox="0 0 100 100"
+          xmlns="http://www.w3.org/2000/svg"
+          role="status"
+          aria-label={ariaLabel}
+          className={cn(
+            mathCurveLoaderVariants({ size }),
+            'group',
+            className
+          )}
+          {...props}
+        >
+          {/* Track layer */}
+          <path
+            ref={pathRef}
+            d={trackPath}
+            fill="none"
+            stroke={resolvedTrackStroke}
+            strokeWidth={strokeWidth}
+            strokeOpacity={0.2}
+            strokeLinecap="square"
+            strokeLinejoin="miter"
+            className="group-hover:[stroke-opacity:0.4] transition-[stroke-opacity] duration-200"
+          />
+          {/* Head square */}
+          <rect
+            ref={rectRef}
+            width={headSize}
+            height={headSize}
+            x={50 - headSize / 2}
+            y={50 - headSize / 2}
+            fill={resolvedHeadFill}
+            stroke="currentColor"
+            strokeWidth={1.5}
+          />
+        </svg>
+      </ErrorBoundary>
     )
   }
 )

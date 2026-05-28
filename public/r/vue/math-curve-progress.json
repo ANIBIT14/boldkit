@@ -1,0 +1,21 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "math-curve-progress",
+  "type": "registry:ui",
+  "description": "Progress indicator that traces a mathematical curve — value-driven head moves along the curve, fill segments behind. 9 curve variants.",
+  "dependencies": [
+    "class-variance-authority"
+  ],
+  "registryDependencies": [
+    "@boldkit/utils",
+    "@boldkit/math-curves"
+  ],
+  "files": [
+    {
+      "path": "registry/default/ui/MathCurveProgress.vue",
+      "content": "<script setup lang=\"ts\">\nimport { computed } from 'vue'\nimport { getPoint, getAngle, buildPath } from '@/lib/math-curves'\nimport type { ProgressCurveKey } from '@/lib/math-curves'\n\ninterface MathCurveProgressProps {\n  value: number\n  curve?: ProgressCurveKey\n  size?: 'sm' | 'md' | 'lg'\n  showValue?: boolean\n  trackColor?: string\n  fillColor?: string\n  strokeWidth?: number\n  ariaLabel?: string\n  class?: string\n}\n\nconst props = withDefaults(defineProps<MathCurveProgressProps>(), {\n  curve: 'spiral',\n  size: 'md',\n  showValue: false,\n  strokeWidth: 4,\n})\n\nconst HEAD_SIZE = 8\n\nconst sizeMap: Record<NonNullable<MathCurveProgressProps['size']>, number> = {\n  sm: 48,\n  md: 64,\n  lg: 96,\n}\n\nconst pixelSize = computed(() => sizeMap[props.size ?? 'md'])\n\nconst clampedValue = computed(() => Math.min(100, Math.max(0, props.value ?? 0)))\n\nconst trackPath = computed(() => buildPath(props.curve ?? 'spiral'))\n\nconst headPoint = computed(() => getPoint(props.curve ?? 'spiral', clampedValue.value / 100))\n\nconst headAngle = computed(() => getAngle(props.curve ?? 'spiral', clampedValue.value / 100))\n\nconst headTransform = computed(() => {\n  const { x, y } = headPoint.value\n  const angle = headAngle.value\n  return `rotate(${angle} ${x} ${y})`\n})\n</script>\n\n<template>\n  <svg\n    :width=\"pixelSize\"\n    :height=\"pixelSize\"\n    viewBox=\"0 0 100 100\"\n    role=\"progressbar\"\n    :aria-valuenow=\"clampedValue\"\n    aria-valuemin=\"0\"\n    aria-valuemax=\"100\"\n    :aria-label=\"props.ariaLabel ?? `${clampedValue}% progress`\"\n    :class=\"props.class\"\n    style=\"overflow: visible; display: block\"\n  >\n    <!-- Track (full curve, low opacity) -->\n    <path\n      :d=\"trackPath\"\n      :stroke=\"trackColor ?? 'currentColor'\"\n      :stroke-width=\"strokeWidth\"\n      stroke-opacity=\"0.2\"\n      stroke-linecap=\"square\"\n      stroke-linejoin=\"miter\"\n      fill=\"none\"\n    />\n    <!-- Head rect — moves along the curve proportional to value -->\n    <rect\n      :width=\"HEAD_SIZE\"\n      :height=\"HEAD_SIZE\"\n      :x=\"headPoint.x - HEAD_SIZE / 2\"\n      :y=\"headPoint.y - HEAD_SIZE / 2\"\n      :fill=\"fillColor ?? 'hsl(var(--primary))'\"\n      stroke=\"currentColor\"\n      stroke-width=\"1.5\"\n      :transform=\"headTransform\"\n      :style=\"{ transition: 'transform 300ms ease' }\"\n    />\n    <!-- Optional numeric label -->\n    <text\n      v-if=\"showValue\"\n      x=\"50\"\n      y=\"50\"\n      text-anchor=\"middle\"\n      dominant-baseline=\"central\"\n      font-size=\"12\"\n      font-weight=\"700\"\n      fill=\"currentColor\"\n      letter-spacing=\"0.05em\"\n      style=\"user-select: none; font-family: inherit\"\n    >\n      {{ Math.round(clampedValue) }}%\n    </text>\n  </svg>\n</template>\n",
+      "type": "registry:ui",
+      "target": "components/ui/MathCurveProgress.vue"
+    }
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "math-curve-background",
+  "type": "registry:ui",
+  "description": "Ambient animated mathematical curve background layer with neubrutalism aesthetics — wraps any content with a continuously drawn parametric curve.",
+  "dependencies": [],
+  "registryDependencies": [
+    "@boldkit/utils",
+    "@boldkit/math-curves"
+  ],
+  "files": [
+    {
+      "path": "registry/default/ui/MathCurveBackground.vue",
+      "content": "<script setup lang=\"ts\">\nimport { shallowRef, onMounted, onUnmounted, watch } from 'vue'\nimport { Primitive, type PrimitiveProps } from 'reka-ui'\nimport { cn } from '@/lib/utils'\nimport { buildPath, getPoint, getAngle, getDetailScale, getCurvePulseDuration } from '@/lib/math-curves'\nimport type { BackgroundCurveKey } from '@/lib/math-curves'\n\ninterface MathCurveBackgroundProps extends PrimitiveProps {\n  curve?: BackgroundCurveKey\n  speed?: 'slow' | 'normal' | 'fast'\n  opacity?: number\n  trackColor?: string\n  headColor?: string\n  strokeWidth?: number\n  class?: string\n}\n\nconst props = withDefaults(defineProps<MathCurveBackgroundProps>(), {\n  as: 'div',\n  curve: 'rose',\n  speed: 'slow',\n  opacity: 0.15,\n  strokeWidth: 2,\n})\n\nconst speedMap: Record<NonNullable<MathCurveBackgroundProps['speed']>, number> = {\n  slow: 9000,\n  normal: 5500,\n  fast: 3000,\n}\n\nconst HEAD_SIZE = 8\n\nconst svgPathRef = shallowRef<SVGPathElement | null>(null)\nconst svgHeadRef = shallowRef<SVGRectElement | null>(null)\n\nlet rafId = 0\nlet startTime = 0\n\nfunction startLoop() {\n  cancelAnimationFrame(rafId)\n  startTime = performance.now()\n\n  function frame(now: number) {\n    const elapsed = now - startTime\n    const loopDuration = speedMap[props.speed ?? 'slow']\n    const pulseDuration = getCurvePulseDuration(props.curve ?? 'rose')\n\n    const progress = (elapsed % loopDuration) / loopDuration\n    const detailScale = getDetailScale(elapsed, pulseDuration)\n\n    if (svgPathRef.value) {\n      svgPathRef.value.setAttribute('d', buildPath(props.curve ?? 'rose', detailScale))\n    }\n\n    if (svgHeadRef.value) {\n      const { x, y } = getPoint(props.curve ?? 'rose', progress, detailScale)\n      const angle = getAngle(props.curve ?? 'rose', progress, detailScale)\n      svgHeadRef.value.setAttribute('x', String(x - HEAD_SIZE / 2))\n      svgHeadRef.value.setAttribute('y', String(y - HEAD_SIZE / 2))\n      svgHeadRef.value.setAttribute('transform', `rotate(${angle} ${x} ${y})`)\n    }\n\n    rafId = requestAnimationFrame(frame)\n  }\n\n  rafId = requestAnimationFrame(frame)\n}\n\nonMounted(() => {\n  startLoop()\n})\n\nonUnmounted(() => {\n  cancelAnimationFrame(rafId)\n})\n\nwatch(\n  () => [props.curve, props.speed],\n  () => {\n    startLoop()\n  }\n)\n</script>\n\n<template>\n  <Primitive\n    :as=\"as\"\n    :class=\"cn('relative', props.class)\"\n  >\n    <!-- Background SVG layer -->\n    <svg\n      aria-hidden=\"true\"\n      class=\"absolute inset-0 w-full h-full pointer-events-none\"\n      style=\"z-index: 0\"\n      viewBox=\"0 0 100 100\"\n      preserveAspectRatio=\"xMidYMid slice\"\n      :opacity=\"opacity\"\n    >\n      <path\n        ref=\"svgPathRef\"\n        :stroke=\"trackColor ?? 'currentColor'\"\n        :stroke-width=\"strokeWidth\"\n        stroke-linecap=\"square\"\n        stroke-linejoin=\"miter\"\n        stroke-opacity=\"0.15\"\n        fill=\"none\"\n      />\n      <rect\n        ref=\"svgHeadRef\"\n        width=\"8\"\n        height=\"8\"\n        :fill=\"headColor ?? 'hsl(var(--primary))'\"\n        stroke=\"currentColor\"\n        stroke-width=\"1.5\"\n        x=\"0\"\n        y=\"0\"\n      />\n    </svg>\n    <!-- Content slot -->\n    <div class=\"relative\" style=\"z-index: 10\">\n      <slot />\n    </div>\n  </Primitive>\n</template>\n",
+      "type": "registry:ui",
+      "target": "components/ui/MathCurveBackground.vue"
+    }
+  ]
+}

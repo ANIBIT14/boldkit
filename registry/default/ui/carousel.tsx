@@ -1,3 +1,4 @@
+/* eslint-disable react-refresh/only-export-components */
 import * as React from 'react'
 import useEmblaCarousel, {
   type UseEmblaCarouselType,
@@ -278,9 +279,9 @@ const CarouselDots = React.forwardRef<
       className={cn('flex items-center justify-center gap-2 mt-4', className)}
       {...props}
     >
-      {scrollSnaps.map((_, index) => (
+      {scrollSnaps.map((snap, index) => (
         <button
-          key={index}
+          key={snap}
           type="button"
           onClick={() => scrollTo(index)}
           className={cn(
@@ -289,7 +290,8 @@ const CarouselDots = React.forwardRef<
               ? 'bg-primary scale-110 shadow-[2px_2px_0px_hsl(var(--shadow-color))]'
               : 'bg-muted hover:bg-muted/80'
           )}
-          aria-label={`Go to slide ${index + 1}`}
+          aria-label={`Go to slide ${index + 1} of ${scrollSnaps.length}`}
+          aria-current={index === selectedIndex ? 'page' : undefined}
         />
       ))}
     </div>

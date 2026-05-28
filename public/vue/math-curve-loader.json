@@ -1,0 +1,20 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "math-curve-loader",
+  "type": "registry:ui",
+  "description": "Animated mathematical curve loader with neubrutalism aesthetics — 17 curve variants including rose, lissajous, butterfly, spiral, and heart. A point traces the curve while leaving a fading trail.",
+  "dependencies": [
+    "class-variance-authority"
+  ],
+  "registryDependencies": [
+    "@boldkit/utils",
+    "@boldkit/math-curves"
+  ],
+  "files": [
+    {
+      "path": "registry/default/ui/MathCurveLoader.vue",
+      "type": "registry:ui",
+      "target": "components/ui/MathCurveLoader.vue"
+    }
+  ]
+}

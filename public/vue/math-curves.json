@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "math-curves",
+  "type": "registry:ui",
+  "description": "Framework-agnostic math engine for parametric curve animations (rose, lissajous, butterfly, spiral, heart, and 14 more). Shared by MathCurveLoader, MathCurveProgress, and MathCurveBackground.",
+  "dependencies": [],
+  "registryDependencies": [
+    "@boldkit/utils"
+  ],
+  "files": [
+    {
+      "path": "registry/default/lib/math-curves.ts",
+      "type": "registry:ui",
+      "target": "lib/math-curves.ts"
+    }
+  ]
+}

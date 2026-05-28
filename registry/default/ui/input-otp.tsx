@@ -23,7 +23,7 @@ const InputOTPGroup = React.forwardRef<
   React.ElementRef<'div'>,
   React.ComponentPropsWithoutRef<'div'>
 >(({ className, ...props }, ref) => (
-  <div ref={ref} role="group" className={cn('flex items-center', className)} {...props} />
+  <div ref={ref} className={cn('flex items-center', className)} {...props} />
 ))
 InputOTPGroup.displayName = 'InputOTPGroup'
 
@@ -32,13 +32,14 @@ const InputOTPSlot = React.forwardRef<
   React.ComponentPropsWithoutRef<'div'> & { index: number }
 >(({ index, className, ...props }, ref) => {
   const inputOTPContext = React.useContext(OTPInputContext)
-  const { char, hasFakeCaret, isActive } = inputOTPContext.slots[index]
+  const slot = inputOTPContext.slots?.[index] ?? { char: null, hasFakeCaret: false, isActive: false }
+  const { char, hasFakeCaret, isActive } = slot
 
   return (
     <div
       ref={ref}
       className={cn(
-        'relative flex h-12 w-12 items-center justify-center border-3 border-foreground bg-background text-sm font-bold uppercase shadow-[4px_4px_0px_hsl(var(--shadow-color))] transition-all duration-200 first:border-l-3 first:rounded-l-none last:rounded-r-none',
+        'relative flex h-12 w-12 items-center justify-center border-3 border-foreground bg-background text-sm font-bold uppercase shadow-[4px_4px_0px_hsl(var(--shadow-color))] transition-all duration-200',
         isActive && 'z-10 ring-2 ring-ring ring-offset-background translate-x-[4px] translate-y-[4px] shadow-none',
         className
       )}
@@ -59,7 +60,7 @@ const InputOTPSeparator = React.forwardRef<
   React.ElementRef<'div'>,
   React.ComponentPropsWithoutRef<'div'>
 >(({ ...props }, ref) => (
-  <div ref={ref} role="presentation" aria-hidden="true" {...props}>
+  <div ref={ref} role="separator" {...props}>
     <Dot className="h-4 w-4" />
   </div>
 ))

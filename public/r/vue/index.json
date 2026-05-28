@@ -347,6 +347,26 @@
       "name": "sparkline",
       "type": "registry:ui",
       "registryUrl": "https://boldkit.dev/r/vue/sparkline.json"
+    },
+    {
+      "name": "math-curves",
+      "type": "registry:ui",
+      "registryUrl": "https://boldkit.dev/r/vue/math-curves.json"
+    },
+    {
+      "name": "math-curve-loader",
+      "type": "registry:ui",
+      "registryUrl": "https://boldkit.dev/r/vue/math-curve-loader.json"
+    },
+    {
+      "name": "math-curve-progress",
+      "type": "registry:ui",
+      "registryUrl": "https://boldkit.dev/r/vue/math-curve-progress.json"
+    },
+    {
+      "name": "math-curve-background",
+      "type": "registry:ui",
+      "registryUrl": "https://boldkit.dev/r/vue/math-curve-background.json"
     }
   ]
 }

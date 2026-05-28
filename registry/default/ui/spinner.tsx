@@ -1,3 +1,4 @@
+/* eslint-disable react-refresh/only-export-components */
 import * as React from 'react'
 import { cva, type VariantProps } from 'class-variance-authority'
 import { cn } from '@/lib/utils'
@@ -33,7 +34,7 @@ export interface SpinnerProps
     VariantProps<typeof spinnerVariants> {}
 
 const Spinner = React.forwardRef<HTMLDivElement, SpinnerProps>(
-  ({ className, size, variant, role = 'status', 'aria-label': ariaLabel = 'Loading', ...props }, ref) => {
+  ({ className, size, variant, ...props }, ref) => {
     const sizeClasses = {
       xs: { element: 'h-3 w-3', dot: 'h-1 w-1', bar: 'w-0.5 h-2', block: 'h-1 w-1', ring: 'h-3 w-3' },
       sm: { element: 'h-4 w-4', dot: 'h-1 w-1', bar: 'w-0.5 h-2.5', block: 'h-1.5 w-1.5', ring: 'h-4 w-4' },
@@ -42,15 +43,15 @@ const Spinner = React.forwardRef<HTMLDivElement, SpinnerProps>(
       xl: { element: 'h-12 w-12', dot: 'h-3 w-3', bar: 'w-1.5 h-8', block: 'h-4 w-4', ring: 'h-12 w-12' },
     }
 
-    const currentSize = size || 'md'
+    const currentSize = size ?? 'md'
     const sizes = sizeClasses[currentSize]
 
     if (variant === 'dots') {
       return (
         <div
           ref={ref}
-          role={role}
-          aria-label={ariaLabel}
+          role="status"
+          aria-label="Loading"
           className={cn(spinnerVariants({ size, variant }), 'gap-1', className)}
           {...props}
         >
@@ -65,8 +66,8 @@ const Spinner = React.forwardRef<HTMLDivElement, SpinnerProps>(
       return (
         <div
           ref={ref}
-          role={role}
-          aria-label={ariaLabel}
+          role="status"
+          aria-label="Loading"
           className={cn(spinnerVariants({ size, variant }), 'gap-0.5', className)}
           {...props}
         >
@@ -81,8 +82,8 @@ const Spinner = React.forwardRef<HTMLDivElement, SpinnerProps>(
       return (
         <div
           ref={ref}
-          role={role}
-          aria-label={ariaLabel}
+          role="status"
+          aria-label="Loading"
           className={cn(spinnerVariants({ size, variant }), 'relative', className)}
           {...props}
         >
@@ -100,8 +101,8 @@ const Spinner = React.forwardRef<HTMLDivElement, SpinnerProps>(
       return (
         <div
           ref={ref}
-          role={role}
-          aria-label={ariaLabel}
+          role="status"
+          aria-label="Loading"
           className={cn(spinnerVariants({ size, variant }), className)}
           {...props}
         >
@@ -117,13 +118,12 @@ const Spinner = React.forwardRef<HTMLDivElement, SpinnerProps>(
     return (
       <div
         ref={ref}
-        role={role}
-        aria-label={ariaLabel}
+        role="status"
+        aria-label="Loading"
         className={cn(spinnerVariants({ size, variant }), className)}
         {...props}
       >
         <svg
-          aria-hidden="true"
           className={cn(sizes.ring, 'animate-spin')}
           xmlns="http://www.w3.org/2000/svg"
           fill="none"

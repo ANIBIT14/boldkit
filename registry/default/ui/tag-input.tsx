@@ -2,6 +2,13 @@ import * as React from 'react'
 import { cn } from '@/lib/utils'
 import { X } from 'lucide-react'
 
+export interface TagInputHandle {
+  focus: () => void
+  blur: () => void
+  get value(): string
+  set value(v: string)
+}
+
 export interface TagInputProps
   extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'value' | 'defaultValue' | 'onChange'> {
   value?: string[]
@@ -14,7 +21,7 @@ export interface TagInputProps
   validateTag?: (tag: string) => boolean | string
 }
 
-const TagInput = React.forwardRef<HTMLInputElement, TagInputProps>(
+const TagInput = React.forwardRef<TagInputHandle, TagInputProps>(
   (
     {
       value: controlledValue,
@@ -41,7 +48,12 @@ const TagInput = React.forwardRef<HTMLInputElement, TagInputProps>(
     const inputRef = React.useRef<HTMLInputElement>(null)
     const containerRef = React.useRef<HTMLDivElement>(null)
 
-    React.useImperativeHandle(ref, () => inputRef.current!)
+    React.useImperativeHandle(ref, () => ({
+      focus: () => inputRef.current?.focus(),
+      blur: () => inputRef.current?.blur(),
+      get value() { return inputRef.current?.value ?? '' },
+      set value(v: string) { if (inputRef.current) inputRef.current.value = v },
+    }))
 
     const isControlled = controlledValue !== undefined
     const tags = isControlled ? controlledValue : uncontrolledTags
@@ -109,9 +121,7 @@ const TagInput = React.forwardRef<HTMLInputElement, TagInputProps>(
 
       // Check for delimiter
       if (delimiter) {
-        const parts = typeof delimiter === 'string'
-          ? value.split(delimiter)
-          : value.split(delimiter)
+        const parts = value.split(delimiter)
 
         if (parts.length > 1) {
           const newTags = parts.slice(0, -1).filter((part) => part.trim())
@@ -204,7 +214,7 @@ const TagInput = React.forwardRef<HTMLInputElement, TagInputProps>(
           {/* Tags */}
           {tags.map((tag, index) => (
             <span
-              key={`${tag}-${index}`}
+              key={`tag-${index}`}
               className={cn(
                 'inline-flex items-center gap-1 px-2 py-0.5 text-xs font-bold uppercase tracking-wide',
                 'border-2 border-foreground bg-primary text-primary-foreground',

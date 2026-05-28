@@ -1,3 +1,4 @@
+/* eslint-disable react-refresh/only-export-components */
 import * as React from 'react'
 import { cva, type VariantProps } from 'class-variance-authority'
 import { cn } from '@/lib/utils'
@@ -79,9 +80,10 @@ const Stepper = React.forwardRef<HTMLDivElement, StepperProps>(
     )
 
     // Count total steps from children
-    const totalSteps = React.Children.toArray(children).filter(
-      (child) => React.isValidElement(child) && child.type === StepperItem
-    ).length
+    const totalSteps = React.Children.toArray(children).filter((child) => {
+      if (!React.isValidElement(child)) return false
+      return (child.type as typeof StepperItem & { _isBoldKitStepperItem?: boolean })._isBoldKitStepperItem === true
+    }).length
 
     return (
       <StepperContext.Provider value={{ activeStep, setActiveStep, totalSteps, orientation }}>
@@ -103,7 +105,7 @@ const Stepper = React.forwardRef<HTMLDivElement, StepperProps>(
 Stepper.displayName = 'Stepper'
 
 // Stepper List (container for triggers)
-export interface StepperListProps extends React.HTMLAttributes<HTMLDivElement> {}
+export type StepperListProps = React.HTMLAttributes<HTMLDivElement>
 
 const StepperList = React.forwardRef<HTMLDivElement, StepperListProps>(
   ({ className, children, ...props }, ref) => {
@@ -130,6 +132,7 @@ StepperList.displayName = 'StepperList'
 // Stepper Item (wrapper for a single step)
 interface StepperItemContextValue {
   index: number
+  triggerId: string
 }
 
 const StepperItemContext = React.createContext<StepperItemContextValue | null>(null)
@@ -150,8 +153,10 @@ const StepperItem = React.forwardRef<HTMLDivElement, StepperItemProps>(
   ({ index, className, children, ...props }, ref) => {
     const { orientation } = useStepperContext()
 
+    const triggerId = `stepper-trigger-${index}`
+
     return (
-      <StepperItemContext.Provider value={{ index }}>
+      <StepperItemContext.Provider value={{ index, triggerId }}>
         <div
           ref={ref}
           className={cn(
@@ -168,6 +173,7 @@ const StepperItem = React.forwardRef<HTMLDivElement, StepperItemProps>(
   }
 )
 StepperItem.displayName = 'StepperItem'
+;(StepperItem as typeof StepperItem & { _isBoldKitStepperItem: boolean })._isBoldKitStepperItem = true
 
 // Stepper Trigger (the clickable step indicator)
 export interface StepperTriggerProps
@@ -179,7 +185,7 @@ export interface StepperTriggerProps
 const StepperTrigger = React.forwardRef<HTMLButtonElement, StepperTriggerProps>(
   ({ size, showStepNumber = true, className, children, ...props }, ref) => {
     const { activeStep, setActiveStep } = useStepperContext()
-    const { index } = useStepperItemContext()
+    const { index, triggerId } = useStepperItemContext()
 
     const state: 'completed' | 'active' | 'upcoming' =
       index < activeStep ? 'completed' : index === activeStep ? 'active' : 'upcoming'
@@ -187,6 +193,7 @@ const StepperTrigger = React.forwardRef<HTMLButtonElement, StepperTriggerProps>(
     return (
       <button
         ref={ref}
+        id={triggerId}
         type="button"
         role="tab"
         aria-selected={state === 'active'}
@@ -208,7 +215,7 @@ const StepperTrigger = React.forwardRef<HTMLButtonElement, StepperTriggerProps>(
 StepperTrigger.displayName = 'StepperTrigger'
 
 // Stepper Separator (line between steps)
-export interface StepperSeparatorProps extends React.HTMLAttributes<HTMLDivElement> {}
+export type StepperSeparatorProps = React.HTMLAttributes<HTMLDivElement>
 
 const StepperSeparator = React.forwardRef<HTMLDivElement, StepperSeparatorProps>(
   ({ className, ...props }, ref) => {
@@ -255,6 +262,7 @@ const StepperContent = React.forwardRef<HTMLDivElement, StepperContentProps>(
       <div
         ref={ref}
         role="tabpanel"
+        aria-labelledby={`stepper-trigger-${index}`}
         className={cn(
           'mt-4 animate-[slide-in-from-bottom_200ms_ease-out]',
           className

@@ -220,6 +220,44 @@ const componentMeta = {
     desc: 'A compact sparkline chart component for inline data visualization with line, area, and bar variants',
     files: ['SparklineChart'],
   },
+
+  // ──────────────────────────────────────────────────────────────────
+  // Math Curve family — previously not published to the Vue registry
+  // (source files existed on disk but no shadcn-vue install path).
+  // Registered 2026-05-26 to close that gap.
+  // ──────────────────────────────────────────────────────────────────
+
+  // The vanilla math engine. Lives in src/lib/, so we use siblingFiles.
+  // Listed under registry:ui type (no native registry:lib for shadcn-vue).
+  'math-curves': {
+    deps: [],
+    desc: 'Framework-agnostic math engine for parametric curve animations (rose, lissajous, butterfly, spiral, heart, and 14 more). Shared by MathCurveLoader, MathCurveProgress, and MathCurveBackground.',
+    files: [], // No .vue file — only the lib
+    siblingFiles: [
+      { src: 'lib/math-curves.ts', target: 'lib/math-curves.ts' },
+    ],
+  },
+
+  'math-curve-loader': {
+    deps: ['class-variance-authority'],
+    registryDeps: ['math-curves'],
+    desc: 'Animated mathematical curve loader with neubrutalism aesthetics — 17 curve variants including rose, lissajous, butterfly, spiral, and heart. A point traces the curve while leaving a fading trail.',
+    files: ['MathCurveLoader'],
+  },
+
+  'math-curve-progress': {
+    deps: ['class-variance-authority'],
+    registryDeps: ['math-curves'],
+    desc: 'Progress indicator that traces a mathematical curve — value-driven head moves along the curve, fill segments behind. 9 curve variants.',
+    files: ['MathCurveProgress'],
+  },
+
+  'math-curve-background': {
+    deps: [],
+    registryDeps: ['math-curves'],
+    desc: 'Ambient animated mathematical curve background layer with neubrutalism aesthetics — wraps any content with a continuously drawn parametric curve.',
+    files: ['MathCurveBackground'],
+  },
 }
 
 const SHAPES_DIR = path.join(UI_DIR, 'shapes')
@@ -291,6 +329,26 @@ function createRegistryJson(name, meta) {
           content: extraContent,
           type: 'registry:ui',
           target: `components/ui/${extraFile}`
+        })
+      }
+    }
+  }
+
+  // Handle sibling files outside UI_DIR (e.g. lib/, composables/).
+  // Each entry: { src: '<rel-to-vue-src>', target: '<consumer-target>' }
+  // Used by entries like `math-curves` that bundle a vanilla lib helper
+  // living in src/lib/ rather than src/components/ui/.
+  if (meta.siblingFiles) {
+    const VUE_SRC = path.join(__dirname, '../src')
+    for (const { src, target } of meta.siblingFiles) {
+      const srcPath = path.join(VUE_SRC, src)
+      const content = readFile(srcPath)
+      if (content) {
+        registryFiles.push({
+          path: `registry/default/${src}`,
+          content,
+          type: 'registry:ui',
+          target,
         })
       }
     }

@@ -1,3 +1,4 @@
+/* eslint-disable react-refresh/only-export-components */
 import * as React from 'react'
 import { createPortal } from 'react-dom'
 import { X } from 'lucide-react'
@@ -203,9 +204,6 @@ function TourPopover({
   return (
     <div
       ref={popoverRef}
-      role="dialog"
-      aria-modal="true"
-      aria-labelledby={`tour-title-${currentStep}`}
       className={cn(
         'fixed z-[9999] w-80 border-3 border-foreground bg-popover p-4',
         'shadow-[8px_8px_0px_hsl(var(--shadow-color))]',
@@ -230,7 +228,7 @@ function TourPopover({
 
       {/* Content */}
       <div className="space-y-3">
-        <h3 id={`tour-title-${currentStep}`} className="text-base font-bold uppercase tracking-wide">
+        <h3 className="text-base font-bold uppercase tracking-wide">
           {step.title}
         </h3>
         <p className="text-sm text-muted-foreground">{step.description}</p>
@@ -272,7 +270,7 @@ function TourPopover({
               Previous
             </Button>
           )}
-          <Button size="sm" onClick={isLast ? close : nextStep}>
+          <Button size="sm" onClick={nextStep}>
             {isLast ? 'Finish' : 'Next'}
           </Button>
         </div>
@@ -329,7 +327,11 @@ const Tour = React.forwardRef<HTMLDivElement, TourProps>(
             behavior: 'smooth',
             block: 'center',
           })
-        } else if (currentStepData.placement === 'center') {
+        } else {
+          // Target not found — fall back to center placement
+          if (import.meta.env.DEV) {
+            console.warn(`[Tour] Step target "${currentStepData.target}" not found in DOM`)
+          }
           setTargetRect(null)
         }
       }
@@ -376,29 +378,12 @@ const Tour = React.forwardRef<HTMLDivElement, TourProps>(
 
     const close = React.useCallback(() => {
       setOpen(false)
-      if (currentStep === steps.length - 1) {
-        onComplete?.()
-      }
-    }, [setOpen, currentStep, steps.length, onComplete])
+    }, [setOpen])
 
     const skip = React.useCallback(() => {
       setOpen(false)
       onSkip?.()
     }, [setOpen, onSkip])
-
-    // Close on Escape key
-    React.useEffect(() => {
-      if (!open) return
-
-      const handleKeyDown = (e: KeyboardEvent) => {
-        if (e.key === 'Escape') {
-          close()
-        }
-      }
-
-      document.addEventListener('keydown', handleKeyDown)
-      return () => document.removeEventListener('keydown', handleKeyDown)
-    }, [open, close])
 
     const contextValue = React.useMemo<TourContextValue>(
       () => ({
@@ -413,24 +398,26 @@ const Tour = React.forwardRef<HTMLDivElement, TourProps>(
       [currentStep, steps.length, nextStep, prevStep, goToStep, close, skip]
     )
 
-    if (!open || !currentStepData) return null
-
-    return createPortal(
-      <TourContext.Provider value={contextValue}>
-        <div ref={ref}>
-          <TourOverlay
-            targetRect={targetRect}
-            spotlightPadding={currentStepData.spotlightPadding ?? 8}
-          />
-          <TourPopover
-            step={currentStepData}
-            targetRect={targetRect}
-            showSkipButton={showSkipButton}
-            showProgress={showProgress}
-          />
-        </div>
-      </TourContext.Provider>,
-      document.body
+    return (
+      <>
+        {/* Stable ref anchor — always mounted so ref is never null */}
+        <div ref={ref} style={{ display: 'none' }} />
+        {open && currentStepData && createPortal(
+          <TourContext.Provider value={contextValue}>
+            <TourOverlay
+              targetRect={targetRect}
+              spotlightPadding={currentStepData.spotlightPadding ?? 8}
+            />
+            <TourPopover
+              step={currentStepData}
+              targetRect={targetRect}
+              showSkipButton={showSkipButton}
+              showProgress={showProgress}
+            />
+          </TourContext.Provider>,
+          document.body
+        )}
+      </>
     )
   }
 )

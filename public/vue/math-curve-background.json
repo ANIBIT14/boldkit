@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "math-curve-background",
+  "type": "registry:ui",
+  "description": "Ambient animated mathematical curve background layer with neubrutalism aesthetics — wraps any content with a continuously drawn parametric curve.",
+  "dependencies": [],
+  "registryDependencies": [
+    "@boldkit/utils",
+    "@boldkit/math-curves"
+  ],
+  "files": [
+    {
+      "path": "registry/default/ui/MathCurveBackground.vue",
+      "type": "registry:ui",
+      "target": "components/ui/MathCurveBackground.vue"
+    }
+  ]
+}

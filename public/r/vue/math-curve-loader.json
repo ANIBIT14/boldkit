@@ -1,0 +1,21 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "math-curve-loader",
+  "type": "registry:ui",
+  "description": "Animated mathematical curve loader with neubrutalism aesthetics — 17 curve variants including rose, lissajous, butterfly, spiral, and heart. A point traces the curve while leaving a fading trail.",
+  "dependencies": [
+    "class-variance-authority"
+  ],
+  "registryDependencies": [
+    "@boldkit/utils",
+    "@boldkit/math-curves"
+  ],
+  "files": [
+    {
+      "path": "registry/default/ui/MathCurveLoader.vue",
+      "content": "<script setup lang=\"ts\">\nimport { shallowRef, computed, onMounted, onUnmounted, watch } from 'vue'\nimport { getPoint, getAngle, buildPath, getDetailScale, getCurvePulseDuration } from '@/lib/math-curves'\nimport type { LoaderCurveKey } from '@/lib/math-curves'\n\ninterface MathCurveLoaderProps {\n  curve?: LoaderCurveKey\n  size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl'\n  speed?: 'slow' | 'normal' | 'fast'\n  trackColor?: string\n  headColor?: string\n  strokeWidth?: number\n  headSize?: number\n  ariaLabel?: string\n  class?: string\n}\n\nconst props = withDefaults(defineProps<MathCurveLoaderProps>(), {\n  curve: 'rose',\n  size: 'md',\n  speed: 'normal',\n  strokeWidth: 4,\n  headSize: 8,\n  ariaLabel: 'Loading',\n})\n\nconst sizeMap: Record<NonNullable<MathCurveLoaderProps['size']>, number> = {\n  xs: 24,\n  sm: 32,\n  md: 48,\n  lg: 64,\n  xl: 96,\n}\n\nconst speedMap: Record<NonNullable<MathCurveLoaderProps['speed']>, number> = {\n  slow: 9000,\n  normal: 5500,\n  fast: 3000,\n}\n\nconst svgPathRef = shallowRef<SVGPathElement | null>(null)\nconst svgHeadRef = shallowRef<SVGRectElement | null>(null)\n\nconst pixelSize = computed(() => sizeMap[props.size ?? 'md'])\n\nlet rafId = 0\nlet startTime = 0\nlet isMounted = false\n\nfunction startLoop() {\n  if (!isMounted) return\n  cancelAnimationFrame(rafId)\n  startTime = performance.now()\n\n  function frame(now: number) {\n    const elapsed = now - startTime\n    const loopDuration = speedMap[props.speed ?? 'normal']\n    const pulseDuration = getCurvePulseDuration(props.curve ?? 'rose')\n\n    const progress = (elapsed % loopDuration) / loopDuration\n    const detailScale = getDetailScale(elapsed, pulseDuration)\n\n    // Update track path\n    if (svgPathRef.value) {\n      svgPathRef.value.setAttribute('d', buildPath(props.curve ?? 'rose', detailScale))\n    }\n\n    // Update head rect\n    if (svgHeadRef.value) {\n      const { x, y } = getPoint(props.curve ?? 'rose', progress, detailScale)\n      const angle = getAngle(props.curve ?? 'rose', progress, detailScale)\n      const half = (props.headSize ?? 8) / 2\n      svgHeadRef.value.setAttribute('x', String(x - half))\n      svgHeadRef.value.setAttribute('y', String(y - half))\n      svgHeadRef.value.setAttribute(\n        'transform',\n        `rotate(${angle} ${x} ${y})`\n      )\n    }\n\n    rafId = requestAnimationFrame(frame)\n  }\n\n  rafId = requestAnimationFrame(frame)\n}\n\nonMounted(() => {\n  isMounted = true\n  startLoop()\n})\n\nonUnmounted(() => {\n  isMounted = false\n  cancelAnimationFrame(rafId)\n})\n\nwatch(\n  () => [props.curve, props.speed],\n  () => {\n    startLoop()\n  }\n)\n</script>\n\n<template>\n  <svg\n    :width=\"pixelSize\"\n    :height=\"pixelSize\"\n    viewBox=\"0 0 100 100\"\n    role=\"status\"\n    :aria-label=\"props.ariaLabel\"\n    :class=\"props.class\"\n    style=\"overflow: visible; display: block\"\n  >\n    <!-- Track -->\n    <path\n      ref=\"svgPathRef\"\n      :stroke=\"trackColor ?? 'currentColor'\"\n      :stroke-width=\"strokeWidth\"\n      stroke-opacity=\"0.2\"\n      stroke-linecap=\"square\"\n      stroke-linejoin=\"miter\"\n      fill=\"none\"\n    />\n    <!-- Head -->\n    <rect\n      ref=\"svgHeadRef\"\n      :width=\"headSize\"\n      :height=\"headSize\"\n      :fill=\"headColor ?? 'hsl(var(--primary))'\"\n      stroke=\"currentColor\"\n      stroke-width=\"1.5\"\n      x=\"0\"\n      y=\"0\"\n    />\n  </svg>\n</template>\n",
+      "type": "registry:ui",
+      "target": "components/ui/MathCurveLoader.vue"
+    }
+  ]
+}

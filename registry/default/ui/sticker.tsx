@@ -1,3 +1,4 @@
+/* eslint-disable react-refresh/only-export-components */
 import * as React from 'react'
 import { cva, type VariantProps } from 'class-variance-authority'
 import { cn } from '@/lib/utils'
@@ -12,7 +13,7 @@ const stickerVariants = cva(
         secondary: 'bg-secondary text-secondary-foreground',
         destructive: 'bg-destructive text-destructive-foreground',
         outline: 'bg-background text-foreground',
-        neon: 'bg-neon-pink text-foreground',
+        neon: 'bg-[#ff2d78] text-white',
       },
       size: {
         sm: 'px-2 py-1 text-xs',

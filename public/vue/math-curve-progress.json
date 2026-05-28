@@ -1,0 +1,20 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "math-curve-progress",
+  "type": "registry:ui",
+  "description": "Progress indicator that traces a mathematical curve — value-driven head moves along the curve, fill segments behind. 9 curve variants.",
+  "dependencies": [
+    "class-variance-authority"
+  ],
+  "registryDependencies": [
+    "@boldkit/utils",
+    "@boldkit/math-curves"
+  ],
+  "files": [
+    {
+      "path": "registry/default/ui/MathCurveProgress.vue",
+      "type": "registry:ui",
+      "target": "components/ui/MathCurveProgress.vue"
+    }
+  ]
+}

@@ -1,3 +1,4 @@
+/* eslint-disable react-refresh/only-export-components */
 import * as React from 'react'
 import { cva, type VariantProps } from 'class-variance-authority'
 import { cn } from '@/lib/utils'
@@ -175,7 +176,7 @@ EmptyStateIllustration.displayName = 'EmptyStateIllustration'
 // Empty State Title
 // ============================================================================
 
-export interface EmptyStateTitleProps extends React.HTMLAttributes<HTMLHeadingElement> {}
+export type EmptyStateTitleProps = React.HTMLAttributes<HTMLHeadingElement>
 
 const EmptyStateTitle = React.forwardRef<HTMLHeadingElement, EmptyStateTitleProps>(
   ({ className, children, ...props }, ref) => {
@@ -196,7 +197,7 @@ EmptyStateTitle.displayName = 'EmptyStateTitle'
 // Empty State Description
 // ============================================================================
 
-export interface EmptyStateDescriptionProps extends React.HTMLAttributes<HTMLParagraphElement> {}
+export type EmptyStateDescriptionProps = React.HTMLAttributes<HTMLParagraphElement>
 
 const EmptyStateDescription = React.forwardRef<HTMLParagraphElement, EmptyStateDescriptionProps>(
   ({ className, children, ...props }, ref) => {
@@ -217,7 +218,7 @@ EmptyStateDescription.displayName = 'EmptyStateDescription'
 // Empty State Actions
 // ============================================================================
 
-export interface EmptyStateActionsProps extends React.HTMLAttributes<HTMLDivElement> {}
+export type EmptyStateActionsProps = React.HTMLAttributes<HTMLDivElement>
 
 const EmptyStateActions = React.forwardRef<HTMLDivElement, EmptyStateActionsProps>(
   ({ className, children, ...props }, ref) => {
@@ -260,6 +261,15 @@ interface PresetConfig {
   title: string
   description: string
   iconColor?: VariantProps<typeof iconContainerVariants>['iconColor']
+}
+
+const presetIconSizeMap: Record<string, 'xs' | 'sm' | 'md' | 'lg' | 'xl'> = {
+  compact: 'sm',
+  sm: 'sm',
+  md: 'md',
+  lg: 'lg',
+  xl: 'xl',
+  xs: 'xs',
 }
 
 const presetConfig: Record<EmptyStatePresetType, PresetConfig> = {
@@ -393,7 +403,7 @@ const EmptyStatePreset = React.forwardRef<HTMLDivElement, EmptyStatePresetProps>
         {illustration ? (
           <EmptyStateIllustration>{illustration}</EmptyStateIllustration>
         ) : (
-          <EmptyStateIcon iconColor={finalIconColor} size={iconSize ?? (size === 'compact' ? 'sm' : size === 'sm' ? 'sm' : size === 'lg' ? 'lg' : 'md')}>
+          <EmptyStateIcon iconColor={finalIconColor} size={iconSize ?? presetIconSizeMap[size ?? 'md'] ?? 'md'}>
             {customIcon ?? config.icon}
           </EmptyStateIcon>
         )}

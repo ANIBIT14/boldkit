@@ -1,3 +1,4 @@
+/* eslint-disable react-refresh/only-export-components */
 import * as React from 'react'
 import {
   flexRender,
@@ -47,11 +48,11 @@ interface DataTableContextValue<TData> {
 const DataTableContext = React.createContext<DataTableContextValue<unknown> | null>(null)
 
 function useDataTable<TData>() {
-  const context = React.useContext(DataTableContext) as DataTableContextValue<TData> | null
+  const context = React.useContext(DataTableContext)
   if (!context) {
     throw new Error('DataTable components must be used within a <DataTable />')
   }
-  return context
+  return context as DataTableContextValue<TData>
 }
 
 // Column Header with sorting
@@ -113,7 +114,7 @@ function DataTableToolbar<TData>({
             <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
             <Input
               placeholder={filterPlaceholder}
-              value={(column.getFilterValue() as string) ?? ''}
+              value={String(column.getFilterValue() ?? '')}
               onChange={(event) => column.setFilterValue(event.target.value)}
               className="h-9 w-[150px] pl-9 lg:w-[250px]"
             />
@@ -331,8 +332,14 @@ function DataTable<TData, TValue>({
     }
   }, [rowSelection, table, onRowSelectionChange])
 
+  // Memoize context value to prevent unnecessary re-renders
+  const contextValue = React.useMemo(
+    () => ({ table: table as TanstackTable<unknown> }),
+    [table]
+  )
+
   return (
-    <DataTableContext.Provider value={{ table: table as TanstackTable<unknown> }}>
+    <DataTableContext.Provider value={contextValue}>
       <div className="space-y-4">
         {/* Toolbar */}
         {(enableFiltering || enableColumnVisibility) && (
