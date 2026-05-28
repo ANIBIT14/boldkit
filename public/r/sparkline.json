@@ -17,7 +17,7 @@
     },
     {
       "path": "registry/default/example/sparkline-demo.tsx",
-      "content": "import { Sparkline } from '@/components/ui/chart'\n\nexport default function Example() {\n  const data = [10, 15, 8, 20, 14, 25, 18, 30]\n\n  return <Sparkline data={data} />\n}",
+      "content": "import { Sparkline } from '@/components/ui/chart/sparkline'\n\nexport default function Example() {\n  const data = [10, 15, 8, 20, 14, 25, 18, 30]\n\n  return <Sparkline data={data} />\n}",
       "type": "registry:example",
       "target": "components/example/sparkline-demo.tsx"
     }

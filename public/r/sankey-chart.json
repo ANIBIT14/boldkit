@@ -15,7 +15,7 @@
     },
     {
       "path": "registry/default/example/sankey-chart-demo.tsx",
-      "content": "import { SankeyChart } from \"@/components/ui/sankey-chart\"\n\nexport default function SankeyChartDemo() {\n  return (\n    <SankeyChart\n      nodes={[\n        { name: \"Source A\" },\n        { name: \"Source B\" },\n        { name: \"Target X\" },\n        { name: \"Target Y\" },\n      ]}\n      links={[\n        { source: 0, target: 2, value: 5 },\n        { source: 0, target: 3, value: 3 },\n        { source: 1, target: 2, value: 2 },\n        { source: 1, target: 3, value: 7 },\n      ]}\n    />\n  )\n}\n",
+      "content": "import { SankeyChart } from \"@/components/ui/chart/sankey-chart\"\n\nexport default function SankeyChartDemo() {\n  return (\n    <SankeyChart\n      nodes={[\n        { name: \"Source A\" },\n        { name: \"Source B\" },\n        { name: \"Target X\" },\n        { name: \"Target Y\" },\n      ]}\n      links={[\n        { source: 0, target: 2, value: 5 },\n        { source: 0, target: 3, value: 3 },\n        { source: 1, target: 2, value: 2 },\n        { source: 1, target: 3, value: 7 },\n      ]}\n    />\n  )\n}\n",
       "type": "registry:example",
       "target": "components/example/sankey-chart-demo.tsx"
     }

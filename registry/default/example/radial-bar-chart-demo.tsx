@@ -1,4 +1,4 @@
-import { RadialBarChart } from '@/components/ui/chart'
+import { RadialBarChart } from '@/components/ui/chart/radial-bar-chart'
 
 const data = [
   { name: 'Progress', value: 75, fill: 'hsl(var(--primary))' },

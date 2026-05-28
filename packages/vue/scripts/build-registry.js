@@ -61,7 +61,7 @@ const componentMeta = {
   sonner: { deps: ['vue-sonner'], registryDeps: ['use-theme'], desc: 'An opinionated toast component' },
   calendar: { deps: ['reka-ui', 'lucide-vue-next'], desc: 'A date picker calendar component' },
   'input-otp': { deps: ['reka-ui', 'lucide-vue-next'], desc: 'Accessible one-time password input', files: ['InputOTP', 'InputOTPGroup', 'InputOTPSlot', 'InputOTPSeparator'] },
-  command: { deps: ['reka-ui', 'lucide-vue-next'], desc: 'Fast, composable command menu', files: ['Command', 'CommandDialog', 'CommandInput', 'CommandList', 'CommandEmpty', 'CommandGroup', 'CommandItem', 'CommandSeparator', 'CommandShortcut'] },
+  command: { deps: ['reka-ui', 'lucide-vue-next'], registryDeps: ['dialog'], desc: 'Fast, composable command menu', files: ['Command', 'CommandDialog', 'CommandInput', 'CommandList', 'CommandEmpty', 'CommandGroup', 'CommandItem', 'CommandSeparator', 'CommandShortcut'] },
 
   // BoldKit unique
   marquee: { deps: [], desc: 'A scrolling marquee component', files: ['Marquee', 'MarqueeItem', 'MarqueeSeparator'] },

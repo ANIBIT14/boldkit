@@ -17,7 +17,7 @@
     },
     {
       "path": "registry/default/example/treemap-chart-demo.tsx",
-      "content": "import { TreemapChart } from \"@/components/ui/treemap-chart\"\n\nexport default function TreemapChartDemo() {\n  return (\n    <TreemapChart\n      data={[\n        { name: \"React\", value: 400 },\n        { name: \"Vue\", value: 300 },\n        { name: \"Angular\", value: 200 },\n        { name: \"Svelte\", value: 100 },\n      ]}\n    />\n  )\n}\n",
+      "content": "import { TreemapChart } from \"@/components/ui/chart/treemap-chart\"\n\nexport default function TreemapChartDemo() {\n  return (\n    <TreemapChart\n      data={[\n        { name: \"React\", value: 400 },\n        { name: \"Vue\", value: 300 },\n        { name: \"Angular\", value: 200 },\n        { name: \"Svelte\", value: 100 },\n      ]}\n    />\n  )\n}\n",
       "type": "registry:example",
       "target": "components/example/treemap-chart-demo.tsx"
     }

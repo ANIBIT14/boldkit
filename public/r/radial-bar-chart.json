@@ -18,7 +18,7 @@
     },
     {
       "path": "registry/default/example/radial-bar-chart-demo.tsx",
-      "content": "import { RadialBarChart } from '@/components/ui/chart'\n\nconst data = [\n  { name: 'Progress', value: 75, fill: 'hsl(var(--primary))' },\n  { name: 'Goals', value: 60, fill: 'hsl(var(--secondary))' },\n  { name: 'Tasks', value: 45, fill: 'hsl(var(--accent))' },\n]\n\nconst config = {\n  progress: { label: 'Progress', color: 'hsl(var(--primary))' },\n  goals: { label: 'Goals', color: 'hsl(var(--secondary))' },\n  tasks: { label: 'Tasks', color: 'hsl(var(--accent))' },\n}\n\nexport default function Example() {\n  return <RadialBarChart data={data} config={config} />\n}",
+      "content": "import { RadialBarChart } from '@/components/ui/chart/radial-bar-chart'\n\nconst data = [\n  { name: 'Progress', value: 75, fill: 'hsl(var(--primary))' },\n  { name: 'Goals', value: 60, fill: 'hsl(var(--secondary))' },\n  { name: 'Tasks', value: 45, fill: 'hsl(var(--accent))' },\n]\n\nconst config = {\n  progress: { label: 'Progress', color: 'hsl(var(--primary))' },\n  goals: { label: 'Goals', color: 'hsl(var(--secondary))' },\n  tasks: { label: 'Tasks', color: 'hsl(var(--accent))' },\n}\n\nexport default function Example() {\n  return <RadialBarChart data={data} config={config} />\n}",
       "type": "registry:example",
       "target": "components/example/radial-bar-chart-demo.tsx"
     }

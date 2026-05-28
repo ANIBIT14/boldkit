@@ -1,4 +1,4 @@
-import { RadarChart } from '@/components/ui/chart'
+import { RadarChart } from '@/components/ui/chart/radar-chart'
 
 const data = [
   { subject: 'Speed', player1: 80, player2: 65 },

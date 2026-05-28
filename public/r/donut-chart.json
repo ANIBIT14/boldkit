@@ -18,7 +18,7 @@
     },
     {
       "path": "registry/default/example/donut-chart-demo.tsx",
-      "content": "import { DonutChart, DonutChartCenter } from '@/components/ui/chart'\n\nconst data = [\n  { name: 'Chrome', value: 275, fill: 'hsl(var(--primary))' },\n  { name: 'Safari', value: 200, fill: 'hsl(var(--secondary))' },\n  { name: 'Firefox', value: 187, fill: 'hsl(var(--accent))' },\n]\n\nconst config = {\n  chrome: { label: 'Chrome', color: 'hsl(var(--primary))' },\n  safari: { label: 'Safari', color: 'hsl(var(--secondary))' },\n  firefox: { label: 'Firefox', color: 'hsl(var(--accent))' },\n}\n\nexport default function Example() {\n  return (\n    <DonutChart\n      data={data}\n      config={config}\n      centerContent={<DonutChartCenter value=\"662\" label=\"Total\" />}\n    />\n  )\n}",
+      "content": "import { DonutChart, DonutChartCenter } from '@/components/ui/chart/donut-chart'\n\nconst data = [\n  { name: 'Chrome', value: 275, fill: 'hsl(var(--primary))' },\n  { name: 'Safari', value: 200, fill: 'hsl(var(--secondary))' },\n  { name: 'Firefox', value: 187, fill: 'hsl(var(--accent))' },\n]\n\nconst config = {\n  chrome: { label: 'Chrome', color: 'hsl(var(--primary))' },\n  safari: { label: 'Safari', color: 'hsl(var(--secondary))' },\n  firefox: { label: 'Firefox', color: 'hsl(var(--accent))' },\n}\n\nexport default function Example() {\n  return (\n    <DonutChart\n      data={data}\n      config={config}\n      centerContent={<DonutChartCenter value=\"662\" label=\"Total\" />}\n    />\n  )\n}",
       "type": "registry:example",
       "target": "components/example/donut-chart-demo.tsx"
     }

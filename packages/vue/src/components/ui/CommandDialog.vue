@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { type DialogRootProps } from 'reka-ui'
-import { Dialog, DialogContent } from '@/components/ui'
+import Dialog from './Dialog.vue'
+import DialogContent from './DialogContent.vue'
 import Command from './Command.vue'
 
 interface Props extends DialogRootProps {

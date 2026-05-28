@@ -18,7 +18,7 @@
     },
     {
       "path": "registry/default/example/radar-chart-demo.tsx",
-      "content": "import { RadarChart } from '@/components/ui/chart'\n\nconst data = [\n  { subject: 'Speed', player1: 80, player2: 65 },\n  { subject: 'Strength', player1: 70, player2: 85 },\n  { subject: 'Accuracy', player1: 90, player2: 75 },\n  { subject: 'Stamina', player1: 85, player2: 70 },\n  { subject: 'Agility', player1: 75, player2: 90 },\n]\n\nconst config = {\n  player1: { label: 'Player 1', color: 'hsl(var(--primary))' },\n  player2: { label: 'Player 2', color: 'hsl(var(--secondary))' },\n}\n\nexport default function Example() {\n  return (\n    <RadarChart\n      data={data}\n      dataKeys={['player1', 'player2']}\n      config={config}\n    />\n  )\n}",
+      "content": "import { RadarChart } from '@/components/ui/chart/radar-chart'\n\nconst data = [\n  { subject: 'Speed', player1: 80, player2: 65 },\n  { subject: 'Strength', player1: 70, player2: 85 },\n  { subject: 'Accuracy', player1: 90, player2: 75 },\n  { subject: 'Stamina', player1: 85, player2: 70 },\n  { subject: 'Agility', player1: 75, player2: 90 },\n]\n\nconst config = {\n  player1: { label: 'Player 1', color: 'hsl(var(--primary))' },\n  player2: { label: 'Player 2', color: 'hsl(var(--secondary))' },\n}\n\nexport default function Example() {\n  return (\n    <RadarChart\n      data={data}\n      dataKeys={['player1', 'player2']}\n      config={config}\n    />\n  )\n}",
       "type": "registry:example",
       "target": "components/example/radar-chart-demo.tsx"
     }

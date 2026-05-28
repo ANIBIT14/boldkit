@@ -17,7 +17,7 @@
     },
     {
       "path": "registry/default/example/gauge-chart-demo.tsx",
-      "content": "import { GaugeChart } from \"@/components/ui/gauge-chart\"\n\nexport default function GaugeChartDemo() {\n  return <GaugeChart value={72} label=\"Performance\" />\n}\n",
+      "content": "import { GaugeChart } from \"@/components/ui/chart/gauge-chart\"\n\nexport default function GaugeChartDemo() {\n  return <GaugeChart value={72} label=\"Performance\" />\n}\n",
       "type": "registry:example",
       "target": "components/example/gauge-chart-demo.tsx"
     }

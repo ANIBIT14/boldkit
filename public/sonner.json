@@ -7,7 +7,8 @@
   ],
   "registryDependencies": [
     "@boldkit/utils",
-    "@boldkit/use-theme"
+    "@boldkit/use-theme",
+    "@boldkit/button"
   ],
   "files": [
     {

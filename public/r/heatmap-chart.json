@@ -15,7 +15,7 @@
     },
     {
       "path": "registry/default/example/heatmap-chart-demo.tsx",
-      "content": "import { HeatmapChart } from \"@/components/ui/heatmap-chart\"\n\nexport default function HeatmapChartDemo() {\n  return (\n    <HeatmapChart\n      data={[\n        { x: \"Mon\", y: \"9am\", value: 5 },\n        { x: \"Mon\", y: \"12pm\", value: 8 },\n        { x: \"Tue\", y: \"9am\", value: 3 },\n        { x: \"Tue\", y: \"12pm\", value: 9 },\n        { x: \"Wed\", y: \"9am\", value: 7 },\n        { x: \"Wed\", y: \"12pm\", value: 4 },\n      ]}\n    />\n  )\n}\n",
+      "content": "import { HeatmapChart } from \"@/components/ui/chart/heatmap-chart\"\n\nexport default function HeatmapChartDemo() {\n  return (\n    <HeatmapChart\n      data={[\n        { x: \"Mon\", y: \"9am\", value: 5 },\n        { x: \"Mon\", y: \"12pm\", value: 8 },\n        { x: \"Tue\", y: \"9am\", value: 3 },\n        { x: \"Tue\", y: \"12pm\", value: 9 },\n        { x: \"Wed\", y: \"9am\", value: 7 },\n        { x: \"Wed\", y: \"12pm\", value: 4 },\n      ]}\n    />\n  )\n}\n",
       "type": "registry:example",
       "target": "components/example/heatmap-chart-demo.tsx"
     }

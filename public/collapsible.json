@@ -6,7 +6,8 @@
     "@radix-ui/react-collapsible"
   ],
   "registryDependencies": [
-    "@boldkit/utils"
+    "@boldkit/utils",
+    "@boldkit/button"
   ],
   "files": [
     {

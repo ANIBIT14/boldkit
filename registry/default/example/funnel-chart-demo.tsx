@@ -1,4 +1,4 @@
-import { FunnelChart } from "@/components/ui/funnel-chart"
+import { FunnelChart } from "@/components/ui/chart/funnel-chart"
 
 export default function FunnelChartDemo() {
   return (

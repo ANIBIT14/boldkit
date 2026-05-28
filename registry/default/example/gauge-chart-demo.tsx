@@ -1,4 +1,4 @@
-import { GaugeChart } from "@/components/ui/gauge-chart"
+import { GaugeChart } from "@/components/ui/chart/gauge-chart"
 
 export default function GaugeChartDemo() {
   return <GaugeChart value={72} label="Performance" />

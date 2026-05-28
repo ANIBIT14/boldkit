@@ -328,7 +328,8 @@
         "lucide-react"
       ],
       "registryDependencies": [
-        "@boldkit/utils"
+        "@boldkit/utils",
+        "@boldkit/label"
       ],
       "files": [
         {
@@ -351,7 +352,8 @@
         "@radix-ui/react-collapsible"
       ],
       "registryDependencies": [
-        "@boldkit/utils"
+        "@boldkit/utils",
+        "@boldkit/button"
       ],
       "files": [
         {
@@ -425,7 +427,8 @@
         "lucide-react"
       ],
       "registryDependencies": [
-        "@boldkit/utils"
+        "@boldkit/utils",
+        "@boldkit/button"
       ],
       "files": [
         {
@@ -449,7 +452,8 @@
         "lucide-react"
       ],
       "registryDependencies": [
-        "@boldkit/utils"
+        "@boldkit/utils",
+        "@boldkit/button"
       ],
       "files": [
         {
@@ -494,7 +498,8 @@
         "class-variance-authority"
       ],
       "registryDependencies": [
-        "@boldkit/utils"
+        "@boldkit/utils",
+        "@boldkit/input"
       ],
       "files": [
         {
@@ -517,7 +522,8 @@
         "@radix-ui/react-popover"
       ],
       "registryDependencies": [
-        "@boldkit/utils"
+        "@boldkit/utils",
+        "@boldkit/button"
       ],
       "files": [
         {
@@ -564,7 +570,8 @@
         "lucide-react"
       ],
       "registryDependencies": [
-        "@boldkit/utils"
+        "@boldkit/utils",
+        "@boldkit/label"
       ],
       "files": [
         {
@@ -725,7 +732,8 @@
       ],
       "registryDependencies": [
         "@boldkit/utils",
-        "@boldkit/use-theme"
+        "@boldkit/use-theme",
+        "@boldkit/button"
       ],
       "files": [
         {
@@ -748,7 +756,8 @@
         "@radix-ui/react-switch"
       ],
       "registryDependencies": [
-        "@boldkit/utils"
+        "@boldkit/utils",
+        "@boldkit/label"
       ],
       "files": [
         {
@@ -1758,7 +1767,8 @@
         "lucide-react"
       ],
       "registryDependencies": [
-        "@boldkit/utils"
+        "@boldkit/utils",
+        "@boldkit/button"
       ],
       "files": [
         {

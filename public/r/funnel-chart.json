@@ -17,7 +17,7 @@
     },
     {
       "path": "registry/default/example/funnel-chart-demo.tsx",
-      "content": "import { FunnelChart } from \"@/components/ui/funnel-chart\"\n\nexport default function FunnelChartDemo() {\n  return (\n    <FunnelChart\n      data={[\n        { name: \"Visitors\", value: 5000 },\n        { name: \"Leads\", value: 3000 },\n        { name: \"Prospects\", value: 1500 },\n        { name: \"Customers\", value: 800 },\n      ]}\n    />\n  )\n}\n",
+      "content": "import { FunnelChart } from \"@/components/ui/chart/funnel-chart\"\n\nexport default function FunnelChartDemo() {\n  return (\n    <FunnelChart\n      data={[\n        { name: \"Visitors\", value: 5000 },\n        { name: \"Leads\", value: 3000 },\n        { name: \"Prospects\", value: 1500 },\n        { name: \"Customers\", value: 800 },\n      ]}\n    />\n  )\n}\n",
       "type": "registry:example",
       "target": "components/example/funnel-chart-demo.tsx"
     }
