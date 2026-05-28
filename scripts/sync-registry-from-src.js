@@ -70,6 +70,15 @@ function rewriteChartImports(content) {
 // Files to sync from src/lib → registry/default/lib (only these, by name)
 const LIB_FILES = ['utils.ts', 'math-curves.ts']
 
+// Cross-folder files referenced by UI components — must be shipped via
+// their own registry entries (error-boundary, use-theme, …) or installs
+// of the consuming components fail with "Cannot find module".
+// Each entry: { from: '<rel-to-root>', to: '<rel-to-root>' }
+const CROSS_FOLDER_FILES = [
+  { from: 'src/components/ErrorBoundary.tsx', to: 'registry/default/components/ErrorBoundary.tsx' },
+  { from: 'src/hooks/use-theme.tsx',          to: 'registry/default/hooks/use-theme.tsx' },
+]
+
 // UI files to skip even though they live flat in src/components/ui/.
 // chart.tsx is a barrel re-export in src — registry needs its own flat copy.
 const UI_SKIP = new Set(['chart.tsx'])
@@ -126,6 +135,11 @@ if (existsSync(CHART_SRC)) {
 // Lib helpers
 for (const name of LIB_FILES) {
   syncFile(join(LIB_SRC, name), join(LIB_DST, name))
+}
+
+// Cross-folder helpers (ErrorBoundary, use-theme, etc.)
+for (const { from, to } of CROSS_FOLDER_FILES) {
+  syncFile(join(root, from), join(root, to))
 }
 
 // Verify post-sync state

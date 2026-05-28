@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "use-theme",
+  "type": "registry:ui",
+  "description": "Theme provider composable with light/dark/system support. Used by Sonner toast for theme-aware rendering.",
+  "dependencies": [],
+  "registryDependencies": [
+    "@boldkit/utils"
+  ],
+  "files": [
+    {
+      "path": "registry/default/composables/useTheme.ts",
+      "type": "registry:ui",
+      "target": "composables/useTheme.ts"
+    }
+  ]
+}

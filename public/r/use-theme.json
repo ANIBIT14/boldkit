@@ -1,0 +1,14 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "use-theme",
+  "description": "Theme provider hook with light/dark/system support and localStorage persistence. Used by Sonner toast for theme-aware rendering.",
+  "files": [
+    {
+      "path": "registry/default/hooks/use-theme.tsx",
+      "content": "/* eslint-disable react-refresh/only-export-components */\nimport * as React from 'react'\n\ntype Theme = 'light' | 'dark' | 'system'\n\ninterface ThemeProviderProps {\n  children: React.ReactNode\n  defaultTheme?: Theme\n  storageKey?: string\n}\n\ninterface ThemeProviderState {\n  theme: Theme\n  setTheme: (theme: Theme) => void\n  resolvedTheme: 'light' | 'dark'\n}\n\nconst ThemeProviderContext = React.createContext<ThemeProviderState | undefined>(\n  undefined\n)\n\nexport function ThemeProvider({\n  children,\n  defaultTheme = 'system',\n  storageKey = 'boldkit-theme',\n}: ThemeProviderProps) {\n  const [theme, setTheme] = React.useState<Theme>(() => {\n    if (typeof window !== 'undefined') {\n      return (localStorage.getItem(storageKey) as Theme) || defaultTheme\n    }\n    return defaultTheme\n  })\n\n  const resolvedTheme = React.useMemo<'light' | 'dark'>(() => {\n    if (typeof window === 'undefined') return 'light'\n    if (theme === 'dark') return 'dark'\n    if (theme === 'light') return 'light'\n    return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'\n  }, [theme])\n\n  React.useEffect(() => {\n    const root = window.document.documentElement\n    root.classList.remove('light', 'dark')\n    root.classList.add(resolvedTheme)\n  }, [resolvedTheme])\n\n  const value = React.useMemo(\n    () => ({\n      theme,\n      setTheme: (newTheme: Theme) => {\n        localStorage.setItem(storageKey, newTheme)\n        setTheme(newTheme)\n      },\n      resolvedTheme,\n    }),\n    [theme, resolvedTheme, storageKey]\n  )\n\n  return (\n    <ThemeProviderContext.Provider value={value}>\n      {children}\n    </ThemeProviderContext.Provider>\n  )\n}\n\nexport function useTheme() {\n  const context = React.useContext(ThemeProviderContext)\n\n  if (context === undefined) {\n    throw new Error('useTheme must be used within a ThemeProvider')\n  }\n\n  return context\n}\n",
+      "type": "registry:hook",
+      "target": "hooks/use-theme.tsx"
+    }
+  ],
+  "type": "registry:hook"
+}

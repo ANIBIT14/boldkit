@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "use-theme",
+  "type": "registry:ui",
+  "description": "Theme provider composable with light/dark/system support. Used by Sonner toast for theme-aware rendering.",
+  "dependencies": [],
+  "registryDependencies": [
+    "@boldkit/utils"
+  ],
+  "files": [
+    {
+      "path": "registry/default/composables/useTheme.ts",
+      "content": "import { ref, watch, onMounted, provide, inject, type InjectionKey, type Ref } from 'vue'\n\nexport type Theme = 'light' | 'dark' | 'system'\n\nexport interface ThemeProviderState {\n  theme: Ref<Theme>\n  setTheme: (theme: Theme) => void\n  resolvedTheme: Ref<'light' | 'dark'>\n}\n\nexport const ThemeProviderKey: InjectionKey<ThemeProviderState> = Symbol('ThemeProvider')\n\nexport interface UseThemeProviderOptions {\n  defaultTheme?: Theme\n  storageKey?: string\n}\n\nexport function useThemeProvider(options: UseThemeProviderOptions = {}) {\n  const { defaultTheme = 'system', storageKey = 'boldkit-theme' } = options\n\n  const theme = ref<Theme>(defaultTheme)\n  const resolvedTheme = ref<'light' | 'dark'>('light')\n\n  // Initialize from localStorage\n  onMounted(() => {\n    const stored = localStorage.getItem(storageKey) as Theme | null\n    if (stored) {\n      theme.value = stored\n    }\n  })\n\n  // Watch theme changes and update DOM\n  watch(\n    theme,\n    (newTheme) => {\n      const root = window.document.documentElement\n      root.classList.remove('light', 'dark')\n\n      if (newTheme === 'system') {\n        const systemTheme = window.matchMedia('(prefers-color-scheme: dark)').matches\n          ? 'dark'\n          : 'light'\n        root.classList.add(systemTheme)\n        resolvedTheme.value = systemTheme\n      } else {\n        root.classList.add(newTheme)\n        resolvedTheme.value = newTheme\n      }\n    },\n    { immediate: true }\n  )\n\n  const setTheme = (newTheme: Theme) => {\n    localStorage.setItem(storageKey, newTheme)\n    theme.value = newTheme\n  }\n\n  const state: ThemeProviderState = {\n    theme,\n    setTheme,\n    resolvedTheme,\n  }\n\n  provide(ThemeProviderKey, state)\n\n  return state\n}\n\nexport function useTheme(): ThemeProviderState {\n  const context = inject(ThemeProviderKey)\n\n  if (!context) {\n    // Fallback: create a standalone theme state if not provided\n    const theme = ref<Theme>('system')\n    const resolvedTheme = ref<'light' | 'dark'>('light')\n    const storageKey = 'boldkit-theme'\n\n    onMounted(() => {\n      const stored = localStorage.getItem(storageKey) as Theme | null\n      if (stored) {\n        theme.value = stored\n      }\n      updateTheme(theme.value)\n    })\n\n    const updateTheme = (newTheme: Theme) => {\n      const root = window.document.documentElement\n      root.classList.remove('light', 'dark')\n\n      if (newTheme === 'system') {\n        const systemTheme = window.matchMedia('(prefers-color-scheme: dark)').matches\n          ? 'dark'\n          : 'light'\n        root.classList.add(systemTheme)\n        resolvedTheme.value = systemTheme\n      } else {\n        root.classList.add(newTheme)\n        resolvedTheme.value = newTheme\n      }\n    }\n\n    watch(theme, updateTheme)\n\n    const setTheme = (newTheme: Theme) => {\n      localStorage.setItem(storageKey, newTheme)\n      theme.value = newTheme\n    }\n\n    return {\n      theme,\n      setTheme,\n      resolvedTheme,\n    }\n  }\n\n  return context\n}\n",
+      "type": "registry:ui",
+      "target": "composables/useTheme.ts"
+    }
+  ]
+}

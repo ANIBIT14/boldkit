@@ -1,0 +1,13 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "use-theme",
+  "description": "Theme provider hook with light/dark/system support and localStorage persistence. Used by Sonner toast for theme-aware rendering.",
+  "files": [
+    {
+      "path": "registry/default/hooks/use-theme.tsx",
+      "type": "registry:hook",
+      "target": "hooks/use-theme.tsx"
+    }
+  ],
+  "type": "registry:hook"
+}

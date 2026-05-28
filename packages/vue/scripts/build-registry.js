@@ -58,7 +58,7 @@ const componentMeta = {
   pagination: { deps: ['reka-ui', 'lucide-vue-next'], desc: 'Navigation for paged content', files: ['Pagination', 'PaginationList', 'PaginationListItem', 'PaginationEllipsis', 'PaginationFirst', 'PaginationLast', 'PaginationPrev', 'PaginationNext'] },
   breadcrumb: { deps: ['reka-ui', 'lucide-vue-next'], desc: 'Displays the path to the current resource', files: ['Breadcrumb', 'BreadcrumbList', 'BreadcrumbItem', 'BreadcrumbLink', 'BreadcrumbPage', 'BreadcrumbSeparator', 'BreadcrumbEllipsis'] },
   drawer: { deps: ['vaul-vue'], desc: 'A drawer component for Vue', files: ['Drawer', 'DrawerTrigger', 'DrawerContent', 'DrawerHeader', 'DrawerFooter', 'DrawerTitle', 'DrawerDescription', 'DrawerClose'] },
-  sonner: { deps: ['vue-sonner'], desc: 'An opinionated toast component' },
+  sonner: { deps: ['vue-sonner'], registryDeps: ['use-theme'], desc: 'An opinionated toast component' },
   calendar: { deps: ['reka-ui', 'lucide-vue-next'], desc: 'A date picker calendar component' },
   'input-otp': { deps: ['reka-ui', 'lucide-vue-next'], desc: 'Accessible one-time password input', files: ['InputOTP', 'InputOTPGroup', 'InputOTPSlot', 'InputOTPSeparator'] },
   command: { deps: ['reka-ui', 'lucide-vue-next'], desc: 'Fast, composable command menu', files: ['Command', 'CommandDialog', 'CommandInput', 'CommandList', 'CommandEmpty', 'CommandGroup', 'CommandItem', 'CommandSeparator', 'CommandShortcut'] },
@@ -250,6 +250,22 @@ const componentMeta = {
     deps: ['vue-echarts', 'echarts', 'class-variance-authority'],
     desc: 'A compact sparkline chart component for inline data visualization with line, area, and bar variants',
     files: ['SparklineChart'],
+  },
+
+  // ──────────────────────────────────────────────────────────────────
+  // Cross-folder helpers consumed by UI components.
+  // Without these entries, installing a component that imports them
+  // produces "Cannot find module" errors in the consumer's project.
+  // ──────────────────────────────────────────────────────────────────
+
+  // useTheme — Vue composable. Imported by Sonner.vue.
+  'use-theme': {
+    deps: [],
+    desc: 'Theme provider composable with light/dark/system support. Used by Sonner toast for theme-aware rendering.',
+    files: [],
+    siblingFiles: [
+      { src: 'composables/useTheme.ts', target: 'composables/useTheme.ts' },
+    ],
   },
 
   // ──────────────────────────────────────────────────────────────────
