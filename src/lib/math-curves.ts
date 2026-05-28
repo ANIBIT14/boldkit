@@ -11,6 +11,7 @@ export type LoaderCurveKey =
   | 'cardioid' | 'lemniscate' | 'fourier' | 'rose3'
   | 'astroid' | 'deltoid' | 'nephroid' | 'epicycloid'
   | 'superellipse' | 'triskelion' | 'involute'
+  | 'spiral' | 'heart'
 
 export type ProgressCurveKey =
   | 'spiral' | 'heart' | 'lissajous' | 'cardioid' | 'rose'

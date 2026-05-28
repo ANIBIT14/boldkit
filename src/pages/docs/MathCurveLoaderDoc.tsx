@@ -49,12 +49,14 @@ export function MathCurveLoaderDoc() {
           <MathCurveLoader curve="superellipse" size="xl" />
           <MathCurveLoader curve="triskelion" size="xl" />
           <MathCurveLoader curve="involute" size="xl" />
+          <MathCurveLoader curve="spiral" size="xl" />
+          <MathCurveLoader curve="heart" size="xl" />
         </div>
       </ComponentDoc>
 
       <ExampleSection
         title="Curve Variants"
-        description="15 parametric curves — each tracing a unique mathematical path."
+        description="17 parametric curves — each tracing a unique mathematical path. Note: spiral (Archimedean, r = b·t) and involute (r = a·t² visually) both produce outward-spiraling shapes but with different spacing between turns."
         code={`<MathCurveLoader curve="rose" />
 <MathCurveLoader curve="lissajous" />
 <MathCurveLoader curve="butterfly" />
@@ -69,7 +71,9 @@ export function MathCurveLoaderDoc() {
 <MathCurveLoader curve="epicycloid" />
 <MathCurveLoader curve="superellipse" />
 <MathCurveLoader curve="triskelion" />
-<MathCurveLoader curve="involute" />`}
+<MathCurveLoader curve="involute" />
+<MathCurveLoader curve="spiral" />
+<MathCurveLoader curve="heart" />`}
         vueCode={`<template>
   <MathCurveLoader curve="rose" />
   <MathCurveLoader curve="lissajous" />
@@ -86,6 +90,8 @@ export function MathCurveLoaderDoc() {
   <MathCurveLoader curve="superellipse" />
   <MathCurveLoader curve="triskelion" />
   <MathCurveLoader curve="involute" />
+  <MathCurveLoader curve="spiral" />
+  <MathCurveLoader curve="heart" />
 </template>`}
       >
         <div className="flex flex-wrap items-center gap-8">
@@ -106,6 +112,8 @@ export function MathCurveLoaderDoc() {
               'superellipse',
               'triskelion',
               'involute',
+              'spiral',
+              'heart',
             ] as const
           ).map((curve) => (
             <div key={curve} className="flex flex-col items-center gap-2">

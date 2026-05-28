@@ -7,18 +7,19 @@
  */
 
 export type LoaderCurveKey =
-  | 'rose'
-  | 'lissajous'
-  | 'butterfly'
-  | 'hypotrochoid'
-  | 'cardioid'
-  | 'lemniscate'
-  | 'fourier'
-  | 'rose3'
+  | 'rose' | 'lissajous' | 'butterfly' | 'hypotrochoid'
+  | 'cardioid' | 'lemniscate' | 'fourier' | 'rose3'
+  | 'astroid' | 'deltoid' | 'nephroid' | 'epicycloid'
+  | 'superellipse' | 'triskelion' | 'involute'
+  | 'spiral' | 'heart'
 
-export type ProgressCurveKey = 'spiral' | 'heart' | 'lissajous' | 'cardioid' | 'rose'
+export type ProgressCurveKey =
+  | 'spiral' | 'heart' | 'lissajous' | 'cardioid' | 'rose'
+  | 'astroid' | 'superellipse' | 'deltoid' | 'nephroid'
 
-export type BackgroundCurveKey = 'rose' | 'lissajous' | 'fourier' | 'spiral'
+export type BackgroundCurveKey =
+  | 'rose' | 'lissajous' | 'fourier' | 'spiral'
+  | 'triskelion' | 'involute' | 'epicycloid'
 
 export type CurveKey = LoaderCurveKey | ProgressCurveKey | BackgroundCurveKey
 
@@ -34,6 +35,11 @@ interface CurveDefinition {
   defaultSegments: number
   /** Core parametric function — returns {x, y} in [0,100] space */
   compute: (t: number, detailScale: number) => Point
+  /**
+   * Progress fractions (0–1 exclusive) where the curve is discontinuous.
+   * buildPath will insert M (moveto) instead of L at these points.
+   */
+  discontinuities?: number[]
 }
 
 const CURVE_DEFS: Record<string, CurveDefinition> = {
@@ -111,7 +117,8 @@ const CURVE_DEFS: Record<string, CurveDefinition> = {
     },
   },
 
-  // Cardioid: r = a(1 - cos t), shifted to center
+  // Cardioid: r = a(1 - cos t), centered in the 100×100 viewBox
+  // Span on x: [50 - a, 50 + a], span on y: [50 - a, 50 + a] → fits with a ≤ 22
   cardioid: {
     tMin: 0,
     tMax: 2 * Math.PI,
@@ -120,8 +127,8 @@ const CURVE_DEFS: Record<string, CurveDefinition> = {
     compute: (t, ds) => {
       const a = 18 + ds * 4
       const r = a * (1 - Math.cos(t))
-      // Shift right by a so the cusp is at (50 - a, 50) and tip at (50 + a, 50)
-      return { x: 50 - a + r * Math.cos(t), y: 50 + r * Math.sin(t) }
+      // Offset by +a so cusp is at (50 + a, 50) and loop extends left to (50 - a, 50)
+      return { x: 50 + a + r * Math.cos(t), y: 50 + r * Math.sin(t) }
     },
   },
 
@@ -198,6 +205,122 @@ const CURVE_DEFS: Record<string, CurveDefinition> = {
       return { x: 50 + x, y: 50 + y }
     },
   },
+
+  // Astroid (4-cusped hypocycloid): x = a·cos³t, y = a·sin³t
+  astroid: {
+    tMin: 0,
+    tMax: 2 * Math.PI,
+    pulseDurationMs: 4000,
+    defaultSegments: 300,
+    compute: (t, ds) => {
+      const a = 38 + ds * 4
+      return {
+        x: 50 + a * Math.pow(Math.cos(t), 3),
+        y: 50 + a * Math.pow(Math.sin(t), 3),
+      }
+    },
+  },
+
+  // Deltoid (3-cusped hypocycloid, R=3 r=1): x=(2cos+cos2t), y=(2sin-sin2t)
+  deltoid: {
+    tMin: 0,
+    tMax: 2 * Math.PI,
+    pulseDurationMs: 4800,
+    defaultSegments: 240,
+    compute: (t, ds) => {
+      const scale = 11 + ds * 2
+      return {
+        x: 50 + scale * (2 * Math.cos(t) + Math.cos(2 * t)),
+        y: 50 + scale * (2 * Math.sin(t) - Math.sin(2 * t)),
+      }
+    },
+  },
+
+  // Nephroid (2-cusped epicycloid, R=2 r=1): x=3cos(t)-cos(3t), y=3sin(t)-sin(3t)
+  nephroid: {
+    tMin: 0,
+    tMax: 2 * Math.PI,
+    pulseDurationMs: 5200,
+    defaultSegments: 300,
+    compute: (t, ds) => {
+      const scale = 9 + ds * 2
+      return {
+        x: 50 + scale * (3 * Math.cos(t) - Math.cos(3 * t)),
+        y: 50 + scale * (3 * Math.sin(t) - Math.sin(3 * t)),
+      }
+    },
+  },
+
+  // Epicycloid (5-cusped, R=5 r=1): x=6cos-cos6t, y=6sin-sin6t
+  epicycloid: {
+    tMin: 0,
+    tMax: 2 * Math.PI,
+    pulseDurationMs: 5000,
+    defaultSegments: 300,
+    compute: (t, ds) => {
+      const scale = 5 + ds * 0.5
+      return {
+        x: 50 + scale * (6 * Math.cos(t) - Math.cos(6 * t)),
+        y: 50 + scale * (6 * Math.sin(t) - Math.sin(6 * t)),
+      }
+    },
+  },
+
+  // Superellipse (Lamé curve): |x/a|^n + |y/a|^n = 1, n oscillates 2→4
+  superellipse: {
+    tMin: 0,
+    tMax: 2 * Math.PI,
+    pulseDurationMs: 6000,
+    defaultSegments: 360,
+    compute: (t, ds) => {
+      const a = 36
+      const n = 2 + ds * 2
+      const exp = 2 / n
+      const cosT = Math.cos(t)
+      const sinT = Math.sin(t)
+      return {
+        x: 50 + a * Math.sign(cosT) * Math.pow(Math.abs(cosT), exp),
+        y: 50 + a * Math.sign(sinT) * Math.pow(Math.abs(sinT), exp),
+      }
+    },
+  },
+
+  // Triskelion: 3 Archimedean spiral arms, 120° apart
+  triskelion: {
+    tMin: 0,
+    tMax: 6 * Math.PI,
+    pulseDurationMs: 5500,
+    defaultSegments: 360,
+    // Arms are discontinuous: each arm starts at center and ends at outer tip.
+    // Insert M moves at 1/3 and 2/3 so arms aren't connected by straight lines.
+    discontinuities: [1 / 3, 2 / 3],
+    compute: (t, ds) => {
+      const b = 32 + ds * 8
+      const arm = Math.floor(t / (2 * Math.PI))
+      const theta = t - arm * 2 * Math.PI
+      const offset = (arm * 2 * Math.PI) / 3
+      const r = b * (theta / (2 * Math.PI))
+      return {
+        x: 50 + r * Math.cos(theta + offset),
+        y: 50 + r * Math.sin(theta + offset),
+      }
+    },
+  },
+
+  // Involute of circle: x = a(cos t + t·sin t), y = a(sin t - t·cos t)
+  involute: {
+    tMin: 0,
+    tMax: 4 * Math.PI,
+    pulseDurationMs: 5800,
+    defaultSegments: 300,
+    compute: (t, ds) => {
+      const a = 2.5 + ds * 0.5
+      return {
+        x: 50 + a * (Math.cos(t) + t * Math.sin(t)),
+        y: 50 + a * (Math.sin(t) - t * Math.cos(t)),
+      }
+    },
+  },
 }
 
 /**
@@ -252,17 +375,22 @@ export function buildPath(curve: string, detailScale = 1.0, segments?: number): 
   const def = CURVE_DEFS[curve]
   if (!def) return ''
   const n = segments ?? def.defaultSegments
+  const discontinuities = def.discontinuities ?? []
   let d = ''
   for (let i = 0; i <= n; i++) {
     const progress = i / n
     const { x, y } = getPoint(curve, progress, detailScale)
-    if (i === 0) {
-      d = `M ${x.toFixed(2)} ${y.toFixed(2)}`
+    // Use M (moveto) at the start or at declared discontinuity points
+    const isDiscontinuous = discontinuities.some(
+      (dp) => Math.abs(progress - dp) < 0.5 / n
+    )
+    if (i === 0 || isDiscontinuous) {
+      d += ` M ${x.toFixed(2)} ${y.toFixed(2)}`
     } else {
       d += ` L ${x.toFixed(2)} ${y.toFixed(2)}`
     }
   }
-  return d
+  return d.trim()
 }
 
 /**
