@@ -118,36 +118,77 @@ Neubrutalism (or neo-brutalism) is a bold design aesthetic characterized by:
 
 ## Quick Start
 
+> **Required first step:** register the `@boldkit` alias in your `components.json`.
+> BoldKit components reference each other via scoped names like `@boldkit/utils`,
+> and without the alias the CLI resolves these against shadcn's default registry
+> (which doesn't ship them) and installs fail.
+
+### Configure the registry alias
+
+**React** — add to `components.json`:
+
+```json
+{
+  "registries": {
+    "@boldkit": "https://boldkit.dev/r"
+  }
+}
+```
+
+**Vue** — add to `components.json`:
+
+```json
+{
+  "registries": {
+    "@boldkit": "https://boldkit.dev/r/vue"
+  }
+}
+```
+
 ### React (shadcn CLI)
 
 ```bash
 # Install a component
-npx shadcn@latest add https://boldkit.dev/r/button.json
+npx shadcn@latest add @boldkit/button
 
 # Install multiple components
-npx shadcn@latest add https://boldkit.dev/r/button.json https://boldkit.dev/r/card.json https://boldkit.dev/r/input.json
+npx shadcn@latest add @boldkit/button @boldkit/card @boldkit/input
 
 # Install shapes
-npx shadcn@latest add https://boldkit.dev/r/shapes.json
+npx shadcn@latest add @boldkit/shapes
 
-# Install theme (CSS variables)
-npx shadcn@latest add https://boldkit.dev/r/theme.json
+# Install the BoldKit theme (CSS variables)
+npx shadcn@latest add @boldkit/styles
 ```
 
 ### Vue 3 (shadcn-vue CLI)
 
 ```bash
 # Install a component
-npx shadcn-vue@latest add https://boldkit.dev/r/vue/button.json
+npx shadcn-vue@latest add @boldkit/button
 
 # Install multiple components
-npx shadcn-vue@latest add https://boldkit.dev/r/vue/button.json https://boldkit.dev/r/vue/card.json https://boldkit.dev/r/vue/input.json
+npx shadcn-vue@latest add @boldkit/button @boldkit/card @boldkit/input
 
 # Install shapes
-npx shadcn-vue@latest add https://boldkit.dev/r/vue/shapes.json
+npx shadcn-vue@latest add @boldkit/shapes
 
-# Install theme (CSS variables)
-npx shadcn-vue@latest add https://boldkit.dev/r/vue/theme.json
+# Install the BoldKit theme (CSS variables)
+npx shadcn-vue@latest add @boldkit/styles
+```
+
+### Alternative: direct URLs
+
+For one-off installs without configuring the alias, you can pass the registry URL directly.
+**Note:** components with cross-references won't auto-install their BoldKit dependencies this way —
+you'll need to add each dependency manually.
+
+```bash
+# React
+npx shadcn@latest add https://boldkit.dev/r/button.json
+
+# Vue
+npx shadcn-vue@latest add https://boldkit.dev/r/vue/button.json
 ```
 
 ### Nuxt
@@ -176,36 +217,6 @@ export default defineNuxtConfig({
 ```
 
 > **Note:** Some components (Drawer, Sonner, Command, Calendar, Chart) require `<ClientOnly>` wrapper for SSR. See the [Nuxt installation guide](https://boldkit.dev/docs/installation#nuxt-installation) for details.
-
-### Using Registry Alias
-
-**React** - Add to your `components.json`:
-
-```json
-{
-  "registries": {
-    "@boldkit": "https://boldkit.dev/r"
-  }
-}
-```
-
-**Vue** - Add to your `components.json`:
-
-```json
-{
-  "registries": {
-    "@boldkit": "https://boldkit.dev/r/vue"
-  }
-}
-```
-
-Then install:
-
-```bash
-npx shadcn@latest add @boldkit/button @boldkit/card @boldkit/input
-# or for Vue
-npx shadcn-vue@latest add @boldkit/button @boldkit/card @boldkit/input
-```
 
 ## Usage
 

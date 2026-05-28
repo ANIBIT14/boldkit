@@ -8,10 +8,10 @@
     "lucide-vue-next"
   ],
   "registryDependencies": [
-    "utils",
-    "button",
-    "sheet",
-    "tooltip"
+    "@boldkit/utils",
+    "@boldkit/button",
+    "@boldkit/sheet",
+    "@boldkit/tooltip"
   ],
   "files": [
     {

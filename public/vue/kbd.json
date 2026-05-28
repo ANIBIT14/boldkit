@@ -5,7 +5,7 @@
   "description": "Keyboard shortcut display component",
   "dependencies": [],
   "registryDependencies": [
-    "utils"
+    "@boldkit/utils"
   ],
   "files": [
     {

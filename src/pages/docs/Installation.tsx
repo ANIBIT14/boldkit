@@ -103,10 +103,12 @@ const allComponents = [
 
 function ComponentRow({ name, description, framework }: { name: string; description: string; framework: 'react' | 'vue' }) {
   const [copied, setCopied] = useState(false)
+  // Use the scoped @boldkit/<name> form so cross-component dependencies
+  // resolve against BoldKit's registry instead of the default shadcn one.
+  // Requires the `@boldkit` alias to be configured in components.json (Step 1).
   const getCommand = () => {
-    const registryPath = framework === 'vue' ? `/r/vue/${name}.json` : `/r/${name}.json`
     const cli = framework === 'vue' ? 'shadcn-vue' : 'shadcn'
-    return `npx ${cli}@latest add https://boldkit.dev${registryPath}`
+    return `npx ${cli}@latest add @boldkit/${name}`
   }
   const command = getCommand()
 
@@ -193,6 +195,16 @@ export function Installation() {
   }
 }`} language="json" />
               )}
+              <div className="mt-3 border-3 border-warning bg-warning/10 p-3 text-sm">
+                <p className="font-bold uppercase tracking-wide mb-1">Why the alias matters</p>
+                <p className="text-muted-foreground">
+                  BoldKit components reference each other via scoped names like{' '}
+                  <code className="bg-muted px-1 border">@boldkit/utils</code>.
+                  Without the <code className="bg-muted px-1 border">@boldkit</code> alias above, the CLI
+                  resolves these against shadcn's default registry — which doesn't ship them — and the install fails.
+                  <strong> This step is required.</strong>
+                </p>
+              </div>
             </div>
 
             <div>

@@ -103,9 +103,14 @@ export function ComponentDoc({
   // Convert component name to registry name (e.g., "Alert Dialog" -> "alert-dialog")
   const componentRegistryName = registryName || name.toLowerCase().replace(/\s+/g, '-')
 
-  // Generate the correct CLI commands for each framework
-  const reactCliCommand = installCommand || `npx shadcn@latest add https://boldkit.dev/r/${componentRegistryName}.json`
-  const vueCliCommand = `npx shadcn-vue@latest add https://boldkit.dev/r/vue/${componentRegistryName}.json`
+  // Generate the correct CLI commands for each framework.
+  // Prefer the scoped @boldkit/<name> form: it requires the consumer to
+  // configure the `@boldkit` registry alias once in components.json, but it's
+  // the only form where cross-component registryDependencies resolve correctly
+  // (bare names like "utils" resolve against shadcn's default registry, not
+  // BoldKit's). `installCommand` prop still overrides for special cases.
+  const reactCliCommand = installCommand || `npx shadcn@latest add @boldkit/${componentRegistryName}`
+  const vueCliCommand = `npx shadcn-vue@latest add @boldkit/${componentRegistryName}`
 
   const currentCliCommand = framework === 'react' ? reactCliCommand : vueCliCommand
   const currentSourceCode = framework === 'react' ? sourceCode : (vueSourceCode || sourceCode)

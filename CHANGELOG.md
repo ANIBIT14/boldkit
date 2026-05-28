@@ -5,6 +5,30 @@ Format follows [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ---
 
+## [Unreleased] — Registry resolution fix
+
+### 🐛 Bug Fixes
+
+**Registry — cross-component dependencies failed to resolve**
+
+Installing any BoldKit component that referenced another BoldKit item (e.g. `math-curve-loader`, which depends on `math-curves`) would fail because the shadcn CLI resolved bare `registryDependencies` names against its default registry (`ui.shadcn.com`) instead of BoldKit's.
+
+- `registry.json` — every `registryDependencies` entry rewritten from bare (e.g. `"utils"`, `"button"`) to the scoped form (`"@boldkit/utils"`, `"@boldkit/button"`). 74 items, 21 unique dep names.
+- `packages/vue/scripts/build-registry.js` — adds a `scopeBk()` helper applied in both `createRegistryJson` and `createShapesRegistry` so the Vue side stays in sync going forward.
+- 6 hand-written Vue entries (`combobox`, `donut-chart`, `gauge-chart`, `radar-chart`, `radial-bar-chart`, `sparkline`) that were never managed by the Vue build script were patched directly.
+- `package.json` — fixed `registry:build` step order so the Vue registry is generated **before** the strip step runs, ensuring `public/vue/*.json` reflects the current Vue source.
+- Regenerated 366 registry JSON files across `public/`, `public/r/`, `public/vue/`, `public/r/vue/`. Verified: **0 unscoped cross-references remain**.
+
+**Docs / website**
+
+- `ComponentDoc.tsx` — per-component install command switched from `npx shadcn@latest add https://boldkit.dev/r/<name>.json` to `npx shadcn@latest add @boldkit/<name>` (and Vue equivalent). Same change for the "All Components" copy buttons on the Installation page.
+- `Installation.tsx` — added a warning callout under "Configure Registry" explaining that the `@boldkit` alias is **required** for cross-component dependency resolution.
+- `README.md` — Quick Start reordered so the alias-based install (the recommended path) is primary; direct-URL install moved to an "Alternative" section with a note about its dependency-resolution limitations. Removed the duplicate "Using Registry Alias" block further down.
+
+**Consumer-facing breaking change (positive):** consumers who previously installed via direct URLs **must** now register the `@boldkit` alias in their `components.json` for cross-component dependency resolution to work. Single-file installs (e.g. `utils`, `styles`) continue to work via direct URL.
+
+---
+
 ## [3.3.2] — 2026-05-09
 
 ### 🐛 Bug Fixes

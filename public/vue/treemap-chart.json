@@ -8,8 +8,8 @@
     "echarts"
   ],
   "registryDependencies": [
-    "utils",
-    "chart-utils"
+    "@boldkit/utils",
+    "@boldkit/chart-utils"
   ],
   "files": [
     {

@@ -5,7 +5,7 @@
   "description": "Displays a form input with thick borders",
   "dependencies": [],
   "registryDependencies": [
-    "utils"
+    "@boldkit/utils"
   ],
   "files": [
     {

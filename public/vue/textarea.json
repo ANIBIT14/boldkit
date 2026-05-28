@@ -5,7 +5,7 @@
   "description": "Displays a multi-line text input",
   "dependencies": [],
   "registryDependencies": [
-    "utils"
+    "@boldkit/utils"
   ],
   "files": [
     {

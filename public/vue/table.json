@@ -5,7 +5,7 @@
   "description": "A responsive table component",
   "dependencies": [],
   "registryDependencies": [
-    "utils"
+    "@boldkit/utils"
   ],
   "files": [
     {
