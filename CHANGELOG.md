@@ -5,27 +5,63 @@ Format follows [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ---
 
-## [Unreleased] — Registry resolution fix
+## [3.3.7] — 2026-05-26 — Registry health pass
 
-### 🐛 Bug Fixes
+A focused stability release that fixes install-time failures consumers have been hitting and adds permanent guards so the same classes of bug can't silently return.
 
-**Registry — cross-component dependencies failed to resolve**
+### Highlights
 
-Installing any BoldKit component that referenced another BoldKit item (e.g. `math-curve-loader`, which depends on `math-curves`) would fail because the shadcn CLI resolved bare `registryDependencies` names against its default registry (`ui.shadcn.com`) instead of BoldKit's.
+🩹 **`@boldkit/*` install path now works end-to-end.** Cross-component deps (`button`, `utils`, `math-curves`, etc.) were resolving against shadcn's default registry instead of BoldKit's. All 74 references across React + Vue are now properly scoped.
 
-- `registry.json` — every `registryDependencies` entry rewritten from bare (e.g. `"utils"`, `"button"`) to the scoped form (`"@boldkit/utils"`, `"@boldkit/button"`). 74 items, 21 unique dep names.
-- `packages/vue/scripts/build-registry.js` — adds a `scopeBk()` helper applied in both `createRegistryJson` and `createShapesRegistry` so the Vue side stays in sync going forward.
-- 6 hand-written Vue entries (`combobox`, `donut-chart`, `gauge-chart`, `radar-chart`, `radial-bar-chart`, `sparkline`) that were never managed by the Vue build script were patched directly.
-- `package.json` — fixed `registry:build` step order so the Vue registry is generated **before** the strip step runs, ensuring `public/vue/*.json` reflects the current Vue source.
-- Regenerated 366 registry JSON files across `public/`, `public/r/`, `public/vue/`, `public/r/vue/`. Verified: **0 unscoped cross-references remain**.
+🩹 **Vue `math-curve-*` family is installable.** `MathCurveLoader`, `MathCurveProgress`, `MathCurveBackground`, and the shared `math-curves` engine were missing from `shadcn-vue` entirely. Now registered.
 
-**Docs / website**
+🩹 **Chart components ship current source.** React chart-X files synced from `src/components/ui/chart/` with import rewriting. Vue chart entries now bundle `ChartEmpty.vue` and `chart-types.ts` so installs compile.
 
-- `ComponentDoc.tsx` — per-component install command switched from `npx shadcn@latest add https://boldkit.dev/r/<name>.json` to `npx shadcn@latest add @boldkit/<name>` (and Vue equivalent). Same change for the "All Components" copy buttons on the Installation page.
-- `Installation.tsx` — added a warning callout under "Configure Registry" explaining that the `@boldkit` alias is **required** for cross-component dependency resolution.
-- `README.md` — Quick Start reordered so the alias-based install (the recommended path) is primary; direct-URL install moved to an "Alternative" section with a note about its dependency-resolution limitations. Removed the duplicate "Using Registry Alias" block further down.
+🩹 **37 UI mirrors caught up with `src/`.** Months of bug fixes (focus-visible, ARIA attrs, edge cases) and security helpers (`safeHref`, `sanitizeCssValue`) had never reached the registry. `rating.tsx` registry was an entirely different implementation from src.
 
-**Consumer-facing breaking change (positive):** consumers who previously installed via direct URLs **must** now register the `@boldkit` alias in their `components.json` for cross-component dependency resolution to work. Single-file installs (e.g. `utils`, `styles`) continue to work via direct URL.
+✨ **Two new `MathCurveLoader` curves.** `spiral` and `heart`, both already in the runtime — TypeScript just needed widening.
+
+🐛 **`/components/sidebar` no longer crashes.** Active-state demo was missing its `<SidebarProvider>` wrapper.
+
+### ⚠️ Required setup (positive break)
+
+Add the `@boldkit` alias to your `components.json`:
+
+```json
+{
+  "registries": {
+    "@boldkit": "https://boldkit.dev/r"
+  }
+}
+```
+
+(Vue: `https://boldkit.dev/r/vue`.)
+
+Then install components as:
+
+```bash
+npx shadcn@latest add @boldkit/button @boldkit/card
+# or for Vue
+npx shadcn-vue@latest add @boldkit/button @boldkit/card
+```
+
+Single-file installs of leaf items (`utils`, `styles`) still work via direct URL, but **any component with cross-deps requires the alias.**
+
+### Internals — drift can't recur
+
+New `scripts/sync-registry-from-src.js` runs as a pre-step in `registry:build`. It copies `src/components/ui/*.tsx` and selected libs into `registry/default/` and self-verifies — if any in-scope mirror still drifts after sync, the build fails. This protects against the silent-drift class of bug going forward.
+
+### Commits
+
+- `2f68fd1` registry: scope cross-references with `@boldkit/` namespace
+- `86397c2` registry+docs: finish scoping pass, fix build order, update install docs
+- `9b70d71` registry: migrate 6 hand-written Vue entries into build script
+- `2c016b0` math-curves: add `spiral` + `heart` to `LoaderCurveKey`
+- `f9151fa` registry: close Vue math-curve gap + sync 37 drifted React mirrors
+- `b74270f` registry: chart family drift — sync React, complete Vue bundling
+- `de251ec` docs: wrap Active State sidebar demo in `SidebarProvider`
+
+**Full diff:** [`v3.3.6...v3.3.7`](https://github.com/ANIBIT14/boldkit/compare/v3.3.6...v3.3.7)
 
 ---
 
