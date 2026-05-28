@@ -7,7 +7,11 @@ import {
   PolarAngleAxis,
   PolarRadiusAxis,
 } from 'recharts'
-import { ChartContainer, ChartTooltip, ChartTooltipContent, ChartLegend, ChartLegendContent, type ChartConfig } from './chart'
+import { ChartContainer } from './chart'
+import { ChartEmpty } from './chart'
+import { ChartTooltip, ChartTooltipContent } from './chart'
+import { ChartLegend, ChartLegendContent } from './chart'
+import type { ChartConfig } from './chart'
 
 export interface RadarChartData {
   subject: string
@@ -24,6 +28,7 @@ export interface RadarChartProps extends React.HTMLAttributes<HTMLDivElement> {
   showTooltip?: boolean
   fillOpacity?: number
   animated?: boolean
+  emptyState?: React.ReactNode
 }
 
 const RadarChartComponent = React.forwardRef<HTMLDivElement, RadarChartProps>(
@@ -38,11 +43,16 @@ const RadarChartComponent = React.forwardRef<HTMLDivElement, RadarChartProps>(
       showTooltip = true,
       fillOpacity = 0.6,
       animated = true,
+      emptyState,
       className,
       ...props
     },
     ref
   ) => {
+    if (!data || data.length === 0 || !dataKeys || dataKeys.length === 0) {
+      return <ChartEmpty ref={ref} message={emptyState} className={className} {...props} />
+    }
+
     const getRadarProps = (index: number, key: string) => {
       const baseColor = config[key]?.color || `hsl(var(--chart-${(index % 5) + 1}))`
 

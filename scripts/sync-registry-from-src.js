@@ -15,13 +15,16 @@
  *   - src/lib/math-curves.ts               → registry/default/lib/math-curves.ts
  *
  * Excluded (structural divergence — needs manual handling):
- *   - src/components/ui/chart/*            (split-file source vs flat registry
- *                                          with different import shapes)
  *   - src/components/ui/chart.tsx          (src is a re-export barrel pointing
  *                                          to './chart/index'; registry uses
  *                                          a self-contained flat chart.tsx
  *                                          that bundles the family)
  *   - src/components/ui/__tests__/*        (test files)
+ *
+ * Chart family is now ALSO auto-synced with import rewriting:
+ *   src/components/ui/chart/<X>-chart.tsx → registry/default/ui/<X>-chart.tsx
+ *   • './container', './empty', './legend', './tooltip', './types' → './chart'
+ *   (the registry-side chart.tsx bundles all those symbols)
  *
  * Only files that already exist in registry/default/ get overwritten.
  * New src/ files don't auto-create registry entries — that requires an
@@ -37,8 +40,32 @@ const root = join(__dirname, '..')
 
 const UI_SRC = join(root, 'src/components/ui')
 const UI_DST = join(root, 'registry/default/ui')
+const CHART_SRC = join(UI_SRC, 'chart')
 const LIB_SRC = join(root, 'src/lib')
 const LIB_DST = join(root, 'registry/default/lib')
+
+// Chart-family files whose internal imports must be rewritten on sync:
+// src uses './container', './empty', etc; registry merges them all into './chart'
+const CHART_IMPORT_REWRITES = [
+  ['./container', './chart'],
+  ['./empty',     './chart'],
+  ['./legend',    './chart'],
+  ['./tooltip',   './chart'],
+  ['./types',     './chart'],
+  ['./palettes',  './chart'],
+  ['./utils',     './chart'],
+]
+
+function rewriteChartImports(content) {
+  let out = content
+  for (const [from, to] of CHART_IMPORT_REWRITES) {
+    // Replace `from './foo'` and `from "./foo"` exactly (don't catch substrings)
+    const single = new RegExp(`from '${from.replace('.', '\\.').replace('/', '\\/')}'`, 'g')
+    const double = new RegExp(`from "${from.replace('.', '\\.').replace('/', '\\/')}"`, 'g')
+    out = out.replace(single, `from '${to}'`).replace(double, `from "${to}"`)
+  }
+  return out
+}
 
 // Files to sync from src/lib → registry/default/lib (only these, by name)
 const LIB_FILES = ['utils.ts', 'math-curves.ts']
@@ -51,12 +78,13 @@ let copied = 0
 let skippedMissing = 0
 let unchanged = 0
 
-function syncFile(src, dst) {
+function syncFile(src, dst, transform = null) {
   if (!existsSync(src) || !existsSync(dst)) {
     skippedMissing++
     return
   }
-  const sContent = readFileSync(src, 'utf-8')
+  const raw = readFileSync(src, 'utf-8')
+  const sContent = transform ? transform(raw) : raw
   const dContent = readFileSync(dst, 'utf-8')
   if (sContent === dContent) {
     unchanged++
@@ -75,6 +103,24 @@ for (const entry of readdirSync(UI_SRC, { withFileTypes: true })) {
   if (!entry.name.endsWith('.tsx')) continue
   if (UI_SKIP.has(entry.name)) continue
   syncFile(join(UI_SRC, entry.name), join(UI_DST, entry.name))
+}
+
+// Chart family — src/components/ui/chart/<X>-chart.tsx (and sparkline.tsx)
+// flattened to registry/default/ui/<X>-chart.tsx with import rewriting.
+// Skip container/empty/legend/tooltip/types/etc — those are bundled into the
+// hand-maintained registry/default/ui/chart.tsx, not synced individually.
+if (existsSync(CHART_SRC)) {
+  for (const entry of readdirSync(CHART_SRC, { withFileTypes: true })) {
+    if (!entry.isFile()) continue
+    if (!entry.name.endsWith('.tsx')) continue
+    // Sync only the user-facing chart components, not the internal helpers
+    if (!/(-chart|sparkline)\.tsx$/.test(entry.name)) continue
+    syncFile(
+      join(CHART_SRC, entry.name),
+      join(UI_DST, entry.name),
+      rewriteChartImports
+    )
+  }
 }
 
 // Lib helpers

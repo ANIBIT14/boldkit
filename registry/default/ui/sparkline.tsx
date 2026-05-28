@@ -39,6 +39,21 @@ const Sparkline = React.forwardRef<HTMLDivElement, SparklineProps>(
     },
     ref
   ) => {
+    // Unique ID per instance prevents gradient collision when multiple sparklines render on the same page
+    const uid = React.useId().replace(/:/g, '')
+
+    if (!data || data.length === 0) {
+      return (
+        <div
+          ref={ref}
+          aria-label="No data"
+          className={cn('inline-block border-b-2 border-dashed border-foreground/30', className)}
+          style={{ width, height }}
+          {...props}
+        />
+      )
+    }
+
     // Convert data array to format recharts expects
     const chartData = data.map((value, index) => ({ value, index }))
 
@@ -51,6 +66,28 @@ const Sparkline = React.forwardRef<HTMLDivElement, SparklineProps>(
     }, [color, trend])
 
     const strokeColor = 'hsl(var(--foreground))'
+    const lastIndex = data.length - 1
+
+    /**
+     * Custom dot renderer that only draws a circle on the final data point.
+     * Used directly on the primary series — no duplicate series needed.
+     */
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const endDotRenderer = (dotProps: any) => {
+      const { cx, cy, index } = dotProps
+      if (!showEndDot || index !== lastIndex) return null
+      return (
+        <circle
+          key="end-dot"
+          cx={cx}
+          cy={cy}
+          r={4}
+          fill={resolvedColor}
+          stroke={strokeColor}
+          strokeWidth={2}
+        />
+      )
+    }
 
     if (type === 'bar') {
       return (
@@ -87,7 +124,7 @@ const Sparkline = React.forwardRef<HTMLDivElement, SparklineProps>(
           <ResponsiveContainer width="100%" height="100%">
             <AreaChart data={chartData} margin={{ top: 0, right: 0, bottom: 0, left: 0 }}>
               <defs>
-                <linearGradient id={`sparkline-gradient-${trend || 'default'}`} x1="0" y1="0" x2="0" y2="1">
+                <linearGradient id={`sparkline-gradient-${uid}`} x1="0" y1="0" x2="0" y2="1">
                   <stop offset="0%" stopColor={resolvedColor} stopOpacity={0.6} />
                   <stop offset="100%" stopColor={resolvedColor} stopOpacity={0.1} />
                 </linearGradient>
@@ -97,35 +134,12 @@ const Sparkline = React.forwardRef<HTMLDivElement, SparklineProps>(
                 dataKey="value"
                 stroke={resolvedColor}
                 strokeWidth={strokeWidth}
-                fill={`url(#sparkline-gradient-${trend || 'default'})`}
+                fill={`url(#sparkline-gradient-${uid})`}
                 isAnimationActive={animated}
                 animationDuration={300}
-                dot={false}
+                dot={endDotRenderer}
                 activeDot={false}
               />
-              {showEndDot && (
-                <Area
-                  type="monotone"
-                  dataKey="value"
-                  stroke="none"
-                  fill="none"
-                  dot={(props) => {
-                    const { cx, cy, index } = props
-                    if (index !== data.length - 1) return null
-                    return (
-                      <circle
-                        cx={cx}
-                        cy={cy}
-                        r={4}
-                        fill={resolvedColor}
-                        stroke={strokeColor}
-                        strokeWidth={2}
-                      />
-                    )
-                  }}
-                  isAnimationActive={false}
-                />
-              )}
             </AreaChart>
           </ResponsiveContainer>
         </div>
@@ -147,34 +161,11 @@ const Sparkline = React.forwardRef<HTMLDivElement, SparklineProps>(
               dataKey="value"
               stroke={resolvedColor}
               strokeWidth={strokeWidth}
-              dot={false}
+              dot={endDotRenderer}
               activeDot={false}
               isAnimationActive={animated}
               animationDuration={300}
             />
-            {showEndDot && (
-              <Line
-                type="monotone"
-                dataKey="value"
-                stroke="none"
-                fill="none"
-                dot={(props) => {
-                  const { cx, cy, index } = props
-                  if (index !== data.length - 1) return null
-                  return (
-                    <circle
-                      cx={cx}
-                      cy={cy}
-                      r={4}
-                      fill={resolvedColor}
-                      stroke={strokeColor}
-                      strokeWidth={2}
-                    />
-                  )
-                }}
-                isAnimationActive={false}
-              />
-            )}
           </LineChart>
         </ResponsiveContainer>
       </div>

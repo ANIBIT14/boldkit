@@ -16,6 +16,16 @@
       "path": "registry/default/ui/TreemapChart.vue",
       "type": "registry:ui",
       "target": "components/ui/TreemapChart.vue"
+    },
+    {
+      "path": "registry/default/ui/ChartEmpty.vue",
+      "type": "registry:ui",
+      "target": "components/ui/ChartEmpty.vue"
+    },
+    {
+      "path": "registry/default/ui/chart-types.ts",
+      "type": "registry:ui",
+      "target": "components/ui/chart-types.ts"
     }
   ]
 }

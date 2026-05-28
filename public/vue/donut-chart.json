@@ -19,6 +19,11 @@
       "target": "components/ui/DonutChart.vue"
     },
     {
+      "path": "registry/default/ui/ChartEmpty.vue",
+      "type": "registry:ui",
+      "target": "components/ui/ChartEmpty.vue"
+    },
+    {
       "path": "registry/default/ui/chart-utils.ts",
       "type": "registry:ui",
       "target": "components/ui/chart-utils.ts"

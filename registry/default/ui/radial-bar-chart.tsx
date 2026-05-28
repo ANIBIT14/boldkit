@@ -5,7 +5,11 @@ import {
   RadialBar,
   PolarAngleAxis,
 } from 'recharts'
-import { ChartContainer, ChartTooltip, ChartTooltipContent, ChartLegend, ChartLegendContent, type ChartConfig } from './chart'
+import { ChartContainer } from './chart'
+import { ChartEmpty } from './chart'
+import { ChartTooltip, ChartTooltipContent } from './chart'
+import { ChartLegend, ChartLegendContent } from './chart'
+import type { ChartConfig } from './chart'
 
 export interface RadialBarChartData {
   name: string
@@ -27,6 +31,7 @@ export interface RadialBarChartProps extends React.HTMLAttributes<HTMLDivElement
   endAngle?: number
   animated?: boolean
   maxValue?: number
+  emptyState?: React.ReactNode
 }
 
 const RadialBarChartComponent = React.forwardRef<HTMLDivElement, RadialBarChartProps>(
@@ -45,27 +50,26 @@ const RadialBarChartComponent = React.forwardRef<HTMLDivElement, RadialBarChartP
       endAngle = -270,
       animated = true,
       maxValue,
+      emptyState,
       className,
       ...props
     },
     ref
   ) => {
+    if (!data || data.length === 0) {
+      return <ChartEmpty ref={ref} message={emptyState} className={className} {...props} />
+    }
+
     // Calculate max value for the scale
     const calculatedMax = maxValue || (data.length > 0 ? Math.max(...data.map((d) => d.value)) : 1)
 
-    // Transform data for nested variant (each item gets its own ring)
+    // Assign a chart color to each item that does not supply its own fill
     const chartData = React.useMemo(() => {
-      if (variant === 'nested') {
-        return data.map((item, index) => ({
-          ...item,
-          fill: item.fill || `hsl(var(--chart-${(index % 5) + 1}))`,
-        }))
-      }
       return data.map((item, index) => ({
         ...item,
         fill: item.fill || `hsl(var(--chart-${(index % 5) + 1}))`,
       }))
-    }, [data, variant])
+    }, [data])
 
     return (
       <ChartContainer
@@ -84,14 +88,13 @@ const RadialBarChartComponent = React.forwardRef<HTMLDivElement, RadialBarChartP
           endAngle={endAngle}
           barSize={variant === 'nested' ? 15 : 20}
         >
-          {showBackground && (
-            <PolarAngleAxis
-              type="number"
-              domain={[0, calculatedMax]}
-              angleAxisId={0}
-              tick={false}
-            />
-          )}
+          <PolarAngleAxis
+            type="number"
+            domain={[0, calculatedMax]}
+            angleAxisId={0}
+            tick={false}
+            axisLine={false}
+          />
           {showTooltip && (
             <ChartTooltip
               cursor={false}
@@ -104,6 +107,7 @@ const RadialBarChartComponent = React.forwardRef<HTMLDivElement, RadialBarChartP
             cornerRadius={0}
             isAnimationActive={animated}
             animationDuration={400}
+            stackId={variant === 'stacked' ? 'stack' : undefined}
             label={
               showLabel
                 ? {

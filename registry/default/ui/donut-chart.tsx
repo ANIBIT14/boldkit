@@ -1,7 +1,10 @@
 import * as React from 'react'
 import { cn } from '@/lib/utils'
 import { Pie, PieChart, Cell, Label } from 'recharts'
-import { ChartContainer, ChartTooltip, ChartTooltipContent, type ChartConfig } from './chart'
+import { ChartContainer } from './chart'
+import { ChartEmpty } from './chart'
+import { ChartTooltip, ChartTooltipContent } from './chart'
+import type { ChartConfig } from './chart'
 
 export interface DonutChartData {
   name: string
@@ -19,6 +22,7 @@ export interface DonutChartProps extends React.HTMLAttributes<HTMLDivElement> {
   variant?: 'default' | 'separated'
   showTooltip?: boolean
   animated?: boolean
+  emptyState?: React.ReactNode
 }
 
 const DonutChart = React.forwardRef<HTMLDivElement, DonutChartProps>(
@@ -33,11 +37,16 @@ const DonutChart = React.forwardRef<HTMLDivElement, DonutChartProps>(
       variant = 'default',
       showTooltip = true,
       animated = true,
+      emptyState,
       className,
       ...props
     },
     ref
   ) => {
+    if (!data || data.length === 0) {
+      return <ChartEmpty ref={ref} message={emptyState} className={className} {...props} />
+    }
+
     const paddingAngle = variant === 'separated' ? 4 : 0
 
     // Calculate total for center content (available for custom center content)
@@ -93,12 +102,16 @@ const DonutChart = React.forwardRef<HTMLDivElement, DonutChartProps>(
               <Label
                 content={({ viewBox }) => {
                   if (viewBox && 'cx' in viewBox && 'cy' in viewBox) {
+                    const pieView = viewBox as { cx: number; cy: number; innerRadius?: number; outerRadius?: number }
+                    const ir = pieView.innerRadius ?? (typeof innerRadius === 'number' ? innerRadius : 60)
+                    const fwHalf = Math.max(40, ir * 0.85)
+                    const fhHalf = Math.max(25, ir * 0.55)
                     return (
                       <foreignObject
-                        x={(viewBox.cx || 0) - 50}
-                        y={(viewBox.cy || 0) - 30}
-                        width={100}
-                        height={60}
+                        x={(pieView.cx || 0) - fwHalf}
+                        y={(pieView.cy || 0) - fhHalf}
+                        width={fwHalf * 2}
+                        height={fhHalf * 2}
                       >
                         <div className="flex h-full w-full items-center justify-center">
                           {centerContent}

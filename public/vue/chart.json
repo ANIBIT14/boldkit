@@ -18,6 +18,11 @@
       "target": "components/ui/ChartContainer.vue"
     },
     {
+      "path": "registry/default/ui/ChartEmpty.vue",
+      "type": "registry:ui",
+      "target": "components/ui/ChartEmpty.vue"
+    },
+    {
       "path": "registry/default/ui/DonutChart.vue",
       "type": "registry:ui",
       "target": "components/ui/DonutChart.vue"
