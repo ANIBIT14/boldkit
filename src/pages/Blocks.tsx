@@ -681,25 +681,11 @@ function BlockCard({ block, framework, index }: { block: BlockInfo; framework: s
           )}
         </div>
 
-        {/* Install + Code */}
+        {/* Code snippet toggle */}
         <div className="border-2 border-foreground bg-foreground/4 mt-auto">
-          {/* Install bar */}
-          <div className="flex items-center justify-between px-2.5 py-1.5 border-b border-foreground/20">
-            <span className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground" style={MONO}>
-              install
-            </span>
-            <CopyButton text={installCmd} mini />
-          </div>
-          <div className="px-2.5 py-1.5 overflow-x-auto">
-            <code className="text-[10px] text-foreground/70 whitespace-nowrap" style={MONO}>
-              npx shadcn add &quot;boldkit.dev/r/{block.name.toLowerCase().replace(/\s+/g, '-')}&quot;
-            </code>
-          </div>
-
-          {/* Code snippet toggle */}
           <button
             onClick={() => setShowCode(!showCode)}
-            className="w-full flex items-center justify-between px-2.5 py-1.5 border-t border-foreground/20 hover:bg-foreground/5 transition-colors touch-manipulation"
+            className="w-full flex items-center justify-between px-2.5 py-1.5 hover:bg-foreground/5 transition-colors touch-manipulation"
           >
             <span className="text-[10px] font-bold uppercase tracking-widest" style={MONO}>
               {framework === 'react' ? 'React' : 'Vue'} usage
