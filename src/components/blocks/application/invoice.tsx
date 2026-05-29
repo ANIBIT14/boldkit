@@ -78,7 +78,7 @@ export function Invoice({
     (data.tax?.amount ?? 0) -
     (data.discount?.amount ?? 0)
 
-  if (import.meta.env.DEV) {
+  if (process.env.NODE_ENV === 'development') {
     if (Math.abs(computedSubtotal - data.subtotal) > 0.01) {
       console.warn(
         `[Invoice] subtotal mismatch: passed ${data.subtotal.toFixed(2)}, computed ${computedSubtotal.toFixed(2)}`

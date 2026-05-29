@@ -9,11 +9,12 @@ import { AlertTriangle, RefreshCw, Home } from 'lucide-vue-next'
 
 const hasError = ref(false)
 const error = ref<Error | null>(null)
+const isDev = process.env.NODE_ENV === 'development'
 
 onErrorCaptured((err) => {
   hasError.value = true
   error.value = err instanceof Error ? err : new Error(String(err))
-  if (import.meta.env.DEV) {
+  if (isDev) {
     console.error('Error caught by boundary:', err)
   }
   // Returning false stops the error from propagating further up.
@@ -46,7 +47,7 @@ function handleGoHome() {
           An unexpected error occurred. This has been logged and we'll look into it.
         </p>
         <pre
-          v-if="error && import.meta.env.DEV"
+          v-if="error && isDev"
           class="bg-muted border-3 border-foreground p-4 text-sm overflow-x-auto"
         ><code>{{ error.message }}</code></pre>
         <div class="flex gap-3">

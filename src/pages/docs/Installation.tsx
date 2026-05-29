@@ -185,14 +185,14 @@ export function Installation() {
                 <CodeBlock code={`{
   "$schema": "https://ui.shadcn.com/schema.json",
   "registries": {
-    "@boldkit": "https://boldkit.dev/r"
+    "@boldkit": "https://boldkit.dev/r/{name}.json"
   }
 }`} language="json" />
               ) : (
                 <CodeBlock code={`{
   "$schema": "https://shadcn-vue.com/schema.json",
   "registries": {
-    "@boldkit": "https://boldkit.dev/r/vue"
+    "@boldkit": "https://boldkit.dev/r/vue/{name}.json"
   }
 }`} language="json" />
               )}

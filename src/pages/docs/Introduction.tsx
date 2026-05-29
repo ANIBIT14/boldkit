@@ -296,16 +296,16 @@ export function Introduction() {
           {framework === 'react' ? (
             <div className="flex items-center gap-2 border-3 border-foreground bg-muted px-4 py-3 bk-shadow">
               <code className="flex-1 font-mono text-sm">
-                {`"registries": { "@boldkit": "https://boldkit.dev/r" }`}
+                {`"registries": { "@boldkit": "https://boldkit.dev/r/{name}.json" }`}
               </code>
-              <CopyButton text={`"registries": { "@boldkit": "https://boldkit.dev/r" }`} />
+              <CopyButton text={`"registries": { "@boldkit": "https://boldkit.dev/r/{name}.json" }`} />
             </div>
           ) : (
             <div className="flex items-center gap-2 border-3 border-foreground bg-muted px-4 py-3 bk-shadow">
               <code className="flex-1 font-mono text-sm">
-                {`"registries": { "@boldkit": "https://boldkit.dev/r/vue" }`}
+                {`"registries": { "@boldkit": "https://boldkit.dev/r/vue/{name}.json" }`}
               </code>
-              <CopyButton text={`"registries": { "@boldkit": "https://boldkit.dev/r/vue" }`} />
+              <CopyButton text={`"registries": { "@boldkit": "https://boldkit.dev/r/vue/{name}.json" }`} />
             </div>
           )}
         </div>

@@ -5,6 +5,31 @@ Format follows [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ---
 
+## [3.3.9] — 2026-05-29 — Next.js + Tailwind v4 compatibility
+
+Three install-time bugs reported against v3.3.8 — all in the path between BoldKit's docs/registry and a fresh Next.js + Tailwind v4 + shadcn project. None affect existing Vite users.
+
+### Highlights
+
+🩹 **`import.meta.env.DEV` no longer breaks Next.js builds** (#8). Five components emitted Vite-only `import.meta.env.DEV` reads — fine under Vite, fatal under `next build` because Next.js does not type `ImportMeta.env`. Replaced with `process.env.NODE_ENV === 'development'` everywhere (works in both Vite and Next): React `ErrorBoundary`, `Tour`, `Slider`, `SankeyChart`, `Invoice` block, and the Vue `ErrorBoundary` (hoisted to an `isDev` const so the template binding stays SSR-safe). Registry JSONs regenerated.
+
+🩹 **Theme Builder now emits a Tailwind v4 `@theme` bridge** (#7). The generator at `/theme-builder` shipped only `:root { --background: 60 9% 98%; }` etc. — raw HSL channels with no `--color-*` mapping. Pasted into a Tailwind v4 + shadcn project that expects `--color-background: var(--background)`, the utilities resolved to `background-color: 60 9% 98%` (invalid). Generator now prepends a full `@theme { --color-background: hsl(var(--background)); … }` block matching the shipped registry styles, plus the `--radius-sm/md/lg/xl` shorthands. Every preset funnels through `generateCSS()`, so all themes inherit the fix.
+
+🩹 **Registry alias docs use the `{name}.json` template** (#9). shadcn 4.x requires the templated item URL in the `registries` map — BoldKit's install docs showed `"@boldkit": "https://boldkit.dev/r"` (and Vue `…/r/vue`), which fails to resolve `@boldkit/button`. Updated Installation page, Introduction page (both copy-buttons), and README to:
+- React: `https://boldkit.dev/r/{name}.json`
+- Vue: `https://boldkit.dev/r/vue/{name}.json`
+
+### Internals
+
+- `tsconfig.app.json` now includes `"node"` in `types` and adds `@types/node` to devDeps — required so the new `process.env.NODE_ENV` reads type-check under BoldKit's own `tsc -b`. Downstream Next.js users already have these via Next.
+
+### Bumps
+
+- React: `3.3.8 → 3.3.9`
+- Vue: `3.1.8 → 3.1.9`
+
+---
+
 ## [3.3.8] — 2026-05-29 — Registry recheck + chart family fix
 
 A follow-up stability pass after a full source-vs-registry recheck. **36 install-breakers** that were silently shipping in v3.3.7 — caught by extending the audit script to cover relative imports, fixed in this release.

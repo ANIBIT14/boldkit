@@ -8,7 +8,7 @@
 
 A neubrutalism component library for React and Vue 3, built on shadcn/ui.
 
-[![Version](https://img.shields.io/badge/version-3.3.8-black)](https://github.com/ANIBIT14/boldkit/releases/tag/v3.3.8)
+[![Version](https://img.shields.io/badge/version-3.3.9-black)](https://github.com/ANIBIT14/boldkit/releases/tag/v3.3.9)
 [![MIT License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 [![React](https://img.shields.io/badge/React-19-61DAFB?logo=react)](https://react.dev)
 [![Vue](https://img.shields.io/badge/Vue-3-4FC08D?logo=vuedotjs)](https://vuejs.org)
@@ -130,7 +130,7 @@ Neubrutalism (or neo-brutalism) is a bold design aesthetic characterized by:
 ```json
 {
   "registries": {
-    "@boldkit": "https://boldkit.dev/r"
+    "@boldkit": "https://boldkit.dev/r/{name}.json"
   }
 }
 ```
@@ -140,7 +140,7 @@ Neubrutalism (or neo-brutalism) is a bold design aesthetic characterized by:
 ```json
 {
   "registries": {
-    "@boldkit": "https://boldkit.dev/r/vue"
+    "@boldkit": "https://boldkit.dev/r/vue/{name}.json"
   }
 }
 ```

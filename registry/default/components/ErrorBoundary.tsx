@@ -24,7 +24,7 @@ export class ErrorBoundary extends Component<Props, State> {
 
   componentDidCatch(error: Error, errorInfo: React.ErrorInfo) {
     // Log error to console in development
-    if (import.meta.env.DEV) {
+    if (process.env.NODE_ENV === 'development') {
       console.error('Error caught by boundary:', error, errorInfo)
     }
   }
@@ -52,7 +52,7 @@ export class ErrorBoundary extends Component<Props, State> {
               <p className="text-muted-foreground">
                 An unexpected error occurred. This has been logged and we'll look into it.
               </p>
-              {import.meta.env.DEV && this.state.error && (
+              {process.env.NODE_ENV === 'development' && this.state.error && (
                 <pre className="bg-muted border-3 border-foreground p-4 text-sm overflow-x-auto">
                   <code>{this.state.error.message}</code>
                 </pre>

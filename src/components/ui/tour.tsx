@@ -329,7 +329,7 @@ const Tour = React.forwardRef<HTMLDivElement, TourProps>(
           })
         } else {
           // Target not found — fall back to center placement
-          if (import.meta.env.DEV) {
+          if (process.env.NODE_ENV === 'development') {
             console.warn(`[Tour] Step target "${currentStepData.target}" not found in DOM`)
           }
           setTargetRect(null)

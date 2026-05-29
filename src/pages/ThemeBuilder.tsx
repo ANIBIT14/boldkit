@@ -254,7 +254,38 @@ export function ThemeBuilder({ embedded = false }: ThemeBuilderProps) {
     const darkSecondaryFg = getContrastForeground(colors.darkSecondary, lightFg, darkFg)
     const darkAccentFg = getContrastForeground(colors.darkAccent, lightFg, darkFg)
 
-    return `/* BoldKit Theme - Light & Dark Mode */
+    return `/* BoldKit Theme — Light & Dark Mode */
+/* Works with Tailwind v4 + shadcn. Drop this into your globals.css. */
+
+/* Tailwind v4 bridge: maps utility colors (bg-background, text-foreground, …)
+   to the HSL channel variables below. Required — without it, classes like
+   bg-background resolve to raw "60 9% 98%" and produce invalid CSS. */
+@theme {
+  --color-background: hsl(var(--background));
+  --color-foreground: hsl(var(--foreground));
+  --color-card: hsl(var(--card));
+  --color-card-foreground: hsl(var(--card-foreground));
+  --color-popover: hsl(var(--popover));
+  --color-popover-foreground: hsl(var(--popover-foreground));
+  --color-primary: hsl(var(--primary));
+  --color-primary-foreground: hsl(var(--primary-foreground));
+  --color-secondary: hsl(var(--secondary));
+  --color-secondary-foreground: hsl(var(--secondary-foreground));
+  --color-accent: hsl(var(--accent));
+  --color-accent-foreground: hsl(var(--accent-foreground));
+  --color-muted: hsl(var(--muted));
+  --color-muted-foreground: hsl(var(--muted-foreground));
+  --color-destructive: hsl(var(--destructive));
+  --color-destructive-foreground: hsl(var(--destructive-foreground));
+  --color-border: hsl(var(--border));
+  --color-input: hsl(var(--input));
+  --color-ring: hsl(var(--ring));
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+}
+
 :root {
   /* Base Colors */
   --background: ${colors.background};
