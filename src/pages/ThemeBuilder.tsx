@@ -277,9 +277,29 @@ export function ThemeBuilder({ embedded = false }: ThemeBuilderProps) {
   --color-muted-foreground: hsl(var(--muted-foreground));
   --color-destructive: hsl(var(--destructive));
   --color-destructive-foreground: hsl(var(--destructive-foreground));
+  --color-success: hsl(var(--success));
+  --color-success-foreground: hsl(var(--success-foreground));
+  --color-warning: hsl(var(--warning));
+  --color-warning-foreground: hsl(var(--warning-foreground));
+  --color-info: hsl(var(--info));
+  --color-info-foreground: hsl(var(--info-foreground));
   --color-border: hsl(var(--border));
   --color-input: hsl(var(--input));
   --color-ring: hsl(var(--ring));
+  --color-chart-1: hsl(var(--chart-1));
+  --color-chart-2: hsl(var(--chart-2));
+  --color-chart-3: hsl(var(--chart-3));
+  --color-chart-4: hsl(var(--chart-4));
+  --color-chart-5: hsl(var(--chart-5));
+  --color-neon-pink: hsl(var(--neon-pink));
+  --color-neon-green: hsl(var(--neon-green));
+  --color-neon-blue: hsl(var(--neon-blue));
+  --color-neon-orange: hsl(var(--neon-orange));
+  --color-neon-purple: hsl(var(--neon-purple));
+  --color-clash-1: hsl(var(--clash-1));
+  --color-clash-2: hsl(var(--clash-2));
+  --color-clash-3: hsl(var(--clash-3));
+  --color-clash-4: hsl(var(--clash-4));
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
@@ -317,6 +337,14 @@ export function ThemeBuilder({ embedded = false }: ThemeBuilderProps) {
   --destructive: 0 84% 60%;
   --destructive-foreground: 0 0% 100%;
 
+  /* Status — success / warning / info */
+  --success: 152 69% 69%;
+  --success-foreground: 240 10% 10%;
+  --warning: 49 100% 60%;
+  --warning-foreground: 240 10% 10%;
+  --info: 212 100% 73%;
+  --info-foreground: 240 10% 10%;
+
   /* Border & Input */
   --border: ${colors.foreground};
   --input: ${colors.foreground};
@@ -329,6 +357,26 @@ export function ThemeBuilder({ embedded = false }: ThemeBuilderProps) {
   --shadow-color: ${colors.foreground};
   --shadow-offset: ${colors.shadowOffset}px;
   --border-width: ${colors.borderWidth}px;
+
+  /* Chart colors */
+  --chart-1: 0 84% 71%;
+  --chart-2: 174 62% 56%;
+  --chart-3: 49 100% 71%;
+  --chart-4: 271 76% 53%;
+  --chart-5: 326 78% 60%;
+
+  /* Neon colors */
+  --neon-pink: 330 100% 65%;
+  --neon-green: 120 100% 50%;
+  --neon-blue: 195 100% 50%;
+  --neon-orange: 25 100% 55%;
+  --neon-purple: 280 100% 60%;
+
+  /* Clash colors */
+  --clash-1: 15 85% 60%;
+  --clash-2: 280 70% 50%;
+  --clash-3: 165 80% 45%;
+  --clash-4: 45 95% 55%;
 }
 
 .dark {
@@ -362,6 +410,14 @@ export function ThemeBuilder({ embedded = false }: ThemeBuilderProps) {
   --destructive: 0 84% 60%;
   --destructive-foreground: 0 0% 100%;
 
+  /* Status — success / warning / info */
+  --success: 152 69% 69%;
+  --success-foreground: 240 10% 10%;
+  --warning: 49 100% 60%;
+  --warning-foreground: 240 10% 10%;
+  --info: 212 100% 73%;
+  --info-foreground: 240 10% 10%;
+
   /* Border & Input */
   --border: ${colors.darkForeground};
   --input: ${colors.darkForeground};
@@ -369,6 +425,19 @@ export function ThemeBuilder({ embedded = false }: ThemeBuilderProps) {
 
   /* Shadow */
   --shadow-color: 0 0% 0%;
+
+  /* Neon colors */
+  --neon-pink: 330 100% 70%;
+  --neon-green: 120 100% 55%;
+  --neon-blue: 195 100% 55%;
+  --neon-orange: 25 100% 60%;
+  --neon-purple: 280 100% 65%;
+
+  /* Clash colors */
+  --clash-1: 15 85% 65%;
+  --clash-2: 280 70% 55%;
+  --clash-3: 165 80% 50%;
+  --clash-4: 45 95% 60%;
 }`
   }
 
