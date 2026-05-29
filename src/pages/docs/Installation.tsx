@@ -62,6 +62,7 @@ const allComponents = [
   { name: 'dropdown-menu', description: 'Context menus' },
   { name: 'dropzone', description: 'File drag-and-drop upload' },
   { name: 'empty-state', description: 'Empty content placeholders' },
+  { name: 'error-boundary', description: 'Catch errors in child components' },
   { name: 'hover-card', description: 'Hover-triggered cards' },
   { name: 'input', description: 'Text input fields' },
   { name: 'input-otp', description: 'One-time password input' },

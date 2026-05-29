@@ -8,7 +8,8 @@
     "class-variance-authority"
   ],
   "registryDependencies": [
-    "@boldkit/utils"
+    "@boldkit/utils",
+    "@boldkit/toggle"
   ],
   "files": [
     {

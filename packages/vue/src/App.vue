@@ -23,6 +23,7 @@ import Tabs from './components/ui/Tabs.vue'
 import TabsList from './components/ui/TabsList.vue'
 import TabsTrigger from './components/ui/TabsTrigger.vue'
 import TabsContent from './components/ui/TabsContent.vue'
+import ErrorBoundary from './components/ui/ErrorBoundary.vue'
 import { useTheme } from './composables/useTheme'
 
 const { resolvedTheme, setTheme } = useTheme()
@@ -33,6 +34,7 @@ const email = ref('')
 </script>
 
 <template>
+  <ErrorBoundary>
   <div class="min-h-screen bg-background p-8">
     <div class="mx-auto max-w-4xl space-y-8">
       <div class="flex items-center justify-between">
@@ -183,4 +185,5 @@ const email = ref('')
       </section>
     </div>
   </div>
+  </ErrorBoundary>
 </template>

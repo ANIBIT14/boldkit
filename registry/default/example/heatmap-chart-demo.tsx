@@ -1,4 +1,4 @@
-import { HeatmapChart } from "@/components/ui/chart/heatmap-chart"
+import { HeatmapChart } from "@/components/ui/heatmap-chart"
 
 export default function HeatmapChartDemo() {
   return (

@@ -184,6 +184,10 @@ export function ErrorPagesDoc() {
       description="Error and status pages for 404, 500, maintenance, offline, forbidden, coming soon, and generic errors."
       category="application"
       variants={variants}
+      sourcePaths={{
+        react: 'src/components/blocks/application/error-pages.tsx',
+        vue: 'packages/vue/src/components/blocks/application/ErrorPages.vue',
+      }}
     />
   )
 }

@@ -129,6 +129,10 @@ export function LogoCloudDoc() {
       description="Display client or partner logos with various layouts including grids, animated marquees, bordered cards, and combined with statistics."
       category="marketing"
       variants={variants}
+      sourcePaths={{
+        react: 'src/components/blocks/marketing/logo-cloud.tsx',
+        vue: 'packages/vue/src/components/blocks/marketing/LogoCloud.vue',
+      }}
     />
   )
 }

@@ -135,6 +135,10 @@ export function TestimonialsDoc() {
       description="Display customer testimonials and reviews in various layouts including grid, single quote, masonry, and interactive avatar-based displays."
       category="marketing"
       variants={variants}
+      sourcePaths={{
+        react: 'src/components/blocks/marketing/testimonials.tsx',
+        vue: 'packages/vue/src/components/blocks/marketing/Testimonials.vue',
+      }}
     />
   )
 }

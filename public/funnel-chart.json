@@ -6,13 +6,14 @@
     "recharts"
   ],
   "registryDependencies": [
-    "@boldkit/utils"
+    "@boldkit/utils",
+    "@boldkit/chart"
   ],
   "files": [
     {
       "path": "registry/default/ui/funnel-chart.tsx",
       "type": "registry:ui",
-      "target": "components/ui/chart/funnel-chart.tsx"
+      "target": "components/ui/funnel-chart.tsx"
     },
     {
       "path": "registry/default/example/funnel-chart-demo.tsx",

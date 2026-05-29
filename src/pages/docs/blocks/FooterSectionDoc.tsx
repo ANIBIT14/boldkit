@@ -207,6 +207,10 @@ export function FooterSectionDoc() {
       description="Website footers with various layouts including multi-column, newsletter signup, simple centered, minimal single-line, and with call-to-action banners."
       category="marketing"
       variants={variants}
+      sourcePaths={{
+        react: 'src/components/blocks/marketing/footer-section.tsx',
+        vue: 'packages/vue/src/components/blocks/marketing/FooterSection.vue',
+      }}
     />
   )
 }

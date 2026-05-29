@@ -13,7 +13,7 @@
     {
       "path": "registry/default/ui/radar-chart.tsx",
       "type": "registry:ui",
-      "target": "components/ui/chart/radar-chart.tsx"
+      "target": "components/ui/radar-chart.tsx"
     },
     {
       "path": "registry/default/example/radar-chart-demo.tsx",

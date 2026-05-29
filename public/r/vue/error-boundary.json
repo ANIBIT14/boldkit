@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "error-boundary",
+  "type": "registry:ui",
+  "description": "Catches errors in child components using onErrorCaptured and displays a neubrutalism fallback UI with reload and home actions",
+  "dependencies": [
+    "lucide-vue-next"
+  ],
+  "registryDependencies": [
+    "@boldkit/utils",
+    "@boldkit/button",
+    "@boldkit/card"
+  ],
+  "files": [
+    {
+      "path": "registry/default/ui/ErrorBoundary.vue",
+      "content": "<script setup lang=\"ts\">\nimport { ref, onErrorCaptured } from 'vue'\nimport Button from './Button.vue'\nimport Card from './Card.vue'\nimport CardHeader from './CardHeader.vue'\nimport CardTitle from './CardTitle.vue'\nimport CardContent from './CardContent.vue'\nimport { AlertTriangle, RefreshCw, Home } from 'lucide-vue-next'\n\nconst hasError = ref(false)\nconst error = ref<Error | null>(null)\n\nonErrorCaptured((err) => {\n  hasError.value = true\n  error.value = err instanceof Error ? err : new Error(String(err))\n  if (import.meta.env.DEV) {\n    console.error('Error caught by boundary:', err)\n  }\n  // Returning false stops the error from propagating further up.\n  return false\n})\n\nfunction handleReload() {\n  window.location.reload()\n}\n\nfunction handleGoHome() {\n  window.location.href = '/'\n}\n</script>\n\n<template>\n  <div\n    v-if=\"hasError\"\n    class=\"min-h-screen bg-background flex items-center justify-center p-4\"\n  >\n    <Card class=\"max-w-lg w-full\">\n      <CardHeader class=\"bg-destructive\">\n        <CardTitle class=\"flex items-center gap-3\">\n          <AlertTriangle class=\"h-6 w-6 stroke-[3]\" />\n          Something went wrong\n        </CardTitle>\n      </CardHeader>\n      <CardContent class=\"pt-6 space-y-4\">\n        <p class=\"text-muted-foreground\">\n          An unexpected error occurred. This has been logged and we'll look into it.\n        </p>\n        <pre\n          v-if=\"error && import.meta.env.DEV\"\n          class=\"bg-muted border-3 border-foreground p-4 text-sm overflow-x-auto\"\n        ><code>{{ error.message }}</code></pre>\n        <div class=\"flex gap-3\">\n          <Button class=\"gap-2\" @click=\"handleReload\">\n            <RefreshCw class=\"h-4 w-4\" />\n            Reload Page\n          </Button>\n          <Button variant=\"outline\" class=\"gap-2\" @click=\"handleGoHome\">\n            <Home class=\"h-4 w-4\" />\n            Go Home\n          </Button>\n        </div>\n      </CardContent>\n    </Card>\n  </div>\n  <slot v-else />\n</template>\n",
+      "type": "registry:ui",
+      "target": "components/ui/ErrorBoundary.vue"
+    }
+  ]
+}

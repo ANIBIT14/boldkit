@@ -1,4 +1,4 @@
-import { SankeyChart } from "@/components/ui/chart/sankey-chart"
+import { SankeyChart } from "@/components/ui/sankey-chart"
 
 export default function SankeyChartDemo() {
   return (

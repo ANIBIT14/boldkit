@@ -186,6 +186,10 @@ export function FeatureGridDoc() {
       description="Showcase product features in organized, visually appealing grids with icons, images, or bento layouts."
       category="marketing"
       variants={variants}
+      sourcePaths={{
+        react: 'src/components/blocks/marketing/feature-grid.tsx',
+        vue: 'packages/vue/src/components/blocks/marketing/FeatureGrid.vue',
+      }}
     />
   )
 }

@@ -145,6 +145,10 @@ export function TeamSectionDoc() {
       description="Display team members with various layouts including card grids, compact lists, large photo galleries, and minimal avatar-based displays."
       category="marketing"
       variants={variants}
+      sourcePaths={{
+        react: 'src/components/blocks/marketing/team-section.tsx',
+        vue: 'packages/vue/src/components/blocks/marketing/TeamSection.vue',
+      }}
     />
   )
 }

@@ -42,31 +42,31 @@ const componentMeta = {
   progress: { deps: ['reka-ui'], desc: 'Displays an indicator showing completion progress' },
 
   // Extended
-  'dropdown-menu': { deps: ['reka-ui', 'lucide-vue-next'], desc: 'Displays a menu to the user', files: ['DropdownMenu', 'DropdownMenuTrigger', 'DropdownMenuContent', 'DropdownMenuItem', 'DropdownMenuCheckboxItem', 'DropdownMenuRadioItem', 'DropdownMenuLabel', 'DropdownMenuSeparator', 'DropdownMenuGroup', 'DropdownMenuRadioGroup'] },
-  'alert-dialog': { deps: ['reka-ui'], desc: 'A modal dialog that interrupts the user', files: ['AlertDialog', 'AlertDialogTrigger', 'AlertDialogContent', 'AlertDialogHeader', 'AlertDialogFooter', 'AlertDialogTitle', 'AlertDialogDescription', 'AlertDialogAction', 'AlertDialogCancel'] },
+  'dropdown-menu': { deps: ['reka-ui', 'lucide-vue-next'], desc: 'Displays a menu to the user', files: ['DropdownMenu', 'DropdownMenuTrigger', 'DropdownMenuContent', 'DropdownMenuItem', 'DropdownMenuCheckboxItem', 'DropdownMenuRadioItem', 'DropdownMenuLabel', 'DropdownMenuSeparator', 'DropdownMenuShortcut', 'DropdownMenuRadioGroup'] },
+  'alert-dialog': { deps: ['reka-ui'], registryDeps: ['button'], desc: 'A modal dialog that interrupts the user', files: ['AlertDialog', 'AlertDialogTrigger', 'AlertDialogContent', 'AlertDialogHeader', 'AlertDialogFooter', 'AlertDialogTitle', 'AlertDialogDescription', 'AlertDialogAction', 'AlertDialogCancel'] },
   sheet: { deps: ['reka-ui', 'lucide-vue-next', 'class-variance-authority'], desc: 'A side panel that slides in', files: ['Sheet', 'SheetTrigger', 'SheetContent', 'SheetHeader', 'SheetFooter', 'SheetTitle', 'SheetDescription', 'SheetClose'] },
   'hover-card': { deps: ['reka-ui'], desc: 'For sighted users to preview content', files: ['HoverCard', 'HoverCardTrigger', 'HoverCardContent'] },
   collapsible: { deps: ['reka-ui'], desc: 'An interactive component that expands/collapses', files: ['Collapsible', 'CollapsibleTrigger', 'CollapsibleContent'] },
   slider: { deps: ['reka-ui'], desc: 'An input for selecting a value within a range' },
   toggle: { deps: ['reka-ui', 'class-variance-authority'], desc: 'A two-state button' },
-  'toggle-group': { deps: ['reka-ui', 'class-variance-authority'], desc: 'A set of two-state buttons', files: ['ToggleGroup', 'ToggleGroupItem'] },
+  'toggle-group': { deps: ['reka-ui', 'class-variance-authority'], registryDeps: ['toggle'], desc: 'A set of two-state buttons', files: ['ToggleGroup', 'ToggleGroupItem'] },
   'scroll-area': { deps: ['reka-ui'], desc: 'Augments native scroll functionality', files: ['ScrollArea', 'ScrollBar'] },
   table: { deps: [], desc: 'A responsive table component', files: ['Table', 'TableHeader', 'TableBody', 'TableFooter', 'TableHead', 'TableRow', 'TableCell', 'TableCaption'] },
   alert: { deps: ['class-variance-authority'], desc: 'Displays a callout for user attention', files: ['Alert', 'AlertTitle', 'AlertDescription'] },
 
   // Specialized
-  pagination: { deps: ['reka-ui', 'lucide-vue-next'], desc: 'Navigation for paged content', files: ['Pagination', 'PaginationList', 'PaginationListItem', 'PaginationEllipsis', 'PaginationFirst', 'PaginationLast', 'PaginationPrev', 'PaginationNext'] },
+  pagination: { deps: ['reka-ui', 'lucide-vue-next'], registryDeps: ['button'], desc: 'Navigation for paged content', files: ['Pagination', 'PaginationContent', 'PaginationItem', 'PaginationLink', 'PaginationEllipsis', 'PaginationPrevious', 'PaginationNext'] },
   breadcrumb: { deps: ['reka-ui', 'lucide-vue-next'], desc: 'Displays the path to the current resource', files: ['Breadcrumb', 'BreadcrumbList', 'BreadcrumbItem', 'BreadcrumbLink', 'BreadcrumbPage', 'BreadcrumbSeparator', 'BreadcrumbEllipsis'] },
   drawer: { deps: ['vaul-vue'], desc: 'A drawer component for Vue', files: ['Drawer', 'DrawerTrigger', 'DrawerContent', 'DrawerHeader', 'DrawerFooter', 'DrawerTitle', 'DrawerDescription', 'DrawerClose'] },
   sonner: { deps: ['vue-sonner'], registryDeps: ['use-theme'], desc: 'An opinionated toast component' },
-  calendar: { deps: ['reka-ui', 'lucide-vue-next'], desc: 'A date picker calendar component' },
+  calendar: { deps: ['reka-ui', 'lucide-vue-next'], registryDeps: ['button'], desc: 'A date picker calendar component' },
   'input-otp': { deps: ['reka-ui', 'lucide-vue-next'], desc: 'Accessible one-time password input', files: ['InputOTP', 'InputOTPGroup', 'InputOTPSlot', 'InputOTPSeparator'] },
   command: { deps: ['reka-ui', 'lucide-vue-next'], registryDeps: ['dialog'], desc: 'Fast, composable command menu', files: ['Command', 'CommandDialog', 'CommandInput', 'CommandList', 'CommandEmpty', 'CommandGroup', 'CommandItem', 'CommandSeparator', 'CommandShortcut'] },
 
   // BoldKit unique
   marquee: { deps: [], desc: 'A scrolling marquee component', files: ['Marquee', 'MarqueeItem', 'MarqueeSeparator'] },
   sticker: { deps: ['class-variance-authority'], desc: 'Decorative sticker and stamp components', files: ['Sticker', 'Stamp', 'StickyNote'] },
-  'layered-card': { deps: ['class-variance-authority'], desc: 'A card with stacked layer effects', files: ['LayeredCard', 'LayeredCardHeader', 'LayeredCardTitle', 'LayeredCardDescription', 'LayeredCardContent', 'LayeredCardFooter'] },
+  'layered-card': { deps: ['class-variance-authority'], desc: 'A card with stacked layer effects', files: ['LayeredCard', 'LayeredCardHeader', 'LayeredCardTitle', 'LayeredCardDescription', 'LayeredCardContent', 'LayeredCardFooter'], extraFiles: ['layered-card-variants.ts'] },
   'aspect-ratio': { deps: ['reka-ui'], desc: 'Displays content within a desired aspect ratio' },
   avatar: { deps: ['reka-ui'], desc: 'An image element with fallback', files: ['Avatar', 'AvatarImage', 'AvatarFallback'] },
 
@@ -110,6 +110,26 @@ const componentMeta = {
 
   // Shapes (all 35)
   shapes: { deps: [], desc: 'SVG shape components for decorative elements', isShapes: true },
+
+  // ErrorBoundary — Vue equivalent of the React class component using
+  // `onErrorCaptured`. Returns the fallback UI when any descendant
+  // throws, otherwise renders the default slot.
+  'error-boundary': {
+    deps: ['lucide-vue-next'],
+    registryDeps: ['button', 'card'],
+    desc: 'Catches errors in child components using onErrorCaptured and displays a neubrutalism fallback UI with reload and home actions',
+    files: ['ErrorBoundary'],
+  },
+
+  // ASCII Shapes — 17 animated ASCII components living in a subdirectory.
+  // Uses the generic `subDir` codepath that walks the folder and ships
+  // every .vue + every .ts helper alongside, mapping each into
+  // components/ui/ascii-shapes/ in the consumer project.
+  'ascii-shapes': {
+    deps: [],
+    desc: '17 animated ASCII art components (Spiral, Rose, Wave, Vortex, Pulse, Matrix, Grid, Torus, Sphere, Cube, Helix, Donut, Trefoil Knot, Geodesic Dome, Saturn, Hyperboloid, DNA) with 5 character sets, 4 sizes, and SSR-safe static mode',
+    subDir: 'ascii-shapes',
+  },
 
   // v2.7.0 - Data & Forms
   carousel: {
@@ -175,13 +195,15 @@ const componentMeta = {
   // v2.5.0 components - missing from registry
   dropzone: {
     deps: ['lucide-vue-next'],
+    registryDeps: ['progress', 'spinner'],
     desc: 'Drag-and-drop file upload with preview and validation',
     files: ['Dropzone', 'FileList']
   },
   'empty-state': {
     deps: ['lucide-vue-next', 'class-variance-authority'],
     desc: 'Empty state placeholders with 14 presets, horizontal/vertical layouts, animations, and illustration support',
-    files: ['EmptyState', 'EmptyStateActions', 'EmptyStateDescription', 'EmptyStateIcon', 'EmptyStateIllustration', 'EmptyStatePreset', 'EmptyStateTitle']
+    files: ['EmptyState', 'EmptyStateActions', 'EmptyStateDescription', 'EmptyStateIcon', 'EmptyStateIllustration', 'EmptyStatePreset', 'EmptyStateTitle'],
+    extraFiles: ['empty-state-variants.ts']
   },
   kbd: {
     deps: [],
@@ -195,6 +217,7 @@ const componentMeta = {
   },
   'stat-card': {
     deps: ['lucide-vue-next'],
+    registryDeps: ['card', 'progress'],
     desc: 'Statistics card for dashboards',
     files: ['StatCard']
   },
@@ -311,17 +334,15 @@ const SHAPES_DIR = path.join(UI_DIR, 'shapes')
 const STYLES_DIR = path.join(__dirname, '../src/styles')
 const LIB_DIR = path.join(__dirname, '../src/lib')
 
-// All shape component names
-const SHAPE_FILES = [
-  'BurstShape', 'BlobShape', 'ArrowBadge', 'ZigzagBanner', 'ScribbleCircle',
-  'TicketShape', 'SplatShape', 'SpeechBubble', 'DiamondBadge', 'HexagonShape',
-  'CrossShape', 'LightningShape', 'HeartShape', 'Star4Shape', 'ShieldShape',
-  'RibbonShape', 'WaveShape', 'OctagonShape', 'CloudShape', 'TagShape',
-  'Star5Shape', 'PentagonShape', 'TrapezoidShape', 'ParallelogramShape',
-  'CursorShape', 'BookmarkShape', 'FlagShape', 'PillShape', 'EyeShape',
-  'TriangleShape', 'PaperTearShape', 'ScribbleUnderline', 'PriceTagShape',
-  'ExplosionShape', 'CouponShape'
-]
+// Shape component names — auto-discovered from disk so new shapes get
+// shipped automatically. The previous hand-maintained list drifted out of
+// sync 20 shapes deep before the registry audit caught it.
+const SHAPE_FILES = fs.existsSync(SHAPES_DIR)
+  ? fs.readdirSync(SHAPES_DIR)
+      .filter((f) => f.endsWith('.vue'))
+      .map((f) => f.replace(/\.vue$/, ''))
+      .sort()
+  : []
 
 function readFile(filePath) {
   try {
@@ -335,6 +356,13 @@ function createRegistryJson(name, meta) {
   // Handle shapes specially
   if (meta.isShapes) {
     return createShapesRegistry()
+  }
+
+  // Handle nested-subdirectory components (e.g. ascii-shapes): ship every
+  // .vue and .ts file in the directory verbatim, preserving the folder
+  // layout in the consumer's components/ui/<subDir>/ tree.
+  if (meta.subDir) {
+    return createSubDirRegistry(name, meta)
   }
 
   const files = meta.files || [name.split('-').map(s => s.charAt(0).toUpperCase() + s.slice(1)).join('')]
@@ -423,6 +451,42 @@ function createRegistryJson(name, meta) {
     dependencies: meta.deps || [],
     registryDependencies: ['utils', ...(meta.registryDeps || [])].map(scopeBk),
     files: registryFiles
+  }
+}
+
+function createSubDirRegistry(name, meta) {
+  const dir = path.join(UI_DIR, meta.subDir)
+  if (!fs.existsSync(dir)) {
+    console.warn(`Sub-dir not found for ${name}: ${dir}`)
+    return null
+  }
+
+  const registryFiles = []
+  for (const entry of fs.readdirSync(dir)) {
+    if (!entry.endsWith('.vue') && !entry.endsWith('.ts')) continue
+    const content = readFile(path.join(dir, entry))
+    if (!content) continue
+    registryFiles.push({
+      path: `registry/default/ui/${meta.subDir}/${entry}`,
+      content,
+      type: 'registry:ui',
+      target: `components/ui/${meta.subDir}/${entry}`,
+    })
+  }
+
+  if (registryFiles.length === 0) {
+    console.warn(`No files found in sub-dir for ${name}`)
+    return null
+  }
+
+  return {
+    $schema: 'https://ui.shadcn.com/schema/registry-item.json',
+    name,
+    type: 'registry:ui',
+    description: meta.desc,
+    dependencies: meta.deps || [],
+    registryDependencies: ['@boldkit/utils', ...(meta.registryDeps || []).map(d => `@boldkit/${d}`)],
+    files: registryFiles,
   }
 }
 

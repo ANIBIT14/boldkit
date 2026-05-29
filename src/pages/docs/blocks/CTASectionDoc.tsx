@@ -165,6 +165,10 @@ export function CTASectionDoc() {
       description="Call-to-action sections with various layouts including simple centered, background colored, newsletter signup, split with image, and banner styles."
       category="marketing"
       variants={variants}
+      sourcePaths={{
+        react: 'src/components/blocks/marketing/cta-section.tsx',
+        vue: 'packages/vue/src/components/blocks/marketing/CTASection.vue',
+      }}
     />
   )
 }

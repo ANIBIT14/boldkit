@@ -5,6 +5,36 @@ Format follows [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ---
 
+## [3.3.8] — 2026-05-29 — Registry recheck + chart family fix
+
+A follow-up stability pass after a full source-vs-registry recheck. **36 install-breakers** that were silently shipping in v3.3.7 — caught by extending the audit script to cover relative imports, fixed in this release.
+
+### Highlights
+
+🩹 **React chart family is installable.** All 9 standalone chart entries (`donut-chart`, `radar-chart`, `radial-bar-chart`, `gauge-chart`, `sparkline`, `funnel-chart`, `treemap-chart`, `heatmap-chart`, `sankey-chart`) shipped with install targets at `components/ui/chart/<name>.tsx` while their relative `./chart` import resolved to a path nothing shipped. Flattened all chart targets to `components/ui/<name>.tsx` so `./chart` correctly hits the base `chart` entry. Added missing `@boldkit/chart` registryDep to the four entries that import `./empty`.
+
+🩹 **8 Vue entries had missing `registryDependencies` or stale file lists.** `alert-dialog`, `calendar`, `pagination` now declare `button` (each imports `./button-variants`). `toggle-group` declares `toggle`. `dropzone` declares `progress` + `spinner`. `stat-card` declares `card` + `progress`. `empty-state` and `layered-card` now ship their `-variants.ts` sibling. `pagination` and `dropdown-menu` had stale `files:` lists referencing components that don't exist on disk — corrected.
+
+🩹 **20 Vue shapes were missing from the registry.** `SHAPE_FILES` had drifted 20 entries behind the 55 on disk. Replaced with disk auto-discovery so any new shape ships automatically: Apple, Crescent, Decagon, Ellipse, FibonacciSpiral, Gear, Heptagon, KochSnowflake, MobiusStrip, PenroseTriangle, Planet, Rainbow, Rhombus, Seal, Star6, Sun, Torus, Trefoil, Umbrella, WavyRectangle.
+
+✨ **Vue parity for `ascii-shapes` and `error-boundary`.** Both existed on the React side but had no Vue install path. ASCII Shapes now ship all 17 components + constants via a new subdirectory codepath. ErrorBoundary now has a Vue equivalent using `onErrorCaptured` with the same neubrutalism fallback UI; published as `r/vue/error-boundary.json`.
+
+✨ **New `/components/error-boundary` docs page.** Framework-switched preview/code/install with a live "Trigger error" demo button. Sidebar entry + Installation page entry added.
+
+🐛 **Blocks page no longer shows broken install commands.** All 15 block cards were displaying `npx shadcn add boldkit.dev/r/<block>.json` commands that 404'd — the block registry entries don't exist (blocks remain copy/paste-grade). Removed the install bar UI. Each block doc page now has React + Vue "View on GitHub" source links via a new `sourcePaths` prop on `BlockDoc`.
+
+### Internals — new permanent guard
+
+`scripts/audit-registry-imports.mjs` was previously blind to relative imports — only checked `from '@/...'` aliases. Extended to resolve `from './x'` and `from '../x'` against each file's install target, verifying the resolved path is shipped by the same entry or by a declared registryDependency. That single change exposed all 36 issues above in one audit run.
+
+### Bumps
+
+- `package.json`: 3.3.7 → 3.3.8
+- `packages/vue/package.json`: 3.1.7 → 3.1.8
+- README badge: 3.3.7 → 3.3.8
+
+---
+
 ## [3.3.7] — 2026-05-26 — Registry health pass
 
 A focused stability release that fixes install-time failures consumers have been hitting and adds permanent guards so the same classes of bug can't silently return.

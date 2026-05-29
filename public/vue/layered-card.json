@@ -39,6 +39,11 @@
       "path": "registry/default/ui/LayeredCardFooter.vue",
       "type": "registry:ui",
       "target": "components/ui/LayeredCardFooter.vue"
+    },
+    {
+      "path": "registry/default/ui/layered-card-variants.ts",
+      "type": "registry:ui",
+      "target": "components/ui/layered-card-variants.ts"
     }
   ]
 }

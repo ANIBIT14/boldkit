@@ -153,6 +153,10 @@ export function FAQSectionDoc() {
       description="Display frequently asked questions with various layouts including accordions, two-column grids, categorized tabs, with contact CTA, and simple lists."
       category="marketing"
       variants={variants}
+      sourcePaths={{
+        react: 'src/components/blocks/marketing/faq-section.tsx',
+        vue: 'packages/vue/src/components/blocks/marketing/FAQSection.vue',
+      }}
     />
   )
 }

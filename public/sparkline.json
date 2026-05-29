@@ -12,7 +12,7 @@
     {
       "path": "registry/default/ui/sparkline.tsx",
       "type": "registry:ui",
-      "target": "components/ui/chart/sparkline.tsx"
+      "target": "components/ui/sparkline.tsx"
     },
     {
       "path": "registry/default/example/sparkline-demo.tsx",

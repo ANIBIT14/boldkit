@@ -13,7 +13,7 @@
     {
       "path": "registry/default/ui/donut-chart.tsx",
       "type": "registry:ui",
-      "target": "components/ui/chart/donut-chart.tsx"
+      "target": "components/ui/donut-chart.tsx"
     },
     {
       "path": "registry/default/example/donut-chart-demo.tsx",

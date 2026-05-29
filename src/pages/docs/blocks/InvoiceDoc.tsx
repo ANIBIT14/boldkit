@@ -222,6 +222,10 @@ export function InvoiceDoc() {
       description="Invoice and billing components including full invoice documents, compact receipts, summary cards, and list views with status indicators."
       category="application"
       variants={variants}
+      sourcePaths={{
+        react: 'src/components/blocks/application/invoice.tsx',
+        vue: 'packages/vue/src/components/blocks/application/Invoice.vue',
+      }}
     />
   )
 }

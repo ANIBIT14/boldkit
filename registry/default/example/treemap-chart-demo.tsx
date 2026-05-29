@@ -1,4 +1,4 @@
-import { TreemapChart } from "@/components/ui/chart/treemap-chart"
+import { TreemapChart } from "@/components/ui/treemap-chart"
 
 export default function TreemapChartDemo() {
   return (

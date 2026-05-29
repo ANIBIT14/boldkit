@@ -227,6 +227,10 @@ export function OnboardingFlowDoc() {
       description="User onboarding components including step wizards, welcome screens, profile setup, workspace creation, goal selection, and completion screens."
       category="application"
       variants={variants}
+      sourcePaths={{
+        react: 'src/components/blocks/application/onboarding-flow.tsx',
+        vue: 'packages/vue/src/components/blocks/application/OnboardingFlow.vue',
+      }}
     />
   )
 }

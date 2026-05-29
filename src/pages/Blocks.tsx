@@ -5,8 +5,6 @@ import { Button } from '@/components/ui/button'
 import { Layout } from '@/components/layout'
 import {
   ArrowRight,
-  Copy,
-  Check,
   Layers,
   Layout as LayoutIcon,
   Users,
@@ -30,36 +28,6 @@ import type { CSSProperties } from 'react'
 
 const DISPLAY: CSSProperties = { fontFamily: "'Bebas Neue', sans-serif" }
 const MONO: CSSProperties = { fontFamily: "'DM Mono', monospace" }
-
-// ─── Copy Button ─────────────────────────────────────────────────────────────
-
-function CopyButton({ text, mini }: { text: string; mini?: boolean }) {
-  const [copied, setCopied] = useState(false)
-  const copy = () => {
-    navigator.clipboard.writeText(text)
-    setCopied(true)
-    setTimeout(() => setCopied(false), 2000)
-  }
-  if (mini) {
-    return (
-      <button
-        onClick={copy}
-        className="p-1 hover:bg-foreground/10 transition-colors"
-        aria-label="Copy code"
-      >
-        {copied
-          ? <Check className="h-3.5 w-3.5 text-success" />
-          : <Copy className="h-3.5 w-3.5" />}
-      </button>
-    )
-  }
-  return (
-    <Button variant="outline" size="sm" onClick={copy} className="gap-2 touch-manipulation h-7 px-2">
-      {copied ? <Check className="h-3.5 w-3.5" /> : <Copy className="h-3.5 w-3.5" />}
-      <span className="text-xs">{copied ? 'Copied!' : 'Copy'}</span>
-    </Button>
-  )
-}
 
 // ─── Richer Block Preview Sketches ──────────────────────────────────────────
 
@@ -672,10 +640,6 @@ const accentColors = [
 function BlockCard({ block, framework, index }: { block: BlockInfo; framework: string; index: number }) {
   const [showCode, setShowCode] = useState(false)
   const Icon = block.icon
-  const installCmd =
-    framework === 'react'
-      ? `npx shadcn@latest add "https://boldkit.dev/r/${block.name.toLowerCase().replace(/\s+/g, '-')}.json"`
-      : `npx shadcn-vue@latest add "https://boldkit.dev/r/vue/${block.name.toLowerCase().replace(/\s+/g, '-')}.json"`
   const accentClass = accentColors[index % accentColors.length]
 
   return (

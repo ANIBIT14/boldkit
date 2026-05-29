@@ -8,7 +8,8 @@
     "lucide-vue-next"
   ],
   "registryDependencies": [
-    "@boldkit/utils"
+    "@boldkit/utils",
+    "@boldkit/button"
   ],
   "files": [
     {
@@ -18,10 +19,34 @@
       "target": "components/ui/Pagination.vue"
     },
     {
+      "path": "registry/default/ui/PaginationContent.vue",
+      "content": "<script setup lang=\"ts\">\nimport { cn } from '@/lib/utils'\n\ndefineProps<{\n  class?: string\n}>()\n</script>\n\n<template>\n  <ul :class=\"cn('flex flex-row items-center gap-1', $props.class)\">\n    <slot />\n  </ul>\n</template>\n",
+      "type": "registry:ui",
+      "target": "components/ui/PaginationContent.vue"
+    },
+    {
+      "path": "registry/default/ui/PaginationItem.vue",
+      "content": "<script setup lang=\"ts\">\nimport { cn } from '@/lib/utils'\n\ndefineProps<{\n  class?: string\n}>()\n</script>\n\n<template>\n  <li :class=\"cn('', $props.class)\">\n    <slot />\n  </li>\n</template>\n",
+      "type": "registry:ui",
+      "target": "components/ui/PaginationItem.vue"
+    },
+    {
+      "path": "registry/default/ui/PaginationLink.vue",
+      "content": "<script setup lang=\"ts\">\nimport { cn } from '@/lib/utils'\nimport { buttonVariants } from './button-variants'\n\ninterface Props {\n  class?: string\n  isActive?: boolean\n  size?: 'default' | 'sm' | 'lg' | 'icon'\n  href?: string\n}\n\nconst props = withDefaults(defineProps<Props>(), {\n  size: 'icon',\n})\n</script>\n\n<template>\n  <a\n    :href=\"href\"\n    :aria-current=\"isActive ? 'page' : undefined\"\n    :class=\"\n      cn(\n        buttonVariants({\n          variant: isActive ? 'default' : 'outline',\n          size: props.size,\n        }),\n        props.class\n      )\n    \"\n  >\n    <slot />\n  </a>\n</template>\n",
+      "type": "registry:ui",
+      "target": "components/ui/PaginationLink.vue"
+    },
+    {
       "path": "registry/default/ui/PaginationEllipsis.vue",
       "content": "<script setup lang=\"ts\">\nimport { MoreHorizontal } from 'lucide-vue-next'\nimport { cn } from '@/lib/utils'\n\ndefineProps<{\n  class?: string\n}>()\n</script>\n\n<template>\n  <span\n    role=\"img\"\n    aria-label=\"More pages\"\n    :class=\"cn('flex h-9 w-9 items-center justify-center', $props.class)\"\n  >\n    <MoreHorizontal aria-hidden=\"true\" class=\"h-4 w-4 stroke-[3]\" />\n  </span>\n</template>\n",
       "type": "registry:ui",
       "target": "components/ui/PaginationEllipsis.vue"
+    },
+    {
+      "path": "registry/default/ui/PaginationPrevious.vue",
+      "content": "<script setup lang=\"ts\">\nimport { ChevronLeft } from 'lucide-vue-next'\nimport PaginationLink from './PaginationLink.vue'\nimport { cn } from '@/lib/utils'\n\ndefineProps<{\n  class?: string\n  href?: string\n}>()\n</script>\n\n<template>\n  <PaginationLink\n    aria-label=\"Go to previous page\"\n    size=\"default\"\n    :href=\"href\"\n    :class=\"cn('gap-1 pl-2.5', $props.class)\"\n  >\n    <ChevronLeft class=\"h-4 w-4 stroke-[3]\" />\n    <span>Previous</span>\n  </PaginationLink>\n</template>\n",
+      "type": "registry:ui",
+      "target": "components/ui/PaginationPrevious.vue"
     },
     {
       "path": "registry/default/ui/PaginationNext.vue",

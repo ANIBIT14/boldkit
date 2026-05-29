@@ -181,6 +181,10 @@ export function ContactSectionDoc() {
       description="Contact forms and information sections with various layouts including split view, centered form, contact method cards, and map integration."
       category="marketing"
       variants={variants}
+      sourcePaths={{
+        react: 'src/components/blocks/marketing/contact-section.tsx',
+        vue: 'packages/vue/src/components/blocks/marketing/ContactSection.vue',
+      }}
     />
   )
 }

@@ -12,7 +12,7 @@ import {
 } from '@/components/ui/breadcrumb'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
-import { Copy, Check, Home, LayoutGrid, Eye, Code } from 'lucide-react'
+import { Copy, Check, Home, LayoutGrid, Eye, Code, Github } from 'lucide-react'
 import { SEO } from '@/components/SEO'
 import { useFramework, FrameworkToggle, ReactIcon, VueIcon } from '@/hooks/use-framework'
 
@@ -58,13 +58,23 @@ interface BlockDocProps {
   description: string
   category: 'marketing' | 'application'
   variants: BlockVariant[]
+  /**
+   * Repo-relative paths to the React and Vue source files for this block.
+   * Rendered as "View on GitHub" buttons so users can copy the full
+   * implementation. Blocks are copy/paste-grade and not published to the
+   * shadcn registry, so this is the authoritative source-of-truth link.
+   */
+  sourcePaths?: { react: string; vue: string }
 }
+
+const GITHUB_REPO = 'https://github.com/ANIBIT14/boldkit/blob/main'
 
 export function BlockDoc({
   name,
   description,
   category,
   variants,
+  sourcePaths,
 }: BlockDocProps) {
   const { framework } = useFramework()
   const [activeVariant, setActiveVariant] = useState(0)
@@ -120,6 +130,35 @@ export function BlockDoc({
           <p className="mt-4 text-lg text-muted-foreground">
             {description}
           </p>
+          {sourcePaths && (
+            <div className="mt-5 flex flex-wrap items-center gap-2">
+              <span className="text-xs font-bold uppercase tracking-widest text-muted-foreground">
+                Full source
+              </span>
+              <Button variant="outline" size="sm" className="gap-2" asChild>
+                <a
+                  href={`${GITHUB_REPO}/${sourcePaths.react}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <Github className="h-3.5 w-3.5" />
+                  <ReactIcon className="h-3.5 w-3.5" />
+                  React
+                </a>
+              </Button>
+              <Button variant="outline" size="sm" className="gap-2" asChild>
+                <a
+                  href={`${GITHUB_REPO}/${sourcePaths.vue}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <Github className="h-3.5 w-3.5" />
+                  <VueIcon className="h-3.5 w-3.5" />
+                  Vue
+                </a>
+              </Button>
+            </div>
+          )}
         </div>
 
         {/* Variants */}

@@ -45,6 +45,11 @@
       "path": "registry/default/ui/EmptyStateTitle.vue",
       "type": "registry:ui",
       "target": "components/ui/EmptyStateTitle.vue"
+    },
+    {
+      "path": "registry/default/ui/empty-state-variants.ts",
+      "type": "registry:ui",
+      "target": "components/ui/empty-state-variants.ts"
     }
   ]
 }

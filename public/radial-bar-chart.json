@@ -13,7 +13,7 @@
     {
       "path": "registry/default/ui/radial-bar-chart.tsx",
       "type": "registry:ui",
-      "target": "components/ui/chart/radial-bar-chart.tsx"
+      "target": "components/ui/radial-bar-chart.tsx"
     },
     {
       "path": "registry/default/example/radial-bar-chart-demo.tsx",

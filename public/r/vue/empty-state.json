@@ -52,6 +52,12 @@
       "content": "<script setup lang=\"ts\">\nimport { cn } from '@/lib/utils'\n\ninterface EmptyStateTitleProps {\n  class?: string\n}\n\nconst props = defineProps<EmptyStateTitleProps>()\n</script>\n\n<template>\n  <h3 :class=\"cn('text-lg font-bold uppercase tracking-tight', props.class)\">\n    <slot />\n  </h3>\n</template>\n",
       "type": "registry:ui",
       "target": "components/ui/EmptyStateTitle.vue"
+    },
+    {
+      "path": "registry/default/ui/empty-state-variants.ts",
+      "content": "import { cva } from 'class-variance-authority'\n\nexport const emptyStateVariants = cva(\n  'flex items-center justify-center',\n  {\n    variants: {\n      variant: {\n        default: '',\n        filled: 'bg-muted/30 border-3 border-dashed border-foreground p-8',\n        card: 'bg-card border-3 border-foreground shadow-[4px_4px_0px_hsl(var(--shadow-color))] p-8',\n      },\n      size: {\n        compact: 'gap-2 p-2',\n        sm: 'gap-3 p-4',\n        md: 'gap-4 p-6',\n        lg: 'gap-6 p-8',\n      },\n      layout: {\n        vertical: 'flex-col text-center',\n        horizontal: 'flex-row text-left',\n      },\n      animation: {\n        none: '',\n        fadeIn: 'animate-[fadeIn_0.3s_ease-out]',\n        bounce: 'animate-[bounceIn_0.5s_ease-out]',\n        scale: 'animate-[scaleIn_0.3s_ease-out]',\n      },\n    },\n    defaultVariants: {\n      variant: 'default',\n      size: 'md',\n      layout: 'vertical',\n      animation: 'none',\n    },\n  }\n)\n\nexport const iconContainerVariants = cva(\n  'flex items-center justify-center border-3 border-foreground shadow-[3px_3px_0px_hsl(var(--shadow-color))]',\n  {\n    variants: {\n      size: {\n        xs: 'w-10 h-10',\n        sm: 'w-12 h-12',\n        md: 'w-16 h-16',\n        lg: 'w-20 h-20',\n        xl: 'w-24 h-24',\n      },\n      iconColor: {\n        default: 'bg-muted text-foreground',\n        primary: 'bg-primary text-primary-foreground',\n        secondary: 'bg-secondary text-secondary-foreground',\n        accent: 'bg-accent text-accent-foreground',\n        muted: 'bg-muted text-muted-foreground',\n        destructive: 'bg-destructive text-destructive-foreground',\n        warning: 'bg-warning text-warning-foreground',\n        success: 'bg-success text-success-foreground',\n      },\n    },\n    defaultVariants: {\n      size: 'md',\n      iconColor: 'default',\n    },\n  }\n)\n",
+      "type": "registry:ui",
+      "target": "components/ui/empty-state-variants.ts"
     }
   ]
 }

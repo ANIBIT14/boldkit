@@ -155,6 +155,10 @@ export function StatsSectionDoc() {
       description="Display key metrics and statistics with various layouts including grids, cards with trends, split layouts, inline bars, and icon-enhanced displays."
       category="marketing"
       variants={variants}
+      sourcePaths={{
+        react: 'src/components/blocks/marketing/stats-section.tsx',
+        vue: 'packages/vue/src/components/blocks/marketing/StatsSection.vue',
+      }}
     />
   )
 }

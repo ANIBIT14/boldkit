@@ -1310,7 +1310,7 @@
         {
           "path": "registry/default/ui/sparkline.tsx",
           "type": "registry:ui",
-          "target": "components/ui/chart/sparkline.tsx"
+          "target": "components/ui/sparkline.tsx"
         },
         {
           "path": "registry/default/example/sparkline-demo.tsx",
@@ -1334,7 +1334,7 @@
         {
           "path": "registry/default/ui/donut-chart.tsx",
           "type": "registry:ui",
-          "target": "components/ui/chart/donut-chart.tsx"
+          "target": "components/ui/donut-chart.tsx"
         },
         {
           "path": "registry/default/example/donut-chart-demo.tsx",
@@ -1358,7 +1358,7 @@
         {
           "path": "registry/default/ui/radial-bar-chart.tsx",
           "type": "registry:ui",
-          "target": "components/ui/chart/radial-bar-chart.tsx"
+          "target": "components/ui/radial-bar-chart.tsx"
         },
         {
           "path": "registry/default/example/radial-bar-chart-demo.tsx",
@@ -1382,7 +1382,7 @@
         {
           "path": "registry/default/ui/radar-chart.tsx",
           "type": "registry:ui",
-          "target": "components/ui/chart/radar-chart.tsx"
+          "target": "components/ui/radar-chart.tsx"
         },
         {
           "path": "registry/default/example/radar-chart-demo.tsx",
@@ -1405,7 +1405,7 @@
         {
           "path": "registry/default/ui/gauge-chart.tsx",
           "type": "registry:ui",
-          "target": "components/ui/chart/gauge-chart.tsx"
+          "target": "components/ui/gauge-chart.tsx"
         },
         {
           "path": "registry/default/example/gauge-chart-demo.tsx",
@@ -1422,13 +1422,14 @@
         "recharts"
       ],
       "registryDependencies": [
-        "@boldkit/utils"
+        "@boldkit/utils",
+        "@boldkit/chart"
       ],
       "files": [
         {
           "path": "registry/default/ui/funnel-chart.tsx",
           "type": "registry:ui",
-          "target": "components/ui/chart/funnel-chart.tsx"
+          "target": "components/ui/funnel-chart.tsx"
         },
         {
           "path": "registry/default/example/funnel-chart-demo.tsx",
@@ -1445,13 +1446,14 @@
         "recharts"
       ],
       "registryDependencies": [
-        "@boldkit/utils"
+        "@boldkit/utils",
+        "@boldkit/chart"
       ],
       "files": [
         {
           "path": "registry/default/ui/treemap-chart.tsx",
           "type": "registry:ui",
-          "target": "components/ui/chart/treemap-chart.tsx"
+          "target": "components/ui/treemap-chart.tsx"
         },
         {
           "path": "registry/default/example/treemap-chart-demo.tsx",
@@ -1466,13 +1468,14 @@
       "description": "Heatmap grid for correlation and intensity data - custom CSS Grid implementation",
       "dependencies": [],
       "registryDependencies": [
-        "@boldkit/utils"
+        "@boldkit/utils",
+        "@boldkit/chart"
       ],
       "files": [
         {
           "path": "registry/default/ui/heatmap-chart.tsx",
           "type": "registry:ui",
-          "target": "components/ui/chart/heatmap-chart.tsx"
+          "target": "components/ui/heatmap-chart.tsx"
         },
         {
           "path": "registry/default/example/heatmap-chart-demo.tsx",
@@ -1487,13 +1490,14 @@
       "description": "Sankey flow diagram for showing proportional flows between nodes - custom SVG implementation",
       "dependencies": [],
       "registryDependencies": [
-        "@boldkit/utils"
+        "@boldkit/utils",
+        "@boldkit/chart"
       ],
       "files": [
         {
           "path": "registry/default/ui/sankey-chart.tsx",
           "type": "registry:ui",
-          "target": "components/ui/chart/sankey-chart.tsx"
+          "target": "components/ui/sankey-chart.tsx"
         },
         {
           "path": "registry/default/example/sankey-chart-demo.tsx",

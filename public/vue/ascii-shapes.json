@@ -1,0 +1,107 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "ascii-shapes",
+  "type": "registry:ui",
+  "description": "17 animated ASCII art components (Spiral, Rose, Wave, Vortex, Pulse, Matrix, Grid, Torus, Sphere, Cube, Helix, Donut, Trefoil Knot, Geodesic Dome, Saturn, Hyperboloid, DNA) with 5 character sets, 4 sizes, and SSR-safe static mode",
+  "dependencies": [],
+  "registryDependencies": [
+    "@boldkit/utils"
+  ],
+  "files": [
+    {
+      "path": "registry/default/ui/ascii-shapes/AsciiCube.vue",
+      "type": "registry:ui",
+      "target": "components/ui/ascii-shapes/AsciiCube.vue"
+    },
+    {
+      "path": "registry/default/ui/ascii-shapes/AsciiDNA.vue",
+      "type": "registry:ui",
+      "target": "components/ui/ascii-shapes/AsciiDNA.vue"
+    },
+    {
+      "path": "registry/default/ui/ascii-shapes/AsciiDonut.vue",
+      "type": "registry:ui",
+      "target": "components/ui/ascii-shapes/AsciiDonut.vue"
+    },
+    {
+      "path": "registry/default/ui/ascii-shapes/AsciiGeodesicDome.vue",
+      "type": "registry:ui",
+      "target": "components/ui/ascii-shapes/AsciiGeodesicDome.vue"
+    },
+    {
+      "path": "registry/default/ui/ascii-shapes/AsciiGrid.vue",
+      "type": "registry:ui",
+      "target": "components/ui/ascii-shapes/AsciiGrid.vue"
+    },
+    {
+      "path": "registry/default/ui/ascii-shapes/AsciiHelix.vue",
+      "type": "registry:ui",
+      "target": "components/ui/ascii-shapes/AsciiHelix.vue"
+    },
+    {
+      "path": "registry/default/ui/ascii-shapes/AsciiHyperboloid.vue",
+      "type": "registry:ui",
+      "target": "components/ui/ascii-shapes/AsciiHyperboloid.vue"
+    },
+    {
+      "path": "registry/default/ui/ascii-shapes/AsciiMatrix.vue",
+      "type": "registry:ui",
+      "target": "components/ui/ascii-shapes/AsciiMatrix.vue"
+    },
+    {
+      "path": "registry/default/ui/ascii-shapes/AsciiPulse.vue",
+      "type": "registry:ui",
+      "target": "components/ui/ascii-shapes/AsciiPulse.vue"
+    },
+    {
+      "path": "registry/default/ui/ascii-shapes/AsciiRose.vue",
+      "type": "registry:ui",
+      "target": "components/ui/ascii-shapes/AsciiRose.vue"
+    },
+    {
+      "path": "registry/default/ui/ascii-shapes/AsciiSaturn.vue",
+      "type": "registry:ui",
+      "target": "components/ui/ascii-shapes/AsciiSaturn.vue"
+    },
+    {
+      "path": "registry/default/ui/ascii-shapes/AsciiSphere.vue",
+      "type": "registry:ui",
+      "target": "components/ui/ascii-shapes/AsciiSphere.vue"
+    },
+    {
+      "path": "registry/default/ui/ascii-shapes/AsciiSpiral.vue",
+      "type": "registry:ui",
+      "target": "components/ui/ascii-shapes/AsciiSpiral.vue"
+    },
+    {
+      "path": "registry/default/ui/ascii-shapes/AsciiTorus.vue",
+      "type": "registry:ui",
+      "target": "components/ui/ascii-shapes/AsciiTorus.vue"
+    },
+    {
+      "path": "registry/default/ui/ascii-shapes/AsciiTrefoilKnot.vue",
+      "type": "registry:ui",
+      "target": "components/ui/ascii-shapes/AsciiTrefoilKnot.vue"
+    },
+    {
+      "path": "registry/default/ui/ascii-shapes/AsciiVortex.vue",
+      "type": "registry:ui",
+      "target": "components/ui/ascii-shapes/AsciiVortex.vue"
+    },
+    {
+      "path": "registry/default/ui/ascii-shapes/AsciiWave.vue",
+      "type": "registry:ui",
+      "target": "components/ui/ascii-shapes/AsciiWave.vue"
+    },
+    {
+      "path": "registry/default/ui/ascii-shapes/constants.ts",
+      "type": "registry:ui",
+      "target": "components/ui/ascii-shapes/constants.ts"
+    },
+    {
+      "path": "registry/default/ui/ascii-shapes/index.ts",
+      "type": "registry:ui",
+      "target": "components/ui/ascii-shapes/index.ts"
+    }
+  ]
+}

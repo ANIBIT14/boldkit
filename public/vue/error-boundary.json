@@ -1,0 +1,21 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "error-boundary",
+  "type": "registry:ui",
+  "description": "Catches errors in child components using onErrorCaptured and displays a neubrutalism fallback UI with reload and home actions",
+  "dependencies": [
+    "lucide-vue-next"
+  ],
+  "registryDependencies": [
+    "@boldkit/utils",
+    "@boldkit/button",
+    "@boldkit/card"
+  ],
+  "files": [
+    {
+      "path": "registry/default/ui/ErrorBoundary.vue",
+      "type": "registry:ui",
+      "target": "components/ui/ErrorBoundary.vue"
+    }
+  ]
+}

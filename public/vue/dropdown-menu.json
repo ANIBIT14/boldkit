@@ -52,6 +52,11 @@
       "target": "components/ui/DropdownMenuSeparator.vue"
     },
     {
+      "path": "registry/default/ui/DropdownMenuShortcut.vue",
+      "type": "registry:ui",
+      "target": "components/ui/DropdownMenuShortcut.vue"
+    },
+    {
       "path": "registry/default/ui/DropdownMenuRadioGroup.vue",
       "type": "registry:ui",
       "target": "components/ui/DropdownMenuRadioGroup.vue"

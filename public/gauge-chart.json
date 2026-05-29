@@ -12,7 +12,7 @@
     {
       "path": "registry/default/ui/gauge-chart.tsx",
       "type": "registry:ui",
-      "target": "components/ui/chart/gauge-chart.tsx"
+      "target": "components/ui/gauge-chart.tsx"
     },
     {
       "path": "registry/default/example/gauge-chart-demo.tsx",

@@ -219,6 +219,10 @@ export function HeroSectionDoc() {
       description="Eye-catching hero sections with various layouts for landing pages. Includes centered, split, stats, minimal, and video variants."
       category="marketing"
       variants={variants}
+      sourcePaths={{
+        react: 'src/components/blocks/marketing/hero-section.tsx',
+        vue: 'packages/vue/src/components/blocks/marketing/HeroSection.vue',
+      }}
     />
   )
 }

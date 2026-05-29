@@ -200,6 +200,10 @@ export function AuthFormsDoc() {
       description="Authentication forms including login, signup, forgot password, OTP verification, and split layout variants."
       category="application"
       variants={variants}
+      sourcePaths={{
+        react: 'src/components/blocks/application/auth-forms.tsx',
+        vue: 'packages/vue/src/components/blocks/application/AuthForms.vue',
+      }}
     />
   )
 }

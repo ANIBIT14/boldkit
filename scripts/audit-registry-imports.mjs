@@ -17,12 +17,37 @@
  *   • 9 chart demos importing from wrong install paths       (post-3.3.7)
  *   • 10 demos missing sibling cascade deps                  (post-3.3.7)
  *
- * To extend coverage: this only looks at `from '@/...'` imports.
- * `require('@/...')`, dynamic `import('@/...')`, and pure relative
- * imports (`from '../x'`) are not yet checked.
+ * Coverage:
+ *   • `from '@/...'` alias imports — cross-folder dep tracking
+ *   • `from './x'` / `from '../x'` relative imports — resolved against
+ *     each file's install target so e.g. chart/donut-chart.tsx's `./chart`
+ *     verifies a sibling chart.tsx is shipped by this entry or a dep.
+ *
+ * Still not checked: `require('@/...')`, dynamic `import('@/...')`,
+ * relative imports that climb above the repo root (uncommon in practice).
  */
+import { dirname, normalize, resolve } from 'node:path'
 import { readFileSync, existsSync, statSync, readdirSync } from 'node:fs'
 import { join } from 'node:path'
+
+/**
+ * Resolve a relative import (`./x` or `../x`) against the importing file's
+ * install target. Returns the candidate target paths (with each known
+ * extension) that would satisfy the import. Caller checks providers.
+ */
+function resolveRelativeTargets(importerTarget, relPath, exts) {
+  const dir = dirname(importerTarget)
+  const joined = normalize(join(dir, relPath))
+  // Strip any leading "./" the normalize leaves behind
+  const base = joined.startsWith('./') ? joined.slice(2) : joined
+  const out = []
+  for (const ext of exts) {
+    if (relPath.endsWith(ext)) out.push(base)            // explicit extension
+    else if (ext.startsWith('/')) out.push(base + ext)   // index files
+    else out.push(base + ext)
+  }
+  return out
+}
 
 const root = process.cwd()
 
@@ -48,24 +73,57 @@ function resolveAliasReact(aliasPath) {
   return null
 }
 
+const reactExts = ['.tsx', '.ts', '/index.tsx', '/index.ts']
 const reactViolations = []
 for (const item of reactReg.items) {
   const declared = new Set((item.registryDependencies || []).map(d => d.replace(/^@boldkit\//, '')))
+  // Targets this very entry ships — used to satisfy intra-entry relative imports.
+  const selfTargets = new Set((item.files || []).map(f => f.target).filter(Boolean))
   for (const f of (item.files || [])) {
     if (!existsSync(f.path)) continue
     if (!/\.(tsx|ts)$/.test(f.path)) continue
     const content = readFileSync(f.path, 'utf-8')
-    const re = /from\s+['"](@\/[^'"]+)['"]/g
+
+    // Alias imports (`from '@/...'`)
+    const reA = /from\s+['"](@\/[^'"]+)['"]/g
     let m
-    while ((m = re.exec(content)) !== null) {
+    while ((m = reA.exec(content)) !== null) {
       const aliasPath = m[1]
       if (aliasPath.startsWith('@/components/ui/')) continue   // siblings
-      if (aliasPath === '@/lib/utils') continue                // assume utils dep is always set; we'll separately verify
+      if (aliasPath === '@/lib/utils') continue                // utils handled separately
       const resolved = resolveAliasReact(aliasPath)
       if (!resolved) {
         reactViolations.push({ item: item.name, file: f.path, aliasPath, status: 'NO_REGISTRY_ENTRY' })
       } else if (!resolved.providers.some(p => declared.has(p))) {
         reactViolations.push({ item: item.name, file: f.path, aliasPath, status: 'MISSING_DEP', providers: resolved.providers })
+      }
+    }
+
+    // Relative imports (`from './x'` / `from '../x'`) — resolved against
+    // the install target, so they must land on a path shipped by this entry
+    // or by a declared registryDependency.
+    if (!f.target) continue
+    const reR = /from\s+['"](\.\.?\/[^'"]+)['"]/g
+    while ((m = reR.exec(content)) !== null) {
+      const relPath = m[1]
+      const candidates = resolveRelativeTargets(f.target, relPath, reactExts)
+      let satisfied = false
+      let providers = []
+      for (const cand of candidates) {
+        if (selfTargets.has(cand)) { satisfied = true; break }
+        if (reactProvider[cand]) {
+          providers = reactProvider[cand]
+          if (providers.some(p => declared.has(p))) { satisfied = true; break }
+        }
+      }
+      if (!satisfied) {
+        reactViolations.push({
+          item: item.name,
+          file: f.path,
+          aliasPath: relPath,
+          status: providers.length ? 'MISSING_DEP' : 'NO_REGISTRY_ENTRY',
+          providers: providers.length ? providers : undefined,
+        })
       }
     }
   }
@@ -120,16 +178,20 @@ function resolveAliasVue(aliasPath) {
   return null
 }
 
+const vueExts = ['.ts', '.vue', '.tsx', '/index.ts', '/index.vue']
 const vueViolations = []
 const vueUtilsViolations = []
 for (const item of vueItems) {
   const declared = new Set((item.registryDependencies || []).map(d => d.replace(/^@boldkit\//, '')))
+  const selfTargets = new Set((item.files || []).map(f => f.target).filter(Boolean))
   for (const file of (item.files || [])) {
     const content = file.content || ''
     if (!content) continue
-    const re = /from\s+['"](@\/[^'"]+)['"]/g
+
+    // Alias imports
+    const reA = /from\s+['"](@\/[^'"]+)['"]/g
     let m
-    while ((m = re.exec(content)) !== null) {
+    while ((m = reA.exec(content)) !== null) {
       const aliasPath = m[1]
       if (aliasPath.startsWith('@/components/ui')) continue
       if (aliasPath === '@/lib/utils') {
@@ -141,6 +203,32 @@ for (const item of vueItems) {
         vueViolations.push({ item: item.name, file: file.target, aliasPath, status: 'NO_REGISTRY_ENTRY' })
       } else if (!resolved.providers.some(p => declared.has(p))) {
         vueViolations.push({ item: item.name, file: file.target, aliasPath, status: 'MISSING_DEP', providers: resolved.providers })
+      }
+    }
+
+    // Relative imports
+    if (!file.target) continue
+    const reR = /from\s+['"](\.\.?\/[^'"]+)['"]/g
+    while ((m = reR.exec(content)) !== null) {
+      const relPath = m[1]
+      const candidates = resolveRelativeTargets(file.target, relPath, vueExts)
+      let satisfied = false
+      let providers = []
+      for (const cand of candidates) {
+        if (selfTargets.has(cand)) { satisfied = true; break }
+        if (vueProvider[cand]) {
+          providers = vueProvider[cand]
+          if (providers.some(p => declared.has(p))) { satisfied = true; break }
+        }
+      }
+      if (!satisfied) {
+        vueViolations.push({
+          item: item.name,
+          file: file.target,
+          aliasPath: relPath,
+          status: providers.length ? 'MISSING_DEP' : 'NO_REGISTRY_ENTRY',
+          providers: providers.length ? providers : undefined,
+        })
       }
     }
   }

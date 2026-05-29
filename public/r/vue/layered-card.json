@@ -45,6 +45,12 @@
       "content": "<script setup lang=\"ts\">\nimport { cn } from '@/lib/utils'\n\ndefineProps<{\n  class?: string\n}>()\n</script>\n\n<template>\n  <div\n    :class=\"\n      cn(\n        'flex items-center border-t-3 border-foreground bg-muted p-4',\n        $props.class\n      )\n    \"\n  >\n    <slot />\n  </div>\n</template>\n",
       "type": "registry:ui",
       "target": "components/ui/LayeredCardFooter.vue"
+    },
+    {
+      "path": "registry/default/ui/layered-card-variants.ts",
+      "content": "import { cva } from 'class-variance-authority'\n\nexport const layeredCardVariants = cva('relative', {\n  variants: {\n    layers: {\n      single: '',\n      double: '',\n      triple: '',\n    },\n    offset: {\n      sm: '',\n      default: '',\n      lg: '',\n    },\n    layerColor: {\n      default: '',\n      primary: '',\n      secondary: '',\n      accent: '',\n      muted: '',\n    },\n  },\n  defaultVariants: {\n    layers: 'double',\n    offset: 'default',\n    layerColor: 'default',\n  },\n})\n",
+      "type": "registry:ui",
+      "target": "components/ui/layered-card-variants.ts"
     }
   ]
 }

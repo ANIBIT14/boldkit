@@ -4,13 +4,14 @@
   "description": "Heatmap grid for correlation and intensity data - custom CSS Grid implementation",
   "dependencies": [],
   "registryDependencies": [
-    "@boldkit/utils"
+    "@boldkit/utils",
+    "@boldkit/chart"
   ],
   "files": [
     {
       "path": "registry/default/ui/heatmap-chart.tsx",
       "type": "registry:ui",
-      "target": "components/ui/chart/heatmap-chart.tsx"
+      "target": "components/ui/heatmap-chart.tsx"
     },
     {
       "path": "registry/default/example/heatmap-chart-demo.tsx",

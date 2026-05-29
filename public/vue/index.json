@@ -239,6 +239,16 @@
       "registryUrl": "https://boldkit.dev/r/vue/shapes.json"
     },
     {
+      "name": "error-boundary",
+      "type": "registry:ui",
+      "registryUrl": "https://boldkit.dev/r/vue/error-boundary.json"
+    },
+    {
+      "name": "ascii-shapes",
+      "type": "registry:ui",
+      "registryUrl": "https://boldkit.dev/r/vue/ascii-shapes.json"
+    },
+    {
       "name": "carousel",
       "type": "registry:ui",
       "registryUrl": "https://boldkit.dev/r/vue/carousel.json"

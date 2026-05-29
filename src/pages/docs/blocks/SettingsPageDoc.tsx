@@ -190,6 +190,10 @@ export function SettingsPageDoc() {
       description="Complete settings page components including profile, notifications, security, appearance, and danger zone sections."
       category="application"
       variants={variants}
+      sourcePaths={{
+        react: 'src/components/blocks/application/settings-page.tsx',
+        vue: 'packages/vue/src/components/blocks/application/SettingsPage.vue',
+      }}
     />
   )
 }

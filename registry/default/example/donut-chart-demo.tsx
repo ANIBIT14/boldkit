@@ -1,4 +1,4 @@
-import { DonutChart, DonutChartCenter } from '@/components/ui/chart/donut-chart'
+import { DonutChart, DonutChartCenter } from '@/components/ui/donut-chart'
 
 const data = [
   { name: 'Chrome', value: 275, fill: 'hsl(var(--primary))' },
