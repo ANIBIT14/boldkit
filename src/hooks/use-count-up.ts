@@ -30,15 +30,17 @@ export function useCountUp({ end, duration = 1400, threshold = 0.2 }: UseCountUp
   useEffect(() => {
     if (!triggered) return
     const startTime = performance.now()
+    let frameId = 0
     const tick = (now: number) => {
       const elapsed = now - startTime
       const progress = Math.min(elapsed / duration, 1)
       // easeOutCubic
       const eased = 1 - Math.pow(1 - progress, 3)
       setCount(Math.round(eased * end))
-      if (progress < 1) requestAnimationFrame(tick)
+      if (progress < 1) frameId = requestAnimationFrame(tick)
     }
-    requestAnimationFrame(tick)
+    frameId = requestAnimationFrame(tick)
+    return () => cancelAnimationFrame(frameId)
   }, [triggered, end, duration])
 
   return { ref, count }

@@ -155,6 +155,15 @@ export function SEO({
     if (structuredData) {
       updateJsonLd('custom', structuredData)
     }
+
+    // Remove any JSON-LD this component injected when navigating away or to a
+    // page that doesn't supply that schema — otherwise stale breadcrumb/faq/
+    // custom structured data leaks into the next route for crawlers.
+    return () => {
+      document
+        .querySelectorAll('script[data-schema="breadcrumb"], script[data-schema="faq"], script[data-schema="custom"]')
+        .forEach((el) => el.remove())
+    }
   }, [title, description, keywords, canonical, ogImage, ogType, noIndex, breadcrumbs, faq, structuredData, pathname])
 
   return null

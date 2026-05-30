@@ -75,35 +75,44 @@ const TagInput = React.forwardRef<TagInputHandle, TagInputProps>(
       onChange?.(newTags)
     }
 
-    const addTag = (tagValue: string) => {
-      const trimmedTag = tagValue.trim()
-      if (!trimmedTag) return false
+    // Adds one or more tags atomically. Validation (maxTags, duplicates, custom)
+    // runs against a single working copy so a batched add (e.g. pasting
+    // "a,b,c,") can't bypass limits or collapse to only the last value.
+    const tryAddTags = (tagValues: string[]) => {
+      let working = tags
+      let added = false
+      let nextError: string | null = null
 
-      // Check max tags
-      if (maxTags && tags.length >= maxTags) {
-        setError(`Maximum ${maxTags} tags allowed`)
-        return false
-      }
+      for (const tagValue of tagValues) {
+        const trimmedTag = tagValue.trim()
+        if (!trimmedTag) continue
 
-      // Check duplicates
-      if (!allowDuplicates && tags.includes(trimmedTag)) {
-        setError('Tag already exists')
-        return false
-      }
-
-      // Validate tag
-      if (validateTag) {
-        const validationResult = validateTag(trimmedTag)
-        if (validationResult !== true) {
-          setError(typeof validationResult === 'string' ? validationResult : 'Invalid tag')
-          return false
+        if (maxTags && working.length >= maxTags) {
+          nextError = `Maximum ${maxTags} tags allowed`
+          break
         }
+        if (!allowDuplicates && working.includes(trimmedTag)) {
+          nextError = 'Tag already exists'
+          continue
+        }
+        if (validateTag) {
+          const validationResult = validateTag(trimmedTag)
+          if (validationResult !== true) {
+            nextError = typeof validationResult === 'string' ? validationResult : 'Invalid tag'
+            continue
+          }
+        }
+
+        working = [...working, trimmedTag]
+        added = true
       }
 
-      setError(null)
-      updateTags([...tags, trimmedTag])
-      return true
+      setError(nextError)
+      if (added) updateTags(working)
+      return added
     }
+
+    const addTag = (tagValue: string) => tryAddTags([tagValue])
 
     const removeTag = (index: number) => {
       if (disabled) return
@@ -124,8 +133,7 @@ const TagInput = React.forwardRef<TagInputHandle, TagInputProps>(
         const parts = value.split(delimiter)
 
         if (parts.length > 1) {
-          const newTags = parts.slice(0, -1).filter((part) => part.trim())
-          newTags.forEach((tag) => addTag(tag))
+          tryAddTags(parts.slice(0, -1))
           setInputValue(parts[parts.length - 1])
         }
       }

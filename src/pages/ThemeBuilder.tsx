@@ -1,5 +1,6 @@
 import { useState, useEffect, useCallback } from 'react'
 import { Button } from '@/components/ui/button'
+import { copyToClipboard } from '@/lib/clipboard'
 import { Card, CardContent, CardHeader, CardTitle, CardFooter } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
@@ -225,6 +226,24 @@ export function ThemeBuilder({ embedded = false }: ThemeBuilderProps) {
     document.documentElement.style.setProperty('--border-width', `${colors.borderWidth}px`)
   }, [colors])
 
+  // Remove the live-preview overrides when leaving the builder so the chosen
+  // colors / offsets don't bleed onto every other route for the session.
+  useEffect(() => {
+    return () => {
+      const root = document.documentElement.style
+      ;[
+        '--primary',
+        '--primary-foreground',
+        '--secondary',
+        '--secondary-foreground',
+        '--accent',
+        '--accent-foreground',
+        '--shadow-offset',
+        '--border-width',
+      ].forEach((prop) => root.removeProperty(prop))
+    }
+  }, [])
+
   const applyPreset = (preset: typeof presetThemes[0]) => {
     setColors({
       ...colors,
@@ -441,8 +460,8 @@ export function ThemeBuilder({ embedded = false }: ThemeBuilderProps) {
 }`
   }
 
-  const copyCSS = () => {
-    navigator.clipboard.writeText(generateCSS())
+  const copyCSS = async () => {
+    if (!(await copyToClipboard(generateCSS()))) return
     setCopied(true)
     setTimeout(() => setCopied(false), 2000)
   }

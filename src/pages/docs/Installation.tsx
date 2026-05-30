@@ -1,4 +1,5 @@
 import { Badge } from '@/components/ui/badge'
+import { copyToClipboard } from '@/lib/clipboard'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { useState } from 'react'
 import { Copy, Check, Terminal } from 'lucide-react'
@@ -11,8 +12,8 @@ import { SEO, pageSEO } from '@/components/SEO'
 function CodeBlock({ code, language }: { code: string; language?: string }) {
   const [copied, setCopied] = useState(false)
 
-  const copyCode = () => {
-    navigator.clipboard.writeText(code)
+  const copyCode = async () => {
+    if (!(await copyToClipboard(code))) return
     setCopied(true)
     setTimeout(() => setCopied(false), 2000)
   }
@@ -113,8 +114,8 @@ function ComponentRow({ name, description, framework }: { name: string; descript
   }
   const command = getCommand()
 
-  const copyCommand = () => {
-    navigator.clipboard.writeText(command)
+  const copyCommand = async () => {
+    if (!(await copyToClipboard(command))) return
     setCopied(true)
     toast.success(`Copied ${name} install command!`)
     setTimeout(() => setCopied(false), 2000)

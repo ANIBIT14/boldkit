@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { cn } from '@/lib/utils'
+import { Twitter, Linkedin, Github, Globe } from 'lucide-vue-next'
 import { Card, CardContent } from '@/components/ui'
 import Avatar from '@/components/ui/Avatar.vue'
 import AvatarImage from '@/components/ui/AvatarImage.vue'
@@ -49,6 +50,13 @@ const teamColors = [
   'bg-success text-success-foreground',
   'bg-info text-info-foreground',
 ]
+
+const socialIcons = {
+  twitter: Twitter,
+  linkedin: Linkedin,
+  github: Github,
+  website: Globe,
+} as const
 </script>
 
 <template>
@@ -90,6 +98,18 @@ const teamColors = [
             </div>
             <h3 class="font-black uppercase text-lg">{{ member.name }}</h3>
             <p class="text-sm text-muted-foreground font-medium">{{ member.role }}</p>
+            <div v-if="member.socials?.length" class="flex justify-center gap-2 mt-3">
+              <a
+                v-for="social in member.socials"
+                :key="social.platform"
+                :href="social.url"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="w-8 h-8 flex items-center justify-center border-2 border-foreground bg-muted transition-all hover:translate-x-[-2px] hover:translate-y-[-2px] hover:shadow-[2px_2px_0px_hsl(var(--shadow-color))] hover:bg-primary hover:text-primary-foreground"
+              >
+                <component :is="socialIcons[social.platform]" class="h-4 w-4" />
+              </a>
+            </div>
           </CardContent>
         </Card>
       </div>
@@ -129,6 +149,18 @@ const teamColors = [
                 <h3 class="font-black uppercase">{{ member.name }}</h3>
                 <p class="text-sm text-muted-foreground font-medium">{{ member.role }}</p>
                 <p v-if="member.bio" class="text-sm mt-2">{{ member.bio }}</p>
+                <div v-if="member.socials?.length" class="flex gap-2 mt-3">
+                  <a
+                    v-for="social in member.socials"
+                    :key="social.platform"
+                    :href="social.url"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="w-8 h-8 flex items-center justify-center border-2 border-foreground bg-muted transition-all hover:translate-x-[-2px] hover:translate-y-[-2px] hover:shadow-[2px_2px_0px_hsl(var(--shadow-color))] hover:bg-primary hover:text-primary-foreground"
+                  >
+                    <component :is="socialIcons[social.platform]" class="h-4 w-4" />
+                  </a>
+                </div>
               </div>
             </div>
           </CardContent>
@@ -175,6 +207,18 @@ const teamColors = [
           <h3 class="font-black uppercase text-xl">{{ member.name }}</h3>
           <p class="text-muted-foreground font-medium">{{ member.role }}</p>
           <p v-if="member.bio" class="text-sm mt-2">{{ member.bio }}</p>
+          <div v-if="member.socials?.length" class="flex gap-2 mt-3">
+            <a
+              v-for="social in member.socials"
+              :key="social.platform"
+              :href="social.url"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="w-8 h-8 flex items-center justify-center border-2 border-foreground bg-background transition-all hover:translate-x-[-2px] hover:translate-y-[-2px] hover:shadow-[2px_2px_0px_hsl(var(--shadow-color))] hover:bg-primary hover:text-primary-foreground"
+            >
+              <component :is="socialIcons[social.platform]" class="h-4 w-4" />
+            </a>
+          </div>
         </div>
       </div>
     </div>

@@ -141,9 +141,7 @@ export const COMPONENT_TITLES: Record<string, string> = {
   'dropdown-menu': 'Dropdown Menu',
   dropzone: 'Dropzone',
   'empty-state': 'Empty State',
-  'funnel-chart': 'Funnel Chart',
   'gauge-chart': 'Gauge Chart',
-  'heatmap-chart': 'Heatmap Chart',
   'hover-card': 'Hover Card',
   input: 'Input',
   'input-otp': 'Input OTP',
@@ -161,7 +159,6 @@ export const COMPONENT_TITLES: Record<string, string> = {
   'radial-bar-chart': 'Radial Bar Chart',
   'radio-group': 'Radio Group',
   rating: 'Rating',
-  'sankey-chart': 'Sankey Chart',
   'scroll-area': 'Scroll Area',
   select: 'Select',
   separator: 'Separator',
@@ -187,7 +184,6 @@ export const COMPONENT_TITLES: Record<string, string> = {
   tooltip: 'Tooltip',
   tour: 'Tour',
   'tree-view': 'Tree View',
-  'treemap-chart': 'Treemap Chart',
 }
 
 // Block slug -> display title map

@@ -1,5 +1,6 @@
 import { useState, type ReactNode } from 'react'
 import { Link } from 'react-router-dom'
+import { copyToClipboard } from '@/lib/clipboard'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import {
@@ -19,8 +20,8 @@ import { useFramework, FrameworkToggle, ReactIcon, VueIcon } from '@/hooks/use-f
 export function CodeBlock({ code, language = 'tsx' }: { code: string; language?: string }) {
   const [copied, setCopied] = useState(false)
 
-  const copyCode = () => {
-    navigator.clipboard.writeText(code)
+  const copyCode = async () => {
+    if (!(await copyToClipboard(code))) return
     setCopied(true)
     setTimeout(() => setCopied(false), 2000)
   }

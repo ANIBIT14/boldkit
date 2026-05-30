@@ -199,8 +199,14 @@ const HeatmapChart = React.forwardRef<HTMLDivElement, HeatmapChartProps>(
           <div
             className="fixed z-50 pointer-events-none border-3 border-foreground bg-background px-3 py-2 text-xs font-mono shadow-[4px_4px_0px_hsl(var(--foreground))]"
             style={{
-              left: Math.min(Math.max(tooltip.x, 100), window.innerWidth - 100),
-              top: tooltip.y - 64 < 0 ? tooltip.y + 10 : tooltip.y - 64,
+              left: Math.min(
+                Math.max(tooltip.x, 100),
+                (typeof window !== 'undefined' ? window.innerWidth : 1024) - 100
+              ),
+              top: Math.min(
+                Math.max(tooltip.y - 64 < 0 ? tooltip.y + 10 : tooltip.y - 64, 10),
+                (typeof window !== 'undefined' ? window.innerHeight : 768) - 60
+              ),
               transform: 'translateX(-50%)',
               maxWidth: 200,
             }}

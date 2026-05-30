@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { Button } from '@/components/ui/button'
+import { copyToClipboard } from '@/lib/clipboard'
 import { Layout } from '@/components/layout'
 import { ExternalLink, Copy, Check, ArrowRight } from 'lucide-react'
 import { SEO, pageSEO } from '@/components/SEO'
@@ -20,8 +21,8 @@ const ACCENT_COLORS = [
 
 function CopyButton({ text }: { text: string }) {
   const [copied, setCopied] = useState(false)
-  const copy = () => {
-    navigator.clipboard.writeText(text)
+  const copy = async () => {
+    if (!(await copyToClipboard(text))) return
     setCopied(true)
     setTimeout(() => setCopied(false), 2000)
   }

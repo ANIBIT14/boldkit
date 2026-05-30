@@ -16,7 +16,7 @@ const emit = defineEmits<{
   <RadioGroupRoot
     v-bind="props"
     :class="cn('grid gap-2', props.class)"
-    @update:model-value="emit('update:modelValue', $event)"
+    @update:model-value="(v) => emit('update:modelValue', String(v ?? ''))"
   >
     <slot />
   </RadioGroupRoot>

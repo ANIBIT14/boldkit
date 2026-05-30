@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { Badge } from '@/components/ui/badge'
+import { copyToClipboard } from '@/lib/clipboard'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
@@ -1290,8 +1291,8 @@ function ChartCard({
 
   const currentCode = framework === 'react' ? code : (vueCode || code)
 
-  const copyCode = () => {
-    navigator.clipboard.writeText(currentCode)
+  const copyCode = async () => {
+    if (!(await copyToClipboard(currentCode))) return
     setCopied(true)
     setTimeout(() => setCopied(false), 2000)
   }

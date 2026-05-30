@@ -49,13 +49,6 @@ const DonutChart = React.forwardRef<HTMLDivElement, DonutChartProps>(
 
     const paddingAngle = variant === 'separated' ? 4 : 0
 
-    // Calculate total for center content (available for custom center content)
-    const _total = React.useMemo(
-      () => data.reduce((sum, item) => sum + item.value, 0),
-      [data]
-    )
-    void _total // Used by consumer via centerContent prop
-
     return (
       <ChartContainer
         ref={ref}

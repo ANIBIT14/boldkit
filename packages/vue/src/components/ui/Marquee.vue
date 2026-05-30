@@ -25,9 +25,11 @@ const speedClasses = {
   fast: 'animate-marquee-fast',
 }
 
-const animationClass = computed(() =>
-  props.direction === 'right' ? 'animate-marquee-reverse' : speedClasses[props.speed]
-)
+// Always use the speed-based class so `speed` is honored in both directions;
+// the `right` direction is handled purely by the inline animation-direction
+// below (the old fixed-duration `animate-marquee-reverse` ignored speed and
+// double-reversed against the inline style).
+const animationClass = computed(() => speedClasses[props.speed])
 
 const animationDirection = computed(() =>
   props.direction === 'right' ? 'reverse' : 'normal'

@@ -72,34 +72,46 @@ function updateTags(newTags: string[]) {
   emit('update:modelValue', newTags)
 }
 
-function addTag(tagValue: string): boolean {
-  const trimmedTag = tagValue.trim()
-  if (!trimmedTag) return false
+// Adds one or more tags atomically. Validation (maxTags, duplicates, custom)
+// runs against a single working copy so a batched add (e.g. pasting "a,b,c,")
+// can't bypass limits or collapse to only the last value — which would happen
+// in controlled mode where `tags` doesn't update mid-batch.
+function tryAddTags(tagValues: string[]): boolean {
+  let working = tags.value
+  let added = false
+  let nextError: string | null = null
 
-  // Check max tags
-  if (props.maxTags && tags.value.length >= props.maxTags) {
-    error.value = `Maximum ${props.maxTags} tags allowed`
-    return false
-  }
+  for (const tagValue of tagValues) {
+    const trimmedTag = tagValue.trim()
+    if (!trimmedTag) continue
 
-  // Check duplicates
-  if (!props.allowDuplicates && tags.value.includes(trimmedTag)) {
-    error.value = 'Tag already exists'
-    return false
-  }
-
-  // Validate tag
-  if (props.validateTag) {
-    const validationResult = props.validateTag(trimmedTag)
-    if (validationResult !== true) {
-      error.value = typeof validationResult === 'string' ? validationResult : 'Invalid tag'
-      return false
+    if (props.maxTags && working.length >= props.maxTags) {
+      nextError = `Maximum ${props.maxTags} tags allowed`
+      break
     }
+    if (!props.allowDuplicates && working.includes(trimmedTag)) {
+      nextError = 'Tag already exists'
+      continue
+    }
+    if (props.validateTag) {
+      const validationResult = props.validateTag(trimmedTag)
+      if (validationResult !== true) {
+        nextError = typeof validationResult === 'string' ? validationResult : 'Invalid tag'
+        continue
+      }
+    }
+
+    working = [...working, trimmedTag]
+    added = true
   }
 
-  error.value = null
-  updateTags([...tags.value, trimmedTag])
-  return true
+  error.value = nextError
+  if (added) updateTags(working)
+  return added
+}
+
+function addTag(tagValue: string): boolean {
+  return tryAddTags([tagValue])
 }
 
 function removeTag(index: number) {
@@ -122,8 +134,7 @@ function handleInputChange(e: Event) {
     const parts = value.split(props.delimiter instanceof RegExp ? props.delimiter : new RegExp(props.delimiter))
 
     if (parts.length > 1) {
-      const newTags = parts.slice(0, -1).filter((part) => part.trim())
-      newTags.forEach((tag) => addTag(tag))
+      tryAddTags(parts.slice(0, -1))
       inputValue.value = parts[parts.length - 1]
     }
   }

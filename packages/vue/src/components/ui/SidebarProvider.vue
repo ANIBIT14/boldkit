@@ -90,6 +90,14 @@ const handleKeyDown = (e: KeyboardEvent) => {
 
 onMounted(() => {
   checkMobile()
+  // Restore the persisted open state written by setOpen (uncontrolled only) —
+  // otherwise the cookie was write-only and never affected the next load.
+  if (!isControlled.value && typeof document !== 'undefined') {
+    const match = document.cookie.match(new RegExp(`(?:^|; )${SIDEBAR_COOKIE_NAME}=([^;]*)`))
+    if (match) {
+      uncontrolledOpen.value = match[1] === 'true'
+    }
+  }
   window.addEventListener('resize', checkMobile)
   window.addEventListener('keydown', handleKeyDown)
 })

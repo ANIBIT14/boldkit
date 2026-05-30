@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
+import { copyToClipboard } from '@/lib/clipboard'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { ArrowRight, Copy, Check, LayoutGrid, Settings, Terminal, TrendingUp } from 'lucide-react'
@@ -12,8 +13,8 @@ import { COUNTS } from '@/config/routes-meta'
 function CopyButton({ text }: { text: string }) {
   const [copied, setCopied] = useState(false)
 
-  const copyCommand = () => {
-    navigator.clipboard.writeText(text)
+  const copyCommand = async () => {
+    if (!(await copyToClipboard(text))) return
     setCopied(true)
     setTimeout(() => setCopied(false), 2000)
   }

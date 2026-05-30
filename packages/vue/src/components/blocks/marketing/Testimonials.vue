@@ -5,7 +5,7 @@ import { Card, CardContent } from '@/components/ui'
 import Avatar from '@/components/ui/Avatar.vue'
 import AvatarImage from '@/components/ui/AvatarImage.vue'
 import AvatarFallback from '@/components/ui/AvatarFallback.vue'
-import { Quote } from 'lucide-vue-next'
+import { Quote, Star } from 'lucide-vue-next'
 
 type TestimonialsVariant = 'grid' | 'single' | 'masonry' | 'withAvatars'
 
@@ -66,6 +66,14 @@ const getInitials = (name: string) => {
         >
           <CardContent class="pt-6">
             <Quote class="h-8 w-8 text-primary mb-4" />
+            <div v-if="testimonial.rating" class="flex gap-1 mb-4">
+              <Star
+                v-for="i in 5"
+                :key="i"
+                class="h-4 w-4"
+                :class="i <= testimonial.rating ? 'fill-warning text-warning' : 'text-muted-foreground'"
+              />
+            </div>
             <p class="text-base mb-6 font-medium">{{ testimonial.quote }}</p>
             <div class="flex items-center gap-3">
               <Avatar class="h-10 w-10 border-2 border-foreground">
@@ -136,6 +144,14 @@ const getInitials = (name: string) => {
           class="break-inside-avoid group hover:translate-x-[-4px] hover:translate-y-[-4px] hover:shadow-[8px_8px_0px_hsl(var(--shadow-color))] transition-all"
         >
           <CardContent class="pt-6">
+            <div v-if="testimonial.rating" class="flex gap-1 mb-4">
+              <Star
+                v-for="i in 5"
+                :key="i"
+                class="h-4 w-4"
+                :class="i <= testimonial.rating ? 'fill-warning text-warning' : 'text-muted-foreground'"
+              />
+            </div>
             <p class="text-base mb-6 font-medium">{{ testimonial.quote }}</p>
             <div class="flex items-center gap-3">
               <Avatar class="h-10 w-10 border-2 border-foreground">

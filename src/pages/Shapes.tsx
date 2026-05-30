@@ -1,5 +1,6 @@
 import { useState, useMemo } from 'react'
 import type { CSSProperties } from 'react'
+import { copyToClipboard } from '@/lib/clipboard'
 import { Link } from 'react-router-dom'
 import { Button } from '@/components/ui/button'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
@@ -170,14 +171,14 @@ function ShapeCard({
 
   const currentCode = framework === 'react' ? code : vueCode
 
-  const copyCode = () => {
-    navigator.clipboard.writeText(currentCode)
+  const copyCode = async () => {
+    if (!(await copyToClipboard(currentCode))) return
     setCopiedCode(true)
     toast.success('Code copied!')
     setTimeout(() => setCopiedCode(false), 2000)
   }
-  const copyCli = () => {
-    navigator.clipboard.writeText(cliCommand)
+  const copyCli = async () => {
+    if (!(await copyToClipboard(cliCommand))) return
     setCopiedCli(true)
     toast.success('CLI command copied!')
     setTimeout(() => setCopiedCli(false), 2000)
@@ -262,8 +263,8 @@ export function Shapes() {
 
   const filteredTotal = filteredCategories.reduce((acc, cat) => acc + cat.shapes.length, 0)
 
-  const copyInstall = () => {
-    navigator.clipboard.writeText(cliCommand)
+  const copyInstall = async () => {
+    if (!(await copyToClipboard(cliCommand))) return
     setCopiedInstall(true)
     toast.success('CLI command copied!')
     setTimeout(() => setCopiedInstall(false), 2000)

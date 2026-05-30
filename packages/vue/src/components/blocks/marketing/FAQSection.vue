@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, computed } from 'vue'
+import { ref, computed, watchEffect } from 'vue'
 import { cn, safeHref } from '@/lib/utils'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui'
 import Accordion from '@/components/ui/Accordion.vue'
@@ -35,9 +35,23 @@ const emit = defineEmits<{
   (e: 'contact'): void
 }>()
 
-const categories = [...new Set(props.faqs.map((faq) => faq.category).filter(Boolean))] as string[]
-const activeCategory = ref(categories[0] ?? '')
-const filteredFaqs = computed(() => props.faqs.filter((f) => f.category === activeCategory.value))
+const categories = computed(
+  () => [...new Set(props.faqs.map((faq) => faq.category).filter(Boolean))] as string[]
+)
+const activeCategory = ref('')
+// Keep the active category valid as the data changes; default to the first one.
+watchEffect(() => {
+  if (!categories.value.includes(activeCategory.value)) {
+    activeCategory.value = categories.value[0] ?? ''
+  }
+})
+// Fall back to showing all FAQs when the data has no categories — otherwise the
+// section would render an empty card with no buttons and no content.
+const filteredFaqs = computed(() =>
+  categories.value.length === 0
+    ? props.faqs
+    : props.faqs.filter((f) => f.category === activeCategory.value)
+)
 </script>
 
 <template>
@@ -138,7 +152,7 @@ const filteredFaqs = computed(() => props.faqs.filter((f) => f.category === acti
 
       <Card>
         <CardHeader>
-          <CardTitle class="uppercase">{{ activeCategory }}</CardTitle>
+          <CardTitle class="uppercase">{{ activeCategory || 'All Questions' }}</CardTitle>
         </CardHeader>
         <CardContent class="space-y-6">
           <div

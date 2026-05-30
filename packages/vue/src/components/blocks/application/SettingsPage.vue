@@ -10,7 +10,7 @@ import Avatar from '@/components/ui/Avatar.vue'
 import AvatarImage from '@/components/ui/AvatarImage.vue'
 import AvatarFallback from '@/components/ui/AvatarFallback.vue'
 import Separator from '@/components/ui/Separator.vue'
-import { User, Bell, Shield, Palette, Trash2, Upload, Save, AlertTriangle } from 'lucide-vue-next'
+import { User, Bell, Shield, Palette, Trash2, Upload, Save, AlertTriangle, Check } from 'lucide-vue-next'
 
 type SettingsVariant = 'profile' | 'notifications' | 'security' | 'appearance' | 'dangerZone' | 'fullPage'
 
@@ -43,7 +43,24 @@ const emit = defineEmits<{
   (e: 'save', data: Record<string, unknown>): void
   (e: 'deleteAccount'): void
   (e: 'themeChange', theme: 'light' | 'dark' | 'system'): void
+  (e: 'accentColorChange', color: string): void
 }>()
+
+const accentColors = [
+  { name: 'Blue', value: '#3b82f6' },
+  { name: 'Green', value: '#22c55e' },
+  { name: 'Purple', value: '#a855f7' },
+  { name: 'Orange', value: '#f97316' },
+  { name: 'Pink', value: '#ec4899' },
+  { name: 'Red', value: '#ef4444' },
+]
+const accentColor = ref('#3b82f6')
+const setAccentColor = (value: string) => {
+  // Guard: only accept a value from the known palette.
+  if (!accentColors.some((c) => c.value === value)) return
+  accentColor.value = value
+  emit('accentColorChange', value)
+}
 
 const profileName = ref(props.user?.name || '')
 const profileEmail = ref(props.user?.email || '')
@@ -249,9 +266,31 @@ const getInitials = (name: string) => {
             </button>
           </div>
         </div>
+
+        <Separator />
+
+        <div>
+          <Label class="mb-4 block">Accent Color</Label>
+          <div class="flex flex-wrap gap-3">
+            <button
+              v-for="color in accentColors"
+              :key="color.value"
+              type="button"
+              :title="color.name"
+              :style="{ backgroundColor: color.value }"
+              :class="cn(
+                'w-10 h-10 border-3 border-foreground transition-all flex items-center justify-center',
+                accentColor === color.value && 'ring-2 ring-offset-2 ring-foreground'
+              )"
+              @click="setAccentColor(color.value)"
+            >
+              <Check v-if="accentColor === color.value" class="h-5 w-5 text-white" />
+            </button>
+          </div>
+        </div>
       </CardContent>
       <CardFooter class="justify-end">
-        <Button class="gap-2" @click="emit('save', { theme })">
+        <Button class="gap-2" @click="emit('save', { theme, accentColor })">
           <Save class="h-4 w-4" />
           Save Preferences
         </Button>

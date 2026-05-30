@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useRef, useEffect } from 'react'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
@@ -174,17 +174,24 @@ export function ProductTemplate() {
   const [quantity, setQuantity] = useState(1)
   const { resolvedTheme, setTheme } = useTheme()
   const [isThemeAnimating, setIsThemeAnimating] = useState(false)
+  const isTogglingRef = useRef(false)
+  const themeTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null)
+
+  useEffect(() => () => {
+    if (themeTimerRef.current) clearTimeout(themeTimerRef.current)
+  }, [])
 
   const discount = Math.round(((product.originalPrice - product.price) / product.originalPrice) * 100)
 
   const handleThemeToggle = () => {
+    if (isTogglingRef.current) return
+    isTogglingRef.current = true
     setIsThemeAnimating(true)
-    setTimeout(() => {
-      setTheme(resolvedTheme === 'dark' ? 'light' : 'dark')
-      setTimeout(() => {
-        setIsThemeAnimating(false)
-      }, 200)
-    }, 200)
+    setTheme(resolvedTheme === 'dark' ? 'light' : 'dark')
+    themeTimerRef.current = setTimeout(() => {
+      setIsThemeAnimating(false)
+      isTogglingRef.current = false
+    }, 400)
   }
 
   return (

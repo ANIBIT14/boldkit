@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { Layout } from '@/components/layout'
+import { copyToClipboard } from '@/lib/clipboard'
 import { SEO, pageSEO } from '@/components/SEO'
 import { Copy, Check, Code2, Terminal } from 'lucide-react'
 import { toast } from 'sonner'
@@ -155,15 +156,15 @@ function EffectCard({ effect, featured = false, framework }: {
     ? `npx shadcn@latest add "https://boldkit.dev/r/${effect.id}.json"`
     : `npx shadcn-vue@latest add "https://boldkit.dev/r/vue/${effect.id}.json"`
 
-  const copy = () => {
-    navigator.clipboard.writeText(code)
+  const copy = async () => {
+    if (!(await copyToClipboard(code))) return
     setCopied(true)
     toast.success('Copied to clipboard')
     setTimeout(() => setCopied(false), 2000)
   }
 
-  const copyInstall = () => {
-    navigator.clipboard.writeText(installCmd)
+  const copyInstall = async () => {
+    if (!(await copyToClipboard(installCmd))) return
     setCopiedInstall(true)
     toast.success('Install command copied!')
     setTimeout(() => setCopiedInstall(false), 2000)
@@ -452,8 +453,8 @@ function CopyInstall({ text }: { text: string }) {
     <button
       className="h-8 w-8 p-0 flex items-center justify-center border border-white/25 bg-white/8 text-white/65 hover:bg-white/15 hover:text-white/90 hover:border-white/50 transition-colors shrink-0"
       aria-label="Copy install command"
-      onClick={() => {
-        navigator.clipboard.writeText(text)
+      onClick={async () => {
+        if (!(await copyToClipboard(text))) return
         setCopied(true)
         toast.success('Install command copied!')
         setTimeout(() => setCopied(false), 2000)
@@ -471,8 +472,8 @@ function CopyImport({ text }: { text: string }) {
     <button
       className="h-8 w-8 p-0 flex items-center justify-center border border-white/15 bg-white/5 text-white/45 hover:bg-white/10 hover:text-white/70 hover:border-white/35 transition-colors shrink-0"
       aria-label="Copy import statement"
-      onClick={() => {
-        navigator.clipboard.writeText(text)
+      onClick={async () => {
+        if (!(await copyToClipboard(text))) return
         setCopied(true)
         toast.success('Import copied!')
         setTimeout(() => setCopied(false), 2000)

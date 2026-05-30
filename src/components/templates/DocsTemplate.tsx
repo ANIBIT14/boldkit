@@ -1,5 +1,6 @@
 import * as React from 'react'
 import { Badge } from '@/components/ui/badge'
+import { copyToClipboard } from '@/lib/clipboard'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { SEO } from '@/components/SEO'
@@ -70,8 +71,8 @@ function CopyCodeButton({ code }: { code: string }) {
   const [copied, setCopied] = React.useState(false)
   return (
     <button
-      onClick={() => {
-        navigator.clipboard.writeText(code)
+      onClick={async () => {
+        if (!(await copyToClipboard(code))) return
         setCopied(true)
         setTimeout(() => setCopied(false), 2000)
       }}
@@ -175,6 +176,14 @@ export function DocsTemplate() {
   const [dark, setDark] = React.useState(false)
   const [searchVal, setSearchVal] = React.useState('')
 
+  const query = searchVal.trim().toLowerCase()
+  const filteredSections = query
+    ? NAV_SECTIONS.map(section => ({
+        ...section,
+        items: section.items.filter(item => item.label.toLowerCase().includes(query)),
+      })).filter(section => section.items.length > 0)
+    : NAV_SECTIONS
+
   return (
     <div className={cn('min-h-screen bg-background text-foreground', dark && 'dark')}>
       <SEO
@@ -269,9 +278,18 @@ export function DocsTemplate() {
 
             {/* Nav sections */}
             <div className="space-y-0.5">
-              {NAV_SECTIONS.map((section, i) => (
-                <NavSection key={section.title} section={section} defaultOpen={i < 2} />
+              {filteredSections.map((section, i) => (
+                <NavSection
+                  key={section.title + query}
+                  section={section}
+                  defaultOpen={query ? true : i < 2}
+                />
               ))}
+              {filteredSections.length === 0 && (
+                <p className="px-2 py-3 text-xs font-mono text-muted-foreground">
+                  No results for &ldquo;{searchVal}&rdquo;
+                </p>
+              )}
             </div>
           </div>
         </aside>

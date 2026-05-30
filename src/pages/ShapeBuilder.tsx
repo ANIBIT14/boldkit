@@ -1,5 +1,6 @@
 import { useState, useMemo } from 'react'
 import { Link } from 'react-router-dom'
+import { copyToClipboard } from '@/lib/clipboard'
 import { Button } from '@/components/ui/button'
 import { Slider } from '@/components/ui/slider'
 import { Switch } from '@/components/ui/switch'
@@ -169,8 +170,8 @@ export function ShapeBuilder() {
 
   const code = framework === 'react' ? buildReactCode() : buildVueCode()
 
-  const copyCode = () => {
-    navigator.clipboard.writeText(code)
+  const copyCode = async () => {
+    if (!(await copyToClipboard(code))) return
     setCopied(true)
     toast.success('Code copied!')
     setTimeout(() => setCopied(false), 2000)
@@ -182,7 +183,7 @@ export function ShapeBuilder() {
     <>
       <SEO
         title="Shape Builder — Customize & Export Neubrutalism Shapes"
-        description="Interactive shape builder for BoldKit. Customize size, color, animation, fill, and stroke for all 42 neubrutalism SVG shapes. Export React or Vue code instantly."
+        description="Interactive shape builder for BoldKit. Customize size, color, animation, fill, and stroke for all 64 neubrutalism SVG shapes. Export React or Vue code instantly."
         keywords="shape builder, SVG shape customizer, neubrutalism shapes, animated shapes, React shape component, Vue shape component"
         canonical="https://boldkit.dev/shapes/builder"
         breadcrumbs={[

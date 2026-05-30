@@ -190,7 +190,9 @@ export { CAROUSEL_INJECTION_KEY, type CarouselContext, type CarouselApi, type Ca
 
 // Data Table
 export { default as DataTable } from './DataTable.vue'
-export type { DataTableColumn, DataTableProps } from './DataTable.vue'
+// DataTable.vue is a generic SFC and doesn't export named types; surface the
+// column type consumers actually need from the underlying table library.
+export type { ColumnDef as DataTableColumn } from '@tanstack/vue-table'
 
 // Rating
 export { default as Rating } from './Rating.vue'

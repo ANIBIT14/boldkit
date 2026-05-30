@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react'
+import { useState, useRef, useEffect } from 'react'
 import type { ReactNode } from 'react'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
@@ -143,13 +143,18 @@ export function DashboardTemplate() {
   const { resolvedTheme, setTheme } = useTheme()
   const [isThemeAnimating, setIsThemeAnimating] = useState(false)
   const isTogglingRef = useRef(false)
+  const themeTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null)
+
+  useEffect(() => () => {
+    if (themeTimerRef.current) clearTimeout(themeTimerRef.current)
+  }, [])
 
   const handleThemeToggle = () => {
     if (isTogglingRef.current) return
     isTogglingRef.current = true
     setIsThemeAnimating(true)
     setTheme(resolvedTheme === 'dark' ? 'light' : 'dark')
-    setTimeout(() => {
+    themeTimerRef.current = setTimeout(() => {
       setIsThemeAnimating(false)
       isTogglingRef.current = false
     }, 400)
