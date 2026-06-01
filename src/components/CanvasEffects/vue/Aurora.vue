@@ -45,7 +45,8 @@ let ro: ResizeObserver | null = null
 onMounted(() => {
   const el = canvasRef.value
   if (!el) return
-  const ctx = el.getContext('2d')!
+  const ctx = el.getContext('2d')
+  if (!ctx) return
 
   type Star = { x: number; y: number; r: number; p: number; s: number }
   let stars: Star[] = []
@@ -58,7 +59,7 @@ onMounted(() => {
     }))
   }
 
-  const resize = () => { const dpr = window.devicePixelRatio || 1; el.width = el.offsetWidth * dpr; el.height = el.offsetHeight * dpr; initStars() }
+  const resize = () => { if (!el.offsetWidth || !el.offsetHeight) return; const dpr = window.devicePixelRatio || 1; el.width = el.offsetWidth * dpr; el.height = el.offsetHeight * dpr; initStars() }
   resize()
 
   let t = 0
@@ -75,7 +76,7 @@ onMounted(() => {
     })
 
     BAND_CONFIGS.slice(0, props.colors.length).forEach((b, idx) => {
-      const [r, g, bv] = hexToRgb(props.colors[idx])
+      const [r, g, bv] = hexToRgb(props.colors[idx] ?? props.colors[0])
       const baseY = H * b.y, bh = H * 0.09
       const pts = Array.from({ length: 121 }, (_, i) => {
         const x = (i / 120) * W

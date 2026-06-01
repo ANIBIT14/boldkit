@@ -128,9 +128,10 @@ function createArcPath(startPercent: number, endPercent: number, radius: number)
   }
 
   const spanPercent = endPercent - startPercent
-  const largeArcFlag = isFull.value
-    ? (spanPercent > 50 ? 1 : 0)
-    : (spanPercent > 50 ? 1 : 0)
+  // Pick the major arc by the actual swept angle, not raw percent. On a
+  // semicircle (180° sweep) a zone wider than 50% spans <180°, so the percent
+  // test wrongly drew the major arc. (Matches the React gauge-chart.tsx logic.)
+  const largeArcFlag = (spanPercent / 100) * sweepDeg > 180 ? 1 : 0
 
   return `M ${startX} ${startY} A ${radius} ${radius} 0 ${largeArcFlag} 1 ${endX} ${endY}`
 }

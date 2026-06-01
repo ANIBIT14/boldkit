@@ -23,7 +23,8 @@ let cleanupMouse: (() => void) | null = null
 onMounted(() => {
   const el = canvasRef.value
   if (!el) return
-  const ctx = el.getContext('2d')!
+  const ctx = el.getContext('2d')
+  if (!ctx) return
   const mouse = { x: -999, y: -999 }
 
   const resize = () => {

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, provide, useId, type InjectionKey } from 'vue'
+import { computed, provide, useId, type ComputedRef, type InjectionKey } from 'vue'
 import { use } from 'echarts/core'
 import { CanvasRenderer } from 'echarts/renderers'
 import { BarChart, LineChart, PieChart, ScatterChart } from 'echarts/charts'
@@ -45,15 +45,17 @@ const props = withDefaults(defineProps<Props>(), {
   autoresize: true,
 })
 
-// Provide chart config to child components
+// Provide chart config to child components.
+// config is exposed as a ComputedRef so injected consumers stay reactive to
+// prop changes (a plain snapshot would freeze at first render).
 export interface ChartContext {
-  config: ChartConfig
+  config: ComputedRef<ChartConfig>
 }
 
 export const ChartContextKey: InjectionKey<ChartContext> = Symbol('ChartContext')
 
 provide(ChartContextKey, {
-  config: props.config,
+  config: computed(() => props.config),
 })
 
 const chartId = `chart-${useId().replace(/:/g, '')}`

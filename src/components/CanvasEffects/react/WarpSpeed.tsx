@@ -45,7 +45,8 @@ export function WarpSpeed({
   useEffect(() => {
     const el = ref.current
     if (!el) return
-    const ctx = el.getContext('2d')!
+    const ctx = el.getContext('2d')
+    if (!ctx) return
     let raf = 0
 
     type Star = { x: number; y: number; z: number; pz: number; hue: number }

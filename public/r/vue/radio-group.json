@@ -12,7 +12,7 @@
   "files": [
     {
       "path": "registry/default/ui/RadioGroup.vue",
-      "content": "<script setup lang=\"ts\">\nimport { RadioGroupRoot, type RadioGroupRootProps } from 'reka-ui'\nimport { cn } from '@/lib/utils'\n\ninterface Props extends RadioGroupRootProps {\n  class?: string\n}\n\nconst props = defineProps<Props>()\nconst emit = defineEmits<{\n  'update:modelValue': [value: string]\n}>()\n</script>\n\n<template>\n  <RadioGroupRoot\n    v-bind=\"props\"\n    :class=\"cn('grid gap-2', props.class)\"\n    @update:model-value=\"emit('update:modelValue', $event)\"\n  >\n    <slot />\n  </RadioGroupRoot>\n</template>\n",
+      "content": "<script setup lang=\"ts\">\nimport { RadioGroupRoot, type RadioGroupRootProps } from 'reka-ui'\nimport { cn } from '@/lib/utils'\n\ninterface Props extends RadioGroupRootProps {\n  class?: string\n}\n\nconst props = defineProps<Props>()\nconst emit = defineEmits<{\n  'update:modelValue': [value: string]\n}>()\n</script>\n\n<template>\n  <RadioGroupRoot\n    v-bind=\"props\"\n    :class=\"cn('grid gap-2', props.class)\"\n    @update:model-value=\"(v) => emit('update:modelValue', String(v ?? ''))\"\n  >\n    <slot />\n  </RadioGroupRoot>\n</template>\n",
       "type": "registry:ui",
       "target": "components/ui/RadioGroup.vue"
     },

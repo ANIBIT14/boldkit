@@ -49,16 +49,18 @@ export function MatrixRain({
   useEffect(() => {
     const el = ref.current
     if (!el) return
-    const ctx = el.getContext('2d')!
+    const ctx = el.getContext('2d')
+    if (!ctx) return
     let raf = 0
 
     let cols: number[] = []
     const resize = () => {
+      if (!el.offsetWidth || !el.offsetHeight) return
       const dpr = window.devicePixelRatio || 1
       el.width = el.offsetWidth * dpr
       el.height = el.offsetHeight * dpr
       const TAIL = tailRef.current
-      cols = Array.from({ length: Math.ceil(el.width / gapRef.current) }, () =>
+      cols = Array.from({ length: Math.ceil(el.width / Math.max(1, gapRef.current)) }, () =>
         -Math.floor(Math.random() * (el.height / gapRef.current + TAIL))
       )
     }
@@ -72,7 +74,7 @@ export function MatrixRain({
       const rows = Math.ceil(H / GAP), size = GAP - 3
 
       // Adjust column array width if needed
-      const needed = Math.ceil(W / GAP)
+      const needed = Math.ceil(W / Math.max(1, GAP))
       while (cols.length < needed) cols.push(-Math.floor(Math.random() * 12))
       if (cols.length > needed) cols.length = needed
 

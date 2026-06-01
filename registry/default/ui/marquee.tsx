@@ -22,12 +22,6 @@ const speedClasses = {
   fast: 'animate-marquee-fast',
 }
 
-const reverseSpeedClasses = {
-  slow: 'animate-marquee-slow-reverse',
-  normal: 'animate-marquee-reverse',
-  fast: 'animate-marquee-fast-reverse',
-}
-
 const Marquee = React.forwardRef<HTMLDivElement, MarqueeProps>(
   (
     {
@@ -42,7 +36,11 @@ const Marquee = React.forwardRef<HTMLDivElement, MarqueeProps>(
     },
     ref
   ) => {
-    const animationClass = direction === 'right' ? reverseSpeedClasses[speed] : speedClasses[speed]
+    // Use the speed-based class for both directions so `speed` is always
+    // honored; flip to a right-scroll via animation-direction (the dedicated
+    // *-reverse speed classes were never defined in the CSS).
+    const animationClass = speedClasses[speed]
+    const animationDirection = direction === 'right' ? 'reverse' : undefined
 
     return (
       <div
@@ -60,6 +58,7 @@ const Marquee = React.forwardRef<HTMLDivElement, MarqueeProps>(
             animationClass,
             pauseOnHover && 'hover:[animation-play-state:paused]'
           )}
+          style={{ animationDirection }}
         >
           {Array.from({ length: repeat }).map((_, i) => (
             <React.Fragment key={i}>{children}</React.Fragment>
@@ -71,6 +70,7 @@ const Marquee = React.forwardRef<HTMLDivElement, MarqueeProps>(
             animationClass,
             pauseOnHover && 'hover:[animation-play-state:paused]'
           )}
+          style={{ animationDirection }}
           aria-hidden="true"
         >
           {Array.from({ length: repeat }).map((_, i) => (

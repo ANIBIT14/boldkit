@@ -47,7 +47,9 @@ const props = withDefaults(defineProps<RadialBarChartProps>(), {
 
 const isEmpty = computed(() => !props.data || props.data.length === 0)
 
-const maxVal = computed(() => props.maxValue || (props.data.length > 0 ? Math.max(...props.data.map(d => d.value)) * 1.2 : 1))
+// Nullish coalescing (not ||) so an explicit maxValue of 0 is honored rather than
+// silently replaced by the computed default.
+const maxVal = computed(() => props.maxValue ?? (props.data.length > 0 ? Math.max(...props.data.map(d => d.value)) * 1.2 : 1))
 
 // Create stacked rings for radial bar effect
 const seriesData = computed(() => {

@@ -95,7 +95,7 @@ function computeLayout(
   }
 
   // Warn about nodes dropped due to cycles (nodes not reachable from any source)
-  if (process.env.NODE_ENV === 'development') {
+  if (typeof process !== 'undefined' && process.env?.NODE_ENV === 'development') {
     const droppedNodes = nodes.filter(n => !depth.has(n.id))
     if (droppedNodes.length > 0) {
       console.warn(
@@ -104,7 +104,11 @@ function computeLayout(
     }
   }
 
-  const maxDepth = Math.max(...Array.from(depth.values()))
+  // Guard against an empty depth map (e.g. a fully-cyclic graph with no source
+  // node) — Math.max(...[]) returns -Infinity, which would corrupt colWidth and
+  // produce NaN/Infinity node x positions.
+  const depthValues = Array.from(depth.values())
+  const maxDepth = depthValues.length ? Math.max(...depthValues) : 0
   const colWidth = maxDepth === 0 ? 0 : (width - padding.left - padding.right - nodeWidth) / maxDepth
 
   // Group nodes by column
@@ -165,7 +169,9 @@ function computeLayout(
 
     const srcTotal = (outLinks.get(link.source) || []).reduce((s, l) => s + l.value, 0)
     const tgtTotal = (inLinks.get(link.target) || []).reduce((s, l) => s + l.value, 0)
-    const thickness = Math.max(2, (link.value / Math.max(srcTotal, tgtTotal)) * src.height)
+    // Math.max(..., 1) guards the denominator so all-zero link values can't
+    // produce 0/0 = NaN, which would emit an invalid SVG path.
+    const thickness = Math.max(2, (link.value / Math.max(srcTotal, tgtTotal, 1)) * src.height)
 
     const sY = sourceOffsets.get(link.source) ?? 0
     const tY = targetOffsets.get(link.target) ?? 0

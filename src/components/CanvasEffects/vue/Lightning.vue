@@ -33,7 +33,8 @@ let ro: ResizeObserver | null = null
 onMounted(() => {
   const el = canvasRef.value
   if (!el) return
-  const ctx = el.getContext('2d')!
+  const ctx = el.getContext('2d')
+  if (!ctx) return
 
   const resize = () => {
     const dpr = window.devicePixelRatio || 1

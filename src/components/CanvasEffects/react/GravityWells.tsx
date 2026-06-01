@@ -48,7 +48,8 @@ export function GravityWells({
   useEffect(() => {
     const el = ref.current
     if (!el) return
-    const ctx = el.getContext('2d')!
+    const ctx = el.getContext('2d')
+    if (!ctx) return
     let raf = 0
 
     type Well = { x: number; y: number; vx: number; vy: number; mass: number }
@@ -60,7 +61,8 @@ export function GravityWells({
     let particles: Particle[] = []
 
     const off    = document.createElement('canvas')
-    const offCtx = off.getContext('2d')!
+    const offCtx = off.getContext('2d')
+    if (!offCtx) return
 
     const initWells = () => {
       const W = el.width, H = el.height

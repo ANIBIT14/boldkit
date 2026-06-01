@@ -63,7 +63,8 @@ export function FlowField({
   useEffect(() => {
     const el = ref.current
     if (!el) return
-    const ctx = el.getContext('2d')!
+    const ctx = el.getContext('2d')
+    if (!ctx) return
     let raf = 0
 
     type P = { x: number; y: number; life: number; maxLife: number; hue: number }
@@ -80,7 +81,8 @@ export function FlowField({
     const init = () => { particles = Array.from({ length: countRef.current }, spawn) }
 
     const off    = document.createElement('canvas')
-    const offCtx = off.getContext('2d')!
+    const offCtx = off.getContext('2d')
+    if (!offCtx) return
 
     const resize = () => {
       if (!el.offsetWidth || !el.offsetHeight) return

@@ -21,8 +21,9 @@ let ro: ResizeObserver | null = null
 onMounted(() => {
   const el = canvasRef.value
   if (!el) return
-  const ctx = el.getContext('2d')!
-  const resize = () => { const dpr = window.devicePixelRatio || 1; el.width = el.offsetWidth * dpr; el.height = el.offsetHeight * dpr }
+  const ctx = el.getContext('2d')
+  if (!ctx) return
+  const resize = () => { if (!el.offsetWidth || !el.offsetHeight) return; const dpr = window.devicePixelRatio || 1; el.width = el.offsetWidth * dpr; el.height = el.offsetHeight * dpr }
   resize()
 
   let t = 0

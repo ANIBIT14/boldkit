@@ -49,7 +49,8 @@ export function ParticleWeb({
   useEffect(() => {
     const el = ref.current
     if (!el) return
-    const ctx = el.getContext('2d')!
+    const ctx = el.getContext('2d')
+    if (!ctx) return
     let raf = 0
 
     type P = { x: number; y: number; vx: number; vy: number }

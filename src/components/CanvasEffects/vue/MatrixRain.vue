@@ -23,13 +23,15 @@ let ro: ResizeObserver | null = null
 onMounted(() => {
   const el = canvasRef.value
   if (!el) return
-  const ctx = el.getContext('2d')!
+  const ctx = el.getContext('2d')
+  if (!ctx) return
 
   let cols: number[] = []
   const resize = () => {
+    if (!el.offsetWidth || !el.offsetHeight) return
     const dpr = window.devicePixelRatio || 1
     el.width = el.offsetWidth * dpr; el.height = el.offsetHeight * dpr
-    cols = Array.from({ length: Math.ceil(el.width / props.gap) }, () =>
+    cols = Array.from({ length: Math.ceil(el.width / Math.max(1, props.gap)) }, () =>
       -Math.floor(Math.random() * (el.height / props.gap + props.tailLength))
     )
   }

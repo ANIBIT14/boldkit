@@ -30,7 +30,8 @@ let ro: ResizeObserver | null = null
 onMounted(() => {
   const el = canvasRef.value
   if (!el) return
-  const ctx = el.getContext('2d')!
+  const ctx = el.getContext('2d')
+  if (!ctx) return
   const SCALE = 3
 
   type Ball = { x: number; y: number; vx: number; vy: number; r: number; rgb: [number, number, number] }
@@ -48,7 +49,8 @@ onMounted(() => {
   }
 
   const off = document.createElement('canvas')
-  const offCtx = off.getContext('2d')!
+  const offCtx = off.getContext('2d')
+  if (!offCtx) return
 
   const resize = () => { if (!el.offsetWidth || !el.offsetHeight) return; const dpr = window.devicePixelRatio || 1; el.width = el.offsetWidth * dpr; el.height = el.offsetHeight * dpr; init() }
   resize()

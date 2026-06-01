@@ -48,7 +48,8 @@ export function Plasma({
   useEffect(() => {
     const el = ref.current
     if (!el) return
-    const ctx = el.getContext('2d')!
+    const ctx = el.getContext('2d')
+    if (!ctx) return
     let raf = 0
     const resize = () => {
       const dpr = window.devicePixelRatio || 1
@@ -67,7 +68,8 @@ export function Plasma({
 
     const SCALE  = 3
     const off    = document.createElement('canvas')
-    const offCtx = off.getContext('2d')!
+    const offCtx = off.getContext('2d')
+    if (!offCtx) return
     let t = 0
 
     const draw = () => {
@@ -77,6 +79,7 @@ export function Plasma({
       const pal = paletteRef.current.map(hexToRgb)
 
       const colorAt = (n: number): [number, number, number] => {
+        if (pal.length < 2) return pal[0]
         const s = pal.length - 1
         const i = Math.min(s - 1, Math.floor(n * s))
         const f = n * s - i

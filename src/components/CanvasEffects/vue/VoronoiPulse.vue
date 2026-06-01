@@ -38,14 +38,16 @@ let ro: ResizeObserver | null = null
 onMounted(() => {
   const el = canvasRef.value
   if (!el) return
-  const ctx = el.getContext('2d')!
+  const ctx = el.getContext('2d')
+  if (!ctx) return
 
   type Seed = { x: number; y: number; vx: number; vy: number; rgb: [number, number, number]; phase: number }
   let seeds: Seed[] = []
 
   const SCALE = 3
   const off = document.createElement('canvas')
-  const offCtx = off.getContext('2d')!
+  const offCtx = off.getContext('2d')
+  if (!offCtx) return
 
   const init = () => {
     const cls = props.colors.map(hexToRgb)

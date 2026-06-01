@@ -34,7 +34,8 @@ let ro: ResizeObserver | null = null
 onMounted(() => {
   const el = canvasRef.value
   if (!el) return
-  const ctx = el.getContext('2d')!
+  const ctx = el.getContext('2d')
+  if (!ctx) return
 
   type Well = { x: number; y: number; vx: number; vy: number; mass: number }
   type Particle = {
@@ -45,7 +46,8 @@ onMounted(() => {
   let particles: Particle[] = []
 
   const off = document.createElement('canvas')
-  const offCtx = off.getContext('2d')!
+  const offCtx = off.getContext('2d')
+  if (!offCtx) return
 
   const initWells = () => {
     const W = el.width, H = el.height

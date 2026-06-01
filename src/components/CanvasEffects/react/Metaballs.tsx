@@ -47,7 +47,8 @@ export function Metaballs({
   useEffect(() => {
     const el = ref.current
     if (!el) return
-    const ctx = el.getContext('2d')!
+    const ctx = el.getContext('2d')
+    if (!ctx) return
     let raf = 0
 
     const SCALE = 3
@@ -76,7 +77,8 @@ export function Metaballs({
     resize()
 
     const off    = document.createElement('canvas')
-    const offCtx = off.getContext('2d')!
+    const offCtx = off.getContext('2d')
+    if (!offCtx) return
 
     const draw = () => {
       const W = el.width, H = el.height

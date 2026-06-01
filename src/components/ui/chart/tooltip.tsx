@@ -143,7 +143,7 @@ export function ChartTooltipContent({
                     </div>
                     {item.value !== undefined && Number.isFinite(Number(item.value)) && (
                       <span className="font-mono font-bold tabular-nums text-foreground">
-                        {item.value.toLocaleString()}
+                        {Number(item.value).toLocaleString()}
                       </span>
                     )}
                   </div>

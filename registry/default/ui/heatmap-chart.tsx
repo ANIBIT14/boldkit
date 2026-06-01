@@ -82,8 +82,15 @@ const HeatmapChart = React.forwardRef<HTMLDivElement, HeatmapChartProps>(
 
     const { min, max } = React.useMemo(() => {
       if (data.length === 0) return { min: 0, max: 1 }
-      const vals = data.map(d => d.value)
-      return { min: Math.min(...vals), max: Math.max(...vals) }
+      // Reduce instead of Math.min(...vals) spread: the spread passes every
+      // value as a function argument and throws RangeError on very large datasets.
+      let min = data[0].value
+      let max = data[0].value
+      for (const d of data) {
+        if (d.value < min) min = d.value
+        if (d.value > max) max = d.value
+      }
+      return { min, max }
     }, [data])
 
     const labelWidth = showLabels ? 72 : 8
@@ -199,8 +206,14 @@ const HeatmapChart = React.forwardRef<HTMLDivElement, HeatmapChartProps>(
           <div
             className="fixed z-50 pointer-events-none border-3 border-foreground bg-background px-3 py-2 text-xs font-mono shadow-[4px_4px_0px_hsl(var(--foreground))]"
             style={{
-              left: Math.min(Math.max(tooltip.x, 100), window.innerWidth - 100),
-              top: tooltip.y - 64 < 0 ? tooltip.y + 10 : tooltip.y - 64,
+              left: Math.min(
+                Math.max(tooltip.x, 100),
+                (typeof window !== 'undefined' ? window.innerWidth : 1024) - 100
+              ),
+              top: Math.min(
+                Math.max(tooltip.y - 64 < 0 ? tooltip.y + 10 : tooltip.y - 64, 10),
+                (typeof window !== 'undefined' ? window.innerHeight : 768) - 60
+              ),
               transform: 'translateX(-50%)',
               maxWidth: 200,
             }}

@@ -319,9 +319,9 @@ function ChartTooltipContent({
                         {itemConfig?.label || item.name}
                       </span>
                     </div>
-                    {item.value !== undefined && (
+                    {item.value !== undefined && Number.isFinite(Number(item.value)) && (
                       <span className="font-mono font-bold tabular-nums text-foreground">
-                        {item.value.toLocaleString()}
+                        {Number(item.value).toLocaleString()}
                       </span>
                     )}
                   </div>

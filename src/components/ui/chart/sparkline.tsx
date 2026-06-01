@@ -42,6 +42,17 @@ const Sparkline = React.forwardRef<HTMLDivElement, SparklineProps>(
     // Unique ID per instance prevents gradient collision when multiple sparklines render on the same page
     const uid = React.useId().replace(/:/g, '')
 
+    // Determine color based on trend or explicit color.
+    // Must run before the empty-data early return — hooks cannot be called
+    // conditionally, otherwise an empty→populated data transition crashes with
+    // "Rendered more hooks than during the previous render".
+    const resolvedColor = React.useMemo(() => {
+      if (color) return color
+      if (trend === 'up') return 'hsl(var(--success))'
+      if (trend === 'down') return 'hsl(var(--destructive))'
+      return 'hsl(var(--primary))'
+    }, [color, trend])
+
     if (!data || data.length === 0) {
       return (
         <div
@@ -56,14 +67,6 @@ const Sparkline = React.forwardRef<HTMLDivElement, SparklineProps>(
 
     // Convert data array to format recharts expects
     const chartData = data.map((value, index) => ({ value, index }))
-
-    // Determine color based on trend or explicit color
-    const resolvedColor = React.useMemo(() => {
-      if (color) return color
-      if (trend === 'up') return 'hsl(var(--success))'
-      if (trend === 'down') return 'hsl(var(--destructive))'
-      return 'hsl(var(--primary))'
-    }, [color, trend])
 
     const strokeColor = 'hsl(var(--foreground))'
     const lastIndex = data.length - 1

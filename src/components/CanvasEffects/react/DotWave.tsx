@@ -39,9 +39,11 @@ export function DotWave({
   useEffect(() => {
     const el = ref.current
     if (!el) return
-    const ctx = el.getContext('2d')!
+    const ctx = el.getContext('2d')
+    if (!ctx) return
     let raf = 0
     const resize = () => {
+      if (!el.offsetWidth || !el.offsetHeight) return
       const dpr = window.devicePixelRatio || 1
       el.width = el.offsetWidth * dpr
       el.height = el.offsetHeight * dpr
