@@ -37,6 +37,7 @@
     "typecheck": "tsc --noEmit",
     "registry:sync": "node scripts/sync-registry-from-src.js",
     "registry:audit": "node scripts/audit-registry-imports.mjs",
+    "registry:validate": "npx --yes shadcn@latest registry validate ./registry.json",
     "registry:build": "npm run registry:sync && shadcn build && npm run registry:build:vue && node scripts/build-canvas-effects-registry.js && node scripts/build-registry.js",
     "registry:build:vue": "cd packages/vue && node scripts/build-registry.js",
     "test": "vitest",
