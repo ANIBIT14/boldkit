@@ -16,6 +16,17 @@ const ShapeBuilder = lazy(() => import('@/pages/ShapeBuilder').then(m => ({ defa
 const AsciiShapes = lazy(() => import('@/pages/AsciiShapes').then(m => ({ default: m.AsciiShapes })))
 const DotMatrixStudio = lazy(() => import('@/pages/DotMatrixStudio').then(m => ({ default: m.DotMatrixStudio })))
 const CanvasEffects = lazy(() => import('@/pages/CanvasEffects').then(m => ({ default: m.CanvasEffects })))
+// SEO / landing pages (neubrutalism topic cluster + tools/FavGrab funnel)
+const Neubrutalism = lazy(() => import('@/pages/seo/Neubrutalism').then(m => ({ default: m.Neubrutalism })))
+const NeubrutalismColors = lazy(() => import('@/pages/seo/NeubrutalismColors').then(m => ({ default: m.NeubrutalismColors })))
+const NeubrutalismFonts = lazy(() => import('@/pages/seo/NeubrutalismFonts').then(m => ({ default: m.NeubrutalismFonts })))
+const NeubrutalismExamples = lazy(() => import('@/pages/seo/NeubrutalismExamples').then(m => ({ default: m.NeubrutalismExamples })))
+const NeubrutalismVsBrutalism = lazy(() => import('@/pages/seo/NeubrutalismVsBrutalism').then(m => ({ default: m.NeubrutalismVsBrutalism })))
+const ToolsHub = lazy(() => import('@/pages/seo/ToolsHub').then(m => ({ default: m.ToolsHub })))
+const FaviconGenerator = lazy(() => import('@/pages/seo/FaviconGenerator').then(m => ({ default: m.FaviconGenerator })))
+const PngToIco = lazy(() => import('@/pages/seo/PngToIco').then(m => ({ default: m.PngToIco })))
+const FaviconSizes = lazy(() => import('@/pages/seo/FaviconSizes').then(m => ({ default: m.FaviconSizes })))
+const ExtractFavicon = lazy(() => import('@/pages/seo/ExtractFavicon').then(m => ({ default: m.ExtractFavicon })))
 const LandingPageTemplate = lazy(() => import('@/components/templates/LandingPageTemplate').then(m => ({ default: m.LandingPageTemplate })))
 const PortfolioTemplate = lazy(() => import('@/components/templates/PortfolioTemplate').then(m => ({ default: m.PortfolioTemplate })))
 const DashboardTemplate = lazy(() => import('@/components/templates/DashboardTemplate').then(m => ({ default: m.DashboardTemplate })))
@@ -179,6 +190,20 @@ function App() {
             <Route path="/ascii-shapes" element={<Suspense fallback={<PageLoader />}><AsciiShapes /></Suspense>} />
             <Route path="/studio" element={<Suspense fallback={<PageLoader />}><DotMatrixStudio /></Suspense>} />
             <Route path="/canvas-effects" element={<Suspense fallback={<PageLoader />}><CanvasEffects /></Suspense>} />
+
+            {/* SEO / landing pages — neubrutalism topic cluster */}
+            <Route path="/neubrutalism" element={<Suspense fallback={<PageLoader />}><Neubrutalism /></Suspense>} />
+            <Route path="/neubrutalism/colors" element={<Suspense fallback={<PageLoader />}><NeubrutalismColors /></Suspense>} />
+            <Route path="/neubrutalism/fonts" element={<Suspense fallback={<PageLoader />}><NeubrutalismFonts /></Suspense>} />
+            <Route path="/neubrutalism/examples" element={<Suspense fallback={<PageLoader />}><NeubrutalismExamples /></Suspense>} />
+            <Route path="/neubrutalism/vs-brutalism" element={<Suspense fallback={<PageLoader />}><NeubrutalismVsBrutalism /></Suspense>} />
+
+            {/* SEO / landing pages — tools + FavGrab funnel */}
+            <Route path="/tools" element={<Suspense fallback={<PageLoader />}><ToolsHub /></Suspense>} />
+            <Route path="/tools/favicon-generator" element={<Suspense fallback={<PageLoader />}><FaviconGenerator /></Suspense>} />
+            <Route path="/tools/png-to-ico" element={<Suspense fallback={<PageLoader />}><PngToIco /></Suspense>} />
+            <Route path="/tools/favicon-sizes" element={<Suspense fallback={<PageLoader />}><FaviconSizes /></Suspense>} />
+            <Route path="/tools/extract-favicon" element={<Suspense fallback={<PageLoader />}><ExtractFavicon /></Suspense>} />
             <Route path="/templates" element={<Suspense fallback={<PageLoader />}><Templates /></Suspense>} />
             <Route path="/templates/landing-page" element={<Suspense fallback={<PageLoader />}><LandingPageTemplate /></Suspense>} />
             <Route path="/templates/portfolio" element={<Suspense fallback={<PageLoader />}><PortfolioTemplate /></Suspense>} />

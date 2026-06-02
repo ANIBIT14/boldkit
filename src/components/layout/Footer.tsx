@@ -17,6 +17,8 @@ const exploreLinks = [
   { label: 'Templates', href: '/templates' },
   { label: 'Blocks', href: '/blocks' },
   { label: 'Dot Matrix Studio', href: '/studio' },
+  { label: 'What is Neubrutalism?', href: '/neubrutalism' },
+  { label: 'Free Tools', href: '/tools' },
   { label: 'FavGrab', href: 'https://favgrab.boldkit.dev', external: true },
 ]
 

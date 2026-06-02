@@ -4,15 +4,16 @@
 
 ## Quick Facts
 
-- **Version:** 3.2.0
+- **Version:** 3.3.9
 - **Components:** 55+ UI components
 - **Charts:** 14 chart types
 - **Shapes:** 64 SVG decorative shapes
 - **Blocks:** 15 section blocks (10 marketing + 5 application)
 - **Templates:** 7 full-page templates
 - **Frameworks:** React 19, Vue 3, Nuxt
-- **Canvas Effects:** 10 zero-dependency animated canvas components
-- **Tools:** Dot Matrix Studio (pixel art & animation editor), Shape Builder, Theme Builder
+- **Canvas Effects:** 19 zero-dependency animated canvas components
+- **Tools:** FavGrab (favicon extractor & image converter), Dot Matrix Studio (pixel art & animation editor), Shape Builder, Theme Builder
+- **Guides:** Neubrutalism guide cluster (what it is, colors, fonts, examples, vs brutalism) + favicon/image tool guides
 - **Styling:** Tailwind CSS v4 with CSS variables
 - **TypeScript:** Full type support
 - **Accessibility:** WCAG 2.1 AA — built on Radix UI (React) & Reka UI (Vue) primitives
@@ -48,8 +49,20 @@ Components are installed via the **shadcn CLI** (code is copied directly into yo
 - **Theme Builder:** https://boldkit.dev/themes
 - **Dot Matrix Studio:** https://boldkit.dev/studio
 - **Canvas Effects:** https://boldkit.dev/canvas-effects
+- **Neubrutalism guide:** https://boldkit.dev/neubrutalism
+- **Neubrutalism colors:** https://boldkit.dev/neubrutalism/colors
+- **Neubrutalism fonts:** https://boldkit.dev/neubrutalism/fonts
+- **Neubrutalism examples:** https://boldkit.dev/neubrutalism/examples
+- **Neubrutalism vs Brutalism:** https://boldkit.dev/neubrutalism/vs-brutalism
+- **Tools hub:** https://boldkit.dev/tools
+- **Favicon generator:** https://boldkit.dev/tools/favicon-generator
+- **PNG to ICO:** https://boldkit.dev/tools/png-to-ico
+- **Favicon sizes cheat sheet:** https://boldkit.dev/tools/favicon-sizes
+- **Extract a favicon:** https://boldkit.dev/tools/extract-favicon
+- **FavGrab (favicon extractor & image converter):** https://favgrab.boldkit.dev
 - **GitHub:** https://github.com/ANIBIT14/boldkit
 - **Registry index:** https://boldkit.dev/registry.json
+- **llms-full.txt:** https://boldkit.dev/llms-full.txt
 - **Sitemap:** https://boldkit.dev/sitemap.xml
 
 ---
@@ -78,19 +91,28 @@ BoldKit includes a free in-browser **Dot Matrix Studio** at https://boldkit.dev/
 
 ## Canvas Effects
 
-BoldKit includes 10 animated canvas components at https://boldkit.dev/canvas-effects — zero external dependencies, fully typed, compatible with React, Vue 3, and Nuxt 3.
+BoldKit includes 19 animated canvas components at https://boldkit.dev/canvas-effects — zero external dependencies, fully typed, compatible with React, Vue 3, and Nuxt 3. Install any effect via `npx shadcn@latest add "https://boldkit.dev/r/<id>.json"` (Vue: `/r/vue/<id>.json`).
 
-**All 10 effects:**
-- **Dot Blob** — Gaussian envelope × crossing waves drive halftone pixel sizes
-- **Aurora** — Curtains of light ripple across a star-filled sky (with configurable colors + star count)
-- **Dot Wave** — Dual crossing sine waves modulate dot size and opacity
-- **Matrix Rain** — Columns of glowing heads and fading square trails
-- **Particle Web** — Particles connected by proximity-faded lines
-- **Mouse Ripple** — Cursor interaction sends sine ripples through a dot grid
-- **Flow Field** — Particles follow a smooth value-noise angle field
-- **Metaballs** — Colored blobs merge via r²/d² scalar field threshold
-- **Lissajous Grid** — Parametric curve table with phase drift
-- **Plasma Waves** — Shifting color interference from 4 drifting wave sources
+**All 19 effects:**
+- **Dither** (`dither`) — a drifting plasma field quantised to two colors via a 4×4 Bayer matrix; the classic 1-bit / Game Boy look
+- **Halftone** (`halftone`) — print-style dot grid sized by a drifting brightness field; the cursor brightens nearby dots
+- **CRT** (`crt`) — retro cathode-ray screen with phosphor scanlines, a rolling brightness band, vignette and flicker
+- **Truchet** (`truchet`) — arc tiles join into an endless maze; a travelling dash makes the paths flow
+- **Dot Blob** (`dot-blob`) — Gaussian envelope × crossing waves drive halftone pixel sizes
+- **Aurora** (`aurora`) — Curtains of light ripple across a star-filled sky (configurable colors + star count)
+- **Dot Wave** (`dot-wave`) — Dual crossing sine waves modulate dot size and opacity
+- **Matrix Rain** (`matrix-rain`) — Columns of glowing heads and fading square trails
+- **Particle Web** (`particle-web`) — Particles connected by proximity-faded lines
+- **Mouse Ripple** (`mouse-ripple`) — Cursor interaction sends sine ripples through a dot grid
+- **Flow Field** (`flow-field`) — Particles follow a smooth value-noise angle field
+- **Metaballs** (`metaballs`) — Colored blobs merge via r²/d² scalar field threshold
+- **Lissajous Grid** (`lissajous-grid`) — Parametric curve table with phase drift
+- **Plasma Waves** (`plasma`) — Shifting color interference from 4 drifting wave sources
+- **Warp Speed** (`warp-speed`) — Stars streak outward through a hyperspace tunnel with motion-blur trails
+- **Gravity Wells** (`gravity-wells`) — Particles orbit gravitational attractors forming accretion spirals
+- **Topography** (`topography`) — Animated contour map with noise-driven elevation and marching squares
+- **Lightning** (`lightning`) — Fractal branching electric arcs with glow bloom and fade
+- **Voronoi Pulse** (`voronoi-pulse`) — Drifting Voronoi cells with pulsing color fills and bright edges
 
 **Technical details:**
 - Each effect is one self-contained file — no npm package, copied into your project

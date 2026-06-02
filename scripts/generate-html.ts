@@ -9,6 +9,7 @@ import {
   getAllRoutes,
   DEFAULT_OG_IMAGE,
   type RouteMeta,
+  type Breadcrumb,
 } from '../src/config/routes-meta.js'
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
@@ -22,7 +23,27 @@ function escapeHtml(str: string): string {
     .replace(/>/g, '&gt;')
 }
 
-function injectMeta(html: string, meta: RouteMeta): string {
+// Build a BreadcrumbList JSON-LD <script> for crawlers. The `data-schema="breadcrumb"`
+// attribute matches what src/components/SEO.tsx looks for, so the client removes this
+// static block on hydration and re-injects its own — no duplicate structured data.
+function breadcrumbScript(breadcrumbs: Breadcrumb[]): string {
+  if (!breadcrumbs || breadcrumbs.length < 2) return ''
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: breadcrumbs.map((b, i) => ({
+      '@type': 'ListItem',
+      position: i + 1,
+      name: b.name,
+      ...(b.url && { item: b.url }),
+    })),
+  }
+  // Guard against </script> breaking out of the inline JSON.
+  const safe = JSON.stringify(jsonLd).replace(/<\/script/gi, '<\\/script')
+  return `<script type="application/ld+json" data-schema="breadcrumb">${safe}</script>`
+}
+
+function injectMeta(html: string, meta: RouteMeta, breadcrumbs: Breadcrumb[]): string {
   let result = html
 
   // Title
@@ -100,6 +121,12 @@ function injectMeta(html: string, meta: RouteMeta): string {
     `$1${escapeHtml(meta.h1)}$2`,
   )
 
+  // Inject per-page BreadcrumbList JSON-LD before </head> (skipped for single-crumb pages).
+  const crumbs = breadcrumbScript(breadcrumbs)
+  if (crumbs) {
+    result = result.replace(/<\/head>/, `  ${crumbs}\n  </head>`)
+  }
+
   return result
 }
 
@@ -120,7 +147,7 @@ async function main(): Promise<void> {
   console.log(`Generating HTML for ${routes.length} routes...`)
 
   for (const route of routes) {
-    const html = injectMeta(template, route.meta)
+    const html = injectMeta(template, route.meta, route.breadcrumbs)
     writeRouteHtml(route.path, html)
   }
 

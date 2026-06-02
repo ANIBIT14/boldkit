@@ -1086,7 +1086,7 @@ export function Home() {
               <div className="mb-4 flex items-center justify-between">
                 <div>
                   <h3 className="text-white font-black text-lg uppercase" style={MONO}>Canvas FX</h3>
-                  <p className="text-white/40 text-[11px] mt-0.5" style={MONO}>10 zero-dep components</p>
+                  <p className="text-white/40 text-[11px] mt-0.5" style={MONO}>19 zero-dep components</p>
                 </div>
                 <Link to="/canvas-effects">
                   <Button variant="ghost" size="sm" className="text-accent border-accent/30 gap-1 text-xs">

@@ -9,6 +9,7 @@ import {
   DotBlob, Aurora, DotWave, MatrixRain, ParticleWeb,
   MouseRipple, FlowField, Metaballs, LissajousGrid, Plasma,
   WarpSpeed, GravityWells, Topography, Lightning, VoronoiPulse,
+  Dither, Halftone, CRT, Truchet,
 } from '@/components/CanvasEffects/react'
 
 const DISPLAY: React.CSSProperties = { fontFamily: "'Bebas Neue', sans-serif" }
@@ -136,6 +137,36 @@ const EFFECTS: EffectDef[] = [
     reactCode: `<VoronoiPulse cellCount={24} colors={['#ff6b6b','#4ecdc4','#45b7d1','#f7dc6f','#bb8fce']} speed={1} />`,
     vueCode:   `<VoronoiPulse :cell-count="24" :colors="['#ff6b6b','#4ecdc4','#45b7d1','#f7dc6f','#bb8fce']" :speed="1" />`,
     node: <VoronoiPulse cellCount={24} colors={['#ff6b6b', '#4ecdc4', '#45b7d1', '#f7dc6f', '#bb8fce']} speed={1} />,
+  },
+  {
+    id: 'dither', name: 'Dither', category: '1-bit', accent: '#84ff3c',
+    desc: 'A drifting plasma field quantised to two colors via a 4×4 Bayer matrix',
+    reactCode: `<Dither bgColor="#0a0a0a" color="#84ff3c" pixelSize={4} scale={1} speed={1} />`,
+    vueCode:   `<Dither bg-color="#0a0a0a" color="#84ff3c" :pixel-size="4" :scale="1" :speed="1" />`,
+    node: <Dither bgColor="#0a0a0a" color="#84ff3c" pixelSize={4} scale={1} speed={1} />,
+    featured: true,
+  },
+  {
+    id: 'halftone', name: 'Halftone', category: 'Print', accent: '#facc15',
+    desc: 'Print-style dot grid sized by a drifting field - cursor brightens nearby dots',
+    reactCode: `<Halftone color="#111111" bgColor="#facc15" gap={18} maxScale={0.75} speed={1} />`,
+    vueCode:   `<Halftone color="#111111" bg-color="#facc15" :gap="18" :max-scale="0.75" :speed="1" />`,
+    node: <Halftone color="#111111" bgColor="#facc15" gap={18} maxScale={0.75} speed={1} />,
+  },
+  {
+    id: 'crt', name: 'CRT', category: 'Retro', accent: '#43ff7a',
+    desc: 'Phosphor scanlines, a rolling brightness band, vignette and flicker',
+    reactCode: `<CRT color="#43ff7a" bgColor="#04140a" scanGap={3} flicker={0.6} speed={1} />`,
+    vueCode:   `<CRT color="#43ff7a" bg-color="#04140a" :scan-gap="3" :flicker="0.6" :speed="1" />`,
+    node: <CRT color="#43ff7a" bgColor="#04140a" scanGap={3} flicker={0.6} speed={1} />,
+  },
+  {
+    id: 'truchet', name: 'Truchet', category: 'Tiling', accent: '#111111',
+    desc: 'Arc tiles join into an endless maze; a travelling dash makes paths flow',
+    reactCode: `<Truchet color="#111111" bgColor="#f5f5f5" tileSize={48} lineWidth={6} speed={1} />`,
+    vueCode:   `<Truchet color="#111111" bg-color="#f5f5f5" :tile-size="48" :line-width="6" :speed="1" />`,
+    node: <Truchet color="#111111" bgColor="#f5f5f5" tileSize={48} lineWidth={6} speed={1} />,
+    featured: true,
   },
 ]
 
@@ -320,13 +351,13 @@ export function CanvasEffects() {
             </h1>
 
             <p className="text-sm text-white/70 mb-7 max-w-xs mx-auto leading-relaxed" style={MONO}>
-              15 animated canvas components.
+              19 animated canvas components.
               <br />Zero dependencies · React · Vue 3 · Nuxt 3
             </p>
 
             {/* Tag pills */}
             <div className="flex items-center justify-center gap-1.5 sm:gap-2 mb-6 flex-wrap">
-              {['15 Effects', 'React', 'Vue 3', 'Nuxt 3', 'TypeScript', 'Zero Deps'].map(tag => (
+              {['19 Effects', 'React', 'Vue 3', 'Nuxt 3', 'TypeScript', 'Zero Deps'].map(tag => (
                 <span
                   key={tag}
                   className="text-[9px] font-black uppercase tracking-[0.18em] px-2 py-1 border border-white/25 text-white/65"

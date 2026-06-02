@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "truchet",
+  "description": "Flowing Truchet arc-tile maze — square tiles of quarter-arcs join into endless looping curves with a travelling dash",
+  "dependencies": [],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "registry/default/ui/canvas-effects/Truchet.vue",
+      "content": "<script setup lang=\"ts\">\n/**\n * Truchet — flowing arc-tile maze\n * Compatible with Vue 3 and Nuxt 3.\n *\n * @example\n * <Truchet color=\"#111111\" bg-color=\"#f5f5f5\" :tile-size=\"48\" :line-width=\"6\" :speed=\"1\" />\n */\nimport { ref, onMounted, onUnmounted } from 'vue'\n\nconst props = withDefaults(defineProps<{\n  color?: string\n  bgColor?: string\n  tileSize?: number\n  lineWidth?: number\n  speed?: number\n}>(), { color: '#111111', bgColor: '#f5f5f5', tileSize: 48, lineWidth: 6, speed: 1 })\n\nconst canvasRef = ref<HTMLCanvasElement | null>(null)\nlet raf = 0\nlet ro: ResizeObserver | null = null\n\nonMounted(() => {\n  const el = canvasRef.value\n  if (!el) return\n  const ctx = el.getContext('2d')\n  if (!ctx) return\n  let dpr = 1\n  let grid = new Uint8Array(0)\n  let cols = 0, rows = 0\n\n  const build = () => {\n    const TS = Math.max(16, props.tileSize * dpr)\n    cols = Math.ceil(el.width / TS) + 1\n    rows = Math.ceil(el.height / TS) + 1\n    grid = new Uint8Array(cols * rows)\n    for (let i = 0; i < grid.length; i++) grid[i] = Math.random() < 0.5 ? 1 : 0\n  }\n\n  const resize = () => { if (!el.offsetWidth || !el.offsetHeight) return; dpr = window.devicePixelRatio || 1; el.width = el.offsetWidth * dpr; el.height = el.offsetHeight * dpr; build() }\n  resize()\n\n  let t = 0\n  let flipAcc = 0\n  const draw = () => {\n    const W = el.width, H = el.height\n    const TS = Math.max(16, props.tileSize * dpr)\n    const R = TS / 2\n\n    ctx.fillStyle = props.bgColor\n    ctx.fillRect(0, 0, W, H)\n    ctx.strokeStyle = props.color\n    ctx.lineWidth = Math.max(1, props.lineWidth * dpr)\n    ctx.lineCap = 'round'\n    ctx.setLineDash([TS * 0.5, TS * 0.32])\n    ctx.lineDashOffset = -t * 80 * props.speed\n\n    for (let c = 0; c < cols; c++) {\n      const x = c * TS\n      for (let r = 0; r < rows; r++) {\n        const y = r * TS\n        if (grid[c * rows + r]) {\n          ctx.beginPath(); ctx.arc(x, y, R, 0, Math.PI / 2); ctx.stroke()\n          ctx.beginPath(); ctx.arc(x + TS, y + TS, R, Math.PI, Math.PI * 1.5); ctx.stroke()\n        } else {\n          ctx.beginPath(); ctx.arc(x + TS, y, R, Math.PI / 2, Math.PI); ctx.stroke()\n          ctx.beginPath(); ctx.arc(x, y + TS, R, Math.PI * 1.5, Math.PI * 2); ctx.stroke()\n        }\n      }\n    }\n    ctx.setLineDash([])\n\n    flipAcc += props.speed\n    if (flipAcc >= 6 && grid.length) {\n      flipAcc = 0\n      for (let n = 0; n < 3; n++) { const i = (Math.random() * grid.length) | 0; grid[i] ^= 1 }\n    }\n\n    t += 0.016\n    raf = requestAnimationFrame(draw)\n  }\n\n  draw()\n  ro = new ResizeObserver(resize)\n  ro.observe(el)\n})\n\nonUnmounted(() => { cancelAnimationFrame(raf); ro?.disconnect() })\n</script>\n\n<template>\n  <canvas ref=\"canvasRef\" style=\"display:block;width:100%;height:100%\" />\n</template>\n",
+      "type": "registry:ui",
+      "target": "components/ui/canvas-effects/Truchet.vue"
+    }
+  ],
+  "type": "registry:ui"
+}

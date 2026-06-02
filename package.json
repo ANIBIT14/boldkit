@@ -26,9 +26,10 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "npm run sitemap && tsc -b && vite build && npm run registry:build && npm run ssg",
+    "build": "npm run sitemap && npm run llms && tsc -b && vite build && npm run registry:build && npm run ssg",
     "ssg": "tsx scripts/generate-html.ts",
     "sitemap": "tsx scripts/generate-sitemap.ts",
+    "llms": "tsx scripts/generate-llms-full.ts",
     "preview": "vite preview",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",

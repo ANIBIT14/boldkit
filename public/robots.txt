@@ -25,6 +25,7 @@ Allow: /themes
 
 # AI-specific files
 Allow: /llms.txt
+Allow: /llms-full.txt
 Allow: /.well-known/
 
 # Disallow build/internal files

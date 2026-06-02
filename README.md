@@ -77,7 +77,7 @@ All blocks are installable via the shadcn CLI for both React and Vue 3/Nuxt.
 
 ![BoldKit Components](assets/preview.png)
 
-*55+ beautifully crafted neubrutalism components, 10 chart types, 64 SVG shapes, 17 animated ASCII shapes, 10 canvas effects, and 15 math curve animations for React and Vue 3*
+*55+ beautifully crafted neubrutalism components, 10 chart types, 64 SVG shapes, 17 animated ASCII shapes, 19 canvas effects, and 15 math curve animations for React and Vue 3*
 
 </div>
 
@@ -106,7 +106,7 @@ Neubrutalism (or neo-brutalism) is a bold design aesthetic characterized by:
 | **64 SVG Shapes** | Decorative shapes (geometric, organic, mathematical, mechanical) with interactive Shape Builder |
 | **17 ASCII Shapes** | Animated 3D ASCII art — Torus, Donut, Sphere, Cube, Helix, Trefoil Knot, Saturn, DNA, and more |
 | **Dot Matrix Studio** | In-browser pixel art & animation editor with 10 presets, WebM/PNG/SVG/JSON export |
-| **10 Canvas Effects** | Animated canvas components — Aurora, Flow Field, Plasma, Metaballs, Matrix Rain and more. Zero deps. |
+| **19 Canvas Effects** | Animated canvas components — Dither, Halftone, CRT, Truchet, Aurora, Flow Field, Plasma, Metaballs, Matrix Rain and more. Zero deps. |
 | **Math Curve Components** | Animated loaders, progress bars, and backgrounds powered by 15 mathematical curves |
 | **React & Vue 3** | Full support for both frameworks |
 | **Nuxt Ready** | SSR-compatible with shadcn-nuxt module |

@@ -109,10 +109,84 @@ export const PAGE_META: Record<string, RouteMeta> = {
     h1: 'Dot Matrix Studio — Pixel Art & Animation Editor',
   },
   '/canvas-effects': {
-    title: 'Canvas Effects — 15 Animated Canvas Components | BoldKit',
-    description: '15 free animated canvas components for React, Vue 3, and Nuxt — Aurora, Flow Field, Plasma, Metaballs, Lightning, Warp Speed, Gravity Wells, Topography, Voronoi, and more.',
+    title: 'Canvas Effects — 19 Animated Canvas Components | BoldKit',
+    description: '19 free animated canvas components for React, Vue 3, and Nuxt — Dither, Halftone, CRT, Truchet, Aurora, Flow Field, Plasma, Metaballs, Lightning, Warp Speed, Gravity Wells, and more.',
     canonical: `${SITE_URL}/canvas-effects`,
-    h1: 'Canvas Effects — 15 Animated Canvas Components',
+    h1: 'Canvas Effects — 19 Animated Canvas Components',
+  },
+
+  // ── SEO / landing pages - neubrutalism topic cluster ──
+  '/neubrutalism': {
+    title: 'What Is Neubrutalism? The Complete Guide (2026) | BoldKit',
+    description:
+      'Neubrutalism (neobrutalism) explained: thick borders, hard shadows, sharp corners, bold flat color and chunky type. Core traits, do’s and don’ts, accessibility, and how to build it in React & Vue.',
+    canonical: `${SITE_URL}/neubrutalism`,
+    h1: 'What Is Neubrutalism?',
+  },
+  '/neubrutalism/colors': {
+    title: 'Neubrutalism Color Palettes - Copy-Paste Hex & HSL | BoldKit',
+    description:
+      'Ready-to-use neubrutalism color palettes with hex codes - acid lime, electric blue, hot pink, risograph and newsprint. Plus how to pick 2-3 high-contrast colors that pass WCAG.',
+    canonical: `${SITE_URL}/neubrutalism/colors`,
+    h1: 'Neubrutalism Color Palettes',
+  },
+  '/neubrutalism/fonts': {
+    title: 'Best Neubrutalism Fonts & Pairings (2026) | BoldKit',
+    description:
+      'The best fonts for neubrutalist design - bold neo-grotesque and geometric sans display faces, clean body fonts, and mono accents, with ready-made pairing recipes.',
+    canonical: `${SITE_URL}/neubrutalism/fonts`,
+    h1: 'Neubrutalism Fonts',
+  },
+  '/neubrutalism/examples': {
+    title: 'Neubrutalism Website Examples & Patterns | BoldKit',
+    description:
+      'Neubrutalism in the wild - the recurring patterns (sticker collage, marquee tickers, oversized type, hard-bordered bento) plus live, inspectable BoldKit template examples for React & Vue.',
+    canonical: `${SITE_URL}/neubrutalism/examples`,
+    h1: 'Neubrutalism Examples',
+  },
+  '/neubrutalism/vs-brutalism': {
+    title: 'Neubrutalism vs Brutalism vs Memphis - The Differences | BoldKit',
+    description:
+      'How neubrutalism differs from raw brutalism and 80s Memphis design - era, borders, color, shadows and usability compared side by side, with guidance on when to use each.',
+    canonical: `${SITE_URL}/neubrutalism/vs-brutalism`,
+    h1: 'Neubrutalism vs Brutalism',
+  },
+
+  // ── SEO / landing pages - tools + FavGrab funnel ──
+  '/tools': {
+    title: 'Free Brutalist Web Tools | BoldKit',
+    description:
+      'Free in-browser tools from BoldKit - FavGrab favicon extractor & image converter, Dot Matrix Studio, Theme Builder, Shape Builder, Canvas Effects and ASCII Shapes.',
+    canonical: `${SITE_URL}/tools`,
+    h1: 'BoldKit Tools',
+  },
+  '/tools/favicon-generator': {
+    title: 'Free Favicon Generator - PNG, ICO, SVG & App Icons | BoldKit',
+    description:
+      'Generate a complete favicon set from any image. Create favicon.ico plus 16, 32, 180, 192 and 512px PNGs for browsers, iOS, Android and PWAs. Free, in-browser, no signup.',
+    canonical: `${SITE_URL}/tools/favicon-generator`,
+    h1: 'Favicon Generator',
+  },
+  '/tools/png-to-ico': {
+    title: 'Convert PNG to ICO - Free Favicon Converter | BoldKit',
+    description:
+      'Convert a PNG into a multi-resolution favicon.ico (16/32/48) for free in your browser. What ICO is, PNG vs ICO, step-by-step conversion, and the exact link tag to add.',
+    canonical: `${SITE_URL}/tools/png-to-ico`,
+    h1: 'Convert PNG to ICO',
+  },
+  '/tools/favicon-sizes': {
+    title: 'Favicon Sizes & Formats Cheat Sheet (2026) | BoldKit',
+    description:
+      'Every favicon size and format you need in 2026 - 16, 32, 180, 192, 512px, ICO, PNG and SVG - with the exact HTML link tags and the modern minimal set vs the legacy set.',
+    canonical: `${SITE_URL}/tools/favicon-sizes`,
+    h1: 'Favicon Sizes & Formats',
+  },
+  '/tools/extract-favicon': {
+    title: 'How to Extract a Favicon From Any Website | BoldKit',
+    description:
+      'Five ways to grab the favicon from any website - FavGrab, the /favicon.ico path, Google’s favicon endpoint, the page’s link tags and more - plus the formats you get and an ethics note.',
+    canonical: `${SITE_URL}/tools/extract-favicon`,
+    h1: 'Extract a Favicon From Any Website',
   },
 }
 
@@ -247,6 +321,60 @@ export function getTemplateMeta(slug: string): RouteMeta {
   }
 }
 
+// Breadcrumb trail (used for static BreadcrumbList JSON-LD in generate-html)
+export type Breadcrumb = { name: string; url?: string }
+
+// Readable labels for path segments not covered by the component/block/template maps.
+const SEGMENT_LABELS: Record<string, string> = {
+  components: 'Components',
+  blocks: 'Blocks',
+  templates: 'Templates',
+  docs: 'Documentation',
+  installation: 'Installation',
+  theming: 'Theming',
+  charts: 'Charts',
+  shapes: 'Shapes',
+  builder: 'Shape Builder',
+  themes: 'Theme Builder',
+  studio: 'Dot Matrix Studio',
+  'ascii-shapes': 'ASCII Shapes',
+  'canvas-effects': 'Canvas Effects',
+  neubrutalism: 'Neubrutalism',
+  tools: 'Tools',
+  colors: 'Colors',
+  fonts: 'Fonts',
+  examples: 'Examples',
+  'vs-brutalism': 'vs Brutalism',
+  'favicon-generator': 'Favicon Generator',
+  'png-to-ico': 'PNG to ICO',
+  'favicon-sizes': 'Favicon Sizes',
+  'extract-favicon': 'Extract Favicon',
+}
+
+function labelForSegment(segment: string): string {
+  return (
+    COMPONENT_TITLES[segment] ??
+    BLOCK_TITLES[segment] ??
+    TEMPLATE_TITLES[segment] ??
+    SEGMENT_LABELS[segment] ??
+    segment.replace(/-/g, ' ').replace(/\b\w/g, c => c.toUpperCase())
+  )
+}
+
+// Build a breadcrumb trail from a route path. The last crumb (current page) has no url.
+export function getBreadcrumbs(path: string): Breadcrumb[] {
+  if (path === '/') return [{ name: 'Home' }]
+  const segments = path.split('/').filter(Boolean)
+  const crumbs: Breadcrumb[] = [{ name: 'Home', url: `${SITE_URL}/` }]
+  let acc = ''
+  segments.forEach((seg, i) => {
+    acc += `/${seg}`
+    const isLast = i === segments.length - 1
+    crumbs.push(isLast ? { name: labelForSegment(seg) } : { name: labelForSegment(seg), url: `${SITE_URL}${acc}` })
+  })
+  return crumbs
+}
+
 // Type for sitemap routes
 export type SitemapRoute = {
   path: string
@@ -254,6 +382,7 @@ export type SitemapRoute = {
   priority: number
   changefreq: string
   lastmod: string
+  breadcrumbs: Breadcrumb[]
 }
 
 // Full route list used by generate-html and generate-sitemap scripts
@@ -277,44 +406,62 @@ export function getAllRoutes(): SitemapRoute[] {
     '/blocks': { priority: 0.9, changefreq: 'monthly' },
     '/studio': { priority: 0.9, changefreq: 'monthly' },
     '/canvas-effects': { priority: 0.9, changefreq: 'monthly' },
+    // SEO topic cluster - neubrutalism
+    '/neubrutalism': { priority: 0.9, changefreq: 'monthly' },
+    '/neubrutalism/colors': { priority: 0.7, changefreq: 'monthly' },
+    '/neubrutalism/fonts': { priority: 0.7, changefreq: 'monthly' },
+    '/neubrutalism/examples': { priority: 0.7, changefreq: 'monthly' },
+    '/neubrutalism/vs-brutalism': { priority: 0.7, changefreq: 'monthly' },
+    // SEO tools cluster - FavGrab funnel
+    '/tools': { priority: 0.8, changefreq: 'monthly' },
+    '/tools/favicon-generator': { priority: 0.8, changefreq: 'monthly' },
+    '/tools/png-to-ico': { priority: 0.7, changefreq: 'monthly' },
+    '/tools/favicon-sizes': { priority: 0.7, changefreq: 'monthly' },
+    '/tools/extract-favicon': { priority: 0.7, changefreq: 'monthly' },
   }
 
   for (const [path, seo] of Object.entries(staticPriorities)) {
     const meta = PAGE_META[path]
     if (!meta) throw new Error(`Missing PAGE_META for path: ${path}`)
-    routes.push({ path, meta, ...seo, lastmod: LAST_MODIFIED })
+    routes.push({ path, meta, ...seo, lastmod: LAST_MODIFIED, breadcrumbs: getBreadcrumbs(path) })
   }
 
   // Component pages
   for (const slug of Object.keys(COMPONENT_TITLES)) {
+    const path = `/components/${slug}`
     routes.push({
-      path: `/components/${slug}`,
+      path,
       meta: getComponentMeta(slug),
       priority: 0.8,
       changefreq: 'monthly',
       lastmod: LAST_MODIFIED,
+      breadcrumbs: getBreadcrumbs(path),
     })
   }
 
   // Block pages
   for (const slug of Object.keys(BLOCK_TITLES)) {
+    const path = `/blocks/${slug}`
     routes.push({
-      path: `/blocks/${slug}`,
+      path,
       meta: getBlockMeta(slug),
       priority: 0.8,
       changefreq: 'monthly',
       lastmod: LAST_MODIFIED,
+      breadcrumbs: getBreadcrumbs(path),
     })
   }
 
   // Template pages
   for (const slug of Object.keys(TEMPLATE_TITLES)) {
+    const path = `/templates/${slug}`
     routes.push({
-      path: `/templates/${slug}`,
+      path,
       meta: getTemplateMeta(slug),
       priority: 0.8,
       changefreq: 'monthly',
       lastmod: LAST_MODIFIED,
+      breadcrumbs: getBreadcrumbs(path),
     })
   }
 

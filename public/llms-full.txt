@@ -1,0 +1,1759 @@
+# BoldKit — Full LLM Reference (llms-full.txt)
+
+> BoldKit is a free, open-source neubrutalism (neobrutalism) UI component library for React, Vue 3 & Nuxt. Components are copied into your project via the shadcn CLI — not imported from an npm package. This is the MAXIMUM-coverage reference: the curated summary, followed by a complete index of every page and every installable component. For the concise version see https://boldkit.dev/llms.txt
+
+This file is generated from BoldKit's source of truth (route metadata + the built registry). Counts: 56+ components, 14 charts, 64 shapes, 15 blocks, 7 templates, 19 canvas effects.
+
+---
+
+
+# BoldKit — Neubrutalism UI Component Library for React, Vue 3 & Nuxt
+
+> BoldKit is a free, open-source component library built on the neubrutalism (also spelled neobrutalism) design aesthetic. Components are copied into your project via the shadcn CLI — not imported from an npm package. Built on Radix UI (React) and Reka UI (Vue) primitives with Tailwind CSS v4.
+
+## Quick Facts
+
+- **Version:** 3.3.9
+- **Components:** 55+ UI components
+- **Charts:** 14 chart types
+- **Shapes:** 64 SVG decorative shapes
+- **Blocks:** 15 section blocks (10 marketing + 5 application)
+- **Templates:** 7 full-page templates
+- **Frameworks:** React 19, Vue 3, Nuxt
+- **Canvas Effects:** 19 zero-dependency animated canvas components
+- **Tools:** FavGrab (favicon extractor & image converter), Dot Matrix Studio (pixel art & animation editor), Shape Builder, Theme Builder
+- **Guides:** Neubrutalism guide cluster (what it is, colors, fonts, examples, vs brutalism) + favicon/image tool guides
+- **Styling:** Tailwind CSS v4 with CSS variables
+- **TypeScript:** Full type support
+- **Accessibility:** WCAG 2.1 AA — built on Radix UI (React) & Reka UI (Vue) primitives
+- **License:** MIT (free for personal and commercial use)
+
+---
+
+## What Makes BoldKit Unique
+
+BoldKit is a **neubrutalism** UI library. Every component is styled with:
+
+- **3px solid borders** (`border-3 border-foreground`) — no hairline borders
+- **4px hard offset shadows** with zero blur (`box-shadow: 4px 4px 0px hsl(var(--shadow-color))`) — flat, offset depth
+- **Zero border-radius** (`--radius: 0rem`) — sharp corners everywhere
+- **Bold typography** — 700+ font weight, uppercase labels, wide letter-spacing
+- **Hover = press-down** — elements translate(4px, 4px) and lose their shadow on hover, mimicking physical button press
+
+Components are installed via the **shadcn CLI** (code is copied directly into your project), so you own the source and can customize freely. There is no npm package to import.
+
+---
+
+## Links
+
+- **Website:** https://boldkit.dev
+- **Documentation:** https://boldkit.dev/docs
+- **Installation guide:** https://boldkit.dev/docs/installation
+- **Components:** https://boldkit.dev/components
+- **Charts:** https://boldkit.dev/charts
+- **Shapes:** https://boldkit.dev/shapes
+- **Shape Builder:** https://boldkit.dev/shapes/builder
+- **Blocks:** https://boldkit.dev/blocks
+- **Templates:** https://boldkit.dev/templates
+- **Theme Builder:** https://boldkit.dev/themes
+- **Dot Matrix Studio:** https://boldkit.dev/studio
+- **Canvas Effects:** https://boldkit.dev/canvas-effects
+- **Neubrutalism guide:** https://boldkit.dev/neubrutalism
+- **Neubrutalism colors:** https://boldkit.dev/neubrutalism/colors
+- **Neubrutalism fonts:** https://boldkit.dev/neubrutalism/fonts
+- **Neubrutalism examples:** https://boldkit.dev/neubrutalism/examples
+- **Neubrutalism vs Brutalism:** https://boldkit.dev/neubrutalism/vs-brutalism
+- **Tools hub:** https://boldkit.dev/tools
+- **Favicon generator:** https://boldkit.dev/tools/favicon-generator
+- **PNG to ICO:** https://boldkit.dev/tools/png-to-ico
+- **Favicon sizes cheat sheet:** https://boldkit.dev/tools/favicon-sizes
+- **Extract a favicon:** https://boldkit.dev/tools/extract-favicon
+- **FavGrab (favicon extractor & image converter):** https://favgrab.boldkit.dev
+- **GitHub:** https://github.com/ANIBIT14/boldkit
+- **Registry index:** https://boldkit.dev/registry.json
+- **llms-full.txt:** https://boldkit.dev/llms-full.txt
+- **Sitemap:** https://boldkit.dev/sitemap.xml
+
+---
+
+## Dot Matrix Studio
+
+BoldKit includes a free in-browser **Dot Matrix Studio** at https://boldkit.dev/studio — a pixel art and frame animation editor. No install required.
+
+**Features:**
+- 16×32 dot grid canvas (resizable)
+- Tools: pencil, eraser, shapes (line/rect/circle), text, select
+- Frame-by-frame animation with undo/redo (50-step stack)
+- 8 animation presets: Blink, Typewriter, Scan Line, Marquee, Ripple, Bounce, Slide, Fade
+- Selection actions: Fill, Clear, Invert selected region
+- Export: WebM video, PNG (single frame or spritesheet), animated SVG, JSON (.boldkit.json)
+- Import: drag-and-drop or file picker for .boldkit.json files
+- Sample animations available at /studio/ripple.boldkit.json, /studio/wave.boldkit.json, /studio/rain.boldkit.json, /studio/bounce.boldkit.json
+
+**Export formats:**
+- `webm` — animated video (VP9/VP8), loop modes: once / 3x / infinite (10 loops)
+- `png` — single active frame, or full spritesheet of all frames
+- `svg` — static single frame or animated multi-frame SVG with CSS keyframes
+- `json` — .boldkit.json format preserving all frames, colors, and metadata (re-importable)
+
+---
+
+## Canvas Effects
+
+BoldKit includes 19 animated canvas components at https://boldkit.dev/canvas-effects — zero external dependencies, fully typed, compatible with React, Vue 3, and Nuxt 3. Install any effect via `npx shadcn@latest add "https://boldkit.dev/r/<id>.json"` (Vue: `/r/vue/<id>.json`).
+
+**All 19 effects:**
+- **Dither** (`dither`) — a drifting plasma field quantised to two colors via a 4×4 Bayer matrix; the classic 1-bit / Game Boy look
+- **Halftone** (`halftone`) — print-style dot grid sized by a drifting brightness field; the cursor brightens nearby dots
+- **CRT** (`crt`) — retro cathode-ray screen with phosphor scanlines, a rolling brightness band, vignette and flicker
+- **Truchet** (`truchet`) — arc tiles join into an endless maze; a travelling dash makes the paths flow
+- **Dot Blob** (`dot-blob`) — Gaussian envelope × crossing waves drive halftone pixel sizes
+- **Aurora** (`aurora`) — Curtains of light ripple across a star-filled sky (configurable colors + star count)
+- **Dot Wave** (`dot-wave`) — Dual crossing sine waves modulate dot size and opacity
+- **Matrix Rain** (`matrix-rain`) — Columns of glowing heads and fading square trails
+- **Particle Web** (`particle-web`) — Particles connected by proximity-faded lines
+- **Mouse Ripple** (`mouse-ripple`) — Cursor interaction sends sine ripples through a dot grid
+- **Flow Field** (`flow-field`) — Particles follow a smooth value-noise angle field
+- **Metaballs** (`metaballs`) — Colored blobs merge via r²/d² scalar field threshold
+- **Lissajous Grid** (`lissajous-grid`) — Parametric curve table with phase drift
+- **Plasma Waves** (`plasma`) — Shifting color interference from 4 drifting wave sources
+- **Warp Speed** (`warp-speed`) — Stars streak outward through a hyperspace tunnel with motion-blur trails
+- **Gravity Wells** (`gravity-wells`) — Particles orbit gravitational attractors forming accretion spirals
+- **Topography** (`topography`) — Animated contour map with noise-driven elevation and marching squares
+- **Lightning** (`lightning`) — Fractal branching electric arcs with glow bloom and fade
+- **Voronoi Pulse** (`voronoi-pulse`) — Drifting Voronoi cells with pulsing color fills and bright edges
+
+**Technical details:**
+- Each effect is one self-contained file — no npm package, copied into your project
+- All effects use `requestAnimationFrame` with `ResizeObserver` for responsive canvas
+- React: live prop ref pattern (prop changes take effect instantly without restarting animation)
+- Vue 3 / Nuxt 3: reactive props read directly in RAF callback — SSR-safe via `onMounted`
+- Props: every effect exposes `speed` plus effect-specific props (color, count, palette, etc.)
+
+**React usage:**
+```tsx
+import { Aurora } from '@/components/CanvasEffects/react'
+
+// Wrap in any sized container — canvas fills 100%
+<div style={{ height: '400px' }}>
+  <Aurora colors={['#00ffaa', '#00beff', '#78ff64']} starCount={160} speed={1} />
+</div>
+```
+
+**Vue 3 / Nuxt 3 usage:**
+```vue
+<script setup>
+import { Aurora } from '@/components/CanvasEffects/vue'
+</script>
+
+<template>
+  <div style="height: 400px">
+    <Aurora :colors="['#00ffaa', '#00beff', '#78ff64']" :star-count="160" :speed="1" />
+  </div>
+</template>
+```
+
+---
+
+## Installation
+
+### React (shadcn CLI)
+
+```bash
+# Install a component
+npx shadcn@latest add https://boldkit.dev/r/{component}.json
+
+# Install the theme (required first)
+npx shadcn@latest add https://boldkit.dev/r/theme.json
+
+# Install all shapes
+npx shadcn@latest add https://boldkit.dev/r/shapes.json
+```
+
+### Vue 3 / Nuxt (shadcn-vue CLI)
+
+```bash
+# Install a component
+npx shadcn-vue@latest add https://boldkit.dev/r/vue/{component}.json
+
+# Install the theme
+npx shadcn-vue@latest add https://boldkit.dev/r/vue/theme.json
+
+# Install all shapes
+npx shadcn-vue@latest add https://boldkit.dev/r/vue/shapes.json
+```
+
+### End-to-End Usage Example (React)
+
+```bash
+# 1. Initialize shadcn in your project (if not already done)
+npx shadcn@latest init
+
+# 2. Install the BoldKit theme
+npx shadcn@latest add https://boldkit.dev/r/theme.json
+
+# 3. Install the Button component
+npx shadcn@latest add https://boldkit.dev/r/button.json
+```
+
+```tsx
+// 4. Import and use
+import { Button } from '@/components/ui/button'
+
+export default function Page() {
+  return (
+    <div>
+      <Button variant="default">Get Started</Button>
+      <Button variant="accent">Try Free</Button>
+    </div>
+  )
+}
+```
+
+---
+
+## All Install Commands — React
+
+### Core UI Components
+
+```bash
+npx shadcn@latest add https://boldkit.dev/r/accordion.json
+npx shadcn@latest add https://boldkit.dev/r/alert.json
+npx shadcn@latest add https://boldkit.dev/r/alert-dialog.json
+npx shadcn@latest add https://boldkit.dev/r/aspect-ratio.json
+npx shadcn@latest add https://boldkit.dev/r/avatar.json
+npx shadcn@latest add https://boldkit.dev/r/badge.json
+npx shadcn@latest add https://boldkit.dev/r/breadcrumb.json
+npx shadcn@latest add https://boldkit.dev/r/button.json
+npx shadcn@latest add https://boldkit.dev/r/calendar.json
+npx shadcn@latest add https://boldkit.dev/r/card.json
+npx shadcn@latest add https://boldkit.dev/r/carousel.json
+npx shadcn@latest add https://boldkit.dev/r/checkbox.json
+npx shadcn@latest add https://boldkit.dev/r/collapsible.json
+npx shadcn@latest add https://boldkit.dev/r/command.json
+npx shadcn@latest add https://boldkit.dev/r/data-table.json
+npx shadcn@latest add https://boldkit.dev/r/date-range-picker.json
+npx shadcn@latest add https://boldkit.dev/r/dialog.json
+npx shadcn@latest add https://boldkit.dev/r/drawer.json
+npx shadcn@latest add https://boldkit.dev/r/dropdown-menu.json
+npx shadcn@latest add https://boldkit.dev/r/dropzone.json
+npx shadcn@latest add https://boldkit.dev/r/empty-state.json
+npx shadcn@latest add https://boldkit.dev/r/hover-card.json
+npx shadcn@latest add https://boldkit.dev/r/input.json
+npx shadcn@latest add https://boldkit.dev/r/input-otp.json
+npx shadcn@latest add https://boldkit.dev/r/kbd.json
+npx shadcn@latest add https://boldkit.dev/r/label.json
+npx shadcn@latest add https://boldkit.dev/r/layered-card.json
+npx shadcn@latest add https://boldkit.dev/r/marquee.json
+npx shadcn@latest add https://boldkit.dev/r/pagination.json
+npx shadcn@latest add https://boldkit.dev/r/popover.json
+npx shadcn@latest add https://boldkit.dev/r/progress.json
+npx shadcn@latest add https://boldkit.dev/r/radio-group.json
+npx shadcn@latest add https://boldkit.dev/r/rating.json
+npx shadcn@latest add https://boldkit.dev/r/scroll-area.json
+npx shadcn@latest add https://boldkit.dev/r/select.json
+npx shadcn@latest add https://boldkit.dev/r/separator.json
+npx shadcn@latest add https://boldkit.dev/r/sheet.json
+npx shadcn@latest add https://boldkit.dev/r/sidebar.json
+npx shadcn@latest add https://boldkit.dev/r/skeleton.json
+npx shadcn@latest add https://boldkit.dev/r/slider.json
+npx shadcn@latest add https://boldkit.dev/r/sonner.json
+npx shadcn@latest add https://boldkit.dev/r/spinner.json
+npx shadcn@latest add https://boldkit.dev/r/stat-card.json
+npx shadcn@latest add https://boldkit.dev/r/stepper.json
+npx shadcn@latest add https://boldkit.dev/r/sticker.json
+npx shadcn@latest add https://boldkit.dev/r/switch.json
+npx shadcn@latest add https://boldkit.dev/r/table.json
+npx shadcn@latest add https://boldkit.dev/r/tabs.json
+npx shadcn@latest add https://boldkit.dev/r/tag-input.json
+npx shadcn@latest add https://boldkit.dev/r/textarea.json
+npx shadcn@latest add https://boldkit.dev/r/time-picker.json
+npx shadcn@latest add https://boldkit.dev/r/timeline.json
+npx shadcn@latest add https://boldkit.dev/r/toggle.json
+npx shadcn@latest add https://boldkit.dev/r/toggle-group.json
+npx shadcn@latest add https://boldkit.dev/r/tooltip.json
+npx shadcn@latest add https://boldkit.dev/r/tour.json
+npx shadcn@latest add https://boldkit.dev/r/tree-view.json
+```
+
+### Shapes & Decorative
+
+```bash
+npx shadcn@latest add https://boldkit.dev/r/shapes.json
+```
+
+### Charts
+
+```bash
+npx shadcn@latest add https://boldkit.dev/r/chart.json
+npx shadcn@latest add https://boldkit.dev/r/sparkline.json
+npx shadcn@latest add https://boldkit.dev/r/donut-chart.json
+npx shadcn@latest add https://boldkit.dev/r/radar-chart.json
+npx shadcn@latest add https://boldkit.dev/r/radial-bar-chart.json
+npx shadcn@latest add https://boldkit.dev/r/gauge-chart.json
+npx shadcn@latest add https://boldkit.dev/r/funnel-chart.json
+npx shadcn@latest add https://boldkit.dev/r/treemap-chart.json
+npx shadcn@latest add https://boldkit.dev/r/heatmap-chart.json
+npx shadcn@latest add https://boldkit.dev/r/sankey-chart.json
+```
+
+### Math Curve Components (NEW v3.0.x)
+
+```bash
+# Shared math engine (required by all three math curve components)
+npx shadcn@latest add https://boldkit.dev/r/math-curves.json
+
+# Animated SVG loader using parametric math curves
+npx shadcn@latest add https://boldkit.dev/r/math-curve-loader.json
+
+# Progress bar rendered as an animated mathematical curve
+npx shadcn@latest add https://boldkit.dev/r/math-curve-progress.json
+
+# Full-bleed animated curve background
+npx shadcn@latest add https://boldkit.dev/r/math-curve-background.json
+```
+
+---
+
+## All Install Commands — Vue 3 / Nuxt
+
+Replace `https://boldkit.dev/r/` with `https://boldkit.dev/r/vue/` for all component URLs above, and use `npx shadcn-vue@latest add` instead of `npx shadcn@latest add`.
+
+```bash
+# Examples
+npx shadcn-vue@latest add https://boldkit.dev/r/vue/button.json
+npx shadcn-vue@latest add https://boldkit.dev/r/vue/card.json
+npx shadcn-vue@latest add https://boldkit.dev/r/vue/shapes.json
+npx shadcn-vue@latest add https://boldkit.dev/r/vue/math-curve-loader.json
+```
+
+---
+
+## Design Tokens
+
+### CSS Variables (Neubrutalism Theme)
+
+```css
+:root {
+  /* Colors (HSL format) */
+  --primary: 0 84% 71%;           /* Coral red */
+  --secondary: 174 62% 56%;       /* Teal */
+  --accent: 49 100% 71%;          /* Yellow */
+  --destructive: 0 84% 60%;       /* Red */
+  --success: 152 69% 69%;         /* Green */
+  --warning: 49 100% 60%;         /* Amber */
+  --info: 212 100% 73%;           /* Blue */
+  --muted: 240 5% 96%;            /* Light gray */
+  --foreground: 240 10% 4%;       /* Near-black */
+  --background: 0 0% 100%;        /* White */
+
+  /* Neubrutalism-specific */
+  --shadow-color: 240 10% 10%;    /* Hard shadow color */
+  --border: 240 10% 10%;          /* Border color */
+  --radius: 0rem;                 /* Zero border-radius = sharp corners everywhere */
+}
+```
+
+### Neubrutalism CSS Utilities
+
+```css
+/* Thick 3px borders */
+.border-3 { border-width: 3px; }
+
+/* Hard offset shadow (no blur) */
+.bk-shadow { box-shadow: 4px 4px 0px hsl(var(--shadow-color)); }
+
+/* Press-down hover effect */
+.bk-hover:hover {
+  transform: translate(4px, 4px);
+  box-shadow: none;
+}
+```
+
+---
+
+## Component Categories
+
+### Layout & Containers
+Accordion, Card, Collapsible, Dialog, Drawer, LayeredCard, ScrollArea, Sheet, Sidebar, StatCard, Stepper, Tabs
+
+### Form Controls
+Button, Calendar, Checkbox, DateRangePicker, Dropzone, Input, InputOTP, Label, RadioGroup, Rating, Select, Slider, Switch, TagInput, Textarea, TimePicker, Toggle, ToggleGroup
+
+### Feedback & Status
+Alert, AlertDialog, Badge, EmptyState, Progress, Skeleton, Sonner (Toast), Spinner, Tour
+
+### Navigation
+Breadcrumb, Carousel, Command (Command Palette), DropdownMenu, HoverCard, Pagination, Popover, TreeView
+
+### Data Display
+Avatar, DataTable, Kbd, Table, Timeline, Tooltip
+
+### Charts (14 Types)
+Area Chart, Bar Chart, Line Chart, Pie Chart, Donut Chart, Radar Chart, Radial Bar Chart, Gauge Chart, Sparkline, Funnel Chart, Treemap Chart, Heatmap Chart, Sankey Chart, Horizontal Bar Chart
+
+### Math Curve Components (NEW v3.0.x)
+MathCurveLoader, MathCurveProgress, MathCurveBackground
+
+### Decorative (Neubrutalism Special)
+Sticker, Marquee, 54 SVG Shapes
+
+---
+
+## Code Examples
+
+### Button
+
+```tsx
+import { Button } from '@/components/ui/button'
+
+// Variants: default, secondary, accent, destructive, outline, ghost, link
+<Button variant="default">Primary</Button>
+<Button variant="secondary">Secondary</Button>
+<Button variant="accent">Accent</Button>
+<Button variant="outline">Outline</Button>
+
+// Sizes: default, sm, lg, xl, icon
+<Button size="lg">Large</Button>
+<Button size="icon"><Icon /></Button>
+```
+
+### Card
+
+```tsx
+import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from '@/components/ui/card'
+
+<Card>
+  <CardHeader>
+    <CardTitle>Card Title</CardTitle>
+    <CardDescription>Description text</CardDescription>
+  </CardHeader>
+  <CardContent>
+    <p>Content goes here</p>
+  </CardContent>
+  <CardFooter>
+    <Button>Action</Button>
+  </CardFooter>
+</Card>
+```
+
+### Input
+
+```tsx
+import { Input } from '@/components/ui/input'
+import { Label } from '@/components/ui/label'
+
+<div className="space-y-2">
+  <Label htmlFor="email">Email</Label>
+  <Input id="email" type="email" placeholder="Enter your email" />
+</div>
+```
+
+### Dialog
+
+```tsx
+import { Dialog, DialogTrigger, DialogContent, DialogHeader, DialogTitle, DialogDescription } from '@/components/ui/dialog'
+
+<Dialog>
+  <DialogTrigger asChild>
+    <Button>Open Dialog</Button>
+  </DialogTrigger>
+  <DialogContent>
+    <DialogHeader>
+      <DialogTitle>Dialog Title</DialogTitle>
+      <DialogDescription>Dialog description</DialogDescription>
+    </DialogHeader>
+    <p>Dialog content here</p>
+  </DialogContent>
+</Dialog>
+```
+
+### Shapes
+
+```tsx
+import {
+  BurstShape, HeartShape, LightningShape, Star5Shape, BlobShape,
+  SunShape, GearShape, SealShape, HexagonShape, CloudShape
+} from '@/components/ui/shapes'
+
+// Basic usage — all shapes accept size, className, filled, strokeWidth
+<BurstShape size={100} />
+<HeartShape size={80} className="text-destructive" />
+<LightningShape size={60} filled={false} />
+<Star5Shape size={100} strokeWidth={5} />
+```
+
+### Layered Card (stacked paper depth effect)
+
+```tsx
+import { LayeredCard, LayeredCardHeader, LayeredCardTitle, LayeredCardContent } from '@/components/ui/layered-card'
+
+<LayeredCard layers="double" offset="default" layerColor="primary">
+  <LayeredCardHeader>
+    <LayeredCardTitle>Stacked Card</LayeredCardTitle>
+  </LayeredCardHeader>
+  <LayeredCardContent>Creates a stacked paper depth effect</LayeredCardContent>
+</LayeredCard>
+
+// layers: "single" | "double" | "triple"
+// offset: "sm" | "default" | "lg"
+// layerColor: "default" | "primary" | "secondary" | "accent" | "muted"
+```
+
+### Marquee (scrolling ticker)
+
+```tsx
+import { Marquee } from '@/components/ui/marquee'
+
+<Marquee speed="normal" pauseOnHover direction="left">
+  <span>Scrolling content</span>
+  <span>More content</span>
+</Marquee>
+
+// speed: "slow" | "normal" | "fast"
+// direction: "left" | "right"
+```
+
+### Sticker
+
+```tsx
+import { Sticker } from '@/components/ui/sticker'
+
+<Sticker variant="accent" rotation="left">New!</Sticker>
+
+// variant: "default" | "accent" | "destructive" | "success"
+// rotation: "left" | "right" | "none"
+```
+
+### Spinner
+
+```tsx
+import { Spinner } from '@/components/ui/spinner'
+
+// variants: default, dots, bars, blocks, brutal
+<Spinner variant="dots" />
+<Spinner variant="brutal" size="lg" />
+
+// sizes: xs, sm, md, lg, xl
+```
+
+### Kbd (keyboard key)
+
+```tsx
+import { Kbd, KbdCombo } from '@/components/ui/kbd'
+
+<Kbd>⌘</Kbd>
+<KbdCombo keys={['⌘', 'K']} />
+<KbdCombo keys={['Ctrl', 'Shift', 'P']} />
+
+// variant: "default" | "outline" | "ghost"
+// size: "sm" | "md" | "lg"
+```
+
+### Stepper (wizard)
+
+```tsx
+import { Stepper, StepperList, StepperItem, StepperTrigger, StepperContent, StepperSeparator } from '@/components/ui/stepper'
+
+<Stepper defaultValue={1}>
+  <StepperList>
+    <StepperItem value={1}><StepperTrigger>Details</StepperTrigger></StepperItem>
+    <StepperSeparator />
+    <StepperItem value={2}><StepperTrigger>Payment</StepperTrigger></StepperItem>
+    <StepperSeparator />
+    <StepperItem value={3}><StepperTrigger>Confirm</StepperTrigger></StepperItem>
+  </StepperList>
+  <StepperContent value={1}>Step 1 content</StepperContent>
+  <StepperContent value={2}>Step 2 content</StepperContent>
+  <StepperContent value={3}>Step 3 content</StepperContent>
+</Stepper>
+
+// orientation: "horizontal" | "vertical"
+```
+
+### Dropzone (file upload)
+
+```tsx
+import { Dropzone, FileList } from '@/components/ui/dropzone'
+
+<Dropzone
+  onFilesAccepted={(files) => console.log(files)}
+  accept={{ 'image/*': ['.png', '.jpg', '.jpeg'] }}
+  maxSize={5 * 1024 * 1024}
+  maxFiles={5}
+/>
+
+<FileList files={uploadedFiles} onRemove={(file) => handleRemove(file)} />
+
+// variant: "default" | "compact" | "minimal"
+```
+
+### StatCard
+
+```tsx
+import { StatCard } from '@/components/ui/stat-card'
+
+<StatCard
+  title="Total Revenue"
+  value="$45,231"
+  change="+20.1%"
+  trend="up"
+  icon={<DollarSign />}
+  color="success"
+/>
+
+// trend: "up" | "down"
+// color: "primary" | "secondary" | "accent" | "success" | "warning" | "info" | "destructive"
+// variant: "default" | "compact" | "large"
+```
+
+### Rating
+
+```tsx
+import { Rating } from '@/components/ui/rating'
+
+<Rating value={4} max={5} onChange={(val) => setRating(val)} />
+<Rating value={3.5} readOnly size="lg" />
+```
+
+### TagInput (multi-value tag input)
+
+```tsx
+import { TagInput } from '@/components/ui/tag-input'
+
+<TagInput
+  value={tags}
+  onChange={setTags}
+  placeholder="Add tag..."
+  maxTags={10}
+/>
+```
+
+### TimePicker
+
+```tsx
+import { TimePicker } from '@/components/ui/time-picker'
+
+<TimePicker value={time} onChange={setTime} />
+<TimePicker format="12h" />
+```
+
+### DateRangePicker
+
+```tsx
+import { DateRangePicker } from '@/components/ui/date-range-picker'
+
+<DateRangePicker
+  value={dateRange}
+  onChange={setDateRange}
+  placeholder="Select date range"
+/>
+```
+
+### DataTable (sorting, filtering, pagination)
+
+```tsx
+import { DataTable } from '@/components/ui/data-table'
+
+<DataTable
+  columns={columns}
+  data={data}
+  searchKey="name"
+  pageSize={10}
+/>
+```
+
+### EmptyState
+
+```tsx
+import {
+  EmptyState, EmptyStateIcon, EmptyStateTitle,
+  EmptyStateDescription, EmptyStateActions, EmptyStatePreset
+} from '@/components/ui/empty-state'
+import { Inbox, Plus } from 'lucide-react'
+
+// Composable API
+<EmptyState>
+  <EmptyStateIcon><Inbox className="h-10 w-10" /></EmptyStateIcon>
+  <EmptyStateTitle>No messages</EmptyStateTitle>
+  <EmptyStateDescription>Your inbox is empty</EmptyStateDescription>
+  <EmptyStateActions>
+    <Button><Plus className="mr-2 h-4 w-4" />Compose</Button>
+  </EmptyStateActions>
+</EmptyState>
+
+// Preset API
+<EmptyStatePreset preset="no-results" action={<Button>Clear search</Button>} />
+
+// Available presets: 'no-results', 'no-data', 'empty-inbox', 'empty-folder',
+// 'no-users', 'empty-cart', 'no-notifications', 'no-images'
+// variant: "default" | "filled" | "card"
+```
+
+### Sidebar
+
+```tsx
+import { Sidebar, SidebarHeader, SidebarContent, SidebarFooter, SidebarNav, SidebarNavItem } from '@/components/ui/sidebar'
+
+<Sidebar>
+  <SidebarHeader>My App</SidebarHeader>
+  <SidebarContent>
+    <SidebarNav>
+      <SidebarNavItem href="/dashboard" icon={<Home />}>Dashboard</SidebarNavItem>
+      <SidebarNavItem href="/settings" icon={<Settings />}>Settings</SidebarNavItem>
+    </SidebarNav>
+  </SidebarContent>
+  <SidebarFooter>Footer content</SidebarFooter>
+</Sidebar>
+```
+
+### Timeline
+
+```tsx
+import { Timeline, TimelineItem, TimelineConnector, TimelineContent, TimelineHeader } from '@/components/ui/timeline'
+
+<Timeline>
+  <TimelineItem>
+    <TimelineHeader>January 2024</TimelineHeader>
+    <TimelineContent>Project launched</TimelineContent>
+    <TimelineConnector />
+  </TimelineItem>
+  <TimelineItem>
+    <TimelineHeader>March 2024</TimelineHeader>
+    <TimelineContent>First major release</TimelineContent>
+  </TimelineItem>
+</Timeline>
+```
+
+### TreeView
+
+```tsx
+import { TreeView } from '@/components/ui/tree-view'
+
+const treeData = [
+  {
+    id: '1', name: 'src', children: [
+      { id: '2', name: 'components', children: [] },
+      { id: '3', name: 'utils', children: [] },
+    ]
+  }
+]
+
+<TreeView data={treeData} />
+```
+
+### Carousel
+
+```tsx
+import { Carousel, CarouselContent, CarouselItem, CarouselPrevious, CarouselNext } from '@/components/ui/carousel'
+
+<Carousel>
+  <CarouselContent>
+    <CarouselItem>Slide 1</CarouselItem>
+    <CarouselItem>Slide 2</CarouselItem>
+    <CarouselItem>Slide 3</CarouselItem>
+  </CarouselContent>
+  <CarouselPrevious />
+  <CarouselNext />
+</Carousel>
+```
+
+### Tour (product tours)
+
+```tsx
+import { Tour, TourStep } from '@/components/ui/tour'
+
+<Tour>
+  <TourStep
+    target="#upload-button"
+    title="Upload Files"
+    description="Click here to upload your files."
+    step={1}
+    totalSteps={3}
+  />
+</Tour>
+```
+
+---
+
+## Math Curve Components (NEW v3.0.x)
+
+These three components share a common parametric math engine (`math-curves.ts`) that renders animated SVG curves based on real mathematical formulas.
+
+### MathCurveLoader
+
+An animated SVG loading spinner powered by parametric math curves. 8 curve variants, each drawing a different mathematical shape in a continuous loop.
+
+```tsx
+import { MathCurveLoader } from '@/components/ui/math-curve-loader'
+
+// curve variants: 'rose' | 'lissajous' | 'butterfly' | 'hypotrochoid' |
+//                 'cardioid' | 'lemniscate' | 'fourier' | 'rose3'
+<MathCurveLoader curve="lissajous" />
+<MathCurveLoader curve="butterfly" size="lg" speed="slow" />
+<MathCurveLoader curve="rose" size="xl" color="hsl(var(--primary))" />
+
+// size: "xs" | "sm" | "md" | "lg" | "xl"
+// speed: "slow" | "normal" | "fast"
+```
+
+### MathCurveProgress
+
+A progress bar rendered as an animated mathematical curve that draws itself from 0% to 100%.
+
+```tsx
+import { MathCurveProgress } from '@/components/ui/math-curve-progress'
+
+// curve variants: 'spiral' | 'heart' | 'lissajous' | 'cardioid' | 'rose'
+<MathCurveProgress value={75} curve="spiral" />
+<MathCurveProgress value={60} curve="heart" color="hsl(var(--destructive))" />
+<MathCurveProgress value={90} curve="cardioid" size="lg" />
+
+// value: 0–100
+// size: "sm" | "md" | "lg"
+```
+
+### MathCurveBackground
+
+A full-bleed animated background featuring flowing parametric curves. Ideal for hero sections, landing pages, and decorative panels.
+
+```tsx
+import { MathCurveBackground } from '@/components/ui/math-curve-background'
+
+// curve variants: 'rose' | 'lissajous' | 'fourier' | 'spiral'
+<MathCurveBackground curve="lissajous" opacity={0.15}>
+  <div className="relative z-10">
+    <h1>Your content here</h1>
+  </div>
+</MathCurveBackground>
+
+<MathCurveBackground curve="rose" color="hsl(var(--primary))" speed="slow" />
+```
+
+### Math Curve Engine Details
+
+The underlying math engine (`@/lib/math-curves`) computes all curves in `[0, 100]` SVG coordinate space, centered at `(50, 50)`. Curves include:
+
+| Curve | Formula | Use |
+|---|---|---|
+| `rose` | r = a·cos(5θ) — 5-petal rose | Loader, Progress, Background |
+| `rose3` | r = a·cos(3θ) — 3-petal rose | Loader |
+| `lissajous` | x = A·sin(3t + π/2), y = B·sin(4t) | Loader, Progress, Background |
+| `butterfly` | r = e^cos(t) − 2·cos(4t) − sin⁵(t/12) | Loader |
+| `hypotrochoid` | Spirograph: R=5, r=3 | Loader |
+| `cardioid` | r = a(1 + cos θ) | Loader, Progress |
+| `lemniscate` | r² = a²·cos(2θ) | Loader |
+| `fourier` | Fourier series approximation | Loader, Background |
+| `spiral` | Archimedean spiral | Progress |
+| `heart` | Parametric heart curve | Progress |
+
+---
+
+## Charts (14 Types)
+
+```tsx
+import { ChartContainer, ChartTooltip, ChartTooltipContent, CHART_PALETTES, getChartColor } from '@/components/ui/chart'
+import { Bar, BarChart, XAxis, YAxis } from 'recharts'
+
+// Container variants: default, elevated, flat, filled, minimal, accent, primary
+<ChartContainer config={chartConfig} variant="elevated">
+  <BarChart data={data}>
+    <Bar dataKey="value" fill={getChartColor('vibrant', 0)} />
+  </BarChart>
+</ChartContainer>
+
+// Color palettes: bold, vibrant, pastel, monochrome
+// getChartColor(palette, index) → 'hsl(0 84% 60%)'
+```
+
+**All chart types:**
+1. **Area Chart** — time-series with filled area
+2. **Bar Chart** — vertical bars (uses Recharts)
+3. **Horizontal Bar Chart** — horizontal bars
+4. **Line Chart** — line trends
+5. **Pie Chart** — segmented circle
+6. **Donut Chart** — pie with center slot for custom content
+7. **Radar Chart** — multi-variable spider chart
+8. **Radial Bar Chart** — circular progress bars (stacked/nested)
+9. **Gauge Chart** — speedometer-style with zones and animated needle
+10. **Sparkline** — inline mini chart (line, area, or bar) for tables and stat cards
+11. **Funnel Chart** — conversion funnel visualization
+12. **Treemap Chart** — hierarchical rectangle area chart
+13. **Heatmap Chart** — grid-based intensity map
+14. **Sankey Chart** — flow/relationship diagram
+
+### Gauge Chart
+
+```tsx
+import { GaugeChart } from '@/components/ui/chart'
+
+<GaugeChart
+  value={75}
+  min={0}
+  max={100}
+  label="Performance"
+  zones={[
+    { from: 0, to: 33, color: 'hsl(var(--destructive))', label: 'Low' },
+    { from: 33, to: 66, color: 'hsl(var(--warning))', label: 'Medium' },
+    { from: 66, to: 100, color: 'hsl(var(--success))', label: 'High' },
+  ]}
+/>
+// size: "sm" | "md" | "lg"
+```
+
+### Sparkline
+
+```tsx
+import { Sparkline } from '@/components/ui/chart'
+
+<Sparkline
+  data={[10, 25, 15, 30, 20, 45, 35]}
+  type="line"
+  color="hsl(var(--primary))"
+  height={32}
+  showEndDot
+/>
+// type: "line" | "area" | "bar"
+```
+
+### Donut Chart
+
+```tsx
+import { DonutChart, DonutChartCenter } from '@/components/ui/chart'
+
+<DonutChart data={data} config={config} innerRadius="60%" outerRadius="80%">
+  <DonutChartCenter>
+    <div className="text-2xl font-bold">$12.5K</div>
+    <div className="text-sm text-muted-foreground">Total</div>
+  </DonutChartCenter>
+</DonutChart>
+// variant: "default" | "separated"
+```
+
+---
+
+## SVG Shapes (54 Total)
+
+All shapes are React/Vue components. They accept `size`, `className`, `filled`, and `strokeWidth` props.
+
+```tsx
+import { BurstShape } from '@/components/ui/shapes'
+<BurstShape size={100} className="text-primary" />
+<BurstShape size={80} filled={false} strokeWidth={3} />
+```
+
+**All 54 shapes:**
+
+### Geometric
+`TriangleShape`, `PentagonShape`, `HexagonShape`, `OctagonShape`, `CrossShape`, `TrapezoidShape`, `ParallelogramShape`, `WavyRectangleShape`
+
+### Stars & Bursts
+`Star4Shape`, `Star5Shape`, `Star6Shape`, `StarShape`, `BurstShape`, `ExplosionShape`, `SplatShape`
+
+### Nature & Organic
+`BlobShape`, `WaveShape`, `CloudShape`, `HeartShape`, `AppleShape`, `OrganicShape`
+
+### Symbols & Icons
+`LightningShape`, `RibbonShape`, `ShieldShape`, `SunShape`, `CrescentShape`, `RainbowShape`, `PlanetShape`, `UmbrellaShape`, `EyeShape`, `CursorShape`, `GearShape`, `CelestialShape`
+
+### Tags & Badges
+`TagShape`, `PriceTagShape`, `TicketShape`, `CouponShape`, `BookmarkShape`, `FlagShape`, `PillShape`, `SealShape`, `BadgeShape`
+
+### Decorative
+`PaperTearShape`, `ScribbleUnderline` (via DecorativeShape variants), `GeometricShape`, `DecorativeShape`, `CommunicationShape`, `MechanicalShape`
+
+### Interactive — Shape Builder
+
+Visit **https://boldkit.dev/shapes/builder** to interactively customize any shape's size, fill, stroke, color, and rotation, then copy the ready-to-use component code.
+
+---
+
+## Section Blocks (15 Total)
+
+Blocks are pre-built page sections that snap together to build full pages. All blocks follow neubrutalism aesthetics and are fully responsive.
+
+### Marketing Blocks (10)
+
+| Block | Variants |
+|---|---|
+| **Hero Section** | Centered, Split, WithStats, Minimal, WithVideo |
+| **Feature Grid** | WithIcons, WithImages, Alternating, Bento |
+| **Testimonials** | Grid, Single, Masonry, WithAvatars |
+| **Logo Cloud** | Grid, Marquee, Cards, WithStats |
+| **CTA Section** | Simple, WithBackground, Newsletter, Split, Banner |
+| **Stats Section** | Grid, Cards, Split, Inline, WithIcons |
+| **Team Section** | Grid, List, LargePhotos, Compact |
+| **FAQ Section** | Accordion, TwoColumns, WithCategories, WithContact, SimpleList |
+| **Footer Section** | MultiColumn, WithNewsletter, Simple, Minimal, WithCTA |
+| **Contact Section** | Split, Centered, WithCards, WithMap |
+
+### Application Blocks (5)
+
+| Block | Variants |
+|---|---|
+| **Auth Forms** | Login, SignUp, ForgotPassword, OTPVerification, SplitLayout |
+| **Settings Page** | Profile, Notifications, Security, Appearance, DangerZone, FullPage |
+| **Onboarding Flow** | Wizard, Welcome, ProfileSetup, WorkspaceSetup, GoalSelection, Completion |
+| **Error Pages** | NotFound (404), ServerError (500), Maintenance, Offline, Forbidden (403), ComingSoon, Generic |
+| **Invoice** | Full, Receipt, Summary, List |
+
+### Blocks URLs
+- Hero Section: https://boldkit.dev/blocks/hero-section
+- Feature Grid: https://boldkit.dev/blocks/feature-grid
+- Testimonials: https://boldkit.dev/blocks/testimonials
+- Logo Cloud: https://boldkit.dev/blocks/logo-cloud
+- CTA Section: https://boldkit.dev/blocks/cta-section
+- Stats Section: https://boldkit.dev/blocks/stats-section
+- Team Section: https://boldkit.dev/blocks/team-section
+- FAQ Section: https://boldkit.dev/blocks/faq-section
+- Footer Section: https://boldkit.dev/blocks/footer-section
+- Contact Section: https://boldkit.dev/blocks/contact-section
+- Auth Forms: https://boldkit.dev/blocks/auth-forms
+- Settings Page: https://boldkit.dev/blocks/settings-page
+- Onboarding Flow: https://boldkit.dev/blocks/onboarding-flow
+- Error Pages: https://boldkit.dev/blocks/error-pages
+- Invoice: https://boldkit.dev/blocks/invoice
+
+---
+
+## Full-Page Templates (7)
+
+Ready-to-use page templates built from BoldKit components and blocks.
+
+1. **Landing Page** — SaaS landing with hero, features, pricing, testimonials, footer
+2. **Portfolio** — Personal portfolio with hero, services, projects, contact
+3. **Dashboard** — Admin panel with sidebar, stat cards, charts, and data table
+4. **Pricing** — 3-tier pricing with comparison table and FAQ accordion
+5. **Blog** — Magazine-style blog with featured articles and newsletter signup
+6. **Product** — E-commerce product page with gallery, reviews, related items
+7. **Documentation** — Docs site layout with sidebar navigation and content area
+
+### Template URLs
+- https://boldkit.dev/templates/landing-page
+- https://boldkit.dev/templates/portfolio
+- https://boldkit.dev/templates/dashboard
+- https://boldkit.dev/templates/pricing
+- https://boldkit.dev/templates/blog
+- https://boldkit.dev/templates/product
+- https://boldkit.dev/templates/documentation
+
+---
+
+## Tech Stack
+
+### React
+- React 19
+- Radix UI primitives (accessibility, keyboard navigation, ARIA)
+- Recharts (data visualization for standard charts)
+- Class Variance Authority (CVA) for type-safe variants
+- Tailwind CSS v4
+
+### Vue 3 / Nuxt
+- Vue 3 with Composition API
+- Reka UI primitives (Radix UI port for Vue)
+- vue-echarts (data visualization — ECharts backend)
+- Class Variance Authority (CVA)
+- Tailwind CSS v4
+
+### Shared
+- TypeScript (strict mode)
+- Tailwind CSS v4 with CSS custom properties
+- shadcn CLI compatible registry format
+
+---
+
+## Registry API
+
+All component JSON files follow the shadcn registry format and are available at:
+
+- **Registry index:** `https://boldkit.dev/registry.json`
+- **React components:** `https://boldkit.dev/r/{component-name}.json`
+- **Vue components:** `https://boldkit.dev/r/vue/{component-name}.json`
+
+---
+
+## Contact
+
+- **Author:** Aniruddha Agarwal
+- **Email:** aniruddha@boldkit.dev
+- **GitHub:** https://github.com/ANIBIT14/boldkit
+- **LinkedIn:** https://www.linkedin.com/in/aniruddhaagarwal/
+
+---
+
+## License
+
+MIT License — Free for personal and commercial use.
+
+
+---
+
+## Complete Page Index (112 pages)
+
+Every indexable page on boldkit.dev with its meta title and description.
+
+### BoldKit — Neubrutalism UI for React & Vue 3
+https://boldkit.dev/
+Free neubrutalism UI library for React & Vue 3. 56+ components, 15 blocks, 7 templates, 64 shapes, 14 charts. Install via shadcn CLI.
+
+### Documentation
+https://boldkit.dev/docs
+Install and use BoldKit neubrutalism components in your React or Vue 3 project. Guides, API references, and examples for both frameworks.
+
+### Installation
+https://boldkit.dev/docs/installation
+Install BoldKit neubrutalism components via shadcn CLI for React or shadcn-vue for Vue 3. Step-by-step setup for TypeScript and Tailwind CSS.
+
+### Theming
+https://boldkit.dev/docs/theming
+Customize BoldKit theme colors and CSS variables for React and Vue 3. Dark mode support included.
+
+### 56+ Neubrutalism Components
+https://boldkit.dev/components
+56+ neubrutalism components for React & Vue 3 — buttons, cards, inputs, dialogs, spinners, steppers, and more with thick borders and hard shadows.
+
+### 64 Neubrutalism SVG Shapes
+https://boldkit.dev/shapes
+64 neubrutalism SVG shapes for React & Vue 3 — bursts, hearts, stars, badges, celestial, and decorative shapes with thick borders.
+
+### Shape Builder
+https://boldkit.dev/shapes/builder
+Interactively customize BoldKit SVG shapes. Adjust size, color, border, and shadow for any of the 64 neubrutalism shapes.
+
+### ASCII Shape Animations
+https://boldkit.dev/ascii-shapes
+Animated ASCII art components for React & Vue 3 — 7 animations (spiral, rose, wave, vortex, pulse, matrix, grid) with 5 character sets.
+
+### 14 Neubrutalism Chart Types
+https://boldkit.dev/charts
+14 neubrutalism chart types for React & Vue 3 — bar, line, area, pie, donut, radar, gauge, sparkline, funnel, treemap, heatmap, sankey.
+
+### Theme Builder
+https://boldkit.dev/themes
+Customize BoldKit neubrutalism theme colors for React and Vue 3. Generate CSS variables for your design system with live preview.
+
+### Free Page Templates
+https://boldkit.dev/templates
+Free neubrutalism page templates for React and Vue 3. 7 full-page templates: landing pages, portfolios, dashboards, pricing, blog, product, and docs.
+
+### 15 Section Blocks
+https://boldkit.dev/blocks
+15 free neubrutalism section blocks for React & Vue 3 — 10 marketing blocks (hero, features, testimonials, CTA, stats, FAQ, footer) and 5 application blocks.
+
+### Dot Matrix Studio — Pixel Art & Animation Editor
+https://boldkit.dev/studio
+Free in-browser dot matrix editor — draw pixel art, build frame-by-frame animations with 8 presets, export to WebM, PNG, SVG, or JSON.
+
+### Canvas Effects — 19 Animated Canvas Components
+https://boldkit.dev/canvas-effects
+19 free animated canvas components for React, Vue 3, and Nuxt — Dither, Halftone, CRT, Truchet, Aurora, Flow Field, Plasma, Metaballs, Lightning, Warp Speed, Gravity Wells, and more.
+
+### What Is Neubrutalism? The Complete Guide (2026)
+https://boldkit.dev/neubrutalism
+Neubrutalism (neobrutalism) explained: thick borders, hard shadows, sharp corners, bold flat color and chunky type. Core traits, do’s and don’ts, accessibility, and how to build it in React & Vue.
+
+### Neubrutalism Color Palettes - Copy-Paste Hex & HSL
+https://boldkit.dev/neubrutalism/colors
+Ready-to-use neubrutalism color palettes with hex codes - acid lime, electric blue, hot pink, risograph and newsprint. Plus how to pick 2-3 high-contrast colors that pass WCAG.
+
+### Best Neubrutalism Fonts & Pairings (2026)
+https://boldkit.dev/neubrutalism/fonts
+The best fonts for neubrutalist design - bold neo-grotesque and geometric sans display faces, clean body fonts, and mono accents, with ready-made pairing recipes.
+
+### Neubrutalism Website Examples & Patterns
+https://boldkit.dev/neubrutalism/examples
+Neubrutalism in the wild - the recurring patterns (sticker collage, marquee tickers, oversized type, hard-bordered bento) plus live, inspectable BoldKit template examples for React & Vue.
+
+### Neubrutalism vs Brutalism vs Memphis - The Differences
+https://boldkit.dev/neubrutalism/vs-brutalism
+How neubrutalism differs from raw brutalism and 80s Memphis design - era, borders, color, shadows and usability compared side by side, with guidance on when to use each.
+
+### Free Brutalist Web Tools
+https://boldkit.dev/tools
+Free in-browser tools from BoldKit - FavGrab favicon extractor & image converter, Dot Matrix Studio, Theme Builder, Shape Builder, Canvas Effects and ASCII Shapes.
+
+### Free Favicon Generator - PNG, ICO, SVG & App Icons
+https://boldkit.dev/tools/favicon-generator
+Generate a complete favicon set from any image. Create favicon.ico plus 16, 32, 180, 192 and 512px PNGs for browsers, iOS, Android and PWAs. Free, in-browser, no signup.
+
+### Convert PNG to ICO - Free Favicon Converter
+https://boldkit.dev/tools/png-to-ico
+Convert a PNG into a multi-resolution favicon.ico (16/32/48) for free in your browser. What ICO is, PNG vs ICO, step-by-step conversion, and the exact link tag to add.
+
+### Favicon Sizes & Formats Cheat Sheet (2026)
+https://boldkit.dev/tools/favicon-sizes
+Every favicon size and format you need in 2026 - 16, 32, 180, 192, 512px, ICO, PNG and SVG - with the exact HTML link tags and the modern minimal set vs the legacy set.
+
+### How to Extract a Favicon From Any Website
+https://boldkit.dev/tools/extract-favicon
+Five ways to grab the favicon from any website - FavGrab, the /favicon.ico path, Google’s favicon endpoint, the page’s link tags and more - plus the formats you get and an ethics note.
+
+### Accordion — Neubrutalism Component for React & Vue 3
+https://boldkit.dev/components/accordion
+Accordion — neubrutalism React & Vue 3 component with thick borders, hard shadows, bold colors. Install via shadcn or shadcn-vue.
+
+### Alert — Neubrutalism Component for React & Vue 3
+https://boldkit.dev/components/alert
+Alert — neubrutalism React & Vue 3 component with thick borders, hard shadows, bold colors. Install via shadcn or shadcn-vue.
+
+### Alert Dialog — Neubrutalism Component for React & Vue 3
+https://boldkit.dev/components/alert-dialog
+Alert Dialog — neubrutalism React & Vue 3 component with thick borders, hard shadows, bold colors. Install via shadcn or shadcn-vue.
+
+### Aspect Ratio — Neubrutalism Component for React & Vue 3
+https://boldkit.dev/components/aspect-ratio
+Aspect Ratio — neubrutalism React & Vue 3 component with thick borders, hard shadows, bold colors. Install via shadcn or shadcn-vue.
+
+### Avatar — Neubrutalism Component for React & Vue 3
+https://boldkit.dev/components/avatar
+Avatar — neubrutalism React & Vue 3 component with thick borders, hard shadows, bold colors. Install via shadcn or shadcn-vue.
+
+### Badge — Neubrutalism Component for React & Vue 3
+https://boldkit.dev/components/badge
+Badge — neubrutalism React & Vue 3 component with thick borders, hard shadows, bold colors. Install via shadcn or shadcn-vue.
+
+### Breadcrumb — Neubrutalism Component for React & Vue 3
+https://boldkit.dev/components/breadcrumb
+Breadcrumb — neubrutalism React & Vue 3 component with thick borders, hard shadows, bold colors. Install via shadcn or shadcn-vue.
+
+### Button — Neubrutalism Component for React & Vue 3
+https://boldkit.dev/components/button
+Button — neubrutalism React & Vue 3 component with thick borders, hard shadows, bold colors. Install via shadcn or shadcn-vue.
+
+### Calendar — Neubrutalism Component for React & Vue 3
+https://boldkit.dev/components/calendar
+Calendar — neubrutalism React & Vue 3 component with thick borders, hard shadows, bold colors. Install via shadcn or shadcn-vue.
+
+### Card — Neubrutalism Component for React & Vue 3
+https://boldkit.dev/components/card
+Card — neubrutalism React & Vue 3 component with thick borders, hard shadows, bold colors. Install via shadcn or shadcn-vue.
+
+### Carousel — Neubrutalism Component for React & Vue 3
+https://boldkit.dev/components/carousel
+Carousel — neubrutalism React & Vue 3 component with thick borders, hard shadows, bold colors. Install via shadcn or shadcn-vue.
+
+### Checkbox — Neubrutalism Component for React & Vue 3
+https://boldkit.dev/components/checkbox
+Checkbox — neubrutalism React & Vue 3 component with thick borders, hard shadows, bold colors. Install via shadcn or shadcn-vue.
+
+### Collapsible — Neubrutalism Component for React & Vue 3
+https://boldkit.dev/components/collapsible
+Collapsible — neubrutalism React & Vue 3 component with thick borders, hard shadows, bold colors. Install via shadcn or shadcn-vue.
+
+### Combobox — Neubrutalism Component for React & Vue 3
+https://boldkit.dev/components/combobox
+Combobox — neubrutalism React & Vue 3 component with thick borders, hard shadows, bold colors. Install via shadcn or shadcn-vue.
+
+### Command — Neubrutalism Component for React & Vue 3
+https://boldkit.dev/components/command
+Command — neubrutalism React & Vue 3 component with thick borders, hard shadows, bold colors. Install via shadcn or shadcn-vue.
+
+### Data Table — Neubrutalism Component for React & Vue 3
+https://boldkit.dev/components/data-table
+Data Table — neubrutalism React & Vue 3 component with thick borders, hard shadows, bold colors. Install via shadcn or shadcn-vue.
+
+### Date Range Picker — Neubrutalism Component for React & Vue 3
+https://boldkit.dev/components/date-range-picker
+Date Range Picker — neubrutalism React & Vue 3 component with thick borders, hard shadows, bold colors. Install via shadcn or shadcn-vue.
+
+### Dialog — Neubrutalism Component for React & Vue 3
+https://boldkit.dev/components/dialog
+Dialog — neubrutalism React & Vue 3 component with thick borders, hard shadows, bold colors. Install via shadcn or shadcn-vue.
+
+### Donut Chart — Neubrutalism Component for React & Vue 3
+https://boldkit.dev/components/donut-chart
+Donut Chart — neubrutalism React & Vue 3 component with thick borders, hard shadows, bold colors. Install via shadcn or shadcn-vue.
+
+### Drawer — Neubrutalism Component for React & Vue 3
+https://boldkit.dev/components/drawer
+Drawer — neubrutalism React & Vue 3 component with thick borders, hard shadows, bold colors. Install via shadcn or shadcn-vue.
+
+### Dropdown Menu — Neubrutalism Component for React & Vue 3
+https://boldkit.dev/components/dropdown-menu
+Dropdown Menu — neubrutalism React & Vue 3 component with thick borders, hard shadows, bold colors. Install via shadcn or shadcn-vue.
+
+### Dropzone — Neubrutalism Component for React & Vue 3
+https://boldkit.dev/components/dropzone
+Dropzone — neubrutalism React & Vue 3 component with thick borders, hard shadows, bold colors. Install via shadcn or shadcn-vue.
+
+### Empty State — Neubrutalism Component for React & Vue 3
+https://boldkit.dev/components/empty-state
+Empty State — neubrutalism React & Vue 3 component with thick borders, hard shadows, bold colors. Install via shadcn or shadcn-vue.
+
+### Gauge Chart — Neubrutalism Component for React & Vue 3
+https://boldkit.dev/components/gauge-chart
+Gauge Chart — neubrutalism React & Vue 3 component with thick borders, hard shadows, bold colors. Install via shadcn or shadcn-vue.
+
+### Hover Card — Neubrutalism Component for React & Vue 3
+https://boldkit.dev/components/hover-card
+Hover Card — neubrutalism React & Vue 3 component with thick borders, hard shadows, bold colors. Install via shadcn or shadcn-vue.
+
+### Input — Neubrutalism Component for React & Vue 3
+https://boldkit.dev/components/input
+Input — neubrutalism React & Vue 3 component with thick borders, hard shadows, bold colors. Install via shadcn or shadcn-vue.
+
+### Input OTP — Neubrutalism Component for React & Vue 3
+https://boldkit.dev/components/input-otp
+Input OTP — neubrutalism React & Vue 3 component with thick borders, hard shadows, bold colors. Install via shadcn or shadcn-vue.
+
+### Kbd — Neubrutalism Component for React & Vue 3
+https://boldkit.dev/components/kbd
+Kbd — neubrutalism React & Vue 3 component with thick borders, hard shadows, bold colors. Install via shadcn or shadcn-vue.
+
+### Label — Neubrutalism Component for React & Vue 3
+https://boldkit.dev/components/label
+Label — neubrutalism React & Vue 3 component with thick borders, hard shadows, bold colors. Install via shadcn or shadcn-vue.
+
+### Layered Card — Neubrutalism Component for React & Vue 3
+https://boldkit.dev/components/layered-card
+Layered Card — neubrutalism React & Vue 3 component with thick borders, hard shadows, bold colors. Install via shadcn or shadcn-vue.
+
+### Marquee — Neubrutalism Component for React & Vue 3
+https://boldkit.dev/components/marquee
+Marquee — neubrutalism React & Vue 3 component with thick borders, hard shadows, bold colors. Install via shadcn or shadcn-vue.
+
+### Math Curve Background — Neubrutalism Component for React & Vue 3
+https://boldkit.dev/components/math-curve-background
+Math Curve Background — neubrutalism React & Vue 3 component with thick borders, hard shadows, bold colors. Install via shadcn or shadcn-vue.
+
+### Math Curve Loader — Neubrutalism Component for React & Vue 3
+https://boldkit.dev/components/math-curve-loader
+Math Curve Loader — neubrutalism React & Vue 3 component with thick borders, hard shadows, bold colors. Install via shadcn or shadcn-vue.
+
+### Math Curve Progress — Neubrutalism Component for React & Vue 3
+https://boldkit.dev/components/math-curve-progress
+Math Curve Progress — neubrutalism React & Vue 3 component with thick borders, hard shadows, bold colors. Install via shadcn or shadcn-vue.
+
+### Pagination — Neubrutalism Component for React & Vue 3
+https://boldkit.dev/components/pagination
+Pagination — neubrutalism React & Vue 3 component with thick borders, hard shadows, bold colors. Install via shadcn or shadcn-vue.
+
+### Popover — Neubrutalism Component for React & Vue 3
+https://boldkit.dev/components/popover
+Popover — neubrutalism React & Vue 3 component with thick borders, hard shadows, bold colors. Install via shadcn or shadcn-vue.
+
+### Progress — Neubrutalism Component for React & Vue 3
+https://boldkit.dev/components/progress
+Progress — neubrutalism React & Vue 3 component with thick borders, hard shadows, bold colors. Install via shadcn or shadcn-vue.
+
+### Radar Chart — Neubrutalism Component for React & Vue 3
+https://boldkit.dev/components/radar-chart
+Radar Chart — neubrutalism React & Vue 3 component with thick borders, hard shadows, bold colors. Install via shadcn or shadcn-vue.
+
+### Radial Bar Chart — Neubrutalism Component for React & Vue 3
+https://boldkit.dev/components/radial-bar-chart
+Radial Bar Chart — neubrutalism React & Vue 3 component with thick borders, hard shadows, bold colors. Install via shadcn or shadcn-vue.
+
+### Radio Group — Neubrutalism Component for React & Vue 3
+https://boldkit.dev/components/radio-group
+Radio Group — neubrutalism React & Vue 3 component with thick borders, hard shadows, bold colors. Install via shadcn or shadcn-vue.
+
+### Rating — Neubrutalism Component for React & Vue 3
+https://boldkit.dev/components/rating
+Rating — neubrutalism React & Vue 3 component with thick borders, hard shadows, bold colors. Install via shadcn or shadcn-vue.
+
+### Scroll Area — Neubrutalism Component for React & Vue 3
+https://boldkit.dev/components/scroll-area
+Scroll Area — neubrutalism React & Vue 3 component with thick borders, hard shadows, bold colors. Install via shadcn or shadcn-vue.
+
+### Select — Neubrutalism Component for React & Vue 3
+https://boldkit.dev/components/select
+Select — neubrutalism React & Vue 3 component with thick borders, hard shadows, bold colors. Install via shadcn or shadcn-vue.
+
+### Separator — Neubrutalism Component for React & Vue 3
+https://boldkit.dev/components/separator
+Separator — neubrutalism React & Vue 3 component with thick borders, hard shadows, bold colors. Install via shadcn or shadcn-vue.
+
+### Sheet — Neubrutalism Component for React & Vue 3
+https://boldkit.dev/components/sheet
+Sheet — neubrutalism React & Vue 3 component with thick borders, hard shadows, bold colors. Install via shadcn or shadcn-vue.
+
+### Sidebar — Neubrutalism Component for React & Vue 3
+https://boldkit.dev/components/sidebar
+Sidebar — neubrutalism React & Vue 3 component with thick borders, hard shadows, bold colors. Install via shadcn or shadcn-vue.
+
+### Skeleton — Neubrutalism Component for React & Vue 3
+https://boldkit.dev/components/skeleton
+Skeleton — neubrutalism React & Vue 3 component with thick borders, hard shadows, bold colors. Install via shadcn or shadcn-vue.
+
+### Slider — Neubrutalism Component for React & Vue 3
+https://boldkit.dev/components/slider
+Slider — neubrutalism React & Vue 3 component with thick borders, hard shadows, bold colors. Install via shadcn or shadcn-vue.
+
+### Sonner — Neubrutalism Component for React & Vue 3
+https://boldkit.dev/components/sonner
+Sonner — neubrutalism React & Vue 3 component with thick borders, hard shadows, bold colors. Install via shadcn or shadcn-vue.
+
+### Sparkline — Neubrutalism Component for React & Vue 3
+https://boldkit.dev/components/sparkline
+Sparkline — neubrutalism React & Vue 3 component with thick borders, hard shadows, bold colors. Install via shadcn or shadcn-vue.
+
+### Spinner — Neubrutalism Component for React & Vue 3
+https://boldkit.dev/components/spinner
+Spinner — neubrutalism React & Vue 3 component with thick borders, hard shadows, bold colors. Install via shadcn or shadcn-vue.
+
+### Stat Card — Neubrutalism Component for React & Vue 3
+https://boldkit.dev/components/stat-card
+Stat Card — neubrutalism React & Vue 3 component with thick borders, hard shadows, bold colors. Install via shadcn or shadcn-vue.
+
+### Stepper — Neubrutalism Component for React & Vue 3
+https://boldkit.dev/components/stepper
+Stepper — neubrutalism React & Vue 3 component with thick borders, hard shadows, bold colors. Install via shadcn or shadcn-vue.
+
+### Sticker — Neubrutalism Component for React & Vue 3
+https://boldkit.dev/components/sticker
+Sticker — neubrutalism React & Vue 3 component with thick borders, hard shadows, bold colors. Install via shadcn or shadcn-vue.
+
+### Switch — Neubrutalism Component for React & Vue 3
+https://boldkit.dev/components/switch
+Switch — neubrutalism React & Vue 3 component with thick borders, hard shadows, bold colors. Install via shadcn or shadcn-vue.
+
+### Table — Neubrutalism Component for React & Vue 3
+https://boldkit.dev/components/table
+Table — neubrutalism React & Vue 3 component with thick borders, hard shadows, bold colors. Install via shadcn or shadcn-vue.
+
+### Tabs — Neubrutalism Component for React & Vue 3
+https://boldkit.dev/components/tabs
+Tabs — neubrutalism React & Vue 3 component with thick borders, hard shadows, bold colors. Install via shadcn or shadcn-vue.
+
+### Tag Input — Neubrutalism Component for React & Vue 3
+https://boldkit.dev/components/tag-input
+Tag Input — neubrutalism React & Vue 3 component with thick borders, hard shadows, bold colors. Install via shadcn or shadcn-vue.
+
+### Textarea — Neubrutalism Component for React & Vue 3
+https://boldkit.dev/components/textarea
+Textarea — neubrutalism React & Vue 3 component with thick borders, hard shadows, bold colors. Install via shadcn or shadcn-vue.
+
+### Time Picker — Neubrutalism Component for React & Vue 3
+https://boldkit.dev/components/time-picker
+Time Picker — neubrutalism React & Vue 3 component with thick borders, hard shadows, bold colors. Install via shadcn or shadcn-vue.
+
+### Timeline — Neubrutalism Component for React & Vue 3
+https://boldkit.dev/components/timeline
+Timeline — neubrutalism React & Vue 3 component with thick borders, hard shadows, bold colors. Install via shadcn or shadcn-vue.
+
+### Toggle — Neubrutalism Component for React & Vue 3
+https://boldkit.dev/components/toggle
+Toggle — neubrutalism React & Vue 3 component with thick borders, hard shadows, bold colors. Install via shadcn or shadcn-vue.
+
+### Toggle Group — Neubrutalism Component for React & Vue 3
+https://boldkit.dev/components/toggle-group
+Toggle Group — neubrutalism React & Vue 3 component with thick borders, hard shadows, bold colors. Install via shadcn or shadcn-vue.
+
+### Tooltip — Neubrutalism Component for React & Vue 3
+https://boldkit.dev/components/tooltip
+Tooltip — neubrutalism React & Vue 3 component with thick borders, hard shadows, bold colors. Install via shadcn or shadcn-vue.
+
+### Tour — Neubrutalism Component for React & Vue 3
+https://boldkit.dev/components/tour
+Tour — neubrutalism React & Vue 3 component with thick borders, hard shadows, bold colors. Install via shadcn or shadcn-vue.
+
+### Tree View — Neubrutalism Component for React & Vue 3
+https://boldkit.dev/components/tree-view
+Tree View — neubrutalism React & Vue 3 component with thick borders, hard shadows, bold colors. Install via shadcn or shadcn-vue.
+
+### Hero Section Block — Neubrutalism Section for React & Vue 3
+https://boldkit.dev/blocks/hero-section
+Hero Section block with neubrutalism styling for React and Vue 3. Multiple variants included. Perfect for landing pages and web applications.
+
+### Feature Grid Block — Neubrutalism Section for React & Vue 3
+https://boldkit.dev/blocks/feature-grid
+Feature Grid block with neubrutalism styling for React and Vue 3. Multiple variants included. Perfect for landing pages and web applications.
+
+### Testimonials Block — Neubrutalism Section for React & Vue 3
+https://boldkit.dev/blocks/testimonials
+Testimonials block with neubrutalism styling for React and Vue 3. Multiple variants included. Perfect for landing pages and web applications.
+
+### Logo Cloud Block — Neubrutalism Section for React & Vue 3
+https://boldkit.dev/blocks/logo-cloud
+Logo Cloud block with neubrutalism styling for React and Vue 3. Multiple variants included. Perfect for landing pages and web applications.
+
+### CTA Section Block — Neubrutalism Section for React & Vue 3
+https://boldkit.dev/blocks/cta-section
+CTA Section block with neubrutalism styling for React and Vue 3. Multiple variants included. Perfect for landing pages and web applications.
+
+### Stats Section Block — Neubrutalism Section for React & Vue 3
+https://boldkit.dev/blocks/stats-section
+Stats Section block with neubrutalism styling for React and Vue 3. Multiple variants included. Perfect for landing pages and web applications.
+
+### Team Section Block — Neubrutalism Section for React & Vue 3
+https://boldkit.dev/blocks/team-section
+Team Section block with neubrutalism styling for React and Vue 3. Multiple variants included. Perfect for landing pages and web applications.
+
+### FAQ Section Block — Neubrutalism Section for React & Vue 3
+https://boldkit.dev/blocks/faq-section
+FAQ Section block with neubrutalism styling for React and Vue 3. Multiple variants included. Perfect for landing pages and web applications.
+
+### Footer Section Block — Neubrutalism Section for React & Vue 3
+https://boldkit.dev/blocks/footer-section
+Footer Section block with neubrutalism styling for React and Vue 3. Multiple variants included. Perfect for landing pages and web applications.
+
+### Contact Section Block — Neubrutalism Section for React & Vue 3
+https://boldkit.dev/blocks/contact-section
+Contact Section block with neubrutalism styling for React and Vue 3. Multiple variants included. Perfect for landing pages and web applications.
+
+### Auth Forms Block — Neubrutalism Section for React & Vue 3
+https://boldkit.dev/blocks/auth-forms
+Auth Forms block with neubrutalism styling for React and Vue 3. Multiple variants included. Perfect for landing pages and web applications.
+
+### Settings Page Block — Neubrutalism Section for React & Vue 3
+https://boldkit.dev/blocks/settings-page
+Settings Page block with neubrutalism styling for React and Vue 3. Multiple variants included. Perfect for landing pages and web applications.
+
+### Onboarding Flow Block — Neubrutalism Section for React & Vue 3
+https://boldkit.dev/blocks/onboarding-flow
+Onboarding Flow block with neubrutalism styling for React and Vue 3. Multiple variants included. Perfect for landing pages and web applications.
+
+### Error Pages Block — Neubrutalism Section for React & Vue 3
+https://boldkit.dev/blocks/error-pages
+Error Pages block with neubrutalism styling for React and Vue 3. Multiple variants included. Perfect for landing pages and web applications.
+
+### Invoice Block — Neubrutalism Section for React & Vue 3
+https://boldkit.dev/blocks/invoice
+Invoice block with neubrutalism styling for React and Vue 3. Multiple variants included. Perfect for landing pages and web applications.
+
+### Landing Page Template — Free Neubrutalism Template
+https://boldkit.dev/templates/landing-page
+Free neubrutalism landing page template for React and Vue 3. Copy, paste, and customize for your project.
+
+### Portfolio Template — Free Neubrutalism Template
+https://boldkit.dev/templates/portfolio
+Free neubrutalism portfolio template for React and Vue 3. Copy, paste, and customize for your project.
+
+### Dashboard Template — Free Neubrutalism Template
+https://boldkit.dev/templates/dashboard
+Free neubrutalism dashboard template for React and Vue 3. Copy, paste, and customize for your project.
+
+### Pricing Template — Free Neubrutalism Template
+https://boldkit.dev/templates/pricing
+Free neubrutalism pricing template for React and Vue 3. Copy, paste, and customize for your project.
+
+### Blog Template — Free Neubrutalism Template
+https://boldkit.dev/templates/blog
+Free neubrutalism blog template for React and Vue 3. Copy, paste, and customize for your project.
+
+### Product Template — Free Neubrutalism Template
+https://boldkit.dev/templates/product
+Free neubrutalism product template for React and Vue 3. Copy, paste, and customize for your project.
+
+### Docs Template — Free Neubrutalism Template
+https://boldkit.dev/templates/docs
+Free neubrutalism docs template for React and Vue 3. Copy, paste, and customize for your project.
+
+
+---
+
+## Complete Install Index
+
+Every BoldKit registry item is installed via the shadcn CLI — the source is
+copied directly into your project (there is no npm package to import).
+
+### React (99 items)
+
+```bash
+npx shadcn@latest add "https://boldkit.dev/r/accordion.json"
+npx shadcn@latest add "https://boldkit.dev/r/alert.json"
+npx shadcn@latest add "https://boldkit.dev/r/alert-dialog.json"
+npx shadcn@latest add "https://boldkit.dev/r/ascii-shapes.json"
+npx shadcn@latest add "https://boldkit.dev/r/aspect-ratio.json"
+npx shadcn@latest add "https://boldkit.dev/r/aurora.json"
+npx shadcn@latest add "https://boldkit.dev/r/avatar.json"
+npx shadcn@latest add "https://boldkit.dev/r/badge.json"
+npx shadcn@latest add "https://boldkit.dev/r/breadcrumb.json"
+npx shadcn@latest add "https://boldkit.dev/r/button.json"
+npx shadcn@latest add "https://boldkit.dev/r/calendar.json"
+npx shadcn@latest add "https://boldkit.dev/r/card.json"
+npx shadcn@latest add "https://boldkit.dev/r/carousel.json"
+npx shadcn@latest add "https://boldkit.dev/r/chart.json"
+npx shadcn@latest add "https://boldkit.dev/r/checkbox.json"
+npx shadcn@latest add "https://boldkit.dev/r/collapsible.json"
+npx shadcn@latest add "https://boldkit.dev/r/combobox.json"
+npx shadcn@latest add "https://boldkit.dev/r/command.json"
+npx shadcn@latest add "https://boldkit.dev/r/crt.json"
+npx shadcn@latest add "https://boldkit.dev/r/data-table.json"
+npx shadcn@latest add "https://boldkit.dev/r/date-range-picker.json"
+npx shadcn@latest add "https://boldkit.dev/r/dialog.json"
+npx shadcn@latest add "https://boldkit.dev/r/dither.json"
+npx shadcn@latest add "https://boldkit.dev/r/donut-chart.json"
+npx shadcn@latest add "https://boldkit.dev/r/dot-blob.json"
+npx shadcn@latest add "https://boldkit.dev/r/dot-wave.json"
+npx shadcn@latest add "https://boldkit.dev/r/drawer.json"
+npx shadcn@latest add "https://boldkit.dev/r/dropdown-menu.json"
+npx shadcn@latest add "https://boldkit.dev/r/dropzone.json"
+npx shadcn@latest add "https://boldkit.dev/r/empty-state.json"
+npx shadcn@latest add "https://boldkit.dev/r/error-boundary.json"
+npx shadcn@latest add "https://boldkit.dev/r/flow-field.json"
+npx shadcn@latest add "https://boldkit.dev/r/funnel-chart.json"
+npx shadcn@latest add "https://boldkit.dev/r/gauge-chart.json"
+npx shadcn@latest add "https://boldkit.dev/r/gravity-wells.json"
+npx shadcn@latest add "https://boldkit.dev/r/halftone.json"
+npx shadcn@latest add "https://boldkit.dev/r/heatmap-chart.json"
+npx shadcn@latest add "https://boldkit.dev/r/hover-card.json"
+npx shadcn@latest add "https://boldkit.dev/r/input.json"
+npx shadcn@latest add "https://boldkit.dev/r/input-otp.json"
+npx shadcn@latest add "https://boldkit.dev/r/kbd.json"
+npx shadcn@latest add "https://boldkit.dev/r/label.json"
+npx shadcn@latest add "https://boldkit.dev/r/layered-card.json"
+npx shadcn@latest add "https://boldkit.dev/r/lightning.json"
+npx shadcn@latest add "https://boldkit.dev/r/lissajous-grid.json"
+npx shadcn@latest add "https://boldkit.dev/r/marquee.json"
+npx shadcn@latest add "https://boldkit.dev/r/math-curve-background.json"
+npx shadcn@latest add "https://boldkit.dev/r/math-curve-loader.json"
+npx shadcn@latest add "https://boldkit.dev/r/math-curve-progress.json"
+npx shadcn@latest add "https://boldkit.dev/r/math-curves.json"
+npx shadcn@latest add "https://boldkit.dev/r/matrix-rain.json"
+npx shadcn@latest add "https://boldkit.dev/r/metaballs.json"
+npx shadcn@latest add "https://boldkit.dev/r/mouse-ripple.json"
+npx shadcn@latest add "https://boldkit.dev/r/pagination.json"
+npx shadcn@latest add "https://boldkit.dev/r/particle-web.json"
+npx shadcn@latest add "https://boldkit.dev/r/plasma.json"
+npx shadcn@latest add "https://boldkit.dev/r/popover.json"
+npx shadcn@latest add "https://boldkit.dev/r/progress.json"
+npx shadcn@latest add "https://boldkit.dev/r/radar-chart.json"
+npx shadcn@latest add "https://boldkit.dev/r/radial-bar-chart.json"
+npx shadcn@latest add "https://boldkit.dev/r/radio-group.json"
+npx shadcn@latest add "https://boldkit.dev/r/rating.json"
+npx shadcn@latest add "https://boldkit.dev/r/registry.json"
+npx shadcn@latest add "https://boldkit.dev/r/sankey-chart.json"
+npx shadcn@latest add "https://boldkit.dev/r/scroll-area.json"
+npx shadcn@latest add "https://boldkit.dev/r/select.json"
+npx shadcn@latest add "https://boldkit.dev/r/separator.json"
+npx shadcn@latest add "https://boldkit.dev/r/shapes.json"
+npx shadcn@latest add "https://boldkit.dev/r/sheet.json"
+npx shadcn@latest add "https://boldkit.dev/r/sidebar.json"
+npx shadcn@latest add "https://boldkit.dev/r/skeleton.json"
+npx shadcn@latest add "https://boldkit.dev/r/slider.json"
+npx shadcn@latest add "https://boldkit.dev/r/sonner.json"
+npx shadcn@latest add "https://boldkit.dev/r/sparkline.json"
+npx shadcn@latest add "https://boldkit.dev/r/spinner.json"
+npx shadcn@latest add "https://boldkit.dev/r/stat-card.json"
+npx shadcn@latest add "https://boldkit.dev/r/stepper.json"
+npx shadcn@latest add "https://boldkit.dev/r/sticker.json"
+npx shadcn@latest add "https://boldkit.dev/r/styles.json"
+npx shadcn@latest add "https://boldkit.dev/r/switch.json"
+npx shadcn@latest add "https://boldkit.dev/r/table.json"
+npx shadcn@latest add "https://boldkit.dev/r/tabs.json"
+npx shadcn@latest add "https://boldkit.dev/r/tag-input.json"
+npx shadcn@latest add "https://boldkit.dev/r/textarea.json"
+npx shadcn@latest add "https://boldkit.dev/r/theme.json"
+npx shadcn@latest add "https://boldkit.dev/r/time-picker.json"
+npx shadcn@latest add "https://boldkit.dev/r/timeline.json"
+npx shadcn@latest add "https://boldkit.dev/r/toggle.json"
+npx shadcn@latest add "https://boldkit.dev/r/toggle-group.json"
+npx shadcn@latest add "https://boldkit.dev/r/tooltip.json"
+npx shadcn@latest add "https://boldkit.dev/r/topography.json"
+npx shadcn@latest add "https://boldkit.dev/r/tour.json"
+npx shadcn@latest add "https://boldkit.dev/r/tree-view.json"
+npx shadcn@latest add "https://boldkit.dev/r/treemap-chart.json"
+npx shadcn@latest add "https://boldkit.dev/r/truchet.json"
+npx shadcn@latest add "https://boldkit.dev/r/use-theme.json"
+npx shadcn@latest add "https://boldkit.dev/r/utils.json"
+npx shadcn@latest add "https://boldkit.dev/r/voronoi-pulse.json"
+npx shadcn@latest add "https://boldkit.dev/r/warp-speed.json"
+```
+
+### Vue 3 / Nuxt (100 items)
+
+```bash
+npx shadcn-vue@latest add "https://boldkit.dev/r/vue/accordion.json"
+npx shadcn-vue@latest add "https://boldkit.dev/r/vue/alert.json"
+npx shadcn-vue@latest add "https://boldkit.dev/r/vue/alert-dialog.json"
+npx shadcn-vue@latest add "https://boldkit.dev/r/vue/ascii-shapes.json"
+npx shadcn-vue@latest add "https://boldkit.dev/r/vue/aspect-ratio.json"
+npx shadcn-vue@latest add "https://boldkit.dev/r/vue/aurora.json"
+npx shadcn-vue@latest add "https://boldkit.dev/r/vue/avatar.json"
+npx shadcn-vue@latest add "https://boldkit.dev/r/vue/badge.json"
+npx shadcn-vue@latest add "https://boldkit.dev/r/vue/breadcrumb.json"
+npx shadcn-vue@latest add "https://boldkit.dev/r/vue/button.json"
+npx shadcn-vue@latest add "https://boldkit.dev/r/vue/calendar.json"
+npx shadcn-vue@latest add "https://boldkit.dev/r/vue/card.json"
+npx shadcn-vue@latest add "https://boldkit.dev/r/vue/carousel.json"
+npx shadcn-vue@latest add "https://boldkit.dev/r/vue/chart.json"
+npx shadcn-vue@latest add "https://boldkit.dev/r/vue/chart-utils.json"
+npx shadcn-vue@latest add "https://boldkit.dev/r/vue/checkbox.json"
+npx shadcn-vue@latest add "https://boldkit.dev/r/vue/collapsible.json"
+npx shadcn-vue@latest add "https://boldkit.dev/r/vue/combobox.json"
+npx shadcn-vue@latest add "https://boldkit.dev/r/vue/command.json"
+npx shadcn-vue@latest add "https://boldkit.dev/r/vue/crt.json"
+npx shadcn-vue@latest add "https://boldkit.dev/r/vue/data-table.json"
+npx shadcn-vue@latest add "https://boldkit.dev/r/vue/date-range-picker.json"
+npx shadcn-vue@latest add "https://boldkit.dev/r/vue/dialog.json"
+npx shadcn-vue@latest add "https://boldkit.dev/r/vue/dither.json"
+npx shadcn-vue@latest add "https://boldkit.dev/r/vue/donut-chart.json"
+npx shadcn-vue@latest add "https://boldkit.dev/r/vue/dot-blob.json"
+npx shadcn-vue@latest add "https://boldkit.dev/r/vue/dot-wave.json"
+npx shadcn-vue@latest add "https://boldkit.dev/r/vue/drawer.json"
+npx shadcn-vue@latest add "https://boldkit.dev/r/vue/dropdown-menu.json"
+npx shadcn-vue@latest add "https://boldkit.dev/r/vue/dropzone.json"
+npx shadcn-vue@latest add "https://boldkit.dev/r/vue/empty-state.json"
+npx shadcn-vue@latest add "https://boldkit.dev/r/vue/error-boundary.json"
+npx shadcn-vue@latest add "https://boldkit.dev/r/vue/flow-field.json"
+npx shadcn-vue@latest add "https://boldkit.dev/r/vue/funnel-chart.json"
+npx shadcn-vue@latest add "https://boldkit.dev/r/vue/gauge-chart.json"
+npx shadcn-vue@latest add "https://boldkit.dev/r/vue/gravity-wells.json"
+npx shadcn-vue@latest add "https://boldkit.dev/r/vue/halftone.json"
+npx shadcn-vue@latest add "https://boldkit.dev/r/vue/heatmap-chart.json"
+npx shadcn-vue@latest add "https://boldkit.dev/r/vue/hover-card.json"
+npx shadcn-vue@latest add "https://boldkit.dev/r/vue/index.json"
+npx shadcn-vue@latest add "https://boldkit.dev/r/vue/input.json"
+npx shadcn-vue@latest add "https://boldkit.dev/r/vue/input-otp.json"
+npx shadcn-vue@latest add "https://boldkit.dev/r/vue/kbd.json"
+npx shadcn-vue@latest add "https://boldkit.dev/r/vue/label.json"
+npx shadcn-vue@latest add "https://boldkit.dev/r/vue/layered-card.json"
+npx shadcn-vue@latest add "https://boldkit.dev/r/vue/lightning.json"
+npx shadcn-vue@latest add "https://boldkit.dev/r/vue/lissajous-grid.json"
+npx shadcn-vue@latest add "https://boldkit.dev/r/vue/marquee.json"
+npx shadcn-vue@latest add "https://boldkit.dev/r/vue/math-curve-background.json"
+npx shadcn-vue@latest add "https://boldkit.dev/r/vue/math-curve-loader.json"
+npx shadcn-vue@latest add "https://boldkit.dev/r/vue/math-curve-progress.json"
+npx shadcn-vue@latest add "https://boldkit.dev/r/vue/math-curves.json"
+npx shadcn-vue@latest add "https://boldkit.dev/r/vue/matrix-rain.json"
+npx shadcn-vue@latest add "https://boldkit.dev/r/vue/metaballs.json"
+npx shadcn-vue@latest add "https://boldkit.dev/r/vue/mouse-ripple.json"
+npx shadcn-vue@latest add "https://boldkit.dev/r/vue/pagination.json"
+npx shadcn-vue@latest add "https://boldkit.dev/r/vue/particle-web.json"
+npx shadcn-vue@latest add "https://boldkit.dev/r/vue/plasma.json"
+npx shadcn-vue@latest add "https://boldkit.dev/r/vue/popover.json"
+npx shadcn-vue@latest add "https://boldkit.dev/r/vue/progress.json"
+npx shadcn-vue@latest add "https://boldkit.dev/r/vue/radar-chart.json"
+npx shadcn-vue@latest add "https://boldkit.dev/r/vue/radial-bar-chart.json"
+npx shadcn-vue@latest add "https://boldkit.dev/r/vue/radio-group.json"
+npx shadcn-vue@latest add "https://boldkit.dev/r/vue/rating.json"
+npx shadcn-vue@latest add "https://boldkit.dev/r/vue/sankey-chart.json"
+npx shadcn-vue@latest add "https://boldkit.dev/r/vue/scroll-area.json"
+npx shadcn-vue@latest add "https://boldkit.dev/r/vue/select.json"
+npx shadcn-vue@latest add "https://boldkit.dev/r/vue/separator.json"
+npx shadcn-vue@latest add "https://boldkit.dev/r/vue/shapes.json"
+npx shadcn-vue@latest add "https://boldkit.dev/r/vue/sheet.json"
+npx shadcn-vue@latest add "https://boldkit.dev/r/vue/sidebar.json"
+npx shadcn-vue@latest add "https://boldkit.dev/r/vue/skeleton.json"
+npx shadcn-vue@latest add "https://boldkit.dev/r/vue/slider.json"
+npx shadcn-vue@latest add "https://boldkit.dev/r/vue/sonner.json"
+npx shadcn-vue@latest add "https://boldkit.dev/r/vue/sparkline.json"
+npx shadcn-vue@latest add "https://boldkit.dev/r/vue/spinner.json"
+npx shadcn-vue@latest add "https://boldkit.dev/r/vue/stat-card.json"
+npx shadcn-vue@latest add "https://boldkit.dev/r/vue/stepper.json"
+npx shadcn-vue@latest add "https://boldkit.dev/r/vue/sticker.json"
+npx shadcn-vue@latest add "https://boldkit.dev/r/vue/styles.json"
+npx shadcn-vue@latest add "https://boldkit.dev/r/vue/switch.json"
+npx shadcn-vue@latest add "https://boldkit.dev/r/vue/table.json"
+npx shadcn-vue@latest add "https://boldkit.dev/r/vue/tabs.json"
+npx shadcn-vue@latest add "https://boldkit.dev/r/vue/tag-input.json"
+npx shadcn-vue@latest add "https://boldkit.dev/r/vue/textarea.json"
+npx shadcn-vue@latest add "https://boldkit.dev/r/vue/theme.json"
+npx shadcn-vue@latest add "https://boldkit.dev/r/vue/time-picker.json"
+npx shadcn-vue@latest add "https://boldkit.dev/r/vue/timeline.json"
+npx shadcn-vue@latest add "https://boldkit.dev/r/vue/toggle.json"
+npx shadcn-vue@latest add "https://boldkit.dev/r/vue/toggle-group.json"
+npx shadcn-vue@latest add "https://boldkit.dev/r/vue/tooltip.json"
+npx shadcn-vue@latest add "https://boldkit.dev/r/vue/topography.json"
+npx shadcn-vue@latest add "https://boldkit.dev/r/vue/tour.json"
+npx shadcn-vue@latest add "https://boldkit.dev/r/vue/tree-view.json"
+npx shadcn-vue@latest add "https://boldkit.dev/r/vue/treemap-chart.json"
+npx shadcn-vue@latest add "https://boldkit.dev/r/vue/truchet.json"
+npx shadcn-vue@latest add "https://boldkit.dev/r/vue/use-theme.json"
+npx shadcn-vue@latest add "https://boldkit.dev/r/vue/utils.json"
+npx shadcn-vue@latest add "https://boldkit.dev/r/vue/voronoi-pulse.json"
+npx shadcn-vue@latest add "https://boldkit.dev/r/vue/warp-speed.json"
+```
+
