@@ -191,6 +191,31 @@ npx shadcn@latest add https://boldkit.dev/r/button.json
 npx shadcn-vue@latest add https://boldkit.dev/r/vue/button.json
 ```
 
+### Install directly from GitHub (zero config, React)
+
+BoldKit's repository is also a shadcn **GitHub registry** — install any React component straight from the
+repo with no `components.json` alias and no setup. Scoped cross-references like `@boldkit/utils` resolve
+automatically (the CLI maps them to this same registry).
+
+```bash
+# Install a component — owner/repo/item
+npx shadcn@latest add ANIBIT14/boldkit/button
+
+# Install multiple
+npx shadcn@latest add ANIBIT14/boldkit/button ANIBIT14/boldkit/card
+
+# Pin to a tag, branch, or commit SHA for reproducible installs
+npx shadcn@latest add ANIBIT14/boldkit/button#main
+
+# Browse / preview before installing
+npx shadcn@latest list ANIBIT14/boldkit
+npx shadcn@latest view ANIBIT14/boldkit/button
+npx shadcn@latest add ANIBIT14/boldkit/button --dry-run
+```
+
+> GitHub install covers the React registry (components, blocks, theme, utils, shapes). Vue 3 / Nuxt and
+> canvas effects install via the hosted URLs above.
+
 ### Nuxt
 
 ```bash

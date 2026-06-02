@@ -170,6 +170,26 @@ npx shadcn@latest add https://boldkit.dev/r/theme.json
 npx shadcn@latest add https://boldkit.dev/r/shapes.json
 ```
 
+### React (GitHub registry — zero config)
+
+BoldKit's GitHub repo is also a shadcn GitHub registry. Install any React item directly with the `owner/repo/item` address — no components.json alias needed; scoped deps like `@boldkit/utils` resolve automatically.
+
+```bash
+# Install a component (owner/repo/item)
+npx shadcn@latest add ANIBIT14/boldkit/button
+
+# Multiple, or pin to a tag/branch/SHA
+npx shadcn@latest add ANIBIT14/boldkit/button ANIBIT14/boldkit/card
+npx shadcn@latest add ANIBIT14/boldkit/button#main
+
+# Browse / preview
+npx shadcn@latest list ANIBIT14/boldkit
+npx shadcn@latest view ANIBIT14/boldkit/button
+npx shadcn@latest add ANIBIT14/boldkit/button --dry-run
+```
+
+GitHub install covers the React registry (components, blocks, theme, utils, shapes). Vue 3 / Nuxt and canvas effects use the hosted URLs.
+
 ### Vue 3 / Nuxt (shadcn-vue CLI)
 
 ```bash

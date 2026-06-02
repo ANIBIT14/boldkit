@@ -2,7 +2,7 @@ import { Badge } from '@/components/ui/badge'
 import { copyToClipboard } from '@/lib/clipboard'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { useState } from 'react'
-import { Copy, Check, Terminal } from 'lucide-react'
+import { Copy, Check, Terminal, Github } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { toast } from 'sonner'
@@ -258,6 +258,58 @@ export function Installation() {
             </div>
           </CardContent>
         </Card>
+
+        {/* GitHub Registry Method (React only) */}
+        {framework === 'react' && (
+          <Card className="border-foreground">
+            <CardHeader className="bg-foreground text-background">
+              <CardTitle className="flex items-center gap-2">
+                <Github className="h-5 w-5" />
+                Install from GitHub (zero config)
+              </CardTitle>
+            </CardHeader>
+            <CardContent className="pt-6 space-y-6">
+              <p className="text-muted-foreground">
+                BoldKit's repository is also a shadcn <strong>GitHub registry</strong>. Install any React
+                component straight from the repo — no <code className="bg-muted px-1 border">components.json</code> alias
+                and no setup. Scoped cross-references like <code className="bg-muted px-1 border">@boldkit/utils</code> resolve
+                automatically.
+              </p>
+
+              <div>
+                <h3 className="font-bold uppercase tracking-wide mb-2">Add a component</h3>
+                <p className="text-sm text-muted-foreground mb-2">
+                  Use the <code className="bg-muted px-1 border">owner/repo/item</code> address:
+                </p>
+                <CodeBlock code="npx shadcn@latest add ANIBIT14/boldkit/button" />
+              </div>
+
+              <div>
+                <h3 className="font-bold uppercase tracking-wide mb-2">Multiple, or pin to a version</h3>
+                <CodeBlock code={`# Several at once
+npx shadcn@latest add ANIBIT14/boldkit/button ANIBIT14/boldkit/card
+
+# Pin to a tag, branch, or commit SHA for reproducible installs
+npx shadcn@latest add ANIBIT14/boldkit/button#main`} />
+              </div>
+
+              <div>
+                <h3 className="font-bold uppercase tracking-wide mb-2">Browse &amp; preview first</h3>
+                <CodeBlock code={`npx shadcn@latest list ANIBIT14/boldkit
+npx shadcn@latest view ANIBIT14/boldkit/button
+npx shadcn@latest add ANIBIT14/boldkit/button --dry-run`} />
+              </div>
+
+              <div className="border-3 border-foreground bg-muted p-3 text-sm">
+                <p className="font-bold uppercase tracking-wide mb-1">Good to know</p>
+                <p className="text-muted-foreground">
+                  GitHub install covers the React registry (components, blocks, theme, utils, shapes).
+                  Vue 3 / Nuxt and the canvas effects install via the hosted registry URLs above.
+                </p>
+              </div>
+            </CardContent>
+          </Card>
+        )}
 
         {/* Manual Installation */}
         <section>
