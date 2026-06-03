@@ -57,7 +57,7 @@ const animationDirection = computed(() =>
       "
       :style="{ animationDirection }"
     >
-      <slot v-for="_n in repeat" :key="_n" />
+      <template v-for="_n in repeat" :key="_n"><slot /></template>
     </div>
     <div
       :class="
@@ -70,7 +70,7 @@ const animationDirection = computed(() =>
       :style="{ animationDirection }"
       aria-hidden="true"
     >
-      <slot v-for="_m in repeat" :key="`dup-${_m}`" />
+      <template v-for="_m in repeat" :key="`dup-${_m}`"><slot /></template>
     </div>
   </div>
 </template>

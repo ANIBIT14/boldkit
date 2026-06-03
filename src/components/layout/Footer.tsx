@@ -11,6 +11,7 @@ const exploreLinks = [
   { label: 'Documentation', href: '/docs' },
   { label: 'Components', href: '/components' },
   { label: 'Shapes', href: '/shapes' },
+  { label: 'ASCII Shapes', href: '/ascii-shapes' },
   { label: 'Charts', href: '/charts' },
   { label: 'Canvas Effects', href: '/canvas-effects' },
   { label: 'Themes', href: '/themes' },

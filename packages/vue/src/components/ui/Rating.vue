@@ -62,6 +62,9 @@ const displayValue = computed(() => hoverValue.value ?? currentValue.value)
 
 const IconComponent = computed(() => iconMap[props.icon])
 
+const iconNoun = computed(() => (props.icon === 'heart' ? 'hearts' : props.icon === 'circle' ? 'circles' : 'stars'))
+const valueText = computed(() => `${currentValue.value} out of ${props.max} ${iconNoun.value}`)
+
 // Sync internal value when modelValue changes
 watch(() => props.modelValue, (newValue) => {
   if (newValue !== undefined) {
@@ -156,8 +159,12 @@ const getClipPath = (isHalfFilled: boolean) => {
 
 <template>
   <div
-    role="radiogroup"
-    :aria-label="`Rating: ${currentValue} out of ${max} ${icon === 'star' ? 'stars' : icon === 'heart' ? 'hearts' : 'circles'}`"
+    role="slider"
+    aria-label="Rating"
+    :aria-valuemin="0"
+    :aria-valuemax="max"
+    :aria-valuenow="currentValue"
+    :aria-valuetext="valueText"
     :tabindex="readOnly || disabled ? -1 : 0"
     :class="cn(
       ratingVariants({ size }),
@@ -172,8 +179,6 @@ const getClipPath = (isHalfFilled: boolean) => {
       v-for="index in max"
       :key="index - 1"
       type="button"
-      role="radio"
-      :aria-checked="index - 1 < currentValue"
       :aria-label="`${index} ${icon === 'star' ? 'star' : icon === 'heart' ? 'heart' : 'circle'}${index !== 1 ? 's' : ''}`"
       :tabindex="-1"
       :disabled="disabled || readOnly"

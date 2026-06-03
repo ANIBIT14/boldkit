@@ -82,8 +82,8 @@ const stateVariant = computed(() => {
 function formatBytes(bytes: number): string {
   if (bytes === 0) return '0 Bytes'
   const k = 1024
-  const sizes = ['Bytes', 'KB', 'MB', 'GB']
-  const i = Math.floor(Math.log(bytes) / Math.log(k))
+  const sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB']
+  const i = Math.min(Math.floor(Math.log(bytes) / Math.log(k)), sizes.length - 1)
   return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i]
 }
 
@@ -173,6 +173,12 @@ function handleDragEnter(e: DragEvent) {
 function handleDragLeave(e: DragEvent) {
   e.preventDefault()
   e.stopPropagation()
+  // dragleave also fires when the cursor moves onto a child element; only
+  // clear the highlight when the pointer actually leaves the dropzone.
+  const related = e.relatedTarget as Node | null
+  if (related && (e.currentTarget as HTMLElement).contains(related)) {
+    return
+  }
   isDragging.value = false
 }
 

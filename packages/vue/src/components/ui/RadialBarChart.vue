@@ -49,7 +49,9 @@ const isEmpty = computed(() => !props.data || props.data.length === 0)
 
 // Nullish coalescing (not ||) so an explicit maxValue of 0 is honored rather than
 // silently replaced by the computed default.
-const maxVal = computed(() => props.maxValue ?? (props.data.length > 0 ? Math.max(...props.data.map(d => d.value)) * 1.2 : 1))
+// reduce (not spread) avoids a RangeError on very large datasets; the `|| 1`
+// floor keeps the domain positive for empty/all-negative data.
+const maxVal = computed(() => props.maxValue ?? (props.data.reduce((m, d) => Math.max(m, d.value), 0) * 1.2 || 1))
 
 // Create stacked rings for radial bar effect
 const seriesData = computed(() => {
@@ -61,7 +63,9 @@ const seriesData = computed(() => {
 
   return props.data.map((item, index) => {
     const innerR = innerPct + (index * radiusStep)
-    const outerR = innerR + radiusStep - 2 // Small gap between rings
+    // Small gap between rings, but never let the ring collapse/invert when there
+    // are many items (radiusStep <= 2).
+    const outerR = Math.max(innerR + 1, innerR + radiusStep - 2)
 
     return {
       type: 'pie',
@@ -91,7 +95,7 @@ const seriesData = computed(() => {
         },
         props.showBackground ? {
           name: 'background',
-          value: maxVal.value - item.value,
+          value: Math.max(0, maxVal.value - item.value),
           itemStyle: {
             color: 'hsl(var(--muted))',
             borderWidth: 0,

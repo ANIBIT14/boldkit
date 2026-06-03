@@ -16,7 +16,7 @@ const emit = defineEmits<{
 
 <template>
   <DropdownMenuCheckboxItemPrimitive
-    :checked="checked"
+    :model-value="checked"
     :disabled="disabled"
     :class="
       cn(
@@ -24,7 +24,7 @@ const emit = defineEmits<{
         $props.class
       )
     "
-    @update:checked="emit('update:checked', $event)"
+    @update:model-value="emit('update:checked', $event as boolean)"
   >
     <span class="absolute left-2 flex h-3.5 w-3.5 items-center justify-center">
       <DropdownMenuItemIndicator>

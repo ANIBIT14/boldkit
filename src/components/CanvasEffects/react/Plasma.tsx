@@ -79,7 +79,7 @@ export function Plasma({
       const pal = paletteRef.current.map(hexToRgb)
 
       const colorAt = (n: number): [number, number, number] => {
-        if (pal.length < 2) return pal[0]
+        if (pal.length < 2) return pal[0] ?? [0, 0, 0]
         const s = pal.length - 1
         const i = Math.min(s - 1, Math.floor(n * s))
         const f = n * s - i

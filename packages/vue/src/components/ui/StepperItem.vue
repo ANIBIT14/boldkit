@@ -21,8 +21,11 @@ if (!context) {
   throw new Error('StepperItem must be used within a Stepper')
 }
 
+// Provide a getter (not a snapshot) so consumers stay reactive if `index` changes.
 provide(STEPPER_ITEM_INJECTION_KEY, {
-  index: props.index,
+  get index() {
+    return props.index
+  },
 })
 </script>
 

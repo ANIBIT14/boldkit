@@ -30,6 +30,7 @@ const animClass = computed(() => {
 
 <template>
   <svg
+    aria-hidden="true"
     :width="size"
     :height="size"
     viewBox="0 0 100 100"
@@ -52,7 +53,7 @@ const animClass = computed(() => {
       d="M58 12 Q68 8 72 15 Q70 20 62 18"
       fill="hsl(var(--foreground))"
       stroke="hsl(var(--foreground))"
-      :stroke-width="strokeWidth - 2"
+      :stroke-width="Math.max(1, strokeWidth - 2)"
     />
   </svg>
 </template>

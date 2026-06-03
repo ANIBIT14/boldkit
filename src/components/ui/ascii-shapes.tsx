@@ -255,7 +255,7 @@ function drawTorus(grid: string[][], cols: number, rows: number, t: number, char
       const oz1 =  oy * sinA + oz * cosA
       const ox2 =  ox * cosB - oy1 * sinB
       const oy2 =  ox * sinB + oy1 * cosB
-      const oz2 =  ox * Math.sin(B) + oz1 * Math.cos(B)
+      const oz2 =  oz1
       const zDist = K2 - oz2
       if (zDist <= 0) continue
       const ooz = 1.0 / zDist

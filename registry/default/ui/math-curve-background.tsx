@@ -1,5 +1,4 @@
 import * as React from 'react'
-import { Slot } from '@radix-ui/react-slot'
 import { cn } from '@/lib/utils'
 import { ErrorBoundary } from '@/components/ErrorBoundary'
 import {
@@ -24,7 +23,6 @@ export interface MathCurveBackgroundProps extends React.HTMLAttributes<HTMLDivEl
   trackColor?: string
   headColor?: string
   strokeWidth?: number
-  asChild?: boolean
   children?: React.ReactNode
 }
 
@@ -38,7 +36,6 @@ const MathCurveBackground = React.forwardRef<HTMLDivElement, MathCurveBackground
       trackColor,
       headColor,
       strokeWidth = 2,
-      asChild = false,
       children,
       ...props
     },
@@ -91,11 +88,9 @@ const MathCurveBackground = React.forwardRef<HTMLDivElement, MathCurveBackground
     const resolvedTrackStroke = trackColor ?? 'currentColor'
     const resolvedHeadFill = headColor ?? 'hsl(var(--primary))'
 
-    const Container = asChild ? Slot : 'div'
-
     return (
       <ErrorBoundary>
-        <Container
+        <div
           ref={ref}
           className={cn('relative', className)}
           {...props}
@@ -140,7 +135,7 @@ const MathCurveBackground = React.forwardRef<HTMLDivElement, MathCurveBackground
           </svg>
           {/* Children sit above the SVG */}
           <div style={{ position: 'relative', zIndex: 1 }}>{children}</div>
-        </Container>
+        </div>
       </ErrorBoundary>
     )
   }

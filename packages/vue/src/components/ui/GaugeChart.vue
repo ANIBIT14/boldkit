@@ -60,12 +60,17 @@ const props = withDefaults(defineProps<GaugeChartProps>(), {
 })
 
 const normalizedValue = computed(() => Math.max(props.min, Math.min(props.max, props.value)))
-const percentage = computed(() => props.max === props.min ? 50 : ((normalizedValue.value - props.min) / (props.max - props.min)) * 100)
+const percentage = computed(() => props.max === props.min ? 0 : ((normalizedValue.value - props.min) / (props.max - props.min)) * 100)
 
 // Whether this variant uses a 360° full circle or a 180° semicircle sweep
 const isFull = computed(() => props.variant === 'full')
 // Whether this variant uses a filled progress bar instead of a needle
 const isMeter = computed(() => props.variant === 'meter')
+
+// Arc start angle in SVG space (0°=east, increasing = clockwise, y points down):
+//   semicircle/meter — 180° (left) sweeping over the top (270°) to right (360°)
+//   full             — -90° (top) sweeping a full 360° ring
+const arcStartDeg = computed(() => (isFull.value ? -90 : 180))
 
 const sizeConfigSemi = {
   sm: { width: 140, height: 90,  radius: 45, strokeWidth: 10, fontSize: 14, labelSize: 9  },
@@ -93,11 +98,9 @@ const centerY = computed(() =>
 
 const needleLength = computed(() => config.value.radius - 8)
 
-// Needle rotation angle: -90° is top; semicircle sweeps 180°, full sweeps 360°
+// Needle rotation angle: semicircle starts at 180° (left), full starts at -90° (top)
 const needleAngle = computed(() =>
-  isFull.value
-    ? -90 + (percentage.value * 360) / 100
-    : -90 + (percentage.value * 180) / 100
+  arcStartDeg.value + (percentage.value * (isFull.value ? 360 : 180)) / 100
 )
 
 /**
@@ -106,13 +109,13 @@ const needleAngle = computed(() =>
  * @param endPercent    0–100 position along the gauge sweep
  * @param radius        arc radius
  *
- * For semicircle/meter the sweep spans -90° → +90° (180° total).
+ * For semicircle/meter the sweep spans 180° → 360° (180° total, over the top).
  * For full the sweep spans -90° → 270° (360° total).
  */
 function createArcPath(startPercent: number, endPercent: number, radius: number): string {
   const sweepDeg = isFull.value ? 360 : 180
-  const startAngle = (-90 + (startPercent * sweepDeg) / 100) * (Math.PI / 180)
-  const endAngle   = (-90 + (endPercent   * sweepDeg) / 100) * (Math.PI / 180)
+  const startAngle = (arcStartDeg.value + (startPercent * sweepDeg) / 100) * (Math.PI / 180)
+  const endAngle   = (arcStartDeg.value + (endPercent   * sweepDeg) / 100) * (Math.PI / 180)
 
   const startX = centerX.value + radius * Math.cos(startAngle)
   const startY = centerY.value + radius * Math.sin(startAngle)
@@ -144,11 +147,14 @@ const currentZoneColor = computed(() => {
   return z ? z.color : 'hsl(var(--primary))'
 })
 
-const tickPositions = [0, 25, 50, 75, 100]
+// Meter variant gets denser ticks (every 10%), matching the React gauge.
+const tickPositions = computed(() =>
+  isMeter.value ? [0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100] : [0, 25, 50, 75, 100]
+)
 
 function getTickCoords(tick: number) {
   const sweepDeg = isFull.value ? 360 : 180
-  const angle = (-90 + (tick * sweepDeg) / 100) * (Math.PI / 180)
+  const angle = (arcStartDeg.value + (tick * sweepDeg) / 100) * (Math.PI / 180)
   const innerR = config.value.radius - config.value.strokeWidth / 2 - 6
   const outerR = config.value.radius + config.value.strokeWidth / 2 + 6
   return {

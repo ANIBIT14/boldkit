@@ -59,6 +59,7 @@ export function Aurora({
     let raf = 0
 
     const resize = () => {
+      if (!el.offsetWidth || !el.offsetHeight) return
       const dpr = window.devicePixelRatio || 1
       el.width = el.offsetWidth * dpr
       el.height = el.offsetHeight * dpr

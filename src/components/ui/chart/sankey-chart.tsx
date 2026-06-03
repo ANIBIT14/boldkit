@@ -133,7 +133,12 @@ function computeLayout(
   const computedNodes = new Map<string, ComputedNode>()
   cols.forEach((ids, col) => {
     const colTotal = ids.reduce((s, id) => s + (nodeValue.get(id) || 1), 0)
-    const totalNodeHeight = innerHeight - nodePadding * (ids.length - 1)
+    const gaps = Math.max(0, ids.length - 1)
+    // When a column is crowded, the fixed padding would consume the whole column
+    // (or more), driving totalNodeHeight negative and overflowing the SVG. Cap
+    // the combined padding to half the column so nodes always have room.
+    const effectivePadding = gaps > 0 ? Math.min(nodePadding, (innerHeight * 0.5) / gaps) : 0
+    const totalNodeHeight = innerHeight - effectivePadding * gaps
     let yOffset = padding.top
 
     ids.forEach((id) => {
@@ -150,7 +155,7 @@ function computeLayout(
         height: h,
         value: val,
       })
-      yOffset += h + nodePadding
+      yOffset += h + effectivePadding
     })
   })
 

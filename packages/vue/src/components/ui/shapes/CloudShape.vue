@@ -30,6 +30,7 @@ const animClass = computed(() => {
 
 <template>
   <svg
+    aria-hidden="true"
     :width="size"
     :height="size * 0.7"
     viewBox="0 0 100 70"

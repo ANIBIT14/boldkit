@@ -29,6 +29,7 @@ const animClass = computed(() => {
 
 <template>
   <svg
+    aria-hidden="true"
     :width="size"
     :height="size * 0.6"
     viewBox="0 0 100 60"
@@ -39,6 +40,7 @@ const animClass = computed(() => {
       :fill="filled ? (color || 'currentColor') : 'none'"
       stroke="hsl(var(--foreground))"
       :stroke-width="strokeWidth"
+      stroke-linejoin="round"
     />
     <!-- Lens-shaped crossing detail matching React implementation -->
     <path d="M38 28 Q50 22 62 28 Q50 34 38 28 Z"

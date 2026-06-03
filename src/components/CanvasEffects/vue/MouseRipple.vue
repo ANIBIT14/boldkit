@@ -28,6 +28,7 @@ onMounted(() => {
   const mouse = { x: -999, y: -999 }
 
   const resize = () => {
+    if (!el.offsetWidth || !el.offsetHeight) return
     const dpr = window.devicePixelRatio || 1
     el.width = el.offsetWidth * dpr
     el.height = el.offsetHeight * dpr

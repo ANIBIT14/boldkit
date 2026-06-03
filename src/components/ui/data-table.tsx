@@ -324,13 +324,22 @@ function DataTable<TData, TValue>({
     },
   })
 
+  // Keep the latest callback in a ref so an inline `onRowSelectionChange` prop
+  // does not re-run the effect on every render (which can loop if the parent
+  // setStates from it).
+  const onRowSelectionChangeRef = React.useRef(onRowSelectionChange)
+  React.useEffect(() => {
+    onRowSelectionChangeRef.current = onRowSelectionChange
+  })
+
   // Notify parent of selection changes
   React.useEffect(() => {
-    if (onRowSelectionChange) {
+    const notify = onRowSelectionChangeRef.current
+    if (notify) {
       const selectedRows = table.getFilteredSelectedRowModel().rows.map((row) => row.original)
-      onRowSelectionChange(selectedRows)
+      notify(selectedRows)
     }
-  }, [rowSelection, table, onRowSelectionChange])
+  }, [rowSelection, table])
 
   // Memoize context value to prevent unnecessary re-renders
   const contextValue = React.useMemo(

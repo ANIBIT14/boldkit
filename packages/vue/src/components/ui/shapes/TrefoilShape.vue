@@ -26,35 +26,25 @@ const animClass = computed(() => {
   return `shape-animate-${props.animation}${s}`
 })
 
+// Trefoil knot projection: x = sin(t)+2sin(2t), y = cos(t)-2cos(2t).
+// Uses the same 120-segment polyline as the React TrefoilShape so both
+// frameworks render an identical curve.
 const trefoilPath = computed(() => {
-  const N = 24
-  const pts: Array<{ x: number; y: number }> = []
-  for (let i = 0; i <= N; i++) {
-    const t = (i / N) * 2 * Math.PI
-    const px = Math.sin(t) + 2 * Math.sin(2 * t)
-    const py = Math.cos(t) - 2 * Math.cos(2 * t)
-    pts.push({ x: 50 + px * 14, y: 50 + py * 14 })
+  const n = 120, scale = 14
+  let d = ''
+  for (let i = 0; i <= n; i++) {
+    const t = (i / n) * 2 * Math.PI
+    const x = 50 + scale * (Math.sin(t) + 2 * Math.sin(2 * t))
+    const y = 50 + scale * (Math.cos(t) - 2 * Math.cos(2 * t))
+    d += `${i === 0 ? 'M' : 'L'}${x.toFixed(2)} ${y.toFixed(2)} `
   }
-  // pts[0] and pts[N] are the same point (closed)
-  let d = `M ${pts[0].x.toFixed(1)} ${pts[0].y.toFixed(1)}`
-  for (let i = 0; i < N; i++) {
-    const p0 = pts[(i - 1 + N) % N]
-    const p1 = pts[i]
-    const p2 = pts[i + 1]
-    const p3 = pts[(i + 2) % (N + 1)]
-    const cp1x = p1.x + (p2.x - p0.x) / 6
-    const cp1y = p1.y + (p2.y - p0.y) / 6
-    const cp2x = p2.x - (p3.x - p1.x) / 6
-    const cp2y = p2.y - (p3.y - p1.y) / 6
-    d += ` C ${cp1x.toFixed(1)} ${cp1y.toFixed(1)}, ${cp2x.toFixed(1)} ${cp2y.toFixed(1)}, ${p2.x.toFixed(1)} ${p2.y.toFixed(1)}`
-  }
-  d += ' Z'
-  return d
+  return d + 'Z'
 })
 </script>
 
 <template>
   <svg
+    aria-hidden="true"
     :width="size"
     :height="size"
     viewBox="0 0 100 100"

@@ -52,15 +52,15 @@ const DEFAULT_ZONES: GaugeChartZone[] = [
 ]
 
 /**
- * Variant arc configs:
- *   semicircle — 180° sweep, arc from left (-90°) to right (+90°), open at bottom
- *   full       — 360° sweep (330° drawn with a gap at the bottom to show min/max)
- *   meter      — same 180° sweep as semicircle but with denser tick marks (every 10%)
+ * Variant arc configs (angles in SVG space: 0°=east, increasing = clockwise, y points down):
+ *   semicircle — 180° sweep, arc from left (180°) over the top (270°) to right (360°), open at bottom
+ *   full       — 360° sweep (full ring) starting at the top
+ *   meter      — same top semicircle as semicircle but with denser tick marks (every 10%)
  */
 const VARIANT_ARC_CONFIG = {
-  semicircle: { arcStartDeg: -90, sweepDeg: 180 },
+  semicircle: { arcStartDeg: 180, sweepDeg: 180 },
   full:       { arcStartDeg: -90, sweepDeg: 360 }, // full 360° sweep
-  meter:      { arcStartDeg: -90, sweepDeg: 180 },
+  meter:      { arcStartDeg: 180, sweepDeg: 180 },
 } as const
 
 type Variant = 'semicircle' | 'full' | 'meter'
