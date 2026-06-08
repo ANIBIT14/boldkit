@@ -49,6 +49,12 @@ const option = computed(() => ({
       }
       return params.name
     },
+    backgroundColor: 'hsl(var(--background))',
+    borderColor: 'hsl(var(--foreground))',
+    borderWidth: 3,
+    padding: [6, 10],
+    textStyle: { color: 'hsl(var(--foreground))', fontFamily: "'DM Mono', monospace", fontSize: 12 },
+    extraCssText: 'border-radius: 0; box-shadow: 4px 4px 0px hsl(var(--foreground));',
   } : undefined,
   series: [{
     type: 'sankey',

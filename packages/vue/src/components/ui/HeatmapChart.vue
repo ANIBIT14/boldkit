@@ -60,6 +60,12 @@ const option = computed(() => {
         const [ci, ri, val] = params.data
         return `${props.rows[ri]} × ${props.cols[ci]}: <b>${val}</b>`
       },
+      backgroundColor: 'hsl(var(--background))',
+      borderColor: 'hsl(var(--foreground))',
+      borderWidth: 3,
+      padding: [6, 10],
+      textStyle: { color: 'hsl(var(--foreground))', fontFamily: "'DM Mono', monospace", fontSize: 12 },
+      extraCssText: 'border-radius: 0; box-shadow: 4px 4px 0px hsl(var(--foreground));',
     } : undefined,
     grid: { top: 40, bottom: 60, left: 80, right: 20 },
     xAxis: {

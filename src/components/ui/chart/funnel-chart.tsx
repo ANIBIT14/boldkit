@@ -89,9 +89,12 @@ const FunnelChart = React.forwardRef<HTMLDivElement, FunnelChartProps>(
                   borderRadius: 0,
                   boxShadow: '4px 4px 0px hsl(var(--foreground))',
                   background: 'hsl(var(--background))',
+                  color: 'hsl(var(--foreground))',
                   fontFamily: "'DM Mono', monospace",
                   fontSize: 12,
                 }}
+                itemStyle={{ color: 'hsl(var(--foreground))' }}
+                labelStyle={{ color: 'hsl(var(--foreground))' }}
                 formatter={(value: number | undefined, name: string | undefined) => [`${(value ?? 0).toLocaleString()}`, name ?? '']}
               />
             )}
