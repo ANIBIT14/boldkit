@@ -1,0 +1,20 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "native-select",
+  "type": "registry:ui",
+  "description": "A styled wrapper around the native select element",
+  "dependencies": [
+    "lucide-vue-next"
+  ],
+  "registryDependencies": [
+    "@boldkit/utils"
+  ],
+  "files": [
+    {
+      "path": "registry/default/ui/NativeSelect.vue",
+      "content": "<script setup lang=\"ts\">\nimport { ChevronDown } from 'lucide-vue-next'\nimport { cn } from '@/lib/utils'\n\n// Fallthrough attrs (name, id, aria-*) must land on the <select>, not the wrapper div.\ndefineOptions({ inheritAttrs: false })\n\nconst props = defineProps<{\n  class?: string\n  modelValue?: string | number\n  disabled?: boolean\n}>()\n\nconst emit = defineEmits<{\n  (e: 'update:modelValue', value: string): void\n}>()\n\nfunction onChange(event: Event) {\n  emit('update:modelValue', (event.target as HTMLSelectElement).value)\n}\n</script>\n\n<template>\n  <div class=\"relative inline-flex w-full\">\n    <select\n      v-bind=\"$attrs\"\n      :value=\"modelValue\"\n      :disabled=\"disabled\"\n      @change=\"onChange\"\n      :class=\"\n        cn(\n          'h-11 w-full appearance-none border-3 border-foreground bg-background px-3 pr-10 text-sm font-bold uppercase tracking-wide shadow-[4px_4px_0px_hsl(var(--shadow-color))] outline-none transition-all focus-visible:translate-x-[2px] focus-visible:translate-y-[2px] focus-visible:shadow-none disabled:cursor-not-allowed disabled:opacity-50',\n          props.class\n        )\n      \"\n    >\n      <slot />\n    </select>\n    <ChevronDown\n      class=\"pointer-events-none absolute right-3 top-1/2 h-4 w-4 -translate-y-1/2 stroke-[3]\"\n    />\n  </div>\n</template>\n",
+      "type": "registry:ui",
+      "target": "components/ui/NativeSelect.vue"
+    }
+  ]
+}

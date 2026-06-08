@@ -1,0 +1,23 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "date-picker",
+  "type": "registry:ui",
+  "description": "A single-date picker that opens a calendar popover",
+  "dependencies": [
+    "lucide-vue-next"
+  ],
+  "registryDependencies": [
+    "@boldkit/utils",
+    "@boldkit/button",
+    "@boldkit/calendar",
+    "@boldkit/popover"
+  ],
+  "files": [
+    {
+      "path": "registry/default/ui/DatePicker.vue",
+      "content": "<script setup lang=\"ts\">\nimport { computed, ref } from 'vue'\nimport type { DateValue } from 'reka-ui'\nimport { Calendar as CalendarIcon } from 'lucide-vue-next'\nimport { cn } from '@/lib/utils'\nimport Popover from './Popover.vue'\nimport PopoverTrigger from './PopoverTrigger.vue'\nimport PopoverContent from './PopoverContent.vue'\nimport Button from './Button.vue'\nimport Calendar from './Calendar.vue'\n\ninterface Props {\n  modelValue?: DateValue\n  placeholder?: string\n  disabled?: boolean\n  class?: string\n}\n\nconst props = withDefaults(defineProps<Props>(), {\n  placeholder: 'Pick a date',\n})\n\nconst emit = defineEmits<{\n  'update:modelValue': [value: DateValue | undefined]\n}>()\n\nconst open = ref(false)\nconst internal = ref<DateValue | undefined>(props.modelValue)\nconst selected = computed(() => props.modelValue ?? internal.value)\n\nconst MONTHS = [\n  'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',\n  'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec',\n]\n\nconst label = computed(() => {\n  const v = selected.value\n  if (!v) return props.placeholder\n  return `${MONTHS[v.month - 1]} ${String(v.day).padStart(2, '0')}, ${v.year}`\n})\n\nfunction handleSelect(value: DateValue | undefined) {\n  internal.value = value\n  emit('update:modelValue', value)\n  open.value = false\n}\n</script>\n\n<template>\n  <Popover v-model:open=\"open\">\n    <PopoverTrigger>\n      <Button\n        variant=\"outline\"\n        :disabled=\"disabled\"\n        :class=\"\n          cn(\n            'w-[260px] justify-start gap-2 font-bold normal-case',\n            !selected && 'text-muted-foreground',\n            props.class\n          )\n        \"\n      >\n        <CalendarIcon class=\"h-4 w-4\" />\n        {{ label }}\n      </Button>\n    </PopoverTrigger>\n    <PopoverContent class=\"w-auto p-0\" align=\"start\">\n      <!-- cast: reka-ui's DateValue union vs the Calendar prop's intersection brand (type-only) -->\n      <Calendar :model-value=\"selected as never\" @update:model-value=\"handleSelect\" />\n    </PopoverContent>\n  </Popover>\n</template>\n",
+      "type": "registry:ui",
+      "target": "components/ui/DatePicker.vue"
+    }
+  ]
+}

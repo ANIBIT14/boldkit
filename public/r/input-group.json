@@ -1,0 +1,26 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "input-group",
+  "description": "An input joined with leading/trailing addons in a single bordered field",
+  "dependencies": [
+    "lucide-react"
+  ],
+  "registryDependencies": [
+    "@boldkit/utils"
+  ],
+  "files": [
+    {
+      "path": "registry/default/ui/input-group.tsx",
+      "content": "import * as React from 'react'\nimport { cn } from '@/lib/utils'\n\n/**\n * A bordered container that joins an input with leading/trailing addons\n * (icons, text, or buttons) into a single neubrutalism field.\n */\nconst InputGroup = React.forwardRef<\n  HTMLDivElement,\n  React.HTMLAttributes<HTMLDivElement>\n>(({ className, ...props }, ref) => (\n  <div\n    ref={ref}\n    className={cn(\n      'flex items-stretch border-3 border-foreground bg-background shadow-[4px_4px_0px_hsl(var(--shadow-color))] transition-all focus-within:translate-x-[2px] focus-within:translate-y-[2px] focus-within:shadow-none',\n      className\n    )}\n    {...props}\n  />\n))\nInputGroup.displayName = 'InputGroup'\n\nconst InputGroupInput = React.forwardRef<\n  HTMLInputElement,\n  React.InputHTMLAttributes<HTMLInputElement>\n>(({ className, ...props }, ref) => (\n  <input\n    ref={ref}\n    className={cn(\n      'w-full flex-1 bg-transparent px-3 py-2 text-sm font-medium outline-none placeholder:text-muted-foreground disabled:cursor-not-allowed disabled:opacity-50',\n      className\n    )}\n    {...props}\n  />\n))\nInputGroupInput.displayName = 'InputGroupInput'\n\nexport interface InputGroupAddonProps\n  extends React.HTMLAttributes<HTMLDivElement> {\n  position?: 'leading' | 'trailing'\n}\n\nconst InputGroupAddon = React.forwardRef<HTMLDivElement, InputGroupAddonProps>(\n  ({ className, position = 'leading', ...props }, ref) => (\n    <div\n      ref={ref}\n      className={cn(\n        'flex items-center bg-muted px-3 text-sm font-bold uppercase tracking-wide text-muted-foreground [&_svg]:size-4 [&_svg]:shrink-0',\n        position === 'leading' ? 'border-r-3 border-foreground' : 'border-l-3 border-foreground',\n        className\n      )}\n      {...props}\n    />\n  )\n)\nInputGroupAddon.displayName = 'InputGroupAddon'\n\nexport { InputGroup, InputGroupInput, InputGroupAddon }\n",
+      "type": "registry:ui",
+      "target": "components/ui/input-group.tsx"
+    },
+    {
+      "path": "registry/default/example/input-group-demo.tsx",
+      "content": "import { Search } from 'lucide-react'\nimport {\n  InputGroup,\n  InputGroupAddon,\n  InputGroupInput,\n} from '@/components/ui/input-group'\n\nexport default function Example() {\n  return (\n    <InputGroup className=\"max-w-sm\">\n      <InputGroupAddon position=\"leading\">\n        <Search />\n      </InputGroupAddon>\n      <InputGroupInput placeholder=\"Search components...\" />\n      <InputGroupAddon position=\"trailing\">⌘K</InputGroupAddon>\n    </InputGroup>\n  )\n}\n",
+      "type": "registry:example",
+      "target": "components/example/input-group-demo.tsx"
+    }
+  ],
+  "type": "registry:ui"
+}

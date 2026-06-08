@@ -474,6 +474,221 @@
       ]
     },
     {
+      "name": "context-menu",
+      "type": "registry:ui",
+      "description": "Displays a menu triggered by right-click with neubrutalism styling",
+      "dependencies": [
+        "@radix-ui/react-context-menu",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "@boldkit/utils"
+      ],
+      "files": [
+        {
+          "path": "registry/default/ui/context-menu.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/context-menu.tsx"
+        },
+        {
+          "path": "registry/default/example/context-menu-demo.tsx",
+          "type": "registry:example",
+          "target": "components/example/context-menu-demo.tsx"
+        }
+      ]
+    },
+    {
+      "name": "menubar",
+      "type": "registry:ui",
+      "description": "A horizontal menu bar of desktop-style dropdown menus with neubrutalism styling",
+      "dependencies": [
+        "@radix-ui/react-menubar",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "@boldkit/utils"
+      ],
+      "files": [
+        {
+          "path": "registry/default/ui/menubar.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/menubar.tsx"
+        },
+        {
+          "path": "registry/default/example/menubar-demo.tsx",
+          "type": "registry:example",
+          "target": "components/example/menubar-demo.tsx"
+        }
+      ]
+    },
+    {
+      "name": "navigation-menu",
+      "type": "registry:ui",
+      "description": "A collection of links and dropdown panels for site navigation with neubrutalism styling",
+      "dependencies": [
+        "@radix-ui/react-navigation-menu",
+        "class-variance-authority",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "@boldkit/utils"
+      ],
+      "files": [
+        {
+          "path": "registry/default/ui/navigation-menu.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/navigation-menu.tsx"
+        },
+        {
+          "path": "registry/default/example/navigation-menu-demo.tsx",
+          "type": "registry:example",
+          "target": "components/example/navigation-menu-demo.tsx"
+        }
+      ]
+    },
+    {
+      "name": "resizable",
+      "type": "registry:ui",
+      "description": "Resizable panel groups and handles with neubrutalism styling",
+      "dependencies": [
+        "react-resizable-panels@^2.1.0",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "@boldkit/utils"
+      ],
+      "files": [
+        {
+          "path": "registry/default/ui/resizable.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/resizable.tsx"
+        },
+        {
+          "path": "registry/default/example/resizable-demo.tsx",
+          "type": "registry:example",
+          "target": "components/example/resizable-demo.tsx"
+        }
+      ]
+    },
+    {
+      "name": "button-group",
+      "type": "registry:ui",
+      "description": "Visually joins a row or column of buttons into one bordered unit",
+      "dependencies": [],
+      "registryDependencies": [
+        "@boldkit/utils",
+        "@boldkit/button"
+      ],
+      "files": [
+        {
+          "path": "registry/default/ui/button-group.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/button-group.tsx"
+        },
+        {
+          "path": "registry/default/example/button-group-demo.tsx",
+          "type": "registry:example",
+          "target": "components/example/button-group-demo.tsx"
+        }
+      ]
+    },
+    {
+      "name": "input-group",
+      "type": "registry:ui",
+      "description": "An input joined with leading/trailing addons in a single bordered field",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "@boldkit/utils"
+      ],
+      "files": [
+        {
+          "path": "registry/default/ui/input-group.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/input-group.tsx"
+        },
+        {
+          "path": "registry/default/example/input-group-demo.tsx",
+          "type": "registry:example",
+          "target": "components/example/input-group-demo.tsx"
+        }
+      ]
+    },
+    {
+      "name": "field",
+      "type": "registry:ui",
+      "description": "Form field composition: label, control, description and error",
+      "dependencies": [],
+      "registryDependencies": [
+        "@boldkit/utils",
+        "@boldkit/label",
+        "@boldkit/input"
+      ],
+      "files": [
+        {
+          "path": "registry/default/ui/field.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/field.tsx"
+        },
+        {
+          "path": "registry/default/example/field-demo.tsx",
+          "type": "registry:example",
+          "target": "components/example/field-demo.tsx"
+        }
+      ]
+    },
+    {
+      "name": "native-select",
+      "type": "registry:ui",
+      "description": "A styled wrapper around the native select element, a11y-first",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "@boldkit/utils"
+      ],
+      "files": [
+        {
+          "path": "registry/default/ui/native-select.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/native-select.tsx"
+        },
+        {
+          "path": "registry/default/example/native-select-demo.tsx",
+          "type": "registry:example",
+          "target": "components/example/native-select-demo.tsx"
+        }
+      ]
+    },
+    {
+      "name": "date-picker",
+      "type": "registry:ui",
+      "description": "A single-date picker: a button trigger that opens a calendar popover",
+      "dependencies": [
+        "date-fns",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "@boldkit/utils",
+        "@boldkit/button",
+        "@boldkit/calendar",
+        "@boldkit/popover"
+      ],
+      "files": [
+        {
+          "path": "registry/default/ui/date-picker.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/date-picker.tsx"
+        },
+        {
+          "path": "registry/default/example/date-picker-demo.tsx",
+          "type": "registry:example",
+          "target": "components/example/date-picker-demo.tsx"
+        }
+      ]
+    },
+    {
       "name": "input",
       "type": "registry:ui",
       "description": "Displays a form input field with neubrutalism styling",

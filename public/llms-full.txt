@@ -2,7 +2,7 @@
 
 > BoldKit is a free, open-source neubrutalism (neobrutalism) UI component library for React, Vue 3 & Nuxt. Components are copied into your project via the shadcn CLI — not imported from an npm package. This is the MAXIMUM-coverage reference: the curated summary, followed by a complete index of every page and every installable component. For the concise version see https://boldkit.dev/llms.txt
 
-This file is generated from BoldKit's source of truth (route metadata + the built registry). Counts: 56+ components, 14 charts, 64 shapes, 15 blocks, 7 templates, 19 canvas effects.
+This file is generated from BoldKit's source of truth (route metadata + the built registry). Counts: 65+ components, 14 charts, 64 shapes, 15 blocks, 7 templates, 19 canvas effects.
 
 ---
 
@@ -1108,13 +1108,13 @@ MIT License — Free for personal and commercial use.
 
 ---
 
-## Complete Page Index (112 pages)
+## Complete Page Index (121 pages)
 
 Every indexable page on boldkit.dev with its meta title and description.
 
 ### BoldKit — Neubrutalism UI for React & Vue 3
 https://boldkit.dev/
-Free neubrutalism UI library for React & Vue 3. 56+ components, 15 blocks, 7 templates, 64 shapes, 14 charts. Install via shadcn CLI.
+Free neubrutalism UI library for React & Vue 3. 65+ components, 15 blocks, 7 templates, 64 shapes, 14 charts. Install via shadcn CLI.
 
 ### Documentation
 https://boldkit.dev/docs
@@ -1128,9 +1128,9 @@ Install BoldKit neubrutalism components via shadcn CLI for React or shadcn-vue f
 https://boldkit.dev/docs/theming
 Customize BoldKit theme colors and CSS variables for React and Vue 3. Dark mode support included.
 
-### 56+ Neubrutalism Components
+### 65+ Neubrutalism Components
 https://boldkit.dev/components
-56+ neubrutalism components for React & Vue 3 — buttons, cards, inputs, dialogs, spinners, steppers, and more with thick borders and hard shadows.
+65+ neubrutalism components for React & Vue 3 — buttons, cards, inputs, dialogs, spinners, steppers, and more with thick borders and hard shadows.
 
 ### 64 Neubrutalism SVG Shapes
 https://boldkit.dev/shapes
@@ -1240,6 +1240,10 @@ Breadcrumb — neubrutalism React & Vue 3 component with thick borders, hard sha
 https://boldkit.dev/components/button
 Button — neubrutalism React & Vue 3 component with thick borders, hard shadows, bold colors. Install via shadcn or shadcn-vue.
 
+### Button Group — Neubrutalism Component for React & Vue 3
+https://boldkit.dev/components/button-group
+Button Group — neubrutalism React & Vue 3 component with thick borders, hard shadows, bold colors. Install via shadcn or shadcn-vue.
+
 ### Calendar — Neubrutalism Component for React & Vue 3
 https://boldkit.dev/components/calendar
 Calendar — neubrutalism React & Vue 3 component with thick borders, hard shadows, bold colors. Install via shadcn or shadcn-vue.
@@ -1268,9 +1272,17 @@ Combobox — neubrutalism React & Vue 3 component with thick borders, hard shado
 https://boldkit.dev/components/command
 Command — neubrutalism React & Vue 3 component with thick borders, hard shadows, bold colors. Install via shadcn or shadcn-vue.
 
+### Context Menu — Neubrutalism Component for React & Vue 3
+https://boldkit.dev/components/context-menu
+Context Menu — neubrutalism React & Vue 3 component with thick borders, hard shadows, bold colors. Install via shadcn or shadcn-vue.
+
 ### Data Table — Neubrutalism Component for React & Vue 3
 https://boldkit.dev/components/data-table
 Data Table — neubrutalism React & Vue 3 component with thick borders, hard shadows, bold colors. Install via shadcn or shadcn-vue.
+
+### Date Picker — Neubrutalism Component for React & Vue 3
+https://boldkit.dev/components/date-picker
+Date Picker — neubrutalism React & Vue 3 component with thick borders, hard shadows, bold colors. Install via shadcn or shadcn-vue.
 
 ### Date Range Picker — Neubrutalism Component for React & Vue 3
 https://boldkit.dev/components/date-range-picker
@@ -1279,6 +1291,10 @@ Date Range Picker — neubrutalism React & Vue 3 component with thick borders, h
 ### Dialog — Neubrutalism Component for React & Vue 3
 https://boldkit.dev/components/dialog
 Dialog — neubrutalism React & Vue 3 component with thick borders, hard shadows, bold colors. Install via shadcn or shadcn-vue.
+
+### Field — Neubrutalism Component for React & Vue 3
+https://boldkit.dev/components/field
+Field — neubrutalism React & Vue 3 component with thick borders, hard shadows, bold colors. Install via shadcn or shadcn-vue.
 
 ### Donut Chart — Neubrutalism Component for React & Vue 3
 https://boldkit.dev/components/donut-chart
@@ -1312,6 +1328,10 @@ Hover Card — neubrutalism React & Vue 3 component with thick borders, hard sha
 https://boldkit.dev/components/input
 Input — neubrutalism React & Vue 3 component with thick borders, hard shadows, bold colors. Install via shadcn or shadcn-vue.
 
+### Input Group — Neubrutalism Component for React & Vue 3
+https://boldkit.dev/components/input-group
+Input Group — neubrutalism React & Vue 3 component with thick borders, hard shadows, bold colors. Install via shadcn or shadcn-vue.
+
 ### Input OTP — Neubrutalism Component for React & Vue 3
 https://boldkit.dev/components/input-otp
 Input OTP — neubrutalism React & Vue 3 component with thick borders, hard shadows, bold colors. Install via shadcn or shadcn-vue.
@@ -1331,6 +1351,18 @@ Layered Card — neubrutalism React & Vue 3 component with thick borders, hard s
 ### Marquee — Neubrutalism Component for React & Vue 3
 https://boldkit.dev/components/marquee
 Marquee — neubrutalism React & Vue 3 component with thick borders, hard shadows, bold colors. Install via shadcn or shadcn-vue.
+
+### Menubar — Neubrutalism Component for React & Vue 3
+https://boldkit.dev/components/menubar
+Menubar — neubrutalism React & Vue 3 component with thick borders, hard shadows, bold colors. Install via shadcn or shadcn-vue.
+
+### Native Select — Neubrutalism Component for React & Vue 3
+https://boldkit.dev/components/native-select
+Native Select — neubrutalism React & Vue 3 component with thick borders, hard shadows, bold colors. Install via shadcn or shadcn-vue.
+
+### Navigation Menu — Neubrutalism Component for React & Vue 3
+https://boldkit.dev/components/navigation-menu
+Navigation Menu — neubrutalism React & Vue 3 component with thick borders, hard shadows, bold colors. Install via shadcn or shadcn-vue.
 
 ### Math Curve Background — Neubrutalism Component for React & Vue 3
 https://boldkit.dev/components/math-curve-background
@@ -1371,6 +1403,10 @@ Radio Group — neubrutalism React & Vue 3 component with thick borders, hard sh
 ### Rating — Neubrutalism Component for React & Vue 3
 https://boldkit.dev/components/rating
 Rating — neubrutalism React & Vue 3 component with thick borders, hard shadows, bold colors. Install via shadcn or shadcn-vue.
+
+### Resizable — Neubrutalism Component for React & Vue 3
+https://boldkit.dev/components/resizable
+Resizable — neubrutalism React & Vue 3 component with thick borders, hard shadows, bold colors. Install via shadcn or shadcn-vue.
 
 ### Scroll Area — Neubrutalism Component for React & Vue 3
 https://boldkit.dev/components/scroll-area
@@ -1568,7 +1604,7 @@ Free neubrutalism docs template for React and Vue 3. Copy, paste, and customize 
 Every BoldKit registry item is installed via the shadcn CLI — the source is
 copied directly into your project (there is no npm package to import).
 
-### React (99 items)
+### React (108 items)
 
 ```bash
 npx shadcn@latest add "https://boldkit.dev/r/accordion.json"
@@ -1581,6 +1617,7 @@ npx shadcn@latest add "https://boldkit.dev/r/avatar.json"
 npx shadcn@latest add "https://boldkit.dev/r/badge.json"
 npx shadcn@latest add "https://boldkit.dev/r/breadcrumb.json"
 npx shadcn@latest add "https://boldkit.dev/r/button.json"
+npx shadcn@latest add "https://boldkit.dev/r/button-group.json"
 npx shadcn@latest add "https://boldkit.dev/r/calendar.json"
 npx shadcn@latest add "https://boldkit.dev/r/card.json"
 npx shadcn@latest add "https://boldkit.dev/r/carousel.json"
@@ -1589,8 +1626,10 @@ npx shadcn@latest add "https://boldkit.dev/r/checkbox.json"
 npx shadcn@latest add "https://boldkit.dev/r/collapsible.json"
 npx shadcn@latest add "https://boldkit.dev/r/combobox.json"
 npx shadcn@latest add "https://boldkit.dev/r/command.json"
+npx shadcn@latest add "https://boldkit.dev/r/context-menu.json"
 npx shadcn@latest add "https://boldkit.dev/r/crt.json"
 npx shadcn@latest add "https://boldkit.dev/r/data-table.json"
+npx shadcn@latest add "https://boldkit.dev/r/date-picker.json"
 npx shadcn@latest add "https://boldkit.dev/r/date-range-picker.json"
 npx shadcn@latest add "https://boldkit.dev/r/dialog.json"
 npx shadcn@latest add "https://boldkit.dev/r/dither.json"
@@ -1602,6 +1641,7 @@ npx shadcn@latest add "https://boldkit.dev/r/dropdown-menu.json"
 npx shadcn@latest add "https://boldkit.dev/r/dropzone.json"
 npx shadcn@latest add "https://boldkit.dev/r/empty-state.json"
 npx shadcn@latest add "https://boldkit.dev/r/error-boundary.json"
+npx shadcn@latest add "https://boldkit.dev/r/field.json"
 npx shadcn@latest add "https://boldkit.dev/r/flow-field.json"
 npx shadcn@latest add "https://boldkit.dev/r/funnel-chart.json"
 npx shadcn@latest add "https://boldkit.dev/r/gauge-chart.json"
@@ -1610,6 +1650,7 @@ npx shadcn@latest add "https://boldkit.dev/r/halftone.json"
 npx shadcn@latest add "https://boldkit.dev/r/heatmap-chart.json"
 npx shadcn@latest add "https://boldkit.dev/r/hover-card.json"
 npx shadcn@latest add "https://boldkit.dev/r/input.json"
+npx shadcn@latest add "https://boldkit.dev/r/input-group.json"
 npx shadcn@latest add "https://boldkit.dev/r/input-otp.json"
 npx shadcn@latest add "https://boldkit.dev/r/kbd.json"
 npx shadcn@latest add "https://boldkit.dev/r/label.json"
@@ -1622,8 +1663,11 @@ npx shadcn@latest add "https://boldkit.dev/r/math-curve-loader.json"
 npx shadcn@latest add "https://boldkit.dev/r/math-curve-progress.json"
 npx shadcn@latest add "https://boldkit.dev/r/math-curves.json"
 npx shadcn@latest add "https://boldkit.dev/r/matrix-rain.json"
+npx shadcn@latest add "https://boldkit.dev/r/menubar.json"
 npx shadcn@latest add "https://boldkit.dev/r/metaballs.json"
 npx shadcn@latest add "https://boldkit.dev/r/mouse-ripple.json"
+npx shadcn@latest add "https://boldkit.dev/r/native-select.json"
+npx shadcn@latest add "https://boldkit.dev/r/navigation-menu.json"
 npx shadcn@latest add "https://boldkit.dev/r/pagination.json"
 npx shadcn@latest add "https://boldkit.dev/r/particle-web.json"
 npx shadcn@latest add "https://boldkit.dev/r/plasma.json"
@@ -1634,6 +1678,7 @@ npx shadcn@latest add "https://boldkit.dev/r/radial-bar-chart.json"
 npx shadcn@latest add "https://boldkit.dev/r/radio-group.json"
 npx shadcn@latest add "https://boldkit.dev/r/rating.json"
 npx shadcn@latest add "https://boldkit.dev/r/registry.json"
+npx shadcn@latest add "https://boldkit.dev/r/resizable.json"
 npx shadcn@latest add "https://boldkit.dev/r/sankey-chart.json"
 npx shadcn@latest add "https://boldkit.dev/r/scroll-area.json"
 npx shadcn@latest add "https://boldkit.dev/r/select.json"
@@ -1672,7 +1717,7 @@ npx shadcn@latest add "https://boldkit.dev/r/voronoi-pulse.json"
 npx shadcn@latest add "https://boldkit.dev/r/warp-speed.json"
 ```
 
-### Vue 3 / Nuxt (100 items)
+### Vue 3 / Nuxt (109 items)
 
 ```bash
 npx shadcn-vue@latest add "https://boldkit.dev/r/vue/accordion.json"
@@ -1685,6 +1730,7 @@ npx shadcn-vue@latest add "https://boldkit.dev/r/vue/avatar.json"
 npx shadcn-vue@latest add "https://boldkit.dev/r/vue/badge.json"
 npx shadcn-vue@latest add "https://boldkit.dev/r/vue/breadcrumb.json"
 npx shadcn-vue@latest add "https://boldkit.dev/r/vue/button.json"
+npx shadcn-vue@latest add "https://boldkit.dev/r/vue/button-group.json"
 npx shadcn-vue@latest add "https://boldkit.dev/r/vue/calendar.json"
 npx shadcn-vue@latest add "https://boldkit.dev/r/vue/card.json"
 npx shadcn-vue@latest add "https://boldkit.dev/r/vue/carousel.json"
@@ -1694,8 +1740,10 @@ npx shadcn-vue@latest add "https://boldkit.dev/r/vue/checkbox.json"
 npx shadcn-vue@latest add "https://boldkit.dev/r/vue/collapsible.json"
 npx shadcn-vue@latest add "https://boldkit.dev/r/vue/combobox.json"
 npx shadcn-vue@latest add "https://boldkit.dev/r/vue/command.json"
+npx shadcn-vue@latest add "https://boldkit.dev/r/vue/context-menu.json"
 npx shadcn-vue@latest add "https://boldkit.dev/r/vue/crt.json"
 npx shadcn-vue@latest add "https://boldkit.dev/r/vue/data-table.json"
+npx shadcn-vue@latest add "https://boldkit.dev/r/vue/date-picker.json"
 npx shadcn-vue@latest add "https://boldkit.dev/r/vue/date-range-picker.json"
 npx shadcn-vue@latest add "https://boldkit.dev/r/vue/dialog.json"
 npx shadcn-vue@latest add "https://boldkit.dev/r/vue/dither.json"
@@ -1707,6 +1755,7 @@ npx shadcn-vue@latest add "https://boldkit.dev/r/vue/dropdown-menu.json"
 npx shadcn-vue@latest add "https://boldkit.dev/r/vue/dropzone.json"
 npx shadcn-vue@latest add "https://boldkit.dev/r/vue/empty-state.json"
 npx shadcn-vue@latest add "https://boldkit.dev/r/vue/error-boundary.json"
+npx shadcn-vue@latest add "https://boldkit.dev/r/vue/field.json"
 npx shadcn-vue@latest add "https://boldkit.dev/r/vue/flow-field.json"
 npx shadcn-vue@latest add "https://boldkit.dev/r/vue/funnel-chart.json"
 npx shadcn-vue@latest add "https://boldkit.dev/r/vue/gauge-chart.json"
@@ -1716,6 +1765,7 @@ npx shadcn-vue@latest add "https://boldkit.dev/r/vue/heatmap-chart.json"
 npx shadcn-vue@latest add "https://boldkit.dev/r/vue/hover-card.json"
 npx shadcn-vue@latest add "https://boldkit.dev/r/vue/index.json"
 npx shadcn-vue@latest add "https://boldkit.dev/r/vue/input.json"
+npx shadcn-vue@latest add "https://boldkit.dev/r/vue/input-group.json"
 npx shadcn-vue@latest add "https://boldkit.dev/r/vue/input-otp.json"
 npx shadcn-vue@latest add "https://boldkit.dev/r/vue/kbd.json"
 npx shadcn-vue@latest add "https://boldkit.dev/r/vue/label.json"
@@ -1728,8 +1778,11 @@ npx shadcn-vue@latest add "https://boldkit.dev/r/vue/math-curve-loader.json"
 npx shadcn-vue@latest add "https://boldkit.dev/r/vue/math-curve-progress.json"
 npx shadcn-vue@latest add "https://boldkit.dev/r/vue/math-curves.json"
 npx shadcn-vue@latest add "https://boldkit.dev/r/vue/matrix-rain.json"
+npx shadcn-vue@latest add "https://boldkit.dev/r/vue/menubar.json"
 npx shadcn-vue@latest add "https://boldkit.dev/r/vue/metaballs.json"
 npx shadcn-vue@latest add "https://boldkit.dev/r/vue/mouse-ripple.json"
+npx shadcn-vue@latest add "https://boldkit.dev/r/vue/native-select.json"
+npx shadcn-vue@latest add "https://boldkit.dev/r/vue/navigation-menu.json"
 npx shadcn-vue@latest add "https://boldkit.dev/r/vue/pagination.json"
 npx shadcn-vue@latest add "https://boldkit.dev/r/vue/particle-web.json"
 npx shadcn-vue@latest add "https://boldkit.dev/r/vue/plasma.json"
@@ -1739,6 +1792,7 @@ npx shadcn-vue@latest add "https://boldkit.dev/r/vue/radar-chart.json"
 npx shadcn-vue@latest add "https://boldkit.dev/r/vue/radial-bar-chart.json"
 npx shadcn-vue@latest add "https://boldkit.dev/r/vue/radio-group.json"
 npx shadcn-vue@latest add "https://boldkit.dev/r/vue/rating.json"
+npx shadcn-vue@latest add "https://boldkit.dev/r/vue/resizable.json"
 npx shadcn-vue@latest add "https://boldkit.dev/r/vue/sankey-chart.json"
 npx shadcn-vue@latest add "https://boldkit.dev/r/vue/scroll-area.json"
 npx shadcn-vue@latest add "https://boldkit.dev/r/vue/select.json"

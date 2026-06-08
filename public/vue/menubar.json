@@ -1,0 +1,85 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "menubar",
+  "type": "registry:ui",
+  "description": "A horizontal bar of desktop-style dropdown menus",
+  "dependencies": [
+    "reka-ui",
+    "lucide-vue-next"
+  ],
+  "registryDependencies": [
+    "@boldkit/utils"
+  ],
+  "files": [
+    {
+      "path": "registry/default/ui/Menubar.vue",
+      "type": "registry:ui",
+      "target": "components/ui/Menubar.vue"
+    },
+    {
+      "path": "registry/default/ui/MenubarMenu.vue",
+      "type": "registry:ui",
+      "target": "components/ui/MenubarMenu.vue"
+    },
+    {
+      "path": "registry/default/ui/MenubarTrigger.vue",
+      "type": "registry:ui",
+      "target": "components/ui/MenubarTrigger.vue"
+    },
+    {
+      "path": "registry/default/ui/MenubarContent.vue",
+      "type": "registry:ui",
+      "target": "components/ui/MenubarContent.vue"
+    },
+    {
+      "path": "registry/default/ui/MenubarItem.vue",
+      "type": "registry:ui",
+      "target": "components/ui/MenubarItem.vue"
+    },
+    {
+      "path": "registry/default/ui/MenubarCheckboxItem.vue",
+      "type": "registry:ui",
+      "target": "components/ui/MenubarCheckboxItem.vue"
+    },
+    {
+      "path": "registry/default/ui/MenubarRadioGroup.vue",
+      "type": "registry:ui",
+      "target": "components/ui/MenubarRadioGroup.vue"
+    },
+    {
+      "path": "registry/default/ui/MenubarRadioItem.vue",
+      "type": "registry:ui",
+      "target": "components/ui/MenubarRadioItem.vue"
+    },
+    {
+      "path": "registry/default/ui/MenubarLabel.vue",
+      "type": "registry:ui",
+      "target": "components/ui/MenubarLabel.vue"
+    },
+    {
+      "path": "registry/default/ui/MenubarSeparator.vue",
+      "type": "registry:ui",
+      "target": "components/ui/MenubarSeparator.vue"
+    },
+    {
+      "path": "registry/default/ui/MenubarShortcut.vue",
+      "type": "registry:ui",
+      "target": "components/ui/MenubarShortcut.vue"
+    },
+    {
+      "path": "registry/default/ui/MenubarSub.vue",
+      "type": "registry:ui",
+      "target": "components/ui/MenubarSub.vue"
+    },
+    {
+      "path": "registry/default/ui/MenubarSubTrigger.vue",
+      "type": "registry:ui",
+      "target": "components/ui/MenubarSubTrigger.vue"
+    },
+    {
+      "path": "registry/default/ui/MenubarSubContent.vue",
+      "type": "registry:ui",
+      "target": "components/ui/MenubarSubContent.vue"
+    }
+  ]
+}

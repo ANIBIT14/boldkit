@@ -1,0 +1,33 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "resizable",
+  "type": "registry:ui",
+  "description": "Resizable panel groups and handles",
+  "dependencies": [
+    "reka-ui",
+    "lucide-vue-next"
+  ],
+  "registryDependencies": [
+    "@boldkit/utils"
+  ],
+  "files": [
+    {
+      "path": "registry/default/ui/ResizablePanelGroup.vue",
+      "content": "<script setup lang=\"ts\">\nimport { SplitterGroup, type SplitterGroupProps } from 'reka-ui'\nimport { cn } from '@/lib/utils'\n\nconst props = withDefaults(\n  defineProps<SplitterGroupProps & { class?: string }>(),\n  {\n    direction: 'horizontal',\n  }\n)\n</script>\n\n<template>\n  <SplitterGroup\n    v-bind=\"props\"\n    :class=\"\n      cn(\n        'flex h-full w-full data-[panel-group-direction=vertical]:flex-col data-[orientation=vertical]:flex-col',\n        props.class\n      )\n    \"\n  >\n    <slot />\n  </SplitterGroup>\n</template>\n",
+      "type": "registry:ui",
+      "target": "components/ui/ResizablePanelGroup.vue"
+    },
+    {
+      "path": "registry/default/ui/ResizablePanel.vue",
+      "content": "<script setup lang=\"ts\">\nimport { SplitterPanel, type SplitterPanelProps } from 'reka-ui'\n\nconst props = defineProps<SplitterPanelProps & { class?: string }>()\n</script>\n\n<template>\n  <SplitterPanel v-bind=\"props\">\n    <slot />\n  </SplitterPanel>\n</template>\n",
+      "type": "registry:ui",
+      "target": "components/ui/ResizablePanel.vue"
+    },
+    {
+      "path": "registry/default/ui/ResizableHandle.vue",
+      "content": "<script setup lang=\"ts\">\nimport { computed } from 'vue'\nimport { GripVertical } from 'lucide-vue-next'\nimport { SplitterResizeHandle, type SplitterResizeHandleProps } from 'reka-ui'\nimport { cn } from '@/lib/utils'\n\nconst props = defineProps<\n  SplitterResizeHandleProps & { withHandle?: boolean; class?: string }\n>()\n\n// Strip wrapper-only props so they don't leak onto the Splitter DOM node.\nconst delegatedProps = computed(() => {\n  const { withHandle: _withHandle, class: _class, ...rest } = props\n  return rest\n})\n</script>\n\n<template>\n  <SplitterResizeHandle\n    v-bind=\"delegatedProps\"\n    :class=\"\n      cn(\n        'relative flex w-[3px] items-center justify-center bg-foreground after:absolute after:inset-y-0 after:left-1/2 after:w-2 after:-translate-x-1/2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-1 data-[panel-group-direction=vertical]:h-[3px] data-[panel-group-direction=vertical]:w-full data-[panel-group-direction=vertical]:after:left-0 data-[panel-group-direction=vertical]:after:h-2 data-[panel-group-direction=vertical]:after:w-full data-[panel-group-direction=vertical]:after:-translate-y-1/2 data-[panel-group-direction=vertical]:after:translate-x-0 [&[data-panel-group-direction=vertical]>div]:rotate-90 data-[orientation=vertical]:h-[3px] data-[orientation=vertical]:w-full data-[orientation=vertical]:after:left-0 data-[orientation=vertical]:after:h-2 data-[orientation=vertical]:after:w-full data-[orientation=vertical]:after:-translate-y-1/2 data-[orientation=vertical]:after:translate-x-0 [&[data-orientation=vertical]>div]:rotate-90',\n        props.class\n      )\n    \"\n  >\n    <div\n      v-if=\"props.withHandle\"\n      class=\"z-10 flex h-6 w-3 items-center justify-center border-3 border-foreground bg-background shadow-[2px_2px_0px_hsl(var(--shadow-color))]\"\n    >\n      <GripVertical class=\"h-2.5 w-2.5 stroke-[3]\" />\n    </div>\n  </SplitterResizeHandle>\n</template>\n",
+      "type": "registry:ui",
+      "target": "components/ui/ResizableHandle.vue"
+    }
+  ]
+}

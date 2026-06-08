@@ -1,0 +1,38 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "field",
+  "type": "registry:ui",
+  "description": "Form field composition: label, control, description and error",
+  "dependencies": [],
+  "registryDependencies": [
+    "@boldkit/utils",
+    "@boldkit/label"
+  ],
+  "files": [
+    {
+      "path": "registry/default/ui/Field.vue",
+      "type": "registry:ui",
+      "target": "components/ui/Field.vue"
+    },
+    {
+      "path": "registry/default/ui/FieldGroup.vue",
+      "type": "registry:ui",
+      "target": "components/ui/FieldGroup.vue"
+    },
+    {
+      "path": "registry/default/ui/FieldLabel.vue",
+      "type": "registry:ui",
+      "target": "components/ui/FieldLabel.vue"
+    },
+    {
+      "path": "registry/default/ui/FieldDescription.vue",
+      "type": "registry:ui",
+      "target": "components/ui/FieldDescription.vue"
+    },
+    {
+      "path": "registry/default/ui/FieldError.vue",
+      "type": "registry:ui",
+      "target": "components/ui/FieldError.vue"
+    }
+  ]
+}

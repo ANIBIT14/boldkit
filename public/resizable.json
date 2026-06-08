@@ -1,0 +1,25 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "resizable",
+  "description": "Resizable panel groups and handles with neubrutalism styling",
+  "dependencies": [
+    "react-resizable-panels@^2.1.0",
+    "lucide-react"
+  ],
+  "registryDependencies": [
+    "@boldkit/utils"
+  ],
+  "files": [
+    {
+      "path": "registry/default/ui/resizable.tsx",
+      "type": "registry:ui",
+      "target": "components/ui/resizable.tsx"
+    },
+    {
+      "path": "registry/default/example/resizable-demo.tsx",
+      "type": "registry:example",
+      "target": "components/example/resizable-demo.tsx"
+    }
+  ],
+  "type": "registry:ui"
+}

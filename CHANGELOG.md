@@ -5,6 +5,37 @@ Format follows [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ---
 
+## [3.4.0] — 2026-06-08 — 9 new components + Vue parity
+
+Closes the longest-standing gap against the shadcn component set: BoldKit now ships every classic Radix/Reka primitive. **Nine new components**, each with full React **and** Vue 3 parity, installable via the registry. Plus a manifest-driven docs refactor and a batch of UI fixes surfaced while building them.
+
+### Highlights
+
+✨ **Four classic primitives, finally.** **Context Menu** (right-click menus), **Menubar** (desktop-style app toolbars), **Navigation Menu** (site nav with dropdown panels), and **Resizable** (draggable split panes / dashboard layouts) — neubrutalized over Radix (React) and Reka UI (Vue). These were the only standard shadcn components BoldKit didn't have.
+
+✨ **Five form/layout adds.** **Button Group**, **Input Group** (inputs with leading/trailing addons), **Field** (label + control + description + error composition), **Native Select** (a11y-first styled `<select>`), and a single **Date Picker** (button → calendar popover) to complement the existing Date Range Picker.
+
+✨ **Full Vue 3 parity for all nine.** Every new component ships matching Reka UI implementations and `r/vue/*.json` registry entries — no "coming soon" placeholders.
+
+🐛 **Resizable vertical panels no longer collapse.** `react-resizable-panels` sets an inline `height:100%` that overrides a `h-*` class; demos and docs now use `min-h-*` (the documented pattern) so vertical groups size correctly. The npm dep is pinned to `react-resizable-panels@^2.1.0` so consumers get the matching API.
+
+🐛 **Navigation Menu dropdown renders reliably.** Reworked to render its panel in place (the Radix viewport's measured-height mechanism was collapsing the panel to zero).
+
+🩹 **Date Range Picker presets restyled** as proper neubrutalist buttons (hard border + shadow + press), and the single **Date Picker** now correctly tracks a controlled `value`.
+
+### Internals
+
+- **Docs routes are now manifest-driven.** `src/config/component-docs.tsx` is the single source for every component/block doc route; `App.tsx` maps over it (shrank from 336 → ~165 lines). Adding a component is a one-line entry.
+- New components are registered in the command palette (⌘K) search and the sitemap + `llms-full.txt`.
+- `ComponentDoc` gained an opt-in `previewClassName` (used to give the Navigation Menu preview headroom for its open dropdown).
+
+### Bumps
+
+- React: `3.3.9 → 3.4.0`
+- Vue: `3.1.9 → 3.2.0`
+
+---
+
 ## [3.3.9] — 2026-05-29 — Next.js + Tailwind v4 compatibility
 
 Three install-time bugs reported against v3.3.8 — all in the path between BoldKit's docs/registry and a fresh Next.js + Tailwind v4 + shadcn project. None affect existing Vite users.

@@ -1,0 +1,29 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "input-group",
+  "type": "registry:ui",
+  "description": "An input joined with leading/trailing addons",
+  "dependencies": [
+    "lucide-vue-next"
+  ],
+  "registryDependencies": [
+    "@boldkit/utils"
+  ],
+  "files": [
+    {
+      "path": "registry/default/ui/InputGroup.vue",
+      "type": "registry:ui",
+      "target": "components/ui/InputGroup.vue"
+    },
+    {
+      "path": "registry/default/ui/InputGroupInput.vue",
+      "type": "registry:ui",
+      "target": "components/ui/InputGroupInput.vue"
+    },
+    {
+      "path": "registry/default/ui/InputGroupAddon.vue",
+      "type": "registry:ui",
+      "target": "components/ui/InputGroupAddon.vue"
+    }
+  ]
+}

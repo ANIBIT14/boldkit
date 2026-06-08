@@ -165,36 +165,43 @@ const DateRangePicker = React.forwardRef<HTMLButtonElement, DateRangePickerProps
             {/* Presets sidebar/header */}
             {showPresets && resolvedPresets.length > 0 && (
               <div className={cn(
-                'p-3 bg-muted/30',
+                'p-3 bg-muted',
                 isMobile
                   ? 'border-b-3 border-foreground'
-                  : 'min-w-[130px] border-r-3 border-foreground'
+                  : 'min-w-[160px] border-r-3 border-foreground'
               )}>
-                <p className="mb-2 text-xs font-bold uppercase tracking-wide text-muted-foreground">
+                <p className="mb-3 text-[11px] font-black uppercase tracking-widest text-muted-foreground">
                   Presets
                 </p>
                 <div className={cn(
                   isMobile
-                    ? 'flex flex-wrap gap-1'
-                    : 'space-y-1'
+                    ? 'flex flex-wrap gap-2'
+                    : 'space-y-2'
                 )}>
-                  {resolvedPresets.map((preset) => (
-                    <button
-                      key={preset.label}
-                      type="button"
-                      onClick={() => handlePresetClick(preset)}
-                      className={cn(
-                        'text-left text-sm transition-all duration-150',
-                        'hover:bg-muted',
-                        isMobile
-                          ? 'px-2 py-1 border-2 border-foreground text-xs'
-                          : 'w-full px-3 py-2',
-                        isPresetSelected(preset) && 'bg-accent font-medium shadow-[2px_2px_0px_hsl(var(--shadow-color))]'
-                      )}
-                    >
-                      {preset.label}
-                    </button>
-                  ))}
+                  {resolvedPresets.map((preset) => {
+                    const selected = isPresetSelected(preset)
+                    return (
+                      <button
+                        key={preset.label}
+                        type="button"
+                        onClick={() => handlePresetClick(preset)}
+                        className={cn(
+                          'text-left text-sm font-bold border-3 border-foreground bg-background transition-all duration-150',
+                          isMobile
+                            ? 'px-2 py-1 text-xs shadow-[2px_2px_0px_hsl(var(--shadow-color))]'
+                            : 'w-full px-3 py-2 shadow-[3px_3px_0px_hsl(var(--shadow-color))]',
+                          // press-in on hover/focus
+                          isMobile
+                            ? 'hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none focus-visible:translate-x-[2px] focus-visible:translate-y-[2px] focus-visible:shadow-none'
+                            : 'hover:translate-x-[3px] hover:translate-y-[3px] hover:shadow-none focus-visible:translate-x-[3px] focus-visible:translate-y-[3px] focus-visible:shadow-none',
+                          'focus-visible:outline-none',
+                          selected && 'bg-accent text-accent-foreground shadow-none ' + (isMobile ? 'translate-x-[2px] translate-y-[2px]' : 'translate-x-[3px] translate-y-[3px]')
+                        )}
+                      >
+                        {preset.label}
+                      </button>
+                    )
+                  })}
                 </div>
               </div>
             )}

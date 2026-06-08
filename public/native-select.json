@@ -1,0 +1,24 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "native-select",
+  "description": "A styled wrapper around the native select element, a11y-first",
+  "dependencies": [
+    "lucide-react"
+  ],
+  "registryDependencies": [
+    "@boldkit/utils"
+  ],
+  "files": [
+    {
+      "path": "registry/default/ui/native-select.tsx",
+      "type": "registry:ui",
+      "target": "components/ui/native-select.tsx"
+    },
+    {
+      "path": "registry/default/example/native-select-demo.tsx",
+      "type": "registry:example",
+      "target": "components/example/native-select-demo.tsx"
+    }
+  ],
+  "type": "registry:ui"
+}

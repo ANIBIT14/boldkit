@@ -1,0 +1,19 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "native-select",
+  "type": "registry:ui",
+  "description": "A styled wrapper around the native select element",
+  "dependencies": [
+    "lucide-vue-next"
+  ],
+  "registryDependencies": [
+    "@boldkit/utils"
+  ],
+  "files": [
+    {
+      "path": "registry/default/ui/NativeSelect.vue",
+      "type": "registry:ui",
+      "target": "components/ui/NativeSelect.vue"
+    }
+  ]
+}

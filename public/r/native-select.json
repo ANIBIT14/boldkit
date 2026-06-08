@@ -1,0 +1,26 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "native-select",
+  "description": "A styled wrapper around the native select element, a11y-first",
+  "dependencies": [
+    "lucide-react"
+  ],
+  "registryDependencies": [
+    "@boldkit/utils"
+  ],
+  "files": [
+    {
+      "path": "registry/default/ui/native-select.tsx",
+      "content": "import * as React from 'react'\nimport { ChevronDown } from 'lucide-react'\nimport { cn } from '@/lib/utils'\n\n/**\n * A styled wrapper around the native <select> element — lightweight and\n * a11y-first, for simple option lists that don't need a custom popover.\n */\nconst NativeSelect = React.forwardRef<\n  HTMLSelectElement,\n  React.SelectHTMLAttributes<HTMLSelectElement>\n>(({ className, children, ...props }, ref) => (\n  <div className=\"relative inline-flex w-full\">\n    <select\n      ref={ref}\n      className={cn(\n        'h-11 w-full appearance-none border-3 border-foreground bg-background px-3 pr-10 text-sm font-bold uppercase tracking-wide shadow-[4px_4px_0px_hsl(var(--shadow-color))] outline-none transition-all focus-visible:translate-x-[2px] focus-visible:translate-y-[2px] focus-visible:shadow-none disabled:cursor-not-allowed disabled:opacity-50',\n        className\n      )}\n      {...props}\n    >\n      {children}\n    </select>\n    <ChevronDown className=\"pointer-events-none absolute right-3 top-1/2 h-4 w-4 -translate-y-1/2 stroke-[3]\" />\n  </div>\n))\nNativeSelect.displayName = 'NativeSelect'\n\nexport { NativeSelect }\n",
+      "type": "registry:ui",
+      "target": "components/ui/native-select.tsx"
+    },
+    {
+      "path": "registry/default/example/native-select-demo.tsx",
+      "content": "import { NativeSelect } from '@/components/ui/native-select'\n\nexport default function Example() {\n  return (\n    <NativeSelect className=\"max-w-xs\" defaultValue=\"\">\n      <option value=\"\" disabled>\n        Select a fruit\n      </option>\n      <option value=\"apple\">Apple</option>\n      <option value=\"banana\">Banana</option>\n      <option value=\"orange\">Orange</option>\n    </NativeSelect>\n  )\n}\n",
+      "type": "registry:example",
+      "target": "components/example/native-select-demo.tsx"
+    }
+  ],
+  "type": "registry:ui"
+}

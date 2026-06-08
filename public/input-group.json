@@ -1,0 +1,24 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "input-group",
+  "description": "An input joined with leading/trailing addons in a single bordered field",
+  "dependencies": [
+    "lucide-react"
+  ],
+  "registryDependencies": [
+    "@boldkit/utils"
+  ],
+  "files": [
+    {
+      "path": "registry/default/ui/input-group.tsx",
+      "type": "registry:ui",
+      "target": "components/ui/input-group.tsx"
+    },
+    {
+      "path": "registry/default/example/input-group-demo.tsx",
+      "type": "registry:example",
+      "target": "components/example/input-group-demo.tsx"
+    }
+  ],
+  "type": "registry:ui"
+}

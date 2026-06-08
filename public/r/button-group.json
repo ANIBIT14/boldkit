@@ -1,0 +1,25 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "button-group",
+  "description": "Visually joins a row or column of buttons into one bordered unit",
+  "dependencies": [],
+  "registryDependencies": [
+    "@boldkit/utils",
+    "@boldkit/button"
+  ],
+  "files": [
+    {
+      "path": "registry/default/ui/button-group.tsx",
+      "content": "import * as React from 'react'\nimport { cn } from '@/lib/utils'\n\nexport interface ButtonGroupProps extends React.HTMLAttributes<HTMLDivElement> {\n  orientation?: 'horizontal' | 'vertical'\n}\n\n/**\n * Visually joins a row (or column) of Buttons into a single bordered unit:\n * shared borders collapse, individual shadows/press animations are neutralized,\n * and the group carries one hard neubrutalism shadow.\n */\nconst ButtonGroup = React.forwardRef<HTMLDivElement, ButtonGroupProps>(\n  ({ className, orientation = 'horizontal', ...props }, ref) => (\n    <div\n      ref={ref}\n      role=\"group\"\n      className={cn(\n        'inline-flex shadow-[4px_4px_0px_hsl(var(--shadow-color))]',\n        // neutralize each child's own shadow + press-translate so the group reads as one block\n        '[&>*]:shadow-none [&>*]:hover:translate-x-0 [&>*]:hover:translate-y-0 [&>*]:active:translate-x-0 [&>*]:active:translate-y-0',\n        orientation === 'horizontal'\n          ? '[&>*:not(:first-child)]:ml-[-3px]'\n          : 'flex-col [&>*:not(:first-child)]:mt-[-3px]',\n        className\n      )}\n      {...props}\n    />\n  )\n)\nButtonGroup.displayName = 'ButtonGroup'\n\nexport { ButtonGroup }\n",
+      "type": "registry:ui",
+      "target": "components/ui/button-group.tsx"
+    },
+    {
+      "path": "registry/default/example/button-group-demo.tsx",
+      "content": "import { ButtonGroup } from '@/components/ui/button-group'\nimport { Button } from '@/components/ui/button'\n\nexport default function Example() {\n  return (\n    <ButtonGroup>\n      <Button variant=\"outline\">Left</Button>\n      <Button variant=\"outline\">Center</Button>\n      <Button variant=\"outline\">Right</Button>\n    </ButtonGroup>\n  )\n}\n",
+      "type": "registry:example",
+      "target": "components/example/button-group-demo.tsx"
+    }
+  ],
+  "type": "registry:ui"
+}

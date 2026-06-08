@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "date-picker",
+  "type": "registry:ui",
+  "description": "A single-date picker that opens a calendar popover",
+  "dependencies": [
+    "lucide-vue-next"
+  ],
+  "registryDependencies": [
+    "@boldkit/utils",
+    "@boldkit/button",
+    "@boldkit/calendar",
+    "@boldkit/popover"
+  ],
+  "files": [
+    {
+      "path": "registry/default/ui/DatePicker.vue",
+      "type": "registry:ui",
+      "target": "components/ui/DatePicker.vue"
+    }
+  ]
+}

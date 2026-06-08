@@ -99,6 +99,51 @@
       "registryUrl": "https://boldkit.dev/r/vue/dropdown-menu.json"
     },
     {
+      "name": "context-menu",
+      "type": "registry:ui",
+      "registryUrl": "https://boldkit.dev/r/vue/context-menu.json"
+    },
+    {
+      "name": "menubar",
+      "type": "registry:ui",
+      "registryUrl": "https://boldkit.dev/r/vue/menubar.json"
+    },
+    {
+      "name": "navigation-menu",
+      "type": "registry:ui",
+      "registryUrl": "https://boldkit.dev/r/vue/navigation-menu.json"
+    },
+    {
+      "name": "resizable",
+      "type": "registry:ui",
+      "registryUrl": "https://boldkit.dev/r/vue/resizable.json"
+    },
+    {
+      "name": "button-group",
+      "type": "registry:ui",
+      "registryUrl": "https://boldkit.dev/r/vue/button-group.json"
+    },
+    {
+      "name": "input-group",
+      "type": "registry:ui",
+      "registryUrl": "https://boldkit.dev/r/vue/input-group.json"
+    },
+    {
+      "name": "field",
+      "type": "registry:ui",
+      "registryUrl": "https://boldkit.dev/r/vue/field.json"
+    },
+    {
+      "name": "native-select",
+      "type": "registry:ui",
+      "registryUrl": "https://boldkit.dev/r/vue/native-select.json"
+    },
+    {
+      "name": "date-picker",
+      "type": "registry:ui",
+      "registryUrl": "https://boldkit.dev/r/vue/date-picker.json"
+    },
+    {
       "name": "alert-dialog",
       "type": "registry:ui",
       "registryUrl": "https://boldkit.dev/r/vue/alert-dialog.json"

@@ -1,0 +1,26 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "field",
+  "description": "Form field composition: label, control, description and error",
+  "dependencies": [],
+  "registryDependencies": [
+    "@boldkit/utils",
+    "@boldkit/label",
+    "@boldkit/input"
+  ],
+  "files": [
+    {
+      "path": "registry/default/ui/field.tsx",
+      "content": "import * as React from 'react'\nimport { cn } from '@/lib/utils'\nimport { Label } from '@/components/ui/label'\n\n/** A vertical stack of related fields. */\nconst FieldGroup = React.forwardRef<\n  HTMLDivElement,\n  React.HTMLAttributes<HTMLDivElement>\n>(({ className, ...props }, ref) => (\n  <div ref={ref} className={cn('flex flex-col gap-5', className)} {...props} />\n))\nFieldGroup.displayName = 'FieldGroup'\n\n/** A single form field: groups a label, control, description and error. */\nconst Field = React.forwardRef<\n  HTMLDivElement,\n  React.HTMLAttributes<HTMLDivElement>\n>(({ className, ...props }, ref) => (\n  <div ref={ref} className={cn('flex flex-col gap-1.5', className)} {...props} />\n))\nField.displayName = 'Field'\n\nconst FieldLabel = React.forwardRef<\n  React.ElementRef<typeof Label>,\n  React.ComponentPropsWithoutRef<typeof Label>\n>(({ className, ...props }, ref) => (\n  <Label ref={ref} className={cn('text-xs', className)} {...props} />\n))\nFieldLabel.displayName = 'FieldLabel'\n\nconst FieldDescription = React.forwardRef<\n  HTMLParagraphElement,\n  React.HTMLAttributes<HTMLParagraphElement>\n>(({ className, ...props }, ref) => (\n  <p\n    ref={ref}\n    className={cn('text-xs font-medium text-muted-foreground', className)}\n    {...props}\n  />\n))\nFieldDescription.displayName = 'FieldDescription'\n\nconst FieldError = React.forwardRef<\n  HTMLParagraphElement,\n  React.HTMLAttributes<HTMLParagraphElement>\n>(({ className, children, ...props }, ref) => {\n  if (!children) return null\n  return (\n    <p\n      ref={ref}\n      role=\"alert\"\n      className={cn(\n        'text-xs font-bold uppercase tracking-wide text-destructive',\n        className\n      )}\n      {...props}\n    >\n      {children}\n    </p>\n  )\n})\nFieldError.displayName = 'FieldError'\n\nexport { Field, FieldGroup, FieldLabel, FieldDescription, FieldError }\n",
+      "type": "registry:ui",
+      "target": "components/ui/field.tsx"
+    },
+    {
+      "path": "registry/default/example/field-demo.tsx",
+      "content": "import {\n  Field,\n  FieldDescription,\n  FieldGroup,\n  FieldLabel,\n} from '@/components/ui/field'\nimport { Input } from '@/components/ui/input'\n\nexport default function Example() {\n  return (\n    <FieldGroup className=\"max-w-sm\">\n      <Field>\n        <FieldLabel htmlFor=\"email\">Email</FieldLabel>\n        <Input id=\"email\" type=\"email\" placeholder=\"you@example.com\" />\n        <FieldDescription>We'll never share your email.</FieldDescription>\n      </Field>\n      <Field>\n        <FieldLabel htmlFor=\"name\">Name</FieldLabel>\n        <Input id=\"name\" placeholder=\"Jane Doe\" />\n      </Field>\n    </FieldGroup>\n  )\n}\n",
+      "type": "registry:example",
+      "target": "components/example/field-demo.tsx"
+    }
+  ],
+  "type": "registry:ui"
+}

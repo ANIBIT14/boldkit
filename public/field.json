@@ -1,0 +1,24 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "field",
+  "description": "Form field composition: label, control, description and error",
+  "dependencies": [],
+  "registryDependencies": [
+    "@boldkit/utils",
+    "@boldkit/label",
+    "@boldkit/input"
+  ],
+  "files": [
+    {
+      "path": "registry/default/ui/field.tsx",
+      "type": "registry:ui",
+      "target": "components/ui/field.tsx"
+    },
+    {
+      "path": "registry/default/example/field-demo.tsx",
+      "type": "registry:example",
+      "target": "components/example/field-demo.tsx"
+    }
+  ],
+  "type": "registry:ui"
+}

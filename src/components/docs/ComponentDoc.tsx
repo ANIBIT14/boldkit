@@ -1,5 +1,6 @@
 import { useState, type ReactNode } from 'react'
 import { Link } from 'react-router-dom'
+import { cn } from '@/lib/utils'
 import { copyToClipboard } from '@/lib/clipboard'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
@@ -82,6 +83,9 @@ interface ComponentDocProps {
   vueDependencies?: string[]
   // Nuxt-specific
   nuxtClientOnly?: boolean
+  // Extra classes for the preview surface (e.g. min-height for components with
+  // open overlays like Navigation Menu that would otherwise be clipped).
+  previewClassName?: string
 }
 
 export function ComponentDoc({
@@ -97,6 +101,7 @@ export function ComponentDoc({
   vueUsageCode,
   vueDependencies,
   nuxtClientOnly = false,
+  previewClassName,
 }: ComponentDocProps) {
   // Use global framework context
   const { framework } = useFramework()
@@ -210,7 +215,7 @@ export function ComponentDoc({
           <CardTitle>Preview</CardTitle>
           <OpenInV0Button name={componentRegistryName} />
         </CardHeader>
-        <CardContent className="relative pt-8 pb-8 overflow-hidden">
+        <CardContent className={cn('relative pt-8 pb-8 overflow-hidden', previewClassName)}>
           <div className="grid-pattern absolute inset-0 opacity-30" />
           <div className="relative">
             {children}

@@ -1,0 +1,80 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "context-menu",
+  "type": "registry:ui",
+  "description": "Displays a menu triggered by right-click",
+  "dependencies": [
+    "reka-ui",
+    "lucide-vue-next"
+  ],
+  "registryDependencies": [
+    "@boldkit/utils"
+  ],
+  "files": [
+    {
+      "path": "registry/default/ui/ContextMenu.vue",
+      "type": "registry:ui",
+      "target": "components/ui/ContextMenu.vue"
+    },
+    {
+      "path": "registry/default/ui/ContextMenuTrigger.vue",
+      "type": "registry:ui",
+      "target": "components/ui/ContextMenuTrigger.vue"
+    },
+    {
+      "path": "registry/default/ui/ContextMenuContent.vue",
+      "type": "registry:ui",
+      "target": "components/ui/ContextMenuContent.vue"
+    },
+    {
+      "path": "registry/default/ui/ContextMenuItem.vue",
+      "type": "registry:ui",
+      "target": "components/ui/ContextMenuItem.vue"
+    },
+    {
+      "path": "registry/default/ui/ContextMenuCheckboxItem.vue",
+      "type": "registry:ui",
+      "target": "components/ui/ContextMenuCheckboxItem.vue"
+    },
+    {
+      "path": "registry/default/ui/ContextMenuRadioGroup.vue",
+      "type": "registry:ui",
+      "target": "components/ui/ContextMenuRadioGroup.vue"
+    },
+    {
+      "path": "registry/default/ui/ContextMenuRadioItem.vue",
+      "type": "registry:ui",
+      "target": "components/ui/ContextMenuRadioItem.vue"
+    },
+    {
+      "path": "registry/default/ui/ContextMenuLabel.vue",
+      "type": "registry:ui",
+      "target": "components/ui/ContextMenuLabel.vue"
+    },
+    {
+      "path": "registry/default/ui/ContextMenuSeparator.vue",
+      "type": "registry:ui",
+      "target": "components/ui/ContextMenuSeparator.vue"
+    },
+    {
+      "path": "registry/default/ui/ContextMenuShortcut.vue",
+      "type": "registry:ui",
+      "target": "components/ui/ContextMenuShortcut.vue"
+    },
+    {
+      "path": "registry/default/ui/ContextMenuSub.vue",
+      "type": "registry:ui",
+      "target": "components/ui/ContextMenuSub.vue"
+    },
+    {
+      "path": "registry/default/ui/ContextMenuSubTrigger.vue",
+      "type": "registry:ui",
+      "target": "components/ui/ContextMenuSubTrigger.vue"
+    },
+    {
+      "path": "registry/default/ui/ContextMenuSubContent.vue",
+      "type": "registry:ui",
+      "target": "components/ui/ContextMenuSubContent.vue"
+    }
+  ]
+}

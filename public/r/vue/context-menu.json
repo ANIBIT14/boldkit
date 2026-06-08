@@ -1,0 +1,93 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "context-menu",
+  "type": "registry:ui",
+  "description": "Displays a menu triggered by right-click",
+  "dependencies": [
+    "reka-ui",
+    "lucide-vue-next"
+  ],
+  "registryDependencies": [
+    "@boldkit/utils"
+  ],
+  "files": [
+    {
+      "path": "registry/default/ui/ContextMenu.vue",
+      "content": "<script setup lang=\"ts\">\nimport { ContextMenuRoot, type ContextMenuRootProps } from 'reka-ui'\n\nconst props = defineProps<ContextMenuRootProps>()\n</script>\n\n<template>\n  <ContextMenuRoot v-bind=\"props\">\n    <slot />\n  </ContextMenuRoot>\n</template>\n",
+      "type": "registry:ui",
+      "target": "components/ui/ContextMenu.vue"
+    },
+    {
+      "path": "registry/default/ui/ContextMenuTrigger.vue",
+      "content": "<script setup lang=\"ts\">\nimport { ContextMenuTrigger as ContextMenuTriggerPrimitive } from 'reka-ui'\n</script>\n\n<template>\n  <ContextMenuTriggerPrimitive as-child>\n    <slot />\n  </ContextMenuTriggerPrimitive>\n</template>\n",
+      "type": "registry:ui",
+      "target": "components/ui/ContextMenuTrigger.vue"
+    },
+    {
+      "path": "registry/default/ui/ContextMenuContent.vue",
+      "content": "<script setup lang=\"ts\">\nimport { ContextMenuPortal, ContextMenuContent as ContextMenuContentPrimitive } from 'reka-ui'\nimport { cn } from '@/lib/utils'\n\ndefineProps<{\n  class?: string\n}>()\n</script>\n\n<template>\n  <ContextMenuPortal>\n    <ContextMenuContentPrimitive\n      :class=\"\n        cn(\n          'z-50 min-w-[8rem] overflow-hidden border-3 border-foreground bg-popover p-1 text-popover-foreground shadow-[4px_4px_0px_hsl(var(--shadow-color))]',\n          $props.class\n        )\n      \"\n    >\n      <slot />\n    </ContextMenuContentPrimitive>\n  </ContextMenuPortal>\n</template>\n",
+      "type": "registry:ui",
+      "target": "components/ui/ContextMenuContent.vue"
+    },
+    {
+      "path": "registry/default/ui/ContextMenuItem.vue",
+      "content": "<script setup lang=\"ts\">\nimport { ContextMenuItem as ContextMenuItemPrimitive } from 'reka-ui'\nimport { cn } from '@/lib/utils'\n\ndefineProps<{\n  class?: string\n  inset?: boolean\n  disabled?: boolean\n}>()\n</script>\n\n<template>\n  <ContextMenuItemPrimitive\n    :disabled=\"disabled\"\n    :class=\"\n      cn(\n        'relative flex cursor-default select-none items-center px-2 py-1.5 text-sm outline-none transition-all duration-150 focus:bg-accent focus:text-accent-foreground focus:translate-x-1 data-[disabled]:pointer-events-none data-[disabled]:opacity-50',\n        inset && 'pl-8',\n        $props.class\n      )\n    \"\n  >\n    <slot />\n  </ContextMenuItemPrimitive>\n</template>\n",
+      "type": "registry:ui",
+      "target": "components/ui/ContextMenuItem.vue"
+    },
+    {
+      "path": "registry/default/ui/ContextMenuCheckboxItem.vue",
+      "content": "<script setup lang=\"ts\">\nimport { ContextMenuCheckboxItem as ContextMenuCheckboxItemPrimitive, ContextMenuItemIndicator } from 'reka-ui'\nimport { Check } from 'lucide-vue-next'\nimport { cn } from '@/lib/utils'\n\ndefineProps<{\n  class?: string\n  checked?: boolean\n  disabled?: boolean\n}>()\n\nconst emit = defineEmits<{\n  'update:checked': [value: boolean]\n}>()\n</script>\n\n<template>\n  <ContextMenuCheckboxItemPrimitive\n    :model-value=\"checked\"\n    :disabled=\"disabled\"\n    :class=\"\n      cn(\n        'relative flex cursor-default select-none items-center py-1.5 pl-8 pr-2 text-sm outline-none transition-colors focus:bg-accent focus:text-accent-foreground data-[disabled]:pointer-events-none data-[disabled]:opacity-50',\n        $props.class\n      )\n    \"\n    @update:model-value=\"emit('update:checked', $event as boolean)\"\n  >\n    <span class=\"absolute left-2 flex h-3.5 w-3.5 items-center justify-center\">\n      <ContextMenuItemIndicator>\n        <Check class=\"h-4 w-4 stroke-[3]\" />\n      </ContextMenuItemIndicator>\n    </span>\n    <slot />\n  </ContextMenuCheckboxItemPrimitive>\n</template>\n",
+      "type": "registry:ui",
+      "target": "components/ui/ContextMenuCheckboxItem.vue"
+    },
+    {
+      "path": "registry/default/ui/ContextMenuRadioGroup.vue",
+      "content": "<script setup lang=\"ts\">\nimport { ContextMenuRadioGroup as ContextMenuRadioGroupPrimitive } from 'reka-ui'\n\ndefineProps<{\n  modelValue?: string\n}>()\n\nconst emit = defineEmits<{\n  'update:modelValue': [value: string]\n}>()\n</script>\n\n<template>\n  <ContextMenuRadioGroupPrimitive\n    :model-value=\"modelValue\"\n    @update:model-value=\"emit('update:modelValue', $event as string)\"\n  >\n    <slot />\n  </ContextMenuRadioGroupPrimitive>\n</template>\n",
+      "type": "registry:ui",
+      "target": "components/ui/ContextMenuRadioGroup.vue"
+    },
+    {
+      "path": "registry/default/ui/ContextMenuRadioItem.vue",
+      "content": "<script setup lang=\"ts\">\nimport { ContextMenuRadioItem as ContextMenuRadioItemPrimitive, ContextMenuItemIndicator } from 'reka-ui'\nimport { Circle } from 'lucide-vue-next'\nimport { cn } from '@/lib/utils'\n\ndefineProps<{\n  class?: string\n  value: string\n  disabled?: boolean\n}>()\n</script>\n\n<template>\n  <ContextMenuRadioItemPrimitive\n    :value=\"value\"\n    :disabled=\"disabled\"\n    :class=\"\n      cn(\n        'relative flex cursor-default select-none items-center py-1.5 pl-8 pr-2 text-sm outline-none transition-colors focus:bg-accent focus:text-accent-foreground data-[disabled]:pointer-events-none data-[disabled]:opacity-50',\n        $props.class\n      )\n    \"\n  >\n    <span class=\"absolute left-2 flex h-3.5 w-3.5 items-center justify-center\">\n      <ContextMenuItemIndicator>\n        <Circle class=\"h-2 w-2 fill-current\" />\n      </ContextMenuItemIndicator>\n    </span>\n    <slot />\n  </ContextMenuRadioItemPrimitive>\n</template>\n",
+      "type": "registry:ui",
+      "target": "components/ui/ContextMenuRadioItem.vue"
+    },
+    {
+      "path": "registry/default/ui/ContextMenuLabel.vue",
+      "content": "<script setup lang=\"ts\">\nimport { ContextMenuLabel as ContextMenuLabelPrimitive } from 'reka-ui'\nimport { cn } from '@/lib/utils'\n\ndefineProps<{\n  class?: string\n  inset?: boolean\n}>()\n</script>\n\n<template>\n  <ContextMenuLabelPrimitive\n    :class=\"\n      cn(\n        'px-2 py-1.5 text-sm font-bold uppercase tracking-wide',\n        inset && 'pl-8',\n        $props.class\n      )\n    \"\n  >\n    <slot />\n  </ContextMenuLabelPrimitive>\n</template>\n",
+      "type": "registry:ui",
+      "target": "components/ui/ContextMenuLabel.vue"
+    },
+    {
+      "path": "registry/default/ui/ContextMenuSeparator.vue",
+      "content": "<script setup lang=\"ts\">\nimport { ContextMenuSeparator as ContextMenuSeparatorPrimitive } from 'reka-ui'\nimport { cn } from '@/lib/utils'\n\ndefineProps<{\n  class?: string\n}>()\n</script>\n\n<template>\n  <ContextMenuSeparatorPrimitive :class=\"cn('-mx-1 my-1 h-px bg-foreground', $props.class)\" />\n</template>\n",
+      "type": "registry:ui",
+      "target": "components/ui/ContextMenuSeparator.vue"
+    },
+    {
+      "path": "registry/default/ui/ContextMenuShortcut.vue",
+      "content": "<script setup lang=\"ts\">\nimport { cn } from '@/lib/utils'\n\ndefineProps<{\n  class?: string\n}>()\n</script>\n\n<template>\n  <span :class=\"cn('ml-auto text-xs tracking-widest opacity-60', $props.class)\">\n    <slot />\n  </span>\n</template>\n",
+      "type": "registry:ui",
+      "target": "components/ui/ContextMenuShortcut.vue"
+    },
+    {
+      "path": "registry/default/ui/ContextMenuSub.vue",
+      "content": "<script setup lang=\"ts\">\nimport { ContextMenuSub as ContextMenuSubPrimitive, type ContextMenuSubProps } from 'reka-ui'\n\nconst props = defineProps<ContextMenuSubProps>()\n</script>\n\n<template>\n  <ContextMenuSubPrimitive v-bind=\"props\">\n    <slot />\n  </ContextMenuSubPrimitive>\n</template>\n",
+      "type": "registry:ui",
+      "target": "components/ui/ContextMenuSub.vue"
+    },
+    {
+      "path": "registry/default/ui/ContextMenuSubTrigger.vue",
+      "content": "<script setup lang=\"ts\">\nimport { ContextMenuSubTrigger as ContextMenuSubTriggerPrimitive } from 'reka-ui'\nimport { ChevronRight } from 'lucide-vue-next'\nimport { cn } from '@/lib/utils'\n\ndefineProps<{\n  class?: string\n  inset?: boolean\n  disabled?: boolean\n}>()\n</script>\n\n<template>\n  <ContextMenuSubTriggerPrimitive\n    :disabled=\"disabled\"\n    :class=\"\n      cn(\n        'flex cursor-default select-none items-center px-2 py-1.5 text-sm outline-none focus:bg-accent data-[state=open]:bg-accent',\n        inset && 'pl-8',\n        $props.class\n      )\n    \"\n  >\n    <slot />\n    <ChevronRight class=\"ml-auto h-4 w-4 stroke-[3]\" />\n  </ContextMenuSubTriggerPrimitive>\n</template>\n",
+      "type": "registry:ui",
+      "target": "components/ui/ContextMenuSubTrigger.vue"
+    },
+    {
+      "path": "registry/default/ui/ContextMenuSubContent.vue",
+      "content": "<script setup lang=\"ts\">\nimport { ContextMenuSubContent as ContextMenuSubContentPrimitive } from 'reka-ui'\nimport { cn } from '@/lib/utils'\n\ndefineProps<{\n  class?: string\n}>()\n</script>\n\n<template>\n  <ContextMenuSubContentPrimitive\n    :class=\"\n      cn(\n        'z-50 min-w-[8rem] overflow-hidden border-3 border-foreground bg-popover p-1 text-popover-foreground shadow-[4px_4px_0px_hsl(var(--shadow-color))]',\n        $props.class\n      )\n    \"\n  >\n    <slot />\n  </ContextMenuSubContentPrimitive>\n</template>\n",
+      "type": "registry:ui",
+      "target": "components/ui/ContextMenuSubContent.vue"
+    }
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "input-group",
+  "type": "registry:ui",
+  "description": "An input joined with leading/trailing addons",
+  "dependencies": [
+    "lucide-vue-next"
+  ],
+  "registryDependencies": [
+    "@boldkit/utils"
+  ],
+  "files": [
+    {
+      "path": "registry/default/ui/InputGroup.vue",
+      "content": "<script setup lang=\"ts\">\nimport { cn } from '@/lib/utils'\n\nconst props = defineProps<{\n  class?: string\n}>()\n</script>\n\n<template>\n  <div\n    :class=\"\n      cn(\n        'flex items-stretch border-3 border-foreground bg-background shadow-[4px_4px_0px_hsl(var(--shadow-color))] transition-all focus-within:translate-x-[2px] focus-within:translate-y-[2px] focus-within:shadow-none',\n        props.class\n      )\n    \"\n  >\n    <slot />\n  </div>\n</template>\n",
+      "type": "registry:ui",
+      "target": "components/ui/InputGroup.vue"
+    },
+    {
+      "path": "registry/default/ui/InputGroupInput.vue",
+      "content": "<script setup lang=\"ts\">\nimport { cn } from '@/lib/utils'\n\nconst props = defineProps<{\n  class?: string\n  modelValue?: string\n}>()\n\nconst emit = defineEmits<{\n  (e: 'update:modelValue', value: string): void\n}>()\n\nfunction onInput(event: Event) {\n  emit('update:modelValue', (event.target as HTMLInputElement).value)\n}\n</script>\n\n<template>\n  <input\n    :value=\"modelValue\"\n    @input=\"onInput\"\n    :class=\"\n      cn(\n        'w-full flex-1 bg-transparent px-3 py-2 text-sm font-medium outline-none placeholder:text-muted-foreground disabled:cursor-not-allowed disabled:opacity-50',\n        props.class\n      )\n    \"\n  />\n</template>\n",
+      "type": "registry:ui",
+      "target": "components/ui/InputGroupInput.vue"
+    },
+    {
+      "path": "registry/default/ui/InputGroupAddon.vue",
+      "content": "<script setup lang=\"ts\">\nimport { cn } from '@/lib/utils'\n\nconst props = withDefaults(\n  defineProps<{\n    class?: string\n    position?: 'leading' | 'trailing'\n  }>(),\n  {\n    position: 'leading',\n  }\n)\n</script>\n\n<template>\n  <div\n    :class=\"\n      cn(\n        'flex items-center bg-muted px-3 text-sm font-bold uppercase tracking-wide text-muted-foreground [&_svg]:size-4 [&_svg]:shrink-0',\n        props.position === 'leading' ? 'border-r-3 border-foreground' : 'border-l-3 border-foreground',\n        props.class\n      )\n    \"\n  >\n    <slot />\n  </div>\n</template>\n",
+      "type": "registry:ui",
+      "target": "components/ui/InputGroupAddon.vue"
+    }
+  ]
+}

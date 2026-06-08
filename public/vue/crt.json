@@ -1,0 +1,15 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "crt",
+  "description": "Retro cathode-ray-tube screen with phosphor scanlines, a rolling brightness band, vignette and flicker",
+  "dependencies": [],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "registry/default/ui/canvas-effects/CRT.vue",
+      "type": "registry:ui",
+      "target": "components/ui/canvas-effects/CRT.vue"
+    }
+  ],
+  "type": "registry:ui"
+}

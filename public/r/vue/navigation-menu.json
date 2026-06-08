@@ -1,0 +1,64 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "navigation-menu",
+  "type": "registry:ui",
+  "description": "A collection of links and dropdown panels for site navigation",
+  "dependencies": [
+    "reka-ui",
+    "lucide-vue-next",
+    "class-variance-authority"
+  ],
+  "registryDependencies": [
+    "@boldkit/utils"
+  ],
+  "files": [
+    {
+      "path": "registry/default/ui/NavigationMenu.vue",
+      "content": "<script setup lang=\"ts\">\nimport { NavigationMenuRoot } from 'reka-ui'\nimport { cn } from '@/lib/utils'\n\ndefineProps<{\n  class?: string\n}>()\n</script>\n\n<template>\n  <NavigationMenuRoot\n    :class=\"cn('relative z-10 flex max-w-max flex-1 items-center justify-center', $props.class)\"\n  >\n    <slot />\n  </NavigationMenuRoot>\n</template>\n",
+      "type": "registry:ui",
+      "target": "components/ui/NavigationMenu.vue"
+    },
+    {
+      "path": "registry/default/ui/NavigationMenuList.vue",
+      "content": "<script setup lang=\"ts\">\nimport { NavigationMenuList } from 'reka-ui'\nimport { cn } from '@/lib/utils'\n\ndefineProps<{\n  class?: string\n}>()\n</script>\n\n<template>\n  <NavigationMenuList\n    :class=\"cn('group flex flex-1 list-none items-center justify-center gap-1', $props.class)\"\n  >\n    <slot />\n  </NavigationMenuList>\n</template>\n",
+      "type": "registry:ui",
+      "target": "components/ui/NavigationMenuList.vue"
+    },
+    {
+      "path": "registry/default/ui/NavigationMenuItem.vue",
+      "content": "<script setup lang=\"ts\">\nimport { NavigationMenuItem } from 'reka-ui'\nimport { cn } from '@/lib/utils'\n\ndefineProps<{\n  class?: string\n}>()\n</script>\n\n<template>\n  <NavigationMenuItem :class=\"cn('relative', $props.class)\">\n    <slot />\n  </NavigationMenuItem>\n</template>\n",
+      "type": "registry:ui",
+      "target": "components/ui/NavigationMenuItem.vue"
+    },
+    {
+      "path": "registry/default/ui/NavigationMenuTrigger.vue",
+      "content": "<script setup lang=\"ts\">\nimport { NavigationMenuTrigger } from 'reka-ui'\nimport { ChevronDown } from 'lucide-vue-next'\nimport { cn } from '@/lib/utils'\nimport { navigationMenuTriggerStyle } from './navigation-menu-variants'\n\ndefineProps<{\n  class?: string\n}>()\n</script>\n\n<template>\n  <NavigationMenuTrigger :class=\"cn(navigationMenuTriggerStyle(), 'group', $props.class)\">\n    <slot />\n    <ChevronDown\n      class=\"relative top-[1px] ml-1 h-3 w-3 stroke-[3] transition duration-200 group-data-[state=open]:rotate-180\"\n      aria-hidden=\"true\"\n    />\n  </NavigationMenuTrigger>\n</template>\n",
+      "type": "registry:ui",
+      "target": "components/ui/NavigationMenuTrigger.vue"
+    },
+    {
+      "path": "registry/default/ui/NavigationMenuContent.vue",
+      "content": "<script setup lang=\"ts\">\nimport { NavigationMenuContent } from 'reka-ui'\nimport { cn } from '@/lib/utils'\n\ndefineProps<{\n  class?: string\n}>()\n</script>\n\n<template>\n  <NavigationMenuContent\n    :class=\"\n      cn(\n        'absolute left-0 top-full z-50 mt-2 min-w-[12rem] border-3 border-foreground bg-popover text-popover-foreground shadow-[4px_4px_0px_hsl(var(--shadow-color))] data-[motion^=from-]:animate-in data-[motion^=to-]:animate-out data-[motion^=from-]:fade-in data-[motion^=to-]:fade-out',\n        $props.class\n      )\n    \"\n  >\n    <slot />\n  </NavigationMenuContent>\n</template>\n",
+      "type": "registry:ui",
+      "target": "components/ui/NavigationMenuContent.vue"
+    },
+    {
+      "path": "registry/default/ui/NavigationMenuLink.vue",
+      "content": "<script setup lang=\"ts\">\nimport { NavigationMenuLink } from 'reka-ui'\nimport { cn } from '@/lib/utils'\n\ndefineProps<{\n  class?: string\n}>()\n</script>\n\n<template>\n  <NavigationMenuLink :class=\"cn($props.class)\">\n    <slot />\n  </NavigationMenuLink>\n</template>\n",
+      "type": "registry:ui",
+      "target": "components/ui/NavigationMenuLink.vue"
+    },
+    {
+      "path": "registry/default/ui/NavigationMenuIndicator.vue",
+      "content": "<script setup lang=\"ts\">\nimport { NavigationMenuIndicator } from 'reka-ui'\nimport { cn } from '@/lib/utils'\n\ndefineProps<{\n  class?: string\n}>()\n</script>\n\n<template>\n  <NavigationMenuIndicator\n    :class=\"\n      cn(\n        'top-full z-[1] flex h-2.5 items-end justify-center overflow-hidden data-[state=visible]:animate-in data-[state=hidden]:animate-out data-[state=hidden]:fade-out data-[state=visible]:fade-in',\n        $props.class\n      )\n    \"\n  >\n    <div class=\"relative top-[60%] h-2 w-2 rotate-45 border-3 border-foreground bg-popover\" />\n  </NavigationMenuIndicator>\n</template>\n",
+      "type": "registry:ui",
+      "target": "components/ui/NavigationMenuIndicator.vue"
+    },
+    {
+      "path": "registry/default/ui/navigation-menu-variants.ts",
+      "content": "import { cva } from 'class-variance-authority'\n\nexport const navigationMenuTriggerStyle = cva(\n  'group inline-flex h-10 w-max items-center justify-center border-3 border-foreground bg-background px-4 py-2 text-sm font-bold uppercase tracking-wide shadow-[4px_4px_0px_hsl(var(--shadow-color))] outline-none transition-all duration-150 hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none focus:bg-accent focus:text-accent-foreground disabled:pointer-events-none disabled:opacity-50 data-[state=open]:translate-x-[2px] data-[state=open]:translate-y-[2px] data-[state=open]:shadow-none data-[state=open]:bg-accent data-[state=open]:text-accent-foreground'\n)\n",
+      "type": "registry:ui",
+      "target": "components/ui/navigation-menu-variants.ts"
+    }
+  ]
+}

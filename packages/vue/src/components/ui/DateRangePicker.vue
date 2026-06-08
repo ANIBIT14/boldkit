@@ -221,20 +221,20 @@ onUnmounted(() => {
           v-if="showPresets && resolvedPresets.length > 0"
           :class="
             cn(
-              'p-3 bg-muted/30',
+              'p-3 bg-muted',
               isMobile
                 ? 'border-b-3 border-foreground'
-                : 'min-w-[130px] border-r-3 border-foreground'
+                : 'min-w-[160px] border-r-3 border-foreground'
             )
           "
         >
-          <p class="mb-2 text-xs font-bold uppercase tracking-wide text-muted-foreground">
+          <p class="mb-3 text-[11px] font-black uppercase tracking-widest text-muted-foreground">
             Presets
           </p>
           <div
             :class="
               cn(
-                isMobile ? 'flex flex-wrap gap-1' : 'space-y-1'
+                isMobile ? 'flex flex-wrap gap-2' : 'space-y-2'
               )
             "
           >
@@ -245,12 +245,13 @@ onUnmounted(() => {
               @click="handlePresetClick(preset)"
               :class="
                 cn(
-                  'text-left text-sm transition-all duration-150',
-                  'hover:bg-muted',
+                  'text-left text-sm font-bold border-3 border-foreground bg-background transition-all duration-150 focus-visible:outline-none',
                   isMobile
-                    ? 'px-2 py-1 border-2 border-foreground text-xs'
-                    : 'w-full px-3 py-2',
-                  isPresetSelected(preset) && 'bg-accent font-medium shadow-[2px_2px_0px_hsl(var(--shadow-color))]'
+                    ? 'px-2 py-1 text-xs shadow-[2px_2px_0px_hsl(var(--shadow-color))] hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none focus-visible:translate-x-[2px] focus-visible:translate-y-[2px] focus-visible:shadow-none'
+                    : 'w-full px-3 py-2 shadow-[3px_3px_0px_hsl(var(--shadow-color))] hover:translate-x-[3px] hover:translate-y-[3px] hover:shadow-none focus-visible:translate-x-[3px] focus-visible:translate-y-[3px] focus-visible:shadow-none',
+                  isPresetSelected(preset) && (isMobile
+                    ? 'bg-accent text-accent-foreground translate-x-[2px] translate-y-[2px] shadow-none'
+                    : 'bg-accent text-accent-foreground translate-x-[3px] translate-y-[3px] shadow-none')
                 )
               "
             >

@@ -1,0 +1,26 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "navigation-menu",
+  "description": "A collection of links and dropdown panels for site navigation with neubrutalism styling",
+  "dependencies": [
+    "@radix-ui/react-navigation-menu",
+    "class-variance-authority",
+    "lucide-react"
+  ],
+  "registryDependencies": [
+    "@boldkit/utils"
+  ],
+  "files": [
+    {
+      "path": "registry/default/ui/navigation-menu.tsx",
+      "type": "registry:ui",
+      "target": "components/ui/navigation-menu.tsx"
+    },
+    {
+      "path": "registry/default/example/navigation-menu-demo.tsx",
+      "type": "registry:example",
+      "target": "components/example/navigation-menu-demo.tsx"
+    }
+  ],
+  "type": "registry:ui"
+}

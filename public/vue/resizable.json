@@ -1,0 +1,30 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "resizable",
+  "type": "registry:ui",
+  "description": "Resizable panel groups and handles",
+  "dependencies": [
+    "reka-ui",
+    "lucide-vue-next"
+  ],
+  "registryDependencies": [
+    "@boldkit/utils"
+  ],
+  "files": [
+    {
+      "path": "registry/default/ui/ResizablePanelGroup.vue",
+      "type": "registry:ui",
+      "target": "components/ui/ResizablePanelGroup.vue"
+    },
+    {
+      "path": "registry/default/ui/ResizablePanel.vue",
+      "type": "registry:ui",
+      "target": "components/ui/ResizablePanel.vue"
+    },
+    {
+      "path": "registry/default/ui/ResizableHandle.vue",
+      "type": "registry:ui",
+      "target": "components/ui/ResizableHandle.vue"
+    }
+  ]
+}

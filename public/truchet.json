@@ -1,0 +1,15 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "truchet",
+  "description": "Flowing Truchet arc-tile maze — square tiles of quarter-arcs join into endless looping curves with a travelling dash",
+  "dependencies": [],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "registry/default/ui/canvas-effects/Truchet.tsx",
+      "type": "registry:ui",
+      "target": "components/ui/canvas-effects/Truchet.tsx"
+    }
+  ],
+  "type": "registry:ui"
+}
