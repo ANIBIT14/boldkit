@@ -1,4 +1,5 @@
 @import 'tailwindcss';
+@import 'tw-animate-css';
 
 @custom-variant dark (&:is(.dark *));
 
@@ -1145,5 +1146,13 @@ body {
   }
   100% {
     transform: scale(1);
+  }
+}
+/* Respect reduced-motion: disable enter/exit overlay animations */
+@media (prefers-reduced-motion: reduce) {
+  .animate-in,
+  .animate-out {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
   }
 }

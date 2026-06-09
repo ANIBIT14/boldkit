@@ -1,4 +1,5 @@
 @import 'tailwindcss';
+@import 'tw-animate-css';
 
 @custom-variant dark (&:is(.dark *));
 
@@ -1325,4 +1326,12 @@ body {
 
 .animate-bk-marquee:hover {
   animation-play-state: paused;
+}
+/* Respect reduced-motion: disable enter/exit overlay animations */
+@media (prefers-reduced-motion: reduce) {
+  .animate-in,
+  .animate-out {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
 }
