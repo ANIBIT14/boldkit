@@ -146,7 +146,7 @@ export function Home() {
           <span className="text-[10px] font-black uppercase tracking-[0.2em] text-primary-foreground/70" style={MONO}>New Tool</span>
           <span className="h-3 w-[2px] bg-primary-foreground/30" />
           <span className="text-xs font-bold text-primary-foreground" style={MONO}>
-            FavGrab — Extract &amp; download favicons from any website
+            FavGrab — Extract favicons &amp; convert images, free in your browser
           </span>
         </a>
 
