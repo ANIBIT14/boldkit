@@ -138,7 +138,7 @@ export function Home() {
 
         {/* ── ANNOUNCEMENT BAR ───────────────────────────────────────── */}
         <a
-          href="https://favgrab.boldkit.dev"
+          href="https://favgrab.boldkit.dev/convert"
           target="_blank"
           rel="noopener noreferrer"
           className="group flex items-center justify-center gap-3 border-b-3 border-foreground bg-primary px-4 py-2 hover:bg-primary/90 transition-colors"
