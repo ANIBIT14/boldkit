@@ -178,7 +178,7 @@ export function Home() {
                     <span className="ml-0.5 rounded-sm bg-background/25 px-1 py-px text-[9px] font-black">NEW</span>
                   </Badge>
                   <span className="h-4 w-[2px] bg-foreground/20 hidden sm:block" />
-                  <span className="text-[11px] font-black uppercase tracking-widest text-muted-foreground hidden sm:block" style={MONO}>v3.3.2</span>
+                  <span className="text-[11px] font-black uppercase tracking-widest text-muted-foreground hidden sm:block" style={MONO}>v3.4.1</span>
                 </div>
 
                 {/* Giant masthead — newspaper column style */}
@@ -270,7 +270,7 @@ export function Home() {
 
                 {/* Row header */}
                 <div className="border-b-3 border-foreground bg-foreground px-4 py-2 flex items-center justify-between">
-                  <span className="text-[10px] font-black uppercase tracking-[0.25em] text-background" style={MONO}>BoldKit v3.3 — Live Preview</span>
+                  <span className="text-[10px] font-black uppercase tracking-[0.25em] text-background" style={MONO}>BoldKit v3.4 — Live Preview</span>
                   <div className="flex gap-1">
                     <div className="h-2.5 w-2.5 bg-primary" />
                     <div className="h-2.5 w-2.5 bg-secondary" />
@@ -315,7 +315,7 @@ export function Home() {
                       <span className="text-[9px] font-black uppercase tracking-[0.2em] text-accent" style={MONO}>Canvas Effects</span>
                     </div>
                     <div className="absolute top-3 right-3">
-                      <Badge variant="accent" className="text-[8px] px-1.5 py-0 h-4">New v3.3</Badge>
+                      <Badge variant="accent" className="text-[8px] px-1.5 py-0 h-4">New v3.4</Badge>
                     </div>
                   </div>
 
@@ -840,7 +840,7 @@ export function Home() {
           <div className="border-b-3 border-foreground px-4 md:px-8 py-5 flex items-center justify-between bg-background">
             <div className="flex items-center gap-3">
               <div className="h-[3px] w-8 bg-primary" />
-              <span className="text-[11px] font-black uppercase tracking-[0.2em] text-muted-foreground" style={MONO}>Interactive Tools — v3.3</span>
+              <span className="text-[11px] font-black uppercase tracking-[0.2em] text-muted-foreground" style={MONO}>Interactive Tools — v3.4</span>
             </div>
             <Badge variant="secondary" className="gap-1.5">3 Tools</Badge>
           </div>
@@ -1283,7 +1283,7 @@ export function Home() {
             <Stamp size="sm" variant="secondary" rotation="none">MIT</Stamp>
           </div>
           <div className="absolute -bottom-2 left-8 opacity-75 hidden md:block pointer-events-none select-none" style={{ transform: 'rotate(-6deg)' }}>
-            <Stamp size="sm" rotation="none">v3.3</Stamp>
+            <Stamp size="sm" rotation="none">v3.4</Stamp>
           </div>
           <div className="absolute bottom-4 -right-3 opacity-85 hidden sm:block pointer-events-none select-none" style={{ transform: 'rotate(9deg)' }}>
             <Sticker variant="secondary" rotation="none" size="sm">Open Source</Sticker>
