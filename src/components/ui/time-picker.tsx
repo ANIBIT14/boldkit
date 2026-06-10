@@ -180,7 +180,7 @@ const TimePicker = React.forwardRef<HTMLButtonElement, TimePickerProps>(
         <PopoverContent
           className={cn(
             'w-auto p-0 overflow-hidden',
-            'animate-in fade-in-0 zoom-in-95 duration-200'
+            'ease-out animate-in fade-in-0 zoom-in-95 duration-200'
           )}
           align="start"
           sideOffset={4}

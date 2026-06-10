@@ -207,7 +207,7 @@ function TourPopover({
       className={cn(
         'fixed z-[9999] w-80 border-3 border-foreground bg-popover p-4',
         'shadow-[8px_8px_0px_hsl(var(--shadow-color))]',
-        'animate-in fade-in-0 zoom-in-95 duration-200'
+        'ease-out animate-in fade-in-0 zoom-in-95 duration-200'
       )}
       style={{ top: position.top, left: position.left }}
     >

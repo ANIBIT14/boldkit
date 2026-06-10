@@ -5,7 +5,7 @@ import { cva, type VariantProps } from 'class-variance-authority'
 import { cn } from '@/lib/utils'
 
 const sheetVariants = cva(
-  'fixed z-50 gap-4 bg-background border-3 border-foreground p-6 shadow-[8px_8px_0px_hsl(var(--shadow-color))] transition ease-in-out data-[state=closed]:duration-300 data-[state=open]:duration-500 data-[state=open]:animate-in data-[state=closed]:animate-out',
+  'fixed z-50 gap-4 bg-background border-3 border-foreground p-6 shadow-[8px_8px_0px_hsl(var(--shadow-color))] transition ease-out data-[state=closed]:duration-300 data-[state=open]:duration-500 data-[state=open]:animate-in data-[state=closed]:animate-out',
   {
     variants: {
       side: {
@@ -38,7 +38,7 @@ const props = withDefaults(defineProps<Props>(), {
 <template>
   <DialogPortal>
     <DialogOverlay
-      class="fixed inset-0 z-50 bg-black/70 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0"
+      class="fixed inset-0 z-50 bg-black/70 ease-out data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0"
     />
     <DialogContent :class="cn(sheetVariants({ side: props.side }), props.class)">
       <DialogClose

@@ -195,7 +195,7 @@ const periods: readonly ('AM' | 'PM')[] = ['AM', 'PM']
       </Button>
     </PopoverTrigger>
     <PopoverContent
-      :class="cn('w-auto p-0 overflow-hidden', 'animate-in fade-in-0 zoom-in-95 duration-200')"
+      :class="cn('w-auto p-0 overflow-hidden', 'ease-out animate-in fade-in-0 zoom-in-95 duration-200')"
       align="start"
       :side-offset="4"
     >

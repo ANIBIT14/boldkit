@@ -49,6 +49,30 @@
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
+
+  /* Easing tokens — custom curves per the animations.dev easing blueprint.
+     Built-in CSS easings are too weak; these override Tailwind's defaults so
+     every `ease-out` / `ease-in-out` / `transition-*` utility gets the
+     stronger acceleration.
+     - ease-out: enters + user-initiated interactions (dropdowns, modals)
+     - ease-in-out: elements already on screen moving/morphing
+     - ease-in: avoid (sluggish); kept only for exit symmetry
+     - linear: marquees / progress only */
+  --ease-in: cubic-bezier(0.55, 0.055, 0.675, 0.19); /* in-cubic */
+  --ease-out: cubic-bezier(0.165, 0.84, 0.44, 1); /* out-quart */
+  --ease-in-out: cubic-bezier(0.645, 0.045, 0.355, 1); /* in-out-cubic */
+  /* Named scale, weakest → strongest acceleration */
+  --ease-out-quad: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  --ease-out-cubic: cubic-bezier(0.215, 0.61, 0.355, 1);
+  --ease-out-quart: cubic-bezier(0.165, 0.84, 0.44, 1);
+  --ease-out-quint: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-out-expo: cubic-bezier(0.19, 1, 0.22, 1);
+  --ease-in-out-quad: cubic-bezier(0.455, 0.03, 0.515, 0.955);
+  --ease-in-out-cubic: cubic-bezier(0.645, 0.045, 0.355, 1);
+  --ease-in-out-quart: cubic-bezier(0.77, 0, 0.175, 1);
+  --ease-in-out-quint: cubic-bezier(0.86, 0, 0.07, 1);
+  /* Bare `transition-*` utilities default to the responsive ease-out */
+  --default-transition-timing-function: var(--ease-out);
 }
 
 /* BoldKit - Neubrutalism Design System */
@@ -742,47 +766,47 @@ body {
 
 /* Animation Classes */
 .animate-accordion-down {
-  animation: accordion-down 200ms ease-out;
+  animation: accordion-down 200ms var(--ease-out);
 }
 
 .animate-accordion-up {
-  animation: accordion-up 200ms ease-out;
+  animation: accordion-up 200ms var(--ease-out);
 }
 
 .animate-collapsible-down {
-  animation: collapsible-down 200ms ease-out;
+  animation: collapsible-down 200ms var(--ease-out);
 }
 
 .animate-collapsible-up {
-  animation: collapsible-up 200ms ease-out;
+  animation: collapsible-up 200ms var(--ease-out);
 }
 
 .animate-shake {
-  animation: shake 200ms ease-in-out;
+  animation: shake 200ms var(--ease-in-out);
 }
 
 .animate-bounce-in {
-  animation: bounce-in 300ms ease-out;
+  animation: bounce-in 300ms var(--ease-out);
 }
 
 .animate-pulse-shadow {
-  animation: pulse-shadow 2s ease-in-out infinite;
+  animation: pulse-shadow 2s var(--ease-in-out) infinite;
 }
 
 .animate-wiggle {
-  animation: wiggle 300ms ease-in-out;
+  animation: wiggle 300ms var(--ease-in-out);
 }
 
 .animate-pop {
-  animation: pop 300ms ease-out;
+  animation: pop 300ms var(--ease-out);
 }
 
 .animate-rubber-band {
-  animation: rubber-band 800ms ease-out;
+  animation: rubber-band 800ms var(--ease-out);
 }
 
 .animate-jello {
-  animation: jello 800ms ease-out;
+  animation: jello 800ms var(--ease-out);
 }
 
 .animate-marquee {
@@ -802,7 +826,7 @@ body {
 }
 
 .animate-stagger-fade-in {
-  animation: stagger-fade-in 300ms ease-out forwards;
+  animation: stagger-fade-in 300ms var(--ease-out) forwards;
   opacity: 0;
 }
 
@@ -817,15 +841,15 @@ body {
 .stagger-8 { animation-delay: 400ms; }
 
 .animate-pulse-scale {
-  animation: pulse-scale 2s ease-in-out infinite;
+  animation: pulse-scale 2s var(--ease-in-out) infinite;
 }
 
 .animate-glitch {
-  animation: glitch 200ms ease-in-out;
+  animation: glitch 200ms var(--ease-in-out);
 }
 
 .animate-float {
-  animation: float 3s ease-in-out infinite;
+  animation: float 3s var(--ease-in-out) infinite;
 }
 
 .animate-blink {
@@ -834,19 +858,19 @@ body {
 
 /* Hover-triggered animations */
 .hover-wiggle:hover {
-  animation: wiggle 300ms ease-in-out;
+  animation: wiggle 300ms var(--ease-in-out);
 }
 
 .hover-pop:hover {
-  animation: pop 300ms ease-out;
+  animation: pop 300ms var(--ease-out);
 }
 
 .hover-jello:hover {
-  animation: jello 800ms ease-out;
+  animation: jello 800ms var(--ease-out);
 }
 
 .hover-rubber-band:hover {
-  animation: rubber-band 800ms ease-out;
+  animation: rubber-band 800ms var(--ease-out);
 }
 
 /* Tooltip & Popover Animations */
@@ -892,32 +916,32 @@ body {
 
 /* Reka UI animation states (compatible with Radix) */
 [data-state="open"] {
-  animation: zoom-in 150ms ease-out;
+  animation: zoom-in 150ms var(--ease-out);
 }
 
 [data-state="closed"] {
-  animation: zoom-out 100ms ease-in;
+  animation: zoom-out 100ms var(--ease-in);
 }
 
 /* Tooltip specific animations */
 [data-reka-popper-content-wrapper] [data-side="top"],
 [data-radix-popper-content-wrapper] [data-side="top"] {
-  animation: fade-in 150ms ease-out, slide-in-from-bottom 150ms ease-out;
+  animation: fade-in 150ms var(--ease-out), slide-in-from-bottom 150ms var(--ease-out);
 }
 
 [data-reka-popper-content-wrapper] [data-side="bottom"],
 [data-radix-popper-content-wrapper] [data-side="bottom"] {
-  animation: fade-in 150ms ease-out, slide-in-from-top 150ms ease-out;
+  animation: fade-in 150ms var(--ease-out), slide-in-from-top 150ms var(--ease-out);
 }
 
 [data-reka-popper-content-wrapper] [data-side="left"],
 [data-radix-popper-content-wrapper] [data-side="left"] {
-  animation: fade-in 150ms ease-out, slide-in-from-right 150ms ease-out;
+  animation: fade-in 150ms var(--ease-out), slide-in-from-right 150ms var(--ease-out);
 }
 
 [data-reka-popper-content-wrapper] [data-side="right"],
 [data-radix-popper-content-wrapper] [data-side="right"] {
-  animation: fade-in 150ms ease-out, slide-in-from-left 150ms ease-out;
+  animation: fade-in 150ms var(--ease-out), slide-in-from-left 150ms var(--ease-out);
 }
 
 /* ==========================================
@@ -1167,21 +1191,21 @@ body {
 .shape-animate-spin-slow    { animation: shape-spin   4s linear infinite; }
 .shape-animate-spin-fast    { animation: shape-spin   0.8s linear infinite; }
 
-.shape-animate-pulse        { animation: shape-pulse  2s ease-in-out infinite; }
-.shape-animate-pulse-slow   { animation: shape-pulse  3.5s ease-in-out infinite; }
-.shape-animate-pulse-fast   { animation: shape-pulse  1s ease-in-out infinite; }
+.shape-animate-pulse        { animation: shape-pulse  2s var(--ease-in-out) infinite; }
+.shape-animate-pulse-slow   { animation: shape-pulse  3.5s var(--ease-in-out) infinite; }
+.shape-animate-pulse-fast   { animation: shape-pulse  1s var(--ease-in-out) infinite; }
 
-.shape-animate-float        { animation: float        3s ease-in-out infinite; }
-.shape-animate-float-slow   { animation: float        5s ease-in-out infinite; }
-.shape-animate-float-fast   { animation: float        1.5s ease-in-out infinite; }
+.shape-animate-float        { animation: float        3s var(--ease-in-out) infinite; }
+.shape-animate-float-slow   { animation: float        5s var(--ease-in-out) infinite; }
+.shape-animate-float-fast   { animation: float        1.5s var(--ease-in-out) infinite; }
 
-.shape-animate-wiggle       { animation: wiggle       0.8s ease-in-out infinite; }
-.shape-animate-wiggle-slow  { animation: wiggle       1.5s ease-in-out infinite; }
-.shape-animate-wiggle-fast  { animation: wiggle       0.4s ease-in-out infinite; }
+.shape-animate-wiggle       { animation: wiggle       0.8s var(--ease-in-out) infinite; }
+.shape-animate-wiggle-slow  { animation: wiggle       1.5s var(--ease-in-out) infinite; }
+.shape-animate-wiggle-fast  { animation: wiggle       0.4s var(--ease-in-out) infinite; }
 
-.shape-animate-bounce       { animation: shape-bounce 1.2s ease-in-out infinite; }
-.shape-animate-bounce-slow  { animation: shape-bounce 2.2s ease-in-out infinite; }
-.shape-animate-bounce-fast  { animation: shape-bounce 0.6s ease-in-out infinite; }
+.shape-animate-bounce       { animation: shape-bounce 1.2s var(--ease-in-out) infinite; }
+.shape-animate-bounce-slow  { animation: shape-bounce 2.2s var(--ease-in-out) infinite; }
+.shape-animate-bounce-fast  { animation: shape-bounce 0.6s var(--ease-in-out) infinite; }
 
 .shape-animate-glitch       { animation: glitch       2s steps(1) infinite; }
 .shape-animate-glitch-slow  { animation: glitch       4s steps(1) infinite; }

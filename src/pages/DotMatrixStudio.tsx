@@ -361,7 +361,7 @@ export function DotMatrixStudio() {
           background: C.panel,
           borderRight: `3px solid ${C.border}`,
           transform: toolsSidebarOpen ? 'translateX(0)' : `translateX(-${TOOLS_SIDEBAR_W}px)`,
-          transition: 'transform 260ms cubic-bezier(0.4, 0, 0.15, 1)',
+          transition: 'transform 260ms var(--ease-out)',
           boxShadow: toolsSidebarOpen ? `8px 0 0 0 ${C.border}` : 'none',
         }}
         aria-label="Tools panel"
@@ -381,7 +381,7 @@ export function DotMatrixStudio() {
           background: C.panel,
           borderLeft: `3px solid ${C.border}`,
           transform: animSidebarOpen ? 'translateX(0)' : `translateX(${ANIM_SIDEBAR_W}px)`,
-          transition: 'transform 260ms cubic-bezier(0.4, 0, 0.15, 1)',
+          transition: 'transform 260ms var(--ease-out)',
           boxShadow: animSidebarOpen ? `-8px 0 0 0 ${C.border}` : 'none',
         }}
         aria-label="Animation panel"

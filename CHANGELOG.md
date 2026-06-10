@@ -5,6 +5,27 @@ Format follows [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ---
 
+## [3.4.1] — 2026-06-10 — Custom easing system + docs Theming fix
+
+A motion-polish + docs fix patch. Every transition and animation in BoldKit now runs on a **custom easing system** based on the [animations.dev](https://animations.dev/learn/animation-theory/the-easing-blueprint) easing blueprint — the browser's built-in `ease-out` / `ease-in-out` curves are too weak to read as "snappy" on hard neubrutalist surfaces, so they're replaced with stronger custom `cubic-bezier` curves. Applied identically across **React and Vue 3**.
+
+### Highlights
+
+✨ **Custom easing tokens.** New `--ease-out` (out-quart), `--ease-in-out` (in-out-cubic), and `--ease-in` design tokens in `@theme`, plus a named scale (`--ease-out-quad…expo`, `--ease-in-out-quad…quint`) sorted weakest→strongest. `--default-transition-timing-function` is now `ease-out`, so every `transition-*` utility gets responsive motion for free.
+
+✨ **Every animation retrofitted.** ~37 keyframe animations per stylesheet (accordion, collapsible, bounce, pop, shake, wiggle, jello, etc.) now reference the easing tokens. Continuous `linear` motion (marquee, spin) and the caret blink are intentionally left untouched.
+
+🩹 **Overlays animate with intent.** All 16 React + 18 Vue overlay components (Popover, Dialog, Dropdown, Tooltip, Sheet, Select, Menubar, Context Menu, Hover Card, Command, Tour, …) now apply the custom `ease-out` curve on enter/exit instead of falling back to the browser default.
+
+🐛 **Docs "Theming" opens the full Theme Builder.** The Theming entry in the docs sidebar was rendering the Theme Builder embedded in the narrow docs column, where it didn't lay out fully. It now opens the standalone full-width `/themes` page in a new tab.
+
+### Bumps
+
+- React: `3.4.0 → 3.4.1`
+- Vue: `3.2.0 → 3.2.1`
+
+---
+
 ## [3.4.0] — 2026-06-08 — 9 new components + Vue parity
 
 Closes the longest-standing gap against the shadcn component set: BoldKit now ships every classic Radix/Reka primitive. **Nine new components**, each with full React **and** Vue 3 parity, installable via the registry. Plus a manifest-driven docs refactor and a batch of UI fixes surfaced while building them.

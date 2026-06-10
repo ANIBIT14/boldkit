@@ -202,7 +202,7 @@ onUnmounted(() => {
         cn(
           'w-auto p-0 overflow-hidden',
           'shadow-[8px_8px_0px_hsl(var(--shadow-color))]',
-          'animate-in fade-in-0 zoom-in-95 duration-200',
+          'ease-out animate-in fade-in-0 zoom-in-95 duration-200',
           'max-w-[calc(100vw-2rem)]',
           'max-h-[calc(100vh-4rem)] overflow-auto'
         )

@@ -5,7 +5,7 @@ import { Badge } from '@/components/ui/badge'
 import { Input } from '@/components/ui/input'
 import { ScrollArea } from '@/components/ui/scroll-area'
 import { Button } from '@/components/ui/button'
-import { Menu, Search, X } from 'lucide-react'
+import { Menu, Search, X, ExternalLink } from 'lucide-react'
 import { Header } from '@/components/layout'
 import { FrameworkToggle, useFramework } from '@/hooks/use-framework'
 import { TableOfContents } from '@/components/TableOfContents'
@@ -114,24 +114,41 @@ interface NavItemProps {
   isActive: boolean
   onClick?: () => void
   accentClass?: string
+  /** Open in a new tab via a plain anchor instead of a client-side Link */
+  newTab?: boolean
 }
 
-function NavItem({ to, label, isNew, isActive, onClick, accentClass = 'border-primary' }: NavItemProps) {
+function NavItem({ to, label, isNew, isActive, onClick, accentClass = 'border-primary', newTab }: NavItemProps) {
+  const inner = (
+    <div
+      className={cn(
+        'flex items-center justify-between py-1.5 pl-3 pr-2 text-sm transition-colors duration-100 border-l-3',
+        isActive
+          ? cn('bg-muted font-bold text-foreground', accentClass)
+          : 'border-transparent font-medium text-muted-foreground hover:bg-muted hover:text-foreground'
+      )}
+    >
+      <span className="flex items-center gap-1.5 truncate">
+        <span className="truncate">{label}</span>
+        {newTab && <ExternalLink className="h-3 w-3 shrink-0 opacity-60" />}
+      </span>
+      {isNew && (
+        <Badge className="ml-1.5 shrink-0 h-4 px-1.5 text-[9px]">New</Badge>
+      )}
+    </div>
+  )
+
+  if (newTab) {
+    return (
+      <a href={to} target="_blank" rel="noopener noreferrer" onClick={onClick} className="block">
+        {inner}
+      </a>
+    )
+  }
+
   return (
     <Link to={to} onClick={onClick} className="block">
-      <div
-        className={cn(
-          'flex items-center justify-between py-1.5 pl-3 pr-2 text-sm transition-colors duration-100 border-l-3',
-          isActive
-            ? cn('bg-muted font-bold text-foreground', accentClass)
-            : 'border-transparent font-medium text-muted-foreground hover:bg-muted hover:text-foreground'
-        )}
-      >
-        <span className="truncate">{label}</span>
-        {isNew && (
-          <Badge className="ml-1.5 shrink-0 h-4 px-1.5 text-[9px]">New</Badge>
-        )}
-      </div>
+      {inner}
     </Link>
   )
 }
@@ -191,10 +208,12 @@ function Sidebar({ className, onLinkClick }: { className?: string; onLinkClick?:
     ? applicationBlocks.filter((b) => b.name.toLowerCase().includes(q))
     : applicationBlocks
 
-  const gettingStartedItems = [
+  const gettingStartedItems: { label: string; to: string; newTab?: boolean }[] = [
     { label: 'Introduction', to: '/docs' },
     { label: 'Installation', to: '/docs/installation' },
-    { label: 'Theming', to: '/docs/theming' },
+    // Full Theme Builder needs the wide standalone layout — open it in a new
+    // tab rather than cramming it into the narrow docs content column.
+    { label: 'Theming', to: '/themes', newTab: true },
   ]
 
   const filteredGettingStarted = q
@@ -271,6 +290,7 @@ function Sidebar({ className, onLinkClick }: { className?: string; onLinkClick?:
                 isActive={location.pathname === item.to}
                 onClick={onLinkClick}
                 accentClass="border-primary"
+                newTab={item.newTab}
               />
             ))}
           </div>
