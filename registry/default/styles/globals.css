@@ -228,6 +228,9 @@ body {
 /* BoldKit Motion — shared interactive timing. Routes the core components'
    box-shadow+translate press onto the snap curve (buttery settle, hard look). */
 .bk-interactive { transition: all var(--bk-dur-snap) var(--bk-ease-snap); }
+@media (prefers-reduced-motion: reduce) {
+  .bk-interactive { transition-duration: 0.01ms !important; }
+}
 
 /* BoldKit Shadow Utility */
 .bk-shadow {
