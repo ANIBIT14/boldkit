@@ -50,6 +50,12 @@
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
 
+  /* BoldKit Motion System — L1 Tokens (framework-agnostic, --bk-* namespace).
+     The snap duration/easing back the .bk-interactive transition used by the
+     core interactive components (Button, Card, Input, Toggle, Switch). */
+  --bk-ease-snap:  cubic-bezier(0.22, 1, 0.3, 1.12);
+  --bk-dur-snap:   150ms;
+
   /* Easing tokens — custom curves per the animations.dev easing blueprint.
      Built-in CSS easings are too weak; these override Tailwind's defaults so
      every `ease-out` / `ease-in-out` / `transition-*` utility gets the
@@ -218,6 +224,10 @@ body {
   @apply bg-background text-foreground antialiased;
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 }
+
+/* BoldKit Motion — shared interactive timing. Routes the core components'
+   box-shadow+translate press onto the snap curve (buttery settle, hard look). */
+.bk-interactive { transition: all var(--bk-dur-snap) var(--bk-ease-snap); }
 
 /* BoldKit Shadow Utility */
 .bk-shadow {

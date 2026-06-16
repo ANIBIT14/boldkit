@@ -1431,6 +1431,10 @@ body {
    L2 — Recipes
    ────────────────────────────────────────────────────── */
 
+/* Retrofit timing — applied to core interactive components so the existing
+   box-shadow+translate press settles on the snap curve (buttery, not flat). */
+.bk-interactive { transition: all var(--bk-dur-snap) var(--bk-ease-snap); }
+
 /* 1. PRESS — pseudo-element shadow choreography. Mobile-safe. */
 .bk-press {
   position: relative;
