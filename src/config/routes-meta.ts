@@ -228,6 +228,7 @@ export const COMPONENT_TITLES: Record<string, string> = {
   label: 'Label',
   'layered-card': 'Layered Card',
   marquee: 'Marquee',
+  motion: 'Motion',
   menubar: 'Menubar',
   'native-select': 'Native Select',
   'navigation-menu': 'Navigation Menu',

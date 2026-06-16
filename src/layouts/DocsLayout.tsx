@@ -71,6 +71,7 @@ const components = [
   { name: 'MC Loader', href: '/components/math-curve-loader' },
   { name: 'MC Progress', href: '/components/math-curve-progress' },
   { name: 'Marquee', href: '/components/marquee' },
+  { name: 'Motion', href: '/components/motion', isNew: true },
   { name: 'Menubar', href: '/components/menubar', isNew: true },
   { name: 'Native Select', href: '/components/native-select', isNew: true },
   { name: 'Navigation Menu', href: '/components/navigation-menu', isNew: true },

@@ -51,6 +51,7 @@ export const componentDocRoutes: DocRoute[] = [
   { slug: 'label', Component: load(() => import('@/pages/docs/LabelDoc'), 'LabelDoc') },
   { slug: 'layered-card', Component: load(() => import('@/pages/docs/LayeredCardDoc'), 'LayeredCardDoc') },
   { slug: 'marquee', Component: load(() => import('@/pages/docs/MarqueeDoc'), 'MarqueeDoc') },
+  { slug: 'motion', Component: load(() => import('@/pages/docs/MotionDoc'), 'MotionDoc') },
   { slug: 'menubar', Component: load(() => import('@/pages/docs/MenubarDoc'), 'MenubarDoc') },
   { slug: 'native-select', Component: load(() => import('@/pages/docs/NativeSelectDoc'), 'NativeSelectDoc') },
   { slug: 'navigation-menu', Component: load(() => import('@/pages/docs/NavigationMenuDoc'), 'NavigationMenuDoc') },
