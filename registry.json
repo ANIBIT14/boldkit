@@ -2132,18 +2132,27 @@
       ]
     },
     {
-      "name": "motion-react",
-      "type": "registry:ui",
-      "description": "BoldKit Motion React adapter — <Motion>/<Reveal>/<Stagger> components plus useShake and useViewTransition hooks over a framework-agnostic core.",
-      "registryDependencies": [
-        "motion"
-      ],
+      "name": "motion-core",
+      "type": "registry:lib",
+      "description": "BoldKit Motion core — framework-agnostic, SSR-safe primitives (observeReveal, staggerChildren, triggerAnimation, startViewTransition, prefersReducedMotion) shared by every motion adapter.",
       "files": [
         {
           "path": "registry/default/lib/motion-core.ts",
           "type": "registry:lib",
           "target": "lib/motion-core.ts"
-        },
+        }
+      ]
+    },
+    {
+      "name": "motion-react",
+      "type": "registry:ui",
+      "description": "BoldKit Motion React adapter — <Motion>/<Reveal>/<Stagger> components plus useShake and useViewTransition hooks over a framework-agnostic core.",
+      "registryDependencies": [
+        "@boldkit/motion",
+        "@boldkit/motion-core",
+        "@boldkit/utils"
+      ],
+      "files": [
         {
           "path": "registry/default/ui/motion.tsx",
           "type": "registry:ui",

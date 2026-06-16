@@ -1,0 +1,13 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "motion",
+  "description": "BoldKit Motion System — framework-agnostic CSS tokens, keyframes, and six signature recipes (press, stamp-in, shake, reveal, slide-hard, pulse-shadow). Mobile-optimized, honors prefers-reduced-motion.",
+  "files": [
+    {
+      "path": "registry/default/styles/motion.css",
+      "type": "registry:style",
+      "target": "styles/motion.css"
+    }
+  ],
+  "type": "registry:style"
+}

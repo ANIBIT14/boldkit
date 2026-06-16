@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "motion-react",
+  "description": "BoldKit Motion React adapter — <Motion>/<Reveal>/<Stagger> components plus useShake and useViewTransition hooks over a framework-agnostic core.",
+  "registryDependencies": [
+    "@boldkit/motion",
+    "@boldkit/motion-core",
+    "@boldkit/utils"
+  ],
+  "files": [
+    {
+      "path": "registry/default/ui/motion.tsx",
+      "type": "registry:ui",
+      "target": "components/ui/motion.tsx"
+    }
+  ],
+  "type": "registry:ui"
+}

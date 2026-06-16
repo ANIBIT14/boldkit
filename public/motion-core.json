@@ -1,0 +1,13 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "motion-core",
+  "description": "BoldKit Motion core — framework-agnostic, SSR-safe primitives (observeReveal, staggerChildren, triggerAnimation, startViewTransition, prefersReducedMotion) shared by every motion adapter.",
+  "files": [
+    {
+      "path": "registry/default/lib/motion-core.ts",
+      "type": "registry:lib",
+      "target": "lib/motion-core.ts"
+    }
+  ],
+  "type": "registry:lib"
+}
