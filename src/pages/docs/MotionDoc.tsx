@@ -169,7 +169,7 @@ export function MotionDoc() {
 
       <ExampleSection
         title="Press — interactive shadow"
-        description="The .bk-press recipe animates a pseudo-element shadow instead of box-shadow. Composited on the GPU, fast on mobile. Hover lifts; active presses into the page; @media (hover:none) shortens duration so taps don't feel mushy."
+        description="The .bk-press recipe choreographs transform + a hard offset shadow on the snap curve. Hover lifts and grows the shadow; active presses into the page and collapses it; @media (hover:none) shortens duration so taps don't feel mushy."
         code={`<button className="bk-press px-6 py-3 border-3 border-foreground bg-primary">
   Press me
 </button>`}

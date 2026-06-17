@@ -98,38 +98,26 @@
    L2 — Recipes
    ────────────────────────────────────────────────────── */
 
-/* 1. PRESS — pseudo-element shadow choreography. Mobile-safe. */
+/* 1. PRESS — hard offset-shadow choreography on the snap curve. Mobile-safe.
+   Animates transform + box-shadow (not a negative-z pseudo) so it composes
+   correctly with a background colour: hover lifts and grows the shadow, active
+   presses into the page and collapses it. */
 .bk-press {
-  position: relative;
-  transition: transform var(--bk-dur-snap) var(--bk-ease-snap);
-}
-.bk-press::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  z-index: -1;
-  background: hsl(var(--shadow-color));
-  transform: translate(var(--bk-shadow-offset), var(--bk-shadow-offset));
-  transition: transform var(--bk-dur-snap) var(--bk-ease-snap);
-  pointer-events: none;
+  box-shadow: var(--bk-shadow-offset) var(--bk-shadow-offset) 0 hsl(var(--shadow-color));
+  transition: transform var(--bk-dur-snap) var(--bk-ease-snap),
+              box-shadow var(--bk-dur-snap) var(--bk-ease-snap);
 }
 .bk-press:hover {
   transform: translate(calc(var(--bk-translate-press) * -1), calc(var(--bk-translate-press) * -1));
-}
-.bk-press:hover::after {
-  transform: translate(calc(var(--bk-shadow-offset) + var(--bk-translate-press)), calc(var(--bk-shadow-offset) + var(--bk-translate-press)));
+  box-shadow: calc(var(--bk-shadow-offset) + var(--bk-translate-press)) calc(var(--bk-shadow-offset) + var(--bk-translate-press)) 0 hsl(var(--shadow-color));
 }
 .bk-press:active {
   transform: translate(var(--bk-shadow-offset), var(--bk-shadow-offset));
-  transition-duration: var(--bk-dur-instant);
-}
-.bk-press:active::after {
-  transform: translate(var(--bk-shadow-offset-press), var(--bk-shadow-offset-press));
+  box-shadow: var(--bk-shadow-offset-press) var(--bk-shadow-offset-press) 0 hsl(var(--shadow-color));
   transition-duration: var(--bk-dur-instant);
 }
 @media (hover: none) {
-  .bk-press,
-  .bk-press::after {
+  .bk-press {
     transition-duration: var(--bk-dur-instant);
   }
 }

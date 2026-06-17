@@ -227,7 +227,15 @@ body {
 
 /* BoldKit Motion — shared interactive timing. Routes the core components'
    box-shadow+translate press onto the snap curve (buttery settle, hard look). */
-.bk-interactive { transition: all var(--bk-dur-snap) var(--bk-ease-snap); }
+.bk-interactive {
+  transition:
+    transform var(--bk-dur-snap) var(--bk-ease-snap),
+    box-shadow var(--bk-dur-snap) var(--bk-ease-snap),
+    background-color var(--bk-dur-snap) var(--ease-out),
+    border-color var(--bk-dur-snap) var(--ease-out),
+    color var(--bk-dur-snap) var(--ease-out),
+    opacity var(--bk-dur-snap) var(--ease-out);
+}
 @media (prefers-reduced-motion: reduce) {
   .bk-interactive { transition-duration: 0.01ms !important; }
 }
