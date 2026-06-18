@@ -1108,7 +1108,7 @@ MIT License — Free for personal and commercial use.
 
 ---
 
-## Complete Page Index (121 pages)
+## Complete Page Index (122 pages)
 
 Every indexable page on boldkit.dev with its meta title and description.
 
@@ -1351,6 +1351,10 @@ Layered Card — neubrutalism React & Vue 3 component with thick borders, hard s
 ### Marquee — Neubrutalism Component for React & Vue 3
 https://boldkit.dev/components/marquee
 Marquee — neubrutalism React & Vue 3 component with thick borders, hard shadows, bold colors. Install via shadcn or shadcn-vue.
+
+### Motion — Neubrutalism Component for React & Vue 3
+https://boldkit.dev/components/motion
+Motion — neubrutalism React & Vue 3 component with thick borders, hard shadows, bold colors. Install via shadcn or shadcn-vue.
 
 ### Menubar — Neubrutalism Component for React & Vue 3
 https://boldkit.dev/components/menubar
@@ -1604,7 +1608,7 @@ Free neubrutalism docs template for React and Vue 3. Copy, paste, and customize 
 Every BoldKit registry item is installed via the shadcn CLI — the source is
 copied directly into your project (there is no npm package to import).
 
-### React (108 items)
+### React (111 items)
 
 ```bash
 npx shadcn@latest add "https://boldkit.dev/r/accordion.json"
@@ -1665,6 +1669,9 @@ npx shadcn@latest add "https://boldkit.dev/r/math-curves.json"
 npx shadcn@latest add "https://boldkit.dev/r/matrix-rain.json"
 npx shadcn@latest add "https://boldkit.dev/r/menubar.json"
 npx shadcn@latest add "https://boldkit.dev/r/metaballs.json"
+npx shadcn@latest add "https://boldkit.dev/r/motion.json"
+npx shadcn@latest add "https://boldkit.dev/r/motion-core.json"
+npx shadcn@latest add "https://boldkit.dev/r/motion-react.json"
 npx shadcn@latest add "https://boldkit.dev/r/mouse-ripple.json"
 npx shadcn@latest add "https://boldkit.dev/r/native-select.json"
 npx shadcn@latest add "https://boldkit.dev/r/navigation-menu.json"

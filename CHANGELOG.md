@@ -5,6 +5,31 @@ Format follows [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ---
 
+## [3.4.2] — 2026-06-18 — Motion system + buttery component retrofit
+
+The signature **"hard look, buttery feel"** release. Neubrutalism's reputation is harsh and static — this patch keeps the hard visual language (3px borders, 4px offset shadows, sharp corners) but gives every interaction a premium, settled motion so the kit *feels* world-class to use.
+
+### Highlights
+
+✨ **Motion system (React).** New `motion`, `motion-core`, and `motion-react` registry items. A framework-agnostic, zero-runtime CSS core (`--bk-*` tokens, canonical keyframes, a reduced-motion guard) drives six signature recipes — `press`, `stamp-in`, `shake`, `reveal`, `slide-hard`, `pulse-shadow` — exposed through `<Motion>`, `<Reveal>`, `<Stagger>` components plus `useShake` / `useViewTransition` hooks. SSR-safe. Live docs at `/components/motion`.
+
+✨ **Buttery retrofit, by default (React + Vue).** Button, Card, Input, Toggle, and Switch now route their press/hover/focus through a shared `.bk-interactive` timing on a new **snap** easing curve — the chunky shadow-collapse *settles* with a small overshoot instead of a flat slide. Easing is split: overshoot applies only to `transform`/`box-shadow`, while colour/border/opacity stay on a smooth `ease-out` (no hover flicker).
+
+🩹 **`.bk-press` press choreography.** Animates `transform` + a hard offset `box-shadow` (composes correctly with a background colour), replacing an earlier pseudo-element approach that could invert under the hover transform.
+
+♿ **Reduced-motion throughout.** Every recipe and the `.bk-interactive` timing collapse to near-instant under `prefers-reduced-motion: reduce`; reveals show their content immediately.
+
+### Notes
+
+- The Vue **`<Motion>`/`<Reveal>` adapter** is not in this release — the buttery **retrofit** ships for Vue now; the Vue adapter components follow in a focused update.
+
+### Bumps
+
+- React: `3.4.1 → 3.4.2`
+- Vue: `3.2.1 → 3.2.2`
+
+---
+
 ## [3.4.1] — 2026-06-10 — Custom easing system + docs Theming fix
 
 A motion-polish + docs fix patch. Every transition and animation in BoldKit now runs on a **custom easing system** based on the [animations.dev](https://animations.dev/learn/animation-theory/the-easing-blueprint) easing blueprint — the browser's built-in `ease-out` / `ease-in-out` curves are too weak to read as "snappy" on hard neubrutalist surfaces, so they're replaced with stronger custom `cubic-bezier` curves. Applied identically across **React and Vue 3**.
