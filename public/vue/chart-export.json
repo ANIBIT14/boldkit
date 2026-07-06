@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "chart-export",
+  "type": "registry:ui",
+  "description": "Framework-agnostic chart export engine — CSV / PNG / SVG download and fullscreen toggle. Works with any chart rendering an <svg> (Recharts) or <canvas> (ECharts).",
+  "dependencies": [],
+  "registryDependencies": [
+    "@boldkit/utils"
+  ],
+  "files": [
+    {
+      "path": "registry/default/lib/chart-export.ts",
+      "type": "registry:ui",
+      "target": "lib/chart-export.ts"
+    }
+  ]
+}

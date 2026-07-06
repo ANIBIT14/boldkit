@@ -390,6 +390,14 @@ export {
   type ChartConfig,
 } from './chart-utils'
 
+// Motion
+export { default as Motion } from './Motion.vue'
+export { default as Reveal } from './Reveal.vue'
+export { default as Stagger } from './Stagger.vue'
+
+// Chart toolbar
+export { default as ChartToolbar } from './ChartToolbar.vue'
+
 // Variant exports
 export { buttonVariants } from './button-variants'
 

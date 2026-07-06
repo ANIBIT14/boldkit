@@ -1,0 +1,21 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "chart-toolbar",
+  "type": "registry:ui",
+  "description": "Brutalist chart toolbar overlay — export the wrapped chart as PNG or SVG, download its data as CSV, and toggle fullscreen.",
+  "dependencies": [
+    "lucide-vue-next"
+  ],
+  "registryDependencies": [
+    "@boldkit/utils",
+    "@boldkit/chart-export",
+    "@boldkit/button"
+  ],
+  "files": [
+    {
+      "path": "registry/default/ui/ChartToolbar.vue",
+      "type": "registry:ui",
+      "target": "components/ui/ChartToolbar.vue"
+    }
+  ]
+}

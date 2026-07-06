@@ -337,6 +337,53 @@ const componentMeta = {
     desc: 'Ambient animated mathematical curve background layer with neubrutalism aesthetics — wraps any content with a continuously drawn parametric curve.',
     files: ['MathCurveBackground'],
   },
+
+  // ──────────────────────────────────────────────────────────────────
+  // Motion System — Vue adapter. Mirrors the React motion-core / motion-react
+  // split. `motion-core` is the framework-agnostic engine (lib); `motion`
+  // is the Vue L3 adapter (SFCs + composables + CSS recipes) that depends
+  // on it. Consumers add `motion`; the CLI pulls `motion-core` transitively.
+  // ──────────────────────────────────────────────────────────────────
+  'motion-core': {
+    deps: [],
+    desc: 'Framework-agnostic motion engine — reduced-motion detection, IntersectionObserver reveal, child stagger, imperative animation trigger, and a View Transitions wrapper. Shared by the Motion adapter.',
+    files: [], // No .vue file — only the lib
+    siblingFiles: [
+      { src: 'lib/motion-core.ts', target: 'lib/motion-core.ts' },
+    ],
+  },
+
+  motion: {
+    deps: [],
+    registryDeps: ['motion-core'],
+    desc: 'Neubrutalism motion primitives — <Motion>, <Reveal>, <Stagger> plus useShake/useViewTransition composables. Stepped, hard-edged animations with automatic reduced-motion fallbacks. Import styles/motion.css into your globals.',
+    files: ['Motion', 'Reveal', 'Stagger'],
+    siblingFiles: [
+      { src: 'composables/useMotion.ts', target: 'composables/useMotion.ts' },
+      { src: 'styles/motion.css', target: 'styles/motion.css' },
+    ],
+  },
+
+  // ──────────────────────────────────────────────────────────────────
+  // Chart export toolbar — mirrors the React chart-export / chart-toolbar
+  // split. `chart-export` is the framework-agnostic engine (CSV/PNG/SVG/
+  // fullscreen); `chart-toolbar` is the Vue overlay that depends on it.
+  // ──────────────────────────────────────────────────────────────────
+  'chart-export': {
+    deps: [],
+    desc: 'Framework-agnostic chart export engine — CSV / PNG / SVG download and fullscreen toggle. Works with any chart rendering an <svg> (Recharts) or <canvas> (ECharts).',
+    files: [], // No .vue file — only the lib
+    siblingFiles: [
+      { src: 'lib/chart-export.ts', target: 'lib/chart-export.ts' },
+    ],
+  },
+
+  'chart-toolbar': {
+    deps: ['lucide-vue-next'],
+    registryDeps: ['chart-export', 'button'],
+    desc: 'Brutalist chart toolbar overlay — export the wrapped chart as PNG or SVG, download its data as CSV, and toggle fullscreen.',
+    files: ['ChartToolbar'],
+  },
 }
 
 const SHAPES_DIR = path.join(UI_DIR, 'shapes')

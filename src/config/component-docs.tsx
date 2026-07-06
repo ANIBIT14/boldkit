@@ -35,6 +35,7 @@ export const componentDocRoutes: DocRoute[] = [
   { slug: 'button-group', Component: load(() => import('@/pages/docs/ButtonGroupDoc'), 'ButtonGroupDoc') },
   { slug: 'calendar', Component: load(() => import('@/pages/docs/CalendarDoc'), 'CalendarDoc') },
   { slug: 'card', Component: load(() => import('@/pages/docs/CardDoc'), 'CardDoc') },
+  { slug: 'chart-toolbar', Component: load(() => import('@/pages/docs/ChartToolbarDoc'), 'ChartToolbarDoc') },
   { slug: 'checkbox', Component: load(() => import('@/pages/docs/CheckboxDoc'), 'CheckboxDoc') },
   { slug: 'collapsible', Component: load(() => import('@/pages/docs/CollapsibleDoc'), 'CollapsibleDoc') },
   { slug: 'combobox', Component: load(() => import('@/pages/docs/ComboboxDoc'), 'ComboboxDoc') },

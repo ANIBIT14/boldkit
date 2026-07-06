@@ -3,7 +3,7 @@
     "packages/vue"
   ],
   "name": "boldkit",
-  "version": "3.4.2",
+  "version": "3.4.3",
   "description": "A neubrutalism UI component library for React and Vue 3 - Bold, raw, beautiful.",
   "author": "BoldKit Team",
   "license": "MIT",
@@ -107,6 +107,7 @@
     "@vitejs/plugin-react": "^5.1.4",
     "@vitest/coverage-v8": "^4.0.18",
     "@vitest/ui": "^4.0.18",
+    "axe-core": "^4.12.1",
     "eslint": "^9.39.1",
     "eslint-plugin-react-hooks": "^7.0.1",
     "eslint-plugin-react-refresh": "^0.4.24",
@@ -121,6 +122,7 @@
     "typescript-eslint": "^8.46.4",
     "vite": "^7.2.4",
     "vitest": "^4.0.18",
+    "vitest-axe": "^0.1.0",
     "vue-eslint-parser": "^10.4.0"
   },
   "engines": {

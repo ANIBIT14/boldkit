@@ -2159,6 +2159,38 @@
           "target": "components/ui/motion.tsx"
         }
       ]
+    },
+    {
+      "name": "chart-export",
+      "type": "registry:lib",
+      "description": "BoldKit chart export helpers — framework-agnostic, SSR-safe CSV / PNG / SVG download and fullscreen toggle. Works with any chart engine that renders an <svg> (Recharts) or <canvas> (ECharts).",
+      "files": [
+        {
+          "path": "registry/default/lib/chart-export.ts",
+          "type": "registry:lib",
+          "target": "lib/chart-export.ts"
+        }
+      ]
+    },
+    {
+      "name": "chart-toolbar",
+      "type": "registry:ui",
+      "description": "Brutalist chart toolbar overlay — export the wrapped chart as PNG or SVG, download its data as CSV, and toggle fullscreen.",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "@boldkit/chart-export",
+        "@boldkit/button",
+        "@boldkit/utils"
+      ],
+      "files": [
+        {
+          "path": "registry/default/ui/chart-toolbar.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/chart-toolbar.tsx"
+        }
+      ]
     }
   ]
 }

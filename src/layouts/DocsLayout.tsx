@@ -44,6 +44,7 @@ const components = [
   { name: 'Calendar', href: '/components/calendar' },
   { name: 'Card', href: '/components/card' },
   { name: 'Carousel', href: '/components/carousel' },
+  { name: 'Chart Toolbar', href: '/components/chart-toolbar', isNew: true },
   { name: 'Checkbox', href: '/components/checkbox' },
   { name: 'Collapsible', href: '/components/collapsible' },
   { name: 'Combobox', href: '/components/combobox' },

@@ -6,6 +6,12 @@ dist
 dist-ssr
 *.local
 
+# Expo / React Native generated caches & build artifacts
+.expo/
+**/android/app/build/
+**/android/.gradle/
+**/ios/Pods/
+
 # Logs
 logs
 *.log
@@ -50,8 +56,8 @@ CLAUDE.md
 docs/superpowers/
 docs/superpowers/specs
 
-# GitHub Actions workflows (require workflow OAuth scope to push)
-.github/workflows/test-rn.yml
+# GitHub Actions workflows (require workflow OAuth scope to push — add manually)
+.github/workflows/
 
 # Git worktrees
 .worktrees/

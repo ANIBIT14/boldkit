@@ -1,0 +1,38 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "motion",
+  "type": "registry:ui",
+  "description": "Neubrutalism motion primitives — <Motion>, <Reveal>, <Stagger> plus useShake/useViewTransition composables. Stepped, hard-edged animations with automatic reduced-motion fallbacks. Import styles/motion.css into your globals.",
+  "dependencies": [],
+  "registryDependencies": [
+    "@boldkit/utils",
+    "@boldkit/motion-core"
+  ],
+  "files": [
+    {
+      "path": "registry/default/ui/Motion.vue",
+      "type": "registry:ui",
+      "target": "components/ui/Motion.vue"
+    },
+    {
+      "path": "registry/default/ui/Reveal.vue",
+      "type": "registry:ui",
+      "target": "components/ui/Reveal.vue"
+    },
+    {
+      "path": "registry/default/ui/Stagger.vue",
+      "type": "registry:ui",
+      "target": "components/ui/Stagger.vue"
+    },
+    {
+      "path": "registry/default/composables/useMotion.ts",
+      "type": "registry:ui",
+      "target": "composables/useMotion.ts"
+    },
+    {
+      "path": "registry/default/styles/motion.css",
+      "type": "registry:ui",
+      "target": "styles/motion.css"
+    }
+  ]
+}

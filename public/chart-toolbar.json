@@ -1,0 +1,21 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "chart-toolbar",
+  "description": "Brutalist chart toolbar overlay — export the wrapped chart as PNG or SVG, download its data as CSV, and toggle fullscreen.",
+  "dependencies": [
+    "lucide-react"
+  ],
+  "registryDependencies": [
+    "@boldkit/chart-export",
+    "@boldkit/button",
+    "@boldkit/utils"
+  ],
+  "files": [
+    {
+      "path": "registry/default/ui/chart-toolbar.tsx",
+      "type": "registry:ui",
+      "target": "components/ui/chart-toolbar.tsx"
+    }
+  ],
+  "type": "registry:ui"
+}

@@ -4,3 +4,5 @@ export type { Theme, ThemeProviderState, UseThemeProviderOptions } from './useTh
 export { useIsMobile } from './useMobile'
 
 export { useSidebar } from './useSidebar'
+
+export { useShake, useViewTransition, prefersReducedMotion } from './useMotion'

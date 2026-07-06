@@ -1,0 +1,172 @@
+/*!
+ * BoldKit Motion System — L1 tokens + L2 recipes
+ * https://boldkit.dev
+ *
+ * Framework-agnostic. Works with React, Vue, Svelte, Solid,
+ * Astro, plain HTML — anywhere CSS works.
+ *
+ * Honors prefers-reduced-motion automatically.
+ *
+ * Install via shadcn CLI:
+ *   npx shadcn@latest add "https://boldkit.dev/r/motion.json"
+ *
+ * Or import directly:
+ *   import "@boldkit/motion-css";
+ */
+
+/* ──────────────────────────────────────────────────────
+   L1 — Motion Tokens
+   ────────────────────────────────────────────────────── */
+
+:where(:root) {
+  /* Easing — stepped & hard, not smooth. Brutalism's soul. */
+  --bk-ease-step:    steps(4, end);
+  --bk-ease-step-2:  steps(2, end);
+  --bk-ease-snap:    cubic-bezier(0.22, 1, 0.3, 1.12);
+  --bk-ease-stamp:   cubic-bezier(0.7, 0, 0.84, 0);
+  --bk-ease-rubber:  cubic-bezier(0.34, 1.56, 0.64, 1);
+  --bk-ease-linear:  linear;
+
+  /* Durations */
+  --bk-dur-instant: 80ms;
+  --bk-dur-snap:    150ms;
+  --bk-dur-quick:   240ms;
+  --bk-dur-base:    400ms;
+  --bk-dur-slow:    700ms;
+
+  /* Distances */
+  --bk-shadow-offset:       4px;
+  --bk-shadow-offset-press: 0px;
+  --bk-translate-press:     2px;
+  --bk-reveal-offset:       16px;
+
+  /* Fallbacks — if consumer hasn't defined the BoldKit shadow color,
+     fall back to currentColor so the press shadow is still visible. */
+  --shadow-color: var(--shadow-color, 240 10% 10%);
+}
+
+/* ──────────────────────────────────────────────────────
+   L1 — Keyframes (bk-* namespaced)
+   ────────────────────────────────────────────────────── */
+
+@keyframes bk-stamp-in {
+  0%   { opacity: 0; transform: scale(0.6) rotate(-4deg); }
+  60%  { opacity: 1; transform: scale(1.04) rotate(0.5deg); }
+  100% { opacity: 1; transform: scale(1) rotate(0); }
+}
+@keyframes bk-press-shadow {
+  0%   { transform: translate(var(--bk-shadow-offset), var(--bk-shadow-offset)); }
+  100% { transform: translate(var(--bk-shadow-offset-press), var(--bk-shadow-offset-press)); }
+}
+@keyframes bk-reveal-up {
+  from { opacity: 0; transform: translateY(var(--bk-reveal-offset)); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes bk-reveal-down {
+  from { opacity: 0; transform: translateY(calc(var(--bk-reveal-offset) * -1)); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes bk-reveal-left {
+  from { opacity: 0; transform: translateX(var(--bk-reveal-offset)); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+@keyframes bk-reveal-right {
+  from { opacity: 0; transform: translateX(calc(var(--bk-reveal-offset) * -1)); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+@keyframes bk-slide-hard-x {
+  from { transform: translateX(100%); }
+  to   { transform: translateX(0); }
+}
+@keyframes bk-slide-hard-y {
+  from { transform: translateY(100%); }
+  to   { transform: translateY(0); }
+}
+@keyframes bk-shake-x {
+  0%, 100% { transform: translateX(0); }
+  20%      { transform: translateX(-6px); }
+  40%      { transform: translateX(6px); }
+  60%      { transform: translateX(-4px); }
+  80%      { transform: translateX(4px); }
+}
+@keyframes bk-pulse-shadow {
+  0%, 100% { transform: translate(var(--bk-shadow-offset), var(--bk-shadow-offset)); }
+  50%      { transform: translate(calc(var(--bk-shadow-offset) + 2px), calc(var(--bk-shadow-offset) + 2px)); }
+}
+
+/* ──────────────────────────────────────────────────────
+   L2 — Recipes
+   ────────────────────────────────────────────────────── */
+
+/* 1. PRESS — hard offset-shadow choreography on the snap curve. Mobile-safe.
+   Animates transform + box-shadow (not a negative-z pseudo) so it composes
+   correctly with a background colour: hover lifts and grows the shadow, active
+   presses into the page and collapses it. */
+.bk-press {
+  box-shadow: var(--bk-shadow-offset) var(--bk-shadow-offset) 0 hsl(var(--shadow-color));
+  transition: transform var(--bk-dur-snap) var(--bk-ease-snap),
+              box-shadow var(--bk-dur-snap) var(--bk-ease-snap);
+}
+.bk-press:hover {
+  transform: translate(calc(var(--bk-translate-press) * -1), calc(var(--bk-translate-press) * -1));
+  box-shadow: calc(var(--bk-shadow-offset) + var(--bk-translate-press)) calc(var(--bk-shadow-offset) + var(--bk-translate-press)) 0 hsl(var(--shadow-color));
+}
+.bk-press:active {
+  transform: translate(var(--bk-shadow-offset), var(--bk-shadow-offset));
+  box-shadow: var(--bk-shadow-offset-press) var(--bk-shadow-offset-press) 0 hsl(var(--shadow-color));
+  transition-duration: var(--bk-dur-instant);
+}
+@media (hover: none) {
+  .bk-press {
+    transition-duration: var(--bk-dur-instant);
+  }
+}
+
+/* 2. STAMP-IN — hard entrance */
+.bk-stamp-in        { animation: bk-stamp-in var(--bk-dur-base) var(--bk-ease-snap) both; }
+.bk-stamp-in-quick  { animation-duration: var(--bk-dur-quick); }
+.bk-stamp-in-slow   { animation-duration: var(--bk-dur-slow); }
+
+/* 3. SHAKE-X — error state */
+.bk-shake-x { animation: bk-shake-x var(--bk-dur-quick) var(--bk-ease-step-2); }
+
+/* 4. REVEAL — scroll-triggered (paired with L3 IntersectionObserver) */
+.bk-reveal { opacity: 0; }
+.bk-reveal-in              { animation: bk-reveal-up var(--bk-dur-quick) var(--bk-ease-snap) both; }
+.bk-reveal-up.bk-reveal-in    { animation-name: bk-reveal-up; }
+.bk-reveal-down.bk-reveal-in  { animation-name: bk-reveal-down; }
+.bk-reveal-left.bk-reveal-in  { animation-name: bk-reveal-left; }
+.bk-reveal-right.bk-reveal-in { animation-name: bk-reveal-right; }
+
+/* 5. SLIDE-HARD — stepped slide for drawers/sheets/tabs */
+.bk-slide-hard-x { animation: bk-slide-hard-x var(--bk-dur-quick) var(--bk-ease-step) both; }
+.bk-slide-hard-y { animation: bk-slide-hard-y var(--bk-dur-quick) var(--bk-ease-step) both; }
+
+/* 6. PULSE-SHADOW — attention/loading */
+.bk-pulse-shadow { position: relative; }
+.bk-pulse-shadow::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: hsl(var(--shadow-color));
+  transform: translate(var(--bk-shadow-offset), var(--bk-shadow-offset));
+  animation: bk-pulse-shadow 1.6s var(--bk-ease-snap) infinite;
+  pointer-events: none;
+}
+
+/* ──────────────────────────────────────────────────────
+   A11y — Universal reduced-motion guard
+   ────────────────────────────────────────────────────── */
+
+@media (prefers-reduced-motion: reduce) {
+  [class*="bk-press"],
+  [class*="bk-stamp-in"],
+  [class*="bk-shake"],
+  [class*="bk-reveal"],
+  [class*="bk-slide-hard"],
+  [class*="bk-pulse-shadow"] {
+    animation: none !important;
+    transition-duration: 0.01ms !important;
+  }
+}

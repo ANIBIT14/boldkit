@@ -5,6 +5,39 @@ Format follows [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ---
 
+## [3.4.3] — 2026-07-06 — Vue Motion parity, chart export toolbar & CI
+
+A parity-and-foundation release. The headline: the **Vue `<Motion>` adapter** promised in 3.4.2 now ships, closing the last framework gap in the motion system. Alongside it, a new **chart export toolbar** for both frameworks, real **CI**, automated **accessibility** tests, and repo cleanup.
+
+### Highlights
+
+✨ **Vue Motion adapter — parity with React.** `<Motion>`, `<Reveal>`, and `<Stagger>` components plus `useShake` / `useViewTransition` composables now ship for Vue, wrapping the same framework-agnostic `motion-core`. New Vue registry items `motion` + `motion-core` mirror the React `motion-core` / `motion-react` split. The full six-recipe motion language is now identical across React and Vue.
+
+✨ **Chart export toolbar (React + Vue).** New `<ChartToolbar>` wraps any chart with a brutalist overlay to export **PNG**, **SVG**, or **CSV**, and toggle **fullscreen**. Engine-agnostic — it reads the wrapped `<svg>` (Recharts) or `<canvas>` (ECharts), so one shared `chart-export` core drives both frameworks. Registry items: `chart-export` + `chart-toolbar`.
+
+♿ **Automated accessibility.** `axe-core` now runs in the test suite over core components (Button, Input, Label, Badge, Alert, Card, Checkbox, Switch), so a11y regressions fail CI instead of waiting for a manual audit.
+
+🩹 **Continuous integration.** A real CI pipeline (lint + React `tsc` + Vue `vue-tsc` + tests + registry audit) replaces the old React-Native-only workflow.
+
+🧹 **Removed the phantom `react-native` package.** It carried no source — only an Expo example and committed build cache — and is now deleted. `.gitignore` hardened against Expo/Android/iOS build artifacts.
+
+### Docs
+
+- New live docs at **`/components/chart-toolbar`** (React demo + Vue snippets).
+- Vue `<Motion>` examples on **`/components/motion`** are now backed by a real, installable adapter.
+
+### Notes
+
+- No breaking changes. All existing React and Vue components are untouched.
+- Vue Motion installs via `npx shadcn-vue@latest add @boldkit/motion` (pulls `motion-core` transitively).
+
+### Bumps
+
+- React: `3.4.2 → 3.4.3`
+- Vue: `3.2.2 → 3.2.3`
+
+---
+
 ## [3.4.2] — 2026-06-18 — Motion system + buttery component retrofit
 
 The signature **"hard look, buttery feel"** release. Neubrutalism's reputation is harsh and static — this patch keeps the hard visual language (3px borders, 4px offset shadows, sharp corners) but gives every interaction a premium, settled motion so the kit *feels* world-class to use.

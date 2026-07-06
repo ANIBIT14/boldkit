@@ -204,6 +204,7 @@ export const COMPONENT_TITLES: Record<string, string> = {
   calendar: 'Calendar',
   card: 'Card',
   carousel: 'Carousel',
+  'chart-toolbar': 'Chart Toolbar',
   checkbox: 'Checkbox',
   collapsible: 'Collapsible',
   combobox: 'Combobox',

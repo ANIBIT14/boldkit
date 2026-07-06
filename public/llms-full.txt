@@ -1108,7 +1108,7 @@ MIT License — Free for personal and commercial use.
 
 ---
 
-## Complete Page Index (122 pages)
+## Complete Page Index (123 pages)
 
 Every indexable page on boldkit.dev with its meta title and description.
 
@@ -1255,6 +1255,10 @@ Card — neubrutalism React & Vue 3 component with thick borders, hard shadows, 
 ### Carousel — Neubrutalism Component for React & Vue 3
 https://boldkit.dev/components/carousel
 Carousel — neubrutalism React & Vue 3 component with thick borders, hard shadows, bold colors. Install via shadcn or shadcn-vue.
+
+### Chart Toolbar — Neubrutalism Component for React & Vue 3
+https://boldkit.dev/components/chart-toolbar
+Chart Toolbar — neubrutalism React & Vue 3 component with thick borders, hard shadows, bold colors. Install via shadcn or shadcn-vue.
 
 ### Checkbox — Neubrutalism Component for React & Vue 3
 https://boldkit.dev/components/checkbox
@@ -1608,7 +1612,7 @@ Free neubrutalism docs template for React and Vue 3. Copy, paste, and customize 
 Every BoldKit registry item is installed via the shadcn CLI — the source is
 copied directly into your project (there is no npm package to import).
 
-### React (111 items)
+### React (113 items)
 
 ```bash
 npx shadcn@latest add "https://boldkit.dev/r/accordion.json"
@@ -1626,6 +1630,8 @@ npx shadcn@latest add "https://boldkit.dev/r/calendar.json"
 npx shadcn@latest add "https://boldkit.dev/r/card.json"
 npx shadcn@latest add "https://boldkit.dev/r/carousel.json"
 npx shadcn@latest add "https://boldkit.dev/r/chart.json"
+npx shadcn@latest add "https://boldkit.dev/r/chart-export.json"
+npx shadcn@latest add "https://boldkit.dev/r/chart-toolbar.json"
 npx shadcn@latest add "https://boldkit.dev/r/checkbox.json"
 npx shadcn@latest add "https://boldkit.dev/r/collapsible.json"
 npx shadcn@latest add "https://boldkit.dev/r/combobox.json"
@@ -1724,7 +1730,7 @@ npx shadcn@latest add "https://boldkit.dev/r/voronoi-pulse.json"
 npx shadcn@latest add "https://boldkit.dev/r/warp-speed.json"
 ```
 
-### Vue 3 / Nuxt (109 items)
+### Vue 3 / Nuxt (113 items)
 
 ```bash
 npx shadcn-vue@latest add "https://boldkit.dev/r/vue/accordion.json"
@@ -1742,6 +1748,8 @@ npx shadcn-vue@latest add "https://boldkit.dev/r/vue/calendar.json"
 npx shadcn-vue@latest add "https://boldkit.dev/r/vue/card.json"
 npx shadcn-vue@latest add "https://boldkit.dev/r/vue/carousel.json"
 npx shadcn-vue@latest add "https://boldkit.dev/r/vue/chart.json"
+npx shadcn-vue@latest add "https://boldkit.dev/r/vue/chart-export.json"
+npx shadcn-vue@latest add "https://boldkit.dev/r/vue/chart-toolbar.json"
 npx shadcn-vue@latest add "https://boldkit.dev/r/vue/chart-utils.json"
 npx shadcn-vue@latest add "https://boldkit.dev/r/vue/checkbox.json"
 npx shadcn-vue@latest add "https://boldkit.dev/r/vue/collapsible.json"
@@ -1787,6 +1795,8 @@ npx shadcn-vue@latest add "https://boldkit.dev/r/vue/math-curves.json"
 npx shadcn-vue@latest add "https://boldkit.dev/r/vue/matrix-rain.json"
 npx shadcn-vue@latest add "https://boldkit.dev/r/vue/menubar.json"
 npx shadcn-vue@latest add "https://boldkit.dev/r/vue/metaballs.json"
+npx shadcn-vue@latest add "https://boldkit.dev/r/vue/motion.json"
+npx shadcn-vue@latest add "https://boldkit.dev/r/vue/motion-core.json"
 npx shadcn-vue@latest add "https://boldkit.dev/r/vue/mouse-ripple.json"
 npx shadcn-vue@latest add "https://boldkit.dev/r/vue/native-select.json"
 npx shadcn-vue@latest add "https://boldkit.dev/r/vue/navigation-menu.json"

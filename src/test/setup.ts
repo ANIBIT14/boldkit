@@ -1,6 +1,10 @@
 import '@testing-library/jest-dom/vitest'
+import * as axeMatchers from 'vitest-axe/matchers'
 import { cleanup } from '@testing-library/react'
-import { afterEach, vi } from 'vitest'
+import { afterEach, expect, vi } from 'vitest'
+
+// Register axe-core accessibility matchers (toHaveNoViolations)
+expect.extend(axeMatchers)
 
 // Cleanup after each test
 afterEach(() => {

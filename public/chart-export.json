@@ -1,0 +1,13 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "chart-export",
+  "description": "BoldKit chart export helpers — framework-agnostic, SSR-safe CSV / PNG / SVG download and fullscreen toggle. Works with any chart engine that renders an <svg> (Recharts) or <canvas> (ECharts).",
+  "files": [
+    {
+      "path": "registry/default/lib/chart-export.ts",
+      "type": "registry:lib",
+      "target": "lib/chart-export.ts"
+    }
+  ],
+  "type": "registry:lib"
+}

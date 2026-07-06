@@ -157,7 +157,7 @@ export function MotionDoc() {
         name="Motion"
         description="Framework-agnostic motion system for BoldKit. Six signature CSS recipes plus React and Vue adapters share one vanilla core, so the same animation language works in any framework — including Svelte, Solid, or plain HTML."
         dependencies={[]}
-        vueDependencies={['reka-ui']}
+        vueDependencies={[]}
         installCommand={reactInstall}
         sourceCode={sourceCode}
         vueSourceCode={sourceCode /* core file is shared; show same source */}

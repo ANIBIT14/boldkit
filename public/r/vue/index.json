@@ -427,6 +427,26 @@
       "name": "math-curve-background",
       "type": "registry:ui",
       "registryUrl": "https://boldkit.dev/r/vue/math-curve-background.json"
+    },
+    {
+      "name": "motion-core",
+      "type": "registry:ui",
+      "registryUrl": "https://boldkit.dev/r/vue/motion-core.json"
+    },
+    {
+      "name": "motion",
+      "type": "registry:ui",
+      "registryUrl": "https://boldkit.dev/r/vue/motion.json"
+    },
+    {
+      "name": "chart-export",
+      "type": "registry:ui",
+      "registryUrl": "https://boldkit.dev/r/vue/chart-export.json"
+    },
+    {
+      "name": "chart-toolbar",
+      "type": "registry:ui",
+      "registryUrl": "https://boldkit.dev/r/vue/chart-toolbar.json"
     }
   ]
 }

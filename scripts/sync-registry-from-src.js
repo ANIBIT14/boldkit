@@ -68,7 +68,7 @@ function rewriteChartImports(content) {
 }
 
 // Files to sync from src/lib → registry/default/lib (only these, by name)
-const LIB_FILES = ['utils.ts', 'math-curves.ts']
+const LIB_FILES = ['utils.ts', 'math-curves.ts', 'chart-export.ts']
 
 // Cross-folder files referenced by UI components — must be shipped via
 // their own registry entries (error-boundary, use-theme, …) or installs
