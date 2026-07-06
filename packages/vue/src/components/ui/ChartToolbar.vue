@@ -41,7 +41,7 @@ const onFullscreen = () => container.value && toggleFullscreen(container.value)
 
 <template>
   <div ref="container" :class="cn('relative', $props.class)">
-    <div class="absolute right-2 top-2 z-10 flex gap-1">
+    <div data-chart-export-controls class="absolute right-2 top-2 z-10 flex gap-1">
       <Button
         v-if="png"
         type="button"

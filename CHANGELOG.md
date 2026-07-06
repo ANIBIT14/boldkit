@@ -5,6 +5,27 @@ Format follows [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ---
 
+## [3.4.4] — 2026-07-06 — Chart export fidelity & fullscreen fixes
+
+Patch fixes for the `<ChartToolbar>` shipped in 3.4.3, across React and Vue.
+
+### Fixes
+
+🐛 **PNG / SVG export now downloads the chart, not a toolbar icon.** The export grabbed the container's first `<svg>` — which was a toolbar *button icon*, not the chart — so downloads came out as a tiny glyph. It now skips the toolbar controls and serializes the actual chart.
+
+🐛 **Exports keep their colors in every viewer.** A chart's colors come from CSS variables (`hsl(var(--primary))`) and external stylesheets, neither of which survive serialization. The export now resolves each element's *computed* style to concrete colors and writes them as presentation **attributes** (not just inline style) plus an opaque white backdrop — so Preview, Quick Look, Illustrator, and browsers all render the real chart, not a colorless outline.
+
+🐛 **Fullscreen no longer leaves a black gap.** A fullscreened chart kept its fixed height, letting the browser's black backdrop show through below it. The container now takes the page background and lays the chart out with a definite height (`flex: 1`), so Recharts' `ResponsiveContainer` and ECharts' `autoresize` grow to fill — no black bars.
+
+🩹 **Crisper canvas exports.** ECharts (canvas) PNGs are composited onto white so a transparent chart background doesn't export as black.
+
+### Bumps
+
+- React: `3.4.3 → 3.4.4`
+- Vue: `3.2.3 → 3.2.4`
+
+---
+
 ## [3.4.3] — 2026-07-06 — Vue Motion parity, chart export toolbar & CI
 
 A parity-and-foundation release. The headline: the **Vue `<Motion>` adapter** promised in 3.4.2 now ships, closing the last framework gap in the motion system. Alongside it, a new **chart export toolbar** for both frameworks, real **CI**, automated **accessibility** tests, and repo cleanup.

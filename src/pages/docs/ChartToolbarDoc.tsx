@@ -81,8 +81,8 @@ function ToolbarBarChart() {
           <XAxis dataKey="month" tickLine={false} axisLine={false} />
           <YAxis tickLine={false} axisLine={false} />
           <ChartTooltip content={<ChartTooltipContent indicator="dot" />} />
-          <Bar dataKey="desktop" fill="hsl(var(--primary))" stroke="hsl(var(--foreground))" strokeWidth={3} />
-          <Bar dataKey="mobile" fill="hsl(var(--secondary))" stroke="hsl(var(--foreground))" strokeWidth={3} />
+          <Bar dataKey="desktop" fill="hsl(var(--primary))" stroke="hsl(var(--foreground))" strokeWidth={3} isAnimationActive={false} />
+          <Bar dataKey="mobile" fill="hsl(var(--secondary))" stroke="hsl(var(--foreground))" strokeWidth={3} isAnimationActive={false} />
         </BarChart>
       </ChartContainer>
     </ChartToolbar>
@@ -154,7 +154,7 @@ export function ChartToolbarDoc() {
                 <CartesianGrid strokeDasharray="3 3" vertical={false} />
                 <XAxis dataKey="month" tickLine={false} axisLine={false} />
                 <YAxis tickLine={false} axisLine={false} />
-                <Bar dataKey="desktop" fill="hsl(var(--accent))" stroke="hsl(var(--foreground))" strokeWidth={3} />
+                <Bar dataKey="desktop" fill="hsl(var(--accent))" stroke="hsl(var(--foreground))" strokeWidth={3} isAnimationActive={false} />
               </BarChart>
             </ChartContainer>
           </ChartToolbar>

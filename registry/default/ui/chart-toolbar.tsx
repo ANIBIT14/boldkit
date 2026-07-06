@@ -46,7 +46,7 @@ export const ChartToolbar = React.forwardRef<HTMLDivElement, ChartToolbarProps>(
 
     return (
       <div ref={innerRef} className={cn('relative', className)} {...props}>
-        <div className="absolute right-2 top-2 z-10 flex gap-1">
+        <div data-chart-export-controls className="absolute right-2 top-2 z-10 flex gap-1">
           {png && (
             <Button
               type="button"
