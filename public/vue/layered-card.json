@@ -11,39 +11,32 @@
   ],
   "files": [
     {
-      "path": "registry/default/ui/LayeredCard.vue",
-      "type": "registry:ui",
-      "target": "components/ui/LayeredCard.vue"
+      "path": "registry/default/components/ui/LayeredCard.vue",
+      "type": "registry:ui"
     },
     {
-      "path": "registry/default/ui/LayeredCardHeader.vue",
-      "type": "registry:ui",
-      "target": "components/ui/LayeredCardHeader.vue"
+      "path": "registry/default/components/ui/LayeredCardHeader.vue",
+      "type": "registry:ui"
     },
     {
-      "path": "registry/default/ui/LayeredCardTitle.vue",
-      "type": "registry:ui",
-      "target": "components/ui/LayeredCardTitle.vue"
+      "path": "registry/default/components/ui/LayeredCardTitle.vue",
+      "type": "registry:ui"
     },
     {
-      "path": "registry/default/ui/LayeredCardDescription.vue",
-      "type": "registry:ui",
-      "target": "components/ui/LayeredCardDescription.vue"
+      "path": "registry/default/components/ui/LayeredCardDescription.vue",
+      "type": "registry:ui"
     },
     {
-      "path": "registry/default/ui/LayeredCardContent.vue",
-      "type": "registry:ui",
-      "target": "components/ui/LayeredCardContent.vue"
+      "path": "registry/default/components/ui/LayeredCardContent.vue",
+      "type": "registry:ui"
     },
     {
-      "path": "registry/default/ui/LayeredCardFooter.vue",
-      "type": "registry:ui",
-      "target": "components/ui/LayeredCardFooter.vue"
+      "path": "registry/default/components/ui/LayeredCardFooter.vue",
+      "type": "registry:ui"
     },
     {
-      "path": "registry/default/ui/layered-card-variants.ts",
-      "type": "registry:ui",
-      "target": "components/ui/layered-card-variants.ts"
+      "path": "registry/default/components/ui/layered-card-variants.ts",
+      "type": "registry:ui"
     }
   ]
 }

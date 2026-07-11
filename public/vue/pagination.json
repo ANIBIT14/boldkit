@@ -13,39 +13,32 @@
   ],
   "files": [
     {
-      "path": "registry/default/ui/Pagination.vue",
-      "type": "registry:ui",
-      "target": "components/ui/Pagination.vue"
+      "path": "registry/default/components/ui/Pagination.vue",
+      "type": "registry:ui"
     },
     {
-      "path": "registry/default/ui/PaginationContent.vue",
-      "type": "registry:ui",
-      "target": "components/ui/PaginationContent.vue"
+      "path": "registry/default/components/ui/PaginationContent.vue",
+      "type": "registry:ui"
     },
     {
-      "path": "registry/default/ui/PaginationItem.vue",
-      "type": "registry:ui",
-      "target": "components/ui/PaginationItem.vue"
+      "path": "registry/default/components/ui/PaginationItem.vue",
+      "type": "registry:ui"
     },
     {
-      "path": "registry/default/ui/PaginationLink.vue",
-      "type": "registry:ui",
-      "target": "components/ui/PaginationLink.vue"
+      "path": "registry/default/components/ui/PaginationLink.vue",
+      "type": "registry:ui"
     },
     {
-      "path": "registry/default/ui/PaginationEllipsis.vue",
-      "type": "registry:ui",
-      "target": "components/ui/PaginationEllipsis.vue"
+      "path": "registry/default/components/ui/PaginationEllipsis.vue",
+      "type": "registry:ui"
     },
     {
-      "path": "registry/default/ui/PaginationPrevious.vue",
-      "type": "registry:ui",
-      "target": "components/ui/PaginationPrevious.vue"
+      "path": "registry/default/components/ui/PaginationPrevious.vue",
+      "type": "registry:ui"
     },
     {
-      "path": "registry/default/ui/PaginationNext.vue",
-      "type": "registry:ui",
-      "target": "components/ui/PaginationNext.vue"
+      "path": "registry/default/components/ui/PaginationNext.vue",
+      "type": "registry:ui"
     }
   ]
 }

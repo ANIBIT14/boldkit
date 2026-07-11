@@ -11,19 +11,16 @@
   ],
   "files": [
     {
-      "path": "registry/default/ui/Collapsible.vue",
-      "type": "registry:ui",
-      "target": "components/ui/Collapsible.vue"
+      "path": "registry/default/components/ui/Collapsible.vue",
+      "type": "registry:ui"
     },
     {
-      "path": "registry/default/ui/CollapsibleTrigger.vue",
-      "type": "registry:ui",
-      "target": "components/ui/CollapsibleTrigger.vue"
+      "path": "registry/default/components/ui/CollapsibleTrigger.vue",
+      "type": "registry:ui"
     },
     {
-      "path": "registry/default/ui/CollapsibleContent.vue",
-      "type": "registry:ui",
-      "target": "components/ui/CollapsibleContent.vue"
+      "path": "registry/default/components/ui/CollapsibleContent.vue",
+      "type": "registry:ui"
     }
   ]
 }

@@ -353,13 +353,24 @@ const componentMeta = {
     ],
   },
 
-  motion: {
+  // useMotion — Vue composable. Its own item (not mixed into `motion`) so the
+  // CLI's findCommonRoot doesn't collapse to the registry root and mis-nest it.
+  'use-motion': {
     deps: [],
     registryDeps: ['motion-core'],
+    desc: 'Motion composables (useShake, useViewTransition) backing the <Motion> primitives. Reduced-motion aware.',
+    files: [],
+    siblingFiles: [
+      { src: 'composables/useMotion.ts', target: 'composables/useMotion.ts' },
+    ],
+  },
+
+  motion: {
+    deps: [],
+    registryDeps: ['motion-core', 'use-motion'],
     desc: 'Neubrutalism motion primitives — <Motion>, <Reveal>, <Stagger> plus useShake/useViewTransition composables. Stepped, hard-edged animations with automatic reduced-motion fallbacks. Import styles/motion.css into your globals.',
     files: ['Motion', 'Reveal', 'Stagger'],
     siblingFiles: [
-      { src: 'composables/useMotion.ts', target: 'composables/useMotion.ts' },
       { src: 'styles/motion.css', target: 'styles/motion.css' },
     ],
   },
@@ -424,6 +435,15 @@ function createRegistryJson(name, meta) {
   const files = meta.files || [name.split('-').map(s => s.charAt(0).toUpperCase() + s.slice(1)).join('')]
   const registryFiles = []
 
+  // NOTE (issue #10 — Nuxt "cannot find module @/components/ui"): registry:ui/lib
+  // files intentionally ship WITHOUT an explicit `target`. A hardcoded target like
+  // `components/ui/Button.vue` is resolved by the CLI relative to the project ROOT,
+  // which breaks any project whose `@` alias isn't the root — notably Nuxt 4
+  // (srcDir `app/`). With no target the CLI places files under the consumer's
+  // configured `ui`/`lib` aliases, which honor srcDir. The subpath after `ui/` in
+  // `path` is preserved, so subdirectories still work. This mirrors the official
+  // shadcn-vue registry (e.g. its button/utils items ship `target: ""`).
+
   for (const file of files) {
     const vuePath = path.join(UI_DIR, `${file}.vue`)
     const tsPath = path.join(UI_DIR, `${file.toLowerCase()}-variants.ts`)
@@ -431,20 +451,18 @@ function createRegistryJson(name, meta) {
     const vueContent = readFile(vuePath)
     if (vueContent) {
       registryFiles.push({
-        path: `registry/default/ui/${file}.vue`,
+        path: `registry/default/components/ui/${file}.vue`,
         content: vueContent,
         type: 'registry:ui',
-        target: `components/ui/${file}.vue`
       })
     }
 
     const tsContent = readFile(tsPath)
     if (tsContent) {
       registryFiles.push({
-        path: `registry/default/ui/${file.toLowerCase()}-variants.ts`,
+        path: `registry/default/components/ui/${file.toLowerCase()}-variants.ts`,
         content: tsContent,
         type: 'registry:ui',
-        target: `components/ui/${file.toLowerCase()}-variants.ts`
       })
     }
   }
@@ -456,10 +474,9 @@ function createRegistryJson(name, meta) {
       const extraContent = readFile(extraPath)
       if (extraContent) {
         registryFiles.push({
-          path: `registry/default/ui/${extraFile}`,
+          path: `registry/default/components/ui/${extraFile}`,
           content: extraContent,
           type: 'registry:ui',
-          target: `components/ui/${extraFile}`
         })
       }
     }
@@ -475,12 +492,21 @@ function createRegistryJson(name, meta) {
       const srcPath = path.join(VUE_SRC, src)
       const content = readFile(srcPath)
       if (content) {
-        registryFiles.push({
-          path: `registry/default/${src}`,
-          content,
-          type: 'registry:ui',
-          target,
-        })
+        // No target → the shadcn-vue CLI places by TYPE under the consumer's
+        // srcDir-aware alias (issue #10). lib/* → resolvedPaths.lib,
+        // composables/* → resolvedPaths.composables (registry:composable). A
+        // sibling file MUST live in a single-directory item, else findCommonRoot
+        // collapses to the registry root and mis-nests it — so composables ship
+        // as their own items (use-theme, use-motion), never mixed with UI files.
+        // styles/* (motion.css) is a manually-imported CSS file, not an `@/`
+        // module, so root-relative target placement is fine and kept.
+        if (src.startsWith('lib/')) {
+          registryFiles.push({ path: `registry/default/${src}`, content, type: 'registry:lib' })
+        } else if (src.startsWith('composables/')) {
+          registryFiles.push({ path: `registry/default/${src}`, content, type: 'registry:composable' })
+        } else {
+          registryFiles.push({ path: `registry/default/${src}`, content, type: 'registry:ui', target })
+        }
       }
     }
   }
@@ -523,10 +549,9 @@ function createSubDirRegistry(name, meta) {
     const content = readFile(path.join(dir, entry))
     if (!content) continue
     registryFiles.push({
-      path: `registry/default/ui/${meta.subDir}/${entry}`,
+      path: `registry/default/components/ui/${meta.subDir}/${entry}`,
       content,
       type: 'registry:ui',
-      target: `components/ui/${meta.subDir}/${entry}`,
     })
   }
 
@@ -554,10 +579,9 @@ function createShapesRegistry() {
     const vueContent = readFile(vuePath)
     if (vueContent) {
       registryFiles.push({
-        path: `registry/default/ui/shapes/${shape}.vue`,
+        path: `registry/default/components/ui/shapes/${shape}.vue`,
         content: vueContent,
         type: 'registry:ui',
-        target: `components/ui/shapes/${shape}.vue`
       })
     }
   }
@@ -567,10 +591,9 @@ function createShapesRegistry() {
   const indexContent = readFile(indexPath)
   if (indexContent) {
     registryFiles.push({
-      path: 'registry/default/ui/shapes/index.ts',
+      path: 'registry/default/components/ui/shapes/index.ts',
       content: indexContent,
       type: 'registry:ui',
-      target: 'components/ui/shapes/index.ts'
     })
   }
 

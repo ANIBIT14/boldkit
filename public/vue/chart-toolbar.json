@@ -13,9 +13,8 @@
   ],
   "files": [
     {
-      "path": "registry/default/ui/ChartToolbar.vue",
-      "type": "registry:ui",
-      "target": "components/ui/ChartToolbar.vue"
+      "path": "registry/default/components/ui/ChartToolbar.vue",
+      "type": "registry:ui"
     }
   ]
 }

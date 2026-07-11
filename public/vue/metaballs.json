@@ -6,9 +6,8 @@
   "registryDependencies": [],
   "files": [
     {
-      "path": "registry/default/ui/canvas-effects/Metaballs.vue",
-      "type": "registry:ui",
-      "target": "components/ui/canvas-effects/Metaballs.vue"
+      "path": "registry/default/components/ui/canvas-effects/Metaballs.vue",
+      "type": "registry:ui"
     }
   ],
   "type": "registry:ui"

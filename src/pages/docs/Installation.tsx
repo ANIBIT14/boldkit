@@ -207,6 +207,22 @@ export function Installation() {
                   <strong> This step is required.</strong>
                 </p>
               </div>
+              {framework === 'vue' && (
+                <div className="mt-3 border-3 border-foreground bg-muted p-3 text-sm">
+                  <p className="font-bold uppercase tracking-wide mb-1">Using Nuxt?</p>
+                  <p className="text-muted-foreground">
+                    Add the{' '}
+                    <a href="https://www.shadcn-vue.com/docs/installation/nuxt" target="_blank" rel="noreferrer" className="underline font-bold">shadcn-nuxt</a>{' '}
+                    module and make sure your <code className="bg-background px-1 border">components.json</code> aliases
+                    (<code className="bg-background px-1 border">ui</code>, <code className="bg-background px-1 border">lib</code>)
+                    point at the same directory your <code className="bg-background px-1 border">@/</code> alias resolves to.
+                    Nuxt 4 aliases <code className="bg-background px-1 border">@/</code> to <code className="bg-background px-1 border">app/</code>, so
+                    components install into <code className="bg-background px-1 border">app/components/ui</code>. BoldKit ships
+                    its files without hardcoded paths, so they follow whatever your aliases resolve to — no more{' '}
+                    <code className="bg-background px-1 border">cannot find module @/components/ui</code>.
+                  </p>
+                </div>
+              )}
             </div>
 
             <div>

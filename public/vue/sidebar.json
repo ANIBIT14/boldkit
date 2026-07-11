@@ -15,59 +15,48 @@
   ],
   "files": [
     {
-      "path": "registry/default/ui/Sidebar.vue",
-      "type": "registry:ui",
-      "target": "components/ui/Sidebar.vue"
+      "path": "registry/default/components/ui/Sidebar.vue",
+      "type": "registry:ui"
     },
     {
-      "path": "registry/default/ui/SidebarContent.vue",
-      "type": "registry:ui",
-      "target": "components/ui/SidebarContent.vue"
+      "path": "registry/default/components/ui/SidebarContent.vue",
+      "type": "registry:ui"
     },
     {
-      "path": "registry/default/ui/SidebarFooter.vue",
-      "type": "registry:ui",
-      "target": "components/ui/SidebarFooter.vue"
+      "path": "registry/default/components/ui/SidebarFooter.vue",
+      "type": "registry:ui"
     },
     {
-      "path": "registry/default/ui/SidebarGroup.vue",
-      "type": "registry:ui",
-      "target": "components/ui/SidebarGroup.vue"
+      "path": "registry/default/components/ui/SidebarGroup.vue",
+      "type": "registry:ui"
     },
     {
-      "path": "registry/default/ui/SidebarGroupLabel.vue",
-      "type": "registry:ui",
-      "target": "components/ui/SidebarGroupLabel.vue"
+      "path": "registry/default/components/ui/SidebarGroupLabel.vue",
+      "type": "registry:ui"
     },
     {
-      "path": "registry/default/ui/SidebarHeader.vue",
-      "type": "registry:ui",
-      "target": "components/ui/SidebarHeader.vue"
+      "path": "registry/default/components/ui/SidebarHeader.vue",
+      "type": "registry:ui"
     },
     {
-      "path": "registry/default/ui/SidebarInset.vue",
-      "type": "registry:ui",
-      "target": "components/ui/SidebarInset.vue"
+      "path": "registry/default/components/ui/SidebarInset.vue",
+      "type": "registry:ui"
     },
     {
-      "path": "registry/default/ui/SidebarItem.vue",
-      "type": "registry:ui",
-      "target": "components/ui/SidebarItem.vue"
+      "path": "registry/default/components/ui/SidebarItem.vue",
+      "type": "registry:ui"
     },
     {
-      "path": "registry/default/ui/SidebarProvider.vue",
-      "type": "registry:ui",
-      "target": "components/ui/SidebarProvider.vue"
+      "path": "registry/default/components/ui/SidebarProvider.vue",
+      "type": "registry:ui"
     },
     {
-      "path": "registry/default/ui/SidebarSeparator.vue",
-      "type": "registry:ui",
-      "target": "components/ui/SidebarSeparator.vue"
+      "path": "registry/default/components/ui/SidebarSeparator.vue",
+      "type": "registry:ui"
     },
     {
-      "path": "registry/default/ui/SidebarToggle.vue",
-      "type": "registry:ui",
-      "target": "components/ui/SidebarToggle.vue"
+      "path": "registry/default/components/ui/SidebarToggle.vue",
+      "type": "registry:ui"
     }
   ]
 }

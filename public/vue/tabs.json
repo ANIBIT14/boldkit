@@ -11,24 +11,20 @@
   ],
   "files": [
     {
-      "path": "registry/default/ui/Tabs.vue",
-      "type": "registry:ui",
-      "target": "components/ui/Tabs.vue"
+      "path": "registry/default/components/ui/Tabs.vue",
+      "type": "registry:ui"
     },
     {
-      "path": "registry/default/ui/TabsList.vue",
-      "type": "registry:ui",
-      "target": "components/ui/TabsList.vue"
+      "path": "registry/default/components/ui/TabsList.vue",
+      "type": "registry:ui"
     },
     {
-      "path": "registry/default/ui/TabsTrigger.vue",
-      "type": "registry:ui",
-      "target": "components/ui/TabsTrigger.vue"
+      "path": "registry/default/components/ui/TabsTrigger.vue",
+      "type": "registry:ui"
     },
     {
-      "path": "registry/default/ui/TabsContent.vue",
-      "type": "registry:ui",
-      "target": "components/ui/TabsContent.vue"
+      "path": "registry/default/components/ui/TabsContent.vue",
+      "type": "registry:ui"
     }
   ]
 }

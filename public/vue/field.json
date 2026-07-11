@@ -10,29 +10,24 @@
   ],
   "files": [
     {
-      "path": "registry/default/ui/Field.vue",
-      "type": "registry:ui",
-      "target": "components/ui/Field.vue"
+      "path": "registry/default/components/ui/Field.vue",
+      "type": "registry:ui"
     },
     {
-      "path": "registry/default/ui/FieldGroup.vue",
-      "type": "registry:ui",
-      "target": "components/ui/FieldGroup.vue"
+      "path": "registry/default/components/ui/FieldGroup.vue",
+      "type": "registry:ui"
     },
     {
-      "path": "registry/default/ui/FieldLabel.vue",
-      "type": "registry:ui",
-      "target": "components/ui/FieldLabel.vue"
+      "path": "registry/default/components/ui/FieldLabel.vue",
+      "type": "registry:ui"
     },
     {
-      "path": "registry/default/ui/FieldDescription.vue",
-      "type": "registry:ui",
-      "target": "components/ui/FieldDescription.vue"
+      "path": "registry/default/components/ui/FieldDescription.vue",
+      "type": "registry:ui"
     },
     {
-      "path": "registry/default/ui/FieldError.vue",
-      "type": "registry:ui",
-      "target": "components/ui/FieldError.vue"
+      "path": "registry/default/components/ui/FieldError.vue",
+      "type": "registry:ui"
     }
   ]
 }

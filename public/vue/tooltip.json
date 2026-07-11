@@ -11,24 +11,20 @@
   ],
   "files": [
     {
-      "path": "registry/default/ui/Tooltip.vue",
-      "type": "registry:ui",
-      "target": "components/ui/Tooltip.vue"
+      "path": "registry/default/components/ui/Tooltip.vue",
+      "type": "registry:ui"
     },
     {
-      "path": "registry/default/ui/TooltipTrigger.vue",
-      "type": "registry:ui",
-      "target": "components/ui/TooltipTrigger.vue"
+      "path": "registry/default/components/ui/TooltipTrigger.vue",
+      "type": "registry:ui"
     },
     {
-      "path": "registry/default/ui/TooltipContent.vue",
-      "type": "registry:ui",
-      "target": "components/ui/TooltipContent.vue"
+      "path": "registry/default/components/ui/TooltipContent.vue",
+      "type": "registry:ui"
     },
     {
-      "path": "registry/default/ui/TooltipProvider.vue",
-      "type": "registry:ui",
-      "target": "components/ui/TooltipProvider.vue"
+      "path": "registry/default/components/ui/TooltipProvider.vue",
+      "type": "registry:ui"
     }
   ]
 }

@@ -12,9 +12,8 @@
   ],
   "files": [
     {
-      "path": "registry/default/ui/Sonner.vue",
-      "type": "registry:ui",
-      "target": "components/ui/Sonner.vue"
+      "path": "registry/default/components/ui/Sonner.vue",
+      "type": "registry:ui"
     }
   ]
 }

@@ -11,7 +11,7 @@
     {
       "path": "registry/default/lib/utils.ts",
       "type": "registry:lib",
-      "target": "lib/utils.ts"
+      "target": ""
     }
   ]
 }

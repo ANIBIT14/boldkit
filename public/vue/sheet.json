@@ -13,44 +13,36 @@
   ],
   "files": [
     {
-      "path": "registry/default/ui/Sheet.vue",
-      "type": "registry:ui",
-      "target": "components/ui/Sheet.vue"
+      "path": "registry/default/components/ui/Sheet.vue",
+      "type": "registry:ui"
     },
     {
-      "path": "registry/default/ui/SheetTrigger.vue",
-      "type": "registry:ui",
-      "target": "components/ui/SheetTrigger.vue"
+      "path": "registry/default/components/ui/SheetTrigger.vue",
+      "type": "registry:ui"
     },
     {
-      "path": "registry/default/ui/SheetContent.vue",
-      "type": "registry:ui",
-      "target": "components/ui/SheetContent.vue"
+      "path": "registry/default/components/ui/SheetContent.vue",
+      "type": "registry:ui"
     },
     {
-      "path": "registry/default/ui/SheetHeader.vue",
-      "type": "registry:ui",
-      "target": "components/ui/SheetHeader.vue"
+      "path": "registry/default/components/ui/SheetHeader.vue",
+      "type": "registry:ui"
     },
     {
-      "path": "registry/default/ui/SheetFooter.vue",
-      "type": "registry:ui",
-      "target": "components/ui/SheetFooter.vue"
+      "path": "registry/default/components/ui/SheetFooter.vue",
+      "type": "registry:ui"
     },
     {
-      "path": "registry/default/ui/SheetTitle.vue",
-      "type": "registry:ui",
-      "target": "components/ui/SheetTitle.vue"
+      "path": "registry/default/components/ui/SheetTitle.vue",
+      "type": "registry:ui"
     },
     {
-      "path": "registry/default/ui/SheetDescription.vue",
-      "type": "registry:ui",
-      "target": "components/ui/SheetDescription.vue"
+      "path": "registry/default/components/ui/SheetDescription.vue",
+      "type": "registry:ui"
     },
     {
-      "path": "registry/default/ui/SheetClose.vue",
-      "type": "registry:ui",
-      "target": "components/ui/SheetClose.vue"
+      "path": "registry/default/components/ui/SheetClose.vue",
+      "type": "registry:ui"
     }
   ]
 }

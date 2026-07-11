@@ -11,24 +11,20 @@
   ],
   "files": [
     {
-      "path": "registry/default/ui/Accordion.vue",
-      "type": "registry:ui",
-      "target": "components/ui/Accordion.vue"
+      "path": "registry/default/components/ui/Accordion.vue",
+      "type": "registry:ui"
     },
     {
-      "path": "registry/default/ui/AccordionItem.vue",
-      "type": "registry:ui",
-      "target": "components/ui/AccordionItem.vue"
+      "path": "registry/default/components/ui/AccordionItem.vue",
+      "type": "registry:ui"
     },
     {
-      "path": "registry/default/ui/AccordionTrigger.vue",
-      "type": "registry:ui",
-      "target": "components/ui/AccordionTrigger.vue"
+      "path": "registry/default/components/ui/AccordionTrigger.vue",
+      "type": "registry:ui"
     },
     {
-      "path": "registry/default/ui/AccordionContent.vue",
-      "type": "registry:ui",
-      "target": "components/ui/AccordionContent.vue"
+      "path": "registry/default/components/ui/AccordionContent.vue",
+      "type": "registry:ui"
     }
   ]
 }

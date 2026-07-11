@@ -24,7 +24,7 @@ const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
 const root = path.join(__dirname, '..')
 
-const CANVAS_TARGET_PREFIX = 'components/ui/canvas-effects/'
+const CANVAS_PATH_SEG = '/canvas-effects/'
 
 // (registry dir, source dir) pairs to refresh.
 const targets = [
@@ -37,6 +37,11 @@ let missing = 0
 
 for (const { rDir, srcDir } of targets) {
   if (!fs.existsSync(rDir)) continue
+  // Vue only: drop the root-pinning `target` and use a components/ui path so the
+  // shadcn-vue CLI places files under the consumer's srcDir-aware alias instead of
+  // the project root — Nuxt 4 aliases @/ to app/ (issue #10). React keeps its
+  // target (its consumers resolve @/ to the root, so target works there).
+  const isVue = rDir.replace(/\\/g, '/').endsWith('/public/r/vue')
   const files = fs.readdirSync(rDir).filter(f => f.endsWith('.json'))
 
   for (const file of files) {
@@ -44,16 +49,17 @@ for (const { rDir, srcDir } of targets) {
     const item = JSON.parse(fs.readFileSync(jsonPath, 'utf-8'))
     if (!Array.isArray(item.files)) continue
 
-    // Only touch canvas-effect items (leave any future co-located items alone).
+    // Detect canvas-effect items by path (works regardless of target), so this
+    // keeps functioning after the Vue target/path normalization below.
     const isCanvasEffect = item.files.some(
-      f => typeof f.target === 'string' && f.target.startsWith(CANVAS_TARGET_PREFIX)
+      f => typeof f.path === 'string' && f.path.includes(CANVAS_PATH_SEG)
     )
     if (!isCanvasEffect) continue
 
     let changed = false
     for (const f of item.files) {
-      if (!f.target || !f.target.startsWith(CANVAS_TARGET_PREFIX)) continue
-      const srcPath = path.join(srcDir, path.basename(f.target))
+      if (typeof f.path !== 'string' || !f.path.includes(CANVAS_PATH_SEG)) continue
+      const srcPath = path.join(srcDir, path.basename(f.path))
       if (!fs.existsSync(srcPath)) {
         console.warn(`  ⚠ source missing for ${path.relative(root, jsonPath)}: ${path.relative(root, srcPath)}`)
         missing++
@@ -63,6 +69,11 @@ for (const { rDir, srcDir } of targets) {
       if (f.content !== content) {
         f.content = content
         changed = true
+      }
+      if (isVue) {
+        const desiredPath = `registry/default/components/ui/canvas-effects/${path.basename(f.path)}`
+        if (f.path !== desiredPath) { f.path = desiredPath; changed = true }
+        if (f.target !== undefined) { delete f.target; changed = true }
       }
     }
 

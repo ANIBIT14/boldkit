@@ -12,9 +12,8 @@
   ],
   "files": [
     {
-      "path": "registry/default/ui/Checkbox.vue",
-      "type": "registry:ui",
-      "target": "components/ui/Checkbox.vue"
+      "path": "registry/default/components/ui/Checkbox.vue",
+      "type": "registry:ui"
     }
   ]
 }

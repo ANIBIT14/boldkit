@@ -13,9 +13,8 @@
   ],
   "files": [
     {
-      "path": "registry/default/ui/Calendar.vue",
-      "type": "registry:ui",
-      "target": "components/ui/Calendar.vue"
+      "path": "registry/default/components/ui/Calendar.vue",
+      "type": "registry:ui"
     }
   ]
 }

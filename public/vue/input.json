@@ -9,9 +9,8 @@
   ],
   "files": [
     {
-      "path": "registry/default/ui/Input.vue",
-      "type": "registry:ui",
-      "target": "components/ui/Input.vue"
+      "path": "registry/default/components/ui/Input.vue",
+      "type": "registry:ui"
     }
   ]
 }

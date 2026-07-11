@@ -11,19 +11,16 @@
   ],
   "files": [
     {
-      "path": "registry/default/ui/Alert.vue",
-      "type": "registry:ui",
-      "target": "components/ui/Alert.vue"
+      "path": "registry/default/components/ui/Alert.vue",
+      "type": "registry:ui"
     },
     {
-      "path": "registry/default/ui/AlertTitle.vue",
-      "type": "registry:ui",
-      "target": "components/ui/AlertTitle.vue"
+      "path": "registry/default/components/ui/AlertTitle.vue",
+      "type": "registry:ui"
     },
     {
-      "path": "registry/default/ui/AlertDescription.vue",
-      "type": "registry:ui",
-      "target": "components/ui/AlertDescription.vue"
+      "path": "registry/default/components/ui/AlertDescription.vue",
+      "type": "registry:ui"
     }
   ]
 }

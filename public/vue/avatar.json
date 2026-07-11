@@ -11,19 +11,16 @@
   ],
   "files": [
     {
-      "path": "registry/default/ui/Avatar.vue",
-      "type": "registry:ui",
-      "target": "components/ui/Avatar.vue"
+      "path": "registry/default/components/ui/Avatar.vue",
+      "type": "registry:ui"
     },
     {
-      "path": "registry/default/ui/AvatarImage.vue",
-      "type": "registry:ui",
-      "target": "components/ui/AvatarImage.vue"
+      "path": "registry/default/components/ui/AvatarImage.vue",
+      "type": "registry:ui"
     },
     {
-      "path": "registry/default/ui/AvatarFallback.vue",
-      "type": "registry:ui",
-      "target": "components/ui/AvatarFallback.vue"
+      "path": "registry/default/components/ui/AvatarFallback.vue",
+      "type": "registry:ui"
     }
   ]
 }

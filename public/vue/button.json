@@ -12,14 +12,12 @@
   ],
   "files": [
     {
-      "path": "registry/default/ui/Button.vue",
-      "type": "registry:ui",
-      "target": "components/ui/Button.vue"
+      "path": "registry/default/components/ui/Button.vue",
+      "type": "registry:ui"
     },
     {
-      "path": "registry/default/ui/button-variants.ts",
-      "type": "registry:ui",
-      "target": "components/ui/button-variants.ts"
+      "path": "registry/default/components/ui/button-variants.ts",
+      "type": "registry:ui"
     }
   ]
 }

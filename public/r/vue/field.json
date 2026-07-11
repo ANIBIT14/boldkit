@@ -10,34 +10,29 @@
   ],
   "files": [
     {
-      "path": "registry/default/ui/Field.vue",
+      "path": "registry/default/components/ui/Field.vue",
       "content": "<script setup lang=\"ts\">\nimport { cn } from '@/lib/utils'\n\nconst props = defineProps<{\n  class?: string\n}>()\n</script>\n\n<template>\n  <div :class=\"cn('flex flex-col gap-1.5', props.class)\">\n    <slot />\n  </div>\n</template>\n",
-      "type": "registry:ui",
-      "target": "components/ui/Field.vue"
+      "type": "registry:ui"
     },
     {
-      "path": "registry/default/ui/FieldGroup.vue",
+      "path": "registry/default/components/ui/FieldGroup.vue",
       "content": "<script setup lang=\"ts\">\nimport { cn } from '@/lib/utils'\n\nconst props = defineProps<{\n  class?: string\n}>()\n</script>\n\n<template>\n  <div :class=\"cn('flex flex-col gap-5', props.class)\">\n    <slot />\n  </div>\n</template>\n",
-      "type": "registry:ui",
-      "target": "components/ui/FieldGroup.vue"
+      "type": "registry:ui"
     },
     {
-      "path": "registry/default/ui/FieldLabel.vue",
+      "path": "registry/default/components/ui/FieldLabel.vue",
       "content": "<script setup lang=\"ts\">\nimport { cn } from '@/lib/utils'\nimport Label from './Label.vue'\n\nconst props = defineProps<{\n  class?: string\n  for?: string\n}>()\n</script>\n\n<template>\n  <Label :for=\"props.for\" :class=\"cn('text-xs', props.class)\">\n    <slot />\n  </Label>\n</template>\n",
-      "type": "registry:ui",
-      "target": "components/ui/FieldLabel.vue"
+      "type": "registry:ui"
     },
     {
-      "path": "registry/default/ui/FieldDescription.vue",
+      "path": "registry/default/components/ui/FieldDescription.vue",
       "content": "<script setup lang=\"ts\">\nimport { cn } from '@/lib/utils'\n\nconst props = defineProps<{\n  class?: string\n}>()\n</script>\n\n<template>\n  <p :class=\"cn('text-xs font-medium text-muted-foreground', props.class)\">\n    <slot />\n  </p>\n</template>\n",
-      "type": "registry:ui",
-      "target": "components/ui/FieldDescription.vue"
+      "type": "registry:ui"
     },
     {
-      "path": "registry/default/ui/FieldError.vue",
+      "path": "registry/default/components/ui/FieldError.vue",
       "content": "<script setup lang=\"ts\">\nimport { cn } from '@/lib/utils'\n\nconst props = defineProps<{\n  class?: string\n}>()\n</script>\n\n<template>\n  <p\n    role=\"alert\"\n    :class=\"cn('text-xs font-bold uppercase tracking-wide text-destructive', props.class)\"\n  >\n    <slot />\n  </p>\n</template>\n",
-      "type": "registry:ui",
-      "target": "components/ui/FieldError.vue"
+      "type": "registry:ui"
     }
   ]
 }

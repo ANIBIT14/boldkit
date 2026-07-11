@@ -12,9 +12,8 @@
   ],
   "files": [
     {
-      "path": "registry/default/ui/Tour.vue",
-      "type": "registry:ui",
-      "target": "components/ui/Tour.vue"
+      "path": "registry/default/components/ui/Tour.vue",
+      "type": "registry:ui"
     }
   ]
 }

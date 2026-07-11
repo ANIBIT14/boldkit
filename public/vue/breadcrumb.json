@@ -12,39 +12,32 @@
   ],
   "files": [
     {
-      "path": "registry/default/ui/Breadcrumb.vue",
-      "type": "registry:ui",
-      "target": "components/ui/Breadcrumb.vue"
+      "path": "registry/default/components/ui/Breadcrumb.vue",
+      "type": "registry:ui"
     },
     {
-      "path": "registry/default/ui/BreadcrumbList.vue",
-      "type": "registry:ui",
-      "target": "components/ui/BreadcrumbList.vue"
+      "path": "registry/default/components/ui/BreadcrumbList.vue",
+      "type": "registry:ui"
     },
     {
-      "path": "registry/default/ui/BreadcrumbItem.vue",
-      "type": "registry:ui",
-      "target": "components/ui/BreadcrumbItem.vue"
+      "path": "registry/default/components/ui/BreadcrumbItem.vue",
+      "type": "registry:ui"
     },
     {
-      "path": "registry/default/ui/BreadcrumbLink.vue",
-      "type": "registry:ui",
-      "target": "components/ui/BreadcrumbLink.vue"
+      "path": "registry/default/components/ui/BreadcrumbLink.vue",
+      "type": "registry:ui"
     },
     {
-      "path": "registry/default/ui/BreadcrumbPage.vue",
-      "type": "registry:ui",
-      "target": "components/ui/BreadcrumbPage.vue"
+      "path": "registry/default/components/ui/BreadcrumbPage.vue",
+      "type": "registry:ui"
     },
     {
-      "path": "registry/default/ui/BreadcrumbSeparator.vue",
-      "type": "registry:ui",
-      "target": "components/ui/BreadcrumbSeparator.vue"
+      "path": "registry/default/components/ui/BreadcrumbSeparator.vue",
+      "type": "registry:ui"
     },
     {
-      "path": "registry/default/ui/BreadcrumbEllipsis.vue",
-      "type": "registry:ui",
-      "target": "components/ui/BreadcrumbEllipsis.vue"
+      "path": "registry/default/components/ui/BreadcrumbEllipsis.vue",
+      "type": "registry:ui"
     }
   ]
 }

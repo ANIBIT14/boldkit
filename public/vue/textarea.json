@@ -9,9 +9,8 @@
   ],
   "files": [
     {
-      "path": "registry/default/ui/Textarea.vue",
-      "type": "registry:ui",
-      "target": "components/ui/Textarea.vue"
+      "path": "registry/default/components/ui/Textarea.vue",
+      "type": "registry:ui"
     }
   ]
 }

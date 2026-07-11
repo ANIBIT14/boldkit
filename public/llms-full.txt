@@ -1730,7 +1730,7 @@ npx shadcn@latest add "https://boldkit.dev/r/voronoi-pulse.json"
 npx shadcn@latest add "https://boldkit.dev/r/warp-speed.json"
 ```
 
-### Vue 3 / Nuxt (113 items)
+### Vue 3 / Nuxt (114 items)
 
 ```bash
 npx shadcn-vue@latest add "https://boldkit.dev/r/vue/accordion.json"
@@ -1842,6 +1842,7 @@ npx shadcn-vue@latest add "https://boldkit.dev/r/vue/tour.json"
 npx shadcn-vue@latest add "https://boldkit.dev/r/vue/tree-view.json"
 npx shadcn-vue@latest add "https://boldkit.dev/r/vue/treemap-chart.json"
 npx shadcn-vue@latest add "https://boldkit.dev/r/vue/truchet.json"
+npx shadcn-vue@latest add "https://boldkit.dev/r/vue/use-motion.json"
 npx shadcn-vue@latest add "https://boldkit.dev/r/vue/use-theme.json"
 npx shadcn-vue@latest add "https://boldkit.dev/r/vue/utils.json"
 npx shadcn-vue@latest add "https://boldkit.dev/r/vue/voronoi-pulse.json"

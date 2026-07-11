@@ -10,8 +10,7 @@
   "files": [
     {
       "path": "registry/default/lib/math-curves.ts",
-      "type": "registry:ui",
-      "target": "lib/math-curves.ts"
+      "type": "registry:lib"
     }
   ]
 }

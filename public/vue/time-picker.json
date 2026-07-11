@@ -14,9 +14,8 @@
   ],
   "files": [
     {
-      "path": "registry/default/ui/TimePicker.vue",
-      "type": "registry:ui",
-      "target": "components/ui/TimePicker.vue"
+      "path": "registry/default/components/ui/TimePicker.vue",
+      "type": "registry:ui"
     }
   ]
 }

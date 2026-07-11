@@ -11,14 +11,12 @@
   ],
   "files": [
     {
-      "path": "registry/default/ui/ScrollArea.vue",
-      "type": "registry:ui",
-      "target": "components/ui/ScrollArea.vue"
+      "path": "registry/default/components/ui/ScrollArea.vue",
+      "type": "registry:ui"
     },
     {
-      "path": "registry/default/ui/ScrollBar.vue",
-      "type": "registry:ui",
-      "target": "components/ui/ScrollBar.vue"
+      "path": "registry/default/components/ui/ScrollBar.vue",
+      "type": "registry:ui"
     }
   ]
 }

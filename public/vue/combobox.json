@@ -14,14 +14,12 @@
   ],
   "files": [
     {
-      "path": "registry/default/ui/ComboboxTrigger.vue",
-      "type": "registry:ui",
-      "target": "components/ui/ComboboxTrigger.vue"
+      "path": "registry/default/components/ui/ComboboxTrigger.vue",
+      "type": "registry:ui"
     },
     {
-      "path": "registry/default/ui/ComboboxMultiTrigger.vue",
-      "type": "registry:ui",
-      "target": "components/ui/ComboboxMultiTrigger.vue"
+      "path": "registry/default/components/ui/ComboboxMultiTrigger.vue",
+      "type": "registry:ui"
     }
   ]
 }

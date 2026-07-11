@@ -434,6 +434,11 @@
       "registryUrl": "https://boldkit.dev/r/vue/motion-core.json"
     },
     {
+      "name": "use-motion",
+      "type": "registry:ui",
+      "registryUrl": "https://boldkit.dev/r/vue/use-motion.json"
+    },
+    {
       "name": "motion",
       "type": "registry:ui",
       "registryUrl": "https://boldkit.dev/r/vue/motion.json"

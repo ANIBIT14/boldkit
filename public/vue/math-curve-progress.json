@@ -12,9 +12,8 @@
   ],
   "files": [
     {
-      "path": "registry/default/ui/MathCurveProgress.vue",
-      "type": "registry:ui",
-      "target": "components/ui/MathCurveProgress.vue"
+      "path": "registry/default/components/ui/MathCurveProgress.vue",
+      "type": "registry:ui"
     }
   ]
 }

@@ -11,19 +11,16 @@
   ],
   "files": [
     {
-      "path": "registry/default/ui/Popover.vue",
-      "type": "registry:ui",
-      "target": "components/ui/Popover.vue"
+      "path": "registry/default/components/ui/Popover.vue",
+      "type": "registry:ui"
     },
     {
-      "path": "registry/default/ui/PopoverTrigger.vue",
-      "type": "registry:ui",
-      "target": "components/ui/PopoverTrigger.vue"
+      "path": "registry/default/components/ui/PopoverTrigger.vue",
+      "type": "registry:ui"
     },
     {
-      "path": "registry/default/ui/PopoverContent.vue",
-      "type": "registry:ui",
-      "target": "components/ui/PopoverContent.vue"
+      "path": "registry/default/components/ui/PopoverContent.vue",
+      "type": "registry:ui"
     }
   ]
 }

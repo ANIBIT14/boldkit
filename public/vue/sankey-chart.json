@@ -13,19 +13,16 @@
   ],
   "files": [
     {
-      "path": "registry/default/ui/SankeyChart.vue",
-      "type": "registry:ui",
-      "target": "components/ui/SankeyChart.vue"
+      "path": "registry/default/components/ui/SankeyChart.vue",
+      "type": "registry:ui"
     },
     {
-      "path": "registry/default/ui/ChartEmpty.vue",
-      "type": "registry:ui",
-      "target": "components/ui/ChartEmpty.vue"
+      "path": "registry/default/components/ui/ChartEmpty.vue",
+      "type": "registry:ui"
     },
     {
-      "path": "registry/default/ui/chart-types.ts",
-      "type": "registry:ui",
-      "target": "components/ui/chart-types.ts"
+      "path": "registry/default/components/ui/chart-types.ts",
+      "type": "registry:ui"
     }
   ]
 }

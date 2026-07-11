@@ -158,13 +158,39 @@ for (const v of utilsViolations) console.log(' ', v.item, '⇒ missing @boldkit/
 const vueRDir = join(root, 'public/r/vue')
 const vueProvider = {}
 const vueItems = []
+
+// Derive the path a file lands at in the consumer's project (relative to their
+// `@/` alias root), mirroring the shadcn CLI's placement. Files shipped WITHOUT
+// an explicit `target` are placed under the type's alias dir (components/ui for
+// registry:ui, lib for registry:lib), keeping the subpath after the matching
+// segment in `path`. Since issue #10 we drop `target` for those types, so the
+// audit must reconstruct the consumer path the same way the CLI does.
+function vueConsumerPath(file) {
+  if (file.target) return file.target
+  const segs = file.path.replace(/^\/+/, '').split('/')
+  if (file.type === 'registry:ui') {
+    const i = segs.indexOf('ui')
+    if (i !== -1) return 'components/ui/' + segs.slice(i + 1).join('/')
+  }
+  if (file.type === 'registry:lib') {
+    const i = segs.indexOf('lib')
+    if (i !== -1) return 'lib/' + segs.slice(i + 1).join('/')
+  }
+  if (file.type === 'registry:composable') {
+    const i = segs.indexOf('composables')
+    if (i !== -1) return 'composables/' + segs.slice(i + 1).join('/')
+  }
+  return null
+}
+
 if (existsSync(vueRDir)) {
   for (const f of readdirSync(vueRDir)) {
     if (!f.endsWith('.json') || f === 'index.json') continue
     const j = JSON.parse(readFileSync(join(vueRDir, f), 'utf-8'))
     vueItems.push(j)
     for (const file of (j.files || [])) {
-      if (file.target) (vueProvider[file.target] = vueProvider[file.target] || []).push(j.name)
+      const cpath = vueConsumerPath(file)
+      if (cpath) (vueProvider[cpath] = vueProvider[cpath] || []).push(j.name)
     }
   }
 }
@@ -183,10 +209,11 @@ const vueViolations = []
 const vueUtilsViolations = []
 for (const item of vueItems) {
   const declared = new Set((item.registryDependencies || []).map(d => d.replace(/^@boldkit\//, '')))
-  const selfTargets = new Set((item.files || []).map(f => f.target).filter(Boolean))
+  const selfTargets = new Set((item.files || []).map(vueConsumerPath).filter(Boolean))
   for (const file of (item.files || [])) {
     const content = file.content || ''
     if (!content) continue
+    const cpath = vueConsumerPath(file)
 
     // Alias imports
     const reA = /from\s+['"](@\/[^'"]+)['"]/g
@@ -195,23 +222,23 @@ for (const item of vueItems) {
       const aliasPath = m[1]
       if (aliasPath.startsWith('@/components/ui')) continue
       if (aliasPath === '@/lib/utils') {
-        if (!declared.has('utils')) vueUtilsViolations.push({ item: item.name, file: file.target })
+        if (!declared.has('utils')) vueUtilsViolations.push({ item: item.name, file: cpath })
         continue
       }
       const resolved = resolveAliasVue(aliasPath)
       if (!resolved) {
-        vueViolations.push({ item: item.name, file: file.target, aliasPath, status: 'NO_REGISTRY_ENTRY' })
+        vueViolations.push({ item: item.name, file: cpath, aliasPath, status: 'NO_REGISTRY_ENTRY' })
       } else if (!resolved.providers.some(p => declared.has(p))) {
-        vueViolations.push({ item: item.name, file: file.target, aliasPath, status: 'MISSING_DEP', providers: resolved.providers })
+        vueViolations.push({ item: item.name, file: cpath, aliasPath, status: 'MISSING_DEP', providers: resolved.providers })
       }
     }
 
     // Relative imports
-    if (!file.target) continue
+    if (!cpath) continue
     const reR = /from\s+['"](\.\.?\/[^'"]+)['"]/g
     while ((m = reR.exec(content)) !== null) {
       const relPath = m[1]
-      const candidates = resolveRelativeTargets(file.target, relPath, vueExts)
+      const candidates = resolveRelativeTargets(cpath, relPath, vueExts)
       let satisfied = false
       let providers = []
       for (const cand of candidates) {
@@ -224,7 +251,7 @@ for (const item of vueItems) {
       if (!satisfied) {
         vueViolations.push({
           item: item.name,
-          file: file.target,
+          file: cpath,
           aliasPath: relPath,
           status: providers.length ? 'MISSING_DEP' : 'NO_REGISTRY_ENTRY',
           providers: providers.length ? providers : undefined,

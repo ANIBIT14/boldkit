@@ -11,9 +11,8 @@
   ],
   "files": [
     {
-      "path": "registry/default/ui/Label.vue",
-      "type": "registry:ui",
-      "target": "components/ui/Label.vue"
+      "path": "registry/default/components/ui/Label.vue",
+      "type": "registry:ui"
     }
   ]
 }

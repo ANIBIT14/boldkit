@@ -12,9 +12,8 @@
   ],
   "files": [
     {
-      "path": "registry/default/ui/MathCurveLoader.vue",
-      "type": "registry:ui",
-      "target": "components/ui/MathCurveLoader.vue"
+      "path": "registry/default/components/ui/MathCurveLoader.vue",
+      "type": "registry:ui"
     }
   ]
 }

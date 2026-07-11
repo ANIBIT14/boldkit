@@ -10,8 +10,7 @@
   "files": [
     {
       "path": "registry/default/composables/useTheme.ts",
-      "type": "registry:ui",
-      "target": "composables/useTheme.ts"
+      "type": "registry:composable"
     }
   ]
 }

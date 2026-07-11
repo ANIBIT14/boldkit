@@ -13,34 +13,28 @@
   ],
   "files": [
     {
-      "path": "registry/default/ui/Carousel.vue",
-      "type": "registry:ui",
-      "target": "components/ui/Carousel.vue"
+      "path": "registry/default/components/ui/Carousel.vue",
+      "type": "registry:ui"
     },
     {
-      "path": "registry/default/ui/CarouselContent.vue",
-      "type": "registry:ui",
-      "target": "components/ui/CarouselContent.vue"
+      "path": "registry/default/components/ui/CarouselContent.vue",
+      "type": "registry:ui"
     },
     {
-      "path": "registry/default/ui/CarouselItem.vue",
-      "type": "registry:ui",
-      "target": "components/ui/CarouselItem.vue"
+      "path": "registry/default/components/ui/CarouselItem.vue",
+      "type": "registry:ui"
     },
     {
-      "path": "registry/default/ui/CarouselPrevious.vue",
-      "type": "registry:ui",
-      "target": "components/ui/CarouselPrevious.vue"
+      "path": "registry/default/components/ui/CarouselPrevious.vue",
+      "type": "registry:ui"
     },
     {
-      "path": "registry/default/ui/CarouselNext.vue",
-      "type": "registry:ui",
-      "target": "components/ui/CarouselNext.vue"
+      "path": "registry/default/components/ui/CarouselNext.vue",
+      "type": "registry:ui"
     },
     {
-      "path": "registry/default/ui/CarouselDots.vue",
-      "type": "registry:ui",
-      "target": "components/ui/CarouselDots.vue"
+      "path": "registry/default/components/ui/CarouselDots.vue",
+      "type": "registry:ui"
     }
   ]
 }

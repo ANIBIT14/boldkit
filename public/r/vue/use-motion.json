@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "use-motion",
+  "type": "registry:ui",
+  "description": "Motion composables (useShake, useViewTransition) backing the <Motion> primitives. Reduced-motion aware.",
+  "dependencies": [],
+  "registryDependencies": [
+    "@boldkit/utils",
+    "@boldkit/motion-core"
+  ],
+  "files": [
+    {
+      "path": "registry/default/composables/useMotion.ts",
+      "content": "/**\n * BoldKit Motion composables (Vue adapter).\n * Mirror the React useShake / useViewTransition hooks.\n */\nimport { triggerAnimation, startViewTransition, prefersReducedMotion } from '@/lib/motion-core'\n\n/**\n * Returns a function that shakes a given element (e.g. an invalid input).\n *\n *   const shake = useShake()\n *   shake(inputRef.value)\n */\nexport function useShake() {\n  return async (el: Element | null) => {\n    if (!el) return\n    await triggerAnimation(el, 'bk-shake-x')\n  }\n}\n\n/**\n * Returns a function that runs `callback` inside a view transition where\n * supported. Falls back to invoking the callback directly. Always safe to call.\n */\nexport function useViewTransition() {\n  return (callback: () => void | Promise<void>) => startViewTransition(callback)\n}\n\nexport { prefersReducedMotion }\n",
+      "type": "registry:composable"
+    }
+  ]
+}

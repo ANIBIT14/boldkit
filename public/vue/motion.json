@@ -6,28 +6,21 @@
   "dependencies": [],
   "registryDependencies": [
     "@boldkit/utils",
-    "@boldkit/motion-core"
+    "@boldkit/motion-core",
+    "@boldkit/use-motion"
   ],
   "files": [
     {
-      "path": "registry/default/ui/Motion.vue",
-      "type": "registry:ui",
-      "target": "components/ui/Motion.vue"
+      "path": "registry/default/components/ui/Motion.vue",
+      "type": "registry:ui"
     },
     {
-      "path": "registry/default/ui/Reveal.vue",
-      "type": "registry:ui",
-      "target": "components/ui/Reveal.vue"
+      "path": "registry/default/components/ui/Reveal.vue",
+      "type": "registry:ui"
     },
     {
-      "path": "registry/default/ui/Stagger.vue",
-      "type": "registry:ui",
-      "target": "components/ui/Stagger.vue"
-    },
-    {
-      "path": "registry/default/composables/useMotion.ts",
-      "type": "registry:ui",
-      "target": "composables/useMotion.ts"
+      "path": "registry/default/components/ui/Stagger.vue",
+      "type": "registry:ui"
     },
     {
       "path": "registry/default/styles/motion.css",

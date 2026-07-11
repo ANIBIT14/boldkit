@@ -11,19 +11,16 @@
   ],
   "files": [
     {
-      "path": "registry/default/ui/HoverCard.vue",
-      "type": "registry:ui",
-      "target": "components/ui/HoverCard.vue"
+      "path": "registry/default/components/ui/HoverCard.vue",
+      "type": "registry:ui"
     },
     {
-      "path": "registry/default/ui/HoverCardTrigger.vue",
-      "type": "registry:ui",
-      "target": "components/ui/HoverCardTrigger.vue"
+      "path": "registry/default/components/ui/HoverCardTrigger.vue",
+      "type": "registry:ui"
     },
     {
-      "path": "registry/default/ui/HoverCardContent.vue",
-      "type": "registry:ui",
-      "target": "components/ui/HoverCardContent.vue"
+      "path": "registry/default/components/ui/HoverCardContent.vue",
+      "type": "registry:ui"
     }
   ]
 }

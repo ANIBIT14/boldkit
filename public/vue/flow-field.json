@@ -6,9 +6,8 @@
   "registryDependencies": [],
   "files": [
     {
-      "path": "registry/default/ui/canvas-effects/FlowField.vue",
-      "type": "registry:ui",
-      "target": "components/ui/canvas-effects/FlowField.vue"
+      "path": "registry/default/components/ui/canvas-effects/FlowField.vue",
+      "type": "registry:ui"
     }
   ],
   "type": "registry:ui"

@@ -6,32 +6,24 @@
   "dependencies": [],
   "registryDependencies": [
     "@boldkit/utils",
-    "@boldkit/motion-core"
+    "@boldkit/motion-core",
+    "@boldkit/use-motion"
   ],
   "files": [
     {
-      "path": "registry/default/ui/Motion.vue",
+      "path": "registry/default/components/ui/Motion.vue",
       "content": "<script setup lang=\"ts\">\n/**\n * BoldKit Motion — Vue adapter (L3).\n *\n * Thin wrapper around motion-core. Mirrors the React <Motion> surface 1:1\n * so apps can switch frameworks without re-learning the API.\n *\n * Requires `motion.css` (L2 recipes) to be loaded. BoldKit's globals.css\n * already imports it.\n */\nimport { cn } from '@/lib/utils'\n\nwithDefaults(\n  defineProps<{\n    class?: string\n    /** Element tag to render. Default 'div'. */\n    as?: string\n    /** Apply .bk-press for interactive shadow choreography. */\n    press?: boolean\n    /** Apply .bk-stamp-in entrance. */\n    stamp?: boolean\n    /** Apply .bk-pulse-shadow. */\n    pulse?: boolean\n  }>(),\n  { as: 'div' }\n)\n</script>\n\n<template>\n  <component\n    :is=\"as\"\n    :class=\"\n      cn(\n        press && 'bk-press',\n        stamp && 'bk-stamp-in',\n        pulse && 'bk-pulse-shadow',\n        $props.class\n      )\n    \"\n  >\n    <slot />\n  </component>\n</template>\n",
-      "type": "registry:ui",
-      "target": "components/ui/Motion.vue"
+      "type": "registry:ui"
     },
     {
-      "path": "registry/default/ui/Reveal.vue",
+      "path": "registry/default/components/ui/Reveal.vue",
       "content": "<script setup lang=\"ts\">\n/**\n * BoldKit <Reveal> — scroll-triggered entrance (Vue adapter).\n * Mirrors the React <Reveal> surface. Wraps motion-core's observeReveal.\n */\nimport { ref, onMounted, onBeforeUnmount, watch } from 'vue'\nimport { cn } from '@/lib/utils'\nimport { observeReveal } from '@/lib/motion-core'\n\nconst props = withDefaults(\n  defineProps<{\n    class?: string\n    /** Direction to slide in from. Default 'up'. */\n    direction?: 'up' | 'down' | 'left' | 'right'\n    /** Custom IntersectionObserver rootMargin. */\n    rootMargin?: string\n    /** Intersection ratio threshold. 0 = any pixel visible. */\n    threshold?: number\n    /** Unobserve after first reveal. Default true. */\n    once?: boolean\n    /** Delay before applying the reveal-in class, in ms. */\n    delay?: number\n    /** Element tag to render. Default 'div'. */\n    as?: string\n  }>(),\n  { direction: 'up', as: 'div' }\n)\n\nconst el = ref<HTMLElement | null>(null)\nlet cleanup: (() => void) | null = null\n\nfunction observe() {\n  cleanup?.()\n  if (!el.value) return\n  cleanup = observeReveal(el.value, {\n    rootMargin: props.rootMargin,\n    threshold: props.threshold,\n    once: props.once,\n    delay: props.delay,\n  })\n}\n\nonMounted(observe)\nwatch(() => [props.rootMargin, props.threshold, props.once, props.delay], observe)\nonBeforeUnmount(() => cleanup?.())\n</script>\n\n<template>\n  <component\n    :is=\"as\"\n    ref=\"el\"\n    :class=\"cn('bk-reveal', `bk-reveal-${direction}`, $props.class)\"\n  >\n    <slot />\n  </component>\n</template>\n",
-      "type": "registry:ui",
-      "target": "components/ui/Reveal.vue"
+      "type": "registry:ui"
     },
     {
-      "path": "registry/default/ui/Stagger.vue",
+      "path": "registry/default/components/ui/Stagger.vue",
       "content": "<script setup lang=\"ts\">\n/**\n * BoldKit <Stagger> — sequence children entrance (Vue adapter).\n * Mirrors the React <Stagger> surface. Wraps motion-core's staggerChildren.\n */\nimport { ref, onMounted, onBeforeUnmount, watch } from 'vue'\nimport { staggerChildren } from '@/lib/motion-core'\n\nconst props = withDefaults(\n  defineProps<{\n    class?: string\n    /** Delay between siblings, in ms. Default 75. */\n    delay?: number\n    /** Initial delay before the first child, in ms. */\n    initialDelay?: number\n    /** CSS selector to filter children. Default '*'. */\n    selector?: string\n    /** Element tag to render. Default 'div'. */\n    as?: string\n  }>(),\n  { as: 'div' }\n)\n\nconst el = ref<HTMLElement | null>(null)\nlet cleanup: (() => void) | null = null\n\nfunction apply() {\n  cleanup?.()\n  if (!el.value) return\n  cleanup = staggerChildren(el.value, {\n    delay: props.delay,\n    initialDelay: props.initialDelay,\n    selector: props.selector,\n  })\n}\n\nonMounted(apply)\nwatch(() => [props.delay, props.initialDelay, props.selector], apply)\nonBeforeUnmount(() => cleanup?.())\n</script>\n\n<template>\n  <component :is=\"as\" ref=\"el\" :class=\"$props.class\">\n    <slot />\n  </component>\n</template>\n",
-      "type": "registry:ui",
-      "target": "components/ui/Stagger.vue"
-    },
-    {
-      "path": "registry/default/composables/useMotion.ts",
-      "content": "/**\n * BoldKit Motion composables (Vue adapter).\n * Mirror the React useShake / useViewTransition hooks.\n */\nimport { triggerAnimation, startViewTransition, prefersReducedMotion } from '@/lib/motion-core'\n\n/**\n * Returns a function that shakes a given element (e.g. an invalid input).\n *\n *   const shake = useShake()\n *   shake(inputRef.value)\n */\nexport function useShake() {\n  return async (el: Element | null) => {\n    if (!el) return\n    await triggerAnimation(el, 'bk-shake-x')\n  }\n}\n\n/**\n * Returns a function that runs `callback` inside a view transition where\n * supported. Falls back to invoking the callback directly. Always safe to call.\n */\nexport function useViewTransition() {\n  return (callback: () => void | Promise<void>) => startViewTransition(callback)\n}\n\nexport { prefersReducedMotion }\n",
-      "type": "registry:ui",
-      "target": "composables/useMotion.ts"
+      "type": "registry:ui"
     },
     {
       "path": "registry/default/styles/motion.css",

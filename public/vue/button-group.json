@@ -10,9 +10,8 @@
   ],
   "files": [
     {
-      "path": "registry/default/ui/ButtonGroup.vue",
-      "type": "registry:ui",
-      "target": "components/ui/ButtonGroup.vue"
+      "path": "registry/default/components/ui/ButtonGroup.vue",
+      "type": "registry:ui"
     }
   ]
 }

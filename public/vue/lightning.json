@@ -6,9 +6,8 @@
   "registryDependencies": [],
   "files": [
     {
-      "path": "registry/default/ui/canvas-effects/Lightning.vue",
-      "type": "registry:ui",
-      "target": "components/ui/canvas-effects/Lightning.vue"
+      "path": "registry/default/components/ui/canvas-effects/Lightning.vue",
+      "type": "registry:ui"
     }
   ],
   "type": "registry:ui"

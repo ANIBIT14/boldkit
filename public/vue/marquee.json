@@ -9,19 +9,16 @@
   ],
   "files": [
     {
-      "path": "registry/default/ui/Marquee.vue",
-      "type": "registry:ui",
-      "target": "components/ui/Marquee.vue"
+      "path": "registry/default/components/ui/Marquee.vue",
+      "type": "registry:ui"
     },
     {
-      "path": "registry/default/ui/MarqueeItem.vue",
-      "type": "registry:ui",
-      "target": "components/ui/MarqueeItem.vue"
+      "path": "registry/default/components/ui/MarqueeItem.vue",
+      "type": "registry:ui"
     },
     {
-      "path": "registry/default/ui/MarqueeSeparator.vue",
-      "type": "registry:ui",
-      "target": "components/ui/MarqueeSeparator.vue"
+      "path": "registry/default/components/ui/MarqueeSeparator.vue",
+      "type": "registry:ui"
     }
   ]
 }

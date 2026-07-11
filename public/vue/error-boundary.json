@@ -13,9 +13,8 @@
   ],
   "files": [
     {
-      "path": "registry/default/ui/ErrorBoundary.vue",
-      "type": "registry:ui",
-      "target": "components/ui/ErrorBoundary.vue"
+      "path": "registry/default/components/ui/ErrorBoundary.vue",
+      "type": "registry:ui"
     }
   ]
 }

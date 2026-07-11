@@ -10,8 +10,7 @@
   "files": [
     {
       "path": "registry/default/lib/motion-core.ts",
-      "type": "registry:ui",
-      "target": "lib/motion-core.ts"
+      "type": "registry:lib"
     }
   ]
 }

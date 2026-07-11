@@ -11,10 +11,9 @@
   ],
   "files": [
     {
-      "path": "registry/default/ui/Progress.vue",
+      "path": "registry/default/components/ui/Progress.vue",
       "content": "<script setup lang=\"ts\">\nimport { ProgressRoot, ProgressIndicator, type ProgressRootProps } from 'reka-ui'\nimport { cn } from '@/lib/utils'\n\ninterface Props extends ProgressRootProps {\n  class?: string\n}\n\nconst props = defineProps<Props>()\n</script>\n\n<template>\n  <ProgressRoot\n    v-bind=\"props\"\n    :class=\"\n      cn(\n        'relative h-5 w-full overflow-hidden border-3 border-foreground bg-muted shadow-[4px_4px_0px_hsl(var(--shadow-color))]',\n        props.class\n      )\n    \"\n  >\n    <ProgressIndicator\n      class=\"h-full w-full flex-1 bg-primary transition-all duration-500 ease-out\"\n      :style=\"{ transform: `translateX(-${100 - (props.modelValue || 0)}%)` }\"\n    />\n  </ProgressRoot>\n</template>\n",
-      "type": "registry:ui",
-      "target": "components/ui/Progress.vue"
+      "type": "registry:ui"
     }
   ]
 }

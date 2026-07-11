@@ -12,54 +12,44 @@
   ],
   "files": [
     {
-      "path": "registry/default/ui/DropdownMenu.vue",
-      "type": "registry:ui",
-      "target": "components/ui/DropdownMenu.vue"
+      "path": "registry/default/components/ui/DropdownMenu.vue",
+      "type": "registry:ui"
     },
     {
-      "path": "registry/default/ui/DropdownMenuTrigger.vue",
-      "type": "registry:ui",
-      "target": "components/ui/DropdownMenuTrigger.vue"
+      "path": "registry/default/components/ui/DropdownMenuTrigger.vue",
+      "type": "registry:ui"
     },
     {
-      "path": "registry/default/ui/DropdownMenuContent.vue",
-      "type": "registry:ui",
-      "target": "components/ui/DropdownMenuContent.vue"
+      "path": "registry/default/components/ui/DropdownMenuContent.vue",
+      "type": "registry:ui"
     },
     {
-      "path": "registry/default/ui/DropdownMenuItem.vue",
-      "type": "registry:ui",
-      "target": "components/ui/DropdownMenuItem.vue"
+      "path": "registry/default/components/ui/DropdownMenuItem.vue",
+      "type": "registry:ui"
     },
     {
-      "path": "registry/default/ui/DropdownMenuCheckboxItem.vue",
-      "type": "registry:ui",
-      "target": "components/ui/DropdownMenuCheckboxItem.vue"
+      "path": "registry/default/components/ui/DropdownMenuCheckboxItem.vue",
+      "type": "registry:ui"
     },
     {
-      "path": "registry/default/ui/DropdownMenuRadioItem.vue",
-      "type": "registry:ui",
-      "target": "components/ui/DropdownMenuRadioItem.vue"
+      "path": "registry/default/components/ui/DropdownMenuRadioItem.vue",
+      "type": "registry:ui"
     },
     {
-      "path": "registry/default/ui/DropdownMenuLabel.vue",
-      "type": "registry:ui",
-      "target": "components/ui/DropdownMenuLabel.vue"
+      "path": "registry/default/components/ui/DropdownMenuLabel.vue",
+      "type": "registry:ui"
     },
     {
-      "path": "registry/default/ui/DropdownMenuSeparator.vue",
-      "type": "registry:ui",
-      "target": "components/ui/DropdownMenuSeparator.vue"
+      "path": "registry/default/components/ui/DropdownMenuSeparator.vue",
+      "type": "registry:ui"
     },
     {
-      "path": "registry/default/ui/DropdownMenuShortcut.vue",
-      "type": "registry:ui",
-      "target": "components/ui/DropdownMenuShortcut.vue"
+      "path": "registry/default/components/ui/DropdownMenuShortcut.vue",
+      "type": "registry:ui"
     },
     {
-      "path": "registry/default/ui/DropdownMenuRadioGroup.vue",
-      "type": "registry:ui",
-      "target": "components/ui/DropdownMenuRadioGroup.vue"
+      "path": "registry/default/components/ui/DropdownMenuRadioGroup.vue",
+      "type": "registry:ui"
     }
   ]
 }

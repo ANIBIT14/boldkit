@@ -12,9 +12,8 @@
   ],
   "files": [
     {
-      "path": "registry/default/ui/Rating.vue",
-      "type": "registry:ui",
-      "target": "components/ui/Rating.vue"
+      "path": "registry/default/components/ui/Rating.vue",
+      "type": "registry:ui"
     }
   ]
 }

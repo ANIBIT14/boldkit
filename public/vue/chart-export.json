@@ -10,8 +10,7 @@
   "files": [
     {
       "path": "registry/default/lib/chart-export.ts",
-      "type": "registry:ui",
-      "target": "lib/chart-export.ts"
+      "type": "registry:lib"
     }
   ]
 }
