@@ -5,6 +5,7 @@ export { default as Label } from './Label.vue'
 export { default as Badge } from './Badge.vue'
 export { default as Separator } from './Separator.vue'
 export { default as Skeleton } from './Skeleton.vue'
+export { default as ErrorBoundary } from './ErrorBoundary.vue'
 
 // Card
 export { default as Card } from './Card.vue'
@@ -70,7 +71,7 @@ export { default as DropdownMenuCheckboxItem } from './DropdownMenuCheckboxItem.
 export { default as DropdownMenuRadioItem } from './DropdownMenuRadioItem.vue'
 export { default as DropdownMenuLabel } from './DropdownMenuLabel.vue'
 export { default as DropdownMenuSeparator } from './DropdownMenuSeparator.vue'
-export { default as DropdownMenuGroup } from './DropdownMenuGroup.vue'
+export { default as DropdownMenuShortcut } from './DropdownMenuShortcut.vue'
 export { default as DropdownMenuRadioGroup } from './DropdownMenuRadioGroup.vue'
 
 // Context Menu
@@ -196,13 +197,12 @@ export { default as AlertAction } from './AlertAction.vue'
 
 // Specialized Components
 export { default as Pagination } from './Pagination.vue'
-export { default as PaginationList } from './PaginationList.vue'
-export { default as PaginationListItem } from './PaginationListItem.vue'
-export { default as PaginationEllipsis } from './PaginationEllipsis.vue'
-export { default as PaginationFirst } from './PaginationFirst.vue'
-export { default as PaginationLast } from './PaginationLast.vue'
-export { default as PaginationPrev } from './PaginationPrev.vue'
+export { default as PaginationContent } from './PaginationContent.vue'
+export { default as PaginationItem } from './PaginationItem.vue'
+export { default as PaginationLink } from './PaginationLink.vue'
+export { default as PaginationPrevious } from './PaginationPrevious.vue'
 export { default as PaginationNext } from './PaginationNext.vue'
+export { default as PaginationEllipsis } from './PaginationEllipsis.vue'
 
 export { default as Breadcrumb } from './Breadcrumb.vue'
 export { default as BreadcrumbList } from './BreadcrumbList.vue'
