@@ -14,7 +14,7 @@ export default function Example() {
 }`
 
 const vueUsageCode = `<script setup lang="ts">
-import { Button } from '@/components/ui'
+import Button from '@/components/ui/Button.vue'
 </script>
 
 <template>

@@ -25,7 +25,7 @@ export default function Example() {
 }`
 
 const vueUsageCode = `<script setup lang="ts">
-import { RadialBarChart } from '@/components/ui'
+import RadialBarChart from '@/components/ui/RadialBarChart.vue'
 
 const data = [
   { name: 'Progress', value: 75, fill: 'hsl(var(--primary))' },

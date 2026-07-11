@@ -43,15 +43,13 @@ export default function Example() {
 
 
 const vueUsageCode = `<script setup lang="ts">
-import {
-  Drawer,
-  DrawerContent,
-  DrawerDescription,
-  DrawerHeader,
-  DrawerTitle,
-  DrawerTrigger,
-} from '@/components/ui'
-import { Button } from '@/components/ui'
+import Drawer from '@/components/ui/Drawer.vue'
+import DrawerContent from '@/components/ui/DrawerContent.vue'
+import DrawerDescription from '@/components/ui/DrawerDescription.vue'
+import DrawerHeader from '@/components/ui/DrawerHeader.vue'
+import DrawerTitle from '@/components/ui/DrawerTitle.vue'
+import DrawerTrigger from '@/components/ui/DrawerTrigger.vue'
+import Button from '@/components/ui/Button.vue'
 </script>
 
 <template>

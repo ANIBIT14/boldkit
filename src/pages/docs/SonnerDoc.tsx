@@ -21,7 +21,7 @@ export default function Example() {
 
 const vueUsageCode = `<script setup lang="ts">
 import { toast } from 'vue-sonner'
-import { Button } from '@/components/ui'
+import Button from '@/components/ui/Button.vue'
 </script>
 
 <template>
@@ -60,7 +60,7 @@ toast.warning('Warning!')
 toast.info('Information')`}
         vueCode={`<script setup>
 import { toast } from 'vue-sonner'
-import { Button } from '@/components/ui'
+import Button from '@/components/ui/Button.vue'
 </script>
 
 <template>
@@ -101,7 +101,7 @@ import { Button } from '@/components/ui'
 })`}
         vueCode={`<script setup>
 import { toast } from 'vue-sonner'
-import { Button } from '@/components/ui'
+import Button from '@/components/ui/Button.vue'
 
 function showToast() {
   toast('Event Created', {
@@ -138,7 +138,7 @@ function showToast() {
 })`}
         vueCode={`<script setup>
 import { toast } from 'vue-sonner'
-import { Button } from '@/components/ui'
+import Button from '@/components/ui/Button.vue'
 
 function showToast() {
   toast('Event Created', {
@@ -185,7 +185,7 @@ toast.promise(promise, {
 })`}
         vueCode={`<script setup>
 import { toast } from 'vue-sonner'
-import { Button } from '@/components/ui'
+import Button from '@/components/ui/Button.vue'
 
 function showPromiseToast() {
   const promise = new Promise((resolve) => setTimeout(resolve, 2000))

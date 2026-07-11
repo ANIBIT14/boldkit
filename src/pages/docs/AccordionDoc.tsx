@@ -31,12 +31,10 @@ export default function Example() {
 
 
 const vueUsageCode = `<script setup lang="ts">
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from '@/components/ui'
+import Accordion from '@/components/ui/Accordion.vue'
+import AccordionContent from '@/components/ui/AccordionContent.vue'
+import AccordionItem from '@/components/ui/AccordionItem.vue'
+import AccordionTrigger from '@/components/ui/AccordionTrigger.vue'
 </script>
 
 <template>

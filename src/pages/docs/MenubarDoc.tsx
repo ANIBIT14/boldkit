@@ -38,13 +38,11 @@ export default function Example() {
 }`
 
 const vueUsageCode = `<script setup lang="ts">
-import {
-  Menubar,
-  MenubarContent,
-  MenubarItem,
-  MenubarMenu,
-  MenubarTrigger,
-} from '@/components/ui'
+import Menubar from '@/components/ui/Menubar.vue'
+import MenubarContent from '@/components/ui/MenubarContent.vue'
+import MenubarItem from '@/components/ui/MenubarItem.vue'
+import MenubarMenu from '@/components/ui/MenubarMenu.vue'
+import MenubarTrigger from '@/components/ui/MenubarTrigger.vue'
 </script>
 
 <template>

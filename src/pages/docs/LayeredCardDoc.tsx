@@ -37,13 +37,11 @@ export default function Example() {
 
 
 const vueUsageCode = `<script setup lang="ts">
-import {
-  LayeredCard,
-  LayeredCardHeader,
-  LayeredCardTitle,
-  LayeredCardDescription,
-  LayeredCardContent,
-} from '@/components/ui'
+import LayeredCard from '@/components/ui/LayeredCard.vue'
+import LayeredCardHeader from '@/components/ui/LayeredCardHeader.vue'
+import LayeredCardTitle from '@/components/ui/LayeredCardTitle.vue'
+import LayeredCardDescription from '@/components/ui/LayeredCardDescription.vue'
+import LayeredCardContent from '@/components/ui/LayeredCardContent.vue'
 </script>
 
 <template>

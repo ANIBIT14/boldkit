@@ -32,7 +32,7 @@ export default function Example() {
 }`
 
 const vueUsageCode = `<script setup lang="ts">
-import { RadarChart } from '@/components/ui'
+import RadarChart from '@/components/ui/RadarChart.vue'
 
 const data = [
   { subject: 'Speed', player1: 80, player2: 65 },

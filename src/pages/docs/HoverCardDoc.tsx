@@ -32,12 +32,10 @@ export default function Example() {
 
 
 const vueUsageCode = `<script setup lang="ts">
-import {
-  HoverCard,
-  HoverCardContent,
-  HoverCardTrigger,
-} from '@/components/ui'
-import { Button } from '@/components/ui'
+import HoverCard from '@/components/ui/HoverCard.vue'
+import HoverCardContent from '@/components/ui/HoverCardContent.vue'
+import HoverCardTrigger from '@/components/ui/HoverCardTrigger.vue'
+import Button from '@/components/ui/Button.vue'
 </script>
 
 <template>
@@ -151,7 +149,13 @@ export function HoverCardDoc() {
 </HoverCard>`}
         vueCode={`<script setup lang="ts">
 import { CalendarDays } from 'lucide-vue-next'
-import { HoverCard, HoverCardTrigger, HoverCardContent, Button, Avatar, AvatarImage, AvatarFallback } from '@/components/ui'
+import HoverCard from '@/components/ui/HoverCard.vue'
+import HoverCardTrigger from '@/components/ui/HoverCardTrigger.vue'
+import HoverCardContent from '@/components/ui/HoverCardContent.vue'
+import Button from '@/components/ui/Button.vue'
+import Avatar from '@/components/ui/Avatar.vue'
+import AvatarImage from '@/components/ui/AvatarImage.vue'
+import AvatarFallback from '@/components/ui/AvatarFallback.vue'
 </script>
 
 <template>

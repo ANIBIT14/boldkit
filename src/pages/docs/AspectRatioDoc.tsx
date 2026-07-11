@@ -20,7 +20,7 @@ export default function Example() {
 
 
 const vueUsageCode = `<script setup lang="ts">
-import { AspectRatio } from '@/components/ui'
+import AspectRatio from '@/components/ui/AspectRatio.vue'
 </script>
 
 <template>

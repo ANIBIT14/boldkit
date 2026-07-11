@@ -20,8 +20,8 @@ export default function Example() {
 
 
 const vueUsageCode = `<script setup lang="ts">
-import { Label } from '@/components/ui'
-import { Input } from '@/components/ui'
+import Label from '@/components/ui/Label.vue'
+import Input from '@/components/ui/Input.vue'
 </script>
 
 <template>

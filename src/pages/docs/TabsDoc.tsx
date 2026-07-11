@@ -25,7 +25,10 @@ export default function Example() {
 
 
 const vueUsageCode = `<script setup lang="ts">
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui'
+import Tabs from '@/components/ui/Tabs.vue'
+import TabsContent from '@/components/ui/TabsContent.vue'
+import TabsList from '@/components/ui/TabsList.vue'
+import TabsTrigger from '@/components/ui/TabsTrigger.vue'
 </script>
 
 <template>

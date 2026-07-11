@@ -22,7 +22,8 @@ export default function Example() {
 }`
 
 const vueUsageCode = `<script setup lang="ts">
-import { Reveal, Motion } from '@/components/ui'
+import Reveal from '@/components/ui/Reveal.vue'
+import Motion from '@/components/ui/Motion.vue'
 </script>
 
 <template>

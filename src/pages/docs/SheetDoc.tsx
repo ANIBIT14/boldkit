@@ -43,15 +43,13 @@ export default function Example() {
 
 
 const vueUsageCode = `<script setup lang="ts">
-import {
-  Sheet,
-  SheetContent,
-  SheetDescription,
-  SheetHeader,
-  SheetTitle,
-  SheetTrigger,
-} from '@/components/ui'
-import { Button } from '@/components/ui'
+import Sheet from '@/components/ui/Sheet.vue'
+import SheetContent from '@/components/ui/SheetContent.vue'
+import SheetDescription from '@/components/ui/SheetDescription.vue'
+import SheetHeader from '@/components/ui/SheetHeader.vue'
+import SheetTitle from '@/components/ui/SheetTitle.vue'
+import SheetTrigger from '@/components/ui/SheetTrigger.vue'
+import Button from '@/components/ui/Button.vue'
 </script>
 
 <template>
@@ -144,14 +142,12 @@ export function SheetDoc() {
 </Sheet>`}
         vueCode={`<script setup>
 import { ref } from 'vue'
-import {
-  Sheet,
-  SheetTrigger,
-  SheetContent,
-  SheetHeader,
-  SheetTitle,
-} from '@/components/ui'
-import { Button } from '@/components/ui'
+import Sheet from '@/components/ui/Sheet.vue'
+import SheetTrigger from '@/components/ui/SheetTrigger.vue'
+import SheetContent from '@/components/ui/SheetContent.vue'
+import SheetHeader from '@/components/ui/SheetHeader.vue'
+import SheetTitle from '@/components/ui/SheetTitle.vue'
+import Button from '@/components/ui/Button.vue'
 
 const rightOpen = ref(false)
 const leftOpen = ref(false)

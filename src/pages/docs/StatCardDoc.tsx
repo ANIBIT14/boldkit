@@ -23,7 +23,7 @@ export default function Example() {
 }`
 
 const vueUsageCode = `<script setup lang="ts">
-import { StatCard } from '@/components/ui'
+import StatCard from '@/components/ui/StatCard.vue'
 import { DollarSign } from 'lucide-vue-next'
 </script>
 

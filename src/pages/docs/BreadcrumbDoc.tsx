@@ -44,14 +44,12 @@ export default function Example() {
 
 
 const vueUsageCode = `<script setup lang="ts">
-import {
-  Breadcrumb,
-  BreadcrumbItem,
-  BreadcrumbLink,
-  BreadcrumbList,
-  BreadcrumbPage,
-  BreadcrumbSeparator,
-} from '@/components/ui'
+import Breadcrumb from '@/components/ui/Breadcrumb.vue'
+import BreadcrumbItem from '@/components/ui/BreadcrumbItem.vue'
+import BreadcrumbLink from '@/components/ui/BreadcrumbLink.vue'
+import BreadcrumbList from '@/components/ui/BreadcrumbList.vue'
+import BreadcrumbPage from '@/components/ui/BreadcrumbPage.vue'
+import BreadcrumbSeparator from '@/components/ui/BreadcrumbSeparator.vue'
 </script>
 
 <template>

@@ -51,18 +51,16 @@ export default function Example() {
 
 
 const vueUsageCode = `<script setup lang="ts">
-import {
-  AlertDialog,
-  AlertDialogAction,
-  AlertDialogCancel,
-  AlertDialogContent,
-  AlertDialogDescription,
-  AlertDialogFooter,
-  AlertDialogHeader,
-  AlertDialogTitle,
-  AlertDialogTrigger,
-} from '@/components/ui'
-import { Button } from '@/components/ui'
+import AlertDialog from '@/components/ui/AlertDialog.vue'
+import AlertDialogAction from '@/components/ui/AlertDialogAction.vue'
+import AlertDialogCancel from '@/components/ui/AlertDialogCancel.vue'
+import AlertDialogContent from '@/components/ui/AlertDialogContent.vue'
+import AlertDialogDescription from '@/components/ui/AlertDialogDescription.vue'
+import AlertDialogFooter from '@/components/ui/AlertDialogFooter.vue'
+import AlertDialogHeader from '@/components/ui/AlertDialogHeader.vue'
+import AlertDialogTitle from '@/components/ui/AlertDialogTitle.vue'
+import AlertDialogTrigger from '@/components/ui/AlertDialogTrigger.vue'
+import Button from '@/components/ui/Button.vue'
 </script>
 
 <template>

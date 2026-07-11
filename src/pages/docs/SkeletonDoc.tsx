@@ -20,7 +20,7 @@ export default function Example() {
 
 
 const vueUsageCode = `<script setup lang="ts">
-import { Skeleton } from '@/components/ui'
+import Skeleton from '@/components/ui/Skeleton.vue'
 </script>
 
 <template>
@@ -67,7 +67,7 @@ export function SkeletonDoc() {
   </div>
 </div>`}
         vueCode={`<script setup>
-import { Skeleton } from '@/components/ui'
+import Skeleton from '@/components/ui/Skeleton.vue'
 </script>
 
 <template>
@@ -101,7 +101,7 @@ import { Skeleton } from '@/components/ui'
   </div>
 </div>`}
         vueCode={`<script setup>
-import { Skeleton } from '@/components/ui'
+import Skeleton from '@/components/ui/Skeleton.vue'
 </script>
 
 <template>
@@ -139,7 +139,7 @@ import { Skeleton } from '@/components/ui'
   ))}
 </div>`}
         vueCode={`<script setup>
-import { Skeleton } from '@/components/ui'
+import Skeleton from '@/components/ui/Skeleton.vue'
 </script>
 
 <template>

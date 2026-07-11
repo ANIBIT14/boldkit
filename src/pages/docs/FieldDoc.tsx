@@ -11,7 +11,10 @@ import sourceCode from '@/components/ui/field.tsx?raw'
 import vueSourceCode from '@vue-ui/Field.vue?raw'
 
 const vueUsageCode = `<script setup lang="ts">
-import { Field, FieldLabel, FieldDescription, Input } from '@/components/ui'
+import Field from '@/components/ui/Field.vue'
+import FieldLabel from '@/components/ui/FieldLabel.vue'
+import FieldDescription from '@/components/ui/FieldDescription.vue'
+import Input from '@/components/ui/Input.vue'
 </script>
 
 <template>

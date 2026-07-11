@@ -33,11 +33,9 @@ export default function Example() {
 
 const vueUsageCode = `<script setup lang="ts">
 import { ref } from 'vue'
-import {
-  InputOTP,
-  InputOTPGroup,
-  InputOTPSlot,
-} from '@/components/ui'
+import InputOTP from '@/components/ui/InputOTP.vue'
+import InputOTPGroup from '@/components/ui/InputOTPGroup.vue'
+import InputOTPSlot from '@/components/ui/InputOTPSlot.vue'
 
 const value = ref<string[]>([])
 </script>
@@ -96,7 +94,9 @@ export function InputOtpDoc() {
 </InputOTP>`}
         vueCode={`<script setup lang="ts">
 import { ref } from 'vue'
-import { InputOTP, InputOTPGroup, InputOTPSlot } from '@/components/ui'
+import InputOTP from '@/components/ui/InputOTP.vue'
+import InputOTPGroup from '@/components/ui/InputOTPGroup.vue'
+import InputOTPSlot from '@/components/ui/InputOTPSlot.vue'
 
 const value = ref<string[]>([])
 </script>
@@ -145,7 +145,10 @@ const value = ref<string[]>([])
 </InputOTP>`}
         vueCode={`<script setup lang="ts">
 import { ref } from 'vue'
-import { InputOTP, InputOTPGroup, InputOTPSlot, InputOTPSeparator } from '@/components/ui'
+import InputOTP from '@/components/ui/InputOTP.vue'
+import InputOTPGroup from '@/components/ui/InputOTPGroup.vue'
+import InputOTPSlot from '@/components/ui/InputOTPSlot.vue'
+import InputOTPSeparator from '@/components/ui/InputOTPSeparator.vue'
 
 const value = ref<string[]>([])
 </script>
@@ -195,7 +198,9 @@ const value = ref<string[]>([])
 </InputOTP>`}
         vueCode={`<script setup lang="ts">
 import { ref } from 'vue'
-import { InputOTP, InputOTPGroup, InputOTPSlot } from '@/components/ui'
+import InputOTP from '@/components/ui/InputOTP.vue'
+import InputOTPGroup from '@/components/ui/InputOTPGroup.vue'
+import InputOTPSlot from '@/components/ui/InputOTPSlot.vue'
 
 const value = ref<string[]>([])
 </script>
@@ -237,7 +242,9 @@ const value = ref<string[]>([])
 </InputOTP>`}
         vueCode={`<script setup lang="ts">
 import { ref } from 'vue'
-import { InputOTP, InputOTPGroup, InputOTPSlot } from '@/components/ui'
+import InputOTP from '@/components/ui/InputOTP.vue'
+import InputOTPGroup from '@/components/ui/InputOTPGroup.vue'
+import InputOTPSlot from '@/components/ui/InputOTPSlot.vue'
 
 const value = ref<string[]>([])
 </script>

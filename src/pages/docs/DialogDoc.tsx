@@ -47,15 +47,13 @@ export default function Example() {
 
 
 const vueUsageCode = `<script setup lang="ts">
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from '@/components/ui'
-import { Button } from '@/components/ui'
+import Dialog from '@/components/ui/Dialog.vue'
+import DialogContent from '@/components/ui/DialogContent.vue'
+import DialogDescription from '@/components/ui/DialogDescription.vue'
+import DialogHeader from '@/components/ui/DialogHeader.vue'
+import DialogTitle from '@/components/ui/DialogTitle.vue'
+import DialogTrigger from '@/components/ui/DialogTrigger.vue'
+import Button from '@/components/ui/Button.vue'
 </script>
 
 <template>

@@ -19,7 +19,7 @@ export default function Example() {
 
 
 const vueUsageCode = `<script setup lang="ts">
-import { ScrollArea } from '@/components/ui'
+import ScrollArea from '@/components/ui/ScrollArea.vue'
 </script>
 
 <template>

@@ -17,7 +17,8 @@ export default function Example() {
 
 
 const vueUsageCode = `<script setup lang="ts">
-import { Sticker, Stamp } from '@/components/ui'
+import Sticker from '@/components/ui/Sticker.vue'
+import Stamp from '@/components/ui/Stamp.vue'
 </script>
 
 <template>
@@ -58,7 +59,7 @@ export function StickerDoc() {
 <Sticker variant="destructive">Destructive</Sticker>
 <Sticker variant="outline">Outline</Sticker>`}
         vueCode={`<script setup>
-import { Sticker } from '@/components/ui'
+import Sticker from '@/components/ui/Sticker.vue'
 </script>
 
 <template>
@@ -89,7 +90,7 @@ import { Sticker } from '@/components/ui'
 <Sticker size="lg">Large</Sticker>
 <Sticker size="xl">Extra Large</Sticker>`}
         vueCode={`<script setup>
-import { Sticker } from '@/components/ui'
+import Sticker from '@/components/ui/Sticker.vue'
 </script>
 
 <template>
@@ -120,7 +121,7 @@ import { Sticker } from '@/components/ui'
 <Sticker rotation="slight-right">Right</Sticker>
 <Sticker rotation="heavy-right">Heavy Right</Sticker>`}
         vueCode={`<script setup>
-import { Sticker } from '@/components/ui'
+import Sticker from '@/components/ui/Sticker.vue'
 </script>
 
 <template>
@@ -153,7 +154,7 @@ import { Sticker } from '@/components/ui'
 <Sticker shadow="colored">Colored</Sticker>
 <Sticker shadow="double">Double</Sticker>`}
         vueCode={`<script setup>
-import { Sticker } from '@/components/ui'
+import Sticker from '@/components/ui/Sticker.vue'
 </script>
 
 <template>
@@ -181,7 +182,7 @@ import { Sticker } from '@/components/ui'
 <Sticker dashed variant="primary">Limited</Sticker>
 <Sticker dashed variant="destructive">Urgent</Sticker>`}
         vueCode={`<script setup>
-import { Sticker } from '@/components/ui'
+import Sticker from '@/components/ui/Sticker.vue'
 </script>
 
 <template>
@@ -207,7 +208,7 @@ import { Sticker } from '@/components/ui'
 <Sticker tape variant="outline">Remember</Sticker>
 <Sticker tape variant="primary" rotation="medium-right">Important</Sticker>`}
         vueCode={`<script setup>
-import { Sticker } from '@/components/ui'
+import Sticker from '@/components/ui/Sticker.vue'
 </script>
 
 <template>
@@ -232,7 +233,7 @@ import { Sticker } from '@/components/ui'
         code={`<Sticker interactive>Click Me</Sticker>
 <Sticker interactive variant="primary">Press</Sticker>`}
         vueCode={`<script setup>
-import { Sticker } from '@/components/ui'
+import Sticker from '@/components/ui/Sticker.vue'
 </script>
 
 <template>
@@ -257,7 +258,7 @@ import { Sticker } from '@/components/ui'
 <Stamp variant="accent">100%</Stamp>
 <Stamp variant="destructive" rotation="medium">Rejected</Stamp>`}
         vueCode={`<script setup>
-import { Stamp } from '@/components/ui'
+import Stamp from '@/components/ui/Stamp.vue'
 </script>
 
 <template>
@@ -286,7 +287,7 @@ import { Stamp } from '@/components/ui'
 <Stamp size="lg">Large</Stamp>
 <Stamp size="xl">Extra Large</Stamp>`}
         vueCode={`<script setup>
-import { Stamp } from '@/components/ui'
+import Stamp from '@/components/ui/Stamp.vue'
 </script>
 
 <template>
@@ -313,7 +314,7 @@ import { Stamp } from '@/components/ui'
         code={`<Stamp doubleRing>Certified</Stamp>
 <Stamp doubleRing variant="secondary">Approved</Stamp>`}
         vueCode={`<script setup>
-import { Stamp } from '@/components/ui'
+import Stamp from '@/components/ui/Stamp.vue'
 </script>
 
 <template>
@@ -337,7 +338,7 @@ import { Stamp } from '@/components/ui'
 <StickyNote variant="pink">Important meeting at 3pm</StickyNote>
 <StickyNote variant="blue" pin>Don't forget!</StickyNote>`}
         vueCode={`<script setup>
-import { StickyNote } from '@/components/ui'
+import StickyNote from '@/components/ui/StickyNote.vue'
 </script>
 
 <template>
@@ -365,7 +366,7 @@ import { StickyNote } from '@/components/ui'
 <StickyNote variant="green">Green</StickyNote>
 <StickyNote variant="purple">Purple</StickyNote>`}
         vueCode={`<script setup>
-import { StickyNote } from '@/components/ui'
+import StickyNote from '@/components/ui/StickyNote.vue'
 </script>
 
 <template>
@@ -394,7 +395,7 @@ import { StickyNote } from '@/components/ui'
         code={`<StickyNote pin>Pinned to board</StickyNote>
 <StickyNote pin variant="pink" rotation="right">Todo list</StickyNote>`}
         vueCode={`<script setup>
-import { StickyNote } from '@/components/ui'
+import StickyNote from '@/components/ui/StickyNote.vue'
 </script>
 
 <template>
@@ -420,7 +421,7 @@ import { StickyNote } from '@/components/ui'
 <StickyNote size="default">Default size note</StickyNote>
 <StickyNote size="lg">Large note with more space</StickyNote>`}
         vueCode={`<script setup>
-import { StickyNote } from '@/components/ui'
+import StickyNote from '@/components/ui/StickyNote.vue'
 </script>
 
 <template>

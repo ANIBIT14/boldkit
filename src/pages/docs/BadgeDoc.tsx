@@ -12,7 +12,7 @@ export default function Example() {
 
 
 const vueUsageCode = `<script setup lang="ts">
-import { Badge } from '@/components/ui'
+import Badge from '@/components/ui/Badge.vue'
 </script>
 
 <template>

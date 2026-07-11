@@ -17,7 +17,8 @@ export default function Example() {
 }`
 
 const vueUsageCode = `<script setup lang="ts">
-import { Kbd, KbdCombo } from '@/components/ui'
+import Kbd from '@/components/ui/Kbd.vue'
+import KbdCombo from '@/components/ui/KbdCombo.vue'
 </script>
 
 <template>

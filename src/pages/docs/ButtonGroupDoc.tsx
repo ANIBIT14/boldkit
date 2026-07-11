@@ -18,7 +18,8 @@ export default function Example() {
 }`
 
 const vueUsageCode = `<script setup lang="ts">
-import { ButtonGroup, Button } from '@/components/ui'
+import ButtonGroup from '@/components/ui/ButtonGroup.vue'
+import Button from '@/components/ui/Button.vue'
 </script>
 
 <template>

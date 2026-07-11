@@ -31,7 +31,7 @@ export default function Example() {
 }`
 
 const vueUsageCode = `<script setup lang="ts">
-import { DonutChart, DonutChartCenter } from '@/components/ui'
+import DonutChart from '@/components/ui/DonutChart.vue'
 
 const data = [
   { name: 'Chrome', value: 275, fill: 'hsl(var(--primary))' },
@@ -42,9 +42,11 @@ const data = [
 
 <template>
   <DonutChart :data="data">
-    <template #center>
-      <DonutChartCenter value="662" label="Total" />
-    </template>
+    <!-- center content goes in the default slot -->
+    <div class="text-center">
+      <div class="text-2xl font-black">662</div>
+      <div class="text-xs font-bold uppercase tracking-wide text-muted-foreground">Total</div>
+    </div>
   </DonutChart>
 </template>`
 

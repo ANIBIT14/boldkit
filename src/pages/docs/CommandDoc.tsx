@@ -44,14 +44,12 @@ export default function Example() {
 
 
 const vueUsageCode = `<script setup lang="ts">
-import {
-  Command,
-  CommandEmpty,
-  CommandGroup,
-  CommandInput,
-  CommandItem,
-  CommandList,
-} from '@/components/ui'
+import Command from '@/components/ui/Command.vue'
+import CommandEmpty from '@/components/ui/CommandEmpty.vue'
+import CommandGroup from '@/components/ui/CommandGroup.vue'
+import CommandInput from '@/components/ui/CommandInput.vue'
+import CommandItem from '@/components/ui/CommandItem.vue'
+import CommandList from '@/components/ui/CommandList.vue'
 </script>
 
 <template>

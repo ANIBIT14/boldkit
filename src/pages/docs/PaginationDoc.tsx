@@ -47,14 +47,12 @@ export default function Example() {
 
 
 const vueUsageCode = `<script setup lang="ts">
-import {
-  Pagination,
-  PaginationContent,
-  PaginationItem,
-  PaginationLink,
-  PaginationNext,
-  PaginationPrevious,
-} from '@/components/ui'
+import Pagination from '@/components/ui/Pagination.vue'
+import PaginationContent from '@/components/ui/PaginationContent.vue'
+import PaginationItem from '@/components/ui/PaginationItem.vue'
+import PaginationLink from '@/components/ui/PaginationLink.vue'
+import PaginationNext from '@/components/ui/PaginationNext.vue'
+import PaginationPrevious from '@/components/ui/PaginationPrevious.vue'
 </script>
 
 <template>

@@ -43,14 +43,12 @@ export default function Example() {
 
 
 const vueUsageCode = `<script setup lang="ts">
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from '@/components/ui'
+import Table from '@/components/ui/Table.vue'
+import TableBody from '@/components/ui/TableBody.vue'
+import TableCell from '@/components/ui/TableCell.vue'
+import TableHead from '@/components/ui/TableHead.vue'
+import TableHeader from '@/components/ui/TableHeader.vue'
+import TableRow from '@/components/ui/TableRow.vue'
 </script>
 
 <template>

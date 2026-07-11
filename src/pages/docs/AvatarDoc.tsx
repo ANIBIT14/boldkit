@@ -17,7 +17,9 @@ export default function Example() {
 
 
 const vueUsageCode = `<script setup lang="ts">
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui'
+import Avatar from '@/components/ui/Avatar.vue'
+import AvatarFallback from '@/components/ui/AvatarFallback.vue'
+import AvatarImage from '@/components/ui/AvatarImage.vue'
 </script>
 
 <template>

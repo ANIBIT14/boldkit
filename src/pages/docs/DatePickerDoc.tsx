@@ -5,7 +5,7 @@ import sourceCode from '@/components/ui/date-picker.tsx?raw'
 import vueSourceCode from '@vue-ui/DatePicker.vue?raw'
 
 const vueUsageCode = `<script setup lang="ts">
-import { DatePicker } from '@/components/ui'
+import DatePicker from '@/components/ui/DatePicker.vue'
 import type { DateValue } from 'reka-ui'
 import { ref } from 'vue'
 

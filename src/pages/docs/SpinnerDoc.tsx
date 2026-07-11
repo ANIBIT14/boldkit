@@ -12,7 +12,7 @@ export default function Example() {
 }`
 
 const vueUsageCode = `<script setup lang="ts">
-import { Spinner } from '@/components/ui'
+import Spinner from '@/components/ui/Spinner.vue'
 </script>
 
 <template>

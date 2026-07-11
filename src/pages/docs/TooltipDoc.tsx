@@ -29,13 +29,11 @@ export default function Example() {
 
 
 const vueUsageCode = `<script setup lang="ts">
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipTrigger,
-  TooltipProvider,
-} from '@/components/ui'
-import { Button } from '@/components/ui'
+import Tooltip from '@/components/ui/Tooltip.vue'
+import TooltipContent from '@/components/ui/TooltipContent.vue'
+import TooltipTrigger from '@/components/ui/TooltipTrigger.vue'
+import TooltipProvider from '@/components/ui/TooltipProvider.vue'
+import Button from '@/components/ui/Button.vue'
 </script>
 
 <template>

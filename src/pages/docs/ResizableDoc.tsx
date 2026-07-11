@@ -24,11 +24,9 @@ export default function Example() {
 }`
 
 const vueUsageCode = `<script setup lang="ts">
-import {
-  ResizableHandle,
-  ResizablePanel,
-  ResizablePanelGroup,
-} from '@/components/ui'
+import ResizableHandle from '@/components/ui/ResizableHandle.vue'
+import ResizablePanel from '@/components/ui/ResizablePanel.vue'
+import ResizablePanelGroup from '@/components/ui/ResizablePanelGroup.vue'
 </script>
 
 <template>

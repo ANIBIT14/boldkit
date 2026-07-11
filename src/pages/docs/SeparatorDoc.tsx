@@ -23,7 +23,7 @@ export default function Example() {
 
 
 const vueUsageCode = `<script setup lang="ts">
-import { Separator } from '@/components/ui'
+import Separator from '@/components/ui/Separator.vue'
 </script>
 
 <template>

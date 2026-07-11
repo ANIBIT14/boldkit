@@ -25,7 +25,10 @@ export default function Example() {
 
 
 const vueUsageCode = `<script setup lang="ts">
-import { Alert, AlertTitle, AlertDescription, AlertAction } from '@/components/ui'
+import Alert from '@/components/ui/Alert.vue'
+import AlertTitle from '@/components/ui/AlertTitle.vue'
+import AlertDescription from '@/components/ui/AlertDescription.vue'
+import AlertAction from '@/components/ui/AlertAction.vue'
 import { AlertCircle } from 'lucide-vue-next'
 
 function extend() {

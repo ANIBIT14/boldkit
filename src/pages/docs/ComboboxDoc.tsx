@@ -166,11 +166,15 @@ const vueUsageCode = `<script setup lang="ts">
 import { ref, computed } from 'vue'
 import { Check } from 'lucide-vue-next'
 import { cn } from '@/lib/utils'
-import {
-  Popover, PopoverContent, ComboboxTrigger,
-  Command, CommandInput, CommandList,
-  CommandEmpty, CommandGroup, CommandItem,
-} from '@/components/ui'
+import Popover from '@/components/ui/Popover.vue'
+import PopoverContent from '@/components/ui/PopoverContent.vue'
+import ComboboxTrigger from '@/components/ui/ComboboxTrigger.vue'
+import Command from '@/components/ui/Command.vue'
+import CommandInput from '@/components/ui/CommandInput.vue'
+import CommandList from '@/components/ui/CommandList.vue'
+import CommandEmpty from '@/components/ui/CommandEmpty.vue'
+import CommandGroup from '@/components/ui/CommandGroup.vue'
+import CommandItem from '@/components/ui/CommandItem.vue'
 
 const frameworks = [
   { value: 'next.js', label: 'Next.js' },
@@ -519,7 +523,15 @@ const [value, setValue] = useState('')
 import { ref, computed } from 'vue'
 import { Check } from 'lucide-vue-next'
 import { cn } from '@/lib/utils'
-import { Popover, PopoverContent, ComboboxTrigger, Command, CommandInput, CommandList, CommandEmpty, CommandGroup, CommandItem } from '@/components/ui'
+import Popover from '@/components/ui/Popover.vue'
+import PopoverContent from '@/components/ui/PopoverContent.vue'
+import ComboboxTrigger from '@/components/ui/ComboboxTrigger.vue'
+import Command from '@/components/ui/Command.vue'
+import CommandInput from '@/components/ui/CommandInput.vue'
+import CommandList from '@/components/ui/CommandList.vue'
+import CommandEmpty from '@/components/ui/CommandEmpty.vue'
+import CommandGroup from '@/components/ui/CommandGroup.vue'
+import CommandItem from '@/components/ui/CommandItem.vue'
 
 const open = ref(false)
 const value = ref('')
@@ -596,7 +608,15 @@ const selectedItems = frameworks
 import { ref, computed } from 'vue'
 import { Check } from 'lucide-vue-next'
 import { cn } from '@/lib/utils'
-import { Popover, PopoverContent, ComboboxMultiTrigger, Command, CommandInput, CommandList, CommandEmpty, CommandGroup, CommandItem } from '@/components/ui'
+import Popover from '@/components/ui/Popover.vue'
+import PopoverContent from '@/components/ui/PopoverContent.vue'
+import ComboboxMultiTrigger from '@/components/ui/ComboboxMultiTrigger.vue'
+import Command from '@/components/ui/Command.vue'
+import CommandInput from '@/components/ui/CommandInput.vue'
+import CommandList from '@/components/ui/CommandList.vue'
+import CommandEmpty from '@/components/ui/CommandEmpty.vue'
+import CommandGroup from '@/components/ui/CommandGroup.vue'
+import CommandItem from '@/components/ui/CommandItem.vue'
 
 const open = ref(false)
 const selected = ref<string[]>([])

@@ -12,7 +12,7 @@ export default function Example() {
 }`
 
 const vueUsageCode = `<script setup lang="ts">
-import { MathCurveLoader } from '@/components/ui'
+import MathCurveLoader from '@/components/ui/MathCurveLoader.vue'
 </script>
 
 <template>

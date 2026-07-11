@@ -23,7 +23,7 @@ export default function Example() {
 
 const vueUsageCode = `<script setup lang="ts">
 import { ref } from 'vue'
-import { Calendar } from '@/components/ui'
+import Calendar from '@/components/ui/Calendar.vue'
 
 const date = ref<Date>(new Date())
 </script>
@@ -73,7 +73,7 @@ export function CalendarDoc() {
 />`}
         vueCode={`<script setup lang="ts">
 import { ref } from 'vue'
-import { Calendar } from '@/components/ui'
+import Calendar from '@/components/ui/Calendar.vue'
 
 const date = ref<Date>(new Date())
 </script>
@@ -103,7 +103,7 @@ const date = ref<Date>(new Date())
 />`}
         vueCode={`<script setup lang="ts">
 import { ref } from 'vue'
-import { Calendar } from '@/components/ui'
+import Calendar from '@/components/ui/Calendar.vue'
 
 const dateRange = ref<{ start: Date | undefined; end: Date | undefined }>({
   start: undefined,
@@ -136,7 +136,7 @@ const dateRange = ref<{ start: Date | undefined; end: Date | undefined }>({
 />`}
         vueCode={`<script setup lang="ts">
 import { ref } from 'vue'
-import { Calendar } from '@/components/ui'
+import Calendar from '@/components/ui/Calendar.vue'
 
 const dates = ref<Date[]>([])
 </script>

@@ -18,7 +18,7 @@ export default function Example() {
 
 
 const vueUsageCode = `<script setup lang="ts">
-import { Toggle } from '@/components/ui'
+import Toggle from '@/components/ui/Toggle.vue'
 import { Bold } from 'lucide-vue-next'
 </script>
 

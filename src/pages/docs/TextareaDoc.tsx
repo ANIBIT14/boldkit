@@ -13,7 +13,7 @@ export default function Example() {
 
 
 const vueUsageCode = `<script setup lang="ts">
-import { Textarea } from '@/components/ui'
+import Textarea from '@/components/ui/Textarea.vue'
 </script>
 
 <template>

@@ -35,12 +35,10 @@ export default function Example() {
 }`
 
 const vueUsageCode = `<script setup lang="ts">
-import {
-  ContextMenu,
-  ContextMenuContent,
-  ContextMenuItem,
-  ContextMenuTrigger,
-} from '@/components/ui'
+import ContextMenu from '@/components/ui/ContextMenu.vue'
+import ContextMenuContent from '@/components/ui/ContextMenuContent.vue'
+import ContextMenuItem from '@/components/ui/ContextMenuItem.vue'
+import ContextMenuTrigger from '@/components/ui/ContextMenuTrigger.vue'
 </script>
 
 <template>

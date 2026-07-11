@@ -28,7 +28,8 @@ export default function Example() {
 
 const vueUsageCode = `<script setup lang="ts">
 import { ref } from 'vue'
-import { Dropzone, FileList } from '@/components/ui'
+import Dropzone from '@/components/ui/Dropzone.vue'
+import FileList from '@/components/ui/FileList.vue'
 
 const files = ref([])
 

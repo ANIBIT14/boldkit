@@ -9,7 +9,9 @@ import sourceCode from '@/components/ui/input-group.tsx?raw'
 import vueSourceCode from '@vue-ui/InputGroup.vue?raw'
 
 const vueUsageCode = `<script setup lang="ts">
-import { InputGroup, InputGroupAddon, InputGroupInput } from '@/components/ui'
+import InputGroup from '@/components/ui/InputGroup.vue'
+import InputGroupAddon from '@/components/ui/InputGroupAddon.vue'
+import InputGroupInput from '@/components/ui/InputGroupInput.vue'
 </script>
 
 <template>

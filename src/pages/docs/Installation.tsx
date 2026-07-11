@@ -221,6 +221,12 @@ export function Installation() {
                     its files without hardcoded paths, so they follow whatever your aliases resolve to — no more{' '}
                     <code className="bg-background px-1 border">cannot find module @/components/ui</code>.
                   </p>
+                  <p className="text-muted-foreground mt-2">
+                    Import each component from its own file (BoldKit ships individual{' '}
+                    <code className="bg-background px-1 border">.vue</code> files, not a barrel):
+                  </p>
+                  <pre className="mt-2 text-xs bg-background p-2 border-3 border-foreground overflow-x-auto"><code>{`// ✓  import Button from '@/components/ui/Button.vue'
+// ✗  import Button from '@/components/ui/Button.vue'`}</code></pre>
                 </div>
               )}
             </div>

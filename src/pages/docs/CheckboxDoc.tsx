@@ -9,8 +9,8 @@ import vueSourceCode from '@vue-ui/Checkbox.vue?raw'
 
 const vueUsageCode = `<script setup lang="ts">
 import { ref } from 'vue'
-import { Checkbox } from '@/components/ui'
-import { Label } from '@/components/ui'
+import Checkbox from '@/components/ui/Checkbox.vue'
+import Label from '@/components/ui/Label.vue'
 
 const checked = ref(false)
 </script>

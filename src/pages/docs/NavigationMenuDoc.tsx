@@ -40,14 +40,12 @@ export default function Example() {
 }`
 
 const vueUsageCode = `<script setup lang="ts">
-import {
-  NavigationMenu,
-  NavigationMenuContent,
-  NavigationMenuItem,
-  NavigationMenuLink,
-  NavigationMenuList,
-  NavigationMenuTrigger,
-} from '@/components/ui'
+import NavigationMenu from '@/components/ui/NavigationMenu.vue'
+import NavigationMenuContent from '@/components/ui/NavigationMenuContent.vue'
+import NavigationMenuItem from '@/components/ui/NavigationMenuItem.vue'
+import NavigationMenuLink from '@/components/ui/NavigationMenuLink.vue'
+import NavigationMenuList from '@/components/ui/NavigationMenuList.vue'
+import NavigationMenuTrigger from '@/components/ui/NavigationMenuTrigger.vue'
 </script>
 
 <template>

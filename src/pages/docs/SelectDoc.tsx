@@ -40,13 +40,11 @@ export default function Example() {
 
 
 const vueUsageCode = `<script setup lang="ts">
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from '@/components/ui'
+import Select from '@/components/ui/Select.vue'
+import SelectContent from '@/components/ui/SelectContent.vue'
+import SelectItem from '@/components/ui/SelectItem.vue'
+import SelectTrigger from '@/components/ui/SelectTrigger.vue'
+import SelectValue from '@/components/ui/SelectValue.vue'
 </script>
 
 <template>

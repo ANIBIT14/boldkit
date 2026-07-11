@@ -22,7 +22,9 @@ export default function Example() {
 
 
 const vueUsageCode = `<script setup lang="ts">
-import { Marquee, MarqueeItem, MarqueeSeparator } from '@/components/ui'
+import Marquee from '@/components/ui/Marquee.vue'
+import MarqueeItem from '@/components/ui/MarqueeItem.vue'
+import MarqueeSeparator from '@/components/ui/MarqueeSeparator.vue'
 </script>
 
 <template>
@@ -79,7 +81,9 @@ export function MarqueeDoc() {
 </Marquee>`}
         vueCode={`<script setup lang="ts">
 import { Star, Zap, Heart } from 'lucide-vue-next'
-import { Marquee, MarqueeItem, MarqueeSeparator } from '@/components/ui'
+import Marquee from '@/components/ui/Marquee.vue'
+import MarqueeItem from '@/components/ui/MarqueeItem.vue'
+import MarqueeSeparator from '@/components/ui/MarqueeSeparator.vue'
 </script>
 
 <template>
@@ -178,7 +182,9 @@ import { Marquee, MarqueeItem, MarqueeSeparator } from '@/components/ui'
 </Marquee>`}
         vueCode={`<script setup lang="ts">
 import { Rocket } from 'lucide-vue-next'
-import { Marquee, MarqueeItem, MarqueeSeparator } from '@/components/ui'
+import Marquee from '@/components/ui/Marquee.vue'
+import MarqueeItem from '@/components/ui/MarqueeItem.vue'
+import MarqueeSeparator from '@/components/ui/MarqueeSeparator.vue'
 </script>
 
 <template>

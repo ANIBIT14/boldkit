@@ -18,7 +18,7 @@ export default function Example() {
 }`
 
 const vueUsageCode = `<script setup lang="ts">
-import { GaugeChart } from '@/components/ui'
+import GaugeChart from '@/components/ui/GaugeChart.vue'
 
 const formatValue = (v) => \`\${v}%\`
 </script>

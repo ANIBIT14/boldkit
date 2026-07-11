@@ -26,7 +26,8 @@ export default function Example() {
 
 
 const vueUsageCode = `<script setup lang="ts">
-import { ToggleGroup, ToggleGroupItem } from '@/components/ui'
+import ToggleGroup from '@/components/ui/ToggleGroup.vue'
+import ToggleGroupItem from '@/components/ui/ToggleGroupItem.vue'
 import { AlignLeft, AlignCenter, AlignRight } from 'lucide-vue-next'
 </script>
 

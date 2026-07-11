@@ -47,14 +47,12 @@ export default function Example() {
 }`
 
 const vueUsageCode = `<script setup lang="ts">
-import {
-  Stepper,
-  StepperList,
-  StepperItem,
-  StepperTrigger,
-  StepperSeparator,
-  StepperContent,
-} from '@/components/ui'
+import Stepper from '@/components/ui/Stepper.vue'
+import StepperList from '@/components/ui/StepperList.vue'
+import StepperItem from '@/components/ui/StepperItem.vue'
+import StepperTrigger from '@/components/ui/StepperTrigger.vue'
+import StepperSeparator from '@/components/ui/StepperSeparator.vue'
+import StepperContent from '@/components/ui/StepperContent.vue'
 </script>
 
 <template>

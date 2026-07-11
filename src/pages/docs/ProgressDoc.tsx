@@ -15,7 +15,7 @@ export default function Example() {
 
 const vueUsageCode = `<script setup lang="ts">
 import { ref } from 'vue'
-import { Progress } from '@/components/ui'
+import Progress from '@/components/ui/Progress.vue'
 
 const progress = ref(60)
 </script>

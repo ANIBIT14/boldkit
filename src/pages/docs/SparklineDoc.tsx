@@ -57,13 +57,13 @@ export default function Example() {
 }`
 
 const vueUsageCode = `<script setup lang="ts">
-import { Sparkline } from '@/components/ui'
+import SparklineChart from '@/components/ui/SparklineChart.vue'
 
 const data = [10, 15, 8, 20, 14, 25, 18, 30]
 </script>
 
 <template>
-  <Sparkline :data="data" />
+  <SparklineChart :data="data" />
 </template>`
 
 export function SparklineDoc() {

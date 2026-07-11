@@ -8,8 +8,8 @@ import vueSourceCode from '@vue-ui/Switch.vue?raw'
 
 const vueUsageCode = `<script setup lang="ts">
 import { ref } from 'vue'
-import { Switch } from '@/components/ui'
-import { Label } from '@/components/ui'
+import Switch from '@/components/ui/Switch.vue'
+import Label from '@/components/ui/Label.vue'
 
 const enabled = ref(false)
 </script>
@@ -62,8 +62,8 @@ export function SwitchDoc() {
 </div>`}
         vueCode={`<script setup>
 import { ref } from 'vue'
-import { Switch } from '@/components/ui'
-import { Label } from '@/components/ui'
+import Switch from '@/components/ui/Switch.vue'
+import Label from '@/components/ui/Label.vue'
 
 const notifications = ref(true)
 </script>
@@ -97,8 +97,8 @@ const notifications = ref(true)
 </div>`}
         vueCode={`<script setup>
 import { ref } from 'vue'
-import { Switch } from '@/components/ui'
-import { Label } from '@/components/ui'
+import Switch from '@/components/ui/Switch.vue'
+import Label from '@/components/ui/Label.vue'
 
 const disabledOn = ref(true)
 </script>
@@ -148,8 +148,8 @@ const disabledOn = ref(true)
 </div>`}
         vueCode={`<script setup>
 import { ref } from 'vue'
-import { Switch } from '@/components/ui'
-import { Label } from '@/components/ui'
+import Switch from '@/components/ui/Switch.vue'
+import Label from '@/components/ui/Label.vue'
 
 const marketing = ref(false)
 const security = ref(true)

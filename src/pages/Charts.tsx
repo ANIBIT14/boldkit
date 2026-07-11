@@ -1989,7 +1989,7 @@ export function Charts() {
   config={chartConfig}
 />`}
                 vueCode={`<script setup lang="ts">
-import { DonutChart } from '@/components/ui'
+import DonutChart from '@/components/ui/DonutChart.vue'
 
 const data = [
   { name: 'Chrome', value: 275, fill: 'hsl(var(--primary))' },
@@ -2026,7 +2026,7 @@ const data = [
   centerContent={<DonutChartCenter value="835" label="Total" />}
 />`}
                 vueCode={`<script setup lang="ts">
-import { DonutChart } from '@/components/ui'
+import DonutChart from '@/components/ui/DonutChart.vue'
 
 const data = [
   { name: 'Chrome', value: 275, fill: 'hsl(var(--primary))' },
@@ -2065,7 +2065,7 @@ const data = [
                 trendValue="0%"
                 code={`<DonutChart data={data} config={config} variant="separated" />`}
                 vueCode={`<script setup lang="ts">
-import { DonutChart } from '@/components/ui'
+import DonutChart from '@/components/ui/DonutChart.vue'
 
 const data = [
   { name: 'Desktop', value: 450, fill: 'hsl(var(--primary))' },
@@ -2097,7 +2097,7 @@ const data = [
                 trendValue="-3.2%"
                 code={`<DonutChart data={data} config={config} showLabels="outside" />`}
                 vueCode={`<script setup lang="ts">
-import { DonutChart } from '@/components/ui'
+import DonutChart from '@/components/ui/DonutChart.vue'
 
 const data = [
   { name: 'Q1', value: 250, fill: 'hsl(var(--primary))' },
@@ -2143,7 +2143,7 @@ const data = [
   config={chartConfig}
 />`}
                 vueCode={`<script setup lang="ts">
-import { RadialBarChart } from '@/components/ui'
+import RadialBarChart from '@/components/ui/RadialBarChart.vue'
 
 const data = [
   { name: 'Progress', value: 75 },
@@ -2178,7 +2178,7 @@ const data = [
                 trendValue="+7.8%"
                 code={`<RadialBarChart data={data} config={config} showLegend />`}
                 vueCode={`<script setup lang="ts">
-import { RadialBarChart } from '@/components/ui'
+import RadialBarChart from '@/components/ui/RadialBarChart.vue'
 
 const data = [
   { name: 'Sales', value: 85, fill: 'hsl(var(--success))' },
@@ -2229,7 +2229,7 @@ const data = [
   config={chartConfig}
 />`}
                 vueCode={`<script setup lang="ts">
-import { RadarChart } from '@/components/ui'
+import RadarChart from '@/components/ui/RadarChart.vue'
 
 const data = [
   { subject: 'Math', A: 120, B: 110 },
@@ -2269,7 +2269,7 @@ const data = [
                 trendValue="0%"
                 code={`<RadarChart data={data} dataKeys={keys} variant="filled" />`}
                 vueCode={`<script setup lang="ts">
-import { RadarChart } from '@/components/ui'
+import RadarChart from '@/components/ui/RadarChart.vue'
 
 const data = [
   { subject: 'Speed', value: 80 },
@@ -2309,7 +2309,7 @@ const data = [
                 trendValue="-2.1%"
                 code={`<RadarChart data={data} dataKeys={keys} variant="outlined" />`}
                 vueCode={`<script setup lang="ts">
-import { RadarChart } from '@/components/ui'
+import RadarChart from '@/components/ui/RadarChart.vue'
 
 const data = [
   { subject: 'Jan', sales: 65, target: 80 },
@@ -2356,7 +2356,7 @@ const data = [
                 trendValue="+5%"
                 code={`<GaugeChart value={72} label="Performance" />`}
                 vueCode={`<script setup lang="ts">
-import { GaugeChart } from '@/components/ui'
+import GaugeChart from '@/components/ui/GaugeChart.vue'
 </script>
 
 <template>
@@ -2375,7 +2375,7 @@ import { GaugeChart } from '@/components/ui'
                 trendValue="-15%"
                 code={`<GaugeChart value={25} label="CPU" />`}
                 vueCode={`<script setup lang="ts">
-import { GaugeChart } from '@/components/ui'
+import GaugeChart from '@/components/ui/GaugeChart.vue'
 </script>
 
 <template>
@@ -2394,7 +2394,7 @@ import { GaugeChart } from '@/components/ui'
                 trendValue="+20%"
                 code={`<GaugeChart value={92} label="Score" />`}
                 vueCode={`<script setup lang="ts">
-import { GaugeChart } from '@/components/ui'
+import GaugeChart from '@/components/ui/GaugeChart.vue'
 </script>
 
 <template>
@@ -2421,7 +2421,7 @@ import { GaugeChart } from '@/components/ui'
   label="Temp"
 />`}
                 vueCode={`<script setup lang="ts">
-import { GaugeChart } from '@/components/ui'
+import GaugeChart from '@/components/ui/GaugeChart.vue'
 
 const zones = [
   { from: 0, to: 50, color: 'hsl(var(--info))' },
@@ -2454,7 +2454,7 @@ const zones = [
                 trendValue="+3%"
                 code={`<GaugeChart value={60} size="sm" />`}
                 vueCode={`<script setup lang="ts">
-import { GaugeChart } from '@/components/ui'
+import GaugeChart from '@/components/ui/GaugeChart.vue'
 </script>
 
 <template>
@@ -2473,7 +2473,7 @@ import { GaugeChart } from '@/components/ui'
                 trendValue="+8%"
                 code={`<GaugeChart value={85} size="lg" label="Health" />`}
                 vueCode={`<script setup lang="ts">
-import { GaugeChart } from '@/components/ui'
+import GaugeChart from '@/components/ui/GaugeChart.vue'
 </script>
 
 <template>
@@ -2497,7 +2497,7 @@ import { GaugeChart } from '@/components/ui'
                 trendValue="+12%"
                 code={`<Sparkline data={[10, 25, 15, 30, 20, 35, 28]} type="line" />`}
                 vueCode={`<script setup lang="ts">
-import { SparklineChart } from '@/components/ui'
+import SparklineChart from '@/components/ui/SparklineChart.vue'
 
 const data = [10, 25, 15, 30, 20, 35, 28]
 </script>
@@ -2523,7 +2523,7 @@ const data = [10, 25, 15, 30, 20, 35, 28]
                 trendValue="+8%"
                 code={`<Sparkline data={data} type="area" trend="up" />`}
                 vueCode={`<script setup lang="ts">
-import { SparklineChart } from '@/components/ui'
+import SparklineChart from '@/components/ui/SparklineChart.vue'
 
 const data = [5, 15, 10, 25, 18, 30, 22, 35]
 </script>
@@ -2550,7 +2550,7 @@ const data = [5, 15, 10, 25, 18, 30, 22, 35]
                 trendValue="0%"
                 code={`<Sparkline data={data} type="bar" />`}
                 vueCode={`<script setup lang="ts">
-import { SparklineChart } from '@/components/ui'
+import SparklineChart from '@/components/ui/SparklineChart.vue'
 
 const data = [20, 35, 25, 40, 30, 45, 35]
 </script>
@@ -2576,7 +2576,7 @@ const data = [20, 35, 25, 40, 30, 45, 35]
                 trendValue="+25%"
                 code={`<Sparkline data={data} trend="up" showEndDot />`}
                 vueCode={`<script setup lang="ts">
-import { SparklineChart } from '@/components/ui'
+import SparklineChart from '@/components/ui/SparklineChart.vue'
 
 const data = [10, 12, 15, 14, 18, 22, 25, 30]
 </script>
@@ -2603,7 +2603,7 @@ const data = [10, 12, 15, 14, 18, 22, 25, 30]
                 trendValue="-18%"
                 code={`<Sparkline data={data} trend="down" showEndDot />`}
                 vueCode={`<script setup lang="ts">
-import { SparklineChart } from '@/components/ui'
+import SparklineChart from '@/components/ui/SparklineChart.vue'
 
 const data = [30, 28, 25, 22, 20, 18, 15, 12]
 </script>
@@ -2630,7 +2630,7 @@ const data = [30, 28, 25, 22, 20, 18, 15, 12]
                 trendValue=""
                 code={`<Sparkline data={data} type="area" showEndDot />`}
                 vueCode={`<script setup lang="ts">
-import { SparklineChart } from '@/components/ui'
+import SparklineChart from '@/components/ui/SparklineChart.vue'
 
 const data = [15, 20, 18, 25, 22, 28, 24]
 </script>
@@ -2975,7 +2975,7 @@ const data = [
 ]
 
 <FunnelChart data={data} />` : `<script setup lang="ts">
-import { FunnelChart } from '@/components/ui'
+import FunnelChart from '@/components/ui/FunnelChart.vue'
 
 const data = [
   { name: 'Visitors',  value: 12400 },
@@ -3045,7 +3045,7 @@ const data = [
 ]
 
 <TreemapChart data={data} height={320} />` : `<script setup lang="ts">
-import { TreemapChart } from '@/components/ui'
+import TreemapChart from '@/components/ui/TreemapChart.vue'
 
 const data = [
   { name: 'Engineering', value: 8100 },
@@ -3110,7 +3110,7 @@ const data = [
   ]}
   cellSize={44}
 />` : `<script setup lang="ts">
-import { HeatmapChart } from '@/components/ui'
+import HeatmapChart from '@/components/ui/HeatmapChart.vue'
 
 const rows = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri']
 const cols = ['9am', '12pm', '3pm', '6pm', '9pm']
@@ -3192,7 +3192,7 @@ const data = [
     { source: 'trial',    target: 'purchase', value: 1540 },
   ]}
 />` : `<script setup lang="ts">
-import { SankeyChart } from '@/components/ui'
+import SankeyChart from '@/components/ui/SankeyChart.vue'
 
 const nodes = [
   { id: 'organic',  label: 'Organic' },

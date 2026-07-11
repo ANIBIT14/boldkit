@@ -27,8 +27,9 @@ export default function Example() {
 
 const vueUsageCode = `<script setup lang="ts">
 import { ref } from 'vue'
-import { RadioGroup, RadioGroupItem } from '@/components/ui'
-import { Label } from '@/components/ui'
+import RadioGroup from '@/components/ui/RadioGroup.vue'
+import RadioGroupItem from '@/components/ui/RadioGroupItem.vue'
+import Label from '@/components/ui/Label.vue'
 
 const value = ref('option-one')
 </script>

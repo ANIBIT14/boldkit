@@ -25,8 +25,10 @@ export default function Example() {
 
 
 const vueUsageCode = `<script setup lang="ts">
-import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui'
-import { Button } from '@/components/ui'
+import Popover from '@/components/ui/Popover.vue'
+import PopoverContent from '@/components/ui/PopoverContent.vue'
+import PopoverTrigger from '@/components/ui/PopoverTrigger.vue'
+import Button from '@/components/ui/Button.vue'
 </script>
 
 <template>

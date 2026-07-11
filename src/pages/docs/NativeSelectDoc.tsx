@@ -4,7 +4,7 @@ import sourceCode from '@/components/ui/native-select.tsx?raw'
 import vueSourceCode from '@vue-ui/NativeSelect.vue?raw'
 
 const vueUsageCode = `<script setup lang="ts">
-import { NativeSelect } from '@/components/ui'
+import NativeSelect from '@/components/ui/NativeSelect.vue'
 import { ref } from 'vue'
 
 const fruit = ref('')

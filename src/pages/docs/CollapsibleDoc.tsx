@@ -38,12 +38,10 @@ export default function Example() {
 
 
 const vueUsageCode = `<script setup lang="ts">
-import {
-  Collapsible,
-  CollapsibleContent,
-  CollapsibleTrigger,
-} from '@/components/ui'
-import { Button } from '@/components/ui'
+import Collapsible from '@/components/ui/Collapsible.vue'
+import CollapsibleContent from '@/components/ui/CollapsibleContent.vue'
+import CollapsibleTrigger from '@/components/ui/CollapsibleTrigger.vue'
+import Button from '@/components/ui/Button.vue'
 import { ChevronsUpDown } from 'lucide-vue-next'
 </script>
 

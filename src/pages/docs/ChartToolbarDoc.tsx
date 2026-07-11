@@ -43,7 +43,7 @@ export default function Example() {
 }`
 
 const vueUsageCode = `<script setup lang="ts">
-import { ChartToolbar } from '@/components/ui'
+import ChartToolbar from '@/components/ui/ChartToolbar.vue'
 import VChart from 'vue-echarts'
 import { use } from 'echarts/core'
 import { CanvasRenderer } from 'echarts/renderers'
