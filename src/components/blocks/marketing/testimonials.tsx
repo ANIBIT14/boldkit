@@ -59,7 +59,7 @@ export function TestimonialsGrid({
           {testimonials.map((testimonial) => (
             <Card
               key={`testimonial-${testimonial.author}`}
-              className="bg-card hover:translate-x-[-4px] hover:translate-y-[-4px] hover:shadow-[8px_8px_0px_hsl(var(--shadow-color))] transition-all"
+              className="bg-card hover:translate-x-[-4px] hover:translate-y-[-4px] hover:shadow-[8px_8px_0px_hsl(var(--shadow-color))] transition"
             >
               <CardContent className="p-6 space-y-4">
                 <Quote className="h-8 w-8 text-primary" />
@@ -185,7 +185,7 @@ export function TestimonialsMasonry({
               {column.map((testimonial) => (
                 <Card
                   key={`testimonial-${testimonial.author}`}
-                  className="hover:translate-x-[-4px] hover:translate-y-[-4px] hover:shadow-[8px_8px_0px_hsl(var(--shadow-color))] transition-all"
+                  className="hover:translate-x-[-4px] hover:translate-y-[-4px] hover:shadow-[8px_8px_0px_hsl(var(--shadow-color))] transition"
                 >
                   <CardContent className="p-6 space-y-4">
                     {testimonial.rating && (
@@ -296,7 +296,7 @@ export function TestimonialsWithAvatars({
               aria-pressed={index === activeIndex}
               onClick={() => setActiveIndex(index)}
               className={cn(
-                'transition-all',
+                'transition',
                 index === activeIndex
                   ? 'scale-110'
                   : 'opacity-50 hover:opacity-100'

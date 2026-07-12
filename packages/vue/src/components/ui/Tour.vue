@@ -345,7 +345,7 @@ defineExpose({
             'absolute -right-3 -top-3 border-2 border-foreground bg-background p-1',
             'shadow-[2px_2px_0px_hsl(var(--shadow-color))]',
             'hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none',
-            'transition-all duration-150'
+            'transition duration-150'
           )"
           @click="closeTour"
         >
@@ -373,7 +373,7 @@ defineExpose({
             v-for="(_, i) in steps"
             :key="i"
             :class="cn(
-              'h-2 w-2 border-2 border-foreground transition-all duration-150',
+              'h-2 w-2 border-2 border-foreground transition duration-150',
               i === currentStep ? 'bg-primary scale-110' : 'bg-muted'
             )"
           />

@@ -12,7 +12,7 @@
   "files": [
     {
       "path": "registry/default/components/ui/InputGroup.vue",
-      "content": "<script setup lang=\"ts\">\nimport { cn } from '@/lib/utils'\n\nconst props = defineProps<{\n  class?: string\n}>()\n</script>\n\n<template>\n  <div\n    :class=\"\n      cn(\n        'flex items-stretch border-3 border-foreground bg-background shadow-[4px_4px_0px_hsl(var(--shadow-color))] transition-all focus-within:translate-x-[2px] focus-within:translate-y-[2px] focus-within:shadow-none',\n        props.class\n      )\n    \"\n  >\n    <slot />\n  </div>\n</template>\n",
+      "content": "<script setup lang=\"ts\">\nimport { cn } from '@/lib/utils'\n\nconst props = defineProps<{\n  class?: string\n}>()\n</script>\n\n<template>\n  <div\n    :class=\"\n      cn(\n        'flex items-stretch border-3 border-foreground bg-background shadow-[4px_4px_0px_hsl(var(--shadow-color))] transition focus-within:translate-x-[2px] focus-within:translate-y-[2px] focus-within:shadow-none',\n        props.class\n      )\n    \"\n  >\n    <slot />\n  </div>\n</template>\n",
       "type": "registry:ui"
     },
     {

@@ -17,7 +17,7 @@ export interface DropzoneState {
 }
 
 const dropzoneVariants = cva(
-  'relative flex flex-col items-center justify-center border-3 border-dashed border-foreground transition-all duration-200 cursor-pointer',
+  'relative flex flex-col items-center justify-center border-3 border-dashed border-foreground transition duration-200 cursor-pointer',
   {
     variants: {
       state: {
@@ -253,13 +253,13 @@ provide(DROPZONE_INJECTION_KEY, { reset })
       <div class="flex flex-col items-center gap-3 text-center">
         <div
           :class="cn(
-            'flex items-center justify-center w-16 h-16 border-3 border-foreground bg-muted transition-all duration-200',
+            'flex items-center justify-center w-16 h-16 border-3 border-foreground bg-muted transition duration-200',
             isDragging && 'bg-primary border-primary shadow-[4px_4px_0px_hsl(var(--foreground))] -translate-x-1 -translate-y-1'
           )"
         >
           <Upload
             :class="cn(
-              'h-8 w-8 transition-all duration-200',
+              'h-8 w-8 transition duration-200',
               isDragging ? 'text-primary-foreground animate-bounce' : 'text-foreground'
             )"
           />

@@ -23,7 +23,7 @@
     },
     {
       "path": "registry/default/components/ui/InputOTPSlot.vue",
-      "content": "<script setup lang=\"ts\">\nimport { PinInputInput } from 'reka-ui'\nimport { cn } from '@/lib/utils'\n\ndefineProps<{\n  class?: string\n  index: number\n}>()\n</script>\n\n<template>\n  <PinInputInput\n    :index=\"index\"\n    :class=\"\n      cn(\n        'relative flex h-12 w-12 items-center justify-center border-3 border-foreground bg-background text-sm font-bold uppercase shadow-[4px_4px_0px_hsl(var(--shadow-color))] transition-all duration-200 first:border-l-3 first:rounded-l-none last:rounded-r-none text-center',\n        'focus:z-10 focus:ring-2 focus:ring-ring focus:ring-offset-background focus:translate-x-[4px] focus:translate-y-[4px] focus:shadow-none',\n        $props.class\n      )\n    \"\n  />\n</template>\n",
+      "content": "<script setup lang=\"ts\">\nimport { PinInputInput } from 'reka-ui'\nimport { cn } from '@/lib/utils'\n\ndefineProps<{\n  class?: string\n  index: number\n}>()\n</script>\n\n<template>\n  <PinInputInput\n    :index=\"index\"\n    :class=\"\n      cn(\n        'relative flex h-12 w-12 items-center justify-center border-3 border-foreground bg-background text-sm font-bold uppercase shadow-[4px_4px_0px_hsl(var(--shadow-color))] transition duration-200 first:border-l-3 first:rounded-l-none last:rounded-r-none text-center',\n        'focus:z-10 focus:ring-2 focus:ring-ring focus:ring-offset-background focus:translate-x-[4px] focus:translate-y-[4px] focus:shadow-none',\n        $props.class\n      )\n    \"\n  />\n</template>\n",
       "type": "registry:ui"
     },
     {

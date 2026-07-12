@@ -191,7 +191,7 @@ function getTickCoords(tick: number) {
         :stroke="zone.color"
         :stroke-width="config.strokeWidth"
         stroke-linecap="butt"
-        class="transition-all duration-300"
+        class="transition duration-300"
       />
 
       <!-- Outer border -->

@@ -99,7 +99,7 @@ export function ProfileSettings({
               <button
                 type="button"
                 onClick={handleAvatarClick}
-                className="absolute -bottom-1 -right-1 w-8 h-8 flex items-center justify-center border-2 border-foreground bg-primary text-primary-foreground shadow-[2px_2px_0px_hsl(var(--shadow-color))] hover:shadow-none hover:translate-x-[2px] hover:translate-y-[2px] transition-all"
+                className="absolute -bottom-1 -right-1 w-8 h-8 flex items-center justify-center border-2 border-foreground bg-primary text-primary-foreground shadow-[2px_2px_0px_hsl(var(--shadow-color))] hover:shadow-none hover:translate-x-[2px] hover:translate-y-[2px] transition"
               >
                 <Upload className="h-4 w-4" />
               </button>
@@ -493,7 +493,7 @@ export function AppearanceSettings({
                 type="button"
                 onClick={() => onThemeChange?.(value as 'light' | 'dark' | 'system')}
                 className={cn(
-                  'flex flex-col items-center gap-2 p-4 border-3 border-foreground transition-all',
+                  'flex flex-col items-center gap-2 p-4 border-3 border-foreground transition',
                   theme === value
                     ? 'bg-primary text-primary-foreground shadow-[4px_4px_0px_hsl(var(--shadow-color))]'
                     : 'bg-card hover:bg-muted'
@@ -518,7 +518,7 @@ export function AppearanceSettings({
                 type="button"
                 onClick={() => onAccentColorChange?.(color.value)}
                 className={cn(
-                  'w-10 h-10 border-3 border-foreground transition-all',
+                  'w-10 h-10 border-3 border-foreground transition',
                   accentColor === color.value &&
                     'ring-2 ring-offset-2 ring-foreground'
                 )}

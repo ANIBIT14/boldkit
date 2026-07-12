@@ -460,7 +460,7 @@ export function InvoiceSummary({
   return (
     <div
       className={cn(
-        'border-3 border-foreground p-4 bg-card shadow-[4px_4px_0px_hsl(var(--shadow-color))] hover:shadow-[6px_6px_0px_hsl(var(--shadow-color))] hover:translate-x-[-2px] hover:translate-y-[-2px] transition-all',
+        'border-3 border-foreground p-4 bg-card shadow-[4px_4px_0px_hsl(var(--shadow-color))] hover:shadow-[6px_6px_0px_hsl(var(--shadow-color))] hover:translate-x-[-2px] hover:translate-y-[-2px] transition',
         className
       )}
     >

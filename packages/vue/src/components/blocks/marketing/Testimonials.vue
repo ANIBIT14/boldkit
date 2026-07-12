@@ -62,7 +62,7 @@ const getInitials = (name: string) => {
         <Card
           v-for="testimonial in testimonials"
           :key="testimonial.author"
-          class="group hover:translate-x-[-4px] hover:translate-y-[-4px] hover:shadow-[8px_8px_0px_hsl(var(--shadow-color))] transition-all"
+          class="group hover:translate-x-[-4px] hover:translate-y-[-4px] hover:shadow-[8px_8px_0px_hsl(var(--shadow-color))] transition"
         >
           <CardContent class="pt-6">
             <Quote class="h-8 w-8 text-primary mb-4" />
@@ -141,7 +141,7 @@ const getInitials = (name: string) => {
         <Card
           v-for="testimonial in testimonials"
           :key="testimonial.author"
-          class="break-inside-avoid group hover:translate-x-[-4px] hover:translate-y-[-4px] hover:shadow-[8px_8px_0px_hsl(var(--shadow-color))] transition-all"
+          class="break-inside-avoid group hover:translate-x-[-4px] hover:translate-y-[-4px] hover:shadow-[8px_8px_0px_hsl(var(--shadow-color))] transition"
         >
           <CardContent class="pt-6">
             <div v-if="testimonial.rating" class="flex gap-1 mb-4">
@@ -207,7 +207,7 @@ const getInitials = (name: string) => {
           :key="`avatar-${testimonial.author}`"
           :aria-label="`View testimonial from ${testimonial.author}`"
           :aria-pressed="index === activeIndex"
-          class="transition-all"
+          class="transition"
           :class="index === activeIndex ? 'scale-110' : 'opacity-50 hover:opacity-100'"
           @click="activeIndex = index"
         >

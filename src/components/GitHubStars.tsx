@@ -69,7 +69,7 @@ export function GitHubStars() {
       target="_blank"
       rel="noopener noreferrer"
       aria-label={`View BoldKit on GitHub (${stars !== null ? stars.toLocaleString() : '—'} stars)`}
-      className="inline-flex items-center gap-1.5 border-3 border-foreground bg-background px-3 py-1.5 font-bold hover:bg-warning hover:translate-x-[-2px] hover:translate-y-[-2px] hover:shadow-[4px_4px_0px_hsl(var(--foreground))] transition-all touch-manipulation"
+      className="inline-flex items-center gap-1.5 border-3 border-foreground bg-background px-3 py-1.5 font-bold hover:bg-warning hover:translate-x-[-2px] hover:translate-y-[-2px] hover:shadow-[4px_4px_0px_hsl(var(--foreground))] transition touch-manipulation"
     >
       <Star className="h-4 w-4 fill-warning stroke-foreground" />
       <span className="text-sm">

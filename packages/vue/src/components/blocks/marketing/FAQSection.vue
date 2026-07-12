@@ -139,7 +139,7 @@ const filteredFaqs = computed(() =>
           v-for="category in categories"
           :key="category"
           :class="cn(
-            'border-3 border-foreground px-4 py-2 font-bold uppercase text-sm transition-all',
+            'border-3 border-foreground px-4 py-2 font-bold uppercase text-sm transition',
             activeCategory === category
               ? 'bg-primary text-primary-foreground shadow-[4px_4px_0px_hsl(var(--shadow-color))]'
               : 'bg-card hover:bg-muted'

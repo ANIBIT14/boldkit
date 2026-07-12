@@ -410,7 +410,7 @@ function SocialIcon({
       target="_blank"
       rel="noopener noreferrer"
       className={cn(
-        'flex items-center justify-center border-2 border-foreground bg-muted hover:bg-primary hover:text-primary-foreground transition-all hover:translate-x-[-2px] hover:translate-y-[-2px] hover:shadow-[2px_2px_0px_hsl(var(--shadow-color))]',
+        'flex items-center justify-center border-2 border-foreground bg-muted hover:bg-primary hover:text-primary-foreground transition hover:translate-x-[-2px] hover:translate-y-[-2px] hover:shadow-[2px_2px_0px_hsl(var(--shadow-color))]',
         sizeClasses
       )}
     >

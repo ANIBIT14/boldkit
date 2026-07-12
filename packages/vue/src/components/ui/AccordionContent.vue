@@ -9,7 +9,7 @@ defineProps<{
 
 <template>
   <AccordionContentPrimitive
-    class="overflow-hidden text-sm transition-all data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down border-t-3 border-foreground"
+    class="overflow-hidden text-sm transition data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down border-t-3 border-foreground"
   >
     <div :class="cn('p-4', $props.class)">
       <slot />

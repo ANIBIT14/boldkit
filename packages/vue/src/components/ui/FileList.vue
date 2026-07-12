@@ -73,7 +73,7 @@ function handleRemove(file: File) {
       <button
         v-else
         type="button"
-        class="flex items-center justify-center w-8 h-8 border-3 border-foreground bg-background hover:bg-destructive hover:text-destructive-foreground hover:shadow-[2px_2px_0px_hsl(var(--foreground))] hover:-translate-x-0.5 hover:-translate-y-0.5 transition-all"
+        class="flex items-center justify-center w-8 h-8 border-3 border-foreground bg-background hover:bg-destructive hover:text-destructive-foreground hover:shadow-[2px_2px_0px_hsl(var(--foreground))] hover:-translate-x-0.5 hover:-translate-y-0.5 transition"
         @click.stop="handleRemove(item.file)"
       >
         <X class="h-4 w-4" />

@@ -161,7 +161,7 @@ SidebarProvider.displayName = 'SidebarProvider'
 
 // Main Sidebar
 const sidebarVariants = cva(
-  'relative flex h-full flex-col border-r-3 border-foreground bg-background transition-all duration-300 ease-out',
+  'relative flex h-full flex-col border-r-3 border-foreground bg-background transition duration-300 ease-out',
   {
     variants: {
       collapsible: {
@@ -334,7 +334,7 @@ SidebarGroupLabel.displayName = 'SidebarGroupLabel'
 
 // Sidebar Item
 const sidebarItemVariants = cva(
-  'flex w-full items-center gap-3 px-3 py-2 text-sm transition-all duration-150',
+  'flex w-full items-center gap-3 px-3 py-2 text-sm transition duration-150',
   {
     variants: {
       variant: {

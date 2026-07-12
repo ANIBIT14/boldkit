@@ -321,7 +321,7 @@ export function ContactWithCards({
             <Card
               key={method.title}
               className={cn(
-                'hover:translate-x-[-4px] hover:translate-y-[-4px] hover:shadow-[8px_8px_0px_hsl(var(--shadow-color))] transition-all',
+                'hover:translate-x-[-4px] hover:translate-y-[-4px] hover:shadow-[8px_8px_0px_hsl(var(--shadow-color))] transition',
                 cardColors[index % 3]
               )}
             >

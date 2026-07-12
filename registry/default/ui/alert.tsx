@@ -3,7 +3,7 @@ import { cva, type VariantProps } from 'class-variance-authority'
 import { cn } from '@/lib/utils'
 
 const alertVariants = cva(
-  'relative w-full border-3 border-foreground p-4 shadow-[4px_4px_0px_hsl(var(--shadow-color))] ease-out animate-in fade-in-0 slide-in-from-top-2 duration-300 transition-all [&>svg~*:not([data-alert-action])]:pl-8 [&>svg~[data-alert-action]]:ml-8 [&>svg+div]:translate-y-[-3px] [&>svg]:absolute [&>svg]:left-4 [&>svg]:top-4 [&>svg]:text-foreground',
+  'relative w-full border-3 border-foreground p-4 shadow-[4px_4px_0px_hsl(var(--shadow-color))] ease-out animate-in fade-in-0 slide-in-from-top-2 duration-300 transition [&>svg~*:not([data-alert-action])]:pl-8 [&>svg~[data-alert-action]]:ml-8 [&>svg+div]:translate-y-[-3px] [&>svg]:absolute [&>svg]:left-4 [&>svg]:top-4 [&>svg]:text-foreground',
   {
     variants: {
       variant: {
@@ -76,7 +76,7 @@ const AlertAction = React.forwardRef<HTMLButtonElement, AlertActionProps>(
         // typography
         'px-4 py-1 text-xs font-bold uppercase tracking-wide',
         // transitions
-        'transition-all duration-150',
+        'transition duration-150',
         // hover
         'hover:opacity-100 hover:bg-current/10',
         // active

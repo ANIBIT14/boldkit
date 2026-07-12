@@ -228,7 +228,7 @@ export function Header() {
                       to={item.href}
                       onClick={() => setMobileMenuOpen(false)}
                       className={cn(
-                        'flex items-center gap-3 px-3 py-3 font-bold text-base border-3 transition-all duration-100',
+                        'flex items-center gap-3 px-3 py-3 font-bold text-base border-3 transition duration-100',
                         isActive
                           ? 'border-foreground bg-primary text-primary-foreground shadow-[3px_3px_0px_hsl(var(--foreground))]'
                           : 'border-transparent hover:border-foreground hover:bg-muted hover:shadow-[3px_3px_0px_hsl(var(--foreground))] hover:translate-x-[-2px] hover:translate-y-[-2px]'
@@ -255,7 +255,7 @@ export function Header() {
                 href="https://github.com/ANIBIT14/boldkit"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-3 px-3 py-3 font-bold text-base border-3 border-transparent hover:border-foreground hover:bg-muted hover:shadow-[3px_3px_0px_hsl(var(--foreground))] hover:translate-x-[-2px] hover:translate-y-[-2px] transition-all duration-100"
+                className="flex items-center gap-3 px-3 py-3 font-bold text-base border-3 border-transparent hover:border-foreground hover:bg-muted hover:shadow-[3px_3px_0px_hsl(var(--foreground))] hover:translate-x-[-2px] hover:translate-y-[-2px] transition duration-100"
               >
                 <Github className="h-4 w-4 shrink-0" />
                 <span>GitHub</span>

@@ -209,7 +209,7 @@ const GaugeChart = React.forwardRef<HTMLDivElement, GaugeChartProps>(
               stroke={zone.color}
               strokeWidth={config.strokeWidth}
               strokeLinecap="butt"
-              className="transition-all duration-300"
+              className="transition duration-300"
             />
           ))}
 

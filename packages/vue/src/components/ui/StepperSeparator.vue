@@ -25,7 +25,7 @@ const isCompleted = computed(() => {
 <template>
   <div
     :class="cn(
-      'transition-all duration-200',
+      'transition duration-200',
       stepperContext.orientation === 'horizontal'
         ? 'h-[3px] flex-1 min-w-8 mx-2'
         : 'w-[3px] min-h-8 my-2 ml-5',

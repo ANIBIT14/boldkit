@@ -4,7 +4,7 @@ import { cva, type VariantProps } from 'class-variance-authority'
 import { cn } from '@/lib/utils'
 import { TIMELINE_INJECTION_KEY, type TimelineContext } from './Timeline.vue'
 
-const timelineConnectorVariants = cva('transition-all duration-200', {
+const timelineConnectorVariants = cva('transition duration-200', {
   variants: {
     status: {
       completed: 'bg-foreground',

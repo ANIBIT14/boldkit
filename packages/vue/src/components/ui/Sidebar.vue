@@ -9,7 +9,7 @@ import SheetContent from './SheetContent.vue'
 const SIDEBAR_WIDTH_MOBILE = '18rem'
 
 const sidebarVariants = cva(
-  'relative flex h-full flex-col border-r-3 border-foreground bg-background transition-all duration-300 ease-out',
+  'relative flex h-full flex-col border-r-3 border-foreground bg-background transition duration-300 ease-out',
   {
     variants: {
       collapsible: {

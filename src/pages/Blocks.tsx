@@ -643,7 +643,7 @@ function BlockCard({ block, framework, index }: { block: BlockInfo; framework: s
   const accentClass = accentColors[index % accentColors.length]
 
   return (
-    <article className="group border-3 border-foreground bg-card shadow-[4px_4px_0px_hsl(var(--shadow-color))] hover:translate-x-[-3px] hover:translate-y-[-3px] hover:shadow-[7px_7px_0px_hsl(var(--shadow-color))] transition-all duration-150 flex flex-col overflow-hidden">
+    <article className="group border-3 border-foreground bg-card shadow-[4px_4px_0px_hsl(var(--shadow-color))] hover:translate-x-[-3px] hover:translate-y-[-3px] hover:shadow-[7px_7px_0px_hsl(var(--shadow-color))] transition duration-150 flex flex-col overflow-hidden">
       {/* Preview */}
       <BlockPreview type={block.previewType} icon={Icon} />
 

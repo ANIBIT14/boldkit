@@ -245,7 +245,7 @@ onUnmounted(() => {
               @click="handlePresetClick(preset)"
               :class="
                 cn(
-                  'text-left text-sm font-bold border-3 border-foreground bg-background transition-all duration-150 focus-visible:outline-none',
+                  'text-left text-sm font-bold border-3 border-foreground bg-background transition duration-150 focus-visible:outline-none',
                   isMobile
                     ? 'px-2 py-1 text-xs shadow-[2px_2px_0px_hsl(var(--shadow-color))] hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none focus-visible:translate-x-[2px] focus-visible:translate-y-[2px] focus-visible:shadow-none'
                     : 'w-full px-3 py-2 shadow-[3px_3px_0px_hsl(var(--shadow-color))] hover:translate-x-[3px] hover:translate-y-[3px] hover:shadow-none focus-visible:translate-x-[3px] focus-visible:translate-y-[3px] focus-visible:shadow-none',

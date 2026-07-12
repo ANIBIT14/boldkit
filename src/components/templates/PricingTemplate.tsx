@@ -34,7 +34,7 @@ function PricingTier({ name, price, yearlyPrice, description, features, popular,
 
   return (
     <Card
-      className={`relative transition-all duration-300 ${
+      className={`relative transition duration-300 ${
         popular
           ? 'border-primary bg-primary/5 lg:scale-105 lg:-translate-y-2 shadow-[8px_8px_0px_hsl(var(--primary))]'
           : ''
@@ -241,7 +241,7 @@ export function PricingTemplate() {
       {/* Floating Theme Toggle */}
       <button
         onClick={handleThemeToggle}
-        className="fixed bottom-6 right-6 z-[9999] h-14 w-14 rounded-full border-4 border-foreground bg-background shadow-[4px_4px_0px_hsl(var(--foreground))] flex items-center justify-center hover:translate-x-[-2px] hover:translate-y-[-2px] hover:shadow-[6px_6px_0px_hsl(var(--foreground))] transition-all"
+        className="fixed bottom-6 right-6 z-[9999] h-14 w-14 rounded-full border-4 border-foreground bg-background shadow-[4px_4px_0px_hsl(var(--foreground))] flex items-center justify-center hover:translate-x-[-2px] hover:translate-y-[-2px] hover:shadow-[6px_6px_0px_hsl(var(--foreground))] transition"
         aria-label="Toggle theme"
       >
         {resolvedTheme === 'dark' ? <Sun className="h-6 w-6" /> : <Moon className="h-6 w-6" />}

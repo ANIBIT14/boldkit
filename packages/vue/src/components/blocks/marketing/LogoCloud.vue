@@ -140,7 +140,7 @@ const gridCols: Record<number, string> = {
         <div
           v-for="logo in logos"
           :key="`logo-${logo.name}`"
-          class="border-3 border-foreground bg-card p-6 flex items-center justify-center h-24 hover:shadow-[4px_4px_0px_hsl(var(--shadow-color))] hover:translate-x-[-2px] hover:translate-y-[-2px] transition-all cursor-pointer"
+          class="border-3 border-foreground bg-card p-6 flex items-center justify-center h-24 hover:shadow-[4px_4px_0px_hsl(var(--shadow-color))] hover:translate-x-[-2px] hover:translate-y-[-2px] transition cursor-pointer"
         >
           <img
             v-if="typeof logo.logo === 'string'"
@@ -190,7 +190,7 @@ const gridCols: Record<number, string> = {
               v-if="typeof logo.logo === 'string'"
               :src="logo.logo"
               :alt="logo.name"
-              class="h-8 w-auto object-contain grayscale hover:grayscale-0 transition-all"
+              class="h-8 w-auto object-contain grayscale hover:grayscale-0 transition"
             />
             <component v-else :is="logo.logo" />
           </div>

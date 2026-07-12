@@ -127,7 +127,7 @@ function isSectionOpen(title: string) {
     <header class="sticky top-0 z-50 bg-background border-b-3 border-foreground h-13 flex items-center gap-3 px-4">
       <!-- Mobile toggle -->
       <button
-        class="lg:hidden p-1.5 border-2 border-foreground hover:bg-foreground hover:text-background transition-all"
+        class="lg:hidden p-1.5 border-2 border-foreground hover:bg-foreground hover:text-background transition"
         @click="sidebarOpen = !sidebarOpen"
         :aria-label="sidebarOpen ? 'Close menu' : 'Open menu'"
       >
@@ -137,7 +137,7 @@ function isSectionOpen(title: string) {
 
       <!-- Logo -->
       <a href="/" class="flex items-center gap-2 flex-shrink-0 group">
-        <div class="w-7 h-7 bg-primary border-2 border-foreground flex items-center justify-center shadow-[2px_2px_0px_hsl(var(--shadow-color))] group-hover:translate-x-[-1px] group-hover:translate-y-[-1px] group-hover:shadow-[3px_3px_0px_hsl(var(--shadow-color))] transition-all duration-100">
+        <div class="w-7 h-7 bg-primary border-2 border-foreground flex items-center justify-center shadow-[2px_2px_0px_hsl(var(--shadow-color))] group-hover:translate-x-[-1px] group-hover:translate-y-[-1px] group-hover:shadow-[3px_3px_0px_hsl(var(--shadow-color))] transition duration-100">
           <BookOpen class="h-3.5 w-3.5 text-primary-foreground" />
         </div>
         <div class="hidden sm:flex items-baseline gap-1.5">
@@ -163,7 +163,7 @@ function isSectionOpen(title: string) {
           <span class="text-[10px] font-black uppercase tracking-widest text-primary">3.0</span>
         </div>
         <button
-          class="p-1.5 border-2 border-foreground hover:bg-foreground hover:text-background transition-all"
+          class="p-1.5 border-2 border-foreground hover:bg-foreground hover:text-background transition"
           aria-label="Toggle dark mode"
           @click="dark = !dark"
         >
@@ -174,7 +174,7 @@ function isSectionOpen(title: string) {
           href="https://github.com/ANIBIT14/boldkit"
           target="_blank"
           rel="noopener noreferrer"
-          class="p-1.5 border-2 border-foreground hover:bg-foreground hover:text-background transition-all"
+          class="p-1.5 border-2 border-foreground hover:bg-foreground hover:text-background transition"
           aria-label="GitHub"
         >
           <Github class="h-3.5 w-3.5" />
@@ -225,7 +225,7 @@ function isSectionOpen(title: string) {
                   <a
                     :href="item.href"
                     :class="[
-                      'flex items-center gap-2 px-3 py-[5px] text-sm transition-all duration-100 border-l-2',
+                      'flex items-center gap-2 px-3 py-[5px] text-sm transition duration-100 border-l-2',
                       item.active
                         ? 'border-primary bg-primary/10 font-bold text-foreground'
                         : 'border-transparent text-muted-foreground hover:text-foreground hover:border-foreground/20 hover:bg-muted/40',
@@ -286,7 +286,7 @@ function isSectionOpen(title: string) {
               <div
                 v-for="card in OVERVIEW_CARDS"
                 :key="card.title"
-                class="flex items-start gap-3 p-3.5 border-3 border-foreground shadow-[3px_3px_0px_hsl(var(--shadow-color))] hover:translate-x-[-2px] hover:translate-y-[-2px] hover:shadow-[5px_5px_0px_hsl(var(--shadow-color))] transition-all duration-100 cursor-default"
+                class="flex items-start gap-3 p-3.5 border-3 border-foreground shadow-[3px_3px_0px_hsl(var(--shadow-color))] hover:translate-x-[-2px] hover:translate-y-[-2px] hover:shadow-[5px_5px_0px_hsl(var(--shadow-color))] transition duration-100 cursor-default"
               >
                 <div :class="['p-1.5 border-2 border-foreground flex-shrink-0', card.color]">
                   <Layers class="h-4 w-4" />
@@ -317,7 +317,7 @@ function isSectionOpen(title: string) {
                   <span class="text-[10px] font-mono font-bold text-background/50 uppercase tracking-[0.15em] ml-1">bash</span>
                 </div>
                 <button
-                  :class="['flex items-center gap-1.5 text-[10px] font-mono font-bold px-2 py-0.5 transition-all duration-100 border', copiedCode === 'npx shadcn-vue@latest add https://boldkit.dev/r/vue/button.json' ? 'bg-success text-success-foreground border-success' : 'border-background/30 text-background/70 hover:text-background hover:border-background/60']"
+                  :class="['flex items-center gap-1.5 text-[10px] font-mono font-bold px-2 py-0.5 transition duration-100 border', copiedCode === 'npx shadcn-vue@latest add https://boldkit.dev/r/vue/button.json' ? 'bg-success text-success-foreground border-success' : 'border-background/30 text-background/70 hover:text-background hover:border-background/60']"
                   @click="copyCode('npx shadcn-vue@latest add https://boldkit.dev/r/vue/button.json')"
                 >
                   <Check v-if="copiedCode === 'npx shadcn-vue@latest add https://boldkit.dev/r/vue/button.json'" class="h-2.5 w-2.5" />

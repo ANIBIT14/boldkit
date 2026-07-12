@@ -73,7 +73,7 @@ TimelineItem.displayName = 'TimelineItem'
 
 // Timeline Dot
 const timelineDotVariants = cva(
-  'relative z-10 flex items-center justify-center border-3 border-foreground transition-all duration-200',
+  'relative z-10 flex items-center justify-center border-3 border-foreground transition duration-200',
   {
     variants: {
       status: {
@@ -116,7 +116,7 @@ const TimelineDot = React.forwardRef<HTMLDivElement, TimelineDotProps>(
 TimelineDot.displayName = 'TimelineDot'
 
 // Timeline Connector
-const timelineConnectorVariants = cva('transition-all duration-200', {
+const timelineConnectorVariants = cva('transition duration-200', {
   variants: {
     status: {
       completed: 'bg-foreground',

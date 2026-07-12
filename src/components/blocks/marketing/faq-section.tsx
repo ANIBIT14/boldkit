@@ -61,7 +61,7 @@ export function FAQAccordion({
             <AccordionItem
               key={item.question}
               value={`item-${index}`}
-              className="border-3 border-foreground bg-card shadow-[4px_4px_0px_hsl(var(--shadow-color))] data-[state=open]:shadow-[6px_6px_0px_hsl(var(--shadow-color))] data-[state=open]:translate-x-[-2px] data-[state=open]:translate-y-[-2px] transition-all"
+              className="border-3 border-foreground bg-card shadow-[4px_4px_0px_hsl(var(--shadow-color))] data-[state=open]:shadow-[6px_6px_0px_hsl(var(--shadow-color))] data-[state=open]:translate-x-[-2px] data-[state=open]:translate-y-[-2px] transition"
             >
               <AccordionTrigger className="px-6 py-4 font-bold uppercase tracking-wide hover:no-underline">
                 {item.question}

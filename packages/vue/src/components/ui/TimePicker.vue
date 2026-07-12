@@ -220,7 +220,7 @@ const periods: readonly ('AM' | 'PM')[] = ['AM', 'PM']
                 :class="
                   cn(
                     'w-full px-2 py-1.5 text-center text-sm',
-                    'transition-all duration-150 ease-out',
+                    'transition duration-150 ease-out',
                     'hover:bg-muted hover:scale-105',
                     'focus:outline-none focus:bg-muted',
                     selectedHour === hour &&
@@ -260,7 +260,7 @@ const periods: readonly ('AM' | 'PM')[] = ['AM', 'PM']
                 :class="
                   cn(
                     'w-full px-2 py-1.5 text-center text-sm',
-                    'transition-all duration-150 ease-out',
+                    'transition duration-150 ease-out',
                     'hover:bg-muted hover:scale-105',
                     'focus:outline-none focus:bg-muted',
                     selectedMinute === minute &&
@@ -294,7 +294,7 @@ const periods: readonly ('AM' | 'PM')[] = ['AM', 'PM']
                 :class="
                   cn(
                     'w-full px-2 py-1.5 text-center text-sm',
-                    'transition-all duration-150 ease-out',
+                    'transition duration-150 ease-out',
                     'hover:bg-muted hover:scale-105',
                     'focus:outline-none focus:bg-muted',
                     selectedSecond === second &&
@@ -325,7 +325,7 @@ const periods: readonly ('AM' | 'PM')[] = ['AM', 'PM']
               :class="
                 cn(
                   'w-full px-2 py-3 text-center text-sm font-bold',
-                  'transition-all duration-150 ease-out',
+                  'transition duration-150 ease-out',
                   'hover:bg-muted hover:scale-105',
                   'focus:outline-none focus:bg-muted',
                   selectedPeriod === period &&

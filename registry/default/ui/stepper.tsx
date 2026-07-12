@@ -24,7 +24,7 @@ function useStepperContext() {
 
 // Step variants
 const stepVariants = cva(
-  'flex items-center justify-center border-3 border-foreground font-bold transition-all duration-200',
+  'flex items-center justify-center border-3 border-foreground font-bold transition duration-200',
   {
     variants: {
       state: {
@@ -228,7 +228,7 @@ const StepperSeparator = React.forwardRef<HTMLDivElement, StepperSeparatorProps>
       <div
         ref={ref}
         className={cn(
-          'transition-all duration-200',
+          'transition duration-200',
           orientation === 'horizontal'
             ? 'h-[3px] flex-1 min-w-8 mx-2'
             : 'w-[3px] min-h-8 my-2 ml-5',
@@ -333,7 +333,7 @@ const StepperActions = React.forwardRef<HTMLDivElement, StepperActionsProps>(
                 'bg-muted shadow-[4px_4px_0px_hsl(var(--shadow-color))]',
                 'hover:translate-x-[4px] hover:translate-y-[4px] hover:shadow-none',
                 'disabled:opacity-50 disabled:pointer-events-none',
-                'transition-all duration-200'
+                'transition duration-200'
               )}
             >
               {prevLabel}
@@ -345,7 +345,7 @@ const StepperActions = React.forwardRef<HTMLDivElement, StepperActionsProps>(
                 'px-4 py-2 border-3 border-foreground font-bold uppercase text-sm',
                 'bg-primary text-primary-foreground shadow-[4px_4px_0px_hsl(var(--shadow-color))]',
                 'hover:translate-x-[4px] hover:translate-y-[4px] hover:shadow-none',
-                'transition-all duration-200'
+                'transition duration-200'
               )}
             >
               {isLast ? completeLabel : nextLabel}

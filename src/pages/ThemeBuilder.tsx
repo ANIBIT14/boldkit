@@ -603,7 +603,7 @@ export function ThemeBuilder({ embedded = false }: ThemeBuilderProps) {
                     <button
                       key={preset.name}
                       onClick={() => applyPreset(preset)}
-                      className="group flex flex-col border-2 border-foreground hover:shadow-[3px_3px_0px_hsl(var(--foreground))] hover:-translate-x-[1px] hover:-translate-y-[1px] transition-all duration-100 text-left overflow-hidden"
+                      className="group flex flex-col border-2 border-foreground hover:shadow-[3px_3px_0px_hsl(var(--foreground))] hover:-translate-x-[1px] hover:-translate-y-[1px] transition duration-100 text-left overflow-hidden"
                     >
                       {/* Color strip */}
                       <div className="flex w-full h-5">

@@ -3,7 +3,7 @@ import { cva, type VariantProps } from 'class-variance-authority'
 import { cn } from '@/lib/utils'
 
 const timelineDotVariants = cva(
-  'relative z-10 flex items-center justify-center border-3 border-foreground transition-all duration-200',
+  'relative z-10 flex items-center justify-center border-3 border-foreground transition duration-200',
   {
     variants: {
       status: {

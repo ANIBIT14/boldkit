@@ -17,12 +17,12 @@
     },
     {
       "path": "registry/default/components/ui/CollapsibleTrigger.vue",
-      "content": "<script setup lang=\"ts\">\nimport { CollapsibleTrigger as CollapsibleTriggerPrimitive } from 'reka-ui'\nimport { cn } from '@/lib/utils'\n\ndefineProps<{\n  class?: string\n}>()\n</script>\n\n<template>\n  <CollapsibleTriggerPrimitive\n    :class=\"cn('transition-all duration-150 [&[data-state=open]>svg]:rotate-180', $props.class)\"\n  >\n    <slot />\n  </CollapsibleTriggerPrimitive>\n</template>\n",
+      "content": "<script setup lang=\"ts\">\nimport { CollapsibleTrigger as CollapsibleTriggerPrimitive } from 'reka-ui'\nimport { cn } from '@/lib/utils'\n\ndefineProps<{\n  class?: string\n}>()\n</script>\n\n<template>\n  <CollapsibleTriggerPrimitive\n    :class=\"cn('transition duration-150 [&[data-state=open]>svg]:rotate-180', $props.class)\"\n  >\n    <slot />\n  </CollapsibleTriggerPrimitive>\n</template>\n",
       "type": "registry:ui"
     },
     {
       "path": "registry/default/components/ui/CollapsibleContent.vue",
-      "content": "<script setup lang=\"ts\">\nimport { CollapsibleContent as CollapsibleContentPrimitive } from 'reka-ui'\nimport { cn } from '@/lib/utils'\n\ndefineProps<{\n  class?: string\n}>()\n</script>\n\n<template>\n  <CollapsibleContentPrimitive\n    :class=\"\n      cn(\n        'overflow-hidden transition-all data-[state=closed]:animate-collapsible-up data-[state=open]:animate-collapsible-down',\n        $props.class\n      )\n    \"\n  >\n    <slot />\n  </CollapsibleContentPrimitive>\n</template>\n",
+      "content": "<script setup lang=\"ts\">\nimport { CollapsibleContent as CollapsibleContentPrimitive } from 'reka-ui'\nimport { cn } from '@/lib/utils'\n\ndefineProps<{\n  class?: string\n}>()\n</script>\n\n<template>\n  <CollapsibleContentPrimitive\n    :class=\"\n      cn(\n        'overflow-hidden transition data-[state=closed]:animate-collapsible-up data-[state=open]:animate-collapsible-down',\n        $props.class\n      )\n    \"\n  >\n    <slot />\n  </CollapsibleContentPrimitive>\n</template>\n",
       "type": "registry:ui"
     }
   ]

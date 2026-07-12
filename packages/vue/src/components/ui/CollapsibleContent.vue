@@ -11,7 +11,7 @@ defineProps<{
   <CollapsibleContentPrimitive
     :class="
       cn(
-        'overflow-hidden transition-all data-[state=closed]:animate-collapsible-up data-[state=open]:animate-collapsible-down',
+        'overflow-hidden transition data-[state=closed]:animate-collapsible-up data-[state=open]:animate-collapsible-down',
         $props.class
       )
     "

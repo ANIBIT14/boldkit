@@ -285,7 +285,7 @@ const CarouselDots = React.forwardRef<
           type="button"
           onClick={() => scrollTo(index)}
           className={cn(
-            'h-3 w-3 border-2 border-foreground transition-all duration-200',
+            'h-3 w-3 border-2 border-foreground transition duration-200',
             index === selectedIndex
               ? 'bg-primary scale-110 shadow-[2px_2px_0px_hsl(var(--shadow-color))]'
               : 'bg-muted hover:bg-muted/80'

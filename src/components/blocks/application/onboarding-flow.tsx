@@ -94,7 +94,7 @@ export function OnboardingWizard({
               aria-label={`Step ${index + 1} of ${steps.length}: ${step.title}`}
               aria-current={index === currentStep ? 'step' : undefined}
               className={cn(
-                'w-10 h-10 flex items-center justify-center border-3 border-foreground font-bold transition-all',
+                'w-10 h-10 flex items-center justify-center border-3 border-foreground font-bold transition',
                 index < currentStep
                   ? 'bg-success text-success-foreground shadow-[4px_4px_0px_hsl(var(--shadow-color))]'
                   : index === currentStep
@@ -388,7 +388,7 @@ export function ProfileSetup({
                   type="button"
                   onClick={() => setFormData({ ...formData, role: role.value })}
                   className={cn(
-                    'p-2 text-sm border-2 border-foreground font-medium transition-all',
+                    'p-2 text-sm border-2 border-foreground font-medium transition',
                     formData.role === role.value
                       ? 'bg-primary text-primary-foreground shadow-[3px_3px_0px_hsl(var(--shadow-color))]'
                       : 'bg-card hover:bg-muted'
@@ -412,7 +412,7 @@ export function ProfileSetup({
                   type="button"
                   onClick={() => toggleInterest(interest.value)}
                   className={cn(
-                    'p-2 text-sm border-2 border-foreground font-medium transition-all flex items-center gap-2',
+                    'p-2 text-sm border-2 border-foreground font-medium transition flex items-center gap-2',
                     formData.interests.includes(interest.value)
                       ? 'bg-secondary text-secondary-foreground shadow-[3px_3px_0px_hsl(var(--shadow-color))]'
                       : 'bg-card hover:bg-muted'
@@ -634,7 +634,7 @@ export function GoalSelection({
               type="button"
               onClick={() => toggleGoal(goal.id)}
               className={cn(
-                'flex items-start gap-4 p-4 border-3 border-foreground text-left transition-all',
+                'flex items-start gap-4 p-4 border-3 border-foreground text-left transition',
                 selected.includes(goal.id)
                   ? 'bg-primary/10 shadow-[4px_4px_0px_hsl(var(--shadow-color))] translate-x-[-2px] translate-y-[-2px]'
                   : 'bg-card hover:bg-muted'

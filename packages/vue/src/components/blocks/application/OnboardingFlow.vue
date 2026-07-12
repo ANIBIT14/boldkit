@@ -316,7 +316,7 @@ const removeMember = (email: string) => {
             v-for="goal in goals"
             :key="goal.id"
             :class="cn(
-              'flex items-center gap-4 p-4 border-3 border-foreground text-left transition-all',
+              'flex items-center gap-4 p-4 border-3 border-foreground text-left transition',
               selectedGoals.includes(goal.id)
                 ? 'bg-primary text-primary-foreground shadow-[4px_4px_0px_hsl(var(--shadow-color))]'
                 : 'hover:bg-muted'

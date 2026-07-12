@@ -20,7 +20,7 @@ const props = defineProps<Props>()
     "
   >
     <ProgressIndicator
-      class="h-full w-full flex-1 bg-primary transition-all duration-500 ease-out"
+      class="h-full w-full flex-1 bg-primary transition duration-500 ease-out"
       :style="{ transform: `translateX(-${100 - (props.modelValue || 0)}%)` }"
     />
   </ProgressRoot>

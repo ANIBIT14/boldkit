@@ -170,7 +170,7 @@ export function Footer() {
                       href={link.href}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1 text-sm text-muted-foreground hover:text-foreground hover:translate-x-1 transition-all duration-100 w-fit"
+                      className="inline-flex items-center gap-1 text-sm text-muted-foreground hover:text-foreground hover:translate-x-1 transition duration-100 w-fit"
                     >
                       {link.label}
                       <ArrowUpRight className="h-3 w-3 opacity-50" />
@@ -179,7 +179,7 @@ export function Footer() {
                     <Link
                       key={link.href}
                       to={link.href}
-                      className="text-sm text-muted-foreground hover:text-foreground hover:translate-x-1 transition-all duration-100 w-fit"
+                      className="text-sm text-muted-foreground hover:text-foreground hover:translate-x-1 transition duration-100 w-fit"
                     >
                       {link.label}
                     </Link>
@@ -203,7 +203,7 @@ export function Footer() {
                     href={link.href}
                     target={link.external ? '_blank' : undefined}
                     rel={link.external ? 'noopener noreferrer' : undefined}
-                    className="inline-flex items-center gap-1 text-sm text-muted-foreground hover:text-foreground hover:translate-x-1 transition-all duration-100 w-fit"
+                    className="inline-flex items-center gap-1 text-sm text-muted-foreground hover:text-foreground hover:translate-x-1 transition duration-100 w-fit"
                   >
                     {link.label}
                     {link.external && <ArrowUpRight className="h-3 w-3 opacity-50" />}
@@ -222,7 +222,7 @@ export function Footer() {
               </h4>
               <div className="flex flex-col gap-2">
                 {/* React */}
-                <div className="border-3 border-foreground p-3 flex items-start gap-3 hover:shadow-[4px_4px_0px_hsl(var(--foreground))] hover:translate-x-[-2px] hover:translate-y-[-2px] transition-all duration-150">
+                <div className="border-3 border-foreground p-3 flex items-start gap-3 hover:shadow-[4px_4px_0px_hsl(var(--foreground))] hover:translate-x-[-2px] hover:translate-y-[-2px] transition duration-150">
                   <div className="h-7 w-7 bg-[#61dafb]/10 border-2 border-[#61dafb]/30 flex items-center justify-center shrink-0">
                     <svg className="h-4 w-4" viewBox="0 0 24 24" fill="none" aria-hidden="true">
                       <ellipse cx="12" cy="12" rx="10.5" ry="4" stroke="#61dafb" strokeWidth="1.2"/>
@@ -237,7 +237,7 @@ export function Footer() {
                   </div>
                 </div>
                 {/* Vue */}
-                <div className="border-3 border-foreground p-3 flex items-start gap-3 hover:shadow-[4px_4px_0px_hsl(var(--foreground))] hover:translate-x-[-2px] hover:translate-y-[-2px] transition-all duration-150">
+                <div className="border-3 border-foreground p-3 flex items-start gap-3 hover:shadow-[4px_4px_0px_hsl(var(--foreground))] hover:translate-x-[-2px] hover:translate-y-[-2px] transition duration-150">
                   <div className="h-7 w-7 bg-[#42b883]/10 border-2 border-[#42b883]/30 flex items-center justify-center shrink-0">
                     <svg className="h-4 w-4" viewBox="0 0 24 24" aria-hidden="true">
                       <path fill="#42b883" d="M24,1.61H14.06L12,5.16,9.94,1.61H0L12,22.39ZM12,14.08,5.16,2.23H9.59L12,6.41l2.41-4.18h4.43Z"/>

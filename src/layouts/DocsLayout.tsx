@@ -496,7 +496,7 @@ export function DocsLayout() {
                 className={cn(
                   'border-3 border-foreground bg-background p-1',
                   'shadow-[3px_3px_0px_hsl(var(--shadow-color))]',
-                  'transition-all duration-150',
+                  'transition duration-150',
                   'hover:translate-x-[3px] hover:translate-y-[3px] hover:shadow-none',
                   'focus:outline-none focus-visible:ring-2 focus-visible:ring-ring'
                 )}

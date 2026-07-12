@@ -157,7 +157,7 @@ const newComponents = componentGroups.reduce(
 function ComponentCard({ item }: { item: ComponentItem }) {
   return (
     <Link to={item.href}>
-      <div className="group relative border-3 border-foreground bg-card p-3 shadow-[3px_3px_0px_hsl(var(--shadow-color))] transition-all duration-150 hover:translate-x-[3px] hover:translate-y-[3px] hover:shadow-none cursor-pointer">
+      <div className="group relative border-3 border-foreground bg-card p-3 shadow-[3px_3px_0px_hsl(var(--shadow-color))] transition duration-150 hover:translate-x-[3px] hover:translate-y-[3px] hover:shadow-none cursor-pointer">
         <div className="flex items-start justify-between gap-2">
           <span className="text-sm font-bold leading-tight text-foreground">
             {item.name}

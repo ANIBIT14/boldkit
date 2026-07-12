@@ -210,7 +210,7 @@ const TimePicker = React.forwardRef<HTMLButtonElement, TimePickerProps>(
                       onClick={() => updateTime(hour)}
                       className={cn(
                         'w-full px-2 py-1.5 text-center text-sm',
-                        'transition-all duration-150 ease-out',
+                        'transition duration-150 ease-out',
                         'hover:bg-muted hover:scale-105',
                         'focus:outline-none focus:bg-muted',
                         selectedHour === hour && 'bg-primary text-primary-foreground shadow-[2px_2px_0px_hsl(var(--shadow-color))] scale-105',
@@ -241,7 +241,7 @@ const TimePicker = React.forwardRef<HTMLButtonElement, TimePickerProps>(
                       onClick={() => updateTime(undefined, minute)}
                       className={cn(
                         'w-full px-2 py-1.5 text-center text-sm',
-                        'transition-all duration-150 ease-out',
+                        'transition duration-150 ease-out',
                         'hover:bg-muted hover:scale-105',
                         'focus:outline-none focus:bg-muted',
                         selectedMinute === minute && 'bg-primary text-primary-foreground shadow-[2px_2px_0px_hsl(var(--shadow-color))] scale-105'
@@ -272,7 +272,7 @@ const TimePicker = React.forwardRef<HTMLButtonElement, TimePickerProps>(
                         onClick={() => updateTime(undefined, undefined, second)}
                         className={cn(
                           'w-full px-2 py-1.5 text-center text-sm',
-                          'transition-all duration-150 ease-out',
+                          'transition duration-150 ease-out',
                           'hover:bg-muted hover:scale-105',
                           'focus:outline-none focus:bg-muted',
                           selectedSecond === second && 'bg-primary text-primary-foreground shadow-[2px_2px_0px_hsl(var(--shadow-color))] scale-105'
@@ -301,7 +301,7 @@ const TimePicker = React.forwardRef<HTMLButtonElement, TimePickerProps>(
                       onClick={() => updateTime(undefined, undefined, undefined, period)}
                       className={cn(
                         'w-full px-2 py-3 text-center text-sm font-bold',
-                        'transition-all duration-150 ease-out',
+                        'transition duration-150 ease-out',
                         'hover:bg-muted hover:scale-105',
                         'focus:outline-none focus:bg-muted',
                         selectedPeriod === period && 'bg-primary text-primary-foreground shadow-[2px_2px_0px_hsl(var(--shadow-color))] scale-105'

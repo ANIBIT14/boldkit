@@ -210,7 +210,7 @@ const handleSubmit = () => {
       </div>
 
       <div class="grid md:grid-cols-3 gap-6 mb-12">
-        <Card v-if="contactInfo?.email" class="text-center hover:translate-y-[-4px] hover:shadow-[8px_8px_0px_hsl(var(--shadow-color))] transition-all">
+        <Card v-if="contactInfo?.email" class="text-center hover:translate-y-[-4px] hover:shadow-[8px_8px_0px_hsl(var(--shadow-color))] transition">
           <CardContent class="pt-6">
             <div class="w-16 h-16 mx-auto flex items-center justify-center border-3 border-foreground bg-primary mb-4 shadow-[4px_4px_0px_hsl(var(--shadow-color))]">
               <Mail class="h-7 w-7 text-primary-foreground" />
@@ -222,7 +222,7 @@ const handleSubmit = () => {
           </CardContent>
         </Card>
 
-        <Card v-if="contactInfo?.phone" class="text-center hover:translate-y-[-4px] hover:shadow-[8px_8px_0px_hsl(var(--shadow-color))] transition-all">
+        <Card v-if="contactInfo?.phone" class="text-center hover:translate-y-[-4px] hover:shadow-[8px_8px_0px_hsl(var(--shadow-color))] transition">
           <CardContent class="pt-6">
             <div class="w-16 h-16 mx-auto flex items-center justify-center border-3 border-foreground bg-secondary mb-4 shadow-[4px_4px_0px_hsl(var(--shadow-color))]">
               <Phone class="h-7 w-7 text-secondary-foreground" />
@@ -234,7 +234,7 @@ const handleSubmit = () => {
           </CardContent>
         </Card>
 
-        <Card class="text-center hover:translate-y-[-4px] hover:shadow-[8px_8px_0px_hsl(var(--shadow-color))] transition-all">
+        <Card class="text-center hover:translate-y-[-4px] hover:shadow-[8px_8px_0px_hsl(var(--shadow-color))] transition">
           <CardContent class="pt-6">
             <div class="w-16 h-16 mx-auto flex items-center justify-center border-3 border-foreground bg-accent mb-4 shadow-[4px_4px_0px_hsl(var(--shadow-color))]">
               <MessageCircle class="h-7 w-7 text-accent-foreground" />

@@ -12,7 +12,7 @@
   "files": [
     {
       "path": "registry/default/components/ui/Avatar.vue",
-      "content": "<script setup lang=\"ts\">\nimport { AvatarRoot } from 'reka-ui'\nimport { cn } from '@/lib/utils'\n\ndefineProps<{\n  class?: string\n}>()\n</script>\n\n<template>\n  <AvatarRoot\n    :class=\"\n      cn(\n        'relative flex h-10 w-10 shrink-0 overflow-hidden border-3 border-foreground shadow-[4px_4px_0px_hsl(var(--shadow-color))] transition-all duration-200 hover:translate-x-[4px] hover:translate-y-[4px] hover:shadow-none',\n        $props.class\n      )\n    \"\n  >\n    <slot />\n  </AvatarRoot>\n</template>\n",
+      "content": "<script setup lang=\"ts\">\nimport { AvatarRoot } from 'reka-ui'\nimport { cn } from '@/lib/utils'\n\ndefineProps<{\n  class?: string\n}>()\n</script>\n\n<template>\n  <AvatarRoot\n    :class=\"\n      cn(\n        'relative flex h-10 w-10 shrink-0 overflow-hidden border-3 border-foreground shadow-[4px_4px_0px_hsl(var(--shadow-color))] transition duration-200 hover:translate-x-[4px] hover:translate-y-[4px] hover:shadow-none',\n        $props.class\n      )\n    \"\n  >\n    <slot />\n  </AvatarRoot>\n</template>\n",
       "type": "registry:ui"
     },
     {

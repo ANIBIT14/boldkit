@@ -130,7 +130,7 @@ export function AsciiShapes() {
                     key={c}
                     onClick={() => setCharset(c)}
                     aria-pressed={charset === c}
-                    className={`px-2.5 py-1 text-xs sm:text-sm border-3 border-foreground shadow-[2px_2px_0px_hsl(var(--shadow-color))] hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-none transition-all ${
+                    className={`px-2.5 py-1 text-xs sm:text-sm border-3 border-foreground shadow-[2px_2px_0px_hsl(var(--shadow-color))] hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-none transition ${
                       charset === c ? 'bg-foreground text-background' : 'bg-background text-foreground'
                     }`}
                     style={MONO}
@@ -150,7 +150,7 @@ export function AsciiShapes() {
                     key={s}
                     onClick={() => setSize(s)}
                     aria-pressed={size === s}
-                    className={`px-2.5 py-1 text-xs sm:text-sm border-3 border-foreground shadow-[2px_2px_0px_hsl(var(--shadow-color))] hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-none transition-all ${
+                    className={`px-2.5 py-1 text-xs sm:text-sm border-3 border-foreground shadow-[2px_2px_0px_hsl(var(--shadow-color))] hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-none transition ${
                       size === s ? 'bg-foreground text-background' : 'bg-background text-foreground'
                     }`}
                     style={MONO}
@@ -173,7 +173,7 @@ export function AsciiShapes() {
                 />
                 <button
                   onClick={() => setColor('')}
-                  className="px-2.5 py-1 text-xs sm:text-sm border-3 border-foreground shadow-[2px_2px_0px_hsl(var(--shadow-color))] hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-none transition-all bg-background text-foreground"
+                  className="px-2.5 py-1 text-xs sm:text-sm border-3 border-foreground shadow-[2px_2px_0px_hsl(var(--shadow-color))] hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-none transition bg-background text-foreground"
                   style={MONO}
                 >
                   Reset
@@ -187,7 +187,7 @@ export function AsciiShapes() {
               <button
                 onClick={() => { setMulticolor((v) => !v); if (!multicolor) setColor('') }}
                 aria-pressed={multicolor}
-                className={`px-2.5 py-1 text-xs sm:text-sm border-3 border-foreground shadow-[2px_2px_0px_hsl(var(--shadow-color))] hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-none transition-all ${
+                className={`px-2.5 py-1 text-xs sm:text-sm border-3 border-foreground shadow-[2px_2px_0px_hsl(var(--shadow-color))] hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-none transition ${
                   multicolor ? 'bg-foreground text-background' : 'bg-background text-foreground'
                 }`}
                 style={MONO}

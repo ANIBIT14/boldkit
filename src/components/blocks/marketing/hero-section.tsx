@@ -363,7 +363,7 @@ export function HeroWithVideo({
           </div>
           {/* Play button overlay */}
           <div className="absolute inset-0 flex items-center justify-center bg-foreground/20 group-hover:bg-foreground/30 transition-colors">
-            <div className="w-20 h-20 bg-primary border-3 border-foreground flex items-center justify-center shadow-[4px_4px_0px_hsl(var(--shadow-color))] group-hover:translate-x-[-4px] group-hover:translate-y-[-4px] group-hover:shadow-[8px_8px_0px_hsl(var(--shadow-color))] transition-all">
+            <div className="w-20 h-20 bg-primary border-3 border-foreground flex items-center justify-center shadow-[4px_4px_0px_hsl(var(--shadow-color))] group-hover:translate-x-[-4px] group-hover:translate-y-[-4px] group-hover:shadow-[8px_8px_0px_hsl(var(--shadow-color))] transition">
               <Play className="h-8 w-8 fill-current" />
             </div>
           </div>

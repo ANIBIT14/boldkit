@@ -25,7 +25,7 @@ const iconColors = ['bg-primary', 'bg-secondary', 'bg-accent', 'bg-info', 'bg-su
 
 function FeatureCard({ icon, title, description, index = 0 }: FeatureCardProps & { index?: number }) {
   return (
-    <Card className={`group hover:translate-x-[-4px] hover:translate-y-[-4px] hover:shadow-[8px_8px_0px_hsl(var(--shadow-color))] transition-all ${featureColors[index % 6]}`}>
+    <Card className={`group hover:translate-x-[-4px] hover:translate-y-[-4px] hover:shadow-[8px_8px_0px_hsl(var(--shadow-color))] transition ${featureColors[index % 6]}`}>
       <CardHeader>
         <div className={`w-14 h-14 flex items-center justify-center ${iconColors[index % 6]} border-3 border-foreground mb-4 shadow-[3px_3px_0px_hsl(var(--shadow-color))]`}>
           {icon}

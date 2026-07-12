@@ -82,7 +82,7 @@ const socialIcons = {
         <Card
           v-for="(member, index) in members"
           :key="`team-${member.name}`"
-          class="group text-center hover:translate-x-[-4px] hover:translate-y-[-4px] hover:shadow-[8px_8px_0px_hsl(var(--shadow-color))] transition-all"
+          class="group text-center hover:translate-x-[-4px] hover:translate-y-[-4px] hover:shadow-[8px_8px_0px_hsl(var(--shadow-color))] transition"
         >
           <CardContent class="pt-6">
             <div class="border-3 border-foreground shadow-[4px_4px_0px_hsl(var(--shadow-color))] overflow-hidden mb-4 mx-auto w-32 h-32">
@@ -105,7 +105,7 @@ const socialIcons = {
                 :href="social.url"
                 target="_blank"
                 rel="noopener noreferrer"
-                class="w-8 h-8 flex items-center justify-center border-2 border-foreground bg-muted transition-all hover:translate-x-[-2px] hover:translate-y-[-2px] hover:shadow-[2px_2px_0px_hsl(var(--shadow-color))] hover:bg-primary hover:text-primary-foreground"
+                class="w-8 h-8 flex items-center justify-center border-2 border-foreground bg-muted transition hover:translate-x-[-2px] hover:translate-y-[-2px] hover:shadow-[2px_2px_0px_hsl(var(--shadow-color))] hover:bg-primary hover:text-primary-foreground"
               >
                 <component :is="socialIcons[social.platform]" class="h-4 w-4" />
               </a>
@@ -135,7 +135,7 @@ const socialIcons = {
         <Card
           v-for="(member, index) in members"
           :key="`team-${member.name}`"
-          class="hover:translate-x-[-4px] hover:translate-y-[-4px] hover:shadow-[8px_8px_0px_hsl(var(--shadow-color))] transition-all"
+          class="hover:translate-x-[-4px] hover:translate-y-[-4px] hover:shadow-[8px_8px_0px_hsl(var(--shadow-color))] transition"
         >
           <CardContent class="pt-6">
             <div class="flex items-center gap-6">
@@ -156,7 +156,7 @@ const socialIcons = {
                     :href="social.url"
                     target="_blank"
                     rel="noopener noreferrer"
-                    class="w-8 h-8 flex items-center justify-center border-2 border-foreground bg-muted transition-all hover:translate-x-[-2px] hover:translate-y-[-2px] hover:shadow-[2px_2px_0px_hsl(var(--shadow-color))] hover:bg-primary hover:text-primary-foreground"
+                    class="w-8 h-8 flex items-center justify-center border-2 border-foreground bg-muted transition hover:translate-x-[-2px] hover:translate-y-[-2px] hover:shadow-[2px_2px_0px_hsl(var(--shadow-color))] hover:bg-primary hover:text-primary-foreground"
                   >
                     <component :is="socialIcons[social.platform]" class="h-4 w-4" />
                   </a>
@@ -193,7 +193,7 @@ const socialIcons = {
           :key="`team-${member.name}`"
           class="group"
         >
-          <div class="border-3 border-foreground shadow-[6px_6px_0px_hsl(var(--shadow-color))] overflow-hidden mb-4 aspect-[4/5] group-hover:shadow-[8px_8px_0px_hsl(var(--shadow-color))] group-hover:translate-x-[-2px] group-hover:translate-y-[-2px] transition-all">
+          <div class="border-3 border-foreground shadow-[6px_6px_0px_hsl(var(--shadow-color))] overflow-hidden mb-4 aspect-[4/5] group-hover:shadow-[8px_8px_0px_hsl(var(--shadow-color))] group-hover:translate-x-[-2px] group-hover:translate-y-[-2px] transition">
             <img
               v-if="member.image"
               :src="member.image"
@@ -214,7 +214,7 @@ const socialIcons = {
               :href="social.url"
               target="_blank"
               rel="noopener noreferrer"
-              class="w-8 h-8 flex items-center justify-center border-2 border-foreground bg-background transition-all hover:translate-x-[-2px] hover:translate-y-[-2px] hover:shadow-[2px_2px_0px_hsl(var(--shadow-color))] hover:bg-primary hover:text-primary-foreground"
+              class="w-8 h-8 flex items-center justify-center border-2 border-foreground bg-background transition hover:translate-x-[-2px] hover:translate-y-[-2px] hover:shadow-[2px_2px_0px_hsl(var(--shadow-color))] hover:bg-primary hover:text-primary-foreground"
             >
               <component :is="socialIcons[social.platform]" class="h-4 w-4" />
             </a>
@@ -243,7 +243,7 @@ const socialIcons = {
         <div
           v-for="(member, index) in members"
           :key="`team-${member.name}`"
-          class="flex items-center gap-3 border-3 border-foreground px-4 py-2 shadow-[3px_3px_0px_hsl(var(--shadow-color))] hover:shadow-none hover:translate-x-[3px] hover:translate-y-[3px] transition-all bg-card"
+          class="flex items-center gap-3 border-3 border-foreground px-4 py-2 shadow-[3px_3px_0px_hsl(var(--shadow-color))] hover:shadow-none hover:translate-x-[3px] hover:translate-y-[3px] transition bg-card"
         >
           <Avatar class="h-10 w-10 border-2 border-foreground">
             <AvatarImage v-if="member.image" :src="member.image" :alt="member.name" />

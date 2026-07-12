@@ -22,7 +22,7 @@ export interface DropzoneState {
 
 // Variants
 const dropzoneVariants = cva(
-  'relative flex flex-col items-center justify-center border-3 border-dashed border-foreground transition-all duration-200 cursor-pointer',
+  'relative flex flex-col items-center justify-center border-3 border-dashed border-foreground transition duration-200 cursor-pointer',
   {
     variants: {
       state: {
@@ -286,13 +286,13 @@ function DefaultDropzoneContent({
     <div className="flex flex-col items-center gap-3 text-center">
       <div
         className={cn(
-          'flex items-center justify-center w-16 h-16 border-3 border-foreground bg-muted transition-all duration-200',
+          'flex items-center justify-center w-16 h-16 border-3 border-foreground bg-muted transition duration-200',
           isDragging && 'bg-primary border-primary shadow-[4px_4px_0px_hsl(var(--foreground))] -translate-x-1 -translate-y-1'
         )}
       >
         <Upload
           className={cn(
-            'h-8 w-8 transition-all duration-200',
+            'h-8 w-8 transition duration-200',
             isDragging ? 'text-primary-foreground animate-bounce' : 'text-foreground'
           )}
         />
@@ -389,7 +389,7 @@ function FileListItem({ file, progress, error, uploading, onRemove }: FileListIt
             e.stopPropagation()
             onRemove()
           }}
-          className="flex items-center justify-center w-8 h-8 border-3 border-foreground bg-background hover:bg-destructive hover:text-destructive-foreground hover:shadow-[2px_2px_0px_hsl(var(--foreground))] hover:-translate-x-0.5 hover:-translate-y-0.5 transition-all"
+          className="flex items-center justify-center w-8 h-8 border-3 border-foreground bg-background hover:bg-destructive hover:text-destructive-foreground hover:shadow-[2px_2px_0px_hsl(var(--foreground))] hover:-translate-x-0.5 hover:-translate-y-0.5 transition"
         >
           <X className="h-4 w-4" />
         </button>

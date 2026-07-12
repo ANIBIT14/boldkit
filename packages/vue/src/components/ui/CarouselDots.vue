@@ -27,7 +27,7 @@ const hasMultipleSnaps = computed(() => (context.scrollSnaps.value ?? []).length
       :key="index"
       type="button"
       :class="cn(
-        'h-3 w-3 border-2 border-foreground transition-all duration-200',
+        'h-3 w-3 border-2 border-foreground transition duration-200',
         index === context.selectedIndex.value
           ? 'bg-primary scale-110 shadow-[2px_2px_0px_hsl(var(--shadow-color))]'
           : 'bg-muted hover:bg-muted/80'

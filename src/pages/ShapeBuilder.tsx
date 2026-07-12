@@ -238,7 +238,7 @@ export function ShapeBuilder() {
                 <button
                   key={cat}
                   onClick={() => setActiveCategory(cat)}
-                  className={`text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 border-2 border-foreground transition-all ${
+                  className={`text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 border-2 border-foreground transition ${
                     activeCategory === cat
                       ? 'bg-foreground text-background shadow-[2px_2px_0px_hsl(var(--primary))]'
                       : 'bg-background hover:bg-muted'
@@ -258,7 +258,7 @@ export function ShapeBuilder() {
                   <button
                     key={shape.id}
                     onClick={() => setSelectedId(shape.id)}
-                    className={`flex flex-col items-center justify-center gap-1 p-2 border-2 border-foreground transition-all ${
+                    className={`flex flex-col items-center justify-center gap-1 p-2 border-2 border-foreground transition ${
                       isSelected
                         ? 'bg-primary text-primary-foreground shadow-[3px_3px_0px_hsl(var(--foreground))] translate-x-[-1px] translate-y-[-1px]'
                         : 'bg-background hover:bg-muted hover:shadow-[2px_2px_0px_hsl(var(--foreground))] hover:translate-x-[-1px] hover:translate-y-[-1px]'
@@ -360,7 +360,7 @@ export function ShapeBuilder() {
                       <button
                         key={preset.label}
                         onClick={() => setColorPreset(preset.value)}
-                        className={`h-7 border-2 border-foreground text-[9px] font-bold uppercase tracking-wide transition-all ${
+                        className={`h-7 border-2 border-foreground text-[9px] font-bold uppercase tracking-wide transition ${
                           colorPreset === preset.value
                             ? 'shadow-[2px_2px_0px_hsl(var(--foreground))] translate-x-[-1px] translate-y-[-1px]'
                             : 'hover:shadow-[1px_1px_0px_hsl(var(--foreground))]'
@@ -398,7 +398,7 @@ export function ShapeBuilder() {
                       <button
                         key={anim.value}
                         onClick={() => setAnimation(anim.value)}
-                        className={`h-8 border-2 border-foreground text-[9px] font-bold uppercase tracking-wide transition-all flex flex-col items-center justify-center gap-0.5 ${
+                        className={`h-8 border-2 border-foreground text-[9px] font-bold uppercase tracking-wide transition flex flex-col items-center justify-center gap-0.5 ${
                           animation === anim.value
                             ? 'bg-foreground text-background shadow-[2px_2px_0px_hsl(var(--primary))] translate-x-[-1px] translate-y-[-1px]'
                             : 'bg-background hover:bg-muted'
@@ -420,7 +420,7 @@ export function ShapeBuilder() {
                         <button
                           key={s.value}
                           onClick={() => setSpeed(s.value)}
-                          className={`flex-1 h-7 border-2 border-foreground text-[10px] font-bold uppercase tracking-wide transition-all ${
+                          className={`flex-1 h-7 border-2 border-foreground text-[10px] font-bold uppercase tracking-wide transition ${
                             speed === s.value
                               ? 'bg-foreground text-background'
                               : 'bg-background hover:bg-muted'

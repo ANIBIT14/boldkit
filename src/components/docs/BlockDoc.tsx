@@ -225,7 +225,7 @@ export function BlockDoc({
             {variants.map((variant, index) => (
               <Card
                 key={variant.name}
-                className={`cursor-pointer transition-all hover:shadow-[6px_6px_0px_hsl(var(--shadow-color))] hover:translate-x-[-3px] hover:translate-y-[-3px] ${
+                className={`cursor-pointer transition hover:shadow-[6px_6px_0px_hsl(var(--shadow-color))] hover:translate-x-[-3px] hover:translate-y-[-3px] ${
                   activeVariant === index ? 'border-primary shadow-[4px_4px_0px_hsl(var(--primary))]' : ''
                 }`}
                 onClick={() => setActiveVariant(index)}

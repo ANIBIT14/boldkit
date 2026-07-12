@@ -16,7 +16,7 @@ defineProps<{
     :disabled="disabled"
     :class="
       cn(
-        'relative flex w-full cursor-default select-none items-center py-2 pl-8 pr-2 text-sm outline-none transition-all duration-150 focus:bg-accent focus:text-accent-foreground focus:translate-x-1 data-[disabled]:pointer-events-none data-[disabled]:opacity-50',
+        'relative flex w-full cursor-default select-none items-center py-2 pl-8 pr-2 text-sm outline-none transition duration-150 focus:bg-accent focus:text-accent-foreground focus:translate-x-1 data-[disabled]:pointer-events-none data-[disabled]:opacity-50',
         $props.class
       )
     "

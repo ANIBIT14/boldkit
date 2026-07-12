@@ -9,7 +9,7 @@ defineProps<{
 
 <template>
   <CollapsibleTriggerPrimitive
-    :class="cn('transition-all duration-150 [&[data-state=open]>svg]:rotate-180', $props.class)"
+    :class="cn('transition duration-150 [&[data-state=open]>svg]:rotate-180', $props.class)"
   >
     <slot />
   </CollapsibleTriggerPrimitive>

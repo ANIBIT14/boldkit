@@ -42,7 +42,7 @@ const props = withDefaults(defineProps<Props>(), {
     />
     <DialogContent :class="cn(sheetVariants({ side: props.side }), props.class)">
       <DialogClose
-        class="absolute right-4 top-4 border-2 border-foreground bg-background p-1 shadow-[4px_4px_0px_hsl(var(--shadow-color))] transition-all duration-200 hover:translate-x-[4px] hover:translate-y-[4px] hover:shadow-none active:translate-x-[4px] active:translate-y-[4px] active:shadow-none focus:outline-none focus:ring-2 focus:ring-ring disabled:pointer-events-none"
+        class="absolute right-4 top-4 border-2 border-foreground bg-background p-1 shadow-[4px_4px_0px_hsl(var(--shadow-color))] transition duration-200 hover:translate-x-[4px] hover:translate-y-[4px] hover:shadow-none active:translate-x-[4px] active:translate-y-[4px] active:shadow-none focus:outline-none focus:ring-2 focus:ring-ring disabled:pointer-events-none"
       >
         <X class="h-4 w-4 stroke-[3]" />
         <span class="sr-only">Close</span>

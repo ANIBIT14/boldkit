@@ -89,7 +89,7 @@ export function MathCurveBackgroundDoc() {
   <p className="text-sm text-muted-foreground mb-4">
     A card with an animated curve background that adds depth and motion.
   </p>
-  <button className="border-3 border-foreground px-4 py-2 font-bold uppercase text-sm bg-primary text-primary-foreground shadow-[4px_4px_0px_hsl(var(--shadow-color))] hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none transition-all">
+  <button className="border-3 border-foreground px-4 py-2 font-bold uppercase text-sm bg-primary text-primary-foreground shadow-[4px_4px_0px_hsl(var(--shadow-color))] hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none transition">
     Get Started
   </button>
 </MathCurveBackground>`}
@@ -99,7 +99,7 @@ export function MathCurveBackgroundDoc() {
     <p class="text-sm text-muted-foreground mb-4">
       A card with an animated curve background that adds depth and motion.
     </p>
-    <button class="border-3 border-foreground px-4 py-2 font-bold uppercase text-sm bg-primary text-primary-foreground shadow-[4px_4px_0px_hsl(var(--shadow-color))] hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none transition-all">
+    <button class="border-3 border-foreground px-4 py-2 font-bold uppercase text-sm bg-primary text-primary-foreground shadow-[4px_4px_0px_hsl(var(--shadow-color))] hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none transition">
       Get Started
     </button>
   </MathCurveBackground>
@@ -111,7 +111,7 @@ export function MathCurveBackgroundDoc() {
             <p className="text-sm text-muted-foreground mb-4">
               A card with an animated curve background that adds depth and motion.
             </p>
-            <button className="border-3 border-foreground px-4 py-2 font-bold uppercase text-sm bg-primary text-primary-foreground shadow-[4px_4px_0px_hsl(var(--shadow-color))] hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none transition-all">
+            <button className="border-3 border-foreground px-4 py-2 font-bold uppercase text-sm bg-primary text-primary-foreground shadow-[4px_4px_0px_hsl(var(--shadow-color))] hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none transition">
               Get Started
             </button>
           </MathCurveBackground>

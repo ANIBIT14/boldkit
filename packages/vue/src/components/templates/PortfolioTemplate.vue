@@ -274,7 +274,7 @@ const testimonials: Testimonial[] = [
           <Card
             v-for="service in services"
             :key="service.title"
-            class="group hover:translate-x-[-4px] hover:translate-y-[-4px] hover:shadow-[8px_8px_0px_hsl(var(--shadow-color))] transition-all"
+            class="group hover:translate-x-[-4px] hover:translate-y-[-4px] hover:shadow-[8px_8px_0px_hsl(var(--shadow-color))] transition"
           >
             <CardHeader :class="service.color">
               <div class="w-14 h-14 flex items-center justify-center bg-background border-3 border-foreground mb-4 shadow-[3px_3px_0px_hsl(var(--shadow-color))]">

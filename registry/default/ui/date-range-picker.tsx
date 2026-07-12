@@ -186,7 +186,7 @@ const DateRangePicker = React.forwardRef<HTMLButtonElement, DateRangePickerProps
                         type="button"
                         onClick={() => handlePresetClick(preset)}
                         className={cn(
-                          'text-left text-sm font-bold border-3 border-foreground bg-background transition-all duration-150',
+                          'text-left text-sm font-bold border-3 border-foreground bg-background transition duration-150',
                           isMobile
                             ? 'px-2 py-1 text-xs shadow-[2px_2px_0px_hsl(var(--shadow-color))]'
                             : 'w-full px-3 py-2 shadow-[3px_3px_0px_hsl(var(--shadow-color))]',

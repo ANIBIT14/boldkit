@@ -239,7 +239,7 @@ const getInitials = (name: string) => {
           <div class="grid grid-cols-3 gap-4">
             <button
               :class="cn(
-                'border-3 border-foreground p-4 text-center transition-all',
+                'border-3 border-foreground p-4 text-center transition',
                 theme === 'light' ? 'bg-primary text-primary-foreground shadow-[4px_4px_0px_hsl(var(--shadow-color))]' : 'hover:bg-muted'
               )"
               @click="theme = 'light'; emit('themeChange', 'light')"
@@ -248,7 +248,7 @@ const getInitials = (name: string) => {
             </button>
             <button
               :class="cn(
-                'border-3 border-foreground p-4 text-center transition-all',
+                'border-3 border-foreground p-4 text-center transition',
                 theme === 'dark' ? 'bg-primary text-primary-foreground shadow-[4px_4px_0px_hsl(var(--shadow-color))]' : 'hover:bg-muted'
               )"
               @click="theme = 'dark'; emit('themeChange', 'dark')"
@@ -257,7 +257,7 @@ const getInitials = (name: string) => {
             </button>
             <button
               :class="cn(
-                'border-3 border-foreground p-4 text-center transition-all',
+                'border-3 border-foreground p-4 text-center transition',
                 theme === 'system' ? 'bg-primary text-primary-foreground shadow-[4px_4px_0px_hsl(var(--shadow-color))]' : 'hover:bg-muted'
               )"
               @click="theme = 'system'; emit('themeChange', 'system')"
@@ -279,7 +279,7 @@ const getInitials = (name: string) => {
               :title="color.name"
               :style="{ backgroundColor: color.value }"
               :class="cn(
-                'w-10 h-10 border-3 border-foreground transition-all flex items-center justify-center',
+                'w-10 h-10 border-3 border-foreground transition flex items-center justify-center',
                 accentColor === color.value && 'ring-2 ring-offset-2 ring-foreground'
               )"
               @click="setAccentColor(color.value)"
@@ -331,7 +331,7 @@ const getInitials = (name: string) => {
           v-for="tab in (['profile', 'notifications', 'security', 'appearance', 'dangerZone'] as const)"
           :key="tab"
           :class="cn(
-            'w-full text-left px-4 py-3 border-3 border-foreground font-bold uppercase text-sm transition-all',
+            'w-full text-left px-4 py-3 border-3 border-foreground font-bold uppercase text-sm transition',
             activeTab === tab
               ? 'bg-primary text-primary-foreground shadow-[4px_4px_0px_hsl(var(--shadow-color))]'
               : 'hover:bg-muted'

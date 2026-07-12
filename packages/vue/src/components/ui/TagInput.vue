@@ -233,7 +233,7 @@ const errorId = computed(() => error.value ? 'tag-input-error' : undefined)
       :class="
         cn(
           'flex flex-wrap items-center gap-2 min-h-11 w-full border-3 border-input bg-background px-3 py-2',
-          'shadow-[4px_4px_0px_hsl(var(--shadow-color))] transition-all duration-200',
+          'shadow-[4px_4px_0px_hsl(var(--shadow-color))] transition duration-200',
           'focus-within:translate-x-[4px] focus-within:translate-y-[4px] focus-within:shadow-none',
           disabled && 'opacity-50 cursor-not-allowed',
           error && 'border-destructive',

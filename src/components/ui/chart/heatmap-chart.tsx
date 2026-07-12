@@ -163,7 +163,7 @@ const HeatmapChart = React.forwardRef<HTMLDivElement, HeatmapChartProps>(
                     aria-label={isInteractive ? `${row}, ${col}: ${value}` : undefined}
                     tabIndex={cellTabIndex}
                     className={cn(
-                      'border border-foreground/30 transition-all duration-100 hover:border-foreground hover:border-2 hover:z-10 focus:border-foreground focus:border-2 focus:z-10 focus:outline-none',
+                      'border border-foreground/30 transition duration-100 hover:border-foreground hover:border-2 hover:z-10 focus:border-foreground focus:border-2 focus:z-10 focus:outline-none',
                       isInteractive ? 'cursor-pointer' : 'cursor-default'
                     )}
                     style={{

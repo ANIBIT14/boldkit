@@ -7,7 +7,7 @@ import { STEPPER_INJECTION_KEY, type StepperContext } from './Stepper.vue'
 import { STEPPER_ITEM_INJECTION_KEY, type StepperItemContext } from './StepperItem.vue'
 
 const stepVariants = cva(
-  'flex items-center justify-center border-3 border-foreground font-bold transition-all duration-200',
+  'flex items-center justify-center border-3 border-foreground font-bold transition duration-200',
   {
     variants: {
       state: {

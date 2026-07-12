@@ -236,6 +236,20 @@ body {
     color var(--bk-dur-snap) var(--ease-out),
     opacity var(--bk-dur-snap) var(--ease-out);
 }
+/* Universal reduced-motion guard — neutralizes movement for users who request it.
+   Covers hand-rolled `transition-all` hover effects that don't use the .bk-* utilities.
+   Keeps end states; only removes the timing. (a11y — improve-animations #1) */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  ::before,
+  ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .bk-interactive { transition-duration: 0.01ms !important; }
 }

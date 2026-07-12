@@ -90,7 +90,7 @@ const statColors = [
         <Card
           v-for="(stat, index) in stats"
           :key="`stat-${stat.label}`"
-          class="group hover:translate-x-[-4px] hover:translate-y-[-4px] hover:shadow-[8px_8px_0px_hsl(var(--shadow-color))] transition-all"
+          class="group hover:translate-x-[-4px] hover:translate-y-[-4px] hover:shadow-[8px_8px_0px_hsl(var(--shadow-color))] transition"
         >
           <CardContent class="pt-6">
             <div :class="cn('w-3 h-12 mb-4', statColors[index % 6])" />

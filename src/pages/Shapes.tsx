@@ -185,7 +185,7 @@ function ShapeCard({
   }
 
   return (
-    <div className="group relative border-3 border-foreground bg-background transition-all duration-150 hover:translate-x-[-3px] hover:translate-y-[-3px] hover:shadow-[6px_6px_0px_hsl(var(--foreground))] cursor-default">
+    <div className="group relative border-3 border-foreground bg-background transition duration-150 hover:translate-x-[-3px] hover:translate-y-[-3px] hover:shadow-[6px_6px_0px_hsl(var(--foreground))] cursor-default">
       {isNew && (
         <span
           className="absolute top-2 right-2 z-10 bg-accent border-2 border-foreground text-[9px] font-black uppercase px-1.5 py-0.5 leading-none"

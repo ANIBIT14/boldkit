@@ -451,7 +451,7 @@ export function Home() {
         ═══════════════════════════════════════════════════════════════ */}
         <section
           ref={showcaseReveal.ref}
-          className={`border-b-3 border-foreground py-14 md:py-20 overflow-x-hidden transition-all duration-700 ease-out ${showcaseReveal.inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`}
+          className={`border-b-3 border-foreground py-14 md:py-20 overflow-x-hidden transition duration-700 ease-out ${showcaseReveal.inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`}
         >
           <div className="container mx-auto px-4">
 
@@ -745,7 +745,7 @@ export function Home() {
                     { Component: HexagonShape,   anim: 'glitch', label: 'Glitch', bg: 'bg-success',   color: 'hsl(var(--success-foreground))'   },
                   ] as const).map(({ Component, anim, label, bg, color }) => (
                     <Link key={anim} to="/shapes/builder">
-                      <div className="group border-3 border-foreground hover:shadow-[4px_4px_0px_hsl(var(--primary))] hover:-translate-x-1 hover:-translate-y-1 transition-all duration-150 overflow-hidden">
+                      <div className="group border-3 border-foreground hover:shadow-[4px_4px_0px_hsl(var(--primary))] hover:-translate-x-1 hover:-translate-y-1 transition duration-150 overflow-hidden">
                         <div className={`${bg} flex items-center justify-center py-5`}>
                           <Component size={52} color={color} animation={anim} speed="normal" />
                         </div>
@@ -834,7 +834,7 @@ export function Home() {
         ═══════════════════════════════════════════════════════════════ */}
         <section
           ref={toolsReveal.ref}
-          className={`border-b-3 border-foreground transition-all duration-700 ease-out ${toolsReveal.inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`}
+          className={`border-b-3 border-foreground transition duration-700 ease-out ${toolsReveal.inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`}
         >
           {/* Section header */}
           <div className="border-b-3 border-foreground px-4 md:px-8 py-5 flex items-center justify-between bg-background">
@@ -990,7 +990,7 @@ export function Home() {
         ═══════════════════════════════════════════════════════════════ */}
         <section
           ref={effectsReveal.ref}
-          className={`relative overflow-hidden border-b-3 border-foreground transition-all duration-700 ease-out ${effectsReveal.inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`}
+          className={`relative overflow-hidden border-b-3 border-foreground transition duration-700 ease-out ${effectsReveal.inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`}
           style={{ background: '#080810' }}
         >
           {/* Section header */}
@@ -1129,7 +1129,7 @@ export function Home() {
         ═══════════════════════════════════════════════════════════════ */}
         <section
           ref={featuresReveal.ref}
-          className={`border-b-3 border-foreground py-14 md:py-20 transition-all duration-700 ease-out ${featuresReveal.inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`}
+          className={`border-b-3 border-foreground py-14 md:py-20 transition duration-700 ease-out ${featuresReveal.inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`}
         >
           <div className="container mx-auto px-4">
             <div className="mb-8 md:mb-12">
@@ -1266,7 +1266,7 @@ export function Home() {
         ═══════════════════════════════════════════════════════════════ */}
         <section
           ref={ctaReveal.ref}
-          className={`relative overflow-hidden bg-foreground py-20 md:py-28 transition-all duration-700 ease-out ${ctaReveal.inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`}
+          className={`relative overflow-hidden bg-foreground py-20 md:py-28 transition duration-700 ease-out ${ctaReveal.inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`}
         >
           {/* Live Plasma canvas behind overlay */}
           <div className="absolute inset-0 pointer-events-none">

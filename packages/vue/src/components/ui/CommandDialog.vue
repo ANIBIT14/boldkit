@@ -33,7 +33,7 @@ const dialogProps = computed(() => {
 
 <template>
   <Dialog v-bind="dialogProps" @update:open="emit('update:open', $event)">
-    <DialogContent class="overflow-hidden p-0">
+    <DialogContent animation="fade" class="overflow-hidden p-0">
       <DialogTitle class="sr-only">{{ title }}</DialogTitle>
       <DialogDescription class="sr-only">{{ description }}</DialogDescription>
       <Command

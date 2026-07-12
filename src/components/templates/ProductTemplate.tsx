@@ -206,7 +206,7 @@ export function ProductTemplate() {
       {/* Floating Theme Toggle */}
       <button
         onClick={handleThemeToggle}
-        className="fixed bottom-24 right-6 z-[9999] h-14 w-14 rounded-full border-4 border-foreground bg-background shadow-[4px_4px_0px_hsl(var(--foreground))] flex items-center justify-center hover:translate-x-[-2px] hover:translate-y-[-2px] hover:shadow-[6px_6px_0px_hsl(var(--foreground))] transition-all lg:bottom-6"
+        className="fixed bottom-24 right-6 z-[9999] h-14 w-14 rounded-full border-4 border-foreground bg-background shadow-[4px_4px_0px_hsl(var(--foreground))] flex items-center justify-center hover:translate-x-[-2px] hover:translate-y-[-2px] hover:shadow-[6px_6px_0px_hsl(var(--foreground))] transition lg:bottom-6"
         aria-label="Toggle theme"
       >
         {resolvedTheme === 'dark' ? <Sun className="h-6 w-6" /> : <Moon className="h-6 w-6" />}
@@ -597,7 +597,7 @@ export function ProductTemplate() {
 
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
             {relatedProducts.map((item) => (
-              <Card key={item.name} className="group overflow-hidden hover:translate-y-[-4px] hover:shadow-[6px_6px_0px_hsl(var(--shadow-color))] transition-all">
+              <Card key={item.name} className="group overflow-hidden hover:translate-y-[-4px] hover:shadow-[6px_6px_0px_hsl(var(--shadow-color))] transition">
                 <AspectRatio ratio={1} className="bg-muted overflow-hidden">
                   <img
                     src={item.image}

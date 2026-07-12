@@ -77,7 +77,7 @@ const gridCols: Record<number, string> = {
           v-for="(feature, index) in features"
           :key="feature.title"
           :class="cn(
-            'group hover:translate-x-[-4px] hover:translate-y-[-4px] hover:shadow-[8px_8px_0px_hsl(var(--shadow-color))] transition-all',
+            'group hover:translate-x-[-4px] hover:translate-y-[-4px] hover:shadow-[8px_8px_0px_hsl(var(--shadow-color))] transition',
             featureColors[index % 6]
           )"
         >
@@ -119,7 +119,7 @@ const gridCols: Record<number, string> = {
 
       <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
         <div v-for="feature in features" :key="feature.title" class="group">
-          <div class="border-3 border-foreground overflow-hidden shadow-[6px_6px_0px_hsl(var(--shadow-color))] group-hover:shadow-[8px_8px_0px_hsl(var(--shadow-color))] group-hover:translate-x-[-2px] group-hover:translate-y-[-2px] transition-all mb-4">
+          <div class="border-3 border-foreground overflow-hidden shadow-[6px_6px_0px_hsl(var(--shadow-color))] group-hover:shadow-[8px_8px_0px_hsl(var(--shadow-color))] group-hover:translate-x-[-2px] group-hover:translate-y-[-2px] transition mb-4">
             <img
               v-if="feature.image"
               :src="feature.image"
@@ -206,7 +206,7 @@ const gridCols: Record<number, string> = {
           v-for="(feature, index) in features"
           :key="feature.title"
           :class="cn(
-            'group hover:translate-x-[-4px] hover:translate-y-[-4px] hover:shadow-[8px_8px_0px_hsl(var(--shadow-color))] transition-all flex flex-col',
+            'group hover:translate-x-[-4px] hover:translate-y-[-4px] hover:shadow-[8px_8px_0px_hsl(var(--shadow-color))] transition flex flex-col',
             featureColors[index % 6],
             feature.span === 'wide' && 'md:col-span-2',
             feature.span === 'tall' && 'md:row-span-2'

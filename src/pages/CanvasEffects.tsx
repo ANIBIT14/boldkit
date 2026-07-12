@@ -208,7 +208,7 @@ function EffectCard({ effect, featured = false, framework }: {
   return (
     <div
       id={effect.id}
-      className="group flex flex-col border-3 border-foreground shadow-[4px_4px_0px_hsl(var(--shadow-color))] transition-all duration-150 hover:translate-x-[-2px] hover:translate-y-[-2px] hover:shadow-[6px_6px_0px_hsl(var(--shadow-color))] overflow-hidden"
+      className="group flex flex-col border-3 border-foreground shadow-[4px_4px_0px_hsl(var(--shadow-color))] transition duration-150 hover:translate-x-[-2px] hover:translate-y-[-2px] hover:shadow-[6px_6px_0px_hsl(var(--shadow-color))] overflow-hidden"
       style={{ borderLeftColor: effect.accent }}
     >
       {/* Canvas — dominant, full bleed. Overlay carries the labels. */}
@@ -244,7 +244,7 @@ function EffectCard({ effect, featured = false, framework }: {
             {/* Copy — sits inside overlay, always accessible */}
             <button
               onClick={copy}
-              className="shrink-0 flex items-center justify-center gap-1.5 min-w-[40px] min-h-[34px] px-2 border border-white/20 bg-black/50 text-white/70 text-[10px] font-bold uppercase tracking-wide transition-all hover:border-white/55 hover:bg-black/70 hover:text-white active:scale-95 backdrop-blur-sm"
+              className="shrink-0 flex items-center justify-center gap-1.5 min-w-[40px] min-h-[34px] px-2 border border-white/20 bg-black/50 text-white/70 text-[10px] font-bold uppercase tracking-wide transition hover:border-white/55 hover:bg-black/70 hover:text-white active:scale-95 backdrop-blur-sm"
               title={`Copy ${framework} code`}
               aria-label={`Copy ${effect.name} code`}
             >
@@ -279,7 +279,7 @@ function EffectCard({ effect, featured = false, framework }: {
         </code>
         <button
           onClick={copyInstall}
-          className="shrink-0 flex items-center justify-center gap-1 h-6 px-1.5 border border-foreground/20 bg-muted text-muted-foreground text-[9px] font-bold uppercase tracking-wide transition-all hover:border-foreground/50 hover:text-foreground active:scale-95"
+          className="shrink-0 flex items-center justify-center gap-1 h-6 px-1.5 border border-foreground/20 bg-muted text-muted-foreground text-[9px] font-bold uppercase tracking-wide transition hover:border-foreground/50 hover:text-foreground active:scale-95"
           title="Copy install command"
           aria-label={`Copy install command for ${effect.name}`}
         >

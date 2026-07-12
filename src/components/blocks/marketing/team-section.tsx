@@ -78,7 +78,7 @@ export function TeamGrid({
           {members.map((member) => (
             <Card
               key={`team-${member.name}`}
-              className="group hover:translate-x-[-4px] hover:translate-y-[-4px] hover:shadow-[8px_8px_0px_hsl(var(--shadow-color))] transition-all"
+              className="group hover:translate-x-[-4px] hover:translate-y-[-4px] hover:shadow-[8px_8px_0px_hsl(var(--shadow-color))] transition"
             >
               <CardContent className="p-6 text-center space-y-4">
                 <Avatar className="h-24 w-24 mx-auto border-3 border-foreground shadow-[4px_4px_0px_hsl(var(--shadow-color))]">
@@ -151,7 +151,7 @@ export function TeamList({
           {members.map((member) => (
             <div
               key={`team-${member.name}`}
-              className="flex items-center gap-4 p-4 border-3 border-foreground bg-card shadow-[4px_4px_0px_hsl(var(--shadow-color))] hover:translate-x-[-4px] hover:translate-y-[-4px] hover:shadow-[8px_8px_0px_hsl(var(--shadow-color))] transition-all"
+              className="flex items-center gap-4 p-4 border-3 border-foreground bg-card shadow-[4px_4px_0px_hsl(var(--shadow-color))] hover:translate-x-[-4px] hover:translate-y-[-4px] hover:shadow-[8px_8px_0px_hsl(var(--shadow-color))] transition"
             >
               <Avatar className="h-16 w-16 border-2 border-foreground">
                 <AvatarImage src={member.avatar} />
@@ -220,7 +220,7 @@ export function TeamLargePhotos({
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {members.map((member) => (
             <div key={`team-${member.name}`} className="group">
-              <div className="relative border-3 border-foreground shadow-[6px_6px_0px_hsl(var(--shadow-color))] overflow-hidden mb-4 group-hover:shadow-[8px_8px_0px_hsl(var(--shadow-color))] group-hover:translate-x-[-2px] group-hover:translate-y-[-2px] transition-all">
+              <div className="relative border-3 border-foreground shadow-[6px_6px_0px_hsl(var(--shadow-color))] overflow-hidden mb-4 group-hover:shadow-[8px_8px_0px_hsl(var(--shadow-color))] group-hover:translate-x-[-2px] group-hover:translate-y-[-2px] transition">
                 {member.avatar ? (
                   <img
                     src={member.avatar}
@@ -339,7 +339,7 @@ function SocialLink({
       rel="noopener noreferrer"
       tabIndex={tabIndex}
       className={cn(
-        'w-8 h-8 flex items-center justify-center border-2 border-foreground transition-all hover:translate-x-[-2px] hover:translate-y-[-2px] hover:shadow-[2px_2px_0px_hsl(var(--shadow-color))]',
+        'w-8 h-8 flex items-center justify-center border-2 border-foreground transition hover:translate-x-[-2px] hover:translate-y-[-2px] hover:shadow-[2px_2px_0px_hsl(var(--shadow-color))]',
         light ? 'bg-background text-foreground' : 'bg-muted hover:bg-primary hover:text-primary-foreground'
       )}
     >

@@ -223,7 +223,7 @@ function ServicesSection() {
           {services.map((service) => (
             <Card
               key={service.title}
-              className="group hover:translate-x-[-4px] hover:translate-y-[-4px] hover:shadow-[8px_8px_0px_hsl(var(--shadow-color))] transition-all"
+              className="group hover:translate-x-[-4px] hover:translate-y-[-4px] hover:shadow-[8px_8px_0px_hsl(var(--shadow-color))] transition"
             >
               <CardHeader className={service.color}>
                 <div className="w-14 h-14 flex items-center justify-center bg-background border-3 border-foreground mb-4 shadow-[3px_3px_0px_hsl(var(--shadow-color))]">

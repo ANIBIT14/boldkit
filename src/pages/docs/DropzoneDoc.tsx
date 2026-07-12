@@ -164,7 +164,7 @@ export function DropzoneDoc() {
           {({ isDragging }) => (
             <div className="flex flex-col items-center gap-2 text-center">
               <div
-                className={`h-8 w-8 text-muted-foreground transition-all ${
+                className={`h-8 w-8 text-muted-foreground transition ${
                   isDragging ? 'text-primary animate-bounce' : ''
                 }`}
               >

@@ -13,7 +13,7 @@ defineProps<{
     <AccordionTriggerPrimitive
       :class="
         cn(
-          'flex flex-1 items-center justify-between bg-background py-4 px-4 font-bold uppercase tracking-wide transition-all duration-200 hover:bg-muted [&[data-state=open]]:bg-accent [&[data-state=open]>svg]:rotate-180',
+          'flex flex-1 items-center justify-between bg-background py-4 px-4 font-bold uppercase tracking-wide transition duration-200 hover:bg-muted [&[data-state=open]]:bg-accent [&[data-state=open]>svg]:rotate-180',
           $props.class
         )
       "

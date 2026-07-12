@@ -8,7 +8,7 @@ import TooltipTrigger from './TooltipTrigger.vue'
 import TooltipContent from './TooltipContent.vue'
 
 const sidebarItemVariants = cva(
-  'flex w-full items-center gap-3 px-3 py-2 text-sm transition-all duration-150',
+  'flex w-full items-center gap-3 px-3 py-2 text-sm transition duration-150',
   {
     variants: {
       variant: {
