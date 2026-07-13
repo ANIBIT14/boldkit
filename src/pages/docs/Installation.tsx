@@ -226,7 +226,14 @@ export function Installation() {
                     <code className="bg-background px-1 border">.vue</code> files, not a barrel):
                   </p>
                   <pre className="mt-2 text-xs bg-background p-2 border-3 border-foreground overflow-x-auto"><code>{`// ✓  import Button from '@/components/ui/Button.vue'
-// ✗  import Button from '@/components/ui/Button.vue'`}</code></pre>
+// ✗  import { Button } from '@/components/ui'`}</code></pre>
+                  <p className="text-muted-foreground mt-3">
+                    <strong>Nuxt 4 auto-import:</strong> point the shadcn-nuxt module at the{' '}
+                    <code className="bg-background px-1 border">app/</code> directory too, or you'll see{' '}
+                    <code className="bg-background px-1 border">Component directory does not exist</code>:
+                  </p>
+                  <pre className="mt-2 text-xs bg-background p-2 border-3 border-foreground overflow-x-auto"><code>{`// nuxt.config.ts
+shadcn: { prefix: '', componentDir: './app/components/ui' }`}</code></pre>
                 </div>
               )}
             </div>
