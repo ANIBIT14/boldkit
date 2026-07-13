@@ -9,7 +9,7 @@
   ],
   "files": [
     {
-      "path": "registry/default/lib/utils.ts",
+      "path": "lib/utils.ts",
       "type": "registry:lib",
       "target": ""
     }

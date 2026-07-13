@@ -6,7 +6,7 @@
   "registryDependencies": [],
   "files": [
     {
-      "path": "registry/default/components/ui/canvas-effects/MatrixRain.vue",
+      "path": "components/ui/canvas-effects/MatrixRain.vue",
       "type": "registry:ui"
     }
   ],

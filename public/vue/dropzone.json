@@ -13,11 +13,11 @@
   ],
   "files": [
     {
-      "path": "registry/default/components/ui/Dropzone.vue",
+      "path": "components/ui/Dropzone.vue",
       "type": "registry:ui"
     },
     {
-      "path": "registry/default/components/ui/FileList.vue",
+      "path": "components/ui/FileList.vue",
       "type": "registry:ui"
     }
   ]

@@ -11,7 +11,7 @@
   ],
   "files": [
     {
-      "path": "registry/default/components/ui/Separator.vue",
+      "path": "components/ui/Separator.vue",
       "content": "<script setup lang=\"ts\">\nimport { Separator as SeparatorPrimitive, type SeparatorProps } from 'reka-ui'\nimport { cn } from '@/lib/utils'\n\ninterface Props extends SeparatorProps {\n  class?: string\n}\n\nconst props = withDefaults(defineProps<Props>(), {\n  orientation: 'horizontal',\n  decorative: true,\n})\n</script>\n\n<template>\n  <SeparatorPrimitive\n    :orientation=\"props.orientation\"\n    :decorative=\"props.decorative\"\n    :class=\"\n      cn(\n        'shrink-0 bg-foreground',\n        props.orientation === 'horizontal' ? 'h-[3px] w-full' : 'h-full w-[3px]',\n        props.class\n      )\n    \"\n  />\n</template>\n",
       "type": "registry:ui"
     }

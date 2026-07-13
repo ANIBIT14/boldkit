@@ -11,7 +11,7 @@
   ],
   "files": [
     {
-      "path": "registry/default/components/ui/Switch.vue",
+      "path": "components/ui/Switch.vue",
       "type": "registry:ui"
     }
   ]

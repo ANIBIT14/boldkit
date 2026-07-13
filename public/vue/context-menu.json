@@ -12,55 +12,55 @@
   ],
   "files": [
     {
-      "path": "registry/default/components/ui/ContextMenu.vue",
+      "path": "components/ui/ContextMenu.vue",
       "type": "registry:ui"
     },
     {
-      "path": "registry/default/components/ui/ContextMenuTrigger.vue",
+      "path": "components/ui/ContextMenuTrigger.vue",
       "type": "registry:ui"
     },
     {
-      "path": "registry/default/components/ui/ContextMenuContent.vue",
+      "path": "components/ui/ContextMenuContent.vue",
       "type": "registry:ui"
     },
     {
-      "path": "registry/default/components/ui/ContextMenuItem.vue",
+      "path": "components/ui/ContextMenuItem.vue",
       "type": "registry:ui"
     },
     {
-      "path": "registry/default/components/ui/ContextMenuCheckboxItem.vue",
+      "path": "components/ui/ContextMenuCheckboxItem.vue",
       "type": "registry:ui"
     },
     {
-      "path": "registry/default/components/ui/ContextMenuRadioGroup.vue",
+      "path": "components/ui/ContextMenuRadioGroup.vue",
       "type": "registry:ui"
     },
     {
-      "path": "registry/default/components/ui/ContextMenuRadioItem.vue",
+      "path": "components/ui/ContextMenuRadioItem.vue",
       "type": "registry:ui"
     },
     {
-      "path": "registry/default/components/ui/ContextMenuLabel.vue",
+      "path": "components/ui/ContextMenuLabel.vue",
       "type": "registry:ui"
     },
     {
-      "path": "registry/default/components/ui/ContextMenuSeparator.vue",
+      "path": "components/ui/ContextMenuSeparator.vue",
       "type": "registry:ui"
     },
     {
-      "path": "registry/default/components/ui/ContextMenuShortcut.vue",
+      "path": "components/ui/ContextMenuShortcut.vue",
       "type": "registry:ui"
     },
     {
-      "path": "registry/default/components/ui/ContextMenuSub.vue",
+      "path": "components/ui/ContextMenuSub.vue",
       "type": "registry:ui"
     },
     {
-      "path": "registry/default/components/ui/ContextMenuSubTrigger.vue",
+      "path": "components/ui/ContextMenuSubTrigger.vue",
       "type": "registry:ui"
     },
     {
-      "path": "registry/default/components/ui/ContextMenuSubContent.vue",
+      "path": "components/ui/ContextMenuSubContent.vue",
       "type": "registry:ui"
     }
   ]

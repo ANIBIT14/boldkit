@@ -13,15 +13,15 @@
   ],
   "files": [
     {
-      "path": "registry/default/components/ui/HeatmapChart.vue",
+      "path": "components/ui/HeatmapChart.vue",
       "type": "registry:ui"
     },
     {
-      "path": "registry/default/components/ui/ChartEmpty.vue",
+      "path": "components/ui/ChartEmpty.vue",
       "type": "registry:ui"
     },
     {
-      "path": "registry/default/components/ui/chart-types.ts",
+      "path": "components/ui/chart-types.ts",
       "type": "registry:ui"
     }
   ]

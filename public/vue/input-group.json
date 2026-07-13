@@ -11,15 +11,15 @@
   ],
   "files": [
     {
-      "path": "registry/default/components/ui/InputGroup.vue",
+      "path": "components/ui/InputGroup.vue",
       "type": "registry:ui"
     },
     {
-      "path": "registry/default/components/ui/InputGroupInput.vue",
+      "path": "components/ui/InputGroupInput.vue",
       "type": "registry:ui"
     },
     {
-      "path": "registry/default/components/ui/InputGroupAddon.vue",
+      "path": "components/ui/InputGroupAddon.vue",
       "type": "registry:ui"
     }
   ]

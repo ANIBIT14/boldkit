@@ -11,15 +11,15 @@
   ],
   "files": [
     {
-      "path": "registry/default/components/ui/Avatar.vue",
+      "path": "components/ui/Avatar.vue",
       "type": "registry:ui"
     },
     {
-      "path": "registry/default/components/ui/AvatarImage.vue",
+      "path": "components/ui/AvatarImage.vue",
       "type": "registry:ui"
     },
     {
-      "path": "registry/default/components/ui/AvatarFallback.vue",
+      "path": "components/ui/AvatarFallback.vue",
       "type": "registry:ui"
     }
   ]

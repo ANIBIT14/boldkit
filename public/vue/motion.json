@@ -11,19 +11,19 @@
   ],
   "files": [
     {
-      "path": "registry/default/components/ui/Motion.vue",
+      "path": "components/ui/Motion.vue",
       "type": "registry:ui"
     },
     {
-      "path": "registry/default/components/ui/Reveal.vue",
+      "path": "components/ui/Reveal.vue",
       "type": "registry:ui"
     },
     {
-      "path": "registry/default/components/ui/Stagger.vue",
+      "path": "components/ui/Stagger.vue",
       "type": "registry:ui"
     },
     {
-      "path": "registry/default/styles/motion.css",
+      "path": "styles/motion.css",
       "type": "registry:ui",
       "target": "styles/motion.css"
     }

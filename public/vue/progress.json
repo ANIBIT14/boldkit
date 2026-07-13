@@ -11,7 +11,7 @@
   ],
   "files": [
     {
-      "path": "registry/default/components/ui/Progress.vue",
+      "path": "components/ui/Progress.vue",
       "type": "registry:ui"
     }
   ]

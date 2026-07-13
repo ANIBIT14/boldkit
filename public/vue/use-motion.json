@@ -10,7 +10,7 @@
   ],
   "files": [
     {
-      "path": "registry/default/composables/useMotion.ts",
+      "path": "composables/useMotion.ts",
       "type": "registry:composable"
     }
   ]

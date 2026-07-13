@@ -10,7 +10,7 @@
   ],
   "files": [
     {
-      "path": "registry/default/components/ui/MathCurveBackground.vue",
+      "path": "components/ui/MathCurveBackground.vue",
       "type": "registry:ui"
     }
   ]

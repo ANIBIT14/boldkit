@@ -13,27 +13,27 @@
   ],
   "files": [
     {
-      "path": "registry/default/components/ui/Carousel.vue",
+      "path": "components/ui/Carousel.vue",
       "type": "registry:ui"
     },
     {
-      "path": "registry/default/components/ui/CarouselContent.vue",
+      "path": "components/ui/CarouselContent.vue",
       "type": "registry:ui"
     },
     {
-      "path": "registry/default/components/ui/CarouselItem.vue",
+      "path": "components/ui/CarouselItem.vue",
       "type": "registry:ui"
     },
     {
-      "path": "registry/default/components/ui/CarouselPrevious.vue",
+      "path": "components/ui/CarouselPrevious.vue",
       "type": "registry:ui"
     },
     {
-      "path": "registry/default/components/ui/CarouselNext.vue",
+      "path": "components/ui/CarouselNext.vue",
       "type": "registry:ui"
     },
     {
-      "path": "registry/default/components/ui/CarouselDots.vue",
+      "path": "components/ui/CarouselDots.vue",
       "type": "registry:ui"
     }
   ]

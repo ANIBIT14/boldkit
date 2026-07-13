@@ -11,11 +11,11 @@
   ],
   "files": [
     {
-      "path": "registry/default/components/ui/ScrollArea.vue",
+      "path": "components/ui/ScrollArea.vue",
       "type": "registry:ui"
     },
     {
-      "path": "registry/default/components/ui/ScrollBar.vue",
+      "path": "components/ui/ScrollBar.vue",
       "type": "registry:ui"
     }
   ]

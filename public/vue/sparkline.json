@@ -13,7 +13,7 @@
   ],
   "files": [
     {
-      "path": "registry/default/components/ui/SparklineChart.vue",
+      "path": "components/ui/SparklineChart.vue",
       "type": "registry:ui"
     }
   ]

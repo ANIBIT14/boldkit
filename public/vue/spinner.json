@@ -11,7 +11,7 @@
   ],
   "files": [
     {
-      "path": "registry/default/components/ui/Spinner.vue",
+      "path": "components/ui/Spinner.vue",
       "type": "registry:ui"
     }
   ]

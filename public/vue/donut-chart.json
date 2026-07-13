@@ -14,19 +14,19 @@
   ],
   "files": [
     {
-      "path": "registry/default/components/ui/DonutChart.vue",
+      "path": "components/ui/DonutChart.vue",
       "type": "registry:ui"
     },
     {
-      "path": "registry/default/components/ui/ChartEmpty.vue",
+      "path": "components/ui/ChartEmpty.vue",
       "type": "registry:ui"
     },
     {
-      "path": "registry/default/components/ui/chart-utils.ts",
+      "path": "components/ui/chart-utils.ts",
       "type": "registry:ui"
     },
     {
-      "path": "registry/default/components/ui/chart-variants.ts",
+      "path": "components/ui/chart-variants.ts",
       "type": "registry:ui"
     }
   ]

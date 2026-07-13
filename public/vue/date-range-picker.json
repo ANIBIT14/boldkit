@@ -15,7 +15,7 @@
   ],
   "files": [
     {
-      "path": "registry/default/components/ui/DateRangePicker.vue",
+      "path": "components/ui/DateRangePicker.vue",
       "type": "registry:ui"
     }
   ]

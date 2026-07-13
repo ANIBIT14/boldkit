@@ -14,7 +14,7 @@
   ],
   "files": [
     {
-      "path": "registry/default/components/ui/TreeView.vue",
+      "path": "components/ui/TreeView.vue",
       "type": "registry:ui"
     }
   ]

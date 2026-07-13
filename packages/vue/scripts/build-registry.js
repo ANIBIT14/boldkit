@@ -451,7 +451,7 @@ function createRegistryJson(name, meta) {
     const vueContent = readFile(vuePath)
     if (vueContent) {
       registryFiles.push({
-        path: `registry/default/components/ui/${file}.vue`,
+        path: `components/ui/${file}.vue`,
         content: vueContent,
         type: 'registry:ui',
       })
@@ -460,7 +460,7 @@ function createRegistryJson(name, meta) {
     const tsContent = readFile(tsPath)
     if (tsContent) {
       registryFiles.push({
-        path: `registry/default/components/ui/${file.toLowerCase()}-variants.ts`,
+        path: `components/ui/${file.toLowerCase()}-variants.ts`,
         content: tsContent,
         type: 'registry:ui',
       })
@@ -474,7 +474,7 @@ function createRegistryJson(name, meta) {
       const extraContent = readFile(extraPath)
       if (extraContent) {
         registryFiles.push({
-          path: `registry/default/components/ui/${extraFile}`,
+          path: `components/ui/${extraFile}`,
           content: extraContent,
           type: 'registry:ui',
         })
@@ -501,11 +501,11 @@ function createRegistryJson(name, meta) {
         // styles/* (motion.css) is a manually-imported CSS file, not an `@/`
         // module, so root-relative target placement is fine and kept.
         if (src.startsWith('lib/')) {
-          registryFiles.push({ path: `registry/default/${src}`, content, type: 'registry:lib' })
+          registryFiles.push({ path: `${src}`, content, type: 'registry:lib' })
         } else if (src.startsWith('composables/')) {
-          registryFiles.push({ path: `registry/default/${src}`, content, type: 'registry:composable' })
+          registryFiles.push({ path: `${src}`, content, type: 'registry:composable' })
         } else {
-          registryFiles.push({ path: `registry/default/${src}`, content, type: 'registry:ui', target })
+          registryFiles.push({ path: `${src}`, content, type: 'registry:ui', target })
         }
       }
     }
@@ -549,7 +549,7 @@ function createSubDirRegistry(name, meta) {
     const content = readFile(path.join(dir, entry))
     if (!content) continue
     registryFiles.push({
-      path: `registry/default/components/ui/${meta.subDir}/${entry}`,
+      path: `components/ui/${meta.subDir}/${entry}`,
       content,
       type: 'registry:ui',
     })
@@ -579,7 +579,7 @@ function createShapesRegistry() {
     const vueContent = readFile(vuePath)
     if (vueContent) {
       registryFiles.push({
-        path: `registry/default/components/ui/shapes/${shape}.vue`,
+        path: `components/ui/shapes/${shape}.vue`,
         content: vueContent,
         type: 'registry:ui',
       })
@@ -591,7 +591,7 @@ function createShapesRegistry() {
   const indexContent = readFile(indexPath)
   if (indexContent) {
     registryFiles.push({
-      path: 'registry/default/components/ui/shapes/index.ts',
+      path: 'components/ui/shapes/index.ts',
       content: indexContent,
       type: 'registry:ui',
     })
@@ -623,7 +623,7 @@ function createStylesRegistry() {
     type: 'registry:style',
     description: 'BoldKit neubrutalism CSS variables and utilities',
     files: [{
-      path: 'registry/default/styles/globals.css',
+      path: 'styles/globals.css',
       content: cssContent,
       type: 'registry:style',
       target: 'styles/globals.css'

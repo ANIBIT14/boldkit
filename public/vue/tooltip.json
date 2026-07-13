@@ -11,19 +11,19 @@
   ],
   "files": [
     {
-      "path": "registry/default/components/ui/Tooltip.vue",
+      "path": "components/ui/Tooltip.vue",
       "type": "registry:ui"
     },
     {
-      "path": "registry/default/components/ui/TooltipTrigger.vue",
+      "path": "components/ui/TooltipTrigger.vue",
       "type": "registry:ui"
     },
     {
-      "path": "registry/default/components/ui/TooltipContent.vue",
+      "path": "components/ui/TooltipContent.vue",
       "type": "registry:ui"
     },
     {
-      "path": "registry/default/components/ui/TooltipProvider.vue",
+      "path": "components/ui/TooltipProvider.vue",
       "type": "registry:ui"
     }
   ]

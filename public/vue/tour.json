@@ -12,7 +12,7 @@
   ],
   "files": [
     {
-      "path": "registry/default/components/ui/Tour.vue",
+      "path": "components/ui/Tour.vue",
       "type": "registry:ui"
     }
   ]

@@ -12,15 +12,15 @@
   ],
   "files": [
     {
-      "path": "registry/default/components/ui/ResizablePanelGroup.vue",
+      "path": "components/ui/ResizablePanelGroup.vue",
       "type": "registry:ui"
     },
     {
-      "path": "registry/default/components/ui/ResizablePanel.vue",
+      "path": "components/ui/ResizablePanel.vue",
       "type": "registry:ui"
     },
     {
-      "path": "registry/default/components/ui/ResizableHandle.vue",
+      "path": "components/ui/ResizableHandle.vue",
       "type": "registry:ui"
     }
   ]

@@ -11,19 +11,19 @@
   ],
   "files": [
     {
-      "path": "registry/default/components/ui/Accordion.vue",
+      "path": "components/ui/Accordion.vue",
       "type": "registry:ui"
     },
     {
-      "path": "registry/default/components/ui/AccordionItem.vue",
+      "path": "components/ui/AccordionItem.vue",
       "type": "registry:ui"
     },
     {
-      "path": "registry/default/components/ui/AccordionTrigger.vue",
+      "path": "components/ui/AccordionTrigger.vue",
       "type": "registry:ui"
     },
     {
-      "path": "registry/default/components/ui/AccordionContent.vue",
+      "path": "components/ui/AccordionContent.vue",
       "type": "registry:ui"
     }
   ]

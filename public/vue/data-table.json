@@ -18,7 +18,7 @@
   ],
   "files": [
     {
-      "path": "registry/default/components/ui/DataTable.vue",
+      "path": "components/ui/DataTable.vue",
       "type": "registry:ui"
     }
   ]

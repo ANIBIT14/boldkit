@@ -9,79 +9,79 @@
   ],
   "files": [
     {
-      "path": "registry/default/components/ui/ascii-shapes/AsciiCube.vue",
+      "path": "components/ui/ascii-shapes/AsciiCube.vue",
       "type": "registry:ui"
     },
     {
-      "path": "registry/default/components/ui/ascii-shapes/AsciiDNA.vue",
+      "path": "components/ui/ascii-shapes/AsciiDNA.vue",
       "type": "registry:ui"
     },
     {
-      "path": "registry/default/components/ui/ascii-shapes/AsciiDonut.vue",
+      "path": "components/ui/ascii-shapes/AsciiDonut.vue",
       "type": "registry:ui"
     },
     {
-      "path": "registry/default/components/ui/ascii-shapes/AsciiGeodesicDome.vue",
+      "path": "components/ui/ascii-shapes/AsciiGeodesicDome.vue",
       "type": "registry:ui"
     },
     {
-      "path": "registry/default/components/ui/ascii-shapes/AsciiGrid.vue",
+      "path": "components/ui/ascii-shapes/AsciiGrid.vue",
       "type": "registry:ui"
     },
     {
-      "path": "registry/default/components/ui/ascii-shapes/AsciiHelix.vue",
+      "path": "components/ui/ascii-shapes/AsciiHelix.vue",
       "type": "registry:ui"
     },
     {
-      "path": "registry/default/components/ui/ascii-shapes/AsciiHyperboloid.vue",
+      "path": "components/ui/ascii-shapes/AsciiHyperboloid.vue",
       "type": "registry:ui"
     },
     {
-      "path": "registry/default/components/ui/ascii-shapes/AsciiMatrix.vue",
+      "path": "components/ui/ascii-shapes/AsciiMatrix.vue",
       "type": "registry:ui"
     },
     {
-      "path": "registry/default/components/ui/ascii-shapes/AsciiPulse.vue",
+      "path": "components/ui/ascii-shapes/AsciiPulse.vue",
       "type": "registry:ui"
     },
     {
-      "path": "registry/default/components/ui/ascii-shapes/AsciiRose.vue",
+      "path": "components/ui/ascii-shapes/AsciiRose.vue",
       "type": "registry:ui"
     },
     {
-      "path": "registry/default/components/ui/ascii-shapes/AsciiSaturn.vue",
+      "path": "components/ui/ascii-shapes/AsciiSaturn.vue",
       "type": "registry:ui"
     },
     {
-      "path": "registry/default/components/ui/ascii-shapes/AsciiSphere.vue",
+      "path": "components/ui/ascii-shapes/AsciiSphere.vue",
       "type": "registry:ui"
     },
     {
-      "path": "registry/default/components/ui/ascii-shapes/AsciiSpiral.vue",
+      "path": "components/ui/ascii-shapes/AsciiSpiral.vue",
       "type": "registry:ui"
     },
     {
-      "path": "registry/default/components/ui/ascii-shapes/AsciiTorus.vue",
+      "path": "components/ui/ascii-shapes/AsciiTorus.vue",
       "type": "registry:ui"
     },
     {
-      "path": "registry/default/components/ui/ascii-shapes/AsciiTrefoilKnot.vue",
+      "path": "components/ui/ascii-shapes/AsciiTrefoilKnot.vue",
       "type": "registry:ui"
     },
     {
-      "path": "registry/default/components/ui/ascii-shapes/AsciiVortex.vue",
+      "path": "components/ui/ascii-shapes/AsciiVortex.vue",
       "type": "registry:ui"
     },
     {
-      "path": "registry/default/components/ui/ascii-shapes/AsciiWave.vue",
+      "path": "components/ui/ascii-shapes/AsciiWave.vue",
       "type": "registry:ui"
     },
     {
-      "path": "registry/default/components/ui/ascii-shapes/constants.ts",
+      "path": "components/ui/ascii-shapes/constants.ts",
       "type": "registry:ui"
     },
     {
-      "path": "registry/default/components/ui/ascii-shapes/index.ts",
+      "path": "components/ui/ascii-shapes/index.ts",
       "type": "registry:ui"
     }
   ]

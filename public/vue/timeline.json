@@ -11,43 +11,43 @@
   ],
   "files": [
     {
-      "path": "registry/default/components/ui/Timeline.vue",
+      "path": "components/ui/Timeline.vue",
       "type": "registry:ui"
     },
     {
-      "path": "registry/default/components/ui/TimelineCard.vue",
+      "path": "components/ui/TimelineCard.vue",
       "type": "registry:ui"
     },
     {
-      "path": "registry/default/components/ui/TimelineConnector.vue",
+      "path": "components/ui/TimelineConnector.vue",
       "type": "registry:ui"
     },
     {
-      "path": "registry/default/components/ui/TimelineContent.vue",
+      "path": "components/ui/TimelineContent.vue",
       "type": "registry:ui"
     },
     {
-      "path": "registry/default/components/ui/TimelineDescription.vue",
+      "path": "components/ui/TimelineDescription.vue",
       "type": "registry:ui"
     },
     {
-      "path": "registry/default/components/ui/TimelineDot.vue",
+      "path": "components/ui/TimelineDot.vue",
       "type": "registry:ui"
     },
     {
-      "path": "registry/default/components/ui/TimelineHeader.vue",
+      "path": "components/ui/TimelineHeader.vue",
       "type": "registry:ui"
     },
     {
-      "path": "registry/default/components/ui/TimelineItem.vue",
+      "path": "components/ui/TimelineItem.vue",
       "type": "registry:ui"
     },
     {
-      "path": "registry/default/components/ui/TimelineTime.vue",
+      "path": "components/ui/TimelineTime.vue",
       "type": "registry:ui"
     },
     {
-      "path": "registry/default/components/ui/TimelineTitle.vue",
+      "path": "components/ui/TimelineTitle.vue",
       "type": "registry:ui"
     }
   ]

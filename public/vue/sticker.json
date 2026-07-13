@@ -11,19 +11,19 @@
   ],
   "files": [
     {
-      "path": "registry/default/components/ui/Sticker.vue",
+      "path": "components/ui/Sticker.vue",
       "type": "registry:ui"
     },
     {
-      "path": "registry/default/components/ui/sticker-variants.ts",
+      "path": "components/ui/sticker-variants.ts",
       "type": "registry:ui"
     },
     {
-      "path": "registry/default/components/ui/Stamp.vue",
+      "path": "components/ui/Stamp.vue",
       "type": "registry:ui"
     },
     {
-      "path": "registry/default/components/ui/StickyNote.vue",
+      "path": "components/ui/StickyNote.vue",
       "type": "registry:ui"
     }
   ]

@@ -13,39 +13,39 @@
   ],
   "files": [
     {
-      "path": "registry/default/components/ui/Command.vue",
+      "path": "components/ui/Command.vue",
       "type": "registry:ui"
     },
     {
-      "path": "registry/default/components/ui/CommandDialog.vue",
+      "path": "components/ui/CommandDialog.vue",
       "type": "registry:ui"
     },
     {
-      "path": "registry/default/components/ui/CommandInput.vue",
+      "path": "components/ui/CommandInput.vue",
       "type": "registry:ui"
     },
     {
-      "path": "registry/default/components/ui/CommandList.vue",
+      "path": "components/ui/CommandList.vue",
       "type": "registry:ui"
     },
     {
-      "path": "registry/default/components/ui/CommandEmpty.vue",
+      "path": "components/ui/CommandEmpty.vue",
       "type": "registry:ui"
     },
     {
-      "path": "registry/default/components/ui/CommandGroup.vue",
+      "path": "components/ui/CommandGroup.vue",
       "type": "registry:ui"
     },
     {
-      "path": "registry/default/components/ui/CommandItem.vue",
+      "path": "components/ui/CommandItem.vue",
       "type": "registry:ui"
     },
     {
-      "path": "registry/default/components/ui/CommandSeparator.vue",
+      "path": "components/ui/CommandSeparator.vue",
       "type": "registry:ui"
     },
     {
-      "path": "registry/default/components/ui/CommandShortcut.vue",
+      "path": "components/ui/CommandShortcut.vue",
       "type": "registry:ui"
     }
   ]

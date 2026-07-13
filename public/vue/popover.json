@@ -11,15 +11,15 @@
   ],
   "files": [
     {
-      "path": "registry/default/components/ui/Popover.vue",
+      "path": "components/ui/Popover.vue",
       "type": "registry:ui"
     },
     {
-      "path": "registry/default/components/ui/PopoverTrigger.vue",
+      "path": "components/ui/PopoverTrigger.vue",
       "type": "registry:ui"
     },
     {
-      "path": "registry/default/components/ui/PopoverContent.vue",
+      "path": "components/ui/PopoverContent.vue",
       "type": "registry:ui"
     }
   ]

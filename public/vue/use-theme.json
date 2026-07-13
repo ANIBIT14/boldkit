@@ -9,7 +9,7 @@
   ],
   "files": [
     {
-      "path": "registry/default/composables/useTheme.ts",
+      "path": "composables/useTheme.ts",
       "type": "registry:composable"
     }
   ]

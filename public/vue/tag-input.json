@@ -11,7 +11,7 @@
   ],
   "files": [
     {
-      "path": "registry/default/components/ui/TagInput.vue",
+      "path": "components/ui/TagInput.vue",
       "type": "registry:ui"
     }
   ]

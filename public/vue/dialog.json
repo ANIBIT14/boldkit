@@ -12,35 +12,35 @@
   ],
   "files": [
     {
-      "path": "registry/default/components/ui/Dialog.vue",
+      "path": "components/ui/Dialog.vue",
       "type": "registry:ui"
     },
     {
-      "path": "registry/default/components/ui/DialogTrigger.vue",
+      "path": "components/ui/DialogTrigger.vue",
       "type": "registry:ui"
     },
     {
-      "path": "registry/default/components/ui/DialogContent.vue",
+      "path": "components/ui/DialogContent.vue",
       "type": "registry:ui"
     },
     {
-      "path": "registry/default/components/ui/DialogHeader.vue",
+      "path": "components/ui/DialogHeader.vue",
       "type": "registry:ui"
     },
     {
-      "path": "registry/default/components/ui/DialogFooter.vue",
+      "path": "components/ui/DialogFooter.vue",
       "type": "registry:ui"
     },
     {
-      "path": "registry/default/components/ui/DialogTitle.vue",
+      "path": "components/ui/DialogTitle.vue",
       "type": "registry:ui"
     },
     {
-      "path": "registry/default/components/ui/DialogDescription.vue",
+      "path": "components/ui/DialogDescription.vue",
       "type": "registry:ui"
     },
     {
-      "path": "registry/default/components/ui/DialogClose.vue",
+      "path": "components/ui/DialogClose.vue",
       "type": "registry:ui"
     }
   ]

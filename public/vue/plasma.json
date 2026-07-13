@@ -6,7 +6,7 @@
   "registryDependencies": [],
   "files": [
     {
-      "path": "registry/default/components/ui/canvas-effects/Plasma.vue",
+      "path": "components/ui/canvas-effects/Plasma.vue",
       "type": "registry:ui"
     }
   ],

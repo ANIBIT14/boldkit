@@ -12,35 +12,35 @@
   ],
   "files": [
     {
-      "path": "registry/default/components/ui/Select.vue",
+      "path": "components/ui/Select.vue",
       "type": "registry:ui"
     },
     {
-      "path": "registry/default/components/ui/SelectTrigger.vue",
+      "path": "components/ui/SelectTrigger.vue",
       "type": "registry:ui"
     },
     {
-      "path": "registry/default/components/ui/SelectValue.vue",
+      "path": "components/ui/SelectValue.vue",
       "type": "registry:ui"
     },
     {
-      "path": "registry/default/components/ui/SelectContent.vue",
+      "path": "components/ui/SelectContent.vue",
       "type": "registry:ui"
     },
     {
-      "path": "registry/default/components/ui/SelectItem.vue",
+      "path": "components/ui/SelectItem.vue",
       "type": "registry:ui"
     },
     {
-      "path": "registry/default/components/ui/SelectGroup.vue",
+      "path": "components/ui/SelectGroup.vue",
       "type": "registry:ui"
     },
     {
-      "path": "registry/default/components/ui/SelectLabel.vue",
+      "path": "components/ui/SelectLabel.vue",
       "type": "registry:ui"
     },
     {
-      "path": "registry/default/components/ui/SelectSeparator.vue",
+      "path": "components/ui/SelectSeparator.vue",
       "type": "registry:ui"
     }
   ]

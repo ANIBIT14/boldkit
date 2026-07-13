@@ -9,11 +9,11 @@
   ],
   "files": [
     {
-      "path": "registry/default/components/ui/Kbd.vue",
+      "path": "components/ui/Kbd.vue",
       "type": "registry:ui"
     },
     {
-      "path": "registry/default/components/ui/KbdCombo.vue",
+      "path": "components/ui/KbdCombo.vue",
       "type": "registry:ui"
     }
   ]

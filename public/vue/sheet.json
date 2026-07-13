@@ -13,35 +13,35 @@
   ],
   "files": [
     {
-      "path": "registry/default/components/ui/Sheet.vue",
+      "path": "components/ui/Sheet.vue",
       "type": "registry:ui"
     },
     {
-      "path": "registry/default/components/ui/SheetTrigger.vue",
+      "path": "components/ui/SheetTrigger.vue",
       "type": "registry:ui"
     },
     {
-      "path": "registry/default/components/ui/SheetContent.vue",
+      "path": "components/ui/SheetContent.vue",
       "type": "registry:ui"
     },
     {
-      "path": "registry/default/components/ui/SheetHeader.vue",
+      "path": "components/ui/SheetHeader.vue",
       "type": "registry:ui"
     },
     {
-      "path": "registry/default/components/ui/SheetFooter.vue",
+      "path": "components/ui/SheetFooter.vue",
       "type": "registry:ui"
     },
     {
-      "path": "registry/default/components/ui/SheetTitle.vue",
+      "path": "components/ui/SheetTitle.vue",
       "type": "registry:ui"
     },
     {
-      "path": "registry/default/components/ui/SheetDescription.vue",
+      "path": "components/ui/SheetDescription.vue",
       "type": "registry:ui"
     },
     {
-      "path": "registry/default/components/ui/SheetClose.vue",
+      "path": "components/ui/SheetClose.vue",
       "type": "registry:ui"
     }
   ]

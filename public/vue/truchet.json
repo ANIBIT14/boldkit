@@ -6,7 +6,7 @@
   "registryDependencies": [],
   "files": [
     {
-      "path": "registry/default/components/ui/canvas-effects/Truchet.vue",
+      "path": "components/ui/canvas-effects/Truchet.vue",
       "type": "registry:ui"
     }
   ],

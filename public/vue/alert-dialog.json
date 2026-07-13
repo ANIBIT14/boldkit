@@ -12,39 +12,39 @@
   ],
   "files": [
     {
-      "path": "registry/default/components/ui/AlertDialog.vue",
+      "path": "components/ui/AlertDialog.vue",
       "type": "registry:ui"
     },
     {
-      "path": "registry/default/components/ui/AlertDialogTrigger.vue",
+      "path": "components/ui/AlertDialogTrigger.vue",
       "type": "registry:ui"
     },
     {
-      "path": "registry/default/components/ui/AlertDialogContent.vue",
+      "path": "components/ui/AlertDialogContent.vue",
       "type": "registry:ui"
     },
     {
-      "path": "registry/default/components/ui/AlertDialogHeader.vue",
+      "path": "components/ui/AlertDialogHeader.vue",
       "type": "registry:ui"
     },
     {
-      "path": "registry/default/components/ui/AlertDialogFooter.vue",
+      "path": "components/ui/AlertDialogFooter.vue",
       "type": "registry:ui"
     },
     {
-      "path": "registry/default/components/ui/AlertDialogTitle.vue",
+      "path": "components/ui/AlertDialogTitle.vue",
       "type": "registry:ui"
     },
     {
-      "path": "registry/default/components/ui/AlertDialogDescription.vue",
+      "path": "components/ui/AlertDialogDescription.vue",
       "type": "registry:ui"
     },
     {
-      "path": "registry/default/components/ui/AlertDialogAction.vue",
+      "path": "components/ui/AlertDialogAction.vue",
       "type": "registry:ui"
     },
     {
-      "path": "registry/default/components/ui/AlertDialogCancel.vue",
+      "path": "components/ui/AlertDialogCancel.vue",
       "type": "registry:ui"
     }
   ]

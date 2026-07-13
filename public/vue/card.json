@@ -9,27 +9,27 @@
   ],
   "files": [
     {
-      "path": "registry/default/components/ui/Card.vue",
+      "path": "components/ui/Card.vue",
       "type": "registry:ui"
     },
     {
-      "path": "registry/default/components/ui/CardHeader.vue",
+      "path": "components/ui/CardHeader.vue",
       "type": "registry:ui"
     },
     {
-      "path": "registry/default/components/ui/CardTitle.vue",
+      "path": "components/ui/CardTitle.vue",
       "type": "registry:ui"
     },
     {
-      "path": "registry/default/components/ui/CardDescription.vue",
+      "path": "components/ui/CardDescription.vue",
       "type": "registry:ui"
     },
     {
-      "path": "registry/default/components/ui/CardContent.vue",
+      "path": "components/ui/CardContent.vue",
       "type": "registry:ui"
     },
     {
-      "path": "registry/default/components/ui/CardFooter.vue",
+      "path": "components/ui/CardFooter.vue",
       "type": "registry:ui"
     }
   ]

@@ -12,19 +12,19 @@
   ],
   "files": [
     {
-      "path": "registry/default/components/ui/InputOTP.vue",
+      "path": "components/ui/InputOTP.vue",
       "type": "registry:ui"
     },
     {
-      "path": "registry/default/components/ui/InputOTPGroup.vue",
+      "path": "components/ui/InputOTPGroup.vue",
       "type": "registry:ui"
     },
     {
-      "path": "registry/default/components/ui/InputOTPSlot.vue",
+      "path": "components/ui/InputOTPSlot.vue",
       "type": "registry:ui"
     },
     {
-      "path": "registry/default/components/ui/InputOTPSeparator.vue",
+      "path": "components/ui/InputOTPSeparator.vue",
       "type": "registry:ui"
     }
   ]

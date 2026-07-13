@@ -5,7 +5,7 @@
   "description": "BoldKit neubrutalism CSS variables and utilities",
   "files": [
     {
-      "path": "registry/default/styles/globals.css",
+      "path": "styles/globals.css",
       "type": "registry:style",
       "target": "styles/globals.css"
     }

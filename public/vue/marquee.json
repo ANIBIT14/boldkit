@@ -9,15 +9,15 @@
   ],
   "files": [
     {
-      "path": "registry/default/components/ui/Marquee.vue",
+      "path": "components/ui/Marquee.vue",
       "type": "registry:ui"
     },
     {
-      "path": "registry/default/components/ui/MarqueeItem.vue",
+      "path": "components/ui/MarqueeItem.vue",
       "type": "registry:ui"
     },
     {
-      "path": "registry/default/components/ui/MarqueeSeparator.vue",
+      "path": "components/ui/MarqueeSeparator.vue",
       "type": "registry:ui"
     }
   ]

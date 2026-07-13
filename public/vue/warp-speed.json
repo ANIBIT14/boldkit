@@ -6,7 +6,7 @@
   "registryDependencies": [],
   "files": [
     {
-      "path": "registry/default/components/ui/canvas-effects/WarpSpeed.vue",
+      "path": "components/ui/canvas-effects/WarpSpeed.vue",
       "type": "registry:ui"
     }
   ],

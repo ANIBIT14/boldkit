@@ -9,7 +9,7 @@
   ],
   "files": [
     {
-      "path": "registry/default/lib/chart-export.ts",
+      "path": "lib/chart-export.ts",
       "type": "registry:lib"
     }
   ]

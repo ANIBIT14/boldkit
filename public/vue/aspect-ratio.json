@@ -11,7 +11,7 @@
   ],
   "files": [
     {
-      "path": "registry/default/components/ui/AspectRatio.vue",
+      "path": "components/ui/AspectRatio.vue",
       "type": "registry:ui"
     }
   ]

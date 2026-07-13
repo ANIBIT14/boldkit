@@ -11,11 +11,11 @@
   ],
   "files": [
     {
-      "path": "registry/default/components/ui/RadioGroup.vue",
+      "path": "components/ui/RadioGroup.vue",
       "type": "registry:ui"
     },
     {
-      "path": "registry/default/components/ui/RadioGroupItem.vue",
+      "path": "components/ui/RadioGroupItem.vue",
       "type": "registry:ui"
     }
   ]

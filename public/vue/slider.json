@@ -11,7 +11,7 @@
   ],
   "files": [
     {
-      "path": "registry/default/components/ui/Slider.vue",
+      "path": "components/ui/Slider.vue",
       "type": "registry:ui"
     }
   ]

@@ -11,7 +11,7 @@
   ],
   "files": [
     {
-      "path": "registry/default/components/ui/Badge.vue",
+      "path": "components/ui/Badge.vue",
       "type": "registry:ui"
     }
   ]

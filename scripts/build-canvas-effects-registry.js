@@ -71,7 +71,7 @@ for (const { rDir, srcDir } of targets) {
         changed = true
       }
       if (isVue) {
-        const desiredPath = `registry/default/components/ui/canvas-effects/${path.basename(f.path)}`
+        const desiredPath = `components/ui/canvas-effects/${path.basename(f.path)}`
         if (f.path !== desiredPath) { f.path = desiredPath; changed = true }
         if (f.target !== undefined) { delete f.target; changed = true }
       }

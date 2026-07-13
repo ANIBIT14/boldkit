@@ -12,11 +12,11 @@
   ],
   "files": [
     {
-      "path": "registry/default/components/ui/Toggle.vue",
+      "path": "components/ui/Toggle.vue",
       "type": "registry:ui"
     },
     {
-      "path": "registry/default/components/ui/toggle-variants.ts",
+      "path": "components/ui/toggle-variants.ts",
       "type": "registry:ui"
     }
   ]

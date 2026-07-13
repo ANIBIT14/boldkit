@@ -9,7 +9,7 @@
   ],
   "files": [
     {
-      "path": "registry/default/lib/math-curves.ts",
+      "path": "lib/math-curves.ts",
       "type": "registry:lib"
     }
   ]

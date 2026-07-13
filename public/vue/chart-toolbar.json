@@ -13,7 +13,7 @@
   ],
   "files": [
     {
-      "path": "registry/default/components/ui/ChartToolbar.vue",
+      "path": "components/ui/ChartToolbar.vue",
       "type": "registry:ui"
     }
   ]

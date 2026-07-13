@@ -11,15 +11,15 @@
   ],
   "files": [
     {
-      "path": "registry/default/components/ui/Collapsible.vue",
+      "path": "components/ui/Collapsible.vue",
       "type": "registry:ui"
     },
     {
-      "path": "registry/default/components/ui/CollapsibleTrigger.vue",
+      "path": "components/ui/CollapsibleTrigger.vue",
       "type": "registry:ui"
     },
     {
-      "path": "registry/default/components/ui/CollapsibleContent.vue",
+      "path": "components/ui/CollapsibleContent.vue",
       "type": "registry:ui"
     }
   ]

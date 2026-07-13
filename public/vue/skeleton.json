@@ -9,7 +9,7 @@
   ],
   "files": [
     {
-      "path": "registry/default/components/ui/Skeleton.vue",
+      "path": "components/ui/Skeleton.vue",
       "type": "registry:ui"
     }
   ]

@@ -9,35 +9,35 @@
   ],
   "files": [
     {
-      "path": "registry/default/components/ui/Table.vue",
+      "path": "components/ui/Table.vue",
       "type": "registry:ui"
     },
     {
-      "path": "registry/default/components/ui/TableHeader.vue",
+      "path": "components/ui/TableHeader.vue",
       "type": "registry:ui"
     },
     {
-      "path": "registry/default/components/ui/TableBody.vue",
+      "path": "components/ui/TableBody.vue",
       "type": "registry:ui"
     },
     {
-      "path": "registry/default/components/ui/TableFooter.vue",
+      "path": "components/ui/TableFooter.vue",
       "type": "registry:ui"
     },
     {
-      "path": "registry/default/components/ui/TableHead.vue",
+      "path": "components/ui/TableHead.vue",
       "type": "registry:ui"
     },
     {
-      "path": "registry/default/components/ui/TableRow.vue",
+      "path": "components/ui/TableRow.vue",
       "type": "registry:ui"
     },
     {
-      "path": "registry/default/components/ui/TableCell.vue",
+      "path": "components/ui/TableCell.vue",
       "type": "registry:ui"
     },
     {
-      "path": "registry/default/components/ui/TableCaption.vue",
+      "path": "components/ui/TableCaption.vue",
       "type": "registry:ui"
     }
   ]

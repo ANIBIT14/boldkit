@@ -11,52 +11,52 @@
   ],
   "files": [
     {
-      "path": "registry/default/components/ui/Timeline.vue",
+      "path": "components/ui/Timeline.vue",
       "content": "<script setup lang=\"ts\">\nimport { provide } from 'vue'\nimport { cn } from '@/lib/utils'\n\nexport interface TimelineContext {\n  orientation: 'vertical' | 'horizontal'\n}\n\nexport const TIMELINE_INJECTION_KEY = Symbol('timeline')\n\ninterface TimelineProps {\n  orientation?: 'vertical' | 'horizontal'\n  class?: string\n}\n\nconst props = withDefaults(defineProps<TimelineProps>(), {\n  orientation: 'vertical',\n})\n\nprovide(TIMELINE_INJECTION_KEY, {\n  orientation: props.orientation,\n})\n</script>\n\n<template>\n  <div\n    :class=\"cn(\n      'relative',\n      props.orientation === 'vertical' ? 'flex flex-col' : 'flex flex-row',\n      props.class\n    )\"\n  >\n    <slot />\n  </div>\n</template>\n",
       "type": "registry:ui"
     },
     {
-      "path": "registry/default/components/ui/TimelineCard.vue",
+      "path": "components/ui/TimelineCard.vue",
       "content": "<script setup lang=\"ts\">\nimport { cn } from '@/lib/utils'\n\ninterface TimelineCardProps {\n  class?: string\n}\n\nconst props = defineProps<TimelineCardProps>()\n</script>\n\n<template>\n  <div\n    :class=\"cn(\n      'border-3 border-foreground bg-card p-4',\n      'shadow-[4px_4px_0px_hsl(var(--shadow-color))]',\n      props.class\n    )\"\n  >\n    <slot />\n  </div>\n</template>\n",
       "type": "registry:ui"
     },
     {
-      "path": "registry/default/components/ui/TimelineConnector.vue",
+      "path": "components/ui/TimelineConnector.vue",
       "content": "<script setup lang=\"ts\">\nimport { inject } from 'vue'\nimport { cva, type VariantProps } from 'class-variance-authority'\nimport { cn } from '@/lib/utils'\nimport { TIMELINE_INJECTION_KEY, type TimelineContext } from './Timeline.vue'\n\nconst timelineConnectorVariants = cva('transition duration-200', {\n  variants: {\n    status: {\n      completed: 'bg-foreground',\n      current: 'bg-foreground',\n      upcoming: 'border-dashed border-2 border-foreground/50 bg-transparent',\n    },\n    orientation: {\n      vertical: 'w-[3px] min-h-8 ml-[14px]',\n      horizontal: 'h-[3px] min-w-8 mt-[14px]',\n    },\n  },\n  defaultVariants: {\n    status: 'upcoming',\n    orientation: 'vertical',\n  },\n})\n\ntype TimelineConnectorVariants = VariantProps<typeof timelineConnectorVariants>\n\ninterface TimelineConnectorProps {\n  status?: TimelineConnectorVariants['status']\n  class?: string\n}\n\nconst props = withDefaults(defineProps<TimelineConnectorProps>(), {\n  status: 'upcoming',\n})\n\nconst timelineContext = inject<TimelineContext>(TIMELINE_INJECTION_KEY, {\n  orientation: 'vertical',\n})\n</script>\n\n<template>\n  <div\n    :class=\"cn(\n      timelineConnectorVariants({ status, orientation: timelineContext.orientation }),\n      props.class\n    )\"\n  />\n</template>\n",
       "type": "registry:ui"
     },
     {
-      "path": "registry/default/components/ui/TimelineContent.vue",
+      "path": "components/ui/TimelineContent.vue",
       "content": "<script setup lang=\"ts\">\nimport { inject } from 'vue'\nimport { cn } from '@/lib/utils'\nimport { TIMELINE_INJECTION_KEY, type TimelineContext } from './Timeline.vue'\n\ninterface TimelineContentProps {\n  class?: string\n}\n\nconst props = defineProps<TimelineContentProps>()\n\nconst timelineContext = inject<TimelineContext>(TIMELINE_INJECTION_KEY, {\n  orientation: 'vertical',\n})\n</script>\n\n<template>\n  <div\n    :class=\"cn(\n      'flex-1',\n      timelineContext.orientation === 'vertical' ? 'pb-8' : 'pr-8',\n      props.class\n    )\"\n  >\n    <slot />\n  </div>\n</template>\n",
       "type": "registry:ui"
     },
     {
-      "path": "registry/default/components/ui/TimelineDescription.vue",
+      "path": "components/ui/TimelineDescription.vue",
       "content": "<script setup lang=\"ts\">\nimport { cn } from '@/lib/utils'\n\ninterface TimelineDescriptionProps {\n  class?: string\n}\n\nconst props = defineProps<TimelineDescriptionProps>()\n</script>\n\n<template>\n  <p :class=\"cn('text-sm text-muted-foreground mt-1', props.class)\">\n    <slot />\n  </p>\n</template>\n",
       "type": "registry:ui"
     },
     {
-      "path": "registry/default/components/ui/TimelineDot.vue",
+      "path": "components/ui/TimelineDot.vue",
       "content": "<script setup lang=\"ts\">\nimport { cva, type VariantProps } from 'class-variance-authority'\nimport { cn } from '@/lib/utils'\n\nconst timelineDotVariants = cva(\n  'relative z-10 flex items-center justify-center border-3 border-foreground transition duration-200',\n  {\n    variants: {\n      status: {\n        completed: 'bg-success shadow-[4px_4px_0px_hsl(var(--shadow-color))]',\n        current: 'bg-primary shadow-[4px_4px_0px_hsl(var(--shadow-color))] scale-110',\n        upcoming: 'bg-muted',\n      },\n      size: {\n        sm: 'h-6 w-6',\n        md: 'h-8 w-8',\n        lg: 'h-10 w-10',\n      },\n    },\n    defaultVariants: {\n      status: 'upcoming',\n      size: 'md',\n    },\n  }\n)\n\ntype TimelineDotVariants = VariantProps<typeof timelineDotVariants>\n\ninterface TimelineDotProps {\n  status?: TimelineDotVariants['status']\n  size?: TimelineDotVariants['size']\n  class?: string\n}\n\nconst props = withDefaults(defineProps<TimelineDotProps>(), {\n  status: 'upcoming',\n  size: 'md',\n})\n</script>\n\n<template>\n  <div :class=\"cn(timelineDotVariants({ status, size }), props.class)\">\n    <slot />\n  </div>\n</template>\n",
       "type": "registry:ui"
     },
     {
-      "path": "registry/default/components/ui/TimelineHeader.vue",
+      "path": "components/ui/TimelineHeader.vue",
       "content": "<script setup lang=\"ts\">\nimport { cn } from '@/lib/utils'\n\ninterface TimelineHeaderProps {\n  class?: string\n}\n\nconst props = defineProps<TimelineHeaderProps>()\n</script>\n\n<template>\n  <div :class=\"cn('flex items-center gap-2', props.class)\">\n    <slot />\n  </div>\n</template>\n",
       "type": "registry:ui"
     },
     {
-      "path": "registry/default/components/ui/TimelineItem.vue",
+      "path": "components/ui/TimelineItem.vue",
       "content": "<script setup lang=\"ts\">\nimport { inject } from 'vue'\nimport { cva, type VariantProps } from 'class-variance-authority'\nimport { cn } from '@/lib/utils'\nimport { TIMELINE_INJECTION_KEY, type TimelineContext } from './Timeline.vue'\n\nconst timelineItemVariants = cva('relative flex', {\n  variants: {\n    status: {\n      completed: '',\n      current: '',\n      upcoming: '',\n    },\n  },\n  defaultVariants: {\n    status: 'upcoming',\n  },\n})\n\ntype TimelineItemVariants = VariantProps<typeof timelineItemVariants>\n\ninterface TimelineItemProps {\n  status?: TimelineItemVariants['status']\n  class?: string\n}\n\nconst props = withDefaults(defineProps<TimelineItemProps>(), {\n  status: 'upcoming',\n})\n\nconst timelineContext = inject<TimelineContext>(TIMELINE_INJECTION_KEY, {\n  orientation: 'vertical',\n})\n</script>\n\n<template>\n  <div\n    :data-status=\"status\"\n    :class=\"cn(\n      timelineItemVariants({ status }),\n      timelineContext.orientation === 'vertical' ? 'flex-row gap-4' : 'flex-col gap-4 items-center',\n      props.class\n    )\"\n  >\n    <slot />\n  </div>\n</template>\n",
       "type": "registry:ui"
     },
     {
-      "path": "registry/default/components/ui/TimelineTime.vue",
+      "path": "components/ui/TimelineTime.vue",
       "content": "<script setup lang=\"ts\">\nimport { cn } from '@/lib/utils'\n\ninterface TimelineTimeProps {\n  datetime?: string\n  class?: string\n}\n\nconst props = defineProps<TimelineTimeProps>()\n</script>\n\n<template>\n  <time :datetime=\"datetime\" :class=\"cn('text-xs font-medium text-muted-foreground', props.class)\">\n    <slot />\n  </time>\n</template>\n",
       "type": "registry:ui"
     },
     {
-      "path": "registry/default/components/ui/TimelineTitle.vue",
+      "path": "components/ui/TimelineTitle.vue",
       "content": "<script setup lang=\"ts\">\nimport { cn } from '@/lib/utils'\n\ninterface TimelineTitleProps {\n  class?: string\n}\n\nconst props = defineProps<TimelineTitleProps>()\n</script>\n\n<template>\n  <h3 :class=\"cn('text-base font-bold uppercase tracking-wide', props.class)\">\n    <slot />\n  </h3>\n</template>\n",
       "type": "registry:ui"
     }

@@ -12,7 +12,7 @@
   ],
   "files": [
     {
-      "path": "registry/default/components/ui/MathCurveProgress.vue",
+      "path": "components/ui/MathCurveProgress.vue",
       "type": "registry:ui"
     }
   ]

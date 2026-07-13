@@ -12,31 +12,31 @@
   ],
   "files": [
     {
-      "path": "registry/default/components/ui/Breadcrumb.vue",
+      "path": "components/ui/Breadcrumb.vue",
       "type": "registry:ui"
     },
     {
-      "path": "registry/default/components/ui/BreadcrumbList.vue",
+      "path": "components/ui/BreadcrumbList.vue",
       "type": "registry:ui"
     },
     {
-      "path": "registry/default/components/ui/BreadcrumbItem.vue",
+      "path": "components/ui/BreadcrumbItem.vue",
       "type": "registry:ui"
     },
     {
-      "path": "registry/default/components/ui/BreadcrumbLink.vue",
+      "path": "components/ui/BreadcrumbLink.vue",
       "type": "registry:ui"
     },
     {
-      "path": "registry/default/components/ui/BreadcrumbPage.vue",
+      "path": "components/ui/BreadcrumbPage.vue",
       "type": "registry:ui"
     },
     {
-      "path": "registry/default/components/ui/BreadcrumbSeparator.vue",
+      "path": "components/ui/BreadcrumbSeparator.vue",
       "type": "registry:ui"
     },
     {
-      "path": "registry/default/components/ui/BreadcrumbEllipsis.vue",
+      "path": "components/ui/BreadcrumbEllipsis.vue",
       "type": "registry:ui"
     }
   ]

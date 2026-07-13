@@ -11,7 +11,7 @@
   ],
   "files": [
     {
-      "path": "registry/default/components/ui/Separator.vue",
+      "path": "components/ui/Separator.vue",
       "type": "registry:ui"
     }
   ]

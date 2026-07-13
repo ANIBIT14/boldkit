@@ -12,35 +12,35 @@
   ],
   "files": [
     {
-      "path": "registry/default/components/ui/EmptyState.vue",
+      "path": "components/ui/EmptyState.vue",
       "type": "registry:ui"
     },
     {
-      "path": "registry/default/components/ui/EmptyStateActions.vue",
+      "path": "components/ui/EmptyStateActions.vue",
       "type": "registry:ui"
     },
     {
-      "path": "registry/default/components/ui/EmptyStateDescription.vue",
+      "path": "components/ui/EmptyStateDescription.vue",
       "type": "registry:ui"
     },
     {
-      "path": "registry/default/components/ui/EmptyStateIcon.vue",
+      "path": "components/ui/EmptyStateIcon.vue",
       "type": "registry:ui"
     },
     {
-      "path": "registry/default/components/ui/EmptyStateIllustration.vue",
+      "path": "components/ui/EmptyStateIllustration.vue",
       "type": "registry:ui"
     },
     {
-      "path": "registry/default/components/ui/EmptyStatePreset.vue",
+      "path": "components/ui/EmptyStatePreset.vue",
       "type": "registry:ui"
     },
     {
-      "path": "registry/default/components/ui/EmptyStateTitle.vue",
+      "path": "components/ui/EmptyStateTitle.vue",
       "type": "registry:ui"
     },
     {
-      "path": "registry/default/components/ui/empty-state-variants.ts",
+      "path": "components/ui/empty-state-variants.ts",
       "type": "registry:ui"
     }
   ]

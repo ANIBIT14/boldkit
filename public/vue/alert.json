@@ -11,15 +11,15 @@
   ],
   "files": [
     {
-      "path": "registry/default/components/ui/Alert.vue",
+      "path": "components/ui/Alert.vue",
       "type": "registry:ui"
     },
     {
-      "path": "registry/default/components/ui/AlertTitle.vue",
+      "path": "components/ui/AlertTitle.vue",
       "type": "registry:ui"
     },
     {
-      "path": "registry/default/components/ui/AlertDescription.vue",
+      "path": "components/ui/AlertDescription.vue",
       "type": "registry:ui"
     }
   ]

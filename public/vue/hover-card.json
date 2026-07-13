@@ -11,15 +11,15 @@
   ],
   "files": [
     {
-      "path": "registry/default/components/ui/HoverCard.vue",
+      "path": "components/ui/HoverCard.vue",
       "type": "registry:ui"
     },
     {
-      "path": "registry/default/components/ui/HoverCardTrigger.vue",
+      "path": "components/ui/HoverCardTrigger.vue",
       "type": "registry:ui"
     },
     {
-      "path": "registry/default/components/ui/HoverCardContent.vue",
+      "path": "components/ui/HoverCardContent.vue",
       "type": "registry:ui"
     }
   ]

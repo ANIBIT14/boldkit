@@ -12,59 +12,59 @@
   ],
   "files": [
     {
-      "path": "registry/default/components/ui/Menubar.vue",
+      "path": "components/ui/Menubar.vue",
       "type": "registry:ui"
     },
     {
-      "path": "registry/default/components/ui/MenubarMenu.vue",
+      "path": "components/ui/MenubarMenu.vue",
       "type": "registry:ui"
     },
     {
-      "path": "registry/default/components/ui/MenubarTrigger.vue",
+      "path": "components/ui/MenubarTrigger.vue",
       "type": "registry:ui"
     },
     {
-      "path": "registry/default/components/ui/MenubarContent.vue",
+      "path": "components/ui/MenubarContent.vue",
       "type": "registry:ui"
     },
     {
-      "path": "registry/default/components/ui/MenubarItem.vue",
+      "path": "components/ui/MenubarItem.vue",
       "type": "registry:ui"
     },
     {
-      "path": "registry/default/components/ui/MenubarCheckboxItem.vue",
+      "path": "components/ui/MenubarCheckboxItem.vue",
       "type": "registry:ui"
     },
     {
-      "path": "registry/default/components/ui/MenubarRadioGroup.vue",
+      "path": "components/ui/MenubarRadioGroup.vue",
       "type": "registry:ui"
     },
     {
-      "path": "registry/default/components/ui/MenubarRadioItem.vue",
+      "path": "components/ui/MenubarRadioItem.vue",
       "type": "registry:ui"
     },
     {
-      "path": "registry/default/components/ui/MenubarLabel.vue",
+      "path": "components/ui/MenubarLabel.vue",
       "type": "registry:ui"
     },
     {
-      "path": "registry/default/components/ui/MenubarSeparator.vue",
+      "path": "components/ui/MenubarSeparator.vue",
       "type": "registry:ui"
     },
     {
-      "path": "registry/default/components/ui/MenubarShortcut.vue",
+      "path": "components/ui/MenubarShortcut.vue",
       "type": "registry:ui"
     },
     {
-      "path": "registry/default/components/ui/MenubarSub.vue",
+      "path": "components/ui/MenubarSub.vue",
       "type": "registry:ui"
     },
     {
-      "path": "registry/default/components/ui/MenubarSubTrigger.vue",
+      "path": "components/ui/MenubarSubTrigger.vue",
       "type": "registry:ui"
     },
     {
-      "path": "registry/default/components/ui/MenubarSubContent.vue",
+      "path": "components/ui/MenubarSubContent.vue",
       "type": "registry:ui"
     }
   ]

@@ -13,7 +13,7 @@
   ],
   "files": [
     {
-      "path": "registry/default/components/ui/StatCard.vue",
+      "path": "components/ui/StatCard.vue",
       "type": "registry:ui"
     }
   ]

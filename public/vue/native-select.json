@@ -11,7 +11,7 @@
   ],
   "files": [
     {
-      "path": "registry/default/components/ui/NativeSelect.vue",
+      "path": "components/ui/NativeSelect.vue",
       "type": "registry:ui"
     }
   ]

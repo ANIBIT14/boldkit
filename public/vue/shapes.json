@@ -9,227 +9,227 @@
   ],
   "files": [
     {
-      "path": "registry/default/components/ui/shapes/AppleShape.vue",
+      "path": "components/ui/shapes/AppleShape.vue",
       "type": "registry:ui"
     },
     {
-      "path": "registry/default/components/ui/shapes/ArrowBadge.vue",
+      "path": "components/ui/shapes/ArrowBadge.vue",
       "type": "registry:ui"
     },
     {
-      "path": "registry/default/components/ui/shapes/BlobShape.vue",
+      "path": "components/ui/shapes/BlobShape.vue",
       "type": "registry:ui"
     },
     {
-      "path": "registry/default/components/ui/shapes/BookmarkShape.vue",
+      "path": "components/ui/shapes/BookmarkShape.vue",
       "type": "registry:ui"
     },
     {
-      "path": "registry/default/components/ui/shapes/BurstShape.vue",
+      "path": "components/ui/shapes/BurstShape.vue",
       "type": "registry:ui"
     },
     {
-      "path": "registry/default/components/ui/shapes/CloudShape.vue",
+      "path": "components/ui/shapes/CloudShape.vue",
       "type": "registry:ui"
     },
     {
-      "path": "registry/default/components/ui/shapes/CouponShape.vue",
+      "path": "components/ui/shapes/CouponShape.vue",
       "type": "registry:ui"
     },
     {
-      "path": "registry/default/components/ui/shapes/CrescentShape.vue",
+      "path": "components/ui/shapes/CrescentShape.vue",
       "type": "registry:ui"
     },
     {
-      "path": "registry/default/components/ui/shapes/CrossShape.vue",
+      "path": "components/ui/shapes/CrossShape.vue",
       "type": "registry:ui"
     },
     {
-      "path": "registry/default/components/ui/shapes/CursorShape.vue",
+      "path": "components/ui/shapes/CursorShape.vue",
       "type": "registry:ui"
     },
     {
-      "path": "registry/default/components/ui/shapes/DecagonShape.vue",
+      "path": "components/ui/shapes/DecagonShape.vue",
       "type": "registry:ui"
     },
     {
-      "path": "registry/default/components/ui/shapes/DiamondBadge.vue",
+      "path": "components/ui/shapes/DiamondBadge.vue",
       "type": "registry:ui"
     },
     {
-      "path": "registry/default/components/ui/shapes/EllipseShape.vue",
+      "path": "components/ui/shapes/EllipseShape.vue",
       "type": "registry:ui"
     },
     {
-      "path": "registry/default/components/ui/shapes/ExplosionShape.vue",
+      "path": "components/ui/shapes/ExplosionShape.vue",
       "type": "registry:ui"
     },
     {
-      "path": "registry/default/components/ui/shapes/EyeShape.vue",
+      "path": "components/ui/shapes/EyeShape.vue",
       "type": "registry:ui"
     },
     {
-      "path": "registry/default/components/ui/shapes/FibonacciSpiralShape.vue",
+      "path": "components/ui/shapes/FibonacciSpiralShape.vue",
       "type": "registry:ui"
     },
     {
-      "path": "registry/default/components/ui/shapes/FlagShape.vue",
+      "path": "components/ui/shapes/FlagShape.vue",
       "type": "registry:ui"
     },
     {
-      "path": "registry/default/components/ui/shapes/GearShape.vue",
+      "path": "components/ui/shapes/GearShape.vue",
       "type": "registry:ui"
     },
     {
-      "path": "registry/default/components/ui/shapes/HeartShape.vue",
+      "path": "components/ui/shapes/HeartShape.vue",
       "type": "registry:ui"
     },
     {
-      "path": "registry/default/components/ui/shapes/HeptagonShape.vue",
+      "path": "components/ui/shapes/HeptagonShape.vue",
       "type": "registry:ui"
     },
     {
-      "path": "registry/default/components/ui/shapes/HexagonShape.vue",
+      "path": "components/ui/shapes/HexagonShape.vue",
       "type": "registry:ui"
     },
     {
-      "path": "registry/default/components/ui/shapes/KochSnowflakeShape.vue",
+      "path": "components/ui/shapes/KochSnowflakeShape.vue",
       "type": "registry:ui"
     },
     {
-      "path": "registry/default/components/ui/shapes/LightningShape.vue",
+      "path": "components/ui/shapes/LightningShape.vue",
       "type": "registry:ui"
     },
     {
-      "path": "registry/default/components/ui/shapes/MobiusStripShape.vue",
+      "path": "components/ui/shapes/MobiusStripShape.vue",
       "type": "registry:ui"
     },
     {
-      "path": "registry/default/components/ui/shapes/OctagonShape.vue",
+      "path": "components/ui/shapes/OctagonShape.vue",
       "type": "registry:ui"
     },
     {
-      "path": "registry/default/components/ui/shapes/PaperTearShape.vue",
+      "path": "components/ui/shapes/PaperTearShape.vue",
       "type": "registry:ui"
     },
     {
-      "path": "registry/default/components/ui/shapes/ParallelogramShape.vue",
+      "path": "components/ui/shapes/ParallelogramShape.vue",
       "type": "registry:ui"
     },
     {
-      "path": "registry/default/components/ui/shapes/PenroseTriangleShape.vue",
+      "path": "components/ui/shapes/PenroseTriangleShape.vue",
       "type": "registry:ui"
     },
     {
-      "path": "registry/default/components/ui/shapes/PentagonShape.vue",
+      "path": "components/ui/shapes/PentagonShape.vue",
       "type": "registry:ui"
     },
     {
-      "path": "registry/default/components/ui/shapes/PillShape.vue",
+      "path": "components/ui/shapes/PillShape.vue",
       "type": "registry:ui"
     },
     {
-      "path": "registry/default/components/ui/shapes/PlanetShape.vue",
+      "path": "components/ui/shapes/PlanetShape.vue",
       "type": "registry:ui"
     },
     {
-      "path": "registry/default/components/ui/shapes/PriceTagShape.vue",
+      "path": "components/ui/shapes/PriceTagShape.vue",
       "type": "registry:ui"
     },
     {
-      "path": "registry/default/components/ui/shapes/RainbowShape.vue",
+      "path": "components/ui/shapes/RainbowShape.vue",
       "type": "registry:ui"
     },
     {
-      "path": "registry/default/components/ui/shapes/RhombusShape.vue",
+      "path": "components/ui/shapes/RhombusShape.vue",
       "type": "registry:ui"
     },
     {
-      "path": "registry/default/components/ui/shapes/RibbonShape.vue",
+      "path": "components/ui/shapes/RibbonShape.vue",
       "type": "registry:ui"
     },
     {
-      "path": "registry/default/components/ui/shapes/ScribbleCircle.vue",
+      "path": "components/ui/shapes/ScribbleCircle.vue",
       "type": "registry:ui"
     },
     {
-      "path": "registry/default/components/ui/shapes/ScribbleUnderline.vue",
+      "path": "components/ui/shapes/ScribbleUnderline.vue",
       "type": "registry:ui"
     },
     {
-      "path": "registry/default/components/ui/shapes/SealShape.vue",
+      "path": "components/ui/shapes/SealShape.vue",
       "type": "registry:ui"
     },
     {
-      "path": "registry/default/components/ui/shapes/ShieldShape.vue",
+      "path": "components/ui/shapes/ShieldShape.vue",
       "type": "registry:ui"
     },
     {
-      "path": "registry/default/components/ui/shapes/SpeechBubble.vue",
+      "path": "components/ui/shapes/SpeechBubble.vue",
       "type": "registry:ui"
     },
     {
-      "path": "registry/default/components/ui/shapes/SplatShape.vue",
+      "path": "components/ui/shapes/SplatShape.vue",
       "type": "registry:ui"
     },
     {
-      "path": "registry/default/components/ui/shapes/Star4Shape.vue",
+      "path": "components/ui/shapes/Star4Shape.vue",
       "type": "registry:ui"
     },
     {
-      "path": "registry/default/components/ui/shapes/Star5Shape.vue",
+      "path": "components/ui/shapes/Star5Shape.vue",
       "type": "registry:ui"
     },
     {
-      "path": "registry/default/components/ui/shapes/Star6Shape.vue",
+      "path": "components/ui/shapes/Star6Shape.vue",
       "type": "registry:ui"
     },
     {
-      "path": "registry/default/components/ui/shapes/SunShape.vue",
+      "path": "components/ui/shapes/SunShape.vue",
       "type": "registry:ui"
     },
     {
-      "path": "registry/default/components/ui/shapes/TagShape.vue",
+      "path": "components/ui/shapes/TagShape.vue",
       "type": "registry:ui"
     },
     {
-      "path": "registry/default/components/ui/shapes/TicketShape.vue",
+      "path": "components/ui/shapes/TicketShape.vue",
       "type": "registry:ui"
     },
     {
-      "path": "registry/default/components/ui/shapes/TorusShape.vue",
+      "path": "components/ui/shapes/TorusShape.vue",
       "type": "registry:ui"
     },
     {
-      "path": "registry/default/components/ui/shapes/TrapezoidShape.vue",
+      "path": "components/ui/shapes/TrapezoidShape.vue",
       "type": "registry:ui"
     },
     {
-      "path": "registry/default/components/ui/shapes/TrefoilShape.vue",
+      "path": "components/ui/shapes/TrefoilShape.vue",
       "type": "registry:ui"
     },
     {
-      "path": "registry/default/components/ui/shapes/TriangleShape.vue",
+      "path": "components/ui/shapes/TriangleShape.vue",
       "type": "registry:ui"
     },
     {
-      "path": "registry/default/components/ui/shapes/UmbrellaShape.vue",
+      "path": "components/ui/shapes/UmbrellaShape.vue",
       "type": "registry:ui"
     },
     {
-      "path": "registry/default/components/ui/shapes/WaveShape.vue",
+      "path": "components/ui/shapes/WaveShape.vue",
       "type": "registry:ui"
     },
     {
-      "path": "registry/default/components/ui/shapes/WavyRectangleShape.vue",
+      "path": "components/ui/shapes/WavyRectangleShape.vue",
       "type": "registry:ui"
     },
     {
-      "path": "registry/default/components/ui/shapes/ZigzagBanner.vue",
+      "path": "components/ui/shapes/ZigzagBanner.vue",
       "type": "registry:ui"
     },
     {
-      "path": "registry/default/components/ui/shapes/index.ts",
+      "path": "components/ui/shapes/index.ts",
       "type": "registry:ui"
     }
   ]

@@ -13,11 +13,11 @@
   ],
   "files": [
     {
-      "path": "registry/default/components/ui/ToggleGroup.vue",
+      "path": "components/ui/ToggleGroup.vue",
       "type": "registry:ui"
     },
     {
-      "path": "registry/default/components/ui/ToggleGroupItem.vue",
+      "path": "components/ui/ToggleGroupItem.vue",
       "type": "registry:ui"
     }
   ]

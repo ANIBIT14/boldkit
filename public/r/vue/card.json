@@ -9,32 +9,32 @@
   ],
   "files": [
     {
-      "path": "registry/default/components/ui/Card.vue",
+      "path": "components/ui/Card.vue",
       "content": "<script setup lang=\"ts\">\nimport { cn } from '@/lib/utils'\n\ndefineProps<{\n  class?: string\n  interactive?: boolean\n}>()\n</script>\n\n<template>\n  <div\n    :class=\"\n      cn(\n        'bg-card text-card-foreground border-3 border-foreground shadow-[4px_4px_0px_hsl(var(--shadow-color))] bk-interactive',\n        interactive &&\n          'cursor-pointer hover:translate-x-[4px] hover:translate-y-[4px] hover:shadow-none active:translate-x-[4px] active:translate-y-[4px] active:shadow-none',\n        $props.class\n      )\n    \"\n  >\n    <slot />\n  </div>\n</template>\n",
       "type": "registry:ui"
     },
     {
-      "path": "registry/default/components/ui/CardHeader.vue",
+      "path": "components/ui/CardHeader.vue",
       "content": "<script setup lang=\"ts\">\nimport { cn } from '@/lib/utils'\n\ndefineProps<{\n  class?: string\n}>()\n</script>\n\n<template>\n  <div\n    :class=\"cn('flex flex-col space-y-1.5 p-6 border-b-3 border-foreground', $props.class)\"\n  >\n    <slot />\n  </div>\n</template>\n",
       "type": "registry:ui"
     },
     {
-      "path": "registry/default/components/ui/CardTitle.vue",
+      "path": "components/ui/CardTitle.vue",
       "content": "<script setup lang=\"ts\">\nimport { cn } from '@/lib/utils'\n\ndefineProps<{\n  class?: string\n}>()\n</script>\n\n<template>\n  <div\n    :class=\"cn('text-xl font-bold uppercase tracking-wide leading-none', $props.class)\"\n  >\n    <slot />\n  </div>\n</template>\n",
       "type": "registry:ui"
     },
     {
-      "path": "registry/default/components/ui/CardDescription.vue",
+      "path": "components/ui/CardDescription.vue",
       "content": "<script setup lang=\"ts\">\nimport { cn } from '@/lib/utils'\n\ndefineProps<{\n  class?: string\n}>()\n</script>\n\n<template>\n  <div :class=\"cn('text-sm text-muted-foreground', $props.class)\">\n    <slot />\n  </div>\n</template>\n",
       "type": "registry:ui"
     },
     {
-      "path": "registry/default/components/ui/CardContent.vue",
+      "path": "components/ui/CardContent.vue",
       "content": "<script setup lang=\"ts\">\nimport { cn } from '@/lib/utils'\n\ndefineProps<{\n  class?: string\n}>()\n</script>\n\n<template>\n  <div :class=\"cn('p-6', $props.class)\">\n    <slot />\n  </div>\n</template>\n",
       "type": "registry:ui"
     },
     {
-      "path": "registry/default/components/ui/CardFooter.vue",
+      "path": "components/ui/CardFooter.vue",
       "content": "<script setup lang=\"ts\">\nimport { cn } from '@/lib/utils'\n\ndefineProps<{\n  class?: string\n}>()\n</script>\n\n<template>\n  <div\n    :class=\"cn('flex items-center p-6 border-t-3 border-foreground bg-muted/50', $props.class)\"\n  >\n    <slot />\n  </div>\n</template>\n",
       "type": "registry:ui"
     }

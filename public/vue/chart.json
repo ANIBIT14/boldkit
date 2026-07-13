@@ -13,39 +13,39 @@
   ],
   "files": [
     {
-      "path": "registry/default/components/ui/ChartContainer.vue",
+      "path": "components/ui/ChartContainer.vue",
       "type": "registry:ui"
     },
     {
-      "path": "registry/default/components/ui/ChartEmpty.vue",
+      "path": "components/ui/ChartEmpty.vue",
       "type": "registry:ui"
     },
     {
-      "path": "registry/default/components/ui/DonutChart.vue",
+      "path": "components/ui/DonutChart.vue",
       "type": "registry:ui"
     },
     {
-      "path": "registry/default/components/ui/GaugeChart.vue",
+      "path": "components/ui/GaugeChart.vue",
       "type": "registry:ui"
     },
     {
-      "path": "registry/default/components/ui/RadarChart.vue",
+      "path": "components/ui/RadarChart.vue",
       "type": "registry:ui"
     },
     {
-      "path": "registry/default/components/ui/RadialBarChart.vue",
+      "path": "components/ui/RadialBarChart.vue",
       "type": "registry:ui"
     },
     {
-      "path": "registry/default/components/ui/SparklineChart.vue",
+      "path": "components/ui/SparklineChart.vue",
       "type": "registry:ui"
     },
     {
-      "path": "registry/default/components/ui/chart-utils.ts",
+      "path": "components/ui/chart-utils.ts",
       "type": "registry:ui"
     },
     {
-      "path": "registry/default/components/ui/chart-variants.ts",
+      "path": "components/ui/chart-variants.ts",
       "type": "registry:ui"
     }
   ]

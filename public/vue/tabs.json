@@ -11,19 +11,19 @@
   ],
   "files": [
     {
-      "path": "registry/default/components/ui/Tabs.vue",
+      "path": "components/ui/Tabs.vue",
       "type": "registry:ui"
     },
     {
-      "path": "registry/default/components/ui/TabsList.vue",
+      "path": "components/ui/TabsList.vue",
       "type": "registry:ui"
     },
     {
-      "path": "registry/default/components/ui/TabsTrigger.vue",
+      "path": "components/ui/TabsTrigger.vue",
       "type": "registry:ui"
     },
     {
-      "path": "registry/default/components/ui/TabsContent.vue",
+      "path": "components/ui/TabsContent.vue",
       "type": "registry:ui"
     }
   ]

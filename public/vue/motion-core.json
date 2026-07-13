@@ -9,7 +9,7 @@
   ],
   "files": [
     {
-      "path": "registry/default/lib/motion-core.ts",
+      "path": "lib/motion-core.ts",
       "type": "registry:lib"
     }
   ]

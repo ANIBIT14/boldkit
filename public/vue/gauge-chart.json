@@ -11,7 +11,7 @@
   ],
   "files": [
     {
-      "path": "registry/default/components/ui/GaugeChart.vue",
+      "path": "components/ui/GaugeChart.vue",
       "type": "registry:ui"
     }
   ]

@@ -11,35 +11,35 @@
   ],
   "files": [
     {
-      "path": "registry/default/components/ui/Drawer.vue",
+      "path": "components/ui/Drawer.vue",
       "type": "registry:ui"
     },
     {
-      "path": "registry/default/components/ui/DrawerTrigger.vue",
+      "path": "components/ui/DrawerTrigger.vue",
       "type": "registry:ui"
     },
     {
-      "path": "registry/default/components/ui/DrawerContent.vue",
+      "path": "components/ui/DrawerContent.vue",
       "type": "registry:ui"
     },
     {
-      "path": "registry/default/components/ui/DrawerHeader.vue",
+      "path": "components/ui/DrawerHeader.vue",
       "type": "registry:ui"
     },
     {
-      "path": "registry/default/components/ui/DrawerFooter.vue",
+      "path": "components/ui/DrawerFooter.vue",
       "type": "registry:ui"
     },
     {
-      "path": "registry/default/components/ui/DrawerTitle.vue",
+      "path": "components/ui/DrawerTitle.vue",
       "type": "registry:ui"
     },
     {
-      "path": "registry/default/components/ui/DrawerDescription.vue",
+      "path": "components/ui/DrawerDescription.vue",
       "type": "registry:ui"
     },
     {
-      "path": "registry/default/components/ui/DrawerClose.vue",
+      "path": "components/ui/DrawerClose.vue",
       "type": "registry:ui"
     }
   ]

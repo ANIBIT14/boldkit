@@ -13,35 +13,35 @@
   ],
   "files": [
     {
-      "path": "registry/default/components/ui/NavigationMenu.vue",
+      "path": "components/ui/NavigationMenu.vue",
       "type": "registry:ui"
     },
     {
-      "path": "registry/default/components/ui/NavigationMenuList.vue",
+      "path": "components/ui/NavigationMenuList.vue",
       "type": "registry:ui"
     },
     {
-      "path": "registry/default/components/ui/NavigationMenuItem.vue",
+      "path": "components/ui/NavigationMenuItem.vue",
       "type": "registry:ui"
     },
     {
-      "path": "registry/default/components/ui/NavigationMenuTrigger.vue",
+      "path": "components/ui/NavigationMenuTrigger.vue",
       "type": "registry:ui"
     },
     {
-      "path": "registry/default/components/ui/NavigationMenuContent.vue",
+      "path": "components/ui/NavigationMenuContent.vue",
       "type": "registry:ui"
     },
     {
-      "path": "registry/default/components/ui/NavigationMenuLink.vue",
+      "path": "components/ui/NavigationMenuLink.vue",
       "type": "registry:ui"
     },
     {
-      "path": "registry/default/components/ui/NavigationMenuIndicator.vue",
+      "path": "components/ui/NavigationMenuIndicator.vue",
       "type": "registry:ui"
     },
     {
-      "path": "registry/default/components/ui/navigation-menu-variants.ts",
+      "path": "components/ui/navigation-menu-variants.ts",
       "type": "registry:ui"
     }
   ]
