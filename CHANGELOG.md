@@ -5,6 +5,38 @@ Format follows [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ---
 
+## [3.4.5] — 2026-07-13 — Nuxt compatibility, motion a11y & SEO prerender
+
+Makes BoldKit install cleanly on **Nuxt 4** (verified end-to-end in a real project), plus an animation-audit pass and a docs-site SEO upgrade.
+
+### Fixes
+
+🐛 **Nuxt / srcDir component resolution (#10).** The Vue registry pinned every file to a hardcoded `components/ui/…` target, which shadcn-vue resolves relative to the project root — so on Nuxt 4 (where `@/` → `app/`) files installed to `./components/ui` while imports pointed at `./app/components/ui`. Files now ship without hardcoded targets and place under whatever your aliases resolve to.
+
+🐛 **Alias-relative registry paths (#10).** `@boldkit/utils` (and other lib/composable items) mis-installed to `app/lib/default/lib/utils.ts` when added alongside a component, because the `registry/default/` path prefix collapsed the CLI's common-root computation. Paths are now alias-relative (`components/ui/…`, `lib/…`, `composables/…`), matching upstream shadcn-vue. Verified live on Nuxt 4.
+
+🐛 **Docs showed a barrel import that doesn't exist (#10).** Every Vue usage example used `import { Button } from '@/components/ui'`, but the registry ships individual `.vue` files with no barrel — so consumers copying the docs hit "cannot find module". All 66 pages now show per-file default imports.
+
+🩹 **Vue `ui` barrel synced with disk** (internal); **Nuxt `componentDir` docs** added for auto-import.
+
+### Motion (React + Vue)
+
+♿ **Universal `prefers-reduced-motion` guard** added to the shipped theme — hand-rolled `transition-all` hover effects now honor reduced-motion.
+⚡ **`transition-all` → scoped `transition`** everywhere (verified zero visual change).
+🎯 **Overlays scale from their trigger**, not center (Radix/Reka transform-origin vars).
+⌨️ **Command palette fades** instead of zooming (high-frequency ⌘K).
+
+### Docs site
+
+🚀 **Route prerendering** — every docs route now ships fully-rendered HTML for crawlers and JS-less AI crawlers, instead of an empty `#root`.
+
+### Bumps
+
+- React: `3.4.4 → 3.4.5`
+- Vue: `3.2.4 → 3.2.5`
+
+---
+
 ## [3.4.4] — 2026-07-06 — Chart export fidelity & fullscreen fixes
 
 Patch fixes for the `<ChartToolbar>` shipped in 3.4.3, across React and Vue.
