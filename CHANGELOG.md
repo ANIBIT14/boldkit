@@ -5,6 +5,25 @@ Format follows [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ---
 
+## [3.4.6] — 2026-07-14 — Vue components all build on Nuxt
+
+Installing and building the **entire** Vue library in a real Nuxt 4 project surfaced latent SFC compile errors — components BoldKit's own app never compiled (unused ones are tree-shaken, and `vue-tsc` doesn't enforce these compiler-only rules).
+
+### Fixes
+
+🐛 **`<script setup>` cannot contain ES module exports.** Eight components declared an injection-key `export const … = Symbol()` inside `<script setup>`, which fails the consumer's build: **Carousel, Dropzone, ChartContainer, ToggleGroup, Timeline, SidebarProvider, Stepper, StepperItem**. Each injection key (and any cross-imported context type) now lives in a paired `<script>` block.
+
+🐛 **`GaugeChart` — `defineProps()` cannot reference a local variable.** `withDefaults` referenced a setup-local `DEFAULT_ZONES`, which gets hoisted out of `setup()`. Moved `DEFAULT_ZONES` + `GaugeChartZone` to module scope.
+
+Verified end-to-end: all **364** components compile in a single Nuxt 4 build, `vue-tsc` clean.
+
+### Bumps
+
+- React: `3.4.5 → 3.4.6`
+- Vue: `3.2.5 → 3.2.6`
+
+---
+
 ## [3.4.5] — 2026-07-13 — Nuxt compatibility, motion a11y & SEO prerender
 
 Makes BoldKit install cleanly on **Nuxt 4** (verified end-to-end in a real project), plus an animation-audit pass and a docs-site SEO upgrade.
