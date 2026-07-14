@@ -1,3 +1,8 @@
+<script lang="ts">
+export const CAROUSEL_INJECTION_KEY = Symbol('carousel')
+
+</script>
+
 <script setup lang="ts">
 import { provide, ref, computed, onUnmounted, watch, readonly } from 'vue'
 import emblaCarouselVue from 'embla-carousel-vue'
@@ -21,8 +26,6 @@ export interface CarouselContext {
   scrollTo: (index: number) => void
   orientation: 'horizontal' | 'vertical'
 }
-
-export const CAROUSEL_INJECTION_KEY = Symbol('carousel')
 
 interface CarouselProps {
   opts?: CarouselOptions

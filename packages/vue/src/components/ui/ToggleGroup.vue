@@ -1,7 +1,24 @@
+<script lang="ts">
+// Injection key + context type live in a plain <script> block — `<script setup>`
+// cannot contain ES module `export`s (breaks the consumer's build).
+import type { InjectionKey } from 'vue'
+
+type TGV = import('class-variance-authority').VariantProps<
+  typeof import('./toggle-variants').toggleVariants
+>
+
+export interface ToggleGroupContext {
+  variant: TGV['variant']
+  size: TGV['size']
+}
+
+export const ToggleGroupContextKey: InjectionKey<ToggleGroupContext> = Symbol('ToggleGroupContext')
+</script>
+
 <script setup lang="ts">
 import { ToggleGroupRoot, type ToggleGroupRootProps } from 'reka-ui'
 import { type VariantProps } from 'class-variance-authority'
-import { provide, type InjectionKey } from 'vue'
+import { provide } from 'vue'
 import { cn } from '@/lib/utils'
 import { toggleVariants } from './toggle-variants'
 
@@ -21,13 +38,6 @@ const props = withDefaults(defineProps<Props>(), {
 const emit = defineEmits<{
   'update:modelValue': [value: string | string[] | null]
 }>()
-
-export interface ToggleGroupContext {
-  variant: ToggleVariants['variant']
-  size: ToggleVariants['size']
-}
-
-export const ToggleGroupContextKey: InjectionKey<ToggleGroupContext> = Symbol('ToggleGroupContext')
 
 provide(ToggleGroupContextKey, {
   variant: props.variant,

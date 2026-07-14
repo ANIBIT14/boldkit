@@ -1,3 +1,19 @@
+<script lang="ts">
+// Module-scope so `withDefaults` (hoisted out of setup) can reference DEFAULT_ZONES.
+export interface GaugeChartZone {
+  from: number
+  to: number
+  color: string
+  label?: string
+}
+
+const DEFAULT_ZONES: GaugeChartZone[] = [
+  { from: 0, to: 33, color: 'hsl(var(--destructive))', label: 'Low' },
+  { from: 33, to: 66, color: 'hsl(var(--warning))', label: 'Medium' },
+  { from: 66, to: 100, color: 'hsl(var(--success))', label: 'High' },
+]
+</script>
+
 <script setup lang="ts">
 import { computed } from 'vue'
 import { cva, type VariantProps } from 'class-variance-authority'
@@ -19,13 +35,6 @@ const gaugeChartVariants = cva(
   }
 )
 
-export interface GaugeChartZone {
-  from: number
-  to: number
-  color: string
-  label?: string
-}
-
 type GaugeVariants = VariantProps<typeof gaugeChartVariants>
 
 interface GaugeChartProps {
@@ -41,12 +50,6 @@ interface GaugeChartProps {
   size?: GaugeVariants['size']
   class?: string
 }
-
-const DEFAULT_ZONES: GaugeChartZone[] = [
-  { from: 0, to: 33, color: 'hsl(var(--destructive))', label: 'Low' },
-  { from: 33, to: 66, color: 'hsl(var(--warning))', label: 'Medium' },
-  { from: 66, to: 100, color: 'hsl(var(--success))', label: 'High' },
-]
 
 const props = withDefaults(defineProps<GaugeChartProps>(), {
   min: 0,

@@ -1,9 +1,12 @@
+<script lang="ts">
+export const STEPPER_ITEM_INJECTION_KEY = Symbol('stepper-item')
+
+</script>
+
 <script setup lang="ts">
 import { provide, inject } from 'vue'
 import { cn } from '@/lib/utils'
 import { STEPPER_INJECTION_KEY, type StepperContext } from './Stepper.vue'
-
-export const STEPPER_ITEM_INJECTION_KEY = Symbol('stepper-item')
 
 export interface StepperItemContext {
   index: number

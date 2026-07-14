@@ -1,5 +1,17 @@
+<script lang="ts">
+// Injection key + context type live in a plain <script> block — `<script setup>`
+// cannot contain ES module `export`s (breaks the consumer's build).
+import type { InjectionKey } from 'vue'
+
+export interface ChartContext {
+  config: import('vue').ComputedRef<import('./chart-utils').ChartConfig>
+}
+
+export const ChartContextKey: InjectionKey<ChartContext> = Symbol('ChartContext')
+</script>
+
 <script setup lang="ts">
-import { computed, provide, useId, type ComputedRef, type InjectionKey } from 'vue'
+import { computed, provide, useId } from 'vue'
 import { use } from 'echarts/core'
 import { CanvasRenderer } from 'echarts/renderers'
 import { BarChart, LineChart, PieChart, ScatterChart } from 'echarts/charts'
@@ -48,12 +60,6 @@ const props = withDefaults(defineProps<Props>(), {
 // Provide chart config to child components.
 // config is exposed as a ComputedRef so injected consumers stay reactive to
 // prop changes (a plain snapshot would freeze at first render).
-export interface ChartContext {
-  config: ComputedRef<ChartConfig>
-}
-
-export const ChartContextKey: InjectionKey<ChartContext> = Symbol('ChartContext')
-
 provide(ChartContextKey, {
   config: computed(() => props.config),
 })

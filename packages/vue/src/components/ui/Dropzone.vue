@@ -1,3 +1,8 @@
+<script lang="ts">
+export const DROPZONE_INJECTION_KEY = Symbol('dropzone')
+
+</script>
+
 <script setup lang="ts">
 import { ref, computed, provide } from 'vue'
 import { cva, type VariantProps } from 'class-variance-authority'
@@ -220,8 +225,6 @@ function reset() {
     inputRef.value.value = ''
   }
 }
-
-export const DROPZONE_INJECTION_KEY = Symbol('dropzone')
 
 provide(DROPZONE_INJECTION_KEY, { reset })
 </script>

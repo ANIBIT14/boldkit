@@ -1,3 +1,8 @@
+<script lang="ts">
+export const STEPPER_INJECTION_KEY = Symbol('stepper')
+
+</script>
+
 <script setup lang="ts">
 import { provide, ref, computed, readonly } from 'vue'
 import { cn } from '@/lib/utils'
@@ -9,8 +14,6 @@ export interface StepperContext {
   orientation: 'horizontal' | 'vertical'
   setTotalSteps: (n: number) => void
 }
-
-export const STEPPER_INJECTION_KEY = Symbol('stepper')
 
 interface StepperProps {
   activeStep?: number

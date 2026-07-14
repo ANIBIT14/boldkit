@@ -1,3 +1,8 @@
+<script lang="ts">
+export const TIMELINE_INJECTION_KEY = Symbol('timeline')
+
+</script>
+
 <script setup lang="ts">
 import { provide } from 'vue'
 import { cn } from '@/lib/utils'
@@ -5,8 +10,6 @@ import { cn } from '@/lib/utils'
 export interface TimelineContext {
   orientation: 'vertical' | 'horizontal'
 }
-
-export const TIMELINE_INJECTION_KEY = Symbol('timeline')
 
 interface TimelineProps {
   orientation?: 'vertical' | 'horizontal'

@@ -1,3 +1,19 @@
+<script lang="ts">
+// In a plain <script> block: `<script setup>` can't `export`, and the context
+// type is imported by sibling components (SidebarToggle, useSidebar).
+export interface SidebarContext {
+  state: ReturnType<typeof import('vue').computed<'expanded' | 'collapsed'>>
+  open: ReturnType<typeof import('vue').computed<boolean>>
+  setOpen: (value: boolean) => void
+  openMobile: Readonly<ReturnType<typeof import('vue').ref<boolean>>>
+  setOpenMobile: (value: boolean) => void
+  isMobile: Readonly<ReturnType<typeof import('vue').ref<boolean>>>
+  toggleSidebar: () => void
+}
+
+export const SIDEBAR_INJECTION_KEY = Symbol('sidebar')
+</script>
+
 <script setup lang="ts">
 import { provide, ref, computed, readonly, onMounted, onUnmounted, type CSSProperties } from 'vue'
 import { cn } from '@/lib/utils'
@@ -8,17 +24,6 @@ const SIDEBAR_WIDTH = '16rem'
 const SIDEBAR_WIDTH_COLLAPSED = '4rem'
 const SIDEBAR_KEYBOARD_SHORTCUT = 'b'
 
-export interface SidebarContext {
-  state: ReturnType<typeof computed<'expanded' | 'collapsed'>>
-  open: ReturnType<typeof computed<boolean>>
-  setOpen: (value: boolean) => void
-  openMobile: Readonly<ReturnType<typeof ref<boolean>>>
-  setOpenMobile: (value: boolean) => void
-  isMobile: Readonly<ReturnType<typeof ref<boolean>>>
-  toggleSidebar: () => void
-}
-
-export const SIDEBAR_INJECTION_KEY = Symbol('sidebar')
 
 interface SidebarProviderProps {
   defaultOpen?: boolean
