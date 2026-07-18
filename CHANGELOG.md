@@ -29,10 +29,6 @@ A prioritized audit pass — fixing correctness/DX findings and shipping install
 
 🎨 **Theme presets ship as CSS-vars-only swaps.** The 14 builder presets are now emitted to `public/themes/<slug>.css` (+ `index.json`) at build time from a shared source (`src/config/theme-presets.ts`), with a per-preset download in the Theme Builder. Drop a file into your `globals.css` to reskin. _Note: presets swap primary/secondary/accent over BoldKit's default neutrals — full per-preset neutral palettes are a later design pass._
 
-### Website
-
-✨ **Circular-reveal dark/light toggle.** The docs-site theme toggle now wipes the new theme in as a circle expanding from the button via the View Transitions API (`src/lib/theme-transition.ts`), with an instant-swap fallback for unsupported browsers and `prefers-reduced-motion`.
-
 ### Bumps
 
 - React: `3.4.6 → 3.4.7`
