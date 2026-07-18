@@ -33,6 +33,9 @@ export function useThemeProvider(options: UseThemeProviderOptions = {}) {
   watch(
     theme,
     (newTheme) => {
+      // `immediate: true` fires this during setup, which runs on the server under
+      // SSR (Nuxt) — bail before touching window/document there.
+      if (typeof window === 'undefined') return
       const root = window.document.documentElement
       root.classList.remove('light', 'dark')
 
@@ -84,6 +87,7 @@ export function useTheme(): ThemeProviderState {
     })
 
     const updateTheme = (newTheme: Theme) => {
+      if (typeof window === 'undefined') return
       const root = window.document.documentElement
       root.classList.remove('light', 'dark')
 

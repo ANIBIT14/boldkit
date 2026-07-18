@@ -1378,6 +1378,25 @@ body {
 }
 
 /* ==========================================
+   Theme toggle: circular-reveal View Transition
+   The new theme wipes in as a circle expanding from the toggle button
+   (clip-path animated in JS — see lib/theme-transition.ts). Disable the
+   default root cross-fade and stack the new snapshot on top so the circle
+   reveals over the old theme.
+   ========================================== */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+::view-transition-old(root) {
+  z-index: 0;
+}
+::view-transition-new(root) {
+  z-index: 1;
+}
+
+/* ==========================================
    BoldKit Motion System — L1 keyframes + L2 recipes + a11y guard
    Tokens live in the @theme block above. Source of truth for the
    distributable copy is registry/default/styles/motion.css

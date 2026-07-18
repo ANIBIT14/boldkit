@@ -1,0 +1,77 @@
+/* BoldKit theme preset: Forest — earthy & fresh */
+/* CSS-vars-only swap. Drop into your globals.css (Tailwind v4 + shadcn). */
+
+@theme {
+  --color-background: hsl(var(--background));
+  --color-foreground: hsl(var(--foreground));
+  --color-card: hsl(var(--card));
+  --color-card-foreground: hsl(var(--card-foreground));
+  --color-popover: hsl(var(--popover));
+  --color-popover-foreground: hsl(var(--popover-foreground));
+  --color-primary: hsl(var(--primary));
+  --color-primary-foreground: hsl(var(--primary-foreground));
+  --color-secondary: hsl(var(--secondary));
+  --color-secondary-foreground: hsl(var(--secondary-foreground));
+  --color-accent: hsl(var(--accent));
+  --color-accent-foreground: hsl(var(--accent-foreground));
+  --color-muted: hsl(var(--muted));
+  --color-muted-foreground: hsl(var(--muted-foreground));
+  --color-destructive: hsl(var(--destructive));
+  --color-destructive-foreground: hsl(var(--destructive-foreground));
+  --color-border: hsl(var(--border));
+  --color-input: hsl(var(--input));
+  --color-ring: hsl(var(--ring));
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+}
+
+:root {
+  --background: 60 9% 98%;
+  --foreground: 240 10% 10%;
+  --card: 0 0% 100%;
+  --card-foreground: 240 10% 10%;
+  --popover: 0 0% 100%;
+  --popover-foreground: 240 10% 10%;
+  --primary: 152 69% 45%;
+  --primary-foreground: 240 10% 10%;
+  --secondary: 82 68% 55%;
+  --secondary-foreground: 240 10% 10%;
+  --accent: 49 100% 60%;
+  --accent-foreground: 240 10% 10%;
+  --muted: 60 5% 90%;
+  --muted-foreground: 240 4% 46%;
+  --destructive: 0 84% 60%;
+  --destructive-foreground: 0 0% 100%;
+  --border: 240 10% 10%;
+  --input: 240 10% 10%;
+  --ring: 240 10% 10%;
+  --radius: 0rem;
+  --shadow-color: 240 10% 10%;
+  --shadow-offset: 4px;
+  --border-width: 3px;
+}
+
+.dark {
+  --background: 240 10% 10%;
+  --foreground: 60 9% 98%;
+  --card: 240 10% 14%;
+  --card-foreground: 60 9% 98%;
+  --popover: 240 10% 14%;
+  --popover-foreground: 60 9% 98%;
+  --primary: 152 69% 45%;
+  --primary-foreground: 240 10% 10%;
+  --secondary: 82 68% 55%;
+  --secondary-foreground: 240 10% 10%;
+  --accent: 49 100% 60%;
+  --accent-foreground: 240 10% 10%;
+  --muted: 240 10% 20%;
+  --muted-foreground: 60 5% 65%;
+  --destructive: 0 84% 60%;
+  --destructive-foreground: 0 0% 100%;
+  --border: 60 9% 98%;
+  --input: 60 9% 98%;
+  --ring: 60 9% 98%;
+  --shadow-color: 0 0% 0%;
+}

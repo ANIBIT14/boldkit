@@ -5,6 +5,41 @@ Format follows [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ---
 
+## [3.4.7] — 2026-07-18 — Codebase audit: SSR, a11y, tests & theme presets
+
+A prioritized audit pass — fixing correctness/DX findings and shipping installable theme presets.
+
+### Fixes
+
+🐛 **Vue `useTheme` crashed under SSR (Nuxt).** The provider's `watch(theme, …, { immediate: true })` touched `window.document` during `setup`, which runs on the server — a `ReferenceError` before hydration. Both the provider watcher and the fallback `updateTheme` now bail when `window` is undefined. Ships in the `use-theme` registry item.
+
+🐛 **Slider thumb had no accessible name (React + Vue).** The custom Slider spread `aria-label` onto the wrapper `<div>`, not the `role="slider"` thumb, so screen readers announced an unnamed slider (axe: `aria-input-field-name`). `aria-label` / `aria-labelledby` now forward to the thumb; the Vue thumb also gained `aria-valuetext` for parity. Surfaced by the expanded a11y suite.
+
+### Tooling & quality
+
+✅ **Vue now has automated tests.** Added Vitest + Vue Test Utils to `@boldkit/vue` (previously zero coverage) with a baseline for `useThemeProvider`/`useTheme` (incl. the SSR regression), `useIsMobile`, and `Button`. Wired into CI.
+
+✅ **a11y coverage 7 → 19 components.** Extended the axe suite to Tabs, RadioGroup, Select, Slider, Progress, Textarea, Accordion, Table, Breadcrumb, Avatar, Separator, and ToggleGroup.
+
+✅ **CI now verifies the full delivery pipeline.** New `build:ci` step runs typegen + `vite build` + `registry:build` + SSG (skips the SEO-only prerender), so registry/build breakage can no longer ship green.
+
+🧹 **Repo hygiene.** Removed a stray untracked `package-lock.json` and gitignored non-bun lockfiles (repo is bun-only); deleted two dead, unreferenced scripts (`generate-examples.js`, `migrate-doc-sources.ts`).
+
+### Features
+
+🎨 **Theme presets ship as CSS-vars-only swaps.** The 14 builder presets are now emitted to `public/themes/<slug>.css` (+ `index.json`) at build time from a shared source (`src/config/theme-presets.ts`), with a per-preset download in the Theme Builder. Drop a file into your `globals.css` to reskin. _Note: presets swap primary/secondary/accent over BoldKit's default neutrals — full per-preset neutral palettes are a later design pass._
+
+### Website
+
+✨ **Circular-reveal dark/light toggle.** The docs-site theme toggle now wipes the new theme in as a circle expanding from the button via the View Transitions API (`src/lib/theme-transition.ts`), with an instant-swap fallback for unsupported browsers and `prefers-reduced-motion`.
+
+### Bumps
+
+- React: `3.4.6 → 3.4.7`
+- Vue: `3.2.6 → 3.2.7`
+
+---
+
 ## [3.4.6] — 2026-07-14 — Vue components all build on Nuxt
 
 Installing and building the **entire** Vue library in a real Nuxt 4 project surfaced latent SFC compile errors — components BoldKit's own app never compiled (unused ones are tree-shaken, and `vue-tsc` doesn't enforce these compiler-only rules).

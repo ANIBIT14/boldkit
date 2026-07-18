@@ -23,6 +23,16 @@ export default defineConfig([
     },
   },
   {
+    // packages/vue TS files (composables, tests) are Vue, not React — the
+    // React-only rules from the base .ts block are false positives here
+    // (e.g. `useTheme()` in a Vue `setup()` is not a React hook violation).
+    files: ['packages/vue/**/*.{ts,tsx}'],
+    rules: {
+      'react-hooks/rules-of-hooks': 'off',
+      'react-refresh/only-export-components': 'off',
+    },
+  },
+  {
     files: ['packages/vue/**/*.vue'],
     plugins: {
       vue: vuePlugin,

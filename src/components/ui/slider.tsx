@@ -38,6 +38,8 @@ const Slider = React.forwardRef<HTMLDivElement, SliderProps>(
       damping = 28,
       mass = 1,
       className,
+      'aria-label': ariaLabel,
+      'aria-labelledby': ariaLabelledby,
       ...props
     },
     ref
@@ -491,6 +493,8 @@ const Slider = React.forwardRef<HTMLDivElement, SliderProps>(
             aria-valuetext={`${actualValue[index]} of ${max}`}
             aria-disabled={disabled}
             aria-orientation={orientation}
+            aria-label={ariaLabel}
+            aria-labelledby={ariaLabelledby}
             onKeyDown={handleKeyDown(index)}
             onPointerDown={handleThumbPointerDown(index)}
             onMouseEnter={() => setHoveringThumb(index)}

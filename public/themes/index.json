@@ -1,0 +1,72 @@
+[
+  {
+    "name": "Coral",
+    "slug": "coral",
+    "tag": "warm & bold"
+  },
+  {
+    "name": "Purple",
+    "slug": "purple",
+    "tag": "vivid & dramatic"
+  },
+  {
+    "name": "Forest",
+    "slug": "forest",
+    "tag": "earthy & fresh"
+  },
+  {
+    "name": "Ocean",
+    "slug": "ocean",
+    "tag": "cool & serene"
+  },
+  {
+    "name": "Sunset",
+    "slug": "sunset",
+    "tag": "fiery & expressive"
+  },
+  {
+    "name": "Mono",
+    "slug": "mono",
+    "tag": "clean & minimal"
+  },
+  {
+    "name": "Neon",
+    "slug": "neon",
+    "tag": "electric & raw"
+  },
+  {
+    "name": "Electric",
+    "slug": "electric",
+    "tag": "punchy & vibrant"
+  },
+  {
+    "name": "Candy",
+    "slug": "candy",
+    "tag": "sweet & playful"
+  },
+  {
+    "name": "Cyberpunk",
+    "slug": "cyberpunk",
+    "tag": "toxic & dystopian"
+  },
+  {
+    "name": "Retro",
+    "slug": "retro",
+    "tag": "vintage & gritty"
+  },
+  {
+    "name": "Pastel",
+    "slug": "pastel",
+    "tag": "soft & kawaii"
+  },
+  {
+    "name": "Gold",
+    "slug": "gold",
+    "tag": "luxury & refined"
+  },
+  {
+    "name": "Cherry",
+    "slug": "cherry",
+    "tag": "bold & japanese"
+  }
+]

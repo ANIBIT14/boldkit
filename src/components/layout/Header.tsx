@@ -3,6 +3,7 @@ import { Badge } from '@/components/ui/badge'
 import { SearchCommand } from '@/components/SearchCommand'
 import { GitHubStars } from '@/components/GitHubStars'
 import { useTheme } from '@/hooks/use-theme'
+import { toggleThemeWithReveal } from '@/lib/theme-transition'
 import {
   Moon,
   Sun,
@@ -171,7 +172,15 @@ export function Header() {
             {/* Theme toggle */}
             <button
               className="h-8 w-8 flex items-center justify-center border-3 border-foreground bg-background hover:bg-foreground hover:text-background transition-colors duration-150 shrink-0"
-              onClick={() => setTheme(resolvedTheme === 'light' ? 'dark' : 'light')}
+              onClick={(e) => {
+                const next = resolvedTheme === 'light' ? 'dark' : 'light'
+                const rect = e.currentTarget.getBoundingClientRect()
+                toggleThemeWithReveal(
+                  next,
+                  { x: rect.left + rect.width / 2, y: rect.top + rect.height / 2 },
+                  () => setTheme(next),
+                )
+              }}
               aria-label={resolvedTheme === 'light' ? 'Switch to dark mode' : 'Switch to light mode'}
               title={resolvedTheme === 'light' ? 'Switch to dark mode' : 'Switch to light mode'}
             >

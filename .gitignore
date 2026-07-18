@@ -1,6 +1,11 @@
 # Dependencies
 node_modules
 
+# This repo uses bun — keep only bun.lock committed
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+
 # Build outputs
 dist
 dist-ssr
@@ -49,6 +54,7 @@ coverage
 
 # Claude AI / tool config
 CLAUDE.md
+.claude/
 .mcp.json
 .superpowers/
 

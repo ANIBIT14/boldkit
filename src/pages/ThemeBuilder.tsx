@@ -11,7 +11,8 @@ import { Switch } from '@/components/ui/switch'
 import { Checkbox } from '@/components/ui/checkbox'
 import { Progress } from '@/components/ui/progress'
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert'
-import { Copy, Check, AlertCircle, Palette, Sun, Moon } from 'lucide-react'
+import { Copy, Check, AlertCircle, Palette, Sun, Moon, Download } from 'lucide-react'
+import { themePresets, type ThemePreset } from '@/config/theme-presets'
 import { Layout } from '@/components/layout'
 import { ReactIcon, VueIcon } from '@/hooks/use-framework'
 import { SEO, pageSEO } from '@/components/SEO'
@@ -142,25 +143,6 @@ function ColorPicker({
   )
 }
 
-const presetThemes = [
-  // — Original 9 —
-  { name: 'Coral',    tag: 'warm & bold',       primary: '0 84% 71%',    secondary: '174 62% 56%', accent: '49 100% 71%' },
-  { name: 'Purple',   tag: 'vivid & dramatic',  primary: '271 76% 53%',  secondary: '326 78% 60%', accent: '199 89% 48%' },
-  { name: 'Forest',   tag: 'earthy & fresh',    primary: '152 69% 45%',  secondary: '82 68% 55%',  accent: '49 100% 60%' },
-  { name: 'Ocean',    tag: 'cool & serene',     primary: '199 89% 48%',  secondary: '174 62% 56%', accent: '152 69% 69%' },
-  { name: 'Sunset',   tag: 'fiery & expressive',primary: '14 100% 57%',  secondary: '326 78% 60%', accent: '49 100% 60%' },
-  { name: 'Mono',     tag: 'clean & minimal',   primary: '0 0% 90%',     secondary: '0 0% 75%',    accent: '49 100% 65%' },
-  { name: 'Neon',     tag: 'electric & raw',    primary: '318 100% 50%', secondary: '180 100% 50%',accent: '60 100% 50%' },
-  { name: 'Electric', tag: 'punchy & vibrant',  primary: '258 100% 65%', secondary: '166 100% 50%',accent: '45 100% 55%' },
-  { name: 'Candy',    tag: 'sweet & playful',   primary: '340 82% 65%',  secondary: '280 70% 60%', accent: '190 100% 60%' },
-  // — New v3.0 Presets —
-  { name: 'Cyberpunk',tag: 'toxic & dystopian', primary: '112 100% 54%', secondary: '342 100% 59%',accent: '193 100% 50%' },
-  { name: 'Retro',    tag: 'vintage & gritty',  primary: '22 91% 48%',   secondary: '173 43% 51%', accent: '45 90% 61%' },
-  { name: 'Pastel',   tag: 'soft & kawaii',     primary: '344 100% 82%', secondary: '154 56% 78%', accent: '260 53% 80%' },
-  { name: 'Gold',     tag: 'luxury & refined',  primary: '45 87% 55%',   secondary: '221 42% 30%', accent: '38 82% 52%' },
-  { name: 'Cherry',   tag: 'bold & japanese',   primary: '5 66% 46%',    secondary: '151 37% 22%', accent: '37 90% 51%' },
-]
-
 const THEME_STORAGE_KEY = 'boldkit-theme-builder-colors'
 
 const defaultColors = {
@@ -244,7 +226,7 @@ export function ThemeBuilder({ embedded = false }: ThemeBuilderProps) {
     }
   }, [])
 
-  const applyPreset = (preset: typeof presetThemes[0]) => {
+  const applyPreset = (preset: ThemePreset) => {
     setColors({
       ...colors,
       primary: preset.primary,
@@ -599,24 +581,39 @@ export function ThemeBuilder({ embedded = false }: ThemeBuilderProps) {
               </CardHeader>
               <CardContent className="pt-4 md:pt-6 px-3 md:px-6">
                 <div className="grid grid-cols-2 gap-2">
-                  {presetThemes.map((preset) => (
-                    <button
-                      key={preset.name}
-                      onClick={() => applyPreset(preset)}
-                      className="group flex flex-col border-2 border-foreground hover:shadow-[3px_3px_0px_hsl(var(--foreground))] hover:-translate-x-[1px] hover:-translate-y-[1px] transition duration-100 text-left overflow-hidden"
+                  {themePresets.map((preset) => (
+                    <div
+                      key={preset.slug}
+                      className="group relative flex flex-col border-2 border-foreground hover:shadow-[3px_3px_0px_hsl(var(--foreground))] hover:-translate-x-[1px] hover:-translate-y-[1px] transition duration-100 overflow-hidden"
                     >
-                      {/* Color strip */}
-                      <div className="flex w-full h-5">
-                        <div className="flex-1" style={{ backgroundColor: `hsl(${preset.primary})` }} />
-                        <div className="flex-1" style={{ backgroundColor: `hsl(${preset.secondary})` }} />
-                        <div className="flex-1" style={{ backgroundColor: `hsl(${preset.accent})` }} />
-                      </div>
-                      {/* Label */}
-                      <div className="px-2 py-1.5">
-                        <p className="text-[11px] font-black uppercase tracking-wide leading-none">{preset.name}</p>
-                        <p className="text-[9px] text-muted-foreground mt-0.5 leading-none">{preset.tag}</p>
-                      </div>
-                    </button>
+                      <button
+                        onClick={() => applyPreset(preset)}
+                        className="flex flex-col text-left"
+                      >
+                        {/* Color strip */}
+                        <div className="flex w-full h-5">
+                          <div className="flex-1" style={{ backgroundColor: `hsl(${preset.primary})` }} />
+                          <div className="flex-1" style={{ backgroundColor: `hsl(${preset.secondary})` }} />
+                          <div className="flex-1" style={{ backgroundColor: `hsl(${preset.accent})` }} />
+                        </div>
+                        {/* Label */}
+                        <div className="px-2 py-1.5">
+                          <p className="text-[11px] font-black uppercase tracking-wide leading-none">{preset.name}</p>
+                          <p className="text-[9px] text-muted-foreground mt-0.5 leading-none">{preset.tag}</p>
+                        </div>
+                      </button>
+                      {/* Download the standalone CSS-vars swap for this preset */}
+                      <a
+                        href={`/themes/${preset.slug}.css`}
+                        download={`boldkit-${preset.slug}.css`}
+                        onClick={(e) => e.stopPropagation()}
+                        title={`Download ${preset.name} theme CSS`}
+                        className="absolute top-0 right-0 bg-background/90 border-l-2 border-b-2 border-foreground p-1 opacity-0 group-hover:opacity-100 transition-opacity hover:bg-accent"
+                        aria-label={`Download ${preset.name} theme CSS`}
+                      >
+                        <Download className="h-3 w-3" />
+                      </a>
+                    </div>
                   ))}
                 </div>
               </CardContent>

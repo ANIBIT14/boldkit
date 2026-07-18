@@ -14,6 +14,9 @@ interface Props {
   damping?: number
   mass?: number
   class?: string
+  /** Accessible name for the slider thumb (role="slider"). */
+  ariaLabel?: string
+  ariaLabelledby?: string
 }
 
 const props = withDefaults(defineProps<Props>(), {
@@ -401,8 +404,11 @@ function getThumbStyle(index: number) {
       :aria-valuemin="min"
       :aria-valuemax="max"
       :aria-valuenow="actualValue[index]"
+      :aria-valuetext="`${actualValue[index]} of ${max}`"
       :aria-disabled="disabled"
       :aria-orientation="orientation"
+      :aria-label="ariaLabel"
+      :aria-labelledby="ariaLabelledby"
       :class="cn(
         'absolute h-7 w-7 cursor-grab',
         'border-3 border-foreground bg-background',
