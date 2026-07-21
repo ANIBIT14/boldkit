@@ -1,0 +1,266 @@
+{
+  "tool": "WCAG 2.1 contrast audit over src/styles/globals.css tokens (4.5 text / 3.0 UI)",
+  "generatedPairs": 13,
+  "results": [
+    {
+      "pair": "foreground/background",
+      "fg": "foreground",
+      "bg": "background",
+      "kind": "text",
+      "mode": "light",
+      "ratio": 17.16,
+      "threshold": 4.5,
+      "pass": true
+    },
+    {
+      "pair": "card-foreground/card",
+      "fg": "card-foreground",
+      "bg": "card",
+      "kind": "text",
+      "mode": "light",
+      "ratio": 17.87,
+      "threshold": 4.5,
+      "pass": true
+    },
+    {
+      "pair": "popover-foreground/popover",
+      "fg": "popover-foreground",
+      "bg": "popover",
+      "kind": "text",
+      "mode": "light",
+      "ratio": 17.87,
+      "threshold": 4.5,
+      "pass": true
+    },
+    {
+      "pair": "primary-foreground/primary",
+      "fg": "primary-foreground",
+      "bg": "primary",
+      "kind": "text",
+      "mode": "light",
+      "ratio": 6.57,
+      "threshold": 4.5,
+      "pass": true
+    },
+    {
+      "pair": "secondary-foreground/secondary",
+      "fg": "secondary-foreground",
+      "bg": "secondary",
+      "kind": "text",
+      "mode": "light",
+      "ratio": 9.83,
+      "threshold": 4.5,
+      "pass": true
+    },
+    {
+      "pair": "accent-foreground/accent",
+      "fg": "accent-foreground",
+      "bg": "accent",
+      "kind": "text",
+      "mode": "light",
+      "ratio": 14.08,
+      "threshold": 4.5,
+      "pass": true
+    },
+    {
+      "pair": "destructive-foreground/destructive",
+      "fg": "destructive-foreground",
+      "bg": "destructive",
+      "kind": "text",
+      "mode": "light",
+      "ratio": 5.04,
+      "threshold": 4.5,
+      "pass": true
+    },
+    {
+      "pair": "success-foreground/success",
+      "fg": "success-foreground",
+      "bg": "success",
+      "kind": "text",
+      "mode": "light",
+      "ratio": 11.78,
+      "threshold": 4.5,
+      "pass": true
+    },
+    {
+      "pair": "warning-foreground/warning",
+      "fg": "warning-foreground",
+      "bg": "warning",
+      "kind": "text",
+      "mode": "light",
+      "ratio": 13.01,
+      "threshold": 4.5,
+      "pass": true
+    },
+    {
+      "pair": "info-foreground/info",
+      "fg": "info-foreground",
+      "bg": "info",
+      "kind": "text",
+      "mode": "light",
+      "ratio": 8.39,
+      "threshold": 4.5,
+      "pass": true
+    },
+    {
+      "pair": "muted-foreground/background",
+      "fg": "muted-foreground",
+      "bg": "background",
+      "kind": "text",
+      "mode": "light",
+      "ratio": 6.34,
+      "threshold": 4.5,
+      "pass": true
+    },
+    {
+      "pair": "muted-foreground/muted",
+      "fg": "muted-foreground",
+      "bg": "muted",
+      "kind": "text",
+      "mode": "light",
+      "ratio": 5.32,
+      "threshold": 4.5,
+      "pass": true
+    },
+    {
+      "pair": "border/background",
+      "fg": "border",
+      "bg": "background",
+      "kind": "ui",
+      "mode": "light",
+      "ratio": 17.16,
+      "threshold": 3,
+      "pass": true
+    },
+    {
+      "pair": "foreground/background",
+      "fg": "foreground",
+      "bg": "background",
+      "kind": "text",
+      "mode": "dark",
+      "ratio": 17.16,
+      "threshold": 4.5,
+      "pass": true
+    },
+    {
+      "pair": "card-foreground/card",
+      "fg": "card-foreground",
+      "bg": "card",
+      "kind": "text",
+      "mode": "dark",
+      "ratio": 15.52,
+      "threshold": 4.5,
+      "pass": true
+    },
+    {
+      "pair": "popover-foreground/popover",
+      "fg": "popover-foreground",
+      "bg": "popover",
+      "kind": "text",
+      "mode": "dark",
+      "ratio": 15.52,
+      "threshold": 4.5,
+      "pass": true
+    },
+    {
+      "pair": "primary-foreground/primary",
+      "fg": "primary-foreground",
+      "bg": "primary",
+      "kind": "text",
+      "mode": "dark",
+      "ratio": 6.57,
+      "threshold": 4.5,
+      "pass": true
+    },
+    {
+      "pair": "secondary-foreground/secondary",
+      "fg": "secondary-foreground",
+      "bg": "secondary",
+      "kind": "text",
+      "mode": "dark",
+      "ratio": 9.83,
+      "threshold": 4.5,
+      "pass": true
+    },
+    {
+      "pair": "accent-foreground/accent",
+      "fg": "accent-foreground",
+      "bg": "accent",
+      "kind": "text",
+      "mode": "dark",
+      "ratio": 14.08,
+      "threshold": 4.5,
+      "pass": true
+    },
+    {
+      "pair": "destructive-foreground/destructive",
+      "fg": "destructive-foreground",
+      "bg": "destructive",
+      "kind": "text",
+      "mode": "dark",
+      "ratio": 5.04,
+      "threshold": 4.5,
+      "pass": true
+    },
+    {
+      "pair": "success-foreground/success",
+      "fg": "success-foreground",
+      "bg": "success",
+      "kind": "text",
+      "mode": "dark",
+      "ratio": 11.78,
+      "threshold": 4.5,
+      "pass": true
+    },
+    {
+      "pair": "warning-foreground/warning",
+      "fg": "warning-foreground",
+      "bg": "warning",
+      "kind": "text",
+      "mode": "dark",
+      "ratio": 13.01,
+      "threshold": 4.5,
+      "pass": true
+    },
+    {
+      "pair": "info-foreground/info",
+      "fg": "info-foreground",
+      "bg": "info",
+      "kind": "text",
+      "mode": "dark",
+      "ratio": 8.39,
+      "threshold": 4.5,
+      "pass": true
+    },
+    {
+      "pair": "muted-foreground/background",
+      "fg": "muted-foreground",
+      "bg": "background",
+      "kind": "text",
+      "mode": "dark",
+      "ratio": 7.65,
+      "threshold": 4.5,
+      "pass": true
+    },
+    {
+      "pair": "muted-foreground/muted",
+      "fg": "muted-foreground",
+      "bg": "muted",
+      "kind": "text",
+      "mode": "dark",
+      "ratio": 5.76,
+      "threshold": 4.5,
+      "pass": true
+    },
+    {
+      "pair": "border/background",
+      "fg": "border",
+      "bg": "background",
+      "kind": "ui",
+      "mode": "dark",
+      "ratio": 17.16,
+      "threshold": 3,
+      "pass": true
+    }
+  ]
+}

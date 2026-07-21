@@ -1,13 +1,17 @@
 import { SITE_URL } from '@/config/routes-meta'
 import { SeoArticleLayout, Section, Callout, DataGrid } from '@/components/seo/SeoArticleLayout'
 import report from '@/config/a11y-report.json'
+import contrastReport from '@/config/contrast-report.json'
 import catalog from '../../packages/mcp/catalog.json'
 
 const TOC = [
   { id: 'approach', label: 'How we test' },
   { id: 'matrix', label: 'Component matrix' },
+  { id: 'contrast', label: 'Dark-mode contrast' },
   { id: 'limits', label: 'What axe can’t check' },
 ]
+
+const contrastPassing = contrastReport.results.filter((r) => r.pass).length
 
 const FAQ = [
   {
@@ -112,6 +116,53 @@ export function Accessibility() {
         />
         <p>
           Raw data: <a href="/a11y-report.json">a11y-report.json</a>
+        </p>
+      </Section>
+
+      <Section id="contrast" title="Dark-mode contrast">
+        <p>
+          Color contrast is excluded from the axe suite (the test environment has no layout
+          engine), so it is verified separately by a script that computes WCAG contrast ratios over
+          every semantic token pair in both light and dark modes (<code>scripts/audit-contrast.ts</code>).
+          Text pairs must meet 4.5:1, UI pairs 3:1.
+        </p>
+        <Callout>
+          <strong>
+            {contrastPassing}/{contrastReport.results.length}
+          </strong>{' '}
+          token-pair contrast checks pass across light and dark modes.
+        </Callout>
+        <DataGrid
+          headers={['Pair', 'Mode', 'Ratio', 'Status']}
+          rows={contrastReport.results.map((r) => [
+            <span key={`${r.pair}-${r.mode}-n`} className="font-mono text-sm">
+              {r.pair}
+            </span>,
+            <span key={`${r.pair}-${r.mode}-m`} className="capitalize">
+              {r.mode}
+            </span>,
+            <span key={`${r.pair}-${r.mode}-r`} className="font-bold">
+              {r.ratio}:1
+            </span>,
+            r.pass ? (
+              <span
+                key={`${r.pair}-${r.mode}-s`}
+                className="inline-block border-2 border-foreground bg-[#00E572] px-2 py-0.5 text-xs font-bold uppercase tracking-wide text-black"
+              >
+                Pass
+              </span>
+            ) : (
+              <span
+                key={`${r.pair}-${r.mode}-s`}
+                className="inline-block border-2 border-foreground bg-[#FF4911] px-2 py-0.5 text-xs font-bold uppercase tracking-wide text-black"
+              >
+                Fail
+              </span>
+            ),
+          ])}
+        />
+        <p>
+          Raw data: <a href="/contrast-report.json">contrast-report.json</a>
         </p>
       </Section>
 

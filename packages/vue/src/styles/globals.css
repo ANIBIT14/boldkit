@@ -110,10 +110,10 @@
 
   /* Muted */
   --muted: 60 5% 90%;
-  --muted-foreground: 240 4% 46%;
+  --muted-foreground: 240 5% 38%;
 
   /* Destructive */
-  --destructive: 0 84% 60%;
+  --destructive: 0 84% 47%;
   --destructive-foreground: 0 0% 100%;
 
   /* Success */
@@ -184,7 +184,7 @@
   --muted: 240 10% 20%;
   --muted-foreground: 60 5% 65%;
 
-  --destructive: 0 84% 60%;
+  --destructive: 0 84% 47%;
   --destructive-foreground: 0 0% 100%;
 
   --success: 152 69% 69%;

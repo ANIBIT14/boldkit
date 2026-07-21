@@ -29,10 +29,11 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "npm run sitemap && npm run llms && npm run themes && tsc -b && vite build && npm run registry:build && npm run ssg && npm run prerender",
-    "build:ci": "npm run sitemap && npm run llms && npm run themes && tsc -b && vite build && npm run registry:build && npm run ssg",
+    "build": "npm run sitemap && npm run llms && npm run themes && npm run contrast && tsc -b && vite build && npm run registry:build && npm run ssg && npm run prerender",
+    "build:ci": "npm run sitemap && npm run llms && npm run themes && npm run contrast && tsc -b && vite build && npm run registry:build && npm run ssg",
     "ssg": "tsx scripts/generate-html.ts",
     "themes": "tsx scripts/generate-theme-presets.ts",
+    "contrast": "tsx scripts/audit-contrast.ts",
     "prerender": "tsx scripts/prerender.ts",
     "sitemap": "tsx scripts/generate-sitemap.ts",
     "llms": "tsx scripts/generate-llms-full.ts",
