@@ -1,0 +1,26 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "multi-step-form",
+  "type": "registry:ui",
+  "description": "Dependency-free multi-step form state layer with per-step validation, composes with Stepper",
+  "dependencies": [],
+  "registryDependencies": [
+    "@boldkit/utils",
+    "@boldkit/stepper",
+    "@boldkit/button",
+    "@boldkit/input",
+    "@boldkit/label"
+  ],
+  "files": [
+    {
+      "path": "components/ui/MultiStepForm.vue",
+      "content": "<script setup lang=\"ts\" generic=\"V extends object\">\nimport { provideMultiStepForm, type MultiStepFormStep } from './useMultiStepForm'\n\nconst props = defineProps<{\n  steps: MultiStepFormStep<V>[]\n  initialValues: V\n  onSubmit: (values: V) => void\n}>()\n\nprovideMultiStepForm<V>({\n  steps: props.steps,\n  initialValues: props.initialValues,\n  onSubmit: props.onSubmit,\n})\n</script>\n\n<template>\n  <slot />\n</template>\n",
+      "type": "registry:ui"
+    },
+    {
+      "path": "components/ui/useMultiStepForm.ts",
+      "content": "import {\n  computed,\n  inject,\n  provide,\n  reactive,\n  ref,\n  type ComputedRef,\n  type InjectionKey,\n  type Ref,\n} from 'vue'\n\n/**\n * Multi-step form: a dependency-free form-state layer that sits on top of the\n * <Stepper /> UI. Owns values, per-field errors, touched state, and the active\n * step, gating forward navigation on the current step's validator.\n */\n\nexport type StepValidator<V> = (values: V) => Record<string, string> | null\n\nexport interface MultiStepFormStep<V> {\n  id: string\n  validate?: StepValidator<V>\n}\n\nexport interface MultiStepFormContext<V> {\n  values: V\n  setValue: <K extends keyof V>(name: K, value: V[K]) => void\n  errors: Record<string, string>\n  touched: Record<string, boolean>\n  activeStep: Ref<number>\n  next: () => void\n  back: () => void\n  goTo: (step: number) => void\n  canGoNext: ComputedRef<boolean>\n  isStepValid: ComputedRef<boolean>\n  isFirstStep: ComputedRef<boolean>\n  isLastStep: ComputedRef<boolean>\n  submit: () => void\n}\n\nexport const MULTI_STEP_FORM_KEY: InjectionKey<MultiStepFormContext<unknown>> =\n  Symbol('BoldKitMultiStepForm')\n\nexport interface ProvideMultiStepFormOptions<V> {\n  steps: MultiStepFormStep<V>[]\n  initialValues: V\n  onSubmit: (values: V) => void\n}\n\nexport function provideMultiStepForm<V extends object>(\n  options: ProvideMultiStepFormOptions<V>\n): MultiStepFormContext<V> {\n  const { steps, initialValues, onSubmit } = options\n\n  const values = reactive({ ...initialValues }) as V\n  const errors = reactive<Record<string, string>>({})\n  const touched = reactive<Record<string, boolean>>({})\n  const activeStep = ref(0)\n\n  const totalSteps = steps.length\n  const isFirstStep = computed(() => activeStep.value === 0)\n  const isLastStep = computed(() => activeStep.value === totalSteps - 1)\n\n  function replaceErrors(next: Record<string, string> | null) {\n    for (const key of Object.keys(errors)) delete errors[key]\n    if (next) Object.assign(errors, next)\n  }\n\n  function setValue<K extends keyof V>(name: K, value: V[K]) {\n    ;(values as Record<string, unknown>)[name as string] = value\n    touched[name as string] = true\n    delete errors[name as string]\n  }\n\n  function validateStep(step: number): boolean {\n    const validator = steps[step]?.validate\n    if (!validator) {\n      replaceErrors(null)\n      return true\n    }\n    const result = validator(values)\n    replaceErrors(result)\n    return result === null\n  }\n\n  const isStepValid = computed(() => {\n    const validator = steps[activeStep.value]?.validate\n    return validator ? validator(values) === null : true\n  })\n\n  function goTo(step: number) {\n    if (step < 0 || step >= totalSteps) return\n    if (step > activeStep.value) {\n      if (!validateStep(activeStep.value)) return\n    } else {\n      replaceErrors(null)\n    }\n    activeStep.value = step\n  }\n\n  function next() {\n    if (isLastStep.value) return\n    if (!validateStep(activeStep.value)) return\n    activeStep.value = Math.min(activeStep.value + 1, totalSteps - 1)\n  }\n\n  function back() {\n    replaceErrors(null)\n    activeStep.value = Math.max(activeStep.value - 1, 0)\n  }\n\n  function submit() {\n    if (!isLastStep.value) return\n    if (!validateStep(activeStep.value)) return\n    onSubmit({ ...values })\n  }\n\n  const context: MultiStepFormContext<V> = {\n    values,\n    setValue,\n    errors,\n    touched,\n    activeStep,\n    next,\n    back,\n    goTo,\n    canGoNext: computed(() => isStepValid.value && !isLastStep.value),\n    isStepValid,\n    isFirstStep,\n    isLastStep,\n    submit,\n  }\n\n  provide(MULTI_STEP_FORM_KEY, context as MultiStepFormContext<unknown>)\n  return context\n}\n\nexport function useMultiStepForm<V>(): MultiStepFormContext<V> {\n  const context = inject(MULTI_STEP_FORM_KEY)\n  if (!context) {\n    throw new Error('useMultiStepForm must be used within a <MultiStepForm />')\n  }\n  return context as MultiStepFormContext<V>\n}\n",
+      "type": "registry:ui"
+    }
+  ]
+}

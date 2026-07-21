@@ -50,6 +50,7 @@ const componentMeta = {
   'button-group': { deps: [], registryDeps: ['button'], desc: 'Visually joins a row or column of buttons into one bordered unit', files: ['ButtonGroup'] },
   'input-group': { deps: ['lucide-vue-next'], desc: 'An input joined with leading/trailing addons', files: ['InputGroup', 'InputGroupInput', 'InputGroupAddon'] },
   field: { deps: [], registryDeps: ['label'], desc: 'Form field composition: label, control, description and error', files: ['Field', 'FieldGroup', 'FieldLabel', 'FieldDescription', 'FieldError'] },
+  'multi-step-form': { deps: [], registryDeps: ['stepper', 'button', 'input', 'label'], desc: 'Dependency-free multi-step form state layer with per-step validation, composes with Stepper', files: ['MultiStepForm'], extraFiles: ['useMultiStepForm.ts'] },
   'native-select': { deps: ['lucide-vue-next'], desc: 'A styled wrapper around the native select element', files: ['NativeSelect'] },
   'date-picker': { deps: ['lucide-vue-next'], registryDeps: ['button', 'calendar', 'popover'], desc: 'A single-date picker that opens a calendar popover', files: ['DatePicker'] },
   'alert-dialog': { deps: ['reka-ui'], registryDeps: ['button'], desc: 'A modal dialog that interrupts the user', files: ['AlertDialog', 'AlertDialogTrigger', 'AlertDialogContent', 'AlertDialogHeader', 'AlertDialogFooter', 'AlertDialogTitle', 'AlertDialogDescription', 'AlertDialogAction', 'AlertDialogCancel'] },

@@ -1,0 +1,24 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "multi-step-form",
+  "type": "registry:ui",
+  "description": "Dependency-free multi-step form state layer with per-step validation, composes with Stepper",
+  "dependencies": [],
+  "registryDependencies": [
+    "@boldkit/utils",
+    "@boldkit/stepper",
+    "@boldkit/button",
+    "@boldkit/input",
+    "@boldkit/label"
+  ],
+  "files": [
+    {
+      "path": "components/ui/MultiStepForm.vue",
+      "type": "registry:ui"
+    },
+    {
+      "path": "components/ui/useMultiStepForm.ts",
+      "type": "registry:ui"
+    }
+  ]
+}

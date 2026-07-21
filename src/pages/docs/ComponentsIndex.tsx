@@ -129,6 +129,7 @@ const componentGroups: ComponentGroup[] = [
       { name: 'Sonner', href: '/components/sonner' },
       { name: 'Spinner', href: '/components/spinner' },
       { name: 'Stepper', href: '/components/stepper' },
+      { name: 'Multi-Step Form', href: '/components/multi-step-form', isNew: true },
       { name: 'Timeline', href: '/components/timeline', isNew: true },
       { name: 'Tour', href: '/components/tour', isNew: true },
     ],

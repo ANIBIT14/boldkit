@@ -85,6 +85,7 @@ export const componentDocRoutes: DocRoute[] = [
   { slug: 'kbd', Component: load(() => import('@/pages/docs/KbdDoc'), 'KbdDoc') },
   { slug: 'stat-card', Component: load(() => import('@/pages/docs/StatCardDoc'), 'StatCardDoc') },
   { slug: 'stepper', Component: load(() => import('@/pages/docs/StepperDoc'), 'StepperDoc') },
+  { slug: 'multi-step-form', Component: load(() => import('@/pages/docs/MultiStepFormDoc'), 'MultiStepFormDoc') },
   { slug: 'dropzone', Component: load(() => import('@/pages/docs/DropzoneDoc'), 'DropzoneDoc') },
   { slug: 'empty-state', Component: load(() => import('@/pages/docs/EmptyStateDoc'), 'EmptyStateDoc') },
   { slug: 'field', Component: load(() => import('@/pages/docs/FieldDoc'), 'FieldDoc') },

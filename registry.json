@@ -1491,6 +1491,31 @@
       ]
     },
     {
+      "name": "multi-step-form",
+      "type": "registry:ui",
+      "description": "Dependency-free multi-step form state layer with per-step validation, designed to compose with Stepper",
+      "dependencies": [],
+      "registryDependencies": [
+        "@boldkit/utils",
+        "stepper",
+        "button",
+        "input",
+        "label"
+      ],
+      "files": [
+        {
+          "path": "registry/default/ui/multi-step-form.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/multi-step-form.tsx"
+        },
+        {
+          "path": "registry/default/example/multi-step-form-demo.tsx",
+          "type": "registry:example",
+          "target": "components/example/multi-step-form-demo.tsx"
+        }
+      ]
+    },
+    {
       "name": "dropzone",
       "type": "registry:ui",
       "description": "Drag-and-drop file upload with validation, progress tracking, and file list",
@@ -2026,7 +2051,7 @@
     {
       "name": "math-curve-loader",
       "type": "registry:ui",
-      "description": "Animated mathematical curve loader with neubrutalism aesthetics — 8 curve variants including rose, lissajous, butterfly, and more",
+      "description": "Animated mathematical curve loader with neubrutalism aesthetics \u2014 8 curve variants including rose, lissajous, butterfly, and more",
       "dependencies": [
         "class-variance-authority"
       ],
@@ -2051,7 +2076,7 @@
     {
       "name": "math-curve-progress",
       "type": "registry:ui",
-      "description": "Progress indicator that traces a mathematical curve — value-driven head moves along the curve path from 0 to 100%",
+      "description": "Progress indicator that traces a mathematical curve \u2014 value-driven head moves along the curve path from 0 to 100%",
       "dependencies": [
         "class-variance-authority"
       ],
@@ -2076,7 +2101,7 @@
     {
       "name": "math-curve-background",
       "type": "registry:ui",
-      "description": "Ambient animated mathematical curve background layer with neubrutalism aesthetics — wraps content with a slow-moving curve animation",
+      "description": "Ambient animated mathematical curve background layer with neubrutalism aesthetics \u2014 wraps content with a slow-moving curve animation",
       "dependencies": [
         "@radix-ui/react-slot"
       ],
@@ -2122,7 +2147,7 @@
     {
       "name": "motion",
       "type": "registry:style",
-      "description": "BoldKit Motion System — framework-agnostic CSS tokens, keyframes, and six signature recipes (press, stamp-in, shake, reveal, slide-hard, pulse-shadow). Mobile-optimized, honors prefers-reduced-motion.",
+      "description": "BoldKit Motion System \u2014 framework-agnostic CSS tokens, keyframes, and six signature recipes (press, stamp-in, shake, reveal, slide-hard, pulse-shadow). Mobile-optimized, honors prefers-reduced-motion.",
       "files": [
         {
           "path": "registry/default/styles/motion.css",
@@ -2134,7 +2159,7 @@
     {
       "name": "motion-core",
       "type": "registry:lib",
-      "description": "BoldKit Motion core — framework-agnostic, SSR-safe primitives (observeReveal, staggerChildren, triggerAnimation, startViewTransition, prefersReducedMotion) shared by every motion adapter.",
+      "description": "BoldKit Motion core \u2014 framework-agnostic, SSR-safe primitives (observeReveal, staggerChildren, triggerAnimation, startViewTransition, prefersReducedMotion) shared by every motion adapter.",
       "files": [
         {
           "path": "registry/default/lib/motion-core.ts",
@@ -2146,7 +2171,7 @@
     {
       "name": "motion-react",
       "type": "registry:ui",
-      "description": "BoldKit Motion React adapter — <Motion>/<Reveal>/<Stagger> components plus useShake and useViewTransition hooks over a framework-agnostic core.",
+      "description": "BoldKit Motion React adapter \u2014 <Motion>/<Reveal>/<Stagger> components plus useShake and useViewTransition hooks over a framework-agnostic core.",
       "registryDependencies": [
         "@boldkit/motion",
         "@boldkit/motion-core",
@@ -2163,7 +2188,7 @@
     {
       "name": "chart-export",
       "type": "registry:lib",
-      "description": "BoldKit chart export helpers — framework-agnostic, SSR-safe CSV / PNG / SVG download and fullscreen toggle. Works with any chart engine that renders an <svg> (Recharts) or <canvas> (ECharts).",
+      "description": "BoldKit chart export helpers \u2014 framework-agnostic, SSR-safe CSV / PNG / SVG download and fullscreen toggle. Works with any chart engine that renders an <svg> (Recharts) or <canvas> (ECharts).",
       "files": [
         {
           "path": "registry/default/lib/chart-export.ts",
@@ -2175,7 +2200,7 @@
     {
       "name": "chart-toolbar",
       "type": "registry:ui",
-      "description": "Brutalist chart toolbar overlay — export the wrapped chart as PNG or SVG, download its data as CSV, and toggle fullscreen.",
+      "description": "Brutalist chart toolbar overlay \u2014 export the wrapped chart as PNG or SVG, download its data as CSV, and toggle fullscreen.",
       "dependencies": [
         "lucide-react"
       ],

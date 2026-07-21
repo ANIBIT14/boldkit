@@ -6,7 +6,7 @@ import {
   useMultiStepForm,
   type MultiStepFormContext,
   type MultiStepFormStep,
-} from '../MultiStepForm'
+} from '../useMultiStepForm'
 
 interface Values {
   email: string

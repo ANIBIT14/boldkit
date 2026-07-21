@@ -134,6 +134,11 @@
       "registryUrl": "https://boldkit.dev/r/vue/field.json"
     },
     {
+      "name": "multi-step-form",
+      "type": "registry:ui",
+      "registryUrl": "https://boldkit.dev/r/vue/multi-step-form.json"
+    },
+    {
       "name": "native-select",
       "type": "registry:ui",
       "registryUrl": "https://boldkit.dev/r/vue/native-select.json"

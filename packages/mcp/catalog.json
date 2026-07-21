@@ -2338,6 +2338,46 @@
       "docsUrl": "https://boldkit.dev/components/mouse-ripple"
     },
     {
+      "name": "multi-step-form",
+      "type": "registry:ui",
+      "description": "Dependency-free multi-step form state layer with per-step validation, designed to compose with Stepper",
+      "react": {
+        "url": "https://boldkit.dev/r/multi-step-form.json",
+        "dependencies": [],
+        "registryDependencies": [
+          "@boldkit/utils",
+          "stepper",
+          "button",
+          "input",
+          "label"
+        ],
+        "files": [
+          "registry/default/ui/multi-step-form.tsx",
+          "registry/default/example/multi-step-form-demo.tsx"
+        ]
+      },
+      "vue": {
+        "url": "https://boldkit.dev/r/vue/multi-step-form.json",
+        "dependencies": [],
+        "registryDependencies": [
+          "@boldkit/utils",
+          "@boldkit/stepper",
+          "@boldkit/button",
+          "@boldkit/input",
+          "@boldkit/label"
+        ],
+        "files": [
+          "components/ui/MultiStepForm.vue",
+          "components/ui/useMultiStepForm.ts"
+        ]
+      },
+      "frameworks": [
+        "react",
+        "vue"
+      ],
+      "docsUrl": "https://boldkit.dev/components/multi-step-form"
+    },
+    {
       "name": "native-select",
       "type": "registry:ui",
       "description": "A styled wrapper around the native select element, a11y-first",
