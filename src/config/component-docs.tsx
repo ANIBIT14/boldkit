@@ -123,4 +123,9 @@ export const blockDocRoutes: DocRoute[] = [
   { slug: 'settings-page', Component: load(() => import('@/pages/docs/blocks/SettingsPageDoc'), 'SettingsPageDoc') },
   { slug: 'onboarding-flow', Component: load(() => import('@/pages/docs/blocks/OnboardingFlowDoc'), 'OnboardingFlowDoc') },
   { slug: 'invoice', Component: load(() => import('@/pages/docs/blocks/InvoiceDoc'), 'InvoiceDoc') },
+  { slug: 'pricing-section', Component: load(() => import('@/pages/docs/blocks/PricingSectionDoc'), 'PricingSectionDoc') },
+  { slug: 'bento-grid', Component: load(() => import('@/pages/docs/blocks/BentoGridDoc'), 'BentoGridDoc') },
+  { slug: 'changelog-section', Component: load(() => import('@/pages/docs/blocks/ChangelogSectionDoc'), 'ChangelogSectionDoc') },
+  { slug: 'comparison-table', Component: load(() => import('@/pages/docs/blocks/ComparisonTableDoc'), 'ComparisonTableDoc') },
+  { slug: 'dashboard-layout', Component: load(() => import('@/pages/docs/blocks/DashboardLayoutDoc'), 'DashboardLayoutDoc') },
 ]

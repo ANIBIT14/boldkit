@@ -21,6 +21,10 @@ import {
   FileX,
   CreditCard,
   ChevronRight,
+  LayoutGrid,
+  LayoutDashboard,
+  Table2,
+  GitBranch,
 } from 'lucide-react'
 import { SEO, pageSEO } from '@/components/SEO'
 import { useFramework, FrameworkToggle, ReactIcon, VueIcon } from '@/hooks/use-framework'
@@ -188,6 +192,79 @@ function BlockPreview({ type, icon: Icon }: { type: string; icon: React.ElementT
         </div>
       </div>
     ),
+    pricing: (
+      <div className="p-4 h-full grid grid-cols-3 gap-2 items-center">
+        {[false, true, false].map((featured, i) => (
+          <div
+            key={i}
+            className={`flex flex-col gap-1.5 p-2 border-2 border-foreground bg-card ${featured ? 'shadow-[3px_3px_0px_hsl(var(--shadow-color))] -translate-y-1' : ''}`}
+          >
+            <div className="w-8 h-2 bg-foreground" />
+            <div className="w-10 h-4 bg-foreground" />
+            {[1, 2, 3].map((r) => (
+              <div key={r} className="flex items-center gap-1">
+                <div className="w-2 h-2 bg-success border border-foreground" />
+                <div className="flex-1 h-1.5 bg-muted-foreground/30" />
+              </div>
+            ))}
+            <div className={`h-5 border-2 border-foreground mt-1 ${featured ? 'bg-primary' : 'bg-card'}`} />
+          </div>
+        ))}
+      </div>
+    ),
+    bento: (
+      <div className="p-4 h-full grid grid-cols-3 grid-rows-2 gap-2">
+        <div className="col-span-2 row-span-2 border-2 border-foreground bg-primary/20 shadow-[3px_3px_0px_hsl(var(--shadow-color))]" />
+        <div className="border-2 border-foreground bg-secondary/20" />
+        <div className="border-2 border-foreground bg-accent/20" />
+      </div>
+    ),
+    changelog: (
+      <div className="p-4 h-full flex flex-col gap-2.5 justify-center">
+        {['bg-primary', 'bg-secondary', 'bg-accent'].map((bg, i) => (
+          <div key={i} className="flex gap-2 items-start">
+            <div className={`w-2.5 h-2.5 ${bg} border-2 border-foreground mt-0.5`} />
+            <div className="flex-1 space-y-1">
+              <div className="w-16 h-2 bg-foreground" />
+              <div className="w-full h-1.5 bg-muted-foreground/30" />
+            </div>
+          </div>
+        ))}
+      </div>
+    ),
+    comparison: (
+      <div className="p-4 h-full flex flex-col gap-1.5 justify-center">
+        <div className="grid grid-cols-4 gap-1.5">
+          <div className="h-3" />
+          {[0, 1, 2].map((i) => <div key={i} className="h-3 bg-foreground" />)}
+        </div>
+        {[1, 2, 3].map((r) => (
+          <div key={r} className="grid grid-cols-4 gap-1.5 items-center">
+            <div className="h-2 bg-muted-foreground/30" />
+            {[0, 1, 2].map((c) => (
+              <div key={c} className="h-3 flex items-center justify-center">
+                <div className={`w-3 h-3 border-2 border-foreground ${c <= r ? 'bg-success' : 'bg-muted'}`} />
+              </div>
+            ))}
+          </div>
+        ))}
+      </div>
+    ),
+    dashboard: (
+      <div className="flex h-full p-3 gap-2">
+        <div className="w-1/5 space-y-1.5 pt-1">
+          {['bg-primary/30', 'bg-muted', 'bg-muted'].map((bg, i) => (
+            <div key={i} className={`h-3 ${bg} border border-foreground`} />
+          ))}
+        </div>
+        <div className="flex-1 space-y-2">
+          <div className="grid grid-cols-3 gap-1.5">
+            {[0, 1, 2].map((i) => <div key={i} className="h-6 bg-card border-2 border-foreground" />)}
+          </div>
+          <div className="h-14 bg-card border-2 border-foreground shadow-[2px_2px_0px_hsl(var(--shadow-color))]" />
+        </div>
+      </div>
+    ),
     auth: (
       <div className="p-4 h-full flex flex-col items-center gap-3 justify-center bg-card/50">
         <div className="w-10 h-10 bg-primary/20 border-3 border-foreground flex items-center justify-center shadow-[3px_3px_0px_hsl(var(--shadow-color))]">
@@ -315,6 +392,7 @@ interface BlockInfo {
   code: Record<string, string>
   docPath: string
   previewType: string
+  isNew?: boolean
 }
 
 // ─── Data ────────────────────────────────────────────────────────────────────
@@ -525,6 +603,102 @@ const marketingBlocks: BlockInfo[] = [
 </template>`,
     },
   },
+  {
+    name: 'Pricing Section',
+    description: 'Pricing tiers with a featured plan and checkout summary panel.',
+    variants: ['Tiers', 'WithCheckout'],
+    category: 'marketing',
+    icon: CreditCard,
+    docPath: '/blocks/pricing-section',
+    previewType: 'pricing',
+    isNew: true,
+    code: {
+      react: `import { PricingSection } from '@/components/blocks/marketing'
+
+<PricingSection
+  title="Pricing"
+  tiers={[
+    { name: 'Starter', price: '$0', period: 'mo', features: ['1 project', 'Community support'] },
+    { name: 'Pro', price: '$29', period: 'mo', featured: true, features: ['Unlimited projects', 'Priority support'] },
+    { name: 'Team', price: '$99', period: 'mo', features: ['Everything in Pro', 'SSO'] },
+  ]}
+/>`,
+      vue: `<template>
+  <PricingSection title="Pricing" :tiers="tiers" />
+</template>`,
+    },
+  },
+  {
+    name: 'Bento Grid',
+    description: 'Asymmetric feature grid with grid-breaking hero cells.',
+    variants: ['Default', 'Compact'],
+    category: 'marketing',
+    icon: LayoutGrid,
+    docPath: '/blocks/bento-grid',
+    previewType: 'bento',
+    isNew: true,
+    code: {
+      react: `import { BentoGrid } from '@/components/blocks/marketing'
+
+<BentoGrid
+  items={[
+    { title: 'Fast', description: 'Lightning quick', span: 'large' },
+    { title: 'Bold', description: 'Neubrutalist' },
+    { title: 'Typed', description: 'Full TypeScript' },
+  ]}
+/>`,
+      vue: `<template>
+  <BentoGrid :items="items" />
+</template>`,
+    },
+  },
+  {
+    name: 'Changelog',
+    description: 'Dated release entries / roadmap timeline.',
+    variants: ['Timeline', 'Compact'],
+    category: 'marketing',
+    icon: GitBranch,
+    docPath: '/blocks/changelog-section',
+    previewType: 'changelog',
+    isNew: true,
+    code: {
+      react: `import { ChangelogSection } from '@/components/blocks/marketing'
+
+<ChangelogSection
+  entries={[
+    { version: 'v3.4.9', date: '2026-07-21', tag: 'feature', title: 'Blocks & annotations', items: ['5 new blocks', 'Chart annotations'] },
+  ]}
+/>`,
+      vue: `<template>
+  <ChangelogSection :entries="entries" />
+</template>`,
+    },
+  },
+  {
+    name: 'Comparison Table',
+    description: 'Feature comparison matrix with a highlighted column.',
+    variants: ['Default', 'Highlighted'],
+    category: 'marketing',
+    icon: Table2,
+    docPath: '/blocks/comparison-table',
+    previewType: 'comparison',
+    isNew: true,
+    code: {
+      react: `import { ComparisonTable } from '@/components/blocks/marketing'
+
+<ComparisonTable
+  columns={['Free', 'Pro', 'Team']}
+  highlightColumn={1}
+  rows={[
+    { feature: 'Projects', values: ['1', 'Unlimited', 'Unlimited'] },
+    { feature: 'SSO', values: [false, false, true] },
+  ]}
+/>`,
+      vue: `<template>
+  <ComparisonTable :columns="columns" :rows="rows" :highlight-column="1" />
+</template>`,
+    },
+  },
 ]
 
 const applicationBlocks: BlockInfo[] = [
@@ -622,6 +796,32 @@ const applicationBlocks: BlockInfo[] = [
 />`,
       vue: `<template>
   <InvoiceBlocks :data="invoiceData" @download="handleDownload" />
+</template>`,
+    },
+  },
+  {
+    name: 'Dashboard Layout',
+    description: 'App shell with sidebar, stat-card row, a chart, and a data-table.',
+    variants: ['Default', 'Compact'],
+    category: 'application',
+    icon: LayoutDashboard,
+    docPath: '/blocks/dashboard-layout',
+    previewType: 'dashboard',
+    isNew: true,
+    code: {
+      react: `import { DashboardLayout } from '@/components/blocks/application'
+
+<DashboardLayout
+  title="Overview"
+  nav={[{ label: 'Home', active: true }, { label: 'Reports' }, { label: 'Settings' }]}
+  stats={[
+    { label: 'Revenue', value: '$45K', trend: '+20%' },
+    { label: 'Users', value: '2,340', trend: '+8%' },
+    { label: 'Churn', value: '1.2%', trend: '-0.3%' },
+  ]}
+/>`,
+      vue: `<template>
+  <DashboardLayout title="Overview" :nav="nav" :stats="stats" />
 </template>`,
     },
   },
