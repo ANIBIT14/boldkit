@@ -5,6 +5,32 @@ Format follows [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ---
 
+## [3.4.9] — 2026-07-21 — Multi-step forms, chart annotations, dark-mode audit & 5 blocks
+
+Four independent workstreams, React + Vue parity throughout.
+
+### Features
+
+🧩 **Multi-step form primitives.** A dependency-free form-state layer (`useMultiStepForm` + `<MultiStepForm>`) that composes with the existing Stepper: per-step validation gates forward navigation, `submit()` fires only on the last step. React + Vue registry items + `/components/multi-step-form` docs with a validated 3-step wizard demo. No new dependency.
+
+📊 **Chart annotations — unified API.** One author-facing vocabulary (`referenceLine`, `callout`, `arrow`) mapped to Recharts (`renderChartAnnotations` → `ReferenceLine`/`ReferenceDot`, React) and echarts (`annotationsToEChartsOption` → `markLine`/`graphic`, Vue). Same annotation objects author in both frameworks. Reference lines require a Cartesian chart; callouts/arrows are data-anchored. Demo on the Charts page (Styles tab).
+
+🧱 **5 new blocks (React + Vue).** Pricing/checkout, Bento grid, Changelog/Roadmap, Comparison table (marketing) and Dashboard layout (application) — composed from existing components, with Blocks-page entries, previews, and doc pages.
+
+### Accessibility
+
+🌗 **Dark-mode contrast audit + fixes + report.** New `scripts/audit-contrast.ts` computes WCAG contrast ratios over every semantic token pair in light **and** dark modes (4.5:1 text / 3:1 UI). Fixed 3 failing pairs — `destructive` `60% → 47%` and light `muted-foreground` `46% → 38%` (across all three `globals.css` copies). Results render as a "Dark-mode contrast" section on `/accessibility` (`contrast-report.json`); the audit is wired into the build and gates on failure.
+
+### Tooling & quality
+
+✅ React tests 532 → 550 (multi-step form ×5, chart annotations ×6, contrast audit ×7); Vue tests add multi-step form + annotation mapper suites. `contrast` added to `build`/`build:ci`.
+
+### Bumps
+
+- React: `3.4.8 → 3.4.9`
+
+---
+
 ## [3.4.8] — 2026-07-19 — Platform/DX: MCP server, CLI & WCAG matrix
 
 The v3.7.0 Platform/DX milestone, shipped early: install BoldKit from an AI agent or the terminal, and a published per-component accessibility matrix.

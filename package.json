@@ -6,7 +6,7 @@
   ],
   "name": "boldkit-site",
   "private": true,
-  "version": "3.4.8",
+  "version": "3.4.9",
   "description": "A neubrutalism UI component library for React and Vue 3 - Bold, raw, beautiful.",
   "author": "BoldKit Team",
   "license": "MIT",

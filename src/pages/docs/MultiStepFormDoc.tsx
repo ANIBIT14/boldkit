@@ -10,7 +10,6 @@ import {
   StepperList,
   StepperItem,
   StepperTrigger,
-  StepperSeparator,
 } from '@/components/ui/stepper'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
@@ -34,15 +33,13 @@ function Wizard() {
   return (
     <div className="space-y-6">
       <Stepper activeStep={f.activeStep} onStepChange={f.goTo}>
-        <StepperList>
+        <StepperList className="gap-3">
           <StepperItem index={0}>
             <StepperTrigger />
           </StepperItem>
-          <StepperSeparator />
           <StepperItem index={1}>
             <StepperTrigger />
           </StepperItem>
-          <StepperSeparator />
           <StepperItem index={2}>
             <StepperTrigger />
           </StepperItem>

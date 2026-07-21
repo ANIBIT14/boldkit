@@ -269,6 +269,7 @@ export const COMPONENT_TITLES: Record<string, string> = {
   spinner: 'Spinner',
   'stat-card': 'Stat Card',
   stepper: 'Stepper',
+  'multi-step-form': 'Multi-Step Form',
   sticker: 'Sticker',
   switch: 'Switch',
   table: 'Table',
@@ -301,6 +302,11 @@ export const BLOCK_TITLES: Record<string, string> = {
   'onboarding-flow': 'Onboarding Flow',
   'error-pages': 'Error Pages',
   invoice: 'Invoice',
+  'pricing-section': 'Pricing Section',
+  'bento-grid': 'Bento Grid',
+  'changelog-section': 'Changelog',
+  'comparison-table': 'Comparison Table',
+  'dashboard-layout': 'Dashboard Layout',
 }
 
 // Template slug -> display title map

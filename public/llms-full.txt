@@ -1108,7 +1108,7 @@ MIT License — Free for personal and commercial use.
 
 ---
 
-## Complete Page Index (125 pages)
+## Complete Page Index (131 pages)
 
 Every indexable page on boldkit.dev with its meta title and description.
 
@@ -1472,6 +1472,10 @@ Stat Card — neubrutalism React & Vue 3 component with thick borders, hard shad
 https://boldkit.dev/components/stepper
 Stepper — neubrutalism React & Vue 3 component with thick borders, hard shadows, bold colors. Install via shadcn or shadcn-vue.
 
+### Multi-Step Form — Neubrutalism Component for React & Vue 3
+https://boldkit.dev/components/multi-step-form
+Multi-Step Form — neubrutalism React & Vue 3 component with thick borders, hard shadows, bold colors. Install via shadcn or shadcn-vue.
+
 ### Sticker — Neubrutalism Component for React & Vue 3
 https://boldkit.dev/components/sticker
 Sticker — neubrutalism React & Vue 3 component with thick borders, hard shadows, bold colors. Install via shadcn or shadcn-vue.
@@ -1584,6 +1588,26 @@ Error Pages block with neubrutalism styling for React and Vue 3. Multiple varian
 https://boldkit.dev/blocks/invoice
 Invoice block with neubrutalism styling for React and Vue 3. Multiple variants included. Perfect for landing pages and web applications.
 
+### Pricing Section Block — Neubrutalism Section for React & Vue 3
+https://boldkit.dev/blocks/pricing-section
+Pricing Section block with neubrutalism styling for React and Vue 3. Multiple variants included. Perfect for landing pages and web applications.
+
+### Bento Grid Block — Neubrutalism Section for React & Vue 3
+https://boldkit.dev/blocks/bento-grid
+Bento Grid block with neubrutalism styling for React and Vue 3. Multiple variants included. Perfect for landing pages and web applications.
+
+### Changelog Block — Neubrutalism Section for React & Vue 3
+https://boldkit.dev/blocks/changelog-section
+Changelog block with neubrutalism styling for React and Vue 3. Multiple variants included. Perfect for landing pages and web applications.
+
+### Comparison Table Block — Neubrutalism Section for React & Vue 3
+https://boldkit.dev/blocks/comparison-table
+Comparison Table block with neubrutalism styling for React and Vue 3. Multiple variants included. Perfect for landing pages and web applications.
+
+### Dashboard Layout Block — Neubrutalism Section for React & Vue 3
+https://boldkit.dev/blocks/dashboard-layout
+Dashboard Layout block with neubrutalism styling for React and Vue 3. Multiple variants included. Perfect for landing pages and web applications.
+
 ### Landing Page Template — Free Neubrutalism Template
 https://boldkit.dev/templates/landing-page
 Free neubrutalism landing page template for React and Vue 3. Copy, paste, and customize for your project.
@@ -1620,7 +1644,7 @@ Free neubrutalism docs template for React and Vue 3. Copy, paste, and customize 
 Every BoldKit registry item is installed via the shadcn CLI — the source is
 copied directly into your project (there is no npm package to import).
 
-### React (113 items)
+### React (114 items)
 
 ```bash
 npx shadcn@latest add "https://boldkit.dev/r/accordion.json"
@@ -1687,6 +1711,7 @@ npx shadcn@latest add "https://boldkit.dev/r/motion.json"
 npx shadcn@latest add "https://boldkit.dev/r/motion-core.json"
 npx shadcn@latest add "https://boldkit.dev/r/motion-react.json"
 npx shadcn@latest add "https://boldkit.dev/r/mouse-ripple.json"
+npx shadcn@latest add "https://boldkit.dev/r/multi-step-form.json"
 npx shadcn@latest add "https://boldkit.dev/r/native-select.json"
 npx shadcn@latest add "https://boldkit.dev/r/navigation-menu.json"
 npx shadcn@latest add "https://boldkit.dev/r/pagination.json"
@@ -1738,7 +1763,7 @@ npx shadcn@latest add "https://boldkit.dev/r/voronoi-pulse.json"
 npx shadcn@latest add "https://boldkit.dev/r/warp-speed.json"
 ```
 
-### Vue 3 / Nuxt (114 items)
+### Vue 3 / Nuxt (115 items)
 
 ```bash
 npx shadcn-vue@latest add "https://boldkit.dev/r/vue/accordion.json"
@@ -1806,6 +1831,7 @@ npx shadcn-vue@latest add "https://boldkit.dev/r/vue/metaballs.json"
 npx shadcn-vue@latest add "https://boldkit.dev/r/vue/motion.json"
 npx shadcn-vue@latest add "https://boldkit.dev/r/vue/motion-core.json"
 npx shadcn-vue@latest add "https://boldkit.dev/r/vue/mouse-ripple.json"
+npx shadcn-vue@latest add "https://boldkit.dev/r/vue/multi-step-form.json"
 npx shadcn-vue@latest add "https://boldkit.dev/r/vue/native-select.json"
 npx shadcn-vue@latest add "https://boldkit.dev/r/vue/navigation-menu.json"
 npx shadcn-vue@latest add "https://boldkit.dev/r/vue/pagination.json"
