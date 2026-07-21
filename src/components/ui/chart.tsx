@@ -40,9 +40,18 @@ export {
   TreemapChart,
   HeatmapChart,
   SankeyChart,
+  // Annotations (reference lines, callouts, arrows)
+  referenceLineElement,
+  calloutElement,
+  arrowElements,
+  renderChartAnnotations,
 } from './chart/index'
 
 export type {
+  ChartAnnotation,
+  ChartReferenceLineSpec,
+  ChartCalloutSpec,
+  ChartArrowSpec,
   ChartConfig,
   ChartContextProps,
   ChartPalette,

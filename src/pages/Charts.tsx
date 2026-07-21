@@ -31,7 +31,9 @@ import {
   TreemapChart,
   HeatmapChart,
   SankeyChart,
+  renderChartAnnotations,
 } from '@/components/ui/chart'
+import type { ChartAnnotation } from '@/components/ui/chart'
 import type { ChartConfig, ChartPalette } from '@/components/ui/chart'
 import {
   Area,
@@ -69,6 +71,12 @@ const barData = [
   { month: 'Apr', desktop: 73, mobile: 190 },
   { month: 'May', desktop: 209, mobile: 130 },
   { month: 'Jun', desktop: 214, mobile: 140 },
+]
+
+const annotationDemo: ChartAnnotation[] = [
+  { kind: 'referenceLine', axis: 'y', value: 200, label: 'Target', dash: true },
+  { kind: 'callout', x: 'Feb', y: 305, text: 'Peak' },
+  { kind: 'arrow', from: { x: 'Apr', y: 73 }, to: { x: 'May', y: 209 }, label: 'Recovery' },
 ]
 
 const lineData = [
@@ -2677,6 +2685,36 @@ const data = [15, 20, 18, 25, 22, 28, 24]
                   </Card>
                 ))}
               </div>
+            </div>
+
+            {/* Annotations */}
+            <div>
+              <div className="mb-6">
+                <h2 className="text-2xl font-black uppercase tracking-tight mb-2">Annotations</h2>
+                <p className="text-muted-foreground">
+                  Reference lines, callouts, and brutalist arrows via one unified API
+                  (<code>renderChartAnnotations</code>). Reference lines require a Cartesian chart;
+                  callouts and arrows are data-anchored. Vue maps the same annotation objects to
+                  echarts <code>markLine</code>/<code>graphic</code>.
+                </p>
+              </div>
+              <Card className="overflow-hidden min-w-0">
+                <CardHeader className="pb-2">
+                  <CardTitle>Reference line + callout + arrow</CardTitle>
+                  <CardDescription>One annotation array, dropped into a bar chart</CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <ChartContainer config={chartConfig} className="h-[280px] w-full">
+                    <BarChart data={barData}>
+                      <CartesianGrid vertical={false} strokeDasharray="3 3" />
+                      <XAxis dataKey="month" tickLine={false} axisLine={false} />
+                      <YAxis tickLine={false} axisLine={false} />
+                      <Bar dataKey="desktop" fill="hsl(var(--primary))" stroke="hsl(var(--foreground))" strokeWidth={3} />
+                      {renderChartAnnotations(annotationDemo)}
+                    </BarChart>
+                  </ChartContainer>
+                </CardContent>
+              </Card>
             </div>
 
             {/* Color Palettes */}
