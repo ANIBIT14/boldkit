@@ -213,6 +213,7 @@ function Sidebar({ className, onLinkClick }: { className?: string; onLinkClick?:
   const gettingStartedItems: { label: string; to: string; newTab?: boolean }[] = [
     { label: 'Introduction', to: '/docs' },
     { label: 'Installation', to: '/docs/installation' },
+    { label: 'MCP Server & CLI', to: '/docs/mcp' },
     // Full Theme Builder needs the wide standalone layout — open it in a new
     // tab rather than cramming it into the narrow docs content column.
     { label: 'Theming', to: '/themes', newTab: true },

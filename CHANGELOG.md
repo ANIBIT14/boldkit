@@ -5,6 +5,35 @@ Format follows [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ---
 
+## [3.4.8] — 2026-07-19 — Platform/DX: MCP server, CLI & WCAG matrix
+
+The v3.7.0 Platform/DX milestone, shipped early: install BoldKit from an AI agent or the terminal, and a published per-component accessibility matrix.
+
+### Features
+
+🤖 **`@boldkit/mcp` — MCP server** (new package, `packages/mcp`). Lets Claude Code, Cursor, or any MCP client install components by natural-language description — for **both React and Vue**. Five tools: `search_components` (scored keyword search over a build-time catalog of all 114 registry items), `get_component`, `get_install_command`, `install_components` (shells out to `shadcn` / `shadcn-vue` — no reimplemented resolvers), and `list_components`. Framework auto-detected from the target project's package.json. Setup: `claude mcp add boldkit -- npx -y @boldkit/mcp`.
+
+⌨️ **`boldkit` CLI** (new package, `packages/cli`). `npx boldkit add button card`, `npx boldkit search "toast"`, `npx boldkit list` — auto-detects React vs Vue, maps names to hosted registry URLs, delegates the install to the right shadcn CLI. `--react`/`--vue`/`--dry-run` flags. Shares its core with `@boldkit/mcp`.
+
+📊 **Published WCAG AA matrix at `/accessibility`.** Per-component axe-core results generated from the real CI test run (not a hand-maintained table), rendered as a matrix with honest "not yet automated" gaps. Raw data at `/a11y-report.json`. New `/docs/mcp` page documents the MCP server + CLI.
+
+### Fixes
+
+🐛 **Rating had a nested-interactive violation (React + Vue).** The `role="slider"` container (focusable) wrapped focusable star buttons — axe `nested-interactive`. Rating is now a `role="group"` of toggle buttons with a roving tabindex and `aria-pressed` state; the group label announces the current value and arrow keys still work via bubbled keydown. Caught by the new matrix generation.
+
+### Tooling & quality
+
+✅ **a11y coverage 19 → 30 components** (adds kbd, spinner, skeleton, stat-card, toggle, sticker, marquee, tag-input, rating, pagination, label); fixtures extracted to `src/test/a11y-fixtures.tsx` and the suite now emits the a11y report consumed by `/accessibility`.
+
+🏗 **Monorepo:** root package renamed `boldkit-site` (private) so the CLI package owns the `boldkit` npm name; workspaces now `vue` + `mcp` + `cli`; `registry:build` gained a final `build-mcp-catalog` step so the MCP catalog can never go stale. _npm publish of `boldkit` + `@boldkit/mcp` is a separate manual step (scope ownership to verify)._
+
+### Bumps
+
+- React: `3.4.7 → 3.4.8`
+- New: `@boldkit/mcp 0.1.0`, `boldkit` (CLI) `0.1.0`
+
+---
+
 ## [3.4.7] — 2026-07-18 — Codebase audit: SSR, a11y, tests & theme presets
 
 A prioritized audit pass — fixing correctness/DX findings and shipping installable theme presets.

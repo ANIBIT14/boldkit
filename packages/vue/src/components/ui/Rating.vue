@@ -158,14 +158,12 @@ const getClipPath = (isHalfFilled: boolean) => {
 </script>
 
 <template>
+  <!-- role="group" of toggle buttons (roving tabindex), not role="slider": a
+       focusable slider wrapping focusable buttons is a nested-interactive
+       violation (axe). Arrow keys still work — keydown bubbles from the stars. -->
   <div
-    role="slider"
-    aria-label="Rating"
-    :aria-valuemin="0"
-    :aria-valuemax="max"
-    :aria-valuenow="currentValue"
-    :aria-valuetext="valueText"
-    :tabindex="readOnly || disabled ? -1 : 0"
+    role="group"
+    :aria-label="`Rating: ${valueText}`"
     :class="cn(
       ratingVariants({ size }),
       disabled && 'opacity-50 pointer-events-none',
@@ -180,7 +178,8 @@ const getClipPath = (isHalfFilled: boolean) => {
       :key="index - 1"
       type="button"
       :aria-label="`${index} ${icon === 'star' ? 'star' : icon === 'heart' ? 'heart' : 'circle'}${index !== 1 ? 's' : ''}`"
-      :tabindex="-1"
+      :aria-pressed="index <= currentValue"
+      :tabindex="!readOnly && !disabled && (currentValue === 0 ? index === 1 : index === Math.ceil(currentValue)) ? 0 : -1"
       :disabled="disabled || readOnly"
       :class="cn(
         'relative transition-transform duration-150 focus:outline-none',

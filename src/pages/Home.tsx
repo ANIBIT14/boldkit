@@ -22,6 +22,7 @@ import {
   Settings, LogIn, FileX, Package, BarChart3, Wand2, Cpu,
 } from 'lucide-react'
 import { useState, useEffect, useRef, type CSSProperties } from 'react'
+import mcpLogo from '@lobehub/icons-static-svg/icons/mcp.svg?raw'
 import { SEO, pageSEO } from '@/components/SEO'
 import { useFramework, ReactIcon, VueIcon } from '@/hooks/use-framework'
 import { useScrollReveal } from '@/hooks/use-scroll-reveal'
@@ -175,10 +176,18 @@ export function Home() {
                       <path d="M13.464 3.222L21 18.222h-4.151l-2.607-5.185-2.591 5.185H7.5L13.464 3.222zM3 18.222h4.151l2.607-5.185 2.591 5.185H16.5L10.536 3.222 3 18.222z"/>
                     </svg>
                     Nuxt
+                  </Badge>
+                  <Badge variant="secondary" className="gap-1.5">
+                    <span
+                      aria-hidden
+                      className="inline-flex h-4 w-4 items-center justify-center [&>svg]:h-full [&>svg]:w-full"
+                      dangerouslySetInnerHTML={{ __html: mcpLogo }}
+                    />
+                    MCP
                     <span className="ml-0.5 rounded-sm bg-background/25 px-1 py-px text-[9px] font-black">NEW</span>
                   </Badge>
                   <span className="h-4 w-[2px] bg-foreground/20 hidden sm:block" />
-                  <span className="text-[11px] font-black uppercase tracking-widest text-muted-foreground hidden sm:block" style={MONO}>v3.4.1</span>
+                  <span className="text-[11px] font-black uppercase tracking-widest text-muted-foreground hidden sm:block" style={MONO}>v3.4.8</span>
                 </div>
 
                 {/* Giant masthead — newspaper column style */}
@@ -262,6 +271,14 @@ export function Home() {
                       {copied ? <Check className="h-3.5 w-3.5" /> : <Copy className="h-3.5 w-3.5" />}
                     </Button>
                   </div>
+                  <p className="flex flex-wrap items-center gap-1.5 text-xs text-muted-foreground" style={MONO}>
+                    <Sparkles className="h-3.5 w-3.5 shrink-0" />
+                    Or let an AI agent do it —
+                    <Link to="/docs/mcp" className="font-bold text-foreground underline decoration-2 underline-offset-2">
+                      install via MCP
+                    </Link>
+                    for Claude, Cursor &amp; more.
+                  </p>
                 </div>
               </div>
 

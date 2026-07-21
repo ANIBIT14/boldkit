@@ -203,14 +203,12 @@ export function Rating({
   }
 
   return (
+    // role="group" of toggle buttons (roving tabindex), not role="slider": a
+    // focusable slider wrapping focusable buttons is a nested-interactive
+    // violation (axe). Arrow keys still work — keydown bubbles from the stars.
     <div
-      role="slider"
-      aria-label="Rating"
-      aria-valuemin={0}
-      aria-valuemax={max}
-      aria-valuenow={currentValue}
-      aria-valuetext={valueText}
-      tabIndex={disabled || readOnly ? -1 : 0}
+      role="group"
+      aria-label={`Rating: ${valueText}`}
       onKeyDown={handleKeyDown}
       onMouseLeave={handleMouseLeave}
       className={cn(
@@ -231,6 +229,7 @@ export function Rating({
             tabIndex={isFocusable ? 0 : -1}
             disabled={disabled}
             aria-label={`${starIndex} ${iconLabel[icon]}`}
+            aria-pressed={starIndex <= currentValue}
             onClick={() => handleStarClick(starIndex)}
             onMouseMove={(e) => handleStarMouseMove(e, starIndex)}
             className={cn(

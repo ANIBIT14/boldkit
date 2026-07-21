@@ -1,0 +1,4144 @@
+{
+  "generatedFrom": "public/r",
+  "items": [
+    {
+      "name": "accordion",
+      "type": "registry:ui",
+      "description": "A vertically stacked set of interactive headings with neubrutalism styling",
+      "react": {
+        "url": "https://boldkit.dev/r/accordion.json",
+        "dependencies": [
+          "@radix-ui/react-accordion",
+          "lucide-react"
+        ],
+        "registryDependencies": [
+          "@boldkit/utils"
+        ],
+        "files": [
+          "registry/default/ui/accordion.tsx",
+          "registry/default/example/accordion-demo.tsx"
+        ]
+      },
+      "vue": {
+        "url": "https://boldkit.dev/r/vue/accordion.json",
+        "dependencies": [
+          "reka-ui"
+        ],
+        "registryDependencies": [
+          "@boldkit/utils"
+        ],
+        "files": [
+          "components/ui/Accordion.vue",
+          "components/ui/AccordionItem.vue",
+          "components/ui/AccordionTrigger.vue",
+          "components/ui/AccordionContent.vue"
+        ]
+      },
+      "frameworks": [
+        "react",
+        "vue"
+      ],
+      "docsUrl": "https://boldkit.dev/components/accordion"
+    },
+    {
+      "name": "alert",
+      "type": "registry:ui",
+      "description": "Displays a callout for user attention with bold neubrutalism borders",
+      "react": {
+        "url": "https://boldkit.dev/r/alert.json",
+        "dependencies": [
+          "class-variance-authority",
+          "lucide-react"
+        ],
+        "registryDependencies": [
+          "@boldkit/utils"
+        ],
+        "files": [
+          "registry/default/ui/alert.tsx",
+          "registry/default/example/alert-demo.tsx"
+        ]
+      },
+      "vue": {
+        "url": "https://boldkit.dev/r/vue/alert.json",
+        "dependencies": [
+          "class-variance-authority"
+        ],
+        "registryDependencies": [
+          "@boldkit/utils"
+        ],
+        "files": [
+          "components/ui/Alert.vue",
+          "components/ui/AlertTitle.vue",
+          "components/ui/AlertDescription.vue"
+        ]
+      },
+      "frameworks": [
+        "react",
+        "vue"
+      ],
+      "docsUrl": "https://boldkit.dev/components/alert"
+    },
+    {
+      "name": "alert-dialog",
+      "type": "registry:ui",
+      "description": "A modal dialog for important confirmations with neubrutalism styling",
+      "react": {
+        "url": "https://boldkit.dev/r/alert-dialog.json",
+        "dependencies": [
+          "@radix-ui/react-alert-dialog"
+        ],
+        "registryDependencies": [
+          "@boldkit/utils",
+          "@boldkit/button"
+        ],
+        "files": [
+          "registry/default/ui/alert-dialog.tsx",
+          "registry/default/example/alert-dialog-demo.tsx"
+        ]
+      },
+      "vue": {
+        "url": "https://boldkit.dev/r/vue/alert-dialog.json",
+        "dependencies": [
+          "reka-ui"
+        ],
+        "registryDependencies": [
+          "@boldkit/utils",
+          "@boldkit/button"
+        ],
+        "files": [
+          "components/ui/AlertDialog.vue",
+          "components/ui/AlertDialogTrigger.vue",
+          "components/ui/AlertDialogContent.vue",
+          "components/ui/AlertDialogHeader.vue",
+          "components/ui/AlertDialogFooter.vue",
+          "components/ui/AlertDialogTitle.vue",
+          "components/ui/AlertDialogDescription.vue",
+          "components/ui/AlertDialogAction.vue",
+          "components/ui/AlertDialogCancel.vue"
+        ]
+      },
+      "frameworks": [
+        "react",
+        "vue"
+      ],
+      "docsUrl": "https://boldkit.dev/components/alert-dialog"
+    },
+    {
+      "name": "ascii-shapes",
+      "type": "registry:ui",
+      "description": "7 animated ASCII art components (Spiral, Rose, Wave, Vortex, Pulse, Matrix, Grid) with 5 character sets, 4 sizes, and SSR-safe static mode",
+      "react": {
+        "url": "https://boldkit.dev/r/ascii-shapes.json",
+        "dependencies": [],
+        "registryDependencies": [
+          "@boldkit/utils"
+        ],
+        "files": [
+          "registry/default/ui/ascii-shapes.tsx",
+          "registry/default/example/ascii-shapes-demo.tsx"
+        ]
+      },
+      "vue": {
+        "url": "https://boldkit.dev/r/vue/ascii-shapes.json",
+        "dependencies": [],
+        "registryDependencies": [
+          "@boldkit/utils"
+        ],
+        "files": [
+          "components/ui/ascii-shapes/AsciiCube.vue",
+          "components/ui/ascii-shapes/AsciiDNA.vue",
+          "components/ui/ascii-shapes/AsciiDonut.vue",
+          "components/ui/ascii-shapes/AsciiGeodesicDome.vue",
+          "components/ui/ascii-shapes/AsciiGrid.vue",
+          "components/ui/ascii-shapes/AsciiHelix.vue",
+          "components/ui/ascii-shapes/AsciiHyperboloid.vue",
+          "components/ui/ascii-shapes/AsciiMatrix.vue",
+          "components/ui/ascii-shapes/AsciiPulse.vue",
+          "components/ui/ascii-shapes/AsciiRose.vue",
+          "components/ui/ascii-shapes/AsciiSaturn.vue",
+          "components/ui/ascii-shapes/AsciiSphere.vue",
+          "components/ui/ascii-shapes/AsciiSpiral.vue",
+          "components/ui/ascii-shapes/AsciiTorus.vue",
+          "components/ui/ascii-shapes/AsciiTrefoilKnot.vue",
+          "components/ui/ascii-shapes/AsciiVortex.vue",
+          "components/ui/ascii-shapes/AsciiWave.vue",
+          "components/ui/ascii-shapes/constants.ts",
+          "components/ui/ascii-shapes/index.ts"
+        ]
+      },
+      "frameworks": [
+        "react",
+        "vue"
+      ],
+      "docsUrl": "https://boldkit.dev/components/ascii-shapes"
+    },
+    {
+      "name": "aspect-ratio",
+      "type": "registry:ui",
+      "description": "Displays content within a desired ratio",
+      "react": {
+        "url": "https://boldkit.dev/r/aspect-ratio.json",
+        "dependencies": [
+          "@radix-ui/react-aspect-ratio"
+        ],
+        "registryDependencies": [
+          "@boldkit/utils"
+        ],
+        "files": [
+          "registry/default/ui/aspect-ratio.tsx",
+          "registry/default/example/aspect-ratio-demo.tsx"
+        ]
+      },
+      "vue": {
+        "url": "https://boldkit.dev/r/vue/aspect-ratio.json",
+        "dependencies": [
+          "reka-ui"
+        ],
+        "registryDependencies": [
+          "@boldkit/utils"
+        ],
+        "files": [
+          "components/ui/AspectRatio.vue"
+        ]
+      },
+      "frameworks": [
+        "react",
+        "vue"
+      ],
+      "docsUrl": "https://boldkit.dev/components/aspect-ratio"
+    },
+    {
+      "name": "aurora",
+      "type": "registry:ui",
+      "description": "Northern lights curtain simulation — five layered sine-wave bands drift across a star-filled sky",
+      "react": {
+        "url": "https://boldkit.dev/r/aurora.json",
+        "dependencies": [],
+        "registryDependencies": [],
+        "files": [
+          "registry/default/ui/canvas-effects/Aurora.tsx"
+        ]
+      },
+      "vue": {
+        "url": "https://boldkit.dev/r/vue/aurora.json",
+        "dependencies": [],
+        "registryDependencies": [],
+        "files": [
+          "components/ui/canvas-effects/Aurora.vue"
+        ]
+      },
+      "frameworks": [
+        "react",
+        "vue"
+      ],
+      "docsUrl": "https://boldkit.dev/components/aurora"
+    },
+    {
+      "name": "avatar",
+      "type": "registry:ui",
+      "description": "An image element with a fallback for representing the user",
+      "react": {
+        "url": "https://boldkit.dev/r/avatar.json",
+        "dependencies": [
+          "@radix-ui/react-avatar"
+        ],
+        "registryDependencies": [
+          "@boldkit/utils"
+        ],
+        "files": [
+          "registry/default/ui/avatar.tsx",
+          "registry/default/example/avatar-demo.tsx"
+        ]
+      },
+      "vue": {
+        "url": "https://boldkit.dev/r/vue/avatar.json",
+        "dependencies": [
+          "reka-ui"
+        ],
+        "registryDependencies": [
+          "@boldkit/utils"
+        ],
+        "files": [
+          "components/ui/Avatar.vue",
+          "components/ui/AvatarImage.vue",
+          "components/ui/AvatarFallback.vue"
+        ]
+      },
+      "frameworks": [
+        "react",
+        "vue"
+      ],
+      "docsUrl": "https://boldkit.dev/components/avatar"
+    },
+    {
+      "name": "badge",
+      "type": "registry:ui",
+      "description": "Displays a badge or a component that looks like a badge with neubrutalism styling",
+      "react": {
+        "url": "https://boldkit.dev/r/badge.json",
+        "dependencies": [
+          "class-variance-authority"
+        ],
+        "registryDependencies": [
+          "@boldkit/utils"
+        ],
+        "files": [
+          "registry/default/ui/badge.tsx",
+          "registry/default/example/badge-demo.tsx"
+        ]
+      },
+      "vue": {
+        "url": "https://boldkit.dev/r/vue/badge.json",
+        "dependencies": [
+          "class-variance-authority"
+        ],
+        "registryDependencies": [
+          "@boldkit/utils"
+        ],
+        "files": [
+          "components/ui/Badge.vue"
+        ]
+      },
+      "frameworks": [
+        "react",
+        "vue"
+      ],
+      "docsUrl": "https://boldkit.dev/components/badge"
+    },
+    {
+      "name": "breadcrumb",
+      "type": "registry:ui",
+      "description": "Displays the path to the current resource using a hierarchy of links",
+      "react": {
+        "url": "https://boldkit.dev/r/breadcrumb.json",
+        "dependencies": [
+          "@radix-ui/react-slot",
+          "lucide-react"
+        ],
+        "registryDependencies": [
+          "@boldkit/utils"
+        ],
+        "files": [
+          "registry/default/ui/breadcrumb.tsx",
+          "registry/default/example/breadcrumb-demo.tsx"
+        ]
+      },
+      "vue": {
+        "url": "https://boldkit.dev/r/vue/breadcrumb.json",
+        "dependencies": [
+          "reka-ui",
+          "lucide-vue-next"
+        ],
+        "registryDependencies": [
+          "@boldkit/utils"
+        ],
+        "files": [
+          "components/ui/Breadcrumb.vue",
+          "components/ui/BreadcrumbList.vue",
+          "components/ui/BreadcrumbItem.vue",
+          "components/ui/BreadcrumbLink.vue",
+          "components/ui/BreadcrumbPage.vue",
+          "components/ui/BreadcrumbSeparator.vue",
+          "components/ui/BreadcrumbEllipsis.vue"
+        ]
+      },
+      "frameworks": [
+        "react",
+        "vue"
+      ],
+      "docsUrl": "https://boldkit.dev/components/breadcrumb"
+    },
+    {
+      "name": "button",
+      "type": "registry:ui",
+      "description": "Displays a button with neubrutalism styling and press-down animation",
+      "react": {
+        "url": "https://boldkit.dev/r/button.json",
+        "dependencies": [
+          "@radix-ui/react-slot",
+          "class-variance-authority"
+        ],
+        "registryDependencies": [
+          "@boldkit/utils"
+        ],
+        "files": [
+          "registry/default/ui/button.tsx",
+          "registry/default/example/button-demo.tsx"
+        ]
+      },
+      "vue": {
+        "url": "https://boldkit.dev/r/vue/button.json",
+        "dependencies": [
+          "reka-ui",
+          "class-variance-authority"
+        ],
+        "registryDependencies": [
+          "@boldkit/utils"
+        ],
+        "files": [
+          "components/ui/Button.vue",
+          "components/ui/button-variants.ts"
+        ]
+      },
+      "frameworks": [
+        "react",
+        "vue"
+      ],
+      "docsUrl": "https://boldkit.dev/components/button"
+    },
+    {
+      "name": "button-group",
+      "type": "registry:ui",
+      "description": "Visually joins a row or column of buttons into one bordered unit",
+      "react": {
+        "url": "https://boldkit.dev/r/button-group.json",
+        "dependencies": [],
+        "registryDependencies": [
+          "@boldkit/utils",
+          "@boldkit/button"
+        ],
+        "files": [
+          "registry/default/ui/button-group.tsx",
+          "registry/default/example/button-group-demo.tsx"
+        ]
+      },
+      "vue": {
+        "url": "https://boldkit.dev/r/vue/button-group.json",
+        "dependencies": [],
+        "registryDependencies": [
+          "@boldkit/utils",
+          "@boldkit/button"
+        ],
+        "files": [
+          "components/ui/ButtonGroup.vue"
+        ]
+      },
+      "frameworks": [
+        "react",
+        "vue"
+      ],
+      "docsUrl": "https://boldkit.dev/components/button-group"
+    },
+    {
+      "name": "calendar",
+      "type": "registry:ui",
+      "description": "A date picker calendar with neubrutalism styling",
+      "react": {
+        "url": "https://boldkit.dev/r/calendar.json",
+        "dependencies": [
+          "react-day-picker",
+          "lucide-react"
+        ],
+        "registryDependencies": [
+          "@boldkit/utils",
+          "@boldkit/button"
+        ],
+        "files": [
+          "registry/default/ui/calendar.tsx",
+          "registry/default/example/calendar-demo.tsx"
+        ]
+      },
+      "vue": {
+        "url": "https://boldkit.dev/r/vue/calendar.json",
+        "dependencies": [
+          "reka-ui",
+          "lucide-vue-next"
+        ],
+        "registryDependencies": [
+          "@boldkit/utils",
+          "@boldkit/button"
+        ],
+        "files": [
+          "components/ui/Calendar.vue"
+        ]
+      },
+      "frameworks": [
+        "react",
+        "vue"
+      ],
+      "docsUrl": "https://boldkit.dev/components/calendar"
+    },
+    {
+      "name": "card",
+      "type": "registry:ui",
+      "description": "Displays a card with header, content, and footer with thick borders and shadows",
+      "react": {
+        "url": "https://boldkit.dev/r/card.json",
+        "dependencies": [],
+        "registryDependencies": [
+          "@boldkit/utils"
+        ],
+        "files": [
+          "registry/default/ui/card.tsx",
+          "registry/default/example/card-demo.tsx"
+        ]
+      },
+      "vue": {
+        "url": "https://boldkit.dev/r/vue/card.json",
+        "dependencies": [],
+        "registryDependencies": [
+          "@boldkit/utils"
+        ],
+        "files": [
+          "components/ui/Card.vue",
+          "components/ui/CardHeader.vue",
+          "components/ui/CardTitle.vue",
+          "components/ui/CardDescription.vue",
+          "components/ui/CardContent.vue",
+          "components/ui/CardFooter.vue"
+        ]
+      },
+      "frameworks": [
+        "react",
+        "vue"
+      ],
+      "docsUrl": "https://boldkit.dev/components/card"
+    },
+    {
+      "name": "carousel",
+      "type": "registry:ui",
+      "description": "Carousel component with navigation, dots, and touch support built on Embla",
+      "react": {
+        "url": "https://boldkit.dev/r/carousel.json",
+        "dependencies": [
+          "embla-carousel-react",
+          "lucide-react"
+        ],
+        "registryDependencies": [
+          "@boldkit/utils",
+          "@boldkit/button"
+        ],
+        "files": [
+          "registry/default/ui/carousel.tsx",
+          "registry/default/example/carousel-demo.tsx"
+        ]
+      },
+      "vue": {
+        "url": "https://boldkit.dev/r/vue/carousel.json",
+        "dependencies": [
+          "embla-carousel-vue",
+          "lucide-vue-next"
+        ],
+        "registryDependencies": [
+          "@boldkit/utils",
+          "@boldkit/button"
+        ],
+        "files": [
+          "components/ui/Carousel.vue",
+          "components/ui/CarouselContent.vue",
+          "components/ui/CarouselItem.vue",
+          "components/ui/CarouselPrevious.vue",
+          "components/ui/CarouselNext.vue",
+          "components/ui/CarouselDots.vue"
+        ]
+      },
+      "frameworks": [
+        "react",
+        "vue"
+      ],
+      "docsUrl": "https://boldkit.dev/components/carousel"
+    },
+    {
+      "name": "chart",
+      "type": "registry:ui",
+      "description": "Beautiful charts with neubrutalism styling built on Recharts",
+      "react": {
+        "url": "https://boldkit.dev/r/chart.json",
+        "dependencies": [
+          "recharts"
+        ],
+        "registryDependencies": [
+          "@boldkit/utils"
+        ],
+        "files": [
+          "registry/default/ui/chart.tsx",
+          "registry/default/example/chart-demo.tsx"
+        ]
+      },
+      "vue": {
+        "url": "https://boldkit.dev/r/vue/chart.json",
+        "dependencies": [
+          "vue-echarts",
+          "echarts",
+          "class-variance-authority"
+        ],
+        "registryDependencies": [
+          "@boldkit/utils"
+        ],
+        "files": [
+          "components/ui/ChartContainer.vue",
+          "components/ui/ChartEmpty.vue",
+          "components/ui/DonutChart.vue",
+          "components/ui/GaugeChart.vue",
+          "components/ui/RadarChart.vue",
+          "components/ui/RadialBarChart.vue",
+          "components/ui/SparklineChart.vue",
+          "components/ui/chart-utils.ts",
+          "components/ui/chart-variants.ts"
+        ]
+      },
+      "frameworks": [
+        "react",
+        "vue"
+      ],
+      "docsUrl": "https://boldkit.dev/components/chart"
+    },
+    {
+      "name": "chart-export",
+      "type": "registry:lib",
+      "description": "BoldKit chart export helpers — framework-agnostic, SSR-safe CSV / PNG / SVG download and fullscreen toggle. Works with any chart engine that renders an <svg> (Recharts) or <canvas> (ECharts).",
+      "react": {
+        "url": "https://boldkit.dev/r/chart-export.json",
+        "dependencies": [],
+        "registryDependencies": [],
+        "files": [
+          "registry/default/lib/chart-export.ts"
+        ]
+      },
+      "vue": {
+        "url": "https://boldkit.dev/r/vue/chart-export.json",
+        "dependencies": [],
+        "registryDependencies": [
+          "@boldkit/utils"
+        ],
+        "files": [
+          "lib/chart-export.ts"
+        ]
+      },
+      "frameworks": [
+        "react",
+        "vue"
+      ]
+    },
+    {
+      "name": "chart-toolbar",
+      "type": "registry:ui",
+      "description": "Brutalist chart toolbar overlay — export the wrapped chart as PNG or SVG, download its data as CSV, and toggle fullscreen.",
+      "react": {
+        "url": "https://boldkit.dev/r/chart-toolbar.json",
+        "dependencies": [
+          "lucide-react"
+        ],
+        "registryDependencies": [
+          "@boldkit/chart-export",
+          "@boldkit/button",
+          "@boldkit/utils"
+        ],
+        "files": [
+          "registry/default/ui/chart-toolbar.tsx"
+        ]
+      },
+      "vue": {
+        "url": "https://boldkit.dev/r/vue/chart-toolbar.json",
+        "dependencies": [
+          "lucide-vue-next"
+        ],
+        "registryDependencies": [
+          "@boldkit/utils",
+          "@boldkit/chart-export",
+          "@boldkit/button"
+        ],
+        "files": [
+          "components/ui/ChartToolbar.vue"
+        ]
+      },
+      "frameworks": [
+        "react",
+        "vue"
+      ],
+      "docsUrl": "https://boldkit.dev/components/chart-toolbar"
+    },
+    {
+      "name": "chart-utils",
+      "type": "registry:ui",
+      "description": "Shared utilities, palettes, and theme configuration for neubrutalism-styled charts",
+      "vue": {
+        "url": "https://boldkit.dev/r/vue/chart-utils.json",
+        "dependencies": [
+          "class-variance-authority"
+        ],
+        "registryDependencies": [],
+        "files": [
+          "components/ui/chart-utils.ts",
+          "components/ui/chart-variants.ts"
+        ]
+      },
+      "frameworks": [
+        "vue"
+      ],
+      "docsUrl": "https://boldkit.dev/components/chart-utils"
+    },
+    {
+      "name": "checkbox",
+      "type": "registry:ui",
+      "description": "A control that allows the user to toggle between checked and not checked",
+      "react": {
+        "url": "https://boldkit.dev/r/checkbox.json",
+        "dependencies": [
+          "@radix-ui/react-checkbox",
+          "lucide-react"
+        ],
+        "registryDependencies": [
+          "@boldkit/utils",
+          "@boldkit/label"
+        ],
+        "files": [
+          "registry/default/ui/checkbox.tsx",
+          "registry/default/example/checkbox-demo.tsx"
+        ]
+      },
+      "vue": {
+        "url": "https://boldkit.dev/r/vue/checkbox.json",
+        "dependencies": [
+          "reka-ui",
+          "lucide-vue-next"
+        ],
+        "registryDependencies": [
+          "@boldkit/utils"
+        ],
+        "files": [
+          "components/ui/Checkbox.vue"
+        ]
+      },
+      "frameworks": [
+        "react",
+        "vue"
+      ],
+      "docsUrl": "https://boldkit.dev/components/checkbox"
+    },
+    {
+      "name": "collapsible",
+      "type": "registry:ui",
+      "description": "An interactive component which expands/collapses a panel",
+      "react": {
+        "url": "https://boldkit.dev/r/collapsible.json",
+        "dependencies": [
+          "@radix-ui/react-collapsible"
+        ],
+        "registryDependencies": [
+          "@boldkit/utils",
+          "@boldkit/button"
+        ],
+        "files": [
+          "registry/default/ui/collapsible.tsx",
+          "registry/default/example/collapsible-demo.tsx"
+        ]
+      },
+      "vue": {
+        "url": "https://boldkit.dev/r/vue/collapsible.json",
+        "dependencies": [
+          "reka-ui"
+        ],
+        "registryDependencies": [
+          "@boldkit/utils"
+        ],
+        "files": [
+          "components/ui/Collapsible.vue",
+          "components/ui/CollapsibleTrigger.vue",
+          "components/ui/CollapsibleContent.vue"
+        ]
+      },
+      "frameworks": [
+        "react",
+        "vue"
+      ],
+      "docsUrl": "https://boldkit.dev/components/collapsible"
+    },
+    {
+      "name": "combobox",
+      "type": "registry:ui",
+      "description": "Searchable dropdown built by composing Popover and Command with neubrutalism styling",
+      "react": {
+        "url": "https://boldkit.dev/r/combobox.json",
+        "dependencies": [
+          "lucide-react"
+        ],
+        "registryDependencies": [
+          "@boldkit/utils",
+          "@boldkit/popover",
+          "@boldkit/command"
+        ],
+        "files": [
+          "registry/default/ui/combobox.tsx",
+          "registry/default/example/combobox-demo.tsx"
+        ]
+      },
+      "vue": {
+        "url": "https://boldkit.dev/r/vue/combobox.json",
+        "dependencies": [
+          "reka-ui",
+          "lucide-vue-next"
+        ],
+        "registryDependencies": [
+          "@boldkit/utils",
+          "@boldkit/popover",
+          "@boldkit/command"
+        ],
+        "files": [
+          "components/ui/ComboboxTrigger.vue",
+          "components/ui/ComboboxMultiTrigger.vue"
+        ]
+      },
+      "frameworks": [
+        "react",
+        "vue"
+      ],
+      "docsUrl": "https://boldkit.dev/components/combobox"
+    },
+    {
+      "name": "command",
+      "type": "registry:ui",
+      "description": "Fast, composable, command menu for React with neubrutalism styling",
+      "react": {
+        "url": "https://boldkit.dev/r/command.json",
+        "dependencies": [
+          "cmdk",
+          "lucide-react"
+        ],
+        "registryDependencies": [
+          "@boldkit/utils",
+          "@boldkit/dialog"
+        ],
+        "files": [
+          "registry/default/ui/command.tsx",
+          "registry/default/example/command-demo.tsx"
+        ]
+      },
+      "vue": {
+        "url": "https://boldkit.dev/r/vue/command.json",
+        "dependencies": [
+          "reka-ui",
+          "lucide-vue-next"
+        ],
+        "registryDependencies": [
+          "@boldkit/utils",
+          "@boldkit/dialog"
+        ],
+        "files": [
+          "components/ui/Command.vue",
+          "components/ui/CommandDialog.vue",
+          "components/ui/CommandInput.vue",
+          "components/ui/CommandList.vue",
+          "components/ui/CommandEmpty.vue",
+          "components/ui/CommandGroup.vue",
+          "components/ui/CommandItem.vue",
+          "components/ui/CommandSeparator.vue",
+          "components/ui/CommandShortcut.vue"
+        ]
+      },
+      "frameworks": [
+        "react",
+        "vue"
+      ],
+      "docsUrl": "https://boldkit.dev/components/command"
+    },
+    {
+      "name": "context-menu",
+      "type": "registry:ui",
+      "description": "Displays a menu triggered by right-click with neubrutalism styling",
+      "react": {
+        "url": "https://boldkit.dev/r/context-menu.json",
+        "dependencies": [
+          "@radix-ui/react-context-menu",
+          "lucide-react"
+        ],
+        "registryDependencies": [
+          "@boldkit/utils"
+        ],
+        "files": [
+          "registry/default/ui/context-menu.tsx",
+          "registry/default/example/context-menu-demo.tsx"
+        ]
+      },
+      "vue": {
+        "url": "https://boldkit.dev/r/vue/context-menu.json",
+        "dependencies": [
+          "reka-ui",
+          "lucide-vue-next"
+        ],
+        "registryDependencies": [
+          "@boldkit/utils"
+        ],
+        "files": [
+          "components/ui/ContextMenu.vue",
+          "components/ui/ContextMenuTrigger.vue",
+          "components/ui/ContextMenuContent.vue",
+          "components/ui/ContextMenuItem.vue",
+          "components/ui/ContextMenuCheckboxItem.vue",
+          "components/ui/ContextMenuRadioGroup.vue",
+          "components/ui/ContextMenuRadioItem.vue",
+          "components/ui/ContextMenuLabel.vue",
+          "components/ui/ContextMenuSeparator.vue",
+          "components/ui/ContextMenuShortcut.vue",
+          "components/ui/ContextMenuSub.vue",
+          "components/ui/ContextMenuSubTrigger.vue",
+          "components/ui/ContextMenuSubContent.vue"
+        ]
+      },
+      "frameworks": [
+        "react",
+        "vue"
+      ],
+      "docsUrl": "https://boldkit.dev/components/context-menu"
+    },
+    {
+      "name": "crt",
+      "type": "registry:ui",
+      "description": "Retro cathode-ray-tube screen with phosphor scanlines, a rolling brightness band, vignette and flicker",
+      "react": {
+        "url": "https://boldkit.dev/r/crt.json",
+        "dependencies": [],
+        "registryDependencies": [],
+        "files": [
+          "registry/default/ui/canvas-effects/CRT.tsx"
+        ]
+      },
+      "vue": {
+        "url": "https://boldkit.dev/r/vue/crt.json",
+        "dependencies": [],
+        "registryDependencies": [],
+        "files": [
+          "components/ui/canvas-effects/CRT.vue"
+        ]
+      },
+      "frameworks": [
+        "react",
+        "vue"
+      ],
+      "docsUrl": "https://boldkit.dev/components/crt"
+    },
+    {
+      "name": "data-table",
+      "type": "registry:ui",
+      "description": "Powerful data table with sorting, filtering, pagination, and row selection",
+      "react": {
+        "url": "https://boldkit.dev/r/data-table.json",
+        "dependencies": [
+          "@tanstack/react-table",
+          "lucide-react"
+        ],
+        "registryDependencies": [
+          "@boldkit/utils",
+          "@boldkit/button",
+          "@boldkit/checkbox",
+          "@boldkit/dropdown-menu",
+          "@boldkit/input",
+          "@boldkit/select",
+          "@boldkit/table"
+        ],
+        "files": [
+          "registry/default/ui/data-table.tsx",
+          "registry/default/example/data-table-demo.tsx"
+        ]
+      },
+      "vue": {
+        "url": "https://boldkit.dev/r/vue/data-table.json",
+        "dependencies": [
+          "@tanstack/vue-table",
+          "lucide-vue-next"
+        ],
+        "registryDependencies": [
+          "@boldkit/utils",
+          "@boldkit/button",
+          "@boldkit/checkbox",
+          "@boldkit/dropdown-menu",
+          "@boldkit/input",
+          "@boldkit/select",
+          "@boldkit/table"
+        ],
+        "files": [
+          "components/ui/DataTable.vue"
+        ]
+      },
+      "frameworks": [
+        "react",
+        "vue"
+      ],
+      "docsUrl": "https://boldkit.dev/components/data-table"
+    },
+    {
+      "name": "date-picker",
+      "type": "registry:ui",
+      "description": "A single-date picker: a button trigger that opens a calendar popover",
+      "react": {
+        "url": "https://boldkit.dev/r/date-picker.json",
+        "dependencies": [
+          "date-fns",
+          "lucide-react"
+        ],
+        "registryDependencies": [
+          "@boldkit/utils",
+          "@boldkit/button",
+          "@boldkit/calendar",
+          "@boldkit/popover"
+        ],
+        "files": [
+          "registry/default/ui/date-picker.tsx",
+          "registry/default/example/date-picker-demo.tsx"
+        ]
+      },
+      "vue": {
+        "url": "https://boldkit.dev/r/vue/date-picker.json",
+        "dependencies": [
+          "lucide-vue-next"
+        ],
+        "registryDependencies": [
+          "@boldkit/utils",
+          "@boldkit/button",
+          "@boldkit/calendar",
+          "@boldkit/popover"
+        ],
+        "files": [
+          "components/ui/DatePicker.vue"
+        ]
+      },
+      "frameworks": [
+        "react",
+        "vue"
+      ],
+      "docsUrl": "https://boldkit.dev/components/date-picker"
+    },
+    {
+      "name": "date-range-picker",
+      "type": "registry:ui",
+      "description": "Date range picker with presets, dual calendars, and customizable options",
+      "react": {
+        "url": "https://boldkit.dev/r/date-range-picker.json",
+        "dependencies": [
+          "date-fns",
+          "react-day-picker",
+          "lucide-react"
+        ],
+        "registryDependencies": [
+          "@boldkit/utils",
+          "@boldkit/button",
+          "@boldkit/calendar",
+          "@boldkit/popover"
+        ],
+        "files": [
+          "registry/default/ui/date-range-picker.tsx",
+          "registry/default/example/date-range-picker-demo.tsx"
+        ]
+      },
+      "vue": {
+        "url": "https://boldkit.dev/r/vue/date-range-picker.json",
+        "dependencies": [
+          "date-fns",
+          "lucide-vue-next"
+        ],
+        "registryDependencies": [
+          "@boldkit/utils",
+          "@boldkit/button",
+          "@boldkit/calendar",
+          "@boldkit/popover"
+        ],
+        "files": [
+          "components/ui/DateRangePicker.vue"
+        ]
+      },
+      "frameworks": [
+        "react",
+        "vue"
+      ],
+      "docsUrl": "https://boldkit.dev/components/date-range-picker"
+    },
+    {
+      "name": "dialog",
+      "type": "registry:ui",
+      "description": "A window overlaid on the primary window with neubrutalism borders and shadows",
+      "react": {
+        "url": "https://boldkit.dev/r/dialog.json",
+        "dependencies": [
+          "@radix-ui/react-dialog",
+          "lucide-react"
+        ],
+        "registryDependencies": [
+          "@boldkit/utils",
+          "@boldkit/button"
+        ],
+        "files": [
+          "registry/default/ui/dialog.tsx",
+          "registry/default/example/dialog-demo.tsx"
+        ]
+      },
+      "vue": {
+        "url": "https://boldkit.dev/r/vue/dialog.json",
+        "dependencies": [
+          "reka-ui",
+          "lucide-vue-next"
+        ],
+        "registryDependencies": [
+          "@boldkit/utils"
+        ],
+        "files": [
+          "components/ui/Dialog.vue",
+          "components/ui/DialogTrigger.vue",
+          "components/ui/DialogContent.vue",
+          "components/ui/DialogHeader.vue",
+          "components/ui/DialogFooter.vue",
+          "components/ui/DialogTitle.vue",
+          "components/ui/DialogDescription.vue",
+          "components/ui/DialogClose.vue"
+        ]
+      },
+      "frameworks": [
+        "react",
+        "vue"
+      ],
+      "docsUrl": "https://boldkit.dev/components/dialog"
+    },
+    {
+      "name": "dither",
+      "type": "registry:ui",
+      "description": "1-bit Bayer ordered dithering — a drifting plasma field quantised to two colors and rendered as chunky pixels",
+      "react": {
+        "url": "https://boldkit.dev/r/dither.json",
+        "dependencies": [],
+        "registryDependencies": [],
+        "files": [
+          "registry/default/ui/canvas-effects/Dither.tsx"
+        ]
+      },
+      "vue": {
+        "url": "https://boldkit.dev/r/vue/dither.json",
+        "dependencies": [],
+        "registryDependencies": [],
+        "files": [
+          "components/ui/canvas-effects/Dither.vue"
+        ]
+      },
+      "frameworks": [
+        "react",
+        "vue"
+      ],
+      "docsUrl": "https://boldkit.dev/components/dither"
+    },
+    {
+      "name": "donut-chart",
+      "type": "registry:ui",
+      "description": "Pie chart with center hole for KPI display, supports center content slot",
+      "react": {
+        "url": "https://boldkit.dev/r/donut-chart.json",
+        "dependencies": [
+          "recharts"
+        ],
+        "registryDependencies": [
+          "@boldkit/utils",
+          "@boldkit/chart"
+        ],
+        "files": [
+          "registry/default/ui/donut-chart.tsx",
+          "registry/default/example/donut-chart-demo.tsx"
+        ]
+      },
+      "vue": {
+        "url": "https://boldkit.dev/r/vue/donut-chart.json",
+        "dependencies": [
+          "vue-echarts",
+          "echarts",
+          "class-variance-authority"
+        ],
+        "registryDependencies": [
+          "@boldkit/utils",
+          "@boldkit/chart-utils"
+        ],
+        "files": [
+          "components/ui/DonutChart.vue",
+          "components/ui/ChartEmpty.vue",
+          "components/ui/chart-utils.ts",
+          "components/ui/chart-variants.ts"
+        ]
+      },
+      "frameworks": [
+        "react",
+        "vue"
+      ],
+      "docsUrl": "https://boldkit.dev/components/donut-chart"
+    },
+    {
+      "name": "dot-blob",
+      "type": "registry:ui",
+      "description": "Halftone wave field — Gaussian envelope drives halftone dot sizes with traveling wave",
+      "react": {
+        "url": "https://boldkit.dev/r/dot-blob.json",
+        "dependencies": [],
+        "registryDependencies": [],
+        "files": [
+          "registry/default/ui/canvas-effects/DotBlob.tsx"
+        ]
+      },
+      "vue": {
+        "url": "https://boldkit.dev/r/vue/dot-blob.json",
+        "dependencies": [],
+        "registryDependencies": [],
+        "files": [
+          "components/ui/canvas-effects/DotBlob.vue"
+        ]
+      },
+      "frameworks": [
+        "react",
+        "vue"
+      ],
+      "docsUrl": "https://boldkit.dev/components/dot-blob"
+    },
+    {
+      "name": "dot-wave",
+      "type": "registry:ui",
+      "description": "Sine-field dot grid — dual crossing sine waves modulate dot size and opacity",
+      "react": {
+        "url": "https://boldkit.dev/r/dot-wave.json",
+        "dependencies": [],
+        "registryDependencies": [],
+        "files": [
+          "registry/default/ui/canvas-effects/DotWave.tsx"
+        ]
+      },
+      "vue": {
+        "url": "https://boldkit.dev/r/vue/dot-wave.json",
+        "dependencies": [],
+        "registryDependencies": [],
+        "files": [
+          "components/ui/canvas-effects/DotWave.vue"
+        ]
+      },
+      "frameworks": [
+        "react",
+        "vue"
+      ],
+      "docsUrl": "https://boldkit.dev/components/dot-wave"
+    },
+    {
+      "name": "drawer",
+      "type": "registry:ui",
+      "description": "A drawer component that slides in from the edge of the screen",
+      "react": {
+        "url": "https://boldkit.dev/r/drawer.json",
+        "dependencies": [
+          "vaul"
+        ],
+        "registryDependencies": [
+          "@boldkit/utils"
+        ],
+        "files": [
+          "registry/default/ui/drawer.tsx",
+          "registry/default/example/drawer-demo.tsx"
+        ]
+      },
+      "vue": {
+        "url": "https://boldkit.dev/r/vue/drawer.json",
+        "dependencies": [
+          "vaul-vue"
+        ],
+        "registryDependencies": [
+          "@boldkit/utils"
+        ],
+        "files": [
+          "components/ui/Drawer.vue",
+          "components/ui/DrawerTrigger.vue",
+          "components/ui/DrawerContent.vue",
+          "components/ui/DrawerHeader.vue",
+          "components/ui/DrawerFooter.vue",
+          "components/ui/DrawerTitle.vue",
+          "components/ui/DrawerDescription.vue",
+          "components/ui/DrawerClose.vue"
+        ]
+      },
+      "frameworks": [
+        "react",
+        "vue"
+      ],
+      "docsUrl": "https://boldkit.dev/components/drawer"
+    },
+    {
+      "name": "dropdown-menu",
+      "type": "registry:ui",
+      "description": "Displays a menu of actions/options with neubrutalism styling",
+      "react": {
+        "url": "https://boldkit.dev/r/dropdown-menu.json",
+        "dependencies": [
+          "@radix-ui/react-dropdown-menu",
+          "lucide-react"
+        ],
+        "registryDependencies": [
+          "@boldkit/utils",
+          "@boldkit/button"
+        ],
+        "files": [
+          "registry/default/ui/dropdown-menu.tsx",
+          "registry/default/example/dropdown-menu-demo.tsx"
+        ]
+      },
+      "vue": {
+        "url": "https://boldkit.dev/r/vue/dropdown-menu.json",
+        "dependencies": [
+          "reka-ui",
+          "lucide-vue-next"
+        ],
+        "registryDependencies": [
+          "@boldkit/utils"
+        ],
+        "files": [
+          "components/ui/DropdownMenu.vue",
+          "components/ui/DropdownMenuTrigger.vue",
+          "components/ui/DropdownMenuContent.vue",
+          "components/ui/DropdownMenuItem.vue",
+          "components/ui/DropdownMenuCheckboxItem.vue",
+          "components/ui/DropdownMenuRadioItem.vue",
+          "components/ui/DropdownMenuLabel.vue",
+          "components/ui/DropdownMenuSeparator.vue",
+          "components/ui/DropdownMenuShortcut.vue",
+          "components/ui/DropdownMenuRadioGroup.vue"
+        ]
+      },
+      "frameworks": [
+        "react",
+        "vue"
+      ],
+      "docsUrl": "https://boldkit.dev/components/dropdown-menu"
+    },
+    {
+      "name": "dropzone",
+      "type": "registry:ui",
+      "description": "Drag-and-drop file upload with validation, progress tracking, and file list",
+      "react": {
+        "url": "https://boldkit.dev/r/dropzone.json",
+        "dependencies": [
+          "class-variance-authority",
+          "lucide-react"
+        ],
+        "registryDependencies": [
+          "@boldkit/utils",
+          "@boldkit/progress",
+          "@boldkit/spinner"
+        ],
+        "files": [
+          "registry/default/ui/dropzone.tsx",
+          "registry/default/example/dropzone-demo.tsx"
+        ]
+      },
+      "vue": {
+        "url": "https://boldkit.dev/r/vue/dropzone.json",
+        "dependencies": [
+          "lucide-vue-next"
+        ],
+        "registryDependencies": [
+          "@boldkit/utils",
+          "@boldkit/progress",
+          "@boldkit/spinner"
+        ],
+        "files": [
+          "components/ui/Dropzone.vue",
+          "components/ui/FileList.vue"
+        ]
+      },
+      "frameworks": [
+        "react",
+        "vue"
+      ],
+      "docsUrl": "https://boldkit.dev/components/dropzone"
+    },
+    {
+      "name": "empty-state",
+      "type": "registry:ui",
+      "description": "Empty state component with icon, title, description, and optional actions",
+      "react": {
+        "url": "https://boldkit.dev/r/empty-state.json",
+        "dependencies": [
+          "class-variance-authority",
+          "lucide-react"
+        ],
+        "registryDependencies": [
+          "@boldkit/utils",
+          "@boldkit/button"
+        ],
+        "files": [
+          "registry/default/ui/empty-state.tsx",
+          "registry/default/example/empty-state-demo.tsx"
+        ]
+      },
+      "vue": {
+        "url": "https://boldkit.dev/r/vue/empty-state.json",
+        "dependencies": [
+          "lucide-vue-next",
+          "class-variance-authority"
+        ],
+        "registryDependencies": [
+          "@boldkit/utils"
+        ],
+        "files": [
+          "components/ui/EmptyState.vue",
+          "components/ui/EmptyStateActions.vue",
+          "components/ui/EmptyStateDescription.vue",
+          "components/ui/EmptyStateIcon.vue",
+          "components/ui/EmptyStateIllustration.vue",
+          "components/ui/EmptyStatePreset.vue",
+          "components/ui/EmptyStateTitle.vue",
+          "components/ui/empty-state-variants.ts"
+        ]
+      },
+      "frameworks": [
+        "react",
+        "vue"
+      ],
+      "docsUrl": "https://boldkit.dev/components/empty-state"
+    },
+    {
+      "name": "error-boundary",
+      "type": "registry:component",
+      "description": "Error boundary wrapper with neubrutalism-styled fallback UI. Used by math-curve components to catch runtime errors gracefully.",
+      "react": {
+        "url": "https://boldkit.dev/r/error-boundary.json",
+        "dependencies": [],
+        "registryDependencies": [
+          "@boldkit/utils",
+          "@boldkit/button",
+          "@boldkit/card"
+        ],
+        "files": [
+          "registry/default/components/ErrorBoundary.tsx"
+        ]
+      },
+      "vue": {
+        "url": "https://boldkit.dev/r/vue/error-boundary.json",
+        "dependencies": [
+          "lucide-vue-next"
+        ],
+        "registryDependencies": [
+          "@boldkit/utils",
+          "@boldkit/button",
+          "@boldkit/card"
+        ],
+        "files": [
+          "components/ui/ErrorBoundary.vue"
+        ]
+      },
+      "frameworks": [
+        "react",
+        "vue"
+      ]
+    },
+    {
+      "name": "field",
+      "type": "registry:ui",
+      "description": "Form field composition: label, control, description and error",
+      "react": {
+        "url": "https://boldkit.dev/r/field.json",
+        "dependencies": [],
+        "registryDependencies": [
+          "@boldkit/utils",
+          "@boldkit/label",
+          "@boldkit/input"
+        ],
+        "files": [
+          "registry/default/ui/field.tsx",
+          "registry/default/example/field-demo.tsx"
+        ]
+      },
+      "vue": {
+        "url": "https://boldkit.dev/r/vue/field.json",
+        "dependencies": [],
+        "registryDependencies": [
+          "@boldkit/utils",
+          "@boldkit/label"
+        ],
+        "files": [
+          "components/ui/Field.vue",
+          "components/ui/FieldGroup.vue",
+          "components/ui/FieldLabel.vue",
+          "components/ui/FieldDescription.vue",
+          "components/ui/FieldError.vue"
+        ]
+      },
+      "frameworks": [
+        "react",
+        "vue"
+      ],
+      "docsUrl": "https://boldkit.dev/components/field"
+    },
+    {
+      "name": "flow-field",
+      "type": "registry:ui",
+      "description": "Noise-driven particle trails — particles follow a smooth value-noise angle field",
+      "react": {
+        "url": "https://boldkit.dev/r/flow-field.json",
+        "dependencies": [],
+        "registryDependencies": [],
+        "files": [
+          "registry/default/ui/canvas-effects/FlowField.tsx"
+        ]
+      },
+      "vue": {
+        "url": "https://boldkit.dev/r/vue/flow-field.json",
+        "dependencies": [],
+        "registryDependencies": [],
+        "files": [
+          "components/ui/canvas-effects/FlowField.vue"
+        ]
+      },
+      "frameworks": [
+        "react",
+        "vue"
+      ],
+      "docsUrl": "https://boldkit.dev/components/flow-field"
+    },
+    {
+      "name": "funnel-chart",
+      "type": "registry:ui",
+      "description": "Funnel chart for conversion flows and pipeline stages with neubrutalism styling",
+      "react": {
+        "url": "https://boldkit.dev/r/funnel-chart.json",
+        "dependencies": [
+          "recharts"
+        ],
+        "registryDependencies": [
+          "@boldkit/utils",
+          "@boldkit/chart"
+        ],
+        "files": [
+          "registry/default/ui/funnel-chart.tsx",
+          "registry/default/example/funnel-chart-demo.tsx"
+        ]
+      },
+      "vue": {
+        "url": "https://boldkit.dev/r/vue/funnel-chart.json",
+        "dependencies": [
+          "vue-echarts",
+          "echarts"
+        ],
+        "registryDependencies": [
+          "@boldkit/utils",
+          "@boldkit/chart-utils"
+        ],
+        "files": [
+          "components/ui/FunnelChart.vue",
+          "components/ui/ChartEmpty.vue",
+          "components/ui/chart-types.ts"
+        ]
+      },
+      "frameworks": [
+        "react",
+        "vue"
+      ],
+      "docsUrl": "https://boldkit.dev/components/funnel-chart"
+    },
+    {
+      "name": "gauge-chart",
+      "type": "registry:ui",
+      "description": "Speedometer-style gauge with color zones and animated needle - custom SVG implementation",
+      "react": {
+        "url": "https://boldkit.dev/r/gauge-chart.json",
+        "dependencies": [
+          "class-variance-authority"
+        ],
+        "registryDependencies": [
+          "@boldkit/utils"
+        ],
+        "files": [
+          "registry/default/ui/gauge-chart.tsx",
+          "registry/default/example/gauge-chart-demo.tsx"
+        ]
+      },
+      "vue": {
+        "url": "https://boldkit.dev/r/vue/gauge-chart.json",
+        "dependencies": [
+          "class-variance-authority"
+        ],
+        "registryDependencies": [
+          "@boldkit/utils"
+        ],
+        "files": [
+          "components/ui/GaugeChart.vue"
+        ]
+      },
+      "frameworks": [
+        "react",
+        "vue"
+      ],
+      "docsUrl": "https://boldkit.dev/components/gauge-chart"
+    },
+    {
+      "name": "gravity-wells",
+      "type": "registry:ui",
+      "description": "Orbital particle physics — particles orbit gravitational attractors forming accretion-disk spirals",
+      "react": {
+        "url": "https://boldkit.dev/r/gravity-wells.json",
+        "dependencies": [],
+        "registryDependencies": [],
+        "files": [
+          "registry/default/ui/canvas-effects/GravityWells.tsx"
+        ]
+      },
+      "vue": {
+        "url": "https://boldkit.dev/r/vue/gravity-wells.json",
+        "dependencies": [],
+        "registryDependencies": [],
+        "files": [
+          "components/ui/canvas-effects/GravityWells.vue"
+        ]
+      },
+      "frameworks": [
+        "react",
+        "vue"
+      ],
+      "docsUrl": "https://boldkit.dev/components/gravity-wells"
+    },
+    {
+      "name": "halftone",
+      "type": "registry:ui",
+      "description": "Print-style halftone dot field whose radii track a drifting brightness band; the cursor brightens nearby dots",
+      "react": {
+        "url": "https://boldkit.dev/r/halftone.json",
+        "dependencies": [],
+        "registryDependencies": [],
+        "files": [
+          "registry/default/ui/canvas-effects/Halftone.tsx"
+        ]
+      },
+      "vue": {
+        "url": "https://boldkit.dev/r/vue/halftone.json",
+        "dependencies": [],
+        "registryDependencies": [],
+        "files": [
+          "components/ui/canvas-effects/Halftone.vue"
+        ]
+      },
+      "frameworks": [
+        "react",
+        "vue"
+      ],
+      "docsUrl": "https://boldkit.dev/components/halftone"
+    },
+    {
+      "name": "heatmap-chart",
+      "type": "registry:ui",
+      "description": "Heatmap grid for correlation and intensity data - custom CSS Grid implementation",
+      "react": {
+        "url": "https://boldkit.dev/r/heatmap-chart.json",
+        "dependencies": [],
+        "registryDependencies": [
+          "@boldkit/utils",
+          "@boldkit/chart"
+        ],
+        "files": [
+          "registry/default/ui/heatmap-chart.tsx",
+          "registry/default/example/heatmap-chart-demo.tsx"
+        ]
+      },
+      "vue": {
+        "url": "https://boldkit.dev/r/vue/heatmap-chart.json",
+        "dependencies": [
+          "vue-echarts",
+          "echarts"
+        ],
+        "registryDependencies": [
+          "@boldkit/utils",
+          "@boldkit/chart-utils"
+        ],
+        "files": [
+          "components/ui/HeatmapChart.vue",
+          "components/ui/ChartEmpty.vue",
+          "components/ui/chart-types.ts"
+        ]
+      },
+      "frameworks": [
+        "react",
+        "vue"
+      ],
+      "docsUrl": "https://boldkit.dev/components/heatmap-chart"
+    },
+    {
+      "name": "hover-card",
+      "type": "registry:ui",
+      "description": "A card that appears on hover with additional information",
+      "react": {
+        "url": "https://boldkit.dev/r/hover-card.json",
+        "dependencies": [
+          "@radix-ui/react-hover-card"
+        ],
+        "registryDependencies": [
+          "@boldkit/utils"
+        ],
+        "files": [
+          "registry/default/ui/hover-card.tsx",
+          "registry/default/example/hover-card-demo.tsx"
+        ]
+      },
+      "vue": {
+        "url": "https://boldkit.dev/r/vue/hover-card.json",
+        "dependencies": [
+          "reka-ui"
+        ],
+        "registryDependencies": [
+          "@boldkit/utils"
+        ],
+        "files": [
+          "components/ui/HoverCard.vue",
+          "components/ui/HoverCardTrigger.vue",
+          "components/ui/HoverCardContent.vue"
+        ]
+      },
+      "frameworks": [
+        "react",
+        "vue"
+      ],
+      "docsUrl": "https://boldkit.dev/components/hover-card"
+    },
+    {
+      "name": "input",
+      "type": "registry:ui",
+      "description": "Displays a form input field with neubrutalism styling",
+      "react": {
+        "url": "https://boldkit.dev/r/input.json",
+        "dependencies": [],
+        "registryDependencies": [
+          "@boldkit/utils"
+        ],
+        "files": [
+          "registry/default/ui/input.tsx",
+          "registry/default/example/input-demo.tsx"
+        ]
+      },
+      "vue": {
+        "url": "https://boldkit.dev/r/vue/input.json",
+        "dependencies": [],
+        "registryDependencies": [
+          "@boldkit/utils"
+        ],
+        "files": [
+          "components/ui/Input.vue"
+        ]
+      },
+      "frameworks": [
+        "react",
+        "vue"
+      ],
+      "docsUrl": "https://boldkit.dev/components/input"
+    },
+    {
+      "name": "input-group",
+      "type": "registry:ui",
+      "description": "An input joined with leading/trailing addons in a single bordered field",
+      "react": {
+        "url": "https://boldkit.dev/r/input-group.json",
+        "dependencies": [
+          "lucide-react"
+        ],
+        "registryDependencies": [
+          "@boldkit/utils"
+        ],
+        "files": [
+          "registry/default/ui/input-group.tsx",
+          "registry/default/example/input-group-demo.tsx"
+        ]
+      },
+      "vue": {
+        "url": "https://boldkit.dev/r/vue/input-group.json",
+        "dependencies": [
+          "lucide-vue-next"
+        ],
+        "registryDependencies": [
+          "@boldkit/utils"
+        ],
+        "files": [
+          "components/ui/InputGroup.vue",
+          "components/ui/InputGroupInput.vue",
+          "components/ui/InputGroupAddon.vue"
+        ]
+      },
+      "frameworks": [
+        "react",
+        "vue"
+      ],
+      "docsUrl": "https://boldkit.dev/components/input-group"
+    },
+    {
+      "name": "input-otp",
+      "type": "registry:ui",
+      "description": "One-time password input with neubrutalism styling",
+      "react": {
+        "url": "https://boldkit.dev/r/input-otp.json",
+        "dependencies": [
+          "input-otp",
+          "lucide-react"
+        ],
+        "registryDependencies": [
+          "@boldkit/utils"
+        ],
+        "files": [
+          "registry/default/ui/input-otp.tsx",
+          "registry/default/example/input-otp-demo.tsx"
+        ]
+      },
+      "vue": {
+        "url": "https://boldkit.dev/r/vue/input-otp.json",
+        "dependencies": [
+          "reka-ui",
+          "lucide-vue-next"
+        ],
+        "registryDependencies": [
+          "@boldkit/utils"
+        ],
+        "files": [
+          "components/ui/InputOTP.vue",
+          "components/ui/InputOTPGroup.vue",
+          "components/ui/InputOTPSlot.vue",
+          "components/ui/InputOTPSeparator.vue"
+        ]
+      },
+      "frameworks": [
+        "react",
+        "vue"
+      ],
+      "docsUrl": "https://boldkit.dev/components/input-otp"
+    },
+    {
+      "name": "kbd",
+      "type": "registry:ui",
+      "description": "Keyboard key indicator for displaying shortcuts and hotkeys with neubrutalism styling",
+      "react": {
+        "url": "https://boldkit.dev/r/kbd.json",
+        "dependencies": [
+          "class-variance-authority"
+        ],
+        "registryDependencies": [
+          "@boldkit/utils"
+        ],
+        "files": [
+          "registry/default/ui/kbd.tsx",
+          "registry/default/example/kbd-demo.tsx"
+        ]
+      },
+      "vue": {
+        "url": "https://boldkit.dev/r/vue/kbd.json",
+        "dependencies": [],
+        "registryDependencies": [
+          "@boldkit/utils"
+        ],
+        "files": [
+          "components/ui/Kbd.vue",
+          "components/ui/KbdCombo.vue"
+        ]
+      },
+      "frameworks": [
+        "react",
+        "vue"
+      ],
+      "docsUrl": "https://boldkit.dev/components/kbd"
+    },
+    {
+      "name": "label",
+      "type": "registry:ui",
+      "description": "Renders an accessible label for form controls",
+      "react": {
+        "url": "https://boldkit.dev/r/label.json",
+        "dependencies": [
+          "@radix-ui/react-label",
+          "class-variance-authority"
+        ],
+        "registryDependencies": [
+          "@boldkit/utils",
+          "@boldkit/input"
+        ],
+        "files": [
+          "registry/default/ui/label.tsx",
+          "registry/default/example/label-demo.tsx"
+        ]
+      },
+      "vue": {
+        "url": "https://boldkit.dev/r/vue/label.json",
+        "dependencies": [
+          "reka-ui"
+        ],
+        "registryDependencies": [
+          "@boldkit/utils"
+        ],
+        "files": [
+          "components/ui/Label.vue"
+        ]
+      },
+      "frameworks": [
+        "react",
+        "vue"
+      ],
+      "docsUrl": "https://boldkit.dev/components/label"
+    },
+    {
+      "name": "layered-card",
+      "type": "registry:ui",
+      "description": "Card component with stacked layers effect showing offset depth - neubrutalist depth illusion",
+      "react": {
+        "url": "https://boldkit.dev/r/layered-card.json",
+        "dependencies": [
+          "class-variance-authority"
+        ],
+        "registryDependencies": [
+          "@boldkit/utils"
+        ],
+        "files": [
+          "registry/default/ui/layered-card.tsx",
+          "registry/default/example/layered-card-demo.tsx"
+        ]
+      },
+      "vue": {
+        "url": "https://boldkit.dev/r/vue/layered-card.json",
+        "dependencies": [
+          "class-variance-authority"
+        ],
+        "registryDependencies": [
+          "@boldkit/utils"
+        ],
+        "files": [
+          "components/ui/LayeredCard.vue",
+          "components/ui/LayeredCardHeader.vue",
+          "components/ui/LayeredCardTitle.vue",
+          "components/ui/LayeredCardDescription.vue",
+          "components/ui/LayeredCardContent.vue",
+          "components/ui/LayeredCardFooter.vue",
+          "components/ui/layered-card-variants.ts"
+        ]
+      },
+      "frameworks": [
+        "react",
+        "vue"
+      ],
+      "docsUrl": "https://boldkit.dev/components/layered-card"
+    },
+    {
+      "name": "lightning",
+      "type": "registry:ui",
+      "description": "Fractal electric arcs — branching lightning bolts with midpoint displacement and glow bloom",
+      "react": {
+        "url": "https://boldkit.dev/r/lightning.json",
+        "dependencies": [],
+        "registryDependencies": [],
+        "files": [
+          "registry/default/ui/canvas-effects/Lightning.tsx"
+        ]
+      },
+      "vue": {
+        "url": "https://boldkit.dev/r/vue/lightning.json",
+        "dependencies": [],
+        "registryDependencies": [],
+        "files": [
+          "components/ui/canvas-effects/Lightning.vue"
+        ]
+      },
+      "frameworks": [
+        "react",
+        "vue"
+      ],
+      "docsUrl": "https://boldkit.dev/components/lightning"
+    },
+    {
+      "name": "lissajous-grid",
+      "type": "registry:ui",
+      "description": "Parametric curve table — grid of Lissajous figures morphing via phase drift",
+      "react": {
+        "url": "https://boldkit.dev/r/lissajous-grid.json",
+        "dependencies": [],
+        "registryDependencies": [],
+        "files": [
+          "registry/default/ui/canvas-effects/LissajousGrid.tsx"
+        ]
+      },
+      "vue": {
+        "url": "https://boldkit.dev/r/vue/lissajous-grid.json",
+        "dependencies": [],
+        "registryDependencies": [],
+        "files": [
+          "components/ui/canvas-effects/LissajousGrid.vue"
+        ]
+      },
+      "frameworks": [
+        "react",
+        "vue"
+      ],
+      "docsUrl": "https://boldkit.dev/components/lissajous-grid"
+    },
+    {
+      "name": "marquee",
+      "type": "registry:ui",
+      "description": "Auto-scrolling text ticker with neubrutalism styling - a common brutalist design element",
+      "react": {
+        "url": "https://boldkit.dev/r/marquee.json",
+        "dependencies": [],
+        "registryDependencies": [
+          "@boldkit/utils"
+        ],
+        "files": [
+          "registry/default/ui/marquee.tsx",
+          "registry/default/example/marquee-demo.tsx"
+        ]
+      },
+      "vue": {
+        "url": "https://boldkit.dev/r/vue/marquee.json",
+        "dependencies": [],
+        "registryDependencies": [
+          "@boldkit/utils"
+        ],
+        "files": [
+          "components/ui/Marquee.vue",
+          "components/ui/MarqueeItem.vue",
+          "components/ui/MarqueeSeparator.vue"
+        ]
+      },
+      "frameworks": [
+        "react",
+        "vue"
+      ],
+      "docsUrl": "https://boldkit.dev/components/marquee"
+    },
+    {
+      "name": "math-curve-background",
+      "type": "registry:ui",
+      "description": "Ambient animated mathematical curve background layer with neubrutalism aesthetics — wraps content with a slow-moving curve animation",
+      "react": {
+        "url": "https://boldkit.dev/r/math-curve-background.json",
+        "dependencies": [
+          "@radix-ui/react-slot"
+        ],
+        "registryDependencies": [
+          "@boldkit/utils",
+          "@boldkit/math-curves",
+          "@boldkit/error-boundary"
+        ],
+        "files": [
+          "registry/default/ui/math-curve-background.tsx",
+          "registry/default/example/math-curve-background-demo.tsx"
+        ]
+      },
+      "vue": {
+        "url": "https://boldkit.dev/r/vue/math-curve-background.json",
+        "dependencies": [],
+        "registryDependencies": [
+          "@boldkit/utils",
+          "@boldkit/math-curves"
+        ],
+        "files": [
+          "components/ui/MathCurveBackground.vue"
+        ]
+      },
+      "frameworks": [
+        "react",
+        "vue"
+      ],
+      "docsUrl": "https://boldkit.dev/components/math-curve-background"
+    },
+    {
+      "name": "math-curve-loader",
+      "type": "registry:ui",
+      "description": "Animated mathematical curve loader with neubrutalism aesthetics — 8 curve variants including rose, lissajous, butterfly, and more",
+      "react": {
+        "url": "https://boldkit.dev/r/math-curve-loader.json",
+        "dependencies": [
+          "class-variance-authority"
+        ],
+        "registryDependencies": [
+          "@boldkit/utils",
+          "@boldkit/math-curves",
+          "@boldkit/error-boundary"
+        ],
+        "files": [
+          "registry/default/ui/math-curve-loader.tsx",
+          "registry/default/example/math-curve-loader-demo.tsx"
+        ]
+      },
+      "vue": {
+        "url": "https://boldkit.dev/r/vue/math-curve-loader.json",
+        "dependencies": [
+          "class-variance-authority"
+        ],
+        "registryDependencies": [
+          "@boldkit/utils",
+          "@boldkit/math-curves"
+        ],
+        "files": [
+          "components/ui/MathCurveLoader.vue"
+        ]
+      },
+      "frameworks": [
+        "react",
+        "vue"
+      ],
+      "docsUrl": "https://boldkit.dev/components/math-curve-loader"
+    },
+    {
+      "name": "math-curve-progress",
+      "type": "registry:ui",
+      "description": "Progress indicator that traces a mathematical curve — value-driven head moves along the curve path from 0 to 100%",
+      "react": {
+        "url": "https://boldkit.dev/r/math-curve-progress.json",
+        "dependencies": [
+          "class-variance-authority"
+        ],
+        "registryDependencies": [
+          "@boldkit/utils",
+          "@boldkit/math-curves",
+          "@boldkit/error-boundary"
+        ],
+        "files": [
+          "registry/default/ui/math-curve-progress.tsx",
+          "registry/default/example/math-curve-progress-demo.tsx"
+        ]
+      },
+      "vue": {
+        "url": "https://boldkit.dev/r/vue/math-curve-progress.json",
+        "dependencies": [
+          "class-variance-authority"
+        ],
+        "registryDependencies": [
+          "@boldkit/utils",
+          "@boldkit/math-curves"
+        ],
+        "files": [
+          "components/ui/MathCurveProgress.vue"
+        ]
+      },
+      "frameworks": [
+        "react",
+        "vue"
+      ],
+      "docsUrl": "https://boldkit.dev/components/math-curve-progress"
+    },
+    {
+      "name": "math-curves",
+      "type": "registry:lib",
+      "description": "Framework-agnostic math engine for parametric curve animations (rose, lissajous, butterfly, hypotrochoid, cardioid, lemniscate, fourier, spiral, heart)",
+      "react": {
+        "url": "https://boldkit.dev/r/math-curves.json",
+        "dependencies": [],
+        "registryDependencies": [
+          "@boldkit/utils"
+        ],
+        "files": [
+          "registry/default/lib/math-curves.ts"
+        ]
+      },
+      "vue": {
+        "url": "https://boldkit.dev/r/vue/math-curves.json",
+        "dependencies": [],
+        "registryDependencies": [
+          "@boldkit/utils"
+        ],
+        "files": [
+          "lib/math-curves.ts"
+        ]
+      },
+      "frameworks": [
+        "react",
+        "vue"
+      ]
+    },
+    {
+      "name": "matrix-rain",
+      "type": "registry:ui",
+      "description": "Falling column simulation — glowing heads and fading square trails",
+      "react": {
+        "url": "https://boldkit.dev/r/matrix-rain.json",
+        "dependencies": [],
+        "registryDependencies": [],
+        "files": [
+          "registry/default/ui/canvas-effects/MatrixRain.tsx"
+        ]
+      },
+      "vue": {
+        "url": "https://boldkit.dev/r/vue/matrix-rain.json",
+        "dependencies": [],
+        "registryDependencies": [],
+        "files": [
+          "components/ui/canvas-effects/MatrixRain.vue"
+        ]
+      },
+      "frameworks": [
+        "react",
+        "vue"
+      ],
+      "docsUrl": "https://boldkit.dev/components/matrix-rain"
+    },
+    {
+      "name": "menubar",
+      "type": "registry:ui",
+      "description": "A horizontal menu bar of desktop-style dropdown menus with neubrutalism styling",
+      "react": {
+        "url": "https://boldkit.dev/r/menubar.json",
+        "dependencies": [
+          "@radix-ui/react-menubar",
+          "lucide-react"
+        ],
+        "registryDependencies": [
+          "@boldkit/utils"
+        ],
+        "files": [
+          "registry/default/ui/menubar.tsx",
+          "registry/default/example/menubar-demo.tsx"
+        ]
+      },
+      "vue": {
+        "url": "https://boldkit.dev/r/vue/menubar.json",
+        "dependencies": [
+          "reka-ui",
+          "lucide-vue-next"
+        ],
+        "registryDependencies": [
+          "@boldkit/utils"
+        ],
+        "files": [
+          "components/ui/Menubar.vue",
+          "components/ui/MenubarMenu.vue",
+          "components/ui/MenubarTrigger.vue",
+          "components/ui/MenubarContent.vue",
+          "components/ui/MenubarItem.vue",
+          "components/ui/MenubarCheckboxItem.vue",
+          "components/ui/MenubarRadioGroup.vue",
+          "components/ui/MenubarRadioItem.vue",
+          "components/ui/MenubarLabel.vue",
+          "components/ui/MenubarSeparator.vue",
+          "components/ui/MenubarShortcut.vue",
+          "components/ui/MenubarSub.vue",
+          "components/ui/MenubarSubTrigger.vue",
+          "components/ui/MenubarSubContent.vue"
+        ]
+      },
+      "frameworks": [
+        "react",
+        "vue"
+      ],
+      "docsUrl": "https://boldkit.dev/components/menubar"
+    },
+    {
+      "name": "metaballs",
+      "type": "registry:ui",
+      "description": "Organic blob merging — colored blobs merge via r²/d² scalar field threshold",
+      "react": {
+        "url": "https://boldkit.dev/r/metaballs.json",
+        "dependencies": [],
+        "registryDependencies": [],
+        "files": [
+          "registry/default/ui/canvas-effects/Metaballs.tsx"
+        ]
+      },
+      "vue": {
+        "url": "https://boldkit.dev/r/vue/metaballs.json",
+        "dependencies": [],
+        "registryDependencies": [],
+        "files": [
+          "components/ui/canvas-effects/Metaballs.vue"
+        ]
+      },
+      "frameworks": [
+        "react",
+        "vue"
+      ],
+      "docsUrl": "https://boldkit.dev/components/metaballs"
+    },
+    {
+      "name": "motion",
+      "type": "registry:style",
+      "description": "BoldKit Motion System — framework-agnostic CSS tokens, keyframes, and six signature recipes (press, stamp-in, shake, reveal, slide-hard, pulse-shadow). Mobile-optimized, honors prefers-reduced-motion.",
+      "react": {
+        "url": "https://boldkit.dev/r/motion.json",
+        "dependencies": [],
+        "registryDependencies": [],
+        "files": [
+          "registry/default/styles/motion.css"
+        ]
+      },
+      "vue": {
+        "url": "https://boldkit.dev/r/vue/motion.json",
+        "dependencies": [],
+        "registryDependencies": [
+          "@boldkit/utils",
+          "@boldkit/motion-core",
+          "@boldkit/use-motion"
+        ],
+        "files": [
+          "components/ui/Motion.vue",
+          "components/ui/Reveal.vue",
+          "components/ui/Stagger.vue",
+          "styles/motion.css"
+        ]
+      },
+      "frameworks": [
+        "react",
+        "vue"
+      ]
+    },
+    {
+      "name": "motion-core",
+      "type": "registry:lib",
+      "description": "BoldKit Motion core — framework-agnostic, SSR-safe primitives (observeReveal, staggerChildren, triggerAnimation, startViewTransition, prefersReducedMotion) shared by every motion adapter.",
+      "react": {
+        "url": "https://boldkit.dev/r/motion-core.json",
+        "dependencies": [],
+        "registryDependencies": [],
+        "files": [
+          "registry/default/lib/motion-core.ts"
+        ]
+      },
+      "vue": {
+        "url": "https://boldkit.dev/r/vue/motion-core.json",
+        "dependencies": [],
+        "registryDependencies": [
+          "@boldkit/utils"
+        ],
+        "files": [
+          "lib/motion-core.ts"
+        ]
+      },
+      "frameworks": [
+        "react",
+        "vue"
+      ]
+    },
+    {
+      "name": "motion-react",
+      "type": "registry:ui",
+      "description": "BoldKit Motion React adapter — <Motion>/<Reveal>/<Stagger> components plus useShake and useViewTransition hooks over a framework-agnostic core.",
+      "react": {
+        "url": "https://boldkit.dev/r/motion-react.json",
+        "dependencies": [],
+        "registryDependencies": [
+          "@boldkit/motion",
+          "@boldkit/motion-core",
+          "@boldkit/utils"
+        ],
+        "files": [
+          "registry/default/ui/motion.tsx"
+        ]
+      },
+      "frameworks": [
+        "react"
+      ],
+      "docsUrl": "https://boldkit.dev/components/motion-react"
+    },
+    {
+      "name": "mouse-ripple",
+      "type": "registry:ui",
+      "description": "Interactive dot-grid ripple — mouse movement sends sine ripples through the dot grid",
+      "react": {
+        "url": "https://boldkit.dev/r/mouse-ripple.json",
+        "dependencies": [],
+        "registryDependencies": [],
+        "files": [
+          "registry/default/ui/canvas-effects/MouseRipple.tsx"
+        ]
+      },
+      "vue": {
+        "url": "https://boldkit.dev/r/vue/mouse-ripple.json",
+        "dependencies": [],
+        "registryDependencies": [],
+        "files": [
+          "components/ui/canvas-effects/MouseRipple.vue"
+        ]
+      },
+      "frameworks": [
+        "react",
+        "vue"
+      ],
+      "docsUrl": "https://boldkit.dev/components/mouse-ripple"
+    },
+    {
+      "name": "native-select",
+      "type": "registry:ui",
+      "description": "A styled wrapper around the native select element, a11y-first",
+      "react": {
+        "url": "https://boldkit.dev/r/native-select.json",
+        "dependencies": [
+          "lucide-react"
+        ],
+        "registryDependencies": [
+          "@boldkit/utils"
+        ],
+        "files": [
+          "registry/default/ui/native-select.tsx",
+          "registry/default/example/native-select-demo.tsx"
+        ]
+      },
+      "vue": {
+        "url": "https://boldkit.dev/r/vue/native-select.json",
+        "dependencies": [
+          "lucide-vue-next"
+        ],
+        "registryDependencies": [
+          "@boldkit/utils"
+        ],
+        "files": [
+          "components/ui/NativeSelect.vue"
+        ]
+      },
+      "frameworks": [
+        "react",
+        "vue"
+      ],
+      "docsUrl": "https://boldkit.dev/components/native-select"
+    },
+    {
+      "name": "navigation-menu",
+      "type": "registry:ui",
+      "description": "A collection of links and dropdown panels for site navigation with neubrutalism styling",
+      "react": {
+        "url": "https://boldkit.dev/r/navigation-menu.json",
+        "dependencies": [
+          "@radix-ui/react-navigation-menu",
+          "class-variance-authority",
+          "lucide-react"
+        ],
+        "registryDependencies": [
+          "@boldkit/utils"
+        ],
+        "files": [
+          "registry/default/ui/navigation-menu.tsx",
+          "registry/default/example/navigation-menu-demo.tsx"
+        ]
+      },
+      "vue": {
+        "url": "https://boldkit.dev/r/vue/navigation-menu.json",
+        "dependencies": [
+          "reka-ui",
+          "lucide-vue-next",
+          "class-variance-authority"
+        ],
+        "registryDependencies": [
+          "@boldkit/utils"
+        ],
+        "files": [
+          "components/ui/NavigationMenu.vue",
+          "components/ui/NavigationMenuList.vue",
+          "components/ui/NavigationMenuItem.vue",
+          "components/ui/NavigationMenuTrigger.vue",
+          "components/ui/NavigationMenuContent.vue",
+          "components/ui/NavigationMenuLink.vue",
+          "components/ui/NavigationMenuIndicator.vue",
+          "components/ui/navigation-menu-variants.ts"
+        ]
+      },
+      "frameworks": [
+        "react",
+        "vue"
+      ],
+      "docsUrl": "https://boldkit.dev/components/navigation-menu"
+    },
+    {
+      "name": "pagination",
+      "type": "registry:ui",
+      "description": "Pagination controls for navigating through pages",
+      "react": {
+        "url": "https://boldkit.dev/r/pagination.json",
+        "dependencies": [
+          "lucide-react"
+        ],
+        "registryDependencies": [
+          "@boldkit/utils",
+          "@boldkit/button"
+        ],
+        "files": [
+          "registry/default/ui/pagination.tsx",
+          "registry/default/example/pagination-demo.tsx"
+        ]
+      },
+      "vue": {
+        "url": "https://boldkit.dev/r/vue/pagination.json",
+        "dependencies": [
+          "reka-ui",
+          "lucide-vue-next"
+        ],
+        "registryDependencies": [
+          "@boldkit/utils",
+          "@boldkit/button"
+        ],
+        "files": [
+          "components/ui/Pagination.vue",
+          "components/ui/PaginationContent.vue",
+          "components/ui/PaginationItem.vue",
+          "components/ui/PaginationLink.vue",
+          "components/ui/PaginationEllipsis.vue",
+          "components/ui/PaginationPrevious.vue",
+          "components/ui/PaginationNext.vue"
+        ]
+      },
+      "frameworks": [
+        "react",
+        "vue"
+      ],
+      "docsUrl": "https://boldkit.dev/components/pagination"
+    },
+    {
+      "name": "particle-web",
+      "type": "registry:ui",
+      "description": "Proximity particle graph — particles connected by proximity-faded lines",
+      "react": {
+        "url": "https://boldkit.dev/r/particle-web.json",
+        "dependencies": [],
+        "registryDependencies": [],
+        "files": [
+          "registry/default/ui/canvas-effects/ParticleWeb.tsx"
+        ]
+      },
+      "vue": {
+        "url": "https://boldkit.dev/r/vue/particle-web.json",
+        "dependencies": [],
+        "registryDependencies": [],
+        "files": [
+          "components/ui/canvas-effects/ParticleWeb.vue"
+        ]
+      },
+      "frameworks": [
+        "react",
+        "vue"
+      ],
+      "docsUrl": "https://boldkit.dev/components/particle-web"
+    },
+    {
+      "name": "plasma",
+      "type": "registry:ui",
+      "description": "Circular wave interference — four drifting wave sources create shifting color interference",
+      "react": {
+        "url": "https://boldkit.dev/r/plasma.json",
+        "dependencies": [],
+        "registryDependencies": [],
+        "files": [
+          "registry/default/ui/canvas-effects/Plasma.tsx"
+        ]
+      },
+      "vue": {
+        "url": "https://boldkit.dev/r/vue/plasma.json",
+        "dependencies": [],
+        "registryDependencies": [],
+        "files": [
+          "components/ui/canvas-effects/Plasma.vue"
+        ]
+      },
+      "frameworks": [
+        "react",
+        "vue"
+      ],
+      "docsUrl": "https://boldkit.dev/components/plasma"
+    },
+    {
+      "name": "popover",
+      "type": "registry:ui",
+      "description": "Displays rich content in a portal with neubrutalism styling",
+      "react": {
+        "url": "https://boldkit.dev/r/popover.json",
+        "dependencies": [
+          "@radix-ui/react-popover"
+        ],
+        "registryDependencies": [
+          "@boldkit/utils",
+          "@boldkit/button"
+        ],
+        "files": [
+          "registry/default/ui/popover.tsx",
+          "registry/default/example/popover-demo.tsx"
+        ]
+      },
+      "vue": {
+        "url": "https://boldkit.dev/r/vue/popover.json",
+        "dependencies": [
+          "reka-ui"
+        ],
+        "registryDependencies": [
+          "@boldkit/utils"
+        ],
+        "files": [
+          "components/ui/Popover.vue",
+          "components/ui/PopoverTrigger.vue",
+          "components/ui/PopoverContent.vue"
+        ]
+      },
+      "frameworks": [
+        "react",
+        "vue"
+      ],
+      "docsUrl": "https://boldkit.dev/components/popover"
+    },
+    {
+      "name": "progress",
+      "type": "registry:ui",
+      "description": "Displays an indicator showing the completion progress of a task",
+      "react": {
+        "url": "https://boldkit.dev/r/progress.json",
+        "dependencies": [
+          "@radix-ui/react-progress"
+        ],
+        "registryDependencies": [
+          "@boldkit/utils"
+        ],
+        "files": [
+          "registry/default/ui/progress.tsx",
+          "registry/default/example/progress-demo.tsx"
+        ]
+      },
+      "vue": {
+        "url": "https://boldkit.dev/r/vue/progress.json",
+        "dependencies": [
+          "reka-ui"
+        ],
+        "registryDependencies": [
+          "@boldkit/utils"
+        ],
+        "files": [
+          "components/ui/Progress.vue"
+        ]
+      },
+      "frameworks": [
+        "react",
+        "vue"
+      ],
+      "docsUrl": "https://boldkit.dev/components/progress"
+    },
+    {
+      "name": "radar-chart",
+      "type": "registry:ui",
+      "description": "Multi-variable comparison chart for skills, metrics, and feature comparisons",
+      "react": {
+        "url": "https://boldkit.dev/r/radar-chart.json",
+        "dependencies": [
+          "recharts"
+        ],
+        "registryDependencies": [
+          "@boldkit/utils",
+          "@boldkit/chart"
+        ],
+        "files": [
+          "registry/default/ui/radar-chart.tsx",
+          "registry/default/example/radar-chart-demo.tsx"
+        ]
+      },
+      "vue": {
+        "url": "https://boldkit.dev/r/vue/radar-chart.json",
+        "dependencies": [
+          "vue-echarts",
+          "echarts",
+          "class-variance-authority"
+        ],
+        "registryDependencies": [
+          "@boldkit/utils",
+          "@boldkit/chart-utils"
+        ],
+        "files": [
+          "components/ui/RadarChart.vue",
+          "components/ui/ChartEmpty.vue",
+          "components/ui/chart-utils.ts",
+          "components/ui/chart-variants.ts"
+        ]
+      },
+      "frameworks": [
+        "react",
+        "vue"
+      ],
+      "docsUrl": "https://boldkit.dev/components/radar-chart"
+    },
+    {
+      "name": "radial-bar-chart",
+      "type": "registry:ui",
+      "description": "Circular progress bars with nested rings for multiple metrics",
+      "react": {
+        "url": "https://boldkit.dev/r/radial-bar-chart.json",
+        "dependencies": [
+          "recharts"
+        ],
+        "registryDependencies": [
+          "@boldkit/utils",
+          "@boldkit/chart"
+        ],
+        "files": [
+          "registry/default/ui/radial-bar-chart.tsx",
+          "registry/default/example/radial-bar-chart-demo.tsx"
+        ]
+      },
+      "vue": {
+        "url": "https://boldkit.dev/r/vue/radial-bar-chart.json",
+        "dependencies": [
+          "vue-echarts",
+          "echarts",
+          "class-variance-authority"
+        ],
+        "registryDependencies": [
+          "@boldkit/utils",
+          "@boldkit/chart-utils"
+        ],
+        "files": [
+          "components/ui/RadialBarChart.vue",
+          "components/ui/ChartEmpty.vue",
+          "components/ui/chart-utils.ts",
+          "components/ui/chart-variants.ts"
+        ]
+      },
+      "frameworks": [
+        "react",
+        "vue"
+      ],
+      "docsUrl": "https://boldkit.dev/components/radial-bar-chart"
+    },
+    {
+      "name": "radio-group",
+      "type": "registry:ui",
+      "description": "A set of checkable buttons where only one can be checked at a time",
+      "react": {
+        "url": "https://boldkit.dev/r/radio-group.json",
+        "dependencies": [
+          "@radix-ui/react-radio-group",
+          "lucide-react"
+        ],
+        "registryDependencies": [
+          "@boldkit/utils",
+          "@boldkit/label"
+        ],
+        "files": [
+          "registry/default/ui/radio-group.tsx",
+          "registry/default/example/radio-group-demo.tsx"
+        ]
+      },
+      "vue": {
+        "url": "https://boldkit.dev/r/vue/radio-group.json",
+        "dependencies": [
+          "reka-ui"
+        ],
+        "registryDependencies": [
+          "@boldkit/utils"
+        ],
+        "files": [
+          "components/ui/RadioGroup.vue",
+          "components/ui/RadioGroupItem.vue"
+        ]
+      },
+      "frameworks": [
+        "react",
+        "vue"
+      ],
+      "docsUrl": "https://boldkit.dev/components/radio-group"
+    },
+    {
+      "name": "rating",
+      "type": "registry:ui",
+      "description": "Star rating component with half-values, multiple icons, and keyboard navigation",
+      "react": {
+        "url": "https://boldkit.dev/r/rating.json",
+        "dependencies": [
+          "class-variance-authority",
+          "lucide-react"
+        ],
+        "registryDependencies": [
+          "@boldkit/utils"
+        ],
+        "files": [
+          "registry/default/ui/rating.tsx",
+          "registry/default/example/rating-demo.tsx"
+        ]
+      },
+      "vue": {
+        "url": "https://boldkit.dev/r/vue/rating.json",
+        "dependencies": [
+          "class-variance-authority",
+          "lucide-vue-next"
+        ],
+        "registryDependencies": [
+          "@boldkit/utils"
+        ],
+        "files": [
+          "components/ui/Rating.vue"
+        ]
+      },
+      "frameworks": [
+        "react",
+        "vue"
+      ],
+      "docsUrl": "https://boldkit.dev/components/rating"
+    },
+    {
+      "name": "resizable",
+      "type": "registry:ui",
+      "description": "Resizable panel groups and handles with neubrutalism styling",
+      "react": {
+        "url": "https://boldkit.dev/r/resizable.json",
+        "dependencies": [
+          "react-resizable-panels@^2.1.0",
+          "lucide-react"
+        ],
+        "registryDependencies": [
+          "@boldkit/utils"
+        ],
+        "files": [
+          "registry/default/ui/resizable.tsx",
+          "registry/default/example/resizable-demo.tsx"
+        ]
+      },
+      "vue": {
+        "url": "https://boldkit.dev/r/vue/resizable.json",
+        "dependencies": [
+          "reka-ui",
+          "lucide-vue-next"
+        ],
+        "registryDependencies": [
+          "@boldkit/utils"
+        ],
+        "files": [
+          "components/ui/ResizablePanelGroup.vue",
+          "components/ui/ResizablePanel.vue",
+          "components/ui/ResizableHandle.vue"
+        ]
+      },
+      "frameworks": [
+        "react",
+        "vue"
+      ],
+      "docsUrl": "https://boldkit.dev/components/resizable"
+    },
+    {
+      "name": "sankey-chart",
+      "type": "registry:ui",
+      "description": "Sankey flow diagram for showing proportional flows between nodes - custom SVG implementation",
+      "react": {
+        "url": "https://boldkit.dev/r/sankey-chart.json",
+        "dependencies": [],
+        "registryDependencies": [
+          "@boldkit/utils",
+          "@boldkit/chart"
+        ],
+        "files": [
+          "registry/default/ui/sankey-chart.tsx",
+          "registry/default/example/sankey-chart-demo.tsx"
+        ]
+      },
+      "vue": {
+        "url": "https://boldkit.dev/r/vue/sankey-chart.json",
+        "dependencies": [
+          "vue-echarts",
+          "echarts"
+        ],
+        "registryDependencies": [
+          "@boldkit/utils",
+          "@boldkit/chart-utils"
+        ],
+        "files": [
+          "components/ui/SankeyChart.vue",
+          "components/ui/ChartEmpty.vue",
+          "components/ui/chart-types.ts"
+        ]
+      },
+      "frameworks": [
+        "react",
+        "vue"
+      ],
+      "docsUrl": "https://boldkit.dev/components/sankey-chart"
+    },
+    {
+      "name": "scroll-area",
+      "type": "registry:ui",
+      "description": "Augments native scroll functionality for custom styling",
+      "react": {
+        "url": "https://boldkit.dev/r/scroll-area.json",
+        "dependencies": [
+          "@radix-ui/react-scroll-area"
+        ],
+        "registryDependencies": [
+          "@boldkit/utils"
+        ],
+        "files": [
+          "registry/default/ui/scroll-area.tsx",
+          "registry/default/example/scroll-area-demo.tsx"
+        ]
+      },
+      "vue": {
+        "url": "https://boldkit.dev/r/vue/scroll-area.json",
+        "dependencies": [
+          "reka-ui"
+        ],
+        "registryDependencies": [
+          "@boldkit/utils"
+        ],
+        "files": [
+          "components/ui/ScrollArea.vue",
+          "components/ui/ScrollBar.vue"
+        ]
+      },
+      "frameworks": [
+        "react",
+        "vue"
+      ],
+      "docsUrl": "https://boldkit.dev/components/scroll-area"
+    },
+    {
+      "name": "select",
+      "type": "registry:ui",
+      "description": "Displays a list of options with neubrutalism styling",
+      "react": {
+        "url": "https://boldkit.dev/r/select.json",
+        "dependencies": [
+          "@radix-ui/react-select",
+          "lucide-react"
+        ],
+        "registryDependencies": [
+          "@boldkit/utils"
+        ],
+        "files": [
+          "registry/default/ui/select.tsx",
+          "registry/default/example/select-demo.tsx"
+        ]
+      },
+      "vue": {
+        "url": "https://boldkit.dev/r/vue/select.json",
+        "dependencies": [
+          "reka-ui",
+          "lucide-vue-next"
+        ],
+        "registryDependencies": [
+          "@boldkit/utils"
+        ],
+        "files": [
+          "components/ui/Select.vue",
+          "components/ui/SelectTrigger.vue",
+          "components/ui/SelectValue.vue",
+          "components/ui/SelectContent.vue",
+          "components/ui/SelectItem.vue",
+          "components/ui/SelectGroup.vue",
+          "components/ui/SelectLabel.vue",
+          "components/ui/SelectSeparator.vue"
+        ]
+      },
+      "frameworks": [
+        "react",
+        "vue"
+      ],
+      "docsUrl": "https://boldkit.dev/components/select"
+    },
+    {
+      "name": "separator",
+      "type": "registry:ui",
+      "description": "Visually separates content with a thick border",
+      "react": {
+        "url": "https://boldkit.dev/r/separator.json",
+        "dependencies": [
+          "@radix-ui/react-separator"
+        ],
+        "registryDependencies": [
+          "@boldkit/utils"
+        ],
+        "files": [
+          "registry/default/ui/separator.tsx",
+          "registry/default/example/separator-demo.tsx"
+        ]
+      },
+      "vue": {
+        "url": "https://boldkit.dev/r/vue/separator.json",
+        "dependencies": [
+          "reka-ui"
+        ],
+        "registryDependencies": [
+          "@boldkit/utils"
+        ],
+        "files": [
+          "components/ui/Separator.vue"
+        ]
+      },
+      "frameworks": [
+        "react",
+        "vue"
+      ],
+      "docsUrl": "https://boldkit.dev/components/separator"
+    },
+    {
+      "name": "shapes",
+      "type": "registry:ui",
+      "description": "55 neubrutalist SVG shapes organized by category for badges, decorations, and visual accents",
+      "react": {
+        "url": "https://boldkit.dev/r/shapes.json",
+        "dependencies": [],
+        "registryDependencies": [
+          "@boldkit/utils"
+        ],
+        "files": [
+          "registry/default/ui/shapes.tsx",
+          "registry/default/example/shapes-demo.tsx"
+        ]
+      },
+      "vue": {
+        "url": "https://boldkit.dev/r/vue/shapes.json",
+        "dependencies": [],
+        "registryDependencies": [
+          "@boldkit/utils"
+        ],
+        "files": [
+          "components/ui/shapes/AppleShape.vue",
+          "components/ui/shapes/ArrowBadge.vue",
+          "components/ui/shapes/BlobShape.vue",
+          "components/ui/shapes/BookmarkShape.vue",
+          "components/ui/shapes/BurstShape.vue",
+          "components/ui/shapes/CloudShape.vue",
+          "components/ui/shapes/CouponShape.vue",
+          "components/ui/shapes/CrescentShape.vue",
+          "components/ui/shapes/CrossShape.vue",
+          "components/ui/shapes/CursorShape.vue",
+          "components/ui/shapes/DecagonShape.vue",
+          "components/ui/shapes/DiamondBadge.vue",
+          "components/ui/shapes/EllipseShape.vue",
+          "components/ui/shapes/ExplosionShape.vue",
+          "components/ui/shapes/EyeShape.vue",
+          "components/ui/shapes/FibonacciSpiralShape.vue",
+          "components/ui/shapes/FlagShape.vue",
+          "components/ui/shapes/GearShape.vue",
+          "components/ui/shapes/HeartShape.vue",
+          "components/ui/shapes/HeptagonShape.vue",
+          "components/ui/shapes/HexagonShape.vue",
+          "components/ui/shapes/KochSnowflakeShape.vue",
+          "components/ui/shapes/LightningShape.vue",
+          "components/ui/shapes/MobiusStripShape.vue",
+          "components/ui/shapes/OctagonShape.vue",
+          "components/ui/shapes/PaperTearShape.vue",
+          "components/ui/shapes/ParallelogramShape.vue",
+          "components/ui/shapes/PenroseTriangleShape.vue",
+          "components/ui/shapes/PentagonShape.vue",
+          "components/ui/shapes/PillShape.vue",
+          "components/ui/shapes/PlanetShape.vue",
+          "components/ui/shapes/PriceTagShape.vue",
+          "components/ui/shapes/RainbowShape.vue",
+          "components/ui/shapes/RhombusShape.vue",
+          "components/ui/shapes/RibbonShape.vue",
+          "components/ui/shapes/ScribbleCircle.vue",
+          "components/ui/shapes/ScribbleUnderline.vue",
+          "components/ui/shapes/SealShape.vue",
+          "components/ui/shapes/ShieldShape.vue",
+          "components/ui/shapes/SpeechBubble.vue",
+          "components/ui/shapes/SplatShape.vue",
+          "components/ui/shapes/Star4Shape.vue",
+          "components/ui/shapes/Star5Shape.vue",
+          "components/ui/shapes/Star6Shape.vue",
+          "components/ui/shapes/SunShape.vue",
+          "components/ui/shapes/TagShape.vue",
+          "components/ui/shapes/TicketShape.vue",
+          "components/ui/shapes/TorusShape.vue",
+          "components/ui/shapes/TrapezoidShape.vue",
+          "components/ui/shapes/TrefoilShape.vue",
+          "components/ui/shapes/TriangleShape.vue",
+          "components/ui/shapes/UmbrellaShape.vue",
+          "components/ui/shapes/WaveShape.vue",
+          "components/ui/shapes/WavyRectangleShape.vue",
+          "components/ui/shapes/ZigzagBanner.vue",
+          "components/ui/shapes/index.ts"
+        ]
+      },
+      "frameworks": [
+        "react",
+        "vue"
+      ],
+      "docsUrl": "https://boldkit.dev/components/shapes"
+    },
+    {
+      "name": "sheet",
+      "type": "registry:ui",
+      "description": "Extends Dialog to display content that complements the main page",
+      "react": {
+        "url": "https://boldkit.dev/r/sheet.json",
+        "dependencies": [
+          "@radix-ui/react-dialog",
+          "class-variance-authority",
+          "lucide-react"
+        ],
+        "registryDependencies": [
+          "@boldkit/utils"
+        ],
+        "files": [
+          "registry/default/ui/sheet.tsx",
+          "registry/default/example/sheet-demo.tsx"
+        ]
+      },
+      "vue": {
+        "url": "https://boldkit.dev/r/vue/sheet.json",
+        "dependencies": [
+          "reka-ui",
+          "lucide-vue-next",
+          "class-variance-authority"
+        ],
+        "registryDependencies": [
+          "@boldkit/utils"
+        ],
+        "files": [
+          "components/ui/Sheet.vue",
+          "components/ui/SheetTrigger.vue",
+          "components/ui/SheetContent.vue",
+          "components/ui/SheetHeader.vue",
+          "components/ui/SheetFooter.vue",
+          "components/ui/SheetTitle.vue",
+          "components/ui/SheetDescription.vue",
+          "components/ui/SheetClose.vue"
+        ]
+      },
+      "frameworks": [
+        "react",
+        "vue"
+      ],
+      "docsUrl": "https://boldkit.dev/components/sheet"
+    },
+    {
+      "name": "sidebar",
+      "type": "registry:ui",
+      "description": "Collapsible sidebar with mobile drawer, tooltips, and keyboard shortcut",
+      "react": {
+        "url": "https://boldkit.dev/r/sidebar.json",
+        "dependencies": [
+          "class-variance-authority",
+          "lucide-react"
+        ],
+        "registryDependencies": [
+          "@boldkit/utils",
+          "@boldkit/button",
+          "@boldkit/sheet",
+          "@boldkit/tooltip"
+        ],
+        "files": [
+          "registry/default/ui/sidebar.tsx",
+          "registry/default/example/sidebar-demo.tsx"
+        ]
+      },
+      "vue": {
+        "url": "https://boldkit.dev/r/vue/sidebar.json",
+        "dependencies": [
+          "class-variance-authority",
+          "lucide-vue-next"
+        ],
+        "registryDependencies": [
+          "@boldkit/utils",
+          "@boldkit/button",
+          "@boldkit/sheet",
+          "@boldkit/tooltip"
+        ],
+        "files": [
+          "components/ui/Sidebar.vue",
+          "components/ui/SidebarContent.vue",
+          "components/ui/SidebarFooter.vue",
+          "components/ui/SidebarGroup.vue",
+          "components/ui/SidebarGroupLabel.vue",
+          "components/ui/SidebarHeader.vue",
+          "components/ui/SidebarInset.vue",
+          "components/ui/SidebarItem.vue",
+          "components/ui/SidebarProvider.vue",
+          "components/ui/SidebarSeparator.vue",
+          "components/ui/SidebarToggle.vue"
+        ]
+      },
+      "frameworks": [
+        "react",
+        "vue"
+      ],
+      "docsUrl": "https://boldkit.dev/components/sidebar"
+    },
+    {
+      "name": "skeleton",
+      "type": "registry:ui",
+      "description": "Used to show a placeholder while content is loading",
+      "react": {
+        "url": "https://boldkit.dev/r/skeleton.json",
+        "dependencies": [],
+        "registryDependencies": [
+          "@boldkit/utils"
+        ],
+        "files": [
+          "registry/default/ui/skeleton.tsx",
+          "registry/default/example/skeleton-demo.tsx"
+        ]
+      },
+      "vue": {
+        "url": "https://boldkit.dev/r/vue/skeleton.json",
+        "dependencies": [],
+        "registryDependencies": [
+          "@boldkit/utils"
+        ],
+        "files": [
+          "components/ui/Skeleton.vue"
+        ]
+      },
+      "frameworks": [
+        "react",
+        "vue"
+      ],
+      "docsUrl": "https://boldkit.dev/components/skeleton"
+    },
+    {
+      "name": "slider",
+      "type": "registry:ui",
+      "description": "A jelly slider with spring physics and bouncy animations",
+      "react": {
+        "url": "https://boldkit.dev/r/slider.json",
+        "dependencies": [],
+        "registryDependencies": [
+          "@boldkit/utils"
+        ],
+        "files": [
+          "registry/default/ui/slider.tsx",
+          "registry/default/example/slider-demo.tsx"
+        ]
+      },
+      "vue": {
+        "url": "https://boldkit.dev/r/vue/slider.json",
+        "dependencies": [
+          "reka-ui"
+        ],
+        "registryDependencies": [
+          "@boldkit/utils"
+        ],
+        "files": [
+          "components/ui/Slider.vue"
+        ]
+      },
+      "frameworks": [
+        "react",
+        "vue"
+      ],
+      "docsUrl": "https://boldkit.dev/components/slider"
+    },
+    {
+      "name": "sonner",
+      "type": "registry:ui",
+      "description": "An opinionated toast component with neubrutalism styling",
+      "react": {
+        "url": "https://boldkit.dev/r/sonner.json",
+        "dependencies": [
+          "sonner"
+        ],
+        "registryDependencies": [
+          "@boldkit/utils",
+          "@boldkit/use-theme",
+          "@boldkit/button"
+        ],
+        "files": [
+          "registry/default/ui/sonner.tsx",
+          "registry/default/example/sonner-demo.tsx"
+        ]
+      },
+      "vue": {
+        "url": "https://boldkit.dev/r/vue/sonner.json",
+        "dependencies": [
+          "vue-sonner"
+        ],
+        "registryDependencies": [
+          "@boldkit/utils",
+          "@boldkit/use-theme"
+        ],
+        "files": [
+          "components/ui/Sonner.vue"
+        ]
+      },
+      "frameworks": [
+        "react",
+        "vue"
+      ],
+      "docsUrl": "https://boldkit.dev/components/sonner"
+    },
+    {
+      "name": "sparkline",
+      "type": "registry:ui",
+      "description": "Tiny inline trend charts for tables and stat cards - line, area, and bar variants",
+      "react": {
+        "url": "https://boldkit.dev/r/sparkline.json",
+        "dependencies": [
+          "recharts"
+        ],
+        "registryDependencies": [
+          "@boldkit/utils"
+        ],
+        "files": [
+          "registry/default/ui/sparkline.tsx",
+          "registry/default/example/sparkline-demo.tsx"
+        ]
+      },
+      "vue": {
+        "url": "https://boldkit.dev/r/vue/sparkline.json",
+        "dependencies": [
+          "vue-echarts",
+          "echarts",
+          "class-variance-authority"
+        ],
+        "registryDependencies": [
+          "@boldkit/utils"
+        ],
+        "files": [
+          "components/ui/SparklineChart.vue"
+        ]
+      },
+      "frameworks": [
+        "react",
+        "vue"
+      ],
+      "docsUrl": "https://boldkit.dev/components/sparkline"
+    },
+    {
+      "name": "spinner",
+      "type": "registry:ui",
+      "description": "Loading spinner with multiple animation variants - dots, bars, blocks, and brutal shadow spin",
+      "react": {
+        "url": "https://boldkit.dev/r/spinner.json",
+        "dependencies": [
+          "class-variance-authority"
+        ],
+        "registryDependencies": [
+          "@boldkit/utils"
+        ],
+        "files": [
+          "registry/default/ui/spinner.tsx",
+          "registry/default/example/spinner-demo.tsx"
+        ]
+      },
+      "vue": {
+        "url": "https://boldkit.dev/r/vue/spinner.json",
+        "dependencies": [
+          "class-variance-authority"
+        ],
+        "registryDependencies": [
+          "@boldkit/utils"
+        ],
+        "files": [
+          "components/ui/Spinner.vue"
+        ]
+      },
+      "frameworks": [
+        "react",
+        "vue"
+      ],
+      "docsUrl": "https://boldkit.dev/components/spinner"
+    },
+    {
+      "name": "stat-card",
+      "type": "registry:ui",
+      "description": "Statistics card with trend indicators, icons, and optional progress bars",
+      "react": {
+        "url": "https://boldkit.dev/r/stat-card.json",
+        "dependencies": [
+          "class-variance-authority",
+          "lucide-react"
+        ],
+        "registryDependencies": [
+          "@boldkit/utils",
+          "@boldkit/card",
+          "@boldkit/progress"
+        ],
+        "files": [
+          "registry/default/ui/stat-card.tsx",
+          "registry/default/example/stat-card-demo.tsx"
+        ]
+      },
+      "vue": {
+        "url": "https://boldkit.dev/r/vue/stat-card.json",
+        "dependencies": [
+          "lucide-vue-next"
+        ],
+        "registryDependencies": [
+          "@boldkit/utils",
+          "@boldkit/card",
+          "@boldkit/progress"
+        ],
+        "files": [
+          "components/ui/StatCard.vue"
+        ]
+      },
+      "frameworks": [
+        "react",
+        "vue"
+      ],
+      "docsUrl": "https://boldkit.dev/components/stat-card"
+    },
+    {
+      "name": "stepper",
+      "type": "registry:ui",
+      "description": "Multi-step form wizard with progress indicators, compound components pattern",
+      "react": {
+        "url": "https://boldkit.dev/r/stepper.json",
+        "dependencies": [
+          "class-variance-authority",
+          "lucide-react"
+        ],
+        "registryDependencies": [
+          "@boldkit/utils"
+        ],
+        "files": [
+          "registry/default/ui/stepper.tsx",
+          "registry/default/example/stepper-demo.tsx"
+        ]
+      },
+      "vue": {
+        "url": "https://boldkit.dev/r/vue/stepper.json",
+        "dependencies": [
+          "class-variance-authority"
+        ],
+        "registryDependencies": [
+          "@boldkit/utils"
+        ],
+        "files": [
+          "components/ui/Stepper.vue",
+          "components/ui/StepperContent.vue",
+          "components/ui/StepperItem.vue",
+          "components/ui/StepperList.vue",
+          "components/ui/StepperSeparator.vue",
+          "components/ui/StepperTrigger.vue"
+        ]
+      },
+      "frameworks": [
+        "react",
+        "vue"
+      ],
+      "docsUrl": "https://boldkit.dev/components/stepper"
+    },
+    {
+      "name": "sticker",
+      "type": "registry:ui",
+      "description": "Rotated labels and stamps with tape effect and double borders - neubrutalist decorative elements",
+      "react": {
+        "url": "https://boldkit.dev/r/sticker.json",
+        "dependencies": [
+          "class-variance-authority"
+        ],
+        "registryDependencies": [
+          "@boldkit/utils"
+        ],
+        "files": [
+          "registry/default/ui/sticker.tsx",
+          "registry/default/example/sticker-demo.tsx"
+        ]
+      },
+      "vue": {
+        "url": "https://boldkit.dev/r/vue/sticker.json",
+        "dependencies": [
+          "class-variance-authority"
+        ],
+        "registryDependencies": [
+          "@boldkit/utils"
+        ],
+        "files": [
+          "components/ui/Sticker.vue",
+          "components/ui/sticker-variants.ts",
+          "components/ui/Stamp.vue",
+          "components/ui/StickyNote.vue"
+        ]
+      },
+      "frameworks": [
+        "react",
+        "vue"
+      ],
+      "docsUrl": "https://boldkit.dev/components/sticker"
+    },
+    {
+      "name": "styles",
+      "type": "registry:style",
+      "description": "BoldKit neubrutalism CSS variables and utilities",
+      "react": {
+        "url": "https://boldkit.dev/r/styles.json",
+        "dependencies": [],
+        "registryDependencies": [],
+        "files": [
+          "registry/default/styles/globals.css"
+        ]
+      },
+      "vue": {
+        "url": "https://boldkit.dev/r/vue/styles.json",
+        "dependencies": [],
+        "registryDependencies": [],
+        "files": [
+          "styles/globals.css"
+        ]
+      },
+      "frameworks": [
+        "react",
+        "vue"
+      ]
+    },
+    {
+      "name": "switch",
+      "type": "registry:ui",
+      "description": "A control that allows the user to toggle between on and off",
+      "react": {
+        "url": "https://boldkit.dev/r/switch.json",
+        "dependencies": [
+          "@radix-ui/react-switch"
+        ],
+        "registryDependencies": [
+          "@boldkit/utils",
+          "@boldkit/label"
+        ],
+        "files": [
+          "registry/default/ui/switch.tsx",
+          "registry/default/example/switch-demo.tsx"
+        ]
+      },
+      "vue": {
+        "url": "https://boldkit.dev/r/vue/switch.json",
+        "dependencies": [
+          "reka-ui"
+        ],
+        "registryDependencies": [
+          "@boldkit/utils"
+        ],
+        "files": [
+          "components/ui/Switch.vue"
+        ]
+      },
+      "frameworks": [
+        "react",
+        "vue"
+      ],
+      "docsUrl": "https://boldkit.dev/components/switch"
+    },
+    {
+      "name": "table",
+      "type": "registry:ui",
+      "description": "A responsive table component with neubrutalism styling",
+      "react": {
+        "url": "https://boldkit.dev/r/table.json",
+        "dependencies": [],
+        "registryDependencies": [
+          "@boldkit/utils"
+        ],
+        "files": [
+          "registry/default/ui/table.tsx",
+          "registry/default/example/table-demo.tsx"
+        ]
+      },
+      "vue": {
+        "url": "https://boldkit.dev/r/vue/table.json",
+        "dependencies": [],
+        "registryDependencies": [
+          "@boldkit/utils"
+        ],
+        "files": [
+          "components/ui/Table.vue",
+          "components/ui/TableHeader.vue",
+          "components/ui/TableBody.vue",
+          "components/ui/TableFooter.vue",
+          "components/ui/TableHead.vue",
+          "components/ui/TableRow.vue",
+          "components/ui/TableCell.vue",
+          "components/ui/TableCaption.vue"
+        ]
+      },
+      "frameworks": [
+        "react",
+        "vue"
+      ],
+      "docsUrl": "https://boldkit.dev/components/table"
+    },
+    {
+      "name": "tabs",
+      "type": "registry:ui",
+      "description": "A tabbed interface component with neubrutalism styling",
+      "react": {
+        "url": "https://boldkit.dev/r/tabs.json",
+        "dependencies": [
+          "@radix-ui/react-tabs"
+        ],
+        "registryDependencies": [
+          "@boldkit/utils"
+        ],
+        "files": [
+          "registry/default/ui/tabs.tsx",
+          "registry/default/example/tabs-demo.tsx"
+        ]
+      },
+      "vue": {
+        "url": "https://boldkit.dev/r/vue/tabs.json",
+        "dependencies": [
+          "reka-ui"
+        ],
+        "registryDependencies": [
+          "@boldkit/utils"
+        ],
+        "files": [
+          "components/ui/Tabs.vue",
+          "components/ui/TabsList.vue",
+          "components/ui/TabsTrigger.vue",
+          "components/ui/TabsContent.vue"
+        ]
+      },
+      "frameworks": [
+        "react",
+        "vue"
+      ],
+      "docsUrl": "https://boldkit.dev/components/tabs"
+    },
+    {
+      "name": "tag-input",
+      "type": "registry:ui",
+      "description": "Multi-tag input with suggestions, validation, and keyboard support",
+      "react": {
+        "url": "https://boldkit.dev/r/tag-input.json",
+        "dependencies": [
+          "lucide-react"
+        ],
+        "registryDependencies": [
+          "@boldkit/utils"
+        ],
+        "files": [
+          "registry/default/ui/tag-input.tsx",
+          "registry/default/example/tag-input-demo.tsx"
+        ]
+      },
+      "vue": {
+        "url": "https://boldkit.dev/r/vue/tag-input.json",
+        "dependencies": [
+          "lucide-vue-next"
+        ],
+        "registryDependencies": [
+          "@boldkit/utils"
+        ],
+        "files": [
+          "components/ui/TagInput.vue"
+        ]
+      },
+      "frameworks": [
+        "react",
+        "vue"
+      ],
+      "docsUrl": "https://boldkit.dev/components/tag-input"
+    },
+    {
+      "name": "textarea",
+      "type": "registry:ui",
+      "description": "Displays a form textarea with neubrutalism styling",
+      "react": {
+        "url": "https://boldkit.dev/r/textarea.json",
+        "dependencies": [],
+        "registryDependencies": [
+          "@boldkit/utils"
+        ],
+        "files": [
+          "registry/default/ui/textarea.tsx",
+          "registry/default/example/textarea-demo.tsx"
+        ]
+      },
+      "vue": {
+        "url": "https://boldkit.dev/r/vue/textarea.json",
+        "dependencies": [],
+        "registryDependencies": [
+          "@boldkit/utils"
+        ],
+        "files": [
+          "components/ui/Textarea.vue"
+        ]
+      },
+      "frameworks": [
+        "react",
+        "vue"
+      ],
+      "docsUrl": "https://boldkit.dev/components/textarea"
+    },
+    {
+      "name": "theme",
+      "type": "registry:theme",
+      "description": "BoldKit neubrutalism theme with bold colors and CSS variables",
+      "react": {
+        "url": "https://boldkit.dev/r/theme.json",
+        "dependencies": [],
+        "registryDependencies": [],
+        "files": []
+      },
+      "vue": {
+        "url": "https://boldkit.dev/r/vue/theme.json",
+        "dependencies": [],
+        "registryDependencies": [],
+        "files": []
+      },
+      "frameworks": [
+        "react",
+        "vue"
+      ]
+    },
+    {
+      "name": "time-picker",
+      "type": "registry:ui",
+      "description": "Popover-based time picker with 12h/24h format and scrollable columns",
+      "react": {
+        "url": "https://boldkit.dev/r/time-picker.json",
+        "dependencies": [
+          "lucide-react"
+        ],
+        "registryDependencies": [
+          "@boldkit/utils",
+          "@boldkit/button",
+          "@boldkit/popover",
+          "@boldkit/scroll-area"
+        ],
+        "files": [
+          "registry/default/ui/time-picker.tsx",
+          "registry/default/example/time-picker-demo.tsx"
+        ]
+      },
+      "vue": {
+        "url": "https://boldkit.dev/r/vue/time-picker.json",
+        "dependencies": [
+          "lucide-vue-next"
+        ],
+        "registryDependencies": [
+          "@boldkit/utils",
+          "@boldkit/button",
+          "@boldkit/popover",
+          "@boldkit/scroll-area"
+        ],
+        "files": [
+          "components/ui/TimePicker.vue"
+        ]
+      },
+      "frameworks": [
+        "react",
+        "vue"
+      ],
+      "docsUrl": "https://boldkit.dev/components/time-picker"
+    },
+    {
+      "name": "timeline",
+      "type": "registry:ui",
+      "description": "Composable timeline for activity feeds, order tracking, and version history",
+      "react": {
+        "url": "https://boldkit.dev/r/timeline.json",
+        "dependencies": [
+          "class-variance-authority"
+        ],
+        "registryDependencies": [
+          "@boldkit/utils"
+        ],
+        "files": [
+          "registry/default/ui/timeline.tsx",
+          "registry/default/example/timeline-demo.tsx"
+        ]
+      },
+      "vue": {
+        "url": "https://boldkit.dev/r/vue/timeline.json",
+        "dependencies": [
+          "class-variance-authority"
+        ],
+        "registryDependencies": [
+          "@boldkit/utils"
+        ],
+        "files": [
+          "components/ui/Timeline.vue",
+          "components/ui/TimelineCard.vue",
+          "components/ui/TimelineConnector.vue",
+          "components/ui/TimelineContent.vue",
+          "components/ui/TimelineDescription.vue",
+          "components/ui/TimelineDot.vue",
+          "components/ui/TimelineHeader.vue",
+          "components/ui/TimelineItem.vue",
+          "components/ui/TimelineTime.vue",
+          "components/ui/TimelineTitle.vue"
+        ]
+      },
+      "frameworks": [
+        "react",
+        "vue"
+      ],
+      "docsUrl": "https://boldkit.dev/components/timeline"
+    },
+    {
+      "name": "toggle",
+      "type": "registry:ui",
+      "description": "A two-state button that can be either on or off",
+      "react": {
+        "url": "https://boldkit.dev/r/toggle.json",
+        "dependencies": [
+          "@radix-ui/react-toggle",
+          "class-variance-authority"
+        ],
+        "registryDependencies": [
+          "@boldkit/utils"
+        ],
+        "files": [
+          "registry/default/ui/toggle.tsx",
+          "registry/default/example/toggle-demo.tsx"
+        ]
+      },
+      "vue": {
+        "url": "https://boldkit.dev/r/vue/toggle.json",
+        "dependencies": [
+          "reka-ui",
+          "class-variance-authority"
+        ],
+        "registryDependencies": [
+          "@boldkit/utils"
+        ],
+        "files": [
+          "components/ui/Toggle.vue",
+          "components/ui/toggle-variants.ts"
+        ]
+      },
+      "frameworks": [
+        "react",
+        "vue"
+      ],
+      "docsUrl": "https://boldkit.dev/components/toggle"
+    },
+    {
+      "name": "toggle-group",
+      "type": "registry:ui",
+      "description": "A group of toggle buttons where only one can be pressed at a time",
+      "react": {
+        "url": "https://boldkit.dev/r/toggle-group.json",
+        "dependencies": [
+          "@radix-ui/react-toggle-group"
+        ],
+        "registryDependencies": [
+          "@boldkit/utils",
+          "@boldkit/toggle"
+        ],
+        "files": [
+          "registry/default/ui/toggle-group.tsx",
+          "registry/default/example/toggle-group-demo.tsx"
+        ]
+      },
+      "vue": {
+        "url": "https://boldkit.dev/r/vue/toggle-group.json",
+        "dependencies": [
+          "reka-ui",
+          "class-variance-authority"
+        ],
+        "registryDependencies": [
+          "@boldkit/utils",
+          "@boldkit/toggle"
+        ],
+        "files": [
+          "components/ui/ToggleGroup.vue",
+          "components/ui/ToggleGroupItem.vue"
+        ]
+      },
+      "frameworks": [
+        "react",
+        "vue"
+      ],
+      "docsUrl": "https://boldkit.dev/components/toggle-group"
+    },
+    {
+      "name": "tooltip",
+      "type": "registry:ui",
+      "description": "A popup that displays information related to an element",
+      "react": {
+        "url": "https://boldkit.dev/r/tooltip.json",
+        "dependencies": [
+          "@radix-ui/react-tooltip"
+        ],
+        "registryDependencies": [
+          "@boldkit/utils"
+        ],
+        "files": [
+          "registry/default/ui/tooltip.tsx",
+          "registry/default/example/tooltip-demo.tsx"
+        ]
+      },
+      "vue": {
+        "url": "https://boldkit.dev/r/vue/tooltip.json",
+        "dependencies": [
+          "reka-ui"
+        ],
+        "registryDependencies": [
+          "@boldkit/utils"
+        ],
+        "files": [
+          "components/ui/Tooltip.vue",
+          "components/ui/TooltipTrigger.vue",
+          "components/ui/TooltipContent.vue",
+          "components/ui/TooltipProvider.vue"
+        ]
+      },
+      "frameworks": [
+        "react",
+        "vue"
+      ],
+      "docsUrl": "https://boldkit.dev/components/tooltip"
+    },
+    {
+      "name": "topography",
+      "type": "registry:ui",
+      "description": "Animated contour map — noise-driven elevation field with marching-squares isolines",
+      "react": {
+        "url": "https://boldkit.dev/r/topography.json",
+        "dependencies": [],
+        "registryDependencies": [],
+        "files": [
+          "registry/default/ui/canvas-effects/Topography.tsx"
+        ]
+      },
+      "vue": {
+        "url": "https://boldkit.dev/r/vue/topography.json",
+        "dependencies": [],
+        "registryDependencies": [],
+        "files": [
+          "components/ui/canvas-effects/Topography.vue"
+        ]
+      },
+      "frameworks": [
+        "react",
+        "vue"
+      ],
+      "docsUrl": "https://boldkit.dev/components/topography"
+    },
+    {
+      "name": "tour",
+      "type": "registry:ui",
+      "description": "Step-by-step product tour with spotlight highlighting and progress indicators",
+      "react": {
+        "url": "https://boldkit.dev/r/tour.json",
+        "dependencies": [
+          "lucide-react"
+        ],
+        "registryDependencies": [
+          "@boldkit/utils",
+          "@boldkit/button"
+        ],
+        "files": [
+          "registry/default/ui/tour.tsx",
+          "registry/default/example/tour-demo.tsx"
+        ]
+      },
+      "vue": {
+        "url": "https://boldkit.dev/r/vue/tour.json",
+        "dependencies": [
+          "lucide-vue-next"
+        ],
+        "registryDependencies": [
+          "@boldkit/utils",
+          "@boldkit/button"
+        ],
+        "files": [
+          "components/ui/Tour.vue"
+        ]
+      },
+      "frameworks": [
+        "react",
+        "vue"
+      ],
+      "docsUrl": "https://boldkit.dev/components/tour"
+    },
+    {
+      "name": "tree-view",
+      "type": "registry:ui",
+      "description": "Hierarchical tree view with expand/collapse, selection, and checkboxes",
+      "react": {
+        "url": "https://boldkit.dev/r/tree-view.json",
+        "dependencies": [
+          "@radix-ui/react-collapsible",
+          "lucide-react"
+        ],
+        "registryDependencies": [
+          "@boldkit/utils",
+          "@boldkit/checkbox",
+          "@boldkit/collapsible"
+        ],
+        "files": [
+          "registry/default/ui/tree-view.tsx",
+          "registry/default/example/tree-view-demo.tsx"
+        ]
+      },
+      "vue": {
+        "url": "https://boldkit.dev/r/vue/tree-view.json",
+        "dependencies": [
+          "reka-ui",
+          "lucide-vue-next"
+        ],
+        "registryDependencies": [
+          "@boldkit/utils",
+          "@boldkit/checkbox",
+          "@boldkit/collapsible"
+        ],
+        "files": [
+          "components/ui/TreeView.vue"
+        ]
+      },
+      "frameworks": [
+        "react",
+        "vue"
+      ],
+      "docsUrl": "https://boldkit.dev/components/tree-view"
+    },
+    {
+      "name": "treemap-chart",
+      "type": "registry:ui",
+      "description": "Treemap for hierarchical data visualization with proportional rectangles",
+      "react": {
+        "url": "https://boldkit.dev/r/treemap-chart.json",
+        "dependencies": [
+          "recharts"
+        ],
+        "registryDependencies": [
+          "@boldkit/utils",
+          "@boldkit/chart"
+        ],
+        "files": [
+          "registry/default/ui/treemap-chart.tsx",
+          "registry/default/example/treemap-chart-demo.tsx"
+        ]
+      },
+      "vue": {
+        "url": "https://boldkit.dev/r/vue/treemap-chart.json",
+        "dependencies": [
+          "vue-echarts",
+          "echarts"
+        ],
+        "registryDependencies": [
+          "@boldkit/utils",
+          "@boldkit/chart-utils"
+        ],
+        "files": [
+          "components/ui/TreemapChart.vue",
+          "components/ui/ChartEmpty.vue",
+          "components/ui/chart-types.ts"
+        ]
+      },
+      "frameworks": [
+        "react",
+        "vue"
+      ],
+      "docsUrl": "https://boldkit.dev/components/treemap-chart"
+    },
+    {
+      "name": "truchet",
+      "type": "registry:ui",
+      "description": "Flowing Truchet arc-tile maze — square tiles of quarter-arcs join into endless looping curves with a travelling dash",
+      "react": {
+        "url": "https://boldkit.dev/r/truchet.json",
+        "dependencies": [],
+        "registryDependencies": [],
+        "files": [
+          "registry/default/ui/canvas-effects/Truchet.tsx"
+        ]
+      },
+      "vue": {
+        "url": "https://boldkit.dev/r/vue/truchet.json",
+        "dependencies": [],
+        "registryDependencies": [],
+        "files": [
+          "components/ui/canvas-effects/Truchet.vue"
+        ]
+      },
+      "frameworks": [
+        "react",
+        "vue"
+      ],
+      "docsUrl": "https://boldkit.dev/components/truchet"
+    },
+    {
+      "name": "use-motion",
+      "type": "registry:ui",
+      "description": "Motion composables (useShake, useViewTransition) backing the <Motion> primitives. Reduced-motion aware.",
+      "vue": {
+        "url": "https://boldkit.dev/r/vue/use-motion.json",
+        "dependencies": [],
+        "registryDependencies": [
+          "@boldkit/utils",
+          "@boldkit/motion-core"
+        ],
+        "files": [
+          "composables/useMotion.ts"
+        ]
+      },
+      "frameworks": [
+        "vue"
+      ],
+      "docsUrl": "https://boldkit.dev/components/use-motion"
+    },
+    {
+      "name": "use-theme",
+      "type": "registry:hook",
+      "description": "Theme provider hook with light/dark/system support and localStorage persistence. Used by Sonner toast for theme-aware rendering.",
+      "react": {
+        "url": "https://boldkit.dev/r/use-theme.json",
+        "dependencies": [],
+        "registryDependencies": [],
+        "files": [
+          "registry/default/hooks/use-theme.tsx"
+        ]
+      },
+      "vue": {
+        "url": "https://boldkit.dev/r/vue/use-theme.json",
+        "dependencies": [],
+        "registryDependencies": [
+          "@boldkit/utils"
+        ],
+        "files": [
+          "composables/useTheme.ts"
+        ]
+      },
+      "frameworks": [
+        "react",
+        "vue"
+      ]
+    },
+    {
+      "name": "utils",
+      "type": "registry:lib",
+      "description": "Utility functions for className merging",
+      "react": {
+        "url": "https://boldkit.dev/r/utils.json",
+        "dependencies": [
+          "clsx",
+          "tailwind-merge"
+        ],
+        "registryDependencies": [],
+        "files": [
+          "registry/default/lib/utils.ts"
+        ]
+      },
+      "vue": {
+        "url": "https://boldkit.dev/r/vue/utils.json",
+        "dependencies": [
+          "clsx",
+          "tailwind-merge"
+        ],
+        "registryDependencies": [],
+        "files": [
+          "lib/utils.ts"
+        ]
+      },
+      "frameworks": [
+        "react",
+        "vue"
+      ]
+    },
+    {
+      "name": "voronoi-pulse",
+      "type": "registry:ui",
+      "description": "Animated Voronoi tessellation — drifting seed points with pulsing cell fills and bright edges",
+      "react": {
+        "url": "https://boldkit.dev/r/voronoi-pulse.json",
+        "dependencies": [],
+        "registryDependencies": [],
+        "files": [
+          "registry/default/ui/canvas-effects/VoronoiPulse.tsx"
+        ]
+      },
+      "vue": {
+        "url": "https://boldkit.dev/r/vue/voronoi-pulse.json",
+        "dependencies": [],
+        "registryDependencies": [],
+        "files": [
+          "components/ui/canvas-effects/VoronoiPulse.vue"
+        ]
+      },
+      "frameworks": [
+        "react",
+        "vue"
+      ],
+      "docsUrl": "https://boldkit.dev/components/voronoi-pulse"
+    },
+    {
+      "name": "warp-speed",
+      "type": "registry:ui",
+      "description": "Hyperspace star tunnel — stars accelerate outward with perspective scaling and motion-blur streaks",
+      "react": {
+        "url": "https://boldkit.dev/r/warp-speed.json",
+        "dependencies": [],
+        "registryDependencies": [],
+        "files": [
+          "registry/default/ui/canvas-effects/WarpSpeed.tsx"
+        ]
+      },
+      "vue": {
+        "url": "https://boldkit.dev/r/vue/warp-speed.json",
+        "dependencies": [],
+        "registryDependencies": [],
+        "files": [
+          "components/ui/canvas-effects/WarpSpeed.vue"
+        ]
+      },
+      "frameworks": [
+        "react",
+        "vue"
+      ],
+      "docsUrl": "https://boldkit.dev/components/warp-speed"
+    }
+  ]
+}

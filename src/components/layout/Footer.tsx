@@ -9,6 +9,7 @@ const MONO: React.CSSProperties = { fontFamily: "'DM Mono', monospace" }
 
 const exploreLinks = [
   { label: 'Documentation', href: '/docs' },
+  { label: 'MCP Server & CLI', href: '/docs/mcp' },
   { label: 'Components', href: '/components' },
   { label: 'Shapes', href: '/shapes' },
   { label: 'ASCII Shapes', href: '/ascii-shapes' },

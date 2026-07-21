@@ -46,6 +46,13 @@ export const PAGE_META: Record<string, RouteMeta> = {
     canonical: `${SITE_URL}/docs/installation`,
     h1: 'Installation Guide',
   },
+  '/docs/mcp': {
+    title: 'MCP Server & CLI | BoldKit',
+    description:
+      'Install BoldKit neubrutalism components with AI agents via the @boldkit/mcp MCP server, or from the terminal with npx boldkit add. Supports React and Vue 3.',
+    canonical: `${SITE_URL}/docs/mcp`,
+    h1: 'MCP Server & CLI',
+  },
   '/docs/theming': {
     title: 'Theming | BoldKit',
     description:
@@ -83,6 +90,12 @@ export const PAGE_META: Record<string, RouteMeta> = {
     description: `${COUNTS.charts} neubrutalism chart types for React & Vue 3 — bar, line, area, pie, donut, radar, gauge, sparkline, funnel, treemap, heatmap, sankey.`,
     canonical: `${SITE_URL}/charts`,
     h1: `${COUNTS.charts} Neubrutalism Chart Types`,
+  },
+  '/accessibility': {
+    title: 'Accessibility - WCAG AA Component Matrix | BoldKit',
+    description: 'WCAG AA accessibility matrix for BoldKit neubrutalism components. Per-component axe-core results generated from the CI test suite, for React and Vue 3.',
+    canonical: `${SITE_URL}/accessibility`,
+    h1: 'WCAG AA Matrix',
   },
   '/themes': {
     title: 'Theme Builder | BoldKit',
@@ -406,6 +419,7 @@ export function getAllRoutes(): SitemapRoute[] {
     '/': { priority: 1.0, changefreq: 'weekly' },
     '/docs': { priority: 0.9, changefreq: 'weekly' },
     '/docs/installation': { priority: 0.9, changefreq: 'monthly' },
+    '/docs/mcp': { priority: 0.8, changefreq: 'monthly' },
     '/docs/theming': { priority: 0.7, changefreq: 'monthly' },
     '/components': { priority: 0.9, changefreq: 'monthly' },
     '/shapes': { priority: 0.9, changefreq: 'monthly' },
@@ -413,6 +427,7 @@ export function getAllRoutes(): SitemapRoute[] {
     '/ascii-shapes': { priority: 0.8, changefreq: 'monthly' },
     '/charts': { priority: 0.9, changefreq: 'monthly' },
     '/themes': { priority: 0.8, changefreq: 'monthly' },
+    '/accessibility': { priority: 0.7, changefreq: 'monthly' },
     '/templates': { priority: 0.9, changefreq: 'monthly' },
     '/blocks': { priority: 0.9, changefreq: 'monthly' },
     '/studio': { priority: 0.9, changefreq: 'monthly' },

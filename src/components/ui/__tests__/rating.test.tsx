@@ -2,11 +2,26 @@ import { describe, it, expect, vi } from 'vitest'
 import { render, screen, fireEvent } from '@/test/test-utils'
 import { Rating } from '../rating'
 
+// Rating is a role="group" of toggle buttons with a roving tabindex (not
+// role="slider" — nesting focusable buttons inside a focusable slider is an
+// axe nested-interactive violation). Value is exposed via the group label and
+// aria-pressed; arrow-key handling lives on the group and receives bubbled
+// keydowns from the focused star.
+
+/** The star that currently holds the roving tabindex. */
+function focusableStar() {
+  const button = screen
+    .getAllByRole('button')
+    .find((b) => b.getAttribute('tabindex') === '0')
+  expect(button).toBeDefined()
+  return button!
+}
+
 describe('Rating', () => {
   describe('Rendering', () => {
     it('renders with default props', () => {
       render(<Rating />)
-      expect(screen.getByRole('slider')).toBeInTheDocument()
+      expect(screen.getByRole('group')).toBeInTheDocument()
     })
 
     it('renders 5 stars by default', () => {
@@ -23,7 +38,7 @@ describe('Rating', () => {
 
     it('renders with custom className', () => {
       render(<Rating className="custom-rating" />)
-      const container = screen.getByRole('slider')
+      const container = screen.getByRole('group')
       expect(container).toHaveClass('custom-rating')
     })
   })
@@ -31,14 +46,14 @@ describe('Rating', () => {
   describe('Value Management', () => {
     it('uses defaultValue when uncontrolled', () => {
       render(<Rating defaultValue={3} />)
-      const slider = screen.getByRole('slider')
-      expect(slider).toHaveAttribute('aria-valuenow', '3')
+      const group = screen.getByRole('group')
+      expect(group).toHaveAttribute('aria-label', 'Rating: 3 out of 5 stars')
     })
 
     it('uses controlled value when provided', () => {
       render(<Rating value={4} />)
-      const slider = screen.getByRole('slider')
-      expect(slider).toHaveAttribute('aria-valuenow', '4')
+      const group = screen.getByRole('group')
+      expect(group).toHaveAttribute('aria-label', 'Rating: 4 out of 5 stars')
     })
 
     it('calls onChange when value changes', async () => {
@@ -57,8 +72,8 @@ describe('Rating', () => {
       const buttons = screen.getAllByRole('button')
       await user.click(buttons[3])
 
-      const slider = screen.getByRole('slider')
-      expect(slider).toHaveAttribute('aria-valuenow', '4')
+      const group = screen.getByRole('group')
+      expect(group).toHaveAttribute('aria-label', 'Rating: 4 out of 5 stars')
     })
   })
 
@@ -77,8 +92,8 @@ describe('Rating', () => {
       const handleHover = vi.fn()
       render(<Rating onHoverChange={handleHover} />)
 
-      const slider = screen.getByRole('slider')
-      fireEvent.mouseLeave(slider)
+      const group = screen.getByRole('group')
+      fireEvent.mouseLeave(group)
 
       expect(handleHover).toHaveBeenCalledWith(null)
     })
@@ -89,8 +104,7 @@ describe('Rating', () => {
       const handleChange = vi.fn()
       const { user } = render(<Rating defaultValue={3} onChange={handleChange} />)
 
-      const slider = screen.getByRole('slider')
-      slider.focus()
+      focusableStar().focus()
       await user.keyboard('{ArrowRight}')
 
       expect(handleChange).toHaveBeenCalledWith(4)
@@ -100,8 +114,7 @@ describe('Rating', () => {
       const handleChange = vi.fn()
       const { user } = render(<Rating defaultValue={3} onChange={handleChange} />)
 
-      const slider = screen.getByRole('slider')
-      slider.focus()
+      focusableStar().focus()
       await user.keyboard('{ArrowLeft}')
 
       expect(handleChange).toHaveBeenCalledWith(2)
@@ -111,8 +124,7 @@ describe('Rating', () => {
       const handleChange = vi.fn()
       const { user } = render(<Rating defaultValue={3} onChange={handleChange} />)
 
-      const slider = screen.getByRole('slider')
-      slider.focus()
+      focusableStar().focus()
       await user.keyboard('{ArrowUp}')
 
       expect(handleChange).toHaveBeenCalledWith(4)
@@ -122,8 +134,7 @@ describe('Rating', () => {
       const handleChange = vi.fn()
       const { user } = render(<Rating defaultValue={3} onChange={handleChange} />)
 
-      const slider = screen.getByRole('slider')
-      slider.focus()
+      focusableStar().focus()
       await user.keyboard('{ArrowDown}')
 
       expect(handleChange).toHaveBeenCalledWith(2)
@@ -133,8 +144,7 @@ describe('Rating', () => {
       const handleChange = vi.fn()
       const { user } = render(<Rating defaultValue={3} onChange={handleChange} />)
 
-      const slider = screen.getByRole('slider')
-      slider.focus()
+      focusableStar().focus()
       await user.keyboard('{Home}')
 
       expect(handleChange).toHaveBeenCalledWith(0)
@@ -144,8 +154,7 @@ describe('Rating', () => {
       const handleChange = vi.fn()
       const { user } = render(<Rating defaultValue={3} max={5} onChange={handleChange} />)
 
-      const slider = screen.getByRole('slider')
-      slider.focus()
+      focusableStar().focus()
       await user.keyboard('{End}')
 
       expect(handleChange).toHaveBeenCalledWith(5)
@@ -155,8 +164,7 @@ describe('Rating', () => {
       const handleChange = vi.fn()
       const { user } = render(<Rating defaultValue={0} onChange={handleChange} />)
 
-      const slider = screen.getByRole('slider')
-      slider.focus()
+      focusableStar().focus()
       await user.keyboard('{ArrowLeft}')
 
       expect(handleChange).toHaveBeenCalledWith(0)
@@ -166,8 +174,7 @@ describe('Rating', () => {
       const handleChange = vi.fn()
       const { user } = render(<Rating defaultValue={5} max={5} onChange={handleChange} />)
 
-      const slider = screen.getByRole('slider')
-      slider.focus()
+      focusableStar().focus()
       await user.keyboard('{ArrowRight}')
 
       expect(handleChange).toHaveBeenCalledWith(5)
@@ -193,8 +200,7 @@ describe('Rating', () => {
         <Rating defaultValue={3} precision={0.5} onChange={handleChange} />
       )
 
-      const slider = screen.getByRole('slider')
-      slider.focus()
+      focusableStar().focus()
       await user.keyboard('{ArrowRight}')
 
       expect(handleChange).toHaveBeenCalledWith(3.5)
@@ -205,47 +211,47 @@ describe('Rating', () => {
     it('renders star icons by default', () => {
       render(<Rating />)
       // Stars should be rendered as SVG elements
-      const slider = screen.getByRole('slider')
-      const svgs = slider.querySelectorAll('svg')
+      const group = screen.getByRole('group')
+      const svgs = group.querySelectorAll('svg')
       expect(svgs.length).toBeGreaterThan(0)
     })
 
     it('accepts heart icon type', () => {
       render(<Rating icon="heart" />)
-      const slider = screen.getByRole('slider')
-      expect(slider).toBeInTheDocument()
+      const group = screen.getByRole('group')
+      expect(group).toBeInTheDocument()
     })
 
     it('accepts circle icon type', () => {
       render(<Rating icon="circle" />)
-      const slider = screen.getByRole('slider')
-      expect(slider).toBeInTheDocument()
+      const group = screen.getByRole('group')
+      expect(group).toBeInTheDocument()
     })
   })
 
   describe('Size Variants', () => {
     it('applies small size class', () => {
       render(<Rating size="sm" />)
-      const slider = screen.getByRole('slider')
-      expect(slider).toHaveClass('[&_svg]:h-4')
+      const group = screen.getByRole('group')
+      expect(group).toHaveClass('[&_svg]:h-4')
     })
 
     it('applies medium size class by default', () => {
       render(<Rating />)
-      const slider = screen.getByRole('slider')
-      expect(slider).toHaveClass('[&_svg]:h-5')
+      const group = screen.getByRole('group')
+      expect(group).toHaveClass('[&_svg]:h-5')
     })
 
     it('applies large size class', () => {
       render(<Rating size="lg" />)
-      const slider = screen.getByRole('slider')
-      expect(slider).toHaveClass('[&_svg]:h-6')
+      const group = screen.getByRole('group')
+      expect(group).toHaveClass('[&_svg]:h-6')
     })
 
     it('applies extra-large size class', () => {
       render(<Rating size="xl" />)
-      const slider = screen.getByRole('slider')
-      expect(slider).toHaveClass('[&_svg]:h-8')
+      const group = screen.getByRole('group')
+      expect(group).toHaveClass('[&_svg]:h-8')
     })
   })
 
@@ -260,18 +266,19 @@ describe('Rating', () => {
       expect(handleChange).not.toHaveBeenCalled()
     })
 
-    it('has tabIndex -1 when readOnly', () => {
+    it('removes stars from the tab order when readOnly', () => {
       render(<Rating readOnly />)
-      const slider = screen.getByRole('slider')
-      expect(slider).toHaveAttribute('tabindex', '-1')
+      const buttons = screen.getAllByRole('button')
+      buttons.forEach((button) => {
+        expect(button).toHaveAttribute('tabindex', '-1')
+      })
     })
 
     it('does not respond to keyboard when readOnly', async () => {
       const handleChange = vi.fn()
       const { user } = render(<Rating readOnly defaultValue={3} onChange={handleChange} />)
 
-      const slider = screen.getByRole('slider')
-      slider.focus()
+      screen.getAllByRole('button')[0].focus()
       await user.keyboard('{ArrowRight}')
 
       expect(handleChange).not.toHaveBeenCalled()
@@ -281,9 +288,9 @@ describe('Rating', () => {
   describe('Disabled State', () => {
     it('applies disabled styles', () => {
       render(<Rating disabled />)
-      const slider = screen.getByRole('slider')
-      expect(slider).toHaveClass('opacity-50')
-      expect(slider).toHaveClass('pointer-events-none')
+      const group = screen.getByRole('group')
+      expect(group).toHaveClass('opacity-50')
+      expect(group).toHaveClass('pointer-events-none')
     })
 
     it('is not interactive when disabled', async () => {
@@ -296,10 +303,12 @@ describe('Rating', () => {
       expect(handleChange).not.toHaveBeenCalled()
     })
 
-    it('has tabIndex -1 when disabled', () => {
+    it('removes stars from the tab order when disabled', () => {
       render(<Rating disabled />)
-      const slider = screen.getByRole('slider')
-      expect(slider).toHaveAttribute('tabindex', '-1')
+      const buttons = screen.getAllByRole('button')
+      buttons.forEach((button) => {
+        expect(button).toHaveAttribute('tabindex', '-1')
+      })
     })
 
     it('buttons are disabled', () => {
@@ -314,49 +323,42 @@ describe('Rating', () => {
   describe('Accessibility', () => {
     it('has correct role', () => {
       render(<Rating />)
-      expect(screen.getByRole('slider')).toBeInTheDocument()
+      expect(screen.getByRole('group')).toBeInTheDocument()
     })
 
-    it('has correct aria-valuemin', () => {
-      render(<Rating />)
-      const slider = screen.getByRole('slider')
-      expect(slider).toHaveAttribute('aria-valuemin', '0')
-    })
-
-    it('has correct aria-valuemax', () => {
-      render(<Rating max={5} />)
-      const slider = screen.getByRole('slider')
-      expect(slider).toHaveAttribute('aria-valuemax', '5')
-    })
-
-    it('has correct aria-valuenow', () => {
-      render(<Rating value={3} />)
-      const slider = screen.getByRole('slider')
-      expect(slider).toHaveAttribute('aria-valuenow', '3')
-    })
-
-    it('has aria-label', () => {
-      render(<Rating />)
-      const slider = screen.getByRole('slider')
-      expect(slider).toHaveAttribute('aria-label', 'Rating')
-    })
-
-    it('has aria-valuetext for screen readers', () => {
+    it('announces the current value in the group label', () => {
       render(<Rating value={3} max={5} icon="star" />)
-      const slider = screen.getByRole('slider')
-      expect(slider).toHaveAttribute('aria-valuetext', '3 out of 5 stars')
+      const group = screen.getByRole('group')
+      expect(group).toHaveAttribute('aria-label', 'Rating: 3 out of 5 stars')
     })
 
-    it('has aria-valuetext for heart icon', () => {
+    it('announces hearts in the group label', () => {
       render(<Rating value={2} max={5} icon="heart" />)
-      const slider = screen.getByRole('slider')
-      expect(slider).toHaveAttribute('aria-valuetext', '2 out of 5 hearts')
+      const group = screen.getByRole('group')
+      expect(group).toHaveAttribute('aria-label', 'Rating: 2 out of 5 hearts')
     })
 
-    it('is focusable when not disabled or readOnly', () => {
+    it('reflects the value with aria-pressed on stars', () => {
+      render(<Rating value={3} />)
+      const pressed = screen
+        .getAllByRole('button')
+        .filter((b) => b.getAttribute('aria-pressed') === 'true')
+      expect(pressed).toHaveLength(3)
+    })
+
+    it('does not nest interactive elements (no slider wrapper)', () => {
       render(<Rating />)
-      const slider = screen.getByRole('slider')
-      expect(slider).toHaveAttribute('tabindex', '0')
+      expect(screen.queryByRole('slider')).not.toBeInTheDocument()
+      expect(screen.getByRole('group')).not.toHaveAttribute('tabindex')
+    })
+
+    it('exactly one star holds the roving tabindex when interactive', () => {
+      render(<Rating defaultValue={3} />)
+      const focusable = screen
+        .getAllByRole('button')
+        .filter((b) => b.getAttribute('tabindex') === '0')
+      expect(focusable).toHaveLength(1)
+      expect(focusable[0]).toHaveAttribute('aria-label', '3 stars')
     })
   })
 

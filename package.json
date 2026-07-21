@@ -1,9 +1,12 @@
 {
   "workspaces": [
-    "packages/vue"
+    "packages/vue",
+    "packages/mcp",
+    "packages/cli"
   ],
-  "name": "boldkit",
-  "version": "3.4.7",
+  "name": "boldkit-site",
+  "private": true,
+  "version": "3.4.8",
   "description": "A neubrutalism UI component library for React and Vue 3 - Bold, raw, beautiful.",
   "author": "BoldKit Team",
   "license": "MIT",
@@ -40,7 +43,7 @@
     "typecheck": "tsc --noEmit",
     "registry:sync": "node scripts/sync-registry-from-src.js",
     "registry:audit": "node scripts/audit-registry-imports.mjs",
-    "registry:build": "npm run registry:sync && shadcn build && npm run registry:build:vue && node scripts/build-canvas-effects-registry.js && node scripts/build-registry.js",
+    "registry:build": "npm run registry:sync && shadcn build && npm run registry:build:vue && node scripts/build-canvas-effects-registry.js && node scripts/build-registry.js && node scripts/build-mcp-catalog.js",
     "registry:build:vue": "cd packages/vue && node scripts/build-registry.js",
     "test": "vitest",
     "test:run": "vitest run",
@@ -101,6 +104,7 @@
   },
   "devDependencies": {
     "@eslint/js": "^9.39.5",
+    "@lobehub/icons-static-svg": "^1.94.0",
     "@testing-library/jest-dom": "^6.9.1",
     "@testing-library/react": "^16.3.2",
     "@testing-library/user-event": "^14.6.1",

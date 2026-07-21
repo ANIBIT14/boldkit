@@ -1,0 +1,47 @@
+{
+  "name": "boldkit",
+  "version": "0.1.4",
+  "description": "BoldKit CLI - install neubrutalism UI components for React and Vue. `npx boldkit add button`.",
+  "author": "BoldKit Team",
+  "license": "MIT",
+  "homepage": "https://boldkit.dev",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ANIBIT14/boldkit.git",
+    "directory": "packages/cli"
+  },
+  "keywords": [
+    "boldkit",
+    "cli",
+    "neubrutalism",
+    "shadcn",
+    "shadcn-vue",
+    "ui",
+    "components"
+  ],
+  "type": "module",
+  "bin": {
+    "boldkit": "dist/bin.js"
+  },
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "test": "vitest run",
+    "prepack": "tsc -p tsconfig.json"
+  },
+  "dependencies": {
+    "@boldkit/mcp": "workspace:*"
+  },
+  "devDependencies": {
+    "@types/node": "^25.9.5",
+    "typescript": "~5.9.3",
+    "vitest": "^4.1.10"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

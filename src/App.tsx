@@ -12,6 +12,7 @@ import '@/styles/globals.css'
 
 const Home = lazy(() => import('@/pages/Home').then(m => ({ default: m.Home })))
 const ThemeBuilder = lazy(() => import('@/pages/ThemeBuilder').then(m => ({ default: m.ThemeBuilder })))
+const Accessibility = lazy(() => import('@/pages/Accessibility').then(m => ({ default: m.Accessibility })))
 const Charts = lazy(() => import('@/pages/Charts').then(m => ({ default: m.Charts })))
 const Shapes = lazy(() => import('@/pages/Shapes').then(m => ({ default: m.Shapes })))
 const Templates = lazy(() => import('@/pages/Templates').then(m => ({ default: m.Templates })))
@@ -43,6 +44,7 @@ const DocsTemplate = lazy(() => import('@/components/templates/DocsTemplate').th
 const ComponentsIndex = lazy(() => import('@/pages/docs/ComponentsIndex').then(m => ({ default: m.ComponentsIndex })))
 const Introduction = lazy(() => import('@/pages/docs/Introduction').then(m => ({ default: m.Introduction })))
 const Installation = lazy(() => import('@/pages/docs/Installation').then(m => ({ default: m.Installation })))
+const McpCli = lazy(() => import('@/pages/docs/McpCli').then(m => ({ default: m.McpCli })))
 
 // PageLoader — only shown when a lazy chunk takes longer than 200 ms to fetch.
 // On warm cache (all subsequent navigations) this never renders at all.
@@ -94,6 +96,7 @@ function App() {
           <Routes>
             <Route path="/" element={page(<Home />)} />
             <Route path="/themes" element={page(<ThemeBuilder />)} />
+            <Route path="/accessibility" element={page(<Accessibility />)} />
             <Route path="/charts" element={page(<Charts />)} />
             <Route path="/shapes" element={page(<Shapes />)} />
             <Route path="/shapes/builder" element={page(<ShapeBuilder />)} />
@@ -127,6 +130,7 @@ function App() {
             <Route path="/docs" element={<DocsLayout />}>
               <Route index element={page(<Introduction />)} />
               <Route path="installation" element={page(<Installation />)} />
+              <Route path="mcp" element={page(<McpCli />)} />
               <Route path="theming" element={page(<ThemeBuilder embedded />)} />
               <Route path="*" element={<Navigate to="/docs" replace />} />
             </Route>

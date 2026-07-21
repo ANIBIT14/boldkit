@@ -8,7 +8,7 @@
 
 A neubrutalism component library for React and Vue 3, built on shadcn/ui.
 
-[![Version](https://img.shields.io/badge/version-3.4.7-black)](https://github.com/ANIBIT14/boldkit/releases/tag/v3.4.7)
+[![Version](https://img.shields.io/badge/version-3.4.8-black)](https://github.com/ANIBIT14/boldkit/releases/tag/v3.4.8)
 [![MIT License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 [![React](https://img.shields.io/badge/React-19-61DAFB?logo=react)](https://react.dev)
 [![Vue](https://img.shields.io/badge/Vue-3-4FC08D?logo=vuedotjs)](https://vuejs.org)
@@ -115,6 +115,21 @@ Neubrutalism (or neo-brutalism) is a bold design aesthetic characterized by:
 | **Dark Mode** | Full light/dark theme support |
 | **TypeScript** | Complete type safety |
 | **Tailwind v4** | Modern CSS with latest Tailwind |
+
+## MCP Server & CLI
+
+Install components from an AI agent or the terminal — both auto-detect React vs Vue:
+
+```bash
+# MCP (Claude Code, Cursor, VS Code, Windsurf, Codex, Gemini CLI, ...)
+claude mcp add boldkit -- npx -y @boldkit/mcp
+
+# CLI
+npx boldkit add button card dialog
+npx boldkit search "toast"
+```
+
+Full per-client setup: [boldkit.dev/docs/mcp](https://boldkit.dev/docs/mcp)
 
 ## Quick Start
 

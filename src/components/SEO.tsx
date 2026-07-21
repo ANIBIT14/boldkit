@@ -196,6 +196,16 @@ export const pageSEO = {
       { name: 'Installation' },
     ],
   },
+  mcp: {
+    title: 'MCP Server & CLI',
+    description: 'Install BoldKit neubrutalism components with AI agents via the @boldkit/mcp MCP server, or from the terminal with npx boldkit add. Supports React and Vue 3.',
+    canonical: `${SITE_URL}/docs/mcp`,
+    breadcrumbs: [
+      { name: 'Home', url: `${SITE_URL}/` },
+      { name: 'Documentation', url: `${SITE_URL}/docs` },
+      { name: 'MCP Server & CLI' },
+    ],
+  },
   asciiShapes: {
     title: 'ASCII Shape Animations',
     description: 'Animated ASCII art components for React and Vue 3. 7 animations with 5 character sets and 4 sizes — SSR-safe.',

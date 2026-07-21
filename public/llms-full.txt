@@ -1108,7 +1108,7 @@ MIT License — Free for personal and commercial use.
 
 ---
 
-## Complete Page Index (123 pages)
+## Complete Page Index (125 pages)
 
 Every indexable page on boldkit.dev with its meta title and description.
 
@@ -1123,6 +1123,10 @@ Install and use BoldKit neubrutalism components in your React or Vue 3 project. 
 ### Installation
 https://boldkit.dev/docs/installation
 Install BoldKit neubrutalism components via shadcn CLI for React or shadcn-vue for Vue 3. Step-by-step setup for TypeScript and Tailwind CSS.
+
+### MCP Server & CLI
+https://boldkit.dev/docs/mcp
+Install BoldKit neubrutalism components with AI agents via the @boldkit/mcp MCP server, or from the terminal with npx boldkit add. Supports React and Vue 3.
 
 ### Theming
 https://boldkit.dev/docs/theming
@@ -1151,6 +1155,10 @@ https://boldkit.dev/charts
 ### Theme Builder
 https://boldkit.dev/themes
 Customize BoldKit neubrutalism theme colors for React and Vue 3. Generate CSS variables for your design system with live preview.
+
+### Accessibility - WCAG AA Component Matrix
+https://boldkit.dev/accessibility
+WCAG AA accessibility matrix for BoldKit neubrutalism components. Per-component axe-core results generated from the CI test suite, for React and Vue 3.
 
 ### Free Page Templates
 https://boldkit.dev/templates

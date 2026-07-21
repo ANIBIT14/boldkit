@@ -134,6 +134,7 @@ const pages = [
   { name: 'Dot Matrix Studio', path: '/studio', icon: Cpu },
   { name: 'Theme Builder', path: '/themes', icon: Palette },
   { name: 'Templates', path: '/templates', icon: Layout },
+  { name: 'Accessibility Matrix', path: '/accessibility', icon: FileText },
 ]
 
 const canvasEffects = [
