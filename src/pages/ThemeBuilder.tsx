@@ -187,6 +187,19 @@ interface ThemeBuilderProps {
 export function ThemeBuilder({ embedded = false }: ThemeBuilderProps) {
   const [copied, setCopied] = useState(false)
   const [colors, setColors] = useState(loadSavedColors)
+  // Track the active color scheme so the live-preview overrides push the
+  // matching (light vs dark) neutral values — otherwise the inline light
+  // values would override the .dark class and break dark mode on this page.
+  const [isDark, setIsDark] = useState(
+    () => typeof document !== 'undefined' && document.documentElement.classList.contains('dark')
+  )
+  useEffect(() => {
+    const observer = new MutationObserver(() =>
+      setIsDark(document.documentElement.classList.contains('dark'))
+    )
+    observer.observe(document.documentElement, { attributes: true, attributeFilter: ['class'] })
+    return () => observer.disconnect()
+  }, [])
 
   // Save colors to localStorage whenever they change
   useEffect(() => {
@@ -197,21 +210,28 @@ export function ThemeBuilder({ embedded = false }: ThemeBuilderProps) {
   useEffect(() => {
     const lightFg = '0 0% 100%'
     const darkFg = '240 10% 10%'
+    const root = document.documentElement.style
+    // Push the color set that matches the active scheme so inline overrides
+    // never fight the .dark class.
+    const primary = isDark ? colors.darkPrimary : colors.primary
+    const secondary = isDark ? colors.darkSecondary : colors.secondary
+    const accent = isDark ? colors.darkAccent : colors.accent
 
-    document.documentElement.style.setProperty('--primary', colors.primary)
-    document.documentElement.style.setProperty('--primary-foreground', getContrastForeground(colors.primary, lightFg, darkFg))
-    document.documentElement.style.setProperty('--secondary', colors.secondary)
-    document.documentElement.style.setProperty('--secondary-foreground', getContrastForeground(colors.secondary, lightFg, darkFg))
-    document.documentElement.style.setProperty('--accent', colors.accent)
-    document.documentElement.style.setProperty('--accent-foreground', getContrastForeground(colors.accent, lightFg, darkFg))
-    // Neutral palette — lets presets preview their tinted background/muted.
-    document.documentElement.style.setProperty('--background', colors.background)
-    document.documentElement.style.setProperty('--foreground', colors.foreground)
-    document.documentElement.style.setProperty('--muted', colors.muted)
-    document.documentElement.style.setProperty('--muted-foreground', colors.mutedForeground)
-    document.documentElement.style.setProperty('--shadow-offset', `${colors.shadowOffset}px`)
-    document.documentElement.style.setProperty('--border-width', `${colors.borderWidth}px`)
-  }, [colors])
+    root.setProperty('--primary', primary)
+    root.setProperty('--primary-foreground', getContrastForeground(primary, lightFg, darkFg))
+    root.setProperty('--secondary', secondary)
+    root.setProperty('--secondary-foreground', getContrastForeground(secondary, lightFg, darkFg))
+    root.setProperty('--accent', accent)
+    root.setProperty('--accent-foreground', getContrastForeground(accent, lightFg, darkFg))
+    // Neutral palette — mode-matched so presets preview their tinted surfaces
+    // without overriding dark mode.
+    root.setProperty('--background', isDark ? colors.darkBackground : colors.background)
+    root.setProperty('--foreground', isDark ? colors.darkForeground : colors.foreground)
+    root.setProperty('--muted', isDark ? colors.darkMuted : colors.muted)
+    root.setProperty('--muted-foreground', isDark ? colors.darkMutedForeground : colors.mutedForeground)
+    root.setProperty('--shadow-offset', `${colors.shadowOffset}px`)
+    root.setProperty('--border-width', `${colors.borderWidth}px`)
+  }, [colors, isDark])
 
   // Remove the live-preview overrides when leaving the builder so the chosen
   // colors / offsets don't bleed onto every other route for the session.
