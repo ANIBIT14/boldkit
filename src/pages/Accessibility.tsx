@@ -1,6 +1,7 @@
 import { SITE_URL } from '@/config/routes-meta'
 import { SeoArticleLayout, Section, Callout, DataGrid } from '@/components/seo/SeoArticleLayout'
 import report from '@/config/a11y-report.json'
+import vueReport from '@/config/a11y-report-vue.json'
 import contrastReport from '@/config/contrast-report.json'
 import catalog from '../../packages/mcp/catalog.json'
 
@@ -33,13 +34,17 @@ const FAQ = [
 
 type ReportEntry = (typeof report.components)[number]
 const bySlug = new Map<string, ReportEntry>(report.components.map((c) => [c.slug, c]))
+const vueBySlug = new Map<string, ReportEntry>(
+  vueReport.components.map((c) => [c.slug, c as ReportEntry])
+)
 
 const components = catalog.items
   .filter((item) => item.type === 'registry:ui')
-  .map((item) => ({ ...item, result: bySlug.get(item.name) }))
+  .map((item) => ({ ...item, result: bySlug.get(item.name), vueResult: vueBySlug.get(item.name) }))
 
 const tested = components.filter((c) => c.result)
 const passing = tested.filter((c) => c.result!.status === 'pass')
+const vueTested = components.filter((c) => c.vueResult).length
 
 function StatusBadge({ entry }: { entry?: ReportEntry }) {
   if (!entry) {
@@ -98,24 +103,29 @@ export function Accessibility() {
 
       <Section id="matrix" title="Component matrix">
         <p>
-          React results come from the automated suite. Vue components share the same markup
-          patterns and Reka UI primitives (the Vue port of what Radix provides on React), but do
-          not yet have their own automated axe runs — an equivalent Vue suite is planned.
+          Both columns come from real automated axe runs — React via vitest-axe, Vue via axe-core
+          over <code>@vue/test-utils</code>. <strong>{vueTested}</strong> Vue components are covered
+          so far; the rest share the same markup patterns and Reka UI primitives and are being added.
         </p>
         <DataGrid
-          headers={['Component', 'React (axe)', 'Vue']}
+          headers={['Component', 'React (axe)', 'Vue (axe)']}
           rows={components.map((c) => [
             <span key={c.name} className="font-bold">
               {c.name}
             </span>,
             <StatusBadge key={`${c.name}-react`} entry={c.result} />,
-            <span key={`${c.name}-vue`} className="text-foreground/50">
-              {c.frameworks.includes('vue') ? 'shared pattern, not yet automated' : 'n/a'}
-            </span>,
+            c.vueResult ? (
+              <StatusBadge key={`${c.name}-vue`} entry={c.vueResult} />
+            ) : (
+              <span key={`${c.name}-vue`} className="text-foreground/50">
+                {c.frameworks.includes('vue') ? 'shared pattern, not yet automated' : 'n/a'}
+              </span>
+            ),
           ])}
         />
         <p>
-          Raw data: <a href="/a11y-report.json">a11y-report.json</a>
+          Raw data: <a href="/a11y-report.json">a11y-report.json</a> ·{' '}
+          <a href="/a11y-report-vue.json">a11y-report-vue.json</a>
         </p>
       </Section>
 

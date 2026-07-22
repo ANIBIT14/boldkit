@@ -1,0 +1,86 @@
+{
+  "tool": "axe-core via @vue/test-utils (color-contrast excluded: no layout engine in happy-dom)",
+  "framework": "vue",
+  "components": [
+    {
+      "slug": "alert",
+      "status": "pass",
+      "violations": []
+    },
+    {
+      "slug": "avatar",
+      "status": "pass",
+      "violations": []
+    },
+    {
+      "slug": "badge",
+      "status": "pass",
+      "violations": []
+    },
+    {
+      "slug": "button",
+      "status": "pass",
+      "violations": []
+    },
+    {
+      "slug": "card",
+      "status": "pass",
+      "violations": []
+    },
+    {
+      "slug": "checkbox",
+      "status": "pass",
+      "violations": []
+    },
+    {
+      "slug": "input",
+      "status": "pass",
+      "violations": []
+    },
+    {
+      "slug": "kbd",
+      "status": "pass",
+      "violations": []
+    },
+    {
+      "slug": "label",
+      "status": "pass",
+      "violations": []
+    },
+    {
+      "slug": "progress",
+      "status": "pass",
+      "violations": []
+    },
+    {
+      "slug": "separator",
+      "status": "pass",
+      "violations": []
+    },
+    {
+      "slug": "skeleton",
+      "status": "pass",
+      "violations": []
+    },
+    {
+      "slug": "spinner",
+      "status": "pass",
+      "violations": []
+    },
+    {
+      "slug": "switch",
+      "status": "pass",
+      "violations": []
+    },
+    {
+      "slug": "textarea",
+      "status": "pass",
+      "violations": []
+    },
+    {
+      "slug": "toggle",
+      "status": "pass",
+      "violations": []
+    }
+  ]
+}
