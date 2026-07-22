@@ -12,7 +12,7 @@ import { Checkbox } from '@/components/ui/checkbox'
 import { Progress } from '@/components/ui/progress'
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert'
 import { Copy, Check, AlertCircle, Palette, Sun, Moon, Download } from 'lucide-react'
-import { themePresets, type ThemePreset } from '@/config/theme-presets'
+import { themePresets, neutralPalette, type ThemePreset } from '@/config/theme-presets'
 import { Layout } from '@/components/layout'
 import { ReactIcon, VueIcon } from '@/hooks/use-framework'
 import { SEO, pageSEO } from '@/components/SEO'
@@ -204,6 +204,11 @@ export function ThemeBuilder({ embedded = false }: ThemeBuilderProps) {
     document.documentElement.style.setProperty('--secondary-foreground', getContrastForeground(colors.secondary, lightFg, darkFg))
     document.documentElement.style.setProperty('--accent', colors.accent)
     document.documentElement.style.setProperty('--accent-foreground', getContrastForeground(colors.accent, lightFg, darkFg))
+    // Neutral palette — lets presets preview their tinted background/muted.
+    document.documentElement.style.setProperty('--background', colors.background)
+    document.documentElement.style.setProperty('--foreground', colors.foreground)
+    document.documentElement.style.setProperty('--muted', colors.muted)
+    document.documentElement.style.setProperty('--muted-foreground', colors.mutedForeground)
     document.documentElement.style.setProperty('--shadow-offset', `${colors.shadowOffset}px`)
     document.documentElement.style.setProperty('--border-width', `${colors.borderWidth}px`)
   }, [colors])
@@ -220,6 +225,10 @@ export function ThemeBuilder({ embedded = false }: ThemeBuilderProps) {
         '--secondary-foreground',
         '--accent',
         '--accent-foreground',
+        '--background',
+        '--foreground',
+        '--muted',
+        '--muted-foreground',
         '--shadow-offset',
         '--border-width',
       ].forEach((prop) => root.removeProperty(prop))
@@ -227,14 +236,25 @@ export function ThemeBuilder({ embedded = false }: ThemeBuilderProps) {
   }, [])
 
   const applyPreset = (preset: ThemePreset) => {
+    // Apply the brand hues AND the preset's derived neutral palette so the
+    // live preview matches the shipped preset stylesheet.
+    const n = neutralPalette(preset)
     setColors({
       ...colors,
       primary: preset.primary,
       secondary: preset.secondary,
       accent: preset.accent,
+      background: n.light.background,
+      foreground: n.light.foreground,
+      muted: n.light.muted,
+      mutedForeground: n.light.mutedForeground,
       darkPrimary: preset.primary,
       darkSecondary: preset.secondary,
       darkAccent: preset.accent,
+      darkBackground: n.dark.background,
+      darkForeground: n.dark.foreground,
+      darkMuted: n.dark.muted,
+      darkMutedForeground: n.dark.mutedForeground,
     })
   }
 

@@ -15,6 +15,14 @@ export interface ThemePreset {
   primary: string
   secondary: string
   accent: string
+  /**
+   * Neutral-palette tint. Backgrounds, cards, and muted surfaces are tinted
+   * toward this hue at low saturation so the whole preset reads cohesively
+   * (a warm off-white for Coral, a cool one for Ocean). Defaults to the primary
+   * hue. Set `neutralSat: 0` for a truly grayscale neutral (e.g. Mono).
+   */
+  neutralHue?: number
+  neutralSat?: number
 }
 
 export const themePresets: ThemePreset[] = [
@@ -23,7 +31,7 @@ export const themePresets: ThemePreset[] = [
   { name: 'Forest',    slug: 'forest',    tag: 'earthy & fresh',     primary: '152 69% 45%',  secondary: '82 68% 55%',   accent: '49 100% 60%' },
   { name: 'Ocean',     slug: 'ocean',     tag: 'cool & serene',      primary: '199 89% 48%',  secondary: '174 62% 56%',  accent: '152 69% 69%' },
   { name: 'Sunset',    slug: 'sunset',    tag: 'fiery & expressive', primary: '14 100% 57%',  secondary: '326 78% 60%',  accent: '49 100% 60%' },
-  { name: 'Mono',      slug: 'mono',      tag: 'clean & minimal',    primary: '0 0% 90%',     secondary: '0 0% 75%',     accent: '49 100% 65%' },
+  { name: 'Mono',      slug: 'mono',      tag: 'clean & minimal',    primary: '0 0% 90%',     secondary: '0 0% 75%',     accent: '49 100% 65%',  neutralSat: 0 },
   { name: 'Neon',      slug: 'neon',      tag: 'electric & raw',     primary: '318 100% 50%', secondary: '180 100% 50%', accent: '60 100% 50%' },
   { name: 'Electric',  slug: 'electric',  tag: 'punchy & vibrant',   primary: '258 100% 65%', secondary: '166 100% 50%', accent: '45 100% 55%' },
   { name: 'Candy',     slug: 'candy',     tag: 'sweet & playful',    primary: '340 82% 65%',  secondary: '280 70% 60%',  accent: '190 100% 60%' },
@@ -61,15 +69,45 @@ function foregroundFor(bg: string): string {
 }
 
 /**
+ * Neutral palette derived from a preset: background / card / muted surfaces
+ * tinted toward the preset hue at low saturation, with foreground, border, and
+ * muted-foreground held at contrast-safe lightness. Lightness values mirror
+ * BoldKit's default neutral scale (which the contrast audit already clears), so
+ * adding a small hue tint keeps every pair legible.
+ */
+export function neutralPalette(preset: ThemePreset) {
+  const hue = preset.neutralHue ?? Math.round(parseHsl(preset.primary).h)
+  const s = preset.neutralSat ?? 14 // subtle tint
+  const half = Math.round(s / 2)
+  return {
+    light: {
+      background: `${hue} ${s}% 97%`,
+      card: `${hue} ${s}% 99%`,
+      muted: `${hue} ${Math.round(s * 0.8)}% 91%`,
+      mutedForeground: `${hue} ${half}% 38%`,
+      foreground: `${hue} 12% 11%`,
+    },
+    dark: {
+      background: `${hue} ${s}% 10%`,
+      card: `${hue} ${s}% 14%`,
+      muted: `${hue} ${s}% 20%`,
+      mutedForeground: `${hue} ${half}% 65%`,
+      foreground: `${hue} ${s}% 97%`,
+    },
+  }
+}
+
+/**
  * Produce a full, drop-in theme stylesheet for a preset: the Tailwind v4
- * `@theme` bridge plus `:root` (light) and `.dark` blocks. Only the primary /
- * secondary / accent hues vary per preset; the neutral scale is BoldKit's
- * default so every preset stays legible.
+ * `@theme` bridge plus `:root` (light) and `.dark` blocks. Primary / secondary
+ * / accent hues AND the neutral palette vary per preset, so each preset is a
+ * fully cohesive, contrast-checked reskin.
  */
 export function buildThemeCss(preset: ThemePreset): string {
   const primaryFg = foregroundFor(preset.primary)
   const secondaryFg = foregroundFor(preset.secondary)
   const accentFg = foregroundFor(preset.accent)
+  const n = neutralPalette(preset)
 
   return `/* BoldKit theme preset: ${preset.name} — ${preset.tag} */
 /* CSS-vars-only swap. Drop into your globals.css (Tailwind v4 + shadcn). */
@@ -101,51 +139,51 @@ export function buildThemeCss(preset: ThemePreset): string {
 }
 
 :root {
-  --background: 60 9% 98%;
-  --foreground: 240 10% 10%;
-  --card: 0 0% 100%;
-  --card-foreground: 240 10% 10%;
-  --popover: 0 0% 100%;
-  --popover-foreground: 240 10% 10%;
+  --background: ${n.light.background};
+  --foreground: ${n.light.foreground};
+  --card: ${n.light.card};
+  --card-foreground: ${n.light.foreground};
+  --popover: ${n.light.card};
+  --popover-foreground: ${n.light.foreground};
   --primary: ${preset.primary};
   --primary-foreground: ${primaryFg};
   --secondary: ${preset.secondary};
   --secondary-foreground: ${secondaryFg};
   --accent: ${preset.accent};
   --accent-foreground: ${accentFg};
-  --muted: 60 5% 90%;
-  --muted-foreground: 240 4% 46%;
-  --destructive: 0 84% 60%;
+  --muted: ${n.light.muted};
+  --muted-foreground: ${n.light.mutedForeground};
+  --destructive: 0 84% 47%;
   --destructive-foreground: 0 0% 100%;
-  --border: 240 10% 10%;
-  --input: 240 10% 10%;
-  --ring: 240 10% 10%;
+  --border: ${n.light.foreground};
+  --input: ${n.light.foreground};
+  --ring: ${n.light.foreground};
   --radius: 0rem;
-  --shadow-color: 240 10% 10%;
+  --shadow-color: ${n.light.foreground};
   --shadow-offset: 4px;
   --border-width: 3px;
 }
 
 .dark {
-  --background: 240 10% 10%;
-  --foreground: 60 9% 98%;
-  --card: 240 10% 14%;
-  --card-foreground: 60 9% 98%;
-  --popover: 240 10% 14%;
-  --popover-foreground: 60 9% 98%;
+  --background: ${n.dark.background};
+  --foreground: ${n.dark.foreground};
+  --card: ${n.dark.card};
+  --card-foreground: ${n.dark.foreground};
+  --popover: ${n.dark.card};
+  --popover-foreground: ${n.dark.foreground};
   --primary: ${preset.primary};
   --primary-foreground: ${primaryFg};
   --secondary: ${preset.secondary};
   --secondary-foreground: ${secondaryFg};
   --accent: ${preset.accent};
   --accent-foreground: ${accentFg};
-  --muted: 240 10% 20%;
-  --muted-foreground: 60 5% 65%;
-  --destructive: 0 84% 60%;
+  --muted: ${n.dark.muted};
+  --muted-foreground: ${n.dark.mutedForeground};
+  --destructive: 0 84% 47%;
   --destructive-foreground: 0 0% 100%;
-  --border: 60 9% 98%;
-  --input: 60 9% 98%;
-  --ring: 60 9% 98%;
+  --border: ${n.dark.foreground};
+  --input: ${n.dark.foreground};
+  --ring: ${n.dark.foreground};
   --shadow-color: 0 0% 0%;
 }
 `
