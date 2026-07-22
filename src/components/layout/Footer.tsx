@@ -25,6 +25,7 @@ const exploreLinks = [
 ]
 
 const resourceLinks = [
+  { label: 'Accessibility', href: '/accessibility' },
   { label: 'GitHub Repository', href: 'https://github.com/ANIBIT14/boldkit', external: true },
   { label: 'Changelog', href: 'https://github.com/ANIBIT14/boldkit/releases', external: true },
   { label: 'Report an Issue', href: 'https://github.com/ANIBIT14/boldkit/issues', external: true },
@@ -198,18 +199,28 @@ export function Footer() {
                 Resources
               </h4>
               <nav className="flex flex-col gap-2" aria-label="Resource links">
-                {resourceLinks.map((link) => (
-                  <a
-                    key={link.href}
-                    href={link.href}
-                    target={link.external ? '_blank' : undefined}
-                    rel={link.external ? 'noopener noreferrer' : undefined}
-                    className="inline-flex items-center gap-1 text-sm text-muted-foreground hover:text-foreground hover:translate-x-1 transition duration-100 w-fit"
-                  >
-                    {link.label}
-                    {link.external && <ArrowUpRight className="h-3 w-3 opacity-50" />}
-                  </a>
-                ))}
+                {resourceLinks.map((link) =>
+                  link.external ? (
+                    <a
+                      key={link.href}
+                      href={link.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1 text-sm text-muted-foreground hover:text-foreground hover:translate-x-1 transition duration-100 w-fit"
+                    >
+                      {link.label}
+                      <ArrowUpRight className="h-3 w-3 opacity-50" />
+                    </a>
+                  ) : (
+                    <Link
+                      key={link.href}
+                      to={link.href}
+                      className="inline-flex items-center gap-1 text-sm text-muted-foreground hover:text-foreground hover:translate-x-1 transition duration-100 w-fit"
+                    >
+                      {link.label}
+                    </Link>
+                  )
+                )}
               </nav>
             </div>
 
