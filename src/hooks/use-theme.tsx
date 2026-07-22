@@ -40,6 +40,12 @@ export function ThemeProvider({
 
   React.useEffect(() => {
     const root = window.document.documentElement
+    // Idempotent: during a circular-reveal theme toggle the class is flipped
+    // imperatively inside the View Transition callback (see lib/theme-transition).
+    // Re-running remove('light','dark') + add() here would momentarily leave the
+    // element with no theme class — a one-frame flash that races the transition
+    // and reads as "switch first, then animate". Skip when already correct.
+    if (root.classList.contains(resolvedTheme)) return
     root.classList.remove('light', 'dark')
     root.classList.add(resolvedTheme)
   }, [resolvedTheme])
