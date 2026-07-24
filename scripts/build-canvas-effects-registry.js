@@ -26,6 +26,10 @@ const root = path.join(__dirname, '..')
 
 const CANVAS_PATH_SEG = '/canvas-effects/'
 
+// Human-readable title for shadcn CLI `view` / MCP display.
+const toTitle = (n) =>
+  n.split('-').map((w) => w[0].toUpperCase() + w.slice(1)).join(' ')
+
 // (registry dir, source dir) pairs to refresh.
 const targets = [
   { rDir: path.join(root, 'public/r'), srcDir: path.join(root, 'src/components/CanvasEffects/react') },
@@ -57,6 +61,7 @@ for (const { rDir, srcDir } of targets) {
     if (!isCanvasEffect) continue
 
     let changed = false
+    if (!item.title) { item.title = toTitle(item.name); changed = true }
     for (const f of item.files) {
       if (typeof f.path !== 'string' || !f.path.includes(CANVAS_PATH_SEG)) continue
       const srcPath = path.join(srcDir, path.basename(f.path))

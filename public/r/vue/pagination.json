@@ -47,5 +47,6 @@
       "content": "<script setup lang=\"ts\">\nimport { ChevronRight } from 'lucide-vue-next'\nimport PaginationLink from './PaginationLink.vue'\nimport { cn } from '@/lib/utils'\n\ndefineProps<{\n  class?: string\n  href?: string\n}>()\n</script>\n\n<template>\n  <PaginationLink\n    aria-label=\"Go to next page\"\n    size=\"default\"\n    :href=\"href\"\n    :class=\"cn('gap-1 pr-2.5', $props.class)\"\n  >\n    <span>Next</span>\n    <ChevronRight class=\"h-4 w-4 stroke-[3]\" />\n  </PaginationLink>\n</template>\n",
       "type": "registry:ui"
     }
-  ]
+  ],
+  "title": "Pagination"
 }

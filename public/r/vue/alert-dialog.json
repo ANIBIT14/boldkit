@@ -56,5 +56,6 @@
       "content": "<script setup lang=\"ts\">\nimport { AlertDialogCancel as AlertDialogCancelPrimitive } from 'reka-ui'\nimport { cn } from '@/lib/utils'\nimport { buttonVariants } from './button-variants'\n\ndefineProps<{\n  class?: string\n}>()\n</script>\n\n<template>\n  <AlertDialogCancelPrimitive :class=\"cn(buttonVariants({ variant: 'outline' }), $props.class)\">\n    <slot />\n  </AlertDialogCancelPrimitive>\n</template>\n",
       "type": "registry:ui"
     }
-  ]
+  ],
+  "title": "Alert Dialog"
 }

@@ -15,8 +15,7 @@
           "@boldkit/utils"
         ],
         "files": [
-          "registry/default/ui/accordion.tsx",
-          "registry/default/example/accordion-demo.tsx"
+          "registry/default/ui/accordion.tsx"
         ]
       },
       "vue": {
@@ -54,8 +53,7 @@
           "@boldkit/utils"
         ],
         "files": [
-          "registry/default/ui/alert.tsx",
-          "registry/default/example/alert-demo.tsx"
+          "registry/default/ui/alert.tsx"
         ]
       },
       "vue": {
@@ -92,8 +90,7 @@
           "@boldkit/button"
         ],
         "files": [
-          "registry/default/ui/alert-dialog.tsx",
-          "registry/default/example/alert-dialog-demo.tsx"
+          "registry/default/ui/alert-dialog.tsx"
         ]
       },
       "vue": {
@@ -134,8 +131,7 @@
           "@boldkit/utils"
         ],
         "files": [
-          "registry/default/ui/ascii-shapes.tsx",
-          "registry/default/example/ascii-shapes-demo.tsx"
+          "registry/default/ui/ascii-shapes.tsx"
         ]
       },
       "vue": {
@@ -185,8 +181,7 @@
           "@boldkit/utils"
         ],
         "files": [
-          "registry/default/ui/aspect-ratio.tsx",
-          "registry/default/example/aspect-ratio-demo.tsx"
+          "registry/default/ui/aspect-ratio.tsx"
         ]
       },
       "vue": {
@@ -246,8 +241,7 @@
           "@boldkit/utils"
         ],
         "files": [
-          "registry/default/ui/avatar.tsx",
-          "registry/default/example/avatar-demo.tsx"
+          "registry/default/ui/avatar.tsx"
         ]
       },
       "vue": {
@@ -283,8 +277,7 @@
           "@boldkit/utils"
         ],
         "files": [
-          "registry/default/ui/badge.tsx",
-          "registry/default/example/badge-demo.tsx"
+          "registry/default/ui/badge.tsx"
         ]
       },
       "vue": {
@@ -319,8 +312,7 @@
           "@boldkit/utils"
         ],
         "files": [
-          "registry/default/ui/breadcrumb.tsx",
-          "registry/default/example/breadcrumb-demo.tsx"
+          "registry/default/ui/breadcrumb.tsx"
         ]
       },
       "vue": {
@@ -362,8 +354,7 @@
           "@boldkit/utils"
         ],
         "files": [
-          "registry/default/ui/button.tsx",
-          "registry/default/example/button-demo.tsx"
+          "registry/default/ui/button.tsx"
         ]
       },
       "vue": {
@@ -398,8 +389,7 @@
           "@boldkit/button"
         ],
         "files": [
-          "registry/default/ui/button-group.tsx",
-          "registry/default/example/button-group-demo.tsx"
+          "registry/default/ui/button-group.tsx"
         ]
       },
       "vue": {
@@ -434,8 +424,7 @@
           "@boldkit/button"
         ],
         "files": [
-          "registry/default/ui/calendar.tsx",
-          "registry/default/example/calendar-demo.tsx"
+          "registry/default/ui/calendar.tsx"
         ]
       },
       "vue": {
@@ -469,8 +458,7 @@
           "@boldkit/utils"
         ],
         "files": [
-          "registry/default/ui/card.tsx",
-          "registry/default/example/card-demo.tsx"
+          "registry/default/ui/card.tsx"
         ]
       },
       "vue": {
@@ -509,8 +497,7 @@
           "@boldkit/button"
         ],
         "files": [
-          "registry/default/ui/carousel.tsx",
-          "registry/default/example/carousel-demo.tsx"
+          "registry/default/ui/carousel.tsx"
         ]
       },
       "vue": {
@@ -551,8 +538,7 @@
           "@boldkit/utils"
         ],
         "files": [
-          "registry/default/ui/chart.tsx",
-          "registry/default/example/chart-demo.tsx"
+          "registry/default/ui/chart.tsx"
         ]
       },
       "vue": {
@@ -683,8 +669,7 @@
           "@boldkit/label"
         ],
         "files": [
-          "registry/default/ui/checkbox.tsx",
-          "registry/default/example/checkbox-demo.tsx"
+          "registry/default/ui/checkbox.tsx"
         ]
       },
       "vue": {
@@ -720,8 +705,7 @@
           "@boldkit/button"
         ],
         "files": [
-          "registry/default/ui/collapsible.tsx",
-          "registry/default/example/collapsible-demo.tsx"
+          "registry/default/ui/collapsible.tsx"
         ]
       },
       "vue": {
@@ -759,8 +743,7 @@
           "@boldkit/command"
         ],
         "files": [
-          "registry/default/ui/combobox.tsx",
-          "registry/default/example/combobox-demo.tsx"
+          "registry/default/ui/combobox.tsx"
         ]
       },
       "vue": {
@@ -800,8 +783,7 @@
           "@boldkit/dialog"
         ],
         "files": [
-          "registry/default/ui/command.tsx",
-          "registry/default/example/command-demo.tsx"
+          "registry/default/ui/command.tsx"
         ]
       },
       "vue": {
@@ -846,8 +828,7 @@
           "@boldkit/utils"
         ],
         "files": [
-          "registry/default/ui/context-menu.tsx",
-          "registry/default/example/context-menu-demo.tsx"
+          "registry/default/ui/context-menu.tsx"
         ]
       },
       "vue": {
@@ -927,8 +908,7 @@
           "@boldkit/table"
         ],
         "files": [
-          "registry/default/ui/data-table.tsx",
-          "registry/default/example/data-table-demo.tsx"
+          "registry/default/ui/data-table.tsx"
         ]
       },
       "vue": {
@@ -973,8 +953,7 @@
           "@boldkit/popover"
         ],
         "files": [
-          "registry/default/ui/date-picker.tsx",
-          "registry/default/example/date-picker-demo.tsx"
+          "registry/default/ui/date-picker.tsx"
         ]
       },
       "vue": {
@@ -1016,8 +995,7 @@
           "@boldkit/popover"
         ],
         "files": [
-          "registry/default/ui/date-range-picker.tsx",
-          "registry/default/example/date-range-picker-demo.tsx"
+          "registry/default/ui/date-range-picker.tsx"
         ]
       },
       "vue": {
@@ -1057,8 +1035,7 @@
           "@boldkit/button"
         ],
         "files": [
-          "registry/default/ui/dialog.tsx",
-          "registry/default/example/dialog-demo.tsx"
+          "registry/default/ui/dialog.tsx"
         ]
       },
       "vue": {
@@ -1127,8 +1104,7 @@
           "@boldkit/chart"
         ],
         "files": [
-          "registry/default/ui/donut-chart.tsx",
-          "registry/default/example/donut-chart-demo.tsx"
+          "registry/default/ui/donut-chart.tsx"
         ]
       },
       "vue": {
@@ -1220,8 +1196,7 @@
           "@boldkit/utils"
         ],
         "files": [
-          "registry/default/ui/drawer.tsx",
-          "registry/default/example/drawer-demo.tsx"
+          "registry/default/ui/drawer.tsx"
         ]
       },
       "vue": {
@@ -1264,8 +1239,7 @@
           "@boldkit/button"
         ],
         "files": [
-          "registry/default/ui/dropdown-menu.tsx",
-          "registry/default/example/dropdown-menu-demo.tsx"
+          "registry/default/ui/dropdown-menu.tsx"
         ]
       },
       "vue": {
@@ -1312,8 +1286,7 @@
           "@boldkit/spinner"
         ],
         "files": [
-          "registry/default/ui/dropzone.tsx",
-          "registry/default/example/dropzone-demo.tsx"
+          "registry/default/ui/dropzone.tsx"
         ]
       },
       "vue": {
@@ -1352,8 +1325,7 @@
           "@boldkit/button"
         ],
         "files": [
-          "registry/default/ui/empty-state.tsx",
-          "registry/default/example/empty-state-demo.tsx"
+          "registry/default/ui/empty-state.tsx"
         ]
       },
       "vue": {
@@ -1430,8 +1402,7 @@
           "@boldkit/input"
         ],
         "files": [
-          "registry/default/ui/field.tsx",
-          "registry/default/example/field-demo.tsx"
+          "registry/default/ui/field.tsx"
         ]
       },
       "vue": {
@@ -1495,8 +1466,7 @@
           "@boldkit/chart"
         ],
         "files": [
-          "registry/default/ui/funnel-chart.tsx",
-          "registry/default/example/funnel-chart-demo.tsx"
+          "registry/default/ui/funnel-chart.tsx"
         ]
       },
       "vue": {
@@ -1534,8 +1504,7 @@
           "@boldkit/utils"
         ],
         "files": [
-          "registry/default/ui/gauge-chart.tsx",
-          "registry/default/example/gauge-chart-demo.tsx"
+          "registry/default/ui/gauge-chart.tsx"
         ]
       },
       "vue": {
@@ -1620,8 +1589,7 @@
           "@boldkit/chart"
         ],
         "files": [
-          "registry/default/ui/heatmap-chart.tsx",
-          "registry/default/example/heatmap-chart-demo.tsx"
+          "registry/default/ui/heatmap-chart.tsx"
         ]
       },
       "vue": {
@@ -1659,8 +1627,7 @@
           "@boldkit/utils"
         ],
         "files": [
-          "registry/default/ui/hover-card.tsx",
-          "registry/default/example/hover-card-demo.tsx"
+          "registry/default/ui/hover-card.tsx"
         ]
       },
       "vue": {
@@ -1694,8 +1661,7 @@
           "@boldkit/utils"
         ],
         "files": [
-          "registry/default/ui/input.tsx",
-          "registry/default/example/input-demo.tsx"
+          "registry/default/ui/input.tsx"
         ]
       },
       "vue": {
@@ -1727,8 +1693,7 @@
           "@boldkit/utils"
         ],
         "files": [
-          "registry/default/ui/input-group.tsx",
-          "registry/default/example/input-group-demo.tsx"
+          "registry/default/ui/input-group.tsx"
         ]
       },
       "vue": {
@@ -1765,8 +1730,7 @@
           "@boldkit/utils"
         ],
         "files": [
-          "registry/default/ui/input-otp.tsx",
-          "registry/default/example/input-otp-demo.tsx"
+          "registry/default/ui/input-otp.tsx"
         ]
       },
       "vue": {
@@ -1804,8 +1768,7 @@
           "@boldkit/utils"
         ],
         "files": [
-          "registry/default/ui/kbd.tsx",
-          "registry/default/example/kbd-demo.tsx"
+          "registry/default/ui/kbd.tsx"
         ]
       },
       "vue": {
@@ -1840,8 +1803,7 @@
           "@boldkit/input"
         ],
         "files": [
-          "registry/default/ui/label.tsx",
-          "registry/default/example/label-demo.tsx"
+          "registry/default/ui/label.tsx"
         ]
       },
       "vue": {
@@ -1875,8 +1837,7 @@
           "@boldkit/utils"
         ],
         "files": [
-          "registry/default/ui/layered-card.tsx",
-          "registry/default/example/layered-card-demo.tsx"
+          "registry/default/ui/layered-card.tsx"
         ]
       },
       "vue": {
@@ -1966,8 +1927,7 @@
           "@boldkit/utils"
         ],
         "files": [
-          "registry/default/ui/marquee.tsx",
-          "registry/default/example/marquee-demo.tsx"
+          "registry/default/ui/marquee.tsx"
         ]
       },
       "vue": {
@@ -2003,8 +1963,7 @@
           "@boldkit/error-boundary"
         ],
         "files": [
-          "registry/default/ui/math-curve-background.tsx",
-          "registry/default/example/math-curve-background-demo.tsx"
+          "registry/default/ui/math-curve-background.tsx"
         ]
       },
       "vue": {
@@ -2039,8 +1998,7 @@
           "@boldkit/error-boundary"
         ],
         "files": [
-          "registry/default/ui/math-curve-loader.tsx",
-          "registry/default/example/math-curve-loader-demo.tsx"
+          "registry/default/ui/math-curve-loader.tsx"
         ]
       },
       "vue": {
@@ -2077,8 +2035,7 @@
           "@boldkit/error-boundary"
         ],
         "files": [
-          "registry/default/ui/math-curve-progress.tsx",
-          "registry/default/example/math-curve-progress-demo.tsx"
+          "registry/default/ui/math-curve-progress.tsx"
         ]
       },
       "vue": {
@@ -2169,8 +2126,7 @@
           "@boldkit/utils"
         ],
         "files": [
-          "registry/default/ui/menubar.tsx",
-          "registry/default/example/menubar-demo.tsx"
+          "registry/default/ui/menubar.tsx"
         ]
       },
       "vue": {
@@ -2352,8 +2308,7 @@
           "label"
         ],
         "files": [
-          "registry/default/ui/multi-step-form.tsx",
-          "registry/default/example/multi-step-form-demo.tsx"
+          "registry/default/ui/multi-step-form.tsx"
         ]
       },
       "vue": {
@@ -2390,8 +2345,7 @@
           "@boldkit/utils"
         ],
         "files": [
-          "registry/default/ui/native-select.tsx",
-          "registry/default/example/native-select-demo.tsx"
+          "registry/default/ui/native-select.tsx"
         ]
       },
       "vue": {
@@ -2427,8 +2381,7 @@
           "@boldkit/utils"
         ],
         "files": [
-          "registry/default/ui/navigation-menu.tsx",
-          "registry/default/example/navigation-menu-demo.tsx"
+          "registry/default/ui/navigation-menu.tsx"
         ]
       },
       "vue": {
@@ -2472,8 +2425,7 @@
           "@boldkit/button"
         ],
         "files": [
-          "registry/default/ui/pagination.tsx",
-          "registry/default/example/pagination-demo.tsx"
+          "registry/default/ui/pagination.tsx"
         ]
       },
       "vue": {
@@ -2568,8 +2520,7 @@
           "@boldkit/button"
         ],
         "files": [
-          "registry/default/ui/popover.tsx",
-          "registry/default/example/popover-demo.tsx"
+          "registry/default/ui/popover.tsx"
         ]
       },
       "vue": {
@@ -2605,8 +2556,7 @@
           "@boldkit/utils"
         ],
         "files": [
-          "registry/default/ui/progress.tsx",
-          "registry/default/example/progress-demo.tsx"
+          "registry/default/ui/progress.tsx"
         ]
       },
       "vue": {
@@ -2641,8 +2591,7 @@
           "@boldkit/chart"
         ],
         "files": [
-          "registry/default/ui/radar-chart.tsx",
-          "registry/default/example/radar-chart-demo.tsx"
+          "registry/default/ui/radar-chart.tsx"
         ]
       },
       "vue": {
@@ -2683,8 +2632,7 @@
           "@boldkit/chart"
         ],
         "files": [
-          "registry/default/ui/radial-bar-chart.tsx",
-          "registry/default/example/radial-bar-chart-demo.tsx"
+          "registry/default/ui/radial-bar-chart.tsx"
         ]
       },
       "vue": {
@@ -2726,8 +2674,7 @@
           "@boldkit/label"
         ],
         "files": [
-          "registry/default/ui/radio-group.tsx",
-          "registry/default/example/radio-group-demo.tsx"
+          "registry/default/ui/radio-group.tsx"
         ]
       },
       "vue": {
@@ -2763,8 +2710,7 @@
           "@boldkit/utils"
         ],
         "files": [
-          "registry/default/ui/rating.tsx",
-          "registry/default/example/rating-demo.tsx"
+          "registry/default/ui/rating.tsx"
         ]
       },
       "vue": {
@@ -2800,8 +2746,7 @@
           "@boldkit/utils"
         ],
         "files": [
-          "registry/default/ui/resizable.tsx",
-          "registry/default/example/resizable-demo.tsx"
+          "registry/default/ui/resizable.tsx"
         ]
       },
       "vue": {
@@ -2837,8 +2782,7 @@
           "@boldkit/chart"
         ],
         "files": [
-          "registry/default/ui/sankey-chart.tsx",
-          "registry/default/example/sankey-chart-demo.tsx"
+          "registry/default/ui/sankey-chart.tsx"
         ]
       },
       "vue": {
@@ -2876,8 +2820,7 @@
           "@boldkit/utils"
         ],
         "files": [
-          "registry/default/ui/scroll-area.tsx",
-          "registry/default/example/scroll-area-demo.tsx"
+          "registry/default/ui/scroll-area.tsx"
         ]
       },
       "vue": {
@@ -2913,8 +2856,7 @@
           "@boldkit/utils"
         ],
         "files": [
-          "registry/default/ui/select.tsx",
-          "registry/default/example/select-demo.tsx"
+          "registry/default/ui/select.tsx"
         ]
       },
       "vue": {
@@ -2956,8 +2898,7 @@
           "@boldkit/utils"
         ],
         "files": [
-          "registry/default/ui/separator.tsx",
-          "registry/default/example/separator-demo.tsx"
+          "registry/default/ui/separator.tsx"
         ]
       },
       "vue": {
@@ -2989,8 +2930,7 @@
           "@boldkit/utils"
         ],
         "files": [
-          "registry/default/ui/shapes.tsx",
-          "registry/default/example/shapes-demo.tsx"
+          "registry/default/ui/shapes.tsx"
         ]
       },
       "vue": {
@@ -3079,8 +3019,7 @@
           "@boldkit/utils"
         ],
         "files": [
-          "registry/default/ui/sheet.tsx",
-          "registry/default/example/sheet-demo.tsx"
+          "registry/default/ui/sheet.tsx"
         ]
       },
       "vue": {
@@ -3127,8 +3066,7 @@
           "@boldkit/tooltip"
         ],
         "files": [
-          "registry/default/ui/sidebar.tsx",
-          "registry/default/example/sidebar-demo.tsx"
+          "registry/default/ui/sidebar.tsx"
         ]
       },
       "vue": {
@@ -3174,8 +3112,7 @@
           "@boldkit/utils"
         ],
         "files": [
-          "registry/default/ui/skeleton.tsx",
-          "registry/default/example/skeleton-demo.tsx"
+          "registry/default/ui/skeleton.tsx"
         ]
       },
       "vue": {
@@ -3205,8 +3142,7 @@
           "@boldkit/utils"
         ],
         "files": [
-          "registry/default/ui/slider.tsx",
-          "registry/default/example/slider-demo.tsx"
+          "registry/default/ui/slider.tsx"
         ]
       },
       "vue": {
@@ -3242,8 +3178,7 @@
           "@boldkit/button"
         ],
         "files": [
-          "registry/default/ui/sonner.tsx",
-          "registry/default/example/sonner-demo.tsx"
+          "registry/default/ui/sonner.tsx"
         ]
       },
       "vue": {
@@ -3278,8 +3213,7 @@
           "@boldkit/utils"
         ],
         "files": [
-          "registry/default/ui/sparkline.tsx",
-          "registry/default/example/sparkline-demo.tsx"
+          "registry/default/ui/sparkline.tsx"
         ]
       },
       "vue": {
@@ -3315,8 +3249,7 @@
           "@boldkit/utils"
         ],
         "files": [
-          "registry/default/ui/spinner.tsx",
-          "registry/default/example/spinner-demo.tsx"
+          "registry/default/ui/spinner.tsx"
         ]
       },
       "vue": {
@@ -3353,8 +3286,7 @@
           "@boldkit/progress"
         ],
         "files": [
-          "registry/default/ui/stat-card.tsx",
-          "registry/default/example/stat-card-demo.tsx"
+          "registry/default/ui/stat-card.tsx"
         ]
       },
       "vue": {
@@ -3391,8 +3323,7 @@
           "@boldkit/utils"
         ],
         "files": [
-          "registry/default/ui/stepper.tsx",
-          "registry/default/example/stepper-demo.tsx"
+          "registry/default/ui/stepper.tsx"
         ]
       },
       "vue": {
@@ -3431,8 +3362,7 @@
           "@boldkit/utils"
         ],
         "files": [
-          "registry/default/ui/sticker.tsx",
-          "registry/default/example/sticker-demo.tsx"
+          "registry/default/ui/sticker.tsx"
         ]
       },
       "vue": {
@@ -3495,8 +3425,7 @@
           "@boldkit/label"
         ],
         "files": [
-          "registry/default/ui/switch.tsx",
-          "registry/default/example/switch-demo.tsx"
+          "registry/default/ui/switch.tsx"
         ]
       },
       "vue": {
@@ -3528,8 +3457,7 @@
           "@boldkit/utils"
         ],
         "files": [
-          "registry/default/ui/table.tsx",
-          "registry/default/example/table-demo.tsx"
+          "registry/default/ui/table.tsx"
         ]
       },
       "vue": {
@@ -3568,8 +3496,7 @@
           "@boldkit/utils"
         ],
         "files": [
-          "registry/default/ui/tabs.tsx",
-          "registry/default/example/tabs-demo.tsx"
+          "registry/default/ui/tabs.tsx"
         ]
       },
       "vue": {
@@ -3606,8 +3533,7 @@
           "@boldkit/utils"
         ],
         "files": [
-          "registry/default/ui/tag-input.tsx",
-          "registry/default/example/tag-input-demo.tsx"
+          "registry/default/ui/tag-input.tsx"
         ]
       },
       "vue": {
@@ -3639,8 +3565,7 @@
           "@boldkit/utils"
         ],
         "files": [
-          "registry/default/ui/textarea.tsx",
-          "registry/default/example/textarea-demo.tsx"
+          "registry/default/ui/textarea.tsx"
         ]
       },
       "vue": {
@@ -3696,8 +3621,7 @@
           "@boldkit/scroll-area"
         ],
         "files": [
-          "registry/default/ui/time-picker.tsx",
-          "registry/default/example/time-picker-demo.tsx"
+          "registry/default/ui/time-picker.tsx"
         ]
       },
       "vue": {
@@ -3734,8 +3658,7 @@
           "@boldkit/utils"
         ],
         "files": [
-          "registry/default/ui/timeline.tsx",
-          "registry/default/example/timeline-demo.tsx"
+          "registry/default/ui/timeline.tsx"
         ]
       },
       "vue": {
@@ -3779,8 +3702,7 @@
           "@boldkit/utils"
         ],
         "files": [
-          "registry/default/ui/toggle.tsx",
-          "registry/default/example/toggle-demo.tsx"
+          "registry/default/ui/toggle.tsx"
         ]
       },
       "vue": {
@@ -3817,8 +3739,7 @@
           "@boldkit/toggle"
         ],
         "files": [
-          "registry/default/ui/toggle-group.tsx",
-          "registry/default/example/toggle-group-demo.tsx"
+          "registry/default/ui/toggle-group.tsx"
         ]
       },
       "vue": {
@@ -3855,8 +3776,7 @@
           "@boldkit/utils"
         ],
         "files": [
-          "registry/default/ui/tooltip.tsx",
-          "registry/default/example/tooltip-demo.tsx"
+          "registry/default/ui/tooltip.tsx"
         ]
       },
       "vue": {
@@ -3920,8 +3840,7 @@
           "@boldkit/button"
         ],
         "files": [
-          "registry/default/ui/tour.tsx",
-          "registry/default/example/tour-demo.tsx"
+          "registry/default/ui/tour.tsx"
         ]
       },
       "vue": {
@@ -3959,8 +3878,7 @@
           "@boldkit/collapsible"
         ],
         "files": [
-          "registry/default/ui/tree-view.tsx",
-          "registry/default/example/tree-view-demo.tsx"
+          "registry/default/ui/tree-view.tsx"
         ]
       },
       "vue": {
@@ -3998,8 +3916,7 @@
           "@boldkit/chart"
         ],
         "files": [
-          "registry/default/ui/treemap-chart.tsx",
-          "registry/default/example/treemap-chart-demo.tsx"
+          "registry/default/ui/treemap-chart.tsx"
         ]
       },
       "vue": {

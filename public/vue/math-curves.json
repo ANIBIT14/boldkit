@@ -12,5 +12,6 @@
       "path": "lib/math-curves.ts",
       "type": "registry:lib"
     }
-  ]
+  ],
+  "title": "Math Curves"
 }

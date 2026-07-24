@@ -15,5 +15,6 @@
       "path": "components/ui/MathCurveProgress.vue",
       "type": "registry:ui"
     }
-  ]
+  ],
+  "title": "Math Curve Progress"
 }

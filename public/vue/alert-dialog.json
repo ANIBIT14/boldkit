@@ -47,5 +47,6 @@
       "path": "components/ui/AlertDialogCancel.vue",
       "type": "registry:ui"
     }
-  ]
+  ],
+  "title": "Alert Dialog"
 }

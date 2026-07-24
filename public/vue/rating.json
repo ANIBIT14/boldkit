@@ -15,5 +15,6 @@
       "path": "components/ui/Rating.vue",
       "type": "registry:ui"
     }
-  ]
+  ],
+  "title": "Rating"
 }

@@ -232,5 +232,6 @@
       "path": "components/ui/shapes/index.ts",
       "type": "registry:ui"
     }
-  ]
+  ],
+  "title": "Shapes"
 }

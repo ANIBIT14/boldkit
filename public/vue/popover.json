@@ -22,5 +22,6 @@
       "path": "components/ui/PopoverContent.vue",
       "type": "registry:ui"
     }
-  ]
+  ],
+  "title": "Popover"
 }

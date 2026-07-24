@@ -1,6 +1,7 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "data-table",
+  "title": "Data Table",
   "description": "Powerful data table with sorting, filtering, pagination, and row selection",
   "dependencies": [
     "@tanstack/react-table",
@@ -20,11 +21,6 @@
       "path": "registry/default/ui/data-table.tsx",
       "type": "registry:ui",
       "target": "components/ui/data-table.tsx"
-    },
-    {
-      "path": "registry/default/example/data-table-demo.tsx",
-      "type": "registry:example",
-      "target": "components/example/data-table-demo.tsx"
     }
   ],
   "type": "registry:ui"

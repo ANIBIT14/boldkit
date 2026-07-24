@@ -15,5 +15,6 @@
       "path": "components/ui/Sonner.vue",
       "type": "registry:ui"
     }
-  ]
+  ],
+  "title": "Sonner"
 }

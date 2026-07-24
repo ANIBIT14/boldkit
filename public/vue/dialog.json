@@ -43,5 +43,6 @@
       "path": "components/ui/DialogClose.vue",
       "type": "registry:ui"
     }
-  ]
+  ],
+  "title": "Dialog"
 }

@@ -10,5 +10,6 @@
       "type": "registry:style",
       "target": "styles/globals.css"
     }
-  ]
+  ],
+  "title": "Styles"
 }

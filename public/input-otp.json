@@ -1,6 +1,7 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "input-otp",
+  "title": "Input OTP",
   "description": "One-time password input with neubrutalism styling",
   "dependencies": [
     "input-otp",
@@ -14,11 +15,6 @@
       "path": "registry/default/ui/input-otp.tsx",
       "type": "registry:ui",
       "target": "components/ui/input-otp.tsx"
-    },
-    {
-      "path": "registry/default/example/input-otp-demo.tsx",
-      "type": "registry:example",
-      "target": "components/example/input-otp-demo.tsx"
     }
   ],
   "type": "registry:ui"

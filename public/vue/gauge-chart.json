@@ -14,5 +14,6 @@
       "path": "components/ui/GaugeChart.vue",
       "type": "registry:ui"
     }
-  ]
+  ],
+  "title": "Gauge Chart"
 }

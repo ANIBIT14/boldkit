@@ -1,6 +1,7 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "treemap-chart",
+  "title": "Treemap Chart",
   "description": "Treemap for hierarchical data visualization with proportional rectangles",
   "dependencies": [
     "recharts"
@@ -14,11 +15,6 @@
       "path": "registry/default/ui/treemap-chart.tsx",
       "type": "registry:ui",
       "target": "components/ui/treemap-chart.tsx"
-    },
-    {
-      "path": "registry/default/example/treemap-chart-demo.tsx",
-      "type": "registry:example",
-      "target": "components/example/treemap-chart-demo.tsx"
     }
   ],
   "type": "registry:ui"

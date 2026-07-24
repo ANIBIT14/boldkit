@@ -25,5 +25,6 @@
       "content": "<script setup lang=\"ts\">\nimport { cn } from '@/lib/utils'\n\nconst props = withDefaults(\n  defineProps<{\n    class?: string\n    position?: 'leading' | 'trailing'\n  }>(),\n  {\n    position: 'leading',\n  }\n)\n</script>\n\n<template>\n  <div\n    :class=\"\n      cn(\n        'flex items-center bg-muted px-3 text-sm font-bold uppercase tracking-wide text-muted-foreground [&_svg]:size-4 [&_svg]:shrink-0',\n        props.position === 'leading' ? 'border-r-3 border-foreground' : 'border-l-3 border-foreground',\n        props.class\n      )\n    \"\n  >\n    <slot />\n  </div>\n</template>\n",
       "type": "registry:ui"
     }
-  ]
+  ],
+  "title": "Input Group"
 }

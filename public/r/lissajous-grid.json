@@ -12,5 +12,6 @@
       "target": "components/ui/canvas-effects/LissajousGrid.tsx"
     }
   ],
-  "type": "registry:ui"
+  "type": "registry:ui",
+  "title": "Lissajous Grid"
 }

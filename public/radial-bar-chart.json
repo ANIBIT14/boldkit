@@ -1,6 +1,7 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "radial-bar-chart",
+  "title": "Radial Bar Chart",
   "description": "Circular progress bars with nested rings for multiple metrics",
   "dependencies": [
     "recharts"
@@ -14,11 +15,6 @@
       "path": "registry/default/ui/radial-bar-chart.tsx",
       "type": "registry:ui",
       "target": "components/ui/radial-bar-chart.tsx"
-    },
-    {
-      "path": "registry/default/example/radial-bar-chart-demo.tsx",
-      "type": "registry:example",
-      "target": "components/example/radial-bar-chart-demo.tsx"
     }
   ],
   "type": "registry:ui"

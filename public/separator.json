@@ -1,6 +1,7 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "separator",
+  "title": "Separator",
   "description": "Visually separates content with a thick border",
   "dependencies": [
     "@radix-ui/react-separator"
@@ -13,11 +14,6 @@
       "path": "registry/default/ui/separator.tsx",
       "type": "registry:ui",
       "target": "components/ui/separator.tsx"
-    },
-    {
-      "path": "registry/default/example/separator-demo.tsx",
-      "type": "registry:example",
-      "target": "components/example/separator-demo.tsx"
     }
   ],
   "type": "registry:ui"

@@ -13,5 +13,6 @@
       "path": "composables/useMotion.ts",
       "type": "registry:composable"
     }
-  ]
+  ],
+  "title": "Use Motion"
 }

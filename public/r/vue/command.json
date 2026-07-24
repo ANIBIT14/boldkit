@@ -57,5 +57,6 @@
       "content": "<script setup lang=\"ts\">\nimport { cn } from '@/lib/utils'\n\ndefineProps<{\n  class?: string\n}>()\n</script>\n\n<template>\n  <span :class=\"cn('ml-auto text-xs tracking-widest text-muted-foreground', $props.class)\">\n    <slot />\n  </span>\n</template>\n",
       "type": "registry:ui"
     }
-  ]
+  ],
+  "title": "Command"
 }

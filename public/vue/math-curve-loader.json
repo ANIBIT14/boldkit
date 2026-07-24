@@ -15,5 +15,6 @@
       "path": "components/ui/MathCurveLoader.vue",
       "type": "registry:ui"
     }
-  ]
+  ],
+  "title": "Math Curve Loader"
 }

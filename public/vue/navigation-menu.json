@@ -44,5 +44,6 @@
       "path": "components/ui/navigation-menu-variants.ts",
       "type": "registry:ui"
     }
-  ]
+  ],
+  "title": "Navigation Menu"
 }

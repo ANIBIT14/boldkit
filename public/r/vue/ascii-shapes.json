@@ -103,5 +103,6 @@
       "content": "export { default as AsciiSpiral }  from './AsciiSpiral.vue'\nexport { default as AsciiRose }    from './AsciiRose.vue'\nexport { default as AsciiWave }    from './AsciiWave.vue'\nexport { default as AsciiVortex }  from './AsciiVortex.vue'\nexport { default as AsciiPulse }   from './AsciiPulse.vue'\nexport { default as AsciiMatrix }  from './AsciiMatrix.vue'\nexport { default as AsciiGrid }    from './AsciiGrid.vue'\nexport { default as AsciiTorus }   from './AsciiTorus.vue'\nexport { default as AsciiSphere }  from './AsciiSphere.vue'\nexport { default as AsciiCube }    from './AsciiCube.vue'\nexport { default as AsciiHelix }   from './AsciiHelix.vue'\nexport { default as AsciiDonut }       from './AsciiDonut.vue'\nexport { default as AsciiTrefoilKnot } from './AsciiTrefoilKnot.vue'\nexport { default as AsciiGeodesicDome } from './AsciiGeodesicDome.vue'\nexport { default as AsciiSaturn }      from './AsciiSaturn.vue'\nexport { default as AsciiHyperboloid } from './AsciiHyperboloid.vue'\nexport { default as AsciiDNA }         from './AsciiDNA.vue'\n\nexport type { AsciiSize, AsciiCharset, AsciiSpeed } from './constants'\nexport { MULTICOLOR_PALETTE } from './constants'\n",
       "type": "registry:ui"
     }
-  ]
+  ],
+  "title": "ASCII Shapes"
 }

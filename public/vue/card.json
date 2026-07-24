@@ -32,5 +32,6 @@
       "path": "components/ui/CardFooter.vue",
       "type": "registry:ui"
     }
-  ]
+  ],
+  "title": "Card"
 }

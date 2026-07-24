@@ -650,6 +650,11 @@ if (!fs.existsSync(REGISTRY_DIR)) {
   fs.mkdirSync(REGISTRY_DIR, { recursive: true })
 }
 
+// Human-readable title for shadcn CLI `view` / MCP display.
+const TITLE_OVERRIDES = { 'input-otp': 'Input OTP', 'ascii-shapes': 'ASCII Shapes' }
+const toTitle = (n) =>
+  TITLE_OVERRIDES[n] || n.split('-').map((w) => w[0].toUpperCase() + w.slice(1)).join(' ')
+
 // Generate registry files
 let count = 0
 const componentNames = []
@@ -657,6 +662,7 @@ const componentNames = []
 for (const [name, meta] of Object.entries(componentMeta)) {
   const registry = createRegistryJson(name, meta)
   if (registry) {
+    if (!registry.title) registry.title = toTitle(name)
     const outPath = path.join(REGISTRY_DIR, `${name}.json`)
     fs.writeFileSync(outPath, JSON.stringify(registry, null, 2))
     count++
@@ -668,6 +674,7 @@ for (const [name, meta] of Object.entries(componentMeta)) {
 // Generate styles.json
 const stylesRegistry = createStylesRegistry()
 if (stylesRegistry) {
+  if (!stylesRegistry.title) stylesRegistry.title = toTitle(stylesRegistry.name)
   const stylesPath = path.join(REGISTRY_DIR, 'styles.json')
   fs.writeFileSync(stylesPath, JSON.stringify(stylesRegistry, null, 2))
   count++
@@ -679,5 +686,18 @@ const indexRegistry = createIndexRegistry(componentNames)
 const indexPath = path.join(REGISTRY_DIR, 'index.json')
 fs.writeFileSync(indexPath, JSON.stringify(indexRegistry, null, 2))
 console.log('Generated: index.json')
+
+// Backfill titles on any item written outside the componentMeta loop
+// (theme, utils, chart-utils, etc). Canvas effects are titled by their own
+// script; leave those untouched here.
+for (const file of fs.readdirSync(REGISTRY_DIR)) {
+  if (!file.endsWith('.json') || file === 'index.json') continue
+  const p = path.join(REGISTRY_DIR, file)
+  const item = JSON.parse(fs.readFileSync(p, 'utf-8'))
+  if (!item.type || item.title) continue
+  if ((item.files || []).some((f) => typeof f.path === 'string' && f.path.includes('/canvas-effects/'))) continue
+  item.title = toTitle(item.name)
+  fs.writeFileSync(p, JSON.stringify(item, null, 2))
+}
 
 console.log(`\nGenerated ${count} registry files + index.json`)

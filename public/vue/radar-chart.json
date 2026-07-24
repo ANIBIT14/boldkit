@@ -29,5 +29,6 @@
       "path": "components/ui/chart-variants.ts",
       "type": "registry:ui"
     }
-  ]
+  ],
+  "title": "Radar Chart"
 }

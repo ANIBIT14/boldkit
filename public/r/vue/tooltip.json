@@ -30,5 +30,6 @@
       "content": "<script setup lang=\"ts\">\nimport { TooltipProvider as TooltipProviderPrimitive, type TooltipProviderProps } from 'reka-ui'\n\ndefineProps<TooltipProviderProps>()\n</script>\n\n<template>\n  <TooltipProviderPrimitive v-bind=\"$props\">\n    <slot />\n  </TooltipProviderPrimitive>\n</template>\n",
       "type": "registry:ui"
     }
-  ]
+  ],
+  "title": "Tooltip"
 }

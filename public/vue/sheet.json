@@ -44,5 +44,6 @@
       "path": "components/ui/SheetClose.vue",
       "type": "registry:ui"
     }
-  ]
+  ],
+  "title": "Sheet"
 }

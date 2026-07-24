@@ -1,6 +1,7 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "kbd",
+  "title": "Kbd",
   "description": "Keyboard key indicator for displaying shortcuts and hotkeys with neubrutalism styling",
   "dependencies": [
     "class-variance-authority"
@@ -13,11 +14,6 @@
       "path": "registry/default/ui/kbd.tsx",
       "type": "registry:ui",
       "target": "components/ui/kbd.tsx"
-    },
-    {
-      "path": "registry/default/example/kbd-demo.tsx",
-      "type": "registry:example",
-      "target": "components/example/kbd-demo.tsx"
     }
   ],
   "type": "registry:ui"

@@ -26,5 +26,6 @@
       "path": "components/ui/AccordionContent.vue",
       "type": "registry:ui"
     }
-  ]
+  ],
+  "title": "Accordion"
 }

@@ -50,5 +50,6 @@
       "path": "components/ui/TimelineTitle.vue",
       "type": "registry:ui"
     }
-  ]
+  ],
+  "title": "Timeline"
 }

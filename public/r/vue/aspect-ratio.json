@@ -15,5 +15,6 @@
       "content": "<script setup lang=\"ts\">\nimport { AspectRatio as AspectRatioPrimitive } from 'reka-ui'\n\ndefineProps<{\n  ratio?: number\n}>()\n</script>\n\n<template>\n  <AspectRatioPrimitive :ratio=\"ratio\">\n    <slot />\n  </AspectRatioPrimitive>\n</template>\n",
       "type": "registry:ui"
     }
-  ]
+  ],
+  "title": "Aspect Ratio"
 }

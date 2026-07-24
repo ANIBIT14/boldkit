@@ -1,6 +1,7 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "error-boundary",
+  "title": "Error Boundary",
   "description": "Error boundary wrapper with neubrutalism-styled fallback UI. Used by math-curve components to catch runtime errors gracefully.",
   "registryDependencies": [
     "@boldkit/utils",

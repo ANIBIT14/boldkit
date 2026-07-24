@@ -60,5 +60,6 @@
       "content": "<script setup lang=\"ts\">\nimport { cn } from '@/lib/utils'\n\ninterface TimelineTitleProps {\n  class?: string\n}\n\nconst props = defineProps<TimelineTitleProps>()\n</script>\n\n<template>\n  <h3 :class=\"cn('text-base font-bold uppercase tracking-wide', props.class)\">\n    <slot />\n  </h3>\n</template>\n",
       "type": "registry:ui"
     }
-  ]
+  ],
+  "title": "Timeline"
 }

@@ -18,5 +18,6 @@
       "path": "components/ui/DateRangePicker.vue",
       "type": "registry:ui"
     }
-  ]
+  ],
+  "title": "Date Range Picker"
 }

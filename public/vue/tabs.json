@@ -26,5 +26,6 @@
       "path": "components/ui/TabsContent.vue",
       "type": "registry:ui"
     }
-  ]
+  ],
+  "title": "Tabs"
 }

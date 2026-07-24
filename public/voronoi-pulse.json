@@ -11,5 +11,6 @@
       "target": "components/ui/canvas-effects/VoronoiPulse.tsx"
     }
   ],
-  "type": "registry:ui"
+  "type": "registry:ui",
+  "title": "Voronoi Pulse"
 }

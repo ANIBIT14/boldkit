@@ -12,5 +12,6 @@
       "path": "lib/chart-export.ts",
       "type": "registry:lib"
     }
-  ]
+  ],
+  "title": "Chart Export"
 }

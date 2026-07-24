@@ -14,5 +14,6 @@
       "path": "components/ui/Label.vue",
       "type": "registry:ui"
     }
-  ]
+  ],
+  "title": "Label"
 }

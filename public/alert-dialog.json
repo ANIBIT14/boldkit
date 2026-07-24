@@ -1,6 +1,7 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "alert-dialog",
+  "title": "Alert Dialog",
   "description": "A modal dialog for important confirmations with neubrutalism styling",
   "dependencies": [
     "@radix-ui/react-alert-dialog"
@@ -14,11 +15,6 @@
       "path": "registry/default/ui/alert-dialog.tsx",
       "type": "registry:ui",
       "target": "components/ui/alert-dialog.tsx"
-    },
-    {
-      "path": "registry/default/example/alert-dialog-demo.tsx",
-      "type": "registry:example",
-      "target": "components/example/alert-dialog-demo.tsx"
     }
   ],
   "type": "registry:ui"

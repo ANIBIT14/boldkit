@@ -51,5 +51,6 @@
       "content": "<script setup lang=\"ts\">\nimport { SelectSeparator as SelectSeparatorPrimitive } from 'reka-ui'\nimport { cn } from '@/lib/utils'\n\ndefineProps<{\n  class?: string\n}>()\n</script>\n\n<template>\n  <SelectSeparatorPrimitive :class=\"cn('-mx-1 my-1 h-px bg-foreground', $props.class)\" />\n</template>\n",
       "type": "registry:ui"
     }
-  ]
+  ],
+  "title": "Select"
 }

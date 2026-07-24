@@ -14,5 +14,6 @@
       "type": "registry:lib",
       "target": ""
     }
-  ]
+  ],
+  "title": "Utils"
 }

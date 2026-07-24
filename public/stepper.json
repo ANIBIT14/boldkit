@@ -1,6 +1,7 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "stepper",
+  "title": "Stepper",
   "description": "Multi-step form wizard with progress indicators, compound components pattern",
   "dependencies": [
     "class-variance-authority",
@@ -14,11 +15,6 @@
       "path": "registry/default/ui/stepper.tsx",
       "type": "registry:ui",
       "target": "components/ui/stepper.tsx"
-    },
-    {
-      "path": "registry/default/example/stepper-demo.tsx",
-      "type": "registry:example",
-      "target": "components/example/stepper-demo.tsx"
     }
   ],
   "type": "registry:ui"

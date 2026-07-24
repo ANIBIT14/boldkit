@@ -20,5 +20,6 @@
       "path": "components/ui/FileList.vue",
       "type": "registry:ui"
     }
-  ]
+  ],
+  "title": "Dropzone"
 }

@@ -22,5 +22,6 @@
       "path": "components/ui/AlertDescription.vue",
       "type": "registry:ui"
     }
-  ]
+  ],
+  "title": "Alert"
 }

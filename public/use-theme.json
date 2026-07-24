@@ -1,6 +1,7 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "use-theme",
+  "title": "Use Theme",
   "description": "Theme provider hook with light/dark/system support and localStorage persistence. Used by Sonner toast for theme-aware rendering.",
   "files": [
     {

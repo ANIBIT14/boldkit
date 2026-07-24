@@ -51,5 +51,6 @@
       "path": "components/ui/DropdownMenuRadioGroup.vue",
       "type": "registry:ui"
     }
-  ]
+  ],
+  "title": "Dropdown Menu"
 }

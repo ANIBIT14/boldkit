@@ -30,5 +30,6 @@
       "content": "<script setup lang=\"ts\">\nimport { TabsContent as TabsContentPrimitive } from 'reka-ui'\nimport { cn } from '@/lib/utils'\n\ndefineProps<{\n  class?: string\n  value: string\n}>()\n</script>\n\n<template>\n  <TabsContentPrimitive\n    :value=\"value\"\n    :class=\"\n      cn(\n        'mt-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2',\n        $props.class\n      )\n    \"\n  >\n    <slot />\n  </TabsContentPrimitive>\n</template>\n",
       "type": "registry:ui"
     }
-  ]
+  ],
+  "title": "Tabs"
 }

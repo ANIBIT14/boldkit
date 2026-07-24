@@ -27,5 +27,6 @@
       "content": "// Shared type definitions for BoldKit Vue chart components.\n// Exported from a plain .ts file to ensure reliable TypeScript resolution.\n\n// Chart annotation vocabulary — identical shape to the React side so the same\n// annotation objects author in both frameworks (mapped to echarts here).\nexport interface ChartReferenceLineSpec {\n  axis: 'x' | 'y'\n  value: number | string\n  label?: string\n  color?: string\n  dash?: boolean\n}\n\nexport interface ChartCalloutSpec {\n  x: number | string\n  y: number\n  text: string\n  placement?: 'top' | 'right' | 'bottom' | 'left'\n}\n\nexport interface ChartArrowSpec {\n  from: { x: number | string; y: number }\n  to: { x: number | string; y: number }\n  label?: string\n}\n\nexport type ChartAnnotation =\n  | ({ kind: 'referenceLine' } & ChartReferenceLineSpec)\n  | ({ kind: 'callout' } & ChartCalloutSpec)\n  | ({ kind: 'arrow' } & ChartArrowSpec)\n\nexport interface FunnelChartData {\n  name: string\n  value: number\n  fill?: string\n}\n\nexport interface TreemapChartData {\n  name: string\n  value: number\n  fill?: string\n  children?: TreemapChartData[]\n}\n\nexport interface HeatmapCellData {\n  row: string\n  col: string\n  value: number\n}\n\nexport interface SankeyNode {\n  id: string\n  label: string\n  color?: string\n}\n\nexport interface SankeyLink {\n  source: string\n  target: string\n  value: number\n}\n",
       "type": "registry:ui"
     }
-  ]
+  ],
+  "title": "Funnel Chart"
 }

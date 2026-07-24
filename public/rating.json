@@ -1,6 +1,7 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "rating",
+  "title": "Rating",
   "description": "Star rating component with half-values, multiple icons, and keyboard navigation",
   "dependencies": [
     "class-variance-authority",
@@ -14,11 +15,6 @@
       "path": "registry/default/ui/rating.tsx",
       "type": "registry:ui",
       "target": "components/ui/rating.tsx"
-    },
-    {
-      "path": "registry/default/example/rating-demo.tsx",
-      "type": "registry:example",
-      "target": "components/example/rating-demo.tsx"
     }
   ],
   "type": "registry:ui"

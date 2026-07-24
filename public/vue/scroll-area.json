@@ -18,5 +18,6 @@
       "path": "components/ui/ScrollBar.vue",
       "type": "registry:ui"
     }
-  ]
+  ],
+  "title": "Scroll Area"
 }

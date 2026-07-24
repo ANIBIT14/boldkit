@@ -22,5 +22,6 @@
       "path": "components/ui/HoverCardContent.vue",
       "type": "registry:ui"
     }
-  ]
+  ],
+  "title": "Hover Card"
 }

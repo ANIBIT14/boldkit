@@ -22,5 +22,6 @@
       "path": "components/ui/AvatarFallback.vue",
       "type": "registry:ui"
     }
-  ]
+  ],
+  "title": "Avatar"
 }

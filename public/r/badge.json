@@ -1,6 +1,7 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "badge",
+  "title": "Badge",
   "description": "Displays a badge or a component that looks like a badge with neubrutalism styling",
   "dependencies": [
     "class-variance-authority"
@@ -14,12 +15,6 @@
       "content": "/* eslint-disable react-refresh/only-export-components */\nimport * as React from 'react'\nimport { cva, type VariantProps } from 'class-variance-authority'\nimport { cn } from '@/lib/utils'\n\nconst badgeVariants = cva(\n  'inline-flex items-center border-2 border-foreground px-2.5 py-0.5 text-xs font-bold uppercase tracking-wide transition duration-200 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 shadow-[4px_4px_0px_hsl(var(--shadow-color))] hover:translate-x-[4px] hover:translate-y-[4px] hover:shadow-none',\n  {\n    variants: {\n      variant: {\n        default: 'bg-primary text-primary-foreground',\n        secondary: 'bg-secondary text-secondary-foreground',\n        accent: 'bg-accent text-accent-foreground',\n        destructive: 'bg-destructive text-destructive-foreground',\n        success: 'bg-success text-success-foreground',\n        warning: 'bg-warning text-warning-foreground',\n        info: 'bg-info text-info-foreground',\n        outline: 'bg-background text-foreground',\n      },\n    },\n    defaultVariants: {\n      variant: 'default',\n    },\n  }\n)\n\nexport interface BadgeProps\n  extends React.HTMLAttributes<HTMLSpanElement>,\n    VariantProps<typeof badgeVariants> {}\n\nfunction Badge({ className, variant, ...props }: BadgeProps) {\n  return (\n    <span\n      className={cn(badgeVariants({ variant }), className)}\n      {...props}\n    />\n  )\n}\n\nexport { Badge, badgeVariants }\n",
       "type": "registry:ui",
       "target": "components/ui/badge.tsx"
-    },
-    {
-      "path": "registry/default/example/badge-demo.tsx",
-      "content": "import { Badge } from '@/components/ui/badge'\n\nexport default function Example() {\n  return <Badge>Badge</Badge>\n}",
-      "type": "registry:example",
-      "target": "components/example/badge-demo.tsx"
     }
   ],
   "type": "registry:ui"

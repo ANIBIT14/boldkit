@@ -16,5 +16,6 @@
       "path": "components/ui/ErrorBoundary.vue",
       "type": "registry:ui"
     }
-  ]
+  ],
+  "title": "Error Boundary"
 }

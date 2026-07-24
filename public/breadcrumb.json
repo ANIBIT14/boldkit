@@ -1,6 +1,7 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "breadcrumb",
+  "title": "Breadcrumb",
   "description": "Displays the path to the current resource using a hierarchy of links",
   "dependencies": [
     "@radix-ui/react-slot",
@@ -14,11 +15,6 @@
       "path": "registry/default/ui/breadcrumb.tsx",
       "type": "registry:ui",
       "target": "components/ui/breadcrumb.tsx"
-    },
-    {
-      "path": "registry/default/example/breadcrumb-demo.tsx",
-      "type": "registry:example",
-      "target": "components/example/breadcrumb-demo.tsx"
     }
   ],
   "type": "registry:ui"

@@ -26,5 +26,6 @@
       "path": "components/ui/StickyNote.vue",
       "type": "registry:ui"
     }
-  ]
+  ],
+  "title": "Sticker"
 }

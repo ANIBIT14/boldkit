@@ -1,6 +1,7 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "alert",
+  "title": "Alert",
   "description": "Displays a callout for user attention with bold neubrutalism borders",
   "dependencies": [
     "class-variance-authority",
@@ -14,11 +15,6 @@
       "path": "registry/default/ui/alert.tsx",
       "type": "registry:ui",
       "target": "components/ui/alert.tsx"
-    },
-    {
-      "path": "registry/default/example/alert-demo.tsx",
-      "type": "registry:example",
-      "target": "components/example/alert-demo.tsx"
     }
   ],
   "type": "registry:ui"

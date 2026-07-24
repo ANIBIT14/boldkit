@@ -1,6 +1,7 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "empty-state",
+  "title": "Empty State",
   "description": "Empty state component with icon, title, description, and optional actions",
   "dependencies": [
     "class-variance-authority",
@@ -15,11 +16,6 @@
       "path": "registry/default/ui/empty-state.tsx",
       "type": "registry:ui",
       "target": "components/ui/empty-state.tsx"
-    },
-    {
-      "path": "registry/default/example/empty-state-demo.tsx",
-      "type": "registry:example",
-      "target": "components/example/empty-state-demo.tsx"
     }
   ],
   "type": "registry:ui"

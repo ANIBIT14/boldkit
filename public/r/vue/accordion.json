@@ -30,5 +30,6 @@
       "content": "<script setup lang=\"ts\">\nimport { AccordionContent as AccordionContentPrimitive } from 'reka-ui'\nimport { cn } from '@/lib/utils'\n\ndefineProps<{\n  class?: string\n}>()\n</script>\n\n<template>\n  <AccordionContentPrimitive\n    class=\"overflow-hidden text-sm transition data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down border-t-3 border-foreground\"\n  >\n    <div :class=\"cn('p-4', $props.class)\">\n      <slot />\n    </div>\n  </AccordionContentPrimitive>\n</template>\n",
       "type": "registry:ui"
     }
-  ]
+  ],
+  "title": "Accordion"
 }

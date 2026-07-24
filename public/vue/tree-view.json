@@ -17,5 +17,6 @@
       "path": "components/ui/TreeView.vue",
       "type": "registry:ui"
     }
-  ]
+  ],
+  "title": "Tree View"
 }

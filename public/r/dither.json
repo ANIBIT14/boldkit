@@ -12,5 +12,6 @@
       "target": "components/ui/canvas-effects/Dither.tsx"
     }
   ],
-  "type": "registry:ui"
+  "type": "registry:ui",
+  "title": "Dither"
 }

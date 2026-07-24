@@ -1,6 +1,7 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "aspect-ratio",
+  "title": "Aspect Ratio",
   "description": "Displays content within a desired ratio",
   "dependencies": [
     "@radix-ui/react-aspect-ratio"
@@ -13,11 +14,6 @@
       "path": "registry/default/ui/aspect-ratio.tsx",
       "type": "registry:ui",
       "target": "components/ui/aspect-ratio.tsx"
-    },
-    {
-      "path": "registry/default/example/aspect-ratio-demo.tsx",
-      "type": "registry:example",
-      "target": "components/example/aspect-ratio-demo.tsx"
     }
   ],
   "type": "registry:ui"

@@ -12,5 +12,6 @@
       "path": "components/ui/Input.vue",
       "type": "registry:ui"
     }
-  ]
+  ],
+  "title": "Input"
 }

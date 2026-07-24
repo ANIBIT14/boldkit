@@ -11,5 +11,6 @@
       "target": "components/ui/canvas-effects/CRT.tsx"
     }
   ],
-  "type": "registry:ui"
+  "type": "registry:ui",
+  "title": "Crt"
 }

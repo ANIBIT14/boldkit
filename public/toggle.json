@@ -1,6 +1,7 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "toggle",
+  "title": "Toggle",
   "description": "A two-state button that can be either on or off",
   "dependencies": [
     "@radix-ui/react-toggle",
@@ -14,11 +15,6 @@
       "path": "registry/default/ui/toggle.tsx",
       "type": "registry:ui",
       "target": "components/ui/toggle.tsx"
-    },
-    {
-      "path": "registry/default/example/toggle-demo.tsx",
-      "type": "registry:example",
-      "target": "components/example/toggle-demo.tsx"
     }
   ],
   "type": "registry:ui"

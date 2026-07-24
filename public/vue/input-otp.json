@@ -27,5 +27,6 @@
       "path": "components/ui/InputOTPSeparator.vue",
       "type": "registry:ui"
     }
-  ]
+  ],
+  "title": "Input OTP"
 }

@@ -11,5 +11,6 @@
       "target": "components/ui/canvas-effects/Metaballs.tsx"
     }
   ],
-  "type": "registry:ui"
+  "type": "registry:ui",
+  "title": "Metaballs"
 }

@@ -25,5 +25,6 @@
       "content": "<script setup lang=\"ts\">\nimport { CollapsibleContent as CollapsibleContentPrimitive } from 'reka-ui'\nimport { cn } from '@/lib/utils'\n\ndefineProps<{\n  class?: string\n}>()\n</script>\n\n<template>\n  <CollapsibleContentPrimitive\n    :class=\"\n      cn(\n        'overflow-hidden transition data-[state=closed]:animate-collapsible-up data-[state=open]:animate-collapsible-down',\n        $props.class\n      )\n    \"\n  >\n    <slot />\n  </CollapsibleContentPrimitive>\n</template>\n",
       "type": "registry:ui"
     }
-  ]
+  ],
+  "title": "Collapsible"
 }

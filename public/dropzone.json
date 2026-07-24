@@ -1,6 +1,7 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "dropzone",
+  "title": "Dropzone",
   "description": "Drag-and-drop file upload with validation, progress tracking, and file list",
   "dependencies": [
     "class-variance-authority",
@@ -16,11 +17,6 @@
       "path": "registry/default/ui/dropzone.tsx",
       "type": "registry:ui",
       "target": "components/ui/dropzone.tsx"
-    },
-    {
-      "path": "registry/default/example/dropzone-demo.tsx",
-      "type": "registry:example",
-      "target": "components/example/dropzone-demo.tsx"
     }
   ],
   "type": "registry:ui"

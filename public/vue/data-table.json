@@ -21,5 +21,6 @@
       "path": "components/ui/DataTable.vue",
       "type": "registry:ui"
     }
-  ]
+  ],
+  "title": "Data Table"
 }

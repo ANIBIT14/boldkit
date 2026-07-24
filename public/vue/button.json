@@ -19,5 +19,6 @@
       "path": "components/ui/button-variants.ts",
       "type": "registry:ui"
     }
-  ]
+  ],
+  "title": "Button"
 }

@@ -12,5 +12,6 @@
       "target": "components/ui/canvas-effects/DotBlob.tsx"
     }
   ],
-  "type": "registry:ui"
+  "type": "registry:ui",
+  "title": "Dot Blob"
 }

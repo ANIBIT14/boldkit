@@ -25,5 +25,6 @@
       "content": "<script setup lang=\"ts\">\nimport { AvatarFallback as AvatarFallbackPrimitive } from 'reka-ui'\nimport { cn } from '@/lib/utils'\n\ndefineProps<{\n  class?: string\n  delayMs?: number\n}>()\n</script>\n\n<template>\n  <AvatarFallbackPrimitive\n    :delay-ms=\"delayMs\"\n    :class=\"\n      cn(\n        'flex h-full w-full items-center justify-center bg-primary text-primary-foreground font-bold uppercase',\n        $props.class\n      )\n    \"\n  >\n    <slot />\n  </AvatarFallbackPrimitive>\n</template>\n",
       "type": "registry:ui"
     }
-  ]
+  ],
+  "title": "Avatar"
 }

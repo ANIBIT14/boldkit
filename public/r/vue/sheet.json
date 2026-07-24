@@ -52,5 +52,6 @@
       "content": "<script setup lang=\"ts\">\nimport { DialogClose } from 'reka-ui'\n</script>\n\n<template>\n  <DialogClose as-child>\n    <slot />\n  </DialogClose>\n</template>\n",
       "type": "registry:ui"
     }
-  ]
+  ],
+  "title": "Sheet"
 }

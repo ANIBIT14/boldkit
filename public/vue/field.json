@@ -29,5 +29,6 @@
       "path": "components/ui/FieldError.vue",
       "type": "registry:ui"
     }
-  ]
+  ],
+  "title": "Field"
 }

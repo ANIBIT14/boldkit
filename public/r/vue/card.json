@@ -38,5 +38,6 @@
       "content": "<script setup lang=\"ts\">\nimport { cn } from '@/lib/utils'\n\ndefineProps<{\n  class?: string\n}>()\n</script>\n\n<template>\n  <div\n    :class=\"cn('flex items-center p-6 border-t-3 border-foreground bg-muted/50', $props.class)\"\n  >\n    <slot />\n  </div>\n</template>\n",
       "type": "registry:ui"
     }
-  ]
+  ],
+  "title": "Card"
 }

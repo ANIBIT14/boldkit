@@ -1,6 +1,7 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "scroll-area",
+  "title": "Scroll Area",
   "description": "Augments native scroll functionality for custom styling",
   "dependencies": [
     "@radix-ui/react-scroll-area"
@@ -13,11 +14,6 @@
       "path": "registry/default/ui/scroll-area.tsx",
       "type": "registry:ui",
       "target": "components/ui/scroll-area.tsx"
-    },
-    {
-      "path": "registry/default/example/scroll-area-demo.tsx",
-      "type": "registry:example",
-      "target": "components/example/scroll-area-demo.tsx"
     }
   ],
   "type": "registry:ui"

@@ -48,5 +48,6 @@
       "path": "components/ui/CommandShortcut.vue",
       "type": "registry:ui"
     }
-  ]
+  ],
+  "title": "Command"
 }

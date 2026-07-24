@@ -22,5 +22,6 @@
       "content": "<script setup lang=\"ts\">\nimport { ToggleGroupItem as ToggleGroupItemPrimitive } from 'reka-ui'\nimport { type VariantProps } from 'class-variance-authority'\nimport { inject } from 'vue'\nimport { cn } from '@/lib/utils'\nimport { toggleVariants } from './toggle-variants'\nimport { ToggleGroupContextKey, type ToggleGroupContext } from './ToggleGroup.vue'\n\ntype ToggleVariants = VariantProps<typeof toggleVariants>\n\ninterface Props {\n  class?: string\n  value: string\n  variant?: ToggleVariants['variant']\n  size?: ToggleVariants['size']\n  disabled?: boolean\n}\n\nconst props = defineProps<Props>()\n\nconst context = inject<ToggleGroupContext>(ToggleGroupContextKey, {\n  variant: 'default',\n  size: 'default',\n})\n</script>\n\n<template>\n  <ToggleGroupItemPrimitive\n    :value=\"value\"\n    :disabled=\"disabled\"\n    :class=\"\n      cn(\n        toggleVariants({\n          variant: props.variant || context.variant,\n          size: props.size || context.size,\n        }),\n        props.class\n      )\n    \"\n  >\n    <slot />\n  </ToggleGroupItemPrimitive>\n</template>\n",
       "type": "registry:ui"
     }
-  ]
+  ],
+  "title": "Toggle Group"
 }

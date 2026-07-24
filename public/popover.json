@@ -1,6 +1,7 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "popover",
+  "title": "Popover",
   "description": "Displays rich content in a portal with neubrutalism styling",
   "dependencies": [
     "@radix-ui/react-popover"
@@ -14,11 +15,6 @@
       "path": "registry/default/ui/popover.tsx",
       "type": "registry:ui",
       "target": "components/ui/popover.tsx"
-    },
-    {
-      "path": "registry/default/example/popover-demo.tsx",
-      "type": "registry:example",
-      "target": "components/example/popover-demo.tsx"
     }
   ],
   "type": "registry:ui"

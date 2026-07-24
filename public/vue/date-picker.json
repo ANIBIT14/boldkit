@@ -17,5 +17,6 @@
       "path": "components/ui/DatePicker.vue",
       "type": "registry:ui"
     }
-  ]
+  ],
+  "title": "Date Picker"
 }

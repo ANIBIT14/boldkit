@@ -67,5 +67,6 @@
       "path": "components/ui/MenubarSubContent.vue",
       "type": "registry:ui"
     }
-  ]
+  ],
+  "title": "Menubar"
 }

@@ -63,5 +63,6 @@
       "path": "components/ui/ContextMenuSubContent.vue",
       "type": "registry:ui"
     }
-  ]
+  ],
+  "title": "Context Menu"
 }

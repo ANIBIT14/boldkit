@@ -16,5 +16,6 @@
       "path": "components/ui/SparklineChart.vue",
       "type": "registry:ui"
     }
-  ]
+  ],
+  "title": "Sparkline"
 }

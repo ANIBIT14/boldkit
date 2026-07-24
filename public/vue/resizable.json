@@ -23,5 +23,6 @@
       "path": "components/ui/ResizableHandle.vue",
       "type": "registry:ui"
     }
-  ]
+  ],
+  "title": "Resizable"
 }

@@ -48,5 +48,6 @@
       "content": "<script setup lang=\"ts\">\nimport { cn } from '@/lib/utils'\n\ndefineProps<{\n  class?: string\n}>()\n</script>\n\n<template>\n  <caption :class=\"cn('mt-4 text-sm text-muted-foreground', $props.class)\">\n    <slot />\n  </caption>\n</template>\n",
       "type": "registry:ui"
     }
-  ]
+  ],
+  "title": "Table"
 }

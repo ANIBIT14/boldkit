@@ -22,5 +22,6 @@
       "path": "components/ui/InputGroupAddon.vue",
       "type": "registry:ui"
     }
-  ]
+  ],
+  "title": "Input Group"
 }

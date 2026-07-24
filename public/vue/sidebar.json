@@ -58,5 +58,6 @@
       "path": "components/ui/SidebarToggle.vue",
       "type": "registry:ui"
     }
-  ]
+  ],
+  "title": "Sidebar"
 }

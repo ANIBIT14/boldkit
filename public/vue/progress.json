@@ -14,5 +14,6 @@
       "path": "components/ui/Progress.vue",
       "type": "registry:ui"
     }
-  ]
+  ],
+  "title": "Progress"
 }

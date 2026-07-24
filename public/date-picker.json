@@ -1,6 +1,7 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "date-picker",
+  "title": "Date Picker",
   "description": "A single-date picker: a button trigger that opens a calendar popover",
   "dependencies": [
     "date-fns",
@@ -17,11 +18,6 @@
       "path": "registry/default/ui/date-picker.tsx",
       "type": "registry:ui",
       "target": "components/ui/date-picker.tsx"
-    },
-    {
-      "path": "registry/default/example/date-picker-demo.tsx",
-      "type": "registry:example",
-      "target": "components/example/date-picker-demo.tsx"
     }
   ],
   "type": "registry:ui"

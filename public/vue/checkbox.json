@@ -15,5 +15,6 @@
       "path": "components/ui/Checkbox.vue",
       "type": "registry:ui"
     }
-  ]
+  ],
+  "title": "Checkbox"
 }

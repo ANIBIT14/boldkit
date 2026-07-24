@@ -25,5 +25,6 @@
       "content": "<script setup lang=\"ts\">\nimport { cn } from '@/lib/utils'\n\ndefineProps<{\n  class?: string\n}>()\n</script>\n\n<template>\n  <div :class=\"cn('text-sm [&_p]:leading-relaxed', $props.class)\">\n    <slot />\n  </div>\n</template>\n",
       "type": "registry:ui"
     }
-  ]
+  ],
+  "title": "Alert"
 }

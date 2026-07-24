@@ -1,6 +1,7 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "sticker",
+  "title": "Sticker",
   "description": "Rotated labels and stamps with tape effect and double borders - neubrutalist decorative elements",
   "dependencies": [
     "class-variance-authority"
@@ -13,11 +14,6 @@
       "path": "registry/default/ui/sticker.tsx",
       "type": "registry:ui",
       "target": "components/ui/sticker.tsx"
-    },
-    {
-      "path": "registry/default/example/sticker-demo.tsx",
-      "type": "registry:example",
-      "target": "components/example/sticker-demo.tsx"
     }
   ],
   "type": "registry:ui"

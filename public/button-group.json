@@ -1,6 +1,7 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "button-group",
+  "title": "Button Group",
   "description": "Visually joins a row or column of buttons into one bordered unit",
   "dependencies": [],
   "registryDependencies": [
@@ -12,11 +13,6 @@
       "path": "registry/default/ui/button-group.tsx",
       "type": "registry:ui",
       "target": "components/ui/button-group.tsx"
-    },
-    {
-      "path": "registry/default/example/button-group-demo.tsx",
-      "type": "registry:example",
-      "target": "components/example/button-group-demo.tsx"
     }
   ],
   "type": "registry:ui"

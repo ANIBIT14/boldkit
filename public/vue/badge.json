@@ -14,5 +14,6 @@
       "path": "components/ui/Badge.vue",
       "type": "registry:ui"
     }
-  ]
+  ],
+  "title": "Badge"
 }

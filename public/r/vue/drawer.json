@@ -50,5 +50,6 @@
       "content": "<script setup lang=\"ts\">\nimport { DrawerClose as DrawerClosePrimitive } from 'vaul-vue'\n</script>\n\n<template>\n  <DrawerClosePrimitive as-child>\n    <slot />\n  </DrawerClosePrimitive>\n</template>\n",
       "type": "registry:ui"
     }
-  ]
+  ],
+  "title": "Drawer"
 }

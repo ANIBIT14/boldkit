@@ -16,5 +16,6 @@
       "path": "components/ui/Calendar.vue",
       "type": "registry:ui"
     }
-  ]
+  ],
+  "title": "Calendar"
 }

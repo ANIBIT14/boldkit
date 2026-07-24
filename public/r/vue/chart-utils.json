@@ -20,5 +20,6 @@
       "type": "registry:ui",
       "target": ""
     }
-  ]
+  ],
+  "title": "Chart Utils"
 }

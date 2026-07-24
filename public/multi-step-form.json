@@ -1,6 +1,7 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "multi-step-form",
+  "title": "Multi Step Form",
   "description": "Dependency-free multi-step form state layer with per-step validation, designed to compose with Stepper",
   "dependencies": [],
   "registryDependencies": [
@@ -15,11 +16,6 @@
       "path": "registry/default/ui/multi-step-form.tsx",
       "type": "registry:ui",
       "target": "components/ui/multi-step-form.tsx"
-    },
-    {
-      "path": "registry/default/example/multi-step-form-demo.tsx",
-      "type": "registry:example",
-      "target": "components/example/multi-step-form-demo.tsx"
     }
   ],
   "type": "registry:ui"

@@ -1,6 +1,7 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "date-range-picker",
+  "title": "Date Range Picker",
   "description": "Date range picker with presets, dual calendars, and customizable options",
   "dependencies": [
     "date-fns",
@@ -18,11 +19,6 @@
       "path": "registry/default/ui/date-range-picker.tsx",
       "type": "registry:ui",
       "target": "components/ui/date-range-picker.tsx"
-    },
-    {
-      "path": "registry/default/example/date-range-picker-demo.tsx",
-      "type": "registry:example",
-      "target": "components/example/date-range-picker-demo.tsx"
     }
   ],
   "type": "registry:ui"

@@ -20,5 +20,6 @@
       "content": "<script setup lang=\"ts\">\nimport { ScrollAreaScrollbar, ScrollAreaThumb } from 'reka-ui'\nimport { cn } from '@/lib/utils'\n\ninterface Props {\n  class?: string\n  orientation?: 'vertical' | 'horizontal'\n}\n\nconst props = withDefaults(defineProps<Props>(), {\n  orientation: 'vertical',\n})\n</script>\n\n<template>\n  <ScrollAreaScrollbar\n    :orientation=\"props.orientation\"\n    :class=\"\n      cn(\n        'flex touch-none select-none transition-colors',\n        props.orientation === 'vertical' && 'h-full w-3 border-l-3 border-l-transparent p-[1px]',\n        props.orientation === 'horizontal' && 'h-3 flex-col border-t-3 border-t-transparent p-[1px]',\n        props.class\n      )\n    \"\n  >\n    <ScrollAreaThumb class=\"relative flex-1 bg-foreground\" />\n  </ScrollAreaScrollbar>\n</template>\n",
       "type": "registry:ui"
     }
-  ]
+  ],
+  "title": "Scroll Area"
 }

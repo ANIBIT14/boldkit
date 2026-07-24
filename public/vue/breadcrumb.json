@@ -39,5 +39,6 @@
       "path": "components/ui/BreadcrumbEllipsis.vue",
       "type": "registry:ui"
     }
-  ]
+  ],
+  "title": "Breadcrumb"
 }

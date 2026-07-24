@@ -34,5 +34,6 @@
       "path": "components/ui/StepperTrigger.vue",
       "type": "registry:ui"
     }
-  ]
+  ],
+  "title": "Stepper"
 }

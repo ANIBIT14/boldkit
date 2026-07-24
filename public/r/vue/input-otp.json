@@ -31,5 +31,6 @@
       "content": "<script setup lang=\"ts\">\nimport { Dot } from 'lucide-vue-next'\n</script>\n\n<template>\n  <div role=\"presentation\" aria-hidden=\"true\">\n    <slot>\n      <Dot class=\"h-4 w-4\" />\n    </slot>\n  </div>\n</template>\n",
       "type": "registry:ui"
     }
-  ]
+  ],
+  "title": "Input OTP"
 }

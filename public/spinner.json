@@ -1,6 +1,7 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "spinner",
+  "title": "Spinner",
   "description": "Loading spinner with multiple animation variants - dots, bars, blocks, and brutal shadow spin",
   "dependencies": [
     "class-variance-authority"
@@ -13,11 +14,6 @@
       "path": "registry/default/ui/spinner.tsx",
       "type": "registry:ui",
       "target": "components/ui/spinner.tsx"
-    },
-    {
-      "path": "registry/default/example/spinner-demo.tsx",
-      "type": "registry:example",
-      "target": "components/example/spinner-demo.tsx"
     }
   ],
   "type": "registry:ui"

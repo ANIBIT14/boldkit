@@ -15,5 +15,6 @@
       "path": "components/ui/Tour.vue",
       "type": "registry:ui"
     }
-  ]
+  ],
+  "title": "Tour"
 }

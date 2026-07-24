@@ -20,5 +20,6 @@
       "path": "components/ui/MarqueeSeparator.vue",
       "type": "registry:ui"
     }
-  ]
+  ],
+  "title": "Marquee"
 }

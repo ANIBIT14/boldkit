@@ -40,5 +40,6 @@
       "path": "components/ui/PaginationNext.vue",
       "type": "registry:ui"
     }
-  ]
+  ],
+  "title": "Pagination"
 }

@@ -1,6 +1,7 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "theme",
+  "title": "Theme",
   "description": "BoldKit neubrutalism theme with bold colors and CSS variables",
   "files": [],
   "cssVars": {

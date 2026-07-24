@@ -22,5 +22,6 @@
       "path": "components/ui/CollapsibleContent.vue",
       "type": "registry:ui"
     }
-  ]
+  ],
+  "title": "Collapsible"
 }

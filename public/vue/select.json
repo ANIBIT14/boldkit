@@ -43,5 +43,6 @@
       "path": "components/ui/SelectSeparator.vue",
       "type": "registry:ui"
     }
-  ]
+  ],
+  "title": "Select"
 }

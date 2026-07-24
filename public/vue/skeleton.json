@@ -12,5 +12,6 @@
       "path": "components/ui/Skeleton.vue",
       "type": "registry:ui"
     }
-  ]
+  ],
+  "title": "Skeleton"
 }

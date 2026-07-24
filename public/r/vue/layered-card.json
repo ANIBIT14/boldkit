@@ -45,5 +45,6 @@
       "content": "import { cva } from 'class-variance-authority'\n\nexport const layeredCardVariants = cva('relative', {\n  variants: {\n    layers: {\n      single: '',\n      double: '',\n      triple: '',\n    },\n    offset: {\n      sm: '',\n      default: '',\n      lg: '',\n    },\n    layerColor: {\n      default: '',\n      primary: '',\n      secondary: '',\n      accent: '',\n      muted: '',\n    },\n  },\n  defaultVariants: {\n    layers: 'double',\n    offset: 'default',\n    layerColor: 'default',\n  },\n})\n",
       "type": "registry:ui"
     }
-  ]
+  ],
+  "title": "Layered Card"
 }

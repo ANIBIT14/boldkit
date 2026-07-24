@@ -16,5 +16,6 @@
       "path": "components/ui/ChartToolbar.vue",
       "type": "registry:ui"
     }
-  ]
+  ],
+  "title": "Chart Toolbar"
 }

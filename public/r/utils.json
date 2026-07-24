@@ -1,6 +1,7 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "utils",
+  "title": "Utils",
   "description": "Utility functions for className merging",
   "dependencies": [
     "clsx",

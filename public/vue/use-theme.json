@@ -12,5 +12,6 @@
       "path": "composables/useTheme.ts",
       "type": "registry:composable"
     }
-  ]
+  ],
+  "title": "Use Theme"
 }

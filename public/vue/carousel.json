@@ -36,5 +36,6 @@
       "path": "components/ui/CarouselDots.vue",
       "type": "registry:ui"
     }
-  ]
+  ],
+  "title": "Carousel"
 }

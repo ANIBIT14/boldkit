@@ -34,5 +34,6 @@
       "content": "<script setup lang=\"ts\">\nimport { cn } from '@/lib/utils'\n\nconst props = defineProps<{\n  class?: string\n}>()\n</script>\n\n<template>\n  <p\n    role=\"alert\"\n    :class=\"cn('text-xs font-bold uppercase tracking-wide text-destructive', props.class)\"\n  >\n    <slot />\n  </p>\n</template>\n",
       "type": "registry:ui"
     }
-  ]
+  ],
+  "title": "Field"
 }

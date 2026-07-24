@@ -20,5 +20,6 @@
       "path": "components/ui/useMultiStepForm.ts",
       "type": "registry:ui"
     }
-  ]
+  ],
+  "title": "Multi Step Form"
 }

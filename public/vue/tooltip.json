@@ -26,5 +26,6 @@
       "path": "components/ui/TooltipProvider.vue",
       "type": "registry:ui"
     }
-  ]
+  ],
+  "title": "Tooltip"
 }

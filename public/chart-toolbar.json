@@ -1,6 +1,7 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "chart-toolbar",
+  "title": "Chart Toolbar",
   "description": "Brutalist chart toolbar overlay — export the wrapped chart as PNG or SVG, download its data as CSV, and toggle fullscreen.",
   "dependencies": [
     "lucide-react"

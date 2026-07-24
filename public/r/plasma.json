@@ -12,5 +12,6 @@
       "target": "components/ui/canvas-effects/Plasma.tsx"
     }
   ],
-  "type": "registry:ui"
+  "type": "registry:ui",
+  "title": "Plasma"
 }

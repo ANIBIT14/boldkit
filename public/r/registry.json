@@ -9,6 +9,7 @@
       "name": "theme",
       "type": "registry:theme",
       "description": "BoldKit neubrutalism theme with bold colors and CSS variables",
+      "title": "Theme",
       "cssVars": {
         "light": {
           "background": "60 9% 98%",
@@ -97,6 +98,7 @@
       "name": "utils",
       "type": "registry:lib",
       "description": "Utility functions for className merging",
+      "title": "Utils",
       "dependencies": [
         "clsx",
         "tailwind-merge"
@@ -113,6 +115,7 @@
       "name": "use-theme",
       "type": "registry:hook",
       "description": "Theme provider hook with light/dark/system support and localStorage persistence. Used by Sonner toast for theme-aware rendering.",
+      "title": "Use Theme",
       "files": [
         {
           "path": "registry/default/hooks/use-theme.tsx",
@@ -125,6 +128,7 @@
       "name": "error-boundary",
       "type": "registry:component",
       "description": "Error boundary wrapper with neubrutalism-styled fallback UI. Used by math-curve components to catch runtime errors gracefully.",
+      "title": "Error Boundary",
       "registryDependencies": [
         "@boldkit/utils",
         "@boldkit/button",
@@ -142,6 +146,7 @@
       "name": "accordion",
       "type": "registry:ui",
       "description": "A vertically stacked set of interactive headings with neubrutalism styling",
+      "title": "Accordion",
       "dependencies": [
         "@radix-ui/react-accordion",
         "lucide-react"
@@ -154,11 +159,6 @@
           "path": "registry/default/ui/accordion.tsx",
           "type": "registry:ui",
           "target": "components/ui/accordion.tsx"
-        },
-        {
-          "path": "registry/default/example/accordion-demo.tsx",
-          "type": "registry:example",
-          "target": "components/example/accordion-demo.tsx"
         }
       ]
     },
@@ -166,6 +166,7 @@
       "name": "alert",
       "type": "registry:ui",
       "description": "Displays a callout for user attention with bold neubrutalism borders",
+      "title": "Alert",
       "dependencies": [
         "class-variance-authority",
         "lucide-react"
@@ -178,11 +179,6 @@
           "path": "registry/default/ui/alert.tsx",
           "type": "registry:ui",
           "target": "components/ui/alert.tsx"
-        },
-        {
-          "path": "registry/default/example/alert-demo.tsx",
-          "type": "registry:example",
-          "target": "components/example/alert-demo.tsx"
         }
       ]
     },
@@ -190,6 +186,7 @@
       "name": "aspect-ratio",
       "type": "registry:ui",
       "description": "Displays content within a desired ratio",
+      "title": "Aspect Ratio",
       "dependencies": [
         "@radix-ui/react-aspect-ratio"
       ],
@@ -201,11 +198,6 @@
           "path": "registry/default/ui/aspect-ratio.tsx",
           "type": "registry:ui",
           "target": "components/ui/aspect-ratio.tsx"
-        },
-        {
-          "path": "registry/default/example/aspect-ratio-demo.tsx",
-          "type": "registry:example",
-          "target": "components/example/aspect-ratio-demo.tsx"
         }
       ]
     },
@@ -213,6 +205,7 @@
       "name": "avatar",
       "type": "registry:ui",
       "description": "An image element with a fallback for representing the user",
+      "title": "Avatar",
       "dependencies": [
         "@radix-ui/react-avatar"
       ],
@@ -224,11 +217,6 @@
           "path": "registry/default/ui/avatar.tsx",
           "type": "registry:ui",
           "target": "components/ui/avatar.tsx"
-        },
-        {
-          "path": "registry/default/example/avatar-demo.tsx",
-          "type": "registry:example",
-          "target": "components/example/avatar-demo.tsx"
         }
       ]
     },
@@ -236,6 +224,7 @@
       "name": "badge",
       "type": "registry:ui",
       "description": "Displays a badge or a component that looks like a badge with neubrutalism styling",
+      "title": "Badge",
       "dependencies": [
         "class-variance-authority"
       ],
@@ -247,11 +236,6 @@
           "path": "registry/default/ui/badge.tsx",
           "type": "registry:ui",
           "target": "components/ui/badge.tsx"
-        },
-        {
-          "path": "registry/default/example/badge-demo.tsx",
-          "type": "registry:example",
-          "target": "components/example/badge-demo.tsx"
         }
       ]
     },
@@ -259,6 +243,7 @@
       "name": "breadcrumb",
       "type": "registry:ui",
       "description": "Displays the path to the current resource using a hierarchy of links",
+      "title": "Breadcrumb",
       "dependencies": [
         "@radix-ui/react-slot",
         "lucide-react"
@@ -271,11 +256,6 @@
           "path": "registry/default/ui/breadcrumb.tsx",
           "type": "registry:ui",
           "target": "components/ui/breadcrumb.tsx"
-        },
-        {
-          "path": "registry/default/example/breadcrumb-demo.tsx",
-          "type": "registry:example",
-          "target": "components/example/breadcrumb-demo.tsx"
         }
       ]
     },
@@ -283,6 +263,7 @@
       "name": "button",
       "type": "registry:ui",
       "description": "Displays a button with neubrutalism styling and press-down animation",
+      "title": "Button",
       "dependencies": [
         "@radix-ui/react-slot",
         "class-variance-authority"
@@ -295,11 +276,6 @@
           "path": "registry/default/ui/button.tsx",
           "type": "registry:ui",
           "target": "components/ui/button.tsx"
-        },
-        {
-          "path": "registry/default/example/button-demo.tsx",
-          "type": "registry:example",
-          "target": "components/example/button-demo.tsx"
         }
       ]
     },
@@ -307,6 +283,7 @@
       "name": "card",
       "type": "registry:ui",
       "description": "Displays a card with header, content, and footer with thick borders and shadows",
+      "title": "Card",
       "dependencies": [],
       "registryDependencies": [
         "@boldkit/utils"
@@ -316,11 +293,6 @@
           "path": "registry/default/ui/card.tsx",
           "type": "registry:ui",
           "target": "components/ui/card.tsx"
-        },
-        {
-          "path": "registry/default/example/card-demo.tsx",
-          "type": "registry:example",
-          "target": "components/example/card-demo.tsx"
         }
       ]
     },
@@ -328,6 +300,7 @@
       "name": "checkbox",
       "type": "registry:ui",
       "description": "A control that allows the user to toggle between checked and not checked",
+      "title": "Checkbox",
       "dependencies": [
         "@radix-ui/react-checkbox",
         "lucide-react"
@@ -341,11 +314,6 @@
           "path": "registry/default/ui/checkbox.tsx",
           "type": "registry:ui",
           "target": "components/ui/checkbox.tsx"
-        },
-        {
-          "path": "registry/default/example/checkbox-demo.tsx",
-          "type": "registry:example",
-          "target": "components/example/checkbox-demo.tsx"
         }
       ]
     },
@@ -353,6 +321,7 @@
       "name": "collapsible",
       "type": "registry:ui",
       "description": "An interactive component which expands/collapses a panel",
+      "title": "Collapsible",
       "dependencies": [
         "@radix-ui/react-collapsible"
       ],
@@ -365,11 +334,6 @@
           "path": "registry/default/ui/collapsible.tsx",
           "type": "registry:ui",
           "target": "components/ui/collapsible.tsx"
-        },
-        {
-          "path": "registry/default/example/collapsible-demo.tsx",
-          "type": "registry:example",
-          "target": "components/example/collapsible-demo.tsx"
         }
       ]
     },
@@ -377,6 +341,7 @@
       "name": "combobox",
       "type": "registry:ui",
       "description": "Searchable dropdown built by composing Popover and Command with neubrutalism styling",
+      "title": "Combobox",
       "dependencies": [
         "lucide-react"
       ],
@@ -390,11 +355,6 @@
           "path": "registry/default/ui/combobox.tsx",
           "type": "registry:ui",
           "target": "components/ui/combobox.tsx"
-        },
-        {
-          "path": "registry/default/example/combobox-demo.tsx",
-          "type": "registry:example",
-          "target": "components/example/combobox-demo.tsx"
         }
       ]
     },
@@ -402,6 +362,7 @@
       "name": "command",
       "type": "registry:ui",
       "description": "Fast, composable, command menu for React with neubrutalism styling",
+      "title": "Command",
       "dependencies": [
         "cmdk",
         "lucide-react"
@@ -415,11 +376,6 @@
           "path": "registry/default/ui/command.tsx",
           "type": "registry:ui",
           "target": "components/ui/command.tsx"
-        },
-        {
-          "path": "registry/default/example/command-demo.tsx",
-          "type": "registry:example",
-          "target": "components/example/command-demo.tsx"
         }
       ]
     },
@@ -427,6 +383,7 @@
       "name": "dialog",
       "type": "registry:ui",
       "description": "A window overlaid on the primary window with neubrutalism borders and shadows",
+      "title": "Dialog",
       "dependencies": [
         "@radix-ui/react-dialog",
         "lucide-react"
@@ -440,11 +397,6 @@
           "path": "registry/default/ui/dialog.tsx",
           "type": "registry:ui",
           "target": "components/ui/dialog.tsx"
-        },
-        {
-          "path": "registry/default/example/dialog-demo.tsx",
-          "type": "registry:example",
-          "target": "components/example/dialog-demo.tsx"
         }
       ]
     },
@@ -452,6 +404,7 @@
       "name": "dropdown-menu",
       "type": "registry:ui",
       "description": "Displays a menu of actions/options with neubrutalism styling",
+      "title": "Dropdown Menu",
       "dependencies": [
         "@radix-ui/react-dropdown-menu",
         "lucide-react"
@@ -465,11 +418,6 @@
           "path": "registry/default/ui/dropdown-menu.tsx",
           "type": "registry:ui",
           "target": "components/ui/dropdown-menu.tsx"
-        },
-        {
-          "path": "registry/default/example/dropdown-menu-demo.tsx",
-          "type": "registry:example",
-          "target": "components/example/dropdown-menu-demo.tsx"
         }
       ]
     },
@@ -477,6 +425,7 @@
       "name": "context-menu",
       "type": "registry:ui",
       "description": "Displays a menu triggered by right-click with neubrutalism styling",
+      "title": "Context Menu",
       "dependencies": [
         "@radix-ui/react-context-menu",
         "lucide-react"
@@ -489,11 +438,6 @@
           "path": "registry/default/ui/context-menu.tsx",
           "type": "registry:ui",
           "target": "components/ui/context-menu.tsx"
-        },
-        {
-          "path": "registry/default/example/context-menu-demo.tsx",
-          "type": "registry:example",
-          "target": "components/example/context-menu-demo.tsx"
         }
       ]
     },
@@ -501,6 +445,7 @@
       "name": "menubar",
       "type": "registry:ui",
       "description": "A horizontal menu bar of desktop-style dropdown menus with neubrutalism styling",
+      "title": "Menubar",
       "dependencies": [
         "@radix-ui/react-menubar",
         "lucide-react"
@@ -513,11 +458,6 @@
           "path": "registry/default/ui/menubar.tsx",
           "type": "registry:ui",
           "target": "components/ui/menubar.tsx"
-        },
-        {
-          "path": "registry/default/example/menubar-demo.tsx",
-          "type": "registry:example",
-          "target": "components/example/menubar-demo.tsx"
         }
       ]
     },
@@ -525,6 +465,7 @@
       "name": "navigation-menu",
       "type": "registry:ui",
       "description": "A collection of links and dropdown panels for site navigation with neubrutalism styling",
+      "title": "Navigation Menu",
       "dependencies": [
         "@radix-ui/react-navigation-menu",
         "class-variance-authority",
@@ -538,11 +479,6 @@
           "path": "registry/default/ui/navigation-menu.tsx",
           "type": "registry:ui",
           "target": "components/ui/navigation-menu.tsx"
-        },
-        {
-          "path": "registry/default/example/navigation-menu-demo.tsx",
-          "type": "registry:example",
-          "target": "components/example/navigation-menu-demo.tsx"
         }
       ]
     },
@@ -550,6 +486,7 @@
       "name": "resizable",
       "type": "registry:ui",
       "description": "Resizable panel groups and handles with neubrutalism styling",
+      "title": "Resizable",
       "dependencies": [
         "react-resizable-panels@^2.1.0",
         "lucide-react"
@@ -562,11 +499,6 @@
           "path": "registry/default/ui/resizable.tsx",
           "type": "registry:ui",
           "target": "components/ui/resizable.tsx"
-        },
-        {
-          "path": "registry/default/example/resizable-demo.tsx",
-          "type": "registry:example",
-          "target": "components/example/resizable-demo.tsx"
         }
       ]
     },
@@ -574,6 +506,7 @@
       "name": "button-group",
       "type": "registry:ui",
       "description": "Visually joins a row or column of buttons into one bordered unit",
+      "title": "Button Group",
       "dependencies": [],
       "registryDependencies": [
         "@boldkit/utils",
@@ -584,11 +517,6 @@
           "path": "registry/default/ui/button-group.tsx",
           "type": "registry:ui",
           "target": "components/ui/button-group.tsx"
-        },
-        {
-          "path": "registry/default/example/button-group-demo.tsx",
-          "type": "registry:example",
-          "target": "components/example/button-group-demo.tsx"
         }
       ]
     },
@@ -596,6 +524,7 @@
       "name": "input-group",
       "type": "registry:ui",
       "description": "An input joined with leading/trailing addons in a single bordered field",
+      "title": "Input Group",
       "dependencies": [
         "lucide-react"
       ],
@@ -607,11 +536,6 @@
           "path": "registry/default/ui/input-group.tsx",
           "type": "registry:ui",
           "target": "components/ui/input-group.tsx"
-        },
-        {
-          "path": "registry/default/example/input-group-demo.tsx",
-          "type": "registry:example",
-          "target": "components/example/input-group-demo.tsx"
         }
       ]
     },
@@ -619,6 +543,7 @@
       "name": "field",
       "type": "registry:ui",
       "description": "Form field composition: label, control, description and error",
+      "title": "Field",
       "dependencies": [],
       "registryDependencies": [
         "@boldkit/utils",
@@ -630,11 +555,6 @@
           "path": "registry/default/ui/field.tsx",
           "type": "registry:ui",
           "target": "components/ui/field.tsx"
-        },
-        {
-          "path": "registry/default/example/field-demo.tsx",
-          "type": "registry:example",
-          "target": "components/example/field-demo.tsx"
         }
       ]
     },
@@ -642,6 +562,7 @@
       "name": "native-select",
       "type": "registry:ui",
       "description": "A styled wrapper around the native select element, a11y-first",
+      "title": "Native Select",
       "dependencies": [
         "lucide-react"
       ],
@@ -653,11 +574,6 @@
           "path": "registry/default/ui/native-select.tsx",
           "type": "registry:ui",
           "target": "components/ui/native-select.tsx"
-        },
-        {
-          "path": "registry/default/example/native-select-demo.tsx",
-          "type": "registry:example",
-          "target": "components/example/native-select-demo.tsx"
         }
       ]
     },
@@ -665,6 +581,7 @@
       "name": "date-picker",
       "type": "registry:ui",
       "description": "A single-date picker: a button trigger that opens a calendar popover",
+      "title": "Date Picker",
       "dependencies": [
         "date-fns",
         "lucide-react"
@@ -680,11 +597,6 @@
           "path": "registry/default/ui/date-picker.tsx",
           "type": "registry:ui",
           "target": "components/ui/date-picker.tsx"
-        },
-        {
-          "path": "registry/default/example/date-picker-demo.tsx",
-          "type": "registry:example",
-          "target": "components/example/date-picker-demo.tsx"
         }
       ]
     },
@@ -692,6 +604,7 @@
       "name": "input",
       "type": "registry:ui",
       "description": "Displays a form input field with neubrutalism styling",
+      "title": "Input",
       "dependencies": [],
       "registryDependencies": [
         "@boldkit/utils"
@@ -701,11 +614,6 @@
           "path": "registry/default/ui/input.tsx",
           "type": "registry:ui",
           "target": "components/ui/input.tsx"
-        },
-        {
-          "path": "registry/default/example/input-demo.tsx",
-          "type": "registry:example",
-          "target": "components/example/input-demo.tsx"
         }
       ]
     },
@@ -713,6 +621,7 @@
       "name": "label",
       "type": "registry:ui",
       "description": "Renders an accessible label for form controls",
+      "title": "Label",
       "dependencies": [
         "@radix-ui/react-label",
         "class-variance-authority"
@@ -726,11 +635,6 @@
           "path": "registry/default/ui/label.tsx",
           "type": "registry:ui",
           "target": "components/ui/label.tsx"
-        },
-        {
-          "path": "registry/default/example/label-demo.tsx",
-          "type": "registry:example",
-          "target": "components/example/label-demo.tsx"
         }
       ]
     },
@@ -738,6 +642,7 @@
       "name": "popover",
       "type": "registry:ui",
       "description": "Displays rich content in a portal with neubrutalism styling",
+      "title": "Popover",
       "dependencies": [
         "@radix-ui/react-popover"
       ],
@@ -750,11 +655,6 @@
           "path": "registry/default/ui/popover.tsx",
           "type": "registry:ui",
           "target": "components/ui/popover.tsx"
-        },
-        {
-          "path": "registry/default/example/popover-demo.tsx",
-          "type": "registry:example",
-          "target": "components/example/popover-demo.tsx"
         }
       ]
     },
@@ -762,6 +662,7 @@
       "name": "progress",
       "type": "registry:ui",
       "description": "Displays an indicator showing the completion progress of a task",
+      "title": "Progress",
       "dependencies": [
         "@radix-ui/react-progress"
       ],
@@ -773,11 +674,6 @@
           "path": "registry/default/ui/progress.tsx",
           "type": "registry:ui",
           "target": "components/ui/progress.tsx"
-        },
-        {
-          "path": "registry/default/example/progress-demo.tsx",
-          "type": "registry:example",
-          "target": "components/example/progress-demo.tsx"
         }
       ]
     },
@@ -785,6 +681,7 @@
       "name": "radio-group",
       "type": "registry:ui",
       "description": "A set of checkable buttons where only one can be checked at a time",
+      "title": "Radio Group",
       "dependencies": [
         "@radix-ui/react-radio-group",
         "lucide-react"
@@ -798,11 +695,6 @@
           "path": "registry/default/ui/radio-group.tsx",
           "type": "registry:ui",
           "target": "components/ui/radio-group.tsx"
-        },
-        {
-          "path": "registry/default/example/radio-group-demo.tsx",
-          "type": "registry:example",
-          "target": "components/example/radio-group-demo.tsx"
         }
       ]
     },
@@ -810,6 +702,7 @@
       "name": "scroll-area",
       "type": "registry:ui",
       "description": "Augments native scroll functionality for custom styling",
+      "title": "Scroll Area",
       "dependencies": [
         "@radix-ui/react-scroll-area"
       ],
@@ -821,11 +714,6 @@
           "path": "registry/default/ui/scroll-area.tsx",
           "type": "registry:ui",
           "target": "components/ui/scroll-area.tsx"
-        },
-        {
-          "path": "registry/default/example/scroll-area-demo.tsx",
-          "type": "registry:example",
-          "target": "components/example/scroll-area-demo.tsx"
         }
       ]
     },
@@ -833,6 +721,7 @@
       "name": "select",
       "type": "registry:ui",
       "description": "Displays a list of options with neubrutalism styling",
+      "title": "Select",
       "dependencies": [
         "@radix-ui/react-select",
         "lucide-react"
@@ -845,11 +734,6 @@
           "path": "registry/default/ui/select.tsx",
           "type": "registry:ui",
           "target": "components/ui/select.tsx"
-        },
-        {
-          "path": "registry/default/example/select-demo.tsx",
-          "type": "registry:example",
-          "target": "components/example/select-demo.tsx"
         }
       ]
     },
@@ -857,6 +741,7 @@
       "name": "separator",
       "type": "registry:ui",
       "description": "Visually separates content with a thick border",
+      "title": "Separator",
       "dependencies": [
         "@radix-ui/react-separator"
       ],
@@ -868,11 +753,6 @@
           "path": "registry/default/ui/separator.tsx",
           "type": "registry:ui",
           "target": "components/ui/separator.tsx"
-        },
-        {
-          "path": "registry/default/example/separator-demo.tsx",
-          "type": "registry:example",
-          "target": "components/example/separator-demo.tsx"
         }
       ]
     },
@@ -880,6 +760,7 @@
       "name": "sheet",
       "type": "registry:ui",
       "description": "Extends Dialog to display content that complements the main page",
+      "title": "Sheet",
       "dependencies": [
         "@radix-ui/react-dialog",
         "class-variance-authority",
@@ -893,11 +774,6 @@
           "path": "registry/default/ui/sheet.tsx",
           "type": "registry:ui",
           "target": "components/ui/sheet.tsx"
-        },
-        {
-          "path": "registry/default/example/sheet-demo.tsx",
-          "type": "registry:example",
-          "target": "components/example/sheet-demo.tsx"
         }
       ]
     },
@@ -905,6 +781,7 @@
       "name": "skeleton",
       "type": "registry:ui",
       "description": "Used to show a placeholder while content is loading",
+      "title": "Skeleton",
       "dependencies": [],
       "registryDependencies": [
         "@boldkit/utils"
@@ -914,11 +791,6 @@
           "path": "registry/default/ui/skeleton.tsx",
           "type": "registry:ui",
           "target": "components/ui/skeleton.tsx"
-        },
-        {
-          "path": "registry/default/example/skeleton-demo.tsx",
-          "type": "registry:example",
-          "target": "components/example/skeleton-demo.tsx"
         }
       ]
     },
@@ -926,6 +798,7 @@
       "name": "slider",
       "type": "registry:ui",
       "description": "A jelly slider with spring physics and bouncy animations",
+      "title": "Slider",
       "dependencies": [],
       "registryDependencies": [
         "@boldkit/utils"
@@ -935,11 +808,6 @@
           "path": "registry/default/ui/slider.tsx",
           "type": "registry:ui",
           "target": "components/ui/slider.tsx"
-        },
-        {
-          "path": "registry/default/example/slider-demo.tsx",
-          "type": "registry:example",
-          "target": "components/example/slider-demo.tsx"
         }
       ]
     },
@@ -947,6 +815,7 @@
       "name": "sonner",
       "type": "registry:ui",
       "description": "An opinionated toast component with neubrutalism styling",
+      "title": "Sonner",
       "dependencies": [
         "sonner"
       ],
@@ -960,11 +829,6 @@
           "path": "registry/default/ui/sonner.tsx",
           "type": "registry:ui",
           "target": "components/ui/sonner.tsx"
-        },
-        {
-          "path": "registry/default/example/sonner-demo.tsx",
-          "type": "registry:example",
-          "target": "components/example/sonner-demo.tsx"
         }
       ]
     },
@@ -972,6 +836,7 @@
       "name": "switch",
       "type": "registry:ui",
       "description": "A control that allows the user to toggle between on and off",
+      "title": "Switch",
       "dependencies": [
         "@radix-ui/react-switch"
       ],
@@ -984,11 +849,6 @@
           "path": "registry/default/ui/switch.tsx",
           "type": "registry:ui",
           "target": "components/ui/switch.tsx"
-        },
-        {
-          "path": "registry/default/example/switch-demo.tsx",
-          "type": "registry:example",
-          "target": "components/example/switch-demo.tsx"
         }
       ]
     },
@@ -996,6 +856,7 @@
       "name": "table",
       "type": "registry:ui",
       "description": "A responsive table component with neubrutalism styling",
+      "title": "Table",
       "dependencies": [],
       "registryDependencies": [
         "@boldkit/utils"
@@ -1005,11 +866,6 @@
           "path": "registry/default/ui/table.tsx",
           "type": "registry:ui",
           "target": "components/ui/table.tsx"
-        },
-        {
-          "path": "registry/default/example/table-demo.tsx",
-          "type": "registry:example",
-          "target": "components/example/table-demo.tsx"
         }
       ]
     },
@@ -1017,6 +873,7 @@
       "name": "tabs",
       "type": "registry:ui",
       "description": "A tabbed interface component with neubrutalism styling",
+      "title": "Tabs",
       "dependencies": [
         "@radix-ui/react-tabs"
       ],
@@ -1028,11 +885,6 @@
           "path": "registry/default/ui/tabs.tsx",
           "type": "registry:ui",
           "target": "components/ui/tabs.tsx"
-        },
-        {
-          "path": "registry/default/example/tabs-demo.tsx",
-          "type": "registry:example",
-          "target": "components/example/tabs-demo.tsx"
         }
       ]
     },
@@ -1040,6 +892,7 @@
       "name": "textarea",
       "type": "registry:ui",
       "description": "Displays a form textarea with neubrutalism styling",
+      "title": "Textarea",
       "dependencies": [],
       "registryDependencies": [
         "@boldkit/utils"
@@ -1049,11 +902,6 @@
           "path": "registry/default/ui/textarea.tsx",
           "type": "registry:ui",
           "target": "components/ui/textarea.tsx"
-        },
-        {
-          "path": "registry/default/example/textarea-demo.tsx",
-          "type": "registry:example",
-          "target": "components/example/textarea-demo.tsx"
         }
       ]
     },
@@ -1061,6 +909,7 @@
       "name": "toggle",
       "type": "registry:ui",
       "description": "A two-state button that can be either on or off",
+      "title": "Toggle",
       "dependencies": [
         "@radix-ui/react-toggle",
         "class-variance-authority"
@@ -1073,11 +922,6 @@
           "path": "registry/default/ui/toggle.tsx",
           "type": "registry:ui",
           "target": "components/ui/toggle.tsx"
-        },
-        {
-          "path": "registry/default/example/toggle-demo.tsx",
-          "type": "registry:example",
-          "target": "components/example/toggle-demo.tsx"
         }
       ]
     },
@@ -1085,6 +929,7 @@
       "name": "toggle-group",
       "type": "registry:ui",
       "description": "A group of toggle buttons where only one can be pressed at a time",
+      "title": "Toggle Group",
       "dependencies": [
         "@radix-ui/react-toggle-group"
       ],
@@ -1097,11 +942,6 @@
           "path": "registry/default/ui/toggle-group.tsx",
           "type": "registry:ui",
           "target": "components/ui/toggle-group.tsx"
-        },
-        {
-          "path": "registry/default/example/toggle-group-demo.tsx",
-          "type": "registry:example",
-          "target": "components/example/toggle-group-demo.tsx"
         }
       ]
     },
@@ -1109,6 +949,7 @@
       "name": "tooltip",
       "type": "registry:ui",
       "description": "A popup that displays information related to an element",
+      "title": "Tooltip",
       "dependencies": [
         "@radix-ui/react-tooltip"
       ],
@@ -1120,11 +961,6 @@
           "path": "registry/default/ui/tooltip.tsx",
           "type": "registry:ui",
           "target": "components/ui/tooltip.tsx"
-        },
-        {
-          "path": "registry/default/example/tooltip-demo.tsx",
-          "type": "registry:example",
-          "target": "components/example/tooltip-demo.tsx"
         }
       ]
     },
@@ -1132,6 +968,7 @@
       "name": "alert-dialog",
       "type": "registry:ui",
       "description": "A modal dialog for important confirmations with neubrutalism styling",
+      "title": "Alert Dialog",
       "dependencies": [
         "@radix-ui/react-alert-dialog"
       ],
@@ -1144,11 +981,6 @@
           "path": "registry/default/ui/alert-dialog.tsx",
           "type": "registry:ui",
           "target": "components/ui/alert-dialog.tsx"
-        },
-        {
-          "path": "registry/default/example/alert-dialog-demo.tsx",
-          "type": "registry:example",
-          "target": "components/example/alert-dialog-demo.tsx"
         }
       ]
     },
@@ -1156,6 +988,7 @@
       "name": "calendar",
       "type": "registry:ui",
       "description": "A date picker calendar with neubrutalism styling",
+      "title": "Calendar",
       "dependencies": [
         "react-day-picker",
         "lucide-react"
@@ -1169,11 +1002,6 @@
           "path": "registry/default/ui/calendar.tsx",
           "type": "registry:ui",
           "target": "components/ui/calendar.tsx"
-        },
-        {
-          "path": "registry/default/example/calendar-demo.tsx",
-          "type": "registry:example",
-          "target": "components/example/calendar-demo.tsx"
         }
       ]
     },
@@ -1181,6 +1009,7 @@
       "name": "drawer",
       "type": "registry:ui",
       "description": "A drawer component that slides in from the edge of the screen",
+      "title": "Drawer",
       "dependencies": [
         "vaul"
       ],
@@ -1192,11 +1021,6 @@
           "path": "registry/default/ui/drawer.tsx",
           "type": "registry:ui",
           "target": "components/ui/drawer.tsx"
-        },
-        {
-          "path": "registry/default/example/drawer-demo.tsx",
-          "type": "registry:example",
-          "target": "components/example/drawer-demo.tsx"
         }
       ]
     },
@@ -1204,6 +1028,7 @@
       "name": "hover-card",
       "type": "registry:ui",
       "description": "A card that appears on hover with additional information",
+      "title": "Hover Card",
       "dependencies": [
         "@radix-ui/react-hover-card"
       ],
@@ -1215,11 +1040,6 @@
           "path": "registry/default/ui/hover-card.tsx",
           "type": "registry:ui",
           "target": "components/ui/hover-card.tsx"
-        },
-        {
-          "path": "registry/default/example/hover-card-demo.tsx",
-          "type": "registry:example",
-          "target": "components/example/hover-card-demo.tsx"
         }
       ]
     },
@@ -1227,6 +1047,7 @@
       "name": "input-otp",
       "type": "registry:ui",
       "description": "One-time password input with neubrutalism styling",
+      "title": "Input OTP",
       "dependencies": [
         "input-otp",
         "lucide-react"
@@ -1239,11 +1060,6 @@
           "path": "registry/default/ui/input-otp.tsx",
           "type": "registry:ui",
           "target": "components/ui/input-otp.tsx"
-        },
-        {
-          "path": "registry/default/example/input-otp-demo.tsx",
-          "type": "registry:example",
-          "target": "components/example/input-otp-demo.tsx"
         }
       ]
     },
@@ -1251,6 +1067,7 @@
       "name": "pagination",
       "type": "registry:ui",
       "description": "Pagination controls for navigating through pages",
+      "title": "Pagination",
       "dependencies": [
         "lucide-react"
       ],
@@ -1263,11 +1080,6 @@
           "path": "registry/default/ui/pagination.tsx",
           "type": "registry:ui",
           "target": "components/ui/pagination.tsx"
-        },
-        {
-          "path": "registry/default/example/pagination-demo.tsx",
-          "type": "registry:example",
-          "target": "components/example/pagination-demo.tsx"
         }
       ]
     },
@@ -1275,6 +1087,7 @@
       "name": "chart",
       "type": "registry:ui",
       "description": "Beautiful charts with neubrutalism styling built on Recharts",
+      "title": "Chart",
       "dependencies": [
         "recharts"
       ],
@@ -1286,11 +1099,6 @@
           "path": "registry/default/ui/chart.tsx",
           "type": "registry:ui",
           "target": "components/ui/chart.tsx"
-        },
-        {
-          "path": "registry/default/example/chart-demo.tsx",
-          "type": "registry:example",
-          "target": "components/example/chart-demo.tsx"
         }
       ]
     },
@@ -1298,6 +1106,7 @@
       "name": "marquee",
       "type": "registry:ui",
       "description": "Auto-scrolling text ticker with neubrutalism styling - a common brutalist design element",
+      "title": "Marquee",
       "dependencies": [],
       "registryDependencies": [
         "@boldkit/utils"
@@ -1307,11 +1116,6 @@
           "path": "registry/default/ui/marquee.tsx",
           "type": "registry:ui",
           "target": "components/ui/marquee.tsx"
-        },
-        {
-          "path": "registry/default/example/marquee-demo.tsx",
-          "type": "registry:example",
-          "target": "components/example/marquee-demo.tsx"
         }
       ]
     },
@@ -1319,6 +1123,7 @@
       "name": "sticker",
       "type": "registry:ui",
       "description": "Rotated labels and stamps with tape effect and double borders - neubrutalist decorative elements",
+      "title": "Sticker",
       "dependencies": [
         "class-variance-authority"
       ],
@@ -1330,11 +1135,6 @@
           "path": "registry/default/ui/sticker.tsx",
           "type": "registry:ui",
           "target": "components/ui/sticker.tsx"
-        },
-        {
-          "path": "registry/default/example/sticker-demo.tsx",
-          "type": "registry:example",
-          "target": "components/example/sticker-demo.tsx"
         }
       ]
     },
@@ -1342,6 +1142,7 @@
       "name": "layered-card",
       "type": "registry:ui",
       "description": "Card component with stacked layers effect showing offset depth - neubrutalist depth illusion",
+      "title": "Layered Card",
       "dependencies": [
         "class-variance-authority"
       ],
@@ -1353,11 +1154,6 @@
           "path": "registry/default/ui/layered-card.tsx",
           "type": "registry:ui",
           "target": "components/ui/layered-card.tsx"
-        },
-        {
-          "path": "registry/default/example/layered-card-demo.tsx",
-          "type": "registry:example",
-          "target": "components/example/layered-card-demo.tsx"
         }
       ]
     },
@@ -1365,6 +1161,7 @@
       "name": "shapes",
       "type": "registry:ui",
       "description": "55 neubrutalist SVG shapes organized by category for badges, decorations, and visual accents",
+      "title": "Shapes",
       "dependencies": [],
       "registryDependencies": [
         "@boldkit/utils"
@@ -1374,11 +1171,6 @@
           "path": "registry/default/ui/shapes.tsx",
           "type": "registry:ui",
           "target": "components/ui/shapes.tsx"
-        },
-        {
-          "path": "registry/default/example/shapes-demo.tsx",
-          "type": "registry:example",
-          "target": "components/example/shapes-demo.tsx"
         }
       ]
     },
@@ -1386,6 +1178,7 @@
       "name": "styles",
       "type": "registry:style",
       "description": "BoldKit neubrutalism CSS variables and utilities",
+      "title": "Styles",
       "files": [
         {
           "path": "registry/default/styles/globals.css",
@@ -1398,6 +1191,7 @@
       "name": "spinner",
       "type": "registry:ui",
       "description": "Loading spinner with multiple animation variants - dots, bars, blocks, and brutal shadow spin",
+      "title": "Spinner",
       "dependencies": [
         "class-variance-authority"
       ],
@@ -1409,11 +1203,6 @@
           "path": "registry/default/ui/spinner.tsx",
           "type": "registry:ui",
           "target": "components/ui/spinner.tsx"
-        },
-        {
-          "path": "registry/default/example/spinner-demo.tsx",
-          "type": "registry:example",
-          "target": "components/example/spinner-demo.tsx"
         }
       ]
     },
@@ -1421,6 +1210,7 @@
       "name": "kbd",
       "type": "registry:ui",
       "description": "Keyboard key indicator for displaying shortcuts and hotkeys with neubrutalism styling",
+      "title": "Kbd",
       "dependencies": [
         "class-variance-authority"
       ],
@@ -1432,11 +1222,6 @@
           "path": "registry/default/ui/kbd.tsx",
           "type": "registry:ui",
           "target": "components/ui/kbd.tsx"
-        },
-        {
-          "path": "registry/default/example/kbd-demo.tsx",
-          "type": "registry:example",
-          "target": "components/example/kbd-demo.tsx"
         }
       ]
     },
@@ -1444,6 +1229,7 @@
       "name": "stat-card",
       "type": "registry:ui",
       "description": "Statistics card with trend indicators, icons, and optional progress bars",
+      "title": "Stat Card",
       "dependencies": [
         "class-variance-authority",
         "lucide-react"
@@ -1458,11 +1244,6 @@
           "path": "registry/default/ui/stat-card.tsx",
           "type": "registry:ui",
           "target": "components/ui/stat-card.tsx"
-        },
-        {
-          "path": "registry/default/example/stat-card-demo.tsx",
-          "type": "registry:example",
-          "target": "components/example/stat-card-demo.tsx"
         }
       ]
     },
@@ -1470,6 +1251,7 @@
       "name": "stepper",
       "type": "registry:ui",
       "description": "Multi-step form wizard with progress indicators, compound components pattern",
+      "title": "Stepper",
       "dependencies": [
         "class-variance-authority",
         "lucide-react"
@@ -1482,11 +1264,6 @@
           "path": "registry/default/ui/stepper.tsx",
           "type": "registry:ui",
           "target": "components/ui/stepper.tsx"
-        },
-        {
-          "path": "registry/default/example/stepper-demo.tsx",
-          "type": "registry:example",
-          "target": "components/example/stepper-demo.tsx"
         }
       ]
     },
@@ -1494,6 +1271,7 @@
       "name": "multi-step-form",
       "type": "registry:ui",
       "description": "Dependency-free multi-step form state layer with per-step validation, designed to compose with Stepper",
+      "title": "Multi Step Form",
       "dependencies": [],
       "registryDependencies": [
         "@boldkit/utils",
@@ -1507,11 +1285,6 @@
           "path": "registry/default/ui/multi-step-form.tsx",
           "type": "registry:ui",
           "target": "components/ui/multi-step-form.tsx"
-        },
-        {
-          "path": "registry/default/example/multi-step-form-demo.tsx",
-          "type": "registry:example",
-          "target": "components/example/multi-step-form-demo.tsx"
         }
       ]
     },
@@ -1519,6 +1292,7 @@
       "name": "dropzone",
       "type": "registry:ui",
       "description": "Drag-and-drop file upload with validation, progress tracking, and file list",
+      "title": "Dropzone",
       "dependencies": [
         "class-variance-authority",
         "lucide-react"
@@ -1533,11 +1307,6 @@
           "path": "registry/default/ui/dropzone.tsx",
           "type": "registry:ui",
           "target": "components/ui/dropzone.tsx"
-        },
-        {
-          "path": "registry/default/example/dropzone-demo.tsx",
-          "type": "registry:example",
-          "target": "components/example/dropzone-demo.tsx"
         }
       ]
     },
@@ -1545,6 +1314,7 @@
       "name": "sparkline",
       "type": "registry:ui",
       "description": "Tiny inline trend charts for tables and stat cards - line, area, and bar variants",
+      "title": "Sparkline",
       "dependencies": [
         "recharts"
       ],
@@ -1556,11 +1326,6 @@
           "path": "registry/default/ui/sparkline.tsx",
           "type": "registry:ui",
           "target": "components/ui/sparkline.tsx"
-        },
-        {
-          "path": "registry/default/example/sparkline-demo.tsx",
-          "type": "registry:example",
-          "target": "components/example/sparkline-demo.tsx"
         }
       ]
     },
@@ -1568,6 +1333,7 @@
       "name": "donut-chart",
       "type": "registry:ui",
       "description": "Pie chart with center hole for KPI display, supports center content slot",
+      "title": "Donut Chart",
       "dependencies": [
         "recharts"
       ],
@@ -1580,11 +1346,6 @@
           "path": "registry/default/ui/donut-chart.tsx",
           "type": "registry:ui",
           "target": "components/ui/donut-chart.tsx"
-        },
-        {
-          "path": "registry/default/example/donut-chart-demo.tsx",
-          "type": "registry:example",
-          "target": "components/example/donut-chart-demo.tsx"
         }
       ]
     },
@@ -1592,6 +1353,7 @@
       "name": "radial-bar-chart",
       "type": "registry:ui",
       "description": "Circular progress bars with nested rings for multiple metrics",
+      "title": "Radial Bar Chart",
       "dependencies": [
         "recharts"
       ],
@@ -1604,11 +1366,6 @@
           "path": "registry/default/ui/radial-bar-chart.tsx",
           "type": "registry:ui",
           "target": "components/ui/radial-bar-chart.tsx"
-        },
-        {
-          "path": "registry/default/example/radial-bar-chart-demo.tsx",
-          "type": "registry:example",
-          "target": "components/example/radial-bar-chart-demo.tsx"
         }
       ]
     },
@@ -1616,6 +1373,7 @@
       "name": "radar-chart",
       "type": "registry:ui",
       "description": "Multi-variable comparison chart for skills, metrics, and feature comparisons",
+      "title": "Radar Chart",
       "dependencies": [
         "recharts"
       ],
@@ -1628,11 +1386,6 @@
           "path": "registry/default/ui/radar-chart.tsx",
           "type": "registry:ui",
           "target": "components/ui/radar-chart.tsx"
-        },
-        {
-          "path": "registry/default/example/radar-chart-demo.tsx",
-          "type": "registry:example",
-          "target": "components/example/radar-chart-demo.tsx"
         }
       ]
     },
@@ -1640,6 +1393,7 @@
       "name": "gauge-chart",
       "type": "registry:ui",
       "description": "Speedometer-style gauge with color zones and animated needle - custom SVG implementation",
+      "title": "Gauge Chart",
       "dependencies": [
         "class-variance-authority"
       ],
@@ -1651,11 +1405,6 @@
           "path": "registry/default/ui/gauge-chart.tsx",
           "type": "registry:ui",
           "target": "components/ui/gauge-chart.tsx"
-        },
-        {
-          "path": "registry/default/example/gauge-chart-demo.tsx",
-          "type": "registry:example",
-          "target": "components/example/gauge-chart-demo.tsx"
         }
       ]
     },
@@ -1663,6 +1412,7 @@
       "name": "funnel-chart",
       "type": "registry:ui",
       "description": "Funnel chart for conversion flows and pipeline stages with neubrutalism styling",
+      "title": "Funnel Chart",
       "dependencies": [
         "recharts"
       ],
@@ -1675,11 +1425,6 @@
           "path": "registry/default/ui/funnel-chart.tsx",
           "type": "registry:ui",
           "target": "components/ui/funnel-chart.tsx"
-        },
-        {
-          "path": "registry/default/example/funnel-chart-demo.tsx",
-          "type": "registry:example",
-          "target": "components/example/funnel-chart-demo.tsx"
         }
       ]
     },
@@ -1687,6 +1432,7 @@
       "name": "treemap-chart",
       "type": "registry:ui",
       "description": "Treemap for hierarchical data visualization with proportional rectangles",
+      "title": "Treemap Chart",
       "dependencies": [
         "recharts"
       ],
@@ -1699,11 +1445,6 @@
           "path": "registry/default/ui/treemap-chart.tsx",
           "type": "registry:ui",
           "target": "components/ui/treemap-chart.tsx"
-        },
-        {
-          "path": "registry/default/example/treemap-chart-demo.tsx",
-          "type": "registry:example",
-          "target": "components/example/treemap-chart-demo.tsx"
         }
       ]
     },
@@ -1711,6 +1452,7 @@
       "name": "heatmap-chart",
       "type": "registry:ui",
       "description": "Heatmap grid for correlation and intensity data - custom CSS Grid implementation",
+      "title": "Heatmap Chart",
       "dependencies": [],
       "registryDependencies": [
         "@boldkit/utils",
@@ -1721,11 +1463,6 @@
           "path": "registry/default/ui/heatmap-chart.tsx",
           "type": "registry:ui",
           "target": "components/ui/heatmap-chart.tsx"
-        },
-        {
-          "path": "registry/default/example/heatmap-chart-demo.tsx",
-          "type": "registry:example",
-          "target": "components/example/heatmap-chart-demo.tsx"
         }
       ]
     },
@@ -1733,6 +1470,7 @@
       "name": "sankey-chart",
       "type": "registry:ui",
       "description": "Sankey flow diagram for showing proportional flows between nodes - custom SVG implementation",
+      "title": "Sankey Chart",
       "dependencies": [],
       "registryDependencies": [
         "@boldkit/utils",
@@ -1743,11 +1481,6 @@
           "path": "registry/default/ui/sankey-chart.tsx",
           "type": "registry:ui",
           "target": "components/ui/sankey-chart.tsx"
-        },
-        {
-          "path": "registry/default/example/sankey-chart-demo.tsx",
-          "type": "registry:example",
-          "target": "components/example/sankey-chart-demo.tsx"
         }
       ]
     },
@@ -1755,6 +1488,7 @@
       "name": "rating",
       "type": "registry:ui",
       "description": "Star rating component with half-values, multiple icons, and keyboard navigation",
+      "title": "Rating",
       "dependencies": [
         "class-variance-authority",
         "lucide-react"
@@ -1767,11 +1501,6 @@
           "path": "registry/default/ui/rating.tsx",
           "type": "registry:ui",
           "target": "components/ui/rating.tsx"
-        },
-        {
-          "path": "registry/default/example/rating-demo.tsx",
-          "type": "registry:example",
-          "target": "components/example/rating-demo.tsx"
         }
       ]
     },
@@ -1779,6 +1508,7 @@
       "name": "tag-input",
       "type": "registry:ui",
       "description": "Multi-tag input with suggestions, validation, and keyboard support",
+      "title": "Tag Input",
       "dependencies": [
         "lucide-react"
       ],
@@ -1790,11 +1520,6 @@
           "path": "registry/default/ui/tag-input.tsx",
           "type": "registry:ui",
           "target": "components/ui/tag-input.tsx"
-        },
-        {
-          "path": "registry/default/example/tag-input-demo.tsx",
-          "type": "registry:example",
-          "target": "components/example/tag-input-demo.tsx"
         }
       ]
     },
@@ -1802,6 +1527,7 @@
       "name": "time-picker",
       "type": "registry:ui",
       "description": "Popover-based time picker with 12h/24h format and scrollable columns",
+      "title": "Time Picker",
       "dependencies": [
         "lucide-react"
       ],
@@ -1816,11 +1542,6 @@
           "path": "registry/default/ui/time-picker.tsx",
           "type": "registry:ui",
           "target": "components/ui/time-picker.tsx"
-        },
-        {
-          "path": "registry/default/example/time-picker-demo.tsx",
-          "type": "registry:example",
-          "target": "components/example/time-picker-demo.tsx"
         }
       ]
     },
@@ -1828,6 +1549,7 @@
       "name": "date-range-picker",
       "type": "registry:ui",
       "description": "Date range picker with presets, dual calendars, and customizable options",
+      "title": "Date Range Picker",
       "dependencies": [
         "date-fns",
         "react-day-picker",
@@ -1844,11 +1566,6 @@
           "path": "registry/default/ui/date-range-picker.tsx",
           "type": "registry:ui",
           "target": "components/ui/date-range-picker.tsx"
-        },
-        {
-          "path": "registry/default/example/date-range-picker-demo.tsx",
-          "type": "registry:example",
-          "target": "components/example/date-range-picker-demo.tsx"
         }
       ]
     },
@@ -1856,6 +1573,7 @@
       "name": "data-table",
       "type": "registry:ui",
       "description": "Powerful data table with sorting, filtering, pagination, and row selection",
+      "title": "Data Table",
       "dependencies": [
         "@tanstack/react-table",
         "lucide-react"
@@ -1874,11 +1592,6 @@
           "path": "registry/default/ui/data-table.tsx",
           "type": "registry:ui",
           "target": "components/ui/data-table.tsx"
-        },
-        {
-          "path": "registry/default/example/data-table-demo.tsx",
-          "type": "registry:example",
-          "target": "components/example/data-table-demo.tsx"
         }
       ]
     },
@@ -1886,6 +1599,7 @@
       "name": "carousel",
       "type": "registry:ui",
       "description": "Carousel component with navigation, dots, and touch support built on Embla",
+      "title": "Carousel",
       "dependencies": [
         "embla-carousel-react",
         "lucide-react"
@@ -1899,11 +1613,6 @@
           "path": "registry/default/ui/carousel.tsx",
           "type": "registry:ui",
           "target": "components/ui/carousel.tsx"
-        },
-        {
-          "path": "registry/default/example/carousel-demo.tsx",
-          "type": "registry:example",
-          "target": "components/example/carousel-demo.tsx"
         }
       ]
     },
@@ -1911,6 +1620,7 @@
       "name": "timeline",
       "type": "registry:ui",
       "description": "Composable timeline for activity feeds, order tracking, and version history",
+      "title": "Timeline",
       "dependencies": [
         "class-variance-authority"
       ],
@@ -1922,11 +1632,6 @@
           "path": "registry/default/ui/timeline.tsx",
           "type": "registry:ui",
           "target": "components/ui/timeline.tsx"
-        },
-        {
-          "path": "registry/default/example/timeline-demo.tsx",
-          "type": "registry:example",
-          "target": "components/example/timeline-demo.tsx"
         }
       ]
     },
@@ -1934,6 +1639,7 @@
       "name": "tree-view",
       "type": "registry:ui",
       "description": "Hierarchical tree view with expand/collapse, selection, and checkboxes",
+      "title": "Tree View",
       "dependencies": [
         "@radix-ui/react-collapsible",
         "lucide-react"
@@ -1948,11 +1654,6 @@
           "path": "registry/default/ui/tree-view.tsx",
           "type": "registry:ui",
           "target": "components/ui/tree-view.tsx"
-        },
-        {
-          "path": "registry/default/example/tree-view-demo.tsx",
-          "type": "registry:example",
-          "target": "components/example/tree-view-demo.tsx"
         }
       ]
     },
@@ -1960,6 +1661,7 @@
       "name": "sidebar",
       "type": "registry:ui",
       "description": "Collapsible sidebar with mobile drawer, tooltips, and keyboard shortcut",
+      "title": "Sidebar",
       "dependencies": [
         "class-variance-authority",
         "lucide-react"
@@ -1975,11 +1677,6 @@
           "path": "registry/default/ui/sidebar.tsx",
           "type": "registry:ui",
           "target": "components/ui/sidebar.tsx"
-        },
-        {
-          "path": "registry/default/example/sidebar-demo.tsx",
-          "type": "registry:example",
-          "target": "components/example/sidebar-demo.tsx"
         }
       ]
     },
@@ -1987,6 +1684,7 @@
       "name": "tour",
       "type": "registry:ui",
       "description": "Step-by-step product tour with spotlight highlighting and progress indicators",
+      "title": "Tour",
       "dependencies": [
         "lucide-react"
       ],
@@ -1999,11 +1697,6 @@
           "path": "registry/default/ui/tour.tsx",
           "type": "registry:ui",
           "target": "components/ui/tour.tsx"
-        },
-        {
-          "path": "registry/default/example/tour-demo.tsx",
-          "type": "registry:example",
-          "target": "components/example/tour-demo.tsx"
         }
       ]
     },
@@ -2011,6 +1704,7 @@
       "name": "empty-state",
       "type": "registry:ui",
       "description": "Empty state component with icon, title, description, and optional actions",
+      "title": "Empty State",
       "dependencies": [
         "class-variance-authority",
         "lucide-react"
@@ -2024,11 +1718,6 @@
           "path": "registry/default/ui/empty-state.tsx",
           "type": "registry:ui",
           "target": "components/ui/empty-state.tsx"
-        },
-        {
-          "path": "registry/default/example/empty-state-demo.tsx",
-          "type": "registry:example",
-          "target": "components/example/empty-state-demo.tsx"
         }
       ]
     },
@@ -2036,6 +1725,7 @@
       "name": "math-curves",
       "type": "registry:lib",
       "description": "Framework-agnostic math engine for parametric curve animations (rose, lissajous, butterfly, hypotrochoid, cardioid, lemniscate, fourier, spiral, heart)",
+      "title": "Math Curves",
       "dependencies": [],
       "registryDependencies": [
         "@boldkit/utils"
@@ -2051,7 +1741,8 @@
     {
       "name": "math-curve-loader",
       "type": "registry:ui",
-      "description": "Animated mathematical curve loader with neubrutalism aesthetics \u2014 8 curve variants including rose, lissajous, butterfly, and more",
+      "description": "Animated mathematical curve loader with neubrutalism aesthetics — 8 curve variants including rose, lissajous, butterfly, and more",
+      "title": "Math Curve Loader",
       "dependencies": [
         "class-variance-authority"
       ],
@@ -2065,18 +1756,14 @@
           "path": "registry/default/ui/math-curve-loader.tsx",
           "type": "registry:ui",
           "target": "components/ui/math-curve-loader.tsx"
-        },
-        {
-          "path": "registry/default/example/math-curve-loader-demo.tsx",
-          "type": "registry:example",
-          "target": "components/example/math-curve-loader-demo.tsx"
         }
       ]
     },
     {
       "name": "math-curve-progress",
       "type": "registry:ui",
-      "description": "Progress indicator that traces a mathematical curve \u2014 value-driven head moves along the curve path from 0 to 100%",
+      "description": "Progress indicator that traces a mathematical curve — value-driven head moves along the curve path from 0 to 100%",
+      "title": "Math Curve Progress",
       "dependencies": [
         "class-variance-authority"
       ],
@@ -2090,18 +1777,14 @@
           "path": "registry/default/ui/math-curve-progress.tsx",
           "type": "registry:ui",
           "target": "components/ui/math-curve-progress.tsx"
-        },
-        {
-          "path": "registry/default/example/math-curve-progress-demo.tsx",
-          "type": "registry:example",
-          "target": "components/example/math-curve-progress-demo.tsx"
         }
       ]
     },
     {
       "name": "math-curve-background",
       "type": "registry:ui",
-      "description": "Ambient animated mathematical curve background layer with neubrutalism aesthetics \u2014 wraps content with a slow-moving curve animation",
+      "description": "Ambient animated mathematical curve background layer with neubrutalism aesthetics — wraps content with a slow-moving curve animation",
+      "title": "Math Curve Background",
       "dependencies": [
         "@radix-ui/react-slot"
       ],
@@ -2115,11 +1798,6 @@
           "path": "registry/default/ui/math-curve-background.tsx",
           "type": "registry:ui",
           "target": "components/ui/math-curve-background.tsx"
-        },
-        {
-          "path": "registry/default/example/math-curve-background-demo.tsx",
-          "type": "registry:example",
-          "target": "components/example/math-curve-background-demo.tsx"
         }
       ]
     },
@@ -2127,6 +1805,7 @@
       "name": "ascii-shapes",
       "type": "registry:ui",
       "description": "7 animated ASCII art components (Spiral, Rose, Wave, Vortex, Pulse, Matrix, Grid) with 5 character sets, 4 sizes, and SSR-safe static mode",
+      "title": "ASCII Shapes",
       "dependencies": [],
       "registryDependencies": [
         "@boldkit/utils"
@@ -2136,18 +1815,14 @@
           "path": "registry/default/ui/ascii-shapes.tsx",
           "type": "registry:ui",
           "target": "components/ui/ascii-shapes.tsx"
-        },
-        {
-          "path": "registry/default/example/ascii-shapes-demo.tsx",
-          "type": "registry:example",
-          "target": "components/example/ascii-shapes-demo.tsx"
         }
       ]
     },
     {
       "name": "motion",
       "type": "registry:style",
-      "description": "BoldKit Motion System \u2014 framework-agnostic CSS tokens, keyframes, and six signature recipes (press, stamp-in, shake, reveal, slide-hard, pulse-shadow). Mobile-optimized, honors prefers-reduced-motion.",
+      "description": "BoldKit Motion System — framework-agnostic CSS tokens, keyframes, and six signature recipes (press, stamp-in, shake, reveal, slide-hard, pulse-shadow). Mobile-optimized, honors prefers-reduced-motion.",
+      "title": "Motion",
       "files": [
         {
           "path": "registry/default/styles/motion.css",
@@ -2159,7 +1834,8 @@
     {
       "name": "motion-core",
       "type": "registry:lib",
-      "description": "BoldKit Motion core \u2014 framework-agnostic, SSR-safe primitives (observeReveal, staggerChildren, triggerAnimation, startViewTransition, prefersReducedMotion) shared by every motion adapter.",
+      "description": "BoldKit Motion core — framework-agnostic, SSR-safe primitives (observeReveal, staggerChildren, triggerAnimation, startViewTransition, prefersReducedMotion) shared by every motion adapter.",
+      "title": "Motion Core",
       "files": [
         {
           "path": "registry/default/lib/motion-core.ts",
@@ -2171,7 +1847,8 @@
     {
       "name": "motion-react",
       "type": "registry:ui",
-      "description": "BoldKit Motion React adapter \u2014 <Motion>/<Reveal>/<Stagger> components plus useShake and useViewTransition hooks over a framework-agnostic core.",
+      "description": "BoldKit Motion React adapter — <Motion>/<Reveal>/<Stagger> components plus useShake and useViewTransition hooks over a framework-agnostic core.",
+      "title": "Motion React",
       "registryDependencies": [
         "@boldkit/motion",
         "@boldkit/motion-core",
@@ -2188,7 +1865,8 @@
     {
       "name": "chart-export",
       "type": "registry:lib",
-      "description": "BoldKit chart export helpers \u2014 framework-agnostic, SSR-safe CSV / PNG / SVG download and fullscreen toggle. Works with any chart engine that renders an <svg> (Recharts) or <canvas> (ECharts).",
+      "description": "BoldKit chart export helpers — framework-agnostic, SSR-safe CSV / PNG / SVG download and fullscreen toggle. Works with any chart engine that renders an <svg> (Recharts) or <canvas> (ECharts).",
+      "title": "Chart Export",
       "files": [
         {
           "path": "registry/default/lib/chart-export.ts",
@@ -2200,7 +1878,8 @@
     {
       "name": "chart-toolbar",
       "type": "registry:ui",
-      "description": "Brutalist chart toolbar overlay \u2014 export the wrapped chart as PNG or SVG, download its data as CSV, and toggle fullscreen.",
+      "description": "Brutalist chart toolbar overlay — export the wrapped chart as PNG or SVG, download its data as CSV, and toggle fullscreen.",
+      "title": "Chart Toolbar",
       "dependencies": [
         "lucide-react"
       ],

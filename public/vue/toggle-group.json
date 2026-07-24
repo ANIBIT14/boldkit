@@ -20,5 +20,6 @@
       "path": "components/ui/ToggleGroupItem.vue",
       "type": "registry:ui"
     }
-  ]
+  ],
+  "title": "Toggle Group"
 }

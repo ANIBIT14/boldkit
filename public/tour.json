@@ -1,6 +1,7 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "tour",
+  "title": "Tour",
   "description": "Step-by-step product tour with spotlight highlighting and progress indicators",
   "dependencies": [
     "lucide-react"
@@ -14,11 +15,6 @@
       "path": "registry/default/ui/tour.tsx",
       "type": "registry:ui",
       "target": "components/ui/tour.tsx"
-    },
-    {
-      "path": "registry/default/example/tour-demo.tsx",
-      "type": "registry:example",
-      "target": "components/example/tour-demo.tsx"
     }
   ],
   "type": "registry:ui"

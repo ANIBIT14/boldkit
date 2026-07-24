@@ -51,5 +51,6 @@
       "content": "<script setup lang=\"ts\">\nimport { DialogClose as DialogClosePrimitive } from 'reka-ui'\n</script>\n\n<template>\n  <DialogClosePrimitive as-child>\n    <slot />\n  </DialogClosePrimitive>\n</template>\n",
       "type": "registry:ui"
     }
-  ]
+  ],
+  "title": "Dialog"
 }

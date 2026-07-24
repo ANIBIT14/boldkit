@@ -16,5 +16,6 @@
       "path": "components/ui/StatCard.vue",
       "type": "registry:ui"
     }
-  ]
+  ],
+  "title": "Stat Card"
 }

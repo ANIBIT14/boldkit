@@ -14,5 +14,6 @@
       "path": "components/ui/Switch.vue",
       "type": "registry:ui"
     }
-  ]
+  ],
+  "title": "Switch"
 }

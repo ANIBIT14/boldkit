@@ -40,5 +40,6 @@
       "path": "components/ui/TableCaption.vue",
       "type": "registry:ui"
     }
-  ]
+  ],
+  "title": "Table"
 }

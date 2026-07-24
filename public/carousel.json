@@ -1,6 +1,7 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "carousel",
+  "title": "Carousel",
   "description": "Carousel component with navigation, dots, and touch support built on Embla",
   "dependencies": [
     "embla-carousel-react",
@@ -15,11 +16,6 @@
       "path": "registry/default/ui/carousel.tsx",
       "type": "registry:ui",
       "target": "components/ui/carousel.tsx"
-    },
-    {
-      "path": "registry/default/example/carousel-demo.tsx",
-      "type": "registry:example",
-      "target": "components/example/carousel-demo.tsx"
     }
   ],
   "type": "registry:ui"

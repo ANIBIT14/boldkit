@@ -24,5 +24,6 @@
       "path": "components/ui/chart-types.ts",
       "type": "registry:ui"
     }
-  ]
+  ],
+  "title": "Funnel Chart"
 }

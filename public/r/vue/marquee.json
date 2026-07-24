@@ -23,5 +23,6 @@
       "content": "<script setup lang=\"ts\">\nimport { cn } from '@/lib/utils'\n\ndefineProps<{\n  class?: string\n}>()\n</script>\n\n<template>\n  <span :class=\"cn('text-2xl font-black text-muted-foreground', $props.class)\">\n    <slot>/</slot>\n  </span>\n</template>\n",
       "type": "registry:ui"
     }
-  ]
+  ],
+  "title": "Marquee"
 }

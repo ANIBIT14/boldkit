@@ -1,6 +1,7 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "funnel-chart",
+  "title": "Funnel Chart",
   "description": "Funnel chart for conversion flows and pipeline stages with neubrutalism styling",
   "dependencies": [
     "recharts"
@@ -14,11 +15,6 @@
       "path": "registry/default/ui/funnel-chart.tsx",
       "type": "registry:ui",
       "target": "components/ui/funnel-chart.tsx"
-    },
-    {
-      "path": "registry/default/example/funnel-chart-demo.tsx",
-      "type": "registry:example",
-      "target": "components/example/funnel-chart-demo.tsx"
     }
   ],
   "type": "registry:ui"

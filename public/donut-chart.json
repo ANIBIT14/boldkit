@@ -1,6 +1,7 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "donut-chart",
+  "title": "Donut Chart",
   "description": "Pie chart with center hole for KPI display, supports center content slot",
   "dependencies": [
     "recharts"
@@ -14,11 +15,6 @@
       "path": "registry/default/ui/donut-chart.tsx",
       "type": "registry:ui",
       "target": "components/ui/donut-chart.tsx"
-    },
-    {
-      "path": "registry/default/example/donut-chart-demo.tsx",
-      "type": "registry:example",
-      "target": "components/example/donut-chart-demo.tsx"
     }
   ],
   "type": "registry:ui"

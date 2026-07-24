@@ -19,5 +19,6 @@
       "path": "components/ui/toggle-variants.ts",
       "type": "registry:ui"
     }
-  ]
+  ],
+  "title": "Toggle"
 }

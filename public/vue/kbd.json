@@ -16,5 +16,6 @@
       "path": "components/ui/KbdCombo.vue",
       "type": "registry:ui"
     }
-  ]
+  ],
+  "title": "Kbd"
 }

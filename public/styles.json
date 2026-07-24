@@ -1,6 +1,7 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "styles",
+  "title": "Styles",
   "description": "BoldKit neubrutalism CSS variables and utilities",
   "files": [
     {

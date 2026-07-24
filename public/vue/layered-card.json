@@ -38,5 +38,6 @@
       "path": "components/ui/layered-card-variants.ts",
       "type": "registry:ui"
     }
-  ]
+  ],
+  "title": "Layered Card"
 }

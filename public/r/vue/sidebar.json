@@ -69,5 +69,6 @@
       "content": "<script setup lang=\"ts\">\nimport { inject, computed } from 'vue'\nimport { PanelLeft } from 'lucide-vue-next'\nimport { cn } from '@/lib/utils'\nimport { SIDEBAR_INJECTION_KEY, type SidebarContext } from './SidebarProvider.vue'\nimport Button from './Button.vue'\n\ninterface SidebarToggleProps {\n  class?: string\n}\n\nconst props = defineProps<SidebarToggleProps>()\n\nconst context = inject<SidebarContext>(SIDEBAR_INJECTION_KEY)\nif (!context) {\n  throw new Error('SidebarToggle must be used within a SidebarProvider')\n}\n\nconst { toggleSidebar, state } = context\n\nconst isCollapsed = computed(() => state.value === 'collapsed')\n</script>\n\n<template>\n  <Button\n    variant=\"outline\"\n    size=\"icon\"\n    :class=\"cn('h-8 w-8 transition-transform duration-300', props.class)\"\n    @click=\"toggleSidebar\"\n  >\n    <PanelLeft\n      :class=\"cn(\n        'h-4 w-4 transition-transform duration-300',\n        isCollapsed && 'rotate-180'\n      )\"\n    />\n    <span class=\"sr-only\">Toggle Sidebar</span>\n  </Button>\n</template>\n",
       "type": "registry:ui"
     }
-  ]
+  ],
+  "title": "Sidebar"
 }

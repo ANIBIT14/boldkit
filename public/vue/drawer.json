@@ -42,5 +42,6 @@
       "path": "components/ui/DrawerClose.vue",
       "type": "registry:ui"
     }
-  ]
+  ],
+  "title": "Drawer"
 }

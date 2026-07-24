@@ -27,5 +27,6 @@
       "type": "registry:ui",
       "target": "styles/motion.css"
     }
-  ]
+  ],
+  "title": "Motion"
 }

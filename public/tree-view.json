@@ -1,6 +1,7 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "tree-view",
+  "title": "Tree View",
   "description": "Hierarchical tree view with expand/collapse, selection, and checkboxes",
   "dependencies": [
     "@radix-ui/react-collapsible",
@@ -16,11 +17,6 @@
       "path": "registry/default/ui/tree-view.tsx",
       "type": "registry:ui",
       "target": "components/ui/tree-view.tsx"
-    },
-    {
-      "path": "registry/default/example/tree-view-demo.tsx",
-      "type": "registry:example",
-      "target": "components/example/tree-view-demo.tsx"
     }
   ],
   "type": "registry:ui"

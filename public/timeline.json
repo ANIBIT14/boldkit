@@ -1,6 +1,7 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "timeline",
+  "title": "Timeline",
   "description": "Composable timeline for activity feeds, order tracking, and version history",
   "dependencies": [
     "class-variance-authority"
@@ -13,11 +14,6 @@
       "path": "registry/default/ui/timeline.tsx",
       "type": "registry:ui",
       "target": "components/ui/timeline.tsx"
-    },
-    {
-      "path": "registry/default/example/timeline-demo.tsx",
-      "type": "registry:example",
-      "target": "components/example/timeline-demo.tsx"
     }
   ],
   "type": "registry:ui"
