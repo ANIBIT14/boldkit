@@ -170,3 +170,193 @@
     transition-duration: 0.01ms !important;
   }
 }
+
+/* ══════════════════════════════════════════════════════
+   BoldKit Motion System v3.5 — Part 2
+   Stepped shape presets · brutalist loading states ·
+   page-transition recipes.
+   Source of truth: registry/default/styles/motion.css
+   ══════════════════════════════════════════════════════ */
+
+/* ──────────────────────────────────────────────────────
+   v3.5 — Keyframes
+   ────────────────────────────────────────────────────── */
+
+/* Shape presets */
+@keyframes bk-spin-step {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+@keyframes bk-pulse-hard {
+  0%, 100% { transform: scale(1); }
+  50%      { transform: scale(1.14); }
+}
+@keyframes bk-marquee-stamp {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-100%); }
+}
+
+/* Loading states */
+@keyframes bk-skeleton-stamp {
+  0%, 100% { opacity: 1; }
+  50%      { opacity: 0.35; }
+}
+@keyframes bk-skeleton-blocks {
+  from { background-position: 0 0; }
+  to   { background-position: var(--bk-skeleton-cell) 0; }
+}
+@keyframes bk-skeleton-scan {
+  from { transform: translateX(-100%); }
+  to   { transform: translateX(100%); }
+}
+@keyframes bk-progress-marquee {
+  from { transform: translateX(-100%); }
+  to   { transform: translateX(400%); }
+}
+
+/* Page transitions */
+@keyframes bk-vt-wipe-in {
+  from { clip-path: inset(0 100% 0 0); }
+  to   { clip-path: inset(0 0 0 0); }
+}
+@keyframes bk-vt-wipe-out {
+  from { clip-path: inset(0 0 0 0); }
+  to   { clip-path: inset(0 0 0 100%); }
+}
+@keyframes bk-vt-block-in {
+  from { transform: translateY(100%); }
+  to   { transform: translateY(0); }
+}
+@keyframes bk-vt-block-out {
+  from { transform: translateY(0); }
+  to   { transform: translateY(-100%); }
+}
+
+/* ──────────────────────────────────────────────────────
+   v3.5 — Shape animation presets (stepped)
+   Extends the .shape-animate-* family with hard, non-eased
+   motion. Consumed by the `animation` prop on all shapes.
+   ────────────────────────────────────────────────────── */
+
+.shape-animate-spin-step        { animation: bk-spin-step 2s    steps(8, end)  infinite; }
+.shape-animate-spin-step-slow   { animation: bk-spin-step 4s    steps(8, end)  infinite; }
+.shape-animate-spin-step-fast   { animation: bk-spin-step 0.9s  steps(8, end)  infinite; }
+
+.shape-animate-pulse-hard       { animation: bk-pulse-hard 1s   steps(2, end)  infinite; }
+.shape-animate-pulse-hard-slow  { animation: bk-pulse-hard 1.8s steps(2, end)  infinite; }
+.shape-animate-pulse-hard-fast  { animation: bk-pulse-hard 0.5s steps(2, end)  infinite; }
+
+.shape-animate-marquee-stamp      { animation: bk-marquee-stamp 3s   steps(12, end) infinite; }
+.shape-animate-marquee-stamp-slow { animation: bk-marquee-stamp 6s   steps(12, end) infinite; }
+.shape-animate-marquee-stamp-fast { animation: bk-marquee-stamp 1.5s steps(12, end) infinite; }
+
+/* ──────────────────────────────────────────────────────
+   v3.5 — Brutalist loading states
+   ────────────────────────────────────────────────────── */
+
+/* SKELETON — stamp: hard on/off, no interpolated fade. */
+.bk-skeleton-stamp {
+  animation: bk-skeleton-stamp var(--bk-dur-slow) var(--bk-ease-step-2) infinite;
+}
+
+/* SKELETON — blocks: marching cells on a stepped loop. */
+.bk-skeleton-blocks {
+  --bk-skeleton-cell: 16px;
+  background-image: repeating-linear-gradient(
+    90deg,
+    hsl(var(--foreground, 240 10% 10%) / 0.16) 0,
+    hsl(var(--foreground, 240 10% 10%) / 0.16) calc(var(--bk-skeleton-cell) / 2),
+    transparent calc(var(--bk-skeleton-cell) / 2),
+    transparent var(--bk-skeleton-cell)
+  );
+  background-size: var(--bk-skeleton-cell) 100%;
+  animation: bk-skeleton-blocks 0.8s steps(4, end) infinite;
+}
+
+/* SKELETON — scanline: a hard bar sweeping the block. */
+.bk-skeleton-scan {
+  position: relative;
+  overflow: hidden;
+}
+.bk-skeleton-scan::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  width: 40%;
+  background: hsl(var(--foreground, 240 10% 10%) / 0.18);
+  animation: bk-skeleton-scan 1.1s var(--bk-ease-step) infinite;
+  pointer-events: none;
+}
+
+/* PROGRESS — stepped: the indicator snaps in discrete notches. */
+.bk-progress-stepped {
+  transition-timing-function: steps(10, end) !important;
+}
+
+/* PROGRESS — marquee: indeterminate travelling block. */
+.bk-progress-marquee {
+  width: 25% !important;
+  animation: bk-progress-marquee 1.4s var(--bk-ease-step) infinite;
+}
+
+/* ──────────────────────────────────────────────────────
+   v3.5 — Page transition recipes (View Transitions API)
+   Opt in per navigation by setting the attribute on <html>:
+     document.documentElement.dataset.bkTransition = 'hard-wipe'
+   Then call startViewTransition() from @boldkit/motion-core.
+   ────────────────────────────────────────────────────── */
+
+/* HARD WIPE — new view wipes across in stepped notches. */
+html[data-bk-transition='hard-wipe']::view-transition-old(root) {
+  animation: bk-vt-wipe-out var(--bk-dur-base) var(--bk-ease-step) both;
+  z-index: 0;
+}
+html[data-bk-transition='hard-wipe']::view-transition-new(root) {
+  animation: bk-vt-wipe-in var(--bk-dur-base) var(--bk-ease-step) both;
+  z-index: 1;
+}
+
+/* COLOR BLOCK — outgoing view lifts away, incoming slams up from below. */
+html[data-bk-transition='color-block']::view-transition-old(root) {
+  animation: bk-vt-block-out var(--bk-dur-quick) var(--bk-ease-stamp) both;
+  z-index: 0;
+}
+html[data-bk-transition='color-block']::view-transition-new(root) {
+  animation: bk-vt-block-in var(--bk-dur-base) var(--bk-ease-snap) both;
+  z-index: 1;
+}
+
+/* STAMP — incoming view stamps down over the old one. */
+html[data-bk-transition='stamp']::view-transition-old(root) {
+  animation: none;
+  z-index: 0;
+}
+html[data-bk-transition='stamp']::view-transition-new(root) {
+  animation: bk-stamp-in var(--bk-dur-base) var(--bk-ease-snap) both;
+  z-index: 1;
+}
+
+/* ──────────────────────────────────────────────────────
+   v3.5 — A11y guard
+   ────────────────────────────────────────────────────── */
+
+@media (prefers-reduced-motion: reduce) {
+  [class*='shape-animate-spin-step'],
+  [class*='shape-animate-pulse-hard'],
+  [class*='shape-animate-marquee-stamp'],
+  [class*='bk-skeleton-'],
+  [class*='bk-skeleton-']::after,
+  [class*='bk-progress-'] {
+    animation: none !important;
+    transition-duration: 0.01ms !important;
+  }
+  /* Keep an indeterminate bar legible when its motion is removed. */
+  .bk-progress-marquee {
+    width: 100% !important;
+    opacity: 0.6;
+  }
+  html[data-bk-transition]::view-transition-old(root),
+  html[data-bk-transition]::view-transition-new(root) {
+    animation: none !important;
+  }
+}

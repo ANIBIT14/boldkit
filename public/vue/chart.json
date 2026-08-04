@@ -21,6 +21,10 @@
       "type": "registry:ui"
     },
     {
+      "path": "components/ui/ChartLoading.vue",
+      "type": "registry:ui"
+    },
+    {
       "path": "components/ui/DonutChart.vue",
       "type": "registry:ui"
     },
@@ -47,6 +51,11 @@
     {
       "path": "components/ui/chart-variants.ts",
       "type": "registry:ui"
+    },
+    {
+      "path": "styles/motion.css",
+      "type": "registry:ui",
+      "target": "styles/motion.css"
     }
   ],
   "title": "Chart"

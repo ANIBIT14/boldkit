@@ -39,6 +39,10 @@ export { getPayloadConfigFromPayload } from './utils'
 export { ChartEmpty } from './empty'
 export type { ChartEmptyProps } from './empty'
 
+// Loading state
+export { ChartLoading } from './loading'
+export type { ChartLoadingProps } from './loading'
+
 // Sparkline chart
 export { Sparkline } from './sparkline'
 export type { SparklineProps } from './sparkline'

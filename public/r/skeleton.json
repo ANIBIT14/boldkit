@@ -5,12 +5,13 @@
   "description": "Used to show a placeholder while content is loading",
   "dependencies": [],
   "registryDependencies": [
-    "@boldkit/utils"
+    "@boldkit/utils",
+    "@boldkit/motion"
   ],
   "files": [
     {
       "path": "registry/default/ui/skeleton.tsx",
-      "content": "import * as React from 'react'\nimport { cn } from '@/lib/utils'\n\nfunction Skeleton({\n  className,\n  ...props\n}: React.HTMLAttributes<HTMLDivElement>) {\n  return (\n    <div\n      className={cn('animate-pulse bg-muted border-2 border-foreground/20', className)}\n      {...props}\n    />\n  )\n}\n\nexport { Skeleton }\n",
+      "content": "/* eslint-disable react-refresh/only-export-components */\nimport * as React from 'react'\nimport { cva, type VariantProps } from 'class-variance-authority'\nimport { cn } from '@/lib/utils'\n\nconst skeletonVariants = cva('bg-muted border-2 border-foreground/20', {\n  variants: {\n    variant: {\n      /** Soft opacity breathe. The pre-v3.5 default. */\n      pulse: 'animate-pulse',\n      /** Hard on/off — no interpolated fade. */\n      stamp: 'bk-skeleton-stamp',\n      /** Marching cells on a stepped loop. */\n      blocks: 'bk-skeleton-blocks',\n      /** A hard bar sweeping across the block. */\n      scan: 'bk-skeleton-scan',\n      /** No motion at all. */\n      none: '',\n    },\n  },\n  defaultVariants: {\n    variant: 'pulse',\n  },\n})\n\nexport interface SkeletonProps\n  extends React.HTMLAttributes<HTMLDivElement>,\n    VariantProps<typeof skeletonVariants> {}\n\nfunction Skeleton({ className, variant, ...props }: SkeletonProps) {\n  return (\n    <div\n      // ponytail: decorative placeholder — hidden from AT. Announce loading on\n      // the container instead (aria-busy / role=\"status\"), not per-skeleton.\n      aria-hidden=\"true\"\n      className={cn(skeletonVariants({ variant }), className)}\n      {...props}\n    />\n  )\n}\n\nexport { Skeleton, skeletonVariants }\n",
       "type": "registry:ui",
       "target": "components/ui/skeleton.tsx"
     }

@@ -24,7 +24,10 @@ import {
   GearShape,
 } from '@/components/ui/shapes'
 
-type ShapeAnimation = 'none' | 'spin' | 'pulse' | 'float' | 'wiggle' | 'bounce' | 'glitch'
+type ShapeAnimation =
+  | 'none'
+  | 'spin' | 'pulse' | 'float' | 'wiggle' | 'bounce' | 'glitch'
+  | 'spin-step' | 'pulse-hard' | 'marquee-stamp'
 type ShapeSpeed = 'slow' | 'normal' | 'fast'
 
 const ALL_SHAPES = [
@@ -91,6 +94,10 @@ const ANIMATIONS: { value: ShapeAnimation; label: string; emoji: string }[] = [
   { value: 'wiggle', label: 'Wiggle', emoji: '〰️' },
   { value: 'bounce', label: 'Bounce', emoji: '🏀' },
   { value: 'glitch', label: 'Glitch', emoji: '⚡' },
+  // Stepped presets — hard, non-interpolated motion (v3.5)
+  { value: 'spin-step', label: 'Spin Step', emoji: '🎞️' },
+  { value: 'pulse-hard', label: 'Pulse Hard', emoji: '🟥' },
+  { value: 'marquee-stamp', label: 'Marquee Stamp', emoji: '🏁' },
 ]
 
 const SPEEDS: { value: ShapeSpeed; label: string }[] = [

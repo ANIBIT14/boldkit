@@ -23,7 +23,7 @@ const componentMeta = {
   label: { deps: ['reka-ui'], desc: 'Renders an accessible label' },
   badge: { deps: ['class-variance-authority'], desc: 'Displays a badge or tag' },
   separator: { deps: ['reka-ui'], desc: 'Visually separates content' },
-  skeleton: { deps: [], desc: 'Displays a loading placeholder' },
+  skeleton: { deps: [], desc: 'Displays a loading placeholder with brutalist motion variants', siblingFiles: [{ src: 'styles/motion.css', target: 'styles/motion.css' }] },
   textarea: { deps: [], desc: 'Displays a multi-line text input' },
 
   // Card
@@ -39,7 +39,7 @@ const componentMeta = {
   tabs: { deps: ['reka-ui'], desc: 'A set of layered sections of content', files: ['Tabs', 'TabsList', 'TabsTrigger', 'TabsContent'] },
   tooltip: { deps: ['reka-ui'], desc: 'A popup that displays information on hover', files: ['Tooltip', 'TooltipTrigger', 'TooltipContent', 'TooltipProvider'] },
   popover: { deps: ['reka-ui'], desc: 'Displays rich content in a portal', files: ['Popover', 'PopoverTrigger', 'PopoverContent'] },
-  progress: { deps: ['reka-ui'], desc: 'Displays an indicator showing completion progress' },
+  progress: { deps: ['reka-ui'], desc: 'Displays an indicator showing completion progress', siblingFiles: [{ src: 'styles/motion.css', target: 'styles/motion.css' }] },
 
   // Extended
   'dropdown-menu': { deps: ['reka-ui', 'lucide-vue-next'], desc: 'Displays a menu to the user', files: ['DropdownMenu', 'DropdownMenuTrigger', 'DropdownMenuContent', 'DropdownMenuItem', 'DropdownMenuCheckboxItem', 'DropdownMenuRadioItem', 'DropdownMenuLabel', 'DropdownMenuSeparator', 'DropdownMenuShortcut', 'DropdownMenuRadioGroup'] },
@@ -86,8 +86,10 @@ const componentMeta = {
   chart: {
     deps: ['vue-echarts', 'echarts', 'class-variance-authority'],
     desc: 'Chart components with neubrutalism styling',
-    files: ['ChartContainer', 'ChartEmpty', 'DonutChart', 'GaugeChart', 'RadarChart', 'RadialBarChart', 'SparklineChart'],
+    files: ['ChartContainer', 'ChartEmpty', 'ChartLoading', 'DonutChart', 'GaugeChart', 'RadarChart', 'RadialBarChart', 'SparklineChart'],
     extraFiles: ['chart-utils.ts', 'chart-variants.ts'],
+    // ChartLoading uses .bk-skeleton-stamp from the motion stylesheet.
+    siblingFiles: [{ src: 'styles/motion.css', target: 'styles/motion.css' }],
   },
   'funnel-chart': {
     deps: ['vue-echarts', 'echarts'],
@@ -119,7 +121,7 @@ const componentMeta = {
   },
 
   // Shapes (all 35)
-  shapes: { deps: [], desc: 'SVG shape components for decorative elements', isShapes: true },
+  shapes: { deps: [], desc: 'SVG shape components for decorative elements', isShapes: true, siblingFiles: [{ src: 'styles/motion.css', target: 'styles/motion.css' }] },
 
   // ErrorBoundary — Vue equivalent of the React class component using
   // `onErrorCaptured`. Returns the fallback UI when any descendant
@@ -595,6 +597,18 @@ function createShapesRegistry() {
       path: 'components/ui/shapes/index.ts',
       content: indexContent,
       type: 'registry:ui',
+    })
+  }
+
+  // The `animation` prop resolves to .shape-animate-* classes that live in the
+  // motion stylesheet — ship it alongside or every animated shape is inert.
+  const motionCss = readFile(path.join(STYLES_DIR, 'motion.css'))
+  if (motionCss) {
+    registryFiles.push({
+      path: 'styles/motion.css',
+      content: motionCss,
+      type: 'registry:style',
+      target: 'styles/motion.css',
     })
   }
 

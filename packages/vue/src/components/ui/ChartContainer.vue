@@ -26,6 +26,7 @@ import { type VariantProps } from 'class-variance-authority'
 import { cn } from '@/lib/utils'
 import { chartContainerVariants } from './chart-variants'
 import { neubrutalismTheme, type ChartConfig } from './chart-utils'
+import ChartLoading from './ChartLoading.vue'
 
 // Register ECharts components
 use([
@@ -49,12 +50,17 @@ interface Props {
   option: Record<string, unknown>
   height?: string
   autoresize?: boolean
+  /** Render a brutalist placeholder instead of the chart while data is pending. */
+  loading?: boolean
+  /** Announced while `loading` is true. */
+  loadingLabel?: string
 }
 
 const props = withDefaults(defineProps<Props>(), {
   variant: 'default',
   height: '100%',
   autoresize: true,
+  loading: false,
 })
 
 // Provide chart config to child components.
@@ -76,9 +82,12 @@ const mergedOption = computed(() => ({
   <div
     data-slot="chart"
     :data-chart="chartId"
+    :aria-busy="loading || undefined"
     :class="cn(chartContainerVariants({ variant: props.variant }), props.class)"
   >
+    <ChartLoading v-if="loading" :label="loadingLabel" />
     <VChart
+      v-else
       :option="mergedOption"
       :theme="neubrutalismTheme"
       :autoresize="autoresize"

@@ -129,7 +129,7 @@ export function Header() {
               variant="secondary"
               className="text-[9px] px-1 py-0 h-4 hidden sm:inline-flex"
             >
-              v3.4
+              v3.5
             </Badge>
           </Link>
 

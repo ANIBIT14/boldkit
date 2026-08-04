@@ -667,7 +667,8 @@
         "@radix-ui/react-progress"
       ],
       "registryDependencies": [
-        "@boldkit/utils"
+        "@boldkit/utils",
+        "@boldkit/motion"
       ],
       "files": [
         {
@@ -784,7 +785,8 @@
       "title": "Skeleton",
       "dependencies": [],
       "registryDependencies": [
-        "@boldkit/utils"
+        "@boldkit/utils",
+        "@boldkit/motion"
       ],
       "files": [
         {
@@ -1092,7 +1094,8 @@
         "recharts"
       ],
       "registryDependencies": [
-        "@boldkit/utils"
+        "@boldkit/utils",
+        "@boldkit/motion"
       ],
       "files": [
         {
@@ -1164,7 +1167,8 @@
       "title": "Shapes",
       "dependencies": [],
       "registryDependencies": [
-        "@boldkit/utils"
+        "@boldkit/utils",
+        "@boldkit/motion"
       ],
       "files": [
         {

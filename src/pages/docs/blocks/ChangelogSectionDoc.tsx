@@ -2,6 +2,7 @@ import { BlockDoc } from '@/components/docs/BlockDoc'
 import { ChangelogSection } from '@/components/blocks/marketing/changelog-section'
 
 const entries = [
+  { version: 'v3.5.0', date: '2026-08-03', tag: 'feature' as const, title: 'Motion System, Part 2', items: ['Brutalist loading states', 'Stepped shape presets', 'Page transition recipes'] },
   { version: 'v3.4.9', date: '2026-07-21', tag: 'feature' as const, title: 'Blocks, annotations & forms', items: ['5 new blocks', 'Chart annotations', 'Multi-step form primitives'] },
   { version: 'v3.4.8', date: '2026-07-21', tag: 'improvement' as const, title: 'MCP server & CLI', items: ['@boldkit/mcp published', 'boldkit CLI', 'WCAG matrix'] },
   { version: 'v3.4.7', date: '2026-07-18', tag: 'fix' as const, title: 'Audit fixes', items: ['SSR crash fix', 'Theme presets'] },

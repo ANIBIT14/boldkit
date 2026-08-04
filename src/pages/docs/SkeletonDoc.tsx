@@ -55,6 +55,39 @@ export function SkeletonDoc() {
         </div>
       </ComponentDoc>
 
+      {/* Motion variants (v3.5) */}
+      <ExampleSection
+        title="Motion variants"
+        description="Four loading rhythms. `pulse` is the default soft breathe; `stamp`, `blocks` and `scan` are stepped and hard-edged. All respect prefers-reduced-motion. Requires styles/motion.css."
+        code={`<Skeleton variant="pulse"  className="h-12 w-full" />
+<Skeleton variant="stamp"  className="h-12 w-full" />
+<Skeleton variant="blocks" className="h-12 w-full" />
+<Skeleton variant="scan"   className="h-12 w-full" />
+<Skeleton variant="none"   className="h-12 w-full" />`}
+        vueCode={`<script setup>
+import Skeleton from '@/components/ui/Skeleton.vue'
+</script>
+
+<template>
+  <Skeleton variant="pulse"  class="h-12 w-full" />
+  <Skeleton variant="stamp"  class="h-12 w-full" />
+  <Skeleton variant="blocks" class="h-12 w-full" />
+  <Skeleton variant="scan"   class="h-12 w-full" />
+  <Skeleton variant="none"   class="h-12 w-full" />
+</template>`}
+      >
+        <div className="w-full max-w-md space-y-4">
+          {(['pulse', 'stamp', 'blocks', 'scan', 'none'] as const).map((v) => (
+            <div key={v} className="space-y-1">
+              <span className="text-xs font-bold uppercase tracking-wide text-muted-foreground">
+                {v}
+              </span>
+              <Skeleton variant={v} className="h-12 w-full" />
+            </div>
+          ))}
+        </div>
+      </ExampleSection>
+
       {/* Card Skeleton */}
       <ExampleSection
         title="Card"

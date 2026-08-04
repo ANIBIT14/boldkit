@@ -4,6 +4,7 @@ import * as RechartsPrimitive from 'recharts'
 import { cva, type VariantProps } from 'class-variance-authority'
 import { cn, sanitizeCssValue } from '@/lib/utils'
 import { ChartContext, THEMES, type ChartConfig } from './types'
+import { ChartLoading } from './loading'
 
 export const chartContainerVariants = cva(
   'flex aspect-video justify-center text-xs overflow-hidden [&_.recharts-cartesian-axis-tick_text]:fill-foreground [&_.recharts-cartesian-grid_line[stroke="#ccc"]]:stroke-muted-foreground/30 [&_.recharts-curve.recharts-tooltip-cursor]:stroke-muted-foreground [&_.recharts-polar-grid_[stroke="#ccc"]]:stroke-foreground [&_.recharts-reference-line_[stroke="#ccc"]]:stroke-foreground [&_.recharts-dot[stroke="#fff"]]:stroke-transparent [&_.recharts-sector]:outline-hidden [&_.recharts-sector[stroke="#fff"]]:stroke-foreground [&_.recharts-surface]:outline-hidden [&_.recharts-layer_path]:[fill-opacity:1] [&_.recharts-layer_path]:[stroke-width:3] [&_.recharts-layer_path]:[stroke:hsl(var(--foreground))]',
@@ -34,6 +35,10 @@ export interface ChartContainerProps
   'aria-label'?: string
   /** ID of element that labels this chart */
   'aria-labelledby'?: string
+  /** Render a brutalist placeholder instead of the chart while data is pending. */
+  loading?: boolean
+  /** Announced while `loading` is true. */
+  loadingLabel?: string
 }
 
 export function ChartContainer({
@@ -42,6 +47,8 @@ export function ChartContainer({
   children,
   config,
   variant,
+  loading = false,
+  loadingLabel,
   'aria-label': ariaLabel,
   'aria-labelledby': ariaLabelledby,
   ...props
@@ -52,18 +59,25 @@ export function ChartContainer({
   return (
     <ChartContext.Provider value={{ config }}>
       <div
-        role="img"
-        aria-label={ariaLabel}
-        aria-labelledby={ariaLabelledby}
+        // While loading there is no image to describe — ChartLoading owns the
+        // announcement via role="status", so don't nest it inside a role="img".
+        role={loading ? undefined : 'img'}
+        aria-label={loading ? undefined : ariaLabel}
+        aria-labelledby={loading ? undefined : ariaLabelledby}
+        aria-busy={loading || undefined}
         data-slot="chart"
         data-chart={chartId}
         className={cn(chartContainerVariants({ variant }), className)}
         {...props}
       >
         <ChartStyle id={chartId} config={config} />
-        <RechartsPrimitive.ResponsiveContainer>
-          {children}
-        </RechartsPrimitive.ResponsiveContainer>
+        {loading ? (
+          <ChartLoading label={loadingLabel} />
+        ) : (
+          <RechartsPrimitive.ResponsiveContainer>
+            {children}
+          </RechartsPrimitive.ResponsiveContainer>
+        )}
       </div>
     </ChartContext.Provider>
   )

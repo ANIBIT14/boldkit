@@ -187,7 +187,7 @@ export function Home() {
                     <span className="ml-0.5 rounded-sm bg-background/25 px-1 py-px text-[9px] font-black">NEW</span>
                   </Badge>
                   <span className="h-4 w-[2px] bg-foreground/20 hidden sm:block" />
-                  <span className="text-[11px] font-black uppercase tracking-widest text-muted-foreground hidden sm:block" style={MONO}>v3.4.8</span>
+                  <span className="text-[11px] font-black uppercase tracking-widest text-muted-foreground hidden sm:block" style={MONO}>v3.5.0</span>
                 </div>
 
                 {/* Giant masthead — newspaper column style */}

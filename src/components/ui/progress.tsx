@@ -2,27 +2,53 @@ import * as React from 'react'
 import * as ProgressPrimitive from '@radix-ui/react-progress'
 import { cn } from '@/lib/utils'
 
+type ProgressVariant =
+  /** Continuous fill. The pre-v3.5 default. */
+  | 'smooth'
+  /** Fill snaps forward in ten discrete notches. */
+  | 'stepped'
+  /** Indeterminate — a block travelling the track. Ignores `value`. */
+  | 'marquee'
+
+export interface ProgressProps
+  extends React.ComponentPropsWithoutRef<typeof ProgressPrimitive.Root> {
+  variant?: ProgressVariant
+}
+
 const Progress = React.forwardRef<
   React.ElementRef<typeof ProgressPrimitive.Root>,
-  React.ComponentPropsWithoutRef<typeof ProgressPrimitive.Root>
->(({ className, value, ...props }, ref) => {
+  ProgressProps
+>(({ className, value, variant = 'smooth', ...props }, ref) => {
+  const indeterminate = variant === 'marquee'
   const clampedValue = Math.max(0, Math.min(100, value ?? 0))
+  // Radix reads null as indeterminate and drops aria-valuenow. Pass the clamped
+  // value so an out-of-range `value` can't trip Radix's range warning, and keep
+  // an omitted value indeterminate the way it was before v3.5.
+  const ariaValue = indeterminate || value == null ? null : clampedValue
   return (
-  <ProgressPrimitive.Root
-    ref={ref}
-    className={cn(
-      'relative h-5 w-full overflow-hidden border-3 border-foreground bg-muted shadow-[4px_4px_0px_hsl(var(--shadow-color))]',
-      className
-    )}
-    {...props}
-  >
-    <ProgressPrimitive.Indicator
-      className="h-full w-full flex-1 bg-primary transition duration-500 ease-out"
-      style={{ transform: `translateX(-${100 - clampedValue}%)` }}
-    />
-  </ProgressPrimitive.Root>
+    <ProgressPrimitive.Root
+      ref={ref}
+      value={ariaValue}
+      className={cn(
+        'relative h-5 w-full overflow-hidden border-3 border-foreground bg-muted shadow-[4px_4px_0px_hsl(var(--shadow-color))]',
+        className
+      )}
+      {...props}
+    >
+      <ProgressPrimitive.Indicator
+        className={cn(
+          'h-full w-full flex-1 bg-primary transition duration-500 ease-out',
+          variant === 'stepped' && 'bk-progress-stepped',
+          indeterminate && 'bk-progress-marquee'
+        )}
+        style={
+          indeterminate ? undefined : { transform: `translateX(-${100 - clampedValue}%)` }
+        }
+      />
+    </ProgressPrimitive.Root>
   )
 })
 Progress.displayName = ProgressPrimitive.Root.displayName
 
 export { Progress }
+export type { ProgressVariant }

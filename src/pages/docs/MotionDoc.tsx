@@ -2,6 +2,8 @@ import * as React from 'react'
 import { ComponentDoc, ExampleSection } from '@/components/docs/ComponentDoc'
 import { Reveal, Stagger, useShake } from '@/components/ui/motion'
 import { Button } from '@/components/ui/button'
+import { Skeleton } from '@/components/ui/skeleton'
+import { Progress } from '@/components/ui/progress'
 import sourceCode from '@/components/ui/motion.tsx?raw'
 import coreCode from '@/lib/motion-core.ts?raw'
 
@@ -295,6 +297,63 @@ const el = ref<HTMLInputElement | null>(null)
         <div className="text-xs text-muted-foreground">
           Toggle "Reduce motion" in your OS settings and reload — every motion
           recipe on this page becomes instant.
+        </div>
+      </ExampleSection>
+
+      <ExampleSection
+        title="Loading states (v3.5)"
+        description="The stepped vocabulary applied to waiting. Skeleton gains stamp / blocks / scan, Progress gains stepped / marquee, and ChartContainer gains a `loading` prop that swaps in a chart-shaped placeholder. Defaults are unchanged — existing code keeps its old look."
+        code={`<Skeleton variant="stamp" className="h-12 w-full" />
+<Progress value={60} variant="stepped" />
+<Progress variant="marquee" aria-label="Loading" />
+
+<ChartContainer config={config} loading>
+  <BarChart data={data} />
+</ChartContainer>`}
+        vueCode={`<template>
+  <Skeleton variant="stamp" class="h-12 w-full" />
+  <Progress :model-value="60" variant="stepped" />
+  <Progress variant="marquee" aria-label="Loading" />
+
+  <ChartContainer :config="config" :option="option" loading />
+</template>`}
+      >
+        <div className="w-full max-w-md space-y-4">
+          <Skeleton variant="stamp" className="h-10 w-full" />
+          <Skeleton variant="blocks" className="h-10 w-full" />
+          <Skeleton variant="scan" className="h-10 w-full" />
+          <Progress value={60} variant="stepped" />
+          <Progress variant="marquee" aria-label="Loading" />
+        </div>
+      </ExampleSection>
+
+      <ExampleSection
+        title="Page transitions (v3.5)"
+        description="Three named View Transition recipes. Set the attribute on <html>, then call startViewTransition() from motion-core — the CSS does the rest. Browsers without View Transitions fall back to an instant swap, and reduced-motion disables the animation entirely."
+        code={`import { startViewTransition } from '@/lib/motion-core'
+
+// 'hard-wipe' | 'color-block' | 'stamp'
+document.documentElement.dataset.bkTransition = 'hard-wipe'
+startViewTransition(() => navigate('/next'))`}
+        vueCode={`import { startViewTransition } from '@/lib/motion-core'
+
+// 'hard-wipe' | 'color-block' | 'stamp'
+document.documentElement.dataset.bkTransition = 'hard-wipe'
+startViewTransition(() => router.push('/next'))`}
+      >
+        <div className="space-y-2 text-xs text-muted-foreground">
+          <p>
+            <strong className="text-foreground">hard-wipe</strong> — the new view
+            wipes across in stepped notches.
+          </p>
+          <p>
+            <strong className="text-foreground">color-block</strong> — the old view
+            lifts away as the new one slams up from below.
+          </p>
+          <p>
+            <strong className="text-foreground">stamp</strong> — the new view stamps
+            down over the old one.
+          </p>
         </div>
       </ExampleSection>
 

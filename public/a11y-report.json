@@ -38,6 +38,11 @@
       "violations": []
     },
     {
+      "slug": "chart-loading",
+      "status": "pass",
+      "violations": []
+    },
+    {
       "slug": "checkbox",
       "status": "pass",
       "violations": []
@@ -73,6 +78,16 @@
       "violations": []
     },
     {
+      "slug": "progress-marquee",
+      "status": "pass",
+      "violations": []
+    },
+    {
+      "slug": "progress-stepped",
+      "status": "pass",
+      "violations": []
+    },
+    {
       "slug": "radio-group",
       "status": "pass",
       "violations": []
@@ -94,6 +109,21 @@
     },
     {
       "slug": "skeleton",
+      "status": "pass",
+      "violations": []
+    },
+    {
+      "slug": "skeleton-blocks",
+      "status": "pass",
+      "violations": []
+    },
+    {
+      "slug": "skeleton-scan",
+      "status": "pass",
+      "violations": []
+    },
+    {
+      "slug": "skeleton-stamp",
       "status": "pass",
       "violations": []
     },

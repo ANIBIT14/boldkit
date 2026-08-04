@@ -24,6 +24,7 @@ import AvatarFallback from '@/components/ui/AvatarFallback.vue'
 import Separator from '@/components/ui/Separator.vue'
 import Progress from '@/components/ui/Progress.vue'
 import Skeleton from '@/components/ui/Skeleton.vue'
+import ChartLoading from '@/components/ui/ChartLoading.vue'
 import Kbd from '@/components/ui/Kbd.vue'
 import Spinner from '@/components/ui/Spinner.vue'
 import Toggle from '@/components/ui/Toggle.vue'
@@ -113,7 +114,13 @@ const fixtures: Fixture[] = [
     component: wrap(() => h('div', [h('span', 'Above'), h(Separator), h('span', 'Below')])),
   },
   { slug: 'progress', component: Progress, options: { props: { value: 40, 'aria-label': 'Loading' } } },
+  { slug: 'progress-stepped', component: Progress, options: { props: { modelValue: 40, variant: 'stepped', 'aria-label': 'Uploading' } } },
+  { slug: 'progress-marquee', component: Progress, options: { props: { variant: 'marquee', 'aria-label': 'Loading' } } },
   { slug: 'skeleton', component: Skeleton, options: { attrs: { class: 'h-4 w-24' } } },
+  { slug: 'skeleton-stamp', component: Skeleton, options: { props: { variant: 'stamp' }, attrs: { class: 'h-4 w-24' } } },
+  { slug: 'skeleton-blocks', component: Skeleton, options: { props: { variant: 'blocks' }, attrs: { class: 'h-4 w-24' } } },
+  { slug: 'skeleton-scan', component: Skeleton, options: { props: { variant: 'scan' }, attrs: { class: 'h-4 w-24' } } },
+  { slug: 'chart-loading', component: ChartLoading, options: {} },
   { slug: 'kbd', component: Kbd, options: { slots: { default: '⌘K' } } },
   { slug: 'spinner', component: Spinner, options: { attrs: { role: 'status', 'aria-label': 'Loading' } } },
   { slug: 'toggle', component: Toggle, options: { attrs: { 'aria-label': 'Toggle bold' }, slots: { default: 'B' } } },

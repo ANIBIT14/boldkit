@@ -49,6 +49,7 @@ const LIB_DST = join(root, 'registry/default/lib')
 const CHART_IMPORT_REWRITES = [
   ['./container', './chart'],
   ['./empty',     './chart'],
+  ['./loading',   './chart'],
   ['./legend',    './chart'],
   ['./tooltip',   './chart'],
   ['./types',     './chart'],

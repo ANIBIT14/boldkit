@@ -231,6 +231,11 @@
     {
       "path": "components/ui/shapes/index.ts",
       "type": "registry:ui"
+    },
+    {
+      "path": "styles/motion.css",
+      "type": "registry:style",
+      "target": "styles/motion.css"
     }
   ],
   "title": "Shapes"

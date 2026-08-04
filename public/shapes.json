@@ -5,7 +5,8 @@
   "description": "55 neubrutalist SVG shapes organized by category for badges, decorations, and visual accents",
   "dependencies": [],
   "registryDependencies": [
-    "@boldkit/utils"
+    "@boldkit/utils",
+    "@boldkit/motion"
   ],
   "files": [
     {

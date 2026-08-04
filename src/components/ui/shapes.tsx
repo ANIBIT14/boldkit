@@ -6,7 +6,12 @@ import { cn } from '@/lib/utils'
 // Types & Factory
 // ============================================================================
 
-type ShapeAnimation = 'none' | 'spin' | 'pulse' | 'float' | 'wiggle' | 'bounce' | 'glitch'
+type ShapeAnimation =
+  | 'none'
+  // smooth presets
+  | 'spin' | 'pulse' | 'float' | 'wiggle' | 'bounce' | 'glitch'
+  // stepped presets — hard, non-interpolated motion (v3.5)
+  | 'spin-step' | 'pulse-hard' | 'marquee-stamp'
 type ShapeSpeed = 'slow' | 'normal' | 'fast'
 
 interface ShapeProps extends React.SVGProps<SVGSVGElement> {

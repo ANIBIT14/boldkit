@@ -7,7 +7,8 @@
     "recharts"
   ],
   "registryDependencies": [
-    "@boldkit/utils"
+    "@boldkit/utils",
+    "@boldkit/motion"
   ],
   "files": [
     {

@@ -535,7 +535,8 @@
           "recharts"
         ],
         "registryDependencies": [
-          "@boldkit/utils"
+          "@boldkit/utils",
+          "@boldkit/motion"
         ],
         "files": [
           "registry/default/ui/chart.tsx"
@@ -554,13 +555,15 @@
         "files": [
           "components/ui/ChartContainer.vue",
           "components/ui/ChartEmpty.vue",
+          "components/ui/ChartLoading.vue",
           "components/ui/DonutChart.vue",
           "components/ui/GaugeChart.vue",
           "components/ui/RadarChart.vue",
           "components/ui/RadialBarChart.vue",
           "components/ui/SparklineChart.vue",
           "components/ui/chart-utils.ts",
-          "components/ui/chart-variants.ts"
+          "components/ui/chart-variants.ts",
+          "styles/motion.css"
         ]
       },
       "frameworks": [
@@ -2553,7 +2556,8 @@
           "@radix-ui/react-progress"
         ],
         "registryDependencies": [
-          "@boldkit/utils"
+          "@boldkit/utils",
+          "@boldkit/motion"
         ],
         "files": [
           "registry/default/ui/progress.tsx"
@@ -2568,7 +2572,8 @@
           "@boldkit/utils"
         ],
         "files": [
-          "components/ui/Progress.vue"
+          "components/ui/Progress.vue",
+          "styles/motion.css"
         ]
       },
       "frameworks": [
@@ -2927,7 +2932,8 @@
         "url": "https://boldkit.dev/r/shapes.json",
         "dependencies": [],
         "registryDependencies": [
-          "@boldkit/utils"
+          "@boldkit/utils",
+          "@boldkit/motion"
         ],
         "files": [
           "registry/default/ui/shapes.tsx"
@@ -2995,7 +3001,8 @@
           "components/ui/shapes/WaveShape.vue",
           "components/ui/shapes/WavyRectangleShape.vue",
           "components/ui/shapes/ZigzagBanner.vue",
-          "components/ui/shapes/index.ts"
+          "components/ui/shapes/index.ts",
+          "styles/motion.css"
         ]
       },
       "frameworks": [
@@ -3109,7 +3116,8 @@
         "url": "https://boldkit.dev/r/skeleton.json",
         "dependencies": [],
         "registryDependencies": [
-          "@boldkit/utils"
+          "@boldkit/utils",
+          "@boldkit/motion"
         ],
         "files": [
           "registry/default/ui/skeleton.tsx"
@@ -3122,7 +3130,8 @@
           "@boldkit/utils"
         ],
         "files": [
-          "components/ui/Skeleton.vue"
+          "components/ui/Skeleton.vue",
+          "styles/motion.css"
         ]
       },
       "frameworks": [

@@ -13,6 +13,11 @@
     {
       "path": "components/ui/Progress.vue",
       "type": "registry:ui"
+    },
+    {
+      "path": "styles/motion.css",
+      "type": "registry:ui",
+      "target": "styles/motion.css"
     }
   ],
   "title": "Progress"

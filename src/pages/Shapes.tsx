@@ -423,7 +423,7 @@ export function Shapes() {
                         { prop: framework === 'react' ? 'strokeWidth' : 'stroke-width', type: 'number', def: '3' },
                         { prop: 'filled',    type: 'boolean', def: 'true' },
                         { prop: 'color',     type: 'string',  def: 'currentColor' },
-                        { prop: 'animation', type: "'none' | 'spin' | 'pulse' | 'float' | 'wiggle' | 'bounce' | 'glitch'", def: "'none'" },
+                        { prop: 'animation', type: "'none' | 'spin' | 'pulse' | 'float' | 'wiggle' | 'bounce' | 'glitch' | 'spin-step' | 'pulse-hard' | 'marquee-stamp'", def: "'none'" },
                         { prop: 'speed',     type: "'slow' | 'normal' | 'fast'", def: "'normal'" },
                         { prop: framework === 'react' ? 'className' : 'class', type: 'string', def: '—' },
                       ].map((row, i, arr) => (
@@ -473,13 +473,13 @@ export function Shapes() {
                 </h2>
               </div>
               <span className="bg-accent border-3 border-foreground px-2 py-1 text-[10px] font-black uppercase tracking-wide shrink-0" style={MONO}>
-                New in v3.0
+                Stepped presets new in v3.5
               </span>
             </div>
 
             {/* Filmstrip */}
             <div className="overflow-x-auto -mx-4 sm:mx-0 pb-2">
-              <div className="flex border-3 border-foreground min-w-[560px] sm:min-w-0 mx-4 sm:mx-0">
+              <div className="flex border-3 border-foreground min-w-[840px] sm:min-w-0 mx-4 sm:mx-0">
                 {([
                   { anim: 'spin',   label: 'Spin',   bg: 'bg-primary'     },
                   { anim: 'pulse',  label: 'Pulse',  bg: 'bg-secondary'   },
@@ -487,10 +487,14 @@ export function Shapes() {
                   { anim: 'wiggle', label: 'Wiggle', bg: 'bg-success'     },
                   { anim: 'bounce', label: 'Bounce', bg: 'bg-info'        },
                   { anim: 'glitch', label: 'Glitch', bg: 'bg-warning'     },
-                ] as const).map(({ anim, label, bg }, i) => (
+                  // Stepped presets — hard, non-interpolated motion (v3.5)
+                  { anim: 'spin-step',     label: 'Spin Step',  bg: 'bg-primary'   },
+                  { anim: 'pulse-hard',    label: 'Pulse Hard', bg: 'bg-secondary' },
+                  { anim: 'marquee-stamp', label: 'Stamp',      bg: 'bg-accent'    },
+                ] as const).map(({ anim, label, bg }, i, arr) => (
                   <div
                     key={anim}
-                    className={`${bg} flex-1 flex flex-col items-center justify-center gap-3 py-8 px-3 ${i < 5 ? 'border-r-3 border-foreground' : ''}`}
+                    className={`${bg} flex-1 flex flex-col items-center justify-center gap-3 py-8 px-3 ${i < arr.length - 1 ? 'border-r-3 border-foreground' : ''}`}
                   >
                     <Star5Shape size={48} animation={anim} />
                     <span
@@ -508,8 +512,8 @@ export function Shapes() {
             <div className="mt-5 md:mt-6">
               <pre className="border-3 border-foreground bg-muted p-3 md:p-4 text-xs sm:text-sm overflow-x-auto bk-shadow">
                 <code style={MONO}>{framework === 'react'
-                  ? `<Star5Shape animation="spin" />\n<BurstShape  animation="pulse" speed="slow" />\n<HeartShape  animation="float" />\n<LightningShape animation="wiggle" speed="fast" />\n<HexagonShape   animation="bounce" />\n<DiamondBadge   animation="glitch" />`
-                  : `<Star5Shape animation="spin" />\n<BurstShape  animation="pulse" speed="slow" />\n<HeartShape  animation="float" />\n<LightningShape animation="wiggle" speed="fast" />`
+                  ? `<Star5Shape animation="spin" />\n<BurstShape  animation="pulse" speed="slow" />\n<HeartShape  animation="float" />\n<LightningShape animation="wiggle" speed="fast" />\n<HexagonShape   animation="bounce" />\n<DiamondBadge   animation="glitch" />\n\n// Stepped presets — hard, non-interpolated (v3.5)\n<GearShape   animation="spin-step" />\n<BurstShape  animation="pulse-hard" speed="fast" />\n<FlagShape   animation="marquee-stamp" />`
+                  : `<Star5Shape animation="spin" />\n<BurstShape  animation="pulse" speed="slow" />\n<HeartShape  animation="float" />\n<LightningShape animation="wiggle" speed="fast" />\n\n<!-- Stepped presets — hard, non-interpolated (v3.5) -->\n<GearShape   animation="spin-step" />\n<BurstShape  animation="pulse-hard" speed="fast" />\n<FlagShape   animation="marquee-stamp" />`
                 }</code>
               </pre>
             </div>

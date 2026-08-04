@@ -53,6 +53,7 @@ import { ToggleGroup, ToggleGroupItem } from '@/components/ui/toggle-group'
 import { Kbd } from '@/components/ui/kbd'
 import { Spinner } from '@/components/ui/spinner'
 import { Skeleton } from '@/components/ui/skeleton'
+import { ChartLoading } from '@/components/ui/chart/loading'
 import { StatCard } from '@/components/ui/stat-card'
 import { Toggle } from '@/components/ui/toggle'
 import { Sticker } from '@/components/ui/sticker'
@@ -183,6 +184,8 @@ export const a11yFixtures: { slug: string; element: React.ReactElement }[] = [
     element: <Slider defaultValue={[50]} max={100} step={1} aria-label="Volume" />,
   },
   { slug: 'progress', element: <Progress value={40} aria-label="Loading" /> },
+  { slug: 'progress-stepped', element: <Progress value={40} variant="stepped" aria-label="Uploading" /> },
+  { slug: 'progress-marquee', element: <Progress variant="marquee" aria-label="Loading" /> },
   {
     slug: 'textarea',
     element: (
@@ -273,6 +276,10 @@ export const a11yFixtures: { slug: string; element: React.ReactElement }[] = [
   { slug: 'kbd', element: <Kbd>⌘K</Kbd> },
   { slug: 'spinner', element: <Spinner aria-label="Loading" /> },
   { slug: 'skeleton', element: <Skeleton className="h-4 w-24" /> },
+  { slug: 'skeleton-stamp', element: <Skeleton variant="stamp" className="h-4 w-24" /> },
+  { slug: 'skeleton-blocks', element: <Skeleton variant="blocks" className="h-4 w-24" /> },
+  { slug: 'skeleton-scan', element: <Skeleton variant="scan" className="h-4 w-24" /> },
+  { slug: 'chart-loading', element: <ChartLoading /> },
   { slug: 'stat-card', element: <StatCard title="Revenue" value="$12,400" /> },
   {
     slug: 'toggle',
