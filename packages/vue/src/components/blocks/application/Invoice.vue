@@ -292,7 +292,7 @@ const statusConfig = {
                     <Button size="sm" variant="ghost" @click="emit('viewDetails', inv.id)">
                       View
                     </Button>
-                    <Button size="sm" variant="outline" @click="emit('download', inv.id)">
+                    <Button size="sm" variant="outline" aria-label="Download invoice" @click="emit('download', inv.id)">
                       <Download class="h-4 w-4" />
                     </Button>
                   </div>

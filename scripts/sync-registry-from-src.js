@@ -13,6 +13,7 @@
  *   - src/components/ui/*.tsx              → registry/default/ui/*.tsx
  *   - src/lib/utils.ts                     → registry/default/lib/utils.ts
  *   - src/lib/math-curves.ts               → registry/default/lib/math-curves.ts
+ *   - src/lib/motion-core.ts               → registry/default/lib/motion-core.ts
  *
  * Excluded (structural divergence — needs manual handling):
  *   - src/components/ui/chart.tsx          (src is a re-export barrel pointing
@@ -69,7 +70,7 @@ function rewriteChartImports(content) {
 }
 
 // Files to sync from src/lib → registry/default/lib (only these, by name)
-const LIB_FILES = ['utils.ts', 'math-curves.ts', 'chart-export.ts']
+const LIB_FILES = ['utils.ts', 'math-curves.ts', 'chart-export.ts', 'motion-core.ts']
 
 // Cross-folder files referenced by UI components — must be shipped via
 // their own registry entries (error-boundary, use-theme, …) or installs

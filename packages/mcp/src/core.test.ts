@@ -63,6 +63,31 @@ describe('buildInstallCommand', () => {
     expect(cmd.unknown).toEqual(['not-a-thing'])
     expect(cmd.items.map((i) => i.name)).toEqual(['button'])
   })
+
+  it('yields a URL-less command when nothing resolves', () => {
+    // Callers MUST check items.length before surfacing `display` — on its own
+    // this string looks runnable but installs nothing. Both get_install_command
+    // and install_components guard on it.
+    const cmd = buildInstallCommand(['not-a-thing', 'also-fake'], 'react')
+    expect(cmd.items).toEqual([])
+    expect(cmd.display).toBe('npx shadcn@latest add')
+    expect(cmd.unknown).toEqual(['not-a-thing', 'also-fake'])
+  })
+})
+
+describe('catalog scope vs. advertised scope', () => {
+  // The MCP tool descriptions tell the calling LLM what is findable. They used
+  // to promise "blocks" and "templates", which are docs-only and have no
+  // registry entry — so an agent would confidently report they don't exist.
+  // If blocks/templates ever become registry items, update the descriptions in
+  // server.ts and delete this test.
+  it('contains no block or template items', () => {
+    const names = loadCatalog().map((i) => i.name)
+    for (const blockish of ['hero-section', 'pricing-section', 'auth-forms', 'bento-grid']) {
+      expect(names).not.toContain(blockish)
+    }
+    expect(names.filter((n) => n.endsWith('-template'))).toEqual([])
+  })
 })
 
 describe('detectFramework', () => {

@@ -360,6 +360,23 @@ describe('Rating', () => {
       expect(focusable).toHaveLength(1)
       expect(focusable[0]).toHaveAttribute('aria-label', '3 stars')
     })
+
+    it.each([
+      ['zero', 0, '1 star'],
+      ['above max', 99, '5 stars'],
+      ['negative', -3, '1 star'],
+    ])(
+      'still exposes one tabbable star when the value is %s',
+      (_label, value, expectedStar) => {
+        // No match → every star tabindex=-1 → the group is unreachable by Tab.
+        render(<Rating value={value} />)
+        const focusable = screen
+          .getAllByRole('button')
+          .filter((b) => b.getAttribute('tabindex') === '0')
+        expect(focusable).toHaveLength(1)
+        expect(focusable[0]).toHaveAttribute('aria-label', expectedStar)
+      }
+    )
   })
 
   describe('Visual Feedback', () => {

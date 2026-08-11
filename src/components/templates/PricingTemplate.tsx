@@ -207,6 +207,27 @@ const faqs = [
 
 const trustedLogos = ['Acme Corp', 'Globex', 'Umbrella', 'Massive Dynamic', 'Stark Industries', 'Wayne Enterprises']
 
+/**
+ * One comparison-table cell. The tick/cross IS the data — lucide marks its
+ * icons aria-hidden, so without the sr-only text these cells read as empty.
+ */
+function PlanCell({ value, bold }: { value: string | boolean; bold?: boolean }) {
+  if (typeof value !== 'boolean') {
+    return bold ? <span className="font-bold">{value}</span> : <>{value}</>
+  }
+  return value ? (
+    <>
+      <Check className="h-5 w-5 text-success mx-auto" />
+      <span className="sr-only">Included</span>
+    </>
+  ) : (
+    <>
+      <X className="h-5 w-5 text-muted-foreground mx-auto" />
+      <span className="sr-only">Not included</span>
+    </>
+  )
+}
+
 export function PricingTemplate() {
   const [isYearly, setIsYearly] = useState(false)
   const { resolvedTheme, setTheme } = useTheme()
@@ -349,48 +370,26 @@ export function PricingTemplate() {
             <table className="w-full border-3 border-foreground bg-background">
               <thead>
                 <tr className="border-b-3 border-foreground bg-foreground text-background">
-                  <th className="text-left p-4 font-bold uppercase">Feature</th>
-                  <th className="text-center p-4 font-bold uppercase">Starter</th>
-                  <th className="text-center p-4 font-bold uppercase bg-primary text-primary-foreground">Pro</th>
-                  <th className="text-center p-4 font-bold uppercase">Enterprise</th>
+                  <th scope="col" className="text-left p-4 font-bold uppercase">Feature</th>
+                  <th scope="col" className="text-center p-4 font-bold uppercase">Starter</th>
+                  <th scope="col" className="text-center p-4 font-bold uppercase bg-primary text-primary-foreground">Pro</th>
+                  <th scope="col" className="text-center p-4 font-bold uppercase">Enterprise</th>
                 </tr>
               </thead>
               <tbody>
                 {comparisonFeatures.map((feature, i) => (
                   <tr key={feature.name} className={`border-b-2 border-foreground/20 ${i % 2 === 0 ? '' : 'bg-muted/30'}`}>
-                    <td className="p-4 font-medium">{feature.name}</td>
+                    <th scope="row" className="text-left p-4 font-medium">
+                      {feature.name}
+                    </th>
                     <td className="text-center p-4">
-                      {typeof feature.starter === 'boolean' ? (
-                        feature.starter ? (
-                          <Check className="h-5 w-5 text-success mx-auto" />
-                        ) : (
-                          <X className="h-5 w-5 text-muted-foreground mx-auto" />
-                        )
-                      ) : (
-                        feature.starter
-                      )}
+                      <PlanCell value={feature.starter} />
                     </td>
                     <td className="text-center p-4 bg-primary/5">
-                      {typeof feature.pro === 'boolean' ? (
-                        feature.pro ? (
-                          <Check className="h-5 w-5 text-success mx-auto" />
-                        ) : (
-                          <X className="h-5 w-5 text-muted-foreground mx-auto" />
-                        )
-                      ) : (
-                        <span className="font-bold">{feature.pro}</span>
-                      )}
+                      <PlanCell value={feature.pro} bold />
                     </td>
                     <td className="text-center p-4">
-                      {typeof feature.enterprise === 'boolean' ? (
-                        feature.enterprise ? (
-                          <Check className="h-5 w-5 text-success mx-auto" />
-                        ) : (
-                          <X className="h-5 w-5 text-muted-foreground mx-auto" />
-                        )
-                      ) : (
-                        feature.enterprise
-                      )}
+                      <PlanCell value={feature.enterprise} />
                     </td>
                   </tr>
                 ))}

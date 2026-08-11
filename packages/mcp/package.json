@@ -1,6 +1,6 @@
 {
   "name": "@boldkit/mcp",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "MCP server for BoldKit - search and install neubrutalism UI components (React & Vue) by natural-language description.",
   "author": "BoldKit Team",
   "license": "MIT",

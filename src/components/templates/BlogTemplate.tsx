@@ -305,10 +305,10 @@ export function BlogTemplate() {
             </div>
 
             <div className="flex items-center gap-3">
-              <Button variant="ghost" size="icon">
+              <Button variant="ghost" size="icon" aria-label="Search">
                 <Search className="h-5 w-5" />
               </Button>
-              <Button variant="ghost" size="icon">
+              <Button variant="ghost" size="icon" aria-label="RSS feed">
                 <Rss className="h-5 w-5" />
               </Button>
               <Button className="hidden sm:flex">Subscribe</Button>
@@ -372,7 +372,7 @@ export function BlogTemplate() {
 
               {/* Pagination */}
               <div className="flex items-center justify-center gap-2 mt-12">
-                <Button variant="outline" size="icon" disabled>
+                <Button variant="outline" size="icon" disabled aria-label="Previous page">
                   <ChevronLeft className="h-4 w-4" />
                 </Button>
                 {[1, 2, 3, 4, 5].map((page) => (
@@ -384,7 +384,7 @@ export function BlogTemplate() {
                     {page}
                   </Button>
                 ))}
-                <Button variant="outline" size="icon">
+                <Button variant="outline" size="icon" aria-label="Next page">
                   <ChevronRight className="h-4 w-4" />
                 </Button>
               </div>
@@ -510,13 +510,13 @@ export function BlogTemplate() {
                 Insights on design, development, and building great products.
               </p>
               <div className="flex items-center gap-3">
-                <Button variant="ghost" size="icon" className="text-background/70 hover:text-background hover:bg-background/10">
+                <Button variant="ghost" size="icon" aria-label="Twitter" className="text-background/70 hover:text-background hover:bg-background/10">
                   <Twitter className="h-5 w-5" />
                 </Button>
-                <Button variant="ghost" size="icon" className="text-background/70 hover:text-background hover:bg-background/10">
+                <Button variant="ghost" size="icon" aria-label="GitHub" className="text-background/70 hover:text-background hover:bg-background/10">
                   <Github className="h-5 w-5" />
                 </Button>
-                <Button variant="ghost" size="icon" className="text-background/70 hover:text-background hover:bg-background/10">
+                <Button variant="ghost" size="icon" aria-label="RSS feed" className="text-background/70 hover:text-background hover:bg-background/10">
                   <Rss className="h-5 w-5" />
                 </Button>
               </div>

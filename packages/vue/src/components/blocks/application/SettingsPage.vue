@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, watch } from 'vue'
 import { cn } from '@/lib/utils'
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui'
 import Button from '@/components/ui/Button.vue'
@@ -46,6 +46,31 @@ const emit = defineEmits<{
   (e: 'accentColorChange', color: string): void
 }>()
 
+// Appearance prefs survive a reload. Same storage key and shape as the React
+// block so a project using both frameworks stays consistent. Never throws —
+// private mode blocks localStorage.
+const APPEARANCE_STORAGE_KEY = 'boldkit-settings-appearance'
+type AppearanceTheme = 'light' | 'dark' | 'system'
+
+function readAppearance(): { theme: AppearanceTheme; accentColor: string } {
+  const fallback = { theme: 'system' as AppearanceTheme, accentColor: '#3b82f6' }
+  try {
+    const raw = localStorage.getItem(APPEARANCE_STORAGE_KEY)
+    if (!raw) return fallback
+    const parsed = JSON.parse(raw) as Partial<typeof fallback>
+    return {
+      theme: (['light', 'dark', 'system'] as const).includes(parsed.theme as AppearanceTheme)
+        ? (parsed.theme as AppearanceTheme)
+        : fallback.theme,
+      accentColor: accentColors.some((c) => c.value === parsed.accentColor)
+        ? parsed.accentColor!
+        : fallback.accentColor,
+    }
+  } catch {
+    return fallback
+  }
+}
+
 const accentColors = [
   { name: 'Blue', value: '#3b82f6' },
   { name: 'Green', value: '#22c55e' },
@@ -54,7 +79,7 @@ const accentColors = [
   { name: 'Pink', value: '#ec4899' },
   { name: 'Red', value: '#ef4444' },
 ]
-const accentColor = ref('#3b82f6')
+const accentColor = ref(readAppearance().accentColor)
 const setAccentColor = (value: string) => {
   // Guard: only accept a value from the known palette.
   if (!accentColors.some((c) => c.value === value)) return
@@ -75,7 +100,15 @@ const currentPassword = ref('')
 const newPassword = ref('')
 const confirmPassword = ref('')
 
-const theme = ref<'light' | 'dark' | 'system'>('system')
+const theme = ref<AppearanceTheme>(readAppearance().theme)
+
+watch([theme, accentColor], ([t, c]) => {
+  try {
+    localStorage.setItem(APPEARANCE_STORAGE_KEY, JSON.stringify({ theme: t, accentColor: c }))
+  } catch {
+    // storage unavailable — the UI still works for this session
+  }
+})
 const activeTab = ref<SettingsVariant>('profile')
 
 const getInitials = (name: string) => {
@@ -238,6 +271,7 @@ const getInitials = (name: string) => {
           <Label class="mb-4 block">Theme</Label>
           <div class="grid grid-cols-3 gap-4">
             <button
+              :aria-pressed="theme === 'light'"
               :class="cn(
                 'border-3 border-foreground p-4 text-center transition',
                 theme === 'light' ? 'bg-primary text-primary-foreground shadow-[4px_4px_0px_hsl(var(--shadow-color))]' : 'hover:bg-muted'
@@ -247,6 +281,7 @@ const getInitials = (name: string) => {
               <div class="font-bold">Light</div>
             </button>
             <button
+              :aria-pressed="theme === 'dark'"
               :class="cn(
                 'border-3 border-foreground p-4 text-center transition',
                 theme === 'dark' ? 'bg-primary text-primary-foreground shadow-[4px_4px_0px_hsl(var(--shadow-color))]' : 'hover:bg-muted'
@@ -256,6 +291,7 @@ const getInitials = (name: string) => {
               <div class="font-bold">Dark</div>
             </button>
             <button
+              :aria-pressed="theme === 'system'"
               :class="cn(
                 'border-3 border-foreground p-4 text-center transition',
                 theme === 'system' ? 'bg-primary text-primary-foreground shadow-[4px_4px_0px_hsl(var(--shadow-color))]' : 'hover:bg-muted'
@@ -277,6 +313,8 @@ const getInitials = (name: string) => {
               :key="color.value"
               type="button"
               :title="color.name"
+              :aria-label="color.name"
+              :aria-pressed="accentColor === color.value"
               :style="{ backgroundColor: color.value }"
               :class="cn(
                 'w-10 h-10 border-3 border-foreground transition flex items-center justify-center',

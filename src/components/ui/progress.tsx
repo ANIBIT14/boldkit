@@ -18,9 +18,14 @@ export interface ProgressProps
 const Progress = React.forwardRef<
   React.ElementRef<typeof ProgressPrimitive.Root>,
   ProgressProps
->(({ className, value, variant = 'smooth', ...props }, ref) => {
+>(({ className, value, variant = 'smooth', max = 100, ...props }, ref) => {
   const indeterminate = variant === 'marquee'
-  const clampedValue = Math.max(0, Math.min(100, value ?? 0))
+  // Clamp against `max`, not a hard 100 — otherwise a max of 200 renders a full
+  // bar while aria-valuenow reports half. Percent drives the fill; the raw
+  // clamped value is what Radix exposes to AT.
+  const safeMax = max > 0 ? max : 100
+  const clampedValue = Math.max(0, Math.min(safeMax, value ?? 0))
+  const percent = (clampedValue / safeMax) * 100
   // Radix reads null as indeterminate and drops aria-valuenow. Pass the clamped
   // value so an out-of-range `value` can't trip Radix's range warning, and keep
   // an omitted value indeterminate the way it was before v3.5.
@@ -29,6 +34,7 @@ const Progress = React.forwardRef<
     <ProgressPrimitive.Root
       ref={ref}
       value={ariaValue}
+      max={safeMax}
       className={cn(
         'relative h-5 w-full overflow-hidden border-3 border-foreground bg-muted shadow-[4px_4px_0px_hsl(var(--shadow-color))]',
         className
@@ -42,7 +48,7 @@ const Progress = React.forwardRef<
           indeterminate && 'bk-progress-marquee'
         )}
         style={
-          indeterminate ? undefined : { transform: `translateX(-${100 - clampedValue}%)` }
+          indeterminate ? undefined : { transform: `translateX(-${100 - percent}%)` }
         }
       />
     </ProgressPrimitive.Root>

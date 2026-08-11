@@ -36,10 +36,13 @@ const isBool = (v: string | boolean): v is boolean => typeof v === 'boolean'
         <table class="w-full border-collapse">
           <thead>
             <tr class="border-b-3 border-foreground bg-muted">
-              <th class="p-4 text-left text-sm font-black uppercase tracking-wide">Feature</th>
+              <th scope="col" class="p-4 text-left text-sm font-black uppercase tracking-wide">
+                Feature
+              </th>
               <th
                 v-for="(col, i) in columns"
                 :key="col"
+                scope="col"
                 :class="cn(
                   'p-4 text-center text-sm font-black uppercase tracking-wide',
                   i === highlightColumn && 'bg-primary text-primary-foreground'
@@ -55,24 +58,30 @@ const isBool = (v: string | boolean): v is boolean => typeof v === 'boolean'
               :key="row.feature"
               class="border-b-2 border-foreground last:border-b-0"
             >
-              <td class="p-4 text-sm font-bold">{{ row.feature }}</td>
+              <th scope="row" class="p-4 text-left text-sm font-bold">{{ row.feature }}</th>
               <td
                 v-for="(value, i) in row.values"
                 :key="i"
                 :class="cn('p-4 text-center', i === highlightColumn && 'bg-primary/10')"
               >
+                <!--
+                  The tick/cross IS the data. lucide marks its icons aria-hidden,
+                  so without the sr-only text these cells are read as empty.
+                -->
                 <template v-if="isBool(value)">
                   <span
                     v-if="value"
                     class="inline-flex h-6 w-6 items-center justify-center border-2 border-foreground bg-success"
                   >
                     <Check class="h-3.5 w-3.5 text-success-foreground" />
+                    <span class="sr-only">Included</span>
                   </span>
                   <span
                     v-else
                     class="inline-flex h-6 w-6 items-center justify-center border-2 border-foreground bg-muted"
                   >
                     <X class="h-3.5 w-3.5 text-muted-foreground" />
+                    <span class="sr-only">Not included</span>
                   </span>
                 </template>
                 <span v-else class="text-sm font-bold">{{ value }}</span>

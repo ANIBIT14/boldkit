@@ -19,13 +19,17 @@ export interface ComparisonTableProps {
 
 function Cell({ value }: { value: string | boolean }) {
   if (typeof value === 'boolean') {
+    // The tick/cross IS the data. lucide marks its icons aria-hidden, so without
+    // the sr-only text a screen reader reads these cells as empty.
     return value ? (
       <span className="inline-flex h-6 w-6 items-center justify-center border-2 border-foreground bg-success">
         <Check className="h-3.5 w-3.5 text-success-foreground" />
+        <span className="sr-only">Included</span>
       </span>
     ) : (
       <span className="inline-flex h-6 w-6 items-center justify-center border-2 border-foreground bg-muted">
         <X className="h-3.5 w-3.5 text-muted-foreground" />
+        <span className="sr-only">Not included</span>
       </span>
     )
   }
@@ -51,10 +55,13 @@ export function ComparisonTable({
           <table className="w-full border-collapse">
             <thead>
               <tr className="border-b-3 border-foreground bg-muted">
-                <th className="p-4 text-left text-sm font-black uppercase tracking-wide">Feature</th>
+                <th scope="col" className="p-4 text-left text-sm font-black uppercase tracking-wide">
+                  Feature
+                </th>
                 {columns.map((col, i) => (
                   <th
                     key={col}
+                    scope="col"
                     className={cn(
                       'p-4 text-center text-sm font-black uppercase tracking-wide',
                       i === highlightColumn && 'bg-primary text-primary-foreground'
@@ -68,7 +75,9 @@ export function ComparisonTable({
             <tbody>
               {rows.map((row) => (
                 <tr key={row.feature} className="border-b-2 border-foreground last:border-b-0">
-                  <td className="p-4 text-sm font-bold">{row.feature}</td>
+                  <th scope="row" className="p-4 text-left text-sm font-bold">
+                    {row.feature}
+                  </th>
                   {row.values.map((value, i) => (
                     <td
                       key={i}

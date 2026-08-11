@@ -188,6 +188,12 @@ export interface LogoCloudWithStatsProps {
   title?: string
   logos: LogoItem[]
   stats: Array<{ value: string; label: string }>
+  /**
+   * Cap the number of logos rendered. Omit to render all of them — the 3-column
+   * grid simply grows another row. Previously this was hard-capped at 9, which
+   * dropped the rest with only a console warning.
+   */
+  maxLogos?: number
   className?: string
 }
 
@@ -195,11 +201,10 @@ export function LogoCloudWithStats({
   title,
   logos,
   stats,
+  maxLogos,
   className,
 }: LogoCloudWithStatsProps) {
-  if (logos.length > 9) {
-    console.warn(`[LogoCloud] WithStats variant only shows first 9 logos. ${logos.length} logos provided — pass exactly 9 to silence this warning.`)
-  }
+  const visibleLogos = maxLogos === undefined ? logos : logos.slice(0, maxLogos)
   return (
     <section className={cn('py-16 px-4 md:px-8 lg:px-16', className)}>
       <div className="max-w-6xl mx-auto">
@@ -227,7 +232,7 @@ export function LogoCloudWithStats({
           </div>
 
           <div className="grid grid-cols-3 gap-6">
-            {logos.slice(0, 9).map((logo) => {
+            {visibleLogos.map((logo) => {
               const inner = (
                 <div
                   className="flex items-center justify-center h-16 opacity-70 hover:opacity-100 transition-opacity"

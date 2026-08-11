@@ -80,7 +80,7 @@ export function NotFoundPage({
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
             />
-            <Button type="submit">
+            <Button type="submit" aria-label="Search">
               <Search className="h-4 w-4" />
             </Button>
           </form>

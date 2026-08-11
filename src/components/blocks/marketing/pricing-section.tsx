@@ -1,6 +1,6 @@
  
 import { Check } from 'lucide-react'
-import { cn } from '@/lib/utils'
+import { cn, safeHref } from '@/lib/utils'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
 
@@ -11,6 +11,10 @@ export interface PricingTier {
   description?: string
   features: string[]
   cta?: string
+  /** Navigate on click. Takes precedence over `onCtaClick`. */
+  ctaHref?: string
+  /** Called when the tier's CTA is clicked and no `ctaHref` is set. */
+  onCtaClick?: () => void
   featured?: boolean
 }
 
@@ -71,12 +75,23 @@ export function PricingSection({
                   </li>
                 ))}
               </ul>
-              <Button
-                className="mt-6 w-full"
-                variant={tier.featured ? 'default' : 'outline'}
-              >
-                {tier.cta ?? 'Get started'}
-              </Button>
+              {tier.ctaHref ? (
+                <Button
+                  className="mt-6 w-full"
+                  variant={tier.featured ? 'default' : 'outline'}
+                  asChild
+                >
+                  <a href={safeHref(tier.ctaHref)}>{tier.cta ?? 'Get started'}</a>
+                </Button>
+              ) : (
+                <Button
+                  className="mt-6 w-full"
+                  variant={tier.featured ? 'default' : 'outline'}
+                  onClick={tier.onCtaClick}
+                >
+                  {tier.cta ?? 'Get started'}
+                </Button>
+              )}
             </div>
           ))}
         </div>
@@ -92,6 +107,10 @@ export interface CheckoutSummaryProps {
   planName: string
   lineItems: { label: string; amount: string }[]
   total: string
+  /** Label for the checkout button. Defaults to "Checkout". */
+  checkoutLabel?: string
+  /** Called when the checkout button is clicked. */
+  onCheckout?: () => void
   className?: string
 }
 
@@ -99,6 +118,8 @@ export function CheckoutSummary({
   planName,
   lineItems,
   total,
+  checkoutLabel = 'Checkout',
+  onCheckout,
   className,
 }: CheckoutSummaryProps) {
   return (
@@ -122,7 +143,9 @@ export function CheckoutSummary({
         <span>Total</span>
         <span>{total}</span>
       </div>
-      <Button className="mt-6 w-full">Checkout</Button>
+      <Button className="mt-6 w-full" onClick={onCheckout}>
+        {checkoutLabel}
+      </Button>
     </div>
   )
 }

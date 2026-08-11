@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, computed } from 'vue'
+import { ref, computed, onUnmounted } from 'vue'
 import {
   Search, ChevronRight, ChevronDown, Menu, X, Moon, Sun,
   Copy, Check, ExternalLink, Github, ArrowLeft, ArrowRight,
@@ -10,6 +10,7 @@ import {
   Button,
   Input,
 } from '@/components/ui'
+import { copyToClipboard } from '@/lib/clipboard'
 
 // ============================================
 // DOCS SITE TEMPLATE - NEUBRUTALISM STYLE
@@ -89,12 +90,18 @@ const openSections = ref<Record<string, boolean>>({ 'Getting Started': true, 'Co
 
 let copyTimeout: ReturnType<typeof setTimeout> | null = null
 
-function copyCode(code: string) {
-  navigator.clipboard.writeText(code)
+async function copyCode(code: string) {
+  // Bare navigator.clipboard throws on http:// and older browsers, and the
+  // unhandled rejection still left the button claiming "COPIED".
+  if (!(await copyToClipboard(code))) return
   copiedCode.value = code
   if (copyTimeout) clearTimeout(copyTimeout)
   copyTimeout = setTimeout(() => { copiedCode.value = null }, 2000)
 }
+
+onUnmounted(() => {
+  if (copyTimeout) clearTimeout(copyTimeout)
+})
 
 const filteredSections = computed(() => {
   const query = searchVal.value.trim().toLowerCase()

@@ -1,6 +1,6 @@
 {
   "name": "boldkit",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "BoldKit CLI - install neubrutalism UI components for React and Vue. `npx boldkit add button`.",
   "author": "BoldKit Team",
   "license": "MIT",

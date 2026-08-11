@@ -77,6 +77,17 @@ describe('Progress (v3.5 variants)', () => {
     render(<Progress />)
     expect(screen.getByRole('progressbar')).not.toHaveAttribute('aria-valuenow')
   })
+
+  it('clamps and fills against max, not a hard 100', () => {
+    render(<Progress value={150} max={200} data-testid="p" />)
+    // The bar is 75% full and AT agrees — before the fix this rendered a full
+    // bar while reporting aria-valuenow=100 against max=200 ("50%").
+    expect(screen.getByTestId('p')).toHaveAttribute('aria-valuenow', '150')
+    expect(screen.getByTestId('p')).toHaveAttribute('aria-valuemax', '200')
+    expect(screen.getByTestId('p').firstElementChild).toHaveStyle({
+      transform: 'translateX(-25%)',
+    })
+  })
 })
 
 describe('ChartLoading', () => {

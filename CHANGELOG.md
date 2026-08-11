@@ -5,6 +5,95 @@ Format follows [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ---
 
+## [3.5.1] — 2026-08-11 — Accessibility sweep, live CTAs & audit fixes
+
+A six-pass audit of everything shipped since v3.4.8, across React and Vue. 30+ bugs fixed, two
+regression guards added. Every fix is non-breaking except where noted under **Behaviour changes**.
+
+### Accessibility
+
+♿ **Icon-only controls given accessible names — 20 of them.** Templates, blocks and UI components had
+interactive controls whose only content was a lucide icon, which lucide marks `aria-hidden`. Screen
+readers announced them as bare "button" — including the blog pagination pair, where previous and next
+were indistinguishable. Now covered by a CI guard (`npm run audit:icon-labels`).
+
+♿ **Data conveyed only by icons now has text equivalents.** `ComparisonTable` (both frameworks) and
+`PricingTemplate` rendered ✓/✗ cells that read as *empty* to assistive tech — the entire payload of a
+comparison table. Added `sr-only` labels, plus `scope="col"`/`scope="row"` so cells are announced with
+their feature and column.
+
+♿ **Selection state exposed, not just styled.** `aria-pressed` on the accent-colour swatches and theme
+buttons, `aria-current="page"` on the dashboard nav. `ProductTemplate`'s colour radios had no accessible
+name at all — their `<Label>` contained only an aria-hidden check.
+
+♿ **`Rating` could become keyboard-unreachable.** Roving tabindex matched `Math.ceil(value)`; an
+out-of-range value matched no star, so every star fell to `tabIndex={-1}` and the group left the tab
+order. Now clamped. React also announced "1 stars"; Vue already singularised.
+
+### Bug fixes
+
+🐛 **`Progress` clamped to 100 regardless of `max`** (React + Vue). `<Progress max={200} value={150} />`
+rendered a full bar while reporting `aria-valuenow=100` against `max=200` — visual and AT disagreeing.
+Vue was a regression from v3.5.0; it also silently dropped `getValueText`.
+
+🐛 **Vue registry shipped a dangling `@import`.** `public/r/vue/styles.json` carried
+`@import './motion.css'` without shipping that file, breaking `shadcn-vue add .../styles.json` on a
+clean project. The rules were already inlined, so the import was redundant. The build now strips it and
+throws on any relative import with no shipped sibling.
+
+🐛 **Vue `DocsTemplate` called `navigator.clipboard` unguarded** — an unhandled rejection on `http://`
+or older browsers, and the button still claimed "COPIED". Now routed through a `copyToClipboard` helper
+mirrored from React. React's copy button gained the timer cleanup Vue already had.
+
+🐛 **MCP server misdescribed its own catalog.** `search_components` and `list_components` advertised
+blocks and templates; the catalog contains neither, so an agent would confidently report they don't
+exist. `get_install_command` also returned a bare `npx shadcn@latest add` with no URLs when nothing
+resolved. Both fixed.
+
+🐛 Misc: `ChartLoading` missing from the Vue barrel; `data-bk-transition` was sticky and bled page
+transitions into the theme toggle (now scoped per navigation via `startViewTransition(cb, recipe)`);
+`use-theme` couldn't heal a root carrying both `light` and `dark`; `ErrorPages.vue`'s countdown ticked
+forever after expiry.
+
+### Behaviour changes
+
+⚠️ **`LogoCloudWithStats` no longer truncates.** It hard-capped at 9 logos, dropping the rest with a
+`console.warn` that fired in production on every render. It now renders all logos; pass `maxLogos` to
+restore a cap.
+
+✨ **Pricing CTAs are live.** `PricingTier` gains `ctaHref` / `onCtaClick` (React) and a `ctaClick` emit
+(Vue); `CheckoutSummary` gains `onCheckout` / `checkoutLabel`. Previously these buttons did nothing.
+Hrefs go through `safeHref`.
+
+✨ **Settings appearance persists.** `SettingsPage` rendered `<AppearanceSettings />` with no props, so
+theme buttons were dead and nothing survived a reload. Now persisted to `localStorage` under
+`boldkit-settings-appearance`, same key and shape in both frameworks, guarded against private mode.
+
+### Documentation
+
+📖 **Blocks and templates are documented as copy-paste only.** They are not registry items in either
+framework — `shadcn add` cannot install one and the MCP catalog cannot surface one. `CLAUDE.md`
+previously claimed otherwise. Making them installable remains open feature work.
+
+### Tooling
+
+✅ React tests 590 → 610, Vue 59 → 66, MCP 12 → 14. New guards: `audit:icon-labels` (fails on any
+unnamed icon-only control, with a vetted-exceptions map) and the Vue registry dangling-import check.
+`src/lib/motion-core.ts` was never in the sync script's `LIB_FILES`, so its registry mirror could drift
+silently — added.
+
+### Bumps
+
+- React: `3.5.0 → 3.5.1`
+- Vue: `3.3.0 → 3.3.1`
+- `@boldkit/mcp`: `0.1.0 → 0.2.0`
+- `boldkit` (CLI): `0.1.4 → 0.1.5`
+
+> Note: v3.5.0 shipped without a CHANGELOG entry; see the
+> [v3.5.0 release](https://github.com/ANIBIT14/boldkit/releases/tag/v3.5.0) for its notes.
+
+---
+
 ## [3.4.9] — 2026-07-21 — Multi-step forms, chart annotations, dark-mode audit & 5 blocks
 
 Four independent workstreams, React + Vue parity throughout.

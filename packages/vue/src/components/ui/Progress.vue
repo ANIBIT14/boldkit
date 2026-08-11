@@ -19,7 +19,14 @@ const props = withDefaults(defineProps<Props>(), { variant: 'smooth' })
 
 const indeterminate = computed(() => props.variant === 'marquee')
 
-const clampedValue = computed(() => Math.max(0, Math.min(100, props.modelValue ?? 0)))
+// Clamp against `max`, not a hard 100 — otherwise a max of 200 renders a full
+// bar while aria-valuenow reports half. `percent` drives the fill; the raw
+// clamped value is what Reka exposes to AT.
+const safeMax = computed(() => (props.max && props.max > 0 ? props.max : 100))
+const clampedValue = computed(() =>
+  Math.max(0, Math.min(safeMax.value, props.modelValue ?? 0))
+)
+const percent = computed(() => (clampedValue.value / safeMax.value) * 100)
 
 // Reka reads null as indeterminate and drops aria-valuenow. Clamp so an
 // out-of-range modelValue can't trip its range warning, and keep an omitted
@@ -28,15 +35,15 @@ const rootValue = computed(() =>
   indeterminate.value || props.modelValue == null ? null : clampedValue.value
 )
 
-// Only the primitive's own props reach ProgressRoot — `class` and `variant`
-// are ours and would otherwise land on the DOM node as stray attributes.
-const rootProps = computed<ProgressRootProps>(() => ({
-  max: props.max,
-  getValueLabel: props.getValueLabel,
-  asChild: props.asChild,
-  as: props.as,
-  modelValue: rootValue.value,
-}))
+// Strip only what's ours — `class` and `variant` would otherwise land on the
+// DOM node as stray attributes. Everything else the primitive declares
+// (getValueLabel, getValueText, as, asChild, …) passes through untouched.
+const rootProps = computed<ProgressRootProps>(() => {
+  const rest: Record<string, unknown> = { ...props }
+  delete rest.class
+  delete rest.variant
+  return { ...rest, max: safeMax.value, modelValue: rootValue.value }
+})
 </script>
 
 <template>
@@ -57,7 +64,7 @@ const rootProps = computed<ProgressRootProps>(() => ({
           indeterminate && 'bk-progress-marquee'
         )
       "
-      :style="indeterminate ? undefined : { transform: `translateX(-${100 - clampedValue}%)` }"
+      :style="indeterminate ? undefined : { transform: `translateX(-${100 - percent}%)` }"
     />
   </ProgressRoot>
 </template>

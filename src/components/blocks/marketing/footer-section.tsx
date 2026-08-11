@@ -153,7 +153,7 @@ export function FooterWithNewsletter({
                 onChange={(e) => setEmail(e.target.value)}
                 required
               />
-              <Button type="submit">
+              <Button type="submit" aria-label="Subscribe">
                 <Mail className="h-4 w-4" />
               </Button>
             </form>

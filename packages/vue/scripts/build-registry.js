@@ -625,11 +625,24 @@ function createShapesRegistry() {
 
 function createStylesRegistry() {
   const cssPath = path.join(STYLES_DIR, 'globals.css')
-  const cssContent = readFile(cssPath)
+  const rawCss = readFile(cssPath)
 
-  if (!cssContent) {
+  if (!rawCss) {
     console.warn('globals.css not found')
     return null
+  }
+
+  // In-repo, globals.css pulls the motion layer in via `@import './motion.css'`.
+  // This item ships globals.css alone, and the motion rules are already inlined
+  // further down the file — so leaving the import in hands consumers a dangling
+  // specifier that fails the Vite/Tailwind build.
+  const cssContent = rawCss.replace(/^@import\s+['"]\.\/motion\.css['"];?[ \t]*\r?\n/gm, '')
+  // Invariant: nothing this item ships may point at a sibling file it doesn't ship.
+  const dangling = cssContent.match(/^@import\s+['"]\.[^'"]*['"]/gm)
+  if (dangling) {
+    throw new Error(
+      `createStylesRegistry: globals.css still has relative import(s) with no shipped sibling: ${dangling.join(', ')}`
+    )
   }
 
   return {

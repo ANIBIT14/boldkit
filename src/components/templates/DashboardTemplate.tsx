@@ -244,7 +244,7 @@ export function DashboardTemplate() {
               <p className="font-bold text-sm truncate">Admin User</p>
               <p className="text-xs text-background/60 truncate">admin@example.com</p>
             </div>
-            <Button variant="ghost" size="icon" className="text-background/60 hover:text-background hover:bg-background/10">
+            <Button variant="ghost" size="icon" aria-label="Log out" className="text-background/60 hover:text-background hover:bg-background/10">
               <LogOut className="h-4 w-4" />
             </Button>
           </div>
@@ -273,7 +273,7 @@ export function DashboardTemplate() {
                 3
               </span>
             </Button>
-            <Button variant="outline" size="icon">
+            <Button variant="outline" size="icon" aria-label="Help">
               <HelpCircle className="h-4 w-4" />
             </Button>
             <Avatar className="border-2 border-foreground lg:hidden">
@@ -426,7 +426,7 @@ export function DashboardTemplate() {
                   </div>
                   <div className="flex items-center gap-2">
                     <Input placeholder="Search orders..." className="w-48" />
-                    <Button variant="outline" size="icon">
+                    <Button variant="outline" size="icon" aria-label="More options">
                       <MoreHorizontal className="h-4 w-4" />
                     </Button>
                   </div>

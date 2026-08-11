@@ -67,6 +67,22 @@ describe('Progress.vue (v3.5 variants)', () => {
     const w = mount(Progress, { props: { modelValue: 40, variant: 'stepped' } })
     expect(w.attributes('variant')).toBeUndefined()
   })
+
+  it('clamps and fills against max, not a hard 100', () => {
+    const w = mount(Progress, { props: { modelValue: 150, max: 200 } })
+    // The bar is 75% full and AT agrees — before the fix modelValue was clamped
+    // to 100, so a full-looking bar reported "50%" against max=200.
+    expect(indicatorOf(w).style.transform).toBe('translateX(-25%)')
+    expect(w.attributes('aria-valuenow')).toBe('150')
+    expect(w.attributes('aria-valuemax')).toBe('200')
+  })
+
+  it('forwards primitive props the whitelist used to drop', () => {
+    const w = mount(Progress, {
+      props: { modelValue: 40, getValueText: () => 'forty of a hundred' },
+    })
+    expect(w.attributes('aria-valuetext')).toBe('forty of a hundred')
+  })
 })
 
 describe('ChartLoading.vue', () => {

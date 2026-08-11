@@ -49,6 +49,12 @@ onMounted(() => {
     timeRemaining.value = getCountdown(props.launchDate)
     countdownInterval = setInterval(() => {
       timeRemaining.value = getCountdown(props.launchDate!)
+      // Expired — the "We're live!" branch takes over, so stop ticking rather
+      // than recomputing null once a second for the life of the page.
+      if (timeRemaining.value === null && countdownInterval) {
+        clearInterval(countdownInterval)
+        countdownInterval = null
+      }
     }, 1000)
   }
 })

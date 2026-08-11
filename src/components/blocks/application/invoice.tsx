@@ -496,7 +496,7 @@ export function InvoiceSummary({
         <p className="text-2xl font-black font-mono">${amount.toFixed(2)}</p>
         <div className="flex gap-2">
           {onDownload && (
-            <Button variant="ghost" size="sm" onClick={onDownload}>
+            <Button variant="ghost" size="sm" aria-label="Download invoice" onClick={onDownload}>
               <Download className="h-4 w-4" />
             </Button>
           )}

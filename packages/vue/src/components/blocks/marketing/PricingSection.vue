@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { cn } from '@/lib/utils'
+import { cn, safeHref } from '@/lib/utils'
 import Button from '@/components/ui/Button.vue'
 import Badge from '@/components/ui/Badge.vue'
 import { Check } from 'lucide-vue-next'
@@ -11,6 +11,8 @@ export interface PricingTier {
   description?: string
   features: string[]
   cta?: string
+  /** Navigate on click. Takes precedence over the `ctaClick` event. */
+  ctaHref?: string
   featured?: boolean
 }
 
@@ -24,6 +26,10 @@ interface PricingSectionProps {
 withDefaults(defineProps<PricingSectionProps>(), {
   title: 'Pricing',
 })
+
+// Tuple syntax (Vue 3.3+) rather than the call-signature form — the latter
+// trips no-unused-vars on its type-only parameters.
+const emit = defineEmits<{ ctaClick: [tier: PricingTier] }>()
 </script>
 
 <template>
@@ -71,7 +77,20 @@ withDefaults(defineProps<PricingSectionProps>(), {
               {{ feature }}
             </li>
           </ul>
-          <Button class="mt-6 w-full" :variant="tier.featured ? 'default' : 'outline'">
+          <Button
+            v-if="tier.ctaHref"
+            class="mt-6 w-full"
+            :variant="tier.featured ? 'default' : 'outline'"
+            as-child
+          >
+            <a :href="safeHref(tier.ctaHref)">{{ tier.cta ?? 'Get started' }}</a>
+          </Button>
+          <Button
+            v-else
+            class="mt-6 w-full"
+            :variant="tier.featured ? 'default' : 'outline'"
+            @click="emit('ctaClick', tier)"
+          >
             {{ tier.cta ?? 'Get started' }}
           </Button>
         </div>

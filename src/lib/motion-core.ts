@@ -165,12 +165,24 @@ type ViewTransitionLike = {
   updateCallbackDone: Promise<void>;
 };
 
+/** Named page-transition recipes defined in the motion stylesheet. */
+export type PageTransition = 'hard-wipe' | 'color-block' | 'stamp';
+
 /**
  * Wraps `document.startViewTransition` with a no-op fallback for browsers
  * that don't support it (Firefox as of writing). Returns null when unsupported,
  * so callers can detect and skip awaiting.
+ *
+ * Pass `recipe` to apply one of the named page transitions for this navigation
+ * only — it sets `<html data-bk-transition>` and restores the previous value
+ * once the transition finishes. Setting that attribute by hand makes it sticky,
+ * which then bleeds the recipe into every later transition (the theme toggle's
+ * circular reveal included).
  */
-export function startViewTransition(callback: () => void | Promise<void>): ViewTransitionLike | null {
+export function startViewTransition(
+  callback: () => void | Promise<void>,
+  recipe?: PageTransition,
+): ViewTransitionLike | null {
   if (!isBrowser || _reducedMotion) {
     void callback();
     return null;
@@ -182,5 +194,20 @@ export function startViewTransition(callback: () => void | Promise<void>): ViewT
     void callback();
     return null;
   }
-  return doc.startViewTransition(callback);
+
+  const root = document.documentElement;
+  const previous = recipe ? root.getAttribute('data-bk-transition') : null;
+  if (recipe) root.setAttribute('data-bk-transition', recipe);
+
+  const transition = doc.startViewTransition(callback);
+
+  if (recipe) {
+    const restore = () => {
+      if (previous === null) root.removeAttribute('data-bk-transition');
+      else root.setAttribute('data-bk-transition', previous);
+    };
+    transition.finished.then(restore, restore);
+  }
+
+  return transition;
 }

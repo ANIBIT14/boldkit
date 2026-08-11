@@ -46,6 +46,7 @@ const tableRows = [
         <button
           v-for="item in nav"
           :key="item.label"
+          :aria-current="item.active ? 'page' : undefined"
           :class="cn(
             'w-full border-2 border-transparent px-3 py-2 text-left text-sm font-bold uppercase tracking-wide transition',
             item.active

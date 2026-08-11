@@ -59,7 +59,7 @@ export function createServer(): McpServer {
   registerTool<{ query: string; framework?: Framework }>(
     server,
     'search_components',
-    'Search BoldKit neubrutalism UI components, charts, shapes, and blocks by natural-language description. Returns ranked matches with framework availability (react/vue).',
+    'Search installable BoldKit neubrutalism UI components, charts, and shapes by natural-language description. Returns ranked matches with framework availability (react/vue). Blocks (hero, pricing, FAQ, auth forms, …) and full-page templates are NOT in the registry and will never match here — they are copy-paste only, documented at https://boldkit.dev.',
     {
       query: z.string().describe('Natural-language description, e.g. "toast notification" or "chart showing proportions"'),
       framework: frameworkSchema,
@@ -102,6 +102,18 @@ export function createServer(): McpServer {
         ? { framework, reason: 'explicitly requested' }
         : detectFramework(projectDir ?? process.cwd())
       const cmd = buildInstallCommand(names, detected.framework)
+      if (cmd.items.length === 0) {
+        // Otherwise `command` is a bare "npx shadcn@latest add" with no URLs,
+        // which the caller may hand to the user as if it were runnable.
+        return json({
+          error: 'Nothing installable',
+          framework: detected.framework,
+          frameworkReason: detected.reason,
+          unknown: cmd.unknown,
+          unavailable: cmd.unavailable,
+          didYouMean: cmd.unknown.flatMap((n) => searchCatalog(n, detected.framework, 3).map((r) => r.name)),
+        })
+      }
       return json({
         framework: detected.framework,
         frameworkReason: detected.reason,
@@ -149,7 +161,7 @@ export function createServer(): McpServer {
   registerTool<{ framework?: Framework }>(
     server,
     'list_components',
-    'List every item in the BoldKit registry (components, charts, shapes, blocks, templates), optionally filtered by framework.',
+    'List every installable item in the BoldKit registry (components, charts, shapes, hooks, theme), optionally filtered by framework. Blocks and templates are not registry items and are not listed here — see https://boldkit.dev.',
     { framework: frameworkSchema },
     async ({ framework }) => {
       let items = loadCatalog()

@@ -2,7 +2,12 @@
  * BoldKit Motion composables (Vue adapter).
  * Mirror the React useShake / useViewTransition hooks.
  */
-import { triggerAnimation, startViewTransition, prefersReducedMotion } from '@/lib/motion-core'
+import {
+  triggerAnimation,
+  startViewTransition,
+  prefersReducedMotion,
+  type PageTransition,
+} from '@/lib/motion-core'
 
 /**
  * Returns a function that shakes a given element (e.g. an invalid input).
@@ -22,7 +27,9 @@ export function useShake() {
  * supported. Falls back to invoking the callback directly. Always safe to call.
  */
 export function useViewTransition() {
-  return (callback: () => void | Promise<void>) => startViewTransition(callback)
+  return (callback: () => void | Promise<void>, recipe?: PageTransition) =>
+    startViewTransition(callback, recipe)
 }
 
 export { prefersReducedMotion }
+export type { PageTransition }

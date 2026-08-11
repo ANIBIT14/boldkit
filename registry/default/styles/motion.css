@@ -301,9 +301,10 @@
 
 /* ──────────────────────────────────────────────────────
    v3.5 — Page transition recipes (View Transitions API)
-   Opt in per navigation by setting the attribute on <html>:
-     document.documentElement.dataset.bkTransition = 'hard-wipe'
-   Then call startViewTransition() from @boldkit/motion-core.
+   Opt in per navigation by passing the recipe name to startViewTransition()
+   from @boldkit/motion-core — it applies <html data-bk-transition> for that
+   navigation only and restores the previous value when the transition ends:
+     startViewTransition(() => navigate('/next'), 'hard-wipe')
    ────────────────────────────────────────────────────── */
 
 /* HARD WIPE — new view wipes across in stepped notches. */

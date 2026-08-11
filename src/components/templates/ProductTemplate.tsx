@@ -238,10 +238,10 @@ export function ProductTemplate() {
             <a href="#" className="font-bold hover:text-primary transition-colors">New</a>
           </div>
           <div className="flex items-center gap-3">
-            <Button variant="ghost" size="icon">
+            <Button variant="ghost" size="icon" aria-label="Add to wishlist">
               <Heart className="h-5 w-5" />
             </Button>
-            <Button variant="outline" size="icon" className="relative">
+            <Button variant="outline" size="icon" aria-label="Cart" className="relative">
               <ShoppingCart className="h-5 w-5" />
               <span className="absolute -top-1 -right-1 w-5 h-5 bg-primary text-primary-foreground text-xs font-bold flex items-center justify-center border-2 border-foreground">
                 2
@@ -380,6 +380,9 @@ export function ProductTemplate() {
                         {selectedColor === color.name && (
                           <Check className={`h-5 w-5 ${color.value === '#000000' || color.value === '#3B82F6' ? 'text-white' : 'text-foreground'}`} />
                         )}
+                        {/* The label's only other content is an aria-hidden
+                            icon, so without this the radio has no name. */}
+                        <span className="sr-only">{color.name}</span>
                       </Label>
                     </div>
                   ))}
@@ -447,10 +450,10 @@ export function ProductTemplate() {
                   <ShoppingCart className="h-5 w-5" />
                   Add to Cart
                 </Button>
-                <Button variant="outline" size="lg" className="gap-2">
+                <Button variant="outline" size="lg" aria-label="Add to wishlist" className="gap-2">
                   <Heart className="h-5 w-5" />
                 </Button>
-                <Button variant="outline" size="lg" className="gap-2">
+                <Button variant="outline" size="lg" aria-label="Share" className="gap-2">
                   <Share2 className="h-5 w-5" />
                 </Button>
               </div>

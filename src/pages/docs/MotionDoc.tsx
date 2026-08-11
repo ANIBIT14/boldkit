@@ -329,17 +329,15 @@ const el = ref<HTMLInputElement | null>(null)
 
       <ExampleSection
         title="Page transitions (v3.5)"
-        description="Three named View Transition recipes. Set the attribute on <html>, then call startViewTransition() from motion-core — the CSS does the rest. Browsers without View Transitions fall back to an instant swap, and reduced-motion disables the animation entirely."
+        description="Three named View Transition recipes. Pass the recipe name as the second argument to startViewTransition() — it applies <html data-bk-transition> for that navigation only and restores the previous value when the transition finishes. Browsers without View Transitions fall back to an instant swap, and reduced-motion disables the animation entirely."
         code={`import { startViewTransition } from '@/lib/motion-core'
 
 // 'hard-wipe' | 'color-block' | 'stamp'
-document.documentElement.dataset.bkTransition = 'hard-wipe'
-startViewTransition(() => navigate('/next'))`}
+startViewTransition(() => navigate('/next'), 'hard-wipe')`}
         vueCode={`import { startViewTransition } from '@/lib/motion-core'
 
 // 'hard-wipe' | 'color-block' | 'stamp'
-document.documentElement.dataset.bkTransition = 'hard-wipe'
-startViewTransition(() => router.push('/next'))`}
+startViewTransition(() => router.push('/next'), 'hard-wipe')`}
       >
         <div className="space-y-2 text-xs text-muted-foreground">
           <p>

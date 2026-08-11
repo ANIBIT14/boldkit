@@ -69,12 +69,19 @@ const TOC_ITEMS = [
 // ── Copy button ──────────────────────────────────────────
 function CopyCodeButton({ code }: { code: string }) {
   const [copied, setCopied] = React.useState(false)
+  // Without this a second click inherits the first click's pending timer, which
+  // then clears the "copied" state early — and an unmount within 2s leaks it.
+  const timerRef = React.useRef<ReturnType<typeof setTimeout> | null>(null)
+  React.useEffect(() => () => {
+    if (timerRef.current) clearTimeout(timerRef.current)
+  }, [])
   return (
     <button
       onClick={async () => {
         if (!(await copyToClipboard(code))) return
         setCopied(true)
-        setTimeout(() => setCopied(false), 2000)
+        if (timerRef.current) clearTimeout(timerRef.current)
+        timerRef.current = setTimeout(() => setCopied(false), 2000)
       }}
       className={cn(
         'flex items-center gap-1.5 text-[10px] font-mono font-bold px-2 py-0.5 transition duration-100',
@@ -421,7 +428,7 @@ export default function App() {
                   <thead>
                     <tr className="bg-foreground text-background">
                       {['Prop', 'Type', 'Default', 'Description'].map(h => (
-                        <th key={h} className="text-left px-4 py-2.5 font-black text-[10px] uppercase tracking-[0.12em] whitespace-nowrap">
+                        <th key={h} scope="col" className="text-left px-4 py-2.5 font-black text-[10px] uppercase tracking-[0.12em] whitespace-nowrap">
                           {h}
                         </th>
                       ))}

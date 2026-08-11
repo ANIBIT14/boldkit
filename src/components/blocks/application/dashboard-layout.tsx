@@ -47,6 +47,8 @@ export function DashboardLayout({
           {nav.map((item) => (
             <button
               key={item.label}
+              // Without this the active item is styling only — AT gets no signal.
+              aria-current={item.active ? 'page' : undefined}
               className={cn(
                 'w-full border-2 border-transparent px-3 py-2 text-left text-sm font-bold uppercase tracking-wide transition',
                 item.active

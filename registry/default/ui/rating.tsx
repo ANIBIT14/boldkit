@@ -121,6 +121,10 @@ const iconLabel: Record<IconType, string> = {
   circle: 'circles',
 }
 
+// "1 stars" reads wrong in an accessible name. Vue's Rating already singularises.
+const iconLabelFor = (icon: IconType, count: number) =>
+  count === 1 ? iconLabel[icon].slice(0, -1) : iconLabel[icon]
+
 // ── Component ────────────────────────────────────────────────────────────────
 
 export function Rating({
@@ -220,15 +224,18 @@ export function Rating({
     >
       {Array.from({ length: max }, (_, i) => {
         const starIndex = i + 1
-        const isSelected = starIndex === Math.ceil(currentValue)
-        const isFocusable = interactive && (currentValue === 0 ? starIndex === 1 : isSelected)
+        // Roving tabindex: exactly one star must be tabbable. Clamp first —
+        // an out-of-range value would match no star and make the whole group
+        // unreachable by keyboard.
+        const activeIndex = Math.min(Math.max(Math.ceil(currentValue), 1), max)
+        const isFocusable = interactive && starIndex === activeIndex
         return (
           <button
             key={starIndex}
             type="button"
             tabIndex={isFocusable ? 0 : -1}
             disabled={disabled}
-            aria-label={`${starIndex} ${iconLabel[icon]}`}
+            aria-label={`${starIndex} ${iconLabelFor(icon, starIndex)}`}
             aria-pressed={starIndex <= currentValue}
             onClick={() => handleStarClick(starIndex)}
             onMouseMove={(e) => handleStarMouseMove(e, starIndex)}

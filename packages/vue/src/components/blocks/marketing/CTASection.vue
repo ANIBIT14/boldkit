@@ -186,6 +186,7 @@ const handleSubscribe = () => {
           size="icon"
           variant="ghost"
           class="h-8 w-8"
+          aria-label="Dismiss"
           @click="bannerVisible = false; emit('dismiss')"
         >
           <X class="h-4 w-4" />

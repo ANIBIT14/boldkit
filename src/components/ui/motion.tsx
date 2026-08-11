@@ -19,6 +19,7 @@ import {
   prefersReducedMotion,
   type RevealOptions,
   type StaggerOptions,
+  type PageTransition,
 } from '@/lib/motion-core'
 
 // ──────────────────────────────────────────────────────────────────
@@ -155,9 +156,12 @@ export function useShake() {
  * supported. Falls back to invoking the callback directly. Always safe to call.
  */
 export function useViewTransition() {
-  return React.useCallback((callback: () => void | Promise<void>) => {
-    return startViewTransition(callback)
-  }, [])
+  return React.useCallback(
+    (callback: () => void | Promise<void>, recipe?: PageTransition) => {
+      return startViewTransition(callback, recipe)
+    },
+    []
+  )
 }
 
 // Re-export the core helper so consumers don't need a second import

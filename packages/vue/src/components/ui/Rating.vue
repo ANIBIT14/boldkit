@@ -155,6 +155,13 @@ const getFillState = (index: number) => {
 const getClipPath = (isHalfFilled: boolean) => {
   return isHalfFilled ? { clipPath: 'polygon(0 0, 50% 0, 50% 100%, 0 100%)' } : undefined
 }
+
+// Roving tabindex: exactly one icon must be tabbable. Clamp first — an
+// out-of-range value would match no icon and make the whole group unreachable
+// by keyboard.
+const activeIndex = computed(() =>
+  Math.min(Math.max(Math.ceil(currentValue.value), 1), props.max)
+)
 </script>
 
 <template>
@@ -179,7 +186,7 @@ const getClipPath = (isHalfFilled: boolean) => {
       type="button"
       :aria-label="`${index} ${icon === 'star' ? 'star' : icon === 'heart' ? 'heart' : 'circle'}${index !== 1 ? 's' : ''}`"
       :aria-pressed="index <= currentValue"
-      :tabindex="!readOnly && !disabled && (currentValue === 0 ? index === 1 : index === Math.ceil(currentValue)) ? 0 : -1"
+      :tabindex="!readOnly && !disabled && index === activeIndex ? 0 : -1"
       :disabled="disabled || readOnly"
       :class="cn(
         'relative transition-transform duration-150 focus:outline-none',

@@ -44,8 +44,11 @@ export function ThemeProvider({
     // imperatively inside the View Transition callback (see lib/theme-transition).
     // Re-running remove('light','dark') + add() here would momentarily leave the
     // element with no theme class — a one-frame flash that races the transition
-    // and reads as "switch first, then animate". Skip when already correct.
-    if (root.classList.contains(resolvedTheme)) return
+    // and reads as "switch first, then animate". Skip when already correct —
+    // but only when the *other* class is absent, so a root that somehow carries
+    // both still gets healed instead of being stuck forever.
+    const stale = resolvedTheme === 'dark' ? 'light' : 'dark'
+    if (root.classList.contains(resolvedTheme) && !root.classList.contains(stale)) return
     root.classList.remove('light', 'dark')
     root.classList.add(resolvedTheme)
   }, [resolvedTheme])

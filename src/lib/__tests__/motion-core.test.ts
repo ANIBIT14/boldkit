@@ -214,5 +214,29 @@ describe('motion-core', () => {
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       delete (document as any).startViewTransition
     })
+
+    it('scopes a recipe to one transition and restores the previous value', async () => {
+      let seenDuringCallback: string | null = null
+      const finished = Promise.resolve()
+      const fake = vi.fn((cb: () => void) => {
+        cb()
+        seenDuringCallback = document.documentElement.getAttribute('data-bk-transition')
+        return { ready: finished, finished, updateCallbackDone: finished }
+      })
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      ;(document as any).startViewTransition = fake
+
+      startViewTransition(() => {}, 'hard-wipe')
+      expect(seenDuringCallback).toBe('hard-wipe')
+
+      // Sticky attributes bleed the recipe into every later transition —
+      // including the theme toggle's circular reveal.
+      await finished
+      await Promise.resolve()
+      expect(document.documentElement.hasAttribute('data-bk-transition')).toBe(false)
+
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      delete (document as any).startViewTransition
+    })
   })
 })
