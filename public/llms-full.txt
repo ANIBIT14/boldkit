@@ -1108,7 +1108,7 @@ MIT License — Free for personal and commercial use.
 
 ---
 
-## Complete Page Index (131 pages)
+## Complete Page Index (136 pages)
 
 Every indexable page on boldkit.dev with its meta title and description.
 
@@ -1215,6 +1215,26 @@ Every favicon size and format you need in 2026 - 16, 32, 180, 192, 512px, ICO, P
 ### How to Extract a Favicon From Any Website
 https://boldkit.dev/tools/extract-favicon
 Five ways to grab the favicon from any website - FavGrab, the /favicon.ico path, Google’s favicon endpoint, the page’s link tags and more - plus the formats you get and an ethics note.
+
+### shadcn Alternatives (2026) - Honest Comparison for React & Vue
+https://boldkit.dev/shadcn-alternatives
+A practical guide to shadcn/ui alternatives in 2026 - copy-in registries, styled libraries like daisyUI and Flowbite, headless primitives, and the Vue options. What each is good at, and how to pick.
+
+### Vue 3 UI Components - 65+ shadcn-vue Compatible
+https://boldkit.dev/vue-ui-components
+Free neubrutalism UI components for Vue 3 and Nuxt. 65+ components, 14 chart types and 64 shapes, installed via the shadcn-vue CLI and built on Reka UI. MIT licensed.
+
+### Nuxt UI Components - shadcn-vue Registry Setup for Nuxt 3 & 4
+https://boldkit.dev/nuxt-ui-components
+Install neubrutalism UI components into Nuxt 3 or Nuxt 4 with the shadcn-vue CLI. Working setup, the app/ directory path gotcha, SSR notes, and how it compares to Nuxt UI.
+
+### React + Vue Component Library - One Design System, Both Frameworks
+https://boldkit.dev/react-vue-component-library
+How to run one design system across React and Vue 3 without maintaining two drifting codebases. Shared CSS tokens, parallel registries, and where framework idioms should diverge.
+
+### MCP Server for UI Components - Install with Claude Code & Cursor
+https://boldkit.dev/mcp-ui-components
+Give your AI coding agent a real component catalogue. The BoldKit MCP server exposes search, component details and install commands for React and Vue, so agents stop hallucinating component names.
 
 ### Accordion — Neubrutalism Component for React & Vue 3
 https://boldkit.dev/components/accordion

@@ -201,6 +201,43 @@ export const PAGE_META: Record<string, RouteMeta> = {
     canonical: `${SITE_URL}/tools/extract-favicon`,
     h1: 'Extract a Favicon From Any Website',
   },
+
+  // ── SEO / landing pages - ecosystem + cross-framework cluster ──
+  '/shadcn-alternatives': {
+    title: 'shadcn Alternatives (2026) - Honest Comparison for React & Vue | BoldKit',
+    description:
+      'A practical guide to shadcn/ui alternatives in 2026 - copy-in registries, styled libraries like daisyUI and Flowbite, headless primitives, and the Vue options. What each is good at, and how to pick.',
+    canonical: `${SITE_URL}/shadcn-alternatives`,
+    h1: 'shadcn Alternatives',
+  },
+  '/vue-ui-components': {
+    title: `Vue 3 UI Components - ${COUNTS.components}+ shadcn-vue Compatible | BoldKit`,
+    description:
+      `Free neubrutalism UI components for Vue 3 and Nuxt. ${COUNTS.components}+ components, ${COUNTS.charts} chart types and ${COUNTS.shapes} shapes, installed via the shadcn-vue CLI and built on Reka UI. MIT licensed.`,
+    canonical: `${SITE_URL}/vue-ui-components`,
+    h1: 'Vue UI Components',
+  },
+  '/nuxt-ui-components': {
+    title: 'Nuxt UI Components - shadcn-vue Registry Setup for Nuxt 3 & 4 | BoldKit',
+    description:
+      'Install neubrutalism UI components into Nuxt 3 or Nuxt 4 with the shadcn-vue CLI. Working setup, the app/ directory path gotcha, SSR notes, and how it compares to Nuxt UI.',
+    canonical: `${SITE_URL}/nuxt-ui-components`,
+    h1: 'Nuxt UI Components',
+  },
+  '/react-vue-component-library': {
+    title: 'React + Vue Component Library - One Design System, Both Frameworks | BoldKit',
+    description:
+      'How to run one design system across React and Vue 3 without maintaining two drifting codebases. Shared CSS tokens, parallel registries, and where framework idioms should diverge.',
+    canonical: `${SITE_URL}/react-vue-component-library`,
+    h1: 'One Library, Two Frameworks',
+  },
+  '/mcp-ui-components': {
+    title: 'MCP Server for UI Components - Install with Claude Code & Cursor | BoldKit',
+    description:
+      'Give your AI coding agent a real component catalogue. The BoldKit MCP server exposes search, component details and install commands for React and Vue, so agents stop hallucinating component names.',
+    canonical: `${SITE_URL}/mcp-ui-components`,
+    h1: 'Install UI Components With AI',
+  },
 }
 
 // Component slug -> display title map
@@ -450,6 +487,12 @@ export function getAllRoutes(): SitemapRoute[] {
     '/tools/png-to-ico': { priority: 0.7, changefreq: 'monthly' },
     '/tools/favicon-sizes': { priority: 0.7, changefreq: 'monthly' },
     '/tools/extract-favicon': { priority: 0.7, changefreq: 'monthly' },
+
+    '/shadcn-alternatives': { priority: 0.9, changefreq: 'monthly' },
+    '/vue-ui-components': { priority: 0.9, changefreq: 'monthly' },
+    '/nuxt-ui-components': { priority: 0.8, changefreq: 'monthly' },
+    '/react-vue-component-library': { priority: 0.8, changefreq: 'monthly' },
+    '/mcp-ui-components': { priority: 0.8, changefreq: 'monthly' },
   }
 
   for (const [path, seo] of Object.entries(staticPriorities)) {

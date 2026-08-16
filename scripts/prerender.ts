@@ -49,12 +49,32 @@ async function renderRoute(
     // keep the stub rather than overwrite it with nothing.
     if (!body || body.length < 200) return false
 
+    // JSON-LD that only the client injects (SEO.tsx). The SSG step writes the
+    // BreadcrumbList itself, but FAQPage and custom schema existed solely in the
+    // live DOM — so no crawler reading the served HTML ever saw them, and FAQ
+    // rich results could never fire. Lift them into the static file.
+    const clientSchema: string[] = await page.$$eval(
+      'head script[type="application/ld+json"][data-schema]',
+      nodes => nodes.map(n => n.outerHTML),
+    )
+
     const html = readFileSync(file, 'utf-8')
-    const injected = html.replace(
+    let injected = html.replace(
       /<div id="root">[\s\S]*?<\/div>/,
       `<div id="root">${body}</div>`,
     )
     if (injected === html) return false
+
+    // Only add schema types the SSG step didn't already emit, so breadcrumbs
+    // aren't duplicated.
+    const missing = clientSchema.filter(tag => {
+      const kind = /data-schema="([^"]+)"/.exec(tag)?.[1]
+      return kind ? !injected.includes(`data-schema="${kind}"`) : false
+    })
+    if (missing.length > 0) {
+      injected = injected.replace('</head>', `${missing.join('')}</head>`)
+    }
+
     writeFileSync(file, injected)
     return true
   } catch (err) {

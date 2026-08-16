@@ -32,6 +32,12 @@ const FaviconGenerator = lazy(() => import('@/pages/seo/FaviconGenerator').then(
 const PngToIco = lazy(() => import('@/pages/seo/PngToIco').then(m => ({ default: m.PngToIco })))
 const FaviconSizes = lazy(() => import('@/pages/seo/FaviconSizes').then(m => ({ default: m.FaviconSizes })))
 const ExtractFavicon = lazy(() => import('@/pages/seo/ExtractFavicon').then(m => ({ default: m.ExtractFavicon })))
+// SEO / landing pages (ecosystem + cross-framework cluster)
+const ShadcnAlternatives = lazy(() => import('@/pages/seo/ShadcnAlternatives').then(m => ({ default: m.ShadcnAlternatives })))
+const VueUiComponents = lazy(() => import('@/pages/seo/VueUiComponents').then(m => ({ default: m.VueUiComponents })))
+const NuxtUiComponents = lazy(() => import('@/pages/seo/NuxtUiComponents').then(m => ({ default: m.NuxtUiComponents })))
+const ReactVueComponentLibrary = lazy(() => import('@/pages/seo/ReactVueComponentLibrary').then(m => ({ default: m.ReactVueComponentLibrary })))
+const McpUiComponents = lazy(() => import('@/pages/seo/McpUiComponents').then(m => ({ default: m.McpUiComponents })))
 const LandingPageTemplate = lazy(() => import('@/components/templates/LandingPageTemplate').then(m => ({ default: m.LandingPageTemplate })))
 const PortfolioTemplate = lazy(() => import('@/components/templates/PortfolioTemplate').then(m => ({ default: m.PortfolioTemplate })))
 const DashboardTemplate = lazy(() => import('@/components/templates/DashboardTemplate').then(m => ({ default: m.DashboardTemplate })))
@@ -117,6 +123,11 @@ function App() {
             <Route path="/tools/png-to-ico" element={page(<PngToIco />)} />
             <Route path="/tools/favicon-sizes" element={page(<FaviconSizes />)} />
             <Route path="/tools/extract-favicon" element={page(<ExtractFavicon />)} />
+            <Route path="/shadcn-alternatives" element={page(<ShadcnAlternatives />)} />
+            <Route path="/vue-ui-components" element={page(<VueUiComponents />)} />
+            <Route path="/nuxt-ui-components" element={page(<NuxtUiComponents />)} />
+            <Route path="/react-vue-component-library" element={page(<ReactVueComponentLibrary />)} />
+            <Route path="/mcp-ui-components" element={page(<McpUiComponents />)} />
             <Route path="/templates" element={page(<Templates />)} />
             <Route path="/templates/landing-page" element={page(<LandingPageTemplate />)} />
             <Route path="/templates/portfolio" element={page(<PortfolioTemplate />)} />

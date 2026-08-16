@@ -25,6 +25,13 @@ const exploreLinks = [
 ]
 
 const resourceLinks = [
+  // Crawlable entry points for the ecosystem cluster — a sitemap entry alone
+  // leaves these orphaned, with no internal links passing authority to them.
+  { label: 'Vue 3 UI Components', href: '/vue-ui-components' },
+  { label: 'Nuxt UI Components', href: '/nuxt-ui-components' },
+  { label: 'shadcn Alternatives', href: '/shadcn-alternatives' },
+  { label: 'React + Vue Parity', href: '/react-vue-component-library' },
+  { label: 'Install With AI (MCP)', href: '/mcp-ui-components' },
   { label: 'Accessibility', href: '/accessibility' },
   { label: 'GitHub Repository', href: 'https://github.com/ANIBIT14/boldkit', external: true },
   { label: 'Changelog', href: 'https://github.com/ANIBIT14/boldkit/releases', external: true },
