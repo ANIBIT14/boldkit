@@ -1,4 +1,5 @@
 import { SITE_URL, COUNTS } from '@/config/routes-meta'
+import { PAGE_FAQS } from '@/config/page-faqs'
 import {
   SeoArticleLayout,
   Section,
@@ -17,28 +18,7 @@ const TOC = [
   { id: 'faq', label: 'FAQ' },
 ]
 
-const FAQ = [
-  {
-    question: 'Is there a component library that works in both React and Vue?',
-    answer:
-      'A few. The common approaches are CSS-only libraries like daisyUI that work anywhere because they ship no component code, wrapper libraries like Flowbite that maintain a separate package per framework, and web-component libraries that work everywhere at the cost of framework-native ergonomics. BoldKit takes the copy-in registry approach with a parallel registry per framework.',
-  },
-  {
-    question: 'Are the React and Vue components identical?',
-    answer:
-      'Visually yes — same borders, shadows, spacing and motion tokens, because they share the same stylesheets. API-wise they follow each framework’s idiom: React uses props and callbacks on Radix primitives, Vue uses v-model and emits on Reka UI. Forcing identical APIs would make one of them feel foreign.',
-  },
-  {
-    question: 'Can I share a theme between the React and Vue apps?',
-    answer:
-      'Yes. Theming is entirely CSS custom properties, so the same globals.css tokens drive both. Change a palette once and both apps follow — that is usually the main reason teams want this in the first place.',
-  },
-  {
-    question: 'Does the Vue version lag behind React?',
-    answer:
-      'Both registries are built in the same release from a shared source, and the audit scripts run over both. The honest caveat is that a few items exist in one framework only — currently 3 of the 7 templates are Vue, and a handful of canvas effects are React-first. The components pages mark availability per item.',
-  },
-]
+const FAQ = PAGE_FAQS['/react-vue-component-library']
 
 export function ReactVueComponentLibrary() {
   return (

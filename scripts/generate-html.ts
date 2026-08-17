@@ -11,6 +11,7 @@ import {
   type RouteMeta,
   type Breadcrumb,
 } from '../src/config/routes-meta.js'
+import { PAGE_FAQS } from '../src/config/page-faqs.js'
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
 const DIST = join(__dirname, '..', 'dist')
@@ -43,7 +44,27 @@ function breadcrumbScript(breadcrumbs: Breadcrumb[]): string {
   return `<script type="application/ld+json" data-schema="breadcrumb">${safe}</script>`
 }
 
-function injectMeta(html: string, meta: RouteMeta, breadcrumbs: Breadcrumb[]): string {
+// Build an FAQPage JSON-LD <script>. This used to exist ONLY in the client-injected
+// DOM (src/components/SEO.tsx), which meant a crawler reading the served HTML never
+// saw it and FAQ rich results could never fire. Emitting it here makes it independent
+// of whether the puppeteer prerender step runs.
+function faqScript(routePath: string): string {
+  const faq = PAGE_FAQS[routePath]
+  if (!faq || faq.length === 0) return ''
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: faq.map(item => ({
+      '@type': 'Question',
+      name: item.question,
+      acceptedAnswer: { '@type': 'Answer', text: item.answer },
+    })),
+  }
+  const safe = JSON.stringify(jsonLd).replace(/<\/script/gi, '<\\/script')
+  return `<script type="application/ld+json" data-schema="faq">${safe}</script>`
+}
+
+function injectMeta(html: string, meta: RouteMeta, breadcrumbs: Breadcrumb[], routePath: string): string {
   let result = html
 
   // Title
@@ -127,6 +148,12 @@ function injectMeta(html: string, meta: RouteMeta, breadcrumbs: Breadcrumb[]): s
     result = result.replace(/<\/head>/, `  ${crumbs}\n  </head>`)
   }
 
+  // Inject per-page FAQPage JSON-LD before </head> (pages without an FAQ get nothing).
+  const faq = faqScript(routePath)
+  if (faq) {
+    result = result.replace(/<\/head>/, `  ${faq}\n  </head>`)
+  }
+
   return result
 }
 
@@ -147,7 +174,7 @@ async function main(): Promise<void> {
   console.log(`Generating HTML for ${routes.length} routes...`)
 
   for (const route of routes) {
-    const html = injectMeta(template, route.meta, route.breadcrumbs)
+    const html = injectMeta(template, route.meta, route.breadcrumbs, route.path)
     writeRouteHtml(route.path, html)
   }
 

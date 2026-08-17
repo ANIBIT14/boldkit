@@ -1,4 +1,5 @@
 import { SITE_URL } from '@/config/routes-meta'
+import { PAGE_FAQS } from '@/config/page-faqs'
 import {
   SeoArticleLayout,
   Section,
@@ -19,23 +20,7 @@ const TOC = [
   { id: 'faq', label: 'FAQ' },
 ]
 
-const FAQ = [
-  {
-    question: 'Can I convert PNG to ICO online for free?',
-    answer:
-      'Yes. FavGrab is a free in-browser tool from the BoldKit team that converts a PNG into a multi-resolution favicon.ico - no upload, no signup, and your image never leaves your machine because the conversion runs entirely in the browser.',
-  },
-  {
-    question: 'What size PNG do I need?',
-    answer:
-      'Start from a square PNG of at least 256×256 pixels, ideally 512×512. A larger square master downscales cleanly to the 16, 32 and 48px frames packed inside the .ico. A small or non-square source upscales badly and produces a blurry icon.',
-  },
-  {
-    question: 'Do I still need ICO in 2026?',
-    answer:
-      'Yes, as a fallback. Modern browsers prefer PNG and SVG icons, but a multi-resolution favicon.ico (16/32/48) at your site root is still the safest default for older browsers and some crawlers. Ship favicon.ico alongside PNG/SVG and you cover everything.',
-  },
-]
+const FAQ = PAGE_FAQS['/tools/png-to-ico']
 
 export function PngToIco() {
   return (

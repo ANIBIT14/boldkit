@@ -1,4 +1,5 @@
 import { SITE_URL, COUNTS } from '@/config/routes-meta'
+import { PAGE_FAQS } from '@/config/page-faqs'
 import {
   SeoArticleLayout,
   Section,
@@ -18,28 +19,7 @@ const TOC = [
   { id: 'faq', label: 'FAQ' },
 ]
 
-const FAQ = [
-  {
-    question: 'What is an MCP server for UI components?',
-    answer:
-      'Model Context Protocol is an open standard that lets AI coding agents call external tools. An MCP server for a component library exposes search and install operations, so instead of guessing component names from training data, the agent queries the real catalogue and gets back accurate names, dependencies and install commands.',
-  },
-  {
-    question: 'How do I add BoldKit to Claude Code or Cursor?',
-    answer:
-      'Add @boldkit/mcp as an MCP server in your client config, pointing at npx -y @boldkit/mcp. It runs over stdio and needs no API key or account. Claude Code, Cursor, Windsurf and any other MCP-capable client use the same package.',
-  },
-  {
-    question: 'Does the agent write files to my project?',
-    answer:
-      'Only if you ask it to. Searching and getting an install command are read-only. There is a separate install tool that shells out to the shadcn or shadcn-vue CLI in a directory you specify — that one writes files, and your client will normally ask for approval first.',
-  },
-  {
-    question: 'Does it detect React vs Vue automatically?',
-    answer:
-      'Yes. It walks up from the directory you point it at to the nearest package.json and looks for nuxt, vue or reka-ui first, then next or react, and picks the matching registry. You can override it explicitly if the detection guesses wrong in a monorepo.',
-  },
-]
+const FAQ = PAGE_FAQS['/mcp-ui-components']
 
 export function McpUiComponents() {
   return (

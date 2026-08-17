@@ -1,4 +1,5 @@
 import { SITE_URL } from '@/config/routes-meta'
+import { PAGE_FAQS } from '@/config/page-faqs'
 import {
   SeoArticleLayout,
   Section,
@@ -18,23 +19,7 @@ const TOC = [
   { id: 'faq', label: 'FAQ' },
 ]
 
-const FAQ = [
-  {
-    question: 'Are BoldKit tools free?',
-    answer:
-      'Yes - every tool listed here is completely free with no signup, no account, and no upload limits. They run in your browser as part of the open-source BoldKit project, so there is nothing to pay for and nothing to install.',
-  },
-  {
-    question: 'Do I need an account for FavGrab?',
-    answer:
-      'No. FavGrab runs entirely in your browser - favicon extraction and image conversion happen client-side, so your images never leave your machine. There is no login, no email, and no usage cap.',
-  },
-  {
-    question: 'Can I use these tools commercially?',
-    answer:
-      'Yes. BoldKit and its tools are free under the MIT license. Anything you generate - favicons, pixel art, themes, shapes, canvas backgrounds - is yours to use in commercial and client work with no attribution required.',
-  },
-]
+const FAQ = PAGE_FAQS['/tools']
 
 export function ToolsHub() {
   return (

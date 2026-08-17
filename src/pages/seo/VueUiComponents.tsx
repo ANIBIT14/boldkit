@@ -1,4 +1,5 @@
 import { SITE_URL, COUNTS } from '@/config/routes-meta'
+import { PAGE_FAQS } from '@/config/page-faqs'
 import {
   SeoArticleLayout,
   Section,
@@ -19,33 +20,7 @@ const TOC = [
   { id: 'faq', label: 'FAQ' },
 ]
 
-const FAQ = [
-  {
-    question: 'Does shadcn work with Vue 3?',
-    answer:
-      'Not shadcn/ui itself — it is React-only. shadcn-vue is a separate community port that mirrors the same CLI-and-registry model on top of Reka UI. You install with npx shadcn-vue@latest add and the components land as .vue single-file components in your project.',
-  },
-  {
-    question: 'How do I install BoldKit components in a Vue project?',
-    answer:
-      'Point the shadcn-vue CLI at the BoldKit Vue registry: npx shadcn-vue@latest add "https://boldkit.dev/r/vue/button.json". The component and its dependencies are written into your components/ui directory and become your code. There is no package to install.',
-  },
-  {
-    question: 'Do I need Nuxt to use these?',
-    answer:
-      'No. Any Vue 3 project works — Vite, Nuxt 3, Nuxt 4, or an existing app you are adding Tailwind to. Nuxt has a couple of path-resolution specifics, which are covered on the Nuxt page.',
-  },
-  {
-    question: 'Are the Vue components the same as the React ones?',
-    answer:
-      'Same components, same visual output, idiomatic to each framework. React uses Radix primitives and props; Vue uses Reka UI with v-model and emits where that is the natural Vue pattern. A handful of items exist in one framework only — the components page marks which.',
-  },
-  {
-    question: 'Is there a Vue chart library included?',
-    answer:
-      'Yes. Vue charts are built on ECharts via vue-echarts, covering 14 chart types including funnel, treemap, sankey and heatmap. The React side uses Recharts. Both sit behind a shared authoring API so annotations and toolbars work the same way.',
-  },
-]
+const FAQ = PAGE_FAQS['/vue-ui-components']
 
 export function VueUiComponents() {
   return (

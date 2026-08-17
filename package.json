@@ -30,7 +30,7 @@
   "scripts": {
     "dev": "vite",
     "build": "npm run sitemap && npm run llms && npm run themes && npm run contrast && tsc -b && vite build && npm run registry:build && npm run ssg && npm run prerender",
-    "build:ci": "npm run sitemap && npm run llms && npm run themes && npm run contrast && tsc -b && vite build && npm run registry:build && npm run ssg",
+    "build:ci": "npm run sitemap && npm run llms && npm run themes && npm run contrast && tsc -b && vite build && npm run registry:build && npm run ssg && npm run prerender",
     "ssg": "tsx scripts/generate-html.ts",
     "themes": "tsx scripts/generate-theme-presets.ts",
     "contrast": "tsx scripts/audit-contrast.ts",

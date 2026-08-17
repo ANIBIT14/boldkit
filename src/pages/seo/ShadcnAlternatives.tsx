@@ -1,4 +1,5 @@
 import { SITE_URL, COUNTS } from '@/config/routes-meta'
+import { PAGE_FAQS } from '@/config/page-faqs'
 import {
   SeoArticleLayout,
   Section,
@@ -19,33 +20,7 @@ const TOC = [
   { id: 'faq', label: 'FAQ' },
 ]
 
-const FAQ = [
-  {
-    question: 'Is shadcn/ui a component library?',
-    answer:
-      'Not in the usual sense. shadcn/ui is a set of components you copy into your own repo via a CLI, plus a registry format for distributing them. There is no runtime package to install and no version to upgrade — once the files land in your project, they are your code. That is the model most alternatives on this page either adopt or deliberately reject.',
-  },
-  {
-    question: 'What is the best shadcn alternative?',
-    answer:
-      'There is no single best one, because "alternative" covers three different needs. If you want the same copy-in model with a different look, use another shadcn-compatible registry. If you want a styled, batteries-included library, daisyUI or Flowbite are closer. If you want lower-level primitives to style yourself, Radix UI (React) or Reka UI (Vue) are the layer underneath shadcn/ui itself.',
-  },
-  {
-    question: 'Does shadcn/ui work with Vue?',
-    answer:
-      'Not directly — shadcn/ui is React-only. shadcn-vue is a separate community port that mirrors the API on top of Reka UI and ships its own CLI (npx shadcn-vue@latest add). A registry built for React will not install into a Vue project; it needs a Vue-specific registry with Vue single-file components.',
-  },
-  {
-    question: 'Can I use a shadcn registry without Next.js?',
-    answer:
-      'Yes. The shadcn CLI writes files into whatever project it is pointed at, so Vite, Remix, Astro, TanStack Start and Laravel all work. Next.js is the default in the docs, not a requirement. On the Vue side the same applies to Vite and Nuxt.',
-  },
-  {
-    question: 'Is BoldKit free?',
-    answer:
-      'Yes — MIT licensed, with no pro tier, no paid blocks, and no signup. Several popular block libraries in this space are freemium, where the marketing sections are free but full page templates sit behind a licence. BoldKit does not split its catalogue that way.',
-  },
-]
+const FAQ = PAGE_FAQS['/shadcn-alternatives']
 
 export function ShadcnAlternatives() {
   return (

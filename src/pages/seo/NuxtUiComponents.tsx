@@ -1,4 +1,5 @@
 import { SITE_URL, COUNTS } from '@/config/routes-meta'
+import { PAGE_FAQS } from '@/config/page-faqs'
 import {
   SeoArticleLayout,
   Section,
@@ -19,28 +20,7 @@ const TOC = [
   { id: 'faq', label: 'FAQ' },
 ]
 
-const FAQ = [
-  {
-    question: 'Can I use shadcn components in Nuxt?',
-    answer:
-      'Yes, via shadcn-vue. Either use the shadcn-nuxt module, which wires up the config for you, or run the shadcn-vue CLI directly against a registry URL. Components land in your components/ui directory as .vue files and Nuxt auto-imports them.',
-  },
-  {
-    question: 'Does BoldKit work with Nuxt 4?',
-    answer:
-      'Yes — Nuxt 4 and Nuxt 3 are both supported and tested against a real Nuxt install rather than only in theory. Nuxt 4 moved the app source into app/, which changes where the CLI writes files; the registry uses alias-relative paths so both layouts resolve correctly.',
-  },
-  {
-    question: 'Do I need the shadcn-nuxt module?',
-    answer:
-      'Not strictly. The module mainly configures the component prefix and directory, and makes auto-import behave predictably. You can install straight from a registry URL without it, as long as your components.json aliases are set.',
-  },
-  {
-    question: 'Do these components work with SSR?',
-    answer:
-      'Yes. Components that touch browser APIs guard against a missing window and defer to onMounted, so server rendering does not crash. Chart components render client-side by design since ECharts needs a real canvas.',
-  },
-]
+const FAQ = PAGE_FAQS['/nuxt-ui-components']
 
 export function NuxtUiComponents() {
   return (

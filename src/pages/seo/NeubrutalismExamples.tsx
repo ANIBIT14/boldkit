@@ -1,4 +1,5 @@
 import { SITE_URL } from '@/config/routes-meta'
+import { PAGE_FAQS } from '@/config/page-faqs'
 import {
   SeoArticleLayout,
   Section,
@@ -17,23 +18,7 @@ const TOC = [
   { id: 'faq', label: 'FAQ' },
 ]
 
-const FAQ = [
-  {
-    question: 'What is the most famous neubrutalism website?',
-    answer:
-      'Gumroad is the most widely cited archetype. Its 2022 redesign - thick black borders, hard offset shadows, flat clashing color, and oversized type - is the reference point most people picture when they hear "neubrutalism," and it helped push the look into mainstream product design.',
-  },
-  {
-    question: 'Where can I find neubrutalism examples to copy?',
-    answer:
-      'BoldKit ships full neubrutalist templates and section blocks you can open, view-source, and copy directly into your project via the shadcn CLI. They are real, production-grade examples - landing pages, portfolios, dashboards, and pricing pages - rather than static screenshots, so you can inspect exactly how each pattern is built.',
-  },
-  {
-    question: 'Is neubrutalism good for real products?',
-    answer:
-      'Yes - when applied with discipline. Bold borders and high-contrast color blocks aid recognition and readability, and the style has been used in shipping SaaS, indie tools, and portfolios. The failure mode is chaotic anti-design with no hierarchy; disciplined, grid-based neubrutalism tests well on real tasks.',
-  },
-]
+const FAQ = PAGE_FAQS['/neubrutalism/examples']
 
 export function NeubrutalismExamples() {
   return (

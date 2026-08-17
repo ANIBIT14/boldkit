@@ -28,6 +28,37 @@ function routeFile(routePath: string): string {
   return join(DIST, ...routePath.split('/').filter(Boolean), 'index.html')
 }
 
+/**
+ * Swap the contents of `<div id="root">` for `body`, matching the real closing tag
+ * by counting nested divs.
+ *
+ * A regex cannot do this safely. Non-greedy stops at the first `</div>` inside
+ * already-rendered content, which leaves the tail in place and APPENDS a second
+ * copy — so running prerender twice over one dist silently duplicated every page
+ * (two <h1>s, doubled body). Greedy is no better: `<noscript>` follows #root and
+ * contains its own div, so greedy swallows that too.
+ *
+ * Returns null when the marker is absent, so callers keep the existing file.
+ */
+export function replaceRootDiv(html: string, body: string): string | null {
+  const OPEN = '<div id="root">'
+  const start = html.indexOf(OPEN)
+  if (start === -1) return null
+
+  let depth = 0
+  let i = start
+  const tag = /<(\/?)div\b/g
+  tag.lastIndex = start
+  for (let m = tag.exec(html); m; m = tag.exec(html)) {
+    depth += m[1] ? -1 : 1
+    if (depth === 0) {
+      i = html.indexOf('</div>', m.index) + '</div>'.length
+      return html.slice(0, start) + OPEN + body + '</div>' + html.slice(i)
+    }
+  }
+  return null
+}
+
 async function renderRoute(
   browser: Browser,
   baseUrl: string,
@@ -59,11 +90,9 @@ async function renderRoute(
     )
 
     const html = readFileSync(file, 'utf-8')
-    let injected = html.replace(
-      /<div id="root">[\s\S]*?<\/div>/,
-      `<div id="root">${body}</div>`,
-    )
-    if (injected === html) return false
+    const replaced = replaceRootDiv(html, body)
+    if (!replaced) return false
+    let injected = replaced
 
     // Only add schema types the SSG step didn't already emit, so breadcrumbs
     // aren't duplicated.
@@ -133,13 +162,23 @@ async function main(): Promise<void> {
     console.log(
       `✓ Prerendered ${injected}/${done} routes (rest kept sr-only stubs).`,
     )
+    if (injected === 0) {
+      console.warn(
+        '⚠ PRERENDER INJECTED 0 ROUTES — the deploy will serve sr-only stubs.',
+      )
+    }
   } finally {
     await browser.close()
     await server?.close()
   }
 }
 
+// Prerender is a progressive enhancement on top of generate-html.ts, which has
+// already written valid per-route HTML (meta, canonical, breadcrumb + FAQ JSON-LD).
+// It must therefore NEVER fail the build — a flaky Chrome launch, an OOM or a port
+// clash would otherwise take the whole site down rather than just losing prerendered
+// bodies. Exit 0 and let the stubs stand.
 main().catch(err => {
-  console.error('prerender failed:', err)
-  process.exit(1)
+  console.warn(`⚠ prerender skipped (${(err as Error).message}) — serving sr-only stubs.`)
+  process.exit(0)
 })

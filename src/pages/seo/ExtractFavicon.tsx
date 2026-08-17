@@ -1,4 +1,5 @@
 import { SITE_URL } from '@/config/routes-meta'
+import { PAGE_FAQS } from '@/config/page-faqs'
 import {
   SeoArticleLayout,
   Section,
@@ -19,23 +20,7 @@ const TOC = [
   { id: 'faq', label: 'FAQ' },
 ]
 
-const FAQ = [
-  {
-    question: 'How do I download a favicon from a website?',
-    answer:
-      'The quickest way is FavGrab - paste the site’s URL and it fetches and lets you download every icon the page exposes. If you’d rather do it by hand, append /favicon.ico to the domain (e.g. https://example.com/favicon.ico) and save the file your browser loads.',
-  },
-  {
-    question: 'Can I get a high-res favicon?',
-    answer:
-      'Often, yes. The /favicon.ico path usually returns a low-res 16/32px ICO, but many sites declare a much larger icon in their page <link> tags - view-source and look for apple-touch-icon (typically 180×180 PNG) or an SVG icon, which scales infinitely. FavGrab surfaces all of these so you can grab the largest one.',
-  },
-  {
-    question: 'Is it legal to extract a favicon?',
-    answer:
-      'For research, references, your own bookmarks, or a links UI - yes, that’s normal fair use. A favicon is usually a trademarked brand logo, so what’s not OK is passing another brand’s icon off as your own or using it to impersonate them. Extract freely; just don’t misrepresent.',
-  },
-]
+const FAQ = PAGE_FAQS['/tools/extract-favicon']
 
 export function ExtractFavicon() {
   return (

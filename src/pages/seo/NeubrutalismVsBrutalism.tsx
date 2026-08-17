@@ -1,4 +1,5 @@
 import { SITE_URL } from '@/config/routes-meta'
+import { PAGE_FAQS } from '@/config/page-faqs'
 import {
   SeoArticleLayout,
   Section,
@@ -18,23 +19,7 @@ const TOC = [
   { id: 'faq', label: 'FAQ' },
 ]
 
-const FAQ = [
-  {
-    question: 'Is neubrutalism the same as brutalism?',
-    answer:
-      'No - neubrutalism is an evolution of web brutalism, not the same thing. Brutalism is deliberately raw and unstyled: system fonts, harsh contrast, little color, and an embrace of "ugly". Neubrutalism keeps that anti-gradient boldness but adds structure - a clear grid, loud flat color, hard offset shadows, and real visual hierarchy - so the result is usable, not just confrontational.',
-  },
-  {
-    question: 'Is Memphis design the same as neubrutalism?',
-    answer:
-      'No. Memphis is a 1980s postmodern style from the Italian Memphis Group - squiggles, dots, zig-zags, terrazzo, and pastel-meets-primary color clashes. It shares neubrutalism’s love of bold color, but Memphis decoration is playful and ornamental, scattered across a surface, whereas neubrutalism is structural: borders, shadows, and grids that define functional UI elements.',
-  },
-  {
-    question: 'Which is more usable?',
-    answer:
-      'Disciplined neubrutalism, by a wide margin. Raw brutalism intentionally fights the user, and pure Memphis decoration is hard to apply to dense interfaces without clutter. Neubrutalism’s high-contrast color blocks, thick borders, and obvious press-down states actually aid scannability - provided you keep a grid and test text contrast against WCAG AA.',
-  },
-]
+const FAQ = PAGE_FAQS['/neubrutalism/vs-brutalism']
 
 export function NeubrutalismVsBrutalism() {
   return (

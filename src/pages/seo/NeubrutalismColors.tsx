@@ -1,4 +1,5 @@
 import { SITE_URL } from '@/config/routes-meta'
+import { PAGE_FAQS } from '@/config/page-faqs'
 import {
   SeoArticleLayout,
   Section,
@@ -17,23 +18,7 @@ const TOC = [
   { id: 'faq', label: 'FAQ' },
 ]
 
-const FAQ = [
-  {
-    question: 'How many colors should a neubrutalism palette use?',
-    answer:
-      'Two to three, maximum. A near-white or near-black base, one or two loud accents, and pure black for borders and text. Add a single flat shadow color and you are done. Beyond three loud colors the layout stops reading as bold and starts reading as chaos.',
-  },
-  {
-    question: 'What background works best for neubrutalism?',
-    answer:
-      'A warm near-white cream (around #FAF4E6) is the classic neubrutalist base - it softens the harsh black borders just enough while keeping high contrast. A near-black base (around #0A0A0A) also works for a darker, club-flyer feel. Pure #FFFFFF is fine but reads colder and more generic.',
-  },
-  {
-    question: 'Can neubrutalism be dark mode?',
-    answer:
-      'Yes. Flip the base to a near-black (#0A0A0A-#1A1A1A), keep your accents loud, and switch borders and shadows to a near-white so the chunky outlines stay visible against the dark surface. The discipline is identical - only the base and border colors invert. Re-check text contrast against the new background.',
-  },
-]
+const FAQ = PAGE_FAQS['/neubrutalism/colors']
 
 const SWATCH = (colors: string[]) => (
   <span className="inline-flex gap-1">

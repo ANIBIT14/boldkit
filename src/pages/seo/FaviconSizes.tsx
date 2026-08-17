@@ -1,4 +1,5 @@
 import { SITE_URL } from '@/config/routes-meta'
+import { PAGE_FAQS } from '@/config/page-faqs'
 import {
   SeoArticleLayout,
   Section,
@@ -20,23 +21,7 @@ const TOC = [
   { id: 'faq', label: 'FAQ' },
 ]
 
-const FAQ = [
-  {
-    question: 'What favicon sizes do I need in 2026?',
-    answer:
-      'A small set covers everything: a multi-resolution favicon.ico (16/32/48), a 32×32 PNG, an apple-touch-icon at 180×180, and 192×192 plus 512×512 PNGs for PWA/Android. Add an icon.svg for crisp vector rendering and you are done - there is no need for 20+ separate files.',
-  },
-  {
-    question: 'What size is the Apple touch icon?',
-    answer:
-      'The apple-touch-icon is 180×180 pixels. iOS uses it for the home-screen icon when someone adds your site to their home screen. Export it as a PNG with no transparency - give it a solid background, because iOS fills transparent pixels with black.',
-  },
-  {
-    question: 'Do I need a 512px icon?',
-    answer:
-      'Yes, if you ship a web app manifest. The 512×512 PNG is required for the PWA install prompt and the Android splash screen; the 192×192 covers the home-screen icon. Skip the 512 and installable PWAs lose their high-resolution install and splash artwork.',
-  },
-]
+const FAQ = PAGE_FAQS['/tools/favicon-sizes']
 
 export function FaviconSizes() {
   return (

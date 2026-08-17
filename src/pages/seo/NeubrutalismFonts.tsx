@@ -1,4 +1,5 @@
 import { SITE_URL } from '@/config/routes-meta'
+import { PAGE_FAQS } from '@/config/page-faqs'
 import {
   SeoArticleLayout,
   Section,
@@ -17,23 +18,7 @@ const TOC = [
   { id: 'faq', label: 'FAQ' },
 ]
 
-const FAQ = [
-  {
-    question: 'What font does neubrutalism use?',
-    answer:
-      'There is no single font, but the look leans on bold neo-grotesque and geometric sans display faces pushed to extreme weights - Bebas Neue, Space Grotesk, Syne, Archivo and Sora are common picks. BoldKit itself uses Bebas Neue for display, Outfit for body, and DM Mono for uppercase labels.',
-  },
-  {
-    question: 'Are these fonts free?',
-    answer:
-      'Yes. Every font recommended here is available free on Google Fonts with an open license, so you can self-host or load them with no licensing cost for commercial projects.',
-  },
-  {
-    question: 'Should headlines be uppercase?',
-    answer:
-      'Often, but not always. Uppercase with wide letter-spacing suits short labels, eyebrows and chunky display headlines and reinforces the bold, stamped feel. For longer headlines keep sentence case for readability - uppercase a full paragraph and legibility collapses.',
-  },
-]
+const FAQ = PAGE_FAQS['/neubrutalism/fonts']
 
 export function NeubrutalismFonts() {
   return (

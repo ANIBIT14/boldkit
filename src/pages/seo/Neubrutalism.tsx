@@ -1,4 +1,5 @@
 import { SITE_URL } from '@/config/routes-meta'
+import { PAGE_FAQS } from '@/config/page-faqs'
 import {
   SeoArticleLayout,
   Section,
@@ -17,23 +18,7 @@ const TOC = [
   { id: 'faq', label: 'FAQ' },
 ]
 
-const FAQ = [
-  {
-    question: 'Is it spelled neubrutalism or neobrutalism?',
-    answer:
-      'Both spellings refer to the same web design trend. "Neubrutalism" and "neobrutalism" are used interchangeably; it is an evolution of the older brutalist web aesthetic toward a more usable, deliberately bold style.',
-  },
-  {
-    question: 'Is neubrutalism still on trend in 2026?',
-    answer:
-      'Yes. Neubrutalism emerged around 2020-21 and has shown far more staying power than most micro-trends, continuing to influence product design, component libraries, and brand identities through 2026.',
-  },
-  {
-    question: 'Is neubrutalism accessible?',
-    answer:
-      'It can be, when applied with discipline. High-contrast color blocks and bold type help readability, but you must verify text contrast meets WCAG AA and avoid clashing pairs like yellow on cyan. Disciplined, grid-based neubrutalism tests well; chaotic anti-design does not.',
-  },
-]
+const FAQ = PAGE_FAQS['/neubrutalism']
 
 export function Neubrutalism() {
   return (

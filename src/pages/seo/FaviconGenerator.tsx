@@ -1,4 +1,5 @@
 import { SITE_URL } from '@/config/routes-meta'
+import { PAGE_FAQS } from '@/config/page-faqs'
 import {
   SeoArticleLayout,
   Section,
@@ -18,23 +19,7 @@ const TOC = [
   { id: 'faq', label: 'FAQ' },
 ]
 
-const FAQ = [
-  {
-    question: 'What image size should I upload for a favicon?',
-    answer:
-      'Start from a square source image of at least 512×512 pixels. A larger square master downscales cleanly to every required size (16, 32, 180, 192, 512). Avoid uploading a small or non-square image - upscaling produces blurry icons.',
-  },
-  {
-    question: 'Do I still need a favicon.ico file?',
-    answer:
-      'Yes, as a fallback. Modern browsers prefer PNG and SVG icons, but a multi-resolution favicon.ico (16/32/48) is still the safest default for older browsers and some crawlers. A good generator outputs both.',
-  },
-  {
-    question: 'Is FavGrab free?',
-    answer:
-      'Yes. FavGrab is a free in-browser tool from the BoldKit team for extracting favicons from any website and converting images between favicon formats - no signup required.',
-  },
-]
+const FAQ = PAGE_FAQS['/tools/favicon-generator']
 
 export function FaviconGenerator() {
   return (
