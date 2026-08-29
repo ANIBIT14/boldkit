@@ -1,0 +1,57 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+
+      - name: Install deps
+        run: bun install --frozen-lockfile
+
+      - name: Lint
+        run: bun run lint
+
+      - name: Typecheck (React)
+        run: bun run typecheck
+
+      - name: Typecheck (Vue)
+        run: cd packages/vue && bun run typecheck
+
+      # The Vue CanvasEffects live in src/components/CanvasEffects/vue (the
+      # source the canvas registry builder reads), outside packages/vue and so
+      # outside the tsconfig the step above uses. Without this they ship to
+      # consumers unchecked — which is how React/Vue parity drift went unnoticed
+      # until v3.5.2.
+      - name: Typecheck (Vue CanvasEffects)
+        run: bun run typecheck:vue-canvas
+
+      - name: Test (React)
+        run: bun run test:run
+
+      - name: Test (Vue)
+        run: cd packages/vue && bun run test
+
+      - name: Build + test (MCP server)
+        run: cd packages/mcp && bun run build && bun run test
+
+      - name: Build + test (CLI)
+        run: cd packages/cli && bun run build && bun run test
+
+      - name: Registry audit
+        run: bun run registry:audit
+
+      # Verify the full delivery pipeline (typegen + vite build + registry:build + ssg).
+      # Skips prerender: it needs headless Chrome, is SEO-only, and exits 0 on failure,
+      # so it catches no build breakage — not worth the CI time/flakiness.
+      - name: Build
+        run: bun run build:ci

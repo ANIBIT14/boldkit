@@ -62,9 +62,6 @@ CLAUDE.md
 docs/superpowers/
 docs/superpowers/specs
 
-# GitHub Actions workflows (require workflow OAuth scope to push — add manually)
-.github/workflows/
-
 # Git worktrees
 .worktrees/
 articles/
