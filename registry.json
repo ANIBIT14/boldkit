@@ -1849,6 +1849,38 @@
       ]
     },
     {
+      "name": "canvas-effect-core",
+      "type": "registry:lib",
+      "description": "BoldKit Canvas Effect core — framework-agnostic canvas lifecycle shared by every CanvasEffect: DPR-aware sizing with a pixel-count cap, pausing when off-screen or in a background tab, and prefers-reduced-motion support.",
+      "title": "Canvas Effect Core",
+      "registryDependencies": [
+        "@boldkit/motion-core"
+      ],
+      "files": [
+        {
+          "path": "registry/default/lib/canvas-effect-core.ts",
+          "type": "registry:lib",
+          "target": "lib/canvas-effect-core.ts"
+        }
+      ]
+    },
+    {
+      "name": "use-canvas-effect",
+      "type": "registry:hook",
+      "description": "React hook that mounts an animated 2D canvas effect with a managed lifecycle — sizing, off-screen/background pausing, and reduced-motion — so a component only describes how to paint one frame.",
+      "title": "Use Canvas Effect",
+      "registryDependencies": [
+        "@boldkit/canvas-effect-core"
+      ],
+      "files": [
+        {
+          "path": "registry/default/hooks/use-canvas-effect.ts",
+          "type": "registry:hook",
+          "target": "hooks/use-canvas-effect.ts"
+        }
+      ]
+    },
+    {
       "name": "motion-react",
       "type": "registry:ui",
       "description": "BoldKit Motion React adapter — <Motion>/<Reveal>/<Stagger> components plus useShake and useViewTransition hooks over a framework-agnostic core.",

@@ -444,6 +444,16 @@
       "registryUrl": "https://boldkit.dev/r/vue/use-motion.json"
     },
     {
+      "name": "canvas-effect-core",
+      "type": "registry:ui",
+      "registryUrl": "https://boldkit.dev/r/vue/canvas-effect-core.json"
+    },
+    {
+      "name": "use-canvas-effect",
+      "type": "registry:ui",
+      "registryUrl": "https://boldkit.dev/r/vue/use-canvas-effect.json"
+    },
+    {
       "name": "motion",
       "type": "registry:ui",
       "registryUrl": "https://boldkit.dev/r/vue/motion.json"

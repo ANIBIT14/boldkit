@@ -1,4 +1,5 @@
 import { useEffect, useRef, type CSSProperties } from 'react'
+import { useCanvasEffect } from '@/hooks/use-canvas-effect'
 
 export interface TruchetProps {
   /** Arc / line color */
@@ -47,45 +48,38 @@ export function Truchet({
   useEffect(() => { lwRef.current = lineWidth }, [lineWidth])
   useEffect(() => { speedRef.current = speed }, [speed])
 
-  useEffect(() => {
-    const el = ref.current
-    if (!el) return
-    const ctx = el.getContext('2d')
-    if (!ctx) return
-    let raf = 0
-    let dpr = 1
+  useCanvasEffect(ref, (ctx, el) => {
+    // Backing-store pixels per CSS pixel (reflects the maxPixelCount clamp).
+    const scale = () => (el.offsetWidth ? el.width / el.offsetWidth : 1)
 
     let grid: Uint8Array = new Uint8Array(0)
     let cols = 0, rows = 0
 
     const build = () => {
-      const TS = Math.max(16, tileRef.current * dpr)
+      const TS = Math.max(16, tileRef.current * scale())
       cols = Math.ceil(el.width / TS) + 1
       rows = Math.ceil(el.height / TS) + 1
       grid = new Uint8Array(cols * rows)
       for (let i = 0; i < grid.length; i++) grid[i] = Math.random() < 0.5 ? 1 : 0
     }
 
-    const resize = () => {
-      if (!el.offsetWidth || !el.offsetHeight) return
-      dpr = window.devicePixelRatio || 1
-      el.width = el.offsetWidth * dpr
-      el.height = el.offsetHeight * dpr
-      build()
-    }
-    resize()
 
     let t = 0
     let flipAcc = 0
-    const draw = () => {
+    let lastW = 0, lastH = 0
+    return (_dt, frames) => {
+      if (el.width !== lastW || el.height !== lastH) {
+        lastW = el.width; lastH = el.height
+        build()
+      }
       const W = el.width, H = el.height
-      const TS = Math.max(16, tileRef.current * dpr)
+      const TS = Math.max(16, tileRef.current * scale())
       const R = TS / 2
 
       ctx.fillStyle = bgRef.current
       ctx.fillRect(0, 0, W, H)
       ctx.strokeStyle = colorRef.current
-      ctx.lineWidth = Math.max(1, lwRef.current * dpr)
+      ctx.lineWidth = Math.max(1, lwRef.current * scale())
       ctx.lineCap = 'round'
       ctx.setLineDash([TS * 0.5, TS * 0.32])
       ctx.lineDashOffset = -t * 80 * speedRef.current
@@ -108,7 +102,7 @@ export function Truchet({
       ctx.setLineDash([])
 
       // Periodically flip a handful of tiles to re-route the maze.
-      flipAcc += speedRef.current
+      flipAcc += speedRef.current * frames
       if (flipAcc >= 6 && grid.length) {
         flipAcc = 0
         for (let n = 0; n < 3; n++) {
@@ -117,15 +111,9 @@ export function Truchet({
         }
       }
 
-      t += 0.016
-      raf = requestAnimationFrame(draw)
+      t += 0.016 * frames
     }
-
-    draw()
-    const ro = new ResizeObserver(resize)
-    ro.observe(el)
-    return () => { cancelAnimationFrame(raf); ro.disconnect() }
-  }, [])
+  })
 
   return (
     <canvas

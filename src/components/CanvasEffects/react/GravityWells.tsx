@@ -1,4 +1,5 @@
 import { useEffect, useRef, type CSSProperties } from 'react'
+import { useCanvasEffect } from '@/hooks/use-canvas-effect'
 
 export interface GravityWellsProps {
   /** Number of gravitational attractors */
@@ -45,13 +46,7 @@ export function GravityWells({
   useEffect(() => { colorsRef.current = colors        }, [colors])
   useEffect(() => { speedRef.current  = speed         }, [speed])
 
-  useEffect(() => {
-    const el = ref.current
-    if (!el) return
-    const ctx = el.getContext('2d')
-    if (!ctx) return
-    let raf = 0
-
+  useCanvasEffect(ref, (ctx, el) => {
     type Well = { x: number; y: number; vx: number; vy: number; mass: number }
     type Particle = {
       x: number; y: number; px: number; py: number
@@ -103,28 +98,26 @@ export function GravityWells({
       particles = Array.from({ length: countRef.current }, spawnParticle)
     }
 
-    const resize = () => {
-      const dpr = window.devicePixelRatio || 1
-      if (el.offsetWidth > 0)  el.width  = el.offsetWidth  * dpr
-      if (el.offsetHeight > 0) el.height = el.offsetHeight * dpr
-      init()
-    }
-    resize()
 
-    const draw = () => {
+    let lastW = 0, lastH = 0
+    return (_dt, frames) => {
+      if (el.width !== lastW || el.height !== lastH) {
+        lastW = el.width; lastH = el.height
+        init()
+      }
       const W = el.width, H = el.height
       const spd = speedRef.current
 
       if (off.width !== W || off.height !== H) { off.width = W; off.height = H }
 
       // Fade trail — moderate speed for visible spiral tails
-      offCtx.fillStyle = 'rgba(0,0,0,0.035)'
+      offCtx.fillStyle = `rgba(0,0,0,${1 - Math.pow(1 - 0.035, frames)})`
       offCtx.fillRect(0, 0, W, H)
 
       // Drift wells slowly
       wells.forEach(w => {
-        w.x += w.vx * spd
-        w.y += w.vy * spd
+        w.x += w.vx * spd * frames
+        w.y += w.vy * spd * frames
         if (w.x < W * 0.15 || w.x > W * 0.85) w.vx *= -1
         if (w.y < H * 0.15 || w.y > H * 0.85) w.vy *= -1
       })
@@ -140,8 +133,8 @@ export function GravityWells({
           const distSq = dx * dx + dy * dy
           const dist = Math.sqrt(distSq) + 50 // softening
           const force = w.mass / (dist * dist)
-          p.vx += (dx / dist) * force * 0.08 * spd
-          p.vy += (dy / dist) * force * 0.08 * spd
+          p.vx += (dx / dist) * force * 0.08 * spd * frames
+          p.vy += (dy / dist) * force * 0.08 * spd * frames
         })
 
         // Light friction — causes gradual spiral inward
@@ -155,8 +148,8 @@ export function GravityWells({
           p.vy *= 6 / vel
         }
 
-        p.x += p.vx * spd
-        p.y += p.vy * spd
+        p.x += p.vx * spd * frames
+        p.y += p.vy * spd * frames
         p.life++
 
         // Respawn if out of bounds, too old, or collapsed into a well
@@ -201,14 +194,8 @@ export function GravityWells({
       ctx.clearRect(0, 0, W, H)
       ctx.globalAlpha = 1
       ctx.drawImage(off, 0, 0)
-      raf = requestAnimationFrame(draw)
     }
-
-    draw()
-    const ro = new ResizeObserver(resize)
-    ro.observe(el)
-    return () => { cancelAnimationFrame(raf); ro.disconnect() }
-  }, [])
+  })
 
   return (
     <canvas

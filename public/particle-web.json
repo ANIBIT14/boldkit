@@ -3,7 +3,9 @@
   "name": "particle-web",
   "description": "Proximity particle graph — particles connected by proximity-faded lines",
   "dependencies": [],
-  "registryDependencies": [],
+  "registryDependencies": [
+    "@boldkit/use-canvas-effect"
+  ],
   "files": [
     {
       "path": "registry/default/ui/canvas-effects/ParticleWeb.tsx",

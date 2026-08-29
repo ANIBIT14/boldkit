@@ -6,7 +6,8 @@
  * @example
  * <FlowField :count="200" :hue-start="170" :hue-range="120" :speed="1" :decay="0.028" />
  */
-import { ref, onMounted, onUnmounted } from 'vue'
+import { ref } from 'vue'
+import { useCanvasEffect } from '@/composables/useCanvasEffect'
 
 const props = withDefaults(defineProps<{
   count?: number
@@ -30,14 +31,8 @@ function vNoise(x: number, y: number): number {
 }
 
 const canvasRef = ref<HTMLCanvasElement | null>(null)
-let raf = 0
-let ro: ResizeObserver | null = null
 
-onMounted(() => {
-  const el = canvasRef.value
-  if (!el) return
-  const ctx = el.getContext('2d')
-  if (!ctx) return
+useCanvasEffect(canvasRef, (ctx, el) => {
 
   type P = { x: number; y: number; life: number; maxLife: number; hue: number }
   let particles: P[] = []
@@ -53,23 +48,26 @@ onMounted(() => {
   const offCtx = off.getContext('2d')
   if (!offCtx) return
 
-  const resize = () => { if (!el.offsetWidth || !el.offsetHeight) return; const dpr = window.devicePixelRatio || 1; el.width = el.offsetWidth * dpr; el.height = el.offsetHeight * dpr; init() }
-  resize()
 
   let t = 0
-  const draw = () => {
+  let lastW = 0, lastH = 0
+  return (_dt, frames) => {
+    if (el.width !== lastW || el.height !== lastH) {
+      lastW = el.width; lastH = el.height
+      init()
+    }
     const W = el.width, H = el.height, spd = props.speed
     if (off.width !== W || off.height !== H) { off.width = W; off.height = H }
 
-    offCtx.fillStyle = `rgba(0,0,0,${props.decay})`
+    offCtx.fillStyle = `rgba(0,0,0,${1 - Math.pow(1 - props.decay, frames)})`
     offCtx.fillRect(0, 0, W, H)
 
     particles.forEach((p, i) => {
       const nx = p.x * 0.006 + t * 0.12, ny = p.y * 0.006 + t * 0.08
       const angle = (vNoise(nx, ny) + vNoise(nx + 5.2, ny + 1.3)) * Math.PI * 3
       const px = p.x, py = p.y
-      p.x += Math.cos(angle) * 1.4 * spd
-      p.y += Math.sin(angle) * 1.4 * spd
+      p.x += Math.cos(angle) * 1.4 * spd * frames
+      p.y += Math.sin(angle) * 1.4 * spd * frames
       p.life++
       if (p.life > p.maxLife || p.x < 0 || p.x > W || p.y < 0 || p.y > H) {
         particles[i] = spawn(); return
@@ -82,16 +80,9 @@ onMounted(() => {
     })
 
     ctx.clearRect(0, 0, W, H); ctx.globalAlpha = 1; ctx.drawImage(off, 0, 0)
-    t += 0.006 * spd
-    raf = requestAnimationFrame(draw)
+    t += 0.006 * spd * frames
   }
-
-  draw()
-  ro = new ResizeObserver(resize)
-  ro.observe(el)
 })
-
-onUnmounted(() => { cancelAnimationFrame(raf); ro?.disconnect() })
 </script>
 
 <template>

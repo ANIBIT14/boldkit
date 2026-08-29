@@ -1,4 +1,5 @@
 import { useEffect, useRef, type CSSProperties } from 'react'
+import { useCanvasEffect } from '@/hooks/use-canvas-effect'
 
 function hexToRgb(hex: string): [number, number, number] {
   const n = parseInt(hex.replace('#', ''), 16)
@@ -44,13 +45,7 @@ export function Metaballs({
   useEffect(() => { radiusRef.current = blobRadius }, [blobRadius])
   useEffect(() => { speedRef.current  = speed      }, [speed])
 
-  useEffect(() => {
-    const el = ref.current
-    if (!el) return
-    const ctx = el.getContext('2d')
-    if (!ctx) return
-    let raf = 0
-
+  useCanvasEffect(ref, (ctx, el) => {
     const SCALE = 3
     type Ball = { x: number; y: number; vx: number; vy: number; r: number; rgb: [number, number, number] }
     let balls: Ball[] = []
@@ -67,27 +62,24 @@ export function Metaballs({
       }))
     }
 
-    const resize = () => {
-      if (!el.offsetWidth || !el.offsetHeight) return
-      const dpr = window.devicePixelRatio || 1
-      el.width = el.offsetWidth * dpr
-      el.height = el.offsetHeight * dpr
-      init()
-    }
-    resize()
 
     const off    = document.createElement('canvas')
     const offCtx = off.getContext('2d')
     if (!offCtx) return
 
-    const draw = () => {
+    let lastW = 0, lastH = 0
+    return (_dt, frames) => {
+      if (el.width !== lastW || el.height !== lastH) {
+        lastW = el.width; lastH = el.height
+        init()
+      }
       const W = el.width, H = el.height
       const spd = speedRef.current
       const iw = Math.ceil(W / SCALE), ih = Math.ceil(H / SCALE)
       if (off.width !== iw || off.height !== ih) { off.width = iw; off.height = ih }
 
       balls.forEach(b => {
-        b.x += b.vx * spd; b.y += b.vy * spd
+        b.x += b.vx * spd * frames; b.y += b.vy * spd * frames
         if (b.x < 0 || b.x > W) b.vx *= -1
         if (b.y < 0 || b.y > H) b.vy *= -1
       })
@@ -120,14 +112,8 @@ export function Metaballs({
       ctx.imageSmoothingEnabled = true
       ctx.imageSmoothingQuality = 'high'
       ctx.drawImage(off, 0, 0, W, H)
-      raf = requestAnimationFrame(draw)
     }
-
-    draw()
-    const ro = new ResizeObserver(resize)
-    ro.observe(el)
-    return () => { cancelAnimationFrame(raf); ro.disconnect() }
-  }, [])
+  })
 
   return (
     <canvas

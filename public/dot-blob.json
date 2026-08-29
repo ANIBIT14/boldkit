@@ -3,7 +3,9 @@
   "name": "dot-blob",
   "description": "Halftone wave field — Gaussian envelope drives halftone dot sizes with traveling wave",
   "dependencies": [],
-  "registryDependencies": [],
+  "registryDependencies": [
+    "@boldkit/use-canvas-effect"
+  ],
   "files": [
     {
       "path": "registry/default/ui/canvas-effects/DotBlob.tsx",

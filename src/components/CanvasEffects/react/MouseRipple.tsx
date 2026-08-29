@@ -1,4 +1,5 @@
 import { useEffect, useRef, type CSSProperties } from 'react'
+import { useCanvasEffect } from '@/hooks/use-canvas-effect'
 
 export interface MouseRippleProps {
   /** Dot fill color */
@@ -42,29 +43,16 @@ export function MouseRipple({
   useEffect(() => { radiusRef.current = rippleRadius }, [rippleRadius])
   useEffect(() => { speedRef.current  = speed        }, [speed])
 
-  useEffect(() => {
-    const el = ref.current
-    if (!el) return
-    const ctx = el.getContext('2d')
-    if (!ctx) return
-    let raf = 0
-    const resize = () => {
-      if (!el.offsetWidth || !el.offsetHeight) return
-      const dpr = window.devicePixelRatio || 1
-      el.width = el.offsetWidth * dpr
-      el.height = el.offsetHeight * dpr
-      ctx.setTransform(dpr, 0, 0, dpr, 0, 0)
-    }
-    resize()
+  useCanvasEffect(ref, (ctx, el, signal) => {
 
     const onMove = (e: MouseEvent) => {
       const r = el.getBoundingClientRect()
       mouse.current = { x: e.clientX - r.left, y: e.clientY - r.top }
     }
-    el.addEventListener('mousemove', onMove)
+    el.addEventListener('mousemove', onMove, { signal })
 
     let t = 0
-    const draw = () => {
+    return (_dt, frames) => {
       const GAP = gapRef.current
       const W = el.offsetWidth, H = el.offsetHeight
       ctx.clearRect(0, 0, W, H)
@@ -86,18 +74,10 @@ export function MouseRipple({
       }
 
       ctx.globalAlpha = 1
-      t += 0.06 * speedRef.current
-      raf = requestAnimationFrame(draw)
+      t += 0.06 * speedRef.current * frames
     }
-
-    draw()
-    const ro = new ResizeObserver(resize)
-    ro.observe(el)
-    return () => {
-      cancelAnimationFrame(raf); ro.disconnect()
-      el.removeEventListener('mousemove', onMove)
-    }
-  }, [])
+    // Draws in CSS pixels; the scale transform is applied for us on resize.
+  }, { coordinates: 'css' })
 
   return (
     <canvas

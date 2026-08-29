@@ -3,7 +3,9 @@
   "name": "voronoi-pulse",
   "description": "Animated Voronoi tessellation — drifting seed points with pulsing cell fills and bright edges",
   "dependencies": [],
-  "registryDependencies": [],
+  "registryDependencies": [
+    "@boldkit/use-canvas-effect"
+  ],
   "files": [
     {
       "path": "registry/default/ui/canvas-effects/VoronoiPulse.tsx",

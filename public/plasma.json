@@ -3,7 +3,9 @@
   "name": "plasma",
   "description": "Circular wave interference — four drifting wave sources create shifting color interference",
   "dependencies": [],
-  "registryDependencies": [],
+  "registryDependencies": [
+    "@boldkit/use-canvas-effect"
+  ],
   "files": [
     {
       "path": "registry/default/ui/canvas-effects/Plasma.tsx",

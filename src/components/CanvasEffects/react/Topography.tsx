@@ -1,4 +1,5 @@
 import { useEffect, useRef, type CSSProperties } from 'react'
+import { useCanvasEffect } from '@/hooks/use-canvas-effect'
 
 function hexToRgb(hex: string): [number, number, number] {
   const n = parseInt(hex.replace('#', ''), 16)
@@ -69,27 +70,15 @@ export function Topography({
   useEffect(() => { speedRef.current   = speed     }, [speed])
   useEffect(() => { paletteRef.current = palette   }, [palette])
 
-  useEffect(() => {
-    const el = ref.current
-    if (!el) return
-    const ctx = el.getContext('2d')
-    if (!ctx) return
-    let raf = 0
-
+  useCanvasEffect(ref, (ctx, el) => {
     const CELL = 6 // grid cell size in px
 
-    const resize = () => {
-      const dpr = window.devicePixelRatio || 1
-      if (el.offsetWidth > 0)  el.width  = el.offsetWidth  * dpr
-      if (el.offsetHeight > 0) el.height = el.offsetHeight * dpr
-    }
-    resize()
 
     let t = 0
 
-    const draw = () => {
+    return (_dt, frames) => {
       const W = el.width, H = el.height
-      if (!W || !H) { raf = requestAnimationFrame(draw); return }
+      if (!W || !H) return
       const spd = speedRef.current
       const lvl = levelsRef.current
       const pal = paletteRef.current.map(hexToRgb)
@@ -182,15 +171,9 @@ export function Topography({
         ctx.stroke()
       }
 
-      t += 0.006 * spd
-      raf = requestAnimationFrame(draw)
+      t += 0.006 * spd * frames
     }
-
-    draw()
-    const ro = new ResizeObserver(resize)
-    ro.observe(el)
-    return () => { cancelAnimationFrame(raf); ro.disconnect() }
-  }, [])
+  })
 
   return (
     <canvas

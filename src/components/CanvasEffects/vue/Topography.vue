@@ -8,7 +8,8 @@
  * @example
  * <Topography line-color="#8ecae6" :levels="12" :speed="1" />
  */
-import { ref, onMounted, onUnmounted } from 'vue'
+import { ref } from 'vue'
+import { useCanvasEffect } from '@/composables/useCanvasEffect'
 
 const props = withDefaults(defineProps<{
   /** Stroke color for contour lines */
@@ -47,28 +48,16 @@ function fbm(x: number, y: number): number {
 }
 
 const canvasRef = ref<HTMLCanvasElement | null>(null)
-let raf = 0
-let ro: ResizeObserver | null = null
 
-onMounted(() => {
-  const el = canvasRef.value
-  if (!el) return
-  const ctx = el.getContext('2d')
-  if (!ctx) return
+useCanvasEffect(canvasRef, (ctx, el) => {
   const CELL = 6
 
-  const resize = () => {
-    const dpr = window.devicePixelRatio || 1
-    if (el.offsetWidth > 0) el.width = el.offsetWidth * dpr
-    if (el.offsetHeight > 0) el.height = el.offsetHeight * dpr
-  }
-  resize()
 
   let t = 0
 
-  const draw = () => {
+  return (_dt, frames) => {
     const W = el.width, H = el.height
-    if (!W || !H) { raf = requestAnimationFrame(draw); return }
+    if (!W || !H) return
     const spd = props.speed, lvl = props.levels
     const pal = props.palette.map(hexToRgb)
     const base = hexToRgb(props.lineColor)
@@ -146,16 +135,9 @@ onMounted(() => {
       ctx.stroke()
     }
 
-    t += 0.006 * spd
-    raf = requestAnimationFrame(draw)
+    t += 0.006 * spd * frames
   }
-
-  draw()
-  ro = new ResizeObserver(resize)
-  ro.observe(el)
 })
-
-onUnmounted(() => { cancelAnimationFrame(raf); ro?.disconnect() })
 </script>
 
 <template>

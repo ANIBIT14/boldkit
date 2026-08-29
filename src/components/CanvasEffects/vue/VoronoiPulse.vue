@@ -8,7 +8,8 @@
  * @example
  * <VoronoiPulse :cell-count="24" :speed="1" :border-width="1.5" />
  */
-import { ref, onMounted, onUnmounted } from 'vue'
+import { ref } from 'vue'
+import { useCanvasEffect } from '@/composables/useCanvasEffect'
 
 const props = withDefaults(defineProps<{
   /** Number of Voronoi seed points */
@@ -32,14 +33,8 @@ function hexToRgb(hex: string): [number, number, number] {
 }
 
 const canvasRef = ref<HTMLCanvasElement | null>(null)
-let raf = 0
-let ro: ResizeObserver | null = null
 
-onMounted(() => {
-  const el = canvasRef.value
-  if (!el) return
-  const ctx = el.getContext('2d')
-  if (!ctx) return
+useCanvasEffect(canvasRef, (ctx, el) => {
 
   type Seed = { x: number; y: number; vx: number; vy: number; rgb: [number, number, number]; phase: number }
   let seeds: Seed[] = []
@@ -59,26 +54,24 @@ onMounted(() => {
     }))
   }
 
-  const resize = () => {
-    const dpr = window.devicePixelRatio || 1
-    if (el.offsetWidth > 0) el.width = el.offsetWidth * dpr
-    if (el.offsetHeight > 0) el.height = el.offsetHeight * dpr
-    init()
-  }
-  resize()
 
   let t = 0
 
-  const draw = () => {
+  let lastW = 0, lastH = 0
+  return (_dt, frames) => {
+    if (el.width !== lastW || el.height !== lastH) {
+      lastW = el.width; lastH = el.height
+      init()
+    }
     const W = el.width, H = el.height
-    if (!W || !H) { raf = requestAnimationFrame(draw); return }
+    if (!W || !H) return
     const spd = props.speed
 
     const iw = Math.ceil(W / SCALE), ih = Math.ceil(H / SCALE)
     if (off.width !== iw || off.height !== ih) { off.width = iw; off.height = ih }
 
     seeds.forEach(s => {
-      s.x += s.vx * spd; s.y += s.vy * spd
+      s.x += s.vx * spd * frames; s.y += s.vy * spd * frames
       if (s.x < 0 || s.x > 1) s.vx *= -1
       if (s.y < 0 || s.y > 1) s.vy *= -1
     })
@@ -120,16 +113,9 @@ onMounted(() => {
     ctx.imageSmoothingEnabled = true; ctx.imageSmoothingQuality = 'high'
     ctx.drawImage(off, 0, 0, W, H)
 
-    t += 0.016 * spd
-    raf = requestAnimationFrame(draw)
+    t += 0.016 * spd * frames
   }
-
-  draw()
-  ro = new ResizeObserver(resize)
-  ro.observe(el)
 })
-
-onUnmounted(() => { cancelAnimationFrame(raf); ro?.disconnect() })
 </script>
 
 <template>

@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "use-canvas-effect",
+  "title": "Use Canvas Effect",
+  "description": "React hook that mounts an animated 2D canvas effect with a managed lifecycle — sizing, off-screen/background pausing, and reduced-motion — so a component only describes how to paint one frame.",
+  "registryDependencies": [
+    "@boldkit/canvas-effect-core"
+  ],
+  "files": [
+    {
+      "path": "registry/default/hooks/use-canvas-effect.ts",
+      "type": "registry:hook",
+      "target": "hooks/use-canvas-effect.ts"
+    }
+  ],
+  "type": "registry:hook"
+}

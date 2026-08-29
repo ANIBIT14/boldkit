@@ -1,4 +1,5 @@
 import { useEffect, useRef, type CSSProperties } from 'react'
+import { useCanvasEffect } from '@/hooks/use-canvas-effect'
 
 export interface DitherProps {
   /** Background / "off" color */
@@ -55,23 +56,10 @@ export function Dither({
   useEffect(() => { scaleRef.current = scale }, [scale])
   useEffect(() => { speedRef.current = speed }, [speed])
 
-  useEffect(() => {
-    const el = ref.current
-    if (!el) return
-    const ctx = el.getContext('2d')
-    if (!ctx) return
-    let raf = 0
-
-    const resize = () => {
-      if (!el.offsetWidth || !el.offsetHeight) return
-      const dpr = window.devicePixelRatio || 1
-      el.width = el.offsetWidth * dpr
-      el.height = el.offsetHeight * dpr
-    }
-    resize()
+  useCanvasEffect(ref, (ctx, el) => {
 
     let t = 0
-    const draw = () => {
+    return (_dt, frames) => {
       const W = el.width, H = el.height
       const px = Math.max(2, pxRef.current)
       const k = 0.012 * scaleRef.current
@@ -97,15 +85,9 @@ export function Dither({
         }
       }
 
-      t += 0.02 * speedRef.current
-      raf = requestAnimationFrame(draw)
+      t += 0.02 * speedRef.current * frames
     }
-
-    draw()
-    const ro = new ResizeObserver(resize)
-    ro.observe(el)
-    return () => { cancelAnimationFrame(raf); ro.disconnect() }
-  }, [])
+  })
 
   return (
     <canvas

@@ -1,4 +1,5 @@
 import { useEffect, useRef, type CSSProperties } from 'react'
+import { useCanvasEffect } from '@/hooks/use-canvas-effect'
 
 export interface HalftoneProps {
   /** Dot color */
@@ -47,35 +48,26 @@ export function Halftone({
   useEffect(() => { scaleRef.current = maxScale }, [maxScale])
   useEffect(() => { speedRef.current = speed }, [speed])
 
-  useEffect(() => {
-    const el = ref.current
-    if (!el) return
-    const ctx = el.getContext('2d')
-    if (!ctx) return
-    let raf = 0
-    let dpr = 1
+  useCanvasEffect(ref, (ctx, el, signal) => {
+    // Backing-store pixels per CSS pixel (reflects the maxPixelCount clamp).
+    const scale = () => (el.offsetWidth ? el.width / el.offsetWidth : 1)
 
     // Cursor in device pixels; off-screen until the pointer moves.
     const mouse = { x: -1e4, y: -1e4 }
     const onMove = (e: PointerEvent) => {
       const rect = el.getBoundingClientRect()
-      mouse.x = (e.clientX - rect.left) * dpr
-      mouse.y = (e.clientY - rect.top) * dpr
+      mouse.x = (e.clientX - rect.left) * scale()
+      mouse.y = (e.clientY - rect.top) * scale()
     }
     const onLeave = () => { mouse.x = -1e4; mouse.y = -1e4 }
+    el.addEventListener('pointermove', onMove, { signal })
+    el.addEventListener('pointerleave', onLeave, { signal })
 
-    const resize = () => {
-      if (!el.offsetWidth || !el.offsetHeight) return
-      dpr = window.devicePixelRatio || 1
-      el.width = el.offsetWidth * dpr
-      el.height = el.offsetHeight * dpr
-    }
-    resize()
 
     let t = 0
-    const draw = () => {
+    return (_dt, frames) => {
       const W = el.width, H = el.height
-      const GAP = Math.max(6, gapRef.current * dpr)
+      const GAP = Math.max(6, gapRef.current * scale())
       const maxR = (GAP / 2) * scaleRef.current
       const reach = GAP * 5
       ctx.fillStyle = bgRef.current
@@ -104,22 +96,9 @@ export function Halftone({
         }
       }
 
-      t += 0.02 * speedRef.current
-      raf = requestAnimationFrame(draw)
+      t += 0.02 * speedRef.current * frames
     }
-
-    draw()
-    el.addEventListener('pointermove', onMove)
-    el.addEventListener('pointerleave', onLeave)
-    const ro = new ResizeObserver(resize)
-    ro.observe(el)
-    return () => {
-      cancelAnimationFrame(raf)
-      ro.disconnect()
-      el.removeEventListener('pointermove', onMove)
-      el.removeEventListener('pointerleave', onLeave)
-    }
-  }, [])
+  })
 
   return (
     <canvas

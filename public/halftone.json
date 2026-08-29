@@ -3,7 +3,9 @@
   "name": "halftone",
   "description": "Print-style halftone dot field whose radii track a drifting brightness band; the cursor brightens nearby dots",
   "dependencies": [],
-  "registryDependencies": [],
+  "registryDependencies": [
+    "@boldkit/use-canvas-effect"
+  ],
   "files": [
     {
       "path": "registry/default/ui/canvas-effects/Halftone.tsx",

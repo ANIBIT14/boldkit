@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "mesh-gradient",
+  "description": "Drifting colour field — control points wander and blend, with optional hard posterised bands",
+  "dependencies": [],
+  "registryDependencies": [
+    "@boldkit/use-canvas-effect"
+  ],
+  "files": [
+    {
+      "path": "components/ui/canvas-effects/MeshGradient.vue",
+      "type": "registry:ui"
+    }
+  ],
+  "type": "registry:ui",
+  "title": "Mesh Gradient"
+}

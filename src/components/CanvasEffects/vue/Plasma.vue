@@ -6,7 +6,8 @@
  * @example
  * <Plasma :palette="['#0a1450', '#00d2dc', '#ffc832', '#ff4b82']" :speed="1" />
  */
-import { ref, onMounted, onUnmounted } from 'vue'
+import { ref } from 'vue'
+import { useCanvasEffect } from '@/composables/useCanvasEffect'
 
 const props = withDefaults(defineProps<{
   palette?: string[]
@@ -22,22 +23,8 @@ function hexToRgb(hex: string): [number, number, number] {
 }
 
 const canvasRef = ref<HTMLCanvasElement | null>(null)
-let raf = 0
-let ro: ResizeObserver | null = null
 
-onMounted(() => {
-  const el = canvasRef.value
-  if (!el) return
-  const ctx = el.getContext('2d')
-  if (!ctx) return
-  const resize = () => {
-    if (!el.offsetWidth || !el.offsetHeight) return
-    const dpr = window.devicePixelRatio || 1
-    el.width = el.offsetWidth * dpr
-    el.height = el.offsetHeight * dpr
-  }
-  resize()
-
+useCanvasEffect(canvasRef, (ctx, el) => {
   type Src = { x: number; y: number; vx: number; vy: number; freq: number; spd: number }
   const sources: Src[] = [
     { x: 0.30, y: 0.30, vx:  0.0009, vy:  0.0006, freq: 0.11, spd:  1.8 },
@@ -52,8 +39,10 @@ onMounted(() => {
   if (!offCtx) return
   let t = 0
 
-  const draw = () => {
-    const W = el.width, H = el.height, spd = props.speed
+  return (_dt, frames) => {
+    const W = el.width, H = el.height
+    if (!W || !H) return
+    const spd = props.speed
     const pal = props.palette.map(hexToRgb)
 
     const colorAt = (n: number): [number, number, number] => {
@@ -69,7 +58,7 @@ onMounted(() => {
     if (off.width !== iw || off.height !== ih) { off.width = iw; off.height = ih }
 
     sources.forEach(s => {
-      s.x += s.vx * spd; s.y += s.vy * spd
+      s.x += s.vx * spd * frames; s.y += s.vy * spd * frames
       if (s.x < 0 || s.x > 1) s.vx *= -1
       if (s.y < 0 || s.y > 1) s.vy *= -1
     })
@@ -94,16 +83,9 @@ onMounted(() => {
     ctx.clearRect(0, 0, W, H)
     ctx.imageSmoothingEnabled = true; ctx.imageSmoothingQuality = 'high'
     ctx.drawImage(off, 0, 0, W, H)
-    t += 0.045 * spd
-    raf = requestAnimationFrame(draw)
+    t += 0.045 * spd * frames
   }
-
-  draw()
-  ro = new ResizeObserver(resize)
-  ro.observe(el)
 })
-
-onUnmounted(() => { cancelAnimationFrame(raf); ro?.disconnect() })
 </script>
 
 <template>

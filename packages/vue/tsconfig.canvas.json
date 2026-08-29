@@ -1,0 +1,23 @@
+{
+  /**
+   * Typecheck the Vue CanvasEffects.
+   *
+   * They live in src/components/CanvasEffects/vue/ (the source of truth the
+   * canvas registry builder reads) rather than packages/vue/src/, so no
+   * tsconfig covered them and they shipped to consumers unchecked.
+   *
+   * `@/*` maps to packages/vue/src/* — the same alias a consumer's project
+   * uses — so an import like `@/composables/useCanvasEffect` is verified
+   * against the composable that actually ships alongside it.
+   *
+   * Run via `bun run typecheck:vue-canvas` from the repo root.
+   */
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./src/*"]
+    }
+  },
+  "include": ["../../src/components/CanvasEffects/vue/**/*.vue", "../../src/components/CanvasEffects/vue/**/*.ts"]
+}

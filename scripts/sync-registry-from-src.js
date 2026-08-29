@@ -14,6 +14,7 @@
  *   - src/lib/utils.ts                     → registry/default/lib/utils.ts
  *   - src/lib/math-curves.ts               → registry/default/lib/math-curves.ts
  *   - src/lib/motion-core.ts               → registry/default/lib/motion-core.ts
+ *   - src/lib/canvas-effect-core.ts        → registry/default/lib/canvas-effect-core.ts
  *
  * Excluded (structural divergence — needs manual handling):
  *   - src/components/ui/chart.tsx          (src is a re-export barrel pointing
@@ -70,7 +71,7 @@ function rewriteChartImports(content) {
 }
 
 // Files to sync from src/lib → registry/default/lib (only these, by name)
-const LIB_FILES = ['utils.ts', 'math-curves.ts', 'chart-export.ts', 'motion-core.ts']
+const LIB_FILES = ['utils.ts', 'math-curves.ts', 'chart-export.ts', 'motion-core.ts', 'canvas-effect-core.ts']
 
 // Cross-folder files referenced by UI components — must be shipped via
 // their own registry entries (error-boundary, use-theme, …) or installs
@@ -79,6 +80,7 @@ const LIB_FILES = ['utils.ts', 'math-curves.ts', 'chart-export.ts', 'motion-core
 const CROSS_FOLDER_FILES = [
   { from: 'src/components/ErrorBoundary.tsx', to: 'registry/default/components/ErrorBoundary.tsx' },
   { from: 'src/hooks/use-theme.tsx',          to: 'registry/default/hooks/use-theme.tsx' },
+  { from: 'src/hooks/use-canvas-effect.ts',   to: 'registry/default/hooks/use-canvas-effect.ts' },
 ]
 
 // UI files to skip even though they live flat in src/components/ui/.

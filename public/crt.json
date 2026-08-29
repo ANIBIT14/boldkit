@@ -3,7 +3,9 @@
   "name": "crt",
   "description": "Retro cathode-ray-tube screen with phosphor scanlines, a rolling brightness band, vignette and flicker",
   "dependencies": [],
-  "registryDependencies": [],
+  "registryDependencies": [
+    "@boldkit/use-canvas-effect"
+  ],
   "files": [
     {
       "path": "registry/default/ui/canvas-effects/CRT.tsx",

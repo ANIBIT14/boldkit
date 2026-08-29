@@ -6,7 +6,8 @@
  * @example
  * <CRT color="#43ff7a" bg-color="#04140a" :scan-gap="3" :flicker="0.6" :speed="1" />
  */
-import { ref, onMounted, onUnmounted } from 'vue'
+import { ref } from 'vue'
+import { useCanvasEffect } from '@/composables/useCanvasEffect'
 
 const props = withDefaults(defineProps<{
   color?: string
@@ -22,19 +23,11 @@ function hexToRgb(hex: string): [number, number, number] {
 }
 
 const canvasRef = ref<HTMLCanvasElement | null>(null)
-let raf = 0
-let ro: ResizeObserver | null = null
 
-onMounted(() => {
-  const el = canvasRef.value
-  if (!el) return
-  const ctx = el.getContext('2d')
-  if (!ctx) return
-  const resize = () => { if (!el.offsetWidth || !el.offsetHeight) return; const dpr = window.devicePixelRatio || 1; el.width = el.offsetWidth * dpr; el.height = el.offsetHeight * dpr }
-  resize()
+useCanvasEffect(canvasRef, (ctx, el) => {
 
   let t = 0
-  const draw = () => {
+  return (_dt, frames) => {
     const W = el.width, H = el.height
     const [r, g, b] = hexToRgb(props.color)
     const gap = Math.max(2, props.scanGap * (window.devicePixelRatio || 1))
@@ -72,16 +65,9 @@ onMounted(() => {
       ctx.globalAlpha = 1
     }
 
-    t += 0.016 * props.speed
-    raf = requestAnimationFrame(draw)
+    t += 0.016 * props.speed * frames
   }
-
-  draw()
-  ro = new ResizeObserver(resize)
-  ro.observe(el)
 })
-
-onUnmounted(() => { cancelAnimationFrame(raf); ro?.disconnect() })
 </script>
 
 <template>

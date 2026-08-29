@@ -3,7 +3,9 @@
   "name": "gravity-wells",
   "description": "Orbital particle physics — particles orbit gravitational attractors forming accretion-disk spirals",
   "dependencies": [],
-  "registryDependencies": [],
+  "registryDependencies": [
+    "@boldkit/use-canvas-effect"
+  ],
   "files": [
     {
       "path": "components/ui/canvas-effects/GravityWells.vue",

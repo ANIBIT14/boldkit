@@ -368,6 +368,32 @@ const componentMeta = {
     ],
   },
 
+  // Canvas Effect lifecycle — same core/adapter split as motion. Every
+  // CanvasEffect item declares `use-canvas-effect` as a registry dep, which
+  // pulls `canvas-effect-core` (and motion-core, for reduced-motion)
+  // transitively.
+  'canvas-effect-core': {
+    deps: [],
+    registryDeps: ['motion-core'],
+    desc: 'Framework-agnostic canvas lifecycle shared by every CanvasEffect — DPR-aware sizing with a pixel-count cap, pausing when off-screen or in a background tab, and prefers-reduced-motion support.',
+    files: [], // No .vue file — only the lib
+    siblingFiles: [
+      { src: 'lib/canvas-effect-core.ts', target: 'lib/canvas-effect-core.ts' },
+    ],
+  },
+
+  // useCanvasEffect — Vue composable. Its own item for the same findCommonRoot
+  // reason as use-motion.
+  'use-canvas-effect': {
+    deps: [],
+    registryDeps: ['canvas-effect-core'],
+    desc: 'Vue composable that mounts an animated 2D canvas effect with a managed lifecycle — sizing, off-screen/background pausing, and reduced motion — so a component only describes how to paint one frame.',
+    files: [],
+    siblingFiles: [
+      { src: 'composables/useCanvasEffect.ts', target: 'composables/useCanvasEffect.ts' },
+    ],
+  },
+
   motion: {
     deps: [],
     registryDeps: ['motion-core', 'use-motion'],

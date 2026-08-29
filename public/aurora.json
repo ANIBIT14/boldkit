@@ -3,7 +3,9 @@
   "name": "aurora",
   "description": "Northern lights curtain simulation — five layered sine-wave bands drift across a star-filled sky",
   "dependencies": [],
-  "registryDependencies": [],
+  "registryDependencies": [
+    "@boldkit/use-canvas-effect"
+  ],
   "files": [
     {
       "path": "registry/default/ui/canvas-effects/Aurora.tsx",

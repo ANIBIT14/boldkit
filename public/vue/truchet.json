@@ -3,7 +3,9 @@
   "name": "truchet",
   "description": "Flowing Truchet arc-tile maze — square tiles of quarter-arcs join into endless looping curves with a travelling dash",
   "dependencies": [],
-  "registryDependencies": [],
+  "registryDependencies": [
+    "@boldkit/use-canvas-effect"
+  ],
   "files": [
     {
       "path": "components/ui/canvas-effects/Truchet.vue",

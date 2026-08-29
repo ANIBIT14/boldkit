@@ -1,4 +1,5 @@
 import { useEffect, useRef, type CSSProperties } from 'react'
+import { useCanvasEffect } from '@/hooks/use-canvas-effect'
 
 function hexToRgb(hex: string): [number, number, number] {
   const n = parseInt(hex.replace('#', ''), 16)
@@ -45,19 +46,7 @@ export function Plasma({
   useEffect(() => { paletteRef.current = palette }, [palette])
   useEffect(() => { speedRef.current   = speed   }, [speed])
 
-  useEffect(() => {
-    const el = ref.current
-    if (!el) return
-    const ctx = el.getContext('2d')
-    if (!ctx) return
-    let raf = 0
-    const resize = () => {
-      const dpr = window.devicePixelRatio || 1
-      if (el.offsetWidth > 0)  el.width  = el.offsetWidth  * dpr
-      if (el.offsetHeight > 0) el.height = el.offsetHeight * dpr
-    }
-    resize()
-
+  useCanvasEffect(ref, (ctx, el) => {
     type Src = { x: number; y: number; vx: number; vy: number; freq: number; spd: number }
     const sources: Src[] = [
       { x: 0.30, y: 0.30, vx:  0.0009, vy:  0.0006, freq: 0.11, spd:  1.8 },
@@ -72,9 +61,9 @@ export function Plasma({
     if (!offCtx) return
     let t = 0
 
-    const draw = () => {
+    return (_dt, frames) => {
       const W = el.width, H = el.height
-      if (!W || !H) { raf = requestAnimationFrame(draw); return }
+      if (!W || !H) return
       const spd = speedRef.current
       const pal = paletteRef.current.map(hexToRgb)
 
@@ -91,7 +80,7 @@ export function Plasma({
       if (off.width !== iw || off.height !== ih) { off.width = iw; off.height = ih }
 
       sources.forEach(s => {
-        s.x += s.vx * spd; s.y += s.vy * spd
+        s.x += s.vx * spd * frames; s.y += s.vy * spd * frames
         if (s.x < 0 || s.x > 1) s.vx *= -1
         if (s.y < 0 || s.y > 1) s.vy *= -1
       })
@@ -119,15 +108,9 @@ export function Plasma({
       ctx.imageSmoothingEnabled = true
       ctx.imageSmoothingQuality = 'high'
       ctx.drawImage(off, 0, 0, W, H)
-      t += 0.045 * spd
-      raf = requestAnimationFrame(draw)
+      t += 0.045 * spd * frames
     }
-
-    draw()
-    const ro = new ResizeObserver(resize)
-    ro.observe(el)
-    return () => { cancelAnimationFrame(raf); ro.disconnect() }
-  }, [])
+  })
 
   return (
     <canvas

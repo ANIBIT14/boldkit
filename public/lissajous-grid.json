@@ -3,7 +3,9 @@
   "name": "lissajous-grid",
   "description": "Parametric curve table — grid of Lissajous figures morphing via phase drift",
   "dependencies": [],
-  "registryDependencies": [],
+  "registryDependencies": [
+    "@boldkit/use-canvas-effect"
+  ],
   "files": [
     {
       "path": "registry/default/ui/canvas-effects/LissajousGrid.tsx",

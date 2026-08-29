@@ -6,7 +6,8 @@
  * @example
  * <MatrixRain head-color="#ffffff" :trail-hue="120" :gap="16" :speed="1" :tail-length="10" />
  */
-import { ref, onMounted, onUnmounted } from 'vue'
+import { ref } from 'vue'
+import { useCanvasEffect } from '@/composables/useCanvasEffect'
 
 const props = withDefaults(defineProps<{
   headColor?: string
@@ -17,29 +18,16 @@ const props = withDefaults(defineProps<{
 }>(), { headColor: '#ffffff', trailHue: 120, gap: 16, speed: 1, tailLength: 10 })
 
 const canvasRef = ref<HTMLCanvasElement | null>(null)
-let raf = 0
-let ro: ResizeObserver | null = null
 
-onMounted(() => {
-  const el = canvasRef.value
-  if (!el) return
-  const ctx = el.getContext('2d')
-  if (!ctx) return
+useCanvasEffect(canvasRef, (ctx, el) => {
 
   let cols: number[] = []
-  const resize = () => {
-    if (!el.offsetWidth || !el.offsetHeight) return
-    const dpr = window.devicePixelRatio || 1
-    el.width = el.offsetWidth * dpr; el.height = el.offsetHeight * dpr
-    cols = Array.from({ length: Math.ceil(el.width / Math.max(1, props.gap)) }, () =>
-      -Math.floor(Math.random() * (el.height / props.gap + props.tailLength))
-    )
-  }
-  resize()
 
-  const draw = () => {
+  return (_dt, frames) => {
     const GAP = props.gap, TAIL = props.tailLength, W = el.width, H = el.height
-    ctx.fillStyle = 'rgba(0,0,0,0.18)'; ctx.fillRect(0, 0, W, H)
+    // Compounded over the frame delta so trail length is refresh-rate independent.
+    ctx.fillStyle = `rgba(0,0,0,${1 - Math.pow(1 - 0.18, frames)})`
+    ctx.fillRect(0, 0, W, H)
     const rows = Math.ceil(H / GAP), size = GAP - 3
     const needed = Math.ceil(W / GAP)
     while (cols.length < needed) cols.push(-Math.floor(Math.random() * 12))
@@ -59,15 +47,8 @@ onMounted(() => {
       cols[c] = head >= rows + TAIL ? -Math.floor(Math.random() * 12) : head + 0.28 * props.speed
     })
     ctx.globalAlpha = 1
-    raf = requestAnimationFrame(draw)
   }
-
-  draw()
-  ro = new ResizeObserver(resize)
-  ro.observe(el)
 })
-
-onUnmounted(() => { cancelAnimationFrame(raf); ro?.disconnect() })
 </script>
 
 <template>

@@ -1,4 +1,5 @@
 import { useEffect, useRef, type CSSProperties } from 'react'
+import { useCanvasEffect } from '@/hooks/use-canvas-effect'
 
 export interface WarpSpeedProps {
   /** Number of stars in the field */
@@ -42,13 +43,7 @@ export function WarpSpeed({
   useEffect(() => { hueRef.current   = hueStart    }, [hueStart])
   useEffect(() => { trailRef.current = trailLength }, [trailLength])
 
-  useEffect(() => {
-    const el = ref.current
-    if (!el) return
-    const ctx = el.getContext('2d')
-    if (!ctx) return
-    let raf = 0
-
+  useCanvasEffect(ref, (ctx, el) => {
     type Star = { x: number; y: number; z: number; pz: number; hue: number }
     let stars: Star[] = []
 
@@ -68,26 +63,24 @@ export function WarpSpeed({
       })
     }
 
-    const resize = () => {
-      const dpr = window.devicePixelRatio || 1
-      if (el.offsetWidth > 0)  el.width  = el.offsetWidth  * dpr
-      if (el.offsetHeight > 0) el.height = el.offsetHeight * dpr
-      init()
-    }
-    resize()
 
-    const draw = () => {
+    let lastW = 0, lastH = 0
+    return (_dt, frames) => {
+      if (el.width !== lastW || el.height !== lastH) {
+        lastW = el.width; lastH = el.height
+        init()
+      }
       const W = el.width, H = el.height
       const cx = W / 2, cy = H / 2
       const spd = speedRef.current
       const tl = trailRef.current
 
-      ctx.fillStyle = 'rgba(0,0,0,0.15)'
+      ctx.fillStyle = `rgba(0,0,0,${1 - Math.pow(1 - 0.15, frames)})`
       ctx.fillRect(0, 0, W, H)
 
       stars.forEach((s, i) => {
         s.pz = s.z
-        s.z -= 0.012 * spd
+        s.z -= 0.012 * spd * frames
 
         if (s.z <= 0.001) {
           stars[i] = spawn()
@@ -128,14 +121,8 @@ export function WarpSpeed({
       })
 
       ctx.globalAlpha = 1
-      raf = requestAnimationFrame(draw)
     }
-
-    draw()
-    const ro = new ResizeObserver(resize)
-    ro.observe(el)
-    return () => { cancelAnimationFrame(raf); ro.disconnect() }
-  }, [])
+  })
 
   return (
     <canvas

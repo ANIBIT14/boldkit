@@ -1,4 +1,5 @@
 import { useEffect, useRef, type CSSProperties } from 'react'
+import { useCanvasEffect } from '@/hooks/use-canvas-effect'
 
 function hexToRgb(hex: string): [number, number, number] {
   const n = parseInt(hex.replace('#', ''), 16)
@@ -49,13 +50,7 @@ export function VoronoiPulse({
   useEffect(() => { speedRef.current  = speed       }, [speed])
   useEffect(() => { borderRef.current = borderWidth }, [borderWidth])
 
-  useEffect(() => {
-    const el = ref.current
-    if (!el) return
-    const ctx = el.getContext('2d')
-    if (!ctx) return
-    let raf = 0
-
+  useCanvasEffect(ref, (ctx, el) => {
     type Seed = { x: number; y: number; vx: number; vy: number; rgb: [number, number, number]; phase: number }
     let seeds: Seed[] = []
 
@@ -76,19 +71,17 @@ export function VoronoiPulse({
       }))
     }
 
-    const resize = () => {
-      const dpr = window.devicePixelRatio || 1
-      if (el.offsetWidth > 0)  el.width  = el.offsetWidth  * dpr
-      if (el.offsetHeight > 0) el.height = el.offsetHeight * dpr
-      init()
-    }
-    resize()
 
     let t = 0
 
-    const draw = () => {
+    let lastW = 0, lastH = 0
+    return (_dt, frames) => {
+      if (el.width !== lastW || el.height !== lastH) {
+        lastW = el.width; lastH = el.height
+        init()
+      }
       const W = el.width, H = el.height
-      if (!W || !H) { raf = requestAnimationFrame(draw); return }
+      if (!W || !H) return
       const spd = speedRef.current
 
       const iw = Math.ceil(W / SCALE), ih = Math.ceil(H / SCALE)
@@ -159,15 +152,9 @@ export function VoronoiPulse({
       ctx.imageSmoothingQuality = 'high'
       ctx.drawImage(off, 0, 0, W, H)
 
-      t += 0.016 * spd
-      raf = requestAnimationFrame(draw)
+      t += 0.016 * spd * frames
     }
-
-    draw()
-    const ro = new ResizeObserver(resize)
-    ro.observe(el)
-    return () => { cancelAnimationFrame(raf); ro.disconnect() }
-  }, [])
+  })
 
   return (
     <canvas

@@ -8,7 +8,7 @@
 
 A neubrutalism component library for React and Vue 3, built on shadcn/ui.
 
-[![Version](https://img.shields.io/badge/version-3.5.1-black)](https://github.com/ANIBIT14/boldkit/releases/tag/v3.5.1)
+[![Version](https://img.shields.io/badge/version-3.5.2-black)](https://github.com/ANIBIT14/boldkit/releases/tag/v3.5.2)
 [![MIT License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 [![React](https://img.shields.io/badge/React-19-61DAFB?logo=react)](https://react.dev)
 [![Vue](https://img.shields.io/badge/Vue-3-4FC08D?logo=vuedotjs)](https://vuejs.org)
@@ -77,7 +77,7 @@ All blocks are installable via the shadcn CLI for both React and Vue 3/Nuxt.
 
 ![BoldKit Components](assets/preview.png)
 
-*55+ beautifully crafted neubrutalism components, 10 chart types, 64 SVG shapes, 17 animated ASCII shapes, 19 canvas effects, and 15 math curve animations for React and Vue 3*
+*55+ beautifully crafted neubrutalism components, 10 chart types, 64 SVG shapes, 17 animated ASCII shapes, 23 canvas effects, and 15 math curve animations for React and Vue 3*
 
 </div>
 
@@ -106,7 +106,7 @@ Neubrutalism (or neo-brutalism) is a bold design aesthetic characterized by:
 | **64 SVG Shapes** | Decorative shapes (geometric, organic, mathematical, mechanical) with interactive Shape Builder |
 | **17 ASCII Shapes** | Animated 3D ASCII art — Torus, Donut, Sphere, Cube, Helix, Trefoil Knot, Saturn, DNA, and more |
 | **Dot Matrix Studio** | In-browser pixel art & animation editor with 10 presets, WebM/PNG/SVG/JSON export |
-| **19 Canvas Effects** | Animated canvas components — Dither, Halftone, CRT, Truchet, Aurora, Flow Field, Plasma, Metaballs, Matrix Rain and more. Zero deps. |
+| **23 Canvas Effects** | Animated canvas components — Mesh Gradient, Swirl, God Rays, Pulsing Border, Dither, Halftone, CRT, Truchet, Aurora, Flow Field, Plasma, Metaballs and more. Each pauses off-screen and in background tabs, caps its pixel budget, and honours `prefers-reduced-motion`. |
 | **Math Curve Components** | Animated loaders, progress bars, and backgrounds powered by 15 mathematical curves |
 | **React & Vue 3** | Full support for both frameworks |
 | **Nuxt Ready** | SSR-compatible with shadcn-nuxt module |

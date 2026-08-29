@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "swirl",
+  "description": "Twisting radial bands wound into a spiral, razor-sharp by default",
+  "dependencies": [],
+  "registryDependencies": [
+    "@boldkit/use-canvas-effect"
+  ],
+  "files": [
+    {
+      "path": "components/ui/canvas-effects/Swirl.vue",
+      "type": "registry:ui"
+    }
+  ],
+  "type": "registry:ui",
+  "title": "Swirl"
+}

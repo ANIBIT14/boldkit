@@ -9,7 +9,8 @@
  * @example
  * <GravityWells :well-count="3" :particle-count="180" :speed="1" />
  */
-import { ref, onMounted, onUnmounted } from 'vue'
+import { ref } from 'vue'
+import { useCanvasEffect } from '@/composables/useCanvasEffect'
 
 const props = withDefaults(defineProps<{
   /** Number of gravitational attractors */
@@ -28,14 +29,8 @@ const props = withDefaults(defineProps<{
 })
 
 const canvasRef = ref<HTMLCanvasElement | null>(null)
-let raf = 0
-let ro: ResizeObserver | null = null
 
-onMounted(() => {
-  const el = canvasRef.value
-  if (!el) return
-  const ctx = el.getContext('2d')
-  if (!ctx) return
+useCanvasEffect(canvasRef, (ctx, el) => {
 
   type Well = { x: number; y: number; vx: number; vy: number; mass: number }
   type Particle = {
@@ -77,23 +72,21 @@ onMounted(() => {
 
   const init = () => { initWells(); particles = Array.from({ length: props.particleCount }, spawnParticle) }
 
-  const resize = () => {
-    const dpr = window.devicePixelRatio || 1
-    if (el.offsetWidth > 0) el.width = el.offsetWidth * dpr
-    if (el.offsetHeight > 0) el.height = el.offsetHeight * dpr
-    init()
-  }
-  resize()
 
-  const draw = () => {
+  let lastW = 0, lastH = 0
+  return (_dt, frames) => {
+    if (el.width !== lastW || el.height !== lastH) {
+      lastW = el.width; lastH = el.height
+      init()
+    }
     const W = el.width, H = el.height, spd = props.speed
     if (off.width !== W || off.height !== H) { off.width = W; off.height = H }
 
-    offCtx.fillStyle = 'rgba(0,0,0,0.035)'
+    offCtx.fillStyle = `rgba(0,0,0,${1 - Math.pow(1 - 0.035, frames)})`
     offCtx.fillRect(0, 0, W, H)
 
     wells.forEach(w => {
-      w.x += w.vx * spd; w.y += w.vy * spd
+      w.x += w.vx * spd * frames; w.y += w.vy * spd * frames
       if (w.x < W * 0.15 || w.x > W * 0.85) w.vx *= -1
       if (w.y < H * 0.15 || w.y > H * 0.85) w.vy *= -1
     })
@@ -106,8 +99,8 @@ onMounted(() => {
         const distSq = dx * dx + dy * dy
         const dist = Math.sqrt(distSq) + 50
         const force = w.mass / (dist * dist)
-        p.vx += (dx / dist) * force * 0.08 * spd
-        p.vy += (dy / dist) * force * 0.08 * spd
+        p.vx += (dx / dist) * force * 0.08 * spd * frames
+        p.vy += (dy / dist) * force * 0.08 * spd * frames
       })
 
       p.vx *= 0.998; p.vy *= 0.998
@@ -115,7 +108,7 @@ onMounted(() => {
       const vel = Math.sqrt(p.vx * p.vx + p.vy * p.vy)
       if (vel > 6) { p.vx *= 6 / vel; p.vy *= 6 / vel }
 
-      p.x += p.vx * spd; p.y += p.vy * spd; p.life++
+      p.x += p.vx * spd * frames; p.y += p.vy * spd * frames; p.life++
 
       const nearWell = wells.some(w => {
         const dx = w.x - p.x, dy = w.y - p.y
@@ -149,15 +142,8 @@ onMounted(() => {
     ctx.clearRect(0, 0, W, H)
     ctx.globalAlpha = 1
     ctx.drawImage(off, 0, 0)
-    raf = requestAnimationFrame(draw)
   }
-
-  draw()
-  ro = new ResizeObserver(resize)
-  ro.observe(el)
 })
-
-onUnmounted(() => { cancelAnimationFrame(raf); ro?.disconnect() })
 </script>
 
 <template>

@@ -1,0 +1,19 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "use-canvas-effect",
+  "type": "registry:ui",
+  "description": "Vue composable that mounts an animated 2D canvas effect with a managed lifecycle — sizing, off-screen/background pausing, and reduced motion — so a component only describes how to paint one frame.",
+  "dependencies": [],
+  "registryDependencies": [
+    "@boldkit/utils",
+    "@boldkit/canvas-effect-core"
+  ],
+  "files": [
+    {
+      "path": "composables/useCanvasEffect.ts",
+      "content": "/**\n * useCanvasEffect — Vue adapter over canvas-effect-core.\n * Mirrors the React useCanvasEffect hook.\n *\n * Owns the whole canvas lifecycle so an effect only has to describe how to\n * paint one frame: sizing (DPR-aware, pixel-count capped), pausing when\n * off-screen or backgrounded, and `prefers-reduced-motion`.\n */\nimport { onMounted, onUnmounted, type Ref } from 'vue'\nimport {\n  mountCanvasEffect,\n  type CanvasEffectHandle,\n  type CanvasEffectOptions,\n  type CanvasEffectSetup,\n} from '@/lib/canvas-effect-core'\n\nexport type {\n  CanvasEffectOptions,\n  CanvasEffectSetup,\n  CanvasEffectFrame,\n} from '@/lib/canvas-effect-core'\n\n/**\n * Call from `<script setup>`. Wires `onMounted` / `onUnmounted` for you.\n *\n * @param canvasRef Template ref on the `<canvas>` element.\n * @param setup     Runs once after the canvas is sized. Allocate state here and\n *                  return a `(dt) => void` frame function, where `dt` is ms\n *                  since the previous frame.\n * @param options   Sizing and pause behaviour.\n *\n * Read reactive props directly inside the frame function — Vue props are a\n * live proxy, so `props.speed` is always current with no ref mirroring.\n *\n * @example\n * useCanvasEffect(canvasRef, (ctx, el) => {\n *   let t = 0\n *   return (dt) => {\n *     t += dt * 0.001 * props.speed\n *     ctx.clearRect(0, 0, el.width, el.height)\n *   }\n * })\n */\nexport function useCanvasEffect(\n  canvasRef: Ref<HTMLCanvasElement | null>,\n  setup: CanvasEffectSetup,\n  options?: CanvasEffectOptions\n) {\n  let handle: CanvasEffectHandle | null = null\n\n  onMounted(() => {\n    handle = mountCanvasEffect(canvasRef.value, setup, options)\n  })\n\n  onUnmounted(() => {\n    handle?.dispose()\n    handle = null\n  })\n}\n",
+      "type": "registry:composable"
+    }
+  ],
+  "title": "Use Canvas Effect"
+}

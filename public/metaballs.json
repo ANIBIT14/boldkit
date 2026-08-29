@@ -3,7 +3,9 @@
   "name": "metaballs",
   "description": "Organic blob merging — colored blobs merge via r²/d² scalar field threshold",
   "dependencies": [],
-  "registryDependencies": [],
+  "registryDependencies": [
+    "@boldkit/use-canvas-effect"
+  ],
   "files": [
     {
       "path": "registry/default/ui/canvas-effects/Metaballs.tsx",

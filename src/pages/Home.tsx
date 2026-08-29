@@ -35,7 +35,8 @@ import {
   AsciiSpiral, AsciiVortex, AsciiMatrix, AsciiGrid,
 } from '@/components/ui/ascii-shapes'
 import {
-  Aurora, FlowField, Plasma, Metaballs, MatrixRain, ParticleWeb,
+  Aurora, Plasma,
+  MeshGradient, Swirl, GodRays, PulsingBorder,
 } from '@/components/CanvasEffects/react'
 
 const DISPLAY: CSSProperties = { fontFamily: "'Bebas Neue', sans-serif" }
@@ -1103,7 +1104,7 @@ export function Home() {
               <div className="mb-4 flex items-center justify-between">
                 <div>
                   <h3 className="text-white font-black text-lg uppercase" style={MONO}>Canvas FX</h3>
-                  <p className="text-white/40 text-[11px] mt-0.5" style={MONO}>19 zero-dep components</p>
+                  <p className="text-white/40 text-[11px] mt-0.5" style={MONO}>23 components &middot; 4 new</p>
                 </div>
                 <Link to="/canvas-effects">
                   <Button variant="ghost" size="sm" className="text-accent border-accent/30 gap-1 text-xs">
@@ -1113,13 +1114,13 @@ export function Home() {
               </div>
               <div className="grid grid-cols-2 gap-2">
                 {([
-                  { node: <FlowField count={100} hueStart={170} hueRange={120} speed={1} decay={0.028} />,       label: 'FLOW FIELD', accent: '#22d3ee' },
+                  { node: <MeshGradient colors={['#ff4b82','#ffc832','#00d2dc','#241d9a']} speed={1} />,          label: 'MESH',      accent: '#ff4b82', isNew: true },
+                  { node: <Swirl colors={['#0a1450','#00d2dc','#ffc832','#ff4b82']} bands={6} twist={2.2} />,     label: 'SWIRL',     accent: '#00d2dc', isNew: true },
+                  { node: <GodRays colors={['#ffc832','#ff8a3d','#ff4b82','#ffe98a']} rayCount={18} />,           label: 'GOD RAYS',  accent: '#ffc832', isNew: true },
+                  { node: <PulsingBorder colors={['#ff4b82','#ffc832','#00d2dc','#7df9ff']} thickness={4} />,     label: 'BORDER',    accent: '#7df9ff', isNew: true },
                   { node: <Plasma palette={['#0a1450','#1e64c8','#00d2dc','#5affa6','#ffc832','#ff4b82']} speed={1} />, label: 'PLASMA',    accent: '#fb923c' },
-                  { node: <Metaballs colors={['#ff5050','#3cb9ff','#ffc32d','#aa4bff']} blobRadius={55} speed={1} />,  label: 'METABALLS', accent: '#f472b6' },
                   { node: <Aurora colors={['#00ffaa','#00beff','#78ff64','#be50ff']} starCount={80} speed={1} />,  label: 'AURORA',    accent: '#00ffaa' },
-                  { node: <MatrixRain headColor="#00ff41" trailHue={120} speed={1} />,                             label: 'MATRIX',    accent: '#00ff41' },
-                  { node: <ParticleWeb count={60} particleColor="#5b4fcf" lineColor="#5b4fcf" />,                    label: 'PARTICLE',  accent: '#a78bfa' },
-                ] as const).map(({ node, label, accent }) => (
+                ] as const).map(({ node, label, accent, ...rest }) => (
                   <Link key={label} to="/canvas-effects">
                     <div className="group flex flex-col items-center gap-1.5 hover:opacity-90 transition-opacity">
                       <div className="overflow-hidden border border-white/10 group-hover:border-white/30 transition-colors relative" style={{ width: '100%', height: 72, background: '#070707' }}>
@@ -1127,13 +1128,16 @@ export function Home() {
                         <div className="absolute bottom-1 left-1.5">
                           <span className="text-[7px] font-black uppercase" style={{ ...MONO, color: accent }}>{label}</span>
                         </div>
+                        {'isNew' in rest && rest.isNew && (
+                          <span className="absolute top-1 right-1 text-[7px] font-black uppercase tracking-wider bg-white text-black px-1" style={MONO}>New</span>
+                        )}
                       </div>
                     </div>
                   </Link>
                 ))}
               </div>
               <div className="mt-4 flex flex-wrap gap-1.5">
-                {['Aurora', 'Flow Field', 'Plasma', 'Metaballs', 'Matrix Rain', 'Particle Web', 'Dot Wave', 'Dot Blob', 'Mouse Ripple', 'Lissajous'].map(name => (
+                {['Mesh Gradient', 'Swirl', 'God Rays', 'Pulsing Border', 'Aurora', 'Flow Field', 'Plasma', 'Metaballs', 'Matrix Rain', 'Particle Web'].map(name => (
                   <span key={name} className="text-[9px] font-bold uppercase border border-white/10 px-1.5 py-0.5 text-white/35" style={MONO}>{name}</span>
                 ))}
               </div>

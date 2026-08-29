@@ -6,7 +6,8 @@
  * @example
  * <Dither bg-color="#0a0a0a" color="#84ff3c" :pixel-size="4" :scale="1" :speed="1" />
  */
-import { ref, onMounted, onUnmounted } from 'vue'
+import { ref } from 'vue'
+import { useCanvasEffect } from '@/composables/useCanvasEffect'
 
 const props = withDefaults(defineProps<{
   bgColor?: string
@@ -25,19 +26,11 @@ const BAYER = [
 ].map(row => row.map(v => (v + 0.5) / 16))
 
 const canvasRef = ref<HTMLCanvasElement | null>(null)
-let raf = 0
-let ro: ResizeObserver | null = null
 
-onMounted(() => {
-  const el = canvasRef.value
-  if (!el) return
-  const ctx = el.getContext('2d')
-  if (!ctx) return
-  const resize = () => { if (!el.offsetWidth || !el.offsetHeight) return; const dpr = window.devicePixelRatio || 1; el.width = el.offsetWidth * dpr; el.height = el.offsetHeight * dpr }
-  resize()
+useCanvasEffect(canvasRef, (ctx, el) => {
 
   let t = 0
-  const draw = () => {
+  return (_dt, frames) => {
     const W = el.width, H = el.height
     const px = Math.max(2, props.pixelSize)
     const k = 0.012 * props.scale
@@ -56,16 +49,9 @@ onMounted(() => {
         if (v > BAYER[r & 3][c & 3]) ctx.fillRect(x, y, px, px)
       }
     }
-    t += 0.02 * props.speed
-    raf = requestAnimationFrame(draw)
+    t += 0.02 * props.speed * frames
   }
-
-  draw()
-  ro = new ResizeObserver(resize)
-  ro.observe(el)
 })
-
-onUnmounted(() => { cancelAnimationFrame(raf); ro?.disconnect() })
 </script>
 
 <template>

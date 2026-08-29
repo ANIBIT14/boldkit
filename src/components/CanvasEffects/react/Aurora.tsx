@@ -1,4 +1,5 @@
 import { useEffect, useRef, type CSSProperties } from 'react'
+import { useCanvasEffect } from '@/hooks/use-canvas-effect'
 
 function hexToRgb(hex: string): [number, number, number] {
   const n = parseInt(hex.replace('#', ''), 16)
@@ -51,20 +52,7 @@ export function Aurora({
   useEffect(() => { starsRef.current  = starCount }, [starCount])
   useEffect(() => { speedRef.current  = speed     }, [speed])
 
-  useEffect(() => {
-    const el = ref.current
-    if (!el) return
-    const ctx = el.getContext('2d')
-    if (!ctx) return
-    let raf = 0
-
-    const resize = () => {
-      if (!el.offsetWidth || !el.offsetHeight) return
-      const dpr = window.devicePixelRatio || 1
-      el.width = el.offsetWidth * dpr
-      el.height = el.offsetHeight * dpr
-    }
-    resize()
+  useCanvasEffect(ref, (ctx, el) => {
 
     type Star = { x: number; y: number; r: number; p: number; s: number }
     let stars: Star[] = []
@@ -79,7 +67,7 @@ export function Aurora({
     initStars()
 
     let t = 0
-    const draw = () => {
+    return (_dt, frames) => {
       const W = el.width, H = el.height
       const spd = speedRef.current
       const cls = colorsRef.current
@@ -134,15 +122,9 @@ export function Aurora({
 
       ctx.shadowColor = 'transparent'
       ctx.globalAlpha = 1
-      t += 0.007 * spd
-      raf = requestAnimationFrame(draw)
+      t += 0.007 * spd * frames
     }
-
-    draw()
-    const ro = new ResizeObserver(() => { resize(); initStars() })
-    ro.observe(el)
-    return () => { cancelAnimationFrame(raf); ro.disconnect() }
-  }, [])
+  })
 
   return (
     <canvas

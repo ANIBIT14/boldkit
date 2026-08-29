@@ -3,7 +3,9 @@
   "name": "topography",
   "description": "Animated contour map — noise-driven elevation field with marching-squares isolines",
   "dependencies": [],
-  "registryDependencies": [],
+  "registryDependencies": [
+    "@boldkit/use-canvas-effect"
+  ],
   "files": [
     {
       "path": "registry/default/ui/canvas-effects/Topography.tsx",

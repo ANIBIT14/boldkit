@@ -8,7 +8,8 @@
  * @example
  * <Lightning color="#7df9ff" :bolt-interval="1.2" :branches="4" :speed="1" />
  */
-import { ref, onMounted, onUnmounted } from 'vue'
+import { ref } from 'vue'
+import { useCanvasEffect } from '@/composables/useCanvasEffect'
 
 const props = withDefaults(defineProps<{
   /** Primary bolt color */
@@ -27,21 +28,9 @@ const props = withDefaults(defineProps<{
 })
 
 const canvasRef = ref<HTMLCanvasElement | null>(null)
-let raf = 0
-let ro: ResizeObserver | null = null
 
-onMounted(() => {
-  const el = canvasRef.value
-  if (!el) return
-  const ctx = el.getContext('2d')
-  if (!ctx) return
+useCanvasEffect(canvasRef, (ctx, el) => {
 
-  const resize = () => {
-    const dpr = window.devicePixelRatio || 1
-    if (el.offsetWidth > 0) el.width = el.offsetWidth * dpr
-    if (el.offsetHeight > 0) el.height = el.offsetHeight * dpr
-  }
-  resize()
 
   function subdivide(
     x1: number, y1: number, x2: number, y2: number,
@@ -80,17 +69,17 @@ onMounted(() => {
     bolts.push({ segments: allSegments, alpha: 1.2, width: 2.5, color: col })
   }
 
-  const draw = () => {
+  return (_dt, frames) => {
     const W = el.width, H = el.height, spd = props.speed
 
     ctx.fillStyle = 'rgba(5,2,15,0.25)'
     ctx.fillRect(0, 0, W, H)
 
-    timer += 0.016 * spd
+    timer += 0.016 * spd * frames
     if (timer >= props.boltInterval) { spawnBolt(); timer = 0 }
 
     bolts = bolts.filter(bolt => {
-      bolt.alpha -= 0.018 * spd
+      bolt.alpha -= 0.018 * spd * frames
       if (bolt.alpha <= 0) return false
       const a = Math.min(1, bolt.alpha)
 
@@ -120,15 +109,8 @@ onMounted(() => {
       return true
     })
 
-    raf = requestAnimationFrame(draw)
   }
-
-  draw()
-  ro = new ResizeObserver(resize)
-  ro.observe(el)
 })
-
-onUnmounted(() => { cancelAnimationFrame(raf); ro?.disconnect() })
 </script>
 
 <template>

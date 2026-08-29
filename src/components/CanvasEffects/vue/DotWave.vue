@@ -6,7 +6,8 @@
  * @example
  * <DotWave color="#ef4444" :gap="22" :speed="1" />
  */
-import { ref, onMounted, onUnmounted } from 'vue'
+import { ref } from 'vue'
+import { useCanvasEffect } from '@/composables/useCanvasEffect'
 
 const props = withDefaults(defineProps<{
   color?: string
@@ -15,19 +16,11 @@ const props = withDefaults(defineProps<{
 }>(), { color: '#ef4444', gap: 22, speed: 1 })
 
 const canvasRef = ref<HTMLCanvasElement | null>(null)
-let raf = 0
-let ro: ResizeObserver | null = null
 
-onMounted(() => {
-  const el = canvasRef.value
-  if (!el) return
-  const ctx = el.getContext('2d')
-  if (!ctx) return
-  const resize = () => { if (!el.offsetWidth || !el.offsetHeight) return; const dpr = window.devicePixelRatio || 1; el.width = el.offsetWidth * dpr; el.height = el.offsetHeight * dpr }
-  resize()
+useCanvasEffect(canvasRef, (ctx, el) => {
 
   let t = 0
-  const draw = () => {
+  return (_dt, frames) => {
     const GAP = props.gap, W = el.width, H = el.height
     ctx.clearRect(0, 0, W, H)
     const cols = Math.ceil(W / GAP) + 1, rows = Math.ceil(H / GAP) + 1
@@ -42,16 +35,9 @@ onMounted(() => {
       }
     }
     ctx.globalAlpha = 1
-    t += 0.035 * props.speed
-    raf = requestAnimationFrame(draw)
+    t += 0.035 * props.speed * frames
   }
-
-  draw()
-  ro = new ResizeObserver(resize)
-  ro.observe(el)
 })
-
-onUnmounted(() => { cancelAnimationFrame(raf); ro?.disconnect() })
 </script>
 
 <template>

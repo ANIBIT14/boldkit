@@ -3,7 +3,9 @@
   "name": "mouse-ripple",
   "description": "Interactive dot-grid ripple — mouse movement sends sine ripples through the dot grid",
   "dependencies": [],
-  "registryDependencies": [],
+  "registryDependencies": [
+    "@boldkit/use-canvas-effect"
+  ],
   "files": [
     {
       "path": "components/ui/canvas-effects/MouseRipple.vue",

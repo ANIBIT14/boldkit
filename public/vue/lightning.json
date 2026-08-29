@@ -3,7 +3,9 @@
   "name": "lightning",
   "description": "Fractal electric arcs — branching lightning bolts with midpoint displacement and glow bloom",
   "dependencies": [],
-  "registryDependencies": [],
+  "registryDependencies": [
+    "@boldkit/use-canvas-effect"
+  ],
   "files": [
     {
       "path": "components/ui/canvas-effects/Lightning.vue",

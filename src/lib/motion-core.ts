@@ -15,17 +15,37 @@ const isBrowser = typeof window !== 'undefined' && typeof document !== 'undefine
 
 let _reducedMotion = false;
 let _reducedMotionMql: MediaQueryList | null = null;
+const _reducedMotionListeners = new Set<(reduced: boolean) => void>();
 
 if (isBrowser) {
   _reducedMotionMql = window.matchMedia('(prefers-reduced-motion: reduce)');
   _reducedMotion = _reducedMotionMql.matches;
   _reducedMotionMql.addEventListener('change', (e) => {
     _reducedMotion = e.matches;
+    _reducedMotionListeners.forEach((fn) => fn(e.matches));
   });
 }
 
 export function prefersReducedMotion(): boolean {
   return _reducedMotion;
+}
+
+/**
+ * Subscribe to reduced-motion changes.
+ *
+ * `prefersReducedMotion()` is a point-in-time read, which is enough for a
+ * one-shot animation but not for a long-lived loop (a canvas effect, a
+ * marquee) that must stop the moment the user flips the OS setting.
+ *
+ * @returns an unsubscribe function.
+ */
+export function onReducedMotionChange(
+  listener: (reduced: boolean) => void
+): () => void {
+  _reducedMotionListeners.add(listener);
+  return () => {
+    _reducedMotionListeners.delete(listener);
+  };
 }
 
 // ──────────────────────────────────────────────────────────────────

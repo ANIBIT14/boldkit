@@ -6,7 +6,8 @@
  * @example
  * <LissajousGrid :cols="4" :rows="3" :speed="1" :hue-start="30" :opacity="0.72" />
  */
-import { ref, onMounted, onUnmounted } from 'vue'
+import { ref } from 'vue'
+import { useCanvasEffect } from '@/composables/useCanvasEffect'
 
 const props = withDefaults(defineProps<{
   cols?: number
@@ -17,21 +18,13 @@ const props = withDefaults(defineProps<{
 }>(), { cols: 4, rows: 3, speed: 1, hueStart: 30, opacity: 0.72 })
 
 const canvasRef = ref<HTMLCanvasElement | null>(null)
-let raf = 0
-let ro: ResizeObserver | null = null
 
-onMounted(() => {
-  const el = canvasRef.value
-  if (!el) return
-  const ctx = el.getContext('2d')
-  if (!ctx) return
-  const resize = () => { if (!el.offsetWidth || !el.offsetHeight) return; const dpr = window.devicePixelRatio || 1; el.width = el.offsetWidth * dpr; el.height = el.offsetHeight * dpr }
-  resize()
+useCanvasEffect(canvasRef, (ctx, el) => {
 
   const STEPS = 700
   let phase = 0
 
-  const draw = () => {
+  return (_dt, frames) => {
     const W = el.width, H = el.height
     const C = props.cols, R = props.rows
     ctx.clearRect(0, 0, W, H)
@@ -58,16 +51,9 @@ onMounted(() => {
         ctx.strokeRect(col * cw + 0.5, row * ch + 0.5, cw - 1, ch - 1)
       }
     }
-    phase += 0.007 * props.speed
-    raf = requestAnimationFrame(draw)
+    phase += 0.007 * props.speed * frames
   }
-
-  draw()
-  ro = new ResizeObserver(resize)
-  ro.observe(el)
 })
-
-onUnmounted(() => { cancelAnimationFrame(raf); ro?.disconnect() })
 </script>
 
 <template>

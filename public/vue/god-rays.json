@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "god-rays",
+  "description": "Volumetric light shafts — a fan of hard-edged wedges radiating from a light source",
+  "dependencies": [],
+  "registryDependencies": [
+    "@boldkit/use-canvas-effect"
+  ],
+  "files": [
+    {
+      "path": "components/ui/canvas-effects/GodRays.vue",
+      "type": "registry:ui"
+    }
+  ],
+  "type": "registry:ui",
+  "title": "God Rays"
+}

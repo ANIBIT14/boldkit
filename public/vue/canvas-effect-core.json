@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "canvas-effect-core",
+  "type": "registry:ui",
+  "description": "Framework-agnostic canvas lifecycle shared by every CanvasEffect — DPR-aware sizing with a pixel-count cap, pausing when off-screen or in a background tab, and prefers-reduced-motion support.",
+  "dependencies": [],
+  "registryDependencies": [
+    "@boldkit/utils",
+    "@boldkit/motion-core"
+  ],
+  "files": [
+    {
+      "path": "lib/canvas-effect-core.ts",
+      "type": "registry:lib"
+    }
+  ],
+  "title": "Canvas Effect Core"
+}

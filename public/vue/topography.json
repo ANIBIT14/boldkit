@@ -3,7 +3,9 @@
   "name": "topography",
   "description": "Animated contour map — noise-driven elevation field with marching-squares isolines",
   "dependencies": [],
-  "registryDependencies": [],
+  "registryDependencies": [
+    "@boldkit/use-canvas-effect"
+  ],
   "files": [
     {
       "path": "components/ui/canvas-effects/Topography.vue",

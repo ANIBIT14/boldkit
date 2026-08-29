@@ -1,4 +1,5 @@
 import { useEffect, useRef, type CSSProperties } from 'react'
+import { useCanvasEffect } from '@/hooks/use-canvas-effect'
 
 function hexToRgb(hex: string): [number, number, number] {
   const n = parseInt(hex.replace('#', ''), 16)
@@ -52,23 +53,10 @@ export function CRT({
   useEffect(() => { flickerRef.current = flicker }, [flicker])
   useEffect(() => { speedRef.current = speed }, [speed])
 
-  useEffect(() => {
-    const el = ref.current
-    if (!el) return
-    const ctx = el.getContext('2d')
-    if (!ctx) return
-    let raf = 0
-
-    const resize = () => {
-      if (!el.offsetWidth || !el.offsetHeight) return
-      const dpr = window.devicePixelRatio || 1
-      el.width = el.offsetWidth * dpr
-      el.height = el.offsetHeight * dpr
-    }
-    resize()
+  useCanvasEffect(ref, (ctx, el) => {
 
     let t = 0
-    const draw = () => {
+    return (_dt, frames) => {
       const W = el.width, H = el.height
       const [r, g, b] = hexToRgb(colorRef.current)
       const gap = Math.max(2, gapRef.current * (window.devicePixelRatio || 1))
@@ -115,15 +103,9 @@ export function CRT({
         ctx.globalAlpha = 1
       }
 
-      t += 0.016 * speedRef.current
-      raf = requestAnimationFrame(draw)
+      t += 0.016 * speedRef.current * frames
     }
-
-    draw()
-    const ro = new ResizeObserver(resize)
-    ro.observe(el)
-    return () => { cancelAnimationFrame(raf); ro.disconnect() }
-  }, [])
+  })
 
   return (
     <canvas

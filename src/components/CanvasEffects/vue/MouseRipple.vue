@@ -6,7 +6,8 @@
  * @example
  * <MouseRipple color="#f59e0b" :gap="24" :ripple-radius="130" :speed="1" />
  */
-import { ref, onMounted, onUnmounted } from 'vue'
+import { ref } from 'vue'
+import { useCanvasEffect } from '@/composables/useCanvasEffect'
 
 const props = withDefaults(defineProps<{
   color?: string
@@ -16,35 +17,18 @@ const props = withDefaults(defineProps<{
 }>(), { color: '#f59e0b', gap: 24, rippleRadius: 130, speed: 1 })
 
 const canvasRef = ref<HTMLCanvasElement | null>(null)
-let raf = 0
-let ro: ResizeObserver | null = null
-let cleanupMouse: (() => void) | null = null
-
-onMounted(() => {
-  const el = canvasRef.value
-  if (!el) return
-  const ctx = el.getContext('2d')
-  if (!ctx) return
+useCanvasEffect(canvasRef, (ctx, el, signal) => {
   const mouse = { x: -999, y: -999 }
 
-  const resize = () => {
-    if (!el.offsetWidth || !el.offsetHeight) return
-    const dpr = window.devicePixelRatio || 1
-    el.width = el.offsetWidth * dpr
-    el.height = el.offsetHeight * dpr
-    ctx.setTransform(dpr, 0, 0, dpr, 0, 0)
-  }
-  resize()
 
   const onMove = (e: MouseEvent) => {
     const r = el.getBoundingClientRect()
     mouse.x = e.clientX - r.left; mouse.y = e.clientY - r.top
   }
-  el.addEventListener('mousemove', onMove)
-  cleanupMouse = () => el.removeEventListener('mousemove', onMove)
+  el.addEventListener('mousemove', onMove, { signal })
 
   let t = 0
-  const draw = () => {
+  return (_dt, frames) => {
     const GAP = props.gap, W = el.offsetWidth, H = el.offsetHeight, RAD = props.rippleRadius
     ctx.clearRect(0, 0, W, H)
     const cols = Math.ceil(W / GAP) + 1, rows = Math.ceil(H / GAP) + 1
@@ -61,18 +45,10 @@ onMounted(() => {
       }
     }
     ctx.globalAlpha = 1
-    t += 0.06 * props.speed
-    raf = requestAnimationFrame(draw)
+    t += 0.06 * props.speed * frames
   }
-
-  draw()
-  ro = new ResizeObserver(resize)
-  ro.observe(el)
-})
-
-onUnmounted(() => {
-  cancelAnimationFrame(raf); ro?.disconnect(); cleanupMouse?.()
-})
+  // Draws in CSS pixels; the scale transform is applied for us on resize.
+}, { coordinates: 'css' })
 </script>
 
 <template>

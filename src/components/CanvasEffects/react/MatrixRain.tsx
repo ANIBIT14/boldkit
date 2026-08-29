@@ -1,4 +1,5 @@
 import { useEffect, useRef, type CSSProperties } from 'react'
+import { useCanvasEffect } from '@/hooks/use-canvas-effect'
 
 export interface MatrixRainProps {
   /** Color of the bright head square */
@@ -46,31 +47,16 @@ export function MatrixRain({
   useEffect(() => { speedRef.current     = speed      }, [speed])
   useEffect(() => { tailRef.current      = tailLength }, [tailLength])
 
-  useEffect(() => {
-    const el = ref.current
-    if (!el) return
-    const ctx = el.getContext('2d')
-    if (!ctx) return
-    let raf = 0
+  useCanvasEffect(ref, (ctx, el) => {
+    const cols: number[] = []
 
-    let cols: number[] = []
-    const resize = () => {
-      if (!el.offsetWidth || !el.offsetHeight) return
-      const dpr = window.devicePixelRatio || 1
-      el.width = el.offsetWidth * dpr
-      el.height = el.offsetHeight * dpr
-      const TAIL = tailRef.current
-      cols = Array.from({ length: Math.ceil(el.width / Math.max(1, gapRef.current)) }, () =>
-        -Math.floor(Math.random() * (el.height / gapRef.current + TAIL))
-      )
-    }
-    resize()
-
-    const draw = () => {
+    return (_dt, frames) => {
       const GAP  = gapRef.current
       const TAIL = tailRef.current
       const W = el.width, H = el.height
-      ctx.fillStyle = 'rgba(0,0,0,0.18)'; ctx.fillRect(0, 0, W, H)
+      // Compounded over the frame delta so trail length is refresh-rate independent.
+      ctx.fillStyle = `rgba(0,0,0,${1 - Math.pow(1 - 0.18, frames)})`
+      ctx.fillRect(0, 0, W, H)
       const rows = Math.ceil(H / GAP), size = GAP - 3
 
       // Adjust column array width if needed
@@ -89,18 +75,12 @@ export function MatrixRain({
             : `hsl(${trailHueRef.current} 100% ${28 + bright * 28}%)`
           ctx.fillRect(c * GAP + 1, row * GAP + 1, size, size)
         }
-        cols[c] = head >= rows + TAIL ? -Math.floor(Math.random() * 12) : head + 0.28 * speedRef.current
+        cols[c] = head >= rows + TAIL ? -Math.floor(Math.random() * 12) : head + 0.28 * speedRef.current * frames
       })
 
       ctx.globalAlpha = 1
-      raf = requestAnimationFrame(draw)
     }
-
-    draw()
-    const ro = new ResizeObserver(resize)
-    ro.observe(el)
-    return () => { cancelAnimationFrame(raf); ro.disconnect() }
-  }, [])
+  })
 
   return (
     <canvas

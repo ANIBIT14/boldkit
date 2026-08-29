@@ -6,7 +6,8 @@
  * @example
  * <Halftone color="#111111" bg-color="#facc15" :gap="18" :max-scale="0.75" :speed="1" />
  */
-import { ref, onMounted, onUnmounted } from 'vue'
+import { ref } from 'vue'
+import { useCanvasEffect } from '@/composables/useCanvasEffect'
 
 const props = withDefaults(defineProps<{
   color?: string
@@ -17,32 +18,26 @@ const props = withDefaults(defineProps<{
 }>(), { color: '#111111', bgColor: '#facc15', gap: 18, maxScale: 0.75, speed: 1 })
 
 const canvasRef = ref<HTMLCanvasElement | null>(null)
-let raf = 0
-let ro: ResizeObserver | null = null
-let cleanupMouse: (() => void) | null = null
 
-onMounted(() => {
-  const el = canvasRef.value
-  if (!el) return
-  const ctx = el.getContext('2d')
-  if (!ctx) return
-  let dpr = 1
+useCanvasEffect(canvasRef, (ctx, el, signal) => {
+  // Backing-store pixels per CSS pixel (reflects the maxPixelCount clamp).
+  const scale = () => (el.offsetWidth ? el.width / el.offsetWidth : 1)
 
   const mouse = { x: -1e4, y: -1e4 }
   const onMove = (e: PointerEvent) => {
     const rect = el.getBoundingClientRect()
-    mouse.x = (e.clientX - rect.left) * dpr
-    mouse.y = (e.clientY - rect.top) * dpr
+    mouse.x = (e.clientX - rect.left) * scale()
+    mouse.y = (e.clientY - rect.top) * scale()
   }
   const onLeave = () => { mouse.x = -1e4; mouse.y = -1e4 }
+  el.addEventListener('pointermove', onMove, { signal })
+  el.addEventListener('pointerleave', onLeave, { signal })
 
-  const resize = () => { if (!el.offsetWidth || !el.offsetHeight) return; dpr = window.devicePixelRatio || 1; el.width = el.offsetWidth * dpr; el.height = el.offsetHeight * dpr }
-  resize()
 
   let t = 0
-  const draw = () => {
+  return (_dt, frames) => {
     const W = el.width, H = el.height
-    const GAP = Math.max(6, props.gap * dpr)
+    const GAP = Math.max(6, props.gap * scale())
     const maxR = (GAP / 2) * props.maxScale
     const reach = GAP * 5
     ctx.fillStyle = props.bgColor
@@ -65,22 +60,9 @@ onMounted(() => {
         ctx.fill()
       }
     }
-    t += 0.02 * props.speed
-    raf = requestAnimationFrame(draw)
+    t += 0.02 * props.speed * frames
   }
-
-  draw()
-  el.addEventListener('pointermove', onMove)
-  el.addEventListener('pointerleave', onLeave)
-  cleanupMouse = () => {
-    el.removeEventListener('pointermove', onMove)
-    el.removeEventListener('pointerleave', onLeave)
-  }
-  ro = new ResizeObserver(resize)
-  ro.observe(el)
 })
-
-onUnmounted(() => { cancelAnimationFrame(raf); ro?.disconnect(); cleanupMouse?.() })
 </script>
 
 <template>

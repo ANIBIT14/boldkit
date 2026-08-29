@@ -11,7 +11,7 @@
 - **Blocks:** 15 section blocks (10 marketing + 5 application)
 - **Templates:** 7 full-page templates
 - **Frameworks:** React 19, Vue 3, Nuxt
-- **Canvas Effects:** 19 zero-dependency animated canvas components
+- **Canvas Effects:** 23 animated canvas components (pause off-screen, reduced-motion aware)
 - **Tools:** FavGrab (favicon extractor & image converter), Dot Matrix Studio (pixel art & animation editor), Shape Builder, Theme Builder
 - **Guides:** Neubrutalism guide cluster (what it is, colors, fonts, examples, vs brutalism) + favicon/image tool guides
 - **Styling:** Tailwind CSS v4 with CSS variables
@@ -91,9 +91,13 @@ BoldKit includes a free in-browser **Dot Matrix Studio** at https://boldkit.dev/
 
 ## Canvas Effects
 
-BoldKit includes 19 animated canvas components at https://boldkit.dev/canvas-effects — zero external dependencies, fully typed, compatible with React, Vue 3, and Nuxt 3. Install any effect via `npx shadcn@latest add "https://boldkit.dev/r/<id>.json"` (Vue: `/r/vue/<id>.json`).
+BoldKit includes 23 animated canvas components at https://boldkit.dev/canvas-effects — no external dependencies, fully typed, compatible with React, Vue 3, and Nuxt 3. Every effect runs on a shared lifecycle that pauses the frame loop off-screen and in background tabs, caps the backing-store pixel count, and honours `prefers-reduced-motion`. Install any effect via `npx shadcn@latest add "https://boldkit.dev/r/<id>.json"` (Vue: `/r/vue/<id>.json`).
 
-**All 19 effects:**
+**All 23 effects:**
+- **Mesh Gradient** (`mesh-gradient`) — drifting colour control points blended per pixel, with optional hard posterised bands
+- **Swirl** (`swirl`) — hard-edged colour bands wound into a spiral by radius
+- **God Rays** (`god-rays`) — a fan of volumetric light wedges radiating from a configurable source
+- **Pulsing Border** (`pulsing-border`) — light spots orbit a frame and bleed inward, leaving the centre clear
 - **Dither** (`dither`) — a drifting plasma field quantised to two colors via a 4×4 Bayer matrix; the classic 1-bit / Game Boy look
 - **Halftone** (`halftone`) — print-style dot grid sized by a drifting brightness field; the cursor brightens nearby dots
 - **CRT** (`crt`) — retro cathode-ray screen with phosphor scanlines, a rolling brightness band, vignette and flicker

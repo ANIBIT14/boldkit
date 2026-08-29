@@ -271,8 +271,8 @@ export const pageSEO = {
     ],
   },
   canvasEffects: {
-    title: 'Canvas Effects — 19 Animated Canvas Components',
-    description: 'Free animated canvas components for React, Vue 3, and Nuxt 3. 19 zero-dependency effects: Dither, Halftone, CRT, Truchet, Aurora, Lightning, Warp Speed, Gravity Wells, Topography, Voronoi, Flow Field, Plasma, Metaballs, and more. Fully typed with customisable props.',
+    title: 'Canvas Effects — 23 Animated Canvas Components',
+    description: 'Free animated canvas components for React, Vue 3, and Nuxt 3. 23 effects: Mesh Gradient, Swirl, God Rays, Pulsing Border, Dither, Halftone, CRT, Truchet, Aurora, Lightning, Warp Speed, Gravity Wells, Topography, Voronoi, Flow Field, Plasma, Metaballs, and more. Each pauses off-screen and respects prefers-reduced-motion. Fully typed with customisable props.',
     canonical: `${SITE_URL}/canvas-effects`,
     keywords: 'canvas animation, react canvas, vue canvas, animated background, dither effect, bayer dithering, halftone effect, crt effect, scanlines, truchet tiles, aurora effect, lightning effect, warp speed, gravity wells, topography, voronoi, particle web, flow field, plasma waves, metaballs, matrix rain, neubrutalism',
     breadcrumbs: [

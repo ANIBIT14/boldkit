@@ -3,7 +3,9 @@
   "name": "matrix-rain",
   "description": "Falling column simulation — glowing heads and fading square trails",
   "dependencies": [],
-  "registryDependencies": [],
+  "registryDependencies": [
+    "@boldkit/use-canvas-effect"
+  ],
   "files": [
     {
       "path": "components/ui/canvas-effects/MatrixRain.vue",

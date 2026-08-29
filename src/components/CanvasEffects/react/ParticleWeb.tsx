@@ -1,4 +1,5 @@
 import { useEffect, useRef, type CSSProperties } from 'react'
+import { useCanvasEffect } from '@/hooks/use-canvas-effect'
 
 export interface ParticleWebProps {
   /** Number of floating particles */
@@ -46,13 +47,7 @@ export function ParticleWeb({
   useEffect(() => { maxDistRef.current       = maxDistance   }, [maxDistance])
   useEffect(() => { speedRef.current         = speed         }, [speed])
 
-  useEffect(() => {
-    const el = ref.current
-    if (!el) return
-    const ctx = el.getContext('2d')
-    if (!ctx) return
-    let raf = 0
-
+  useCanvasEffect(ref, (ctx, el) => {
     type P = { x: number; y: number; vx: number; vy: number }
     let pts: P[] = []
 
@@ -64,22 +59,19 @@ export function ParticleWeb({
       }))
     }
 
-    const resize = () => {
-      if (!el.offsetWidth || !el.offsetHeight) return
-      const dpr = window.devicePixelRatio || 1
-      el.width = el.offsetWidth * dpr
-      el.height = el.offsetHeight * dpr
-      init()
-    }
-    resize()
 
-    const draw = () => {
+    let lastW = 0, lastH = 0
+    return (_dt, frames) => {
+      if (el.width !== lastW || el.height !== lastH) {
+        lastW = el.width; lastH = el.height
+        init()
+      }
       const W = el.width, H = el.height
       const spd = speedRef.current, MD = maxDistRef.current
       ctx.clearRect(0, 0, W, H)
 
       pts.forEach(p => {
-        p.x += p.vx * spd; p.y += p.vy * spd
+        p.x += p.vx * spd * frames; p.y += p.vy * spd * frames
         if (p.x < 0 || p.x > W) p.vx *= -1
         if (p.y < 0 || p.y > H) p.vy *= -1
       })
@@ -104,14 +96,8 @@ export function ParticleWeb({
         ctx.fillRect(p.x - 3, p.y - 3, 6, 6)
       })
 
-      raf = requestAnimationFrame(draw)
     }
-
-    draw()
-    const ro = new ResizeObserver(resize)
-    ro.observe(el)
-    return () => { cancelAnimationFrame(raf); ro.disconnect() }
-  }, [])
+  })
 
   return (
     <canvas

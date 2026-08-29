@@ -1,6 +1,7 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Layout } from '@/components/layout'
 import { copyToClipboard } from '@/lib/clipboard'
+import { prefersReducedMotion, onReducedMotionChange } from '@/lib/motion-core'
 import { SEO, pageSEO } from '@/components/SEO'
 import { Copy, Check, Code2, Terminal } from 'lucide-react'
 import { toast } from 'sonner'
@@ -10,7 +11,25 @@ import {
   MouseRipple, FlowField, Metaballs, LissajousGrid, Plasma,
   WarpSpeed, GravityWells, Topography, Lightning, VoronoiPulse,
   Dither, Halftone, CRT, Truchet,
+  MeshGradient, GodRays, Swirl, PulsingBorder,
 } from '@/components/CanvasEffects/react'
+
+/**
+ * Readable label colour for a coloured chip.
+ *
+ * The category pill used to hardcode near-black text on `accent`, which
+ * disappeared entirely on dark accents (Truchet's is #111111). Pick the
+ * foreground from the accent's relative luminance instead.
+ */
+function onAccent(hex: string): string {
+  const n = parseInt(hex.replace('#', ''), 16)
+  const [r, g, b] = [(n >> 16) & 255, (n >> 8) & 255, n & 255].map(c => {
+    const v = c / 255
+    return v <= 0.03928 ? v / 12.92 : Math.pow((v + 0.055) / 1.055, 2.4)
+  })
+  const L = 0.2126 * r + 0.7152 * g + 0.0722 * b
+  return L > 0.35 ? '#0a0a0a' : '#ffffff'
+}
 
 const DISPLAY: React.CSSProperties = { fontFamily: "'Bebas Neue', sans-serif" }
 const MONO: React.CSSProperties    = { fontFamily: "'DM Mono', monospace" }
@@ -26,9 +45,42 @@ interface EffectDef {
   vueCode:   string
   node:      React.ReactNode
   featured?: boolean
+  isNew?: boolean
 }
 
 const EFFECTS: EffectDef[] = [
+  {
+    id: 'mesh-gradient', name: 'Mesh Gradient', category: 'Gradient', accent: '#ff4b82',
+    desc: 'Drifting colour points blended per pixel, with optional hard posterised bands',
+    reactCode: `<MeshGradient colors={['#ff4b82','#ffc832','#00d2dc','#241d9a']} steps={0} speed={1} />`,
+    vueCode:   `<MeshGradient :colors="['#ff4b82','#ffc832','#00d2dc','#241d9a']" :steps="0" :speed="1" />`,
+    node: <MeshGradient colors={['#ff4b82', '#ffc832', '#00d2dc', '#241d9a']} steps={0} speed={1} />,
+    featured: true, isNew: true,
+  },
+  {
+    id: 'swirl', name: 'Swirl', category: 'Radial', accent: '#00d2dc',
+    desc: 'Hard-edged colour bands wound into a spiral by radius',
+    reactCode: `<Swirl colors={['#0a1450','#00d2dc','#ffc832','#ff4b82']} bands={6} twist={2.2} />`,
+    vueCode:   `<Swirl :colors="['#0a1450','#00d2dc','#ffc832','#ff4b82']" :bands="6" :twist="2.2" />`,
+    node: <Swirl colors={['#0a1450', '#00d2dc', '#ffc832', '#ff4b82']} bands={6} twist={2.2} />,
+    featured: true, isNew: true,
+  },
+  {
+    id: 'god-rays', name: 'God Rays', category: 'Light', accent: '#ffc832',
+    desc: 'A fan of volumetric wedges radiating from a light source',
+    reactCode: `<GodRays colors={['#ffc832','#ff8a3d','#ff4b82']} rayCount={20} originY={0.18} />`,
+    vueCode:   `<GodRays :colors="['#ffc832','#ff8a3d','#ff4b82']" :ray-count="20" :origin-y="0.18" />`,
+    node: <GodRays colors={['#ffc832', '#ff8a3d', '#ff4b82', '#ffe98a']} rayCount={20} originY={0.18} />,
+    isNew: true,
+  },
+  {
+    id: 'pulsing-border', name: 'Pulsing Border', category: 'Frame', accent: '#7df9ff',
+    desc: 'Light spots orbit the perimeter and bleed inward, centre stays clear',
+    reactCode: `<PulsingBorder colors={['#ff4b82','#ffc832','#00d2dc']} thickness={5} spots={4} />`,
+    vueCode:   `<PulsingBorder :colors="['#ff4b82','#ffc832','#00d2dc']" :thickness="5" :spots="4" />`,
+    node: <PulsingBorder colors={['#ff4b82', '#ffc832', '#00d2dc', '#7df9ff']} thickness={5} spots={4} />,
+    isNew: true,
+  },
   {
     id: 'dot-blob', name: 'Dot Blob', category: 'Halftone', accent: '#c9ba4c',
     desc: 'Gaussian envelope × crossing waves drive halftone pixel sizes',
@@ -224,10 +276,18 @@ function EffectCard({ effect, featured = false, framework }: {
             <div className="min-w-0 flex-1">
               <span
                 className="text-[8px] font-black uppercase tracking-[0.2em] px-1.5 py-0.5 inline-block mb-1.5 leading-tight"
-                style={{ background: effect.accent, color: '#0a0a0a' }}
+                style={{ background: effect.accent, color: onAccent(effect.accent) }}
               >
                 {effect.category}
               </span>
+              {effect.isNew && (
+                <span
+                  className="ml-1 inline-block text-[8px] font-black uppercase tracking-[0.18em] px-1.5 py-0.5 border-2 border-white bg-white text-black align-top"
+                  style={MONO}
+                >
+                  New
+                </span>
+              )}
               <div
                 className="text-sm sm:text-base font-black uppercase leading-tight text-white truncate"
                 style={DISPLAY}
@@ -351,13 +411,13 @@ export function CanvasEffects() {
             </h1>
 
             <p className="text-sm text-white/70 mb-7 max-w-xs mx-auto leading-relaxed" style={MONO}>
-              19 animated canvas components.
+              23 animated canvas components.
               <br />Zero dependencies · React · Vue 3 · Nuxt 3
             </p>
 
             {/* Tag pills */}
             <div className="flex items-center justify-center gap-1.5 sm:gap-2 mb-6 flex-wrap">
-              {['19 Effects', 'React', 'Vue 3', 'Nuxt 3', 'TypeScript', 'Zero Deps'].map(tag => (
+              {['23 Effects', 'React', 'Vue 3', 'Nuxt 3', 'TypeScript', 'Reduced Motion'].map(tag => (
                 <span
                   key={tag}
                   className="text-[9px] font-black uppercase tracking-[0.18em] px-2 py-1 border border-white/25 text-white/65"
@@ -437,7 +497,7 @@ export function CanvasEffects() {
           <UsageNote
             step="01"
             title="Install via CLI"
-            body='Run npx shadcn@latest add "https://boldkit.dev/r/{component}.json" (Vue: /r/vue/{component}.json). Or copy the file directly — each effect is self-contained with zero external dependencies.'
+            body='Run npx shadcn@latest add "https://boldkit.dev/r/{component}.json" (Vue: /r/vue/{component}.json). The CLI also pulls the shared lifecycle hook every effect builds on — no other dependencies.'
             accent="#c9ba4c"
           />
           <UsageNote
@@ -453,6 +513,9 @@ export function CanvasEffects() {
             accent="#818cf8"
           />
         </div>
+
+        {/* ── Runtime behaviour — what the shared lifecycle guarantees ── */}
+        <RuntimePanel framework={framework} />
 
         {/* Nuxt 3 SSR note */}
         <div className="mt-4 sm:mt-5 flex flex-col sm:flex-row sm:items-start gap-2 sm:gap-3 border-3 border-foreground shadow-[3px_3px_0px_hsl(var(--shadow-color))] px-4 py-3 bg-card">
@@ -512,6 +575,95 @@ function CopyImport({ text }: { text: string }) {
     >
       {copied ? <Check className="h-3 w-3" /> : <Copy className="h-3 w-3" />}
     </button>
+  )
+}
+
+/**
+ * Runtime behaviour panel.
+ *
+ * Every effect now runs on a shared lifecycle (useCanvasEffect / the Vue
+ * composable of the same name) rather than its own rAF loop. The reduced-motion
+ * row is live — flip the OS setting and it updates without a reload, which is
+ * also the quickest way to confirm the guarantee actually holds.
+ */
+function RuntimePanel({ framework }: { framework: 'react' | 'vue' }) {
+  const [reduced, setReduced] = useState(prefersReducedMotion)
+  useEffect(() => onReducedMotionChange(setReduced), [])
+
+  const hook = framework === 'react'
+    ? "import { useCanvasEffect } from '@/hooks/use-canvas-effect'"
+    : "import { useCanvasEffect } from '@/composables/useCanvasEffect'"
+
+  const GUARANTEES = [
+    {
+      label: 'Off-screen',
+      body: 'An IntersectionObserver cancels the frame loop when the canvas scrolls out of view. Not a no-op frame — no rAF at all.',
+      accent: '#00ffaa',
+    },
+    {
+      label: 'Background tab',
+      body: 'visibilitychange stops the loop when the tab is hidden, and restarts it on return without a time jump.',
+      accent: '#00beff',
+    },
+    {
+      label: 'Pixel budget',
+      body: 'Sized from devicePixelContentBoxSize and capped at ~4M pixels, so a full-bleed canvas on a 4K display stays affordable.',
+      accent: '#ffc832',
+    },
+    {
+      label: 'Refresh-rate parity',
+      body: 'Motion advances on a normalised frame delta, so an effect runs at the same speed on a 60Hz and a 120Hz display.',
+      accent: '#ff4b82',
+    },
+  ]
+
+  return (
+    <div className="mt-10 md:mt-14">
+      <div className="flex items-center gap-4 mb-5 sm:mb-6">
+        <div className="flex-1 h-px bg-foreground/10" />
+        <span className="text-[9px] font-black uppercase tracking-[0.25em] text-muted-foreground" style={MONO}>
+          Runtime Behaviour
+        </span>
+        <div className="flex-1 h-px bg-foreground/10" />
+      </div>
+
+      <div className="border-3 border-foreground bg-card shadow-[4px_4px_0px_hsl(var(--shadow-color))]">
+        {/* Live reduced-motion readout */}
+        <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-3 px-4 py-3 border-b-3 border-foreground bg-muted">
+          <span className="text-[9px] font-black uppercase tracking-[0.2em] text-muted-foreground shrink-0" style={MONO}>
+            prefers-reduced-motion
+          </span>
+          <span
+            className="text-[10px] font-black uppercase tracking-wide px-2 py-0.5 border-3 border-foreground w-fit"
+            style={{ background: reduced ? '#ffc832' : 'transparent' }}
+          >
+            {reduced ? 'Reduce — effects held on one static frame' : 'No preference — effects animating'}
+          </span>
+        </div>
+
+        <div className="grid sm:grid-cols-2 xl:grid-cols-4 divide-y-3 sm:divide-y-0 sm:divide-x-3 divide-foreground">
+          {GUARANTEES.map(g => (
+            <div key={g.label} className="p-4">
+              <div className="flex items-center gap-2 mb-2">
+                <span className="w-2 h-2 border-2 border-foreground shrink-0" style={{ background: g.accent }} />
+                <span className="text-[10px] font-black uppercase tracking-[0.15em]" style={MONO}>
+                  {g.label}
+                </span>
+              </div>
+              <p className="text-xs text-muted-foreground leading-relaxed" style={MONO}>
+                {g.body}
+              </p>
+            </div>
+          ))}
+        </div>
+
+        <div className="px-4 py-2.5 border-t-3 border-foreground bg-background overflow-x-auto">
+          <code className="text-[10px] text-muted-foreground whitespace-nowrap" style={MONO}>
+            {hook}
+          </code>
+        </div>
+      </div>
+    </div>
   )
 }
 

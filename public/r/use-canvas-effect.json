@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "use-canvas-effect",
+  "title": "Use Canvas Effect",
+  "description": "React hook that mounts an animated 2D canvas effect with a managed lifecycle — sizing, off-screen/background pausing, and reduced-motion — so a component only describes how to paint one frame.",
+  "registryDependencies": [
+    "@boldkit/canvas-effect-core"
+  ],
+  "files": [
+    {
+      "path": "registry/default/hooks/use-canvas-effect.ts",
+      "content": "/**\n * useCanvasEffect — React adapter over canvas-effect-core.\n *\n * Owns the whole canvas lifecycle so an effect only has to describe how to\n * paint one frame: sizing (DPR-aware, pixel-count capped), pausing when\n * off-screen or backgrounded, and `prefers-reduced-motion`.\n */\nimport { useEffect, useLayoutEffect, useRef, type RefObject } from 'react';\nimport {\n  mountCanvasEffect,\n  type CanvasEffectOptions,\n  type CanvasEffectSetup,\n} from '@/lib/canvas-effect-core';\n\nexport type {\n  CanvasEffectOptions,\n  CanvasEffectSetup,\n  CanvasEffectFrame,\n} from '@/lib/canvas-effect-core';\n\n/**\n * @param ref     Ref to the `<canvas>` element.\n * @param setup   Runs once after the canvas is sized. Allocate state here and\n *                return a `(dt) => void` frame function. `dt` is ms since the\n *                previous frame.\n * @param options Sizing and pause behaviour. Pass a stable object (or omit) —\n *                it is read once per mount.\n *\n * `setup` is captured in a ref, so an inline arrow closing over the latest\n * props works without re-mounting the effect on every render. Read live prop\n * values through refs inside the frame function, matching how these effects\n * already track `speed` and `palette`.\n *\n * @example\n * useCanvasEffect(canvasRef, (ctx, el) => {\n *   let t = 0\n *   return (dt) => {\n *     t += dt * 0.001 * speedRef.current\n *     ctx.clearRect(0, 0, el.width, el.height)\n *   }\n * })\n */\nexport function useCanvasEffect(\n  ref: RefObject<HTMLCanvasElement | null>,\n  setup: CanvasEffectSetup,\n  options?: CanvasEffectOptions\n) {\n  // Latest-ref pattern. Written in a layout effect rather than during render,\n  // which React forbids — and which runs before the mount effect below, so the\n  // first setup call already sees the current closure.\n  const setupRef = useRef(setup);\n  useLayoutEffect(() => {\n    setupRef.current = setup;\n  });\n\n  // Serialised so a fresh object literal with identical values doesn't remount.\n  const optionsKey = JSON.stringify(options ?? {});\n\n  useEffect(() => {\n    const handle = mountCanvasEffect(\n      ref.current,\n      (ctx, canvas, signal) => setupRef.current(ctx, canvas, signal),\n      options\n    );\n    return () => handle.dispose();\n    // eslint-disable-next-line react-hooks/exhaustive-deps\n  }, [ref, optionsKey]);\n}\n",
+      "type": "registry:hook",
+      "target": "hooks/use-canvas-effect.ts"
+    }
+  ],
+  "type": "registry:hook"
+}

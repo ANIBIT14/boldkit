@@ -122,10 +122,10 @@ export const PAGE_META: Record<string, RouteMeta> = {
     h1: 'Dot Matrix Studio — Pixel Art & Animation Editor',
   },
   '/canvas-effects': {
-    title: 'Canvas Effects — 19 Animated Canvas Components | BoldKit',
-    description: '19 free animated canvas components for React, Vue 3, and Nuxt — Dither, Halftone, CRT, Truchet, Aurora, Flow Field, Plasma, Metaballs, Lightning, Warp Speed, Gravity Wells, and more.',
+    title: 'Canvas Effects — 23 Animated Canvas Components | BoldKit',
+    description: '23 free animated canvas components for React, Vue 3, and Nuxt — Mesh Gradient, Swirl, God Rays, Pulsing Border, Dither, Halftone, CRT, Truchet, Aurora, Flow Field, Plasma, Metaballs, and more. Each pauses off-screen and honours reduced motion.',
     canonical: `${SITE_URL}/canvas-effects`,
-    h1: 'Canvas Effects — 19 Animated Canvas Components',
+    h1: 'Canvas Effects — 23 Animated Canvas Components',
   },
 
   // ── SEO / landing pages - neubrutalism topic cluster ──
@@ -457,6 +457,15 @@ export function getAllRoutes(): SitemapRoute[] {
   const routes: SitemapRoute[] = []
   const LAST_MODIFIED = '2026-04-15'
 
+  // Per-route overrides for pages that changed after LAST_MODIFIED. Bumping
+  // the global date instead would mark all 136 URLs as freshly updated, which
+  // is both untrue and the kind of signal search engines discount.
+  const UPDATED: Record<string, string> = {
+    '/canvas-effects': '2026-08-27',   // 4 new effects + shared lifecycle rewrite
+    '/': '2026-08-27',                 // homepage now features the new effects
+  }
+  const lastmodFor = (path: string) => UPDATED[path] ?? LAST_MODIFIED
+
   // Static pages
   const staticPriorities: Record<string, { priority: number; changefreq: string }> = {
     '/': { priority: 1.0, changefreq: 'weekly' },
@@ -498,7 +507,7 @@ export function getAllRoutes(): SitemapRoute[] {
   for (const [path, seo] of Object.entries(staticPriorities)) {
     const meta = PAGE_META[path]
     if (!meta) throw new Error(`Missing PAGE_META for path: ${path}`)
-    routes.push({ path, meta, ...seo, lastmod: LAST_MODIFIED, breadcrumbs: getBreadcrumbs(path) })
+    routes.push({ path, meta, ...seo, lastmod: lastmodFor(path), breadcrumbs: getBreadcrumbs(path) })
   }
 
   // Component pages

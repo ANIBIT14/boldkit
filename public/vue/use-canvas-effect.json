@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "use-canvas-effect",
+  "type": "registry:ui",
+  "description": "Vue composable that mounts an animated 2D canvas effect with a managed lifecycle — sizing, off-screen/background pausing, and reduced motion — so a component only describes how to paint one frame.",
+  "dependencies": [],
+  "registryDependencies": [
+    "@boldkit/utils",
+    "@boldkit/canvas-effect-core"
+  ],
+  "files": [
+    {
+      "path": "composables/useCanvasEffect.ts",
+      "type": "registry:composable"
+    }
+  ],
+  "title": "Use Canvas Effect"
+}

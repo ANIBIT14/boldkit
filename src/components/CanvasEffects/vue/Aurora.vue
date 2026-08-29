@@ -10,7 +10,8 @@
  * @example
  * <Aurora :colors="['#00ffaa', '#00beff', '#78ff64']" :star-count="160" :speed="1" />
  */
-import { ref, onMounted, onUnmounted } from 'vue'
+import { ref } from 'vue'
+import { useCanvasEffect } from '@/composables/useCanvasEffect'
 
 const props = withDefaults(defineProps<{
   /** Colors for each aurora curtain (up to 5) */
@@ -39,14 +40,8 @@ const BAND_CONFIGS = [
 ]
 
 const canvasRef = ref<HTMLCanvasElement | null>(null)
-let raf = 0
-let ro: ResizeObserver | null = null
 
-onMounted(() => {
-  const el = canvasRef.value
-  if (!el) return
-  const ctx = el.getContext('2d')
-  if (!ctx) return
+useCanvasEffect(canvasRef, (ctx, el) => {
 
   type Star = { x: number; y: number; r: number; p: number; s: number }
   let stars: Star[] = []
@@ -58,12 +53,11 @@ onMounted(() => {
       s: 0.5 + Math.random() * 2.5,
     }))
   }
-
-  const resize = () => { if (!el.offsetWidth || !el.offsetHeight) return; const dpr = window.devicePixelRatio || 1; el.width = el.offsetWidth * dpr; el.height = el.offsetHeight * dpr; initStars() }
-  resize()
+  // Normalised 0..1 coords survive a resize — one call at setup is enough.
+  initStars()
 
   let t = 0
-  const draw = () => {
+  return (_dt, frames) => {
     const W = el.width, H = el.height, spd = props.speed
     const bg = ctx.createLinearGradient(0, 0, 0, H)
     bg.addColorStop(0, '#010810'); bg.addColorStop(0.6, '#020c1a'); bg.addColorStop(1, '#04080f')
@@ -112,16 +106,9 @@ onMounted(() => {
     })
 
     ctx.globalAlpha = 1
-    t += 0.007 * spd
-    raf = requestAnimationFrame(draw)
+    t += 0.007 * spd * frames
   }
-
-  draw()
-  ro = new ResizeObserver(resize)
-  ro.observe(el)
 })
-
-onUnmounted(() => { cancelAnimationFrame(raf); ro?.disconnect() })
 </script>
 
 <template>

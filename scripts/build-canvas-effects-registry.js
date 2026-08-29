@@ -62,6 +62,18 @@ for (const { rDir, srcDir } of targets) {
 
     let changed = false
     if (!item.title) { item.title = toTitle(item.name); changed = true }
+
+    // Every effect now imports the shared lifecycle hook/composable instead of
+    // hand-rolling its rAF + ResizeObserver. Without this dependency the file
+    // installs fine and then fails at build time with "Cannot find module" —
+    // the same class of break registry:audit exists to catch.
+    // Both registries address siblings with the @boldkit/ namespace alias.
+    const lifecycleDep = '@boldkit/use-canvas-effect'
+    const deps = Array.isArray(item.registryDependencies) ? item.registryDependencies : []
+    if (!deps.includes(lifecycleDep)) {
+      item.registryDependencies = [...deps, lifecycleDep]
+      changed = true
+    }
     for (const f of item.files) {
       if (typeof f.path !== 'string' || !f.path.includes(CANVAS_PATH_SEG)) continue
       const srcPath = path.join(srcDir, path.basename(f.path))

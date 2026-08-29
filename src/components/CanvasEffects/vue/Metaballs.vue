@@ -6,7 +6,8 @@
  * @example
  * <Metaballs :colors="['#ff5050', '#3cb9ff', '#ffc32d']" :blob-radius="70" :speed="1" />
  */
-import { ref, onMounted, onUnmounted } from 'vue'
+import { ref } from 'vue'
+import { useCanvasEffect } from '@/composables/useCanvasEffect'
 
 const props = withDefaults(defineProps<{
   colors?: string[]
@@ -24,14 +25,8 @@ function hexToRgb(hex: string): [number, number, number] {
 }
 
 const canvasRef = ref<HTMLCanvasElement | null>(null)
-let raf = 0
-let ro: ResizeObserver | null = null
 
-onMounted(() => {
-  const el = canvasRef.value
-  if (!el) return
-  const ctx = el.getContext('2d')
-  if (!ctx) return
+useCanvasEffect(canvasRef, (ctx, el) => {
   const SCALE = 3
 
   type Ball = { x: number; y: number; vx: number; vy: number; r: number; rgb: [number, number, number] }
@@ -52,16 +47,19 @@ onMounted(() => {
   const offCtx = off.getContext('2d')
   if (!offCtx) return
 
-  const resize = () => { if (!el.offsetWidth || !el.offsetHeight) return; const dpr = window.devicePixelRatio || 1; el.width = el.offsetWidth * dpr; el.height = el.offsetHeight * dpr; init() }
-  resize()
 
-  const draw = () => {
+  let lastW = 0, lastH = 0
+  return (_dt, frames) => {
+    if (el.width !== lastW || el.height !== lastH) {
+      lastW = el.width; lastH = el.height
+      init()
+    }
     const W = el.width, H = el.height, spd = props.speed
     const iw = Math.ceil(W / SCALE), ih = Math.ceil(H / SCALE)
     if (off.width !== iw || off.height !== ih) { off.width = iw; off.height = ih }
 
     balls.forEach(b => {
-      b.x += b.vx * spd; b.y += b.vy * spd
+      b.x += b.vx * spd * frames; b.y += b.vy * spd * frames
       if (b.x < 0 || b.x > W) b.vx *= -1
       if (b.y < 0 || b.y > H) b.vy *= -1
     })
@@ -88,15 +86,8 @@ onMounted(() => {
     ctx.clearRect(0, 0, W, H)
     ctx.imageSmoothingEnabled = true; ctx.imageSmoothingQuality = 'high'
     ctx.drawImage(off, 0, 0, W, H)
-    raf = requestAnimationFrame(draw)
   }
-
-  draw()
-  ro = new ResizeObserver(resize)
-  ro.observe(el)
 })
-
-onUnmounted(() => { cancelAnimationFrame(raf); ro?.disconnect() })
 </script>
 
 <template>

@@ -8,7 +8,8 @@
  * @example
  * <WarpSpeed :star-count="300" :speed="1" :hue-start="220" :trail-length="1" />
  */
-import { ref, onMounted, onUnmounted } from 'vue'
+import { ref } from 'vue'
+import { useCanvasEffect } from '@/composables/useCanvasEffect'
 
 const props = withDefaults(defineProps<{
   /** Number of stars in the field */
@@ -27,14 +28,8 @@ const props = withDefaults(defineProps<{
 })
 
 const canvasRef = ref<HTMLCanvasElement | null>(null)
-let raf = 0
-let ro: ResizeObserver | null = null
 
-onMounted(() => {
-  const el = canvasRef.value
-  if (!el) return
-  const ctx = el.getContext('2d')
-  if (!ctx) return
+useCanvasEffect(canvasRef, (ctx, el) => {
 
   type Star = { x: number; y: number; z: number; pz: number; hue: number }
   let stars: Star[] = []
@@ -49,25 +44,23 @@ onMounted(() => {
 
   const init = () => { stars = Array.from({ length: props.starCount }, () => { const s = spawn(); s.pz = s.z; return s }) }
 
-  const resize = () => {
-    const dpr = window.devicePixelRatio || 1
-    if (el.offsetWidth > 0)  el.width  = el.offsetWidth  * dpr
-    if (el.offsetHeight > 0) el.height = el.offsetHeight * dpr
-    init()
-  }
-  resize()
 
-  const draw = () => {
+  let lastW = 0, lastH = 0
+  return (_dt, frames) => {
+    if (el.width !== lastW || el.height !== lastH) {
+      lastW = el.width; lastH = el.height
+      init()
+    }
     const W = el.width, H = el.height
     const cx = W / 2, cy = H / 2
     const spd = props.speed, tl = props.trailLength
 
-    ctx.fillStyle = 'rgba(0,0,0,0.15)'
+    ctx.fillStyle = `rgba(0,0,0,${1 - Math.pow(1 - 0.15, frames)})`
     ctx.fillRect(0, 0, W, H)
 
     stars.forEach((s, i) => {
       s.pz = s.z
-      s.z -= 0.012 * spd
+      s.z -= 0.012 * spd * frames
 
       if (s.z <= 0.001) { stars[i] = spawn(); stars[i].pz = stars[i].z; return }
 
@@ -98,15 +91,8 @@ onMounted(() => {
     })
 
     ctx.globalAlpha = 1
-    raf = requestAnimationFrame(draw)
   }
-
-  draw()
-  ro = new ResizeObserver(resize)
-  ro.observe(el)
 })
-
-onUnmounted(() => { cancelAnimationFrame(raf); ro?.disconnect() })
 </script>
 
 <template>

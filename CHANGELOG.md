@@ -5,6 +5,76 @@ Format follows [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ---
 
+## [3.5.2] — 2026-08-29 — Canvas lifecycle & 4 new effects
+
+Every CanvasEffect used to hand-roll the same four concerns — size the backing store, start a rAF
+loop, observe resize, cancel on teardown. None paused when scrolled out of view, none paused in a
+background tab, none capped the pixel count on a 4K display, and none respected
+`prefers-reduced-motion`. That was 19 effects × 2 frameworks each burning a core rendering pixels
+nobody could see. This release moves all of it into one shared lifecycle, and adds four new effects
+on top of it.
+
+### Added
+
+✨ **Four new canvas effects** — React and Vue, inspired by the paper-shaders catalogue:
+- **Mesh Gradient** — drifting colour control points blended per pixel, with a `steps` prop that
+  posterises the field into hard screen-printed bands
+- **Swirl** — colour bands wound into a spiral by radius; razor-sharp by default, `softness` to blend
+- **God Rays** — a fan of volumetric light wedges radiating from a configurable source
+- **Pulsing Border** — light spots orbit a frame and bleed inward, leaving the centre clear for content
+
+✨ **`useCanvasEffect`** (React hook) and **`useCanvasEffect`** (Vue composable) over a new
+framework-agnostic `canvas-effect-core`, mirroring the existing `motion-core` → adapter split. An
+effect now describes how to paint one frame; the lifecycle owns everything else.
+
+✨ **`onReducedMotionChange`** in `motion-core` — `prefersReducedMotion()` is a point-in-time read,
+which is enough for a one-shot animation but not for a long-lived loop that must stop the moment the
+user flips the OS setting.
+
+### Behaviour changes
+
+🩹 **Effects pause when off-screen or backgrounded.** An IntersectionObserver and `visibilitychange`
+cancel the rAF outright rather than looping with a no-op frame, so a paused effect costs nothing.
+
+🩹 **Backing stores are capped at ~4M pixels** and sized from `devicePixelContentBoxSize` where
+available. A full-bleed canvas on a 4K display was allocating ~8.3M pixels per frame of per-pixel JS.
+
+🩹 **Motion is refresh-rate independent.** Effects advanced time per *frame*, so they ran at double
+speed on a 120Hz display. Frame callbacks now receive a normalised delta. Alpha-based trails
+(Matrix Rain, Flow Field, Gravity Wells, Warp Speed) compound over that delta so trail length is
+unchanged between 60Hz and 120Hz.
+
+🩹 **`prefers-reduced-motion` renders one static frame** instead of animating, and reacts live.
+
+### Fixed
+
+🐛 **`Halftone` pointer listeners were unreachable** in both frameworks — registered after the frame
+function returned, so hover interaction never worked.
+
+🐛 **`Truchet` and `Halftone` mis-scaled** their tile size, line width, gap and cursor position; the
+device-pixel ratio they multiplied by was never assigned.
+
+🐛 **`Truchet`'s category badge was invisible** on the docs site — `#0a0a0a` text on its `#111111`
+accent. Badge text colour is now derived from the accent's relative luminance.
+
+🐛 **`FlowField` had drifted out of parity** between React and Vue.
+
+🐛 **`MouseRipple` drew into a quarter of its canvas** at DPR 2 — it draws in CSS pixels, and the
+scale transform is now re-applied by the lifecycle on every resize (assigning `canvas.width` resets it).
+
+### Internals
+
+🔬 **The Vue CanvasEffects had no automated coverage.** They live outside every `tsconfig` and every
+vitest project, so they shipped to consumers unchecked — which is how the parity drift above survived.
+Added `typecheck:vue-canvas` and a 48-test suite covering all 23 Vue effects, plus a matching 48-test
+React suite and 14 lifecycle tests. `bun run test:vue` runs the Vue project.
+
+🔬 **Registry:** `canvas-effect-core` and `use-canvas-effect` ship as their own items in both
+registries; all 38 canvas-effect items declare the dependency, so a `shadcn add` of any effect pulls
+the lifecycle with it.
+
+---
+
 ## [3.5.1] — 2026-08-11 — Accessibility sweep, live CTAs & audit fixes
 
 A six-pass audit of everything shipped since v3.4.8, across React and Vue. 30+ bugs fixed, two

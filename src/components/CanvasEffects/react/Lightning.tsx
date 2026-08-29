@@ -1,4 +1,5 @@
 import { useEffect, useRef, type CSSProperties } from 'react'
+import { useCanvasEffect } from '@/hooks/use-canvas-effect'
 
 export interface LightningProps {
   /** Primary bolt color */
@@ -42,19 +43,7 @@ export function Lightning({
   useEffect(() => { branchRef.current   = branches     }, [branches])
   useEffect(() => { speedRef.current    = speed        }, [speed])
 
-  useEffect(() => {
-    const el = ref.current
-    if (!el) return
-    const ctx = el.getContext('2d')
-    if (!ctx) return
-    let raf = 0
-
-    const resize = () => {
-      const dpr = window.devicePixelRatio || 1
-      if (el.offsetWidth > 0)  el.width  = el.offsetWidth  * dpr
-      if (el.offsetHeight > 0) el.height = el.offsetHeight * dpr
-    }
-    resize()
+  useCanvasEffect(ref, (ctx, el) => {
 
     // Midpoint displacement — creates jagged bolt path
     function subdivide(
@@ -110,7 +99,7 @@ export function Lightning({
       bolts.push({ segments: allSegments, alpha: 1.2, width: 2.5, color: col })
     }
 
-    const draw = () => {
+    return (_dt, frames) => {
       const W = el.width, H = el.height
       const spd = speedRef.current
 
@@ -119,7 +108,7 @@ export function Lightning({
       ctx.fillRect(0, 0, W, H)
 
       // Spawn timer
-      timer += 0.016 * spd
+      timer += 0.016 * spd * frames
       if (timer >= intervalRef.current) {
         spawnBolt()
         timer = 0
@@ -172,14 +161,8 @@ export function Lightning({
         return true
       })
 
-      raf = requestAnimationFrame(draw)
     }
-
-    draw()
-    const ro = new ResizeObserver(resize)
-    ro.observe(el)
-    return () => { cancelAnimationFrame(raf); ro.disconnect() }
-  }, [])
+  })
 
   return (
     <canvas

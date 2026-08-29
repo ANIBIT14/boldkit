@@ -20,7 +20,7 @@ This file is generated from BoldKit's source of truth (route metadata + the buil
 - **Blocks:** 15 section blocks (10 marketing + 5 application)
 - **Templates:** 7 full-page templates
 - **Frameworks:** React 19, Vue 3, Nuxt
-- **Canvas Effects:** 19 zero-dependency animated canvas components
+- **Canvas Effects:** 23 animated canvas components (pause off-screen, reduced-motion aware)
 - **Tools:** FavGrab (favicon extractor & image converter), Dot Matrix Studio (pixel art & animation editor), Shape Builder, Theme Builder
 - **Guides:** Neubrutalism guide cluster (what it is, colors, fonts, examples, vs brutalism) + favicon/image tool guides
 - **Styling:** Tailwind CSS v4 with CSS variables
@@ -100,9 +100,13 @@ BoldKit includes a free in-browser **Dot Matrix Studio** at https://boldkit.dev/
 
 ## Canvas Effects
 
-BoldKit includes 19 animated canvas components at https://boldkit.dev/canvas-effects — zero external dependencies, fully typed, compatible with React, Vue 3, and Nuxt 3. Install any effect via `npx shadcn@latest add "https://boldkit.dev/r/<id>.json"` (Vue: `/r/vue/<id>.json`).
+BoldKit includes 23 animated canvas components at https://boldkit.dev/canvas-effects — no external dependencies, fully typed, compatible with React, Vue 3, and Nuxt 3. Every effect runs on a shared lifecycle that pauses the frame loop off-screen and in background tabs, caps the backing-store pixel count, and honours `prefers-reduced-motion`. Install any effect via `npx shadcn@latest add "https://boldkit.dev/r/<id>.json"` (Vue: `/r/vue/<id>.json`).
 
-**All 19 effects:**
+**All 23 effects:**
+- **Mesh Gradient** (`mesh-gradient`) — drifting colour control points blended per pixel, with optional hard posterised bands
+- **Swirl** (`swirl`) — hard-edged colour bands wound into a spiral by radius
+- **God Rays** (`god-rays`) — a fan of volumetric light wedges radiating from a configurable source
+- **Pulsing Border** (`pulsing-border`) — light spots orbit a frame and bleed inward, leaving the centre clear
 - **Dither** (`dither`) — a drifting plasma field quantised to two colors via a 4×4 Bayer matrix; the classic 1-bit / Game Boy look
 - **Halftone** (`halftone`) — print-style dot grid sized by a drifting brightness field; the cursor brightens nearby dots
 - **CRT** (`crt`) — retro cathode-ray screen with phosphor scanlines, a rolling brightness band, vignette and flicker
@@ -1172,9 +1176,9 @@ https://boldkit.dev/blocks
 https://boldkit.dev/studio
 Free in-browser dot matrix editor — draw pixel art, build frame-by-frame animations with 8 presets, export to WebM, PNG, SVG, or JSON.
 
-### Canvas Effects — 19 Animated Canvas Components
+### Canvas Effects — 23 Animated Canvas Components
 https://boldkit.dev/canvas-effects
-19 free animated canvas components for React, Vue 3, and Nuxt — Dither, Halftone, CRT, Truchet, Aurora, Flow Field, Plasma, Metaballs, Lightning, Warp Speed, Gravity Wells, and more.
+23 free animated canvas components for React, Vue 3, and Nuxt — Mesh Gradient, Swirl, God Rays, Pulsing Border, Dither, Halftone, CRT, Truchet, Aurora, Flow Field, Plasma, Metaballs, and more. Each pauses off-screen and honours reduced motion.
 
 ### What Is Neubrutalism? The Complete Guide (2026)
 https://boldkit.dev/neubrutalism
@@ -1664,7 +1668,7 @@ Free neubrutalism docs template for React and Vue 3. Copy, paste, and customize 
 Every BoldKit registry item is installed via the shadcn CLI — the source is
 copied directly into your project (there is no npm package to import).
 
-### React (114 items)
+### React (120 items)
 
 ```bash
 npx shadcn@latest add "https://boldkit.dev/r/accordion.json"
@@ -1679,6 +1683,7 @@ npx shadcn@latest add "https://boldkit.dev/r/breadcrumb.json"
 npx shadcn@latest add "https://boldkit.dev/r/button.json"
 npx shadcn@latest add "https://boldkit.dev/r/button-group.json"
 npx shadcn@latest add "https://boldkit.dev/r/calendar.json"
+npx shadcn@latest add "https://boldkit.dev/r/canvas-effect-core.json"
 npx shadcn@latest add "https://boldkit.dev/r/card.json"
 npx shadcn@latest add "https://boldkit.dev/r/carousel.json"
 npx shadcn@latest add "https://boldkit.dev/r/chart.json"
@@ -1707,6 +1712,7 @@ npx shadcn@latest add "https://boldkit.dev/r/field.json"
 npx shadcn@latest add "https://boldkit.dev/r/flow-field.json"
 npx shadcn@latest add "https://boldkit.dev/r/funnel-chart.json"
 npx shadcn@latest add "https://boldkit.dev/r/gauge-chart.json"
+npx shadcn@latest add "https://boldkit.dev/r/god-rays.json"
 npx shadcn@latest add "https://boldkit.dev/r/gravity-wells.json"
 npx shadcn@latest add "https://boldkit.dev/r/halftone.json"
 npx shadcn@latest add "https://boldkit.dev/r/heatmap-chart.json"
@@ -1726,6 +1732,7 @@ npx shadcn@latest add "https://boldkit.dev/r/math-curve-progress.json"
 npx shadcn@latest add "https://boldkit.dev/r/math-curves.json"
 npx shadcn@latest add "https://boldkit.dev/r/matrix-rain.json"
 npx shadcn@latest add "https://boldkit.dev/r/menubar.json"
+npx shadcn@latest add "https://boldkit.dev/r/mesh-gradient.json"
 npx shadcn@latest add "https://boldkit.dev/r/metaballs.json"
 npx shadcn@latest add "https://boldkit.dev/r/motion.json"
 npx shadcn@latest add "https://boldkit.dev/r/motion-core.json"
@@ -1739,6 +1746,7 @@ npx shadcn@latest add "https://boldkit.dev/r/particle-web.json"
 npx shadcn@latest add "https://boldkit.dev/r/plasma.json"
 npx shadcn@latest add "https://boldkit.dev/r/popover.json"
 npx shadcn@latest add "https://boldkit.dev/r/progress.json"
+npx shadcn@latest add "https://boldkit.dev/r/pulsing-border.json"
 npx shadcn@latest add "https://boldkit.dev/r/radar-chart.json"
 npx shadcn@latest add "https://boldkit.dev/r/radial-bar-chart.json"
 npx shadcn@latest add "https://boldkit.dev/r/radio-group.json"
@@ -1761,6 +1769,7 @@ npx shadcn@latest add "https://boldkit.dev/r/stat-card.json"
 npx shadcn@latest add "https://boldkit.dev/r/stepper.json"
 npx shadcn@latest add "https://boldkit.dev/r/sticker.json"
 npx shadcn@latest add "https://boldkit.dev/r/styles.json"
+npx shadcn@latest add "https://boldkit.dev/r/swirl.json"
 npx shadcn@latest add "https://boldkit.dev/r/switch.json"
 npx shadcn@latest add "https://boldkit.dev/r/table.json"
 npx shadcn@latest add "https://boldkit.dev/r/tabs.json"
@@ -1777,13 +1786,14 @@ npx shadcn@latest add "https://boldkit.dev/r/tour.json"
 npx shadcn@latest add "https://boldkit.dev/r/tree-view.json"
 npx shadcn@latest add "https://boldkit.dev/r/treemap-chart.json"
 npx shadcn@latest add "https://boldkit.dev/r/truchet.json"
+npx shadcn@latest add "https://boldkit.dev/r/use-canvas-effect.json"
 npx shadcn@latest add "https://boldkit.dev/r/use-theme.json"
 npx shadcn@latest add "https://boldkit.dev/r/utils.json"
 npx shadcn@latest add "https://boldkit.dev/r/voronoi-pulse.json"
 npx shadcn@latest add "https://boldkit.dev/r/warp-speed.json"
 ```
 
-### Vue 3 / Nuxt (115 items)
+### Vue 3 / Nuxt (121 items)
 
 ```bash
 npx shadcn-vue@latest add "https://boldkit.dev/r/vue/accordion.json"
@@ -1798,6 +1808,7 @@ npx shadcn-vue@latest add "https://boldkit.dev/r/vue/breadcrumb.json"
 npx shadcn-vue@latest add "https://boldkit.dev/r/vue/button.json"
 npx shadcn-vue@latest add "https://boldkit.dev/r/vue/button-group.json"
 npx shadcn-vue@latest add "https://boldkit.dev/r/vue/calendar.json"
+npx shadcn-vue@latest add "https://boldkit.dev/r/vue/canvas-effect-core.json"
 npx shadcn-vue@latest add "https://boldkit.dev/r/vue/card.json"
 npx shadcn-vue@latest add "https://boldkit.dev/r/vue/carousel.json"
 npx shadcn-vue@latest add "https://boldkit.dev/r/vue/chart.json"
@@ -1827,6 +1838,7 @@ npx shadcn-vue@latest add "https://boldkit.dev/r/vue/field.json"
 npx shadcn-vue@latest add "https://boldkit.dev/r/vue/flow-field.json"
 npx shadcn-vue@latest add "https://boldkit.dev/r/vue/funnel-chart.json"
 npx shadcn-vue@latest add "https://boldkit.dev/r/vue/gauge-chart.json"
+npx shadcn-vue@latest add "https://boldkit.dev/r/vue/god-rays.json"
 npx shadcn-vue@latest add "https://boldkit.dev/r/vue/gravity-wells.json"
 npx shadcn-vue@latest add "https://boldkit.dev/r/vue/halftone.json"
 npx shadcn-vue@latest add "https://boldkit.dev/r/vue/heatmap-chart.json"
@@ -1847,6 +1859,7 @@ npx shadcn-vue@latest add "https://boldkit.dev/r/vue/math-curve-progress.json"
 npx shadcn-vue@latest add "https://boldkit.dev/r/vue/math-curves.json"
 npx shadcn-vue@latest add "https://boldkit.dev/r/vue/matrix-rain.json"
 npx shadcn-vue@latest add "https://boldkit.dev/r/vue/menubar.json"
+npx shadcn-vue@latest add "https://boldkit.dev/r/vue/mesh-gradient.json"
 npx shadcn-vue@latest add "https://boldkit.dev/r/vue/metaballs.json"
 npx shadcn-vue@latest add "https://boldkit.dev/r/vue/motion.json"
 npx shadcn-vue@latest add "https://boldkit.dev/r/vue/motion-core.json"
@@ -1859,6 +1872,7 @@ npx shadcn-vue@latest add "https://boldkit.dev/r/vue/particle-web.json"
 npx shadcn-vue@latest add "https://boldkit.dev/r/vue/plasma.json"
 npx shadcn-vue@latest add "https://boldkit.dev/r/vue/popover.json"
 npx shadcn-vue@latest add "https://boldkit.dev/r/vue/progress.json"
+npx shadcn-vue@latest add "https://boldkit.dev/r/vue/pulsing-border.json"
 npx shadcn-vue@latest add "https://boldkit.dev/r/vue/radar-chart.json"
 npx shadcn-vue@latest add "https://boldkit.dev/r/vue/radial-bar-chart.json"
 npx shadcn-vue@latest add "https://boldkit.dev/r/vue/radio-group.json"
@@ -1880,6 +1894,7 @@ npx shadcn-vue@latest add "https://boldkit.dev/r/vue/stat-card.json"
 npx shadcn-vue@latest add "https://boldkit.dev/r/vue/stepper.json"
 npx shadcn-vue@latest add "https://boldkit.dev/r/vue/sticker.json"
 npx shadcn-vue@latest add "https://boldkit.dev/r/vue/styles.json"
+npx shadcn-vue@latest add "https://boldkit.dev/r/vue/swirl.json"
 npx shadcn-vue@latest add "https://boldkit.dev/r/vue/switch.json"
 npx shadcn-vue@latest add "https://boldkit.dev/r/vue/table.json"
 npx shadcn-vue@latest add "https://boldkit.dev/r/vue/tabs.json"
@@ -1896,6 +1911,7 @@ npx shadcn-vue@latest add "https://boldkit.dev/r/vue/tour.json"
 npx shadcn-vue@latest add "https://boldkit.dev/r/vue/tree-view.json"
 npx shadcn-vue@latest add "https://boldkit.dev/r/vue/treemap-chart.json"
 npx shadcn-vue@latest add "https://boldkit.dev/r/vue/truchet.json"
+npx shadcn-vue@latest add "https://boldkit.dev/r/vue/use-canvas-effect.json"
 npx shadcn-vue@latest add "https://boldkit.dev/r/vue/use-motion.json"
 npx shadcn-vue@latest add "https://boldkit.dev/r/vue/use-theme.json"
 npx shadcn-vue@latest add "https://boldkit.dev/r/vue/utils.json"

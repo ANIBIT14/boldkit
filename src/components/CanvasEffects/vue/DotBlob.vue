@@ -8,7 +8,8 @@
  * @example
  * <DotBlob color="#c9ba4c" :dot-size="4" :gap="9" :speed="1" :threshold="0.28" />
  */
-import { ref, onMounted, onUnmounted } from 'vue'
+import { ref } from 'vue'
+import { useCanvasEffect } from '@/composables/useCanvasEffect'
 
 const props = withDefaults(defineProps<{
   /** Dot fill color */
@@ -30,17 +31,9 @@ const props = withDefaults(defineProps<{
 })
 
 const canvasRef = ref<HTMLCanvasElement | null>(null)
-let raf = 0
-let ro: ResizeObserver | null = null
 
-onMounted(() => {
-  const el = canvasRef.value
-  if (!el) return
-  const ctx = el.getContext('2d')
-  if (!ctx) return
+useCanvasEffect(canvasRef, (ctx, el) => {
 
-  const resize = () => { if (!el.offsetWidth || !el.offsetHeight) return; const dpr = window.devicePixelRatio || 1; el.width = el.offsetWidth * dpr; el.height = el.offsetHeight * dpr }
-  resize()
 
   const gauss = (px: number, py: number, cx: number, cy: number, rx: number, ry: number) => {
     const dx = (px - cx) / rx, dy = (py - cy) / ry
@@ -48,7 +41,7 @@ onMounted(() => {
   }
 
   let t = 0
-  const draw = () => {
+  return (_dt, frames) => {
     const GAP = props.gap, MAX_DOT = props.dotSize, THRESHOLD = props.threshold
     const W = el.width, H = el.height
     ctx.clearRect(0, 0, W, H)
@@ -79,16 +72,9 @@ onMounted(() => {
       }
     }
     ctx.globalAlpha = 1
-    t += 0.032 * props.speed
-    raf = requestAnimationFrame(draw)
+    t += 0.032 * props.speed * frames
   }
-
-  draw()
-  ro = new ResizeObserver(resize)
-  ro.observe(el)
 })
-
-onUnmounted(() => { cancelAnimationFrame(raf); ro?.disconnect() })
 </script>
 
 <template>

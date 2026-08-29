@@ -209,7 +209,9 @@
       "react": {
         "url": "https://boldkit.dev/r/aurora.json",
         "dependencies": [],
-        "registryDependencies": [],
+        "registryDependencies": [
+          "@boldkit/use-canvas-effect"
+        ],
         "files": [
           "registry/default/ui/canvas-effects/Aurora.tsx"
         ]
@@ -217,7 +219,9 @@
       "vue": {
         "url": "https://boldkit.dev/r/vue/aurora.json",
         "dependencies": [],
-        "registryDependencies": [],
+        "registryDependencies": [
+          "@boldkit/use-canvas-effect"
+        ],
         "files": [
           "components/ui/canvas-effects/Aurora.vue"
         ]
@@ -446,6 +450,36 @@
         "vue"
       ],
       "docsUrl": "https://boldkit.dev/components/calendar"
+    },
+    {
+      "name": "canvas-effect-core",
+      "type": "registry:lib",
+      "description": "BoldKit Canvas Effect core — framework-agnostic canvas lifecycle shared by every CanvasEffect: DPR-aware sizing with a pixel-count cap, pausing when off-screen or in a background tab, and prefers-reduced-motion support.",
+      "react": {
+        "url": "https://boldkit.dev/r/canvas-effect-core.json",
+        "dependencies": [],
+        "registryDependencies": [
+          "@boldkit/motion-core"
+        ],
+        "files": [
+          "registry/default/lib/canvas-effect-core.ts"
+        ]
+      },
+      "vue": {
+        "url": "https://boldkit.dev/r/vue/canvas-effect-core.json",
+        "dependencies": [],
+        "registryDependencies": [
+          "@boldkit/utils",
+          "@boldkit/motion-core"
+        ],
+        "files": [
+          "lib/canvas-effect-core.ts"
+        ]
+      },
+      "frameworks": [
+        "react",
+        "vue"
+      ]
     },
     {
       "name": "card",
@@ -872,7 +906,9 @@
       "react": {
         "url": "https://boldkit.dev/r/crt.json",
         "dependencies": [],
-        "registryDependencies": [],
+        "registryDependencies": [
+          "@boldkit/use-canvas-effect"
+        ],
         "files": [
           "registry/default/ui/canvas-effects/CRT.tsx"
         ]
@@ -880,7 +916,9 @@
       "vue": {
         "url": "https://boldkit.dev/r/vue/crt.json",
         "dependencies": [],
-        "registryDependencies": [],
+        "registryDependencies": [
+          "@boldkit/use-canvas-effect"
+        ],
         "files": [
           "components/ui/canvas-effects/CRT.vue"
         ]
@@ -1074,7 +1112,9 @@
       "react": {
         "url": "https://boldkit.dev/r/dither.json",
         "dependencies": [],
-        "registryDependencies": [],
+        "registryDependencies": [
+          "@boldkit/use-canvas-effect"
+        ],
         "files": [
           "registry/default/ui/canvas-effects/Dither.tsx"
         ]
@@ -1082,7 +1122,9 @@
       "vue": {
         "url": "https://boldkit.dev/r/vue/dither.json",
         "dependencies": [],
-        "registryDependencies": [],
+        "registryDependencies": [
+          "@boldkit/use-canvas-effect"
+        ],
         "files": [
           "components/ui/canvas-effects/Dither.vue"
         ]
@@ -1141,7 +1183,9 @@
       "react": {
         "url": "https://boldkit.dev/r/dot-blob.json",
         "dependencies": [],
-        "registryDependencies": [],
+        "registryDependencies": [
+          "@boldkit/use-canvas-effect"
+        ],
         "files": [
           "registry/default/ui/canvas-effects/DotBlob.tsx"
         ]
@@ -1149,7 +1193,9 @@
       "vue": {
         "url": "https://boldkit.dev/r/vue/dot-blob.json",
         "dependencies": [],
-        "registryDependencies": [],
+        "registryDependencies": [
+          "@boldkit/use-canvas-effect"
+        ],
         "files": [
           "components/ui/canvas-effects/DotBlob.vue"
         ]
@@ -1167,7 +1213,9 @@
       "react": {
         "url": "https://boldkit.dev/r/dot-wave.json",
         "dependencies": [],
-        "registryDependencies": [],
+        "registryDependencies": [
+          "@boldkit/use-canvas-effect"
+        ],
         "files": [
           "registry/default/ui/canvas-effects/DotWave.tsx"
         ]
@@ -1175,7 +1223,9 @@
       "vue": {
         "url": "https://boldkit.dev/r/vue/dot-wave.json",
         "dependencies": [],
-        "registryDependencies": [],
+        "registryDependencies": [
+          "@boldkit/use-canvas-effect"
+        ],
         "files": [
           "components/ui/canvas-effects/DotWave.vue"
         ]
@@ -1436,7 +1486,9 @@
       "react": {
         "url": "https://boldkit.dev/r/flow-field.json",
         "dependencies": [],
-        "registryDependencies": [],
+        "registryDependencies": [
+          "@boldkit/use-canvas-effect"
+        ],
         "files": [
           "registry/default/ui/canvas-effects/FlowField.tsx"
         ]
@@ -1444,7 +1496,9 @@
       "vue": {
         "url": "https://boldkit.dev/r/vue/flow-field.json",
         "dependencies": [],
-        "registryDependencies": [],
+        "registryDependencies": [
+          "@boldkit/use-canvas-effect"
+        ],
         "files": [
           "components/ui/canvas-effects/FlowField.vue"
         ]
@@ -1529,13 +1583,45 @@
       "docsUrl": "https://boldkit.dev/components/gauge-chart"
     },
     {
+      "name": "god-rays",
+      "type": "registry:ui",
+      "description": "Volumetric light shafts — a fan of hard-edged wedges radiating from a light source",
+      "react": {
+        "url": "https://boldkit.dev/r/god-rays.json",
+        "dependencies": [],
+        "registryDependencies": [
+          "@boldkit/use-canvas-effect"
+        ],
+        "files": [
+          "registry/default/ui/canvas-effects/GodRays.tsx"
+        ]
+      },
+      "vue": {
+        "url": "https://boldkit.dev/r/vue/god-rays.json",
+        "dependencies": [],
+        "registryDependencies": [
+          "@boldkit/use-canvas-effect"
+        ],
+        "files": [
+          "components/ui/canvas-effects/GodRays.vue"
+        ]
+      },
+      "frameworks": [
+        "react",
+        "vue"
+      ],
+      "docsUrl": "https://boldkit.dev/components/god-rays"
+    },
+    {
       "name": "gravity-wells",
       "type": "registry:ui",
       "description": "Orbital particle physics — particles orbit gravitational attractors forming accretion-disk spirals",
       "react": {
         "url": "https://boldkit.dev/r/gravity-wells.json",
         "dependencies": [],
-        "registryDependencies": [],
+        "registryDependencies": [
+          "@boldkit/use-canvas-effect"
+        ],
         "files": [
           "registry/default/ui/canvas-effects/GravityWells.tsx"
         ]
@@ -1543,7 +1629,9 @@
       "vue": {
         "url": "https://boldkit.dev/r/vue/gravity-wells.json",
         "dependencies": [],
-        "registryDependencies": [],
+        "registryDependencies": [
+          "@boldkit/use-canvas-effect"
+        ],
         "files": [
           "components/ui/canvas-effects/GravityWells.vue"
         ]
@@ -1561,7 +1649,9 @@
       "react": {
         "url": "https://boldkit.dev/r/halftone.json",
         "dependencies": [],
-        "registryDependencies": [],
+        "registryDependencies": [
+          "@boldkit/use-canvas-effect"
+        ],
         "files": [
           "registry/default/ui/canvas-effects/Halftone.tsx"
         ]
@@ -1569,7 +1659,9 @@
       "vue": {
         "url": "https://boldkit.dev/r/vue/halftone.json",
         "dependencies": [],
-        "registryDependencies": [],
+        "registryDependencies": [
+          "@boldkit/use-canvas-effect"
+        ],
         "files": [
           "components/ui/canvas-effects/Halftone.vue"
         ]
@@ -1874,7 +1966,9 @@
       "react": {
         "url": "https://boldkit.dev/r/lightning.json",
         "dependencies": [],
-        "registryDependencies": [],
+        "registryDependencies": [
+          "@boldkit/use-canvas-effect"
+        ],
         "files": [
           "registry/default/ui/canvas-effects/Lightning.tsx"
         ]
@@ -1882,7 +1976,9 @@
       "vue": {
         "url": "https://boldkit.dev/r/vue/lightning.json",
         "dependencies": [],
-        "registryDependencies": [],
+        "registryDependencies": [
+          "@boldkit/use-canvas-effect"
+        ],
         "files": [
           "components/ui/canvas-effects/Lightning.vue"
         ]
@@ -1900,7 +1996,9 @@
       "react": {
         "url": "https://boldkit.dev/r/lissajous-grid.json",
         "dependencies": [],
-        "registryDependencies": [],
+        "registryDependencies": [
+          "@boldkit/use-canvas-effect"
+        ],
         "files": [
           "registry/default/ui/canvas-effects/LissajousGrid.tsx"
         ]
@@ -1908,7 +2006,9 @@
       "vue": {
         "url": "https://boldkit.dev/r/vue/lissajous-grid.json",
         "dependencies": [],
-        "registryDependencies": [],
+        "registryDependencies": [
+          "@boldkit/use-canvas-effect"
+        ],
         "files": [
           "components/ui/canvas-effects/LissajousGrid.vue"
         ]
@@ -2096,7 +2196,9 @@
       "react": {
         "url": "https://boldkit.dev/r/matrix-rain.json",
         "dependencies": [],
-        "registryDependencies": [],
+        "registryDependencies": [
+          "@boldkit/use-canvas-effect"
+        ],
         "files": [
           "registry/default/ui/canvas-effects/MatrixRain.tsx"
         ]
@@ -2104,7 +2206,9 @@
       "vue": {
         "url": "https://boldkit.dev/r/vue/matrix-rain.json",
         "dependencies": [],
-        "registryDependencies": [],
+        "registryDependencies": [
+          "@boldkit/use-canvas-effect"
+        ],
         "files": [
           "components/ui/canvas-effects/MatrixRain.vue"
         ]
@@ -2165,13 +2269,45 @@
       "docsUrl": "https://boldkit.dev/components/menubar"
     },
     {
+      "name": "mesh-gradient",
+      "type": "registry:ui",
+      "description": "Drifting colour field — control points wander and blend, with optional hard posterised bands",
+      "react": {
+        "url": "https://boldkit.dev/r/mesh-gradient.json",
+        "dependencies": [],
+        "registryDependencies": [
+          "@boldkit/use-canvas-effect"
+        ],
+        "files": [
+          "registry/default/ui/canvas-effects/MeshGradient.tsx"
+        ]
+      },
+      "vue": {
+        "url": "https://boldkit.dev/r/vue/mesh-gradient.json",
+        "dependencies": [],
+        "registryDependencies": [
+          "@boldkit/use-canvas-effect"
+        ],
+        "files": [
+          "components/ui/canvas-effects/MeshGradient.vue"
+        ]
+      },
+      "frameworks": [
+        "react",
+        "vue"
+      ],
+      "docsUrl": "https://boldkit.dev/components/mesh-gradient"
+    },
+    {
       "name": "metaballs",
       "type": "registry:ui",
       "description": "Organic blob merging — colored blobs merge via r²/d² scalar field threshold",
       "react": {
         "url": "https://boldkit.dev/r/metaballs.json",
         "dependencies": [],
-        "registryDependencies": [],
+        "registryDependencies": [
+          "@boldkit/use-canvas-effect"
+        ],
         "files": [
           "registry/default/ui/canvas-effects/Metaballs.tsx"
         ]
@@ -2179,7 +2315,9 @@
       "vue": {
         "url": "https://boldkit.dev/r/vue/metaballs.json",
         "dependencies": [],
-        "registryDependencies": [],
+        "registryDependencies": [
+          "@boldkit/use-canvas-effect"
+        ],
         "files": [
           "components/ui/canvas-effects/Metaballs.vue"
         ]
@@ -2277,7 +2415,9 @@
       "react": {
         "url": "https://boldkit.dev/r/mouse-ripple.json",
         "dependencies": [],
-        "registryDependencies": [],
+        "registryDependencies": [
+          "@boldkit/use-canvas-effect"
+        ],
         "files": [
           "registry/default/ui/canvas-effects/MouseRipple.tsx"
         ]
@@ -2285,7 +2425,9 @@
       "vue": {
         "url": "https://boldkit.dev/r/vue/mouse-ripple.json",
         "dependencies": [],
-        "registryDependencies": [],
+        "registryDependencies": [
+          "@boldkit/use-canvas-effect"
+        ],
         "files": [
           "components/ui/canvas-effects/MouseRipple.vue"
         ]
@@ -2464,7 +2606,9 @@
       "react": {
         "url": "https://boldkit.dev/r/particle-web.json",
         "dependencies": [],
-        "registryDependencies": [],
+        "registryDependencies": [
+          "@boldkit/use-canvas-effect"
+        ],
         "files": [
           "registry/default/ui/canvas-effects/ParticleWeb.tsx"
         ]
@@ -2472,7 +2616,9 @@
       "vue": {
         "url": "https://boldkit.dev/r/vue/particle-web.json",
         "dependencies": [],
-        "registryDependencies": [],
+        "registryDependencies": [
+          "@boldkit/use-canvas-effect"
+        ],
         "files": [
           "components/ui/canvas-effects/ParticleWeb.vue"
         ]
@@ -2490,7 +2636,9 @@
       "react": {
         "url": "https://boldkit.dev/r/plasma.json",
         "dependencies": [],
-        "registryDependencies": [],
+        "registryDependencies": [
+          "@boldkit/use-canvas-effect"
+        ],
         "files": [
           "registry/default/ui/canvas-effects/Plasma.tsx"
         ]
@@ -2498,7 +2646,9 @@
       "vue": {
         "url": "https://boldkit.dev/r/vue/plasma.json",
         "dependencies": [],
-        "registryDependencies": [],
+        "registryDependencies": [
+          "@boldkit/use-canvas-effect"
+        ],
         "files": [
           "components/ui/canvas-effects/Plasma.vue"
         ]
@@ -2581,6 +2731,36 @@
         "vue"
       ],
       "docsUrl": "https://boldkit.dev/components/progress"
+    },
+    {
+      "name": "pulsing-border",
+      "type": "registry:ui",
+      "description": "Travelling light spots orbit a frame and bleed inward, leaving the centre clear",
+      "react": {
+        "url": "https://boldkit.dev/r/pulsing-border.json",
+        "dependencies": [],
+        "registryDependencies": [
+          "@boldkit/use-canvas-effect"
+        ],
+        "files": [
+          "registry/default/ui/canvas-effects/PulsingBorder.tsx"
+        ]
+      },
+      "vue": {
+        "url": "https://boldkit.dev/r/vue/pulsing-border.json",
+        "dependencies": [],
+        "registryDependencies": [
+          "@boldkit/use-canvas-effect"
+        ],
+        "files": [
+          "components/ui/canvas-effects/PulsingBorder.vue"
+        ]
+      },
+      "frameworks": [
+        "react",
+        "vue"
+      ],
+      "docsUrl": "https://boldkit.dev/components/pulsing-border"
     },
     {
       "name": "radar-chart",
@@ -3421,6 +3601,36 @@
       ]
     },
     {
+      "name": "swirl",
+      "type": "registry:ui",
+      "description": "Twisting radial bands wound into a spiral, razor-sharp by default",
+      "react": {
+        "url": "https://boldkit.dev/r/swirl.json",
+        "dependencies": [],
+        "registryDependencies": [
+          "@boldkit/use-canvas-effect"
+        ],
+        "files": [
+          "registry/default/ui/canvas-effects/Swirl.tsx"
+        ]
+      },
+      "vue": {
+        "url": "https://boldkit.dev/r/vue/swirl.json",
+        "dependencies": [],
+        "registryDependencies": [
+          "@boldkit/use-canvas-effect"
+        ],
+        "files": [
+          "components/ui/canvas-effects/Swirl.vue"
+        ]
+      },
+      "frameworks": [
+        "react",
+        "vue"
+      ],
+      "docsUrl": "https://boldkit.dev/components/swirl"
+    },
+    {
       "name": "switch",
       "type": "registry:ui",
       "description": "A control that allows the user to toggle between on and off",
@@ -3816,7 +4026,9 @@
       "react": {
         "url": "https://boldkit.dev/r/topography.json",
         "dependencies": [],
-        "registryDependencies": [],
+        "registryDependencies": [
+          "@boldkit/use-canvas-effect"
+        ],
         "files": [
           "registry/default/ui/canvas-effects/Topography.tsx"
         ]
@@ -3824,7 +4036,9 @@
       "vue": {
         "url": "https://boldkit.dev/r/vue/topography.json",
         "dependencies": [],
-        "registryDependencies": [],
+        "registryDependencies": [
+          "@boldkit/use-canvas-effect"
+        ],
         "files": [
           "components/ui/canvas-effects/Topography.vue"
         ]
@@ -3957,7 +4171,9 @@
       "react": {
         "url": "https://boldkit.dev/r/truchet.json",
         "dependencies": [],
-        "registryDependencies": [],
+        "registryDependencies": [
+          "@boldkit/use-canvas-effect"
+        ],
         "files": [
           "registry/default/ui/canvas-effects/Truchet.tsx"
         ]
@@ -3965,7 +4181,9 @@
       "vue": {
         "url": "https://boldkit.dev/r/vue/truchet.json",
         "dependencies": [],
-        "registryDependencies": [],
+        "registryDependencies": [
+          "@boldkit/use-canvas-effect"
+        ],
         "files": [
           "components/ui/canvas-effects/Truchet.vue"
         ]
@@ -3975,6 +4193,36 @@
         "vue"
       ],
       "docsUrl": "https://boldkit.dev/components/truchet"
+    },
+    {
+      "name": "use-canvas-effect",
+      "type": "registry:hook",
+      "description": "React hook that mounts an animated 2D canvas effect with a managed lifecycle — sizing, off-screen/background pausing, and reduced-motion — so a component only describes how to paint one frame.",
+      "react": {
+        "url": "https://boldkit.dev/r/use-canvas-effect.json",
+        "dependencies": [],
+        "registryDependencies": [
+          "@boldkit/canvas-effect-core"
+        ],
+        "files": [
+          "registry/default/hooks/use-canvas-effect.ts"
+        ]
+      },
+      "vue": {
+        "url": "https://boldkit.dev/r/vue/use-canvas-effect.json",
+        "dependencies": [],
+        "registryDependencies": [
+          "@boldkit/utils",
+          "@boldkit/canvas-effect-core"
+        ],
+        "files": [
+          "composables/useCanvasEffect.ts"
+        ]
+      },
+      "frameworks": [
+        "react",
+        "vue"
+      ]
     },
     {
       "name": "use-motion",
@@ -4061,7 +4309,9 @@
       "react": {
         "url": "https://boldkit.dev/r/voronoi-pulse.json",
         "dependencies": [],
-        "registryDependencies": [],
+        "registryDependencies": [
+          "@boldkit/use-canvas-effect"
+        ],
         "files": [
           "registry/default/ui/canvas-effects/VoronoiPulse.tsx"
         ]
@@ -4069,7 +4319,9 @@
       "vue": {
         "url": "https://boldkit.dev/r/vue/voronoi-pulse.json",
         "dependencies": [],
-        "registryDependencies": [],
+        "registryDependencies": [
+          "@boldkit/use-canvas-effect"
+        ],
         "files": [
           "components/ui/canvas-effects/VoronoiPulse.vue"
         ]
@@ -4087,7 +4339,9 @@
       "react": {
         "url": "https://boldkit.dev/r/warp-speed.json",
         "dependencies": [],
-        "registryDependencies": [],
+        "registryDependencies": [
+          "@boldkit/use-canvas-effect"
+        ],
         "files": [
           "registry/default/ui/canvas-effects/WarpSpeed.tsx"
         ]
@@ -4095,7 +4349,9 @@
       "vue": {
         "url": "https://boldkit.dev/r/vue/warp-speed.json",
         "dependencies": [],
-        "registryDependencies": [],
+        "registryDependencies": [
+          "@boldkit/use-canvas-effect"
+        ],
         "files": [
           "components/ui/canvas-effects/WarpSpeed.vue"
         ]

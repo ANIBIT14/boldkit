@@ -3,7 +3,9 @@
   "name": "warp-speed",
   "description": "Hyperspace star tunnel — stars accelerate outward with perspective scaling and motion-blur streaks",
   "dependencies": [],
-  "registryDependencies": [],
+  "registryDependencies": [
+    "@boldkit/use-canvas-effect"
+  ],
   "files": [
     {
       "path": "registry/default/ui/canvas-effects/WarpSpeed.tsx",
