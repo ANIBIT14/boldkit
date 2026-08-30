@@ -1,4 +1,4 @@
-import { useCallback, useRef } from 'react'
+import { useCallback, useLayoutEffect, useRef } from 'react'
 import type { StudioState, ExportConfig, Frame } from '../types'
 
 // ── helpers ────────────────────────────────────────────────────────────────
@@ -250,7 +250,10 @@ export async function exportWebM(
 
 export function useExport(state: StudioState) {
   const stateRef = useRef(state)
-  stateRef.current = state
+  // Latest-ref pattern — assigned in a layout effect, not during render.
+  useLayoutEffect(() => {
+    stateRef.current = state
+  })
 
   const runExport = useCallback(async (config: ExportConfig, filename: string) => {
     const s = stateRef.current

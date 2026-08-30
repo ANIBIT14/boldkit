@@ -261,7 +261,11 @@ const Dropzone = React.forwardRef<HTMLDivElement, DropzoneProps>(
           className="hidden"
         />
 
+        {/* `state` is built entirely from useState values (isDragging,
+            acceptedFiles, rejectedFiles) plus a useCallback — no ref is
+            involved; the rule mis-flags the render-prop call. */}
         {typeof children === 'function' ? (
+          // eslint-disable-next-line react-hooks/refs
           children(state)
         ) : children ? (
           children
@@ -368,6 +372,9 @@ function FileListItem({ file, progress, error, uploading, onRemove }: FileListIt
       )}
     >
       <div className="flex items-center justify-center w-10 h-10 bg-muted border-3 border-foreground">
+        {/* getFileIcon is a lookup returning one of seven module-level lucide
+            icons, not a factory — no component is created here. */}
+        {/* eslint-disable-next-line react-hooks/static-components */}
         <Icon className="h-5 w-5" />
       </div>
 

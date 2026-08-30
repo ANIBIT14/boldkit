@@ -71,7 +71,8 @@ export function LissajousGrid({
             const t = (i / STEPS) * period
             const x = cx + rx * Math.sin(fx * t + phase)
             const y = cy + ry * Math.sin(fy * t)
-            i === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y)
+            if (i === 0) ctx.moveTo(x, y)
+            else ctx.lineTo(x, y)
           }
           const hue = hueRef.current + ((col * R + row) / (C * R)) * 280
           ctx.strokeStyle = `hsla(${hue % 360}, 85%, 62%, ${opacityRef.current})`

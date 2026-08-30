@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useLayoutEffect, useRef, useState } from 'react'
 import type { StudioState, Frame } from './types'
 import type { StudioAction } from './hooks/useStudioState'
 import {
@@ -125,11 +125,15 @@ export function AnimationPanel({ state, dispatch, activeGrid }: AnimationPanelPr
   const loopModeRef = useRef(loopMode)
   const isPlayingRef = useRef(isPlaying)
   const liveEffectRef = useRef(state.liveEffect)
-  framesRef.current = frames
-  fpsRef.current = fps
-  loopModeRef.current = loopMode
-  isPlayingRef.current = isPlaying
-  liveEffectRef.current = state.liveEffect
+  // Latest-ref pattern. Written in a layout effect rather than during render,
+  // which React forbids — it runs before any passive effect reads them.
+  useLayoutEffect(() => {
+    framesRef.current = frames
+    fpsRef.current = fps
+    loopModeRef.current = loopMode
+    isPlayingRef.current = isPlaying
+    liveEffectRef.current = state.liveEffect
+  })
 
   const tickIdxRef = useRef(0)
   const loopCountRef = useRef(0)

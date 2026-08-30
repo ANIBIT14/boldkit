@@ -156,7 +156,7 @@ function ShapeCard({
   name, Component, code, vueCode, isNew,
 }: {
   name: string
-  Component: React.ComponentType<any>
+  Component: React.ComponentType<Record<string, unknown>>
   code: string
   vueCode: string
   isNew?: boolean

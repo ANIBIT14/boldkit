@@ -115,6 +115,9 @@ const Carousel = React.forwardRef<
     React.useEffect(() => {
       if (!api) return
 
+      // Reading the snap list off Embla's imperative API once it exists is
+      // exactly what an effect is for; there is no render-time source.
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setScrollSnaps(api.scrollSnapList())
       onSelect(api)
       api.on('reInit', onSelect)

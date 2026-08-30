@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import type { StudioState } from './types'
 import type { StudioAction } from './hooks/useStudioState'
 import { GRID_PRESETS } from './types'
@@ -16,10 +16,15 @@ export function CanvasSettings({ state, dispatch, onGridChangeRequest }: CanvasS
   const [customRows, setCustomRows] = useState(String(state.rows))
   const [customCols, setCustomCols] = useState(String(state.cols))
 
-  useEffect(() => {
+  // Re-mirror the inputs when the grid changes underneath them. Adjusted
+  // during render rather than in an effect, so the inputs never paint a stale
+  // value for a frame.
+  const [prevGrid, setPrevGrid] = useState(`${state.rows}x${state.cols}`)
+  if (prevGrid !== `${state.rows}x${state.cols}`) {
+    setPrevGrid(`${state.rows}x${state.cols}`)
     setCustomRows(String(state.rows))
     setCustomCols(String(state.cols))
-  }, [state.rows, state.cols])
+  }
 
   const currentPreset = GRID_PRESETS.find(p => p.rows === state.rows && p.cols === state.cols)
 

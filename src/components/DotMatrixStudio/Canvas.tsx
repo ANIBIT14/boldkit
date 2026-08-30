@@ -112,17 +112,20 @@ export function Canvas({ state, dispatch, activeGrid, isPreviewMode }: CanvasPro
   const isDragging = useRef(false)
   const dragMode = useRef<boolean | null>(null)
   const shapeStartRef = useRef<{ row: number; col: number } | null>(null)
+  // Kept in both a ref and state on purpose: pointer handlers need the value
+  // synchronously within the same gesture, while render needs a value that
+  // actually triggers an update. This previously used a tick counter rendered
+  // into a hidden <span> to force the re-render.
   const shapePreviewRef = useRef<[number, number][]>([])
-  const [shapePreviewTick, setShapePreviewTick] = useState(0)
+  const [shapePreview, setShapePreview] = useState<[number, number][]>([])
 
   const [hoveredAction, setHoveredAction] = useState<string | null>(null)
 
   const { rows, cols, dotColor, activeTool, activeShape } = state
 
-  // Triggers a re-render when shape preview changes
   const updateShapePreview = useCallback((pts: [number, number][]) => {
     shapePreviewRef.current = pts
-    setShapePreviewTick(t => t + 1)
+    setShapePreview(pts)
   }, [])
 
   const applyDraw = useCallback((clientX: number, clientY: number) => {
@@ -243,7 +246,7 @@ export function Canvas({ state, dispatch, activeGrid, isPreviewMode }: CanvasPro
 
   // Merge activeGrid + shape preview into a Set for fast lookup
   const previewSet = new Set(
-    shapePreviewRef.current.map(([r, c]) => `${r},${c}`)
+    shapePreview.map(([r, c]) => `${r},${c}`)
   )
 
   return (
@@ -299,8 +302,6 @@ export function Canvas({ state, dispatch, activeGrid, isPreviewMode }: CanvasPro
           />
         )}
       </svg>
-      {/* suppress unused var warning — shapePreviewTick is read to force re-render */}
-      <span style={{ display: 'none' }}>{shapePreviewTick}</span>
       {activeTool === 'select' && state.selection && !isPreviewMode && (
         <div
           className="absolute bottom-2 left-1/2 -translate-x-1/2 flex flex-row gap-2 z-10"

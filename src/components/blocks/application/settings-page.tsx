@@ -57,9 +57,13 @@ export function ProfileSettings({
   const [formData, setFormData] = React.useState(user)
   const fileInputRef = React.useRef<HTMLInputElement>(null)
 
-  React.useEffect(() => {
+  // Reset the form when a different user is passed in. Adjusted during render
+  // rather than in an effect, so the fields never show the previous user.
+  const [prevUser, setPrevUser] = React.useState(user)
+  if (prevUser !== user) {
+    setPrevUser(user)
     setFormData(user)
-  }, [user])
+  }
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()

@@ -5,6 +5,62 @@ Format follows [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ---
 
+## [3.5.3] — 2026-08-30 — Green CI: 155 lint errors cleared
+
+CI had been failing since May 2026. Because Lint ran first, every typecheck, test and build step
+was skipped — including the Vue CanvasEffects typecheck added in v3.5.2. All 155 errors are now
+fixed and the pipeline runs end to end.
+
+Roughly two thirds turned out to be misconfiguration rather than bad code:
+
+### Fixed — configuration
+
+🩹 **54 false positives from the plain-JS `no-unused-vars` rule running on TypeScript `.vue` files.**
+It read the parameter names inside type annotations — `PropType<(id: string) => void>`,
+`isDateUnavailable?: (date: DateValue) => boolean` — as unused runtime params. Renaming them to
+`_id` would have silenced the rule while making the types less readable; the TS-aware rule is used
+instead.
+
+🩹 **`vue/multi-word-component-names` (49) disabled for the component library.** `Button.vue`,
+`Card.vue` and `Alert.vue` are the public API. The rule guards app components against colliding with
+HTML elements, which doesn't apply to a namespaced kit installed via the shadcn CLI.
+
+🩹 **Underscore-prefixed bindings are now honoured** as the existing "deliberately unused" marker.
+
+🩹 **`no-undef` off for `.vue` files** — they're TypeScript, which already reports undefined
+identifiers and understands bundler-replaced `process.env.NODE_ENV`. This is why the React
+`ErrorBoundary` using the identical expression was never flagged.
+
+🩹 **`.claude/` excluded from linting.** It holds stale git worktrees — whole second copies of the
+repo — that contributed 76 duplicate errors locally.
+
+### Fixed — code
+
+🐛 **Cascading renders removed from six components.** `Header`, `CanvasSettings`, `settings-page` and
+`Tour` synced state from props inside an effect; they now adjust during render, React's documented
+pattern, so no component paints a stale value for a frame first.
+
+🐛 **`useIsMobile` rewritten with `useSyncExternalStore`.** It rendered once with `undefined`, then
+set state in an effect — a cascading render and a frame of desktop layout on a phone.
+
+🐛 **`DotMatrixStudio` shape preview no longer reads a ref during render.** It used a ref plus a tick
+counter rendered into a hidden `<span>` to force updates; the preview is now state, and the hack is
+gone.
+
+🐛 **Latest-ref writes moved out of render** in `AnimationPanel` and `useExport`.
+
+🐛 **`KbdCombo.vue` no longer duplicates Kbd's `cva` block.** Twenty lines of class strings were kept
+alive purely to derive a type and were never applied — a silent drift hazard against the styles
+`Kbd.vue` actually uses.
+
+### Internals
+
+Three genuine false positives in React's new hooks rules (`react-hooks/refs` on a render-prop call
+built from `useState` values, `static-components` on a lucide icon lookup, `set-state-in-effect` on
+Embla's imperative init) carry targeted suppressions with reasons rather than contorted code.
+
+---
+
 ## [3.5.2] — 2026-08-29 — Canvas lifecycle & 4 new effects
 
 Every CanvasEffect used to hand-roll the same four concerns — size the backing store, start a rAF

@@ -348,12 +348,13 @@ const Tour = React.forwardRef<HTMLDivElement, TourProps>(
       }
     }, [open, currentStep, currentStepData])
 
-    // Reset step when closed
-    React.useEffect(() => {
-      if (!open) {
-        setCurrentStep(0)
-      }
-    }, [open])
+    // Reset to the first step when the tour closes. Adjusted during render
+    // rather than in an effect — reopening then never flashes the old step.
+    const [prevOpen, setPrevOpen] = React.useState(open)
+    if (prevOpen !== open) {
+      setPrevOpen(open)
+      if (!open) setCurrentStep(0)
+    }
 
     const nextStep = React.useCallback(() => {
       if (currentStep < steps.length - 1) {

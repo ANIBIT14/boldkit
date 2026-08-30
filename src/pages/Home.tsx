@@ -111,11 +111,11 @@ export function Home() {
   const shapesCount     = useCountUp({ end: COUNTS.shapes,     duration: 1100 })
   const blocksCount     = useCountUp({ end: COUNTS.blocks,     duration: 800  })
 
-  const showcaseReveal  = useScrollReveal()
-  const toolsReveal     = useScrollReveal()
-  const effectsReveal   = useScrollReveal()
-  const featuresReveal  = useScrollReveal()
-  const ctaReveal       = useScrollReveal()
+  const { ref: showcaseRef, inView: showcaseInView } = useScrollReveal()
+  const { ref: toolsRef, inView: toolsInView } = useScrollReveal()
+  const { ref: effectsRef, inView: effectsInView } = useScrollReveal()
+  const { ref: featuresRef, inView: featuresInView } = useScrollReveal()
+  const { ref: ctaRef, inView: ctaInView } = useScrollReveal()
 
   const commands: Record<string, string> = {
     react: 'npx shadcn@latest add https://boldkit.dev/r/button.json',
@@ -468,8 +468,8 @@ export function Home() {
             ACT 3 — COMPONENT UNIVERSE (Tabbed Showcase)
         ═══════════════════════════════════════════════════════════════ */}
         <section
-          ref={showcaseReveal.ref}
-          className={`border-b-3 border-foreground py-14 md:py-20 overflow-x-hidden transition duration-700 ease-out ${showcaseReveal.inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`}
+          ref={showcaseRef}
+          className={`border-b-3 border-foreground py-14 md:py-20 overflow-x-hidden transition duration-700 ease-out ${showcaseInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`}
         >
           <div className="container mx-auto px-4">
 
@@ -851,8 +851,8 @@ export function Home() {
             ACT 4 — TOOLS (3-panel: Shape Builder | Dot Matrix | Canvas Effects)
         ═══════════════════════════════════════════════════════════════ */}
         <section
-          ref={toolsReveal.ref}
-          className={`border-b-3 border-foreground transition duration-700 ease-out ${toolsReveal.inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`}
+          ref={toolsRef}
+          className={`border-b-3 border-foreground transition duration-700 ease-out ${toolsInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`}
         >
           {/* Section header */}
           <div className="border-b-3 border-foreground px-4 md:px-8 py-5 flex items-center justify-between bg-background">
@@ -1007,8 +1007,8 @@ export function Home() {
             ACT 5 — EFFECTS GALLERY (Math Curves | ASCII | Canvas — 3 columns)
         ═══════════════════════════════════════════════════════════════ */}
         <section
-          ref={effectsReveal.ref}
-          className={`relative overflow-hidden border-b-3 border-foreground transition duration-700 ease-out ${effectsReveal.inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`}
+          ref={effectsRef}
+          className={`relative overflow-hidden border-b-3 border-foreground transition duration-700 ease-out ${effectsInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`}
           style={{ background: '#080810' }}
         >
           {/* Section header */}
@@ -1149,8 +1149,8 @@ export function Home() {
             ACT 6 — WHY BOLDKIT (Bento-grid features)
         ═══════════════════════════════════════════════════════════════ */}
         <section
-          ref={featuresReveal.ref}
-          className={`border-b-3 border-foreground py-14 md:py-20 transition duration-700 ease-out ${featuresReveal.inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`}
+          ref={featuresRef}
+          className={`border-b-3 border-foreground py-14 md:py-20 transition duration-700 ease-out ${featuresInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`}
         >
           <div className="container mx-auto px-4">
             <div className="mb-8 md:mb-12">
@@ -1286,8 +1286,8 @@ export function Home() {
             ACT 7 — FINAL CTA (with live Plasma background)
         ═══════════════════════════════════════════════════════════════ */}
         <section
-          ref={ctaReveal.ref}
-          className={`relative overflow-hidden bg-foreground py-20 md:py-28 transition duration-700 ease-out ${ctaReveal.inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`}
+          ref={ctaRef}
+          className={`relative overflow-hidden bg-foreground py-20 md:py-28 transition duration-700 ease-out ${ctaInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`}
         >
           {/* Live Plasma canvas behind overlay */}
           <div className="absolute inset-0 pointer-events-none">

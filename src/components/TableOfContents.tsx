@@ -66,9 +66,12 @@ export function TableOfContents({ className }: TableOfContentsProps) {
 
   useEffect(() => {
     window.addEventListener('scroll', handleScroll, { passive: true })
-    handleScroll() // Initial check
+    // Initial check, deferred past paint so the first scroll-spy result isn't
+    // a synchronous setState inside the effect (which forces a second render).
+    const raf = requestAnimationFrame(handleScroll)
 
     return () => {
+      cancelAnimationFrame(raf)
       window.removeEventListener('scroll', handleScroll)
     }
   }, [handleScroll])

@@ -1346,7 +1346,7 @@ function buildFibonacciPath(): string {
 const FIBONACCI_PATH = buildFibonacciPath()
 
 export const FibonacciSpiralShape = React.forwardRef<SVGSVGElement, ShapeProps>(
-  ({ size = 100, strokeWidth = 3, filled = false, color, animation = 'none', speed = 'normal', className, ...props }, ref) => (
+  ({ size = 100, strokeWidth = 3, filled: _filled = false, color, animation = 'none', speed = 'normal', className, ...props }, ref) => (
     <svg ref={ref} width={size} height={size} viewBox="0 0 100 100"
       className={cn('text-accent', getAnimClass(animation, speed), className)}
       aria-hidden="true"

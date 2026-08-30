@@ -41,10 +41,14 @@ export function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const location = useLocation()
 
-  // Close mobile menu on route change
-  useEffect(() => {
+  // Close mobile menu on route change. Adjusted during render rather than in
+  // an effect — React's documented pattern for reacting to a changed value,
+  // and it avoids the extra render pass an effect would queue.
+  const [prevPath, setPrevPath] = useState(location.pathname)
+  if (prevPath !== location.pathname) {
+    setPrevPath(location.pathname)
     setMobileMenuOpen(false)
-  }, [location.pathname])
+  }
 
   // Prevent body scroll when mobile menu is open
   useEffect(() => {
