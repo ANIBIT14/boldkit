@@ -1,0 +1,24 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "stat-card",
+  "type": "registry:ui",
+  "description": "Stat Card component for BoldKit Svelte",
+  "dependencies": [],
+  "registryDependencies": [
+    "utils"
+  ],
+  "files": [
+    {
+      "path": "registry/default/ui/index.ts",
+      "content": "import Root from \"./accordion.svelte\";\nimport Content from \"./accordion-content.svelte\";\nimport Item from \"./accordion-item.svelte\";\nimport Trigger from \"./accordion-trigger.svelte\";\n\nexport {\n\tRoot,\n\tContent,\n\tItem,\n\tTrigger,\n\t//\n\tRoot as Accordion,\n\tContent as AccordionContent,\n\tItem as AccordionItem,\n\tTrigger as AccordionTrigger,\n};\n",
+      "type": "registry:ui",
+      "target": "lib/components/ui/accordion/index.ts"
+    },
+    {
+      "path": "registry/default/ui/stat-card.svelte",
+      "content": "<script lang=\"ts\">\n\timport type { Snippet } from 'svelte';\n\timport { cn } from '$lib/utils.js';\n\timport { Card, CardContent } from '$lib/components/ui/card/index.js';\n\timport { Progress } from '$lib/components/ui/progress/index.js';\n\timport TrendingUpIcon from '@lucide/svelte/icons/trending-up';\n\timport TrendingDownIcon from '@lucide/svelte/icons/trending-down';\n\timport MinusIcon from '@lucide/svelte/icons/minus';\n\n\ttype ColorScheme = 'primary' | 'secondary' | 'accent' | 'success' | 'warning' | 'info' | 'destructive';\n\ttype Variant = 'default' | 'compact' | 'large';\n\ttype Trend = 'up' | 'down' | 'neutral';\n\n\ttype Props = {\n\t\ttitle: string;\n\t\tvalue: string | number;\n\t\tchange?: string;\n\t\ttrend?: Trend;\n\t\tprogress?: { value: number; label?: string };\n\t\tcomparison?: string;\n\t\tvariant?: Variant;\n\t\tcolorScheme?: ColorScheme;\n\t\tclass?: string;\n\t\ticon?: Snippet;\n\t};\n\n\tlet {\n\t\ttitle,\n\t\tvalue,\n\t\tchange,\n\t\ttrend = 'neutral',\n\t\tprogress,\n\t\tcomparison = 'vs last month',\n\t\tvariant = 'default',\n\t\tcolorScheme = 'primary',\n\t\tclass: className,\n\t\ticon,\n\t}: Props = $props();\n\n\tconst TrendIcon = $derived(trend === 'up' ? TrendingUpIcon : trend === 'down' ? TrendingDownIcon : MinusIcon);\n\tconst trendColor = $derived(\n\t\ttrend === 'up' ? 'text-success' : trend === 'down' ? 'text-destructive' : 'text-muted-foreground'\n\t);\n\n\tconst colorClasses: Record<ColorScheme, string> = {\n\t\tprimary: '[&_.stat-icon]:bg-primary [&_.stat-bg]:bg-primary',\n\t\tsecondary: '[&_.stat-icon]:bg-secondary [&_.stat-bg]:bg-secondary',\n\t\taccent: '[&_.stat-icon]:bg-accent [&_.stat-bg]:bg-accent',\n\t\tsuccess: '[&_.stat-icon]:bg-success [&_.stat-bg]:bg-success',\n\t\twarning: '[&_.stat-icon]:bg-warning [&_.stat-bg]:bg-warning',\n\t\tinfo: '[&_.stat-icon]:bg-info [&_.stat-bg]:bg-info',\n\t\tdestructive: '[&_.stat-icon]:bg-destructive [&_.stat-bg]:bg-destructive',\n\t};\n\n\tconst variantClasses: Record<Variant, string> = {\n\t\tdefault: '',\n\t\tcompact: '[&_.stat-content]:p-4',\n\t\tlarge: 'md:col-span-2',\n\t};\n</script>\n\n<Card class={cn('relative overflow-hidden', variantClasses[variant], colorClasses[colorScheme], className)}>\n\t<div class=\"stat-bg absolute top-0 right-0 w-24 h-24 opacity-20 -translate-y-8 translate-x-8 rotate-12\"></div>\n\t<CardContent class=\"stat-content p-6\">\n\t\t<div class=\"flex items-start justify-between\">\n\t\t\t<div>\n\t\t\t\t<p class=\"text-sm font-bold uppercase tracking-wide text-muted-foreground mb-1\">{title}</p>\n\t\t\t\t<p class=\"text-3xl font-black\">{value}</p>\n\t\t\t\t{#if change}\n\t\t\t\t\t<div class={cn('flex items-center gap-1 mt-2', trendColor)}>\n\t\t\t\t\t\t<TrendIcon class=\"h-4 w-4\" />\n\t\t\t\t\t\t<span class=\"text-sm font-bold\">{change}</span>\n\t\t\t\t\t\t<span class=\"text-sm text-muted-foreground\">{comparison}</span>\n\t\t\t\t\t</div>\n\t\t\t\t{/if}\n\t\t\t</div>\n\t\t\t{#if icon}\n\t\t\t\t<div class=\"stat-icon w-12 h-12 border-3 border-foreground flex items-center justify-center shadow-[3px_3px_0px_hsl(var(--shadow-color))] text-foreground\">\n\t\t\t\t\t{@render icon()}\n\t\t\t\t</div>\n\t\t\t{/if}\n\t\t</div>\n\t\t{#if progress}\n\t\t\t<div class=\"mt-4 pt-4 border-t-2 border-foreground/10\">\n\t\t\t\t<div class=\"flex items-center justify-between text-sm mb-2\">\n\t\t\t\t\t<span class=\"text-muted-foreground\">{progress.label ?? 'Progress'}</span>\n\t\t\t\t\t<span class=\"font-bold\">{progress.value}%</span>\n\t\t\t\t</div>\n\t\t\t\t<Progress value={progress.value} class=\"h-3\" />\n\t\t\t</div>\n\t\t{/if}\n\t</CardContent>\n</Card>\n",
+      "type": "registry:ui",
+      "target": "lib/components/ui/stat-card/stat-card.svelte"
+    }
+  ]
+}

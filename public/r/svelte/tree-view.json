@@ -1,0 +1,24 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "tree-view",
+  "type": "registry:ui",
+  "description": "Tree View component for BoldKit Svelte",
+  "dependencies": [],
+  "registryDependencies": [
+    "utils"
+  ],
+  "files": [
+    {
+      "path": "registry/default/ui/index.ts",
+      "content": "import Root from \"./accordion.svelte\";\nimport Content from \"./accordion-content.svelte\";\nimport Item from \"./accordion-item.svelte\";\nimport Trigger from \"./accordion-trigger.svelte\";\n\nexport {\n\tRoot,\n\tContent,\n\tItem,\n\tTrigger,\n\t//\n\tRoot as Accordion,\n\tContent as AccordionContent,\n\tItem as AccordionItem,\n\tTrigger as AccordionTrigger,\n};\n",
+      "type": "registry:ui",
+      "target": "lib/components/ui/accordion/index.ts"
+    },
+    {
+      "path": "registry/default/ui/tree-view.svelte",
+      "content": "<script lang=\"ts\">\n\timport ChevronRightIcon from '@lucide/svelte/icons/chevron-right';\n\timport FileIcon from '@lucide/svelte/icons/file';\n\timport FolderIcon from '@lucide/svelte/icons/folder';\n\timport { cn } from '$lib/utils.js';\n\n\texport type TreeNode = {\n\t\tid: string;\n\t\tlabel: string;\n\t\tchildren?: TreeNode[];\n\t\tdisabled?: boolean;\n\t};\n\n\ttype Props = {\n\t\tdata?: TreeNode[];\n\t\tdefaultExpandedIds?: string[];\n\t\tdefaultSelectedIds?: string[];\n\t\tselectionMode?: 'none' | 'single' | 'multiple';\n\t\tshowIcons?: boolean;\n\t\tclass?: string;\n\t\tonExpandedChange?: (ids: string[]) => void;\n\t\tonSelectedChange?: (ids: string[]) => void;\n\t};\n\n\tlet {\n\t\tdata = [],\n\t\tdefaultExpandedIds = [],\n\t\tdefaultSelectedIds = [],\n\t\tselectionMode = 'none',\n\t\tshowIcons = true,\n\t\tclass: className,\n\t\tonExpandedChange,\n\t\tonSelectedChange,\n\t}: Props = $props();\n\n\tlet expandedIds = $state<Set<string> | undefined>(undefined);\n\tlet selectedIds = $state<Set<string> | undefined>(undefined);\n\tconst currentExpandedIds = $derived(expandedIds ?? new Set(defaultExpandedIds));\n\tconst currentSelectedIds = $derived(selectedIds ?? new Set(defaultSelectedIds));\n\n\tfunction toggleExpanded(id: string) {\n\t\texpandedIds = new Set(currentExpandedIds);\n\t\texpandedIds.has(id) ? expandedIds.delete(id) : expandedIds.add(id);\n\t\tonExpandedChange?.([...expandedIds]);\n\t}\n\n\tfunction toggleSelected(id: string) {\n\t\tif (selectionMode === 'none') return;\n\t\tif (selectionMode === 'single') {\n\t\t\tselectedIds = currentSelectedIds.has(id) ? new Set() : new Set([id]);\n\t\t} else {\n\t\t\tselectedIds = new Set(currentSelectedIds);\n\t\t\tselectedIds.has(id) ? selectedIds.delete(id) : selectedIds.add(id);\n\t\t}\n\t\tonSelectedChange?.([...selectedIds]);\n\t}\n</script>\n\n{#snippet NodeItem(node: TreeNode, level: number)}\n\t{@const hasChildren = Boolean(node.children?.length)}\n\t{@const isExpanded = currentExpandedIds.has(node.id)}\n\t{@const isSelected = currentSelectedIds.has(node.id)}\n\t<div>\n\t\t<button\n\t\t\ttype=\"button\"\n\t\t\trole=\"treeitem\"\n\t\t\taria-selected={isSelected}\n\t\t\taria-expanded={hasChildren ? isExpanded : undefined}\n\t\t\tdisabled={node.disabled}\n\t\t\tclass={cn(\n\t\t\t\t'flex w-full items-center gap-2 px-2 py-1.5 text-left text-sm font-bold transition-colors hover:bg-muted disabled:cursor-not-allowed disabled:opacity-50',\n\t\t\t\tisSelected && 'bg-primary text-primary-foreground'\n\t\t\t)}\n\t\t\tstyle={`padding-left: ${level * 18 + 8}px`}\n\t\t\tonclick={() => hasChildren ? toggleExpanded(node.id) : toggleSelected(node.id)}\n\t\t\tondblclick={() => toggleSelected(node.id)}\n\t\t>\n\t\t\t{#if hasChildren}\n\t\t\t\t<ChevronRightIcon class={cn('h-4 w-4 transition-transform', isExpanded && 'rotate-90')} />\n\t\t\t{:else}\n\t\t\t\t<span class=\"h-4 w-4\"></span>\n\t\t\t{/if}\n\t\t\t{#if showIcons}\n\t\t\t\t{#if hasChildren}\n\t\t\t\t\t<FolderIcon class=\"h-4 w-4\" />\n\t\t\t\t{:else}\n\t\t\t\t\t<FileIcon class=\"h-4 w-4\" />\n\t\t\t\t{/if}\n\t\t\t{/if}\n\t\t\t<span>{node.label}</span>\n\t\t</button>\n\t\t{#if hasChildren && isExpanded}\n\t\t\t{#each node.children ?? [] as child (child.id)}\n\t\t\t\t{@render NodeItem(child, level + 1)}\n\t\t\t{/each}\n\t\t{/if}\n\t</div>\n{/snippet}\n\n<div role=\"tree\" class={cn('border-3 border-foreground bg-background p-2 shadow-[4px_4px_0px_hsl(var(--shadow-color))]', className)}>\n\t{#each data as node (node.id)}\n\t\t{@render NodeItem(node, 0)}\n\t{/each}\n</div>\n",
+      "type": "registry:ui",
+      "target": "lib/components/ui/tree-view/tree-view.svelte"
+    }
+  ]
+}

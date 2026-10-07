@@ -9,8 +9,8 @@ interface OpenInV0ButtonProps {
 export function OpenInV0Button({ name, className }: OpenInV0ButtonProps) {
   const { framework } = useFramework()
 
-  // v0 only supports React, hide button when Vue is selected
-  if (framework === 'vue') {
+  // v0 only supports React, hide button when another framework is selected
+  if (framework !== 'react') {
     return null
   }
 

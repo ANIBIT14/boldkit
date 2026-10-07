@@ -1,0 +1,24 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "spinner",
+  "type": "registry:ui",
+  "description": "Spinner component for BoldKit Svelte",
+  "dependencies": [],
+  "registryDependencies": [
+    "utils"
+  ],
+  "files": [
+    {
+      "path": "registry/default/ui/index.ts",
+      "content": "import Root from \"./accordion.svelte\";\nimport Content from \"./accordion-content.svelte\";\nimport Item from \"./accordion-item.svelte\";\nimport Trigger from \"./accordion-trigger.svelte\";\n\nexport {\n\tRoot,\n\tContent,\n\tItem,\n\tTrigger,\n\t//\n\tRoot as Accordion,\n\tContent as AccordionContent,\n\tItem as AccordionItem,\n\tTrigger as AccordionTrigger,\n};\n",
+      "type": "registry:ui",
+      "target": "lib/components/ui/accordion/index.ts"
+    },
+    {
+      "path": "registry/default/ui/spinner.svelte",
+      "content": "<script lang=\"ts\">\n\timport { cn } from \"$lib/utils.js\";\n\timport Loader2Icon from '@lucide/svelte/icons/loader-2';\n\timport type { SVGAttributes } from \"svelte/elements\";\n\n\tlet {\n\t\tclass: className,\n\t\trole = \"status\",\n\t\t// we add name, color, and stroke for compatibility with different icon libraries props\n\t\tname,\n\t\tcolor,\n\t\tstroke,\n\t\t\"aria-label\": ariaLabel = \"Loading\",\n\t\t...restProps\n\t}: SVGAttributes<SVGSVGElement> = $props();\n</script>\n\n<Loader2Icon {role} name={name === null ? undefined : name} color={color === null ? undefined : color} stroke={stroke === null ? undefined : stroke} aria-label={ariaLabel} class={cn(\"size-4 animate-spin\", className)} {...restProps} />\n",
+      "type": "registry:ui",
+      "target": "lib/components/ui/spinner/spinner.svelte"
+    }
+  ]
+}

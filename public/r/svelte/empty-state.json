@@ -1,0 +1,66 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "empty-state",
+  "type": "registry:ui",
+  "description": "Empty State component for BoldKit Svelte",
+  "dependencies": [],
+  "registryDependencies": [
+    "utils"
+  ],
+  "files": [
+    {
+      "path": "registry/default/ui/empty-state-actions.svelte",
+      "content": "<script lang=\"ts\">\n\timport type { Snippet } from 'svelte';\n\timport { cn } from '$lib/utils.js';\n\n\ttype Props = { class?: string; children?: Snippet };\n\tlet { class: className, children }: Props = $props();\n</script>\n\n<div class={cn('mt-4 flex flex-wrap gap-2 justify-center', className)}>\n\t{@render children?.()}\n</div>\n",
+      "type": "registry:ui",
+      "target": "lib/components/ui/empty-state/empty-state-actions.svelte"
+    },
+    {
+      "path": "registry/default/ui/empty-state-description.svelte",
+      "content": "<script lang=\"ts\">\n  import type { Snippet } from 'svelte'\n  import { cn } from '$lib/utils.js'\n  type Props = { class?: string; children?: Snippet }\n  let { class: className, children }: Props = $props()\n</script>\n\n<p class={cn('text-sm text-muted-foreground max-w-sm', className)}>\n  {@render children?.()}\n</p>\n",
+      "type": "registry:ui",
+      "target": "lib/components/ui/empty-state/empty-state-description.svelte"
+    },
+    {
+      "path": "registry/default/ui/empty-state-icon.svelte",
+      "content": "<script lang=\"ts\">\n  import type { Snippet } from 'svelte'\n  import { cn } from '$lib/utils.js'\n  type Props = { class?: string; children?: Snippet }\n  let { class: className, children }: Props = $props()\n</script>\n\n<div\n  class={cn(\n    'flex h-16 w-16 items-center justify-center border-3 border-foreground bg-muted shadow-[4px_4px_0px_hsl(var(--shadow-color))] [&>svg]:h-8 [&>svg]:w-8',\n    className\n  )}\n>\n  {@render children?.()}\n</div>\n",
+      "type": "registry:ui",
+      "target": "lib/components/ui/empty-state/empty-state-icon.svelte"
+    },
+    {
+      "path": "registry/default/ui/empty-state-illustration.svelte",
+      "content": "<script lang=\"ts\">\n\timport type { Snippet } from 'svelte';\n\timport { cn } from '$lib/utils.js';\n\n\ttype Props = {\n\t\tmaxWidth?: string | number;\n\t\tclass?: string;\n\t\tchildren?: Snippet;\n\t};\n\n\tlet { maxWidth = '200px', class: className, children }: Props = $props();\n\tconst maxWidthStyle = $derived(typeof maxWidth === 'number' ? `${maxWidth}px` : maxWidth);\n</script>\n\n<div class={cn('flex items-center justify-center', className)} style=\"max-width: {maxWidthStyle}\">\n\t{@render children?.()}\n</div>\n",
+      "type": "registry:ui",
+      "target": "lib/components/ui/empty-state/empty-state-illustration.svelte"
+    },
+    {
+      "path": "registry/default/ui/empty-state-preset.svelte",
+      "content": "<script lang=\"ts\">\n\timport type { Snippet } from 'svelte';\n\timport Root from './empty-state.svelte';\n\timport Icon from './empty-state-icon.svelte';\n\timport Illustration from './empty-state-illustration.svelte';\n\timport Title from './empty-state-title.svelte';\n\timport Description from './empty-state-description.svelte';\n\timport Actions from './empty-state-actions.svelte';\n\timport SearchIcon from '@lucide/svelte/icons/search';\n\timport FileQuestionIcon from '@lucide/svelte/icons/file-question';\n\timport InboxIcon from '@lucide/svelte/icons/inbox';\n\timport FolderOpenIcon from '@lucide/svelte/icons/folder-open';\n\timport UsersIcon from '@lucide/svelte/icons/users';\n\timport ShoppingCartIcon from '@lucide/svelte/icons/shopping-cart';\n\timport BellIcon from '@lucide/svelte/icons/bell';\n\timport ImageIcon from '@lucide/svelte/icons/image';\n\timport AlertTriangleIcon from '@lucide/svelte/icons/alert-triangle';\n\timport WifiOffIcon from '@lucide/svelte/icons/wifi-off';\n\timport ShieldXIcon from '@lucide/svelte/icons/shield-x';\n\timport ClockIcon from '@lucide/svelte/icons/clock';\n\timport WrenchIcon from '@lucide/svelte/icons/wrench';\n\timport UploadIcon from '@lucide/svelte/icons/upload';\n\n\texport type PresetType =\n\t\t| 'no-results' | 'no-data' | 'empty-inbox' | 'empty-folder' | 'no-users'\n\t\t| 'empty-cart' | 'no-notifications' | 'no-images' | 'error' | 'offline'\n\t\t| 'permission-denied' | 'coming-soon' | 'maintenance' | 'upload';\n\n\ttype Props = {\n\t\tpreset: PresetType;\n\t\tsize?: 'sm' | 'default' | 'lg';\n\t\tcustomTitle?: string;\n\t\tcustomDescription?: string;\n\t\tclass?: string;\n\t\taction?: Snippet;\n\t\tillustration?: Snippet;\n\t};\n\n\tlet { preset, size = 'default', customTitle, customDescription, class: className, action, illustration }: Props = $props();\n\n\ttype PresetConfig = { icon: typeof SearchIcon; title: string; description: string; iconColor?: string };\n\n\tconst presets: Record<PresetType, PresetConfig> = {\n\t\t'no-results': { icon: SearchIcon, title: 'No results found', description: \"Try adjusting your search or filter to find what you're looking for.\" },\n\t\t'no-data': { icon: FileQuestionIcon, title: 'No data available', description: \"There's nothing to display here yet. Data will appear once available.\" },\n\t\t'empty-inbox': { icon: InboxIcon, title: 'Inbox is empty', description: \"You're all caught up! New messages will appear here.\" },\n\t\t'empty-folder': { icon: FolderOpenIcon, title: 'Folder is empty', description: \"This folder doesn't contain any files yet.\" },\n\t\t'no-users': { icon: UsersIcon, title: 'No users found', description: 'There are no users matching your criteria.' },\n\t\t'empty-cart': { icon: ShoppingCartIcon, title: 'Your cart is empty', description: \"Looks like you haven't added anything to your cart yet.\" },\n\t\t'no-notifications': { icon: BellIcon, title: 'No notifications', description: \"You're all caught up! Check back later for updates.\" },\n\t\t'no-images': { icon: ImageIcon, title: 'No images', description: 'There are no images to display. Upload some to get started.' },\n\t\t'error': { icon: AlertTriangleIcon, title: 'Something went wrong', description: 'An error occurred. Please try again or contact support if the problem persists.', iconColor: 'destructive' },\n\t\t'offline': { icon: WifiOffIcon, title: \"You're offline\", description: 'Please check your internet connection and try again.', iconColor: 'warning' },\n\t\t'permission-denied': { icon: ShieldXIcon, title: 'Access denied', description: \"You don't have permission to view this content.\", iconColor: 'destructive' },\n\t\t'coming-soon': { icon: ClockIcon, title: 'Coming soon', description: 'This feature is under development. Stay tuned for updates!', iconColor: 'accent' },\n\t\t'maintenance': { icon: WrenchIcon, title: 'Under maintenance', description: \"We're performing scheduled maintenance. Please check back soon.\", iconColor: 'warning' },\n\t\t'upload': { icon: UploadIcon, title: 'Upload files', description: 'Drag and drop files here, or click to browse.', iconColor: 'primary' },\n\t};\n\n\tconst config = $derived(presets[preset]);\n\tconst iconSizeClass = $derived(size === 'sm' ? 'h-6 w-6' : size === 'lg' ? 'h-10 w-10' : 'h-8 w-8');\n</script>\n\n<Root {size} class={className}>\n\t{#if illustration}\n\t\t<Illustration>{@render illustration()}</Illustration>\n\t{:else}\n\t\t<Icon>\n\t\t\t<config.icon class={iconSizeClass} />\n\t\t</Icon>\n\t{/if}\n\t<div>\n\t\t<Title>{customTitle ?? config.title}</Title>\n\t\t<Description>{customDescription ?? config.description}</Description>\n\t\t{#if action}\n\t\t\t<Actions>{@render action()}</Actions>\n\t\t{/if}\n\t</div>\n</Root>\n",
+      "type": "registry:ui",
+      "target": "lib/components/ui/empty-state/empty-state-preset.svelte"
+    },
+    {
+      "path": "registry/default/ui/empty-state-title.svelte",
+      "content": "<script lang=\"ts\">\n  import type { Snippet } from 'svelte'\n  import { cn } from '$lib/utils.js'\n  type Props = { class?: string; children?: Snippet }\n  let { class: className, children }: Props = $props()\n</script>\n\n<h3 class={cn('text-xl font-bold uppercase tracking-wide', className)}>\n  {@render children?.()}\n</h3>\n",
+      "type": "registry:ui",
+      "target": "lib/components/ui/empty-state/empty-state-title.svelte"
+    },
+    {
+      "path": "registry/default/ui/empty-state-variants.ts",
+      "content": "import { cva } from 'class-variance-authority'\n\nexport const emptyStateVariants = cva(\n  'flex flex-col items-center justify-center text-center border-3 border-foreground bg-card p-8 shadow-[4px_4px_0px_hsl(var(--shadow-color))]',\n  {\n    variants: {\n      size: {\n        sm: 'p-6 gap-3',\n        default: 'p-8 gap-4',\n        lg: 'p-12 gap-6',\n      },\n    },\n    defaultVariants: { size: 'default' },\n  }\n)\n",
+      "type": "registry:ui",
+      "target": "lib/components/ui/empty-state/empty-state-variants.ts"
+    },
+    {
+      "path": "registry/default/ui/empty-state.svelte",
+      "content": "<script lang=\"ts\">\n  import type { Snippet } from 'svelte'\n  import { type VariantProps } from 'class-variance-authority'\n  import { cn } from '$lib/utils.js'\n  import { emptyStateVariants } from './empty-state-variants.js'\n\n  type EmptyStateVariants = VariantProps<typeof emptyStateVariants>\n  type Props = { class?: string; size?: EmptyStateVariants['size']; children?: Snippet }\n  let { class: className, size = 'default', children }: Props = $props()\n</script>\n\n<div class={cn(emptyStateVariants({ size }), className)}>\n  {@render children?.()}\n</div>\n",
+      "type": "registry:ui",
+      "target": "lib/components/ui/empty-state/empty-state.svelte"
+    },
+    {
+      "path": "registry/default/ui/index.ts",
+      "content": "import Root from \"./accordion.svelte\";\nimport Content from \"./accordion-content.svelte\";\nimport Item from \"./accordion-item.svelte\";\nimport Trigger from \"./accordion-trigger.svelte\";\n\nexport {\n\tRoot,\n\tContent,\n\tItem,\n\tTrigger,\n\t//\n\tRoot as Accordion,\n\tContent as AccordionContent,\n\tItem as AccordionItem,\n\tTrigger as AccordionTrigger,\n};\n",
+      "type": "registry:ui",
+      "target": "lib/components/ui/accordion/index.ts"
+    }
+  ]
+}

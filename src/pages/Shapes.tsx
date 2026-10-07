@@ -8,7 +8,7 @@ import { Layout } from '@/components/layout'
 import { Copy, Check, Terminal, Wand2, ArrowRight, Search, X } from 'lucide-react'
 import { toast } from 'sonner'
 import { SEO, pageSEO } from '@/components/SEO'
-import { useFramework, FrameworkToggle } from '@/hooks/use-framework'
+import { FrameworkToggle, frameworkCliNames, frameworkLabels, frameworkRegistryPaths, useFramework } from '@/hooks/use-framework'
 import {
   TriangleShape, DiamondBadge, PentagonShape, HexagonShape, OctagonShape,
   CrossShape, TrapezoidShape, ParallelogramShape,
@@ -165,11 +165,9 @@ function ShapeCard({
   const [copiedCli, setCopiedCli] = useState(false)
   const { framework } = useFramework()
 
-  const cliCommand = framework === 'react'
-    ? 'npx shadcn@latest add https://boldkit.dev/r/shapes.json'
-    : 'npx shadcn-vue@latest add https://boldkit.dev/r/vue/shapes.json'
+  const cliCommand = `npx ${frameworkCliNames[framework]}@latest add https://boldkit.dev${frameworkRegistryPaths[framework]}/shapes.json`
 
-  const currentCode = framework === 'react' ? code : vueCode
+  const currentCode = framework === 'vue' ? vueCode : code
 
   const copyCode = async () => {
     if (!(await copyToClipboard(currentCode))) return
@@ -217,7 +215,7 @@ function ShapeCard({
           <button
             onClick={copyCode}
             className="w-6 h-6 flex items-center justify-center border-2 border-foreground bg-background hover:bg-foreground hover:text-background transition-colors"
-            title={`Copy ${framework === 'react' ? 'JSX' : 'Vue'} code`}
+            title={`Copy ${frameworkLabels[framework]} code`}
           >
             {copiedCode ? <Check className="h-2.5 w-2.5" /> : <Copy className="h-2.5 w-2.5" />}
           </button>
@@ -241,9 +239,7 @@ export function Shapes() {
   const [searchQuery, setSearchQuery] = useState('')
   const { framework } = useFramework()
 
-  const cliCommand = framework === 'react'
-    ? 'npx shadcn@latest add https://boldkit.dev/r/shapes.json'
-    : 'npx shadcn-vue@latest add https://boldkit.dev/r/vue/shapes.json'
+  const cliCommand = `npx ${frameworkCliNames[framework]}@latest add https://boldkit.dev${frameworkRegistryPaths[framework]}/shapes.json`
 
   const totalShapes = shapeCategories.reduce((acc, cat) => acc + cat.shapes.length, 0)
 
@@ -371,7 +367,7 @@ export function Shapes() {
           <div className="container mx-auto px-4 sm:px-6">
             <div className="flex items-center gap-3 py-3 sm:py-4">
               <span className="text-[10px] font-bold uppercase tracking-widest opacity-60 shrink-0" style={MONO}>
-                {framework === 'react' ? 'shadcn' : 'shadcn-vue'}
+                {frameworkCliNames[framework]}
               </span>
               <span className="opacity-30 shrink-0">|</span>
               <code className="flex-1 text-xs sm:text-sm font-mono overflow-x-auto opacity-90">
@@ -420,7 +416,7 @@ export function Shapes() {
                     <tbody>
                       {[
                         { prop: 'size',      type: 'number',  def: '100' },
-                        { prop: framework === 'react' ? 'strokeWidth' : 'stroke-width', type: 'number', def: '3' },
+                        { prop: framework === 'vue' ? 'stroke-width' : 'strokeWidth', type: 'number', def: '3' },
                         { prop: 'filled',    type: 'boolean', def: 'true' },
                         { prop: 'color',     type: 'string',  def: 'currentColor' },
                         { prop: 'animation', type: "'none' | 'spin' | 'pulse' | 'float' | 'wiggle' | 'bounce' | 'glitch' | 'spin-step' | 'pulse-hard' | 'marquee-stamp'", def: "'none'" },

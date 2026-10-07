@@ -1,0 +1,66 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "table",
+  "type": "registry:ui",
+  "description": "Table component for BoldKit Svelte",
+  "dependencies": [],
+  "registryDependencies": [
+    "utils"
+  ],
+  "files": [
+    {
+      "path": "registry/default/ui/index.ts",
+      "content": "import Root from \"./accordion.svelte\";\nimport Content from \"./accordion-content.svelte\";\nimport Item from \"./accordion-item.svelte\";\nimport Trigger from \"./accordion-trigger.svelte\";\n\nexport {\n\tRoot,\n\tContent,\n\tItem,\n\tTrigger,\n\t//\n\tRoot as Accordion,\n\tContent as AccordionContent,\n\tItem as AccordionItem,\n\tTrigger as AccordionTrigger,\n};\n",
+      "type": "registry:ui",
+      "target": "lib/components/ui/accordion/index.ts"
+    },
+    {
+      "path": "registry/default/ui/table-body.svelte",
+      "content": "<script lang=\"ts\">\n\timport { cn, type WithElementRef } from \"$lib/utils.js\";\n\timport type { HTMLAttributes } from \"svelte/elements\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tchildren,\n\t\t...restProps\n\t}: WithElementRef<HTMLAttributes<HTMLTableSectionElement>> = $props();\n</script>\n\n<tbody bind:this={ref} data-slot=\"table-body\" class={cn(\"[&_tr:last-child]:border-0\", className)} {...restProps}>\n\t{@render children?.()}\n</tbody>\n",
+      "type": "registry:ui",
+      "target": "lib/components/ui/table/table-body.svelte"
+    },
+    {
+      "path": "registry/default/ui/table-caption.svelte",
+      "content": "<script lang=\"ts\">\n\timport { cn, type WithElementRef } from \"$lib/utils.js\";\n\timport type { HTMLAttributes } from \"svelte/elements\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tchildren,\n\t\t...restProps\n\t}: WithElementRef<HTMLAttributes<HTMLElement>> = $props();\n</script>\n\n<caption\n\tbind:this={ref}\n\tdata-slot=\"table-caption\"\n\tclass={cn(\"text-muted-foreground mt-4 text-sm\", className)}\n\t{...restProps}\n>\n\t{@render children?.()}\n</caption>\n",
+      "type": "registry:ui",
+      "target": "lib/components/ui/table/table-caption.svelte"
+    },
+    {
+      "path": "registry/default/ui/table-cell.svelte",
+      "content": "<script lang=\"ts\">\n\timport { cn, type WithElementRef } from \"$lib/utils.js\";\n\timport type { HTMLTdAttributes } from \"svelte/elements\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tchildren,\n\t\t...restProps\n\t}: WithElementRef<HTMLTdAttributes> = $props();\n</script>\n\n<td bind:this={ref} data-slot=\"table-cell\" class={cn(\"p-2 align-middle whitespace-nowrap [&:has([role=checkbox])]:pr-0\", className)} {...restProps}>\n\t{@render children?.()}\n</td>\n",
+      "type": "registry:ui",
+      "target": "lib/components/ui/table/table-cell.svelte"
+    },
+    {
+      "path": "registry/default/ui/table-footer.svelte",
+      "content": "<script lang=\"ts\">\n\timport { cn, type WithElementRef } from \"$lib/utils.js\";\n\timport type { HTMLAttributes } from \"svelte/elements\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tchildren,\n\t\t...restProps\n\t}: WithElementRef<HTMLAttributes<HTMLTableSectionElement>> = $props();\n</script>\n\n<tfoot\n\tbind:this={ref}\n\tdata-slot=\"table-footer\"\n\tclass={cn(\"bg-muted/50 border-t font-medium [&>tr]:last:border-b-0\", className)}\n\t{...restProps}\n>\n\t{@render children?.()}\n</tfoot>\n",
+      "type": "registry:ui",
+      "target": "lib/components/ui/table/table-footer.svelte"
+    },
+    {
+      "path": "registry/default/ui/table-head.svelte",
+      "content": "<script lang=\"ts\">\n\timport { cn, type WithElementRef } from \"$lib/utils.js\";\n\timport type { HTMLThAttributes } from \"svelte/elements\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tchildren,\n\t\t...restProps\n\t}: WithElementRef<HTMLThAttributes> = $props();\n</script>\n\n<th bind:this={ref} data-slot=\"table-head\" class={cn(\"h-12 px-4 text-left align-middle font-bold uppercase tracking-wide text-xs border-b-3 border-foreground bg-muted [&:has([role=checkbox])]:pr-0\", className)} {...restProps}>\n\t{@render children?.()}\n</th>\n",
+      "type": "registry:ui",
+      "target": "lib/components/ui/table/table-head.svelte"
+    },
+    {
+      "path": "registry/default/ui/table-header.svelte",
+      "content": "<script lang=\"ts\">\n\timport { cn, type WithElementRef } from \"$lib/utils.js\";\n\timport type { HTMLAttributes } from \"svelte/elements\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tchildren,\n\t\t...restProps\n\t}: WithElementRef<HTMLAttributes<HTMLTableSectionElement>> = $props();\n</script>\n\n<thead\n\tbind:this={ref}\n\tdata-slot=\"table-header\"\n\tclass={cn(\"[&_tr]:border-b-3 [&_tr]:border-foreground\", className)}\n\t{...restProps}\n>\n\t{@render children?.()}\n</thead>\n",
+      "type": "registry:ui",
+      "target": "lib/components/ui/table/table-header.svelte"
+    },
+    {
+      "path": "registry/default/ui/table-row.svelte",
+      "content": "<script lang=\"ts\">\n\timport { cn, type WithElementRef } from \"$lib/utils.js\";\n\timport type { HTMLAttributes } from \"svelte/elements\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tchildren,\n\t\t...restProps\n\t}: WithElementRef<HTMLAttributes<HTMLTableRowElement>> = $props();\n</script>\n\n<tr bind:this={ref} data-slot=\"table-row\" class={cn(\"hover:bg-muted/50 data-[state=selected]:bg-muted border-b-3 border-foreground transition-colors last:border-b-0\", className)} {...restProps}>\n\t{@render children?.()}\n</tr>\n",
+      "type": "registry:ui",
+      "target": "lib/components/ui/table/table-row.svelte"
+    },
+    {
+      "path": "registry/default/ui/table.svelte",
+      "content": "<script lang=\"ts\">\n\timport type { HTMLTableAttributes } from \"svelte/elements\";\n\timport { cn, type WithElementRef } from \"$lib/utils.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tchildren,\n\t\t...restProps\n\t}: WithElementRef<HTMLTableAttributes> = $props();\n</script>\n\n<div data-slot=\"table-container\" class=\"relative w-full overflow-x-auto border-3 border-foreground shadow-[4px_4px_0px_hsl(var(--shadow-color))]\">\n\t<table bind:this={ref} data-slot=\"table\" class={cn(\"w-full caption-bottom text-sm\", className)} {...restProps}>\n\t\t{@render children?.()}\n\t</table>\n</div>\n",
+      "type": "registry:ui",
+      "target": "lib/components/ui/table/table.svelte"
+    }
+  ]
+}

@@ -1,0 +1,66 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "popover",
+  "type": "registry:ui",
+  "description": "Popover component for BoldKit Svelte",
+  "dependencies": [],
+  "registryDependencies": [
+    "utils"
+  ],
+  "files": [
+    {
+      "path": "registry/default/ui/index.ts",
+      "content": "import Root from \"./accordion.svelte\";\nimport Content from \"./accordion-content.svelte\";\nimport Item from \"./accordion-item.svelte\";\nimport Trigger from \"./accordion-trigger.svelte\";\n\nexport {\n\tRoot,\n\tContent,\n\tItem,\n\tTrigger,\n\t//\n\tRoot as Accordion,\n\tContent as AccordionContent,\n\tItem as AccordionItem,\n\tTrigger as AccordionTrigger,\n};\n",
+      "type": "registry:ui",
+      "target": "lib/components/ui/accordion/index.ts"
+    },
+    {
+      "path": "registry/default/ui/popover-close.svelte",
+      "content": "<script lang=\"ts\">\n\timport { Popover as PopoverPrimitive } from \"bits-ui\";\n\n\tlet { ref = $bindable(null), ...restProps }: PopoverPrimitive.CloseProps = $props();\n</script>\n\n<PopoverPrimitive.Close bind:ref data-slot=\"popover-close\" {...restProps} />\n",
+      "type": "registry:ui",
+      "target": "lib/components/ui/popover/popover-close.svelte"
+    },
+    {
+      "path": "registry/default/ui/popover-content.svelte",
+      "content": "<script lang=\"ts\">\n\timport { Popover as PopoverPrimitive } from \"bits-ui\";\n\timport PopoverPortal from \"./popover-portal.svelte\";\n\timport { cn, type WithoutChildrenOrChild } from \"$lib/utils.js\";\n\timport type { ComponentProps } from \"svelte\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tsideOffset = 4,\n\t\talign = \"center\",\n\t\tportalProps,\n\t\t...restProps\n\t}: PopoverPrimitive.ContentProps & {\n\t\tportalProps?: WithoutChildrenOrChild<ComponentProps<typeof PopoverPortal>>;\n\t} = $props();\n</script>\n\n<PopoverPortal {...portalProps}>\n\t<PopoverPrimitive.Content\n\t\tbind:ref\n\t\tdata-slot=\"popover-content\"\n\t\t{sideOffset}\n\t\t{align}\n\t\tclass={cn(\n\t\t\t\"z-50 w-72 border-3 border-foreground bg-popover p-4 text-popover-foreground shadow-[4px_4px_0px_hsl(var(--shadow-color))] outline-none data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2\",\n\t\t\tclassName\n\t\t)}\n\t\t{...restProps}\n\t/>\n</PopoverPortal>\n",
+      "type": "registry:ui",
+      "target": "lib/components/ui/popover/popover-content.svelte"
+    },
+    {
+      "path": "registry/default/ui/popover-description.svelte",
+      "content": "<script lang=\"ts\">\n\timport type { HTMLAttributes } from \"svelte/elements\";\n\timport { cn, type WithElementRef } from \"$lib/utils.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tchildren,\n\t\t...restProps\n\t}: WithElementRef<HTMLAttributes<HTMLDivElement>> = $props();\n</script>\n\n<div\n\tbind:this={ref}\n\tdata-slot=\"popover-description\"\n\tclass={cn(\"text-muted-foreground\", className)}\n\t{...restProps}\n>\n\t{@render children?.()}\n</div>\n",
+      "type": "registry:ui",
+      "target": "lib/components/ui/popover/popover-description.svelte"
+    },
+    {
+      "path": "registry/default/ui/popover-header.svelte",
+      "content": "<script lang=\"ts\">\n\timport type { HTMLAttributes } from \"svelte/elements\";\n\timport { cn, type WithElementRef } from \"$lib/utils.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tchildren,\n\t\t...restProps\n\t}: WithElementRef<HTMLAttributes<HTMLDivElement>> = $props();\n</script>\n\n<div\n\tbind:this={ref}\n\tdata-slot=\"popover-header\"\n\tclass={cn(\"flex flex-col gap-0.5 text-sm\", className)}\n\t{...restProps}\n>\n\t{@render children?.()}\n</div>\n",
+      "type": "registry:ui",
+      "target": "lib/components/ui/popover/popover-header.svelte"
+    },
+    {
+      "path": "registry/default/ui/popover-portal.svelte",
+      "content": "<script lang=\"ts\">\n\timport { Popover as PopoverPrimitive } from \"bits-ui\";\n\n\tlet { ...restProps }: PopoverPrimitive.PortalProps = $props();\n</script>\n\n<PopoverPrimitive.Portal {...restProps} />\n",
+      "type": "registry:ui",
+      "target": "lib/components/ui/popover/popover-portal.svelte"
+    },
+    {
+      "path": "registry/default/ui/popover-title.svelte",
+      "content": "<script lang=\"ts\">\n\timport type { HTMLAttributes } from \"svelte/elements\";\n\timport { cn, type WithElementRef } from \"$lib/utils.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tchildren,\n\t\t...restProps\n\t}: WithElementRef<HTMLAttributes<HTMLDivElement>> = $props();\n</script>\n\n<div\n\tbind:this={ref}\n\tdata-slot=\"popover-title\"\n\tclass={cn(\"font-medium\", className)}\n\t{...restProps}\n>\n\t{@render children?.()}\n</div>\n",
+      "type": "registry:ui",
+      "target": "lib/components/ui/popover/popover-title.svelte"
+    },
+    {
+      "path": "registry/default/ui/popover-trigger.svelte",
+      "content": "<script lang=\"ts\">\n\timport { cn } from \"$lib/utils.js\";\n\timport { Popover as PopoverPrimitive } from \"bits-ui\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\t...restProps\n\t}: PopoverPrimitive.TriggerProps = $props();\n</script>\n\n<PopoverPrimitive.Trigger\n\tbind:ref\n\tdata-slot=\"popover-trigger\"\n\tclass={cn(\"\", className)}\n\t{...restProps}\n/>\n",
+      "type": "registry:ui",
+      "target": "lib/components/ui/popover/popover-trigger.svelte"
+    },
+    {
+      "path": "registry/default/ui/popover.svelte",
+      "content": "<script lang=\"ts\">\n\timport { Popover as PopoverPrimitive } from \"bits-ui\";\n\n\tlet { open = $bindable(false), ...restProps }: PopoverPrimitive.RootProps = $props();\n</script>\n\n<PopoverPrimitive.Root bind:open {...restProps} />\n",
+      "type": "registry:ui",
+      "target": "lib/components/ui/popover/popover.svelte"
+    }
+  ]
+}

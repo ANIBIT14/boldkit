@@ -2,7 +2,8 @@
   "workspaces": [
     "packages/vue",
     "packages/mcp",
-    "packages/cli"
+    "packages/cli",
+    "packages/svelte"
   ],
   "name": "boldkit-site",
   "private": true,
@@ -47,8 +48,9 @@
     "registry:sync": "node scripts/sync-registry-from-src.js",
     "registry:audit": "node scripts/audit-registry-imports.mjs",
     "audit:icon-labels": "node scripts/audit-icon-labels.mjs",
-    "registry:build": "npm run registry:sync && shadcn build && npm run registry:build:vue && node scripts/build-canvas-effects-registry.js && node scripts/build-registry.js && node scripts/build-mcp-catalog.js",
+    "registry:build": "npm run registry:sync && shadcn build && npm run registry:build:vue && node scripts/build-canvas-effects-registry.js && node scripts/build-registry.js && node scripts/build-mcp-catalog.js && npm run registry:build:svelte",
     "registry:build:vue": "cd packages/vue && node scripts/build-registry.js",
+    "registry:build:svelte": "cd packages/svelte && node scripts/build-registry.js",
     "test": "vitest",
     "test:run": "vitest run",
     "test:vue": "cd packages/vue && vitest run",
@@ -101,7 +103,8 @@
     "sonner": "^2.0.7",
     "tailwind-merge": "^3.6.0",
     "tailwindcss": "^4.3.3",
-    "vaul": "^1.1.2"
+    "vaul": "^1.1.2",
+    "react-syntax-highlighter": "^16.1.0"
   },
   "peerDependencies": {
     "react": "^19.2.3",
@@ -136,7 +139,8 @@
     "vite": "^7.3.6",
     "vitest": "^4.1.10",
     "vitest-axe": "^0.1.0",
-    "vue-eslint-parser": "^10.4.1"
+    "vue-eslint-parser": "^10.4.1",
+    "@types/react-syntax-highlighter": "^15.5.13"
   },
   "engines": {
     "node": ">=20.0.0"

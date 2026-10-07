@@ -1,0 +1,60 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "layered-card",
+  "type": "registry:ui",
+  "description": "Layered Card component for BoldKit Svelte",
+  "dependencies": [],
+  "registryDependencies": [
+    "utils"
+  ],
+  "files": [
+    {
+      "path": "registry/default/ui/index.ts",
+      "content": "import Root from \"./accordion.svelte\";\nimport Content from \"./accordion-content.svelte\";\nimport Item from \"./accordion-item.svelte\";\nimport Trigger from \"./accordion-trigger.svelte\";\n\nexport {\n\tRoot,\n\tContent,\n\tItem,\n\tTrigger,\n\t//\n\tRoot as Accordion,\n\tContent as AccordionContent,\n\tItem as AccordionItem,\n\tTrigger as AccordionTrigger,\n};\n",
+      "type": "registry:ui",
+      "target": "lib/components/ui/accordion/index.ts"
+    },
+    {
+      "path": "registry/default/ui/layered-card-content.svelte",
+      "content": "<script lang=\"ts\">\n  import type { Snippet } from 'svelte'\n  import { cn } from '$lib/utils.js'\n  type Props = { class?: string; children?: Snippet }\n  let { class: className, children }: Props = $props()\n</script>\n\n<div class={cn('p-4', className)}>\n  {@render children?.()}\n</div>\n",
+      "type": "registry:ui",
+      "target": "lib/components/ui/layered-card/layered-card-content.svelte"
+    },
+    {
+      "path": "registry/default/ui/layered-card-description.svelte",
+      "content": "<script lang=\"ts\">\n  import type { Snippet } from 'svelte'\n  import { cn } from '$lib/utils.js'\n  type Props = { class?: string; children?: Snippet }\n  let { class: className, children }: Props = $props()\n</script>\n\n<p class={cn('text-sm text-muted-foreground', className)}>\n  {@render children?.()}\n</p>\n",
+      "type": "registry:ui",
+      "target": "lib/components/ui/layered-card/layered-card-description.svelte"
+    },
+    {
+      "path": "registry/default/ui/layered-card-footer.svelte",
+      "content": "<script lang=\"ts\">\n  import type { Snippet } from 'svelte'\n  import { cn } from '$lib/utils.js'\n  type Props = { class?: string; children?: Snippet }\n  let { class: className, children }: Props = $props()\n</script>\n\n<div class={cn('flex items-center p-4 border-t-3 border-foreground', className)}>\n  {@render children?.()}\n</div>\n",
+      "type": "registry:ui",
+      "target": "lib/components/ui/layered-card/layered-card-footer.svelte"
+    },
+    {
+      "path": "registry/default/ui/layered-card-header.svelte",
+      "content": "<script lang=\"ts\">\n  import type { Snippet } from 'svelte'\n  import { cn } from '$lib/utils.js'\n  type Props = { class?: string; children?: Snippet }\n  let { class: className, children }: Props = $props()\n</script>\n\n<div class={cn('flex flex-col space-y-1.5 border-b-3 border-foreground bg-muted p-4', className)}>\n  {@render children?.()}\n</div>\n",
+      "type": "registry:ui",
+      "target": "lib/components/ui/layered-card/layered-card-header.svelte"
+    },
+    {
+      "path": "registry/default/ui/layered-card-title.svelte",
+      "content": "<script lang=\"ts\">\n  import type { Snippet } from 'svelte'\n  import { cn } from '$lib/utils.js'\n  type Props = { class?: string; children?: Snippet }\n  let { class: className, children }: Props = $props()\n</script>\n\n<h3 class={cn('text-lg font-bold uppercase tracking-wide leading-none', className)}>\n  {@render children?.()}\n</h3>\n",
+      "type": "registry:ui",
+      "target": "lib/components/ui/layered-card/layered-card-title.svelte"
+    },
+    {
+      "path": "registry/default/ui/layered-card-variants.ts",
+      "content": "import { cva } from 'class-variance-authority'\n\nexport const layeredCardVariants = cva('relative', {\n  variants: {\n    layers: { single: '', double: '', triple: '' },\n    offset: { sm: '', default: '', lg: '' },\n    layerColor: { default: '', primary: '', secondary: '', accent: '', muted: '' },\n  },\n  defaultVariants: { layers: 'double', offset: 'default', layerColor: 'default' },\n})\n",
+      "type": "registry:ui",
+      "target": "lib/components/ui/layered-card/layered-card-variants.ts"
+    },
+    {
+      "path": "registry/default/ui/layered-card.svelte",
+      "content": "<script lang=\"ts\">\n  import type { Snippet } from 'svelte'\n  import { type VariantProps } from 'class-variance-authority'\n  import { cn } from '$lib/utils.js'\n  import { layeredCardVariants } from './layered-card-variants.js'\n\n  type LayeredCardVariants = VariantProps<typeof layeredCardVariants>\n\n  type Props = {\n    class?: string\n    layers?: LayeredCardVariants['layers']\n    offset?: LayeredCardVariants['offset']\n    layerColor?: LayeredCardVariants['layerColor']\n    interactive?: boolean\n    children?: Snippet\n  }\n\n  let {\n    class: className,\n    layers = 'double',\n    offset = 'default',\n    layerColor = 'default',\n    interactive = false,\n    children,\n  }: Props = $props()\n\n  const offsetSizes: Record<string, number> = { sm: 6, default: 8, lg: 12 }\n  const colorClasses: Record<string, string> = {\n    default: 'bg-muted',\n    primary: 'bg-primary',\n    secondary: 'bg-secondary',\n    accent: 'bg-accent',\n    muted: 'bg-muted',\n  }\n\n  const offsetPx = $derived(offsetSizes[offset ?? 'default'])\n  const layerCount = $derived(layers === 'single' ? 1 : layers === 'triple' ? 3 : 2)\n  const layerBg = $derived(colorClasses[layerColor ?? 'default'])\n</script>\n\n<div class={cn(layeredCardVariants({ layers, offset, layerColor }), className)}>\n  {#if layerCount >= 3}\n    <div\n      class={cn('absolute inset-0 border-3 border-foreground', layerBg, 'opacity-50')}\n      style=\"transform: translate({offsetPx * 3}px, {offsetPx * 3}px)\"\n    ></div>\n  {/if}\n  {#if layerCount >= 2}\n    <div\n      class={cn('absolute inset-0 border-3 border-foreground', layerBg, 'opacity-70')}\n      style=\"transform: translate({offsetPx * 2}px, {offsetPx * 2}px)\"\n    ></div>\n  {/if}\n  <div\n    class={cn('absolute inset-0 border-3 border-foreground', layerBg)}\n    style=\"transform: translate({offsetPx}px, {offsetPx}px)\"\n  ></div>\n  <div\n    class={cn(\n      'relative border-3 border-foreground bg-card text-card-foreground',\n      interactive && 'cursor-pointer transition-transform duration-200 hover:translate-x-[-4px] hover:translate-y-[-4px]'\n    )}\n  >\n    {@render children?.()}\n  </div>\n</div>\n",
+      "type": "registry:ui",
+      "target": "lib/components/ui/layered-card/layered-card.svelte"
+    }
+  ]
+}

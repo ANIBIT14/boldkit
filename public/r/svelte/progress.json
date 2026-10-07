@@ -1,0 +1,26 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "progress",
+  "type": "registry:ui",
+  "description": "Displays an indicator showing completion progress",
+  "dependencies": [
+    "bits-ui"
+  ],
+  "registryDependencies": [
+    "utils"
+  ],
+  "files": [
+    {
+      "path": "registry/default/ui/index.ts",
+      "content": "import Root from \"./accordion.svelte\";\nimport Content from \"./accordion-content.svelte\";\nimport Item from \"./accordion-item.svelte\";\nimport Trigger from \"./accordion-trigger.svelte\";\n\nexport {\n\tRoot,\n\tContent,\n\tItem,\n\tTrigger,\n\t//\n\tRoot as Accordion,\n\tContent as AccordionContent,\n\tItem as AccordionItem,\n\tTrigger as AccordionTrigger,\n};\n",
+      "type": "registry:ui",
+      "target": "lib/components/ui/accordion/index.ts"
+    },
+    {
+      "path": "registry/default/ui/progress.svelte",
+      "content": "<script lang=\"ts\">\n\timport { Progress as ProgressPrimitive } from \"bits-ui\";\n\timport { cn, type WithoutChildrenOrChild } from \"$lib/utils.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tmax = 100,\n\t\tvalue,\n\t\t...restProps\n\t}: WithoutChildrenOrChild<ProgressPrimitive.RootProps> = $props();\n</script>\n\n<ProgressPrimitive.Root\n\tbind:ref\n\tdata-slot=\"progress\"\n\tclass={cn(\"relative h-5 w-full overflow-hidden border-3 border-foreground bg-muted shadow-[4px_4px_0px_hsl(var(--shadow-color))]\", className)}\n\t{value}\n\t{max}\n\t{...restProps}\n>\n\t<div\n\t\tdata-slot=\"progress-indicator\"\n\t\tclass=\"bg-primary size-full flex-1 transition-all\"\n\t\tstyle=\"transform: translateX(-{100 - (100 * (value ?? 0)) / (max ?? 1)}%)\"\n\t></div>\n</ProgressPrimitive.Root>\n",
+      "type": "registry:ui",
+      "target": "lib/components/ui/progress/progress.svelte"
+    }
+  ]
+}

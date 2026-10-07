@@ -1,0 +1,30 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "radio-group",
+  "type": "registry:ui",
+  "description": "Radio Group component for BoldKit Svelte",
+  "dependencies": [],
+  "registryDependencies": [
+    "utils"
+  ],
+  "files": [
+    {
+      "path": "registry/default/ui/index.ts",
+      "content": "import Root from \"./accordion.svelte\";\nimport Content from \"./accordion-content.svelte\";\nimport Item from \"./accordion-item.svelte\";\nimport Trigger from \"./accordion-trigger.svelte\";\n\nexport {\n\tRoot,\n\tContent,\n\tItem,\n\tTrigger,\n\t//\n\tRoot as Accordion,\n\tContent as AccordionContent,\n\tItem as AccordionItem,\n\tTrigger as AccordionTrigger,\n};\n",
+      "type": "registry:ui",
+      "target": "lib/components/ui/accordion/index.ts"
+    },
+    {
+      "path": "registry/default/ui/radio-group-item.svelte",
+      "content": "<script lang=\"ts\">\n\timport { RadioGroup as RadioGroupPrimitive } from \"bits-ui\";\n\timport CircleIcon from '@lucide/svelte/icons/circle';\n\timport { cn, type WithoutChildrenOrChild } from \"$lib/utils.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\t...restProps\n\t}: WithoutChildrenOrChild<RadioGroupPrimitive.ItemProps> = $props();\n</script>\n\n<RadioGroupPrimitive.Item\n\tbind:ref\n\tdata-slot=\"radio-group-item\"\n\tclass={cn(\n\t\t\"border-input dark:bg-input/30 data-checked:bg-primary data-checked:text-primary-foreground dark:data-checked:bg-primary data-checked:border-primary aria-invalid:aria-checked:border-primary aria-invalid:border-destructive focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 dark:aria-invalid:border-destructive/50 flex size-4 rounded-full focus-visible:ring-3 aria-invalid:ring-3 group/radio-group-item peer relative aspect-square shrink-0 border outline-none after:absolute after:-inset-x-3 after:-inset-y-2 disabled:cursor-not-allowed disabled:opacity-50\",\n\t\tclassName\n\t)}\n\t{...restProps}\n>\n\t{#snippet children({ checked })}\n\t\t<div data-slot=\"radio-group-indicator\" class=\"flex size-4 items-center justify-center\">\n\t\t\t{#if checked}\n\t\t\t\t<CircleIcon class=\"bg-primary-foreground absolute top-1/2 left-1/2 size-2 -translate-x-1/2 -translate-y-1/2 rounded-full\" />\n\t\t\t{/if}\n\t\t</div>\n\t{/snippet}\n</RadioGroupPrimitive.Item>\n",
+      "type": "registry:ui",
+      "target": "lib/components/ui/radio-group/radio-group-item.svelte"
+    },
+    {
+      "path": "registry/default/ui/radio-group.svelte",
+      "content": "<script lang=\"ts\">\n\timport { RadioGroup as RadioGroupPrimitive } from \"bits-ui\";\n\timport { cn } from \"$lib/utils.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\tvalue = $bindable(\"\"),\n\t\t...restProps\n\t}: RadioGroupPrimitive.RootProps = $props();\n</script>\n\n<RadioGroupPrimitive.Root\n\tbind:ref\n\tbind:value\n\tdata-slot=\"radio-group\"\n\tclass={cn(\"grid gap-2 w-full\", className)}\n\t{...restProps}\n/>\n",
+      "type": "registry:ui",
+      "target": "lib/components/ui/radio-group/radio-group.svelte"
+    }
+  ]
+}

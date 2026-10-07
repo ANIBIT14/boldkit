@@ -10,7 +10,7 @@ import { Layout } from '@/components/layout'
 import { SEO } from '@/components/SEO'
 import { Copy, Check, ChevronLeft, Wand2 } from 'lucide-react'
 import { toast } from 'sonner'
-import { useFramework, FrameworkToggle, ReactIcon, VueIcon } from '@/hooks/use-framework'
+import { FrameworkIcon, FrameworkToggle, frameworkLabels, useFramework } from '@/hooks/use-framework'
 import {
   TriangleShape, DiamondBadge, PentagonShape, HexagonShape, OctagonShape, CrossShape,
   TrapezoidShape, ParallelogramShape,
@@ -175,7 +175,7 @@ export function ShapeBuilder() {
     return `<script setup lang="ts">\nimport { ${componentName} } from '@/components/ui/shapes'\n</script>\n\n<template>\n  <${componentName}${propsStr} />\n</template>`
   }
 
-  const code = framework === 'react' ? buildReactCode() : buildVueCode()
+  const code = framework === 'vue' ? buildVueCode() : buildReactCode()
 
   const copyCode = async () => {
     if (!(await copyToClipboard(code))) return
@@ -190,8 +190,8 @@ export function ShapeBuilder() {
     <>
       <SEO
         title="Shape Builder — Customize & Export Neubrutalism Shapes"
-        description="Interactive shape builder for BoldKit. Customize size, color, animation, fill, and stroke for all 64 neubrutalism SVG shapes. Export React or Vue code instantly."
-        keywords="shape builder, SVG shape customizer, neubrutalism shapes, animated shapes, React shape component, Vue shape component"
+        description="Interactive shape builder for BoldKit. Customize size, color, animation, fill, and stroke for all 64 neubrutalism SVG shapes. Export React, Vue, or Svelte code instantly."
+        keywords="shape builder, SVG shape customizer, neubrutalism shapes, animated shapes, React shape component, Vue shape component, Svelte shape component"
         canonical="https://boldkit.dev/shapes/builder"
         breadcrumbs={[
           { name: 'Home', url: 'https://boldkit.dev/' },
@@ -447,8 +447,8 @@ export function ShapeBuilder() {
                   <div className="flex items-center gap-2">
                     <p className="text-[11px] font-black uppercase tracking-[0.15em] text-muted-foreground">Code</p>
                     <div className="flex items-center gap-1">
-                      {framework === 'react' ? <ReactIcon className="h-3.5 w-3.5 text-sky-500" /> : <VueIcon className="h-3.5 w-3.5 text-emerald-500" />}
-                      <span className="text-[10px] font-bold uppercase text-muted-foreground">{framework}</span>
+                      <FrameworkIcon framework={framework} className="h-3.5 w-3.5 text-muted-foreground" />
+                      <span className="text-[10px] font-bold uppercase text-muted-foreground">{frameworkLabels[framework]}</span>
                     </div>
                   </div>
                   <Button variant="outline" size="sm" className="h-6 px-2 text-xs gap-1" onClick={copyCode}>

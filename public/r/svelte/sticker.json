@@ -1,0 +1,42 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "sticker",
+  "type": "registry:ui",
+  "description": "Sticker component for BoldKit Svelte",
+  "dependencies": [],
+  "registryDependencies": [
+    "utils"
+  ],
+  "files": [
+    {
+      "path": "registry/default/ui/index.ts",
+      "content": "import Root from \"./accordion.svelte\";\nimport Content from \"./accordion-content.svelte\";\nimport Item from \"./accordion-item.svelte\";\nimport Trigger from \"./accordion-trigger.svelte\";\n\nexport {\n\tRoot,\n\tContent,\n\tItem,\n\tTrigger,\n\t//\n\tRoot as Accordion,\n\tContent as AccordionContent,\n\tItem as AccordionItem,\n\tTrigger as AccordionTrigger,\n};\n",
+      "type": "registry:ui",
+      "target": "lib/components/ui/accordion/index.ts"
+    },
+    {
+      "path": "registry/default/ui/stamp.svelte",
+      "content": "<script lang=\"ts\">\n\timport type { Snippet } from 'svelte';\n\timport { cn } from '$lib/utils.js';\n\timport { stampVariants } from './sticker-variants.js';\n\n\ttype Props = {\n\t\tclass?: string;\n\t\tvariant?: 'default' | 'secondary' | 'accent' | 'destructive' | 'outline';\n\t\tsize?: 'sm' | 'default' | 'lg' | 'xl';\n\t\trotation?: 'none' | 'slight' | 'medium' | 'heavy';\n\t\tdoubleRing?: boolean;\n\t\tchildren?: Snippet;\n\t};\n\n\tlet {\n\t\tclass: className,\n\t\tvariant = 'default',\n\t\tsize = 'default',\n\t\trotation = 'slight',\n\t\tdoubleRing = false,\n\t\tchildren,\n\t}: Props = $props();\n</script>\n\n<div\n\tclass={cn(\n\t\tstampVariants({ variant, size, rotation }),\n\t\t'shadow-[4px_4px_0px_hsl(var(--shadow-color))]',\n\t\tdoubleRing && 'ring-2 ring-foreground ring-offset-2 ring-offset-background',\n\t\tclassName\n\t)}\n>\n\t<span class=\"text-center leading-tight\">\n\t\t{@render children?.()}\n\t</span>\n</div>\n",
+      "type": "registry:ui",
+      "target": "lib/components/ui/sticker/stamp.svelte"
+    },
+    {
+      "path": "registry/default/ui/sticker-variants.ts",
+      "content": "import { cva } from 'class-variance-authority'\n\nexport const stampVariants = cva(\n  'relative inline-flex items-center justify-center rounded-full border-4 border-foreground font-black uppercase tracking-widest',\n  {\n    variants: {\n      variant: {\n        default: 'bg-primary text-primary-foreground',\n        secondary: 'bg-secondary text-secondary-foreground',\n        accent: 'bg-accent text-accent-foreground',\n        destructive: 'bg-destructive text-destructive-foreground',\n        outline: 'bg-background text-foreground',\n      },\n      size: {\n        sm: 'h-16 w-16 text-[10px]',\n        default: 'h-24 w-24 text-xs',\n        lg: 'h-32 w-32 text-sm',\n        xl: 'h-40 w-40 text-base',\n      },\n      rotation: {\n        none: 'rotate-0',\n        slight: '-rotate-12',\n        medium: '-rotate-[25deg]',\n        heavy: '-rotate-45',\n      },\n    },\n    defaultVariants: {\n      variant: 'default',\n      size: 'default',\n      rotation: 'slight',\n    },\n  }\n)\n\nexport const stickyNoteVariants = cva(\n  'relative border-3 border-foreground font-medium shadow-[4px_4px_0px_hsl(var(--shadow-color))]',\n  {\n    variants: {\n      variant: {\n        yellow: 'bg-accent text-accent-foreground',\n        pink: 'bg-primary text-primary-foreground',\n        blue: 'bg-info text-info-foreground',\n        green: 'bg-success text-success-foreground',\n        purple: 'bg-secondary text-secondary-foreground',\n      },\n      size: {\n        sm: 'p-3 text-sm min-w-[120px]',\n        default: 'p-4 text-base min-w-[160px]',\n        lg: 'p-6 text-lg min-w-[200px]',\n      },\n      rotation: {\n        none: 'rotate-0',\n        left: '-rotate-2',\n        right: 'rotate-2',\n        'tilt-left': '-rotate-6',\n        'tilt-right': 'rotate-6',\n      },\n    },\n    defaultVariants: {\n      variant: 'yellow',\n      size: 'default',\n      rotation: 'left',\n    },\n  }\n)\n\nexport const stickerVariants = cva(\n  'relative inline-flex items-center justify-center border-3 border-foreground font-bold uppercase tracking-wide transition-transform',\n  {\n    variants: {\n      variant: {\n        default: 'bg-accent text-accent-foreground',\n        primary: 'bg-primary text-primary-foreground',\n        secondary: 'bg-secondary text-secondary-foreground',\n        destructive: 'bg-destructive text-destructive-foreground',\n        outline: 'bg-background text-foreground',\n        neon: 'bg-neon-pink text-foreground',\n      },\n      size: {\n        sm: 'px-2 py-1 text-xs',\n        default: 'px-3 py-1.5 text-sm',\n        lg: 'px-4 py-2 text-base',\n        xl: 'px-6 py-3 text-lg',\n      },\n      rotation: {\n        none: 'rotate-0',\n        slight: '-rotate-2',\n        medium: '-rotate-6',\n        heavy: '-rotate-12',\n        'slight-right': 'rotate-2',\n        'medium-right': 'rotate-6',\n        'heavy-right': 'rotate-12',\n      },\n      shadow: {\n        none: '',\n        default: 'shadow-[4px_4px_0px_hsl(var(--shadow-color))]',\n        colored: 'shadow-[4px_4px_0px_hsl(var(--primary))]',\n        double: 'shadow-[3px_3px_0px_hsl(var(--primary)),6px_6px_0px_hsl(var(--shadow-color))]',\n      },\n    },\n    defaultVariants: {\n      variant: 'default',\n      size: 'default',\n      rotation: 'slight',\n      shadow: 'default',\n    },\n  }\n)\n",
+      "type": "registry:ui",
+      "target": "lib/components/ui/sticker/sticker-variants.ts"
+    },
+    {
+      "path": "registry/default/ui/sticker.svelte",
+      "content": "<script lang=\"ts\">\n  import type { Snippet } from 'svelte'\n  import { type VariantProps } from 'class-variance-authority'\n  import { cn } from '$lib/utils.js'\n  import { stickerVariants } from './sticker-variants.js'\n\n  type StickerVariants = VariantProps<typeof stickerVariants>\n\n  type Props = {\n    class?: string\n    variant?: StickerVariants['variant']\n    size?: StickerVariants['size']\n    rotation?: StickerVariants['rotation']\n    shadow?: StickerVariants['shadow']\n    dashed?: boolean\n    tape?: boolean\n    interactive?: boolean\n    children?: Snippet\n  }\n\n  let {\n    class: className,\n    variant = 'default',\n    size = 'default',\n    rotation = 'slight',\n    shadow = 'default',\n    dashed = false,\n    tape = false,\n    interactive = false,\n    children,\n  }: Props = $props()\n</script>\n\n<div\n  class={cn(\n    stickerVariants({ variant, size, rotation, shadow }),\n    dashed && 'before:absolute before:inset-[-6px] before:border-2 before:border-dashed before:border-foreground/50',\n    tape &&\n      'after:absolute after:left-1/2 after:top-[-8px] after:-translate-x-1/2 after:rotate-[-2deg] after:w-[50px] after:h-[16px] after:bg-accent/80 after:border-2 after:border-foreground',\n    interactive &&\n      'cursor-pointer hover:translate-x-[4px] hover:translate-y-[4px] hover:shadow-none active:translate-x-[4px] active:translate-y-[4px] active:shadow-none',\n    className\n  )}\n>\n  {@render children?.()}\n</div>\n",
+      "type": "registry:ui",
+      "target": "lib/components/ui/sticker/sticker.svelte"
+    },
+    {
+      "path": "registry/default/ui/sticky-note.svelte",
+      "content": "<script lang=\"ts\">\n\timport type { Snippet } from 'svelte';\n\timport { cn } from '$lib/utils.js';\n\timport { stickyNoteVariants } from './sticker-variants.js';\n\n\ttype Props = {\n\t\tclass?: string;\n\t\tvariant?: 'yellow' | 'pink' | 'blue' | 'green' | 'purple';\n\t\tsize?: 'sm' | 'default' | 'lg';\n\t\trotation?: 'none' | 'left' | 'right' | 'tilt-left' | 'tilt-right';\n\t\tpin?: boolean;\n\t\tfolded?: boolean;\n\t\tchildren?: Snippet;\n\t};\n\n\tlet {\n\t\tclass: className,\n\t\tvariant = 'yellow',\n\t\tsize = 'default',\n\t\trotation = 'left',\n\t\tpin = false,\n\t\tfolded = true,\n\t\tchildren,\n\t}: Props = $props();\n</script>\n\n<div\n\tclass={cn(\n\t\tstickyNoteVariants({ variant, size, rotation }),\n\t\tfolded &&\n\t\t\t'before:absolute before:bottom-0 before:right-0 before:w-0 before:h-0 before:border-l-[20px] before:border-l-transparent before:border-b-[20px] before:border-b-foreground/20',\n\t\tclassName\n\t)}\n>\n\t{#if pin}\n\t\t<div class=\"absolute -top-3 left-1/2 -translate-x-1/2 w-4 h-4 rounded-full bg-destructive border-2 border-foreground shadow-[2px_2px_0px_hsl(var(--shadow-color))]\"></div>\n\t{/if}\n\t{@render children?.()}\n</div>\n",
+      "type": "registry:ui",
+      "target": "lib/components/ui/sticker/sticky-note.svelte"
+    }
+  ]
+}

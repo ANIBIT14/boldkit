@@ -7,7 +7,7 @@ import { ScrollArea } from '@/components/ui/scroll-area'
 import { Button } from '@/components/ui/button'
 import { Menu, Search, X, ExternalLink } from 'lucide-react'
 import { Header } from '@/components/layout'
-import { FrameworkToggle, useFramework } from '@/hooks/use-framework'
+import { FrameworkToggle, frameworkLabels, useFramework } from '@/hooks/use-framework'
 import { TableOfContents } from '@/components/TableOfContents'
 
 const marketingBlocks = [
@@ -191,10 +191,6 @@ function Sidebar({ className, onLinkClick }: { className?: string; onLinkClick?:
   const { framework } = useFramework()
   const [search, setSearch] = useState('')
 
-  const frameworkLabels: Record<string, string> = {
-    react: 'React',
-    vue: 'Vue 3',
-  }
 
   const q = search.toLowerCase().trim()
 

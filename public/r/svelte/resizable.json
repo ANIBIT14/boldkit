@@ -1,0 +1,30 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "resizable",
+  "type": "registry:ui",
+  "description": "Resizable component for BoldKit Svelte",
+  "dependencies": [],
+  "registryDependencies": [
+    "utils"
+  ],
+  "files": [
+    {
+      "path": "registry/default/ui/index.ts",
+      "content": "import Root from \"./accordion.svelte\";\nimport Content from \"./accordion-content.svelte\";\nimport Item from \"./accordion-item.svelte\";\nimport Trigger from \"./accordion-trigger.svelte\";\n\nexport {\n\tRoot,\n\tContent,\n\tItem,\n\tTrigger,\n\t//\n\tRoot as Accordion,\n\tContent as AccordionContent,\n\tItem as AccordionItem,\n\tTrigger as AccordionTrigger,\n};\n",
+      "type": "registry:ui",
+      "target": "lib/components/ui/accordion/index.ts"
+    },
+    {
+      "path": "registry/default/ui/resizable-handle.svelte",
+      "content": "<script lang=\"ts\">\n\timport * as ResizablePrimitive from \"paneforge\";\n\timport { cn, type WithoutChildrenOrChild } from \"$lib/utils.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tclass: className,\n\t\twithHandle = false,\n\t\t...restProps\n\t}: WithoutChildrenOrChild<ResizablePrimitive.PaneResizerProps> & {\n\t\twithHandle?: boolean;\n\t} = $props();\n</script>\n\n<ResizablePrimitive.PaneResizer\n\tbind:ref\n\tdata-slot=\"resizable-handle\"\n\tclass={cn(\n\t\t\"cn-resizable-handle bg-border focus-visible:ring-ring relative flex w-px items-center justify-center after:absolute after:inset-y-0 after:left-1/2 after:w-1 after:-translate-x-1/2 focus-visible:ring-1 focus-visible:ring-offset-1 focus-visible:outline-hidden data-[direction=vertical]:h-px data-[direction=vertical]:w-full data-[direction=vertical]:after:left-0 data-[direction=vertical]:after:h-1 data-[direction=vertical]:after:w-full data-[direction=vertical]:after:translate-x-0 data-[direction=vertical]:after:-translate-y-1/2 [&[data-direction=vertical]>div]:rotate-90\",\n\t\tclassName\n\t)}\n\t{...restProps}\n>\n\t{#if withHandle}\n\t\t<div class=\"bg-border h-6 w-1 rounded-lg z-10 flex shrink-0\"></div>\n\t{/if}\n</ResizablePrimitive.PaneResizer>\n",
+      "type": "registry:ui",
+      "target": "lib/components/ui/resizable/resizable-handle.svelte"
+    },
+    {
+      "path": "registry/default/ui/resizable-pane-group.svelte",
+      "content": "<script lang=\"ts\">\n\timport * as ResizablePrimitive from \"paneforge\";\n\timport { cn } from \"$lib/utils.js\";\n\n\tlet {\n\t\tref = $bindable(null),\n\t\tthis: paneGroup = $bindable(),\n\t\tclass: className,\n\t\t...restProps\n\t}: ResizablePrimitive.PaneGroupProps & {\n\t\tthis?: ResizablePrimitive.PaneGroup;\n\t} = $props();\n</script>\n\n<ResizablePrimitive.PaneGroup\n\tbind:ref\n\tbind:this={paneGroup}\n\tdata-slot=\"resizable-pane-group\"\n\tclass={cn(\n\t\t\"cn-resizable-panel-group flex h-full w-full data-[direction=vertical]:flex-col\",\n\t\tclassName\n\t)}\n\t{...restProps}\n/>\n",
+      "type": "registry:ui",
+      "target": "lib/components/ui/resizable/resizable-pane-group.svelte"
+    }
+  ]
+}

@@ -1,3 +1,4 @@
+import { copyToClipboard } from '@/lib/clipboard'
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { Badge } from '@/components/ui/badge'
@@ -21,13 +22,25 @@ import {
   FileX,
   CreditCard,
   ChevronRight,
+  Copy,
+  Check,
   LayoutGrid,
   LayoutDashboard,
   Table2,
   GitBranch,
 } from 'lucide-react'
 import { SEO, pageSEO } from '@/components/SEO'
-import { useFramework, FrameworkToggle, ReactIcon, VueIcon } from '@/hooks/use-framework'
+import {
+  FrameworkIcon,
+  FrameworkToggle,
+  frameworkBadgeClasses,
+  frameworkBadgeVariants,
+  frameworkCliNames,
+  frameworkLabels,
+  frameworkRegistryPaths,
+  useFramework,
+  type Framework,
+} from '@/hooks/use-framework'
 import type { CSSProperties } from 'react'
 
 const DISPLAY: CSSProperties = { fontFamily: "'Bebas Neue', sans-serif" }
@@ -837,9 +850,22 @@ const accentColors = [
   'bg-info/15 border-info/40',
 ]
 
-function BlockCard({ block, framework, index }: { block: BlockInfo; framework: string; index: number }) {
+function CopyButton({ text, mini = false }: { text: string; mini?: boolean }) {
+  const [copied, setCopied] = useState(false)
+  const copy = async () => {
+    if (!(await copyToClipboard(text))) return
+    setCopied(true)
+    setTimeout(() => setCopied(false), 2000)
+  }
+  return <button type="button" onClick={copy} aria-label={copied ? 'Copied' : 'Copy install command'} className={mini ? 'p-1' : 'p-2'}>{copied ? <Check size={12} /> : <Copy size={12} />}</button>
+}
+
+function BlockCard({ block, framework, index }: { block: BlockInfo; framework: Framework; index: number }) {
   const [showCode, setShowCode] = useState(false)
   const Icon = block.icon
+  const registryName = block.name.toLowerCase().replace(/\s+/g, '-')
+  const installCmd = `npx ${frameworkCliNames[framework]}@latest add "https://boldkit.dev${frameworkRegistryPaths[framework]}/${registryName}.json"`
+  const usageCode = block.code[framework] || '<!-- Svelte block usage example coming soon. -->'
   const accentClass = accentColors[index % accentColors.length]
 
   return (
@@ -883,19 +909,33 @@ function BlockCard({ block, framework, index }: { block: BlockInfo; framework: s
 
         {/* Code snippet toggle */}
         <div className="border-2 border-foreground bg-foreground/4 mt-auto">
+          {/* Install bar */}
+          <div className="flex items-center justify-between px-2.5 py-1.5 border-b border-foreground/20">
+            <span className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground" style={MONO}>
+              install
+            </span>
+            <CopyButton text={installCmd} mini />
+          </div>
+          <div className="px-2.5 py-1.5 overflow-x-auto">
+            <code className="text-[10px] text-foreground/70 whitespace-nowrap" style={MONO}>
+              {installCmd}
+            </code>
+          </div>
+
+          {/* Code snippet toggle */}
           <button
             onClick={() => setShowCode(!showCode)}
             className="w-full flex items-center justify-between px-2.5 py-1.5 hover:bg-foreground/5 transition-colors touch-manipulation"
           >
             <span className="text-[10px] font-bold uppercase tracking-widest" style={MONO}>
-              {framework === 'react' ? 'React' : 'Vue'} usage
+              {frameworkLabels[framework]} usage
             </span>
             <ChevronRight className={`h-3.5 w-3.5 transition-transform ${showCode ? 'rotate-90' : ''}`} />
           </button>
           {showCode && (
             <div className="border-t border-foreground/20">
               <pre className="p-2.5 text-[10px] overflow-x-auto max-h-28 text-foreground/80" style={MONO}>
-                <code>{block.code[framework]}</code>
+                <code>{usageCode}</code>
               </pre>
             </div>
           )}
@@ -970,7 +1010,7 @@ export function Blocks() {
             {[
               { value: String(marketingBlocks.length + applicationBlocks.length), label: 'Blocks', bg: 'bg-primary' },
               { value: String(totalVariants) + '+', label: 'Variants', bg: 'bg-secondary' },
-              { value: '2', label: 'Frameworks', bg: 'bg-accent' },
+              { value: '3', label: 'Frameworks', bg: 'bg-accent' },
               { value: 'Free', label: 'Forever', bg: 'bg-success' },
             ].map((s) => (
               <div
@@ -989,13 +1029,11 @@ export function Blocks() {
             <div className="flex flex-wrap items-center gap-2 mb-5">
               <Badge variant="secondary" className="text-xs">Pre-built</Badge>
               <Badge
-                variant={framework === 'react' ? 'info' : 'success'}
-                className="gap-1.5 text-xs"
+                variant={frameworkBadgeVariants[framework]}
+                className={`gap-1.5 text-xs ${frameworkBadgeClasses[framework]}`}
               >
-                {framework === 'react'
-                  ? <ReactIcon className="h-3.5 w-3.5" />
-                  : <VueIcon className="h-3.5 w-3.5" />}
-                {framework === 'react' ? 'React' : 'Vue 3'}
+                <FrameworkIcon framework={framework} className="h-3.5 w-3.5" />
+                {frameworkLabels[framework]}
               </Badge>
             </div>
 

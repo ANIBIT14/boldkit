@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "theme",
+  "type": "registry:ui",
+  "description": "BoldKit theme tokens",
+  "dependencies": [],
+  "registryDependencies": [
+    "utils"
+  ],
+  "files": [
+    {
+      "path": "registry/default/ui/theme.ts",
+      "content": "export const boldkitTheme = {\n\tname: 'boldkit',\n\tcssVars: {\n\t\tradius: '0rem',\n\t\tshadow: '4px 4px 0px hsl(var(--shadow-color))',\n\t},\n};\n",
+      "type": "registry:ui",
+      "target": "lib/components/ui/theme/theme.ts"
+    }
+  ]
+}
