@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ComboboxInput, type ComboboxInputProps } from 'reka-ui'
-import { Search } from 'lucide-vue-next'
+import { Search } from '@lucide/vue'
 import { cn } from '@/lib/utils'
 
 interface Props extends /* @vue-ignore */ ComboboxInputProps {

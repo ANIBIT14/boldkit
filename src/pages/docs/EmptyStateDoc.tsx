@@ -58,7 +58,7 @@ import {
   EmptyStateDescription,
   EmptyStateActions,
 } from '@/components/ui/empty-state'
-import { Inbox, Plus } from 'lucide-vue-next'
+import { Inbox, Plus } from '@lucide/vue'
 import { Button } from '@/components/ui/button'
 </script>
 

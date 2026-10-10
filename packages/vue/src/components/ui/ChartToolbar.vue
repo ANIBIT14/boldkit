@@ -9,7 +9,7 @@
  * it only when using an SVG-renderer chart.
  */
 import { ref } from 'vue'
-import { Download, Image, FileText, Maximize } from 'lucide-vue-next'
+import { Download, Image, FileText, Maximize } from '@lucide/vue'
 import { cn } from '@/lib/utils'
 import Button from './Button.vue'
 import { downloadCSV, exportPNG, exportSVG, toggleFullscreen } from '@/lib/chart-export'

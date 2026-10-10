@@ -189,7 +189,12 @@ export const PAGE_FAQS: Record<string, PageFaq[]> = {
     {
       question: 'Does BoldKit work with Nuxt 4?',
       answer:
-        'Yes — Nuxt 4 and Nuxt 3 are both supported and tested against a real Nuxt install rather than only in theory. Nuxt 4 moved the app source into app/, which changes where the CLI writes files; the registry uses alias-relative paths so both layouts resolve correctly.',
+        'Yes — Nuxt 4 (tested on 4.6) and Nuxt 3 are both supported and tested against a real Nuxt install rather than only in theory. Nuxt 4 moved the app source into app/, which changes where the CLI writes files; the registry uses alias-relative paths so both layouts resolve correctly.',
+    },
+    {
+      question: 'Is BoldKit ready for Nuxt 5 and Vue Vapor mode?',
+      answer:
+        'Yes, as far as both can be tested today. The full component set builds and runs with future: { compatibilityVersion: 5 } in Nuxt 4.6, and BoldKit components render inside Vapor components (vue: { vapor: true } with <script setup vapor>) through Vue 3.6\'s interop layer. One caveat: keep TypeScript on 6.x for now — TypeScript 7 drops the JavaScript API the Vue compiler uses to read component prop types, so BoldKit\'s utils item installs typescript@<7.',
     },
     {
       question: 'Do I need the shadcn-nuxt module?',
@@ -231,6 +236,11 @@ export const PAGE_FAQS: Record<string, PageFaq[]> = {
       question: 'Are the React and Vue components identical?',
       answer:
         'Visually yes — same borders, shadows, spacing and motion tokens, because they share the same stylesheets. API-wise they follow each framework’s idiom: React uses props and callbacks on Radix primitives, Vue uses v-model and emits on Reka UI. Forcing identical APIs would make one of them feel foreign.',
+    },
+    {
+      question: 'Does BoldKit include chat or AI assistant components?',
+      answer:
+        'Yes. The Chat kit (one install: @boldkit/chat) ships a MessageScroller that stays pinned to the newest message while a reply streams in, shows a jump-to-latest button with an unread count when you scroll up, and keeps your place when older history loads above. Message, Bubble, Attachment and Marker cover the rows, surfaces, files and live "thinking…" status — the same API in React and Vue.',
     },
     {
       question: 'Can I share a theme between the React and Vue apps?',

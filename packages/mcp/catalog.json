@@ -8,7 +8,7 @@
       "react": {
         "url": "https://boldkit.dev/r/accordion.json",
         "dependencies": [
-          "@radix-ui/react-accordion",
+          "radix-ui",
           "lucide-react"
         ],
         "registryDependencies": [
@@ -21,7 +21,8 @@
       "vue": {
         "url": "https://boldkit.dev/r/vue/accordion.json",
         "dependencies": [
-          "reka-ui"
+          "reka-ui@^2.11.0",
+          "@lucide/vue"
         ],
         "registryDependencies": [
           "@boldkit/utils"
@@ -83,7 +84,7 @@
       "react": {
         "url": "https://boldkit.dev/r/alert-dialog.json",
         "dependencies": [
-          "@radix-ui/react-alert-dialog"
+          "radix-ui"
         ],
         "registryDependencies": [
           "@boldkit/utils",
@@ -96,7 +97,7 @@
       "vue": {
         "url": "https://boldkit.dev/r/vue/alert-dialog.json",
         "dependencies": [
-          "reka-ui"
+          "reka-ui@^2.11.0"
         ],
         "registryDependencies": [
           "@boldkit/utils",
@@ -177,7 +178,7 @@
       "react": {
         "url": "https://boldkit.dev/r/aspect-ratio.json",
         "dependencies": [
-          "@radix-ui/react-aspect-ratio"
+          "radix-ui"
         ],
         "registryDependencies": [
           "@boldkit/utils"
@@ -189,7 +190,7 @@
       "vue": {
         "url": "https://boldkit.dev/r/vue/aspect-ratio.json",
         "dependencies": [
-          "reka-ui"
+          "reka-ui@^2.11.0"
         ],
         "registryDependencies": [
           "@boldkit/utils"
@@ -241,7 +242,7 @@
       "react": {
         "url": "https://boldkit.dev/r/avatar.json",
         "dependencies": [
-          "@radix-ui/react-avatar"
+          "radix-ui"
         ],
         "registryDependencies": [
           "@boldkit/utils"
@@ -253,7 +254,7 @@
       "vue": {
         "url": "https://boldkit.dev/r/vue/avatar.json",
         "dependencies": [
-          "reka-ui"
+          "reka-ui@^2.11.0"
         ],
         "registryDependencies": [
           "@boldkit/utils"
@@ -305,13 +306,37 @@
       "docsUrl": "https://boldkit.dev/components/badge"
     },
     {
+      "name": "boldkit",
+      "type": "registry:base",
+      "description": "Everything a project needs before adding BoldKit components: the neubrutalism stylesheet + motion system, the default theme, cn() utils, and the Outfit / DM Mono fonts. Use with `shadcn init --base`.",
+      "react": {
+        "url": "https://boldkit.dev/r/boldkit.json",
+        "dependencies": [
+          "clsx",
+          "tailwind-merge",
+          "class-variance-authority",
+          "lucide-react"
+        ],
+        "registryDependencies": [
+          "@boldkit/styles",
+          "@boldkit/utils",
+          "@boldkit/font-outfit",
+          "@boldkit/font-dm-mono"
+        ],
+        "files": []
+      },
+      "frameworks": [
+        "react"
+      ]
+    },
+    {
       "name": "breadcrumb",
       "type": "registry:ui",
       "description": "Displays the path to the current resource using a hierarchy of links",
       "react": {
         "url": "https://boldkit.dev/r/breadcrumb.json",
         "dependencies": [
-          "@radix-ui/react-slot",
+          "radix-ui",
           "lucide-react"
         ],
         "registryDependencies": [
@@ -324,8 +349,8 @@
       "vue": {
         "url": "https://boldkit.dev/r/vue/breadcrumb.json",
         "dependencies": [
-          "reka-ui",
-          "lucide-vue-next"
+          "reka-ui@^2.11.0",
+          "@lucide/vue"
         ],
         "registryDependencies": [
           "@boldkit/utils"
@@ -353,7 +378,7 @@
       "react": {
         "url": "https://boldkit.dev/r/button.json",
         "dependencies": [
-          "@radix-ui/react-slot",
+          "radix-ui",
           "class-variance-authority"
         ],
         "registryDependencies": [
@@ -366,7 +391,7 @@
       "vue": {
         "url": "https://boldkit.dev/r/vue/button.json",
         "dependencies": [
-          "reka-ui",
+          "reka-ui@^2.11.0",
           "class-variance-authority"
         ],
         "registryDependencies": [
@@ -436,8 +461,8 @@
       "vue": {
         "url": "https://boldkit.dev/r/vue/calendar.json",
         "dependencies": [
-          "reka-ui",
-          "lucide-vue-next"
+          "reka-ui@^2.11.0",
+          "@lucide/vue"
         ],
         "registryDependencies": [
           "@boldkit/utils",
@@ -540,7 +565,8 @@
         "url": "https://boldkit.dev/r/vue/carousel.json",
         "dependencies": [
           "embla-carousel-vue",
-          "lucide-vue-next"
+          "embla-carousel",
+          "@lucide/vue"
         ],
         "registryDependencies": [
           "@boldkit/utils",
@@ -568,7 +594,8 @@
       "react": {
         "url": "https://boldkit.dev/r/chart.json",
         "dependencies": [
-          "recharts"
+          "recharts",
+          "class-variance-authority"
         ],
         "registryDependencies": [
           "@boldkit/utils",
@@ -656,7 +683,7 @@
       "vue": {
         "url": "https://boldkit.dev/r/vue/chart-toolbar.json",
         "dependencies": [
-          "lucide-vue-next"
+          "@lucide/vue"
         ],
         "registryDependencies": [
           "@boldkit/utils",
@@ -682,7 +709,9 @@
         "dependencies": [
           "class-variance-authority"
         ],
-        "registryDependencies": [],
+        "registryDependencies": [
+          "@boldkit/utils"
+        ],
         "files": [
           "components/ui/chart-utils.ts",
           "components/ui/chart-variants.ts"
@@ -694,13 +723,66 @@
       "docsUrl": "https://boldkit.dev/components/chart-utils"
     },
     {
+      "name": "chat",
+      "type": "registry:ui",
+      "description": "Chat / AI-assistant kit: MessageScroller (auto-follow, jump-to-latest, prepend anchoring), Message, Bubble, Attachment and Marker",
+      "react": {
+        "url": "https://boldkit.dev/r/chat.json",
+        "dependencies": [
+          "lucide-react"
+        ],
+        "registryDependencies": [
+          "@boldkit/utils",
+          "@boldkit/progress",
+          "@boldkit/motion"
+        ],
+        "files": [
+          "registry/default/ui/message-scroller.tsx",
+          "registry/default/ui/message.tsx",
+          "registry/default/ui/bubble.tsx",
+          "registry/default/ui/attachment.tsx",
+          "registry/default/ui/marker.tsx"
+        ]
+      },
+      "vue": {
+        "url": "https://boldkit.dev/r/vue/chat.json",
+        "dependencies": [
+          "@lucide/vue"
+        ],
+        "registryDependencies": [
+          "@boldkit/utils",
+          "@boldkit/progress"
+        ],
+        "files": [
+          "components/ui/MessageScroller.vue",
+          "components/ui/MessageScrollerContent.vue",
+          "components/ui/MessageScrollerJumpButton.vue",
+          "components/ui/Message.vue",
+          "components/ui/MessageAvatar.vue",
+          "components/ui/MessageHeader.vue",
+          "components/ui/MessageContent.vue",
+          "components/ui/MessageFooter.vue",
+          "components/ui/Bubble.vue",
+          "components/ui/Attachment.vue",
+          "components/ui/Marker.vue",
+          "components/ui/message-scroller-context.ts",
+          "styles/motion.css"
+        ]
+      },
+      "frameworks": [
+        "react",
+        "vue"
+      ],
+      "docsUrl": "https://boldkit.dev/components/chat"
+    },
+    {
       "name": "checkbox",
       "type": "registry:ui",
       "description": "A control that allows the user to toggle between checked and not checked",
       "react": {
         "url": "https://boldkit.dev/r/checkbox.json",
         "dependencies": [
-          "@radix-ui/react-checkbox",
+          "radix-ui",
           "lucide-react"
         ],
         "registryDependencies": [
@@ -714,8 +796,8 @@
       "vue": {
         "url": "https://boldkit.dev/r/vue/checkbox.json",
         "dependencies": [
-          "reka-ui",
-          "lucide-vue-next"
+          "reka-ui@^2.11.0",
+          "@lucide/vue"
         ],
         "registryDependencies": [
           "@boldkit/utils"
@@ -737,7 +819,7 @@
       "react": {
         "url": "https://boldkit.dev/r/collapsible.json",
         "dependencies": [
-          "@radix-ui/react-collapsible"
+          "radix-ui"
         ],
         "registryDependencies": [
           "@boldkit/utils",
@@ -750,7 +832,7 @@
       "vue": {
         "url": "https://boldkit.dev/r/vue/collapsible.json",
         "dependencies": [
-          "reka-ui"
+          "reka-ui@^2.11.0"
         ],
         "registryDependencies": [
           "@boldkit/utils"
@@ -788,8 +870,8 @@
       "vue": {
         "url": "https://boldkit.dev/r/vue/combobox.json",
         "dependencies": [
-          "reka-ui",
-          "lucide-vue-next"
+          "reka-ui@^2.11.0",
+          "@lucide/vue"
         ],
         "registryDependencies": [
           "@boldkit/utils",
@@ -828,8 +910,8 @@
       "vue": {
         "url": "https://boldkit.dev/r/vue/command.json",
         "dependencies": [
-          "reka-ui",
-          "lucide-vue-next"
+          "reka-ui@^2.11.0",
+          "@lucide/vue"
         ],
         "registryDependencies": [
           "@boldkit/utils",
@@ -860,7 +942,7 @@
       "react": {
         "url": "https://boldkit.dev/r/context-menu.json",
         "dependencies": [
-          "@radix-ui/react-context-menu",
+          "radix-ui",
           "lucide-react"
         ],
         "registryDependencies": [
@@ -873,8 +955,8 @@
       "vue": {
         "url": "https://boldkit.dev/r/vue/context-menu.json",
         "dependencies": [
-          "reka-ui",
-          "lucide-vue-next"
+          "reka-ui@^2.11.0",
+          "@lucide/vue"
         ],
         "registryDependencies": [
           "@boldkit/utils"
@@ -938,7 +1020,7 @@
       "react": {
         "url": "https://boldkit.dev/r/data-table.json",
         "dependencies": [
-          "@tanstack/react-table",
+          "@tanstack/react-table@^8.21.3",
           "lucide-react"
         ],
         "registryDependencies": [
@@ -957,8 +1039,8 @@
       "vue": {
         "url": "https://boldkit.dev/r/vue/data-table.json",
         "dependencies": [
-          "@tanstack/vue-table",
-          "lucide-vue-next"
+          "@tanstack/vue-table@^8.21.3",
+          "@lucide/vue"
         ],
         "registryDependencies": [
           "@boldkit/utils",
@@ -1002,7 +1084,7 @@
       "vue": {
         "url": "https://boldkit.dev/r/vue/date-picker.json",
         "dependencies": [
-          "lucide-vue-next"
+          "@lucide/vue"
         ],
         "registryDependencies": [
           "@boldkit/utils",
@@ -1045,7 +1127,8 @@
         "url": "https://boldkit.dev/r/vue/date-range-picker.json",
         "dependencies": [
           "date-fns",
-          "lucide-vue-next"
+          "@internationalized/date",
+          "@lucide/vue"
         ],
         "registryDependencies": [
           "@boldkit/utils",
@@ -1070,7 +1153,7 @@
       "react": {
         "url": "https://boldkit.dev/r/dialog.json",
         "dependencies": [
-          "@radix-ui/react-dialog",
+          "radix-ui",
           "lucide-react"
         ],
         "registryDependencies": [
@@ -1084,8 +1167,8 @@
       "vue": {
         "url": "https://boldkit.dev/r/vue/dialog.json",
         "dependencies": [
-          "reka-ui",
-          "lucide-vue-next"
+          "reka-ui@^2.11.0",
+          "@lucide/vue"
         ],
         "registryDependencies": [
           "@boldkit/utils"
@@ -1257,7 +1340,7 @@
       "vue": {
         "url": "https://boldkit.dev/r/vue/drawer.json",
         "dependencies": [
-          "vaul-vue"
+          "reka-ui@^2.11.0"
         ],
         "registryDependencies": [
           "@boldkit/utils"
@@ -1286,7 +1369,7 @@
       "react": {
         "url": "https://boldkit.dev/r/dropdown-menu.json",
         "dependencies": [
-          "@radix-ui/react-dropdown-menu",
+          "radix-ui",
           "lucide-react"
         ],
         "registryDependencies": [
@@ -1300,8 +1383,8 @@
       "vue": {
         "url": "https://boldkit.dev/r/vue/dropdown-menu.json",
         "dependencies": [
-          "reka-ui",
-          "lucide-vue-next"
+          "reka-ui@^2.11.0",
+          "@lucide/vue"
         ],
         "registryDependencies": [
           "@boldkit/utils"
@@ -1347,7 +1430,7 @@
       "vue": {
         "url": "https://boldkit.dev/r/vue/dropzone.json",
         "dependencies": [
-          "lucide-vue-next"
+          "@lucide/vue"
         ],
         "registryDependencies": [
           "@boldkit/utils",
@@ -1386,7 +1469,7 @@
       "vue": {
         "url": "https://boldkit.dev/r/vue/empty-state.json",
         "dependencies": [
-          "lucide-vue-next",
+          "@lucide/vue",
           "class-variance-authority"
         ],
         "registryDependencies": [
@@ -1415,7 +1498,9 @@
       "description": "Error boundary wrapper with neubrutalism-styled fallback UI. Used by math-curve components to catch runtime errors gracefully.",
       "react": {
         "url": "https://boldkit.dev/r/error-boundary.json",
-        "dependencies": [],
+        "dependencies": [
+          "lucide-react"
+        ],
         "registryDependencies": [
           "@boldkit/utils",
           "@boldkit/button",
@@ -1428,7 +1513,7 @@
       "vue": {
         "url": "https://boldkit.dev/r/vue/error-boundary.json",
         "dependencies": [
-          "lucide-vue-next"
+          "@lucide/vue"
         ],
         "registryDependencies": [
           "@boldkit/utils",
@@ -1510,6 +1595,34 @@
         "vue"
       ],
       "docsUrl": "https://boldkit.dev/components/flow-field"
+    },
+    {
+      "name": "font-dm-mono",
+      "type": "registry:font",
+      "description": "BoldKit's mono face (DM Mono). Self-hosted via Fontsource; sets --font-mono.",
+      "react": {
+        "url": "https://boldkit.dev/r/font-dm-mono.json",
+        "dependencies": [],
+        "registryDependencies": [],
+        "files": []
+      },
+      "frameworks": [
+        "react"
+      ]
+    },
+    {
+      "name": "font-outfit",
+      "type": "registry:font",
+      "description": "BoldKit's body face (Outfit, variable). Self-hosted via Fontsource; sets --font-sans.",
+      "react": {
+        "url": "https://boldkit.dev/r/font-outfit.json",
+        "dependencies": [],
+        "registryDependencies": [],
+        "files": []
+      },
+      "frameworks": [
+        "react"
+      ]
     },
     {
       "name": "funnel-chart",
@@ -1718,7 +1831,7 @@
       "react": {
         "url": "https://boldkit.dev/r/hover-card.json",
         "dependencies": [
-          "@radix-ui/react-hover-card"
+          "radix-ui"
         ],
         "registryDependencies": [
           "@boldkit/utils"
@@ -1730,7 +1843,7 @@
       "vue": {
         "url": "https://boldkit.dev/r/vue/hover-card.json",
         "dependencies": [
-          "reka-ui"
+          "reka-ui@^2.11.0"
         ],
         "registryDependencies": [
           "@boldkit/utils"
@@ -1796,7 +1909,7 @@
       "vue": {
         "url": "https://boldkit.dev/r/vue/input-group.json",
         "dependencies": [
-          "lucide-vue-next"
+          "@lucide/vue"
         ],
         "registryDependencies": [
           "@boldkit/utils"
@@ -1833,8 +1946,8 @@
       "vue": {
         "url": "https://boldkit.dev/r/vue/input-otp.json",
         "dependencies": [
-          "reka-ui",
-          "lucide-vue-next"
+          "reka-ui@^2.11.0",
+          "@lucide/vue"
         ],
         "registryDependencies": [
           "@boldkit/utils"
@@ -1870,7 +1983,10 @@
       },
       "vue": {
         "url": "https://boldkit.dev/r/vue/kbd.json",
-        "dependencies": [],
+        "dependencies": [
+          "reka-ui@^2.11.0",
+          "class-variance-authority"
+        ],
         "registryDependencies": [
           "@boldkit/utils"
         ],
@@ -1892,7 +2008,7 @@
       "react": {
         "url": "https://boldkit.dev/r/label.json",
         "dependencies": [
-          "@radix-ui/react-label",
+          "radix-ui",
           "class-variance-authority"
         ],
         "registryDependencies": [
@@ -1906,7 +2022,8 @@
       "vue": {
         "url": "https://boldkit.dev/r/vue/label.json",
         "dependencies": [
-          "reka-ui"
+          "reka-ui@^2.11.0",
+          "class-variance-authority"
         ],
         "registryDependencies": [
           "@boldkit/utils"
@@ -2060,7 +2177,7 @@
       "react": {
         "url": "https://boldkit.dev/r/math-curve-background.json",
         "dependencies": [
-          "@radix-ui/react-slot"
+          "radix-ui"
         ],
         "registryDependencies": [
           "@boldkit/utils",
@@ -2074,7 +2191,9 @@
       },
       "vue": {
         "url": "https://boldkit.dev/r/vue/math-curve-background.json",
-        "dependencies": [],
+        "dependencies": [
+          "reka-ui@^2.11.0"
+        ],
         "registryDependencies": [
           "@boldkit/utils",
           "@boldkit/math-curves"
@@ -2230,7 +2349,7 @@
       "react": {
         "url": "https://boldkit.dev/r/menubar.json",
         "dependencies": [
-          "@radix-ui/react-menubar",
+          "radix-ui",
           "lucide-react"
         ],
         "registryDependencies": [
@@ -2243,8 +2362,8 @@
       "vue": {
         "url": "https://boldkit.dev/r/vue/menubar.json",
         "dependencies": [
-          "reka-ui",
-          "lucide-vue-next"
+          "reka-ui@^2.11.0",
+          "@lucide/vue"
         ],
         "registryDependencies": [
           "@boldkit/utils"
@@ -2451,10 +2570,10 @@
         "dependencies": [],
         "registryDependencies": [
           "@boldkit/utils",
-          "stepper",
-          "button",
-          "input",
-          "label"
+          "@boldkit/stepper",
+          "@boldkit/button",
+          "@boldkit/input",
+          "@boldkit/label"
         ],
         "files": [
           "registry/default/ui/multi-step-form.tsx"
@@ -2500,7 +2619,7 @@
       "vue": {
         "url": "https://boldkit.dev/r/vue/native-select.json",
         "dependencies": [
-          "lucide-vue-next"
+          "@lucide/vue"
         ],
         "registryDependencies": [
           "@boldkit/utils"
@@ -2522,7 +2641,7 @@
       "react": {
         "url": "https://boldkit.dev/r/navigation-menu.json",
         "dependencies": [
-          "@radix-ui/react-navigation-menu",
+          "radix-ui",
           "class-variance-authority",
           "lucide-react"
         ],
@@ -2536,8 +2655,8 @@
       "vue": {
         "url": "https://boldkit.dev/r/vue/navigation-menu.json",
         "dependencies": [
-          "reka-ui",
-          "lucide-vue-next",
+          "reka-ui@^2.11.0",
+          "@lucide/vue",
           "class-variance-authority"
         ],
         "registryDependencies": [
@@ -2561,6 +2680,45 @@
       "docsUrl": "https://boldkit.dev/components/navigation-menu"
     },
     {
+      "name": "number-field",
+      "type": "registry:ui",
+      "description": "Numeric input with stepper buttons, min/max/step, keyboard control and Intl number formatting",
+      "react": {
+        "url": "https://boldkit.dev/r/number-field.json",
+        "dependencies": [
+          "lucide-react"
+        ],
+        "registryDependencies": [
+          "@boldkit/utils"
+        ],
+        "files": [
+          "registry/default/ui/number-field.tsx"
+        ]
+      },
+      "vue": {
+        "url": "https://boldkit.dev/r/vue/number-field.json",
+        "dependencies": [
+          "reka-ui@^2.11.0",
+          "@lucide/vue"
+        ],
+        "registryDependencies": [
+          "@boldkit/utils"
+        ],
+        "files": [
+          "components/ui/NumberField.vue",
+          "components/ui/NumberFieldContent.vue",
+          "components/ui/NumberFieldInput.vue",
+          "components/ui/NumberFieldIncrement.vue",
+          "components/ui/NumberFieldDecrement.vue"
+        ]
+      },
+      "frameworks": [
+        "react",
+        "vue"
+      ],
+      "docsUrl": "https://boldkit.dev/components/number-field"
+    },
+    {
       "name": "pagination",
       "type": "registry:ui",
       "description": "Pagination controls for navigating through pages",
@@ -2580,8 +2738,8 @@
       "vue": {
         "url": "https://boldkit.dev/r/vue/pagination.json",
         "dependencies": [
-          "reka-ui",
-          "lucide-vue-next"
+          "reka-ui@^2.11.0",
+          "@lucide/vue"
         ],
         "registryDependencies": [
           "@boldkit/utils",
@@ -2670,7 +2828,7 @@
       "react": {
         "url": "https://boldkit.dev/r/popover.json",
         "dependencies": [
-          "@radix-ui/react-popover"
+          "radix-ui"
         ],
         "registryDependencies": [
           "@boldkit/utils",
@@ -2683,7 +2841,7 @@
       "vue": {
         "url": "https://boldkit.dev/r/vue/popover.json",
         "dependencies": [
-          "reka-ui"
+          "reka-ui@^2.11.0"
         ],
         "registryDependencies": [
           "@boldkit/utils"
@@ -2707,7 +2865,7 @@
       "react": {
         "url": "https://boldkit.dev/r/progress.json",
         "dependencies": [
-          "@radix-ui/react-progress"
+          "radix-ui"
         ],
         "registryDependencies": [
           "@boldkit/utils",
@@ -2720,7 +2878,7 @@
       "vue": {
         "url": "https://boldkit.dev/r/vue/progress.json",
         "dependencies": [
-          "reka-ui"
+          "reka-ui@^2.11.0"
         ],
         "registryDependencies": [
           "@boldkit/utils"
@@ -2765,6 +2923,51 @@
         "vue"
       ],
       "docsUrl": "https://boldkit.dev/components/pulsing-border"
+    },
+    {
+      "name": "questionnaire",
+      "type": "registry:ui",
+      "description": "Multi-step question flow with single/multiple/free-text questions, skip, conditional logic and keyboard shortcuts",
+      "react": {
+        "url": "https://boldkit.dev/r/questionnaire.json",
+        "dependencies": [
+          "lucide-react"
+        ],
+        "registryDependencies": [
+          "@boldkit/utils",
+          "@boldkit/button",
+          "@boldkit/input",
+          "@boldkit/kbd",
+          "@boldkit/label",
+          "@boldkit/textarea"
+        ],
+        "files": [
+          "registry/default/ui/questionnaire.tsx"
+        ]
+      },
+      "vue": {
+        "url": "https://boldkit.dev/r/vue/questionnaire.json",
+        "dependencies": [
+          "@lucide/vue"
+        ],
+        "registryDependencies": [
+          "@boldkit/utils",
+          "@boldkit/button",
+          "@boldkit/input",
+          "@boldkit/kbd",
+          "@boldkit/label",
+          "@boldkit/textarea"
+        ],
+        "files": [
+          "components/ui/Questionnaire.vue",
+          "components/ui/questionnaire-types.ts"
+        ]
+      },
+      "frameworks": [
+        "react",
+        "vue"
+      ],
+      "docsUrl": "https://boldkit.dev/components/questionnaire"
     },
     {
       "name": "radar-chart",
@@ -2855,7 +3058,7 @@
       "react": {
         "url": "https://boldkit.dev/r/radio-group.json",
         "dependencies": [
-          "@radix-ui/react-radio-group",
+          "radix-ui",
           "lucide-react"
         ],
         "registryDependencies": [
@@ -2869,7 +3072,8 @@
       "vue": {
         "url": "https://boldkit.dev/r/vue/radio-group.json",
         "dependencies": [
-          "reka-ui"
+          "reka-ui@^2.11.0",
+          "@lucide/vue"
         ],
         "registryDependencies": [
           "@boldkit/utils"
@@ -2906,7 +3110,7 @@
         "url": "https://boldkit.dev/r/vue/rating.json",
         "dependencies": [
           "class-variance-authority",
-          "lucide-vue-next"
+          "@lucide/vue"
         ],
         "registryDependencies": [
           "@boldkit/utils"
@@ -2941,8 +3145,8 @@
       "vue": {
         "url": "https://boldkit.dev/r/vue/resizable.json",
         "dependencies": [
-          "reka-ui",
-          "lucide-vue-next"
+          "reka-ui@^2.11.0",
+          "@lucide/vue"
         ],
         "registryDependencies": [
           "@boldkit/utils"
@@ -3003,7 +3207,7 @@
       "react": {
         "url": "https://boldkit.dev/r/scroll-area.json",
         "dependencies": [
-          "@radix-ui/react-scroll-area"
+          "radix-ui"
         ],
         "registryDependencies": [
           "@boldkit/utils"
@@ -3015,7 +3219,7 @@
       "vue": {
         "url": "https://boldkit.dev/r/vue/scroll-area.json",
         "dependencies": [
-          "reka-ui"
+          "reka-ui@^2.11.0"
         ],
         "registryDependencies": [
           "@boldkit/utils"
@@ -3038,7 +3242,7 @@
       "react": {
         "url": "https://boldkit.dev/r/select.json",
         "dependencies": [
-          "@radix-ui/react-select",
+          "radix-ui",
           "lucide-react"
         ],
         "registryDependencies": [
@@ -3051,8 +3255,8 @@
       "vue": {
         "url": "https://boldkit.dev/r/vue/select.json",
         "dependencies": [
-          "reka-ui",
-          "lucide-vue-next"
+          "reka-ui@^2.11.0",
+          "@lucide/vue"
         ],
         "registryDependencies": [
           "@boldkit/utils"
@@ -3081,7 +3285,7 @@
       "react": {
         "url": "https://boldkit.dev/r/separator.json",
         "dependencies": [
-          "@radix-ui/react-separator"
+          "radix-ui"
         ],
         "registryDependencies": [
           "@boldkit/utils"
@@ -3093,7 +3297,7 @@
       "vue": {
         "url": "https://boldkit.dev/r/vue/separator.json",
         "dependencies": [
-          "reka-ui"
+          "reka-ui@^2.11.0"
         ],
         "registryDependencies": [
           "@boldkit/utils"
@@ -3202,7 +3406,7 @@
       "react": {
         "url": "https://boldkit.dev/r/sheet.json",
         "dependencies": [
-          "@radix-ui/react-dialog",
+          "radix-ui",
           "class-variance-authority",
           "lucide-react"
         ],
@@ -3216,8 +3420,8 @@
       "vue": {
         "url": "https://boldkit.dev/r/vue/sheet.json",
         "dependencies": [
-          "reka-ui",
-          "lucide-vue-next",
+          "reka-ui@^2.11.0",
+          "@lucide/vue",
           "class-variance-authority"
         ],
         "registryDependencies": [
@@ -3264,7 +3468,7 @@
         "url": "https://boldkit.dev/r/vue/sidebar.json",
         "dependencies": [
           "class-variance-authority",
-          "lucide-vue-next"
+          "@lucide/vue"
         ],
         "registryDependencies": [
           "@boldkit/utils",
@@ -3298,7 +3502,9 @@
       "description": "Used to show a placeholder while content is loading",
       "react": {
         "url": "https://boldkit.dev/r/skeleton.json",
-        "dependencies": [],
+        "dependencies": [
+          "class-variance-authority"
+        ],
         "registryDependencies": [
           "@boldkit/utils",
           "@boldkit/motion"
@@ -3341,7 +3547,7 @@
       "vue": {
         "url": "https://boldkit.dev/r/vue/slider.json",
         "dependencies": [
-          "reka-ui"
+          "reka-ui@^2.11.0"
         ],
         "registryDependencies": [
           "@boldkit/utils"
@@ -3377,7 +3583,7 @@
       "vue": {
         "url": "https://boldkit.dev/r/vue/sonner.json",
         "dependencies": [
-          "vue-sonner"
+          "vue-sonner@^2.0.9"
         ],
         "registryDependencies": [
           "@boldkit/utils",
@@ -3450,6 +3656,7 @@
       "vue": {
         "url": "https://boldkit.dev/r/vue/spinner.json",
         "dependencies": [
+          "reka-ui@^2.11.0",
           "class-variance-authority"
         ],
         "registryDependencies": [
@@ -3487,7 +3694,8 @@
       "vue": {
         "url": "https://boldkit.dev/r/vue/stat-card.json",
         "dependencies": [
-          "lucide-vue-next"
+          "@lucide/vue",
+          "class-variance-authority"
         ],
         "registryDependencies": [
           "@boldkit/utils",
@@ -3524,7 +3732,8 @@
       "vue": {
         "url": "https://boldkit.dev/r/vue/stepper.json",
         "dependencies": [
-          "class-variance-authority"
+          "class-variance-authority",
+          "@lucide/vue"
         ],
         "registryDependencies": [
           "@boldkit/utils"
@@ -3645,7 +3854,7 @@
       "react": {
         "url": "https://boldkit.dev/r/switch.json",
         "dependencies": [
-          "@radix-ui/react-switch"
+          "radix-ui"
         ],
         "registryDependencies": [
           "@boldkit/utils",
@@ -3658,7 +3867,7 @@
       "vue": {
         "url": "https://boldkit.dev/r/vue/switch.json",
         "dependencies": [
-          "reka-ui"
+          "reka-ui@^2.11.0"
         ],
         "registryDependencies": [
           "@boldkit/utils"
@@ -3717,7 +3926,7 @@
       "react": {
         "url": "https://boldkit.dev/r/tabs.json",
         "dependencies": [
-          "@radix-ui/react-tabs"
+          "radix-ui"
         ],
         "registryDependencies": [
           "@boldkit/utils"
@@ -3729,7 +3938,7 @@
       "vue": {
         "url": "https://boldkit.dev/r/vue/tabs.json",
         "dependencies": [
-          "reka-ui"
+          "reka-ui@^2.11.0"
         ],
         "registryDependencies": [
           "@boldkit/utils"
@@ -3766,7 +3975,7 @@
       "vue": {
         "url": "https://boldkit.dev/r/vue/tag-input.json",
         "dependencies": [
-          "lucide-vue-next"
+          "@lucide/vue"
         ],
         "registryDependencies": [
           "@boldkit/utils"
@@ -3833,6 +4042,300 @@
       ]
     },
     {
+      "name": "theme-candy",
+      "type": "registry:theme",
+      "description": "BoldKit Candy preset (sweet & playful). Swaps brand colours and the tinted neutral palette; needs BoldKit's base styles already installed.",
+      "react": {
+        "url": "https://boldkit.dev/r/theme-candy.json",
+        "dependencies": [],
+        "registryDependencies": [],
+        "files": []
+      },
+      "vue": {
+        "url": "https://boldkit.dev/r/vue/theme-candy.json",
+        "dependencies": [],
+        "registryDependencies": [],
+        "files": []
+      },
+      "frameworks": [
+        "react",
+        "vue"
+      ]
+    },
+    {
+      "name": "theme-cherry",
+      "type": "registry:theme",
+      "description": "BoldKit Cherry preset (bold & japanese). Swaps brand colours and the tinted neutral palette; needs BoldKit's base styles already installed.",
+      "react": {
+        "url": "https://boldkit.dev/r/theme-cherry.json",
+        "dependencies": [],
+        "registryDependencies": [],
+        "files": []
+      },
+      "vue": {
+        "url": "https://boldkit.dev/r/vue/theme-cherry.json",
+        "dependencies": [],
+        "registryDependencies": [],
+        "files": []
+      },
+      "frameworks": [
+        "react",
+        "vue"
+      ]
+    },
+    {
+      "name": "theme-coral",
+      "type": "registry:theme",
+      "description": "BoldKit Coral preset (warm & bold). Swaps brand colours and the tinted neutral palette; needs BoldKit's base styles already installed.",
+      "react": {
+        "url": "https://boldkit.dev/r/theme-coral.json",
+        "dependencies": [],
+        "registryDependencies": [],
+        "files": []
+      },
+      "vue": {
+        "url": "https://boldkit.dev/r/vue/theme-coral.json",
+        "dependencies": [],
+        "registryDependencies": [],
+        "files": []
+      },
+      "frameworks": [
+        "react",
+        "vue"
+      ]
+    },
+    {
+      "name": "theme-cyberpunk",
+      "type": "registry:theme",
+      "description": "BoldKit Cyberpunk preset (toxic & dystopian). Swaps brand colours and the tinted neutral palette; needs BoldKit's base styles already installed.",
+      "react": {
+        "url": "https://boldkit.dev/r/theme-cyberpunk.json",
+        "dependencies": [],
+        "registryDependencies": [],
+        "files": []
+      },
+      "vue": {
+        "url": "https://boldkit.dev/r/vue/theme-cyberpunk.json",
+        "dependencies": [],
+        "registryDependencies": [],
+        "files": []
+      },
+      "frameworks": [
+        "react",
+        "vue"
+      ]
+    },
+    {
+      "name": "theme-electric",
+      "type": "registry:theme",
+      "description": "BoldKit Electric preset (punchy & vibrant). Swaps brand colours and the tinted neutral palette; needs BoldKit's base styles already installed.",
+      "react": {
+        "url": "https://boldkit.dev/r/theme-electric.json",
+        "dependencies": [],
+        "registryDependencies": [],
+        "files": []
+      },
+      "vue": {
+        "url": "https://boldkit.dev/r/vue/theme-electric.json",
+        "dependencies": [],
+        "registryDependencies": [],
+        "files": []
+      },
+      "frameworks": [
+        "react",
+        "vue"
+      ]
+    },
+    {
+      "name": "theme-forest",
+      "type": "registry:theme",
+      "description": "BoldKit Forest preset (earthy & fresh). Swaps brand colours and the tinted neutral palette; needs BoldKit's base styles already installed.",
+      "react": {
+        "url": "https://boldkit.dev/r/theme-forest.json",
+        "dependencies": [],
+        "registryDependencies": [],
+        "files": []
+      },
+      "vue": {
+        "url": "https://boldkit.dev/r/vue/theme-forest.json",
+        "dependencies": [],
+        "registryDependencies": [],
+        "files": []
+      },
+      "frameworks": [
+        "react",
+        "vue"
+      ]
+    },
+    {
+      "name": "theme-gold",
+      "type": "registry:theme",
+      "description": "BoldKit Gold preset (luxury & refined). Swaps brand colours and the tinted neutral palette; needs BoldKit's base styles already installed.",
+      "react": {
+        "url": "https://boldkit.dev/r/theme-gold.json",
+        "dependencies": [],
+        "registryDependencies": [],
+        "files": []
+      },
+      "vue": {
+        "url": "https://boldkit.dev/r/vue/theme-gold.json",
+        "dependencies": [],
+        "registryDependencies": [],
+        "files": []
+      },
+      "frameworks": [
+        "react",
+        "vue"
+      ]
+    },
+    {
+      "name": "theme-mono",
+      "type": "registry:theme",
+      "description": "BoldKit Mono preset (clean & minimal). Swaps brand colours and the tinted neutral palette; needs BoldKit's base styles already installed.",
+      "react": {
+        "url": "https://boldkit.dev/r/theme-mono.json",
+        "dependencies": [],
+        "registryDependencies": [],
+        "files": []
+      },
+      "vue": {
+        "url": "https://boldkit.dev/r/vue/theme-mono.json",
+        "dependencies": [],
+        "registryDependencies": [],
+        "files": []
+      },
+      "frameworks": [
+        "react",
+        "vue"
+      ]
+    },
+    {
+      "name": "theme-neon",
+      "type": "registry:theme",
+      "description": "BoldKit Neon preset (electric & raw). Swaps brand colours and the tinted neutral palette; needs BoldKit's base styles already installed.",
+      "react": {
+        "url": "https://boldkit.dev/r/theme-neon.json",
+        "dependencies": [],
+        "registryDependencies": [],
+        "files": []
+      },
+      "vue": {
+        "url": "https://boldkit.dev/r/vue/theme-neon.json",
+        "dependencies": [],
+        "registryDependencies": [],
+        "files": []
+      },
+      "frameworks": [
+        "react",
+        "vue"
+      ]
+    },
+    {
+      "name": "theme-ocean",
+      "type": "registry:theme",
+      "description": "BoldKit Ocean preset (cool & serene). Swaps brand colours and the tinted neutral palette; needs BoldKit's base styles already installed.",
+      "react": {
+        "url": "https://boldkit.dev/r/theme-ocean.json",
+        "dependencies": [],
+        "registryDependencies": [],
+        "files": []
+      },
+      "vue": {
+        "url": "https://boldkit.dev/r/vue/theme-ocean.json",
+        "dependencies": [],
+        "registryDependencies": [],
+        "files": []
+      },
+      "frameworks": [
+        "react",
+        "vue"
+      ]
+    },
+    {
+      "name": "theme-pastel",
+      "type": "registry:theme",
+      "description": "BoldKit Pastel preset (soft & kawaii). Swaps brand colours and the tinted neutral palette; needs BoldKit's base styles already installed.",
+      "react": {
+        "url": "https://boldkit.dev/r/theme-pastel.json",
+        "dependencies": [],
+        "registryDependencies": [],
+        "files": []
+      },
+      "vue": {
+        "url": "https://boldkit.dev/r/vue/theme-pastel.json",
+        "dependencies": [],
+        "registryDependencies": [],
+        "files": []
+      },
+      "frameworks": [
+        "react",
+        "vue"
+      ]
+    },
+    {
+      "name": "theme-purple",
+      "type": "registry:theme",
+      "description": "BoldKit Purple preset (vivid & dramatic). Swaps brand colours and the tinted neutral palette; needs BoldKit's base styles already installed.",
+      "react": {
+        "url": "https://boldkit.dev/r/theme-purple.json",
+        "dependencies": [],
+        "registryDependencies": [],
+        "files": []
+      },
+      "vue": {
+        "url": "https://boldkit.dev/r/vue/theme-purple.json",
+        "dependencies": [],
+        "registryDependencies": [],
+        "files": []
+      },
+      "frameworks": [
+        "react",
+        "vue"
+      ]
+    },
+    {
+      "name": "theme-retro",
+      "type": "registry:theme",
+      "description": "BoldKit Retro preset (vintage & gritty). Swaps brand colours and the tinted neutral palette; needs BoldKit's base styles already installed.",
+      "react": {
+        "url": "https://boldkit.dev/r/theme-retro.json",
+        "dependencies": [],
+        "registryDependencies": [],
+        "files": []
+      },
+      "vue": {
+        "url": "https://boldkit.dev/r/vue/theme-retro.json",
+        "dependencies": [],
+        "registryDependencies": [],
+        "files": []
+      },
+      "frameworks": [
+        "react",
+        "vue"
+      ]
+    },
+    {
+      "name": "theme-sunset",
+      "type": "registry:theme",
+      "description": "BoldKit Sunset preset (fiery & expressive). Swaps brand colours and the tinted neutral palette; needs BoldKit's base styles already installed.",
+      "react": {
+        "url": "https://boldkit.dev/r/theme-sunset.json",
+        "dependencies": [],
+        "registryDependencies": [],
+        "files": []
+      },
+      "vue": {
+        "url": "https://boldkit.dev/r/vue/theme-sunset.json",
+        "dependencies": [],
+        "registryDependencies": [],
+        "files": []
+      },
+      "frameworks": [
+        "react",
+        "vue"
+      ]
+    },
+    {
       "name": "time-picker",
       "type": "registry:ui",
       "description": "Popover-based time picker with 12h/24h format and scrollable columns",
@@ -3854,7 +4357,7 @@
       "vue": {
         "url": "https://boldkit.dev/r/vue/time-picker.json",
         "dependencies": [
-          "lucide-vue-next"
+          "@lucide/vue"
         ],
         "registryDependencies": [
           "@boldkit/utils",
@@ -3916,13 +4419,51 @@
       "docsUrl": "https://boldkit.dev/components/timeline"
     },
     {
+      "name": "toast",
+      "type": "registry:ui",
+      "description": "First-party brutalist toast stacks with an imperative toast() API, promise toasts, swipe and stacking",
+      "react": {
+        "url": "https://boldkit.dev/r/toast.json",
+        "dependencies": [
+          "radix-ui",
+          "lucide-react"
+        ],
+        "registryDependencies": [
+          "@boldkit/utils"
+        ],
+        "files": [
+          "registry/default/ui/toast.tsx"
+        ]
+      },
+      "vue": {
+        "url": "https://boldkit.dev/r/vue/toast.json",
+        "dependencies": [
+          "reka-ui@^2.11.0",
+          "@lucide/vue"
+        ],
+        "registryDependencies": [
+          "@boldkit/utils"
+        ],
+        "files": [
+          "components/ui/Toaster.vue",
+          "components/ui/ToastStack.vue",
+          "components/ui/toast.ts"
+        ]
+      },
+      "frameworks": [
+        "react",
+        "vue"
+      ],
+      "docsUrl": "https://boldkit.dev/components/toast"
+    },
+    {
       "name": "toggle",
       "type": "registry:ui",
       "description": "A two-state button that can be either on or off",
       "react": {
         "url": "https://boldkit.dev/r/toggle.json",
         "dependencies": [
-          "@radix-ui/react-toggle",
+          "radix-ui",
           "class-variance-authority"
         ],
         "registryDependencies": [
@@ -3935,7 +4476,7 @@
       "vue": {
         "url": "https://boldkit.dev/r/vue/toggle.json",
         "dependencies": [
-          "reka-ui",
+          "reka-ui@^2.11.0",
           "class-variance-authority"
         ],
         "registryDependencies": [
@@ -3959,7 +4500,7 @@
       "react": {
         "url": "https://boldkit.dev/r/toggle-group.json",
         "dependencies": [
-          "@radix-ui/react-toggle-group"
+          "radix-ui"
         ],
         "registryDependencies": [
           "@boldkit/utils",
@@ -3972,7 +4513,7 @@
       "vue": {
         "url": "https://boldkit.dev/r/vue/toggle-group.json",
         "dependencies": [
-          "reka-ui",
+          "reka-ui@^2.11.0",
           "class-variance-authority"
         ],
         "registryDependencies": [
@@ -3997,7 +4538,7 @@
       "react": {
         "url": "https://boldkit.dev/r/tooltip.json",
         "dependencies": [
-          "@radix-ui/react-tooltip"
+          "radix-ui"
         ],
         "registryDependencies": [
           "@boldkit/utils"
@@ -4009,7 +4550,7 @@
       "vue": {
         "url": "https://boldkit.dev/r/vue/tooltip.json",
         "dependencies": [
-          "reka-ui"
+          "reka-ui@^2.11.0"
         ],
         "registryDependencies": [
           "@boldkit/utils"
@@ -4077,7 +4618,7 @@
       "vue": {
         "url": "https://boldkit.dev/r/vue/tour.json",
         "dependencies": [
-          "lucide-vue-next"
+          "@lucide/vue"
         ],
         "registryDependencies": [
           "@boldkit/utils",
@@ -4100,7 +4641,7 @@
       "react": {
         "url": "https://boldkit.dev/r/tree-view.json",
         "dependencies": [
-          "@radix-ui/react-collapsible",
+          "radix-ui",
           "lucide-react"
         ],
         "registryDependencies": [
@@ -4115,8 +4656,8 @@
       "vue": {
         "url": "https://boldkit.dev/r/vue/tree-view.json",
         "dependencies": [
-          "reka-ui",
-          "lucide-vue-next"
+          "reka-ui@^2.11.0",
+          "@lucide/vue"
         ],
         "registryDependencies": [
           "@boldkit/utils",

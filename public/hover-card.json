@@ -4,7 +4,7 @@
   "title": "Hover Card",
   "description": "A card that appears on hover with additional information",
   "dependencies": [
-    "@radix-ui/react-hover-card"
+    "radix-ui"
   ],
   "registryDependencies": [
     "@boldkit/utils"

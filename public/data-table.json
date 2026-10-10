@@ -4,7 +4,7 @@
   "title": "Data Table",
   "description": "Powerful data table with sorting, filtering, pagination, and row selection",
   "dependencies": [
-    "@tanstack/react-table",
+    "@tanstack/react-table@^8.21.3",
     "lucide-react"
   ],
   "registryDependencies": [

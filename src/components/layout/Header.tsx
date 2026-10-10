@@ -7,7 +7,6 @@ import { toggleThemeWithReveal } from '@/lib/theme-transition'
 import {
   Moon,
   Sun,
-  Github,
   Menu,
   X,
   BookOpen,
@@ -20,6 +19,7 @@ import {
   ArrowUpRight,
   Sparkles,
 } from 'lucide-react'
+import { Github } from '@/components/icons/brand'
 import { useState, useEffect, type CSSProperties } from 'react'
 import { cn } from '@/lib/utils'
 
@@ -133,7 +133,7 @@ export function Header() {
               variant="secondary"
               className="text-[9px] px-1 py-0 h-4 hidden sm:inline-flex"
             >
-              v3.5
+              v3.6
             </Badge>
           </Link>
 

@@ -3,7 +3,10 @@
   "name": "kbd",
   "type": "registry:ui",
   "description": "Keyboard shortcut display component",
-  "dependencies": [],
+  "dependencies": [
+    "reka-ui@^2.11.0",
+    "class-variance-authority"
+  ],
   "registryDependencies": [
     "@boldkit/utils"
   ],

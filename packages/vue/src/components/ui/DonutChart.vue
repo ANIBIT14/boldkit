@@ -6,15 +6,12 @@ import { PieChart } from 'echarts/charts'
 import { TooltipComponent, LegendComponent } from 'echarts/components'
 import VChart from 'vue-echarts'
 import { cn } from '@/lib/utils'
-import { type ChartConfig, useResolvedChart } from './chart-utils'
-import { chartContainerVariants } from './chart-variants'
+import { type ChartConfig, useResolvedChart, toCssSize } from './chart-utils'
+import { chartContainerVariants, splitChartVariant, type ChartContainerVariant } from './chart-variants'
 import ChartEmpty from './ChartEmpty.vue'
-import type { VariantProps } from 'class-variance-authority'
 
 // Register ECharts components
 use([CanvasRenderer, PieChart, TooltipComponent, LegendComponent])
-
-type ChartVariants = VariantProps<typeof chartContainerVariants>
 
 interface DonutChartData {
   name: string
@@ -29,8 +26,15 @@ interface DonutChartProps {
   outerRadius?: string
   showLabels?: 'none' | 'inside' | 'outside'
   showLegend?: boolean
-  height?: string
-  variant?: ChartVariants['variant']
+  /** Number = px (as in React); string = any CSS length. */
+  height?: number | string
+  /**
+   * Chart geometry, same values as React. Container styles (`elevated`, `flat`,
+   * …) are still accepted here for pre-v3.6 code — @deprecated, use `containerVariant`.
+   */
+  variant?: 'default' | 'separated' | ChartContainerVariant
+  /** Container border/shadow style (React: same prop name). */
+  containerVariant?: ChartContainerVariant
   class?: string
   emptyMessage?: string
   /** React calls this `emptyState`. Accepted here so the same prop name works
@@ -47,7 +51,7 @@ const props = withDefaults(defineProps<DonutChartProps>(), {
   outerRadius: '80%',
   showLabels: 'none',
   showLegend: false,
-  height: '300px',
+  height: 300,
   variant: 'default',
 })
 
@@ -60,6 +64,8 @@ const resolvedEmptyMessage = computed(() => props.emptyState ?? props.emptyMessa
 const rootEl = ref<HTMLElement | null>(null)
 const { theme: resolvedTheme, resolve } = useResolvedChart(rootEl)
 const resolvedOption = computed(() => resolve(option.value))
+
+const variants = computed(() => splitChartVariant(props.variant, props.containerVariant, ['default', 'separated'] as const))
 
 const isEmpty = computed(() => !props.data || props.data.length === 0)
 
@@ -85,6 +91,7 @@ const option = computed(() => ({
     type: 'pie',
     radius: [props.innerRadius, props.outerRadius],
     center: ['50%', '50%'],
+    padAngle: variants.value.geometry === 'separated' ? 4 : 0,
     avoidLabelOverlap: true,
     itemStyle: {
       borderColor: 'hsl(var(--foreground))',
@@ -114,10 +121,10 @@ const option = computed(() => ({
     role="img"
     :aria-label="ariaLabel"
     data-slot="chart"
-    :class="cn(chartContainerVariants({ variant }), props.class)"
+    :class="cn(chartContainerVariants({ variant: variants.container }), props.class)"
   >
     <ChartEmpty v-if="isEmpty" :message="resolvedEmptyMessage" />
-    <div v-else class="relative" :style="{ height }">
+    <div v-else class="relative w-full" :style="{ height: toCssSize(height) }">
       <VChart
         :option="resolvedOption"
         :theme="resolvedTheme"

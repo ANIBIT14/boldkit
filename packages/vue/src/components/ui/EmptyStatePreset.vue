@@ -18,7 +18,7 @@ import {
   Clock,
   Wrench,
   Upload,
-} from 'lucide-vue-next'
+} from '@lucide/vue'
 import EmptyState from './EmptyState.vue'
 import EmptyStateIcon from './EmptyStateIcon.vue'
 import EmptyStateIllustration from './EmptyStateIllustration.vue'

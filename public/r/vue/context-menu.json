@@ -4,8 +4,8 @@
   "type": "registry:ui",
   "description": "Displays a menu triggered by right-click",
   "dependencies": [
-    "reka-ui",
-    "lucide-vue-next"
+    "reka-ui@^2.11.0",
+    "@lucide/vue"
   ],
   "registryDependencies": [
     "@boldkit/utils"
@@ -33,7 +33,7 @@
     },
     {
       "path": "components/ui/ContextMenuCheckboxItem.vue",
-      "content": "<script setup lang=\"ts\">\nimport { ContextMenuCheckboxItem as ContextMenuCheckboxItemPrimitive, ContextMenuItemIndicator } from 'reka-ui'\nimport { Check } from 'lucide-vue-next'\nimport { cn } from '@/lib/utils'\n\ndefineProps<{\n  class?: string\n  checked?: boolean\n  disabled?: boolean\n}>()\n\nconst emit = defineEmits<{\n  'update:checked': [value: boolean]\n}>()\n</script>\n\n<template>\n  <ContextMenuCheckboxItemPrimitive\n    :model-value=\"checked\"\n    :disabled=\"disabled\"\n    :class=\"\n      cn(\n        'relative flex cursor-default select-none items-center py-1.5 pl-8 pr-2 text-sm outline-none transition-colors focus:bg-accent focus:text-accent-foreground data-[disabled]:pointer-events-none data-[disabled]:opacity-50',\n        $props.class\n      )\n    \"\n    @update:model-value=\"emit('update:checked', $event as boolean)\"\n  >\n    <span class=\"absolute left-2 flex h-3.5 w-3.5 items-center justify-center\">\n      <ContextMenuItemIndicator>\n        <Check class=\"h-4 w-4 stroke-[3]\" />\n      </ContextMenuItemIndicator>\n    </span>\n    <slot />\n  </ContextMenuCheckboxItemPrimitive>\n</template>\n",
+      "content": "<script setup lang=\"ts\">\nimport { ContextMenuCheckboxItem as ContextMenuCheckboxItemPrimitive, ContextMenuItemIndicator } from 'reka-ui'\nimport { Check } from '@lucide/vue'\nimport { cn } from '@/lib/utils'\n\ndefineProps<{\n  class?: string\n  checked?: boolean\n  disabled?: boolean\n}>()\n\nconst emit = defineEmits<{\n  'update:checked': [value: boolean]\n}>()\n</script>\n\n<template>\n  <ContextMenuCheckboxItemPrimitive\n    :model-value=\"checked\"\n    :disabled=\"disabled\"\n    :class=\"\n      cn(\n        'relative flex cursor-default select-none items-center py-1.5 pl-8 pr-2 text-sm outline-none transition-colors focus:bg-accent focus:text-accent-foreground data-[disabled]:pointer-events-none data-[disabled]:opacity-50',\n        $props.class\n      )\n    \"\n    @update:model-value=\"emit('update:checked', $event as boolean)\"\n  >\n    <span class=\"absolute left-2 flex h-3.5 w-3.5 items-center justify-center\">\n      <ContextMenuItemIndicator>\n        <Check class=\"h-4 w-4 stroke-[3]\" />\n      </ContextMenuItemIndicator>\n    </span>\n    <slot />\n  </ContextMenuCheckboxItemPrimitive>\n</template>\n",
       "type": "registry:ui"
     },
     {
@@ -43,7 +43,7 @@
     },
     {
       "path": "components/ui/ContextMenuRadioItem.vue",
-      "content": "<script setup lang=\"ts\">\nimport { ContextMenuRadioItem as ContextMenuRadioItemPrimitive, ContextMenuItemIndicator } from 'reka-ui'\nimport { Circle } from 'lucide-vue-next'\nimport { cn } from '@/lib/utils'\n\ndefineProps<{\n  class?: string\n  value: string\n  disabled?: boolean\n}>()\n</script>\n\n<template>\n  <ContextMenuRadioItemPrimitive\n    :value=\"value\"\n    :disabled=\"disabled\"\n    :class=\"\n      cn(\n        'relative flex cursor-default select-none items-center py-1.5 pl-8 pr-2 text-sm outline-none transition-colors focus:bg-accent focus:text-accent-foreground data-[disabled]:pointer-events-none data-[disabled]:opacity-50',\n        $props.class\n      )\n    \"\n  >\n    <span class=\"absolute left-2 flex h-3.5 w-3.5 items-center justify-center\">\n      <ContextMenuItemIndicator>\n        <Circle class=\"h-2 w-2 fill-current\" />\n      </ContextMenuItemIndicator>\n    </span>\n    <slot />\n  </ContextMenuRadioItemPrimitive>\n</template>\n",
+      "content": "<script setup lang=\"ts\">\nimport { ContextMenuRadioItem as ContextMenuRadioItemPrimitive, ContextMenuItemIndicator } from 'reka-ui'\nimport { Circle } from '@lucide/vue'\nimport { cn } from '@/lib/utils'\n\ndefineProps<{\n  class?: string\n  value: string\n  disabled?: boolean\n}>()\n</script>\n\n<template>\n  <ContextMenuRadioItemPrimitive\n    :value=\"value\"\n    :disabled=\"disabled\"\n    :class=\"\n      cn(\n        'relative flex cursor-default select-none items-center py-1.5 pl-8 pr-2 text-sm outline-none transition-colors focus:bg-accent focus:text-accent-foreground data-[disabled]:pointer-events-none data-[disabled]:opacity-50',\n        $props.class\n      )\n    \"\n  >\n    <span class=\"absolute left-2 flex h-3.5 w-3.5 items-center justify-center\">\n      <ContextMenuItemIndicator>\n        <Circle class=\"h-2 w-2 fill-current\" />\n      </ContextMenuItemIndicator>\n    </span>\n    <slot />\n  </ContextMenuRadioItemPrimitive>\n</template>\n",
       "type": "registry:ui"
     },
     {
@@ -68,7 +68,7 @@
     },
     {
       "path": "components/ui/ContextMenuSubTrigger.vue",
-      "content": "<script setup lang=\"ts\">\nimport { ContextMenuSubTrigger as ContextMenuSubTriggerPrimitive } from 'reka-ui'\nimport { ChevronRight } from 'lucide-vue-next'\nimport { cn } from '@/lib/utils'\n\ndefineProps<{\n  class?: string\n  inset?: boolean\n  disabled?: boolean\n}>()\n</script>\n\n<template>\n  <ContextMenuSubTriggerPrimitive\n    :disabled=\"disabled\"\n    :class=\"\n      cn(\n        'flex cursor-default select-none items-center px-2 py-1.5 text-sm outline-none focus:bg-accent data-[state=open]:bg-accent',\n        inset && 'pl-8',\n        $props.class\n      )\n    \"\n  >\n    <slot />\n    <ChevronRight class=\"ml-auto h-4 w-4 stroke-[3]\" />\n  </ContextMenuSubTriggerPrimitive>\n</template>\n",
+      "content": "<script setup lang=\"ts\">\nimport { ContextMenuSubTrigger as ContextMenuSubTriggerPrimitive } from 'reka-ui'\nimport { ChevronRight } from '@lucide/vue'\nimport { cn } from '@/lib/utils'\n\ndefineProps<{\n  class?: string\n  inset?: boolean\n  disabled?: boolean\n}>()\n</script>\n\n<template>\n  <ContextMenuSubTriggerPrimitive\n    :disabled=\"disabled\"\n    :class=\"\n      cn(\n        'flex cursor-default select-none items-center px-2 py-1.5 text-sm outline-none focus:bg-accent data-[state=open]:bg-accent',\n        inset && 'pl-8',\n        $props.class\n      )\n    \"\n  >\n    <slot />\n    <ChevronRight class=\"ml-auto h-4 w-4 stroke-[3]\" />\n  </ContextMenuSubTriggerPrimitive>\n</template>\n",
       "type": "registry:ui"
     },
     {

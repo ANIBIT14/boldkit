@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { DrawerClose as DrawerClosePrimitive } from 'vaul-vue'
+import { DrawerClose as DrawerClosePrimitive } from 'reka-ui'
 </script>
 
 <template>

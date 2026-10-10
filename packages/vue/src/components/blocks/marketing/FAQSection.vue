@@ -7,7 +7,7 @@ import AccordionItem from '@/components/ui/AccordionItem.vue'
 import AccordionTrigger from '@/components/ui/AccordionTrigger.vue'
 import AccordionContent from '@/components/ui/AccordionContent.vue'
 import Button from '@/components/ui/Button.vue'
-import { Mail, MessageCircle } from 'lucide-vue-next'
+import { Mail, MessageCircle } from '@lucide/vue'
 
 type FAQVariant = 'accordion' | 'twoColumns' | 'withCategories' | 'withContact' | 'simpleList'
 

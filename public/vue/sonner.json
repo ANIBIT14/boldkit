@@ -4,7 +4,7 @@
   "type": "registry:ui",
   "description": "An opinionated toast component",
   "dependencies": [
-    "vue-sonner"
+    "vue-sonner@^2.0.9"
   ],
   "registryDependencies": [
     "@boldkit/utils",

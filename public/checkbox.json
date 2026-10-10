@@ -4,7 +4,7 @@
   "title": "Checkbox",
   "description": "A control that allows the user to toggle between checked and not checked",
   "dependencies": [
-    "@radix-ui/react-checkbox",
+    "radix-ui",
     "lucide-react"
   ],
   "registryDependencies": [

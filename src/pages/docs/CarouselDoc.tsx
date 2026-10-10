@@ -47,7 +47,7 @@ export function CarouselDoc() {
         name="Carousel"
         description="A carousel component built on Embla Carousel with keyboard navigation, touch support, and customizable navigation controls."
         dependencies={['embla-carousel-react', 'lucide-react']}
-        vueDependencies={['embla-carousel-vue', 'lucide-vue-next']}
+        vueDependencies={['embla-carousel-vue', '@lucide/vue']}
         sourceCode={sourceCode}
         usageCode={usageCode}
         vueSourceCode={vueSourceCode}

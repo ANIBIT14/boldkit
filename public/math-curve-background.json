@@ -4,7 +4,7 @@
   "title": "Math Curve Background",
   "description": "Ambient animated mathematical curve background layer with neubrutalism aesthetics — wraps content with a slow-moving curve animation",
   "dependencies": [
-    "@radix-ui/react-slot"
+    "radix-ui"
   ],
   "registryDependencies": [
     "@boldkit/utils",

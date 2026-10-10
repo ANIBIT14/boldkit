@@ -4,7 +4,8 @@
   "type": "registry:ui",
   "description": "Statistics card for dashboards",
   "dependencies": [
-    "lucide-vue-next"
+    "@lucide/vue",
+    "class-variance-authority"
   ],
   "registryDependencies": [
     "@boldkit/utils",

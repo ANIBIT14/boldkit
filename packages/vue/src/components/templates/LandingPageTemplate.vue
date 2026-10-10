@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import { Check, ArrowRight, Zap, Shield, Sparkles, Users } from 'lucide-vue-next'
+import { Check, ArrowRight, Zap, Shield, Sparkles, Users } from '@lucide/vue'
 import {
   Button,
   Card,

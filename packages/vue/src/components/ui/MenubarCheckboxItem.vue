@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { MenubarCheckboxItem as MenubarCheckboxItemPrimitive, MenubarItemIndicator } from 'reka-ui'
-import { Check } from 'lucide-vue-next'
+import { Check } from '@lucide/vue'
 import { cn } from '@/lib/utils'
 
 defineProps<{

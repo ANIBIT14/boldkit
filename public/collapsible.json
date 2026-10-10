@@ -4,7 +4,7 @@
   "title": "Collapsible",
   "description": "An interactive component which expands/collapses a panel",
   "dependencies": [
-    "@radix-ui/react-collapsible"
+    "radix-ui"
   ],
   "registryDependencies": [
     "@boldkit/utils",

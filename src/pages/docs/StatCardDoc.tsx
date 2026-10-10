@@ -24,7 +24,7 @@ export default function Example() {
 
 const vueUsageCode = `<script setup lang="ts">
 import StatCard from '@/components/ui/StatCard.vue'
-import { DollarSign } from 'lucide-vue-next'
+import { DollarSign } from '@lucide/vue'
 </script>
 
 <template>
@@ -46,7 +46,7 @@ export function StatCardDoc() {
         registryName="stat-card"
         description="Display key metrics and statistics with trend indicators and progress bars."
         dependencies={['class-variance-authority', 'lucide-react']}
-        vueDependencies={['class-variance-authority', 'lucide-vue-next']}
+        vueDependencies={['class-variance-authority', '@lucide/vue']}
         sourceCode={sourceCode}
         vueSourceCode={vueSourceCode}
         usageCode={usageCode}

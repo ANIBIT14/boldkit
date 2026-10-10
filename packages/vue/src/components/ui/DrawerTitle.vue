@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { DrawerTitle as DrawerTitlePrimitive } from 'vaul-vue'
+import { DrawerTitle as DrawerTitlePrimitive } from 'reka-ui'
 import { cn } from '@/lib/utils'
 
 defineProps<{

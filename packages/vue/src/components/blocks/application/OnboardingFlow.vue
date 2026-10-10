@@ -10,7 +10,7 @@ import Progress from '@/components/ui/Progress.vue'
 import Avatar from '@/components/ui/Avatar.vue'
 import AvatarImage from '@/components/ui/AvatarImage.vue'
 import AvatarFallback from '@/components/ui/AvatarFallback.vue'
-import { ArrowRight, ArrowLeft, Upload, Check, Sparkles, Users, Building2, Target, Rocket } from 'lucide-vue-next'
+import { ArrowRight, ArrowLeft, Upload, Check, Sparkles, Users, Building2, Target, Rocket } from '@lucide/vue'
 
 type OnboardingVariant = 'wizard' | 'welcome' | 'profileSetup' | 'workspaceSetup' | 'goalSelection' | 'completion'
 

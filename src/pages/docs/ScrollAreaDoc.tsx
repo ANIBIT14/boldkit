@@ -54,7 +54,7 @@ export function ScrollAreaDoc() {
         name="Scroll Area"
         description="Augments native scroll functionality for custom, cross-browser styling with bold scrollbar design."
         registryName="scroll-area"
-        dependencies={['@radix-ui/react-scroll-area']}
+        dependencies={['radix-ui']}
         vueDependencies={['reka-ui']}
         sourceCode={sourceCode}
         vueSourceCode={vueSourceCode}

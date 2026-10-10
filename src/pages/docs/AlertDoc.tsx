@@ -29,7 +29,7 @@ import Alert from '@/components/ui/Alert.vue'
 import AlertTitle from '@/components/ui/AlertTitle.vue'
 import AlertDescription from '@/components/ui/AlertDescription.vue'
 import AlertAction from '@/components/ui/AlertAction.vue'
-import { AlertCircle } from 'lucide-vue-next'
+import { AlertCircle } from '@lucide/vue'
 
 function extend() {
   console.log('extend session')

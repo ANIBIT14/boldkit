@@ -656,6 +656,12 @@ export function ThemeBuilder({ embedded = false }: ThemeBuilderProps) {
                     </div>
                   ))}
                 </div>
+                <p className="mt-4 text-xs text-muted-foreground">
+                  Each preset also installs from the registry:{' '}
+                  <code className="bg-muted px-1 border">npx shadcn@latest add @boldkit/theme-&lt;name&gt;</code>
+                  {' '}(Vue: <code className="bg-muted px-1 border">npx shadcn-vue@latest add https://boldkit.dev/r/vue/theme-&lt;name&gt;.json</code>).
+                  It merges the colours into your BoldKit stylesheet.
+                </p>
               </CardContent>
             </Card>
 

@@ -4,7 +4,7 @@
   "title": "Tree View",
   "description": "Hierarchical tree view with expand/collapse, selection, and checkboxes",
   "dependencies": [
-    "@radix-ui/react-collapsible",
+    "radix-ui",
     "lucide-react"
   ],
   "registryDependencies": [

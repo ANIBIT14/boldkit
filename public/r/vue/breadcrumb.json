@@ -4,8 +4,8 @@
   "type": "registry:ui",
   "description": "Displays the path to the current resource",
   "dependencies": [
-    "reka-ui",
-    "lucide-vue-next"
+    "reka-ui@^2.11.0",
+    "@lucide/vue"
   ],
   "registryDependencies": [
     "@boldkit/utils"
@@ -38,12 +38,12 @@
     },
     {
       "path": "components/ui/BreadcrumbSeparator.vue",
-      "content": "<script setup lang=\"ts\">\nimport { ChevronRight } from 'lucide-vue-next'\nimport { cn } from '@/lib/utils'\n\ndefineProps<{\n  class?: string\n}>()\n</script>\n\n<template>\n  <li\n    role=\"presentation\"\n    aria-hidden=\"true\"\n    :class=\"cn('[&>svg]:h-3.5 [&>svg]:w-3.5', $props.class)\"\n  >\n    <slot>\n      <ChevronRight class=\"stroke-[3]\" />\n    </slot>\n  </li>\n</template>\n",
+      "content": "<script setup lang=\"ts\">\nimport { ChevronRight } from '@lucide/vue'\nimport { cn } from '@/lib/utils'\n\ndefineProps<{\n  class?: string\n}>()\n</script>\n\n<template>\n  <li\n    role=\"presentation\"\n    aria-hidden=\"true\"\n    :class=\"cn('[&>svg]:h-3.5 [&>svg]:w-3.5', $props.class)\"\n  >\n    <slot>\n      <ChevronRight class=\"stroke-[3]\" />\n    </slot>\n  </li>\n</template>\n",
       "type": "registry:ui"
     },
     {
       "path": "components/ui/BreadcrumbEllipsis.vue",
-      "content": "<script setup lang=\"ts\">\nimport { MoreHorizontal } from 'lucide-vue-next'\nimport { cn } from '@/lib/utils'\n\ndefineProps<{\n  class?: string\n}>()\n</script>\n\n<template>\n  <span\n    role=\"presentation\"\n    aria-hidden=\"true\"\n    :class=\"cn('flex h-9 w-9 items-center justify-center', $props.class)\"\n  >\n    <MoreHorizontal class=\"h-4 w-4 stroke-[3]\" />\n    <span class=\"sr-only\">More</span>\n  </span>\n</template>\n",
+      "content": "<script setup lang=\"ts\">\nimport { MoreHorizontal } from '@lucide/vue'\nimport { cn } from '@/lib/utils'\n\ndefineProps<{\n  class?: string\n}>()\n</script>\n\n<template>\n  <span\n    role=\"presentation\"\n    aria-hidden=\"true\"\n    :class=\"cn('flex h-9 w-9 items-center justify-center', $props.class)\"\n  >\n    <MoreHorizontal class=\"h-4 w-4 stroke-[3]\" />\n    <span class=\"sr-only\">More</span>\n  </span>\n</template>\n",
       "type": "registry:ui"
     }
   ],

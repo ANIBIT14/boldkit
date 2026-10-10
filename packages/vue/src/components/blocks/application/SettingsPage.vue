@@ -10,7 +10,7 @@ import Avatar from '@/components/ui/Avatar.vue'
 import AvatarImage from '@/components/ui/AvatarImage.vue'
 import AvatarFallback from '@/components/ui/AvatarFallback.vue'
 import Separator from '@/components/ui/Separator.vue'
-import { User, Bell, Shield, Palette, Trash2, Upload, Save, AlertTriangle, Check } from 'lucide-vue-next'
+import { User, Bell, Shield, Palette, Trash2, Upload, Save, AlertTriangle, Check } from '@lucide/vue'
 
 type SettingsVariant = 'profile' | 'notifications' | 'security' | 'appearance' | 'dangerZone' | 'fullPage'
 

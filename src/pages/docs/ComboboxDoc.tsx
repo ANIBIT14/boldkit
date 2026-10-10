@@ -97,7 +97,7 @@ export default function Example() {
 const vueSourceCode = `<!-- ComboboxTrigger.vue — single-select -->
 <script setup lang="ts">
 import { PopoverTrigger as PopoverTriggerPrimitive } from 'reka-ui'
-import { ChevronsUpDown } from 'lucide-vue-next'
+import { ChevronsUpDown } from '@lucide/vue'
 import { cn } from '@/lib/utils'
 
 const props = withDefaults(defineProps<{
@@ -126,7 +126,7 @@ const props = withDefaults(defineProps<{
 <!-- ComboboxMultiTrigger.vue — multi-select -->
 <script setup lang="ts">
 import { PopoverTrigger as PopoverTriggerPrimitive } from 'reka-ui'
-import { ChevronsUpDown, X } from 'lucide-vue-next'
+import { ChevronsUpDown, X } from '@lucide/vue'
 import { cn } from '@/lib/utils'
 
 const props = withDefaults(defineProps<{
@@ -164,7 +164,7 @@ const emit = defineEmits<{ remove: [value: string] }>()
 
 const vueUsageCode = `<script setup lang="ts">
 import { ref, computed } from 'vue'
-import { Check } from 'lucide-vue-next'
+import { Check } from '@lucide/vue'
 import { cn } from '@/lib/utils'
 import Popover from '@/components/ui/Popover.vue'
 import PopoverContent from '@/components/ui/PopoverContent.vue'
@@ -440,7 +440,7 @@ export function ComboboxDoc() {
       <ComponentDoc
         name="Combobox"
         description="The BoldKit Combobox is a searchable dropdown built by composing Popover and Command. It gives you a neubrutalism-styled trigger with the same thick border and hard shadow as Select, but with a live-filter search input inside the dropdown. Use ComboboxTrigger for single selection or ComboboxMultiTrigger for multi-select with removable tag chips."
-        dependencies={['@radix-ui/react-popover', 'cmdk']}
+        dependencies={['radix-ui', 'cmdk']}
         vueDependencies={['reka-ui']}
         sourceCode={sourceCode}
         vueSourceCode={vueSourceCode}
@@ -521,7 +521,7 @@ const [value, setValue] = useState('')
 </Combobox>`}
         vueCode={`<script setup lang="ts">
 import { ref, computed } from 'vue'
-import { Check } from 'lucide-vue-next'
+import { Check } from '@lucide/vue'
 import { cn } from '@/lib/utils'
 import Popover from '@/components/ui/Popover.vue'
 import PopoverContent from '@/components/ui/PopoverContent.vue'
@@ -606,7 +606,7 @@ const selectedItems = frameworks
 </Combobox>`}
         vueCode={`<script setup lang="ts">
 import { ref, computed } from 'vue'
-import { Check } from 'lucide-vue-next'
+import { Check } from '@lucide/vue'
 import { cn } from '@/lib/utils'
 import Popover from '@/components/ui/Popover.vue'
 import PopoverContent from '@/components/ui/PopoverContent.vue'

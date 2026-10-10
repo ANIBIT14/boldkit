@@ -5,7 +5,8 @@
   "description": "Carousel component with navigation, dots, and touch support built on Embla",
   "dependencies": [
     "embla-carousel-vue",
-    "lucide-vue-next"
+    "embla-carousel",
+    "@lucide/vue"
   ],
   "registryDependencies": [
     "@boldkit/utils",

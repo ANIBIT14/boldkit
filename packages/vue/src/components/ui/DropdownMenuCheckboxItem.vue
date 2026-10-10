@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { DropdownMenuCheckboxItem as DropdownMenuCheckboxItemPrimitive, DropdownMenuItemIndicator } from 'reka-ui'
-import { Check } from 'lucide-vue-next'
+import { Check } from '@lucide/vue'
 import { cn } from '@/lib/utils'
 
 defineProps<{

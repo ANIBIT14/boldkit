@@ -2,9 +2,9 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "drawer",
   "type": "registry:ui",
-  "description": "A drawer component for Vue",
+  "description": "A swipeable drawer on Reka UI's native Drawer",
   "dependencies": [
-    "vaul-vue"
+    "reka-ui@^2.11.0"
   ],
   "registryDependencies": [
     "@boldkit/utils"

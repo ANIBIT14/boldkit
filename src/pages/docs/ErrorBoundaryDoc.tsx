@@ -75,7 +75,7 @@ export function ErrorBoundaryDoc() {
         name="Error Boundary"
         description="Catches errors in child components and renders a neubrutalism fallback with reload and home actions. React uses componentDidCatch under the hood; Vue uses onErrorCaptured."
         dependencies={[]}
-        vueDependencies={['lucide-vue-next']}
+        vueDependencies={['@lucide/vue']}
         sourceCode={sourceCode}
         vueSourceCode={vueSourceCode}
         usageCode={usageCode}

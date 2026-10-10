@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref, computed } from 'vue'
 import { cn } from '@/lib/utils'
-import { Clock } from 'lucide-vue-next'
+import { Clock } from '@lucide/vue'
 import Popover from './Popover.vue'
 import PopoverTrigger from './PopoverTrigger.vue'
 import PopoverContent from './PopoverContent.vue'

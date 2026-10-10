@@ -1,5 +1,7 @@
 <script setup lang="ts">
 import { Toaster } from 'vue-sonner'
+// vue-sonner 2 no longer injects its CSS; without this toasts are unpositioned.
+import 'vue-sonner/style.css'
 import { useTheme } from '@/composables/useTheme'
 
 const { resolvedTheme } = useTheme()

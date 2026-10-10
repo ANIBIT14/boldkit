@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { inject, computed } from 'vue'
-import { ArrowLeft } from 'lucide-vue-next'
+import { ArrowLeft } from '@lucide/vue'
 import { cn } from '@/lib/utils'
 import { CAROUSEL_INJECTION_KEY, type CarouselContext } from './Carousel.vue'
 import Button from './Button.vue'

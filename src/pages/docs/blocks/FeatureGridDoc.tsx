@@ -64,7 +64,7 @@ import { Zap, Shield, Palette } from 'lucide-react'
 />`,
     vueCode: `<script setup lang="ts">
 import { FeatureGrid } from '@/components/blocks/marketing'
-import { Zap, Shield, Palette } from 'lucide-vue-next'
+import { Zap, Shield, Palette } from '@lucide/vue'
 
 const features = [
   { icon: Zap, title: 'Fast', description: 'Optimized performance' },

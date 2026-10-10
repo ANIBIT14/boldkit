@@ -139,7 +139,7 @@ import { Users, Download, Star, Globe } from 'lucide-react'
 />`,
     vueCode: `<script setup lang="ts">
 import { StatsSection } from '@/components/blocks/marketing'
-import { Users, Download } from 'lucide-vue-next'
+import { Users, Download } from '@lucide/vue'
 </script>
 
 <template>

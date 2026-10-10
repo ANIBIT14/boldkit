@@ -6,15 +6,12 @@ import { RadarChart as ERadarChart } from 'echarts/charts'
 import { TooltipComponent, LegendComponent, RadarComponent } from 'echarts/components'
 import VChart from 'vue-echarts'
 import { cn } from '@/lib/utils'
-import { extent, type ChartConfig, CHART_PALETTES, useResolvedChart } from './chart-utils'
-import { chartContainerVariants } from './chart-variants'
+import { extent, type ChartConfig, CHART_PALETTES, useResolvedChart, toCssSize } from './chart-utils'
+import { chartContainerVariants, splitChartVariant, type ChartContainerVariant } from './chart-variants'
 import ChartEmpty from './ChartEmpty.vue'
-import type { VariantProps } from 'class-variance-authority'
 
 // Register ECharts components
 use([CanvasRenderer, ERadarChart, TooltipComponent, LegendComponent, RadarComponent])
-
-type ChartVariants = VariantProps<typeof chartContainerVariants>
 
 interface RadarChartProps {
   data: Array<{ subject: string; [key: string]: number | string }>
@@ -23,8 +20,15 @@ interface RadarChartProps {
   showLegend?: boolean
   showGrid?: boolean
   fillOpacity?: number
-  height?: string
-  variant?: ChartVariants['variant']
+  /** Number = px (as in React); string = any CSS length. */
+  height?: number | string
+  /**
+   * Chart geometry, same values as React. Container styles (`elevated`, `flat`,
+   * …) are still accepted here for pre-v3.6 code — @deprecated, use `containerVariant`.
+   */
+  variant?: 'default' | 'filled' | 'outlined' | ChartContainerVariant
+  /** Container border/shadow style (React: same prop name). */
+  containerVariant?: ChartContainerVariant
   class?: string
   emptyMessage?: string
   /** React calls this `emptyState`. Accepted here so the same prop name works
@@ -37,10 +41,10 @@ interface RadarChartProps {
 
 const props = withDefaults(defineProps<RadarChartProps>(), {
   ariaLabel: 'Radar chart',
-  showLegend: false,
+  showLegend: true,
   showGrid: true,
   fillOpacity: 0.6,
-  height: '300px',
+  height: 300,
   variant: 'default',
 })
 
@@ -53,6 +57,8 @@ const resolvedEmptyMessage = computed(() => props.emptyState ?? props.emptyMessa
 const rootEl = ref<HTMLElement | null>(null)
 const { theme: resolvedTheme, resolve } = useResolvedChart(rootEl)
 const resolvedOption = computed(() => resolve(option.value))
+
+const variants = computed(() => splitChartVariant(props.variant, props.containerVariant, ['default', 'filled', 'outlined'] as const))
 
 const isEmpty = computed(() => !props.data || props.data.length === 0 || !props.dataKeys || props.dataKeys.length === 0)
 
@@ -67,7 +73,8 @@ const indicators = computed(() => {
     maxValues[key] = extent(values).max
   })
 
-  const globalMax = Math.max(extent(props.dataKeys.map(key => maxValues[key])).max, 0) * 1.2
+  // Scale to the data max, matching React's PolarRadiusAxis domain [0, 'dataMax'].
+  const globalMax = Math.max(extent(props.dataKeys.map(key => maxValues[key])).max, 0)
 
   return props.data.map(d => ({
     name: d.subject,
@@ -76,20 +83,20 @@ const indicators = computed(() => {
 })
 
 const seriesData = computed(() => {
-  return props.dataKeys.map((key, index) => ({
-    name: props.config[key]?.label || key,
-    value: props.data.map(d => d[key] as number),
-    itemStyle: {
-      color: props.config[key]?.color || CHART_PALETTES.bold[index % CHART_PALETTES.bold.length],
-    },
-    areaStyle: {
-      opacity: props.fillOpacity,
-    },
-    lineStyle: {
-      width: 3,
-      color: 'hsl(var(--foreground))',
-    },
-  }))
+  const outlined = variants.value.geometry === 'outlined'
+  return props.dataKeys.map((key, index) => {
+    const color = props.config[key]?.color || CHART_PALETTES.bold[index % CHART_PALETTES.bold.length]
+    return {
+      name: props.config[key]?.label || key,
+      value: props.data.map(d => d[key] as number),
+      itemStyle: { color },
+      areaStyle: { opacity: outlined ? 0 : props.fillOpacity },
+      lineStyle: {
+        width: 3,
+        color: outlined ? color : 'hsl(var(--foreground))',
+      },
+    }
+  })
 })
 
 const option = computed(() => ({
@@ -147,7 +154,7 @@ const option = computed(() => ({
     role="img"
     :aria-label="ariaLabel"
     data-slot="chart"
-    :class="cn(chartContainerVariants({ variant }), props.class)"
+    :class="cn(chartContainerVariants({ variant: variants.container }), props.class)"
   >
     <ChartEmpty v-if="isEmpty" :message="resolvedEmptyMessage" />
     <VChart
@@ -155,7 +162,7 @@ const option = computed(() => ({
       :option="resolvedOption"
       :theme="resolvedTheme"
       :autoresize="true"
-      :style="{ width: '100%', height }"
+      :style="{ width: '100%', height: toCssSize(height) }"
     />
   </div>
 </template>

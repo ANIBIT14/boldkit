@@ -5,7 +5,8 @@
   "description": "Date range picker with presets, dual calendars, and customizable options",
   "dependencies": [
     "date-fns",
-    "lucide-vue-next"
+    "@internationalized/date",
+    "@lucide/vue"
   ],
   "registryDependencies": [
     "@boldkit/utils",

@@ -33,7 +33,7 @@ export function RatingDoc() {
         name="Rating"
         description="A rating component with star, heart, or circle icons. Supports half values, keyboard navigation, and hover preview."
         dependencies={['class-variance-authority', 'lucide-react']}
-        vueDependencies={['class-variance-authority', 'lucide-vue-next']}
+        vueDependencies={['class-variance-authority', '@lucide/vue']}
         sourceCode={sourceCode}
         usageCode={usageCode}
         vueSourceCode={vueSourceCode}

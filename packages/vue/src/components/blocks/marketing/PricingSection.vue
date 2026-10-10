@@ -2,7 +2,7 @@
 import { cn, safeHref } from '@/lib/utils'
 import Button from '@/components/ui/Button.vue'
 import Badge from '@/components/ui/Badge.vue'
-import { Check } from 'lucide-vue-next'
+import { Check } from '@lucide/vue'
 
 export interface PricingTier {
   name: string

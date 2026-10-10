@@ -2,7 +2,7 @@
 import { cn } from '@/lib/utils'
 import Button from '@/components/ui/Button.vue'
 import Badge from '@/components/ui/Badge.vue'
-import { ArrowRight, Play, Sparkles, Star, Zap } from 'lucide-vue-next'
+import { ArrowRight, Play, Sparkles, Star, Zap } from '@lucide/vue'
 
 type HeroVariant = 'centered' | 'split' | 'withStats' | 'minimal' | 'withVideo'
 

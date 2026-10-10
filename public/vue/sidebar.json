@@ -5,7 +5,7 @@
   "description": "Collapsible sidebar with mobile drawer, tooltips, and keyboard shortcut",
   "dependencies": [
     "class-variance-authority",
-    "lucide-vue-next"
+    "@lucide/vue"
   ],
   "registryDependencies": [
     "@boldkit/utils",

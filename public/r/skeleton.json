@@ -3,7 +3,9 @@
   "name": "skeleton",
   "title": "Skeleton",
   "description": "Used to show a placeholder while content is loading",
-  "dependencies": [],
+  "dependencies": [
+    "class-variance-authority"
+  ],
   "registryDependencies": [
     "@boldkit/utils",
     "@boldkit/motion"

@@ -3,9 +3,11 @@ export * from './accordion'
 export * from './alert'
 export * from './alert-dialog'
 export * from './aspect-ratio'
+export * from './attachment'
 export * from './avatar'
 export * from './badge'
 export * from './breadcrumb'
+export * from './bubble'
 export * from './button'
 export * from './calendar'
 export * from './card'
@@ -22,10 +24,15 @@ export * from './input'
 export * from './input-otp'
 export * from './label'
 export * from './layered-card'
+export * from './marker'
 export * from './marquee'
+export * from './message'
+export * from './message-scroller'
+export * from './number-field'
 export * from './pagination'
 export * from './popover'
 export * from './progress'
+export * from './questionnaire'
 export * from './radio-group'
 export * from './scroll-area'
 export * from './select'
@@ -35,6 +42,25 @@ export * from './sheet'
 export * from './skeleton'
 export * from './slider'
 export * from './sonner'
+// `Toaster` stays Sonner's here (it was first); import the first-party one from './toast'.
+export {
+  toast,
+  useToasts,
+  ToastProvider,
+  ToastViewport,
+  Toast,
+  ToastTitle,
+  ToastDescription,
+  ToastAction,
+  ToastClose,
+  type ToasterProps,
+  type ToastOptions,
+  type ToastVariant,
+  type ToastPosition,
+  type ToastActionOptions,
+  type ToastPromiseOptions,
+  type ToastRecord,
+} from './toast'
 export * from './sticker'
 export * from './switch'
 export * from './table'

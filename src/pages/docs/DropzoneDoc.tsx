@@ -94,7 +94,7 @@ export function DropzoneDoc() {
         name="Dropzone"
         description="Drag-and-drop file upload with validation and progress tracking."
         dependencies={['class-variance-authority', 'lucide-react']}
-        vueDependencies={['class-variance-authority', 'lucide-vue-next']}
+        vueDependencies={['class-variance-authority', '@lucide/vue']}
         sourceCode={sourceCode}
         vueSourceCode={vueSourceCode}
         usageCode={usageCode}

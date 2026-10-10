@@ -27,8 +27,8 @@ export function useShake() {
  * supported. Falls back to invoking the callback directly. Always safe to call.
  */
 export function useViewTransition() {
-  return (callback: () => void | Promise<void>, recipe?: PageTransition) =>
-    startViewTransition(callback, recipe)
+  return (callback: () => void | Promise<void>, recipe?: PageTransition, options?: { types?: string[] }) =>
+    startViewTransition(callback, recipe, options)
 }
 
 export { prefersReducedMotion }

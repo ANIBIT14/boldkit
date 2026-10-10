@@ -7,7 +7,7 @@ export const DROPZONE_INJECTION_KEY = Symbol('dropzone')
 import { ref, computed, provide } from 'vue'
 import { cva, type VariantProps } from 'class-variance-authority'
 import { cn } from '@/lib/utils'
-import { Upload } from 'lucide-vue-next'
+import { Upload } from '@lucide/vue'
 
 export interface FileRejection {
   file: File

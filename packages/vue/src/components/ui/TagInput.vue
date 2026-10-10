@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref, computed, watch, onMounted, onUnmounted, useId } from 'vue'
 import { cn } from '@/lib/utils'
-import { X } from 'lucide-vue-next'
+import { X } from '@lucide/vue'
 
 export interface TagInputProps {
   modelValue?: string[]

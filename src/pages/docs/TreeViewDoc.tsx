@@ -113,8 +113,8 @@ export function TreeViewDoc() {
       <ComponentDoc
         name="Tree View"
         description="A hierarchical tree view component with expand/collapse, selection, checkboxes, and keyboard navigation."
-        dependencies={['@radix-ui/react-collapsible', 'lucide-react']}
-        vueDependencies={['reka-ui', 'lucide-vue-next']}
+        dependencies={['radix-ui', 'lucide-react']}
+        vueDependencies={['reka-ui', '@lucide/vue']}
         sourceCode={sourceCode}
         usageCode={usageCode}
         vueSourceCode={vueSourceCode}

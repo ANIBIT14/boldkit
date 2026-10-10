@@ -4,7 +4,7 @@
   "title": "Popover",
   "description": "Displays rich content in a portal with neubrutalism styling",
   "dependencies": [
-    "@radix-ui/react-popover"
+    "radix-ui"
   ],
   "registryDependencies": [
     "@boldkit/utils",

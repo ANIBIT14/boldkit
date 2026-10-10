@@ -1,0 +1,69 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "chat",
+  "type": "registry:ui",
+  "description": "Chat / AI-assistant kit: MessageScroller (auto-follow, jump-to-latest, prepend anchoring), Message, Bubble, Attachment and Marker",
+  "dependencies": [
+    "@lucide/vue"
+  ],
+  "registryDependencies": [
+    "@boldkit/utils",
+    "@boldkit/progress"
+  ],
+  "files": [
+    {
+      "path": "components/ui/MessageScroller.vue",
+      "type": "registry:ui"
+    },
+    {
+      "path": "components/ui/MessageScrollerContent.vue",
+      "type": "registry:ui"
+    },
+    {
+      "path": "components/ui/MessageScrollerJumpButton.vue",
+      "type": "registry:ui"
+    },
+    {
+      "path": "components/ui/Message.vue",
+      "type": "registry:ui"
+    },
+    {
+      "path": "components/ui/MessageAvatar.vue",
+      "type": "registry:ui"
+    },
+    {
+      "path": "components/ui/MessageHeader.vue",
+      "type": "registry:ui"
+    },
+    {
+      "path": "components/ui/MessageContent.vue",
+      "type": "registry:ui"
+    },
+    {
+      "path": "components/ui/MessageFooter.vue",
+      "type": "registry:ui"
+    },
+    {
+      "path": "components/ui/Bubble.vue",
+      "type": "registry:ui"
+    },
+    {
+      "path": "components/ui/Attachment.vue",
+      "type": "registry:ui"
+    },
+    {
+      "path": "components/ui/Marker.vue",
+      "type": "registry:ui"
+    },
+    {
+      "path": "components/ui/message-scroller-context.ts",
+      "type": "registry:ui"
+    },
+    {
+      "path": "styles/motion.css",
+      "type": "registry:ui",
+      "target": "styles/motion.css"
+    }
+  ],
+  "title": "Chat"
+}

@@ -16,7 +16,8 @@ import {
 } from '@/components/ui/dropdown-menu'
 import { Button } from '@/components/ui/button'
 import { ComponentDoc, ExampleSection } from '@/components/docs/ComponentDoc'
-import { User, CreditCard, Settings, LogOut, Mail, MessageSquare, PlusCircle, Plus, Cloud, Github, LifeBuoy } from 'lucide-react'
+import { User, CreditCard, Settings, LogOut, Mail, MessageSquare, PlusCircle, Plus, Cloud, LifeBuoy } from 'lucide-react'
+import { Github } from '@/components/icons/brand'
 import sourceCode from '@/components/ui/dropdown-menu.tsx?raw'
 import vueSourceCode from '@vue-ui/DropdownMenu.vue?raw'
 
@@ -85,7 +86,7 @@ export function DropdownMenuDoc() {
         name="Dropdown Menu"
         description="Displays a menu of actions or options triggered by a button with bold neubrutalism styling."
         registryName="dropdown-menu"
-        dependencies={['@radix-ui/react-dropdown-menu']}
+        dependencies={['radix-ui']}
         vueDependencies={['reka-ui']}
         sourceCode={sourceCode}
         vueSourceCode={vueSourceCode}
@@ -182,7 +183,7 @@ export function DropdownMenuDoc() {
   </DropdownMenuContent>
 </DropdownMenu>`}
         vueCode={`<script setup lang="ts">
-import { User, CreditCard, Settings } from 'lucide-vue-next'
+import { User, CreditCard, Settings } from '@lucide/vue'
 </script>
 
 <template>
@@ -401,7 +402,7 @@ const position = ref('bottom')
   </DropdownMenuContent>
 </DropdownMenu>`}
         vueCode={`<script setup lang="ts">
-import { Mail, PlusCircle } from 'lucide-vue-next'
+import { Mail, PlusCircle } from '@lucide/vue'
 </script>
 
 <template>

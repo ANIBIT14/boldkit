@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "font-outfit",
+  "title": "Font: Outfit",
+  "description": "BoldKit's body face (Outfit, variable). Self-hosted via Fontsource; sets --font-sans.",
+  "type": "registry:font",
+  "font": {
+    "family": "'Outfit Variable', 'Outfit', sans-serif",
+    "provider": "google",
+    "import": "Outfit",
+    "variable": "--font-sans",
+    "subsets": [
+      "latin"
+    ],
+    "dependency": "@fontsource-variable/outfit"
+  }
+}

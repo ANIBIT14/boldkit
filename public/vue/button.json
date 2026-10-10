@@ -4,7 +4,7 @@
   "type": "registry:ui",
   "description": "Displays a button with neubrutalism styling and press-down animation",
   "dependencies": [
-    "reka-ui",
+    "reka-ui@^2.11.0",
     "class-variance-authority"
   ],
   "registryDependencies": [

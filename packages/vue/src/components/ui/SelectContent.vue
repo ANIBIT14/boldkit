@@ -6,7 +6,7 @@ import {
   SelectScrollUpButton,
   SelectScrollDownButton,
 } from 'reka-ui'
-import { ChevronUp, ChevronDown } from 'lucide-vue-next'
+import { ChevronUp, ChevronDown } from '@lucide/vue'
 import { cn } from '@/lib/utils'
 
 interface Props {

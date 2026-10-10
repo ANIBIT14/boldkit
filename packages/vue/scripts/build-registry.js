@@ -20,7 +20,7 @@ const componentMeta = {
   // Foundation
   button: { deps: ['reka-ui', 'class-variance-authority'], desc: 'Displays a button with neubrutalism styling and press-down animation' },
   input: { deps: [], desc: 'Displays a form input with thick borders' },
-  label: { deps: ['reka-ui'], desc: 'Renders an accessible label' },
+  label: { deps: ['reka-ui', 'class-variance-authority'], desc: 'Renders an accessible label' },
   badge: { deps: ['class-variance-authority'], desc: 'Displays a badge or tag' },
   separator: { deps: ['reka-ui'], desc: 'Visually separates content' },
   skeleton: { deps: [], desc: 'Displays a loading placeholder with brutalist motion variants', siblingFiles: [{ src: 'styles/motion.css', target: 'styles/motion.css' }] },
@@ -30,11 +30,11 @@ const componentMeta = {
   card: { deps: [], desc: 'Displays a card with header, content, and footer', files: ['Card', 'CardHeader', 'CardTitle', 'CardDescription', 'CardContent', 'CardFooter'] },
 
   // Interactive
-  accordion: { deps: ['reka-ui'], desc: 'A vertically stacked set of interactive headings', files: ['Accordion', 'AccordionItem', 'AccordionTrigger', 'AccordionContent'] },
-  dialog: { deps: ['reka-ui', 'lucide-vue-next'], desc: 'A modal dialog with overlay', files: ['Dialog', 'DialogTrigger', 'DialogContent', 'DialogHeader', 'DialogFooter', 'DialogTitle', 'DialogDescription', 'DialogClose'] },
-  checkbox: { deps: ['reka-ui', 'lucide-vue-next'], desc: 'A checkbox input control' },
-  'radio-group': { deps: ['reka-ui'], desc: 'A set of radio buttons', files: ['RadioGroup', 'RadioGroupItem'] },
-  select: { deps: ['reka-ui', 'lucide-vue-next'], desc: 'Displays a list of options for the user to pick from', files: ['Select', 'SelectTrigger', 'SelectValue', 'SelectContent', 'SelectItem', 'SelectGroup', 'SelectLabel', 'SelectSeparator'] },
+  accordion: { deps: ['reka-ui', '@lucide/vue'], desc: 'A vertically stacked set of interactive headings', files: ['Accordion', 'AccordionItem', 'AccordionTrigger', 'AccordionContent'] },
+  dialog: { deps: ['reka-ui', '@lucide/vue'], desc: 'A modal dialog with overlay', files: ['Dialog', 'DialogTrigger', 'DialogContent', 'DialogHeader', 'DialogFooter', 'DialogTitle', 'DialogDescription', 'DialogClose'] },
+  checkbox: { deps: ['reka-ui', '@lucide/vue'], desc: 'A checkbox input control' },
+  'radio-group': { deps: ['reka-ui', '@lucide/vue'], desc: 'A set of radio buttons', files: ['RadioGroup', 'RadioGroupItem'] },
+  select: { deps: ['reka-ui', '@lucide/vue'], desc: 'Displays a list of options for the user to pick from', files: ['Select', 'SelectTrigger', 'SelectValue', 'SelectContent', 'SelectItem', 'SelectGroup', 'SelectLabel', 'SelectSeparator'] },
   switch: { deps: ['reka-ui'], desc: 'A toggle switch control' },
   tabs: { deps: ['reka-ui'], desc: 'A set of layered sections of content', files: ['Tabs', 'TabsList', 'TabsTrigger', 'TabsContent'] },
   tooltip: { deps: ['reka-ui'], desc: 'A popup that displays information on hover', files: ['Tooltip', 'TooltipTrigger', 'TooltipContent', 'TooltipProvider'] },
@@ -42,19 +42,19 @@ const componentMeta = {
   progress: { deps: ['reka-ui'], desc: 'Displays an indicator showing completion progress', siblingFiles: [{ src: 'styles/motion.css', target: 'styles/motion.css' }] },
 
   // Extended
-  'dropdown-menu': { deps: ['reka-ui', 'lucide-vue-next'], desc: 'Displays a menu to the user', files: ['DropdownMenu', 'DropdownMenuTrigger', 'DropdownMenuContent', 'DropdownMenuItem', 'DropdownMenuCheckboxItem', 'DropdownMenuRadioItem', 'DropdownMenuLabel', 'DropdownMenuSeparator', 'DropdownMenuShortcut', 'DropdownMenuRadioGroup'] },
-  'context-menu': { deps: ['reka-ui', 'lucide-vue-next'], desc: 'Displays a menu triggered by right-click', files: ['ContextMenu', 'ContextMenuTrigger', 'ContextMenuContent', 'ContextMenuItem', 'ContextMenuCheckboxItem', 'ContextMenuRadioGroup', 'ContextMenuRadioItem', 'ContextMenuLabel', 'ContextMenuSeparator', 'ContextMenuShortcut', 'ContextMenuSub', 'ContextMenuSubTrigger', 'ContextMenuSubContent'] },
-  menubar: { deps: ['reka-ui', 'lucide-vue-next'], desc: 'A horizontal bar of desktop-style dropdown menus', files: ['Menubar', 'MenubarMenu', 'MenubarTrigger', 'MenubarContent', 'MenubarItem', 'MenubarCheckboxItem', 'MenubarRadioGroup', 'MenubarRadioItem', 'MenubarLabel', 'MenubarSeparator', 'MenubarShortcut', 'MenubarSub', 'MenubarSubTrigger', 'MenubarSubContent'] },
-  'navigation-menu': { deps: ['reka-ui', 'lucide-vue-next', 'class-variance-authority'], desc: 'A collection of links and dropdown panels for site navigation', files: ['NavigationMenu', 'NavigationMenuList', 'NavigationMenuItem', 'NavigationMenuTrigger', 'NavigationMenuContent', 'NavigationMenuLink', 'NavigationMenuIndicator'], extraFiles: ['navigation-menu-variants.ts'] },
-  resizable: { deps: ['reka-ui', 'lucide-vue-next'], desc: 'Resizable panel groups and handles', files: ['ResizablePanelGroup', 'ResizablePanel', 'ResizableHandle'] },
+  'dropdown-menu': { deps: ['reka-ui', '@lucide/vue'], desc: 'Displays a menu to the user', files: ['DropdownMenu', 'DropdownMenuTrigger', 'DropdownMenuContent', 'DropdownMenuItem', 'DropdownMenuCheckboxItem', 'DropdownMenuRadioItem', 'DropdownMenuLabel', 'DropdownMenuSeparator', 'DropdownMenuShortcut', 'DropdownMenuRadioGroup'] },
+  'context-menu': { deps: ['reka-ui', '@lucide/vue'], desc: 'Displays a menu triggered by right-click', files: ['ContextMenu', 'ContextMenuTrigger', 'ContextMenuContent', 'ContextMenuItem', 'ContextMenuCheckboxItem', 'ContextMenuRadioGroup', 'ContextMenuRadioItem', 'ContextMenuLabel', 'ContextMenuSeparator', 'ContextMenuShortcut', 'ContextMenuSub', 'ContextMenuSubTrigger', 'ContextMenuSubContent'] },
+  menubar: { deps: ['reka-ui', '@lucide/vue'], desc: 'A horizontal bar of desktop-style dropdown menus', files: ['Menubar', 'MenubarMenu', 'MenubarTrigger', 'MenubarContent', 'MenubarItem', 'MenubarCheckboxItem', 'MenubarRadioGroup', 'MenubarRadioItem', 'MenubarLabel', 'MenubarSeparator', 'MenubarShortcut', 'MenubarSub', 'MenubarSubTrigger', 'MenubarSubContent'] },
+  'navigation-menu': { deps: ['reka-ui', '@lucide/vue', 'class-variance-authority'], desc: 'A collection of links and dropdown panels for site navigation', files: ['NavigationMenu', 'NavigationMenuList', 'NavigationMenuItem', 'NavigationMenuTrigger', 'NavigationMenuContent', 'NavigationMenuLink', 'NavigationMenuIndicator'], extraFiles: ['navigation-menu-variants.ts'] },
+  resizable: { deps: ['reka-ui', '@lucide/vue'], desc: 'Resizable panel groups and handles', files: ['ResizablePanelGroup', 'ResizablePanel', 'ResizableHandle'] },
   'button-group': { deps: [], registryDeps: ['button'], desc: 'Visually joins a row or column of buttons into one bordered unit', files: ['ButtonGroup'] },
-  'input-group': { deps: ['lucide-vue-next'], desc: 'An input joined with leading/trailing addons', files: ['InputGroup', 'InputGroupInput', 'InputGroupAddon'] },
+  'input-group': { deps: ['@lucide/vue'], desc: 'An input joined with leading/trailing addons', files: ['InputGroup', 'InputGroupInput', 'InputGroupAddon'] },
   field: { deps: [], registryDeps: ['label'], desc: 'Form field composition: label, control, description and error', files: ['Field', 'FieldGroup', 'FieldLabel', 'FieldDescription', 'FieldError'] },
   'multi-step-form': { deps: [], registryDeps: ['stepper', 'button', 'input', 'label'], desc: 'Dependency-free multi-step form state layer with per-step validation, composes with Stepper', files: ['MultiStepForm'], extraFiles: ['useMultiStepForm.ts'] },
-  'native-select': { deps: ['lucide-vue-next'], desc: 'A styled wrapper around the native select element', files: ['NativeSelect'] },
-  'date-picker': { deps: ['lucide-vue-next'], registryDeps: ['button', 'calendar', 'popover'], desc: 'A single-date picker that opens a calendar popover', files: ['DatePicker'] },
+  'native-select': { deps: ['@lucide/vue'], desc: 'A styled wrapper around the native select element', files: ['NativeSelect'] },
+  'date-picker': { deps: ['@lucide/vue'], registryDeps: ['button', 'calendar', 'popover'], desc: 'A single-date picker that opens a calendar popover', files: ['DatePicker'] },
   'alert-dialog': { deps: ['reka-ui'], registryDeps: ['button'], desc: 'A modal dialog that interrupts the user', files: ['AlertDialog', 'AlertDialogTrigger', 'AlertDialogContent', 'AlertDialogHeader', 'AlertDialogFooter', 'AlertDialogTitle', 'AlertDialogDescription', 'AlertDialogAction', 'AlertDialogCancel'] },
-  sheet: { deps: ['reka-ui', 'lucide-vue-next', 'class-variance-authority'], desc: 'A side panel that slides in', files: ['Sheet', 'SheetTrigger', 'SheetContent', 'SheetHeader', 'SheetFooter', 'SheetTitle', 'SheetDescription', 'SheetClose'] },
+  sheet: { deps: ['reka-ui', '@lucide/vue', 'class-variance-authority'], desc: 'A side panel that slides in', files: ['Sheet', 'SheetTrigger', 'SheetContent', 'SheetHeader', 'SheetFooter', 'SheetTitle', 'SheetDescription', 'SheetClose'] },
   'hover-card': { deps: ['reka-ui'], desc: 'For sighted users to preview content', files: ['HoverCard', 'HoverCardTrigger', 'HoverCardContent'] },
   collapsible: { deps: ['reka-ui'], desc: 'An interactive component that expands/collapses', files: ['Collapsible', 'CollapsibleTrigger', 'CollapsibleContent'] },
   slider: { deps: ['reka-ui'], desc: 'An input for selecting a value within a range' },
@@ -65,13 +65,13 @@ const componentMeta = {
   alert: { deps: ['class-variance-authority'], desc: 'Displays a callout for user attention', files: ['Alert', 'AlertTitle', 'AlertDescription'] },
 
   // Specialized
-  pagination: { deps: ['reka-ui', 'lucide-vue-next'], registryDeps: ['button'], desc: 'Navigation for paged content', files: ['Pagination', 'PaginationContent', 'PaginationItem', 'PaginationLink', 'PaginationEllipsis', 'PaginationPrevious', 'PaginationNext'] },
-  breadcrumb: { deps: ['reka-ui', 'lucide-vue-next'], desc: 'Displays the path to the current resource', files: ['Breadcrumb', 'BreadcrumbList', 'BreadcrumbItem', 'BreadcrumbLink', 'BreadcrumbPage', 'BreadcrumbSeparator', 'BreadcrumbEllipsis'] },
-  drawer: { deps: ['vaul-vue'], desc: 'A drawer component for Vue', files: ['Drawer', 'DrawerTrigger', 'DrawerContent', 'DrawerHeader', 'DrawerFooter', 'DrawerTitle', 'DrawerDescription', 'DrawerClose'] },
+  pagination: { deps: ['reka-ui', '@lucide/vue'], registryDeps: ['button'], desc: 'Navigation for paged content', files: ['Pagination', 'PaginationContent', 'PaginationItem', 'PaginationLink', 'PaginationEllipsis', 'PaginationPrevious', 'PaginationNext'] },
+  breadcrumb: { deps: ['reka-ui', '@lucide/vue'], desc: 'Displays the path to the current resource', files: ['Breadcrumb', 'BreadcrumbList', 'BreadcrumbItem', 'BreadcrumbLink', 'BreadcrumbPage', 'BreadcrumbSeparator', 'BreadcrumbEllipsis'] },
+  drawer: { deps: ['reka-ui'], desc: 'A swipeable drawer on Reka UI\'s native Drawer', files: ['Drawer', 'DrawerTrigger', 'DrawerContent', 'DrawerHeader', 'DrawerFooter', 'DrawerTitle', 'DrawerDescription', 'DrawerClose'] },
   sonner: { deps: ['vue-sonner'], registryDeps: ['use-theme'], desc: 'An opinionated toast component' },
-  calendar: { deps: ['reka-ui', 'lucide-vue-next'], registryDeps: ['button'], desc: 'A date picker calendar component' },
-  'input-otp': { deps: ['reka-ui', 'lucide-vue-next'], desc: 'Accessible one-time password input', files: ['InputOTP', 'InputOTPGroup', 'InputOTPSlot', 'InputOTPSeparator'] },
-  command: { deps: ['reka-ui', 'lucide-vue-next'], registryDeps: ['dialog'], desc: 'Fast, composable command menu', files: ['Command', 'CommandDialog', 'CommandInput', 'CommandList', 'CommandEmpty', 'CommandGroup', 'CommandItem', 'CommandSeparator', 'CommandShortcut'] },
+  calendar: { deps: ['reka-ui', '@lucide/vue'], registryDeps: ['button'], desc: 'A date picker calendar component' },
+  'input-otp': { deps: ['reka-ui', '@lucide/vue'], desc: 'Accessible one-time password input', files: ['InputOTP', 'InputOTPGroup', 'InputOTPSlot', 'InputOTPSeparator'] },
+  command: { deps: ['reka-ui', '@lucide/vue'], registryDeps: ['dialog'], desc: 'Fast, composable command menu', files: ['Command', 'CommandDialog', 'CommandInput', 'CommandList', 'CommandEmpty', 'CommandGroup', 'CommandItem', 'CommandSeparator', 'CommandShortcut'] },
 
   // BoldKit unique
   marquee: { deps: [], desc: 'A scrolling marquee component', files: ['Marquee', 'MarqueeItem', 'MarqueeSeparator'] },
@@ -90,6 +90,14 @@ const componentMeta = {
     extraFiles: ['chart-utils.ts', 'chart-variants.ts'],
     // ChartLoading uses .bk-skeleton-stamp from the motion stylesheet.
     siblingFiles: [{ src: 'styles/motion.css', target: 'styles/motion.css' }],
+  },
+  // Shared by the specialty charts via registryDeps. Generated here — it used
+  // to be a hand-written JSON nothing rebuilt, and went stale.
+  'chart-utils': {
+    deps: ['class-variance-authority'],
+    desc: 'Shared utilities, palettes, and theme configuration for neubrutalism-styled charts',
+    files: [],
+    extraFiles: ['chart-utils.ts', 'chart-variants.ts'],
   },
   'funnel-chart': {
     deps: ['vue-echarts', 'echarts'],
@@ -127,7 +135,7 @@ const componentMeta = {
   // `onErrorCaptured`. Returns the fallback UI when any descendant
   // throws, otherwise renders the default slot.
   'error-boundary': {
-    deps: ['lucide-vue-next'],
+    deps: ['@lucide/vue'],
     registryDeps: ['button', 'card'],
     desc: 'Catches errors in child components using onErrorCaptured and displays a neubrutalism fallback UI with reload and home actions',
     files: ['ErrorBoundary'],
@@ -145,35 +153,40 @@ const componentMeta = {
 
   // v2.7.0 - Data & Forms
   carousel: {
-    deps: ['embla-carousel-vue', 'lucide-vue-next'],
+    // embla-carousel: Carousel.vue imports its types; pnpm won't hoist it from embla-carousel-vue.
+    deps: ['embla-carousel-vue', 'embla-carousel', '@lucide/vue'],
     registryDeps: ['button'],
     desc: 'Carousel component with navigation, dots, and touch support built on Embla',
     files: ['Carousel', 'CarouselContent', 'CarouselItem', 'CarouselPrevious', 'CarouselNext', 'CarouselDots']
   },
   'data-table': {
-    deps: ['@tanstack/vue-table', 'lucide-vue-next'],
+    deps: ['@tanstack/vue-table', '@lucide/vue'],
     registryDeps: ['button', 'checkbox', 'dropdown-menu', 'input', 'select', 'table'],
     desc: 'Powerful data table with sorting, filtering, pagination, and row selection',
     files: ['DataTable']
   },
   'date-range-picker': {
-    deps: ['date-fns', 'lucide-vue-next'],
+    deps: ['date-fns', '@internationalized/date', '@lucide/vue'],
     registryDeps: ['button', 'calendar', 'popover'],
     desc: 'Date range picker with presets, dual calendars, and customizable options',
     files: ['DateRangePicker']
   },
   rating: {
-    deps: ['class-variance-authority', 'lucide-vue-next'],
+    deps: ['class-variance-authority', '@lucide/vue'],
     desc: 'Star rating component with half-values, multiple icons, and keyboard navigation',
     files: ['Rating']
   },
+  'number-field': { deps: ['reka-ui', '@lucide/vue'], desc: "Numeric input with stepper buttons, min/max/step, keyboard control and Intl number formatting", files: ['NumberField', 'NumberFieldContent', 'NumberFieldInput', 'NumberFieldIncrement', 'NumberFieldDecrement'] },
+  'questionnaire': { deps: ['@lucide/vue'], registryDeps: ['button', 'input', 'kbd', 'label', 'textarea'], desc: "Multi-step question flow with single/multiple/free-text questions, skip, conditional logic and keyboard shortcuts", files: ['Questionnaire'], extraFiles: ['questionnaire-types.ts'] },
+  'toast': { deps: ['reka-ui', '@lucide/vue'], desc: "First-party brutalist toast stacks with an imperative toast() API, promise toasts, swipe and stacking", files: ['Toaster', 'ToastStack'], extraFiles: ['toast.ts'] },
+  'chat': { deps: ['@lucide/vue'], registryDeps: ['progress'], desc: "Chat / AI-assistant kit: MessageScroller (auto-follow, jump-to-latest, prepend anchoring), Message, Bubble, Attachment and Marker", files: ['MessageScroller', 'MessageScrollerContent', 'MessageScrollerJumpButton', 'Message', 'MessageAvatar', 'MessageHeader', 'MessageContent', 'MessageFooter', 'Bubble', 'Attachment', 'Marker'], extraFiles: ['message-scroller-context.ts'], siblingFiles: [{ src: 'styles/motion.css', target: 'styles/motion.css' }] },
   'tag-input': {
-    deps: ['lucide-vue-next'],
+    deps: ['@lucide/vue'],
     desc: 'Multi-tag input with suggestions, validation, and keyboard support',
     files: ['TagInput']
   },
   'time-picker': {
-    deps: ['lucide-vue-next'],
+    deps: ['@lucide/vue'],
     registryDeps: ['button', 'popover', 'scroll-area'],
     desc: 'Popover-based time picker with 12h/24h format and scrollable columns',
     files: ['TimePicker']
@@ -181,7 +194,7 @@ const componentMeta = {
 
   // v2.8.0 - Navigation & Advanced
   sidebar: {
-    deps: ['class-variance-authority', 'lucide-vue-next'],
+    deps: ['class-variance-authority', '@lucide/vue'],
     registryDeps: ['button', 'sheet', 'tooltip'],
     desc: 'Collapsible sidebar with mobile drawer, tooltips, and keyboard shortcut',
     files: ['Sidebar', 'SidebarContent', 'SidebarFooter', 'SidebarGroup', 'SidebarGroupLabel', 'SidebarHeader', 'SidebarInset', 'SidebarItem', 'SidebarProvider', 'SidebarSeparator', 'SidebarToggle']
@@ -192,13 +205,13 @@ const componentMeta = {
     files: ['Timeline', 'TimelineCard', 'TimelineConnector', 'TimelineContent', 'TimelineDescription', 'TimelineDot', 'TimelineHeader', 'TimelineItem', 'TimelineTime', 'TimelineTitle']
   },
   tour: {
-    deps: ['lucide-vue-next'],
+    deps: ['@lucide/vue'],
     registryDeps: ['button'],
     desc: 'Step-by-step product tour with spotlight highlighting and progress indicators',
     files: ['Tour']
   },
   'tree-view': {
-    deps: ['reka-ui', 'lucide-vue-next'],
+    deps: ['reka-ui', '@lucide/vue'],
     registryDeps: ['checkbox', 'collapsible'],
     desc: 'Hierarchical tree view with expand/collapse, selection, and checkboxes',
     files: ['TreeView']
@@ -206,35 +219,35 @@ const componentMeta = {
 
   // v2.5.0 components - missing from registry
   dropzone: {
-    deps: ['lucide-vue-next'],
+    deps: ['@lucide/vue'],
     registryDeps: ['progress', 'spinner'],
     desc: 'Drag-and-drop file upload with preview and validation',
     files: ['Dropzone', 'FileList']
   },
   'empty-state': {
-    deps: ['lucide-vue-next', 'class-variance-authority'],
+    deps: ['@lucide/vue', 'class-variance-authority'],
     desc: 'Empty state placeholders with 14 presets, horizontal/vertical layouts, animations, and illustration support',
     files: ['EmptyState', 'EmptyStateActions', 'EmptyStateDescription', 'EmptyStateIcon', 'EmptyStateIllustration', 'EmptyStatePreset', 'EmptyStateTitle'],
     extraFiles: ['empty-state-variants.ts']
   },
   kbd: {
-    deps: [],
+    deps: ['reka-ui', 'class-variance-authority'],
     desc: 'Keyboard shortcut display component',
     files: ['Kbd', 'KbdCombo']
   },
   spinner: {
-    deps: ['class-variance-authority'],
+    deps: ['reka-ui', 'class-variance-authority'],
     desc: 'Loading spinner with multiple variants',
     files: ['Spinner']
   },
   'stat-card': {
-    deps: ['lucide-vue-next'],
+    deps: ['@lucide/vue', 'class-variance-authority'],
     registryDeps: ['card', 'progress'],
     desc: 'Statistics card for dashboards',
     files: ['StatCard']
   },
   stepper: {
-    deps: ['class-variance-authority'],
+    deps: ['class-variance-authority', '@lucide/vue'],
     desc: 'Multi-step wizard/stepper component',
     files: ['Stepper', 'StepperContent', 'StepperItem', 'StepperList', 'StepperSeparator', 'StepperTrigger']
   },
@@ -247,7 +260,7 @@ const componentMeta = {
 
   // Combobox — Popover + Command composition
   combobox: {
-    deps: ['reka-ui', 'lucide-vue-next'],
+    deps: ['reka-ui', '@lucide/vue'],
     registryDeps: ['popover', 'command'],
     desc: 'Searchable dropdown built by composing Popover and Command with neubrutalism styling. Includes single-select (ComboboxTrigger) and multi-select with removable chips (ComboboxMultiTrigger).',
     files: ['ComboboxTrigger', 'ComboboxMultiTrigger'],
@@ -339,7 +352,7 @@ const componentMeta = {
   },
 
   'math-curve-background': {
-    deps: [],
+    deps: ['reka-ui'],
     registryDeps: ['math-curves'],
     desc: 'Ambient animated mathematical curve background layer with neubrutalism aesthetics — wraps any content with a continuously drawn parametric curve.',
     files: ['MathCurveBackground'],
@@ -423,7 +436,7 @@ const componentMeta = {
   },
 
   'chart-toolbar': {
-    deps: ['lucide-vue-next'],
+    deps: ['@lucide/vue'],
     registryDeps: ['chart-export', 'button'],
     desc: 'Brutalist chart toolbar overlay — export the wrapped chart as PNG or SVG, download its data as CSV, and toggle fullscreen.',
     files: ['ChartToolbar'],
@@ -443,6 +456,16 @@ const SHAPE_FILES = fs.existsSync(SHAPES_DIR)
       .map((f) => f.replace(/\.vue$/, ''))
       .sort()
   : []
+
+// Majors the shipped code is written against. A bare name installs the latest
+// major, and two of these have since shipped breaking ones (TanStack Table 9,
+// vue-sonner 2 moved its CSS). Bump a pin only together with the code.
+const DEP_PINS = {
+  '@tanstack/vue-table': '^8.21.3',
+  'vue-sonner': '^2.0.9',
+  'reka-ui': '^2.11.0',
+}
+const pinDeps = (deps = []) => deps.map((d) => (DEP_PINS[d] ? `${d}@${DEP_PINS[d]}` : d))
 
 function readFile(filePath) {
   try {
@@ -563,7 +586,7 @@ function createRegistryJson(name, meta) {
     name,
     type: 'registry:ui',
     description: meta.desc,
-    dependencies: meta.deps || [],
+    dependencies: pinDeps(meta.deps),
     registryDependencies: ['utils', ...(meta.registryDeps || [])].map(scopeBk),
     files: registryFiles
   }
@@ -598,7 +621,7 @@ function createSubDirRegistry(name, meta) {
     name,
     type: 'registry:ui',
     description: meta.desc,
-    dependencies: meta.deps || [],
+    dependencies: pinDeps(meta.deps),
     registryDependencies: ['@boldkit/utils', ...(meta.registryDeps || []).map(d => `@boldkit/${d}`)],
     files: registryFiles,
   }
@@ -695,6 +718,7 @@ function createStylesRegistry() {
     name: 'styles',
     type: 'registry:style',
     description: 'BoldKit neubrutalism CSS variables and utilities',
+    devDependencies: ['tw-animate-css'],
     files
   }
 }

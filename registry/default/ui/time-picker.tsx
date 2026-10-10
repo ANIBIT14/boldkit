@@ -9,6 +9,11 @@ import {
 } from '@/components/ui/popover'
 import { ScrollArea } from '@/components/ui/scroll-area'
 
+// Typed here so the dev-only guards compile without @types/node (Vite's
+// default tsconfig has none). `declare` emits nothing: bundlers still
+// replace the literal process.env.NODE_ENV.
+declare const process: { env: { NODE_ENV?: string } }
+
 export interface TimePickerProps
   extends Omit<React.ComponentPropsWithoutRef<typeof Button>, 'onChange' | 'value' | 'defaultValue'> {
   value?: Date

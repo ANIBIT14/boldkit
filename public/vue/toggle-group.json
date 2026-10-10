@@ -4,7 +4,7 @@
   "type": "registry:ui",
   "description": "A set of two-state buttons",
   "dependencies": [
-    "reka-ui",
+    "reka-ui@^2.11.0",
     "class-variance-authority"
   ],
   "registryDependencies": [

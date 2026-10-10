@@ -3,7 +3,7 @@ import { ref, onMounted, onUnmounted } from 'vue'
 import { cn } from '@/lib/utils'
 import Button from '@/components/ui/Button.vue'
 import Input from '@/components/ui/Input.vue'
-import { Home, ArrowLeft, RefreshCw, WifiOff, ShieldX, Clock, AlertTriangle } from 'lucide-vue-next'
+import { Home, ArrowLeft, RefreshCw, WifiOff, ShieldX, Clock, AlertTriangle } from '@lucide/vue'
 
 type ErrorPageVariant = 'notFound' | 'serverError' | 'maintenance' | 'offline' | 'forbidden' | 'comingSoon' | 'generic'
 

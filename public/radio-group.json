@@ -4,7 +4,7 @@
   "title": "Radio Group",
   "description": "A set of checkable buttons where only one can be checked at a time",
   "dependencies": [
-    "@radix-ui/react-radio-group",
+    "radix-ui",
     "lucide-react"
   ],
   "registryDependencies": [

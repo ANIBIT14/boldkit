@@ -18,9 +18,10 @@ import { DonutChart } from '@/components/ui/chart'
 import { Layout } from '@/components/layout'
 import {
   Copy, Check, ArrowRight, Zap, Palette, Code2, Smartphone,
-  Github, Layers, TrendingUp, DollarSign, LayoutGrid, Sparkles,
+  Layers, TrendingUp, DollarSign, LayoutGrid, Sparkles,
   Settings, LogIn, FileX, Package, BarChart3, Wand2, Cpu,
 } from 'lucide-react'
+import { Github } from '@/components/icons/brand'
 import { useState, useEffect, useRef, type CSSProperties } from 'react'
 import mcpLogo from '@lobehub/icons-static-svg/icons/mcp.svg?raw'
 import { SEO, pageSEO } from '@/components/SEO'
@@ -188,7 +189,7 @@ export function Home() {
                     <span className="ml-0.5 rounded-sm bg-background/25 px-1 py-px text-[9px] font-black">NEW</span>
                   </Badge>
                   <span className="h-4 w-[2px] bg-foreground/20 hidden sm:block" />
-                  <span className="text-[11px] font-black uppercase tracking-widest text-muted-foreground hidden sm:block" style={MONO}>v3.5.4</span>
+                  <span className="text-[11px] font-black uppercase tracking-widest text-muted-foreground hidden sm:block" style={MONO}>v3.6.0</span>
                 </div>
 
                 {/* Giant masthead — newspaper column style */}

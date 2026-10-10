@@ -238,5 +238,41 @@ describe('motion-core', () => {
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       delete (document as any).startViewTransition
     })
+
+    it('passes transition types via the object form', () => {
+      const finished = Promise.resolve()
+      const fake = vi.fn((arg: unknown) => {
+        if (typeof arg === 'object' && arg) (arg as { update: () => void }).update()
+        return { ready: finished, finished, updateCallbackDone: finished }
+      })
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      ;(document as any).startViewTransition = fake
+
+      const cb = vi.fn()
+      startViewTransition(cb, undefined, { types: ['next'] })
+      expect(fake).toHaveBeenCalledWith({ update: cb, types: ['next'] })
+      expect(cb).toHaveBeenCalledTimes(1)
+
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      delete (document as any).startViewTransition
+    })
+
+    it('falls back to the callback form where the object form throws', () => {
+      const finished = Promise.resolve()
+      const fake = vi.fn((arg: unknown) => {
+        if (typeof arg !== 'function') throw new TypeError('not callable')
+        ;(arg as () => void)()
+        return { ready: finished, finished, updateCallbackDone: finished }
+      })
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      ;(document as any).startViewTransition = fake
+
+      const cb = vi.fn()
+      expect(startViewTransition(cb, undefined, { types: ['next'] })).not.toBe(null)
+      expect(cb).toHaveBeenCalledTimes(1)
+
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      delete (document as any).startViewTransition
+    })
   })
 })

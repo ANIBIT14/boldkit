@@ -10,6 +10,11 @@ import {
   PopoverTrigger,
 } from '@/components/ui/popover'
 
+// Typed here so the dev-only guards compile without @types/node (Vite's
+// default tsconfig has none). `declare` emits nothing: bundlers still
+// replace the literal process.env.NODE_ENV.
+declare const process: { env: { NODE_ENV?: string } }
+
 export interface DatePickerProps
   extends Omit<React.ComponentPropsWithoutRef<typeof Button>, 'onChange' | 'value' | 'defaultValue'> {
   /** Controlled value. Pass `defaultValue` instead for uncontrolled use. */
@@ -90,7 +95,7 @@ export const DatePicker = React.forwardRef<HTMLButtonElement, DatePickerProps>(
           mode="single"
           selected={selected}
           onSelect={handleSelect}
-          initialFocus
+          autoFocus
         />
       </PopoverContent>
     </Popover>

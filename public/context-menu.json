@@ -4,7 +4,7 @@
   "title": "Context Menu",
   "description": "Displays a menu triggered by right-click with neubrutalism styling",
   "dependencies": [
-    "@radix-ui/react-context-menu",
+    "radix-ui",
     "lucide-react"
   ],
   "registryDependencies": [

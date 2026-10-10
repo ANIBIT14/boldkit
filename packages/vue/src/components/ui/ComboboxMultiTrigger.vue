@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { PopoverTrigger as PopoverTriggerPrimitive } from 'reka-ui'
-import { ChevronsUpDown, X } from 'lucide-vue-next'
+import { ChevronsUpDown, X } from '@lucide/vue'
 import { cn } from '@/lib/utils'
 
 /**

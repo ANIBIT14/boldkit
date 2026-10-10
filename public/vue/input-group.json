@@ -4,7 +4,7 @@
   "type": "registry:ui",
   "description": "An input joined with leading/trailing addons",
   "dependencies": [
-    "lucide-vue-next"
+    "@lucide/vue"
   ],
   "registryDependencies": [
     "@boldkit/utils"

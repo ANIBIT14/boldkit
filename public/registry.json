@@ -10,89 +10,923 @@
       "type": "registry:theme",
       "description": "BoldKit neubrutalism theme with bold colors and CSS variables",
       "title": "Theme",
-      "cssVars": {
-        "light": {
-          "background": "60 9% 98%",
-          "foreground": "240 10% 10%",
-          "card": "0 0% 100%",
-          "card-foreground": "240 10% 10%",
-          "popover": "0 0% 100%",
-          "popover-foreground": "240 10% 10%",
-          "primary": "0 84% 71%",
-          "primary-foreground": "240 10% 10%",
-          "secondary": "174 62% 56%",
-          "secondary-foreground": "240 10% 10%",
-          "accent": "49 100% 71%",
-          "accent-foreground": "240 10% 10%",
-          "muted": "60 5% 90%",
-          "muted-foreground": "240 4% 46%",
-          "destructive": "0 84% 60%",
-          "destructive-foreground": "0 0% 100%",
-          "success": "152 69% 69%",
-          "success-foreground": "240 10% 10%",
-          "warning": "49 100% 60%",
-          "warning-foreground": "240 10% 10%",
-          "info": "212 100% 73%",
-          "info-foreground": "240 10% 10%",
-          "border": "240 10% 10%",
-          "input": "240 10% 10%",
-          "ring": "240 10% 10%",
-          "radius": "0rem",
-          "shadow-color": "240 10% 10%",
-          "chart-1": "0 84% 71%",
-          "chart-2": "174 62% 56%",
-          "chart-3": "49 100% 71%",
-          "chart-4": "271 76% 53%",
-          "chart-5": "326 78% 60%",
-          "neon-pink": "330 100% 65%",
-          "neon-green": "120 100% 50%",
-          "neon-blue": "195 100% 50%",
-          "neon-orange": "25 100% 55%",
-          "neon-purple": "280 100% 60%",
-          "clash-1": "15 85% 60%",
-          "clash-2": "280 70% 50%",
-          "clash-3": "165 80% 45%",
-          "clash-4": "45 95% 55%"
+      "files": [],
+      "css": {
+        ":root": {
+          "--background": "60 9% 98%",
+          "--foreground": "240 10% 10%",
+          "--card": "0 0% 100%",
+          "--card-foreground": "240 10% 10%",
+          "--popover": "0 0% 100%",
+          "--popover-foreground": "240 10% 10%",
+          "--primary": "0 84% 71%",
+          "--primary-foreground": "240 10% 10%",
+          "--secondary": "174 62% 56%",
+          "--secondary-foreground": "240 10% 10%",
+          "--accent": "49 100% 71%",
+          "--accent-foreground": "240 10% 10%",
+          "--muted": "60 5% 90%",
+          "--muted-foreground": "240 4% 46%",
+          "--destructive": "0 84% 60%",
+          "--destructive-foreground": "0 0% 100%",
+          "--success": "152 69% 69%",
+          "--success-foreground": "240 10% 10%",
+          "--warning": "49 100% 60%",
+          "--warning-foreground": "240 10% 10%",
+          "--info": "212 100% 73%",
+          "--info-foreground": "240 10% 10%",
+          "--border": "240 10% 10%",
+          "--input": "240 10% 10%",
+          "--ring": "240 10% 10%",
+          "--radius": "0rem",
+          "--shadow-color": "240 10% 10%",
+          "--chart-1": "0 84% 71%",
+          "--chart-2": "174 62% 56%",
+          "--chart-3": "49 100% 71%",
+          "--chart-4": "271 76% 53%",
+          "--chart-5": "326 78% 60%",
+          "--neon-pink": "330 100% 65%",
+          "--neon-green": "120 100% 50%",
+          "--neon-blue": "195 100% 50%",
+          "--neon-orange": "25 100% 55%",
+          "--neon-purple": "280 100% 60%",
+          "--clash-1": "15 85% 60%",
+          "--clash-2": "280 70% 50%",
+          "--clash-3": "165 80% 45%",
+          "--clash-4": "45 95% 55%"
         },
-        "dark": {
-          "background": "240 10% 10%",
-          "foreground": "60 9% 98%",
-          "card": "240 10% 14%",
-          "card-foreground": "60 9% 98%",
-          "popover": "240 10% 14%",
-          "popover-foreground": "60 9% 98%",
-          "primary": "0 84% 71%",
-          "primary-foreground": "240 10% 10%",
-          "secondary": "174 62% 56%",
-          "secondary-foreground": "240 10% 10%",
-          "accent": "49 100% 71%",
-          "accent-foreground": "240 10% 10%",
-          "muted": "240 10% 20%",
-          "muted-foreground": "60 5% 65%",
-          "destructive": "0 84% 60%",
-          "destructive-foreground": "0 0% 100%",
-          "success": "152 69% 69%",
-          "success-foreground": "240 10% 10%",
-          "warning": "49 100% 60%",
-          "warning-foreground": "240 10% 10%",
-          "info": "212 100% 73%",
-          "info-foreground": "240 10% 10%",
-          "border": "60 9% 98%",
-          "input": "60 9% 98%",
-          "ring": "60 9% 98%",
-          "shadow-color": "0 0% 0%",
-          "neon-pink": "330 100% 70%",
-          "neon-green": "120 100% 55%",
-          "neon-blue": "195 100% 55%",
-          "neon-orange": "25 100% 60%",
-          "neon-purple": "280 100% 65%",
-          "clash-1": "15 85% 65%",
-          "clash-2": "280 70% 55%",
-          "clash-3": "165 80% 50%",
-          "clash-4": "45 95% 60%"
+        ".dark": {
+          "--background": "240 10% 10%",
+          "--foreground": "60 9% 98%",
+          "--card": "240 10% 14%",
+          "--card-foreground": "60 9% 98%",
+          "--popover": "240 10% 14%",
+          "--popover-foreground": "60 9% 98%",
+          "--primary": "0 84% 71%",
+          "--primary-foreground": "240 10% 10%",
+          "--secondary": "174 62% 56%",
+          "--secondary-foreground": "240 10% 10%",
+          "--accent": "49 100% 71%",
+          "--accent-foreground": "240 10% 10%",
+          "--muted": "240 10% 20%",
+          "--muted-foreground": "60 5% 65%",
+          "--destructive": "0 84% 60%",
+          "--destructive-foreground": "0 0% 100%",
+          "--success": "152 69% 69%",
+          "--success-foreground": "240 10% 10%",
+          "--warning": "49 100% 60%",
+          "--warning-foreground": "240 10% 10%",
+          "--info": "212 100% 73%",
+          "--info-foreground": "240 10% 10%",
+          "--border": "60 9% 98%",
+          "--input": "60 9% 98%",
+          "--ring": "60 9% 98%",
+          "--shadow-color": "0 0% 0%",
+          "--neon-pink": "330 100% 70%",
+          "--neon-green": "120 100% 55%",
+          "--neon-blue": "195 100% 55%",
+          "--neon-orange": "25 100% 60%",
+          "--neon-purple": "280 100% 65%",
+          "--clash-1": "15 85% 65%",
+          "--clash-2": "280 70% 55%",
+          "--clash-3": "165 80% 50%",
+          "--clash-4": "45 95% 60%"
+        }
+      }
+    },
+    {
+      "name": "theme-coral",
+      "type": "registry:theme",
+      "title": "Theme: Coral",
+      "description": "BoldKit Coral preset (warm & bold). Swaps brand colours and the tinted neutral palette; needs BoldKit's base styles already installed.",
+      "css": {
+        ":root": {
+          "--background": "0 14% 97%",
+          "--foreground": "0 12% 11%",
+          "--card": "0 14% 99%",
+          "--card-foreground": "0 12% 11%",
+          "--popover": "0 14% 99%",
+          "--popover-foreground": "0 12% 11%",
+          "--primary": "0 84% 71%",
+          "--primary-foreground": "240 10% 10%",
+          "--secondary": "174 62% 56%",
+          "--secondary-foreground": "240 10% 10%",
+          "--accent": "49 100% 71%",
+          "--accent-foreground": "240 10% 10%",
+          "--muted": "0 11% 91%",
+          "--muted-foreground": "0 7% 38%",
+          "--destructive": "0 84% 47%",
+          "--destructive-foreground": "0 0% 100%",
+          "--border": "0 12% 11%",
+          "--input": "0 12% 11%",
+          "--ring": "0 12% 11%",
+          "--radius": "0rem",
+          "--shadow-color": "0 12% 11%",
+          "--shadow-offset": "4px",
+          "--border-width": "3px"
+        },
+        ".dark": {
+          "--background": "0 14% 10%",
+          "--foreground": "0 14% 97%",
+          "--card": "0 14% 14%",
+          "--card-foreground": "0 14% 97%",
+          "--popover": "0 14% 14%",
+          "--popover-foreground": "0 14% 97%",
+          "--primary": "0 84% 71%",
+          "--primary-foreground": "240 10% 10%",
+          "--secondary": "174 62% 56%",
+          "--secondary-foreground": "240 10% 10%",
+          "--accent": "49 100% 71%",
+          "--accent-foreground": "240 10% 10%",
+          "--muted": "0 14% 20%",
+          "--muted-foreground": "0 7% 65%",
+          "--destructive": "0 84% 47%",
+          "--destructive-foreground": "0 0% 100%",
+          "--border": "0 14% 97%",
+          "--input": "0 14% 97%",
+          "--ring": "0 14% 97%",
+          "--shadow-color": "0 0% 0%"
+        }
+      }
+    },
+    {
+      "name": "theme-purple",
+      "type": "registry:theme",
+      "title": "Theme: Purple",
+      "description": "BoldKit Purple preset (vivid & dramatic). Swaps brand colours and the tinted neutral palette; needs BoldKit's base styles already installed.",
+      "css": {
+        ":root": {
+          "--background": "271 14% 97%",
+          "--foreground": "271 12% 11%",
+          "--card": "271 14% 99%",
+          "--card-foreground": "271 12% 11%",
+          "--popover": "271 14% 99%",
+          "--popover-foreground": "271 12% 11%",
+          "--primary": "271 76% 53%",
+          "--primary-foreground": "0 0% 100%",
+          "--secondary": "326 78% 60%",
+          "--secondary-foreground": "240 10% 10%",
+          "--accent": "199 89% 48%",
+          "--accent-foreground": "240 10% 10%",
+          "--muted": "271 11% 91%",
+          "--muted-foreground": "271 7% 38%",
+          "--destructive": "0 84% 47%",
+          "--destructive-foreground": "0 0% 100%",
+          "--border": "271 12% 11%",
+          "--input": "271 12% 11%",
+          "--ring": "271 12% 11%",
+          "--radius": "0rem",
+          "--shadow-color": "271 12% 11%",
+          "--shadow-offset": "4px",
+          "--border-width": "3px"
+        },
+        ".dark": {
+          "--background": "271 14% 10%",
+          "--foreground": "271 14% 97%",
+          "--card": "271 14% 14%",
+          "--card-foreground": "271 14% 97%",
+          "--popover": "271 14% 14%",
+          "--popover-foreground": "271 14% 97%",
+          "--primary": "271 76% 53%",
+          "--primary-foreground": "0 0% 100%",
+          "--secondary": "326 78% 60%",
+          "--secondary-foreground": "240 10% 10%",
+          "--accent": "199 89% 48%",
+          "--accent-foreground": "240 10% 10%",
+          "--muted": "271 14% 20%",
+          "--muted-foreground": "271 7% 65%",
+          "--destructive": "0 84% 47%",
+          "--destructive-foreground": "0 0% 100%",
+          "--border": "271 14% 97%",
+          "--input": "271 14% 97%",
+          "--ring": "271 14% 97%",
+          "--shadow-color": "0 0% 0%"
+        }
+      }
+    },
+    {
+      "name": "theme-forest",
+      "type": "registry:theme",
+      "title": "Theme: Forest",
+      "description": "BoldKit Forest preset (earthy & fresh). Swaps brand colours and the tinted neutral palette; needs BoldKit's base styles already installed.",
+      "css": {
+        ":root": {
+          "--background": "152 14% 97%",
+          "--foreground": "152 12% 11%",
+          "--card": "152 14% 99%",
+          "--card-foreground": "152 12% 11%",
+          "--popover": "152 14% 99%",
+          "--popover-foreground": "152 12% 11%",
+          "--primary": "152 69% 45%",
+          "--primary-foreground": "240 10% 10%",
+          "--secondary": "82 68% 55%",
+          "--secondary-foreground": "240 10% 10%",
+          "--accent": "49 100% 60%",
+          "--accent-foreground": "240 10% 10%",
+          "--muted": "152 11% 91%",
+          "--muted-foreground": "152 7% 38%",
+          "--destructive": "0 84% 47%",
+          "--destructive-foreground": "0 0% 100%",
+          "--border": "152 12% 11%",
+          "--input": "152 12% 11%",
+          "--ring": "152 12% 11%",
+          "--radius": "0rem",
+          "--shadow-color": "152 12% 11%",
+          "--shadow-offset": "4px",
+          "--border-width": "3px"
+        },
+        ".dark": {
+          "--background": "152 14% 10%",
+          "--foreground": "152 14% 97%",
+          "--card": "152 14% 14%",
+          "--card-foreground": "152 14% 97%",
+          "--popover": "152 14% 14%",
+          "--popover-foreground": "152 14% 97%",
+          "--primary": "152 69% 45%",
+          "--primary-foreground": "240 10% 10%",
+          "--secondary": "82 68% 55%",
+          "--secondary-foreground": "240 10% 10%",
+          "--accent": "49 100% 60%",
+          "--accent-foreground": "240 10% 10%",
+          "--muted": "152 14% 20%",
+          "--muted-foreground": "152 7% 65%",
+          "--destructive": "0 84% 47%",
+          "--destructive-foreground": "0 0% 100%",
+          "--border": "152 14% 97%",
+          "--input": "152 14% 97%",
+          "--ring": "152 14% 97%",
+          "--shadow-color": "0 0% 0%"
+        }
+      }
+    },
+    {
+      "name": "theme-ocean",
+      "type": "registry:theme",
+      "title": "Theme: Ocean",
+      "description": "BoldKit Ocean preset (cool & serene). Swaps brand colours and the tinted neutral palette; needs BoldKit's base styles already installed.",
+      "css": {
+        ":root": {
+          "--background": "199 14% 97%",
+          "--foreground": "199 12% 11%",
+          "--card": "199 14% 99%",
+          "--card-foreground": "199 12% 11%",
+          "--popover": "199 14% 99%",
+          "--popover-foreground": "199 12% 11%",
+          "--primary": "199 89% 48%",
+          "--primary-foreground": "240 10% 10%",
+          "--secondary": "174 62% 56%",
+          "--secondary-foreground": "240 10% 10%",
+          "--accent": "152 69% 69%",
+          "--accent-foreground": "240 10% 10%",
+          "--muted": "199 11% 91%",
+          "--muted-foreground": "199 7% 38%",
+          "--destructive": "0 84% 47%",
+          "--destructive-foreground": "0 0% 100%",
+          "--border": "199 12% 11%",
+          "--input": "199 12% 11%",
+          "--ring": "199 12% 11%",
+          "--radius": "0rem",
+          "--shadow-color": "199 12% 11%",
+          "--shadow-offset": "4px",
+          "--border-width": "3px"
+        },
+        ".dark": {
+          "--background": "199 14% 10%",
+          "--foreground": "199 14% 97%",
+          "--card": "199 14% 14%",
+          "--card-foreground": "199 14% 97%",
+          "--popover": "199 14% 14%",
+          "--popover-foreground": "199 14% 97%",
+          "--primary": "199 89% 48%",
+          "--primary-foreground": "240 10% 10%",
+          "--secondary": "174 62% 56%",
+          "--secondary-foreground": "240 10% 10%",
+          "--accent": "152 69% 69%",
+          "--accent-foreground": "240 10% 10%",
+          "--muted": "199 14% 20%",
+          "--muted-foreground": "199 7% 65%",
+          "--destructive": "0 84% 47%",
+          "--destructive-foreground": "0 0% 100%",
+          "--border": "199 14% 97%",
+          "--input": "199 14% 97%",
+          "--ring": "199 14% 97%",
+          "--shadow-color": "0 0% 0%"
+        }
+      }
+    },
+    {
+      "name": "theme-sunset",
+      "type": "registry:theme",
+      "title": "Theme: Sunset",
+      "description": "BoldKit Sunset preset (fiery & expressive). Swaps brand colours and the tinted neutral palette; needs BoldKit's base styles already installed.",
+      "css": {
+        ":root": {
+          "--background": "14 14% 97%",
+          "--foreground": "14 12% 11%",
+          "--card": "14 14% 99%",
+          "--card-foreground": "14 12% 11%",
+          "--popover": "14 14% 99%",
+          "--popover-foreground": "14 12% 11%",
+          "--primary": "14 100% 57%",
+          "--primary-foreground": "240 10% 10%",
+          "--secondary": "326 78% 60%",
+          "--secondary-foreground": "240 10% 10%",
+          "--accent": "49 100% 60%",
+          "--accent-foreground": "240 10% 10%",
+          "--muted": "14 11% 91%",
+          "--muted-foreground": "14 7% 38%",
+          "--destructive": "0 84% 47%",
+          "--destructive-foreground": "0 0% 100%",
+          "--border": "14 12% 11%",
+          "--input": "14 12% 11%",
+          "--ring": "14 12% 11%",
+          "--radius": "0rem",
+          "--shadow-color": "14 12% 11%",
+          "--shadow-offset": "4px",
+          "--border-width": "3px"
+        },
+        ".dark": {
+          "--background": "14 14% 10%",
+          "--foreground": "14 14% 97%",
+          "--card": "14 14% 14%",
+          "--card-foreground": "14 14% 97%",
+          "--popover": "14 14% 14%",
+          "--popover-foreground": "14 14% 97%",
+          "--primary": "14 100% 57%",
+          "--primary-foreground": "240 10% 10%",
+          "--secondary": "326 78% 60%",
+          "--secondary-foreground": "240 10% 10%",
+          "--accent": "49 100% 60%",
+          "--accent-foreground": "240 10% 10%",
+          "--muted": "14 14% 20%",
+          "--muted-foreground": "14 7% 65%",
+          "--destructive": "0 84% 47%",
+          "--destructive-foreground": "0 0% 100%",
+          "--border": "14 14% 97%",
+          "--input": "14 14% 97%",
+          "--ring": "14 14% 97%",
+          "--shadow-color": "0 0% 0%"
+        }
+      }
+    },
+    {
+      "name": "theme-mono",
+      "type": "registry:theme",
+      "title": "Theme: Mono",
+      "description": "BoldKit Mono preset (clean & minimal). Swaps brand colours and the tinted neutral palette; needs BoldKit's base styles already installed.",
+      "css": {
+        ":root": {
+          "--background": "0 0% 97%",
+          "--foreground": "0 12% 11%",
+          "--card": "0 0% 99%",
+          "--card-foreground": "0 12% 11%",
+          "--popover": "0 0% 99%",
+          "--popover-foreground": "0 12% 11%",
+          "--primary": "0 0% 90%",
+          "--primary-foreground": "240 10% 10%",
+          "--secondary": "0 0% 75%",
+          "--secondary-foreground": "240 10% 10%",
+          "--accent": "49 100% 65%",
+          "--accent-foreground": "240 10% 10%",
+          "--muted": "0 0% 91%",
+          "--muted-foreground": "0 0% 38%",
+          "--destructive": "0 84% 47%",
+          "--destructive-foreground": "0 0% 100%",
+          "--border": "0 12% 11%",
+          "--input": "0 12% 11%",
+          "--ring": "0 12% 11%",
+          "--radius": "0rem",
+          "--shadow-color": "0 12% 11%",
+          "--shadow-offset": "4px",
+          "--border-width": "3px"
+        },
+        ".dark": {
+          "--background": "0 0% 10%",
+          "--foreground": "0 0% 97%",
+          "--card": "0 0% 14%",
+          "--card-foreground": "0 0% 97%",
+          "--popover": "0 0% 14%",
+          "--popover-foreground": "0 0% 97%",
+          "--primary": "0 0% 90%",
+          "--primary-foreground": "240 10% 10%",
+          "--secondary": "0 0% 75%",
+          "--secondary-foreground": "240 10% 10%",
+          "--accent": "49 100% 65%",
+          "--accent-foreground": "240 10% 10%",
+          "--muted": "0 0% 20%",
+          "--muted-foreground": "0 0% 65%",
+          "--destructive": "0 84% 47%",
+          "--destructive-foreground": "0 0% 100%",
+          "--border": "0 0% 97%",
+          "--input": "0 0% 97%",
+          "--ring": "0 0% 97%",
+          "--shadow-color": "0 0% 0%"
+        }
+      }
+    },
+    {
+      "name": "theme-neon",
+      "type": "registry:theme",
+      "title": "Theme: Neon",
+      "description": "BoldKit Neon preset (electric & raw). Swaps brand colours and the tinted neutral palette; needs BoldKit's base styles already installed.",
+      "css": {
+        ":root": {
+          "--background": "318 14% 97%",
+          "--foreground": "318 12% 11%",
+          "--card": "318 14% 99%",
+          "--card-foreground": "318 12% 11%",
+          "--popover": "318 14% 99%",
+          "--popover-foreground": "318 12% 11%",
+          "--primary": "318 100% 50%",
+          "--primary-foreground": "240 10% 10%",
+          "--secondary": "180 100% 50%",
+          "--secondary-foreground": "240 10% 10%",
+          "--accent": "60 100% 50%",
+          "--accent-foreground": "240 10% 10%",
+          "--muted": "318 11% 91%",
+          "--muted-foreground": "318 7% 38%",
+          "--destructive": "0 84% 47%",
+          "--destructive-foreground": "0 0% 100%",
+          "--border": "318 12% 11%",
+          "--input": "318 12% 11%",
+          "--ring": "318 12% 11%",
+          "--radius": "0rem",
+          "--shadow-color": "318 12% 11%",
+          "--shadow-offset": "4px",
+          "--border-width": "3px"
+        },
+        ".dark": {
+          "--background": "318 14% 10%",
+          "--foreground": "318 14% 97%",
+          "--card": "318 14% 14%",
+          "--card-foreground": "318 14% 97%",
+          "--popover": "318 14% 14%",
+          "--popover-foreground": "318 14% 97%",
+          "--primary": "318 100% 50%",
+          "--primary-foreground": "240 10% 10%",
+          "--secondary": "180 100% 50%",
+          "--secondary-foreground": "240 10% 10%",
+          "--accent": "60 100% 50%",
+          "--accent-foreground": "240 10% 10%",
+          "--muted": "318 14% 20%",
+          "--muted-foreground": "318 7% 65%",
+          "--destructive": "0 84% 47%",
+          "--destructive-foreground": "0 0% 100%",
+          "--border": "318 14% 97%",
+          "--input": "318 14% 97%",
+          "--ring": "318 14% 97%",
+          "--shadow-color": "0 0% 0%"
+        }
+      }
+    },
+    {
+      "name": "theme-electric",
+      "type": "registry:theme",
+      "title": "Theme: Electric",
+      "description": "BoldKit Electric preset (punchy & vibrant). Swaps brand colours and the tinted neutral palette; needs BoldKit's base styles already installed.",
+      "css": {
+        ":root": {
+          "--background": "258 14% 97%",
+          "--foreground": "258 12% 11%",
+          "--card": "258 14% 99%",
+          "--card-foreground": "258 12% 11%",
+          "--popover": "258 14% 99%",
+          "--popover-foreground": "258 12% 11%",
+          "--primary": "258 100% 65%",
+          "--primary-foreground": "0 0% 100%",
+          "--secondary": "166 100% 50%",
+          "--secondary-foreground": "240 10% 10%",
+          "--accent": "45 100% 55%",
+          "--accent-foreground": "240 10% 10%",
+          "--muted": "258 11% 91%",
+          "--muted-foreground": "258 7% 38%",
+          "--destructive": "0 84% 47%",
+          "--destructive-foreground": "0 0% 100%",
+          "--border": "258 12% 11%",
+          "--input": "258 12% 11%",
+          "--ring": "258 12% 11%",
+          "--radius": "0rem",
+          "--shadow-color": "258 12% 11%",
+          "--shadow-offset": "4px",
+          "--border-width": "3px"
+        },
+        ".dark": {
+          "--background": "258 14% 10%",
+          "--foreground": "258 14% 97%",
+          "--card": "258 14% 14%",
+          "--card-foreground": "258 14% 97%",
+          "--popover": "258 14% 14%",
+          "--popover-foreground": "258 14% 97%",
+          "--primary": "258 100% 65%",
+          "--primary-foreground": "0 0% 100%",
+          "--secondary": "166 100% 50%",
+          "--secondary-foreground": "240 10% 10%",
+          "--accent": "45 100% 55%",
+          "--accent-foreground": "240 10% 10%",
+          "--muted": "258 14% 20%",
+          "--muted-foreground": "258 7% 65%",
+          "--destructive": "0 84% 47%",
+          "--destructive-foreground": "0 0% 100%",
+          "--border": "258 14% 97%",
+          "--input": "258 14% 97%",
+          "--ring": "258 14% 97%",
+          "--shadow-color": "0 0% 0%"
+        }
+      }
+    },
+    {
+      "name": "theme-candy",
+      "type": "registry:theme",
+      "title": "Theme: Candy",
+      "description": "BoldKit Candy preset (sweet & playful). Swaps brand colours and the tinted neutral palette; needs BoldKit's base styles already installed.",
+      "css": {
+        ":root": {
+          "--background": "340 14% 97%",
+          "--foreground": "340 12% 11%",
+          "--card": "340 14% 99%",
+          "--card-foreground": "340 12% 11%",
+          "--popover": "340 14% 99%",
+          "--popover-foreground": "340 12% 11%",
+          "--primary": "340 82% 65%",
+          "--primary-foreground": "240 10% 10%",
+          "--secondary": "280 70% 60%",
+          "--secondary-foreground": "240 10% 10%",
+          "--accent": "190 100% 60%",
+          "--accent-foreground": "240 10% 10%",
+          "--muted": "340 11% 91%",
+          "--muted-foreground": "340 7% 38%",
+          "--destructive": "0 84% 47%",
+          "--destructive-foreground": "0 0% 100%",
+          "--border": "340 12% 11%",
+          "--input": "340 12% 11%",
+          "--ring": "340 12% 11%",
+          "--radius": "0rem",
+          "--shadow-color": "340 12% 11%",
+          "--shadow-offset": "4px",
+          "--border-width": "3px"
+        },
+        ".dark": {
+          "--background": "340 14% 10%",
+          "--foreground": "340 14% 97%",
+          "--card": "340 14% 14%",
+          "--card-foreground": "340 14% 97%",
+          "--popover": "340 14% 14%",
+          "--popover-foreground": "340 14% 97%",
+          "--primary": "340 82% 65%",
+          "--primary-foreground": "240 10% 10%",
+          "--secondary": "280 70% 60%",
+          "--secondary-foreground": "240 10% 10%",
+          "--accent": "190 100% 60%",
+          "--accent-foreground": "240 10% 10%",
+          "--muted": "340 14% 20%",
+          "--muted-foreground": "340 7% 65%",
+          "--destructive": "0 84% 47%",
+          "--destructive-foreground": "0 0% 100%",
+          "--border": "340 14% 97%",
+          "--input": "340 14% 97%",
+          "--ring": "340 14% 97%",
+          "--shadow-color": "0 0% 0%"
+        }
+      }
+    },
+    {
+      "name": "theme-cyberpunk",
+      "type": "registry:theme",
+      "title": "Theme: Cyberpunk",
+      "description": "BoldKit Cyberpunk preset (toxic & dystopian). Swaps brand colours and the tinted neutral palette; needs BoldKit's base styles already installed.",
+      "css": {
+        ":root": {
+          "--background": "112 14% 97%",
+          "--foreground": "112 12% 11%",
+          "--card": "112 14% 99%",
+          "--card-foreground": "112 12% 11%",
+          "--popover": "112 14% 99%",
+          "--popover-foreground": "112 12% 11%",
+          "--primary": "112 100% 54%",
+          "--primary-foreground": "240 10% 10%",
+          "--secondary": "342 100% 59%",
+          "--secondary-foreground": "240 10% 10%",
+          "--accent": "193 100% 50%",
+          "--accent-foreground": "240 10% 10%",
+          "--muted": "112 11% 91%",
+          "--muted-foreground": "112 7% 38%",
+          "--destructive": "0 84% 47%",
+          "--destructive-foreground": "0 0% 100%",
+          "--border": "112 12% 11%",
+          "--input": "112 12% 11%",
+          "--ring": "112 12% 11%",
+          "--radius": "0rem",
+          "--shadow-color": "112 12% 11%",
+          "--shadow-offset": "4px",
+          "--border-width": "3px"
+        },
+        ".dark": {
+          "--background": "112 14% 10%",
+          "--foreground": "112 14% 97%",
+          "--card": "112 14% 14%",
+          "--card-foreground": "112 14% 97%",
+          "--popover": "112 14% 14%",
+          "--popover-foreground": "112 14% 97%",
+          "--primary": "112 100% 54%",
+          "--primary-foreground": "240 10% 10%",
+          "--secondary": "342 100% 59%",
+          "--secondary-foreground": "240 10% 10%",
+          "--accent": "193 100% 50%",
+          "--accent-foreground": "240 10% 10%",
+          "--muted": "112 14% 20%",
+          "--muted-foreground": "112 7% 65%",
+          "--destructive": "0 84% 47%",
+          "--destructive-foreground": "0 0% 100%",
+          "--border": "112 14% 97%",
+          "--input": "112 14% 97%",
+          "--ring": "112 14% 97%",
+          "--shadow-color": "0 0% 0%"
+        }
+      }
+    },
+    {
+      "name": "theme-retro",
+      "type": "registry:theme",
+      "title": "Theme: Retro",
+      "description": "BoldKit Retro preset (vintage & gritty). Swaps brand colours and the tinted neutral palette; needs BoldKit's base styles already installed.",
+      "css": {
+        ":root": {
+          "--background": "22 14% 97%",
+          "--foreground": "22 12% 11%",
+          "--card": "22 14% 99%",
+          "--card-foreground": "22 12% 11%",
+          "--popover": "22 14% 99%",
+          "--popover-foreground": "22 12% 11%",
+          "--primary": "22 91% 48%",
+          "--primary-foreground": "240 10% 10%",
+          "--secondary": "173 43% 51%",
+          "--secondary-foreground": "240 10% 10%",
+          "--accent": "45 90% 61%",
+          "--accent-foreground": "240 10% 10%",
+          "--muted": "22 11% 91%",
+          "--muted-foreground": "22 7% 38%",
+          "--destructive": "0 84% 47%",
+          "--destructive-foreground": "0 0% 100%",
+          "--border": "22 12% 11%",
+          "--input": "22 12% 11%",
+          "--ring": "22 12% 11%",
+          "--radius": "0rem",
+          "--shadow-color": "22 12% 11%",
+          "--shadow-offset": "4px",
+          "--border-width": "3px"
+        },
+        ".dark": {
+          "--background": "22 14% 10%",
+          "--foreground": "22 14% 97%",
+          "--card": "22 14% 14%",
+          "--card-foreground": "22 14% 97%",
+          "--popover": "22 14% 14%",
+          "--popover-foreground": "22 14% 97%",
+          "--primary": "22 91% 48%",
+          "--primary-foreground": "240 10% 10%",
+          "--secondary": "173 43% 51%",
+          "--secondary-foreground": "240 10% 10%",
+          "--accent": "45 90% 61%",
+          "--accent-foreground": "240 10% 10%",
+          "--muted": "22 14% 20%",
+          "--muted-foreground": "22 7% 65%",
+          "--destructive": "0 84% 47%",
+          "--destructive-foreground": "0 0% 100%",
+          "--border": "22 14% 97%",
+          "--input": "22 14% 97%",
+          "--ring": "22 14% 97%",
+          "--shadow-color": "0 0% 0%"
+        }
+      }
+    },
+    {
+      "name": "theme-pastel",
+      "type": "registry:theme",
+      "title": "Theme: Pastel",
+      "description": "BoldKit Pastel preset (soft & kawaii). Swaps brand colours and the tinted neutral palette; needs BoldKit's base styles already installed.",
+      "css": {
+        ":root": {
+          "--background": "344 14% 97%",
+          "--foreground": "344 12% 11%",
+          "--card": "344 14% 99%",
+          "--card-foreground": "344 12% 11%",
+          "--popover": "344 14% 99%",
+          "--popover-foreground": "344 12% 11%",
+          "--primary": "344 100% 82%",
+          "--primary-foreground": "240 10% 10%",
+          "--secondary": "154 56% 78%",
+          "--secondary-foreground": "240 10% 10%",
+          "--accent": "260 53% 80%",
+          "--accent-foreground": "240 10% 10%",
+          "--muted": "344 11% 91%",
+          "--muted-foreground": "344 7% 38%",
+          "--destructive": "0 84% 47%",
+          "--destructive-foreground": "0 0% 100%",
+          "--border": "344 12% 11%",
+          "--input": "344 12% 11%",
+          "--ring": "344 12% 11%",
+          "--radius": "0rem",
+          "--shadow-color": "344 12% 11%",
+          "--shadow-offset": "4px",
+          "--border-width": "3px"
+        },
+        ".dark": {
+          "--background": "344 14% 10%",
+          "--foreground": "344 14% 97%",
+          "--card": "344 14% 14%",
+          "--card-foreground": "344 14% 97%",
+          "--popover": "344 14% 14%",
+          "--popover-foreground": "344 14% 97%",
+          "--primary": "344 100% 82%",
+          "--primary-foreground": "240 10% 10%",
+          "--secondary": "154 56% 78%",
+          "--secondary-foreground": "240 10% 10%",
+          "--accent": "260 53% 80%",
+          "--accent-foreground": "240 10% 10%",
+          "--muted": "344 14% 20%",
+          "--muted-foreground": "344 7% 65%",
+          "--destructive": "0 84% 47%",
+          "--destructive-foreground": "0 0% 100%",
+          "--border": "344 14% 97%",
+          "--input": "344 14% 97%",
+          "--ring": "344 14% 97%",
+          "--shadow-color": "0 0% 0%"
+        }
+      }
+    },
+    {
+      "name": "theme-gold",
+      "type": "registry:theme",
+      "title": "Theme: Gold",
+      "description": "BoldKit Gold preset (luxury & refined). Swaps brand colours and the tinted neutral palette; needs BoldKit's base styles already installed.",
+      "css": {
+        ":root": {
+          "--background": "45 14% 97%",
+          "--foreground": "45 12% 11%",
+          "--card": "45 14% 99%",
+          "--card-foreground": "45 12% 11%",
+          "--popover": "45 14% 99%",
+          "--popover-foreground": "45 12% 11%",
+          "--primary": "45 87% 55%",
+          "--primary-foreground": "240 10% 10%",
+          "--secondary": "221 42% 30%",
+          "--secondary-foreground": "0 0% 100%",
+          "--accent": "38 82% 52%",
+          "--accent-foreground": "240 10% 10%",
+          "--muted": "45 11% 91%",
+          "--muted-foreground": "45 7% 38%",
+          "--destructive": "0 84% 47%",
+          "--destructive-foreground": "0 0% 100%",
+          "--border": "45 12% 11%",
+          "--input": "45 12% 11%",
+          "--ring": "45 12% 11%",
+          "--radius": "0rem",
+          "--shadow-color": "45 12% 11%",
+          "--shadow-offset": "4px",
+          "--border-width": "3px"
+        },
+        ".dark": {
+          "--background": "45 14% 10%",
+          "--foreground": "45 14% 97%",
+          "--card": "45 14% 14%",
+          "--card-foreground": "45 14% 97%",
+          "--popover": "45 14% 14%",
+          "--popover-foreground": "45 14% 97%",
+          "--primary": "45 87% 55%",
+          "--primary-foreground": "240 10% 10%",
+          "--secondary": "221 42% 30%",
+          "--secondary-foreground": "0 0% 100%",
+          "--accent": "38 82% 52%",
+          "--accent-foreground": "240 10% 10%",
+          "--muted": "45 14% 20%",
+          "--muted-foreground": "45 7% 65%",
+          "--destructive": "0 84% 47%",
+          "--destructive-foreground": "0 0% 100%",
+          "--border": "45 14% 97%",
+          "--input": "45 14% 97%",
+          "--ring": "45 14% 97%",
+          "--shadow-color": "0 0% 0%"
+        }
+      }
+    },
+    {
+      "name": "theme-cherry",
+      "type": "registry:theme",
+      "title": "Theme: Cherry",
+      "description": "BoldKit Cherry preset (bold & japanese). Swaps brand colours and the tinted neutral palette; needs BoldKit's base styles already installed.",
+      "css": {
+        ":root": {
+          "--background": "5 14% 97%",
+          "--foreground": "5 12% 11%",
+          "--card": "5 14% 99%",
+          "--card-foreground": "5 12% 11%",
+          "--popover": "5 14% 99%",
+          "--popover-foreground": "5 12% 11%",
+          "--primary": "5 66% 46%",
+          "--primary-foreground": "0 0% 100%",
+          "--secondary": "151 37% 22%",
+          "--secondary-foreground": "0 0% 100%",
+          "--accent": "37 90% 51%",
+          "--accent-foreground": "240 10% 10%",
+          "--muted": "5 11% 91%",
+          "--muted-foreground": "5 7% 38%",
+          "--destructive": "0 84% 47%",
+          "--destructive-foreground": "0 0% 100%",
+          "--border": "5 12% 11%",
+          "--input": "5 12% 11%",
+          "--ring": "5 12% 11%",
+          "--radius": "0rem",
+          "--shadow-color": "5 12% 11%",
+          "--shadow-offset": "4px",
+          "--border-width": "3px"
+        },
+        ".dark": {
+          "--background": "5 14% 10%",
+          "--foreground": "5 14% 97%",
+          "--card": "5 14% 14%",
+          "--card-foreground": "5 14% 97%",
+          "--popover": "5 14% 14%",
+          "--popover-foreground": "5 14% 97%",
+          "--primary": "5 66% 46%",
+          "--primary-foreground": "0 0% 100%",
+          "--secondary": "151 37% 22%",
+          "--secondary-foreground": "0 0% 100%",
+          "--accent": "37 90% 51%",
+          "--accent-foreground": "240 10% 10%",
+          "--muted": "5 14% 20%",
+          "--muted-foreground": "5 7% 65%",
+          "--destructive": "0 84% 47%",
+          "--destructive-foreground": "0 0% 100%",
+          "--border": "5 14% 97%",
+          "--input": "5 14% 97%",
+          "--ring": "5 14% 97%",
+          "--shadow-color": "0 0% 0%"
+        }
+      }
+    },
+    {
+      "name": "font-outfit",
+      "type": "registry:font",
+      "title": "Font: Outfit",
+      "description": "BoldKit's body face (Outfit, variable). Self-hosted via Fontsource; sets --font-sans.",
+      "font": {
+        "family": "'Outfit Variable', 'Outfit', sans-serif",
+        "provider": "google",
+        "import": "Outfit",
+        "variable": "--font-sans",
+        "subsets": [
+          "latin"
+        ],
+        "dependency": "@fontsource-variable/outfit"
+      }
+    },
+    {
+      "name": "font-dm-mono",
+      "type": "registry:font",
+      "title": "Font: DM Mono",
+      "description": "BoldKit's mono face (DM Mono). Self-hosted via Fontsource; sets --font-mono.",
+      "font": {
+        "family": "'DM Mono', ui-monospace, monospace",
+        "provider": "google",
+        "import": "DM_Mono",
+        "variable": "--font-mono",
+        "weight": [
+          "400"
+        ],
+        "subsets": [
+          "latin"
+        ],
+        "dependency": "@fontsource/dm-mono",
+        "selector": "code, kbd, pre, samp"
+      }
+    },
+    {
+      "name": "boldkit",
+      "type": "registry:base",
+      "title": "BoldKit base",
+      "description": "Everything a project needs before adding BoldKit components: the neubrutalism stylesheet + motion system, the default theme, cn() utils, and the Outfit / DM Mono fonts. Use with `shadcn init --base`.",
+      "dependencies": [
+        "clsx",
+        "tailwind-merge",
+        "class-variance-authority",
+        "lucide-react"
+      ],
+      "devDependencies": [
+        "tw-animate-css"
+      ],
+      "registryDependencies": [
+        "@boldkit/styles",
+        "@boldkit/utils",
+        "@boldkit/font-outfit",
+        "@boldkit/font-dm-mono"
+      ],
+      "config": {
+        "iconLibrary": "lucide",
+        "tailwind": {
+          "cssVariables": true
         }
       },
-      "files": []
+      "docs": "Next: in your root CSS file, replace @import \"tailwindcss\" with @import \"./styles/globals.css\" (adjust the path to where it was installed). BoldKit's stylesheet imports Tailwind itself and defines the colour variables and @theme mapping."
     },
     {
       "name": "utils",
@@ -140,6 +974,9 @@
           "type": "registry:component",
           "target": "components/ErrorBoundary.tsx"
         }
+      ],
+      "dependencies": [
+        "lucide-react"
       ]
     },
     {
@@ -148,7 +985,7 @@
       "description": "A vertically stacked set of interactive headings with neubrutalism styling",
       "title": "Accordion",
       "dependencies": [
-        "@radix-ui/react-accordion",
+        "radix-ui",
         "lucide-react"
       ],
       "registryDependencies": [
@@ -188,7 +1025,7 @@
       "description": "Displays content within a desired ratio",
       "title": "Aspect Ratio",
       "dependencies": [
-        "@radix-ui/react-aspect-ratio"
+        "radix-ui"
       ],
       "registryDependencies": [
         "@boldkit/utils"
@@ -207,7 +1044,7 @@
       "description": "An image element with a fallback for representing the user",
       "title": "Avatar",
       "dependencies": [
-        "@radix-ui/react-avatar"
+        "radix-ui"
       ],
       "registryDependencies": [
         "@boldkit/utils"
@@ -245,7 +1082,7 @@
       "description": "Displays the path to the current resource using a hierarchy of links",
       "title": "Breadcrumb",
       "dependencies": [
-        "@radix-ui/react-slot",
+        "radix-ui",
         "lucide-react"
       ],
       "registryDependencies": [
@@ -265,7 +1102,7 @@
       "description": "Displays a button with neubrutalism styling and press-down animation",
       "title": "Button",
       "dependencies": [
-        "@radix-ui/react-slot",
+        "radix-ui",
         "class-variance-authority"
       ],
       "registryDependencies": [
@@ -302,7 +1139,7 @@
       "description": "A control that allows the user to toggle between checked and not checked",
       "title": "Checkbox",
       "dependencies": [
-        "@radix-ui/react-checkbox",
+        "radix-ui",
         "lucide-react"
       ],
       "registryDependencies": [
@@ -323,7 +1160,7 @@
       "description": "An interactive component which expands/collapses a panel",
       "title": "Collapsible",
       "dependencies": [
-        "@radix-ui/react-collapsible"
+        "radix-ui"
       ],
       "registryDependencies": [
         "@boldkit/utils",
@@ -385,7 +1222,7 @@
       "description": "A window overlaid on the primary window with neubrutalism borders and shadows",
       "title": "Dialog",
       "dependencies": [
-        "@radix-ui/react-dialog",
+        "radix-ui",
         "lucide-react"
       ],
       "registryDependencies": [
@@ -406,7 +1243,7 @@
       "description": "Displays a menu of actions/options with neubrutalism styling",
       "title": "Dropdown Menu",
       "dependencies": [
-        "@radix-ui/react-dropdown-menu",
+        "radix-ui",
         "lucide-react"
       ],
       "registryDependencies": [
@@ -427,7 +1264,7 @@
       "description": "Displays a menu triggered by right-click with neubrutalism styling",
       "title": "Context Menu",
       "dependencies": [
-        "@radix-ui/react-context-menu",
+        "radix-ui",
         "lucide-react"
       ],
       "registryDependencies": [
@@ -447,7 +1284,7 @@
       "description": "A horizontal menu bar of desktop-style dropdown menus with neubrutalism styling",
       "title": "Menubar",
       "dependencies": [
-        "@radix-ui/react-menubar",
+        "radix-ui",
         "lucide-react"
       ],
       "registryDependencies": [
@@ -467,7 +1304,7 @@
       "description": "A collection of links and dropdown panels for site navigation with neubrutalism styling",
       "title": "Navigation Menu",
       "dependencies": [
-        "@radix-ui/react-navigation-menu",
+        "radix-ui",
         "class-variance-authority",
         "lucide-react"
       ],
@@ -578,6 +1415,25 @@
       ]
     },
     {
+      "name": "number-field",
+      "type": "registry:ui",
+      "description": "Numeric input with stepper buttons, min/max/step, keyboard control and Intl number formatting",
+      "title": "Number Field",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "@boldkit/utils"
+      ],
+      "files": [
+        {
+          "path": "registry/default/ui/number-field.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/number-field.tsx"
+        }
+      ]
+    },
+    {
       "name": "date-picker",
       "type": "registry:ui",
       "description": "A single-date picker: a button trigger that opens a calendar popover",
@@ -623,7 +1479,7 @@
       "description": "Renders an accessible label for form controls",
       "title": "Label",
       "dependencies": [
-        "@radix-ui/react-label",
+        "radix-ui",
         "class-variance-authority"
       ],
       "registryDependencies": [
@@ -644,7 +1500,7 @@
       "description": "Displays rich content in a portal with neubrutalism styling",
       "title": "Popover",
       "dependencies": [
-        "@radix-ui/react-popover"
+        "radix-ui"
       ],
       "registryDependencies": [
         "@boldkit/utils",
@@ -664,7 +1520,7 @@
       "description": "Displays an indicator showing the completion progress of a task",
       "title": "Progress",
       "dependencies": [
-        "@radix-ui/react-progress"
+        "radix-ui"
       ],
       "registryDependencies": [
         "@boldkit/utils",
@@ -684,7 +1540,7 @@
       "description": "A set of checkable buttons where only one can be checked at a time",
       "title": "Radio Group",
       "dependencies": [
-        "@radix-ui/react-radio-group",
+        "radix-ui",
         "lucide-react"
       ],
       "registryDependencies": [
@@ -705,7 +1561,7 @@
       "description": "Augments native scroll functionality for custom styling",
       "title": "Scroll Area",
       "dependencies": [
-        "@radix-ui/react-scroll-area"
+        "radix-ui"
       ],
       "registryDependencies": [
         "@boldkit/utils"
@@ -724,7 +1580,7 @@
       "description": "Displays a list of options with neubrutalism styling",
       "title": "Select",
       "dependencies": [
-        "@radix-ui/react-select",
+        "radix-ui",
         "lucide-react"
       ],
       "registryDependencies": [
@@ -744,7 +1600,7 @@
       "description": "Visually separates content with a thick border",
       "title": "Separator",
       "dependencies": [
-        "@radix-ui/react-separator"
+        "radix-ui"
       ],
       "registryDependencies": [
         "@boldkit/utils"
@@ -763,7 +1619,7 @@
       "description": "Extends Dialog to display content that complements the main page",
       "title": "Sheet",
       "dependencies": [
-        "@radix-ui/react-dialog",
+        "radix-ui",
         "class-variance-authority",
         "lucide-react"
       ],
@@ -783,7 +1639,9 @@
       "type": "registry:ui",
       "description": "Used to show a placeholder while content is loading",
       "title": "Skeleton",
-      "dependencies": [],
+      "dependencies": [
+        "class-variance-authority"
+      ],
       "registryDependencies": [
         "@boldkit/utils",
         "@boldkit/motion"
@@ -835,12 +1693,32 @@
       ]
     },
     {
+      "name": "toast",
+      "type": "registry:ui",
+      "description": "First-party brutalist toast stacks with an imperative toast() API, promise toasts, swipe and stacking",
+      "title": "Toast",
+      "dependencies": [
+        "radix-ui",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "@boldkit/utils"
+      ],
+      "files": [
+        {
+          "path": "registry/default/ui/toast.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/toast.tsx"
+        }
+      ]
+    },
+    {
       "name": "switch",
       "type": "registry:ui",
       "description": "A control that allows the user to toggle between on and off",
       "title": "Switch",
       "dependencies": [
-        "@radix-ui/react-switch"
+        "radix-ui"
       ],
       "registryDependencies": [
         "@boldkit/utils",
@@ -877,7 +1755,7 @@
       "description": "A tabbed interface component with neubrutalism styling",
       "title": "Tabs",
       "dependencies": [
-        "@radix-ui/react-tabs"
+        "radix-ui"
       ],
       "registryDependencies": [
         "@boldkit/utils"
@@ -913,7 +1791,7 @@
       "description": "A two-state button that can be either on or off",
       "title": "Toggle",
       "dependencies": [
-        "@radix-ui/react-toggle",
+        "radix-ui",
         "class-variance-authority"
       ],
       "registryDependencies": [
@@ -933,7 +1811,7 @@
       "description": "A group of toggle buttons where only one can be pressed at a time",
       "title": "Toggle Group",
       "dependencies": [
-        "@radix-ui/react-toggle-group"
+        "radix-ui"
       ],
       "registryDependencies": [
         "@boldkit/utils",
@@ -953,7 +1831,7 @@
       "description": "A popup that displays information related to an element",
       "title": "Tooltip",
       "dependencies": [
-        "@radix-ui/react-tooltip"
+        "radix-ui"
       ],
       "registryDependencies": [
         "@boldkit/utils"
@@ -972,7 +1850,7 @@
       "description": "A modal dialog for important confirmations with neubrutalism styling",
       "title": "Alert Dialog",
       "dependencies": [
-        "@radix-ui/react-alert-dialog"
+        "radix-ui"
       ],
       "registryDependencies": [
         "@boldkit/utils",
@@ -1032,7 +1910,7 @@
       "description": "A card that appears on hover with additional information",
       "title": "Hover Card",
       "dependencies": [
-        "@radix-ui/react-hover-card"
+        "radix-ui"
       ],
       "registryDependencies": [
         "@boldkit/utils"
@@ -1091,7 +1969,8 @@
       "description": "Beautiful charts with neubrutalism styling built on Recharts",
       "title": "Chart",
       "dependencies": [
-        "recharts"
+        "recharts",
+        "class-variance-authority"
       ],
       "registryDependencies": [
         "@boldkit/utils",
@@ -1194,6 +2073,9 @@
           "type": "registry:style",
           "target": "styles/motion.css"
         }
+      ],
+      "devDependencies": [
+        "tw-animate-css"
       ]
     },
     {
@@ -1284,16 +2166,40 @@
       "dependencies": [],
       "registryDependencies": [
         "@boldkit/utils",
-        "stepper",
-        "button",
-        "input",
-        "label"
+        "@boldkit/stepper",
+        "@boldkit/button",
+        "@boldkit/input",
+        "@boldkit/label"
       ],
       "files": [
         {
           "path": "registry/default/ui/multi-step-form.tsx",
           "type": "registry:ui",
           "target": "components/ui/multi-step-form.tsx"
+        }
+      ]
+    },
+    {
+      "name": "questionnaire",
+      "type": "registry:ui",
+      "description": "Multi-step question flow with single/multiple/free-text questions, skip, conditional logic and keyboard shortcuts",
+      "title": "Questionnaire",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "@boldkit/utils",
+        "@boldkit/button",
+        "@boldkit/input",
+        "@boldkit/kbd",
+        "@boldkit/label",
+        "@boldkit/textarea"
+      ],
+      "files": [
+        {
+          "path": "registry/default/ui/questionnaire.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/questionnaire.tsx"
         }
       ]
     },
@@ -1584,7 +2490,7 @@
       "description": "Powerful data table with sorting, filtering, pagination, and row selection",
       "title": "Data Table",
       "dependencies": [
-        "@tanstack/react-table",
+        "@tanstack/react-table@^8.21.3",
         "lucide-react"
       ],
       "registryDependencies": [
@@ -1626,6 +2532,47 @@
       ]
     },
     {
+      "name": "chat",
+      "type": "registry:ui",
+      "description": "Chat / AI-assistant kit: MessageScroller (auto-follow, jump-to-latest, prepend anchoring), Message, Bubble, Attachment and Marker",
+      "title": "Chat",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "@boldkit/utils",
+        "@boldkit/progress",
+        "@boldkit/motion"
+      ],
+      "files": [
+        {
+          "path": "registry/default/ui/message-scroller.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/message-scroller.tsx"
+        },
+        {
+          "path": "registry/default/ui/message.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/message.tsx"
+        },
+        {
+          "path": "registry/default/ui/bubble.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/bubble.tsx"
+        },
+        {
+          "path": "registry/default/ui/attachment.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/attachment.tsx"
+        },
+        {
+          "path": "registry/default/ui/marker.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/marker.tsx"
+        }
+      ]
+    },
+    {
       "name": "timeline",
       "type": "registry:ui",
       "description": "Composable timeline for activity feeds, order tracking, and version history",
@@ -1650,7 +2597,7 @@
       "description": "Hierarchical tree view with expand/collapse, selection, and checkboxes",
       "title": "Tree View",
       "dependencies": [
-        "@radix-ui/react-collapsible",
+        "radix-ui",
         "lucide-react"
       ],
       "registryDependencies": [
@@ -1796,7 +2743,7 @@
       "description": "Ambient animated mathematical curve background layer with neubrutalism aesthetics — wraps content with a slow-moving curve animation",
       "title": "Math Curve Background",
       "dependencies": [
-        "@radix-ui/react-slot"
+        "radix-ui"
       ],
       "registryDependencies": [
         "@boldkit/utils",

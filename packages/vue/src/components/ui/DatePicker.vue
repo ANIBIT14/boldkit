@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue'
 import type { DateValue } from 'reka-ui'
-import { Calendar as CalendarIcon } from 'lucide-vue-next'
+import { Calendar as CalendarIcon } from '@lucide/vue'
 import { cn } from '@/lib/utils'
 import Popover from './Popover.vue'
 import PopoverTrigger from './PopoverTrigger.vue'

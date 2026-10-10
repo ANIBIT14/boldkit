@@ -3,7 +3,7 @@ import { ref } from 'vue'
 import { cn } from '@/lib/utils'
 import Button from '@/components/ui/Button.vue'
 import Input from '@/components/ui/Input.vue'
-import { ArrowRight, Mail, X } from 'lucide-vue-next'
+import { ArrowRight, Mail, X } from '@lucide/vue'
 
 type CTAVariant = 'simple' | 'withBackground' | 'newsletter' | 'split' | 'banner'
 

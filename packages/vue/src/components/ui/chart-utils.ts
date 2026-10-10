@@ -282,3 +282,8 @@ export function useResolvedChart(el: Ref<HTMLElement | null>) {
 
   return { theme, resolve }
 }
+
+/** Chart `height`: a number is pixels (as in React); a string is any CSS length. */
+export function toCssSize(value: number | string): string {
+  return typeof value === 'number' ? `${value}px` : value
+}

@@ -4,7 +4,7 @@
   "type": "registry:ui",
   "description": "A popup that displays information on hover",
   "dependencies": [
-    "reka-ui"
+    "reka-ui@^2.11.0"
   ],
   "registryDependencies": [
     "@boldkit/utils"

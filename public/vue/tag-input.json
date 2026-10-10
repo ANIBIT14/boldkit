@@ -4,7 +4,7 @@
   "type": "registry:ui",
   "description": "Multi-tag input with suggestions, validation, and keyboard support",
   "dependencies": [
-    "lucide-vue-next"
+    "@lucide/vue"
   ],
   "registryDependencies": [
     "@boldkit/utils"

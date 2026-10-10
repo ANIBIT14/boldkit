@@ -6,7 +6,7 @@ import { SankeyChart as EChartsSankey } from 'echarts/charts'
 import { TooltipComponent } from 'echarts/components'
 import VChart from 'vue-echarts'
 import { cn } from '@/lib/utils'
-import { useResolvedChart } from './chart-utils'
+import { useResolvedChart, toCssSize } from './chart-utils'
 import ChartEmpty from './ChartEmpty.vue'
 import type { SankeyNode, SankeyLink } from './chart-types'
 
@@ -17,7 +17,8 @@ interface Props {
   links: SankeyLink[]
   showTooltip?: boolean
   showLabels?: boolean
-  height?: string
+  /** Number = px (as in React); string = any CSS length. */
+  height?: number | string
   class?: string
   emptyMessage?: string
   /** React calls this `emptyState`. Accepted here so the same prop name works
@@ -32,7 +33,7 @@ const props = withDefaults(defineProps<Props>(), {
   ariaLabel: 'Sankey chart',
   showTooltip: true,
   showLabels: true,
-  height: '320px',
+  height: 320,
 })
 
 // Prefer the React-compatible name when both are given.
@@ -110,7 +111,7 @@ const option = computed(() => ({
 </script>
 
 <template>
-  <div ref="rootEl" role="img" :aria-label="ariaLabel" :class="cn('w-full', props.class)" :style="{ height }">
+  <div ref="rootEl" role="img" :aria-label="ariaLabel" :class="cn('w-full', props.class)" :style="{ height: toCssSize(height) }">
     <ChartEmpty v-if="isEmpty" :message="resolvedEmptyMessage" />
     <VChart
       v-else

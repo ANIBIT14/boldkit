@@ -4,7 +4,7 @@
   "type": "registry:ui",
   "description": "Drag-and-drop file upload with preview and validation",
   "dependencies": [
-    "lucide-vue-next"
+    "@lucide/vue"
   ],
   "registryDependencies": [
     "@boldkit/utils",

@@ -45,7 +45,7 @@ export function SeparatorDoc() {
       <ComponentDoc
         name="Separator"
         description="Visually or semantically separates content with a bold 3px line."
-        dependencies={['@radix-ui/react-separator']}
+        dependencies={['radix-ui']}
         vueDependencies={['reka-ui']}
         sourceCode={sourceCode}
         vueSourceCode={vueSourceCode}

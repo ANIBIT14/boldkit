@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { cn } from '@/lib/utils'
-import { Check, X } from 'lucide-vue-next'
+import { Check, X } from '@lucide/vue'
 
 export interface ComparisonRow {
   feature: string

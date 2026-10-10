@@ -37,7 +37,7 @@ export function LabelDoc() {
       <ComponentDoc
         name="Label"
         description="Renders an accessible label associated with form controls with bold uppercase styling."
-        dependencies={['@radix-ui/react-label', 'class-variance-authority']}
+        dependencies={['radix-ui', 'class-variance-authority']}
         vueDependencies={['reka-ui']}
         sourceCode={sourceCode}
         vueSourceCode={vueSourceCode}

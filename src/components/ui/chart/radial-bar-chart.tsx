@@ -5,7 +5,7 @@ import {
   RadialBar,
   PolarAngleAxis,
 } from 'recharts'
-import { ChartContainer } from './container'
+import { ChartContainer, type ChartContainerProps } from './container'
 import { ChartEmpty } from './empty'
 import { ChartTooltip, ChartTooltipContent } from './tooltip'
 import { ChartLegend, ChartLegendContent } from './legend'
@@ -21,6 +21,8 @@ export interface RadialBarChartProps extends React.HTMLAttributes<HTMLDivElement
   data: RadialBarChartData[]
   config: ChartConfig
   variant?: 'default' | 'stacked' | 'nested'
+  /** Container border/shadow style — `variant` here is the chart geometry. */
+  containerVariant?: ChartContainerProps['variant']
   innerRadius?: string | number
   outerRadius?: string | number
   showLabel?: boolean
@@ -40,6 +42,7 @@ const RadialBarChartComponent = React.forwardRef<HTMLDivElement, RadialBarChartP
       data,
       config,
       variant = 'default',
+      containerVariant,
       innerRadius = '30%',
       outerRadius = '100%',
       showLabel = true,
@@ -78,6 +81,7 @@ const RadialBarChartComponent = React.forwardRef<HTMLDivElement, RadialBarChartP
       <ChartContainer
         ref={ref}
         config={config}
+        variant={containerVariant}
         className={cn('aspect-square max-h-[300px]', className)}
         {...props}
       >

@@ -4,7 +4,7 @@
   "title": "Menubar",
   "description": "A horizontal menu bar of desktop-style dropdown menus with neubrutalism styling",
   "dependencies": [
-    "@radix-ui/react-menubar",
+    "radix-ui",
     "lucide-react"
   ],
   "registryDependencies": [

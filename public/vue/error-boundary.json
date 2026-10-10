@@ -4,7 +4,7 @@
   "type": "registry:ui",
   "description": "Catches errors in child components using onErrorCaptured and displays a neubrutalism fallback UI with reload and home actions",
   "dependencies": [
-    "lucide-vue-next"
+    "@lucide/vue"
   ],
   "registryDependencies": [
     "@boldkit/utils",

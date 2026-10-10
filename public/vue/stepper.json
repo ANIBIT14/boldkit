@@ -4,7 +4,8 @@
   "type": "registry:ui",
   "description": "Multi-step wizard/stepper component",
   "dependencies": [
-    "class-variance-authority"
+    "class-variance-authority",
+    "@lucide/vue"
   ],
   "registryDependencies": [
     "@boldkit/utils"

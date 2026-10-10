@@ -130,7 +130,7 @@ import { Mail, Phone, MessageSquare } from 'lucide-react'
 />`,
     vueCode: `<script setup lang="ts">
 import { ContactSection } from '@/components/blocks/marketing'
-import { Mail, Phone } from 'lucide-vue-next'
+import { Mail, Phone } from '@lucide/vue'
 
 const contactMethods = [
   { icon: Mail, title: 'Email Us', action: { label: 'Send Email', href: 'mailto:...' } },

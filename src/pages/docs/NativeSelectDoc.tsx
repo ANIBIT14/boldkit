@@ -38,7 +38,7 @@ export function NativeSelectDoc() {
         description="A styled wrapper around the native select element — lightweight and accessible, for simple option lists that don't need a custom popover."
         registryName="native-select"
         dependencies={['lucide-react']}
-        vueDependencies={['lucide-vue-next']}
+        vueDependencies={['@lucide/vue']}
         sourceCode={sourceCode}
         vueSourceCode={vueSourceCode}
         usageCode={usageCode}

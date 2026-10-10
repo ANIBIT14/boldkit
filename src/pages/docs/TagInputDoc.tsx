@@ -38,7 +38,7 @@ export function TagInputDoc() {
         name="Tag Input"
         description="A multi-value input component for adding and removing tags with keyboard support, suggestions, and validation."
         dependencies={['lucide-react']}
-        vueDependencies={['lucide-vue-next']}
+        vueDependencies={['@lucide/vue']}
         sourceCode={sourceCode}
         usageCode={usageCode}
         vueSourceCode={vueSourceCode}

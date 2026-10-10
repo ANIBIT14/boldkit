@@ -4,7 +4,7 @@
   "title": "Aspect Ratio",
   "description": "Displays content within a desired ratio",
   "dependencies": [
-    "@radix-ui/react-aspect-ratio"
+    "radix-ui"
   ],
   "registryDependencies": [
     "@boldkit/utils"

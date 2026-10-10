@@ -1,0 +1,42 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "chat",
+  "title": "Chat",
+  "description": "Chat / AI-assistant kit: MessageScroller (auto-follow, jump-to-latest, prepend anchoring), Message, Bubble, Attachment and Marker",
+  "dependencies": [
+    "lucide-react"
+  ],
+  "registryDependencies": [
+    "@boldkit/utils",
+    "@boldkit/progress",
+    "@boldkit/motion"
+  ],
+  "files": [
+    {
+      "path": "registry/default/ui/message-scroller.tsx",
+      "type": "registry:ui",
+      "target": "components/ui/message-scroller.tsx"
+    },
+    {
+      "path": "registry/default/ui/message.tsx",
+      "type": "registry:ui",
+      "target": "components/ui/message.tsx"
+    },
+    {
+      "path": "registry/default/ui/bubble.tsx",
+      "type": "registry:ui",
+      "target": "components/ui/bubble.tsx"
+    },
+    {
+      "path": "registry/default/ui/attachment.tsx",
+      "type": "registry:ui",
+      "target": "components/ui/attachment.tsx"
+    },
+    {
+      "path": "registry/default/ui/marker.tsx",
+      "type": "registry:ui",
+      "target": "components/ui/marker.tsx"
+    }
+  ],
+  "type": "registry:ui"
+}

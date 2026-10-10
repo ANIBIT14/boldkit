@@ -5,7 +5,7 @@ import { Card, CardContent } from '@/components/ui'
 import Avatar from '@/components/ui/Avatar.vue'
 import AvatarImage from '@/components/ui/AvatarImage.vue'
 import AvatarFallback from '@/components/ui/AvatarFallback.vue'
-import { Quote, Star } from 'lucide-vue-next'
+import { Quote, Star } from '@lucide/vue'
 
 type TestimonialsVariant = 'grid' | 'single' | 'masonry' | 'withAvatars'
 

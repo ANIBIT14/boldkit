@@ -74,7 +74,7 @@ export function CommandDoc() {
       <ComponentDoc
         name="Command"
         description="A command menu component for searching and selecting actions with keyboard navigation."
-        dependencies={['cmdk', '@radix-ui/react-dialog']}
+        dependencies={['cmdk', 'radix-ui']}
         vueDependencies={['reka-ui']}
         sourceCode={sourceCode}
         vueSourceCode={vueSourceCode}
@@ -125,7 +125,7 @@ export function CommandDoc() {
   </CommandList>
 </Command>`}
         vueCode={`<script setup lang="ts">
-import { Calendar, Settings } from 'lucide-vue-next'
+import { Calendar, Settings } from '@lucide/vue'
 </script>
 
 <template>
@@ -193,7 +193,7 @@ import { Calendar, Settings } from 'lucide-vue-next'
   </CommandList>
 </Command>`}
         vueCode={`<script setup lang="ts">
-import { User, CreditCard, Settings } from 'lucide-vue-next'
+import { User, CreditCard, Settings } from '@lucide/vue'
 </script>
 
 <template>

@@ -264,6 +264,11 @@
       "registryUrl": "https://boldkit.dev/r/vue/chart.json"
     },
     {
+      "name": "chart-utils",
+      "type": "registry:ui",
+      "registryUrl": "https://boldkit.dev/r/vue/chart-utils.json"
+    },
+    {
       "name": "funnel-chart",
       "type": "registry:ui",
       "registryUrl": "https://boldkit.dev/r/vue/funnel-chart.json"
@@ -317,6 +322,26 @@
       "name": "rating",
       "type": "registry:ui",
       "registryUrl": "https://boldkit.dev/r/vue/rating.json"
+    },
+    {
+      "name": "number-field",
+      "type": "registry:ui",
+      "registryUrl": "https://boldkit.dev/r/vue/number-field.json"
+    },
+    {
+      "name": "questionnaire",
+      "type": "registry:ui",
+      "registryUrl": "https://boldkit.dev/r/vue/questionnaire.json"
+    },
+    {
+      "name": "toast",
+      "type": "registry:ui",
+      "registryUrl": "https://boldkit.dev/r/vue/toast.json"
+    },
+    {
+      "name": "chat",
+      "type": "registry:ui",
+      "registryUrl": "https://boldkit.dev/r/vue/chat.json"
     },
     {
       "name": "tag-input",

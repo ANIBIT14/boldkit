@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ChevronDown } from 'lucide-vue-next'
+import { ChevronDown } from '@lucide/vue'
 import { cn } from '@/lib/utils'
 
 // Fallthrough attrs (name, id, aria-*) must land on the <select>, not the wrapper div.
@@ -29,7 +29,7 @@ function onChange(event: Event) {
       @change="onChange"
       :class="
         cn(
-          'h-11 w-full appearance-none border-3 border-foreground bg-background px-3 pr-10 text-sm font-bold uppercase tracking-wide shadow-[4px_4px_0px_hsl(var(--shadow-color))] outline-none transition focus-visible:translate-x-[2px] focus-visible:translate-y-[2px] focus-visible:shadow-none disabled:cursor-not-allowed disabled:opacity-50',
+          'bk-native-select h-11 w-full appearance-none border-3 border-foreground bg-background px-3 pr-10 text-sm font-bold uppercase tracking-wide shadow-[4px_4px_0px_hsl(var(--shadow-color))] outline-none transition focus-visible:translate-x-[2px] focus-visible:translate-y-[2px] focus-visible:shadow-none disabled:cursor-not-allowed disabled:opacity-50',
           props.class
         )
       "

@@ -13,7 +13,8 @@ import {
 } from '@/components/ui/breadcrumb'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
-import { Copy, Check, Home, LayoutGrid, Eye, Code, Github } from 'lucide-react'
+import { Copy, Check, Home, LayoutGrid, Eye, Code } from 'lucide-react'
+import { Github } from '@/components/icons/brand'
 import { SEO } from '@/components/SEO'
 import { useFramework, FrameworkToggle, ReactIcon, VueIcon } from '@/hooks/use-framework'
 

@@ -76,7 +76,7 @@ export function BreadcrumbDoc() {
       <ComponentDoc
         name="Breadcrumb"
         description="Displays the path to the current resource using a hierarchy of links with bold typography."
-        dependencies={['@radix-ui/react-slot']}
+        dependencies={['radix-ui']}
         vueDependencies={['reka-ui']}
         sourceCode={sourceCode}
         vueSourceCode={vueSourceCode}
@@ -166,7 +166,7 @@ export function BreadcrumbDoc() {
   </BreadcrumbList>
 </Breadcrumb>`}
         vueCode={`<script setup lang="ts">
-import { Slash } from 'lucide-vue-next'
+import { Slash } from '@lucide/vue'
 </script>
 
 <template>

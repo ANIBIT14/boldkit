@@ -4,7 +4,7 @@
   "type": "registry:ui",
   "description": "Displays rich content in a portal",
   "dependencies": [
-    "reka-ui"
+    "reka-ui@^2.11.0"
   ],
   "registryDependencies": [
     "@boldkit/utils"

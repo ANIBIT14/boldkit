@@ -4,7 +4,8 @@
   "title": "Chart",
   "description": "Beautiful charts with neubrutalism styling built on Recharts",
   "dependencies": [
-    "recharts"
+    "recharts",
+    "class-variance-authority"
   ],
   "registryDependencies": [
     "@boldkit/utils",

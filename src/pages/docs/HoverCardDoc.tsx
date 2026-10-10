@@ -55,7 +55,7 @@ export function HoverCardDoc() {
       <ComponentDoc
         name="Hover Card"
         description="For sighted users to preview content available behind a link with neubrutalism styling."
-        dependencies={['@radix-ui/react-hover-card']}
+        dependencies={['radix-ui']}
         vueDependencies={['reka-ui']}
         sourceCode={sourceCode}
         vueSourceCode={vueSourceCode}
@@ -148,7 +148,7 @@ export function HoverCardDoc() {
   </HoverCardContent>
 </HoverCard>`}
         vueCode={`<script setup lang="ts">
-import { CalendarDays } from 'lucide-vue-next'
+import { CalendarDays } from '@lucide/vue'
 import HoverCard from '@/components/ui/HoverCard.vue'
 import HoverCardTrigger from '@/components/ui/HoverCardTrigger.vue'
 import HoverCardContent from '@/components/ui/HoverCardContent.vue'

@@ -7,6 +7,9 @@
     "clsx",
     "tailwind-merge"
   ],
+  "devDependencies": [
+    "typescript@<7"
+  ],
   "files": [
     {
       "path": "lib/utils.ts",

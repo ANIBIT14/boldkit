@@ -98,16 +98,73 @@ export function neutralPalette(preset: ThemePreset) {
 }
 
 /**
+ * The CSS custom properties a preset sets, as HSL channel triples keyed without
+ * the leading `--`. Single source for both the drop-in stylesheet below and the
+ * `theme-<slug>` registry items, so the two can't drift.
+ */
+export function themeVars(preset: ThemePreset): { light: Record<string, string>; dark: Record<string, string> } {
+  const primaryFg = foregroundFor(preset.primary)
+  const secondaryFg = foregroundFor(preset.secondary)
+  const accentFg = foregroundFor(preset.accent)
+  const n = neutralPalette(preset)
+  const brand = {
+    primary: preset.primary,
+    'primary-foreground': primaryFg,
+    secondary: preset.secondary,
+    'secondary-foreground': secondaryFg,
+    accent: preset.accent,
+    'accent-foreground': accentFg,
+  }
+  const surface = (m: typeof n.light) => ({
+    background: m.background,
+    foreground: m.foreground,
+    card: m.card,
+    'card-foreground': m.foreground,
+    popover: m.card,
+    'popover-foreground': m.foreground,
+  })
+  return {
+    light: {
+      ...surface(n.light),
+      ...brand,
+      muted: n.light.muted,
+      'muted-foreground': n.light.mutedForeground,
+      destructive: '0 84% 47%',
+      'destructive-foreground': '0 0% 100%',
+      border: n.light.foreground,
+      input: n.light.foreground,
+      ring: n.light.foreground,
+      radius: '0rem',
+      'shadow-color': n.light.foreground,
+      'shadow-offset': '4px',
+      'border-width': '3px',
+    },
+    dark: {
+      ...surface(n.dark),
+      ...brand,
+      muted: n.dark.muted,
+      'muted-foreground': n.dark.mutedForeground,
+      destructive: '0 84% 47%',
+      'destructive-foreground': '0 0% 100%',
+      border: n.dark.foreground,
+      input: n.dark.foreground,
+      ring: n.dark.foreground,
+      'shadow-color': '0 0% 0%',
+    },
+  }
+}
+
+const cssBlock = (vars: Record<string, string>) =>
+  Object.entries(vars).map(([k, v]) => `  --${k}: ${v};`).join('\n')
+
+/**
  * Produce a full, drop-in theme stylesheet for a preset: the Tailwind v4
  * `@theme` bridge plus `:root` (light) and `.dark` blocks. Primary / secondary
  * / accent hues AND the neutral palette vary per preset, so each preset is a
  * fully cohesive, contrast-checked reskin.
  */
 export function buildThemeCss(preset: ThemePreset): string {
-  const primaryFg = foregroundFor(preset.primary)
-  const secondaryFg = foregroundFor(preset.secondary)
-  const accentFg = foregroundFor(preset.accent)
-  const n = neutralPalette(preset)
+  const vars = themeVars(preset)
 
   return `/* BoldKit theme preset: ${preset.name} — ${preset.tag} */
 /* CSS-vars-only swap. Drop into your globals.css (Tailwind v4 + shadcn). */
@@ -139,52 +196,11 @@ export function buildThemeCss(preset: ThemePreset): string {
 }
 
 :root {
-  --background: ${n.light.background};
-  --foreground: ${n.light.foreground};
-  --card: ${n.light.card};
-  --card-foreground: ${n.light.foreground};
-  --popover: ${n.light.card};
-  --popover-foreground: ${n.light.foreground};
-  --primary: ${preset.primary};
-  --primary-foreground: ${primaryFg};
-  --secondary: ${preset.secondary};
-  --secondary-foreground: ${secondaryFg};
-  --accent: ${preset.accent};
-  --accent-foreground: ${accentFg};
-  --muted: ${n.light.muted};
-  --muted-foreground: ${n.light.mutedForeground};
-  --destructive: 0 84% 47%;
-  --destructive-foreground: 0 0% 100%;
-  --border: ${n.light.foreground};
-  --input: ${n.light.foreground};
-  --ring: ${n.light.foreground};
-  --radius: 0rem;
-  --shadow-color: ${n.light.foreground};
-  --shadow-offset: 4px;
-  --border-width: 3px;
+${cssBlock(vars.light)}
 }
 
 .dark {
-  --background: ${n.dark.background};
-  --foreground: ${n.dark.foreground};
-  --card: ${n.dark.card};
-  --card-foreground: ${n.dark.foreground};
-  --popover: ${n.dark.card};
-  --popover-foreground: ${n.dark.foreground};
-  --primary: ${preset.primary};
-  --primary-foreground: ${primaryFg};
-  --secondary: ${preset.secondary};
-  --secondary-foreground: ${secondaryFg};
-  --accent: ${preset.accent};
-  --accent-foreground: ${accentFg};
-  --muted: ${n.dark.muted};
-  --muted-foreground: ${n.dark.mutedForeground};
-  --destructive: 0 84% 47%;
-  --destructive-foreground: 0 0% 100%;
-  --border: ${n.dark.foreground};
-  --input: ${n.dark.foreground};
-  --ring: ${n.dark.foreground};
-  --shadow-color: 0 0% 0%;
+${cssBlock(vars.dark)}
 }
 `
 }

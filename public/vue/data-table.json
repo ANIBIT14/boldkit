@@ -4,8 +4,8 @@
   "type": "registry:ui",
   "description": "Powerful data table with sorting, filtering, pagination, and row selection",
   "dependencies": [
-    "@tanstack/vue-table",
-    "lucide-vue-next"
+    "@tanstack/vue-table@^8.21.3",
+    "@lucide/vue"
   ],
   "registryDependencies": [
     "@boldkit/utils",

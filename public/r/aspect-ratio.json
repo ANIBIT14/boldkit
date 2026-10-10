@@ -4,7 +4,7 @@
   "title": "Aspect Ratio",
   "description": "Displays content within a desired ratio",
   "dependencies": [
-    "@radix-ui/react-aspect-ratio"
+    "radix-ui"
   ],
   "registryDependencies": [
     "@boldkit/utils"
@@ -12,7 +12,7 @@
   "files": [
     {
       "path": "registry/default/ui/aspect-ratio.tsx",
-      "content": "import * as AspectRatioPrimitive from '@radix-ui/react-aspect-ratio'\n\nconst AspectRatio = AspectRatioPrimitive.Root\n\nexport { AspectRatio }\n",
+      "content": "import { AspectRatio as AspectRatioPrimitive } from 'radix-ui'\n\nconst AspectRatio = AspectRatioPrimitive.Root\n\nexport { AspectRatio }\n",
       "type": "registry:ui",
       "target": "components/ui/aspect-ratio.tsx"
     }

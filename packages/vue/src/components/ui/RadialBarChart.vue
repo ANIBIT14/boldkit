@@ -6,15 +6,12 @@ import { PieChart } from 'echarts/charts'
 import { TooltipComponent, LegendComponent } from 'echarts/components'
 import VChart from 'vue-echarts'
 import { cn } from '@/lib/utils'
-import { type ChartConfig, CHART_PALETTES, useResolvedChart } from './chart-utils'
-import { chartContainerVariants } from './chart-variants'
+import { type ChartConfig, CHART_PALETTES, useResolvedChart, toCssSize } from './chart-utils'
+import { chartContainerVariants, splitChartVariant, type ChartContainerVariant } from './chart-variants'
 import ChartEmpty from './ChartEmpty.vue'
-import type { VariantProps } from 'class-variance-authority'
 
 // Register ECharts components
 use([CanvasRenderer, PieChart, TooltipComponent, LegendComponent])
-
-type ChartVariants = VariantProps<typeof chartContainerVariants>
 
 interface RadialBarData {
   name: string
@@ -30,8 +27,15 @@ interface RadialBarChartProps {
   showLabel?: boolean
   showBackground?: boolean
   maxValue?: number
-  height?: string
-  variant?: ChartVariants['variant']
+  /** Number = px (as in React); string = any CSS length. */
+  height?: number | string
+  /**
+   * Chart geometry, same values as React. Container styles (`elevated`, `flat`,
+   * …) are still accepted here for pre-v3.6 code — @deprecated, use `containerVariant`.
+   */
+  variant?: 'default' | 'stacked' | 'nested' | ChartContainerVariant
+  /** Container border/shadow style (React: same prop name). */
+  containerVariant?: ChartContainerVariant
   class?: string
   emptyMessage?: string
   /** React calls this `emptyState`. Accepted here so the same prop name works
@@ -48,7 +52,7 @@ const props = withDefaults(defineProps<RadialBarChartProps>(), {
   outerRadius: '90%',
   showLabel: true,
   showBackground: true,
-  height: '300px',
+  height: 300,
   variant: 'default',
 })
 
@@ -62,13 +66,16 @@ const rootEl = ref<HTMLElement | null>(null)
 const { theme: resolvedTheme, resolve } = useResolvedChart(rootEl)
 const resolvedOption = computed(() => resolve(option.value))
 
+const variants = computed(() => splitChartVariant(props.variant, props.containerVariant, ['default', 'stacked', 'nested'] as const))
+
 const isEmpty = computed(() => !props.data || props.data.length === 0)
 
 // Nullish coalescing (not ||) so an explicit maxValue of 0 is honored rather than
 // silently replaced by the computed default.
 // reduce (not spread) avoids a RangeError on very large datasets; the `|| 1`
 // floor keeps the domain positive for empty/all-negative data.
-const maxVal = computed(() => props.maxValue ?? (props.data.reduce((m, d) => Math.max(m, d.value), 0) * 1.2 || 1))
+// No headroom: the largest value fills its ring, as in React.
+const maxVal = computed(() => props.maxValue ?? (props.data.reduce((m, d) => Math.max(m, d.value), 0) || 1))
 
 // Create stacked rings for radial bar effect
 const seriesData = computed(() => {
@@ -82,7 +89,10 @@ const seriesData = computed(() => {
     const innerR = innerPct + (index * radiusStep)
     // Small gap between rings, but never let the ring collapse/invert when there
     // are many items (radiusStep <= 2).
-    const outerR = Math.max(innerR + 1, innerR + radiusStep - 2)
+    // `nested` draws thinner rings (React: barSize 15 vs 20). `stacked` renders
+    // like `default`, as it does in React (one dataKey, nothing to stack).
+    const thickness = variants.value.geometry === 'nested' ? radiusStep * 0.75 : radiusStep
+    const outerR = Math.max(innerR + 1, innerR + thickness - 2)
 
     return {
       type: 'pie',
@@ -148,10 +158,10 @@ const option = computed(() => ({
     role="img"
     :aria-label="ariaLabel"
     data-slot="chart"
-    :class="cn(chartContainerVariants({ variant }), props.class)"
+    :class="cn(chartContainerVariants({ variant: variants.container }), props.class)"
   >
     <ChartEmpty v-if="isEmpty" :message="resolvedEmptyMessage" />
-    <div v-else class="relative" :style="{ height }">
+    <div v-else class="relative w-full" :style="{ height: toCssSize(height) }">
       <VChart
         :option="resolvedOption"
         :theme="resolvedTheme"

@@ -2,7 +2,7 @@
 import { cn } from '@/lib/utils'
 import Progress from './Progress.vue'
 import Spinner from './Spinner.vue'
-import { X, File, Image, FileText, FileCode, FileAudio, FileVideo } from 'lucide-vue-next'
+import { X, File, Image, FileText, FileCode, FileAudio, FileVideo } from '@lucide/vue'
 
 interface FileItem {
   file: File

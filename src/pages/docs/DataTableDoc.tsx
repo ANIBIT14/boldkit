@@ -95,7 +95,7 @@ export function DataTableDoc() {
         name="Data Table"
         description="A powerful data table built on TanStack Table with sorting, filtering, pagination, row selection, and column visibility."
         dependencies={['@tanstack/react-table', 'lucide-react']}
-        vueDependencies={['@tanstack/vue-table', 'lucide-vue-next']}
+        vueDependencies={['@tanstack/vue-table', '@lucide/vue']}
         sourceCode={sourceCode}
         usageCode={usageCode}
         vueSourceCode={vueSourceCode}

@@ -2,7 +2,8 @@ import { Badge } from '@/components/ui/badge'
 import { copyToClipboard } from '@/lib/clipboard'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { useState } from 'react'
-import { Copy, Check, Terminal, Github } from 'lucide-react'
+import { Copy, Check, Terminal } from 'lucide-react'
+import { Github } from '@/components/icons/brand'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { toast } from 'sonner'
@@ -263,6 +264,16 @@ shadcn: { prefix: '', componentDir: './app/components/ui' }`}</code></pre>
             </div>
 
             <div>
+              <h3 className="font-bold uppercase tracking-wide mb-2">One command (React)</h3>
+              <p className="text-sm text-muted-foreground mb-2">
+                Set up a new shadcn project with BoldKit's stylesheet, motion system, <code className="bg-muted px-1 border">cn()</code> utils
+                and the Outfit / DM Mono fonts in one step, then point your root CSS at{' '}
+                <code className="bg-muted px-1 border">styles/globals.css</code> as the CLI prompts. Add a theme preset with{' '}
+                <code className="bg-muted px-1 border">@boldkit/theme-ocean</code> (or any of the 14 on the Themes page).
+              </p>
+              <CodeBlock code="npx shadcn@latest init https://boldkit.dev/r/boldkit.json" />
+            </div>
+            <div>
               <h3 className="font-bold uppercase tracking-wide mb-2">Step 3: Install Styles</h3>
               <p className="text-sm text-muted-foreground mb-2">
                 Install the BoldKit theme for CSS variables:
@@ -437,25 +448,25 @@ npx shadcn@latest add ANIBIT14/boldkit/button --dry-run`} />
             {framework === 'react' ? (
               <>
                 <TabsContent value="npm">
-                  <CodeBlock code="npm install clsx tailwind-merge class-variance-authority lucide-react @radix-ui/react-slot" />
+                  <CodeBlock code="npm install clsx tailwind-merge class-variance-authority lucide-react radix-ui" />
                 </TabsContent>
                 <TabsContent value="pnpm">
-                  <CodeBlock code="pnpm add clsx tailwind-merge class-variance-authority lucide-react @radix-ui/react-slot" />
+                  <CodeBlock code="pnpm add clsx tailwind-merge class-variance-authority lucide-react radix-ui" />
                 </TabsContent>
                 <TabsContent value="bun">
-                  <CodeBlock code="bun add clsx tailwind-merge class-variance-authority lucide-react @radix-ui/react-slot" />
+                  <CodeBlock code="bun add clsx tailwind-merge class-variance-authority lucide-react radix-ui" />
                 </TabsContent>
               </>
             ) : (
               <>
                 <TabsContent value="npm">
-                  <CodeBlock code="npm install clsx tailwind-merge class-variance-authority lucide-vue-next reka-ui" />
+                  <CodeBlock code="npm install clsx tailwind-merge class-variance-authority @lucide/vue reka-ui" />
                 </TabsContent>
                 <TabsContent value="pnpm">
-                  <CodeBlock code="pnpm add clsx tailwind-merge class-variance-authority lucide-vue-next reka-ui" />
+                  <CodeBlock code="pnpm add clsx tailwind-merge class-variance-authority @lucide/vue reka-ui" />
                 </TabsContent>
                 <TabsContent value="bun">
-                  <CodeBlock code="bun add clsx tailwind-merge class-variance-authority lucide-vue-next reka-ui" />
+                  <CodeBlock code="bun add clsx tailwind-merge class-variance-authority @lucide/vue reka-ui" />
                 </TabsContent>
               </>
             )}
@@ -612,7 +623,7 @@ export function cn(...inputs: ClassValue[]) {
                   </p>
                   <ul className="list-disc list-inside text-sm text-muted-foreground space-y-1">
                     <li><code className="bg-muted px-1 border">vue-sonner</code> for toast notifications</li>
-                    <li><code className="bg-muted px-1 border">vaul-vue</code> for drawer component</li>
+                    <li><code className="bg-muted px-1 border">reka-ui</code> 2.11+ (Drawer, Toast and NumberField use its native primitives)</li>
                     <li><code className="bg-muted px-1 border">vue-echarts</code> + <code className="bg-muted px-1 border">echarts</code> for charts</li>
                   </ul>
                 </div>
@@ -636,7 +647,7 @@ export function cn(...inputs: ClassValue[]) {
               <CardContent className="pt-6 space-y-6">
                 <div>
                   <h4 className="font-bold mb-2">Step 1: Create Nuxt Project</h4>
-                  <CodeBlock code="npx nuxi@latest init my-nuxt-app" />
+                  <CodeBlock code="npm create nuxt@latest my-nuxt-app" />
                 </div>
 
                 <div>
@@ -688,6 +699,22 @@ export default defineNuxtConfig({
                     Nuxt will auto-import components from <code className="bg-muted px-1 border">components/ui</code>.
                   </p>
                 </div>
+
+                <div className="border-3 border-foreground bg-muted/40 p-3 text-sm space-y-2">
+                  <p>
+                    <strong>TypeScript 7:</strong> Vue's SFC compiler resolves imported prop types
+                    (<code className="bg-background px-1 border">defineProps&lt;DialogRootProps&gt;()</code>) through the TypeScript
+                    JavaScript API, which the native TypeScript 7 no longer ships. Keep TypeScript on 6.x for now —
+                    BoldKit's <code className="bg-background px-1 border">utils</code> item adds{' '}
+                    <code className="bg-background px-1 border">typescript@&lt;7</code> as a dev dependency for you.
+                  </p>
+                  <p>
+                    <strong>Nuxt 4.6 / Nuxt 5 / Vapor:</strong> BoldKit Vue builds and runs with{' '}
+                    <code className="bg-background px-1 border">future: {'{'} compatibilityVersion: 5 {'}'}</code> and inside
+                    Vapor components (<code className="bg-background px-1 border">vue: {'{'} vapor: true {'}'}</code>,{' '}
+                    <code className="bg-background px-1 border">&lt;script setup vapor&gt;</code>) through Vue's interop layer.
+                  </p>
+                </div>
               </CardContent>
             </Card>
 
@@ -724,7 +751,7 @@ export default defineNuxtPlugin((nuxtApp) => {
                   Some components require browser APIs and must be wrapped in <code className="bg-muted px-1 border">&lt;ClientOnly&gt;</code> to prevent SSR errors:
                 </p>
                 <ul className="list-disc list-inside text-sm text-muted-foreground space-y-1">
-                  <li><strong>Drawer</strong> - Uses vaul-vue with browser APIs</li>
+                  <li><strong>Drawer</strong> - Uses Reka UI's Drawer with browser APIs</li>
                   <li><strong>Sonner</strong> - Toast notifications</li>
                   <li><strong>Command</strong> - Keyboard event handling</li>
                   <li><strong>Calendar</strong> - Date picker interactions</li>

@@ -4,7 +4,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui'
 import Button from '@/components/ui/Button.vue'
 import Separator from '@/components/ui/Separator.vue'
 import Badge from '@/components/ui/Badge.vue'
-import { Download, Printer, Mail, FileText, CheckCircle, Clock, AlertCircle } from 'lucide-vue-next'
+import { Download, Printer, Mail, FileText, CheckCircle, Clock, AlertCircle } from '@lucide/vue'
 
 type InvoiceVariant = 'full' | 'receipt' | 'summary' | 'list'
 type InvoiceStatus = 'paid' | 'pending' | 'overdue'

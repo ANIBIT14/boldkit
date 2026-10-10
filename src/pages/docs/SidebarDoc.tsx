@@ -149,8 +149,8 @@ export function SidebarDoc() {
       <ComponentDoc
         name="Sidebar"
         description="A collapsible sidebar component with icon-only mode, mobile drawer support, and keyboard shortcut (Cmd+B)."
-        dependencies={['@radix-ui/react-dialog', '@radix-ui/react-tooltip', 'lucide-react']}
-        vueDependencies={['reka-ui', 'lucide-vue-next']}
+        dependencies={['radix-ui', 'lucide-react']}
+        vueDependencies={['reka-ui', '@lucide/vue']}
         sourceCode={sourceCode}
         usageCode={usageCode}
         vueSourceCode={vueSourceCode}

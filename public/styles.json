@@ -3,6 +3,9 @@
   "name": "styles",
   "title": "Styles",
   "description": "BoldKit neubrutalism CSS variables and utilities",
+  "devDependencies": [
+    "tw-animate-css"
+  ],
   "files": [
     {
       "path": "registry/default/styles/globals.css",

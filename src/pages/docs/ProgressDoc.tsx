@@ -70,7 +70,7 @@ export function ProgressDoc() {
       <ComponentDoc
         name="Progress"
         description="Displays an indicator showing the completion progress of a task with bold neubrutalism styling."
-        dependencies={['@radix-ui/react-progress']}
+        dependencies={['radix-ui']}
         vueDependencies={['reka-ui']}
         sourceCode={sourceCode}
         vueSourceCode={vueSourceCode}

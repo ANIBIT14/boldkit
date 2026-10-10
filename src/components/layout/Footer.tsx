@@ -1,7 +1,8 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { Badge } from '@/components/ui/badge'
-import { Github, Mail, ArrowUpRight, Package, BarChart3, LayoutGrid, Shield } from 'lucide-react'
+import { Mail, ArrowUpRight, Package, BarChart3, LayoutGrid, Shield } from 'lucide-react'
+import { Github } from '@/components/icons/brand'
 import { cn } from '@/lib/utils'
 
 const DISPLAY: React.CSSProperties = { fontFamily: "'Bebas Neue', sans-serif" }
@@ -115,7 +116,7 @@ export function Footer() {
                   loading="lazy"
                 />
                 <span className="text-xl leading-none" style={DISPLAY}>BoldKit</span>
-                <Badge variant="secondary" className="text-[9px] px-1 py-0 h-4">v3.5</Badge>
+                <Badge variant="secondary" className="text-[9px] px-1 py-0 h-4">v3.6</Badge>
               </Link>
               <p className="text-sm text-muted-foreground leading-relaxed max-w-[220px]">
                 Neubrutalism UI components for React and Vue 3. Open source, MIT licensed.

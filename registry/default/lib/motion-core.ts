@@ -198,17 +198,24 @@ export type PageTransition = 'hard-wipe' | 'color-block' | 'stamp';
  * once the transition finishes. Setting that attribute by hand makes it sticky,
  * which then bleeds the recipe into every later transition (the theme toggle's
  * circular reveal included).
+ *
+ * `options.types` tags the transition (e.g. `['next']`) so CSS can branch on
+ * `html:active-view-transition-type(next)`. Browsers that only know the
+ * callback form ignore the types and still run the transition.
  */
 export function startViewTransition(
   callback: () => void | Promise<void>,
   recipe?: PageTransition,
+  options?: { types?: string[] },
 ): ViewTransitionLike | null {
   if (!isBrowser || _reducedMotion) {
     void callback();
     return null;
   }
   const doc = document as Document & {
-    startViewTransition?: (cb: () => void | Promise<void>) => ViewTransitionLike;
+    startViewTransition?: (
+      arg: (() => void | Promise<void>) | { update: () => void | Promise<void>; types?: string[] },
+    ) => ViewTransitionLike;
   };
   if (typeof doc.startViewTransition !== 'function') {
     void callback();
@@ -219,7 +226,14 @@ export function startViewTransition(
   const previous = recipe ? root.getAttribute('data-bk-transition') : null;
   if (recipe) root.setAttribute('data-bk-transition', recipe);
 
-  const transition = doc.startViewTransition(callback);
+  const types = options?.types?.length ? options.types : null;
+  let transition: ViewTransitionLike;
+  try {
+    transition = types ? doc.startViewTransition({ update: callback, types }) : doc.startViewTransition(callback);
+  } catch {
+    // Callback-only implementations reject the options object.
+    transition = doc.startViewTransition(callback);
+  }
 
   if (recipe) {
     const restore = () => {

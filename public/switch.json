@@ -4,7 +4,7 @@
   "title": "Switch",
   "description": "A control that allows the user to toggle between on and off",
   "dependencies": [
-    "@radix-ui/react-switch"
+    "radix-ui"
   ],
   "registryDependencies": [
     "@boldkit/utils",

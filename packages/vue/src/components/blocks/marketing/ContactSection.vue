@@ -6,7 +6,7 @@ import Button from '@/components/ui/Button.vue'
 import Input from '@/components/ui/Input.vue'
 import Textarea from '@/components/ui/Textarea.vue'
 import Label from '@/components/ui/Label.vue'
-import { Mail, Phone, MapPin, Send, Clock, MessageCircle } from 'lucide-vue-next'
+import { Mail, Phone, MapPin, Send, Clock, MessageCircle } from '@lucide/vue'
 
 type ContactVariant = 'split' | 'centered' | 'withCards' | 'withMap'
 

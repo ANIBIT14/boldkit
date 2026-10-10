@@ -3,7 +3,7 @@
 // No React imports — safe for both browser and Node.js build scripts.
 
 export const COUNTS = {
-  components: 65,
+  components: 69,
   charts: 14,
   shapes: 64,
   blocks: 15,
@@ -255,6 +255,7 @@ export const COMPONENT_TITLES: Record<string, string> = {
   card: 'Card',
   carousel: 'Carousel',
   'chart-toolbar': 'Chart Toolbar',
+  chat: 'Chat',
   checkbox: 'Checkbox',
   collapsible: 'Collapsible',
   combobox: 'Combobox',
@@ -286,9 +287,11 @@ export const COMPONENT_TITLES: Record<string, string> = {
   'math-curve-background': 'Math Curve Background',
   'math-curve-loader': 'Math Curve Loader',
   'math-curve-progress': 'Math Curve Progress',
+  'number-field': 'Number Field',
   pagination: 'Pagination',
   popover: 'Popover',
   progress: 'Progress',
+  questionnaire: 'Questionnaire',
   'radar-chart': 'Radar Chart',
   'radial-bar-chart': 'Radial Bar Chart',
   'radio-group': 'Radio Group',
@@ -315,6 +318,7 @@ export const COMPONENT_TITLES: Record<string, string> = {
   textarea: 'Textarea',
   'time-picker': 'Time Picker',
   timeline: 'Timeline',
+  toast: 'Toast',
   toggle: 'Toggle',
   'toggle-group': 'Toggle Group',
   tooltip: 'Tooltip',
@@ -358,11 +362,21 @@ export const TEMPLATE_TITLES: Record<string, string> = {
 }
 
 // Derived meta generators (no React deps)
+// Specific descriptions where the generic template undersells what a page answers.
+const COMPONENT_DESCRIPTIONS: Record<string, string> = {
+  chat: 'Neubrutalism chat UI for AI assistants in React & Vue 3: auto-following MessageScroller, jump-to-latest, Message, Bubble, Attachment and Marker.',
+  toast: 'Neubrutalism toast stacks for React & Vue 3 with an imperative toast() and toast.promise() API, swipe to dismiss and screen-reader announcements.',
+  questionnaire: 'Multi-step questionnaire for React & Vue 3: one question per screen, single/multiple/text answers, skip, conditional logic and keyboard shortcuts.',
+  'number-field': 'Neubrutalism number input for React & Vue 3: stepper buttons, min/max/step, keyboard and wheel control, Intl currency and percent formatting.',
+}
+
 export function getComponentMeta(slug: string): RouteMeta {
   const title = COMPONENT_TITLES[slug] ?? slug
   return {
     title: `${title} — Neubrutalism Component for React & Vue 3 | BoldKit`,
-    description: `${title} — neubrutalism React & Vue 3 component with thick borders, hard shadows, bold colors. Install via shadcn or shadcn-vue.`,
+    description:
+      COMPONENT_DESCRIPTIONS[slug] ??
+      `${title} — neubrutalism React & Vue 3 component with thick borders, hard shadows, bold colors. Install via shadcn or shadcn-vue.`,
     canonical: `${SITE_URL}/components/${slug}`,
     h1: `${title} — Neubrutalism Component for React & Vue 3`,
   }
@@ -462,7 +476,25 @@ export function getAllRoutes(): SitemapRoute[] {
   // is both untrue and the kind of signal search engines discount.
   const UPDATED: Record<string, string> = {
     '/canvas-effects': '2026-08-27',   // 4 new effects + shared lifecycle rewrite
-    '/': '2026-08-27',                 // homepage now features the new effects
+    // v3.6: new components, and pages whose content or install instructions changed
+    '/': '2026-10-10',
+    '/docs/installation': '2026-10-10',
+    '/themes': '2026-10-10',
+    '/components': '2026-10-10',
+    '/nuxt-ui-components': '2026-10-10',
+    '/react-vue-component-library': '2026-10-10',
+    '/components/chat': '2026-10-10',
+    '/components/toast': '2026-10-10',
+    '/components/questionnaire': '2026-10-10',
+    '/components/number-field': '2026-10-10',
+    '/components/drawer': '2026-10-10',
+    '/components/native-select': '2026-10-10',
+    '/components/motion': '2026-10-10',
+    '/components/calendar': '2026-10-10',
+    '/components/date-picker': '2026-10-10',
+    '/components/donut-chart': '2026-10-10',
+    '/components/radar-chart': '2026-10-10',
+    '/components/radial-bar-chart': '2026-10-10',
   }
   const lastmodFor = (path: string) => UPDATED[path] ?? LAST_MODIFIED
 
@@ -518,7 +550,7 @@ export function getAllRoutes(): SitemapRoute[] {
       meta: getComponentMeta(slug),
       priority: 0.8,
       changefreq: 'monthly',
-      lastmod: LAST_MODIFIED,
+      lastmod: lastmodFor(path),
       breadcrumbs: getBreadcrumbs(path),
     })
   }

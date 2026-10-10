@@ -55,7 +55,7 @@ export function TooltipDoc() {
       <ComponentDoc
         name="Tooltip"
         description="A popup that displays information related to an element when it receives keyboard focus or the mouse hovers over it."
-        dependencies={['@radix-ui/react-tooltip']}
+        dependencies={['radix-ui']}
         vueDependencies={['reka-ui']}
         sourceCode={sourceCode}
         vueSourceCode={vueSourceCode}
@@ -188,7 +188,7 @@ export function TooltipDoc() {
   </TooltipContent>
 </Tooltip>`}
         vueCode={`<script setup>
-import { Info, Settings, Plus } from 'lucide-vue-next'
+import { Info, Settings, Plus } from '@lucide/vue'
 </script>
 
 <template>

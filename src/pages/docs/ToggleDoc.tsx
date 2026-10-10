@@ -19,7 +19,7 @@ export default function Example() {
 
 const vueUsageCode = `<script setup lang="ts">
 import Toggle from '@/components/ui/Toggle.vue'
-import { Bold } from 'lucide-vue-next'
+import { Bold } from '@lucide/vue'
 </script>
 
 <template>
@@ -34,7 +34,7 @@ export function ToggleDoc() {
       <ComponentDoc
         name="Toggle"
         description="A two-state button that can be toggled on or off with bold neubrutalism styling."
-        dependencies={['@radix-ui/react-toggle', 'class-variance-authority']}
+        dependencies={['radix-ui', 'class-variance-authority']}
         vueDependencies={['reka-ui', 'class-variance-authority']}
         sourceCode={sourceCode}
         vueSourceCode={vueSourceCode}
@@ -56,7 +56,7 @@ export function ToggleDoc() {
 </Toggle>`}
         vueCode={`<script setup>
 import { ref } from 'vue'
-import { Italic } from 'lucide-vue-next'
+import { Italic } from '@lucide/vue'
 const pressed = ref(false)
 </script>
 
@@ -82,7 +82,7 @@ const pressed = ref(false)
 </Toggle>`}
         vueCode={`<script setup>
 import { ref } from 'vue'
-import { Underline } from 'lucide-vue-next'
+import { Underline } from '@lucide/vue'
 const pressed = ref(false)
 </script>
 
@@ -114,7 +114,7 @@ const pressed = ref(false)
 </Toggle>`}
         vueCode={`<script setup>
 import { ref } from 'vue'
-import { Bold } from 'lucide-vue-next'
+import { Bold } from '@lucide/vue'
 const sm = ref(false)
 const md = ref(false)
 const lg = ref(false)
@@ -155,7 +155,7 @@ const lg = ref(false)
   <Bold className="h-4 w-4" />
 </Toggle>`}
         vueCode={`<script setup>
-import { Bold } from 'lucide-vue-next'
+import { Bold } from '@lucide/vue'
 </script>
 
 <template>
@@ -178,7 +178,7 @@ import { Bold } from 'lucide-vue-next'
 </Toggle>`}
         vueCode={`<script setup>
 import { ref } from 'vue'
-import { Bold } from 'lucide-vue-next'
+import { Bold } from '@lucide/vue'
 const pressed = ref(true)
 </script>
 

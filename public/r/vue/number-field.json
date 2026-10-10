@@ -1,0 +1,41 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "number-field",
+  "type": "registry:ui",
+  "description": "Numeric input with stepper buttons, min/max/step, keyboard control and Intl number formatting",
+  "dependencies": [
+    "reka-ui@^2.11.0",
+    "@lucide/vue"
+  ],
+  "registryDependencies": [
+    "@boldkit/utils"
+  ],
+  "files": [
+    {
+      "path": "components/ui/NumberField.vue",
+      "content": "<script setup lang=\"ts\">\nimport { computed, type HTMLAttributes } from 'vue'\nimport {\n  NumberFieldRoot,\n  useForwardPropsEmits,\n  type NumberFieldRootEmits,\n  type NumberFieldRootProps,\n} from 'reka-ui'\nimport { cn } from '@/lib/utils'\n\n// Thin styled wrapper over Reka's NumberFieldRoot. useForwardPropsEmits only\n// forwards props the consumer actually set, so Reka's own defaults\n// (stepSnapping, focusOnChange = true) survive Vue's boolean-prop casting.\n// Note Reka's prop is `readonly` (lowercase), unlike React's `readOnly`.\nconst props = defineProps<NumberFieldRootProps & { class?: HTMLAttributes['class'] }>()\nconst emits = defineEmits<NumberFieldRootEmits>()\n\nconst delegatedProps = computed(() => {\n  const { class: _class, ...rest } = props\n  return rest\n})\n\nconst forwarded = useForwardPropsEmits(delegatedProps, emits)\n</script>\n\n<template>\n  <NumberFieldRoot\n    v-slot=\"slotProps\"\n    v-bind=\"forwarded\"\n    data-slot=\"number-field\"\n    :class=\"cn('grid gap-1.5', props.class)\"\n  >\n    <slot v-bind=\"slotProps\" />\n  </NumberFieldRoot>\n</template>\n",
+      "type": "registry:ui"
+    },
+    {
+      "path": "components/ui/NumberFieldContent.vue",
+      "content": "<script setup lang=\"ts\">\nimport type { HTMLAttributes } from 'vue'\nimport { cn } from '@/lib/utils'\n\n// The single bordered box holding the − button, the input and the + button.\nconst props = defineProps<{ class?: HTMLAttributes['class'] }>()\n</script>\n\n<template>\n  <div\n    data-slot=\"number-field-content\"\n    :class=\"\n      cn(\n        'flex h-11 w-full items-stretch border-3 border-foreground bg-background shadow-[4px_4px_0px_hsl(var(--shadow-color))] bk-interactive focus-within:translate-x-[4px] focus-within:translate-y-[4px] focus-within:shadow-none has-[input:disabled]:cursor-not-allowed has-[input:disabled]:opacity-50',\n        props.class\n      )\n    \"\n  >\n    <slot />\n  </div>\n</template>\n",
+      "type": "registry:ui"
+    },
+    {
+      "path": "components/ui/NumberFieldInput.vue",
+      "content": "<script setup lang=\"ts\">\nimport { computed, type HTMLAttributes } from 'vue'\nimport { NumberFieldInput as NumberFieldInputPrimitive, useForwardProps, type NumberFieldInputProps } from 'reka-ui'\nimport { cn } from '@/lib/utils'\n\n// Reka renders <input type=\"text\" role=\"spinbutton\"> with aria-valuenow/min/max,\n// inputmode, and ArrowUp/Down, PageUp/Down (×10), Home/End handling; the id set\n// on <NumberField> lands here so a <Label for> can target it.\nconst props = defineProps<NumberFieldInputProps & { class?: HTMLAttributes['class'] }>()\n\nconst delegatedProps = computed(() => {\n  const { class: _class, ...rest } = props\n  return rest\n})\n\nconst forwarded = useForwardProps(delegatedProps)\n</script>\n\n<template>\n  <NumberFieldInputPrimitive\n    v-bind=\"forwarded\"\n    data-slot=\"number-field-input\"\n    :class=\"\n      cn(\n        'w-full min-w-0 flex-1 bg-transparent px-3 text-center text-base font-bold tabular-nums placeholder:font-normal placeholder:text-muted-foreground focus-visible:outline-none disabled:cursor-not-allowed md:text-sm',\n        props.class\n      )\n    \"\n  />\n</template>\n",
+      "type": "registry:ui"
+    },
+    {
+      "path": "components/ui/NumberFieldIncrement.vue",
+      "content": "<script setup lang=\"ts\">\nimport { computed, type HTMLAttributes } from 'vue'\nimport { NumberFieldIncrement as NumberFieldIncrementPrimitive, useForwardProps, type NumberFieldIncrementProps } from 'reka-ui'\nimport { Plus } from '@lucide/vue'\nimport { cn } from '@/lib/utils'\n\n// Reka sets tabindex=\"-1\", the \"Increase\" aria-label, press-and-hold\n// repeat, and disables the button at the bound.\nconst props = defineProps<NumberFieldIncrementProps & { class?: HTMLAttributes['class'] }>()\n\nconst delegatedProps = computed(() => {\n  const { class: _class, ...rest } = props\n  return rest\n})\n\nconst forwarded = useForwardProps(delegatedProps)\n</script>\n\n<template>\n  <NumberFieldIncrementPrimitive\n    v-bind=\"forwarded\"\n    data-slot=\"number-field-increment\"\n    :class=\"\n      cn(\n        'flex w-11 shrink-0 items-center justify-center border-foreground bg-secondary text-secondary-foreground transition-[background-color,box-shadow] duration-100 hover:bg-primary hover:text-primary-foreground active:shadow-[inset_3px_3px_0px_hsl(var(--shadow-color))] data-[pressed]:shadow-[inset_3px_3px_0px_hsl(var(--shadow-color))] focus-visible:outline-none disabled:pointer-events-none disabled:opacity-40 [&_svg]:size-4 [&_svg]:stroke-[3]',\n        'border-l-3',\n        props.class\n      )\n    \"\n  >\n    <slot>\n      <Plus aria-hidden=\"true\" />\n    </slot>\n  </NumberFieldIncrementPrimitive>\n</template>\n",
+      "type": "registry:ui"
+    },
+    {
+      "path": "components/ui/NumberFieldDecrement.vue",
+      "content": "<script setup lang=\"ts\">\nimport { computed, type HTMLAttributes } from 'vue'\nimport { NumberFieldDecrement as NumberFieldDecrementPrimitive, useForwardProps, type NumberFieldDecrementProps } from 'reka-ui'\nimport { Minus } from '@lucide/vue'\nimport { cn } from '@/lib/utils'\n\n// Reka sets tabindex=\"-1\", the \"Decrease\" aria-label, press-and-hold\n// repeat, and disables the button at the bound.\nconst props = defineProps<NumberFieldDecrementProps & { class?: HTMLAttributes['class'] }>()\n\nconst delegatedProps = computed(() => {\n  const { class: _class, ...rest } = props\n  return rest\n})\n\nconst forwarded = useForwardProps(delegatedProps)\n</script>\n\n<template>\n  <NumberFieldDecrementPrimitive\n    v-bind=\"forwarded\"\n    data-slot=\"number-field-decrement\"\n    :class=\"\n      cn(\n        'flex w-11 shrink-0 items-center justify-center border-foreground bg-secondary text-secondary-foreground transition-[background-color,box-shadow] duration-100 hover:bg-primary hover:text-primary-foreground active:shadow-[inset_3px_3px_0px_hsl(var(--shadow-color))] data-[pressed]:shadow-[inset_3px_3px_0px_hsl(var(--shadow-color))] focus-visible:outline-none disabled:pointer-events-none disabled:opacity-40 [&_svg]:size-4 [&_svg]:stroke-[3]',\n        'border-r-3',\n        props.class\n      )\n    \"\n  >\n    <slot>\n      <Minus aria-hidden=\"true\" />\n    </slot>\n  </NumberFieldDecrementPrimitive>\n</template>\n",
+      "type": "registry:ui"
+    }
+  ],
+  "title": "Number Field"
+}

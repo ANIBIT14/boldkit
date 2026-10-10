@@ -64,7 +64,7 @@ export function MenubarDoc() {
         name="Menubar"
         description="A horizontal bar of desktop-style dropdown menus, perfect for application toolbars."
         registryName="menubar"
-        dependencies={['@radix-ui/react-menubar']}
+        dependencies={['radix-ui']}
         vueDependencies={['reka-ui']}
         sourceCode={sourceCode}
         vueSourceCode={vueSourceCode}

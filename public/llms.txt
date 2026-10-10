@@ -4,13 +4,14 @@
 
 ## Quick Facts
 
-- **Version:** 3.3.9
-- **Components:** 55+ UI components
+- **Version:** 3.6.0
+- **Components:** 69+ UI components (incl. Chat kit for AI assistants, Toast stacks, Questionnaire, NumberField)
 - **Charts:** 14 chart types
 - **Shapes:** 64 SVG decorative shapes
 - **Blocks:** 15 section blocks (10 marketing + 5 application)
 - **Templates:** 7 full-page templates
-- **Frameworks:** React 19, Vue 3, Nuxt
+- **Frameworks:** React 19 (19.3 `<ViewTransition>` supported), Vue 3.5+ (Vapor-mode interop), Nuxt 4.6 / Nuxt 5 compatibility mode
+- **Theme presets:** 14, installable via `shadcn add @boldkit/theme-<name>`
 - **Canvas Effects:** 23 animated canvas components (pause off-screen, reduced-motion aware)
 - **Tools:** FavGrab (favicon extractor & image converter), Dot Matrix Studio (pixel art & animation editor), Shape Builder, Theme Builder
 - **Guides:** Neubrutalism guide cluster (what it is, colors, fonts, examples, vs brutalism) + favicon/image tool guides
@@ -152,6 +153,18 @@ import { Aurora } from '@/components/CanvasEffects/vue'
 
 ## Installation
 
+### React — one command (shadcn CLI v4)
+
+```bash
+# Stylesheet + motion system + cn() utils + Outfit / DM Mono fonts
+npx shadcn@latest init https://boldkit.dev/r/boldkit.json
+# then in your root CSS replace @import "tailwindcss" with @import "./styles/globals.css"
+
+# Optional: one of 14 theme presets (coral, purple, forest, ocean, sunset, mono, neon,
+# electric, candy, cyberpunk, retro, pastel, gold, cherry)
+npx shadcn@latest add @boldkit/theme-ocean
+```
+
 ### React (shadcn CLI)
 
 ```bash
@@ -191,12 +204,17 @@ GitHub install covers the React registry (components, blocks, theme, utils, shap
 # Install a component
 npx shadcn-vue@latest add https://boldkit.dev/r/vue/{component}.json
 
-# Install the theme
+# Install the theme (or a preset: .../r/vue/theme-ocean.json)
 npx shadcn-vue@latest add https://boldkit.dev/r/vue/theme.json
 
 # Install all shapes
 npx shadcn-vue@latest add https://boldkit.dev/r/vue/shapes.json
 ```
+
+Nuxt notes: works with Nuxt 4.6, `future: { compatibilityVersion: 5 }`, and inside Vue 3.6 Vapor components
+(`vue: { vapor: true }`). Keep TypeScript on 6.x — TypeScript 7's native compiler drops the JS API Vue's SFC
+compiler uses to resolve imported prop types; BoldKit's `utils` item adds `typescript@<7` for you. Create
+projects with `npm create nuxt@latest` (`nuxi init` was removed in Nuxt 4.6).
 
 ### End-to-End Usage Example (React)
 
@@ -233,8 +251,8 @@ export default function Page() {
 
 ```bash
 npx shadcn@latest add https://boldkit.dev/r/accordion.json
-npx shadcn@latest add https://boldkit.dev/r/alert.json
 npx shadcn@latest add https://boldkit.dev/r/alert-dialog.json
+npx shadcn@latest add https://boldkit.dev/r/alert.json
 npx shadcn@latest add https://boldkit.dev/r/aspect-ratio.json
 npx shadcn@latest add https://boldkit.dev/r/avatar.json
 npx shadcn@latest add https://boldkit.dev/r/badge.json
@@ -243,6 +261,7 @@ npx shadcn@latest add https://boldkit.dev/r/button.json
 npx shadcn@latest add https://boldkit.dev/r/calendar.json
 npx shadcn@latest add https://boldkit.dev/r/card.json
 npx shadcn@latest add https://boldkit.dev/r/carousel.json
+npx shadcn@latest add https://boldkit.dev/r/chat.json
 npx shadcn@latest add https://boldkit.dev/r/checkbox.json
 npx shadcn@latest add https://boldkit.dev/r/collapsible.json
 npx shadcn@latest add https://boldkit.dev/r/command.json
@@ -254,15 +273,17 @@ npx shadcn@latest add https://boldkit.dev/r/dropdown-menu.json
 npx shadcn@latest add https://boldkit.dev/r/dropzone.json
 npx shadcn@latest add https://boldkit.dev/r/empty-state.json
 npx shadcn@latest add https://boldkit.dev/r/hover-card.json
-npx shadcn@latest add https://boldkit.dev/r/input.json
 npx shadcn@latest add https://boldkit.dev/r/input-otp.json
+npx shadcn@latest add https://boldkit.dev/r/input.json
 npx shadcn@latest add https://boldkit.dev/r/kbd.json
 npx shadcn@latest add https://boldkit.dev/r/label.json
 npx shadcn@latest add https://boldkit.dev/r/layered-card.json
 npx shadcn@latest add https://boldkit.dev/r/marquee.json
+npx shadcn@latest add https://boldkit.dev/r/number-field.json
 npx shadcn@latest add https://boldkit.dev/r/pagination.json
 npx shadcn@latest add https://boldkit.dev/r/popover.json
 npx shadcn@latest add https://boldkit.dev/r/progress.json
+npx shadcn@latest add https://boldkit.dev/r/questionnaire.json
 npx shadcn@latest add https://boldkit.dev/r/radio-group.json
 npx shadcn@latest add https://boldkit.dev/r/rating.json
 npx shadcn@latest add https://boldkit.dev/r/scroll-area.json
@@ -284,8 +305,9 @@ npx shadcn@latest add https://boldkit.dev/r/tag-input.json
 npx shadcn@latest add https://boldkit.dev/r/textarea.json
 npx shadcn@latest add https://boldkit.dev/r/time-picker.json
 npx shadcn@latest add https://boldkit.dev/r/timeline.json
-npx shadcn@latest add https://boldkit.dev/r/toggle.json
+npx shadcn@latest add https://boldkit.dev/r/toast.json
 npx shadcn@latest add https://boldkit.dev/r/toggle-group.json
+npx shadcn@latest add https://boldkit.dev/r/toggle.json
 npx shadcn@latest add https://boldkit.dev/r/tooltip.json
 npx shadcn@latest add https://boldkit.dev/r/tour.json
 npx shadcn@latest add https://boldkit.dev/r/tree-view.json
@@ -393,10 +415,13 @@ npx shadcn-vue@latest add https://boldkit.dev/r/vue/math-curve-loader.json
 Accordion, Card, Collapsible, Dialog, Drawer, LayeredCard, ScrollArea, Sheet, Sidebar, StatCard, Stepper, Tabs
 
 ### Form Controls
-Button, Calendar, Checkbox, DateRangePicker, Dropzone, Input, InputOTP, Label, RadioGroup, Rating, Select, Slider, Switch, TagInput, Textarea, TimePicker, Toggle, ToggleGroup
+Button, Calendar, Checkbox, DateRangePicker, Dropzone, Input, InputOTP, Label, NumberField, Questionnaire, RadioGroup, Rating, Select, Slider, Switch, TagInput, Textarea, TimePicker, Toggle, ToggleGroup
 
 ### Feedback & Status
-Alert, AlertDialog, Badge, EmptyState, Progress, Skeleton, Sonner (Toast), Spinner, Tour
+Alert, AlertDialog, Badge, EmptyState, Progress, Skeleton, Sonner, Toast (first-party stacks), Spinner, Tour
+
+### Chat & AI interfaces (NEW v3.6)
+MessageScroller (auto-follow, jump-to-latest, history prepend), Message, Bubble, Attachment, Marker — install all with `@boldkit/chat`
 
 ### Navigation
 Breadcrumb, Carousel, Command (Command Palette), DropdownMenu, HoverCard, Pagination, Popover, TreeView
@@ -416,6 +441,66 @@ Sticker, Marquee, 54 SVG Shapes
 ---
 
 ## Code Examples
+
+### Chat (AI assistant UI)
+
+```tsx
+import { MessageScroller, MessageScrollerContent } from '@/components/ui/message-scroller'
+import { Message, MessageHeader, MessageContent } from '@/components/ui/message'
+import { Bubble } from '@/components/ui/bubble'
+import { Marker } from '@/components/ui/marker'
+
+<MessageScroller streaming={isStreaming} onReachTop={loadEarlier} className="h-[32rem] border-3 border-foreground">
+  <MessageScrollerContent>
+    {messages.map((m) => (
+      <Message key={m.id} data-message-id={m.id} from={m.from}>
+        <MessageHeader name={m.author} />
+        <MessageContent><Bubble>{m.text}</Bubble></MessageContent>
+      </Message>
+    ))}
+    {isSearching && <Marker active>Searching the web…</Marker>}
+  </MessageScrollerContent>
+</MessageScroller>
+```
+
+### Toast (imperative)
+
+```tsx
+import { Toaster, toast } from '@/components/ui/toast'
+
+<Toaster position="bottom-right" />
+toast.success('Saved', { description: 'All changes stored' })
+toast.promise(upload(), { loading: 'Uploading…', success: 'Uploaded', error: 'Upload failed' })
+```
+
+### Questionnaire
+
+```tsx
+import { Questionnaire } from '@/components/ui/questionnaire'
+
+<Questionnaire
+  questions={[
+    { id: 'role', type: 'single', title: 'Your role?', choices: [{ value: 'dev', label: 'Developer' }, { value: 'design', label: 'Designer' }] },
+    { id: 'stack', type: 'multiple', title: 'Which frameworks?', choices: [{ value: 'react', label: 'React' }, { value: 'vue', label: 'Vue' }], when: (a) => a.role === 'dev' },
+    { id: 'notes', type: 'text', title: 'Anything else?', optional: true },
+  ]}
+  onSubmit={(answers) => save(answers)}
+/>
+```
+
+### NumberField
+
+```tsx
+import { NumberField, NumberFieldContent, NumberFieldDecrement, NumberFieldInput, NumberFieldIncrement } from '@/components/ui/number-field'
+
+<NumberField defaultValue={1} min={0} max={10} formatOptions={{ style: 'currency', currency: 'USD' }}>
+  <NumberFieldContent>
+    <NumberFieldDecrement />
+    <NumberFieldInput />
+    <NumberFieldIncrement />
+  </NumberFieldContent>
+</NumberField>
+```
 
 ### Button
 

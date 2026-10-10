@@ -31,7 +31,7 @@ export function MathCurveBackgroundDoc() {
       <ComponentDoc
         name="Math Curve Background"
         description="An ambient animated mathematical curve background layer. Wraps content with a slow-moving curve animation that adds depth and visual interest."
-        dependencies={['@radix-ui/react-slot']}
+        dependencies={['radix-ui']}
         vueDependencies={['reka-ui']}
         sourceCode={sourceCode}
         vueSourceCode={vueSourceCode}

@@ -4,7 +4,7 @@
   "type": "registry:ui",
   "description": "Empty state placeholders with 14 presets, horizontal/vertical layouts, animations, and illustration support",
   "dependencies": [
-    "lucide-vue-next",
+    "@lucide/vue",
     "class-variance-authority"
   ],
   "registryDependencies": [

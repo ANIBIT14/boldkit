@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref, computed, watch, onMounted, onUnmounted, nextTick, provide, useId, type Ref, type InjectionKey, type ComputedRef } from 'vue'
-import { X } from 'lucide-vue-next'
+import { X } from '@lucide/vue'
 import { cn } from '@/lib/utils'
 import Button from './Button.vue'
 

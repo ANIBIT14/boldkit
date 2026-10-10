@@ -4,7 +4,8 @@
   "type": "registry:ui",
   "description": "A vertically stacked set of interactive headings",
   "dependencies": [
-    "reka-ui"
+    "reka-ui@^2.11.0",
+    "@lucide/vue"
   ],
   "registryDependencies": [
     "@boldkit/utils"
@@ -22,7 +23,7 @@
     },
     {
       "path": "components/ui/AccordionTrigger.vue",
-      "content": "<script setup lang=\"ts\">\nimport { AccordionHeader, AccordionTrigger as AccordionTriggerPrimitive } from 'reka-ui'\nimport { ChevronDown } from 'lucide-vue-next'\nimport { cn } from '@/lib/utils'\n\ndefineProps<{\n  class?: string\n}>()\n</script>\n\n<template>\n  <AccordionHeader class=\"flex\">\n    <AccordionTriggerPrimitive\n      :class=\"\n        cn(\n          'flex flex-1 items-center justify-between bg-background py-4 px-4 font-bold uppercase tracking-wide transition duration-200 hover:bg-muted [&[data-state=open]]:bg-accent [&[data-state=open]>svg]:rotate-180',\n          $props.class\n        )\n      \"\n    >\n      <slot />\n      <ChevronDown class=\"h-5 w-5 shrink-0 stroke-[3] transition-transform duration-200\" />\n    </AccordionTriggerPrimitive>\n  </AccordionHeader>\n</template>\n",
+      "content": "<script setup lang=\"ts\">\nimport { AccordionHeader, AccordionTrigger as AccordionTriggerPrimitive } from 'reka-ui'\nimport { ChevronDown } from '@lucide/vue'\nimport { cn } from '@/lib/utils'\n\ndefineProps<{\n  class?: string\n}>()\n</script>\n\n<template>\n  <AccordionHeader class=\"flex\">\n    <AccordionTriggerPrimitive\n      :class=\"\n        cn(\n          'flex flex-1 items-center justify-between bg-background py-4 px-4 font-bold uppercase tracking-wide transition duration-200 hover:bg-muted [&[data-state=open]]:bg-accent [&[data-state=open]>svg]:rotate-180',\n          $props.class\n        )\n      \"\n    >\n      <slot />\n      <ChevronDown class=\"h-5 w-5 shrink-0 stroke-[3] transition-transform duration-200\" />\n    </AccordionTriggerPrimitive>\n  </AccordionHeader>\n</template>\n",
       "type": "registry:ui"
     },
     {

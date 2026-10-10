@@ -20,7 +20,7 @@ import {
   ChevronDown,
   Search,
   Settings2,
-} from 'lucide-vue-next'
+} from '@lucide/vue'
 import { cn } from '@/lib/utils'
 import Table from './Table.vue'
 import TableHeader from './TableHeader.vue'

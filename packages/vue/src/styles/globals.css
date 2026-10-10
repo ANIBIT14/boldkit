@@ -236,7 +236,7 @@
 
 body {
   @apply bg-background text-foreground antialiased;
-  font-family: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-family: 'Outfit Variable', 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
 }
 
 /* BoldKit Motion — shared interactive timing. Routes the core components'
@@ -1434,6 +1434,28 @@ html[data-bk-transition='stamp']::view-transition-new(root) {
   z-index: 1;
 }
 
+/* The same recipes per element, for React 19.3 <ViewTransition>:
+     <ViewTransition enter="bk-stamp" exit="bk-hard-wipe">…</ViewTransition>
+   React tags the snapshot with view-transition-class, which these match. */
+::view-transition-old(.bk-hard-wipe) {
+  animation: bk-vt-wipe-out var(--bk-dur-base) var(--bk-ease-step) both;
+}
+::view-transition-new(.bk-hard-wipe) {
+  animation: bk-vt-wipe-in var(--bk-dur-base) var(--bk-ease-step) both;
+}
+::view-transition-old(.bk-color-block) {
+  animation: bk-vt-block-out var(--bk-dur-quick) var(--bk-ease-stamp) both;
+}
+::view-transition-new(.bk-color-block) {
+  animation: bk-vt-block-in var(--bk-dur-base) var(--bk-ease-snap) both;
+}
+::view-transition-old(.bk-stamp) {
+  animation: none;
+}
+::view-transition-new(.bk-stamp) {
+  animation: bk-stamp-in var(--bk-dur-base) var(--bk-ease-snap) both;
+}
+
 /* ──────────────────────────────────────────────────────
    v3.5 — A11y guard
    ────────────────────────────────────────────────────── */
@@ -1457,4 +1479,125 @@ html[data-bk-transition='stamp']::view-transition-new(root) {
   html[data-bk-transition]::view-transition-new(root) {
     animation: none !important;
   }
+  ::view-transition-old(.bk-hard-wipe),
+  ::view-transition-new(.bk-hard-wipe),
+  ::view-transition-old(.bk-color-block),
+  ::view-transition-new(.bk-color-block),
+  ::view-transition-new(.bk-stamp) {
+    animation: none !important;
+  }
 }
+
+/* ===== BoldKit v3.6 utilities — keep byte-identical in all three globals.css ===== */
+
+/* Brutalist native scrollbar: thin, square, foreground-coloured thumb.
+   Plain CSS rather than Tailwind 4.3's scrollbar-* utilities so it works on
+   any Tailwind v4 minor. */
+.bk-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: hsl(var(--foreground)) transparent;
+}
+
+/* Customizable <select> (appearance: base-select, Chromium 134+). Other
+   browsers keep the native picker; the closed control looks the same either way. */
+@supports (appearance: base-select) {
+  .bk-native-select,
+  .bk-native-select::picker(select) {
+    appearance: base-select;
+  }
+  .bk-native-select::picker-icon {
+    display: none;
+  }
+  .bk-native-select::picker(select) {
+    margin-block: 6px;
+    padding: 0;
+    border: 3px solid hsl(var(--foreground));
+    border-radius: 0;
+    background: hsl(var(--background));
+    box-shadow: 4px 4px 0 hsl(var(--shadow-color));
+  }
+  .bk-native-select option {
+    padding: 0.5rem 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.025em;
+  }
+  .bk-native-select option:hover,
+  .bk-native-select option:focus-visible {
+    background: hsl(var(--accent));
+    color: hsl(var(--accent-foreground));
+    outline: none;
+  }
+  .bk-native-select option:checked {
+    background: hsl(var(--primary));
+    color: hsl(var(--primary-foreground));
+  }
+  .bk-native-select option::checkmark {
+    display: none;
+  }
+}
+
+/* Chat kit — scroll-aware edge fades. Static fallback: both edges always faded. */
+@property --bk-fade-top {
+  syntax: '<length>';
+  inherits: false;
+  initial-value: 0px;
+}
+@property --bk-fade-bottom {
+  syntax: '<length>';
+  inherits: false;
+  initial-value: 0px;
+}
+
+.bk-scroll-fade {
+  --bk-fade-size: 2rem;
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0, #000 var(--bk-fade-size), #000 calc(100% - var(--bk-fade-size)), transparent 100%);
+  mask-image: linear-gradient(to bottom, transparent 0, #000 var(--bk-fade-size), #000 calc(100% - var(--bk-fade-size)), transparent 100%);
+}
+
+/* Where scroll-driven animations exist, fade only the edge that has more
+   content past it. A box that can't scroll has an inactive timeline, so the
+   registered initial values (0px) apply and nothing fades. */
+@supports (animation-timeline: scroll()) {
+  .bk-scroll-fade {
+    -webkit-mask-image: linear-gradient(to bottom, transparent 0, #000 var(--bk-fade-top), #000 calc(100% - var(--bk-fade-bottom)), transparent 100%);
+    mask-image: linear-gradient(to bottom, transparent 0, #000 var(--bk-fade-top), #000 calc(100% - var(--bk-fade-bottom)), transparent 100%);
+    animation: bk-scroll-fade linear both;
+    animation-timeline: scroll(self); /* must follow the shorthand */
+  }
+}
+
+@keyframes bk-scroll-fade {
+  0%   { --bk-fade-top: 0px; --bk-fade-bottom: var(--bk-fade-size); }
+  8%   { --bk-fade-top: var(--bk-fade-size); }
+  92%  { --bk-fade-bottom: var(--bk-fade-size); }
+  100% { --bk-fade-top: var(--bk-fade-size); --bk-fade-bottom: 0px; }
+}
+
+/* Chat kit — animated text shimmer for live status labels. */
+.bk-shimmer {
+  --bk-shimmer-base: hsl(var(--muted-foreground));
+  --bk-shimmer-highlight: hsl(var(--foreground));
+  color: var(--bk-shimmer-base);
+  background-image: linear-gradient(90deg, var(--bk-shimmer-base) 0%, var(--bk-shimmer-base) 42%, var(--bk-shimmer-highlight) 50%, var(--bk-shimmer-base) 58%, var(--bk-shimmer-base) 100%);
+  background-size: 300% 100%;
+  background-repeat: no-repeat;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: bk-shimmer 1.8s linear infinite;
+}
+
+@keyframes bk-shimmer {
+  from { background-position: 100% 0; }
+  to   { background-position: 0% 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bk-shimmer { animation: none; background: none; -webkit-text-fill-color: currentColor; }
+}
+@media (forced-colors: active) {
+  .bk-shimmer { background: none; -webkit-text-fill-color: currentColor; }
+}
+
+/* ===== end BoldKit v3.6 utilities ===== */

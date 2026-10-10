@@ -32,8 +32,8 @@ export function TimePickerDoc() {
       <ComponentDoc
         name="Time Picker"
         description="A popover-based time picker with scrollable columns for hours, minutes, and optional seconds. Supports 12h and 24h formats."
-        dependencies={['@radix-ui/react-popover', '@radix-ui/react-scroll-area', 'lucide-react']}
-        vueDependencies={['reka-ui', 'lucide-vue-next']}
+        dependencies={['radix-ui', 'lucide-react']}
+        vueDependencies={['reka-ui', '@lucide/vue']}
         sourceCode={sourceCode}
         usageCode={usageCode}
         vueSourceCode={vueSourceCode}

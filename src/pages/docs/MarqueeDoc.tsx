@@ -80,7 +80,7 @@ export function MarqueeDoc() {
   <MarqueeSeparator>•</MarqueeSeparator>
 </Marquee>`}
         vueCode={`<script setup lang="ts">
-import { Star, Zap, Heart } from 'lucide-vue-next'
+import { Star, Zap, Heart } from '@lucide/vue'
 import Marquee from '@/components/ui/Marquee.vue'
 import MarqueeItem from '@/components/ui/MarqueeItem.vue'
 import MarqueeSeparator from '@/components/ui/MarqueeSeparator.vue'
@@ -181,7 +181,7 @@ import MarqueeSeparator from '@/components/ui/MarqueeSeparator.vue'
   <MarqueeSeparator />
 </Marquee>`}
         vueCode={`<script setup lang="ts">
-import { Rocket } from 'lucide-vue-next'
+import { Rocket } from '@lucide/vue'
 import Marquee from '@/components/ui/Marquee.vue'
 import MarqueeItem from '@/components/ui/MarqueeItem.vue'
 import MarqueeSeparator from '@/components/ui/MarqueeSeparator.vue'

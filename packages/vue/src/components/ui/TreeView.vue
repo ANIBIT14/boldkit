@@ -1,6 +1,6 @@
 <script lang="ts">
 import { type Component, defineComponent, computed, h, ref, watch, type PropType, type VNode } from 'vue'
-import { ChevronRight, Folder, File, Check } from 'lucide-vue-next'
+import { ChevronRight, Folder, File, Check } from '@lucide/vue'
 import Collapsible from './Collapsible.vue'
 import CollapsibleContent from './CollapsibleContent.vue'
 import { cn } from '@/lib/utils'

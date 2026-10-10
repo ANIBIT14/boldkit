@@ -5,7 +5,7 @@ import { cn } from '@/lib/utils'
 import Card from './Card.vue'
 import CardContent from './CardContent.vue'
 import Progress from './Progress.vue'
-import { TrendingUp, TrendingDown, Minus } from 'lucide-vue-next'
+import { TrendingUp, TrendingDown, Minus } from '@lucide/vue'
 
 const statCardVariants = cva(
   'relative overflow-hidden',

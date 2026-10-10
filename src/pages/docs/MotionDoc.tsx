@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { ComponentDoc, ExampleSection } from '@/components/docs/ComponentDoc'
-import { Reveal, Stagger, useShake } from '@/components/ui/motion'
+import { Reveal, Stagger, useShake, ViewTransition, addTransitionType } from '@/components/ui/motion'
 import { Button } from '@/components/ui/button'
 import { Skeleton } from '@/components/ui/skeleton'
 import { Progress } from '@/components/ui/progress'
@@ -152,6 +152,28 @@ function RevealDemo() {
 }
 
 // ──────────────────────────────────────────────────────────────────
+
+function ViewTransitionDemo() {
+  const [i, setI] = React.useState(0)
+  const go = (dir: 'next' | 'previous') =>
+    React.startTransition(() => {
+      addTransitionType(dir)
+      setI((n) => Math.max(0, n + (dir === 'next' ? 1 : -1)))
+    })
+  return (
+    <div className="flex w-full max-w-sm flex-col items-center gap-4">
+      <ViewTransition key={i} enter={{ next: 'bk-stamp', previous: 'bk-color-block', default: 'bk-stamp' }} exit="none">
+        <div className="w-full border-3 border-foreground bg-accent p-6 text-center text-2xl font-black uppercase shadow-[4px_4px_0px_hsl(var(--shadow-color))]">
+          Slide {i + 1}
+        </div>
+      </ViewTransition>
+      <div className="flex gap-2">
+        <Button variant="outline" onClick={() => go('previous')} disabled={i === 0}>Prev</Button>
+        <Button onClick={() => go('next')}>Next</Button>
+      </div>
+    </div>
+  )
+}
 
 export function MotionDoc() {
   return (
@@ -353,6 +375,38 @@ startViewTransition(() => router.push('/next'), 'hard-wipe')`}
             down over the old one.
           </p>
         </div>
+      </ExampleSection>
+
+      <ExampleSection
+        title="Element transitions (React 19.3)"
+        description="React 19.3 made <ViewTransition> stable. BoldKit's motion module re-exports it (a passthrough on older React) and its recipes work as classes per element. Tag why a transition happened with addTransitionType() and pick a recipe per type. Vue and plain JS get the same branching from startViewTransition(cb, recipe, { types: ['next'] }) plus html:active-view-transition-type(next) in CSS."
+        code={`import { startTransition, useState } from 'react'
+import { ViewTransition, addTransitionType } from '@/components/ui/motion'
+
+function Slides() {
+  const [i, setI] = useState(0)
+  const go = (dir: 'next' | 'previous') =>
+    startTransition(() => {
+      addTransitionType(dir)
+      setI((n) => n + (dir === 'next' ? 1 : -1))
+    })
+  return (
+    <>
+      <ViewTransition key={i} enter={{ next: 'bk-stamp', previous: 'bk-color-block', default: 'bk-stamp' }} exit="none">
+        <div className="border-3 border-foreground p-6">Slide {i + 1}</div>
+      </ViewTransition>
+      <button onClick={() => go('previous')}>Prev</button>
+      <button onClick={() => go('next')}>Next</button>
+    </>
+  )
+}`}
+        vueCode={`import { startViewTransition } from '@/lib/motion-core'
+
+// Tag the transition, then branch in CSS:
+//   html:active-view-transition-type(next)::view-transition-new(root) { … }
+startViewTransition(() => { index.value++ }, undefined, { types: ['next'] })`}
+      >
+        <ViewTransitionDemo />
       </ExampleSection>
 
       <ExampleSection

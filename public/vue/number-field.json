@@ -1,0 +1,36 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "number-field",
+  "type": "registry:ui",
+  "description": "Numeric input with stepper buttons, min/max/step, keyboard control and Intl number formatting",
+  "dependencies": [
+    "reka-ui@^2.11.0",
+    "@lucide/vue"
+  ],
+  "registryDependencies": [
+    "@boldkit/utils"
+  ],
+  "files": [
+    {
+      "path": "components/ui/NumberField.vue",
+      "type": "registry:ui"
+    },
+    {
+      "path": "components/ui/NumberFieldContent.vue",
+      "type": "registry:ui"
+    },
+    {
+      "path": "components/ui/NumberFieldInput.vue",
+      "type": "registry:ui"
+    },
+    {
+      "path": "components/ui/NumberFieldIncrement.vue",
+      "type": "registry:ui"
+    },
+    {
+      "path": "components/ui/NumberFieldDecrement.vue",
+      "type": "registry:ui"
+    }
+  ],
+  "title": "Number Field"
+}

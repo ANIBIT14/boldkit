@@ -155,3 +155,18 @@ describe('reduced motion', () => {
     }
   )
 })
+
+describe('v3.6 utilities block', () => {
+  // Hand-copied into all three globals like the motion layer; one block, one
+  // pair of markers, so "same everywhere" is a byte comparison.
+  const block = (css: string) => {
+    const m = css.match(/\/\* ===== BoldKit v3\.6 utilities[\s\S]*?\/\* ===== end BoldKit v3\.6 utilities ===== \*\//)
+    return m?.[0] ?? null
+  }
+
+  it('is present and byte-identical in every globals.css', () => {
+    const blocks = Object.values(GLOBALS).map((rel) => block(read(rel)))
+    expect(blocks.every(Boolean)).toBe(true)
+    expect(new Set(blocks).size).toBe(1)
+  })
+})

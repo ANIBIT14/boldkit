@@ -15,7 +15,7 @@ import {
   CalendarPrev,
   type DateValue,
 } from 'reka-ui'
-import { ChevronLeft, ChevronRight } from 'lucide-vue-next'
+import { ChevronLeft, ChevronRight } from '@lucide/vue'
 import { cn } from '@/lib/utils'
 import { buttonVariants } from './button-variants'
 

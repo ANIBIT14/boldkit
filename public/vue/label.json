@@ -4,7 +4,8 @@
   "type": "registry:ui",
   "description": "Renders an accessible label",
   "dependencies": [
-    "reka-ui"
+    "reka-ui@^2.11.0",
+    "class-variance-authority"
   ],
   "registryDependencies": [
     "@boldkit/utils"

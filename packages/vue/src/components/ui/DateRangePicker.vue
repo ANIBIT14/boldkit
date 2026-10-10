@@ -16,7 +16,7 @@ import {
   RangeCalendarPrev,
 } from 'reka-ui'
 import { CalendarDate, type DateValue } from '@internationalized/date'
-import { ChevronLeft, ChevronRight, Calendar as CalendarIcon } from 'lucide-vue-next'
+import { ChevronLeft, ChevronRight, Calendar as CalendarIcon } from '@lucide/vue'
 import { cn } from '@/lib/utils'
 import { buttonVariants } from './button-variants'
 import Popover from './Popover.vue'

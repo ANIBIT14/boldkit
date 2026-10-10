@@ -35,7 +35,7 @@ export function DatePickerDoc() {
         description="A single-date picker — a button trigger that opens a calendar in a popover, built on Calendar, Popover and Button."
         registryName="date-picker"
         dependencies={['date-fns', 'lucide-react']}
-        vueDependencies={['reka-ui', 'lucide-vue-next']}
+        vueDependencies={['reka-ui', '@lucide/vue']}
         sourceCode={sourceCode}
         vueSourceCode={vueSourceCode}
         usageCode={usageCode}

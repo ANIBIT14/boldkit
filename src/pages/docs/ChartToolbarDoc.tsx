@@ -96,7 +96,7 @@ export function ChartToolbarDoc() {
         name="Chart Toolbar"
         description="Wraps any chart with a brutalist export toolbar — download the chart as PNG or SVG, export its data as CSV, or toggle fullscreen. Engine-agnostic: it reads the wrapped <svg> (Recharts) or <canvas> (ECharts), so it works with both the React and Vue chart families."
         dependencies={['lucide-react']}
-        vueDependencies={['lucide-vue-next']}
+        vueDependencies={['@lucide/vue']}
         sourceCode={sourceCode}
         vueSourceCode={sourceCode /* wrapper mirrors the React surface */}
         usageCode={usageCode}

@@ -73,7 +73,7 @@ export function DrawerDoc() {
         name="Drawer"
         description="A drawer component that slides in from the bottom of the screen with neubrutalism styling."
         dependencies={['vaul']}
-        vueDependencies={['vaul-vue']}
+        vueDependencies={['reka-ui']}
         sourceCode={sourceCode}
         vueSourceCode={vueSourceCode}
         usageCode={usageCode}

@@ -1,0 +1,29 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "boldkit",
+  "title": "BoldKit base",
+  "description": "Everything a project needs before adding BoldKit components: the neubrutalism stylesheet + motion system, the default theme, cn() utils, and the Outfit / DM Mono fonts. Use with `shadcn init --base`.",
+  "dependencies": [
+    "clsx",
+    "tailwind-merge",
+    "class-variance-authority",
+    "lucide-react"
+  ],
+  "devDependencies": [
+    "tw-animate-css"
+  ],
+  "registryDependencies": [
+    "@boldkit/styles",
+    "@boldkit/utils",
+    "@boldkit/font-outfit",
+    "@boldkit/font-dm-mono"
+  ],
+  "docs": "Next: in your root CSS file, replace @import \"tailwindcss\" with @import \"./styles/globals.css\" (adjust the path to where it was installed). BoldKit's stylesheet imports Tailwind itself and defines the colour variables and @theme mapping.",
+  "type": "registry:base",
+  "config": {
+    "tailwind": {
+      "cssVariables": true
+    },
+    "iconLibrary": "lucide"
+  }
+}

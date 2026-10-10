@@ -44,7 +44,7 @@ export function InputGroupDoc() {
         description="Joins an input with leading or trailing addons — icons, text, or shortcuts — in a single bordered field."
         registryName="input-group"
         dependencies={['lucide-react']}
-        vueDependencies={['lucide-vue-next']}
+        vueDependencies={['@lucide/vue']}
         sourceCode={sourceCode}
         vueSourceCode={vueSourceCode}
         usageCode={usageCode}

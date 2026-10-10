@@ -4,7 +4,7 @@
   "type": "registry:ui",
   "description": "Step-by-step product tour with spotlight highlighting and progress indicators",
   "dependencies": [
-    "lucide-vue-next"
+    "@lucide/vue"
   ],
   "registryDependencies": [
     "@boldkit/utils",

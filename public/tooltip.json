@@ -4,7 +4,7 @@
   "title": "Tooltip",
   "description": "A popup that displays information related to an element",
   "dependencies": [
-    "@radix-ui/react-tooltip"
+    "radix-ui"
   ],
   "registryDependencies": [
     "@boldkit/utils"

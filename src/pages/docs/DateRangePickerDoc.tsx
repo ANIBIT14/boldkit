@@ -32,8 +32,8 @@ export function DateRangePickerDoc() {
       <ComponentDoc
         name="Date Range Picker"
         description="A date range picker with preset options, dual calendar view, and customizable presets."
-        dependencies={['date-fns', 'react-day-picker', '@radix-ui/react-popover', 'lucide-react']}
-        vueDependencies={['date-fns', 'v-calendar', 'reka-ui', 'lucide-vue-next']}
+        dependencies={['date-fns', 'react-day-picker', 'radix-ui', 'lucide-react']}
+        vueDependencies={['date-fns', 'v-calendar', 'reka-ui', '@lucide/vue']}
         sourceCode={sourceCode}
         usageCode={usageCode}
         vueSourceCode={vueSourceCode}

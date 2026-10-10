@@ -1,0 +1,21 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "font-dm-mono",
+  "title": "Font: DM Mono",
+  "description": "BoldKit's mono face (DM Mono). Self-hosted via Fontsource; sets --font-mono.",
+  "type": "registry:font",
+  "font": {
+    "family": "'DM Mono', ui-monospace, monospace",
+    "provider": "google",
+    "import": "DM_Mono",
+    "variable": "--font-mono",
+    "weight": [
+      "400"
+    ],
+    "subsets": [
+      "latin"
+    ],
+    "selector": "code, kbd, pre, samp",
+    "dependency": "@fontsource/dm-mono"
+  }
+}

@@ -4,7 +4,7 @@
   "title": "Progress",
   "description": "Displays an indicator showing the completion progress of a task",
   "dependencies": [
-    "@radix-ui/react-progress"
+    "radix-ui"
   ],
   "registryDependencies": [
     "@boldkit/utils",

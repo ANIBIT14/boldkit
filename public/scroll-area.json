@@ -4,7 +4,7 @@
   "title": "Scroll Area",
   "description": "Augments native scroll functionality for custom styling",
   "dependencies": [
-    "@radix-ui/react-scroll-area"
+    "radix-ui"
   ],
   "registryDependencies": [
     "@boldkit/utils"

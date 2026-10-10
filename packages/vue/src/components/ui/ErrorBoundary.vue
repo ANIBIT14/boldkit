@@ -5,10 +5,12 @@ import Card from './Card.vue'
 import CardHeader from './CardHeader.vue'
 import CardTitle from './CardTitle.vue'
 import CardContent from './CardContent.vue'
-import { AlertTriangle, RefreshCw, Home } from 'lucide-vue-next'
+import { AlertTriangle, RefreshCw, Home } from '@lucide/vue'
 
 const hasError = ref(false)
 const error = ref<Error | null>(null)
+// Typed here so this compiles without @types/node; bundlers still replace the literal.
+declare const process: { env: { NODE_ENV?: string } }
 const isDev = process.env.NODE_ENV === 'development'
 
 onErrorCaptured((err) => {

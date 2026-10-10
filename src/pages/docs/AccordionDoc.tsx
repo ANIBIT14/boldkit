@@ -54,7 +54,7 @@ export function AccordionDoc() {
       <ComponentDoc
         name="Accordion"
         description="A vertically stacked set of interactive headings that each reveal a section of content with bold neubrutalism styling."
-        dependencies={['@radix-ui/react-accordion']}
+        dependencies={['radix-ui']}
         vueDependencies={['reka-ui']}
         sourceCode={sourceCode}
         vueSourceCode={vueSourceCode}

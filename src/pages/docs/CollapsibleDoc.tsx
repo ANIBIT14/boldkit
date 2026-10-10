@@ -42,7 +42,7 @@ import Collapsible from '@/components/ui/Collapsible.vue'
 import CollapsibleContent from '@/components/ui/CollapsibleContent.vue'
 import CollapsibleTrigger from '@/components/ui/CollapsibleTrigger.vue'
 import Button from '@/components/ui/Button.vue'
-import { ChevronsUpDown } from 'lucide-vue-next'
+import { ChevronsUpDown } from '@lucide/vue'
 </script>
 
 <template>
@@ -68,7 +68,7 @@ export function CollapsibleDoc() {
       <ComponentDoc
         name="Collapsible"
         description="An interactive component which expands/collapses a panel with smooth animations."
-        dependencies={['@radix-ui/react-collapsible']}
+        dependencies={['radix-ui']}
         vueDependencies={['reka-ui']}
         sourceCode={sourceCode}
         vueSourceCode={vueSourceCode}
@@ -107,7 +107,7 @@ export function CollapsibleDoc() {
   </CollapsibleContent>
 </Collapsible>`}
         vueCode={`<script setup lang="ts">
-import { ChevronsUpDown } from 'lucide-vue-next'
+import { ChevronsUpDown } from '@lucide/vue'
 </script>
 
 <template>
@@ -224,7 +224,7 @@ const isOpen = ref(false)
   </CollapsibleContent>
 </Collapsible>`}
         vueCode={`<script setup lang="ts">
-import { ChevronsUpDown } from 'lucide-vue-next'
+import { ChevronsUpDown } from '@lucide/vue'
 </script>
 
 <template>
@@ -276,7 +276,7 @@ import { ChevronsUpDown } from 'lucide-vue-next'
   </CollapsibleTrigger>
 </Collapsible>`}
         vueCode={`<script setup lang="ts">
-import { ChevronsUpDown } from 'lucide-vue-next'
+import { ChevronsUpDown } from '@lucide/vue'
 </script>
 
 <template>

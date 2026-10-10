@@ -4,7 +4,8 @@
   "type": "registry:ui",
   "description": "A set of radio buttons",
   "dependencies": [
-    "reka-ui"
+    "reka-ui@^2.11.0",
+    "@lucide/vue"
   ],
   "registryDependencies": [
     "@boldkit/utils"

@@ -2,7 +2,7 @@
 import { ref, computed, watch, nextTick } from 'vue'
 import { cva, type VariantProps } from 'class-variance-authority'
 import { cn } from '@/lib/utils'
-import { Star, Heart, Circle } from 'lucide-vue-next'
+import { Star, Heart, Circle } from '@lucide/vue'
 
 const ratingVariants = cva('flex items-center gap-0.5', {
   variants: {

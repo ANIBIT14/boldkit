@@ -2,6 +2,11 @@ import * as React from 'react'
 import { cn } from '@/lib/utils'
 import { ChartEmpty } from './chart'
 
+// Typed here so the dev-only guards compile without @types/node (Vite's
+// default tsconfig has none). `declare` emits nothing: bundlers still
+// replace the literal process.env.NODE_ENV.
+declare const process: { env: { NODE_ENV?: string } }
+
 export interface SankeyNode {
   id: string
   label: string

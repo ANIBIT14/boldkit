@@ -4,7 +4,7 @@
   "title": "Dialog",
   "description": "A window overlaid on the primary window with neubrutalism borders and shadows",
   "dependencies": [
-    "@radix-ui/react-dialog",
+    "radix-ui",
     "lucide-react"
   ],
   "registryDependencies": [

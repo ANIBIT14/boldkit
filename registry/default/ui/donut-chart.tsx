@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { cn } from '@/lib/utils'
 import { Pie, PieChart, Cell, Label } from 'recharts'
-import { ChartContainer } from './chart'
+import { ChartContainer, type ChartContainerProps } from './chart'
 import { ChartEmpty } from './chart'
 import { ChartTooltip, ChartTooltipContent } from './chart'
 import type { ChartConfig } from './chart'
@@ -20,6 +20,8 @@ export interface DonutChartProps extends React.HTMLAttributes<HTMLDivElement> {
   centerContent?: React.ReactNode
   showLabels?: 'none' | 'inside' | 'outside'
   variant?: 'default' | 'separated'
+  /** Container border/shadow style — `variant` here is the chart geometry. */
+  containerVariant?: ChartContainerProps['variant']
   showTooltip?: boolean
   animated?: boolean
   emptyState?: React.ReactNode
@@ -35,6 +37,7 @@ const DonutChart = React.forwardRef<HTMLDivElement, DonutChartProps>(
       centerContent,
       showLabels = 'none',
       variant = 'default',
+      containerVariant,
       showTooltip = true,
       animated = true,
       emptyState,
@@ -53,6 +56,7 @@ const DonutChart = React.forwardRef<HTMLDivElement, DonutChartProps>(
       <ChartContainer
         ref={ref}
         config={config}
+        variant={containerVariant}
         className={cn('aspect-square max-h-[300px]', className)}
         {...props}
       >

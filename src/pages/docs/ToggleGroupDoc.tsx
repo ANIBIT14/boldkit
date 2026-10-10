@@ -28,7 +28,7 @@ export default function Example() {
 const vueUsageCode = `<script setup lang="ts">
 import ToggleGroup from '@/components/ui/ToggleGroup.vue'
 import ToggleGroupItem from '@/components/ui/ToggleGroupItem.vue'
-import { AlignLeft, AlignCenter, AlignRight } from 'lucide-vue-next'
+import { AlignLeft, AlignCenter, AlignRight } from '@lucide/vue'
 </script>
 
 <template>
@@ -51,7 +51,7 @@ export function ToggleGroupDoc() {
       <ComponentDoc
         name="Toggle Group"
         description="A group of toggle buttons where only one or multiple can be selected with bold neubrutalism styling."
-        dependencies={['@radix-ui/react-toggle-group']}
+        dependencies={['radix-ui']}
         vueDependencies={['reka-ui']}
         sourceCode={sourceCode}
         vueSourceCode={vueSourceCode}
@@ -88,7 +88,7 @@ export function ToggleGroupDoc() {
 </ToggleGroup>`}
         vueCode={`<script setup>
 import { ref } from 'vue'
-import { AlignLeft, AlignCenter, AlignRight } from 'lucide-vue-next'
+import { AlignLeft, AlignCenter, AlignRight } from '@lucide/vue'
 const value = ref('center')
 </script>
 
@@ -136,7 +136,7 @@ const value = ref('center')
 </ToggleGroup>`}
         vueCode={`<script setup>
 import { ref } from 'vue'
-import { Bold, Italic, Underline } from 'lucide-vue-next'
+import { Bold, Italic, Underline } from '@lucide/vue'
 const values = ref(['bold'])
 </script>
 
@@ -184,7 +184,7 @@ const values = ref(['bold'])
 </ToggleGroup>`}
         vueCode={`<script setup>
 import { ref } from 'vue'
-import { AlignLeft, AlignCenter, AlignRight } from 'lucide-vue-next'
+import { AlignLeft, AlignCenter, AlignRight } from '@lucide/vue'
 const value = ref('left')
 </script>
 
@@ -232,7 +232,7 @@ const value = ref('left')
 </ToggleGroup>`}
         vueCode={`<script setup>
 import { ref } from 'vue'
-import { AlignLeft, AlignCenter, AlignRight } from 'lucide-vue-next'
+import { AlignLeft, AlignCenter, AlignRight } from '@lucide/vue'
 const smVal = ref('left')
 const mdVal = ref('center')
 const lgVal = ref('right')
@@ -332,7 +332,7 @@ const lgVal = ref('right')
 </ToggleGroup>`}
         vueCode={`<script setup>
 import { ref } from 'vue'
-import { AlignLeft, AlignCenter, AlignRight } from 'lucide-vue-next'
+import { AlignLeft, AlignCenter, AlignRight } from '@lucide/vue'
 const value = ref('left')
 </script>
 

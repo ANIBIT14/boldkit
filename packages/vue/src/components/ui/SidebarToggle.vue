@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { inject, computed } from 'vue'
-import { PanelLeft } from 'lucide-vue-next'
+import { PanelLeft } from '@lucide/vue'
 import { cn } from '@/lib/utils'
 import { SIDEBAR_INJECTION_KEY, type SidebarContext } from './SidebarProvider.vue'
 import Button from './Button.vue'

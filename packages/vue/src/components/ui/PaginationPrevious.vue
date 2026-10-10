@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ChevronLeft } from 'lucide-vue-next'
+import { ChevronLeft } from '@lucide/vue'
 import PaginationLink from './PaginationLink.vue'
 import { cn } from '@/lib/utils'
 

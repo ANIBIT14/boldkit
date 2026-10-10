@@ -35,7 +35,7 @@ export function AvatarDoc() {
       <ComponentDoc
         name="Avatar"
         description="An image element with a fallback for representing the user with bold neubrutalism borders."
-        dependencies={['@radix-ui/react-avatar']}
+        dependencies={['radix-ui']}
         vueDependencies={['reka-ui']}
         sourceCode={sourceCode}
         vueSourceCode={vueSourceCode}

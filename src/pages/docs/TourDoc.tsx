@@ -109,7 +109,7 @@ export function TourDoc() {
         name="Tour"
         description="A step-by-step product tour component with spotlight highlighting, progress indicators, and smooth transitions."
         dependencies={['lucide-react']}
-        vueDependencies={['lucide-vue-next']}
+        vueDependencies={['@lucide/vue']}
         sourceCode={sourceCode}
         usageCode={usageCode}
         vueSourceCode={vueSourceCode}

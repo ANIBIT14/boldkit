@@ -1,6 +1,11 @@
 import * as React from 'react'
 import { cn } from '@/lib/utils'
 
+// Typed here so the dev-only guards compile without @types/node (Vite's
+// default tsconfig has none). `declare` emits nothing: bundlers still
+// replace the literal process.env.NODE_ENV.
+declare const process: { env: { NODE_ENV?: string } }
+
 export interface SliderProps extends Omit<React.HTMLAttributes<HTMLDivElement>, 'onChange' | 'defaultValue'> {
   value?: number[]
   defaultValue?: number[]

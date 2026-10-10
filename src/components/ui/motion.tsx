@@ -157,12 +157,44 @@ export function useShake() {
  */
 export function useViewTransition() {
   return React.useCallback(
-    (callback: () => void | Promise<void>, recipe?: PageTransition) => {
-      return startViewTransition(callback, recipe)
+    (callback: () => void | Promise<void>, recipe?: PageTransition, options?: { types?: string[] }) => {
+      return startViewTransition(callback, recipe, options)
     },
     []
   )
 }
+
+// ──────────────────────────────────────────────────────────────────
+// React 19.3 <ViewTransition> / addTransitionType
+// ──────────────────────────────────────────────────────────────────
+
+type ViewTransitionClass = string | Record<string, string>
+export interface ViewTransitionProps {
+  children?: React.ReactNode
+  name?: string
+  default?: ViewTransitionClass
+  enter?: ViewTransitionClass
+  exit?: ViewTransitionClass
+  update?: ViewTransitionClass
+  share?: ViewTransitionClass
+}
+
+const ReactVT = React as unknown as {
+  ViewTransition?: React.ComponentType<ViewTransitionProps>
+  addTransitionType?: (type: string) => void
+}
+
+/**
+ * React's `<ViewTransition>` (stable in 19.3). On older React it renders its
+ * children untouched, so a component can adopt it without raising the React
+ * floor. BoldKit's recipes are available as classes: `enter="bk-stamp"`,
+ * `"bk-hard-wipe"`, `"bk-color-block"`.
+ */
+export const ViewTransition: React.ComponentType<ViewTransitionProps> =
+  ReactVT.ViewTransition ?? (({ children }: ViewTransitionProps) => <>{children}</>)
+
+/** `addTransitionType` on React 19.3+, a no-op before it. Call inside startTransition. */
+export const addTransitionType: (type: string) => void = ReactVT.addTransitionType ?? (() => {})
 
 // Re-export the core helper so consumers don't need a second import
 export { prefersReducedMotion }

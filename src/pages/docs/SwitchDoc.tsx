@@ -39,7 +39,7 @@ export function SwitchDoc() {
       <ComponentDoc
         name="Switch"
         description="A toggle switch control with bold neubrutalism styling for binary on/off states."
-        dependencies={['@radix-ui/react-switch']}
+        dependencies={['radix-ui']}
         sourceCode={sourceCode}
         usageCode={usageCode}
         vueDependencies={['reka-ui']}

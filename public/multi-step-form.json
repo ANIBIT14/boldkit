@@ -6,10 +6,10 @@
   "dependencies": [],
   "registryDependencies": [
     "@boldkit/utils",
-    "stepper",
-    "button",
-    "input",
-    "label"
+    "@boldkit/stepper",
+    "@boldkit/button",
+    "@boldkit/input",
+    "@boldkit/label"
   ],
   "files": [
     {

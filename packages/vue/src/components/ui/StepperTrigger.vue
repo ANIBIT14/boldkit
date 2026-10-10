@@ -2,7 +2,7 @@
 import { computed, inject } from 'vue'
 import { cva, type VariantProps } from 'class-variance-authority'
 import { cn } from '@/lib/utils'
-import { Check } from 'lucide-vue-next'
+import { Check } from '@lucide/vue'
 import { STEPPER_INJECTION_KEY, type StepperContext } from './Stepper.vue'
 import { STEPPER_ITEM_INJECTION_KEY, type StepperItemContext } from './StepperItem.vue'
 

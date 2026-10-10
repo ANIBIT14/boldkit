@@ -5,7 +5,7 @@
   "description": "Star rating component with half-values, multiple icons, and keyboard navigation",
   "dependencies": [
     "class-variance-authority",
-    "lucide-vue-next"
+    "@lucide/vue"
   ],
   "registryDependencies": [
     "@boldkit/utils"

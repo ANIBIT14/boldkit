@@ -1,0 +1,28 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "questionnaire",
+  "type": "registry:ui",
+  "description": "Multi-step question flow with single/multiple/free-text questions, skip, conditional logic and keyboard shortcuts",
+  "dependencies": [
+    "@lucide/vue"
+  ],
+  "registryDependencies": [
+    "@boldkit/utils",
+    "@boldkit/button",
+    "@boldkit/input",
+    "@boldkit/kbd",
+    "@boldkit/label",
+    "@boldkit/textarea"
+  ],
+  "files": [
+    {
+      "path": "components/ui/Questionnaire.vue",
+      "type": "registry:ui"
+    },
+    {
+      "path": "components/ui/questionnaire-types.ts",
+      "type": "registry:ui"
+    }
+  ],
+  "title": "Questionnaire"
+}

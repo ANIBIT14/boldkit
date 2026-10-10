@@ -40,7 +40,7 @@ export function AspectRatioDoc() {
         name="Aspect Ratio"
         description="Displays content within a desired ratio, perfect for images and videos with consistent dimensions."
         registryName="aspect-ratio"
-        dependencies={['@radix-ui/react-aspect-ratio']}
+        dependencies={['radix-ui']}
         vueDependencies={['reka-ui']}
         sourceCode={sourceCode}
         vueSourceCode={vueSourceCode}

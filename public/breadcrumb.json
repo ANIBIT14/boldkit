@@ -4,7 +4,7 @@
   "title": "Breadcrumb",
   "description": "Displays the path to the current resource using a hierarchy of links",
   "dependencies": [
-    "@radix-ui/react-slot",
+    "radix-ui",
     "lucide-react"
   ],
   "registryDependencies": [

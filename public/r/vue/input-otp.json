@@ -4,8 +4,8 @@
   "type": "registry:ui",
   "description": "Accessible one-time password input",
   "dependencies": [
-    "reka-ui",
-    "lucide-vue-next"
+    "reka-ui@^2.11.0",
+    "@lucide/vue"
   ],
   "registryDependencies": [
     "@boldkit/utils"
@@ -28,7 +28,7 @@
     },
     {
       "path": "components/ui/InputOTPSeparator.vue",
-      "content": "<script setup lang=\"ts\">\nimport { Dot } from 'lucide-vue-next'\n</script>\n\n<template>\n  <div role=\"presentation\" aria-hidden=\"true\">\n    <slot>\n      <Dot class=\"h-4 w-4\" />\n    </slot>\n  </div>\n</template>\n",
+      "content": "<script setup lang=\"ts\">\nimport { Dot } from '@lucide/vue'\n</script>\n\n<template>\n  <div role=\"presentation\" aria-hidden=\"true\">\n    <slot>\n      <Dot class=\"h-4 w-4\" />\n    </slot>\n  </div>\n</template>\n",
       "type": "registry:ui"
     }
   ],

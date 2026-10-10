@@ -85,7 +85,7 @@ export function StepperDoc() {
         name="Stepper"
         description="Multi-step form wizard with progress indicators and content panels."
         dependencies={['class-variance-authority', 'lucide-react']}
-        vueDependencies={['class-variance-authority', 'lucide-vue-next']}
+        vueDependencies={['class-variance-authority', '@lucide/vue']}
         sourceCode={sourceCode}
         vueSourceCode={vueSourceCode}
         usageCode={usageCode}

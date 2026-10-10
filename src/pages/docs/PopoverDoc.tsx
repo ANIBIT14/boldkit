@@ -48,7 +48,7 @@ export function PopoverDoc() {
       <ComponentDoc
         name="Popover"
         description="Displays rich content in a portal, triggered by a button with bold neubrutalism styling."
-        dependencies={['@radix-ui/react-popover']}
+        dependencies={['radix-ui']}
         vueDependencies={['reka-ui']}
         sourceCode={sourceCode}
         vueSourceCode={vueSourceCode}

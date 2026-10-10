@@ -74,7 +74,7 @@ export function SheetDoc() {
       <ComponentDoc
         name="Sheet"
         description="A slide-out panel that extends from the edge of the screen with bold neubrutalism styling."
-        dependencies={['@radix-ui/react-dialog', 'class-variance-authority']}
+        dependencies={['radix-ui', 'class-variance-authority']}
         vueDependencies={['reka-ui', 'class-variance-authority']}
         sourceCode={sourceCode}
         vueSourceCode={vueSourceCode}

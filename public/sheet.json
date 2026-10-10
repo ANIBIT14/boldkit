@@ -4,7 +4,7 @@
   "title": "Sheet",
   "description": "Extends Dialog to display content that complements the main page",
   "dependencies": [
-    "@radix-ui/react-dialog",
+    "radix-ui",
     "class-variance-authority",
     "lucide-react"
   ],

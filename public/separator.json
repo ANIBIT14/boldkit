@@ -4,7 +4,7 @@
   "title": "Separator",
   "description": "Visually separates content with a thick border",
   "dependencies": [
-    "@radix-ui/react-separator"
+    "radix-ui"
   ],
   "registryDependencies": [
     "@boldkit/utils"

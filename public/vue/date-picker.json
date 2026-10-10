@@ -4,7 +4,7 @@
   "type": "registry:ui",
   "description": "A single-date picker that opens a calendar popover",
   "dependencies": [
-    "lucide-vue-next"
+    "@lucide/vue"
   ],
   "registryDependencies": [
     "@boldkit/utils",

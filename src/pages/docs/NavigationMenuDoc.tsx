@@ -73,7 +73,7 @@ export function NavigationMenuDoc() {
         name="Navigation Menu"
         description="A collection of links and dropdown panels for building site navigation, with bold borders and hard shadows."
         registryName="navigation-menu"
-        dependencies={['@radix-ui/react-navigation-menu']}
+        dependencies={['radix-ui']}
         vueDependencies={['reka-ui']}
         sourceCode={sourceCode}
         vueSourceCode={vueSourceCode}

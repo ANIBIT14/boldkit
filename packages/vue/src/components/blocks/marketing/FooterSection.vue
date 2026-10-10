@@ -4,7 +4,7 @@ import { cn, safeHref } from '@/lib/utils'
 import Button from '@/components/ui/Button.vue'
 import Input from '@/components/ui/Input.vue'
 import Separator from '@/components/ui/Separator.vue'
-import { Mail, ArrowRight } from 'lucide-vue-next'
+import { Mail, ArrowRight } from '@lucide/vue'
 import type { Component } from 'vue'
 
 type FooterVariant = 'multiColumn' | 'withNewsletter' | 'simple' | 'minimal' | 'withCTA'

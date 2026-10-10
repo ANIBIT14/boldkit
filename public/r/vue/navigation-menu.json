@@ -4,8 +4,8 @@
   "type": "registry:ui",
   "description": "A collection of links and dropdown panels for site navigation",
   "dependencies": [
-    "reka-ui",
-    "lucide-vue-next",
+    "reka-ui@^2.11.0",
+    "@lucide/vue",
     "class-variance-authority"
   ],
   "registryDependencies": [
@@ -29,7 +29,7 @@
     },
     {
       "path": "components/ui/NavigationMenuTrigger.vue",
-      "content": "<script setup lang=\"ts\">\nimport { NavigationMenuTrigger } from 'reka-ui'\nimport { ChevronDown } from 'lucide-vue-next'\nimport { cn } from '@/lib/utils'\nimport { navigationMenuTriggerStyle } from './navigation-menu-variants'\n\ndefineProps<{\n  class?: string\n}>()\n</script>\n\n<template>\n  <NavigationMenuTrigger :class=\"cn(navigationMenuTriggerStyle(), 'group', $props.class)\">\n    <slot />\n    <ChevronDown\n      class=\"relative top-[1px] ml-1 h-3 w-3 stroke-[3] transition duration-200 group-data-[state=open]:rotate-180\"\n      aria-hidden=\"true\"\n    />\n  </NavigationMenuTrigger>\n</template>\n",
+      "content": "<script setup lang=\"ts\">\nimport { NavigationMenuTrigger } from 'reka-ui'\nimport { ChevronDown } from '@lucide/vue'\nimport { cn } from '@/lib/utils'\nimport { navigationMenuTriggerStyle } from './navigation-menu-variants'\n\ndefineProps<{\n  class?: string\n}>()\n</script>\n\n<template>\n  <NavigationMenuTrigger :class=\"cn(navigationMenuTriggerStyle(), 'group', $props.class)\">\n    <slot />\n    <ChevronDown\n      class=\"relative top-[1px] ml-1 h-3 w-3 stroke-[3] transition duration-200 group-data-[state=open]:rotate-180\"\n      aria-hidden=\"true\"\n    />\n  </NavigationMenuTrigger>\n</template>\n",
       "type": "registry:ui"
     },
     {

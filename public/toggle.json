@@ -4,7 +4,7 @@
   "title": "Toggle",
   "description": "A two-state button that can be either on or off",
   "dependencies": [
-    "@radix-ui/react-toggle",
+    "radix-ui",
     "class-variance-authority"
   ],
   "registryDependencies": [

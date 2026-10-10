@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ContextMenuRadioItem as ContextMenuRadioItemPrimitive, ContextMenuItemIndicator } from 'reka-ui'
-import { Circle } from 'lucide-vue-next'
+import { Circle } from '@lucide/vue'
 import { cn } from '@/lib/utils'
 
 defineProps<{

@@ -1,0 +1,21 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "toast",
+  "title": "Toast",
+  "description": "First-party brutalist toast stacks with an imperative toast() API, promise toasts, swipe and stacking",
+  "dependencies": [
+    "radix-ui",
+    "lucide-react"
+  ],
+  "registryDependencies": [
+    "@boldkit/utils"
+  ],
+  "files": [
+    {
+      "path": "registry/default/ui/toast.tsx",
+      "type": "registry:ui",
+      "target": "components/ui/toast.tsx"
+    }
+  ],
+  "type": "registry:ui"
+}

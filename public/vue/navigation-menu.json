@@ -4,8 +4,8 @@
   "type": "registry:ui",
   "description": "A collection of links and dropdown panels for site navigation",
   "dependencies": [
-    "reka-ui",
-    "lucide-vue-next",
+    "reka-ui@^2.11.0",
+    "@lucide/vue",
     "class-variance-authority"
   ],
   "registryDependencies": [

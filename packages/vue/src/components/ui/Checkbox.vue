@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 import { CheckboxRoot, CheckboxIndicator, type CheckboxRootProps } from 'reka-ui'
-import { Check } from 'lucide-vue-next'
+import { Check } from '@lucide/vue'
 import { cn } from '@/lib/utils'
 
 // Public API mirrors Radix/React: `checked` + `update:checked` (supports v-model:checked).

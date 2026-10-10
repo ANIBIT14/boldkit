@@ -61,7 +61,7 @@ export function ContextMenuDoc() {
         name="Context Menu"
         description="Displays a menu of actions or options triggered by a right-click, with thick borders and hard shadows."
         registryName="context-menu"
-        dependencies={['@radix-ui/react-context-menu']}
+        dependencies={['radix-ui']}
         vueDependencies={['reka-ui']}
         sourceCode={sourceCode}
         vueSourceCode={vueSourceCode}

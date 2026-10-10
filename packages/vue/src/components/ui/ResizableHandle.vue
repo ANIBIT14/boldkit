@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed } from 'vue'
-import { GripVertical } from 'lucide-vue-next'
+import { GripVertical } from '@lucide/vue'
 import { SplitterResizeHandle, type SplitterResizeHandleProps } from 'reka-ui'
 import { cn } from '@/lib/utils'
 

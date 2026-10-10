@@ -5,6 +5,84 @@ Format follows [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ---
 
+## [3.6.0] — 2026-10-10 — Chat kit, Toast, Questionnaire, NumberField + the 2026 ecosystem update
+
+New components, the 2026 dependency majors, and a set of fixes for installs that were
+already failing on fresh projects. Verified end to end: every React item installed into a
+fresh Vite 8 + TypeScript 6 project with strict (isolated) installs, and every Vue item into
+Nuxt 4.6.1 — including `future.compatibilityVersion: 5` and a Vue 3.6 RC Vapor component.
+
+### Added
+- **Chat kit** (React + Vue, one `chat` item): `MessageScroller` (auto-follow while at the
+  bottom via ResizeObserver, jump-to-latest with unread count, anchored history prepends,
+  `scrollToMessage`), `Message`, `Bubble` (variants, reactions, collapsible), `Attachment`
+  (image/file, upload progress, stretched link) and `Marker` (separators, shimmering live status).
+- **Toast** (React + Vue) — first-party brutalist toast stacks with an imperative
+  `toast()` / `toast.promise()` API, stacking that fans out on hover/focus, swipe, and
+  screen-reader announcement of in-place updates. Sonner stays as it was.
+- **Questionnaire** (React + Vue) — one-question-per-screen flows: single / multiple / text,
+  "Other…", skip, conditional `when`, A/B/C and 1/2/3 shortcuts, native form serialization.
+- **NumberField** (React + Vue on Reka's primitive) — min/max/step, keyboard, Intl formatting
+  (incl. non-Latin digits, compact and accounting formats), press-and-hold, wheel.
+- **Theme presets are installable**: `shadcn add @boldkit/theme-<name>` (14 presets, React + Vue).
+- **`boldkit` base item** — `npx shadcn@latest init https://boldkit.dev/r/boldkit.json` sets up
+  the stylesheet, motion system, utils and the new **`font-outfit` / `font-dm-mono`** items.
+- **React 19.3 `<ViewTransition>`** — re-exported from the motion module with a passthrough
+  fallback on older React; BoldKit's recipes work as classes (`enter="bk-stamp"`).
+  `startViewTransition(cb, recipe, { types })` in both frameworks for `:active-view-transition-type()`.
+- `.bk-scrollbar` (thin foreground scrollbar) and a styled native `<select>` picker
+  (`appearance: base-select`, Chromium) for `NativeSelect`; other browsers are unchanged.
+
+### Changed
+- React primitives now come from the unified **`radix-ui`** package (was 25 `@radix-ui/react-*`).
+- Vue icons moved to **`@lucide/vue`** (`lucide-vue-next` is deprecated); Vue items need
+  **reka-ui ^2.11**.
+- **Vue `Drawer` runs on Reka's native Drawer** (vaul-vue removed). `direction`,
+  `activeSnapPoint` and `dismissible` keep working; other vaul-only props are accepted no-ops.
+- Body font stack is now `'Outfit Variable', 'Outfit', …` in all three stylesheets (the React
+  registry stylesheet previously fell back to Inter).
+- **`variant` on Vue `DonutChart` / `RadarChart` / `RadialBarChart` is now chart geometry**,
+  as in React (`separated`; `filled` / `outlined`; `stacked` / `nested`). The container
+  border/shadow style moved to a new **`containerVariant`** prop in both frameworks. A
+  container value (`elevated`, `flat`, …) passed to `variant` is still honoured — deprecated.
+  The docs already showed `variant="separated"` / `"outlined"` for Vue; those now work.
+- **Vue `RadialBarChart` scales to `max(values)`**, not `max × 1.2` — the largest value fills
+  its ring, as in React. Vue `RadarChart` likewise drops its 1.2× headroom (React: `dataMax`).
+- **Vue `RadarChart` `showLegend` defaults to `true`**, as in React.
+- **Vue chart `height` accepts a number (px)**, as in React; CSS strings still work.
+
+### Fixed — fresh installs that were failing
+- **DataTable broke on TanStack Table 9** (now `latest`): the registry pins `@tanstack/*-table@^8`.
+- **`date-picker` failed to compile on react-day-picker 10**: `initialFocus` → `autoFocus`
+  (valid in 9 and 10).
+- **Vue toasts were unstyled on vue-sonner 2**: `Sonner.vue` now imports `vue-sonner/style.css`.
+- **Copy-paste blocks/templates imported brand icons lucide 1.x removed** (`Github`, `Twitter`,
+  `Linkedin`, …) — redefined locally with `createLucideIcon` in both frameworks.
+- **8 components failed `tsc` in a default Vite project** (`process.env` without `@types/node`):
+  each now declares `process` locally; bundlers still replace `process.env.NODE_ENV`.
+- **Vue SFCs failed to compile in Nuxt without TypeScript, or with TypeScript 7** ("Failed to
+  resolve extends base type" — issue #10): the Vue `utils` item declares `typescript@<7`.
+- **Undeclared dependencies** (break under pnpm): cva, reka-ui, `@internationalized/date`,
+  `embla-carousel`, `@lucide/vue`, `lucide-react`, `tw-animate-css` added where imported.
+- **`multi-step-form` installed shadcn's components** — its registry deps were unscoped.
+- **Theme items wrote `hsl(hsl(…))` on Tailwind v4** (the CLI wraps channel cssVars): theme
+  items now ship `css`, not `cssVars`.
+- **Calendar navigation escaped its card** (nav buttons anchored to the nearest positioned
+  ancestor) — `months` is now the positioning context.
+- **Vue `DonutChart` / `RadialBarChart` rendered at zero width** inside the flex container.
+- **Vue `funnel-chart`, `treemap-chart`, `sankey-chart`, `heatmap-chart` installs were broken.**
+  They pull `chart-utils` via `registryDependencies`, but `public/r/vue/chart-utils.json` was a
+  hand-written file nothing regenerated — it predated `useResolvedChart`, so the installed
+  charts imported a missing export. The Vue registry build now generates it from source.
+
+### Tooling
+- `registry:audit` now also runs `scripts/audit-registry-deps.mjs`: every import in a shipped
+  file must be declared (by the item or its registry deps), registry deps must be scoped, and
+  `process.env` needs a local declaration. `--latest` flags unpinned deps whose npm major moved.
+- Stylesheet parity test covers the new v3.6 utilities block.
+
+---
+
 ## [3.5.4] — 2026-09-20 — Audit pass: accessibility, correctness, and real gates
 
 A full audit of the React and Vue sources (UI, charts, shapes, canvas effects, motion)
