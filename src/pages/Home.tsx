@@ -15,6 +15,11 @@ import { MathCurveLoader } from '@/components/ui/math-curve-loader'
 import { Sparkline } from '@/components/ui/chart'
 import { GaugeChart } from '@/components/ui/chart'
 import { DonutChart } from '@/components/ui/chart'
+import { NumberField, NumberFieldContent, NumberFieldDecrement, NumberFieldIncrement, NumberFieldInput } from '@/components/ui/number-field'
+import { Toaster, toast } from '@/components/ui/toast'
+import { Message, MessageContent, MessageHeader } from '@/components/ui/message'
+import { Bubble } from '@/components/ui/bubble'
+import { Marker } from '@/components/ui/marker'
 import { Layout } from '@/components/layout'
 import {
   Copy, Check, ArrowRight, Zap, Palette, Code2, Smartphone,
@@ -138,20 +143,33 @@ export function Home() {
     <>
       <SEO {...pageSEO.home} />
       <Layout>
+        {/* Outside the showcase section: its entrance transform would become the
+            containing block for the toast viewport's position: fixed. */}
+        <Toaster position="bottom-right" />
 
         {/* ── ANNOUNCEMENT BAR ───────────────────────────────────────── */}
-        <a
-          href="https://favgrab.boldkit.dev/convert"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="group flex items-center justify-center gap-3 border-b-3 border-foreground bg-primary px-4 py-2 hover:bg-primary/90 transition-colors"
-        >
-          <span className="text-[10px] font-black uppercase tracking-[0.2em] text-primary-foreground/70" style={MONO}>New Tool</span>
-          <span className="h-3 w-[2px] bg-primary-foreground/30" />
-          <span className="text-xs font-bold text-primary-foreground" style={MONO}>
-            FavGrab — Extract favicons &amp; convert images, free in your browser
-          </span>
-        </a>
+        <div className="flex items-stretch border-b-3 border-foreground bg-primary">
+          <Link
+            to="/components/chat"
+            className="group flex flex-1 items-center justify-center gap-3 px-4 py-2 hover:bg-primary/90 transition-colors"
+          >
+            <span className="text-[10px] font-black uppercase tracking-[0.2em] text-primary-foreground/70" style={MONO}>New in v3.6</span>
+            <span className="h-3 w-[2px] bg-primary-foreground/30" />
+            <span className="text-xs font-bold text-primary-foreground" style={MONO}>
+              Chat kit for AI assistants, Toast stacks, Questionnaire &amp; Number Field — React &amp; Vue
+            </span>
+            <ArrowRight className="hidden h-3.5 w-3.5 text-primary-foreground transition-transform group-hover:translate-x-0.5 sm:block" />
+          </Link>
+          <a
+            href="https://favgrab.boldkit.dev/convert"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hidden items-center border-l-3 border-foreground px-4 text-[10px] font-black uppercase tracking-[0.2em] text-primary-foreground hover:bg-primary/90 md:flex"
+            style={MONO}
+          >
+            FavGrab ↗
+          </a>
+        </div>
 
         {/* ══════════════════════════════════════════════════════════════
             ACT 1 — HERO
@@ -289,7 +307,7 @@ export function Home() {
 
                 {/* Row header */}
                 <div className="border-b-3 border-foreground bg-foreground px-4 py-2 flex items-center justify-between">
-                  <span className="text-[10px] font-black uppercase tracking-[0.25em] text-background" style={MONO}>BoldKit v3.4 — Live Preview</span>
+                  <span className="text-[10px] font-black uppercase tracking-[0.25em] text-background" style={MONO}>BoldKit v3.6 — Live Preview</span>
                   <div className="flex gap-1">
                     <div className="h-2.5 w-2.5 bg-primary" />
                     <div className="h-2.5 w-2.5 bg-secondary" />
@@ -334,7 +352,7 @@ export function Home() {
                       <span className="text-[9px] font-black uppercase tracking-[0.2em] text-accent" style={MONO}>Canvas Effects</span>
                     </div>
                     <div className="absolute top-3 right-3">
-                      <Badge variant="accent" className="text-[8px] px-1.5 py-0 h-4">New v3.4</Badge>
+                      <Badge variant="accent" className="text-[8px] px-1.5 py-0 h-4">Live</Badge>
                     </div>
                   </div>
 
@@ -486,10 +504,22 @@ export function Home() {
               <div className="flex flex-col items-end gap-1.5">
                 <span className="text-[10px] font-black uppercase tracking-widest text-muted-foreground" style={MONO}>Recently Added</span>
                 <div className="flex gap-1.5 flex-wrap justify-end">
-                  {['Canvas Effects', 'ASCII Shapes', 'Math Curves', 'Carousel', 'Sidebar', 'Timeline'].map((label) => (
-                    <span key={label} className="border-2 border-foreground bg-background px-2 py-0.5 text-[10px] font-bold" style={MONO}>
+                  {[
+                    ['Chat Kit', '/components/chat'],
+                    ['Toast', '/components/toast'],
+                    ['Questionnaire', '/components/questionnaire'],
+                    ['Number Field', '/components/number-field'],
+                    ['Theme Presets', '/themes'],
+                    ['Canvas Effects', '/canvas-effects'],
+                  ].map(([label, to]) => (
+                    <Link
+                      key={label}
+                      to={to}
+                      className="border-2 border-foreground bg-background px-2 py-0.5 text-[10px] font-bold transition-colors hover:bg-accent"
+                      style={MONO}
+                    >
                       {label}
-                    </span>
+                    </Link>
                   ))}
                 </div>
               </div>
@@ -517,6 +547,61 @@ export function Home() {
               {/* ── Components Tab ── */}
               <TabsContent value="components">
                 <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+                  <Card className="md:col-span-2 lg:col-span-3">
+                    <CardHeader className="border-b-3 border-foreground bg-accent">
+                      <CardTitle className="flex items-center gap-2" style={MONO}>
+                        New in v3.6 <Badge variant="default" className="text-[10px]">React + Vue</Badge>
+                      </CardTitle>
+                    </CardHeader>
+                    <CardContent className="pt-5">
+                      <div className="grid gap-5 lg:grid-cols-[1.4fr_1fr]">
+                        <div className="space-y-3 border-3 border-foreground bg-muted/30 p-4">
+                          <Message from="user">
+                            <MessageHeader name="You" />
+                            <MessageContent><Bubble variant="primary">Make my dashboard louder.</Bubble></MessageContent>
+                          </Message>
+                          <Message from="assistant">
+                            <MessageHeader name="BoldBot" />
+                            <MessageContent><Bubble>Thicker borders, hard shadows, one clashing accent. Want a draft?</Bubble></MessageContent>
+                          </Message>
+                          <Marker active>Drafting layout…</Marker>
+                        </div>
+                        <div className="flex flex-col gap-4">
+                          <NumberField defaultValue={3} min={0} max={10}>
+                            <NumberFieldContent>
+                              <NumberFieldDecrement />
+                              <NumberFieldInput aria-label="Quantity" />
+                              <NumberFieldIncrement />
+                            </NumberFieldContent>
+                          </NumberField>
+                          <Button
+                            variant="secondary"
+                            onClick={() => toast.success('Shipped v3.6', { description: 'Four new components, React & Vue' })}
+                          >
+                            Fire a toast
+                          </Button>
+                          <div className="grid grid-cols-2 gap-2">
+                            {[
+                              ['Chat Kit', '/components/chat'],
+                              ['Toast', '/components/toast'],
+                              ['Questionnaire', '/components/questionnaire'],
+                              ['Number Field', '/components/number-field'],
+                            ].map(([label, to]) => (
+                              <Link
+                                key={label}
+                                to={to}
+                                className="flex items-center justify-between border-3 border-foreground bg-background px-3 py-2 text-xs font-bold uppercase tracking-wide shadow-[3px_3px_0px_hsl(var(--shadow-color))] transition hover:translate-x-[3px] hover:translate-y-[3px] hover:shadow-none"
+                                style={MONO}
+                              >
+                                {label} <ArrowRight className="h-3.5 w-3.5" />
+                              </Link>
+                            ))}
+                          </div>
+                        </div>
+                      </div>
+                    </CardContent>
+                  </Card>
+
                   <Card className="md:col-span-2">
                     <CardHeader className="border-b-3 border-foreground bg-primary">
                       <CardTitle style={MONO}>Buttons</CardTitle>
@@ -565,9 +650,7 @@ export function Home() {
 
                   <Card>
                     <CardHeader className="border-b-3 border-foreground bg-accent">
-                      <CardTitle className="flex items-center gap-2" style={MONO}>
-                        Spinners <Badge variant="secondary" className="text-[10px]">New</Badge>
-                      </CardTitle>
+                      <CardTitle style={MONO}>Spinners</CardTitle>
                     </CardHeader>
                     <CardContent className="pt-5">
                       <div className="flex flex-wrap items-center gap-6">
@@ -606,9 +689,7 @@ export function Home() {
 
                   <Card className="md:col-span-2">
                     <CardHeader className="border-b-3 border-foreground bg-success">
-                      <CardTitle className="flex items-center gap-2" style={MONO}>
-                        Stat Cards <Badge variant="accent" className="text-[10px]">New</Badge>
-                      </CardTitle>
+                      <CardTitle style={MONO}>Stat Cards</CardTitle>
                     </CardHeader>
                     <CardContent className="pt-5">
                       <div className="grid sm:grid-cols-2 gap-4">
