@@ -4,6 +4,7 @@ import { Reveal, Stagger, useShake, ViewTransition, addTransitionType } from '@/
 import { Button } from '@/components/ui/button'
 import { Skeleton } from '@/components/ui/skeleton'
 import { Progress } from '@/components/ui/progress'
+import { useTheme } from '@/hooks/use-theme'
 import sourceCode from '@/components/ui/motion.tsx?raw'
 import coreCode from '@/lib/motion-core.ts?raw'
 
@@ -172,6 +173,18 @@ function ViewTransitionDemo() {
         <Button onClick={() => go('next')}>Next</Button>
       </div>
     </div>
+  )
+}
+
+function ThemeRevealDemo() {
+  const { resolvedTheme, setTheme } = useTheme()
+  return (
+    <Button
+      variant="outline"
+      onClick={(e) => setTheme(resolvedTheme === 'light' ? 'dark' : 'light', { origin: e.currentTarget })}
+    >
+      Switch to {resolvedTheme === 'light' ? 'dark' : 'light'}
+    </Button>
   )
 }
 
@@ -407,6 +420,39 @@ function Slides() {
 startViewTransition(() => { index.value++ }, undefined, { types: ['next'] })`}
       >
         <ViewTransitionDemo />
+      </ExampleSection>
+
+      <ExampleSection
+        title="Theme reveal"
+        description="Pass an origin to setTheme and the new theme wipes in as a circle growing from it — use the clicked element so keyboard activation works too. It ships in the use-theme hook / composable and needs no stylesheet. circularReveal(update, origin) does the same for any other swap, like applying a preset. Unsupported browsers, reduced motion and SSR fall back to an instant swap."
+        code={`import { useTheme, circularReveal } from '@/hooks/use-theme'
+
+const { resolvedTheme, setTheme } = useTheme()
+
+<button onClick={(e) => setTheme(resolvedTheme === 'light' ? 'dark' : 'light', { origin: e.currentTarget })}>
+  Toggle theme
+</button>
+
+// Any other DOM / state change (React state is flushed for you):
+circularReveal(() => applyPreset(preset), e.currentTarget)`}
+        vueCode={`<script setup lang="ts">
+import { nextTick } from 'vue'
+import { useTheme, circularReveal } from '@/composables/useTheme'
+
+const { resolvedTheme, setTheme } = useTheme()
+const toggle = (e: MouseEvent) =>
+  setTheme(resolvedTheme.value === 'light' ? 'dark' : 'light', { origin: e.currentTarget as Element })
+
+// Any other change: return nextTick() so the DOM is patched in time.
+const apply = (e: MouseEvent) =>
+  circularReveal(() => { preset.value = next; return nextTick() }, e.currentTarget as Element)
+</script>
+
+<template>
+  <button @click="toggle">Toggle theme</button>
+</template>`}
+      >
+        <ThemeRevealDemo />
       </ExampleSection>
 
       <ExampleSection

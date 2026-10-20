@@ -15,6 +15,7 @@ import { Copy, Check, AlertCircle, Palette, Sun, Moon, Download } from 'lucide-r
 import { themePresets, neutralPalette, type ThemePreset } from '@/config/theme-presets'
 import { Layout } from '@/components/layout'
 import { ReactIcon, VueIcon } from '@/hooks/use-framework'
+import { circularReveal } from '@/hooks/use-theme'
 import { SEO, pageSEO } from '@/components/SEO'
 
 // Helper functions for color conversion
@@ -627,7 +628,7 @@ export function ThemeBuilder({ embedded = false }: ThemeBuilderProps) {
                       className="group relative flex flex-col border-2 border-foreground hover:shadow-[3px_3px_0px_hsl(var(--foreground))] hover:-translate-x-[1px] hover:-translate-y-[1px] transition duration-100 overflow-hidden"
                     >
                       <button
-                        onClick={() => applyPreset(preset)}
+                        onClick={(e) => circularReveal(() => applyPreset(preset), e.currentTarget)}
                         className="flex flex-col text-left"
                       >
                         {/* Color strip */}

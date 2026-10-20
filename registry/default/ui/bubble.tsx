@@ -44,6 +44,10 @@ export interface BubbleProps extends React.HTMLAttributes<HTMLDivElement> {
   reactions?: BubbleReaction[]
   /** Makes reaction chips toggle buttons. */
   onReactionClick?: (reaction: BubbleReaction, index: number) => void
+  /** The reply hasn't started yet: shows hopping dots in place of the content. */
+  typing?: boolean
+  /** Content is still arriving: adds a blinking caret and marks the bubble busy. */
+  streaming?: boolean
 }
 
 const Bubble = React.forwardRef<HTMLDivElement, BubbleProps>(
@@ -55,6 +59,8 @@ const Bubble = React.forwardRef<HTMLDivElement, BubbleProps>(
       collapsedLines,
       reactions,
       onReactionClick,
+      typing = false,
+      streaming = false,
       children,
       ...props
     },
@@ -85,6 +91,7 @@ const Bubble = React.forwardRef<HTMLDivElement, BubbleProps>(
         ref={ref}
         data-slot="bubble"
         data-variant={variant}
+        aria-busy={typing || streaming || undefined}
         className={cn(
           'w-fit max-w-full border-3 border-foreground px-4 py-3 text-sm leading-relaxed break-words',
           // Links and inline code inside message text.
@@ -101,14 +108,25 @@ const Bubble = React.forwardRef<HTMLDivElement, BubbleProps>(
           id={contentId}
           data-slot="bubble-content"
           data-state={collapsible ? (expanded ? 'expanded' : 'collapsed') : undefined}
-          className={cn('space-y-2', clamped && 'overflow-hidden')}
+          className={cn('space-y-2', clamped && 'overflow-hidden', streaming && !typing && 'bk-stream-caret')}
           style={
             clamped
               ? { display: '-webkit-box', WebkitBoxOrient: 'vertical', WebkitLineClamp: collapsedLines }
               : undefined
           }
         >
-          {children}
+          {typing ? (
+            <>
+              <span aria-hidden="true" className="bk-typing">
+                <span />
+                <span />
+                <span />
+              </span>
+              <span className="sr-only">Typing…</span>
+            </>
+          ) : (
+            children
+          )}
         </div>
 
         {collapsible && (overflowing || expanded) && (

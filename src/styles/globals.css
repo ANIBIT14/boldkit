@@ -1378,25 +1378,6 @@ body {
 }
 
 /* ==========================================
-   Theme toggle: circular-reveal View Transition
-   The new theme wipes in as a circle expanding from the toggle button
-   (clip-path animated in JS — see lib/theme-transition.ts). Disable the
-   default root cross-fade and stack the new snapshot on top so the circle
-   reveals over the old theme.
-   ========================================== */
-::view-transition-old(root),
-::view-transition-new(root) {
-  animation: none;
-  mix-blend-mode: normal;
-}
-::view-transition-old(root) {
-  z-index: 0;
-}
-::view-transition-new(root) {
-  z-index: 1;
-}
-
-/* ==========================================
    BoldKit Motion System — L1 keyframes + L2 recipes + a11y guard
    Tokens live in the @theme block above. Source of truth for the
    distributable copy is registry/default/styles/motion.css
@@ -1882,6 +1863,58 @@ html[data-bk-transition='stamp']::view-transition-new(root) {
 }
 @media (forced-colors: active) {
   .bk-shimmer { background: none; -webkit-text-fill-color: currentColor; }
+}
+
+/* Chat kit — Bubble `typing` dots and `streaming` caret. Stepped, not eased:
+   the dots hop and the caret blinks in hard frames. */
+.bk-typing {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  height: 1.5em;
+}
+.bk-typing > span {
+  width: 8px;
+  height: 8px;
+  background-color: currentColor;
+  opacity: 0.35;
+  animation: bk-typing 1.2s steps(1, end) infinite;
+}
+.bk-typing > span:nth-child(2) { animation-delay: 0.2s; }
+.bk-typing > span:nth-child(3) { animation-delay: 0.4s; }
+
+@keyframes bk-typing {
+  0%, 50%, 100% { opacity: 0.35; transform: translateY(0); }
+  17%           { opacity: 1; transform: translateY(-4px); }
+}
+
+/* Caret after the last line of text: on the content itself when it is bare
+   text, otherwise on its last block (so it doesn't drop to a new line). */
+.bk-stream-caret:not(:has(> *))::after,
+.bk-stream-caret > :last-child::after {
+  content: '';
+  display: inline-block;
+  width: 0.55em;
+  height: 1.1em;
+  margin-left: 2px;
+  vertical-align: text-bottom;
+  background-color: currentColor;
+  animation: bk-caret 1s steps(1, end) infinite;
+}
+
+@keyframes bk-caret {
+  50% { opacity: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bk-typing > span { animation: none; opacity: 0.7; }
+  .bk-stream-caret:not(:has(> *))::after,
+  .bk-stream-caret > :last-child::after { animation: none; }
+}
+@media (forced-colors: active) {
+  .bk-typing > span,
+  .bk-stream-caret:not(:has(> *))::after,
+  .bk-stream-caret > :last-child::after { background-color: CanvasText; forced-color-adjust: none; }
 }
 
 /* ===== end BoldKit v3.6 utilities ===== */

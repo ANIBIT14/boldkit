@@ -5,6 +5,28 @@ Format follows [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ---
 
+## [Unreleased]
+
+### Added
+- **Theme reveal** (React + Vue): `setTheme(theme, { origin })` wipes the new theme in as a
+  circle growing from `origin` (an element, or a viewport point). `circularReveal(update, origin)`
+  does the same for any other swap. Ships in the existing `use-theme` item and needs no
+  stylesheet; unsupported browsers, reduced motion and SSR fall back to an instant swap.
+- **Bubble `typing` and `streaming`** (React + Vue, `chat`): stepped hopping dots before a reply
+  starts (with a screen-reader "Typing…" label), and a blinking block caret after the last line
+  while tokens arrive. Both set `aria-busy`; both are still under `prefers-reduced-motion` and
+  use system colours in forced-colors mode.
+- Docs site: route changes use the `hard-wipe` recipe via React's `<ViewTransition>` (skipped on
+  first load and back/forward); Theme Builder presets reveal from the clicked swatch.
+
+### Fixed
+- Docs site theme toggle: the circular reveal never showed — React flipped the theme class
+  before the browser captured the old view, so the circle revealed dark over dark.
+- `use-theme` (React + Vue) no longer throws when `localStorage` is blocked (private mode,
+  sandboxed iframes).
+
+---
+
 ## [3.6.0] — 2026-10-10 — Chat kit, Toast, Questionnaire, NumberField + the 2026 ecosystem update
 
 New components, the 2026 dependency majors, and a set of fixes for installs that were

@@ -402,6 +402,27 @@ describe('Bubble.vue', () => {
     expect(wrapper.find('ul[aria-label="Reactions"] button').exists()).toBe(false)
     expect(wrapper.get('.sr-only').text()).toBe('thumbs up: 2')
   })
+
+  it('shows a typing indicator in place of the slot and marks itself busy', () => {
+    const wrapper = mount(Bubble, {
+      props: { typing: true },
+      slots: { default: 'Hidden until the reply starts' },
+    })
+    expect(wrapper.attributes('aria-busy')).toBe('true')
+    expect(wrapper.findAll('.bk-typing > span')).toHaveLength(3)
+    expect(wrapper.get('.sr-only').text()).toBe('Typing…')
+    expect(wrapper.text()).not.toContain('Hidden until the reply starts')
+  })
+
+  it('adds the streaming caret while content arrives, and nothing by default', async () => {
+    const wrapper = mount(Bubble, { props: { streaming: true }, slots: { default: 'Partial answ' } })
+    expect(wrapper.attributes('aria-busy')).toBe('true')
+    expect(wrapper.get('[data-slot="bubble-content"]').classes()).toContain('bk-stream-caret')
+
+    await wrapper.setProps({ streaming: false })
+    expect(wrapper.attributes('aria-busy')).toBeUndefined()
+    expect(wrapper.get('[data-slot="bubble-content"]').classes()).not.toContain('bk-stream-caret')
+  })
 })
 
 describe('Attachment.vue', () => {

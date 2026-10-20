@@ -465,6 +465,64 @@ function BubblesDemo() {
   )
 }
 
+// ---------------------------------------------------------------------------
+// Typing & streaming demo
+// ---------------------------------------------------------------------------
+
+const STREAMED_REPLY = 'Thicker borders, hard shadows, and one clashing accent. Want a draft?'
+
+function StreamingDemo() {
+  const [phase, setPhase] = useState<'typing' | 'streaming' | 'done'>('typing')
+  const [words, setWords] = useState(0)
+  const [run, setRun] = useState(0)
+  const total = STREAMED_REPLY.split(' ').length
+  const replay = () => {
+    setPhase('typing')
+    setWords(0)
+    setRun((n) => n + 1)
+  }
+
+  useEffect(() => {
+    let count = 0
+    let tick: ReturnType<typeof setInterval> | undefined
+    const start = setTimeout(() => {
+      setPhase('streaming')
+      tick = setInterval(() => {
+        count += 1
+        setWords(count)
+        if (count >= total) {
+          clearInterval(tick)
+          setPhase('done')
+        }
+      }, 140)
+    }, 1400)
+    return () => {
+      clearTimeout(start)
+      clearInterval(tick)
+    }
+  }, [run, total])
+
+  return (
+    <div className="flex w-full max-w-xl flex-col gap-4">
+      <Message from="user">
+        <Bubble variant="primary">Make my dashboard louder.</Bubble>
+      </Message>
+      <Message from="assistant">
+        {phase === 'typing' ? (
+          <Bubble typing />
+        ) : (
+          <Bubble streaming={phase === 'streaming'}>
+            {STREAMED_REPLY.split(' ').slice(0, words).join(' ')}
+          </Bubble>
+        )}
+      </Message>
+      <Button variant="outline" size="sm" className="self-start" onClick={replay}>
+        <RotateCcw className="h-4 w-4" /> Replay
+      </Button>
+    </div>
+  )
+}
+
 export function ChatDoc() {
   return (
     <>
@@ -526,6 +584,22 @@ export function ChatDoc() {
 </template>`}
       >
         <BubblesDemo />
+      </ExampleSection>
+
+      <ExampleSection
+        title="Typing & streaming"
+        description="typing shows stepped, hopping dots before a reply starts (with a screen-reader “Typing…” label). streaming adds a blinking block caret after the last line while tokens arrive. Both set aria-busy, and both go still under prefers-reduced-motion."
+        code={`{status === 'submitted' ? (
+  <Bubble typing />
+) : (
+  <Bubble streaming={status === 'streaming'}>{text}</Bubble>
+)}`}
+        vueCode={`<template>
+  <Bubble v-if="status === 'submitted'" typing />
+  <Bubble v-else :streaming="status === 'streaming'">{{ text }}</Bubble>
+</template>`}
+      >
+        <StreamingDemo />
       </ExampleSection>
 
       <ExampleSection

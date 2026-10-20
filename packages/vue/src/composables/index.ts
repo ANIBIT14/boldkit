@@ -1,5 +1,5 @@
-export { useTheme, useThemeProvider, ThemeProviderKey } from './useTheme'
-export type { Theme, ThemeProviderState, UseThemeProviderOptions } from './useTheme'
+export { useTheme, useThemeProvider, ThemeProviderKey, circularReveal } from './useTheme'
+export type { Theme, ThemeProviderState, UseThemeProviderOptions, RevealOrigin, SetThemeOptions } from './useTheme'
 
 export { useIsMobile } from './useMobile'
 

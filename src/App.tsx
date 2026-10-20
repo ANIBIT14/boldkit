@@ -1,9 +1,10 @@
 import { lazy, Suspense, useState, useEffect } from 'react'
-import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
+import { BrowserRouter, Routes, Route, Navigate, useLocation, useNavigationType } from 'react-router-dom'
 import { ScrollToTop } from '@/components/ScrollToTop'
 import { ThemeProvider } from '@/hooks/use-theme'
 import { FrameworkProvider } from '@/hooks/use-framework'
 import { TooltipProvider } from '@/components/ui/tooltip'
+import { ViewTransition } from '@/components/ui/motion'
 import { Toaster } from '@/components/ui/sonner'
 import { ErrorBoundary } from '@/components/ErrorBoundary'
 import { DocsLayout } from '@/layouts/DocsLayout'
@@ -86,9 +87,27 @@ function PageLoader() {
   )
 }
 
+// React Router runs navigations in startTransition, so keying a ViewTransition
+// by path makes the outgoing page wipe out and the new one wipe in (hard-wipe
+// recipe). Skipped on POP — first load (would flash the prerendered HTML),
+// back/forward, and iOS swipe-back, which animates natively. `default="none"`
+// keeps in-page updates still; no View Transition support or reduced motion
+// just swaps.
+function RouteTransition({ children }: { children: React.ReactNode }) {
+  const { pathname } = useLocation()
+  const recipe = useNavigationType() === 'POP' ? 'none' : 'bk-hard-wipe'
+  return (
+    <ViewTransition key={pathname} enter={recipe} exit={recipe} default="none">
+      {children}
+    </ViewTransition>
+  )
+}
+
 // Wrap a lazy page element in the shared Suspense boundary.
 const page = (element: React.ReactNode) => (
-  <Suspense fallback={<PageLoader />}>{element}</Suspense>
+  <Suspense fallback={<PageLoader />}>
+    <RouteTransition>{element}</RouteTransition>
+  </Suspense>
 )
 
 function App() {

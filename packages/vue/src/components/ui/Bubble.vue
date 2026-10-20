@@ -7,7 +7,8 @@
  *
  * `collapsedLines` clamps long content with a "Show more" toggle (shown only
  * when the content actually overflows). Pass `@reaction-click` to make the
- * reaction chips toggle buttons.
+ * reaction chips toggle buttons. `typing` shows hopping dots before a reply
+ * starts; `streaming` adds a blinking caret while it arrives.
  */
 import { computed, nextTick, onBeforeUnmount, onMounted, onUpdated, ref, useId, watch } from 'vue'
 import { cn } from '@/lib/utils'
@@ -30,12 +31,18 @@ interface BubbleProps {
   reactions?: BubbleReaction[]
   /** Bound by `@reaction-click`; makes reaction chips toggle buttons. */
   onReactionClick?: (reaction: BubbleReaction, index: number) => void
+  /** The reply hasn't started yet: shows hopping dots in place of the content. */
+  typing?: boolean
+  /** Content is still arriving: adds a blinking caret and marks the bubble busy. */
+  streaming?: boolean
   class?: string
 }
 
 const props = withDefaults(defineProps<BubbleProps>(), {
   variant: 'default',
   align: 'auto',
+  typing: false,
+  streaming: false,
 })
 
 const variantClasses = {
@@ -97,6 +104,7 @@ const reactionLabel = (r: BubbleReaction) => `${r.label ?? r.emoji}: ${r.count}`
   <div
     data-slot="bubble"
     :data-variant="props.variant"
+    :aria-busy="props.typing || props.streaming || undefined"
     :class="
       cn(
         'w-fit max-w-full border-3 border-foreground px-4 py-3 text-sm leading-relaxed break-words',
@@ -113,10 +121,14 @@ const reactionLabel = (r: BubbleReaction) => `${r.label ?? r.emoji}: ${r.count}`
       ref="contentEl"
       data-slot="bubble-content"
       :data-state="collapsible ? (expanded ? 'expanded' : 'collapsed') : undefined"
-      :class="cn('space-y-2', clamped && 'overflow-hidden')"
+      :class="cn('space-y-2', clamped && 'overflow-hidden', props.streaming && !props.typing && 'bk-stream-caret')"
       :style="contentStyle"
     >
-      <slot />
+      <template v-if="props.typing">
+        <span aria-hidden="true" class="bk-typing"><span /><span /><span /></span>
+        <span class="sr-only">Typing…</span>
+      </template>
+      <slot v-else />
     </div>
 
     <button

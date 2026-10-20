@@ -392,6 +392,27 @@ describe('Bubble', () => {
     fireEvent.click(chip)
     expect(onReactionClick).toHaveBeenCalledWith(expect.objectContaining({ emoji: '🔥' }), 0)
   })
+
+  it('shows a typing indicator in place of the content and marks itself busy', () => {
+    render(<Bubble typing>Hidden until the reply starts</Bubble>)
+    const bubble = document.querySelector('[data-slot="bubble"]') as HTMLElement
+    expect(bubble).toHaveAttribute('aria-busy', 'true')
+    expect(bubble.querySelectorAll('.bk-typing > span')).toHaveLength(3)
+    expect(screen.getByText('Typing…')).toHaveClass('sr-only')
+    expect(screen.queryByText('Hidden until the reply starts')).not.toBeInTheDocument()
+  })
+
+  it('adds the streaming caret while content arrives, and nothing by default', () => {
+    const { rerender } = render(<Bubble streaming>Partial answ</Bubble>)
+    const bubble = document.querySelector('[data-slot="bubble"]') as HTMLElement
+    const content = bubble.querySelector('[data-slot="bubble-content"]') as HTMLElement
+    expect(bubble).toHaveAttribute('aria-busy', 'true')
+    expect(content).toHaveClass('bk-stream-caret')
+
+    rerender(<Bubble>Partial answer.</Bubble>)
+    expect(bubble).not.toHaveAttribute('aria-busy')
+    expect(content).not.toHaveClass('bk-stream-caret')
+  })
 })
 
 describe('Attachment', () => {
