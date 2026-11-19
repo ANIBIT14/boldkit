@@ -14,9 +14,9 @@ A neubrutalism component library for React and Vue 3, built on shadcn/ui.
 [![Vue](https://img.shields.io/badge/Vue-3-4FC08D?logo=vuedotjs)](https://vuejs.org)
 [![Nuxt](https://img.shields.io/badge/Nuxt-00DC82?logo=nuxtdotjs)](https://nuxt.com)
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind-v4-38B2AC?logo=tailwindcss)](https://tailwindcss.com)
-[![TypeScript](https://img.shields.io/badge/TypeScript-5.0-3178C6?logo=typescript)](https://typescriptlang.org)
-[![Components](https://img.shields.io/badge/Components-55+-FF6B6B)](https://boldkit.dev/components)
-[![Charts](https://img.shields.io/badge/Charts-10-9B59B6)](https://boldkit.dev/charts)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.9-3178C6?logo=typescript)](https://typescriptlang.org)
+[![Components](https://img.shields.io/badge/Components-70+-FF6B6B)](https://boldkit.dev/components)
+[![Charts](https://img.shields.io/badge/Charts-14-9B59B6)](https://boldkit.dev/charts)
 [![Shapes](https://img.shields.io/badge/SVG_Shapes-64-FFD93D)](https://boldkit.dev/shapes)
 [![ASCII_Shapes](https://img.shields.io/badge/ASCII_Shapes-17-00D4AA)](https://boldkit.dev/ascii-shapes)
 
@@ -26,48 +26,29 @@ A neubrutalism component library for React and Vue 3, built on shadcn/ui.
 
 ---
 
-## What's New in v3.3.0
+## What's New in v3.6
 
-### 🧱 15 Full-Page Blocks — Production-ready page sections for React & Vue 3
-
-**10 Marketing Blocks:**
-- **Hero Section** — Bold headline, subtext, CTA button, and optional image/shapes
-- **Feature Grid** — 3- and 4-column grids with icons and descriptions
-- **Testimonials** — Cards, carousel, and single-quote layouts with avatars
-- **Logo Cloud** — Client/partner logo strip with optional marquee scroll
-- **CTA Section** — Newsletter signup, trial signup, and contact variants
-- **Stats Section** — Big number KPIs with labels and neubrutalism accents
-- **Team Section** — Member cards with role, bio, and social links
-- **FAQ Section** — Accordion-based Q&A with expand/collapse animation
-- **Footer Section** — Multi-column layout with newsletter and social links
-- **Contact Section** — Contact form with info cards and map placeholder
-
-**5 Application Blocks:**
-- **Auth Forms** — Login, Signup, Forgot Password, OTP verification
-- **Error Pages** — 404, 500, and maintenance pages in neubrutalism style
-- **Settings Page** — Tabbed settings with Profile, Notifications, and Billing panels
-- **Onboarding Flow** — Multi-step setup wizard with progress tracking
-- **Invoice** — Printable invoice / receipt layout with line items and totals
-
-All blocks are installable via the shadcn CLI for both React and Vue 3/Nuxt.
-
----
-
-### 🧩 11 New UI Components
+### 🤖 v3.6.1: Agent UI
 
 | Component | Description |
 |-----------|-------------|
-| **Carousel** | Image and content slider with prev/next navigation |
-| **Combobox** | Searchable select with keyboard navigation |
-| **Data Table** | Sortable, filterable table with column visibility and row selection |
-| **Date Range Picker** | Calendar-based date range selection |
-| **Rating** | Star rating input with half-star support |
-| **Sidebar** | Collapsible navigation sidebar with section groups |
-| **Tag Input** | Multi-value input with removable tag chips |
-| **Time Picker** | Hour/minute/second time selection with AM/PM toggle |
-| **Timeline** | Vertical activity feed and process flow component |
-| **Tour** | Step-by-step product tour with highlight and popover |
-| **Tree View** | Nested expandable tree for file explorers and hierarchies |
+| **Trace** | The steps an agent takes inside a turn (reasoning, tool calls, sources, plans). Running steps shimmer, pending steps go dashed, failed steps go red; lines expand into detail and nest. |
+| **Code Block** | Code, terminal output, logs and diffs. Copy button, line numbers, wrapping, added / removed / highlighted lines, and a small size for tool output inside a Trace. |
+
+Also in v3.6.1: **theme reveal** (`setTheme(theme, { origin })` wipes the new theme in as a circle from the click), **Bubble `typing` and `streaming`**, and fixes for uncontrolled Vue overlays (Dialog, Sheet, Popover, Collapsible, Dropdown Menu) and for border colour utilities that never applied.
+
+### 💬 v3.6.0: Chat kit and the 2026 ecosystem update
+
+| Component | Description |
+|-----------|-------------|
+| **Chat kit** | `MessageScroller` (auto-follow, jump-to-latest, history prepend), `Message`, `Bubble`, `Attachment`, `Marker` in one `chat` item |
+| **Toast** | First-party brutalist toast stacks with `toast()` / `toast.promise()`, stacking and swipe |
+| **Questionnaire** | One question per screen: single, multiple, text, "Other…", skip, conditional steps, keyboard shortcuts |
+| **Number Field** | Steppers, min/max/step, keyboard and wheel control, Intl currency and percent formatting |
+
+Plus 14 installable **theme presets** (`@boldkit/theme-<name>`), a one-command **`boldkit` base item**, unified `radix-ui`, `@lucide/vue`, Reka UI 2.11, and React 19.3 `<ViewTransition>` support.
+
+Full history: [CHANGELOG.md](CHANGELOG.md) · [Releases](https://github.com/ANIBIT14/boldkit/releases)
 
 ---
 
@@ -77,7 +58,7 @@ All blocks are installable via the shadcn CLI for both React and Vue 3/Nuxt.
 
 ![BoldKit Components](assets/preview.png)
 
-*55+ beautifully crafted neubrutalism components, 10 chart types, 64 SVG shapes, 17 animated ASCII shapes, 23 canvas effects, and 15 math curve animations for React and Vue 3*
+*70+ neubrutalism components, 14 chart types, 64 SVG shapes, 17 animated ASCII shapes, 23 canvas effects, and 15 math curve animations for React and Vue 3*
 
 </div>
 
@@ -101,18 +82,21 @@ Neubrutalism (or neo-brutalism) is a bold design aesthetic characterized by:
 
 | Feature | Description |
 |---------|-------------|
-| **55+ Components** | Buttons, Cards, Dialogs, Forms, Spinners, Steppers, and more |
-| **10 Chart Types** | Bar, Line, Area, Pie, Donut, Radar, Radial, Gauge, Sparkline |
+| **70+ Components** | Buttons, Cards, Dialogs, Forms, Data Table, Combobox, Sidebar, Toast, and more |
+| **Chat & Agent UI** | Message Scroller, Message, Bubble, Attachment, Marker, Trace, Code Block, Questionnaire |
+| **14 Chart Types** | Area, Bar, Horizontal Bar, Line, Pie, Donut, Radar, Radial Bar, Gauge, Sparkline, Funnel, Treemap, Sankey, Heatmap, with annotations and a PNG/SVG/CSV export toolbar |
 | **64 SVG Shapes** | Decorative shapes (geometric, organic, mathematical, mechanical) with interactive Shape Builder |
 | **17 ASCII Shapes** | Animated 3D ASCII art — Torus, Donut, Sphere, Cube, Helix, Trefoil Knot, Saturn, DNA, and more |
 | **Dot Matrix Studio** | In-browser pixel art & animation editor with 10 presets, WebM/PNG/SVG/JSON export |
 | **23 Canvas Effects** | Animated canvas components — Mesh Gradient, Swirl, God Rays, Pulsing Border, Dither, Halftone, CRT, Truchet, Aurora, Flow Field, Plasma, Metaballs and more. Each pauses off-screen and in background tabs, caps its pixel budget, and honours `prefers-reduced-motion`. |
 | **Math Curve Components** | Animated loaders, progress bars, and backgrounds powered by 15 mathematical curves |
+| **Motion System** | Shared motion tokens, `<Motion>` / `<Reveal>`, stepped loading states, View Transition recipes; every animation honours `prefers-reduced-motion` |
+| **15 Blocks & 7 Templates** | Marketing and application page sections plus full-page templates (copy-paste from the docs) |
 | **React & Vue 3** | Full support for both frameworks |
 | **Nuxt Ready** | SSR-compatible with shadcn-nuxt module |
 | **shadcn CLI** | Install via `shadcn` (React) or `shadcn-vue` (Vue/Nuxt) |
-| **Accessible** | Built on Radix UI (React) & Reka UI (Vue) |
-| **Dark Mode** | Full light/dark theme support |
+| **Accessible** | Built on Radix UI (React) & Reka UI (Vue), with a published per-component [WCAG matrix](https://boldkit.dev/accessibility) |
+| **Dark Mode & Themes** | Light/dark, 14 installable theme presets, and a live Theme Builder |
 | **TypeScript** | Complete type safety |
 | **Tailwind v4** | Modern CSS with latest Tailwind |
 
@@ -137,6 +121,14 @@ Full per-client setup: [boldkit.dev/docs/mcp](https://boldkit.dev/docs/mcp)
 > BoldKit components reference each other via scoped names like `@boldkit/utils`,
 > and without the alias the CLI resolves these against shadcn's default registry
 > (which doesn't ship them) and installs fail.
+
+### One-command setup (React)
+
+```bash
+npx shadcn@latest init https://boldkit.dev/r/boldkit.json
+```
+
+Sets up the stylesheet, motion system, utils and fonts. Then add the alias below and install components.
 
 ### Configure the registry alias
 
@@ -174,6 +166,9 @@ npx shadcn@latest add @boldkit/shapes
 
 # Install the BoldKit theme (CSS variables)
 npx shadcn@latest add @boldkit/styles
+
+# Or a theme preset (14 available, e.g. ocean, candy)
+npx shadcn@latest add @boldkit/theme-ocean
 ```
 
 ### Vue 3 (shadcn-vue CLI)
@@ -190,6 +185,9 @@ npx shadcn-vue@latest add @boldkit/shapes
 
 # Install the BoldKit theme (CSS variables)
 npx shadcn-vue@latest add @boldkit/styles
+
+# Or a theme preset (14 available, e.g. ocean, candy)
+npx shadcn-vue@latest add @boldkit/theme-ocean
 ```
 
 ### Alternative: direct URLs
@@ -228,7 +226,7 @@ npx shadcn@latest view ANIBIT14/boldkit/button
 npx shadcn@latest add ANIBIT14/boldkit/button --dry-run
 ```
 
-> GitHub install covers the React registry (components, blocks, theme, utils, shapes). Vue 3 / Nuxt and
+> GitHub install covers the React registry (components, charts, shapes, hooks, theme, utils). Vue 3 / Nuxt and
 > canvas effects install via the hosted URLs above.
 
 ### Nuxt
@@ -327,103 +325,96 @@ import { Badge } from '@/components/ui/badge'
 ## Components
 
 <details>
-<summary><strong>Form Components</strong></summary>
+<summary><strong>Forms & Inputs</strong></summary>
 
-- Button (7 variants, 5 sizes)
-- Input
-- Textarea
-- Checkbox
-- Radio Group
-- Select
-- Switch
-- Slider
-- Label
-- Input OTP
-- **Dropzone** (drag-and-drop file upload) ✨ NEW
+- Button (7 variants, 5 sizes), Button Group
+- Input, Input Group, Input OTP, Textarea, Label, Field
+- Checkbox, Radio Group, Switch, Slider, Toggle, Toggle Group
+- Select, Native Select, Combobox (single + multi)
+- **Number Field** ✨ NEW
+- Calendar, Date Picker, Date Range Picker, Time Picker
+- Rating, Tag Input, Dropzone
+- Multi-step Form (form state over the Stepper UI)
+
+</details>
+
+<details>
+<summary><strong>Chat & Agent UI</strong></summary>
+
+- **Message Scroller**, **Message**, **Bubble** (typing + streaming), **Attachment**, **Marker** ✨ NEW
+- **Trace** (agent steps: reasoning, tool calls, plans) ✨ NEW
+- **Code Block** (copy, line numbers, diffs, terminal output) ✨ NEW
+- **Questionnaire** (one question per screen) ✨ NEW
 
 </details>
 
 <details>
 <summary><strong>Layout & Containers</strong></summary>
 
-- Card
-- Layered Card (stacked paper effect)
-- **Stat Card** (statistics display) ✨ NEW
-- Dialog
-- Drawer
-- Sheet
-- Accordion
-- Collapsible
-- Tabs
-- **Stepper** (multi-step forms/wizards) ✨ NEW
-- Scroll Area
-- Aspect Ratio
-- Separator
+- Card, Layered Card, Stat Card
+- Dialog, Alert Dialog, Drawer, Sheet
+- Accordion, Collapsible, Tabs
+- Stepper, Resizable, Scroll Area, Aspect Ratio, Separator
+- Empty State
 
 </details>
 
 <details>
 <summary><strong>Feedback & Status</strong></summary>
 
-- Alert
-- Alert Dialog
-- Badge
-- Progress
-- Skeleton
-- **Spinner** (5 animation variants) ✨ NEW
-- Sonner (Toast)
-- **Math Curve Loader** (animated loading spinners driven by mathematical curves) ✨ NEW
-- **Math Curve Progress** (progress bars rendered as animated mathematical curves) ✨ NEW
-- **Math Curve Background** (full-bleed animated curve backgrounds) ✨ NEW
+- Alert, Badge, Progress (stepped + marquee), Skeleton (stamp, blocks, scan), Spinner
+- **Toast** (first-party stacks) ✨ NEW, Sonner
+- Tour
+- Math Curve Loader, Math Curve Progress, Math Curve Background
 
 </details>
 
 <details>
 <summary><strong>Navigation</strong></summary>
 
-- Breadcrumb
-- Dropdown Menu
-- Command Palette
-- Pagination
-- Popover
-- Tooltip
-- Hover Card
+- Sidebar, Navigation Menu, Menubar, Breadcrumb, Pagination
+- Dropdown Menu, Context Menu, Command Palette
+- Popover, Tooltip, Hover Card
+- Tree View, Carousel
 
 </details>
 
 <details>
 <summary><strong>Data Display</strong></summary>
 
-- Avatar
-- Table
-- Calendar
-- **Kbd** (keyboard shortcut hints) ✨ NEW
+- Data Table (sort, filter, selection), Table
+- Avatar, Kbd, Timeline
 
 </details>
 
 <details>
-<summary><strong>Charts (10 Types)</strong></summary>
+<summary><strong>Charts (14 Types)</strong></summary>
 
-- Area Chart
-- Bar Chart
-- Line Chart
-- Pie Chart
-- **Donut Chart** (pie with center content) ✨ NEW
-- **Radar Chart** (multi-variable comparison) ✨ NEW
-- **Radial Bar Chart** (circular progress) ✨ NEW
-- **Gauge Chart** (speedometer KPI) ✨ NEW
-- **Sparkline** (inline trend charts) ✨ NEW
+- Area, Bar, Horizontal Bar, Line, Pie, Donut
+- Radar, Radial Bar, Gauge, Sparkline
+- Funnel, Treemap, Sankey, Heatmap
+- Chart annotations (reference lines, callouts, arrows) and Chart Toolbar (PNG / SVG / CSV export, fullscreen)
 
 </details>
 
 <details>
 <summary><strong>Decorative (Neubrutalism Special)</strong></summary>
 
-- Sticker (rotated labels)
-- Marquee (scrolling ticker)
-- **64 SVG Shapes** (Geometric, Organic, Celestial, Mathematical, Mechanical, and more) ✨ EXPANDED
-- **17 ASCII Shapes** (Torus, Donut, Sphere, Cube, Helix, Trefoil Knot, Geodesic Dome, Saturn, Hyperboloid, DNA, Spiral, Rose, Wave, Vortex…) ✨ NEW
-- **Shape Builder** (interactive tool to customize shapes, export SVG/JSX) ✨ NEW
+- Sticker (rotated labels), Marquee (scrolling ticker)
+- **64 SVG Shapes** (Geometric, Organic, Celestial, Mathematical, Mechanical, and more) with stepped animation presets
+- **17 ASCII Shapes** (Torus, Donut, Sphere, Cube, Helix, Trefoil Knot, Geodesic Dome, Saturn, DNA…)
+- **23 Canvas Effects**, Dot Matrix Studio, Shape Builder
+
+</details>
+
+<details>
+<summary><strong>Blocks & Templates (copy-paste)</strong></summary>
+
+- **Marketing blocks:** Hero, Feature Grid, Testimonials, Logo Cloud, CTA, Stats, Team, FAQ, Footer, Contact
+- **Application blocks:** Auth Forms, Settings, Onboarding, Error Pages, Invoice
+- **Templates:** Dashboard, Landing Page, Pricing, Blog, Portfolio, Product, Docs
+
+Blocks and templates are copied from their docs pages; they are not registry items, so `shadcn add` can't install them.
 
 </details>
 
@@ -629,6 +620,8 @@ Visit the [Theme Builder](https://boldkit.dev/themes) to create custom themes.
 boldkit/
 ├── src/                    # React documentation site
 ├── packages/
+│   ├── mcp/               # @boldkit/mcp MCP server
+│   ├── cli/               # boldkit CLI
 │   └── vue/               # Vue 3 components
 │       └── src/
 │           └── components/

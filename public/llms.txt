@@ -5,7 +5,7 @@
 ## Quick Facts
 
 - **Version:** 3.6.1
-- **Components:** 69+ UI components (incl. Chat kit for AI assistants, Toast stacks, Questionnaire, NumberField)
+- **Components:** 70+ UI components (incl. Chat kit, Trace and Code Block for AI agents, Toast stacks, Questionnaire, NumberField)
 - **Charts:** 14 chart types
 - **Shapes:** 64 SVG decorative shapes
 - **Blocks:** 15 section blocks (10 marketing + 5 application)
@@ -196,7 +196,7 @@ npx shadcn@latest view ANIBIT14/boldkit/button
 npx shadcn@latest add ANIBIT14/boldkit/button --dry-run
 ```
 
-GitHub install covers the React registry (components, blocks, theme, utils, shapes). Vue 3 / Nuxt and canvas effects use the hosted URLs.
+GitHub install covers the React registry (components, charts, shapes, hooks, theme, utils). Vue 3 / Nuxt and canvas effects use the hosted URLs.
 
 ### Vue 3 / Nuxt (shadcn-vue CLI)
 
@@ -503,6 +503,36 @@ import { NumberField, NumberFieldContent, NumberFieldDecrement, NumberFieldInput
   </NumberFieldContent>
 </NumberField>
 ```
+
+### Trace + CodeBlock (agent steps and their output)
+
+```tsx
+import { Terminal } from 'lucide-react'
+import { CodeBlock, CodeBlockContent } from '@/components/ui/code-block'
+import { Trace, TraceCollapsible, TraceCollapsibleContent, TraceCollapsibleTrigger, TraceIcon, TraceLine, TraceTitle } from '@/components/ui/trace'
+
+<Trace>
+  <TraceLine status="running">
+    <TraceIcon><Terminal /></TraceIcon>
+    <TraceTitle>Searching the web…</TraceTitle>
+  </TraceLine>
+  <TraceCollapsible defaultOpen>
+    <TraceCollapsibleTrigger>
+      <TraceLine status="error">
+        <TraceIcon><Terminal /></TraceIcon>
+        <TraceTitle>Failed to run bun dev</TraceTitle>
+      </TraceLine>
+    </TraceCollapsibleTrigger>
+    <TraceCollapsibleContent>
+      <CodeBlock size="sm" variant="destructive">
+        <CodeBlockContent wrap>{'error: listen EADDRINUSE :::5173'}</CodeBlockContent>
+      </CodeBlock>
+    </TraceCollapsibleContent>
+  </TraceCollapsible>
+</Trace>
+```
+
+Vue: same parts as SFCs; `CodeBlockContent` takes plain text through the `code` prop (`<CodeBlockContent :code="log" wrap />`).
 
 ### Button
 
