@@ -12,7 +12,7 @@
   "files": [
     {
       "path": "components/ui/HoverCard.vue",
-      "content": "<script setup lang=\"ts\">\nimport { HoverCardRoot, type HoverCardRootProps } from 'reka-ui'\n\nconst props = defineProps<HoverCardRootProps>()\n</script>\n\n<template>\n  <HoverCardRoot v-bind=\"props\">\n    <slot />\n  </HoverCardRoot>\n</template>\n",
+      "content": "<script setup lang=\"ts\">\nimport { HoverCardRoot, useForwardProps, type HoverCardRootProps } from 'reka-ui'\n\nconst props = defineProps<HoverCardRootProps>()\n// Forward only props the caller set: Vue casts absent booleans to false,\n// which would pin `open` closed and override Reka defaults (loop, unmountOnHide).\nconst forwarded = useForwardProps(props)\n</script>\n\n<template>\n  <HoverCardRoot v-bind=\"forwarded\">\n    <slot />\n  </HoverCardRoot>\n</template>\n",
       "type": "registry:ui"
     },
     {

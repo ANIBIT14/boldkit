@@ -813,6 +813,50 @@
       "docsUrl": "https://boldkit.dev/components/checkbox"
     },
     {
+      "name": "code-block",
+      "type": "registry:ui",
+      "description": "Code, terminal output, logs and diffs: header with title and actions, copy button, line numbers, wrapping, added/removed/highlighted lines, and a small size for tool output",
+      "react": {
+        "url": "https://boldkit.dev/r/code-block.json",
+        "dependencies": [
+          "lucide-react",
+          "class-variance-authority"
+        ],
+        "registryDependencies": [
+          "@boldkit/utils"
+        ],
+        "files": [
+          "registry/default/ui/code-block.tsx"
+        ]
+      },
+      "vue": {
+        "url": "https://boldkit.dev/r/vue/code-block.json",
+        "dependencies": [
+          "@lucide/vue",
+          "class-variance-authority"
+        ],
+        "registryDependencies": [
+          "@boldkit/utils"
+        ],
+        "files": [
+          "components/ui/CodeBlock.vue",
+          "components/ui/CodeBlockHeader.vue",
+          "components/ui/CodeBlockTitle.vue",
+          "components/ui/CodeBlockActions.vue",
+          "components/ui/CodeBlockCopyButton.vue",
+          "components/ui/CodeBlockContent.vue",
+          "components/ui/CodeBlockLine.vue",
+          "components/ui/CodeBlockFooter.vue",
+          "components/ui/code-block-variants.ts"
+        ]
+      },
+      "frameworks": [
+        "react",
+        "vue"
+      ],
+      "docsUrl": "https://boldkit.dev/components/code-block"
+    },
+    {
       "name": "collapsible",
       "type": "registry:ui",
       "description": "An interactive component which expands/collapses a panel",
@@ -4633,6 +4677,52 @@
         "vue"
       ],
       "docsUrl": "https://boldkit.dev/components/tour"
+    },
+    {
+      "name": "trace",
+      "type": "registry:ui",
+      "description": "Agent steps inside a chat turn (reasoning, tool calls, sources, plans): lines with icon, title, description and running/error/pending status, expandable and nestable",
+      "react": {
+        "url": "https://boldkit.dev/r/trace.json",
+        "dependencies": [
+          "radix-ui",
+          "lucide-react"
+        ],
+        "registryDependencies": [
+          "@boldkit/utils",
+          "@boldkit/motion"
+        ],
+        "files": [
+          "registry/default/ui/trace.tsx"
+        ]
+      },
+      "vue": {
+        "url": "https://boldkit.dev/r/vue/trace.json",
+        "dependencies": [
+          "reka-ui@^2.11.0",
+          "@lucide/vue"
+        ],
+        "registryDependencies": [
+          "@boldkit/utils"
+        ],
+        "files": [
+          "components/ui/Trace.vue",
+          "components/ui/TraceLine.vue",
+          "components/ui/TraceIcon.vue",
+          "components/ui/TraceTitle.vue",
+          "components/ui/TraceDescription.vue",
+          "components/ui/TraceCollapsible.vue",
+          "components/ui/TraceCollapsibleTrigger.vue",
+          "components/ui/TraceCollapsibleContent.vue",
+          "components/ui/trace-context.ts",
+          "styles/motion.css"
+        ]
+      },
+      "frameworks": [
+        "react",
+        "vue"
+      ],
+      "docsUrl": "https://boldkit.dev/components/trace"
     },
     {
       "name": "tree-view",

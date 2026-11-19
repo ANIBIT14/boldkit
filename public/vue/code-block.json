@@ -1,0 +1,52 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "code-block",
+  "type": "registry:ui",
+  "description": "Code, terminal output, logs and diffs: header with title and actions, copy button, line numbers, wrapping, added/removed/highlighted lines, and a small size for tool output",
+  "dependencies": [
+    "@lucide/vue",
+    "class-variance-authority"
+  ],
+  "registryDependencies": [
+    "@boldkit/utils"
+  ],
+  "files": [
+    {
+      "path": "components/ui/CodeBlock.vue",
+      "type": "registry:ui"
+    },
+    {
+      "path": "components/ui/CodeBlockHeader.vue",
+      "type": "registry:ui"
+    },
+    {
+      "path": "components/ui/CodeBlockTitle.vue",
+      "type": "registry:ui"
+    },
+    {
+      "path": "components/ui/CodeBlockActions.vue",
+      "type": "registry:ui"
+    },
+    {
+      "path": "components/ui/CodeBlockCopyButton.vue",
+      "type": "registry:ui"
+    },
+    {
+      "path": "components/ui/CodeBlockContent.vue",
+      "type": "registry:ui"
+    },
+    {
+      "path": "components/ui/CodeBlockLine.vue",
+      "type": "registry:ui"
+    },
+    {
+      "path": "components/ui/CodeBlockFooter.vue",
+      "type": "registry:ui"
+    },
+    {
+      "path": "components/ui/code-block-variants.ts",
+      "type": "registry:ui"
+    }
+  ],
+  "title": "Code Block"
+}

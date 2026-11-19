@@ -9,6 +9,7 @@ import { mount } from '@vue/test-utils'
 import { defineComponent } from 'vue'
 import TagInput from '@/components/ui/TagInput.vue'
 import Dropzone from '@/components/ui/Dropzone.vue'
+import Input from '@/components/ui/Input.vue'
 
 describe('TagInput.vue delimiter', () => {
   // The prop was wrapped in `new RegExp(...)`, so any regex metacharacter was
@@ -158,4 +159,47 @@ describe('TagInput.vue combobox semantics', () => {
       expect(option.attributes('tabindex')).toBeUndefined()
     }
   })
+})
+
+describe('Input.vue native props', () => {
+  // Declared props are removed from $attrs, and the template bound only
+  // type/class/v-model — so placeholder, disabled, name, id... never reached
+  // the <input> (Questionnaire's "Other" field lost its placeholder).
+  it('forwards declared native props to the <input>', () => {
+    const w = mount(Input, {
+      props: { placeholder: 'Type', disabled: true, name: 'q', id: 'x', maxlength: 5, inputmode: 'numeric' },
+    })
+    const el = w.get('input').element as HTMLInputElement
+    expect(el.placeholder).toBe('Type')
+    expect(el.disabled).toBe(true)
+    expect(el.name).toBe('q')
+    expect(el.id).toBe('x')
+    expect(el.maxLength).toBe(5)
+    expect(el.getAttribute('inputmode')).toBe('numeric')
+  })
+})
+
+describe('Reka root wrappers stay uncontrolled', () => {
+  // `defineProps<XRootProps>()` + `v-bind="props"` forwarded Vue's cast of an
+  // absent boolean (`open: false`), pinning every Dialog/Sheet/Popover/
+  // Collapsible/DropdownMenu closed unless driven by v-model:open.
+  const cases = [
+    ['Dialog', () => import('@/components/ui/Dialog.vue'), 'DialogTrigger'],
+    ['Sheet', () => import('@/components/ui/Sheet.vue'), 'DialogTrigger'],
+    ['Popover', () => import('@/components/ui/Popover.vue'), 'PopoverTrigger'],
+    ['Collapsible', () => import('@/components/ui/Collapsible.vue'), 'CollapsibleTrigger'],
+  ] as const
+  for (const [name, load, trigger] of cases) {
+    it(`${name} opens from its trigger without v-model`, async () => {
+      const Root = (await load()).default
+      const Trigger = (await import('reka-ui'))[trigger]
+      const w = mount(
+        defineComponent({ components: { Root, Trigger }, template: '<Root><Trigger>t</Trigger></Root>' }),
+        { attachTo: document.body }
+      )
+      await w.get('button').trigger('click')
+      expect(w.get('button').attributes('aria-expanded')).toBe('true')
+      w.unmount()
+    })
+  }
 })

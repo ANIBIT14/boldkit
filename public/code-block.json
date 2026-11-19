@@ -1,0 +1,21 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "code-block",
+  "title": "Code Block",
+  "description": "Code, terminal output, logs and diffs: header with title and actions, copy button, line numbers, wrapping, added/removed/highlighted lines, and a small size for tool output",
+  "dependencies": [
+    "lucide-react",
+    "class-variance-authority"
+  ],
+  "registryDependencies": [
+    "@boldkit/utils"
+  ],
+  "files": [
+    {
+      "path": "registry/default/ui/code-block.tsx",
+      "type": "registry:ui",
+      "target": "components/ui/code-block.tsx"
+    }
+  ],
+  "type": "registry:ui"
+}

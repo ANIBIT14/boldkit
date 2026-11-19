@@ -3,7 +3,7 @@
 // No React imports — safe for both browser and Node.js build scripts.
 
 export const COUNTS = {
-  components: 69,
+  components: 71,
   charts: 14,
   shapes: 64,
   blocks: 15,
@@ -256,6 +256,7 @@ export const COMPONENT_TITLES: Record<string, string> = {
   carousel: 'Carousel',
   'chart-toolbar': 'Chart Toolbar',
   chat: 'Chat',
+  'code-block': 'Code Block',
   checkbox: 'Checkbox',
   collapsible: 'Collapsible',
   combobox: 'Combobox',
@@ -288,6 +289,7 @@ export const COMPONENT_TITLES: Record<string, string> = {
   'math-curve-loader': 'Math Curve Loader',
   'math-curve-progress': 'Math Curve Progress',
   'number-field': 'Number Field',
+  trace: 'Trace',
   pagination: 'Pagination',
   popover: 'Popover',
   progress: 'Progress',
@@ -367,6 +369,8 @@ const COMPONENT_DESCRIPTIONS: Record<string, string> = {
   chat: 'Neubrutalism chat UI for AI assistants in React & Vue 3: auto-following MessageScroller, jump-to-latest, Message, Bubble, Attachment and Marker.',
   toast: 'Neubrutalism toast stacks for React & Vue 3 with an imperative toast() and toast.promise() API, swipe to dismiss and screen-reader announcements.',
   questionnaire: 'Multi-step questionnaire for React & Vue 3: one question per screen, single/multiple/text answers, skip, conditional logic and keyboard shortcuts.',
+  'code-block': 'Neubrutalism code block for React & Vue 3: copy button, line numbers, wrapping, diff and highlighted lines, terminal and error output.',
+  trace: 'Neubrutalism agent trace for React & Vue 3: reasoning, tool calls and plans as expandable lines with running, error and pending states.',
   'number-field': 'Neubrutalism number input for React & Vue 3: stepper buttons, min/max/step, keyboard and wheel control, Intl currency and percent formatting.',
 }
 
@@ -484,6 +488,8 @@ export function getAllRoutes(): SitemapRoute[] {
     '/nuxt-ui-components': '2026-10-10',
     '/react-vue-component-library': '2026-10-10',
     '/components/chat': '2026-10-10',
+    '/components/code-block': '2026-11-20',
+    '/components/trace': '2026-11-20',
     '/components/toast': '2026-10-10',
     '/components/questionnaire': '2026-10-10',
     '/components/number-field': '2026-10-10',

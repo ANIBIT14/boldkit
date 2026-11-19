@@ -13,7 +13,7 @@
   "files": [
     {
       "path": "components/ui/Select.vue",
-      "content": "<script setup lang=\"ts\">\nimport { SelectRoot, type SelectRootProps } from 'reka-ui'\n\nconst props = defineProps<SelectRootProps>()\nconst emit = defineEmits<{\n  'update:modelValue': [value: string | number | null]\n  'update:open': [value: boolean]\n}>()\n</script>\n\n<template>\n  <SelectRoot\n    v-bind=\"props\"\n    @update:model-value=\"emit('update:modelValue', $event as string | number | null)\"\n    @update:open=\"emit('update:open', $event)\"\n  >\n    <slot />\n  </SelectRoot>\n</template>\n",
+      "content": "<script setup lang=\"ts\">\nimport { SelectRoot, useForwardProps, type SelectRootProps } from 'reka-ui'\n\nconst props = defineProps<SelectRootProps>()\n// Forward only props the caller set: Vue casts absent booleans to false,\n// which would pin `open` closed and override Reka defaults (loop, unmountOnHide).\nconst forwarded = useForwardProps(props)\nconst emit = defineEmits<{\n  'update:modelValue': [value: string | number | null]\n  'update:open': [value: boolean]\n}>()\n</script>\n\n<template>\n  <SelectRoot\n    v-bind=\"forwarded\"\n    @update:model-value=\"emit('update:modelValue', $event as string | number | null)\"\n    @update:open=\"emit('update:open', $event)\"\n  >\n    <slot />\n  </SelectRoot>\n</template>\n",
       "type": "registry:ui"
     },
     {

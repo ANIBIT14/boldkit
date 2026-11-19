@@ -1,0 +1,57 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "trace",
+  "type": "registry:ui",
+  "description": "Agent steps inside a chat turn (reasoning, tool calls, sources, plans): lines with icon, title, description and running/error/pending status, expandable and nestable",
+  "dependencies": [
+    "reka-ui@^2.11.0",
+    "@lucide/vue"
+  ],
+  "registryDependencies": [
+    "@boldkit/utils"
+  ],
+  "files": [
+    {
+      "path": "components/ui/Trace.vue",
+      "type": "registry:ui"
+    },
+    {
+      "path": "components/ui/TraceLine.vue",
+      "type": "registry:ui"
+    },
+    {
+      "path": "components/ui/TraceIcon.vue",
+      "type": "registry:ui"
+    },
+    {
+      "path": "components/ui/TraceTitle.vue",
+      "type": "registry:ui"
+    },
+    {
+      "path": "components/ui/TraceDescription.vue",
+      "type": "registry:ui"
+    },
+    {
+      "path": "components/ui/TraceCollapsible.vue",
+      "type": "registry:ui"
+    },
+    {
+      "path": "components/ui/TraceCollapsibleTrigger.vue",
+      "type": "registry:ui"
+    },
+    {
+      "path": "components/ui/TraceCollapsibleContent.vue",
+      "type": "registry:ui"
+    },
+    {
+      "path": "components/ui/trace-context.ts",
+      "type": "registry:ui"
+    },
+    {
+      "path": "styles/motion.css",
+      "type": "registry:ui",
+      "target": "styles/motion.css"
+    }
+  ],
+  "title": "Trace"
+}

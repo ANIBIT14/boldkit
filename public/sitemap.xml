@@ -271,6 +271,12 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://boldkit.dev/components/code-block</loc>
+    <lastmod>2026-11-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://boldkit.dev/components/checkbox</loc>
     <lastmod>2026-04-15</lastmod>
     <changefreq>monthly</changefreq>
@@ -459,6 +465,12 @@
   <url>
     <loc>https://boldkit.dev/components/number-field</loc>
     <lastmod>2026-10-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://boldkit.dev/components/trace</loc>
+    <lastmod>2026-11-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>

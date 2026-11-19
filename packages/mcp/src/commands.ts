@@ -30,12 +30,16 @@ export function buildInstallCommand(names: string[], framework: Framework): Inst
     else items.push(item)
   }
 
+  // A registry:base item (the `boldkit` preset) sets up the project, so it goes
+  // through `init` — which also accepts extra items — and must come first.
+  items.sort((a, b) => Number(b.type === 'registry:base') - Number(a.type === 'registry:base'))
+  const verb = items[0]?.type === 'registry:base' ? 'init' : 'add'
   const urls = items.map((item) => item[framework]!.url)
-  const argv = ['npx', CLI[framework], 'add', ...urls]
+  const argv = ['npx', CLI[framework], verb, ...urls]
   return {
     framework,
     argv,
-    display: ['npx', CLI[framework], 'add', ...urls.map((u) => `"${u}"`)].join(' '),
+    display: ['npx', CLI[framework], verb, ...urls.map((u) => `"${u}"`)].join(' '),
     items,
     unknown,
     unavailable,

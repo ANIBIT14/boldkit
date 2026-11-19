@@ -170,3 +170,14 @@ describe('v3.6 utilities block', () => {
     expect(new Set(blocks).size).toBe(1)
   })
 })
+
+describe('global border colour', () => {
+  // An unlayered `* { border-color }` beats every `@layer utilities` rule, so
+  // border-transparent / border-destructive / border-success silently rendered
+  // in the border colour. The reset must live inside a layer.
+  it.each(Object.entries(GLOBALS))('%s keeps `* { border-border }` inside @layer base', (_, file) => {
+    const css = read(file)
+    expect(css).not.toMatch(/^\*\s*\{\s*@apply border-border;/m)
+    expect(css).toMatch(/@layer base\s*\{\s*\*\s*\{\s*@apply border-border;/)
+  })
+})

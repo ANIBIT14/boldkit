@@ -58,6 +58,13 @@ describe('buildInstallCommand', () => {
     expect(cmd.display).toContain('shadcn-vue@latest add "https://boldkit.dev/r/vue/button.json"')
   })
 
+  it('uses init for the base item, placed first', () => {
+    const cmd = buildInstallCommand(['button', 'boldkit'], 'react')
+    expect(cmd.display).toBe(
+      'npx shadcn@latest init "https://boldkit.dev/r/boldkit.json" "https://boldkit.dev/r/button.json"'
+    )
+  })
+
   it('separates unknown and framework-unavailable names', () => {
     const cmd = buildInstallCommand(['button', 'not-a-thing'], 'react')
     expect(cmd.unknown).toEqual(['not-a-thing'])

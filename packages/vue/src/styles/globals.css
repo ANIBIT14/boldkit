@@ -230,8 +230,12 @@
 }
 
 /* Base styles */
-* {
-  @apply border-border;
+/* Layered so border-color utilities (border-transparent, border-destructive…)
+   win — an unlayered rule beats every @layer utilities rule. */
+@layer base {
+  * {
+    @apply border-border;
+  }
 }
 
 body {

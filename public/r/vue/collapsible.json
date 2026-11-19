@@ -12,7 +12,7 @@
   "files": [
     {
       "path": "components/ui/Collapsible.vue",
-      "content": "<script setup lang=\"ts\">\nimport { CollapsibleRoot, type CollapsibleRootProps } from 'reka-ui'\n\nconst props = defineProps<CollapsibleRootProps>()\nconst emit = defineEmits<{\n  'update:open': [value: boolean]\n}>()\n</script>\n\n<template>\n  <CollapsibleRoot v-bind=\"props\" @update:open=\"emit('update:open', $event)\">\n    <slot />\n  </CollapsibleRoot>\n</template>\n",
+      "content": "<script setup lang=\"ts\">\nimport { CollapsibleRoot, useForwardProps, type CollapsibleRootProps } from 'reka-ui'\n\nconst props = defineProps<CollapsibleRootProps>()\n// Forward only props the caller set: Vue casts absent booleans to false,\n// which would pin `open` closed and override Reka defaults (loop, unmountOnHide).\nconst forwarded = useForwardProps(props)\nconst emit = defineEmits<{\n  'update:open': [value: boolean]\n}>()\n</script>\n\n<template>\n  <CollapsibleRoot v-bind=\"forwarded\" @update:open=\"emit('update:open', $event)\">\n    <slot />\n  </CollapsibleRoot>\n</template>\n",
       "type": "registry:ui"
     },
     {

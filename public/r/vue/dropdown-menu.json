@@ -13,7 +13,7 @@
   "files": [
     {
       "path": "components/ui/DropdownMenu.vue",
-      "content": "<script setup lang=\"ts\">\nimport { DropdownMenuRoot, type DropdownMenuRootProps } from 'reka-ui'\n\nconst props = defineProps<DropdownMenuRootProps>()\n</script>\n\n<template>\n  <DropdownMenuRoot v-bind=\"props\">\n    <slot />\n  </DropdownMenuRoot>\n</template>\n",
+      "content": "<script setup lang=\"ts\">\nimport { DropdownMenuRoot, useForwardProps, type DropdownMenuRootProps } from 'reka-ui'\n\nconst props = defineProps<DropdownMenuRootProps>()\n// Forward only props the caller set: Vue casts absent booleans to false,\n// which would pin `open` closed and override Reka defaults (loop, unmountOnHide).\nconst forwarded = useForwardProps(props)\n</script>\n\n<template>\n  <DropdownMenuRoot v-bind=\"forwarded\">\n    <slot />\n  </DropdownMenuRoot>\n</template>\n",
       "type": "registry:ui"
     },
     {

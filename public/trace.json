@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "trace",
+  "title": "Trace",
+  "description": "Agent steps inside a chat turn (reasoning, tool calls, sources, plans): lines with icon, title, description and running/error/pending status, expandable and nestable",
+  "dependencies": [
+    "radix-ui",
+    "lucide-react"
+  ],
+  "registryDependencies": [
+    "@boldkit/utils",
+    "@boldkit/motion"
+  ],
+  "files": [
+    {
+      "path": "registry/default/ui/trace.tsx",
+      "type": "registry:ui",
+      "target": "components/ui/trace.tsx"
+    }
+  ],
+  "type": "registry:ui"
+}

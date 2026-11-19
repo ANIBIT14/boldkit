@@ -4,7 +4,7 @@
 
 ## Quick Facts
 
-- **Version:** 3.6.0
+- **Version:** 3.6.1
 - **Components:** 69+ UI components (incl. Chat kit for AI assistants, Toast stacks, Questionnaire, NumberField)
 - **Charts:** 14 chart types
 - **Shapes:** 64 SVG decorative shapes
@@ -422,6 +422,8 @@ Alert, AlertDialog, Badge, EmptyState, Progress, Skeleton, Sonner, Toast (first-
 
 ### Chat & AI interfaces (NEW v3.6)
 MessageScroller (auto-follow, jump-to-latest, history prepend), Message, Bubble, Attachment, Marker — install all with `@boldkit/chat`
+Trace (agent steps: reasoning, tool calls, plans; running/error/pending, expandable + nestable) — `@boldkit/trace`
+CodeBlock (copy, line numbers, wrap, diff/highlighted lines, terminal output) — `@boldkit/code-block`
 
 ### Navigation
 Breadcrumb, Carousel, Command (Command Palette), DropdownMenu, HoverCard, Pagination, Popover, TreeView

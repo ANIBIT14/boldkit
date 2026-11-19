@@ -13,7 +13,7 @@
   "files": [
     {
       "path": "components/ui/RadioGroup.vue",
-      "content": "<script setup lang=\"ts\">\nimport { RadioGroupRoot, type RadioGroupRootProps } from 'reka-ui'\nimport { cn } from '@/lib/utils'\n\ninterface Props extends RadioGroupRootProps {\n  class?: string\n}\n\nconst props = defineProps<Props>()\nconst emit = defineEmits<{\n  'update:modelValue': [value: string]\n}>()\n</script>\n\n<template>\n  <RadioGroupRoot\n    v-bind=\"props\"\n    :class=\"cn('grid gap-2', props.class)\"\n    @update:model-value=\"(v) => emit('update:modelValue', String(v ?? ''))\"\n  >\n    <slot />\n  </RadioGroupRoot>\n</template>\n",
+      "content": "<script setup lang=\"ts\">\nimport { RadioGroupRoot, useForwardProps, type RadioGroupRootProps } from 'reka-ui'\nimport { cn } from '@/lib/utils'\n\ninterface Props extends RadioGroupRootProps {\n  class?: string\n}\n\nconst props = defineProps<Props>()\n// Forward only props the caller set: Vue casts absent booleans to false,\n// which would pin `open` closed and override Reka defaults (loop, unmountOnHide).\nconst forwarded = useForwardProps(props)\nconst emit = defineEmits<{\n  'update:modelValue': [value: string]\n}>()\n</script>\n\n<template>\n  <RadioGroupRoot\n    v-bind=\"forwarded\"\n    :class=\"cn('grid gap-2', props.class)\"\n    @update:model-value=\"(v) => emit('update:modelValue', String(v ?? ''))\"\n  >\n    <slot />\n  </RadioGroupRoot>\n</template>\n",
       "type": "registry:ui"
     },
     {

@@ -2573,6 +2573,47 @@
       ]
     },
     {
+      "name": "code-block",
+      "type": "registry:ui",
+      "description": "Code, terminal output, logs and diffs: header with title and actions, copy button, line numbers, wrapping, added/removed/highlighted lines, and a small size for tool output",
+      "title": "Code Block",
+      "dependencies": [
+        "lucide-react",
+        "class-variance-authority"
+      ],
+      "registryDependencies": [
+        "@boldkit/utils"
+      ],
+      "files": [
+        {
+          "path": "registry/default/ui/code-block.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/code-block.tsx"
+        }
+      ]
+    },
+    {
+      "name": "trace",
+      "type": "registry:ui",
+      "description": "Agent steps inside a chat turn (reasoning, tool calls, sources, plans): lines with icon, title, description and running/error/pending status, expandable and nestable",
+      "title": "Trace",
+      "dependencies": [
+        "radix-ui",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "@boldkit/utils",
+        "@boldkit/motion"
+      ],
+      "files": [
+        {
+          "path": "registry/default/ui/trace.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/trace.tsx"
+        }
+      ]
+    },
+    {
       "name": "timeline",
       "type": "registry:ui",
       "description": "Composable timeline for activity feeds, order tracking, and version history",

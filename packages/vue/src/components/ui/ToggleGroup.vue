@@ -16,7 +16,7 @@ export const ToggleGroupContextKey: InjectionKey<ToggleGroupContext> = Symbol('T
 </script>
 
 <script setup lang="ts">
-import { ToggleGroupRoot, type ToggleGroupRootProps } from 'reka-ui'
+import { ToggleGroupRoot, useForwardProps, type ToggleGroupRootProps } from 'reka-ui'
 import { type VariantProps } from 'class-variance-authority'
 import { provide } from 'vue'
 import { cn } from '@/lib/utils'
@@ -34,6 +34,9 @@ const props = withDefaults(defineProps<Props>(), {
   variant: 'default',
   size: 'default',
 })
+// Forward only props the caller set: Vue casts absent booleans to false,
+// which would pin `open` closed and override Reka defaults (loop, unmountOnHide).
+const forwarded = useForwardProps(props)
 
 const emit = defineEmits<{
   'update:modelValue': [value: string | string[] | null]
@@ -47,7 +50,7 @@ provide(ToggleGroupContextKey, {
 
 <template>
   <ToggleGroupRoot
-    v-bind="props"
+    v-bind="forwarded"
     :class="cn('flex items-center justify-center gap-1', props.class)"
     @update:model-value="(val) => emit('update:modelValue', val as string | string[] | null)"
   >

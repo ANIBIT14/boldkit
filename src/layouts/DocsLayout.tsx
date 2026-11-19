@@ -47,6 +47,7 @@ const components = [
   { name: 'Chart Toolbar', href: '/components/chart-toolbar', isNew: true },
   { name: 'Chat', href: '/components/chat', isNew: true },
   { name: 'Checkbox', href: '/components/checkbox' },
+  { name: 'Code Block', href: '/components/code-block', isNew: true },
   { name: 'Collapsible', href: '/components/collapsible' },
   { name: 'Combobox', href: '/components/combobox' },
   { name: 'Command', href: '/components/command' },
@@ -109,6 +110,7 @@ const components = [
   { name: 'Toggle Group', href: '/components/toggle-group' },
   { name: 'Tooltip', href: '/components/tooltip' },
   { name: 'Tour', href: '/components/tour' },
+  { name: 'Trace', href: '/components/trace', isNew: true },
   { name: 'Tree View', href: '/components/tree-view' },
 ]
 

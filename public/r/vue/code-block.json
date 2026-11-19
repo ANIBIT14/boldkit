@@ -1,0 +1,61 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "code-block",
+  "type": "registry:ui",
+  "description": "Code, terminal output, logs and diffs: header with title and actions, copy button, line numbers, wrapping, added/removed/highlighted lines, and a small size for tool output",
+  "dependencies": [
+    "@lucide/vue",
+    "class-variance-authority"
+  ],
+  "registryDependencies": [
+    "@boldkit/utils"
+  ],
+  "files": [
+    {
+      "path": "components/ui/CodeBlock.vue",
+      "content": "<script setup lang=\"ts\">\n/*\n * CodeBlock — code, terminal output, logs and diffs. A bordered slab with a\n * hard shadow; `size=\"sm\"` drops to a 2px border and 2px shadow for tool\n * output nested inside a Trace.\n *\n * Highlighting is out of scope: pass plain text through CodeBlockContent's\n * `code` prop (split into numbered lines when `line-numbers` is on), or your\n * own highlighter's markup through its slot.\n */\nimport { cn } from '@/lib/utils'\nimport { codeBlockVariants, type CodeBlockVariants } from './code-block-variants'\n\nconst props = withDefaults(\n  defineProps<{\n    variant?: NonNullable<CodeBlockVariants['variant']>\n    size?: NonNullable<CodeBlockVariants['size']>\n    class?: string\n  }>(),\n  { variant: 'default', size: 'default' }\n)\n</script>\n\n<template>\n  <div\n    data-slot=\"code-block\"\n    :data-variant=\"props.variant\"\n    :data-size=\"props.size\"\n    :class=\"cn(codeBlockVariants({ variant: props.variant, size: props.size }), props.class)\"\n  >\n    <slot />\n  </div>\n</template>\n",
+      "type": "registry:ui"
+    },
+    {
+      "path": "components/ui/CodeBlockHeader.vue",
+      "content": "<script setup lang=\"ts\">\nimport { cn } from '@/lib/utils'\n\nconst props = defineProps<{ class?: string }>()\n</script>\n\n<template>\n  <div\n    data-slot=\"code-block-header\"\n    :class=\"\n      cn(\n        'flex min-w-0 shrink-0 items-center gap-2 border-b-3 border-foreground bg-muted px-3 py-1.5 group-data-[size=sm]/code-block:border-b-2 group-data-[size=sm]/code-block:px-2 group-data-[size=sm]/code-block:py-1',\n        props.class\n      )\n    \"\n  >\n    <slot />\n  </div>\n</template>\n",
+      "type": "registry:ui"
+    },
+    {
+      "path": "components/ui/CodeBlockTitle.vue",
+      "content": "<script setup lang=\"ts\">\nimport { cn } from '@/lib/utils'\n\nconst props = defineProps<{ class?: string }>()\n</script>\n\n<template>\n  <div\n    data-slot=\"code-block-title\"\n    :class=\"\n      cn(\n        'flex min-w-0 items-center gap-2 truncate text-xs font-bold uppercase tracking-wider [&_svg]:size-3.5 [&_svg]:shrink-0',\n        props.class\n      )\n    \"\n  >\n    <slot />\n  </div>\n</template>\n",
+      "type": "registry:ui"
+    },
+    {
+      "path": "components/ui/CodeBlockActions.vue",
+      "content": "<script setup lang=\"ts\">\n/*\n * Inside a header: sits at the end of the row. Placed directly in the\n * CodeBlock: floats over the top-right corner and appears on hover/focus\n * (always visible on touch screens).\n */\nimport { cn } from '@/lib/utils'\n\nconst props = defineProps<{ class?: string }>()\n</script>\n\n<template>\n  <div\n    data-slot=\"code-block-actions\"\n    :class=\"\n      cn(\n        'ms-auto flex shrink-0 items-center gap-1.5',\n        '[[data-slot=code-block]>&]:absolute [[data-slot=code-block]>&]:right-2 [[data-slot=code-block]>&]:top-2 [[data-slot=code-block]>&]:z-10 [[data-slot=code-block]>&]:opacity-0 [[data-slot=code-block]>&]:transition-opacity [[data-slot=code-block]>&]:group-hover/code-block:opacity-100 [[data-slot=code-block]>&]:group-focus-within/code-block:opacity-100 [[data-slot=code-block]>&]:pointer-coarse:opacity-100',\n        props.class\n      )\n    \"\n  >\n    <slot />\n  </div>\n</template>\n",
+      "type": "registry:ui"
+    },
+    {
+      "path": "components/ui/CodeBlockCopyButton.vue",
+      "content": "<script setup lang=\"ts\">\n// Copies `value` to the clipboard. A consumer @click that calls\n// event.preventDefault() cancels the copy.\nimport { onBeforeUnmount, ref } from 'vue'\nimport { Check, Copy } from '@lucide/vue'\nimport { cn } from '@/lib/utils'\n\nconst props = defineProps<{\n  /** The text written to the clipboard. */\n  value: string\n  class?: string\n}>()\n\nconst emit = defineEmits<{\n  click: [event: MouseEvent]\n}>()\n\nconst copied = ref(false)\nlet timeout: ReturnType<typeof setTimeout> | undefined\n\nfunction onClick(event: MouseEvent) {\n  emit('click', event)\n  if (event.defaultPrevented || typeof navigator === 'undefined' || !navigator.clipboard) return\n  navigator.clipboard\n    .writeText(props.value)\n    .then(() => {\n      copied.value = true\n      clearTimeout(timeout)\n      timeout = setTimeout(() => (copied.value = false), 2000)\n    })\n    .catch(() => {})\n}\n\nonBeforeUnmount(() => clearTimeout(timeout))\n</script>\n\n<template>\n  <button\n    type=\"button\"\n    data-slot=\"code-block-copy-button\"\n    :data-copied=\"copied || undefined\"\n    :aria-label=\"copied ? 'Copied' : 'Copy code'\"\n    :class=\"\n      cn(\n        'inline-flex size-7 shrink-0 items-center justify-center border-2 border-foreground bg-background text-foreground shadow-[2px_2px_0px_hsl(var(--shadow-color))] bk-interactive hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none active:translate-x-[2px] active:translate-y-[2px] active:shadow-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 data-[copied]:bg-success data-[copied]:text-success-foreground [&_svg]:size-3.5',\n        props.class\n      )\n    \"\n    @click=\"onClick\"\n  >\n    <Check v-if=\"copied\" key=\"check\" aria-hidden=\"true\" class=\"animate-pop\" :stroke-width=\"3\" />\n    <Copy v-else key=\"copy\" aria-hidden=\"true\" :stroke-width=\"2.5\" />\n  </button>\n  <span aria-live=\"polite\" class=\"sr-only\">{{ copied ? 'Copied' : '' }}</span>\n</template>\n",
+      "type": "registry:ui"
+    },
+    {
+      "path": "components/ui/CodeBlockContent.vue",
+      "content": "<script setup lang=\"ts\">\n/*\n * Pass plain text through `code` (split into one CodeBlockLine per row when\n * `line-numbers` is on), or your own markup / CodeBlockLines through the slot.\n */\nimport { computed } from 'vue'\nimport { cn } from '@/lib/utils'\nimport CodeBlockLine from './CodeBlockLine.vue'\n\nconst props = withDefaults(\n  defineProps<{\n    code?: string\n    /** Wrap long lines instead of scrolling horizontally. */\n    wrap?: boolean\n    /** Number each line. */\n    lineNumbers?: boolean\n    /** Number of the first line. */\n    startLine?: number\n    class?: string\n  }>(),\n  { wrap: false, lineNumbers: false, startLine: 1 }\n)\n\nconst lines = computed(() =>\n  props.lineNumbers && props.code != null ? props.code.replace(/\\n$/, '').split('\\n') : null\n)\n</script>\n\n<template>\n  <pre\n    data-slot=\"code-block-content\"\n    :data-wrap=\"props.wrap || undefined\"\n    :data-numbered=\"props.lineNumbers || undefined\"\n    dir=\"ltr\"\n    tabindex=\"0\"\n    :style=\"{ counterReset: `line ${props.startLine - 1}` }\"\n    :class=\"\n      cn(\n        'bk-scrollbar min-h-0 min-w-0 overflow-auto p-4 text-start font-mono leading-relaxed outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-ring group-data-[size=sm]/code-block:p-2.5 data-[wrap]:whitespace-pre-wrap data-[wrap]:break-words',\n        props.class\n      )\n    \"\n  ><code\n      data-slot=\"code-block-code\"\n      class=\"grid min-w-max content-start [[data-numbered]>&]:grid-cols-[auto_1fr] [[data-wrap]>&]:min-w-0\"\n    ><template v-if=\"lines\"><CodeBlockLine v-for=\"(line, index) in lines\" :key=\"index\">{{ line }}</CodeBlockLine></template><template v-else-if=\"props.code != null\">{{ props.code }}</template><slot v-else /></code></pre>\n</template>\n",
+      "type": "registry:ui"
+    },
+    {
+      "path": "components/ui/CodeBlockLine.vue",
+      "content": "<script setup lang=\"ts\">\nimport { useSlots } from 'vue'\nimport { cn } from '@/lib/utils'\nimport { codeBlockLineVariants, type CodeBlockLineVariants } from './code-block-variants'\n\nconst props = withDefaults(\n  defineProps<{\n    variant?: NonNullable<CodeBlockLineVariants['variant']>\n    class?: string\n  }>(),\n  { variant: 'default' }\n)\n\nconst slots = useSlots()\n\n// An empty line holds a newline so a copied selection keeps blank lines.\nfunction isEmpty() {\n  const nodes = slots.default?.() ?? []\n  return nodes.every((node) => typeof node.children === 'string' && node.children === '')\n}\n</script>\n\n<template>\n  <span\n    data-slot=\"code-block-line\"\n    :data-variant=\"props.variant\"\n    :class=\"cn(codeBlockLineVariants({ variant: props.variant }), props.class)\"\n  ><span\n      v-if=\"props.variant === 'added' || props.variant === 'removed'\"\n      class=\"sr-only select-none\"\n    >{{ props.variant === 'added' ? 'Added: ' : 'Removed: ' }}</span><span data-slot=\"code-block-line-content\" class=\"min-w-0\"><template v-if=\"isEmpty()\">{{ '\\n' }}</template><slot v-else /></span></span>\n</template>\n",
+      "type": "registry:ui"
+    },
+    {
+      "path": "components/ui/CodeBlockFooter.vue",
+      "content": "<script setup lang=\"ts\">\nimport { cn } from '@/lib/utils'\n\nconst props = defineProps<{ class?: string }>()\n</script>\n\n<template>\n  <div\n    data-slot=\"code-block-footer\"\n    :class=\"\n      cn(\n        'flex min-w-0 shrink-0 items-center gap-2 border-t-3 border-foreground bg-muted px-3 py-1.5 text-xs font-bold uppercase tracking-wider group-data-[size=sm]/code-block:border-t-2',\n        props.class\n      )\n    \"\n  >\n    <slot />\n  </div>\n</template>\n",
+      "type": "registry:ui"
+    },
+    {
+      "path": "components/ui/code-block-variants.ts",
+      "content": "import { cva, type VariantProps } from 'class-variance-authority'\n\nexport const codeBlockVariants = cva(\n  'group/code-block relative flex w-full min-w-0 flex-col overflow-hidden border-foreground bg-background text-foreground',\n  {\n    variants: {\n      variant: {\n        default: '',\n        destructive:\n          '[&_[data-slot=code-block-header]]:bg-destructive [&_[data-slot=code-block-header]]:text-destructive-foreground',\n      },\n      size: {\n        default: 'border-3 text-sm shadow-[4px_4px_0px_hsl(var(--shadow-color))]',\n        sm: 'border-2 text-xs shadow-[2px_2px_0px_hsl(var(--shadow-color))]',\n      },\n    },\n    defaultVariants: { variant: 'default', size: 'default' },\n  }\n)\n\nexport const codeBlockLineVariants = cva(\n  // The negative margin + padding lets the diff bar and tint run edge to edge.\n  \"relative -mx-4 block border-l-4 border-transparent px-4 group-data-[size=sm]/code-block:-mx-2.5 group-data-[size=sm]/code-block:px-2.5 [[data-numbered]_&]:col-span-2 [[data-numbered]_&]:grid [[data-numbered]_&]:grid-cols-subgrid [[data-numbered]_&]:[counter-increment:line] [[data-numbered]_&]:before:mr-4 [[data-numbered]_&]:before:select-none [[data-numbered]_&]:before:text-right [[data-numbered]_&]:before:font-bold [[data-numbered]_&]:before:text-muted-foreground [[data-numbered]_&]:before:content-[counter(line)]\",\n  {\n    variants: {\n      variant: {\n        default: '',\n        added: 'border-success bg-success/20',\n        removed: 'border-destructive bg-destructive/15',\n        highlighted: 'border-accent bg-accent/25',\n      },\n    },\n    defaultVariants: { variant: 'default' },\n  }\n)\n\nexport type CodeBlockVariants = VariantProps<typeof codeBlockVariants>\nexport type CodeBlockLineVariants = VariantProps<typeof codeBlockLineVariants>\n",
+      "type": "registry:ui"
+    }
+  ],
+  "title": "Code Block"
+}

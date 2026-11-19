@@ -7,7 +7,26 @@ Format follows [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## [Unreleased]
 
+---
+
+## [3.6.1] — 2026-11-20 — Trace, Code Block, theme reveal + a Vue overlay fix
+
+Two components for agent interfaces, matching shadcn's October release: what the agent did
+(**Trace**) and the code and output it produced (**Code Block**). The release also carries
+the October motion pass and a serious Vue fix: uncontrolled Dialogs, Sheets, Popovers,
+Collapsibles and Dropdown Menus never opened.
+
 ### Added
+- **Trace** (React + Vue, `trace`): agent steps (reasoning, tool calls, sources, plans) as
+  lines with an icon, title, description and status. `running` fills the icon box with accent,
+  shimmers the title and sets `aria-busy`; `pending` dashes and fades it; `error` goes
+  destructive. Lines expand through Collapsible into detail on a 3px rail, and nest.
+- **Code Block** (React + Vue, `code-block`): a bordered slab with a hard shadow, plus a
+  header, title, actions (floating on hover when placed in the block itself), copy button
+  (success fill + pop on copy, announced politely), line numbers, wrapping, added / removed /
+  highlighted lines with screen-reader prefixes kept out of copied text, a footer, a
+  `destructive` variant and a `sm` size for tool output inside a Trace. Vue takes plain text
+  through `code`; React through children.
 - **Theme reveal** (React + Vue): `setTheme(theme, { origin })` wipes the new theme in as a
   circle growing from `origin` (an element, or a viewport point). `circularReveal(update, origin)`
   does the same for any other swap. Ships in the existing `use-theme` item and needs no
@@ -24,6 +43,26 @@ Format follows [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
   before the browser captured the old view, so the circle revealed dark over dark.
 - `use-theme` (React + Vue) no longer throws when `localStorage` is blocked (private mode,
   sandboxed iframes).
+- Vue `Input` dropped every declared native prop (`placeholder`, `disabled`, `name`, `id`,
+  `required`, `maxlength`, …) — they never reached the `<input>`. Questionnaire's "Other…"
+  field lost its placeholder as a result.
+- **Vue `Dialog`, `Sheet`, `Popover`, `Collapsible`, `DropdownMenu`, `ContextMenu`, `HoverCard`,
+  `Select`, `Accordion`, `Tabs`, `RadioGroup`, `ToggleGroup`** forwarded Vue's cast of absent
+  boolean props. `open` arrived as `false`, so the uncontrolled overlays (trigger, no
+  `v-model:open`) never opened, and Reka defaults such as `loop` and `unmountOnHide` were
+  overridden. They now forward only the props you set (`useForwardProps`).
+- **Coloured borders never showed** (React + Vue stylesheet): the global `* { border-color }`
+  reset sat outside any cascade layer, so it beat every Tailwind utility —
+  `border-transparent`, `border-destructive`, `border-success`, `border-primary` all rendered
+  in the foreground colour (ghost buttons kept a border). It now lives in `@layer base`;
+  `stylesheet-parity.test.ts` guards it.
+- `@boldkit/mcp`: the `boldkit` base item now installs with `shadcn init` (was `add`).
+
+### Changed
+- Docs-site floors: `radix-ui` ^1.8.1 (Popover `aria-controls`, Select/Slider inside forms),
+  `recharts` ^3.11.0.
+- `@boldkit/mcp` 0.2.0 / `boldkit` CLI 0.1.5: the catalog now includes Chat, Toast,
+  Questionnaire, NumberField, Trace, Code Block, the theme presets, fonts and the base item.
 
 ---
 

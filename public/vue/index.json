@@ -344,6 +344,16 @@
       "registryUrl": "https://boldkit.dev/r/vue/chat.json"
     },
     {
+      "name": "code-block",
+      "type": "registry:ui",
+      "registryUrl": "https://boldkit.dev/r/vue/code-block.json"
+    },
+    {
+      "name": "trace",
+      "type": "registry:ui",
+      "registryUrl": "https://boldkit.dev/r/vue/trace.json"
+    },
+    {
       "name": "tag-input",
       "type": "registry:ui",
       "registryUrl": "https://boldkit.dev/r/vue/tag-input.json"

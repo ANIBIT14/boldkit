@@ -13,7 +13,7 @@
   "files": [
     {
       "path": "components/ui/ContextMenu.vue",
-      "content": "<script setup lang=\"ts\">\nimport { ContextMenuRoot, type ContextMenuRootProps } from 'reka-ui'\n\nconst props = defineProps<ContextMenuRootProps>()\n</script>\n\n<template>\n  <ContextMenuRoot v-bind=\"props\">\n    <slot />\n  </ContextMenuRoot>\n</template>\n",
+      "content": "<script setup lang=\"ts\">\nimport { ContextMenuRoot, useForwardProps, type ContextMenuRootProps } from 'reka-ui'\n\nconst props = defineProps<ContextMenuRootProps>()\n// Forward only props the caller set: Vue casts absent booleans to false,\n// which would pin `open` closed and override Reka defaults (loop, unmountOnHide).\nconst forwarded = useForwardProps(props)\n</script>\n\n<template>\n  <ContextMenuRoot v-bind=\"forwarded\">\n    <slot />\n  </ContextMenuRoot>\n</template>\n",
       "type": "registry:ui"
     },
     {
