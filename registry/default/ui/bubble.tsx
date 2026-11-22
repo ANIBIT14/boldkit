@@ -75,16 +75,21 @@ const Bubble = React.forwardRef<HTMLDivElement, BubbleProps>(
 
     // Only measurable while clamped; once expanded, the toggle must stay so
     // the reader can collapse again.
+    const measure = React.useCallback(() => {
+      const el = contentRef.current
+      if (el && clamped) setOverflowing(el.scrollHeight > el.clientHeight + 1)
+    }, [clamped])
+
+    // One observer per clamp; a clamped box keeps its height as text streams in,
+    // so new children are re-measured separately instead of re-creating it.
     React.useEffect(() => {
       const el = contentRef.current
-      if (!el || !clamped) return
-      const measure = () => setOverflowing(el.scrollHeight > el.clientHeight + 1)
-      measure()
-      if (typeof ResizeObserver === 'undefined') return
+      if (!el || !clamped || typeof ResizeObserver === 'undefined') return
       const observer = new ResizeObserver(measure)
       observer.observe(el)
       return () => observer.disconnect()
-    }, [clamped, collapsedLines, children])
+    }, [clamped, collapsedLines, measure])
+    React.useEffect(measure, [measure, collapsedLines, children])
 
     return (
       <div

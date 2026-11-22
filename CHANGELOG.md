@@ -9,6 +9,33 @@ Format follows [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ---
 
+## [3.6.2] — 2026-11-22 — Emoji shapes
+
+Ten new shapes, taking the library from 55 to 65. Eight are emoji-inspired faces and reactions
+(including a melting face, after Distorted Face, Emojipedia's most popular new emoji of 2026); two
+are retro trend shapes. All are drawn from scratch in the BoldKit style and ship for React and Vue.
+
+### Added
+- **Emoji shapes** (React + Vue, `shapes`): `SmileyShape`, `MeltingFaceShape`, `WinkShape`,
+  `SkullShape`, `FlameShape`, `SparklesShape`, `HundredShape`, `EyesShape`, grouped as the new
+  `EmojiShapes` collection. Facial features use the foreground token, so they read in both themes.
+- **`DaisyShape`** (Organic): a retro daisy with a `petals` prop (3–16, default 8).
+- **`OrbitShape`** (Celestial): a nucleus with three tilted rings and electrons.
+- Docs: an "Emoji" category on `/shapes`, every new shape in the Shape Builder, and a
+  "New in v3.6.2" strip on the homepage.
+
+### Fixed
+- **Bubble** (React): a clamped bubble re-created its ResizeObserver on every streamed chunk
+  (`children` was an effect dependency). It now keeps one observer per clamp and re-measures new
+  content in a separate effect. Vue was already correct.
+- Shape counts: the site said 64 (and 45 in places) while the library had 55; every count is now 65.
+  `llms.txt` listed shape names that don't exist (`StarShape`, `OrganicShape`…); it now lists the
+  real 65.
+- Gear no longer carries a "New" badge on `/shapes`.
+- **KochSnowflakeShape** failed `vue-tsc` in every create-vue project (`@vue/tsconfig` enables
+  `noUncheckedIndexedAccess`): 9 errors on install. Fixed in Vue and React.
+- Shape Builder listed 45 shapes; it now lists all 65 (Heptagon…Torus were missing).
+
 ## [3.6.1] — 2026-11-20 — Trace, Code Block, theme reveal + a Vue overlay fix
 
 Two components for agent interfaces, matching shadcn's October release: what the agent did

@@ -22,6 +22,10 @@ import {
   SpeechBubble, CursorShape, EyeShape,
   ScribbleCircle, ScribbleUnderline, PaperTearShape,
   GearShape,
+  SmileyShape, MeltingFaceShape, WinkShape, SkullShape, FlameShape, SparklesShape, HundredShape, EyesShape,
+  DaisyShape, OrbitShape,
+  HeptagonShape, DecagonShape, RhombusShape, EllipseShape, TrefoilShape,
+  FibonacciSpiralShape, PenroseTriangleShape, KochSnowflakeShape, MobiusStripShape, TorusShape,
 } from '@/components/ui/shapes'
 
 type ShapeAnimation =
@@ -40,6 +44,11 @@ const ALL_SHAPES = [
   { id: 'cross', name: 'Cross', component: CrossShape, category: 'Geometric' },
   { id: 'trapezoid', name: 'Trapezoid', component: TrapezoidShape, category: 'Geometric' },
   { id: 'parallelogram', name: 'Parallelogram', component: ParallelogramShape, category: 'Geometric' },
+  { id: 'heptagon', name: 'Heptagon', component: HeptagonShape, category: 'Geometric' },
+  { id: 'decagon', name: 'Decagon', component: DecagonShape, category: 'Geometric' },
+  { id: 'rhombus', name: 'Rhombus', component: RhombusShape, category: 'Geometric' },
+  { id: 'ellipse', name: 'Ellipse', component: EllipseShape, category: 'Geometric' },
+  { id: 'trefoil', name: 'Trefoil', component: TrefoilShape, category: 'Geometric' },
   // Stars & Bursts
   { id: 'star4', name: 'Star 4-Point', component: Star4Shape, category: 'Stars & Bursts' },
   { id: 'star5', name: 'Star 5-Point', component: Star5Shape, category: 'Stars & Bursts' },
@@ -54,12 +63,14 @@ const ALL_SHAPES = [
   { id: 'cloud', name: 'Cloud', component: CloudShape, category: 'Organic' },
   { id: 'heart', name: 'Heart', component: HeartShape, category: 'Organic' },
   { id: 'apple', name: 'Apple', component: AppleShape, category: 'Organic' },
+  { id: 'daisy', name: 'Daisy', component: DaisyShape, category: 'Organic' },
   // Celestial
   { id: 'sun', name: 'Sun', component: SunShape, category: 'Celestial' },
   { id: 'crescent', name: 'Crescent', component: CrescentShape, category: 'Celestial' },
   { id: 'rainbow', name: 'Rainbow', component: RainbowShape, category: 'Celestial' },
   { id: 'planet', name: 'Planet', component: PlanetShape, category: 'Celestial' },
   { id: 'umbrella', name: 'Umbrella', component: UmbrellaShape, category: 'Celestial' },
+  { id: 'orbit', name: 'Orbit', component: OrbitShape, category: 'Celestial' },
   // Badges & UI
   { id: 'arrow-badge', name: 'Arrow Badge', component: ArrowBadge, category: 'Badges & UI' },
   { id: 'zigzag', name: 'Zigzag Banner', component: ZigzagBanner, category: 'Badges & UI' },
@@ -84,6 +95,21 @@ const ALL_SHAPES = [
   { id: 'paper-tear', name: 'Paper Tear', component: PaperTearShape, category: 'Decorative' },
   // Mechanical
   { id: 'gear', name: 'Gear', component: GearShape, category: 'Mechanical' },
+  // Mathematical
+  { id: 'fibonacci-spiral', name: 'Fibonacci Spiral', component: FibonacciSpiralShape, category: 'Mathematical' },
+  { id: 'penrose-triangle', name: 'Penrose Triangle', component: PenroseTriangleShape, category: 'Mathematical' },
+  { id: 'koch-snowflake', name: 'Koch Snowflake', component: KochSnowflakeShape, category: 'Mathematical' },
+  { id: 'mobius-strip', name: 'Möbius Strip', component: MobiusStripShape, category: 'Mathematical' },
+  { id: 'torus', name: 'Torus', component: TorusShape, category: 'Mathematical' },
+  // Emoji
+  { id: 'smiley', name: 'Smiley', component: SmileyShape, category: 'Emoji' },
+  { id: 'melting-face', name: 'Melting Face', component: MeltingFaceShape, category: 'Emoji' },
+  { id: 'wink', name: 'Wink', component: WinkShape, category: 'Emoji' },
+  { id: 'skull', name: 'Skull', component: SkullShape, category: 'Emoji' },
+  { id: 'flame', name: 'Flame', component: FlameShape, category: 'Emoji' },
+  { id: 'sparkles', name: 'Sparkles', component: SparklesShape, category: 'Emoji' },
+  { id: 'hundred', name: 'Hundred', component: HundredShape, category: 'Emoji' },
+  { id: 'eyes', name: 'Eyes', component: EyesShape, category: 'Emoji' },
 ]
 
 const ANIMATIONS: { value: ShapeAnimation; label: string; emoji: string }[] = [
@@ -190,7 +216,7 @@ export function ShapeBuilder() {
     <>
       <SEO
         title="Shape Builder — Customize & Export Neubrutalism Shapes"
-        description="Interactive shape builder for BoldKit. Customize size, color, animation, fill, and stroke for all 64 neubrutalism SVG shapes. Export React or Vue code instantly."
+        description="Interactive shape builder for BoldKit. Customize size, color, animation, fill, and stroke for all 65 neubrutalism SVG shapes. Export React or Vue code instantly."
         keywords="shape builder, SVG shape customizer, neubrutalism shapes, animated shapes, React shape component, Vue shape component"
         canonical="https://boldkit.dev/shapes/builder"
         breadcrumbs={[

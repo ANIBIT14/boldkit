@@ -86,7 +86,7 @@ export function ToolsHub() {
           items={[
             { to: '/studio', label: 'Dot Matrix Studio', desc: 'Pixel art & frame animation editor - export WebM, PNG, or SVG.' },
             { to: '/themes', label: 'Theme Builder', desc: 'Tweak CSS variables live, then copy the whole theme.' },
-            { to: '/shapes/builder', label: 'Shape Builder', desc: 'Customize any of the 45 SVG shapes and copy the markup.' },
+            { to: '/shapes/builder', label: 'Shape Builder', desc: 'Customize any of the 65 SVG shapes and copy the markup.' },
             { to: '/canvas-effects', label: 'Canvas Effects', desc: '19 animated canvas backgrounds, ready to paste.' },
             { to: '/ascii-shapes', label: 'ASCII Shapes', desc: 'Animated ASCII art for terminals and brutalist headers.' },
           ]}

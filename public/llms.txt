@@ -1074,25 +1074,39 @@ import { BurstShape } from '@/components/ui/shapes'
 <BurstShape size={80} filled={false} strokeWidth={3} />
 ```
 
-**All 54 shapes:**
+**All 65 shapes:**
 
 ### Geometric
-`TriangleShape`, `PentagonShape`, `HexagonShape`, `OctagonShape`, `CrossShape`, `TrapezoidShape`, `ParallelogramShape`, `WavyRectangleShape`
+`TriangleShape`, `DiamondBadge`, `PentagonShape`, `HexagonShape`, `OctagonShape`, `CrossShape`, `TrapezoidShape`, `ParallelogramShape`, `HeptagonShape`, `DecagonShape`, `RhombusShape`, `EllipseShape`, `TrefoilShape`
 
 ### Stars & Bursts
-`Star4Shape`, `Star5Shape`, `Star6Shape`, `StarShape`, `BurstShape`, `ExplosionShape`, `SplatShape`
+`Star4Shape`, `Star5Shape`, `Star6Shape`, `BurstShape`, `ExplosionShape`, `SplatShape`, `LightningShape`
 
-### Nature & Organic
-`BlobShape`, `WaveShape`, `CloudShape`, `HeartShape`, `AppleShape`, `OrganicShape`
+### Organic
+`BlobShape`, `WaveShape`, `CloudShape`, `HeartShape`, `AppleShape`, `DaisyShape`
 
-### Symbols & Icons
-`LightningShape`, `RibbonShape`, `ShieldShape`, `SunShape`, `CrescentShape`, `RainbowShape`, `PlanetShape`, `UmbrellaShape`, `EyeShape`, `CursorShape`, `GearShape`, `CelestialShape`
+### Celestial & Nature
+`SunShape`, `CrescentShape`, `RainbowShape`, `PlanetShape`, `UmbrellaShape`, `OrbitShape`
 
-### Tags & Badges
-`TagShape`, `PriceTagShape`, `TicketShape`, `CouponShape`, `BookmarkShape`, `FlagShape`, `PillShape`, `SealShape`, `BadgeShape`
+### Badges & UI
+`ArrowBadge`, `ZigzagBanner`, `RibbonShape`, `ShieldShape`, `TagShape`, `PriceTagShape`, `TicketShape`, `CouponShape`, `BookmarkShape`, `FlagShape`, `PillShape`, `SealShape`, `WavyRectangleShape`
+
+### Communication
+`SpeechBubble`, `CursorShape`, `EyeShape`
 
 ### Decorative
-`PaperTearShape`, `ScribbleUnderline` (via DecorativeShape variants), `GeometricShape`, `DecorativeShape`, `CommunicationShape`, `MechanicalShape`
+`ScribbleCircle`, `ScribbleUnderline`, `PaperTearShape`
+
+### Mechanical
+`GearShape`
+
+### Mathematical
+`FibonacciSpiralShape`, `PenroseTriangleShape`, `KochSnowflakeShape`, `MobiusStripShape`, `TorusShape`
+
+### Emoji (v3.6.2)
+`SmileyShape`, `MeltingFaceShape`, `WinkShape`, `SkullShape`, `FlameShape`, `SparklesShape`, `HundredShape`, `EyesShape`
+
+`DaisyShape` also takes `petals` (3–16, default 8).
 
 ### Interactive — Shape Builder
 

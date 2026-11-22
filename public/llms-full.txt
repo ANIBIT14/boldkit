@@ -2,7 +2,7 @@
 
 > BoldKit is a free, open-source neubrutalism (neobrutalism) UI component library for React, Vue 3 & Nuxt. Components are copied into your project via the shadcn CLI — not imported from an npm package. This is the MAXIMUM-coverage reference: the curated summary, followed by a complete index of every page and every installable component. For the concise version see https://boldkit.dev/llms.txt
 
-This file is generated from BoldKit's source of truth (route metadata + the built registry). Counts: 71+ components, 14 charts, 64 shapes, 15 blocks, 7 templates, 19 canvas effects.
+This file is generated from BoldKit's source of truth (route metadata + the built registry). Counts: 71+ components, 14 charts, 65 shapes, 15 blocks, 7 templates, 19 canvas effects.
 
 ---
 
@@ -1083,25 +1083,39 @@ import { BurstShape } from '@/components/ui/shapes'
 <BurstShape size={80} filled={false} strokeWidth={3} />
 ```
 
-**All 54 shapes:**
+**All 65 shapes:**
 
 ### Geometric
-`TriangleShape`, `PentagonShape`, `HexagonShape`, `OctagonShape`, `CrossShape`, `TrapezoidShape`, `ParallelogramShape`, `WavyRectangleShape`
+`TriangleShape`, `DiamondBadge`, `PentagonShape`, `HexagonShape`, `OctagonShape`, `CrossShape`, `TrapezoidShape`, `ParallelogramShape`, `HeptagonShape`, `DecagonShape`, `RhombusShape`, `EllipseShape`, `TrefoilShape`
 
 ### Stars & Bursts
-`Star4Shape`, `Star5Shape`, `Star6Shape`, `StarShape`, `BurstShape`, `ExplosionShape`, `SplatShape`
+`Star4Shape`, `Star5Shape`, `Star6Shape`, `BurstShape`, `ExplosionShape`, `SplatShape`, `LightningShape`
 
-### Nature & Organic
-`BlobShape`, `WaveShape`, `CloudShape`, `HeartShape`, `AppleShape`, `OrganicShape`
+### Organic
+`BlobShape`, `WaveShape`, `CloudShape`, `HeartShape`, `AppleShape`, `DaisyShape`
 
-### Symbols & Icons
-`LightningShape`, `RibbonShape`, `ShieldShape`, `SunShape`, `CrescentShape`, `RainbowShape`, `PlanetShape`, `UmbrellaShape`, `EyeShape`, `CursorShape`, `GearShape`, `CelestialShape`
+### Celestial & Nature
+`SunShape`, `CrescentShape`, `RainbowShape`, `PlanetShape`, `UmbrellaShape`, `OrbitShape`
 
-### Tags & Badges
-`TagShape`, `PriceTagShape`, `TicketShape`, `CouponShape`, `BookmarkShape`, `FlagShape`, `PillShape`, `SealShape`, `BadgeShape`
+### Badges & UI
+`ArrowBadge`, `ZigzagBanner`, `RibbonShape`, `ShieldShape`, `TagShape`, `PriceTagShape`, `TicketShape`, `CouponShape`, `BookmarkShape`, `FlagShape`, `PillShape`, `SealShape`, `WavyRectangleShape`
+
+### Communication
+`SpeechBubble`, `CursorShape`, `EyeShape`
 
 ### Decorative
-`PaperTearShape`, `ScribbleUnderline` (via DecorativeShape variants), `GeometricShape`, `DecorativeShape`, `CommunicationShape`, `MechanicalShape`
+`ScribbleCircle`, `ScribbleUnderline`, `PaperTearShape`
+
+### Mechanical
+`GearShape`
+
+### Mathematical
+`FibonacciSpiralShape`, `PenroseTriangleShape`, `KochSnowflakeShape`, `MobiusStripShape`, `TorusShape`
+
+### Emoji (v3.6.2)
+`SmileyShape`, `MeltingFaceShape`, `WinkShape`, `SkullShape`, `FlameShape`, `SparklesShape`, `HundredShape`, `EyesShape`
+
+`DaisyShape` also takes `petals` (3–16, default 8).
 
 ### Interactive — Shape Builder
 
@@ -1235,7 +1249,7 @@ Every indexable page on boldkit.dev with its meta title and description.
 
 ### BoldKit — Neubrutalism UI for React & Vue 3
 https://boldkit.dev/
-Free neubrutalism UI library for React & Vue 3. 71+ components, 15 blocks, 7 templates, 64 shapes, 14 charts. Install via shadcn CLI.
+Free neubrutalism UI library for React & Vue 3. 71+ components, 15 blocks, 7 templates, 65 shapes, 14 charts. Install via shadcn CLI.
 
 ### Documentation
 https://boldkit.dev/docs
@@ -1257,13 +1271,13 @@ Customize BoldKit theme colors and CSS variables for React and Vue 3. Dark mode 
 https://boldkit.dev/components
 71+ neubrutalism components for React & Vue 3 — buttons, cards, inputs, dialogs, spinners, steppers, and more with thick borders and hard shadows.
 
-### 64 Neubrutalism SVG Shapes
+### 65 Neubrutalism SVG Shapes
 https://boldkit.dev/shapes
-64 neubrutalism SVG shapes for React & Vue 3 — bursts, hearts, stars, badges, celestial, and decorative shapes with thick borders.
+65 neubrutalism SVG shapes for React & Vue 3 — bursts, hearts, stars, badges, celestial, and decorative shapes with thick borders.
 
 ### Shape Builder
 https://boldkit.dev/shapes/builder
-Interactively customize BoldKit SVG shapes. Adjust size, color, border, and shadow for any of the 64 neubrutalism shapes.
+Interactively customize BoldKit SVG shapes. Adjust size, color, border, and shadow for any of the 65 neubrutalism shapes.
 
 ### ASCII Shape Animations
 https://boldkit.dev/ascii-shapes
@@ -1343,7 +1357,7 @@ A practical guide to shadcn/ui alternatives in 2026 - copy-in registries, styled
 
 ### Vue 3 UI Components - 71+ shadcn-vue Compatible
 https://boldkit.dev/vue-ui-components
-Free neubrutalism UI components for Vue 3 and Nuxt. 71+ components, 14 chart types and 64 shapes, installed via the shadcn-vue CLI and built on Reka UI. MIT licensed.
+Free neubrutalism UI components for Vue 3 and Nuxt. 71+ components, 14 chart types and 65 shapes, installed via the shadcn-vue CLI and built on Reka UI. MIT licensed.
 
 ### Nuxt UI Components - shadcn-vue Registry Setup for Nuxt 3 & 4
 https://boldkit.dev/nuxt-ui-components

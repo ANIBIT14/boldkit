@@ -360,6 +360,24 @@ describe('Bubble', () => {
     delete (HTMLElement.prototype as unknown as Record<string, unknown>).clientHeight
   })
 
+
+  it('keeps one ResizeObserver while children stream in', () => {
+    const created = vi.fn()
+    vi.stubGlobal(
+      'ResizeObserver',
+      class extends MockResizeObserver {
+        constructor(cb: ResizeObserverCallback) {
+          super(cb)
+          created()
+        }
+      }
+    )
+    const { rerender } = render(<Bubble collapsedLines={3}>Hello</Bubble>)
+    rerender(<Bubble collapsedLines={3}>Hello wor</Bubble>)
+    rerender(<Bubble collapsedLines={3}>Hello world</Bubble>)
+    expect(created).toHaveBeenCalledTimes(1)
+    expect(observers.size).toBe(1)
+  })
   it('collapses overflowing content and toggles with Show more / Show less', () => {
     render(<Bubble collapsedLines={3}>A very long answer</Bubble>)
     const content = document.querySelector('[data-slot="bubble-content"]') as HTMLElement

@@ -5,7 +5,7 @@
 export const COUNTS = {
   components: 71,
   charts: 14,
-  shapes: 64,
+  shapes: 65,
   blocks: 15,
   templates: 7,
 } as const

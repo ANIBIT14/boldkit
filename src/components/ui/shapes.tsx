@@ -1258,7 +1258,7 @@ function buildKochPath(): string {
   for (let iter = 0; iter < 2; iter++) {
     const next: { x: number; y: number }[] = []
     for (let j = 0; j < pts.length; j++) {
-      const a = pts[j], b = pts[(j + 1) % pts.length]
+      const a = pts[j]!, b = pts[(j + 1) % pts.length]!
       const dx = (b.x - a.x) / 3, dy = (b.y - a.y) / 3
       const p1 = { x: a.x + dx, y: a.y + dy }
       const p2 = { x: a.x + 2 * dx, y: a.y + 2 * dy }
@@ -1417,6 +1417,422 @@ TorusShape.displayName = 'TorusShape'
 // SHAPE CATEGORIES - Grouped exports for easy access
 // ============================================================================
 
+// ============================================================================
+// EMOJI & TREND SHAPES - Faces, reactions, retro daisy, orbit (v3.6.2)
+// ============================================================================
+
+export const SmileyShape = React.forwardRef<SVGSVGElement, ShapeProps>(
+  ({ size = 100, strokeWidth = 3, filled = true, color, strokeColor, animation = 'none', speed = 'normal', className, ...props }, ref) => (
+    <svg
+      ref={ref}
+      width={size}
+      height={size}
+      viewBox="0 0 100 100"
+      className={cn('text-warning', getAnimClass(animation, speed), className)}
+      aria-hidden="true"
+      {...props}
+    >
+      <circle
+        cx="50"
+        cy="50"
+        r="44"
+        fill={filled ? (color || 'currentColor') : 'none'}
+        stroke={strokeFor(filled, color, strokeColor)}
+        strokeWidth={strokeWidth}
+      />
+      <ellipse
+        cx="36"
+        cy="40"
+        rx="5"
+        ry="8"
+        fill="hsl(var(--foreground))"
+      />
+      <ellipse
+        cx="64"
+        cy="40"
+        rx="5"
+        ry="8"
+        fill="hsl(var(--foreground))"
+      />
+      <path
+        d="M30 60 Q50 80 70 60"
+        fill="none"
+        stroke={strokeFor(filled, color, strokeColor)}
+        strokeWidth={strokeWidth + 1}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  )
+)
+SmileyShape.displayName = 'SmileyShape'
+
+export const MeltingFaceShape = React.forwardRef<SVGSVGElement, ShapeProps>(
+  ({ size = 100, strokeWidth = 3, filled = true, color, strokeColor, animation = 'none', speed = 'normal', className, ...props }, ref) => (
+    <svg
+      ref={ref}
+      width={size}
+      height={size}
+      viewBox="0 0 100 100"
+      className={cn('text-warning', getAnimClass(animation, speed), className)}
+      aria-hidden="true"
+      {...props}
+    >
+      <path
+        d="M8 62 C8 30 26 8 50 8 C74 8 92 30 92 62 L92 72 Q92 80 85 80 Q79 80 79 87 Q79 95 71 95 Q63 95 63 86 L63 83 Q63 78 57 78 L31 78 Q25 78 25 85 Q25 92 17 92 Q9 92 9 84 Z"
+        strokeLinejoin="round"
+        fill={filled ? (color || 'currentColor') : 'none'}
+        stroke={strokeFor(filled, color, strokeColor)}
+        strokeWidth={strokeWidth}
+      />
+      <circle
+        cx="34"
+        cy="42"
+        r="6"
+        fill="hsl(var(--foreground))"
+      />
+      <ellipse
+        cx="66"
+        cy="46"
+        rx="5"
+        ry="9"
+        transform="rotate(-20 66 46)"
+        fill="hsl(var(--foreground))"
+      />
+      <path
+        d="M28 64 Q36 56 44 63 T60 62 T76 58"
+        fill="none"
+        stroke={strokeFor(filled, color, strokeColor)}
+        strokeWidth={strokeWidth + 1}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  )
+)
+MeltingFaceShape.displayName = 'MeltingFaceShape'
+
+export const WinkShape = React.forwardRef<SVGSVGElement, ShapeProps>(
+  ({ size = 100, strokeWidth = 3, filled = true, color, strokeColor, animation = 'none', speed = 'normal', className, ...props }, ref) => (
+    <svg
+      ref={ref}
+      width={size}
+      height={size}
+      viewBox="0 0 100 100"
+      className={cn('text-accent', getAnimClass(animation, speed), className)}
+      aria-hidden="true"
+      {...props}
+    >
+      <circle
+        cx="50"
+        cy="50"
+        r="44"
+        fill={filled ? (color || 'currentColor') : 'none'}
+        stroke={strokeFor(filled, color, strokeColor)}
+        strokeWidth={strokeWidth}
+      />
+      <ellipse
+        cx="35"
+        cy="40"
+        rx="5"
+        ry="8"
+        fill="hsl(var(--foreground))"
+      />
+      <path
+        d="M57 41 Q65 33 73 41"
+        fill="none"
+        stroke={strokeFor(filled, color, strokeColor)}
+        strokeWidth={strokeWidth + 1}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M28 58 Q50 84 72 58 Z"
+        fill="hsl(var(--foreground))"
+        stroke={strokeFor(filled, color, strokeColor)}
+        strokeWidth={strokeWidth}
+        strokeLinejoin="round"
+      />
+    </svg>
+  )
+)
+WinkShape.displayName = 'WinkShape'
+
+export const SkullShape = React.forwardRef<SVGSVGElement, ShapeProps>(
+  ({ size = 100, strokeWidth = 3, filled = true, color, strokeColor, animation = 'none', speed = 'normal', className, ...props }, ref) => (
+    <svg
+      ref={ref}
+      width={size}
+      height={size}
+      viewBox="0 0 100 100"
+      className={cn('text-card', getAnimClass(animation, speed), className)}
+      aria-hidden="true"
+      {...props}
+    >
+      <path
+        d="M50 6 C26 6 10 22 10 46 C10 60 18 68 26 72 L26 86 Q26 92 32 92 L68 92 Q74 92 74 86 L74 72 C82 68 90 60 90 46 C90 22 74 6 50 6 Z"
+        strokeLinejoin="round"
+        fill={filled ? (color || 'currentColor') : 'none'}
+        stroke={strokeFor(filled, color, strokeColor)}
+        strokeWidth={strokeWidth}
+      />
+      <circle
+        cx="33"
+        cy="46"
+        r="11"
+        fill="hsl(var(--foreground))"
+      />
+      <circle
+        cx="67"
+        cy="46"
+        r="11"
+        fill="hsl(var(--foreground))"
+      />
+      <path
+        d="M50 58 L44 70 L56 70 Z"
+        fill="hsl(var(--foreground))"
+      />
+      <path
+        d="M40 80 V92 M50 80 V92 M60 80 V92"
+        fill="none"
+        stroke={strokeFor(filled, color, strokeColor)}
+        strokeWidth={strokeWidth}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  )
+)
+SkullShape.displayName = 'SkullShape'
+
+export const FlameShape = React.forwardRef<SVGSVGElement, ShapeProps>(
+  ({ size = 100, strokeWidth = 3, filled = true, color, strokeColor, animation = 'none', speed = 'normal', className, ...props }, ref) => (
+    <svg
+      ref={ref}
+      width={size}
+      height={size}
+      viewBox="0 0 100 100"
+      className={cn('text-destructive', getAnimClass(animation, speed), className)}
+      aria-hidden="true"
+      {...props}
+    >
+      <path
+        d="M50 4 C56 20 74 30 78 50 C84 74 70 96 50 96 C30 96 16 80 20 60 C22 48 30 42 32 30 C40 38 42 46 42 52 C48 40 52 22 50 4 Z"
+        strokeLinejoin="round"
+        fill={filled ? (color || 'currentColor') : 'none'}
+        stroke={strokeFor(filled, color, strokeColor)}
+        strokeWidth={strokeWidth}
+      />
+      <path
+        d="M50 54 C54 62 64 68 64 78 C64 88 58 92 50 92 C42 92 36 86 37 78 C38 70 46 66 50 54 Z"
+        fill="hsl(var(--warning))"
+        stroke={strokeFor(filled, color, strokeColor)}
+        strokeWidth={Math.max(1, strokeWidth - 1)}
+        strokeLinejoin="round"
+      />
+    </svg>
+  )
+)
+FlameShape.displayName = 'FlameShape'
+
+export const SparklesShape = React.forwardRef<SVGSVGElement, ShapeProps>(
+  ({ size = 100, strokeWidth = 3, filled = true, color, strokeColor, animation = 'none', speed = 'normal', className, ...props }, ref) => (
+    <svg
+      ref={ref}
+      width={size}
+      height={size}
+      viewBox="0 0 100 100"
+      className={cn('text-warning', getAnimClass(animation, speed), className)}
+      aria-hidden="true"
+      {...props}
+    >
+      <path
+        d="M40 26 Q44 54 72 58 Q44 62 40 90 Q36 62 8 58 Q36 54 40 26 Z M76 6 Q78 22 94 24 Q78 26 76 42 Q74 26 58 24 Q74 22 76 6 Z M80 66 Q81 75 90 76 Q81 77 80 86 Q79 77 70 76 Q79 75 80 66 Z"
+        strokeLinejoin="round"
+        fill={filled ? (color || 'currentColor') : 'none'}
+        stroke={strokeFor(filled, color, strokeColor)}
+        strokeWidth={strokeWidth}
+      />
+    </svg>
+  )
+)
+SparklesShape.displayName = 'SparklesShape'
+
+export const HundredShape = React.forwardRef<SVGSVGElement, ShapeProps>(
+  ({ size = 100, strokeWidth = 3, filled = true, color, strokeColor, animation = 'none', speed = 'normal', className, ...props }, ref) => (
+    <svg
+      ref={ref}
+      width={size}
+      height={size * 0.8}
+      viewBox="0 0 100 80"
+      className={cn('text-destructive', getAnimClass(animation, speed), className)}
+      aria-hidden="true"
+      {...props}
+    >
+      <path
+        d="M8 16 L22 8 L28 8 L28 54 L17 54 L17 22 L8 26 Z M36 31 a14 23 0 1 0 28 0 a14 23 0 1 0 -28 0 Z M43 31 a7 14 0 1 0 14 0 a7 14 0 1 0 -14 0 Z M70 31 a13 23 0 1 0 26 0 a13 23 0 1 0 -26 0 Z M77 31 a6 14 0 1 0 12 0 a6 14 0 1 0 -12 0 Z M6 62 L94 60 L94 66 L6 68 Z M12 72 L88 70 L88 76 L12 78 Z"
+        fillRule="evenodd"
+        strokeLinejoin="round"
+        fill={filled ? (color || 'currentColor') : 'none'}
+        stroke={strokeFor(filled, color, strokeColor)}
+        strokeWidth={strokeWidth}
+      />
+    </svg>
+  )
+)
+HundredShape.displayName = 'HundredShape'
+
+export const EyesShape = React.forwardRef<SVGSVGElement, ShapeProps>(
+  ({ size = 100, strokeWidth = 3, filled = true, color, strokeColor, animation = 'none', speed = 'normal', className, ...props }, ref) => (
+    <svg
+      ref={ref}
+      width={size}
+      height={size * 0.7}
+      viewBox="0 0 100 70"
+      className={cn('text-card', getAnimClass(animation, speed), className)}
+      aria-hidden="true"
+      {...props}
+    >
+      <ellipse
+        cx="29"
+        cy="35"
+        rx="20"
+        ry="30"
+        fill={filled ? (color || 'currentColor') : 'none'}
+        stroke={strokeFor(filled, color, strokeColor)}
+        strokeWidth={strokeWidth}
+      />
+      <ellipse
+        cx="71"
+        cy="35"
+        rx="20"
+        ry="30"
+        fill={filled ? (color || 'currentColor') : 'none'}
+        stroke={strokeFor(filled, color, strokeColor)}
+        strokeWidth={strokeWidth}
+      />
+      <circle
+        cx="21"
+        cy="40"
+        r="9"
+        fill="hsl(var(--foreground))"
+      />
+      <circle
+        cx="63"
+        cy="40"
+        r="9"
+        fill="hsl(var(--foreground))"
+      />
+    </svg>
+  )
+)
+EyesShape.displayName = 'EyesShape'
+
+export const OrbitShape = React.forwardRef<SVGSVGElement, ShapeProps>(
+  ({ size = 100, strokeWidth = 3, filled = true, color, strokeColor, animation = 'none', speed = 'normal', className, ...props }, ref) => (
+    <svg
+      ref={ref}
+      width={size}
+      height={size}
+      viewBox="0 0 100 100"
+      className={cn('text-accent', getAnimClass(animation, speed), className)}
+      aria-hidden="true"
+      {...props}
+    >
+      <ellipse
+        cx="50"
+        cy="50"
+        rx="44"
+        ry="16"
+        fill="none"
+        stroke={strokeFor(filled, color, strokeColor)}
+        strokeWidth={strokeWidth}
+      />
+      <ellipse
+        cx="50"
+        cy="50"
+        rx="44"
+        ry="16"
+        fill="none"
+        stroke={strokeFor(filled, color, strokeColor)}
+        strokeWidth={strokeWidth}
+        transform="rotate(60 50 50)"
+      />
+      <ellipse
+        cx="50"
+        cy="50"
+        rx="44"
+        ry="16"
+        fill="none"
+        stroke={strokeFor(filled, color, strokeColor)}
+        strokeWidth={strokeWidth}
+        transform="rotate(120 50 50)"
+      />
+      <circle
+        cx="50"
+        cy="50"
+        r="12"
+        fill={filled ? (color || 'currentColor') : 'none'}
+        stroke={strokeFor(filled, color, strokeColor)}
+        strokeWidth={strokeWidth}
+      />
+      <circle
+        cx="94"
+        cy="50"
+        r="5"
+        fill="hsl(var(--foreground))"
+      />
+      <circle
+        cx="28"
+        cy="11.9"
+        r="5"
+        fill="hsl(var(--foreground))"
+      />
+      <circle
+        cx="28"
+        cy="88.1"
+        r="5"
+        fill="hsl(var(--foreground))"
+      />
+    </svg>
+  )
+)
+OrbitShape.displayName = 'OrbitShape'
+
+export const DaisyShape = React.forwardRef<SVGSVGElement, ShapeProps & { petals?: number }>(
+  ({ size = 100, strokeWidth = 3, filled = true, color, strokeColor, animation = 'none', speed = 'normal', petals = 8, className, ...props }, ref) => {
+    const count = Math.min(16, Math.max(3, Math.round(petals)))
+    const stroke = strokeFor(filled, color, strokeColor)
+    return (
+      <svg
+        ref={ref}
+        width={size}
+        height={size}
+        viewBox="0 0 100 100"
+        className={cn('text-primary', getAnimClass(animation, speed), className)}
+        aria-hidden="true"
+        {...props}
+      >
+        {Array.from({ length: count }, (_, i) => (
+          <ellipse
+            key={i}
+            cx="50"
+            cy="25"
+            rx={Math.max(6, 60 / count + 4)}
+            ry="21"
+            transform={`rotate(${(360 / count) * i} 50 50)`}
+            fill={filled ? (color || 'currentColor') : 'none'}
+            stroke={stroke}
+            strokeWidth={strokeWidth}
+          />
+        ))}
+        <circle cx="50" cy="50" r="15" fill="hsl(var(--warning))" stroke={stroke} strokeWidth={strokeWidth} />
+      </svg>
+    )
+  }
+)
+DaisyShape.displayName = 'DaisyShape'
+
 export const GeometricShapes = {
   TriangleShape,
   DiamondBadge,
@@ -1457,6 +1873,7 @@ export const OrganicShapes = {
   CloudShape,
   HeartShape,
   AppleShape,
+  DaisyShape,
 }
 
 export const CelestialShapes = {
@@ -1465,6 +1882,7 @@ export const CelestialShapes = {
   RainbowShape,
   PlanetShape,
   UmbrellaShape,
+  OrbitShape,
 }
 
 export const BadgeShapes = {
@@ -1497,6 +1915,17 @@ export const DecorativeShapes = {
   ScribbleCircle,
   ScribbleUnderline,
   PaperTearShape,
+}
+
+export const EmojiShapes = {
+  SmileyShape,
+  MeltingFaceShape,
+  WinkShape,
+  SkullShape,
+  FlameShape,
+  SparklesShape,
+  HundredShape,
+  EyesShape,
 }
 
 export const TicketShapes = {
@@ -1573,4 +2002,15 @@ export const shapes = {
   FibonacciSpiralShape,
   MobiusStripShape,
   TorusShape,
+  // Emoji & trend (v3.6.2)
+  SmileyShape,
+  MeltingFaceShape,
+  WinkShape,
+  SkullShape,
+  FlameShape,
+  SparklesShape,
+  HundredShape,
+  EyesShape,
+  DaisyShape,
+  OrbitShape,
 }

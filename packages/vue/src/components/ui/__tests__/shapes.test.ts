@@ -17,8 +17,8 @@ const ALL = Object.entries(Shapes).filter(([name]) => /^[A-Z]/.test(name)) as [
 ][]
 
 describe('shape catalogue', () => {
-  it('ships 55 shapes', () => {
-    expect(ALL).toHaveLength(55)
+  it('ships 65 shapes', () => {
+    expect(ALL).toHaveLength(65)
   })
 
   it.each(ALL)('%s is decorative and scalable', (_name, Component) => {

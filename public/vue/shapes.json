@@ -49,6 +49,10 @@
       "type": "registry:ui"
     },
     {
+      "path": "components/ui/shapes/DaisyShape.vue",
+      "type": "registry:ui"
+    },
+    {
       "path": "components/ui/shapes/DecagonShape.vue",
       "type": "registry:ui"
     },
@@ -69,11 +73,19 @@
       "type": "registry:ui"
     },
     {
+      "path": "components/ui/shapes/EyesShape.vue",
+      "type": "registry:ui"
+    },
+    {
       "path": "components/ui/shapes/FibonacciSpiralShape.vue",
       "type": "registry:ui"
     },
     {
       "path": "components/ui/shapes/FlagShape.vue",
+      "type": "registry:ui"
+    },
+    {
+      "path": "components/ui/shapes/FlameShape.vue",
       "type": "registry:ui"
     },
     {
@@ -93,6 +105,10 @@
       "type": "registry:ui"
     },
     {
+      "path": "components/ui/shapes/HundredShape.vue",
+      "type": "registry:ui"
+    },
+    {
       "path": "components/ui/shapes/KochSnowflakeShape.vue",
       "type": "registry:ui"
     },
@@ -101,11 +117,19 @@
       "type": "registry:ui"
     },
     {
+      "path": "components/ui/shapes/MeltingFaceShape.vue",
+      "type": "registry:ui"
+    },
+    {
       "path": "components/ui/shapes/MobiusStripShape.vue",
       "type": "registry:ui"
     },
     {
       "path": "components/ui/shapes/OctagonShape.vue",
+      "type": "registry:ui"
+    },
+    {
+      "path": "components/ui/shapes/OrbitShape.vue",
       "type": "registry:ui"
     },
     {
@@ -162,6 +186,18 @@
     },
     {
       "path": "components/ui/shapes/ShieldShape.vue",
+      "type": "registry:ui"
+    },
+    {
+      "path": "components/ui/shapes/SkullShape.vue",
+      "type": "registry:ui"
+    },
+    {
+      "path": "components/ui/shapes/SmileyShape.vue",
+      "type": "registry:ui"
+    },
+    {
+      "path": "components/ui/shapes/SparklesShape.vue",
       "type": "registry:ui"
     },
     {
@@ -222,6 +258,10 @@
     },
     {
       "path": "components/ui/shapes/WavyRectangleShape.vue",
+      "type": "registry:ui"
+    },
+    {
+      "path": "components/ui/shapes/WinkShape.vue",
       "type": "registry:ui"
     },
     {

@@ -8,7 +8,7 @@
 
 A neubrutalism component library for React and Vue 3, built on shadcn/ui.
 
-[![Version](https://img.shields.io/badge/version-3.6.1-black)](https://github.com/ANIBIT14/boldkit/releases/tag/v3.6.1)
+[![Version](https://img.shields.io/badge/version-3.6.2-black)](https://github.com/ANIBIT14/boldkit/releases/tag/v3.6.2)
 [![MIT License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 [![React](https://img.shields.io/badge/React-19-61DAFB?logo=react)](https://react.dev)
 [![Vue](https://img.shields.io/badge/Vue-3-4FC08D?logo=vuedotjs)](https://vuejs.org)
@@ -17,7 +17,7 @@ A neubrutalism component library for React and Vue 3, built on shadcn/ui.
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.9-3178C6?logo=typescript)](https://typescriptlang.org)
 [![Components](https://img.shields.io/badge/Components-70+-FF6B6B)](https://boldkit.dev/components)
 [![Charts](https://img.shields.io/badge/Charts-14-9B59B6)](https://boldkit.dev/charts)
-[![Shapes](https://img.shields.io/badge/SVG_Shapes-64-FFD93D)](https://boldkit.dev/shapes)
+[![Shapes](https://img.shields.io/badge/SVG_Shapes-65-FFD93D)](https://boldkit.dev/shapes)
 [![ASCII_Shapes](https://img.shields.io/badge/ASCII_Shapes-17-00D4AA)](https://boldkit.dev/ascii-shapes)
 
 [Website](https://boldkit.dev) · [Documentation](https://boldkit.dev/docs) · [Components](https://boldkit.dev/components) · [Charts](https://boldkit.dev/charts) · [Shapes](https://boldkit.dev/shapes)
@@ -27,6 +27,18 @@ A neubrutalism component library for React and Vue 3, built on shadcn/ui.
 ---
 
 ## What's New in v3.6
+
+### 🙂 v3.6.2: Emoji shapes
+
+Ten new SVG shapes (65 in total), drawn in the BoldKit style with 3px outlines and flat fills, for React and Vue:
+
+| Group | Shapes |
+|-------|--------|
+| **Faces** | `SmileyShape`, `MeltingFaceShape`, `WinkShape`, `SkullShape` |
+| **Reactions** | `FlameShape`, `SparklesShape`, `HundredShape`, `EyesShape` |
+| **Retro** | `DaisyShape` (`petals` 3–16), `OrbitShape` |
+
+They take the same props as every other shape (`size`, `color`, `filled`, `strokeColor`, `animation`). Also in v3.6.2: a React Bubble fix (one ResizeObserver per clamp, not one per streamed chunk).
 
 ### 🤖 v3.6.1: Agent UI
 
@@ -58,7 +70,7 @@ Full history: [CHANGELOG.md](CHANGELOG.md) · [Releases](https://github.com/ANIB
 
 ![BoldKit Components](assets/preview.png)
 
-*70+ neubrutalism components, 14 chart types, 64 SVG shapes, 17 animated ASCII shapes, 23 canvas effects, and 15 math curve animations for React and Vue 3*
+*70+ neubrutalism components, 14 chart types, 65 SVG shapes, 17 animated ASCII shapes, 23 canvas effects, and 15 math curve animations for React and Vue 3*
 
 </div>
 
@@ -85,7 +97,7 @@ Neubrutalism (or neo-brutalism) is a bold design aesthetic characterized by:
 | **70+ Components** | Buttons, Cards, Dialogs, Forms, Data Table, Combobox, Sidebar, Toast, and more |
 | **Chat & Agent UI** | Message Scroller, Message, Bubble, Attachment, Marker, Trace, Code Block, Questionnaire |
 | **14 Chart Types** | Area, Bar, Horizontal Bar, Line, Pie, Donut, Radar, Radial Bar, Gauge, Sparkline, Funnel, Treemap, Sankey, Heatmap, with annotations and a PNG/SVG/CSV export toolbar |
-| **64 SVG Shapes** | Decorative shapes (geometric, organic, mathematical, mechanical) with interactive Shape Builder |
+| **65 SVG Shapes** | Decorative shapes (geometric, organic, mathematical, mechanical) with interactive Shape Builder |
 | **17 ASCII Shapes** | Animated 3D ASCII art — Torus, Donut, Sphere, Cube, Helix, Trefoil Knot, Saturn, DNA, and more |
 | **Dot Matrix Studio** | In-browser pixel art & animation editor with 10 presets, WebM/PNG/SVG/JSON export |
 | **23 Canvas Effects** | Animated canvas components — Mesh Gradient, Swirl, God Rays, Pulsing Border, Dither, Halftone, CRT, Truchet, Aurora, Flow Field, Plasma, Metaballs and more. Each pauses off-screen and in background tabs, caps its pixel budget, and honours `prefers-reduced-motion`. |
@@ -401,7 +413,7 @@ import { Badge } from '@/components/ui/badge'
 <summary><strong>Decorative (Neubrutalism Special)</strong></summary>
 
 - Sticker (rotated labels), Marquee (scrolling ticker)
-- **64 SVG Shapes** (Geometric, Organic, Celestial, Mathematical, Mechanical, and more) with stepped animation presets
+- **65 SVG Shapes** (Geometric, Organic, Celestial, Mathematical, Mechanical, and more) with stepped animation presets
 - **17 ASCII Shapes** (Torus, Donut, Sphere, Cube, Helix, Trefoil Knot, Geodesic Dome, Saturn, DNA…)
 - **23 Canvas Effects**, Dot Matrix Studio, Shape Builder
 
@@ -459,29 +471,33 @@ import { MathCurveBackground } from '@/components/ui/math-curve-background'
 
 ## Shapes
 
-64 decorative SVG shapes across 8 categories for unique neubrutalism layouts:
+65 decorative SVG shapes across 10 categories for unique neubrutalism layouts:
 
 ### React
 
 ```tsx
-import { BurstShape, HeartShape, LightningShape } from '@/components/ui/shapes'
+import { BurstShape, HeartShape, LightningShape, SmileyShape, DaisyShape } from '@/components/ui/shapes'
 
 <BurstShape size={100} className="text-primary" />
 <HeartShape size={80} filled={false} strokeWidth={4} />
 <LightningShape size={60} className="text-accent" />
+<SmileyShape size={64} animation="bounce" />
+<DaisyShape size={64} petals={12} />
 ```
 
 ### Vue 3
 
 ```vue
 <script setup lang="ts">
-import { BurstShape, HeartShape, LightningShape } from '@/components/ui/shapes'
+import { BurstShape, HeartShape, LightningShape, SmileyShape, DaisyShape } from '@/components/ui/shapes'
 </script>
 
 <template>
   <BurstShape :size="100" class="text-primary" />
   <HeartShape :size="80" :filled="false" :stroke-width="4" />
   <LightningShape :size="60" class="text-accent" />
+  <SmileyShape :size="64" animation="bounce" />
+  <DaisyShape :size="64" :petals="12" />
 </template>
 ```
 

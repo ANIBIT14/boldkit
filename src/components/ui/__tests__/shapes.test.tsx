@@ -19,8 +19,8 @@ const ALL = Object.entries(Shapes).filter(
 ) as [string, React.ComponentType<Record<string, unknown>>][]
 
 describe('shape catalogue', () => {
-  it('ships 55 shapes', () => {
-    expect(ALL).toHaveLength(55)
+  it('ships 65 shapes', () => {
+    expect(ALL).toHaveLength(65)
   })
 
   it('matches the Vue catalogue one-for-one', () => {

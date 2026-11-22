@@ -23,7 +23,7 @@ import { Marker } from '@/components/ui/marker'
 import { Layout } from '@/components/layout'
 import {
   Copy, Check, ArrowRight, Zap, Palette, Code2, Smartphone,
-  Layers, TrendingUp, DollarSign, LayoutGrid, Sparkles,
+  Layers, TrendingUp, DollarSign, LayoutGrid, Sparkles, Shapes as ShapesIcon,
   Settings, LogIn, FileX, Package, BarChart3, Wand2, Cpu,
 } from 'lucide-react'
 import { Github } from '@/components/icons/brand'
@@ -36,6 +36,8 @@ import { useCountUp } from '@/hooks/use-count-up'
 import { COUNTS } from '@/config/routes-meta'
 import {
   GearShape, Star5Shape, BlobShape, LightningShape, BurstShape, HexagonShape,
+  SmileyShape, MeltingFaceShape, WinkShape, SkullShape, FlameShape, SparklesShape, HundredShape, EyesShape,
+  DaisyShape, OrbitShape,
 } from '@/components/ui/shapes'
 import {
   AsciiSpiral, AsciiVortex, AsciiMatrix, AsciiGrid,
@@ -97,7 +99,7 @@ const MARQUEE_SEP_COLORS = ['text-primary', 'text-secondary', 'text-accent', 'te
 const DONUT_DATA = [
   { name: 'UI', value: 55, fill: 'hsl(var(--primary))' },
   { name: 'Charts', value: 14, fill: 'hsl(var(--secondary))' },
-  { name: 'Shapes', value: 64, fill: 'hsl(var(--accent))' },
+  { name: 'Shapes', value: COUNTS.shapes, fill: 'hsl(var(--accent))' },
   { name: 'Blocks', value: 15, fill: 'hsl(var(--success))' },
 ]
 const DONUT_CONFIG = {
@@ -361,12 +363,12 @@ export function Home() {
                     <div className="mb-2.5 text-[9px] font-black uppercase tracking-[0.2em] text-muted-foreground" style={MONO}>Shapes</div>
                     <div className="grid grid-cols-3 gap-2">
                       {([
-                        { Component: GearShape,      bg: 'bg-primary',   color: 'hsl(var(--primary-foreground))',   anim: 'spin'   },
+                        { Component: SmileyShape,    bg: 'bg-primary',   color: 'hsl(var(--warning))',              anim: 'spin'   },
                         { Component: Star5Shape,     bg: 'bg-secondary', color: 'hsl(var(--secondary-foreground))', anim: 'pulse'  },
                         { Component: BlobShape,      bg: 'bg-accent',    color: 'hsl(var(--accent-foreground))',    anim: 'float'  },
                         { Component: LightningShape, bg: 'bg-warning',   color: 'hsl(var(--warning-foreground))',   anim: 'wiggle' },
                         { Component: BurstShape,     bg: 'bg-info',      color: 'hsl(var(--info-foreground))',      anim: 'bounce' },
-                        { Component: HexagonShape,   bg: 'bg-success',   color: 'hsl(var(--success-foreground))',   anim: 'glitch' },
+                        { Component: FlameShape,     bg: 'bg-success',   color: 'hsl(var(--destructive))',          anim: 'glitch' },
                       ] as const).map(({ Component, bg, color, anim }) => (
                         <div key={anim} className={`${bg} border-2 border-foreground/20 flex items-center justify-center py-2`}>
                           <Component size={28} color={color} animation={anim} speed="normal" />
@@ -467,7 +469,7 @@ export function Home() {
             {[
               { count: componentsCount.count, suffix: '+', ref: componentsCount.ref, label: 'Components', bg: 'bg-primary',   icon: <Package className="h-5 w-5" />,  borders: 'border-r-3 border-b-3 md:border-b-0 border-foreground' },
               { count: chartsCount.count,     suffix: '',  ref: chartsCount.ref,     label: 'Chart Types', bg: 'bg-info',      icon: <BarChart3 className="h-5 w-5" />, borders: 'border-b-3 md:border-b-0 md:border-r-3 border-foreground' },
-              { count: shapesCount.count,     suffix: '',  ref: shapesCount.ref,     label: 'SVG Shapes',  bg: 'bg-accent',    icon: <Sparkles className="h-5 w-5" />, borders: 'border-r-3 md:border-r-3 border-foreground' },
+              { count: shapesCount.count,     suffix: '',  ref: shapesCount.ref,     label: 'SVG Shapes',  bg: 'bg-accent',    icon: <ShapesIcon className="h-5 w-5" />, borders: 'border-r-3 md:border-r-3 border-foreground' },
               { count: blocksCount.count,     suffix: '',  ref: blocksCount.ref,     label: 'Blocks',      bg: 'bg-secondary', icon: <LayoutGrid className="h-5 w-5" />, borders: '' },
             ].map((stat) => (
               <div key={stat.label} ref={stat.ref} className={`${stat.bg} ${stat.borders} p-6 md:p-10 flex flex-col gap-1`}>
@@ -536,7 +538,7 @@ export function Home() {
                     <BarChart3 className="h-3.5 w-3.5 mr-1.5" /> Charts
                   </TabsTrigger>
                   <TabsTrigger value="shapes">
-                    <Sparkles className="h-3.5 w-3.5 mr-1.5" /> Shapes
+                    <ShapesIcon className="h-3.5 w-3.5 mr-1.5" /> Shapes
                   </TabsTrigger>
                   <TabsTrigger value="blocks">
                     <LayoutGrid className="h-3.5 w-3.5 mr-1.5" /> Blocks
@@ -835,6 +837,19 @@ export function Home() {
 
               {/* ── Shapes Tab ── */}
               <TabsContent value="shapes">
+                <div className="mb-6 border-3 border-foreground bg-warning/15 p-4 shadow-[4px_4px_0px_hsl(var(--shadow-color))]">
+                  <div className="mb-3 flex items-center gap-2">
+                    <Badge variant="default" className="text-[10px]">New in v3.6.2</Badge>
+                    <span className="text-xs font-bold uppercase tracking-wide" style={MONO}>Emoji pack, Daisy &amp; Orbit</span>
+                  </div>
+                  <div className="grid grid-cols-5 gap-3 sm:grid-cols-10">
+                    {[SmileyShape, MeltingFaceShape, WinkShape, SkullShape, FlameShape, SparklesShape, HundredShape, EyesShape, DaisyShape, OrbitShape].map((C) => (
+                      <Link key={C.displayName} to="/shapes" aria-label={`${C.displayName} in the shape library`} className="flex items-center justify-center border-2 border-foreground bg-background p-2 transition hover:-translate-y-0.5">
+                        <C size={40} />
+                      </Link>
+                    ))}
+                  </div>
+                </div>
                 <div className="grid grid-cols-3 sm:grid-cols-6 gap-3 max-w-2xl">
                   {([
                     { Component: GearShape,      anim: 'spin',   label: 'Spin',   bg: 'bg-primary',   color: 'hsl(var(--primary-foreground))'   },
@@ -858,7 +873,7 @@ export function Home() {
                 </div>
 
                 <div className="mt-6">
-                  <p className="mb-3 text-sm text-muted-foreground" style={MONO}>{COUNTS.shapes} shapes total — badges, geometric, decorative, arrows, icons</p>
+                  <p className="mb-3 text-sm text-muted-foreground" style={MONO}>{COUNTS.shapes} shapes total: emoji, badges, geometric, decorative, mathematical</p>
                   <div className="flex gap-3 flex-wrap">
                     <Link to="/shapes">
                       <Button variant="outline" className="gap-2">Browse All Shapes <ArrowRight className="h-4 w-4" /></Button>

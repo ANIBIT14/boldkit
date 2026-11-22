@@ -1124,7 +1124,7 @@ export function Blocks() {
                   Explore more
                 </h3>
                 <p className="text-sm text-muted-foreground mt-1.5 leading-relaxed">
-                  50+ UI components, 10 chart types, 45 shapes, and full-page templates.
+                  50+ UI components, 10 chart types, 65 shapes, and full-page templates.
                 </p>
               </div>
               <div className="flex flex-col xs:flex-row gap-2 flex-wrap">

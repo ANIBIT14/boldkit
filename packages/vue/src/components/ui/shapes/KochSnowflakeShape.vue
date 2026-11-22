@@ -53,7 +53,7 @@ const kochPath = computed(() => {
   for (let iter = 0; iter < 2; iter++) {
     const next: { x: number; y: number }[] = []
     for (let j = 0; j < pts.length; j++) {
-      const a = pts[j], b = pts[(j + 1) % pts.length]
+      const a = pts[j]!, b = pts[(j + 1) % pts.length]!
       const dx = (b.x - a.x) / 3, dy = (b.y - a.y) / 3
       const p1 = { x: a.x + dx, y: a.y + dy }
       const p2 = { x: a.x + 2 * dx, y: a.y + 2 * dy }

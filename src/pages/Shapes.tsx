@@ -22,6 +22,8 @@ import {
   GearShape,
   HeptagonShape, DecagonShape, RhombusShape, EllipseShape, TrefoilShape,
   FibonacciSpiralShape, PenroseTriangleShape, KochSnowflakeShape, MobiusStripShape, TorusShape,
+  SmileyShape, MeltingFaceShape, WinkShape, SkullShape, FlameShape, SparklesShape, HundredShape, EyesShape,
+  DaisyShape, OrbitShape,
 } from '@/components/ui/shapes'
 
 const DISPLAY: CSSProperties = { fontFamily: "'Bebas Neue', sans-serif" }
@@ -74,6 +76,7 @@ const shapeCategories = [
       { name: 'Cloud', component: CloudShape, code: '<CloudShape size={100} />', vueCode: '<CloudShape :size="100" />' },
       { name: 'Heart', component: HeartShape, code: '<HeartShape size={100} />', vueCode: '<HeartShape :size="100" />' },
       { name: 'Apple', component: AppleShape, code: '<AppleShape size={100} />', vueCode: '<AppleShape :size="100" />' },
+      { name: 'Daisy', component: DaisyShape, code: '<DaisyShape size={100} petals={8} />', vueCode: '<DaisyShape :size="100" :petals="8" />', isNew: true },
     ],
   },
   {
@@ -86,6 +89,7 @@ const shapeCategories = [
       { name: 'Rainbow',  component: RainbowShape,  code: '<RainbowShape size={100} />',  vueCode: '<RainbowShape :size="100" />' },
       { name: 'Planet',   component: PlanetShape,   code: '<PlanetShape size={100} />',   vueCode: '<PlanetShape :size="100" />' },
       { name: 'Umbrella', component: UmbrellaShape, code: '<UmbrellaShape size={100} />', vueCode: '<UmbrellaShape :size="100" />' },
+      { name: 'Orbit', component: OrbitShape, code: '<OrbitShape size={100} />', vueCode: '<OrbitShape :size="100" />', isNew: true },
     ],
   },
   {
@@ -133,7 +137,7 @@ const shapeCategories = [
     description: 'Gears, cogs, and technical elements',
     accent: 'bg-muted-foreground', bg: 'bg-muted',
     shapes: [
-      { name: 'Gear', component: GearShape, code: '<GearShape size={100} />', vueCode: '<GearShape :size="100" />', isNew: true },
+      { name: 'Gear', component: GearShape, code: '<GearShape size={100} />', vueCode: '<GearShape :size="100" />' },
     ],
   },
   {
@@ -146,6 +150,21 @@ const shapeCategories = [
       { name: 'Koch Snowflake',   component: KochSnowflakeShape,   code: '<KochSnowflakeShape size={100} />',   vueCode: '<KochSnowflakeShape :size="100" />', isNew: true },
       { name: 'Möbius Strip',     component: MobiusStripShape,     code: '<MobiusStripShape size={100} />',     vueCode: '<MobiusStripShape :size="100" />', isNew: true },
       { name: 'Torus',            component: TorusShape,           code: '<TorusShape size={100} />',           vueCode: '<TorusShape :size="100" />', isNew: true },
+    ],
+  },
+  {
+    name: 'Emoji', num: '10',
+    description: 'Faces and reactions: emoji-inspired, brutalist-drawn',
+    accent: 'bg-warning', bg: 'bg-warning/8 dark:bg-warning/10',
+    shapes: [
+      { name: 'Smiley', component: SmileyShape, code: '<SmileyShape size={100} />', vueCode: '<SmileyShape :size="100" />', isNew: true },
+      { name: 'Melting Face', component: MeltingFaceShape, code: '<MeltingFaceShape size={100} />', vueCode: '<MeltingFaceShape :size="100" />', isNew: true },
+      { name: 'Wink', component: WinkShape, code: '<WinkShape size={100} />', vueCode: '<WinkShape :size="100" />', isNew: true },
+      { name: 'Skull', component: SkullShape, code: '<SkullShape size={100} />', vueCode: '<SkullShape :size="100" />', isNew: true },
+      { name: 'Flame', component: FlameShape, code: '<FlameShape size={100} />', vueCode: '<FlameShape :size="100" />', isNew: true },
+      { name: 'Sparkles', component: SparklesShape, code: '<SparklesShape size={100} />', vueCode: '<SparklesShape :size="100" />', isNew: true },
+      { name: 'Hundred', component: HundredShape, code: '<HundredShape size={100} />', vueCode: '<HundredShape :size="100" />', isNew: true },
+      { name: 'Eyes', component: EyesShape, code: '<EyesShape size={100} />', vueCode: '<EyesShape :size="100" />', isNew: true },
     ],
   },
 ]
